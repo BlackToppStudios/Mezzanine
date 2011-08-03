@@ -77,6 +77,7 @@ This is the complete list of members for <a class="el" href="classphys_1_1Physic
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#a5b8767880619cefce97218207c251544">ApplyPhysicsShape</a>(ActorBase *Actor, const String &amp;ShapeName)</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a> typedef</td><td><a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>CameraManager</b> enum value (defined in <a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a>)</td><td><a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#aa9f964240e51a92abf0afbb045721396">ClearPhysicsMetaData</a>()</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#ac0157bc0c953b13162c680d1c49980f6">DestroyAllAreaEffects</a>()</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#a34b684f447c56dee94dc80d8df8051eb">DestroyAllConstraints</a>()</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#a51a1fc148baa6d4d32a0f47cbc0dbc97">DestroyAllPhysicsShapes</a>()</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
@@ -111,7 +112,7 @@ This is the complete list of members for <a class="el" href="classphys_1_1Physic
   <tr class="memlist"><td><a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a> enum name</td><td><a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#a107d5540a9bef91325807f77542c9176">PauseSimulation</a>(bool Pause)</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#ab3ecdc295799ad9858ca80743b25006d">PhysicsManager</a>()</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#a1072c647c64ec82381ddc9f1a17c5909">PhysicsManager</a>(const Vector3 &amp;GeographyLowerBounds_, const Vector3 &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_)</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#abb3bd1e6aaadba95ce219d9d3643ebfe">PhysicsManager</a>(const PhysicsConstructionInfo &amp;Info)</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>PhysicsManager</b> enum value (defined in <a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a>)</td><td><a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1ManagerBase.html#aa1e80a30f151c07e06d1f4650f315da5">PostMainLoop</a></td><td><a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1ManagerBase.html#afc3572602f96bdeb8215c386ff870820">PostMainLoopItems</a>()</td><td><a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a></td><td><code> [virtual]</code></td></tr>
@@ -121,6 +122,7 @@ This is the complete list of members for <a class="el" href="classphys_1_1Physic
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#a5ee0f784a8239be56164a7a67a28f227">RemoveAreaEffect</a>(AreaEffect *AE)</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#ace94aa20b5191b01630e7a5046cb7af6">RemoveConstraint</a>(TypedConstraint *Constraint)</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#a48bd725a1a2b3e8193b549a915ef4dc2">RemoveWorldTrigger</a>(WorldTrigger *Trig)</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#a22e76681b153c170dd6bfef2edbbbcd3">ResetPhysicsWorld</a>(PhysicsConstructionInfo *Info=0)</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>ResourceManager</b> enum value (defined in <a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a>)</td><td><a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>SceneManager</b> enum value (defined in <a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a>)</td><td><a class="el" href="classphys_1_1ManagerBase.html">phys::ManagerBase</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classphys_1_1PhysicsManager.html#a98ee9704eec230ff759850ffa8394489">SetCollisionParams</a>(const unsigned short int Age, Real Force)</td><td><a class="el" href="classphys_1_1PhysicsManager.html">phys::PhysicsManager</a></td><td></td></tr>
@@ -157,7 +159,7 @@ This is the complete list of members for <a class="el" href="classphys_1_1Physic
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:29 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:46 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

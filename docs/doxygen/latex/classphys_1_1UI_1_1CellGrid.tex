@@ -33,7 +33,7 @@ enum \hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496b}{O
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1CellGrid_ace71a7178cd85b2c322403d59aec8e4f}{CellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\hyperlink{classphys_1_1UI_1_1CellGrid_adabf84eb8411de0bcf9b57f648ca5810}{CellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}{
 virtual \hyperlink{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}{$\sim$CellGrid} ()}
@@ -325,18 +325,17 @@ Definition at line 67 of file uicellgrid.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1CellGrid_ace71a7178cd85b2c322403d59aec8e4f}{
+\hypertarget{classphys_1_1UI_1_1CellGrid_adabf84eb8411de0bcf9b57f648ca5810}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!CellGrid@{CellGrid}}
 \index{CellGrid@{CellGrid}!phys::UI::CellGrid@{phys::UI::CellGrid}}
 \paragraph[{CellGrid}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::CellGrid::CellGrid (
 \begin{DoxyParamCaption}
 \item[{const {\bf String} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{{\bf Layer} $\ast$}]{parent}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1CellGrid_ace71a7178cd85b2c322403d59aec8e4f}
+\label{classphys_1_1UI_1_1CellGrid_adabf84eb8411de0bcf9b57f648ca5810}
 
 
 Class constructor. 
@@ -345,9 +344,7 @@ Class constructor.
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of the widget. \\
 \hline
-{\em Position} & The position of the widget. \\
-\hline
-{\em Size} & The size of the widget. \\
+{\em Rect} & The Rect representing the position and size of the widget. \\
 \hline
 {\em parent} & The parent layer this widget belongs to. \\
 \hline
@@ -379,7 +376,7 @@ Addes a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} to this widget that will be re
 \end{DoxyParams}
 
 
-Definition at line 363 of file uicellgrid.cpp.
+Definition at line 372 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_ae901b18d90b8ed0d16da25ccfa91e84e}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!CellsOffGrid@{CellsOffGrid}}
@@ -399,7 +396,7 @@ Returns a bool indicating whether or not this widgets work area needs to be incr
 \end{DoxyReturn}
 
 
-Definition at line 452 of file uicellgrid.cpp.
+Definition at line 461 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a9c5f899c7db6c24d9aa2b03e59e5f0f0}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!CheckMouseHover@{CheckMouseHover}}
@@ -427,7 +424,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a859ed3c174faf86962
 
 
 
-Definition at line 473 of file uicellgrid.cpp.
+Definition at line 482 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a1ead8b427b5989ec137aa0ca8e017f73}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetActualPosition@{GetActualPosition}}
@@ -451,7 +448,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e
 
 
 
-Definition at line 519 of file uicellgrid.cpp.
+Definition at line 528 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_ad0ea7915446ba7821212e6a43aede7e1}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetActualSize@{GetActualSize}}
@@ -475,7 +472,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed
 
 
 
-Definition at line 543 of file uicellgrid.cpp.
+Definition at line 552 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a563d2fcfdb017579633727094a3176f3}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetCell@{GetCell}}
@@ -500,7 +497,7 @@ Returns a pointer to the \hyperlink{classphys_1_1UI_1_1Cell}{Cell} requested, or
 \end{DoxyReturn}
 
 
-Definition at line 371 of file uicellgrid.cpp.
+Definition at line 380 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a6a39785b673abb8cffc8bbd0b8837208}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetCell@{GetCell}}
@@ -528,7 +525,7 @@ Returns a pointer to the cell requested, or NULL if nothing is at the requested 
 \end{DoxyReturn}
 
 
-Definition at line 385 of file uicellgrid.cpp.
+Definition at line 394 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a232260f23808cd7099f2f9a15850a14e}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetCellSpacing@{GetCellSpacing}}
@@ -548,7 +545,7 @@ Returns a Real representing the spacing to be used between Cells of this widget.
 \end{DoxyReturn}
 
 
-Definition at line 447 of file uicellgrid.cpp.
+Definition at line 456 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_afcf2689f1cc38acb157deb8ee5717906}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetEdgeSpacing@{GetEdgeSpacing}}
@@ -568,7 +565,7 @@ Returns a Real representing the spacing to be used on edges of this widget.
 \end{DoxyReturn}
 
 
-Definition at line 437 of file uicellgrid.cpp.
+Definition at line 446 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a7106972be4c03ac453894fcb7ef4782f}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetFixedCellSize@{GetFixedCellSize}}
@@ -588,7 +585,7 @@ Returns a \hyperlink{classphys_1_1Vector2}{Vector2} containing the size applied 
 \end{DoxyReturn}
 
 
-Definition at line 358 of file uicellgrid.cpp.
+Definition at line 367 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a25796d285052da2f0d833e6c8694edd1}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetGridBack@{GetGridBack}}
@@ -608,7 +605,7 @@ Returns a pointer to the background of this grid.
 \end{DoxyReturn}
 
 
-Definition at line 558 of file uicellgrid.cpp.
+Definition at line 567 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a6b7fcbfd8a965e69c6e3e92d474f121f}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetPosition@{GetPosition}}
@@ -632,7 +629,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c3
 
 
 
-Definition at line 507 of file uicellgrid.cpp.
+Definition at line 516 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a4c68b88de0b02ef66ee192db430435ee}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetSelected@{GetSelected}}
@@ -652,7 +649,7 @@ Returns a pointer to the selected \hyperlink{classphys_1_1UI_1_1Cell}{Cell}.
 \end{DoxyReturn}
 
 
-Definition at line 563 of file uicellgrid.cpp.
+Definition at line 572 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_aa0ad4f1e0159f8c6ca3928595dffd837}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetSize@{GetSize}}
@@ -676,7 +673,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a
 
 
 
-Definition at line 531 of file uicellgrid.cpp.
+Definition at line 540 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a328392c90b93da93354756607e328e0c}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetWorkAreaLimits@{GetWorkAreaLimits}}
@@ -696,7 +693,7 @@ Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the logical lim
 \end{DoxyReturn}
 
 
-Definition at line 427 of file uicellgrid.cpp.
+Definition at line 436 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_af53601ab18e77237550c3eb97043e68c}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!IsVisible@{IsVisible}}
@@ -720,7 +717,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7a
 
 
 
-Definition at line 328 of file uicellgrid.cpp.
+Definition at line 337 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_af7ff6b201aa24939c82ee34e96e67a32}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!RemoveCell@{RemoveCell}}
@@ -742,7 +739,7 @@ Removes a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} from this widget.
 \end{DoxyParams}
 
 
-Definition at line 398 of file uicellgrid.cpp.
+Definition at line 407 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a911ce43c124ca7ac9f02ba7d8e08d919}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetActualPosition@{SetActualPosition}}
@@ -772,7 +769,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aceff3ee36c2677d
 
 
 
-Definition at line 512 of file uicellgrid.cpp.
+Definition at line 521 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a86a0ff7a5a916278d901bae05df01847}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetActualSize@{SetActualSize}}
@@ -802,7 +799,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a32ee6cc683f7357
 
 
 
-Definition at line 536 of file uicellgrid.cpp.
+Definition at line 545 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_ac62bf02320f381012d22941d07ae62a2}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetCellSpacing@{SetCellSpacing}}
@@ -828,7 +825,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_ad565437a52149f099c
 
 
 
-Definition at line 442 of file uicellgrid.cpp.
+Definition at line 451 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_aa55c328e2d222570d5c72bb50a48f8a5}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetEdgeSpacing@{SetEdgeSpacing}}
@@ -854,7 +851,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a1bfa7f6ebfc9cec285
 
 
 
-Definition at line 432 of file uicellgrid.cpp.
+Definition at line 441 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_ad8a6d111b1906b0eb165fcedc0917452}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetFixedCellSize@{SetFixedCellSize}}
@@ -880,7 +877,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a0083810bb8c7857ef2
 
 
 
-Definition at line 353 of file uicellgrid.cpp.
+Definition at line 362 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_abf0552ebbe369f6b695f91fdaa220c20}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetPosition@{SetPosition}}
@@ -910,7 +907,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef62a124cb71b39
 
 
 
-Definition at line 500 of file uicellgrid.cpp.
+Definition at line 509 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a83de47589cb02ce49882f795e9281f57}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetSize@{SetSize}}
@@ -940,7 +937,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a793a775a3603e71
 
 
 
-Definition at line 524 of file uicellgrid.cpp.
+Definition at line 533 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_abd1b3b422680a8b549c1c897b300da5d}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetVisible@{SetVisible}}
@@ -970,7 +967,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a76ff4b649f4687203b
 
 
 
-Definition at line 318 of file uicellgrid.cpp.
+Definition at line 327 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a785a41fd3e38dbd5a58d9a4f72f06a26}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetWorkAreaLimits@{SetWorkAreaLimits}}
@@ -996,7 +993,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_af50d0b6337d727ac91
 
 
 
-Definition at line 422 of file uicellgrid.cpp.
+Definition at line 431 of file uicellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf3ff787837e5}{
 \index{phys::UI::CellGrid@{phys::UI::CellGrid}!UpdateDimensions@{UpdateDimensions}}
@@ -1026,7 +1023,7 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a7d6ddd7126f86d2ea6
 
 
 
-Definition at line 548 of file uicellgrid.cpp.
+Definition at line 557 of file uicellgrid.cpp.
 
 
 

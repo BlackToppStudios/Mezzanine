@@ -14,9 +14,9 @@ This class is a helper class, specifically for use with text.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1Caption_a49873b9d0e566c95dc4c823a1c409e93}{Caption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1Caption_afc017e949e2bae2042652b27881c7043}{Caption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Caption_a427d4ac90877112b2dbf262f7d384d77}{Caption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1Caption_a4b7961affde3559d2bd60f248fc2dece}{Caption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}{
 virtual \hyperlink{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}{$\sim$Caption} ()}
@@ -108,9 +108,9 @@ virtual void \hyperlink{classphys_1_1UI_1_1Caption_a082be5cb2197fdd1cdc06efb410b
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1Caption_ae1177e96a6946e76adc0774e208e9895}{
-void {\bfseries ConstructCaption} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)}
-\label{classphys_1_1UI_1_1Caption_ae1177e96a6946e76adc0774e208e9895}
+\hypertarget{classphys_1_1UI_1_1Caption_a069f9827ce5a969befd0b2609d95a062}{
+void {\bfseries ConstructCaption} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)}
+\label{classphys_1_1UI_1_1Caption_a069f9827ce5a969befd0b2609d95a062}
 
 \end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
@@ -183,20 +183,19 @@ Definition at line 73 of file uicaption.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1Caption_a49873b9d0e566c95dc4c823a1c409e93}{
+\hypertarget{classphys_1_1UI_1_1Caption_afc017e949e2bae2042652b27881c7043}{
 \index{phys::UI::Caption@{phys::UI::Caption}!Caption@{Caption}}
 \index{Caption@{Caption}!phys::UI::Caption@{phys::UI::Caption}}
 \paragraph[{Caption}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Caption::Caption (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Whole} \&}]{Glyph, }
 \item[{const {\bf String} \&}]{Text, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1Caption_a49873b9d0e566c95dc4c823a1c409e93}
+\label{classphys_1_1UI_1_1Caption_afc017e949e2bae2042652b27881c7043}
 
 
 Internal constructor. 
@@ -205,9 +204,7 @@ Internal constructor.
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of this caption. \\
 \hline
-{\em Position} & The top left position of the caption. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the caption. \\
 \hline
 {\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
 \hline
@@ -220,20 +217,19 @@ Internal constructor.
 
 Definition at line 57 of file uicaption.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Caption_a427d4ac90877112b2dbf262f7d384d77}{
+\hypertarget{classphys_1_1UI_1_1Caption_a4b7961affde3559d2bd60f248fc2dece}{
 \index{phys::UI::Caption@{phys::UI::Caption}!Caption@{Caption}}
 \index{Caption@{Caption}!phys::UI::Caption@{phys::UI::Caption}}
 \paragraph[{Caption}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Caption::Caption (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{LineHeight, }
 \item[{const {\bf String} \&}]{Text, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1Caption_a427d4ac90877112b2dbf262f7d384d77}
+\label{classphys_1_1UI_1_1Caption_a4b7961affde3559d2bd60f248fc2dece}
 
 
 Internal constructor. 
@@ -242,9 +238,7 @@ Internal constructor.
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of this caption. \\
 \hline
-{\em Position} & The top left position of the caption. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the caption. \\
 \hline
 {\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
 \hline
@@ -255,7 +249,7 @@ Internal constructor.
 \end{DoxyParams}
 
 
-Definition at line 70 of file uicaption.cpp.
+Definition at line 68 of file uicaption.cpp.
 
 
 
@@ -278,7 +272,7 @@ Returns a bool indicating whether the mouse is over this caption.
 \end{DoxyReturn}
 
 
-Definition at line 125 of file uicaption.cpp.
+Definition at line 134 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_aae3e6728a26111e12b081992d6d04e1a}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetActualPosition@{GetActualPosition}}
@@ -298,7 +292,7 @@ Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of
 \end{DoxyReturn}
 
 
-Definition at line 287 of file uicaption.cpp.
+Definition at line 296 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_aa80a4328d76458a6e869c485bea48b98}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetActualSize@{GetActualSize}}
@@ -318,7 +312,7 @@ Returns a vector2 representing the size of this caption.
 \end{DoxyReturn}
 
 
-Definition at line 316 of file uicaption.cpp.
+Definition at line 325 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a04303c21feae9a3bf4a73fa0fb1176c7}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetAutoScaleText@{GetAutoScaleText}}
@@ -338,7 +332,7 @@ Returns a bool indicating whether or not this caption will automatically scale i
 \end{DoxyReturn}
 
 
-Definition at line 378 of file uicaption.cpp.
+Definition at line 387 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a381133922b882500ae0bf503acb4c6a4}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetCursorOffset@{GetCursorOffset}}
@@ -358,7 +352,7 @@ Returns a Whole representing the number of pixels text is currently being offset
 \end{DoxyReturn}
 
 
-Definition at line 202 of file uicaption.cpp.
+Definition at line 211 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a4181591a3186ec4d1f87946891a0ef26}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetGlyphIndex@{GetGlyphIndex}}
@@ -380,7 +374,7 @@ The glyph index is defined in your gorilla file.
 \end{DoxyParams}
 
 
-Definition at line 192 of file uicaption.cpp.
+Definition at line 201 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_afdb8c018e33bc28c77291ea797c042c0}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetMouseHover@{GetMouseHover}}
@@ -400,7 +394,7 @@ Returns the stored value of whether or not the mouse is over the caption.
 \end{DoxyReturn}
 
 
-Definition at line 139 of file uicaption.cpp.
+Definition at line 148 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_ac189115176b58b77b32b5b61fe8fec1b}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetName@{GetName}}
@@ -420,7 +414,7 @@ Returns a string containing the name of this caption.
 \end{DoxyReturn}
 
 
-Definition at line 144 of file uicaption.cpp.
+Definition at line 153 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a3096383b16f81c3b4894afd61110ffa0}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetPosition@{GetPosition}}
@@ -440,7 +434,7 @@ Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of
 \end{DoxyReturn}
 
 
-Definition at line 274 of file uicaption.cpp.
+Definition at line 283 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a14b5704d66e3a1800f43e49605a9a504}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetPrimaryAtlas@{GetPrimaryAtlas}}
@@ -460,7 +454,7 @@ Returns a string containing the name of the primary atlas that is set.
 \end{DoxyReturn}
 
 
-Definition at line 368 of file uicaption.cpp.
+Definition at line 377 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_ada0bf1e830f8f672adbc3263e7095896}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetRenderPriority@{GetRenderPriority}}
@@ -480,7 +474,7 @@ Returns an enum value representing this caption's priority level.
 \end{DoxyReturn}
 
 
-Definition at line 343 of file uicaption.cpp.
+Definition at line 352 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a1da2e0e9ce0d904595f53a10244fcaf4}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetSize@{GetSize}}
@@ -500,7 +494,7 @@ Returns a vector2 representing the size of this caption.
 \end{DoxyReturn}
 
 
-Definition at line 303 of file uicaption.cpp.
+Definition at line 312 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_ad35be48f6f9df9ca9d9a2e3d0cb99c78}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetText@{GetText}}
@@ -520,7 +514,7 @@ Returns the text being displayed.
 \end{DoxyReturn}
 
 
-Definition at line 154 of file uicaption.cpp.
+Definition at line 163 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a32bb578e6e92986839e1cd49edfe9422}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetTextColour@{GetTextColour}}
@@ -540,7 +534,7 @@ Returns a colourvalue representing the currently set colour of the text in this 
 \end{DoxyReturn}
 
 
-Definition at line 174 of file uicaption.cpp.
+Definition at line 183 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a6c916aef18864826feca84a6b8ddf619}{
 \index{phys::UI::Caption@{phys::UI::Caption}!GetTextScale@{GetTextScale}}
@@ -560,7 +554,7 @@ Returns a Real value representing the scale applied to the text in this caption.
 \end{DoxyReturn}
 
 
-Definition at line 164 of file uicaption.cpp.
+Definition at line 173 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a9a84336bc94432f6cdf621da6e917ba9}{
 \index{phys::UI::Caption@{phys::UI::Caption}!HorizontallyAlign@{HorizontallyAlign}}
@@ -582,7 +576,7 @@ Default value for this is UI::Txt\_\-Middle.
 \end{DoxyParams}
 
 
-Definition at line 224 of file uicaption.cpp.
+Definition at line 233 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a965d162160c26a2f9a2a16b88aa8f05d}{
 \index{phys::UI::Caption@{phys::UI::Caption}!IsVisible@{IsVisible}}
@@ -602,7 +596,7 @@ Returns a bool representing the visibility of this caption.
 \end{DoxyReturn}
 
 
-Definition at line 108 of file uicaption.cpp.
+Definition at line 117 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a2a95b13bc8c30197630b563d6e4443d3}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetActualPosition@{SetActualPosition}}
@@ -624,7 +618,7 @@ Sets the top left position of this caption in pixels.
 \end{DoxyParams}
 
 
-Definition at line 279 of file uicaption.cpp.
+Definition at line 288 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_adf86621e59a91112d011f0d1a1afe492}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetActualSize@{SetActualSize}}
@@ -646,7 +640,7 @@ Sets the size of this caption in pixels.
 \end{DoxyParams}
 
 
-Definition at line 308 of file uicaption.cpp.
+Definition at line 317 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_aee1c527c48cb9789cd28de68ad549393}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetAutoScaleText@{SetAutoScaleText}}
@@ -668,7 +662,7 @@ Enables or disables scaling the text automatically on a screen size change.
 \end{DoxyParams}
 
 
-Definition at line 373 of file uicaption.cpp.
+Definition at line 382 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a33ec6c09671474529b0f33f0f1cd51ad}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetBackgroundColour@{SetBackgroundColour}}
@@ -690,7 +684,7 @@ Sets the background colour of the caption.
 \end{DoxyParams}
 
 
-Definition at line 207 of file uicaption.cpp.
+Definition at line 216 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a98422dc633dfb68ea87d0f54fda25f48}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetBackgroundSprite@{SetBackgroundSprite}}
@@ -712,7 +706,7 @@ Sets the background image(if provided in the atlas) of the caption.
 \end{DoxyParams}
 
 
-Definition at line 212 of file uicaption.cpp.
+Definition at line 221 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_ade543d9f6565c0d254c3709036c4628c}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetBackgroundSprite@{SetBackgroundSprite}}
@@ -737,7 +731,7 @@ Sets the background image(if provided in the atlas) of the caption from another 
 \end{DoxyParams}
 
 
-Definition at line 218 of file uicaption.cpp.
+Definition at line 227 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_ae1b58390d4308f17dd204dbe38208b7d}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetCursorOffset@{SetCursorOffset}}
@@ -759,7 +753,7 @@ This doesn't apply when text is being rendered with a Middle alignment.
 \end{DoxyParams}
 
 
-Definition at line 197 of file uicaption.cpp.
+Definition at line 206 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_aacf236680c364176d70ff2cc753afece}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetGlyphIndex@{SetGlyphIndex}}
@@ -781,7 +775,7 @@ The glyph index is defined in your gorilla file.
 \end{DoxyParams}
 
 
-Definition at line 180 of file uicaption.cpp.
+Definition at line 189 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a057f739be58fcc79c03d7089b71d3d9d}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetGlyphIndex@{SetGlyphIndex}}
@@ -806,7 +800,7 @@ The glyph index is defined in your gorilla file.
 \end{DoxyParams}
 
 
-Definition at line 186 of file uicaption.cpp.
+Definition at line 195 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a1468264121aa579147799fec959ce579}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetPosition@{SetPosition}}
@@ -828,7 +822,7 @@ Sets the relative top left position of this caption.
 \end{DoxyParams}
 
 
-Definition at line 264 of file uicaption.cpp.
+Definition at line 273 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_aa4fe1b042c9fed96a4da1b1c9c465071}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetPrimaryAtlas@{SetPrimaryAtlas}}
@@ -850,7 +844,7 @@ Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
 \end{DoxyParams}
 
 
-Definition at line 363 of file uicaption.cpp.
+Definition at line 372 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_aa822a05b96ca9c61a65b8f366d24a9aa}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetRenderPriority@{SetRenderPriority}}
@@ -872,7 +866,7 @@ The default value for this is Medium.
 \end{DoxyParams}
 
 
-Definition at line 322 of file uicaption.cpp.
+Definition at line 331 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a4354cc59deb62b1e2b52a07f775c085e}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetSize@{SetSize}}
@@ -894,7 +888,7 @@ Sets the relative size of this caption.
 \end{DoxyParams}
 
 
-Definition at line 293 of file uicaption.cpp.
+Definition at line 302 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a4592228fd6874958e6767b9d461ac2ce}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetText@{SetText}}
@@ -916,7 +910,7 @@ Sets the text displayed within the caption.
 \end{DoxyParams}
 
 
-Definition at line 149 of file uicaption.cpp.
+Definition at line 158 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a48e02a811a03a7542ee9bdcc4303a264}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetTextColour@{SetTextColour}}
@@ -938,7 +932,7 @@ Sets the colour for the text in this caption.
 \end{DoxyParams}
 
 
-Definition at line 169 of file uicaption.cpp.
+Definition at line 178 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a050347af6977e21804bac00fb208c18d}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetTextScale@{SetTextScale}}
@@ -960,7 +954,7 @@ Sets the scaling to be applied to the text being rendered.
 \end{DoxyParams}
 
 
-Definition at line 159 of file uicaption.cpp.
+Definition at line 168 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_afce46e42eb3ab522c29d5c13a5691065}{
 \index{phys::UI::Caption@{phys::UI::Caption}!SetVisible@{SetVisible}}
@@ -982,7 +976,7 @@ Sets the visibility of this caption.
 \end{DoxyParams}
 
 
-Definition at line 102 of file uicaption.cpp.
+Definition at line 111 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_a082be5cb2197fdd1cdc06efb410b2e14}{
 \index{phys::UI::Caption@{phys::UI::Caption}!UpdateDimensions@{UpdateDimensions}}
@@ -999,7 +993,7 @@ Updates the dimensions of this caption to match those of the new screen size.
 
 This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
 
-Definition at line 383 of file uicaption.cpp.
+Definition at line 392 of file uicaption.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Caption_ad8345d8e18613483df34dcdda2844cb1}{
 \index{phys::UI::Caption@{phys::UI::Caption}!VerticallyAlign@{VerticallyAlign}}
@@ -1021,7 +1015,7 @@ Default value for this is UI::Txt\_\-Center.
 \end{DoxyParams}
 
 
-Definition at line 244 of file uicaption.cpp.
+Definition at line 253 of file uicaption.cpp.
 
 
 

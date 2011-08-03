@@ -1,0 +1,554 @@
+\hypertarget{classphys_1_1UI_1_1DropDownList}{
+\subsection{phys::UI::DropDownList Class Reference}
+\label{classphys_1_1UI_1_1DropDownList}\index{phys::UI::DropDownList@{phys::UI::DropDownList}}
+}
+
+
+A widget that displays one selection from a list that can have it's visibility toggled.  
+
+
+
+
+{\ttfamily \#include $<$uidropdownlist.h$>$}
+
+Inheritance diagram for phys::UI::DropDownList:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classphys_1_1UI_1_1DropDownList}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UI_1_1DropDownList_a4646bc366b489a131747ea01629af428}{DropDownList} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1DropDownList_a9868ebcc629cf6b43a3913be5358e0b8}{DropDownList} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_abef8eec322f0e2a6af99aac6bfc3a6eb}{
+virtual \hyperlink{classphys_1_1UI_1_1DropDownList_abef8eec322f0e2a6af99aac6bfc3a6eb}{$\sim$DropDownList} ()}
+\label{classphys_1_1UI_1_1DropDownList_abef8eec322f0e2a6af99aac6bfc3a6eb}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_ac86730fe238d990505667bb9a475fb77}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1DropDownList_ae4bd94c8f891dadf2423cef16c28e3f9}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_aa30bdfe138516a0f51efa2034cd9f595}{
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_aa30bdfe138516a0f51efa2034cd9f595}{Show} ()}
+\label{classphys_1_1UI_1_1DropDownList_aa30bdfe138516a0f51efa2034cd9f595}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_a919966f2143ad3fd967b6e17092891b3}{
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_a919966f2143ad3fd967b6e17092891b3}{Hide} ()}
+\label{classphys_1_1UI_1_1DropDownList_a919966f2143ad3fd967b6e17092891b3}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1DropDownList_a2ac515cb3282a0f190d002417e509424}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_a91dbfd382be8c505021739602a7a64e6}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_a179dbf5e16fa6dd10ec8a72ae4349d3c}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_af4d36a88b9629284d22d023bdcfd4074}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_a2c3b3dc073aebecd9216fa48e7cc10f2}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_aebcb4fe708e7d1af4609120039e276a6}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_ae47b0e9786a39a79fb613c2d1b1fcd38}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_ad85c38f98f467565f2b895993ab92f96}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_afa9ccaef200f9ee8f22be5f32ba1f0a3}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_aa204411b17521b92acb78926d1d3f98e}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1DropDownList_a78b41941db0b3d8196249ab31d2b174a}{GetSelection} ()
+\begin{DoxyCompactList}\small\item\em Gets the caption showing the current selection in this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1DropDownList_abfbbeee72ba061a226f64c2ca93a36a9}{GetListToggle} ()
+\begin{DoxyCompactList}\small\item\em Gets the button that toggles the appearance of the listbox in this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{UI::ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1DropDownList_a3b89efdefadc83e7257d34954c0816a6}{GetSelectionList} ()
+\begin{DoxyCompactList}\small\item\em Gets the listbox showing all the selections in this widget. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_a2e0988db883971424579bfc4b8536065}{
+void \hyperlink{classphys_1_1UI_1_1DropDownList_a2e0988db883971424579bfc4b8536065}{ConstructDropDownList} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const UI::ScrollbarStyle \&ScrollStyle)}
+\label{classphys_1_1UI_1_1DropDownList_a2e0988db883971424579bfc4b8536065}
+
+\begin{DoxyCompactList}\small\item\em Internal construction function. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_a1356da2f60b5ca6539f98a957b961d65}{
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_a1356da2f60b5ca6539f98a957b961d65}{Update} (bool Force=false)}
+\label{classphys_1_1UI_1_1DropDownList_a1356da2f60b5ca6539f98a957b961d65}
+
+\begin{DoxyCompactList}\small\item\em For use with widget update/automation. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_a91eee0b439bb7241ac5fd25eaa8cb554}{
+\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ {\bfseries Selection}}
+\label{classphys_1_1UI_1_1DropDownList_a91eee0b439bb7241ac5fd25eaa8cb554}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_a7483ac2d5fb3113a2c05eae863f925c8}{
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ {\bfseries ListToggle}}
+\label{classphys_1_1UI_1_1DropDownList_a7483ac2d5fb3113a2c05eae863f925c8}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_a55d5b34f7ec20da239caf1af1aad1abf}{
+\hyperlink{classphys_1_1UI_1_1ListBox}{UI::ListBox} $\ast$ {\bfseries SelectionList}}
+\label{classphys_1_1UI_1_1DropDownList_a55d5b34f7ec20da239caf1af1aad1abf}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_a298f854373f5d666ef93daa2c183febe}{
+bool {\bfseries ToggleActivated}}
+\label{classphys_1_1UI_1_1DropDownList_a298f854373f5d666ef93daa2c183febe}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A widget that displays one selection from a list that can have it's visibility toggled. Note: When getting or setting either the position or size of this widget, you are altering the caption and button only, and not the list. The list will be moved and resized appropriately, automatically. 
+
+Definition at line 60 of file uidropdownlist.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UI_1_1DropDownList_a4646bc366b489a131747ea01629af428}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!DropDownList@{DropDownList}}
+\index{DropDownList@{DropDownList}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{DropDownList}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::DropDownList::DropDownList (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const UI::ScrollbarStyle \&}]{ScrollStyle, }
+\item[{{\bf Layer} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_a4646bc366b489a131747ea01629af428}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The Name for the \hyperlink{classphys_1_1UI_1_1Widget}{Widget}. \\
+\hline
+{\em Rect} & The renderable rect representing the position and size of ths widget. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well. \\
+\hline
+{\em ScrollStyle} & The style of the scrollbar you want for this List Box. See \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} class for more information. \\
+\hline
+{\em parent} & The parent layer that created this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 55 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_a9868ebcc629cf6b43a3913be5358e0b8}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!DropDownList@{DropDownList}}
+\index{DropDownList@{DropDownList}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{DropDownList}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::DropDownList::DropDownList (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{const UI::ScrollbarStyle \&}]{ScrollStyle, }
+\item[{{\bf Layer} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_a9868ebcc629cf6b43a3913be5358e0b8}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The Name for the \hyperlink{classphys_1_1UI_1_1Widget}{Widget}. \\
+\hline
+{\em Rect} & The renderable rect representing the position and size of ths widget. \\
+\hline
+{\em Glyph} & The Glyph index to be applied to all text in this widget. Must be valid. \\
+\hline
+{\em ScrollStyle} & The style of the scrollbar you want for this List Box. See \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} class for more information. \\
+\hline
+{\em parent} & The parent layer that created this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file uidropdownlist.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1UI_1_1DropDownList_a2ac515cb3282a0f190d002417e509424}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!CheckMouseHover@{CheckMouseHover}}
+\index{CheckMouseHover@{CheckMouseHover}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::DropDownList::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_a2ac515cb3282a0f190d002417e509424}
+
+
+Checks to see if the current mouse position is over this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool value, true if the mouse is over this widget, false if it's not. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259dc}{phys::UI::Widget}.
+
+
+
+Definition at line 180 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_a2c3b3dc073aebecd9216fa48e7cc10f2}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::DropDownList::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_a2c3b3dc073aebecd9216fa48e7cc10f2}
+
+
+Sets the pixel position of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel position of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e7}{phys::UI::Widget}.
+
+
+
+Definition at line 208 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_afa9ccaef200f9ee8f22be5f32ba1f0a3}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::DropDownList::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_afa9ccaef200f9ee8f22be5f32ba1f0a3}
+
+
+Sets the pixel size of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel size of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed2}{phys::UI::Widget}.
+
+
+
+Definition at line 233 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_abfbbeee72ba061a226f64c2ca93a36a9}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!GetListToggle@{GetListToggle}}
+\index{GetListToggle@{GetListToggle}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{GetListToggle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::DropDownList::GetListToggle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_abfbbeee72ba061a226f64c2ca93a36a9}
+
+
+Gets the button that toggles the appearance of the listbox in this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button controlling the visibility of the listbox. 
+\end{DoxyReturn}
+
+
+Definition at line 248 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_a179dbf5e16fa6dd10ec8a72ae4349d3c}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::DropDownList::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_a179dbf5e16fa6dd10ec8a72ae4349d3c}
+
+
+Gets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative position of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{phys::UI::Widget}.
+
+
+
+Definition at line 194 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_a78b41941db0b3d8196249ab31d2b174a}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!GetSelection@{GetSelection}}
+\index{GetSelection@{GetSelection}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{GetSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::DropDownList::GetSelection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_a78b41941db0b3d8196249ab31d2b174a}
+
+
+Gets the caption showing the current selection in this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the caption showing the current selection. 
+\end{DoxyReturn}
+
+
+Definition at line 243 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_a3b89efdefadc83e7257d34954c0816a6}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!GetSelectionList@{GetSelectionList}}
+\index{GetSelectionList@{GetSelectionList}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{GetSelectionList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::ListBox} $\ast$ phys::UI::DropDownList::GetSelectionList (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_a3b89efdefadc83e7257d34954c0816a6}
+
+
+Gets the listbox showing all the selections in this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the listbox containing the possible choices. 
+\end{DoxyReturn}
+
+
+Definition at line 253 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_ae47b0e9786a39a79fb613c2d1b1fcd38}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::DropDownList::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_ae47b0e9786a39a79fb613c2d1b1fcd38}
+
+
+Gets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative size of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{phys::UI::Widget}.
+
+
+
+Definition at line 218 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_ae4bd94c8f891dadf2423cef16c28e3f9}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::DropDownList::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_ae4bd94c8f891dadf2423cef16c28e3f9}
+
+
+Gets the visibility of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}{phys::UI::Widget}.
+
+
+
+Definition at line 155 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_af4d36a88b9629284d22d023bdcfd4074}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::DropDownList::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_af4d36a88b9629284d22d023bdcfd4074}
+
+
+Sets the pixel position of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the pixel position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{phys::UI::Widget}.
+
+
+
+Definition at line 199 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_ad85c38f98f467565f2b895993ab92f96}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::DropDownList::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_ad85c38f98f467565f2b895993ab92f96}
+
+
+Sets the pixel size of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the pixel size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120d}{phys::UI::Widget}.
+
+
+
+Definition at line 223 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_a91dbfd382be8c505021739602a7a64e6}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::DropDownList::SetPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_a91dbfd382be8c505021739602a7a64e6}
+
+
+Sets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the relative position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d00}{phys::UI::Widget}.
+
+
+
+Definition at line 185 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_aebcb4fe708e7d1af4609120039e276a6}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::DropDownList::SetSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_aebcb4fe708e7d1af4609120039e276a6}
+
+
+Sets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the relative size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24d}{phys::UI::Widget}.
+
+
+
+Definition at line 213 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_ac86730fe238d990505667bb9a475fb77}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::DropDownList::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_ac86730fe238d990505667bb9a475fb77}
+
+
+Sets the visibility of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em visible} & Bool determining whether or not this widget should be visible. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{phys::UI::Widget}.
+
+
+
+Definition at line 145 of file uidropdownlist.cpp.
+
+\hypertarget{classphys_1_1UI_1_1DropDownList_aa204411b17521b92acb78926d1d3f98e}{
+\index{phys::UI::DropDownList@{phys::UI::DropDownList}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!phys::UI::DropDownList@{phys::UI::DropDownList}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::DropDownList::UpdateDimensions (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{OldViewportSize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1DropDownList_aa204411b17521b92acb78926d1d3f98e}
+
+
+Updates the dimensions of this widget to match those of the new screen size. 
+
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
+\begin{DoxyParams}{Parameters}
+{\em OldViewportSize} & The old size of the viewport. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classphys_1_1UI_1_1Widget_acbda7003549c6caac46078c034657929}{phys::UI::Widget}.
+
+
+
+Definition at line 238 of file uidropdownlist.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uidropdownlist.h\item 
+uidropdownlist.cpp\end{DoxyCompactItemize}

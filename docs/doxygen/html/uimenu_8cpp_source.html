@@ -117,15 +117,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00054"></a>00054 {
 <a name="l00055"></a>00055     <span class="keyword">namespace </span>UI
 <a name="l00056"></a>00056     {
-<a name="l00057"></a><a class="code" href="classphys_1_1UI_1_1Menu.html#a1e72810ec8bd64775619fa949f63797e">00057</a>         <a class="code" href="classphys_1_1UI_1_1Menu.html#a1e72810ec8bd64775619fa949f63797e" title="Standard initialization constructor.">Menu::Menu</a>(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a> name, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
+<a name="l00057"></a><a class="code" href="classphys_1_1UI_1_1Menu.html#abe99c5c7a18947dde5d3f44ce6fa0727">00057</a>         <a class="code" href="classphys_1_1UI_1_1Menu.html#abe99c5c7a18947dde5d3f44ce6fa0727" title="Standard initialization constructor.">Menu::Menu</a>(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a> name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
 <a name="l00058"></a>00058             : <a class="code" href="classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,PLayer)
 <a name="l00059"></a>00059         {
-<a name="l00060"></a>00060             Type = <a class="code" href="classphys_1_1UI_1_1Menu.html#a1e72810ec8bd64775619fa949f63797e" title="Standard initialization constructor.">Widget::Menu</a>;
+<a name="l00060"></a>00060             Type = <a class="code" href="classphys_1_1UI_1_1Menu.html#abe99c5c7a18947dde5d3f44ce6fa0727" title="Standard initialization constructor.">Widget::Menu</a>;
 <a name="l00061"></a>00061             RelPosition = <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0);
 <a name="l00062"></a>00062             RelSize = <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0);
 <a name="l00063"></a>00063 
 <a name="l00064"></a>00064             <a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a> NewName = name+<span class="stringliteral">&quot;root&quot;</span>;
-<a name="l00065"></a>00065             RootWindow = <span class="keyword">new</span> <a class="code" href="classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">UI::MenuWindow</a>(NewName,Position,Size,<span class="keyword">this</span>,Parent);
+<a name="l00065"></a>00065             RootWindow = <span class="keyword">new</span> <a class="code" href="classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">UI::MenuWindow</a>(NewName,Rect,<span class="keyword">this</span>,Parent);
 <a name="l00066"></a>00066             MenuStack.push_back(RootWindow);
 <a name="l00067"></a>00067         }
 <a name="l00068"></a>00068 
@@ -340,7 +340,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:23 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:39 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

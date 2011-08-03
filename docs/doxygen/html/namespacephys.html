@@ -186,6 +186,7 @@ Classes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a small class used to store a reference to a world object.  <a href="classphys_1_1ObjectReference.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ParticleEffect.html">ParticleEffect</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.  <a href="classphys_1_1ParticleEffect.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html">PhysicsManager</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is simply a place for storing all the Physics Related functions.  <a href="classphys_1_1PhysicsManager.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Plane.html">Plane</a></td></tr>
@@ -271,6 +272,22 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This is used by all the actors to monitor and set their physics activation. </p>
 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aed">AspectRatio</a> { <br/>
+&#160;&#160;<a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda62f10909139757e92c17b8fbaf82ce6a">AR_3_By_2</a>, 
+<a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aedad2b8f8c1b929fabdf195c2da12a2ec68">AR_4_By_3</a>, 
+<a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda432bcb71dfc521ec7cbcf7e40d591ded">AR_5_By_3</a>, 
+<a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda75a48f55181fcf03646b7a7bfe3bf0aa">AR_5_By_4</a>, 
+<br/>
+&#160;&#160;<a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda1e17b1da7c1ba4fb6710fa85886fa28a">AR_8_By_5</a>, 
+<a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aedab6449430d220e985cdcf8a9ee8093750">AR_16_By_9</a>, 
+<a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda7402aa5b653dbe3ac902bd4c88f28634">AR_17_By_9</a>, 
+<a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda5ddf9db3420597cc625cdae1f2c3308a">AR_1_85_By_1</a>, 
+<br/>
+&#160;&#160;<a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda8f306098ebf907f3bede3c99d4ec41b9">AR_2_39_By_1</a>
+<br/>
+ }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This is used primarily by the GraphicsManager to keep track of the supported and currently used aspect ratios. </p>
+ <a href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aed">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739f">AttenuationStyle</a> { <a class="el" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739faec47e7157a10201b7aef0c1cbb6ccb5d">Att_None</a>, 
 <a class="el" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fabcceb16182220293f2260edb41b548f1">Att_Linear</a>, 
 <a class="el" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fac9ef08c39daa338975f4f8879e86100b">Att_Quadratic</a>
@@ -498,6 +515,54 @@ Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Enumeration Type Documentation</h2>
+<a class="anchor" id="aa48055a9624c26d73f77ca67499c7aed"></a><!-- doxytag: member="phys::AspectRatio" ref="aa48055a9624c26d73f77ca67499c7aed" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aed">phys::AspectRatio</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This is used primarily by the <a class="el" href="classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a> to keep track of the supported and currently used aspect ratios. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="aa48055a9624c26d73f77ca67499c7aeda62f10909139757e92c17b8fbaf82ce6a"></a><!-- doxytag: member="AR_3_By_2" ref="aa48055a9624c26d73f77ca67499c7aeda62f10909139757e92c17b8fbaf82ce6a" args="" -->AR_3_By_2</em>&nbsp;</td><td>
+<p>1.5 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aa48055a9624c26d73f77ca67499c7aedad2b8f8c1b929fabdf195c2da12a2ec68"></a><!-- doxytag: member="AR_4_By_3" ref="aa48055a9624c26d73f77ca67499c7aedad2b8f8c1b929fabdf195c2da12a2ec68" args="" -->AR_4_By_3</em>&nbsp;</td><td>
+<p>1.334 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aa48055a9624c26d73f77ca67499c7aeda432bcb71dfc521ec7cbcf7e40d591ded"></a><!-- doxytag: member="AR_5_By_3" ref="aa48055a9624c26d73f77ca67499c7aeda432bcb71dfc521ec7cbcf7e40d591ded" args="" -->AR_5_By_3</em>&nbsp;</td><td>
+<p>1.667 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aa48055a9624c26d73f77ca67499c7aeda75a48f55181fcf03646b7a7bfe3bf0aa"></a><!-- doxytag: member="AR_5_By_4" ref="aa48055a9624c26d73f77ca67499c7aeda75a48f55181fcf03646b7a7bfe3bf0aa" args="" -->AR_5_By_4</em>&nbsp;</td><td>
+<p>1.25 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aa48055a9624c26d73f77ca67499c7aeda1e17b1da7c1ba4fb6710fa85886fa28a"></a><!-- doxytag: member="AR_8_By_5" ref="aa48055a9624c26d73f77ca67499c7aeda1e17b1da7c1ba4fb6710fa85886fa28a" args="" -->AR_8_By_5</em>&nbsp;</td><td>
+<p>1.6 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aa48055a9624c26d73f77ca67499c7aedab6449430d220e985cdcf8a9ee8093750"></a><!-- doxytag: member="AR_16_By_9" ref="aa48055a9624c26d73f77ca67499c7aedab6449430d220e985cdcf8a9ee8093750" args="" -->AR_16_By_9</em>&nbsp;</td><td>
+<p>1.778 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aa48055a9624c26d73f77ca67499c7aeda7402aa5b653dbe3ac902bd4c88f28634"></a><!-- doxytag: member="AR_17_By_9" ref="aa48055a9624c26d73f77ca67499c7aeda7402aa5b653dbe3ac902bd4c88f28634" args="" -->AR_17_By_9</em>&nbsp;</td><td>
+<p>1.889 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aa48055a9624c26d73f77ca67499c7aeda5ddf9db3420597cc625cdae1f2c3308a"></a><!-- doxytag: member="AR_1_85_By_1" ref="aa48055a9624c26d73f77ca67499c7aeda5ddf9db3420597cc625cdae1f2c3308a" args="" -->AR_1_85_By_1</em>&nbsp;</td><td>
+<p>1.85 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aa48055a9624c26d73f77ca67499c7aeda8f306098ebf907f3bede3c99d4ec41b9"></a><!-- doxytag: member="AR_2_39_By_1" ref="aa48055a9624c26d73f77ca67499c7aeda8f306098ebf907f3bede3c99d4ec41b9" args="" -->AR_2_39_By_1</em>&nbsp;</td><td>
+<p>2.39 </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00062">62</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ad4ce7ee5c1cc164f2ea3d5f28211739f"></a><!-- doxytag: member="phys::AttenuationStyle" ref="ad4ce7ee5c1cc164f2ea3d5f28211739f" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -525,7 +590,7 @@ Functions</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00067">67</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00083">83</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -543,7 +608,7 @@ Functions</h2></td></tr>
 <p>These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with. </p>
 <p>You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with any of the existing groups defined here. Simply pass in the Whole where appropriate. </p>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00078">78</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00094">94</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -561,7 +626,7 @@ Functions</h2></td></tr>
 <p>Used by constraints for setting some parameters. </p>
 <p>See the constraint class documentation for more details. </p>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00097">97</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00113">113</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -579,7 +644,7 @@ Functions</h2></td></tr>
 <p>Used by various classes to help identify what class an object is. </p>
 <p>This is mostly used internally for casting void pointers. </p>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00108">108</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00124">124</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -1291,7 +1356,7 @@ template&lt;class T &gt; </div>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:24 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:40 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

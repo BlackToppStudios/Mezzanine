@@ -20,10 +20,10 @@ Inheritance diagram for phys::UI::Menu:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1Menu_a1e72810ec8bd64775619fa949f63797e}{Menu} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1Menu_abe99c5c7a18947dde5d3f44ce6fa0727}{Menu} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}{
-\hyperlink{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}{$\sim$Menu} ()}
+virtual \hyperlink{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}{$\sim$Menu} ()}
 \label{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}
 
 \begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
@@ -100,18 +100,17 @@ Definition at line 62 of file uimenu.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1Menu_a1e72810ec8bd64775619fa949f63797e}{
+\hypertarget{classphys_1_1UI_1_1Menu_abe99c5c7a18947dde5d3f44ce6fa0727}{
 \index{phys::UI::Menu@{phys::UI::Menu}!Menu@{Menu}}
 \index{Menu@{Menu}!phys::UI::Menu@{phys::UI::Menu}}
 \paragraph[{Menu}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Menu::Menu (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString}}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1Menu_a1e72810ec8bd64775619fa949f63797e}
+\label{classphys_1_1UI_1_1Menu_abe99c5c7a18947dde5d3f44ce6fa0727}
 
 
 Standard initialization constructor. 
@@ -120,9 +119,7 @@ Standard initialization constructor.
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of the window. \\
 \hline
-{\em Position} & The position of the window. \\
-\hline
-{\em Size} & The size of the window. \\
+{\em Rect} & The Rect representing the position and size of the window. \\
 \hline
 {\em \hyperlink{classphys_1_1UI_1_1Layer}{Layer}} & The parent layer this window belongs to. \\
 \hline

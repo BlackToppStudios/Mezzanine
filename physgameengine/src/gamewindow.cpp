@@ -50,6 +50,11 @@
 #include <SDL.h>
 #include <Ogre.h>
 
+#ifdef LINUX
+#include <X11/X.h>      //x11proto-core-dev
+#include <X11/Xlib.h>   //libx11-dev
+#endif
+
 namespace phys
 {
     GameWindow::GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)

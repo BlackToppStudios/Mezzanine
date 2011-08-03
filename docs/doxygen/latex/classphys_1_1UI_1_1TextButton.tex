@@ -20,9 +20,9 @@ Inheritance diagram for phys::UI::TextButton:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1TextButton_afb57e35e67ac4f133186fea6d34fa82c}{TextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1TextButton_a0ac20e0541794bbc6d708fe3be6acb26}{TextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1TextButton_a6bfd64df1f2840b082c31ada451a2aad}{TextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1TextButton_aa7cf2c89310ead3a15413ca1a278253e}{TextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}{
 virtual \hyperlink{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}{$\sim$TextButton} ()}
@@ -122,20 +122,19 @@ Definition at line 57 of file uitextbutton.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1TextButton_afb57e35e67ac4f133186fea6d34fa82c}{
+\hypertarget{classphys_1_1UI_1_1TextButton_a0ac20e0541794bbc6d708fe3be6acb26}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!TextButton@{TextButton}}
 \index{TextButton@{TextButton}!phys::UI::TextButton@{phys::UI::TextButton}}
 \paragraph[{TextButton}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::TextButton::TextButton (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Whole} \&}]{Glyph, }
 \item[{const {\bf String} \&}]{Text, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1TextButton_afb57e35e67ac4f133186fea6d34fa82c}
+\label{classphys_1_1UI_1_1TextButton_a0ac20e0541794bbc6d708fe3be6acb26}
 
 
 Internal constructor. 
@@ -144,9 +143,7 @@ Internal constructor.
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of the button. \\
 \hline
-{\em Position} & The top left position of the button. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the button. \\
 \hline
 {\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
 \hline
@@ -159,20 +156,19 @@ Internal constructor.
 
 Definition at line 53 of file uitextbutton.cpp.
 
-\hypertarget{classphys_1_1UI_1_1TextButton_a6bfd64df1f2840b082c31ada451a2aad}{
+\hypertarget{classphys_1_1UI_1_1TextButton_aa7cf2c89310ead3a15413ca1a278253e}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!TextButton@{TextButton}}
 \index{TextButton@{TextButton}!phys::UI::TextButton@{phys::UI::TextButton}}
 \paragraph[{TextButton}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::TextButton::TextButton (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{LineHeight, }
 \item[{const {\bf String} \&}]{Text, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1TextButton_a6bfd64df1f2840b082c31ada451a2aad}
+\label{classphys_1_1UI_1_1TextButton_aa7cf2c89310ead3a15413ca1a278253e}
 
 
 Internal constructor. 
@@ -181,9 +177,7 @@ Internal constructor.
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of the button. \\
 \hline
-{\em Position} & The top left position of the button. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the button. \\
 \hline
 {\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
 \hline

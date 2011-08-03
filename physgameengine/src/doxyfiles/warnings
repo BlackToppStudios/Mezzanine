@@ -1,6 +1,7 @@
-Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:127: warning: Compound phys::internal::BulletFilePtr is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:65: warning: Compound phys::UI::ListBox::TemplateParams is not documented.
 /home/sqeaky/physgame/physgameengine/src/collisionshapegenerator.h:53: warning: Compound phys::CollisionShapeGenerator is not documented.
+/home/sqeaky/physgame/physgameengine/src/physicsmanager.h:82: warning: Compound phys::PhysicsConstructionInfo is not documented.
 /home/sqeaky/physgame/physgameengine/src/actorserializer.h:51: warning: Compound phys::ActorSerializer is not documented.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfilemanager.cpp:49: warning: documented function `BulletFileManager * phys::internal::Ogre::Singleton::ms_Singleton' was not declared or defined.
 /home/sqeaky/physgame/physgameengine/src/actorserializer.h:59: warning: Member ActorSerializer(ActorManager *DeSerializeTarget) (function) of class phys::ActorSerializer is not documented.
@@ -40,6 +41,15 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/cameramanager.h:104: warning: return type of member phys::CameraManager::CreateCamera is not documented
 /home/sqeaky/physgame/physgameengine/src/cameramanager.h:108: warning: parameters of member phys::CameraManager::GetCamera are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/cameramanager.h:111: warning: parameters of member phys::CameraManager::GetCamera are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: argument 'red' of command @param is not found in the argument list of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0)
+/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: argument 'green' of command @param is not found in the argument list of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0)
+/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: argument 'blue' of command @param is not found in the argument list of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0)
+/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: argument 'alpha' of command @param is not found in the argument list of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0)
+/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: The following parameters of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0) are not documented:
+  parameter 'Red'
+  parameter 'Green'
+  parameter 'Blue'
+  parameter 'Alpha'
 /home/sqeaky/physgame/physgameengine/src/eventcollision.h:97: warning: return type of member phys::EventCollision::GetType is not documented
 /home/sqeaky/physgame/physgameengine/src/eventgamewindow.cpp:61: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class phys::EventGameWindowData is not documented.
 /home/sqeaky/physgame/physgameengine/src/eventgamewindow.h:108: warning: return type of member phys::EventGameWindow::GetType is not documented
@@ -99,7 +109,6 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:97: warning: Member Settings (variable) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:99: warning: Member Viewports (variable) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:101: warning: Member Manager (variable) of class phys::GameWindow is not documented.
-/home/sqeaky/physgame/physgameengine/src/gamewindow.h:103: warning: Member RenderContext (variable) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:123: warning: argument 'VeiwportCamera' of command @param is not found in the argument list of phys::GameWindow::CreateViewport(Camera *ViewportCamera, const Whole &ZOrder=0)
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:123: warning: The following parameters of phys::GameWindow::CreateViewport(Camera *ViewportCamera, const Whole &ZOrder=0) are not documented:
   parameter 'ViewportCamera'
@@ -291,8 +300,8 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/worldtrigger.h:56: warning: Member Name (variable) of class phys::WorldTrigger is not documented.
 /home/sqeaky/physgame/physgameengine/src/crossplatform.h:117: warning: parameters of member phys::crossplatform::GetSDLOgreBinder are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/actorgraphicssettings.cpp:86: warning: Member InternalActorGraphicsSettings(ActorBase *Actor, Ogre::Entity *GraphicsObject) (function) of class phys::internal::InternalActorGraphicsSettings is not documented.
-/home/sqeaky/physgame/physgameengine/src/eventmanager.cpp:135: warning: Member ManualCheckIterator (typedef) of class phys::internal::EventManagerInternalData is not documented.
-/home/sqeaky/physgame/physgameengine/src/eventmanager.cpp:226: warning: argument 'Drops' of command @param is not found in the argument list of phys::internal::EventManagerInternalData::DropAllKeyPresses()
+/home/sqeaky/physgame/physgameengine/src/eventmanager.cpp:134: warning: Member ManualCheckIterator (typedef) of class phys::internal::EventManagerInternalData is not documented.
+/home/sqeaky/physgame/physgameengine/src/eventmanager.cpp:225: warning: argument 'Drops' of command @param is not found in the argument list of phys::internal::EventManagerInternalData::DropAllKeyPresses()
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:63: warning: Member loadImpl() (function) of class phys::internal::BulletFile is not documented.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:64: warning: Member unloadImpl() (function) of class phys::internal::BulletFile is not documented.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:65: warning: Member calculateSize() const  (function) of class phys::internal::BulletFile is not documented.
@@ -328,12 +337,12 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uibutton.h:88: warning: Member KeyboardActivationKeys (variable) of class phys::UI::Button is not documented.
 /home/sqeaky/physgame/physgameengine/src/uibutton.h:89: warning: Member MouseActivationButtons (variable) of class phys::UI::Button is not documented.
 /home/sqeaky/physgame/physgameengine/src/uibutton.h:90: warning: Member ActCond (variable) of class phys::UI::Button is not documented.
-/home/sqeaky/physgame/physgameengine/src/uibutton.h:93: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Button::Button(ConstString &name, const Vector2 &Position, const Vector2 &Size, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uibutton.h:93: warning: The following parameters of phys::UI::Button::Button(ConstString &name, const Vector2 &Position, const Vector2 &Size, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uibutton.h:93: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Button::Button(ConstString &name, const RenderableRect &Rect, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uibutton.h:93: warning: The following parameters of phys::UI::Button::Button(ConstString &name, const RenderableRect &Rect, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uibutton.h:197: warning: The following parameters of phys::UI::Button::SetBorder(const Real &Width, const ColourValue &Colour) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uibutton.h:196: warning: The following parameters of phys::UI::Button::SetBorder(const Real &Width, const ColourValue &Colour) are not documented:
   parameter 'Width'
-/home/sqeaky/physgame/physgameengine/src/uibutton.h:260: warning: Member Caller (variable) of class phys::UI::ButtonCallback is not documented.
+/home/sqeaky/physgame/physgameengine/src/uibutton.h:259: warning: Member Caller (variable) of class phys::UI::ButtonCallback is not documented.
 /home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:63: warning: Member BoxBack (variable) of class phys::UI::ButtonListBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:66: warning: Member Selected (variable) of class phys::UI::ButtonListBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:67: warning: Member Selections (variable) of class phys::UI::ButtonListBox is not documented.
@@ -346,12 +355,12 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:74: warning: Member NumVisible (variable) of class phys::UI::ButtonListBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:75: warning: Member TSize (variable) of class phys::UI::ButtonListBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:76: warning: Member BorderColour (variable) of class phys::UI::ButtonListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:84: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::ButtonListBox::ButtonListBox(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Real &ScrollbarWidth, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:84: warning: The following parameters of phys::UI::ButtonListBox::ButtonListBox(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Real &ScrollbarWidth, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:84: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::ButtonListBox::ButtonListBox(ConstString &name, const RenderableRect &Rect, const Real &ScrollbarWidth, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:84: warning: The following parameters of phys::UI::ButtonListBox::ButtonListBox(ConstString &name, const RenderableRect &Rect, const Real &ScrollbarWidth, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer) are not documented:
   parameter 'PLayer'
 /home/sqeaky/physgame/physgameengine/src/uibuttonlistbox.h:114: warning: The following parameters of phys::UI::ButtonListBox::AddSelection(ConstString &name, ConstString &BackgroundSprite="", ConstString &TextLabel="") are not documented:
   parameter 'name'
-/home/sqeaky/physgame/physgameengine/src/uicaption.h:87: warning: Member ConstructCaption(const Vector2 &Position, const Vector2 &Size, const Whole &Glyph, const String &Text) (function) of class phys::UI::Caption is not documented.
+/home/sqeaky/physgame/physgameengine/src/uicaption.h:87: warning: Member ConstructCaption(const RenderableRect &Rect, const Whole &Glyph, const String &Text) (function) of class phys::UI::Caption is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicaption.h:76: warning: Member GorillaCaption (variable) of class phys::UI::Caption is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicaption.h:77: warning: Member GorillaRectangle (variable) of class phys::UI::Caption is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicaption.h:78: warning: Member Parent (variable) of class phys::UI::Caption is not documented.
@@ -363,18 +372,18 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uicaption.h:84: warning: Member RelPosition (variable) of class phys::UI::Caption is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicaption.h:85: warning: Member RelSize (variable) of class phys::UI::Caption is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicaption.h:86: warning: Member Name (variable) of class phys::UI::Caption is not documented.
-/home/sqeaky/physgame/physgameengine/src/uicaption.h:89: warning: argument 'Name' of command @param is not found in the argument list of phys::UI::Caption::Caption(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Whole &Glyph, const String &Text, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uicaption.h:89: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Caption::Caption(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Whole &Glyph, const String &Text, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uicaption.h:89: warning: The following parameters of phys::UI::Caption::Caption(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Whole &Glyph, const String &Text, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uicaption.h:89: warning: argument 'Name' of command @param is not found in the argument list of phys::UI::Caption::Caption(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, const String &Text, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uicaption.h:89: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Caption::Caption(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, const String &Text, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uicaption.h:89: warning: The following parameters of phys::UI::Caption::Caption(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, const String &Text, Layer *PLayer) are not documented:
   parameter 'name'
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uicaption.h:97: warning: argument 'Name' of command @param is not found in the argument list of phys::UI::Caption::Caption(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Real &LineHeight, const String &Text, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uicaption.h:97: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Caption::Caption(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Real &LineHeight, const String &Text, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uicaption.h:97: warning: The following parameters of phys::UI::Caption::Caption(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Real &LineHeight, const String &Text, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uicaption.h:96: warning: argument 'Name' of command @param is not found in the argument list of phys::UI::Caption::Caption(ConstString &name, const RenderableRect &Rect, const Real &LineHeight, const String &Text, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uicaption.h:96: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Caption::Caption(ConstString &name, const RenderableRect &Rect, const Real &LineHeight, const String &Text, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uicaption.h:96: warning: The following parameters of phys::UI::Caption::Caption(ConstString &name, const RenderableRect &Rect, const Real &LineHeight, const String &Text, Layer *PLayer) are not documented:
   parameter 'name'
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uicaption.h:154: warning: argument 'Returns' of command @param is not found in the argument list of phys::UI::Caption::GetGlyphIndex()
-/home/sqeaky/physgame/physgameengine/src/uicaption.h:154: warning: return type of member phys::UI::Caption::GetGlyphIndex is not documented
+/home/sqeaky/physgame/physgameengine/src/uicaption.h:152: warning: argument 'Returns' of command @param is not found in the argument list of phys::UI::Caption::GetGlyphIndex()
+/home/sqeaky/physgame/physgameengine/src/uicaption.h:152: warning: return type of member phys::UI::Caption::GetGlyphIndex is not documented
 /home/sqeaky/physgame/physgameengine/src/uicell.h:60: warning: Member SortPriority (variable) of class phys::UI::Cell is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicell.h:61: warning: Member Selected (variable) of class phys::UI::Cell is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicell.h:62: warning: Member Callback (variable) of class phys::UI::Cell is not documented.
@@ -403,8 +412,8 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uicellgrid.h:93: warning: Member TheGrid (variable) of class phys::UI::CellGrid is not documented.
 <OrderingStyle>:1: warning: parameters of member phys::UI::CellGrid::OrderingStyle are not (all) documented
 <PageStyle>:1: warning: parameters of member phys::UI::CellGrid::PageStyle are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uicellgrid.h:160: warning: argument 'Area' of command @param is not found in the argument list of phys::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit)
-/home/sqeaky/physgame/physgameengine/src/uicellgrid.h:160: warning: The following parameters of phys::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uicellgrid.h:159: warning: argument 'Area' of command @param is not found in the argument list of phys::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit)
+/home/sqeaky/physgame/physgameengine/src/uicellgrid.h:159: warning: The following parameters of phys::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit) are not documented:
   parameter 'AreaLimit'
 /home/sqeaky/physgame/physgameengine/src/uicheckbox.h:70: warning: Member SetSpriteSet(std::pair< std::string, std::string > &SpriteSet) (function) of class phys::UI::CheckBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicheckbox.h:62: warning: Member Box (variable) of class phys::UI::CheckBox is not documented.
@@ -413,17 +422,19 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uicheckbox.h:67: warning: Member GlyphIndex (variable) of class phys::UI::CheckBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicheckbox.h:68: warning: Member Checked (variable) of class phys::UI::CheckBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicheckbox.h:69: warning: Member CheckLock (variable) of class phys::UI::CheckBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:75: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::CheckBox::CheckBox(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Whole &Glyph, ConstString &LabelText, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:75: warning: The following parameters of phys::UI::CheckBox::CheckBox(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Whole &Glyph, ConstString &LabelText, Layer *PLayer) are not documented:
-  parameter 'Glyph'
-  parameter 'LabelText'
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:75: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::CheckBox::CheckBox(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, ConstString &LabelText, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:75: warning: The following parameters of phys::UI::CheckBox::CheckBox(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, ConstString &LabelText, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:117: warning: argument 'Unchecked' of command @param is not found in the argument list of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="")
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:117: warning: The following parameters of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="") are not documented:
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:118: warning: argument 'Unchecked' of command @param is not found in the argument list of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="")
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:118: warning: The following parameters of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="") are not documented:
   parameter 'Checked'
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:103: warning: argument 'Label' of command @param is not found in the argument list of phys::UI::CheckBox::SetLabelText(String &LabelText)
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:103: warning: The following parameters of phys::UI::CheckBox::SetLabelText(String &LabelText) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:104: warning: argument 'Label' of command @param is not found in the argument list of phys::UI::CheckBox::SetLabelText(String &LabelText)
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:104: warning: The following parameters of phys::UI::CheckBox::SetLabelText(String &LabelText) are not documented:
   parameter 'LabelText'
+/home/sqeaky/physgame/physgameengine/src/uidropdownlist.h:63: warning: Member Selection (variable) of class phys::UI::DropDownList is not documented.
+/home/sqeaky/physgame/physgameengine/src/uidropdownlist.h:64: warning: Member ListToggle (variable) of class phys::UI::DropDownList is not documented.
+/home/sqeaky/physgame/physgameengine/src/uidropdownlist.h:65: warning: Member SelectionList (variable) of class phys::UI::DropDownList is not documented.
+/home/sqeaky/physgame/physgameengine/src/uidropdownlist.h:66: warning: Member ToggleActivated (variable) of class phys::UI::DropDownList is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilayer.h:87: warning: Member GorillaLayer (variable) of class phys::UI::Layer is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilayer.h:88: warning: Member Parent (variable) of class phys::UI::Layer is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilayer.h:89: warning: Member Manager (variable) of class phys::UI::Layer is not documented.
@@ -434,17 +445,16 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uilayer.h:94: warning: Member MarkupTexts (variable) of class phys::UI::Layer is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilayer.h:95: warning: Member LineLists (variable) of class phys::UI::Layer is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilayer.h:96: warning: Member Widgets (variable) of class phys::UI::Layer is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:164: warning: return type of member phys::UI::Layer::CreateRectangle is not documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:155: warning: parameters of member phys::UI::Layer::GetButton are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:152: warning: parameters of member phys::UI::Layer::GetButton are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:197: warning: parameters of member phys::UI::Layer::GetCaption are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:200: warning: parameters of member phys::UI::Layer::GetCaption are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:239: warning: parameters of member phys::UI::Layer::GetLineList are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:228: warning: parameters of member phys::UI::Layer::GetMarkupText are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:225: warning: parameters of member phys::UI::Layer::GetMarkupText are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:170: warning: parameters of member phys::UI::Layer::GetRectangle are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:258: warning: parameters of member phys::UI::Layer::GetWidget are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uilayer.h:255: warning: parameters of member phys::UI::Layer::GetWidget are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:149: warning: parameters of member phys::UI::Layer::GetButton are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:146: warning: parameters of member phys::UI::Layer::GetButton are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:185: warning: parameters of member phys::UI::Layer::GetCaption are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:188: warning: parameters of member phys::UI::Layer::GetCaption are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:227: warning: parameters of member phys::UI::Layer::GetLineList are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:216: warning: parameters of member phys::UI::Layer::GetMarkupText are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:213: warning: parameters of member phys::UI::Layer::GetMarkupText are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:162: warning: parameters of member phys::UI::Layer::GetRectangle are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:246: warning: parameters of member phys::UI::Layer::GetWidget are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uilayer.h:243: warning: parameters of member phys::UI::Layer::GetWidget are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uilayer.h:114: warning: argument 'Visable' of command @param is not found in the argument list of phys::UI::Layer::SetVisible(bool Visible)
 /home/sqeaky/physgame/physgameengine/src/uilayer.h:114: warning: The following parameters of phys::UI::Layer::SetVisible(bool Visible) are not documented:
   parameter 'Visible'
@@ -454,27 +464,29 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uilinelist.h:73: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::LineList::LineList(Layer *PLayer)
 /home/sqeaky/physgame/physgameengine/src/uilinelist.h:73: warning: The following parameters of phys::UI::LineList::LineList(Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:64: warning: Member BoxBack (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:67: warning: Member Selected (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:68: warning: Member HoveredCaption (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:69: warning: Member Selections (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:70: warning: Member VisibleSelections (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:71: warning: Member AutoHideScroll (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:72: warning: Member LastScrollValue (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:73: warning: Member SelectionDist (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:74: warning: Member NumVisible (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:75: warning: Member THAlign (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:76: warning: Member TVAlign (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:77: warning: Member TGlyph (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:78: warning: Member TSize (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:79: warning: Member TTColour (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:80: warning: Member TBGColour (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:81: warning: Member SelectColour (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:89: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::ListBox::ListBox(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Real &ScrollbarWidth, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:89: warning: The following parameters of phys::UI::ListBox::ListBox(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Real &ScrollbarWidth, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:76: warning: Member BoxBack (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:79: warning: Member Selected (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:80: warning: Member HoveredCaption (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:81: warning: Member Selections (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:82: warning: Member VisibleSelections (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:83: warning: Member AutoHideScroll (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:84: warning: Member LastScrollValue (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:85: warning: Member MaxDisplay (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:86: warning: Member NumVisible (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:87: warning: Member SelectionTemplate (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:95: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::ListBox::ListBox(ConstString &name, const RenderableRect &Rect, const Real &ScrollbarWidth, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:95: warning: The following parameters of phys::UI::ListBox::ListBox(ConstString &name, const RenderableRect &Rect, const Real &ScrollbarWidth, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:130: warning: return type of member phys::UI::ListBox::AddSelection is not documented
-/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:81: warning: Member ConstructMarkupText(const Vector2 &Position, const Whole &Glyph, const String &Text) (function) of class phys::UI::MarkupText is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:166: warning: return type of member phys::UI::ListBox::AddSelection is not documented
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:66: warning: Member HorizontalAlign (variable) of class phys::UI::ListBox::TemplateParams is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:67: warning: Member VerticalAlign (variable) of class phys::UI::ListBox::TemplateParams is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:68: warning: Member GlyphIndex (variable) of class phys::UI::ListBox::TemplateParams is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:69: warning: Member CursorOffset (variable) of class phys::UI::ListBox::TemplateParams is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:70: warning: Member TextScale (variable) of class phys::UI::ListBox::TemplateParams is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:71: warning: Member Size (variable) of class phys::UI::ListBox::TemplateParams is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:72: warning: Member TextColour (variable) of class phys::UI::ListBox::TemplateParams is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:73: warning: Member BackgroundColour (variable) of class phys::UI::ListBox::TemplateParams is not documented.
+/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:81: warning: Member ConstructMarkupText(const RenderableRect &Rect, const Whole &Glyph, const String &Text) (function) of class phys::UI::MarkupText is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:72: warning: Member GMarkup (variable) of class phys::UI::MarkupText is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:73: warning: Member Parent (variable) of class phys::UI::MarkupText is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:74: warning: Member Manager (variable) of class phys::UI::MarkupText is not documented.
@@ -484,36 +496,36 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:78: warning: Member AutoScaleText (variable) of class phys::UI::MarkupText is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:79: warning: Member RelLineHeight (variable) of class phys::UI::MarkupText is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:80: warning: Member Name (variable) of class phys::UI::MarkupText is not documented.
-/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:83: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::MarkupText::MarkupText(ConstString &name, const Vector2 &Position, const Whole &Glyph, const String &Text, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:83: warning: The following parameters of phys::UI::MarkupText::MarkupText(ConstString &name, const Vector2 &Position, const Whole &Glyph, const String &Text, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:83: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::MarkupText::MarkupText(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, const String &Text, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:83: warning: The following parameters of phys::UI::MarkupText::MarkupText(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, const String &Text, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:90: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::MarkupText::MarkupText(ConstString &name, const Vector2 &Position, const Real &LineHeight, const String &Text, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:90: warning: The following parameters of phys::UI::MarkupText::MarkupText(ConstString &name, const Vector2 &Position, const Real &LineHeight, const String &Text, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:91: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::MarkupText::MarkupText(ConstString &name, const RenderableRect &Rect, const Real &LineHeight, const String &Text, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uimarkuptext.h:91: warning: The following parameters of phys::UI::MarkupText::MarkupText(ConstString &name, const RenderableRect &Rect, const Real &LineHeight, const String &Text, Layer *PLayer) are not documented:
   parameter 'PLayer'
 /home/sqeaky/physgame/physgameengine/src/uimenu.h:65: warning: Member RootWindow (variable) of class phys::UI::Menu is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimenu.h:66: warning: Member MenuStack (variable) of class phys::UI::Menu is not documented.
-/home/sqeaky/physgame/physgameengine/src/uimenu.h:70: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Menu::Menu(ConstString name, const Vector2 &Position, const Vector2 &Size, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uimenu.h:70: warning: The following parameters of phys::UI::Menu::Menu(ConstString name, const Vector2 &Position, const Vector2 &Size, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uimenu.h:70: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Menu::Menu(ConstString name, const RenderableRect &Rect, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uimenu.h:70: warning: The following parameters of phys::UI::Menu::Menu(ConstString name, const RenderableRect &Rect, Layer *PLayer) are not documented:
   parameter 'PLayer'
 /home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:63: warning: Member ParentWindow (variable) of class phys::UI::MenuWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:64: warning: Member MasterMenu (variable) of class phys::UI::MenuWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:65: warning: Member BackButton (variable) of class phys::UI::MenuWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:66: warning: Member AutoHideWindow (variable) of class phys::UI::MenuWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:67: warning: Member ChildWindows (variable) of class phys::UI::MenuWindow is not documented.
-/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:69: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::MenuWindow::MenuWindow(ConstString &Name, const Vector2 &Position, const Vector2 &Size, UI::Menu *TheMenu, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:69: warning: The following parameters of phys::UI::MenuWindow::MenuWindow(ConstString &Name, const Vector2 &Position, const Vector2 &Size, UI::Menu *TheMenu, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:69: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::MenuWindow::MenuWindow(ConstString &Name, const RenderableRect &Rect, UI::Menu *TheMenu, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:69: warning: The following parameters of phys::UI::MenuWindow::MenuWindow(ConstString &Name, const RenderableRect &Rect, UI::Menu *TheMenu, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:145: warning: The following parameters of phys::UI::MenuWindow::CreateChildMenuWindow(ConstString &Name, const Vector2 Position, const Vector2 Size, Button *Accessor) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:138: warning: The following parameters of phys::UI::MenuWindow::CreateChildMenuWindow(ConstString &Name, const RenderableRect &Rect, Button *Accessor) are not documented:
   parameter 'Accessor'
-/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:154: warning: parameters of member phys::UI::MenuWindow::GetChildMenuWindow are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:151: warning: parameters of member phys::UI::MenuWindow::GetChildMenuWindow are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:146: warning: parameters of member phys::UI::MenuWindow::GetChildMenuWindow are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uimenuwindow.h:143: warning: parameters of member phys::UI::MenuWindow::GetChildMenuWindow are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uipagedcellgrid.h:60: warning: Member CurrentPage (variable) of class phys::UI::PagedCellGrid is not documented.
 /home/sqeaky/physgame/physgameengine/src/uipagedcellgrid.h:61: warning: Member XCellsPerPage (variable) of class phys::UI::PagedCellGrid is not documented.
 /home/sqeaky/physgame/physgameengine/src/uipagedcellgrid.h:62: warning: Member YCellsPerPage (variable) of class phys::UI::PagedCellGrid is not documented.
 /home/sqeaky/physgame/physgameengine/src/uipagedcellgrid.h:63: warning: Member MaxPages (variable) of class phys::UI::PagedCellGrid is not documented.
 /home/sqeaky/physgame/physgameengine/src/uipagedcellgrid.h:64: warning: Member PageSpinner (variable) of class phys::UI::PagedCellGrid is not documented.
-/home/sqeaky/physgame/physgameengine/src/uipagedcellgrid.h:98: warning: argument 'Area' of command @param is not found in the argument list of phys::UI::PagedCellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit)
-/home/sqeaky/physgame/physgameengine/src/uipagedcellgrid.h:98: warning: The following parameters of phys::UI::PagedCellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uipagedcellgrid.h:96: warning: argument 'Area' of command @param is not found in the argument list of phys::UI::PagedCellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit)
+/home/sqeaky/physgame/physgameengine/src/uipagedcellgrid.h:96: warning: The following parameters of phys::UI::PagedCellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit) are not documented:
   parameter 'AreaLimit'
 /home/sqeaky/physgame/physgameengine/src/uirectangle.h:71: warning: Member GRectangle (variable) of class phys::UI::Rectangle is not documented.
 /home/sqeaky/physgame/physgameengine/src/uirectangle.h:72: warning: Member Parent (variable) of class phys::UI::Rectangle is not documented.
@@ -521,11 +533,16 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uirectangle.h:74: warning: Member RelPosition (variable) of class phys::UI::Rectangle is not documented.
 /home/sqeaky/physgame/physgameengine/src/uirectangle.h:75: warning: Member RelSize (variable) of class phys::UI::Rectangle is not documented.
 /home/sqeaky/physgame/physgameengine/src/uirectangle.h:76: warning: Member MouseHover (variable) of class phys::UI::Rectangle is not documented.
-/home/sqeaky/physgame/physgameengine/src/uirectangle.h:78: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Rectangle::Rectangle(const Vector2 &Position, const Vector2 &Size, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uirectangle.h:78: warning: The following parameters of phys::UI::Rectangle::Rectangle(const Vector2 &Position, const Vector2 &Size, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uirectangle.h:78: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Rectangle::Rectangle(const RenderableRect &Rect, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uirectangle.h:78: warning: The following parameters of phys::UI::Rectangle::Rectangle(const RenderableRect &Rect, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uirectangle.h:112: warning: The following parameters of phys::UI::Rectangle::SetBorder(const Real &Width, const ColourValue &Colour) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uirectangle.h:111: warning: The following parameters of phys::UI::Rectangle::SetBorder(const Real &Width, const ColourValue &Colour) are not documented:
   parameter 'Width'
+/home/sqeaky/physgame/physgameengine/src/uirenderablerect.h:57: warning: Member Position (variable) of class phys::UI::RenderableRect is not documented.
+/home/sqeaky/physgame/physgameengine/src/uirenderablerect.h:58: warning: Member Size (variable) of class phys::UI::RenderableRect is not documented.
+/home/sqeaky/physgame/physgameengine/src/uirenderablerect.h:59: warning: Member Relative (variable) of class phys::UI::RenderableRect is not documented.
+/home/sqeaky/physgame/physgameengine/src/uirenderablerect.h:82: warning: return type of member phys::UI::RenderableRect::operator= is not documented
+/home/sqeaky/physgame/physgameengine/src/uirenderablerect.h:92: warning: return type of member phys::UI::RenderableRect::operator== is not documented
 /home/sqeaky/physgame/physgameengine/src/uiscreen.h:73: warning: Member GorillaScreen (variable) of class phys::UI::Screen is not documented.
 /home/sqeaky/physgame/physgameengine/src/uiscreen.h:74: warning: Member Manager (variable) of class phys::UI::Screen is not documented.
 /home/sqeaky/physgame/physgameengine/src/uiscreen.h:75: warning: Member GameViewport (variable) of class phys::UI::Screen is not documented.
@@ -579,35 +596,35 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uispinner.h:80: warning: Member IncrementOffset (variable) of class phys::UI::Spinner is not documented.
 /home/sqeaky/physgame/physgameengine/src/uispinner.h:81: warning: Member DecrementOffset (variable) of class phys::UI::Spinner is not documented.
 /home/sqeaky/physgame/physgameengine/src/uispinner.h:82: warning: Member ValueDisplayOffset (variable) of class phys::UI::Spinner is not documented.
-/home/sqeaky/physgame/physgameengine/src/uispinner.h:141: warning: argument 'DecimalPlaces' of command @param is not found in the argument list of phys::UI::Spinner::EnableDecimalDisplay(bool Enable, const Whole &Places=1)
-/home/sqeaky/physgame/physgameengine/src/uispinner.h:141: warning: The following parameters of phys::UI::Spinner::EnableDecimalDisplay(bool Enable, const Whole &Places=1) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uispinner.h:140: warning: argument 'DecimalPlaces' of command @param is not found in the argument list of phys::UI::Spinner::EnableDecimalDisplay(bool Enable, const Whole &Places=1)
+/home/sqeaky/physgame/physgameengine/src/uispinner.h:140: warning: The following parameters of phys::UI::Spinner::EnableDecimalDisplay(bool Enable, const Whole &Places=1) are not documented:
   parameter 'Places'
 /home/sqeaky/physgame/physgameengine/src/uitextbutton.h:60: warning: Member GorillaButton (variable) of class phys::UI::TextButton is not documented.
 /home/sqeaky/physgame/physgameengine/src/uitextbutton.h:61: warning: Member AutoScaleText (variable) of class phys::UI::TextButton is not documented.
 /home/sqeaky/physgame/physgameengine/src/uitextbutton.h:62: warning: Member RelLineHeight (variable) of class phys::UI::TextButton is not documented.
 /home/sqeaky/physgame/physgameengine/src/uitextbutton.h:63: warning: Member Glyphs (variable) of class phys::UI::TextButton is not documented.
-/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:65: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::TextButton::TextButton(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Whole &Glyph, const String &Text, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:65: warning: The following parameters of phys::UI::TextButton::TextButton(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Whole &Glyph, const String &Text, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:65: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::TextButton::TextButton(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, const String &Text, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:65: warning: The following parameters of phys::UI::TextButton::TextButton(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, const String &Text, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:73: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::TextButton::TextButton(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Real &LineHeight, const String &Text, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:73: warning: The following parameters of phys::UI::TextButton::TextButton(ConstString &name, const Vector2 &Position, const Vector2 &Size, const Real &LineHeight, const String &Text, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:72: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::TextButton::TextButton(ConstString &name, const RenderableRect &Rect, const Real &LineHeight, const String &Text, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:72: warning: The following parameters of phys::UI::TextButton::TextButton(ConstString &name, const RenderableRect &Rect, const Real &LineHeight, const String &Text, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:117: warning: argument 'Returns' of command @param is not found in the argument list of phys::UI::TextButton::GetGlyphIndex()
-/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:117: warning: return type of member phys::UI::TextButton::GetGlyphIndex is not documented
+/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:115: warning: argument 'Returns' of command @param is not found in the argument list of phys::UI::TextButton::GetGlyphIndex()
+/home/sqeaky/physgame/physgameengine/src/uitextbutton.h:115: warning: return type of member phys::UI::TextButton::GetGlyphIndex is not documented
 /home/sqeaky/physgame/physgameengine/src/uiwidget.h:64: warning: Member CapturedCodes (variable) of class phys::UI::InputCaptureData is not documented.
 /home/sqeaky/physgame/physgameengine/src/uiwidget.h:84: warning: return type of member phys::UI::InputCaptureData::IsInputToBeCaptured is not documented
 /home/sqeaky/physgame/physgameengine/src/uiwidget.h:101: warning: Member WidgetType (enumeration) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:118: warning: Member Manager (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:119: warning: Member Parent (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:120: warning: Member CaptureData (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:121: warning: Member HoveredButton (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:122: warning: Member HoveredSubWidget (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:123: warning: Member SubWidgetFocus (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:124: warning: Member Visible (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:125: warning: Member RelPosition (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:126: warning: Member RelSize (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:127: warning: Member Type (variable) of class phys::UI::Widget is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwidget.h:128: warning: Member Name (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:119: warning: Member Manager (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:120: warning: Member Parent (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:121: warning: Member CaptureData (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:122: warning: Member HoveredButton (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:123: warning: Member HoveredSubWidget (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:124: warning: Member SubWidgetFocus (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:125: warning: Member Visible (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:126: warning: Member RelPosition (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:127: warning: Member RelSize (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:128: warning: Member Type (variable) of class phys::UI::Widget is not documented.
+/home/sqeaky/physgame/physgameengine/src/uiwidget.h:129: warning: Member Name (variable) of class phys::UI::Widget is not documented.
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:94: warning: Member WindowBack (variable) of class phys::UI::Window is not documented.
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:96: warning: Member BorderWidth (variable) of class phys::UI::Window is not documented.
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:97: warning: Member CurrentRM (variable) of class phys::UI::Window is not documented.
@@ -616,28 +633,27 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:100: warning: Member Captions (variable) of class phys::UI::Window is not documented.
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:101: warning: Member MarkupTexts (variable) of class phys::UI::Window is not documented.
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:102: warning: Member Widgets (variable) of class phys::UI::Window is not documented.
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:116: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Window::Window(ConstString &name, const Vector2 &Position, const Vector2 &Size, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:116: warning: The following parameters of phys::UI::Window::Window(ConstString &name, const Vector2 &Position, const Vector2 &Size, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:116: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Window::Window(ConstString &name, const RenderableRect &Rect, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:116: warning: The following parameters of phys::UI::Window::Window(ConstString &name, const RenderableRect &Rect, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:218: warning: return type of member phys::UI::Window::CreateRectangle is not documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:203: warning: parameters of member phys::UI::Window::GetButton are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:200: warning: parameters of member phys::UI::Window::GetButton are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:254: warning: parameters of member phys::UI::Window::GetCaption are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:257: warning: parameters of member phys::UI::Window::GetCaption are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:288: warning: parameters of member phys::UI::Window::GetMarkupText are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:291: warning: parameters of member phys::UI::Window::GetMarkupText are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:206: warning: parameters of member phys::UI::Window::GetOffsetButtonInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:209: warning: parameters of member phys::UI::Window::GetOffsetButtonInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:263: warning: parameters of member phys::UI::Window::GetOffsetCaptionInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:260: warning: parameters of member phys::UI::Window::GetOffsetCaptionInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:294: warning: parameters of member phys::UI::Window::GetOffsetMarkupTextInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:297: warning: parameters of member phys::UI::Window::GetOffsetMarkupTextInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:227: warning: parameters of member phys::UI::Window::GetOffsetRectangleInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:315: warning: parameters of member phys::UI::Window::GetOffsetWidgetInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:318: warning: parameters of member phys::UI::Window::GetOffsetWidgetInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:224: warning: parameters of member phys::UI::Window::GetRectangle are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:312: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:308: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:196: warning: parameters of member phys::UI::Window::GetButton are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:193: warning: parameters of member phys::UI::Window::GetButton are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:241: warning: parameters of member phys::UI::Window::GetCaption are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:244: warning: parameters of member phys::UI::Window::GetCaption are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:275: warning: parameters of member phys::UI::Window::GetMarkupText are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:278: warning: parameters of member phys::UI::Window::GetMarkupText are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:199: warning: parameters of member phys::UI::Window::GetOffsetButtonInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:202: warning: parameters of member phys::UI::Window::GetOffsetButtonInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:250: warning: parameters of member phys::UI::Window::GetOffsetCaptionInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:247: warning: parameters of member phys::UI::Window::GetOffsetCaptionInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:281: warning: parameters of member phys::UI::Window::GetOffsetMarkupTextInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:284: warning: parameters of member phys::UI::Window::GetOffsetMarkupTextInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:218: warning: parameters of member phys::UI::Window::GetOffsetRectangleInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:302: warning: parameters of member phys::UI::Window::GetOffsetWidgetInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:305: warning: parameters of member phys::UI::Window::GetOffsetWidgetInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:215: warning: parameters of member phys::UI::Window::GetRectangle are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:299: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:295: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/xmldoc.h:1406: warning: return type of member phys::xml::XPathVariable::GetNodeSet is not documented
 /home/sqeaky/physgame/physgameengine/src/xmldoc.h:1396: warning: return type of member phys::xml::XPathVariable::GetNumber is not documented
 /home/sqeaky/physgame/physgameengine/src/xmldoc.h:1432: warning: return type of member phys::xml::XPathVariableSet::Set is not documented

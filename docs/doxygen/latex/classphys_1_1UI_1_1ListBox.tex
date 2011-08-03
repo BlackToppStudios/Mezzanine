@@ -17,13 +17,18 @@ Inheritance diagram for phys::UI::ListBox:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{classphys_1_1UI_1_1ListBox}
 \end{center}
 \end{figure}
+\subsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structphys_1_1UI_1_1ListBox_1_1TemplateParams}{TemplateParams}
+\end{DoxyCompactItemize}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1ListBox_a2cda27f0fd7392a5e0293af644a215ef}{ListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1ListBox_a01fe1d84b537fac03244a023406a839e}{ListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1ListBox_a582423223a2e310afc2a32c84d937502}{
-\hyperlink{classphys_1_1UI_1_1ListBox_a582423223a2e310afc2a32c84d937502}{$\sim$ListBox} ()}
+virtual \hyperlink{classphys_1_1UI_1_1ListBox_a582423223a2e310afc2a32c84d937502}{$\sim$ListBox} ()}
 \label{classphys_1_1UI_1_1ListBox_a582423223a2e310afc2a32c84d937502}
 
 \begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
@@ -43,10 +48,24 @@ virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a896220f2423ce6295ea3c8dc3a10
 \begin{DoxyCompactList}\small\item\em Forces this List Box to hide. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1ListBox_a789faeb98d98bb4d4d89cae8c53d4bc0}{CheckMouseHover} ()
 \begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this List Box. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a093415bd4d69dfdb0b1ffa3f868fe4f5}{SetBasicTemplateParameters} (\hyperlink{classphys_1_1Vector2}{Vector2} Size, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph)
-\begin{DoxyCompactList}\small\item\em Sets the desired size and glyph set provided to all captions created within this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a8396c55be0de8fd33d8ce35b83781540}{SetMoreTemplateParameters} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&TextColour=\hyperlink{classphys_1_1ColourValue}{ColourValue}(0.0, 0.0, 0.0, 1.0), const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&BackgroundColour=\hyperlink{classphys_1_1ColourValue}{ColourValue}(1.0, 1.0, 1.0, 1.0), UI::TextHorizontalAlign HorAlign=UI::Txt\_\-Middle, UI::TextVerticalAlign VertAlign=UI::Txt\_\-Center)
-\begin{DoxyCompactList}\small\item\em Sets additional optional perameters to the creation of each caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classphys_1_1UI_1_1ListBox_abe6281a6f885be920ba540b81df3cf59}{SetTemplateSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, bool Relative=true)
+\begin{DoxyCompactList}\small\item\em Sets the size to be applied to all created Selections. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classphys_1_1UI_1_1ListBox_a4bce62d1cee20950c41897e439fb3d79}{SetTemplateGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph)
+\begin{DoxyCompactList}\small\item\em Sets the glyph index to be applied to all created Selections. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classphys_1_1UI_1_1ListBox_a0106fde625c9e950f27a3e2611444359}{SetTemplateTextColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&TextColour)
+\begin{DoxyCompactList}\small\item\em Sets the text colour to be applied to all created Selections. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classphys_1_1UI_1_1ListBox_a160bc4d74c99f544a4339a3ba050868a}{SetTemplateTextScale} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Scale)
+\begin{DoxyCompactList}\small\item\em Sets the text scale to be applied to all created Selections. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classphys_1_1UI_1_1ListBox_af2a439b21e1b1a4af0cc684c25109d60}{SetTemplateCursorOffset} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Offset)
+\begin{DoxyCompactList}\small\item\em Set the cursor offset to be applied to all created Selections. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classphys_1_1UI_1_1ListBox_a718421466aa6769b04b5e34b29e0e01b}{SetTemplateBackgroundColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&BackgroundColour)
+\begin{DoxyCompactList}\small\item\em Sets the background colour to be applied to all created Selections. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classphys_1_1UI_1_1ListBox_a00ccdbe0b3a8da306b7346dff04792e0}{SetTemplateHorizontalAlign} (const UI::TextHorizontalAlign \&HorAlign)
+\begin{DoxyCompactList}\small\item\em Sets the horizontal alignment to be applied to all created Selections. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classphys_1_1UI_1_1ListBox_ab3b48e58a0049552c22aa17b7b8e8f1f}{SetTemplateVerticalAlign} (const UI::TextVerticalAlign \&VertAlign)
+\begin{DoxyCompactList}\small\item\em Sets the vertical alignment to be applied to all created Selections. \item\end{DoxyCompactList}\item 
+virtual const \hyperlink{structphys_1_1UI_1_1ListBox_1_1TemplateParams}{ListBox::TemplateParams} \& \hyperlink{classphys_1_1UI_1_1ListBox_a138619898628207d48adfe2bb08536d8}{GetTemplateInfo} ()
+\begin{DoxyCompactList}\small\item\em Gets the struct containing all the current template parameters used when creating a new selections. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1ListBox_aa6069fc3690e09142033886d9d7b0b3a}{AddSelection} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&BackgroundSprite=\char`\"{}\char`\"{})
 \begin{DoxyCompactList}\small\item\em Adds a selectable caption to the list to be displayed. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1ListBox_a1a5f9c44430387cc96744411bea9e978}{GetSelection} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
@@ -55,17 +74,10 @@ virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a295acf830ed17c78a59e5ba871a5
 \begin{DoxyCompactList}\small\item\em Destroys a selectable caption. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a3aa3bfaee473b7590692e8707dada68d}{DestroySelection} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a selectable caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a884c17a0462c95dfcad3f8f6b7671e15}{SetSelectionDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Dist)
-\begin{DoxyCompactList}\small\item\em Sets the distance apart(and from the sides of box) the Selections will be from each other. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1ListBox_acbc8e669d93665789453cb866996411b}{SetMaxDisplayedSelections} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&MaxSelections)
+\begin{DoxyCompactList}\small\item\em Sets the maximum number of selections to display at once before the scrollbar appears. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a60fc5c1907df6d83217b25c2c8f15f48}{SetAutoHideScroll} (bool AutoHide)
 \begin{DoxyCompactList}\small\item\em Eanbles or disables the scrollbar autohide. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a2f3612cc6062a279f0b6f69a1b2fc4eb}{EnableBackgroundSelector} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
-\begin{DoxyCompactList}\small\item\em Enables the setting of a background colour or sprite on the caption you select. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1ListBox_a05191b1f2515dead89abbcd6bd63b4d0}{
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a05191b1f2515dead89abbcd6bd63b4d0}{DisableBackgroundSelector} ()}
-\label{classphys_1_1UI_1_1ListBox_a05191b1f2515dead89abbcd6bd63b4d0}
-
-\begin{DoxyCompactList}\small\item\em Disables borders on currently selected buttons if one was enabled. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a0c4c7141142caca342157ce4460b907d}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative position of this List Box. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1ListBox_af688db0628a5588865a890584f754b02}{GetPosition} ()
@@ -146,9 +158,9 @@ bool {\bfseries AutoHideScroll}}
 \label{classphys_1_1UI_1_1ListBox_a8a68a1177b1a273ada009245533a808c}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1ListBox_a9414f0398c0b0a92e80b214e594eaee9}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries SelectionDist}}
-\label{classphys_1_1UI_1_1ListBox_a9414f0398c0b0a92e80b214e594eaee9}
+\hypertarget{classphys_1_1UI_1_1ListBox_a6a92bf3428daa9a02a7e6bf3dafd5886}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries MaxDisplay}}
+\label{classphys_1_1UI_1_1ListBox_a6a92bf3428daa9a02a7e6bf3dafd5886}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1ListBox_a8cab85b310d794830d381722458e1a64}{
@@ -156,39 +168,9 @@ bool {\bfseries AutoHideScroll}}
 \label{classphys_1_1UI_1_1ListBox_a8cab85b310d794830d381722458e1a64}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1ListBox_a13925dd61486a133dec614f93ccbced8}{
-UI::TextHorizontalAlign {\bfseries THAlign}}
-\label{classphys_1_1UI_1_1ListBox_a13925dd61486a133dec614f93ccbced8}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1ListBox_abdde6d0897c5dfa13a54c6ff0c596c92}{
-UI::TextVerticalAlign {\bfseries TVAlign}}
-\label{classphys_1_1UI_1_1ListBox_abdde6d0897c5dfa13a54c6ff0c596c92}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1ListBox_adfb9eb2384acaa41c2a21635935ea26c}{
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries TGlyph}}
-\label{classphys_1_1UI_1_1ListBox_adfb9eb2384acaa41c2a21635935ea26c}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1ListBox_a2f6fa2547140ef995eea382647935ec1}{
-\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries TSize}}
-\label{classphys_1_1UI_1_1ListBox_a2f6fa2547140ef995eea382647935ec1}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1ListBox_a423d81d89ab29b73dbbd965fbee96d2b}{
-\hyperlink{classphys_1_1ColourValue}{ColourValue} {\bfseries TTColour}}
-\label{classphys_1_1UI_1_1ListBox_a423d81d89ab29b73dbbd965fbee96d2b}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1ListBox_a145cc45a5ebd13eb95d3db76e7e51b9d}{
-\hyperlink{classphys_1_1ColourValue}{ColourValue} {\bfseries TBGColour}}
-\label{classphys_1_1UI_1_1ListBox_a145cc45a5ebd13eb95d3db76e7e51b9d}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1ListBox_afea3afe705c64578aafbf5397df4834e}{
-\hyperlink{classphys_1_1ColourValue}{ColourValue} {\bfseries SelectColour}}
-\label{classphys_1_1UI_1_1ListBox_afea3afe705c64578aafbf5397df4834e}
+\hypertarget{classphys_1_1UI_1_1ListBox_a0b3eac78b1352511bb770f265c6390d1}{
+\hyperlink{structphys_1_1UI_1_1ListBox_1_1TemplateParams}{TemplateParams} {\bfseries SelectionTemplate}}
+\label{classphys_1_1UI_1_1ListBox_a0b3eac78b1352511bb770f265c6390d1}
 
 \end{DoxyCompactItemize}
 
@@ -201,20 +183,19 @@ Definition at line 61 of file uilistbox.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1ListBox_a2cda27f0fd7392a5e0293af644a215ef}{
+\hypertarget{classphys_1_1UI_1_1ListBox_a01fe1d84b537fac03244a023406a839e}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!ListBox@{ListBox}}
 \index{ListBox@{ListBox}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{ListBox}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::ListBox::ListBox (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{ScrollbarWidth, }
 \item[{const UI::ScrollbarStyle \&}]{ScrollStyle, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1ListBox_a2cda27f0fd7392a5e0293af644a215ef}
+\label{classphys_1_1UI_1_1ListBox_a01fe1d84b537fac03244a023406a839e}
 
 
 Standard initialization constructor. 
@@ -223,11 +204,9 @@ Standard initialization constructor.
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of the List Box. \\
 \hline
-{\em Position} & The position of the List Box. \\
+{\em Rect} & The Rect representing the position and size of the List Box. \\
 \hline
-{\em Size} & The size of the List Box. \\
-\hline
-{\em ScrollbarWidth} & The relative(to screensize) width of the vertical scrollbar. If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look. \\
+{\em ScrollbarWidth} & The width of the vertical scrollbar. If the Rect passed in is relative, this will expect Scrollwidth to be relative as well. If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look). \\
 \hline
 {\em ScrollStyle} & The style of the scrollbar you want for this List Box. See \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} class for more information. \\
 \hline
@@ -237,7 +216,11 @@ Standard initialization constructor.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000027}{Todo}]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
+\item[\hyperlink{todo__todo000029}{Todo}]Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. \end{Desc}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000030}{Todo}]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
 
 
 
@@ -273,7 +256,7 @@ If a colour other then white was set as the template and you try to set a backgr
 \end{DoxyParams}
 
 
-Definition at line 302 of file uilistbox.cpp.
+Definition at line 350 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a789faeb98d98bb4d4d89cae8c53d4bc0}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!CheckMouseHover@{CheckMouseHover}}
@@ -297,7 +280,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259d
 
 
 
-Definition at line 251 of file uilistbox.cpp.
+Definition at line 266 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a295acf830ed17c78a59e5ba871a5a234}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!DestroySelection@{DestroySelection}}
@@ -319,7 +302,7 @@ Destroys a selectable caption.
 \end{DoxyParams}
 
 
-Definition at line 332 of file uilistbox.cpp.
+Definition at line 385 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a3aa3bfaee473b7590692e8707dada68d}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!DestroySelection@{DestroySelection}}
@@ -341,29 +324,7 @@ Destroys a selectable caption.
 \end{DoxyParams}
 
 
-Definition at line 346 of file uilistbox.cpp.
-
-\hypertarget{classphys_1_1UI_1_1ListBox_a2f3612cc6062a279f0b6f69a1b2fc4eb}{
-\index{phys::UI::ListBox@{phys::UI::ListBox}!EnableBackgroundSelector@{EnableBackgroundSelector}}
-\index{EnableBackgroundSelector@{EnableBackgroundSelector}!phys::UI::ListBox@{phys::UI::ListBox}}
-\paragraph[{EnableBackgroundSelector}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::EnableBackgroundSelector (
-\begin{DoxyParamCaption}
-\item[{const {\bf ColourValue} \&}]{Colour}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1UI_1_1ListBox_a2f3612cc6062a279f0b6f69a1b2fc4eb}
-
-
-Enables the setting of a background colour or sprite on the caption you select. 
-
-The background colour of captions default to white. 
-\begin{DoxyParams}{Parameters}
-{\em Colour} & The colour of the border. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 372 of file uilistbox.cpp.
+Definition at line 399 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a44046453283fb2c54e10dc868705352a}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetActualPosition@{GetActualPosition}}
@@ -387,7 +348,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e
 
 
 
-Definition at line 405 of file uilistbox.cpp.
+Definition at line 448 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a23133ed4a98994d838acee4c6a981e04}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetActualSize@{GetActualSize}}
@@ -411,7 +372,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed
 
 
 
-Definition at line 439 of file uilistbox.cpp.
+Definition at line 482 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a087fba492ebd70a58d2772fccbfec466}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetBoxBack@{GetBoxBack}}
@@ -431,7 +392,7 @@ Returns a pointer to the background of this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 449 of file uilistbox.cpp.
+Definition at line 492 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_af688db0628a5588865a890584f754b02}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetPosition@{GetPosition}}
@@ -455,7 +416,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c3
 
 
 
-Definition at line 391 of file uilistbox.cpp.
+Definition at line 434 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a729f4ef3e0bc10bf8e96f20a83767484}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetSelected@{GetSelected}}
@@ -475,7 +436,7 @@ Returns a pointer to the currently selected caption, or NULL if none are selecte
 \end{DoxyReturn}
 
 
-Definition at line 444 of file uilistbox.cpp.
+Definition at line 487 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a1a5f9c44430387cc96744411bea9e978}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetSelection@{GetSelection}}
@@ -500,7 +461,7 @@ Returns a pointer to the named caption.
 \end{DoxyReturn}
 
 
-Definition at line 319 of file uilistbox.cpp.
+Definition at line 372 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a7af2cced185d63be6a62d5122c700d81}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetSize@{GetSize}}
@@ -524,7 +485,27 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a
 
 
 
-Definition at line 422 of file uilistbox.cpp.
+Definition at line 465 of file uilistbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1ListBox_a138619898628207d48adfe2bb08536d8}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!GetTemplateInfo@{GetTemplateInfo}}
+\index{GetTemplateInfo@{GetTemplateInfo}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{GetTemplateInfo}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf ListBox::TemplateParams} \& phys::UI::ListBox::GetTemplateInfo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1ListBox_a138619898628207d48adfe2bb08536d8}
+
+
+Gets the struct containing all the current template parameters used when creating a new selections. 
+
+\begin{DoxyReturn}{Returns}
+Returns a const reference to the structure containing all the template parameters. 
+\end{DoxyReturn}
+
+
+Definition at line 345 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a9f62475c3a81772407af38076363060e}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetVertScroll@{GetVertScroll}}
@@ -544,7 +525,7 @@ Returns a pointer to the scrollbar of this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 454 of file uilistbox.cpp.
+Definition at line 497 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!IsVisible@{IsVisible}}
@@ -568,7 +549,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7a
 
 
 
-Definition at line 226 of file uilistbox.cpp.
+Definition at line 241 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a4bf1911c639429c783915ba8a543fec3}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetActualPosition@{SetActualPosition}}
@@ -594,7 +575,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e
 
 
 
-Definition at line 396 of file uilistbox.cpp.
+Definition at line 439 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a742810da75f2b3889794498f05af8860}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetActualSize@{SetActualSize}}
@@ -620,7 +601,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120
 
 
 
-Definition at line 427 of file uilistbox.cpp.
+Definition at line 470 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a60fc5c1907df6d83217b25c2c8f15f48}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetAutoHideScroll@{SetAutoHideScroll}}
@@ -642,63 +623,29 @@ Eanbles or disables the scrollbar autohide.
 \end{DoxyParams}
 
 
-Definition at line 365 of file uilistbox.cpp.
+Definition at line 418 of file uilistbox.cpp.
 
-\hypertarget{classphys_1_1UI_1_1ListBox_a093415bd4d69dfdb0b1ffa3f868fe4f5}{
-\index{phys::UI::ListBox@{phys::UI::ListBox}!SetBasicTemplateParameters@{SetBasicTemplateParameters}}
-\index{SetBasicTemplateParameters@{SetBasicTemplateParameters}!phys::UI::ListBox@{phys::UI::ListBox}}
-\paragraph[{SetBasicTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetBasicTemplateParameters (
+\hypertarget{classphys_1_1UI_1_1ListBox_acbc8e669d93665789453cb866996411b}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!SetMaxDisplayedSelections@{SetMaxDisplayedSelections}}
+\index{SetMaxDisplayedSelections@{SetMaxDisplayedSelections}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{SetMaxDisplayedSelections}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetMaxDisplayedSelections (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{Size, }
-\item[{const {\bf Whole}}]{Glyph}
+\item[{const {\bf Whole} \&}]{MaxSelections}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1UI_1_1ListBox_a093415bd4d69dfdb0b1ffa3f868fe4f5}
+\label{classphys_1_1UI_1_1ListBox_acbc8e669d93665789453cb866996411b}
 
 
-Sets the desired size and glyph set provided to all captions created within this widget. 
+Sets the maximum number of selections to display at once before the scrollbar appears. 
 
-This function needs to be called before adding any selections to this widget. 
+
 \begin{DoxyParams}{Parameters}
-{\em Size} & The size for all captions in this widget. \\
-\hline
-{\em Glyph} & The Glyph set to be used for all captions created. Glyphs are defined in your .gorilla file. \\
+{\em MaxSelections} & The maximum number of selections to display at once before requiring a scrollbar. This indirectly controls the max size of this widget. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 284 of file uilistbox.cpp.
-
-\hypertarget{classphys_1_1UI_1_1ListBox_a8396c55be0de8fd33d8ce35b83781540}{
-\index{phys::UI::ListBox@{phys::UI::ListBox}!SetMoreTemplateParameters@{SetMoreTemplateParameters}}
-\index{SetMoreTemplateParameters@{SetMoreTemplateParameters}!phys::UI::ListBox@{phys::UI::ListBox}}
-\paragraph[{SetMoreTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetMoreTemplateParameters (
-\begin{DoxyParamCaption}
-\item[{const {\bf ColourValue} \&}]{TextColour = {\ttfamily {\bf ColourValue}(0.0,0.0,0.0,1.0)}, }
-\item[{const {\bf ColourValue} \&}]{BackgroundColour = {\ttfamily {\bf ColourValue}(1.0,1.0,1.0,1.0)}, }
-\item[{UI::TextHorizontalAlign}]{HorAlign = {\ttfamily UI::Txt\_\-Middle}, }
-\item[{UI::TextVerticalAlign}]{VertAlign = {\ttfamily UI::Txt\_\-Center}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1UI_1_1ListBox_a8396c55be0de8fd33d8ce35b83781540}
-
-
-Sets additional optional perameters to the creation of each caption. 
-
-This function does not need to be called before creating captions, but if you plan to use this, it would be a good idea to call this function prior to any creation. 
-\begin{DoxyParams}{Parameters}
-{\em TextColour} & The Colour of the text. \\
-\hline
-{\em BackgroundColour} & The colour to set for the captions background. \\
-\hline
-{\em HorAlign} & The horizontal text alignment. This defaults to UI::Middle. \\
-\hline
-{\em VertAlign} & The Vertical text alignment. This defaults to UI::Center. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 294 of file uilistbox.cpp.
+Definition at line 413 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a0c4c7141142caca342157ce4460b907d}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetPosition@{SetPosition}}
@@ -724,29 +671,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d0
 
 
 
-Definition at line 382 of file uilistbox.cpp.
-
-\hypertarget{classphys_1_1UI_1_1ListBox_a884c17a0462c95dfcad3f8f6b7671e15}{
-\index{phys::UI::ListBox@{phys::UI::ListBox}!SetSelectionDistance@{SetSelectionDistance}}
-\index{SetSelectionDistance@{SetSelectionDistance}!phys::UI::ListBox@{phys::UI::ListBox}}
-\paragraph[{SetSelectionDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetSelectionDistance (
-\begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{Dist}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1UI_1_1ListBox_a884c17a0462c95dfcad3f8f6b7671e15}
-
-
-Sets the distance apart(and from the sides of box) the Selections will be from each other. 
-
-This function expects a relative value to the screen size(0.0 to 1.0). This value defaults to 0. 
-\begin{DoxyParams}{Parameters}
-{\em Dist} & A relative value for the distance to be used when determining the positions of Selections. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 360 of file uilistbox.cpp.
+Definition at line 425 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a2e1f6514f83be768dad7e357beb6ac98}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetSize@{SetSize}}
@@ -772,7 +697,210 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24
 
 
 
-Definition at line 410 of file uilistbox.cpp.
+Definition at line 453 of file uilistbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1ListBox_a718421466aa6769b04b5e34b29e0e01b}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateBackgroundColour@{SetTemplateBackgroundColour}}
+\index{SetTemplateBackgroundColour@{SetTemplateBackgroundColour}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{SetTemplateBackgroundColour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} \& phys::UI::ListBox::SetTemplateBackgroundColour (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{BackgroundColour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1ListBox_a718421466aa6769b04b5e34b29e0e01b}
+
+
+Sets the background colour to be applied to all created Selections. 
+
+Optional parameter. 
+\begin{DoxyParams}{Parameters}
+{\em BackgroundColour} & The colour to set for the captions background. This defaults to white. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to this List Box. 
+\end{DoxyReturn}
+
+
+Definition at line 327 of file uilistbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1ListBox_af2a439b21e1b1a4af0cc684c25109d60}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateCursorOffset@{SetTemplateCursorOffset}}
+\index{SetTemplateCursorOffset@{SetTemplateCursorOffset}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{SetTemplateCursorOffset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} \& phys::UI::ListBox::SetTemplateCursorOffset (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1ListBox_af2a439b21e1b1a4af0cc684c25109d60}
+
+
+Set the cursor offset to be applied to all created Selections. 
+
+Optional parameter. 
+\begin{DoxyParams}{Parameters}
+{\em Offset} & The offset in pixels to adjust where text starts appearing in the caption. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to this List Box. 
+\end{DoxyReturn}
+
+
+Definition at line 321 of file uilistbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1ListBox_a4bce62d1cee20950c41897e439fb3d79}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateGlyphIndex@{SetTemplateGlyphIndex}}
+\index{SetTemplateGlyphIndex@{SetTemplateGlyphIndex}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{SetTemplateGlyphIndex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} \& phys::UI::ListBox::SetTemplateGlyphIndex (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Glyph}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1ListBox_a4bce62d1cee20950c41897e439fb3d79}
+
+
+Sets the glyph index to be applied to all created Selections. 
+
+This needs to be called prior to the creation of any selections(captions). This defaults to 0, which may not be a valid font index in your gorilla file. In which case it will throw an exception. 
+\begin{DoxyParams}{Parameters}
+{\em Glyph} & The Glyph index to use for the text generated by all captions in this widget. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to this List Box. 
+\end{DoxyReturn}
+
+
+Definition at line 303 of file uilistbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1ListBox_a00ccdbe0b3a8da306b7346dff04792e0}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateHorizontalAlign@{SetTemplateHorizontalAlign}}
+\index{SetTemplateHorizontalAlign@{SetTemplateHorizontalAlign}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{SetTemplateHorizontalAlign}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} \& phys::UI::ListBox::SetTemplateHorizontalAlign (
+\begin{DoxyParamCaption}
+\item[{const UI::TextHorizontalAlign \&}]{HorAlign}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1ListBox_a00ccdbe0b3a8da306b7346dff04792e0}
+
+
+Sets the horizontal alignment to be applied to all created Selections. 
+
+Optional parameter. 
+\begin{DoxyParams}{Parameters}
+{\em HorAlign} & The horizontal text alignment. This defaults to UI::Middle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to this List Box. 
+\end{DoxyReturn}
+
+
+Definition at line 333 of file uilistbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1ListBox_abe6281a6f885be920ba540b81df3cf59}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateSize@{SetTemplateSize}}
+\index{SetTemplateSize@{SetTemplateSize}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{SetTemplateSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} \& phys::UI::ListBox::SetTemplateSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size, }
+\item[{bool}]{Relative = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1ListBox_abe6281a6f885be920ba540b81df3cf59}
+
+
+Sets the size to be applied to all created Selections. 
+
+This needs to be called prior to the creation of any selections(captions). This defaults to 0,0, so if it is not called, you won't see anything. 
+\begin{DoxyParams}{Parameters}
+{\em Size} & The size of the caption to make. Applied to all captions created by this class. \\
+\hline
+{\em Relative} & Whether or not the size provided is in relative units(rather then pixels). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to this List Box. 
+\end{DoxyReturn}
+
+
+Definition at line 296 of file uilistbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1ListBox_a0106fde625c9e950f27a3e2611444359}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateTextColour@{SetTemplateTextColour}}
+\index{SetTemplateTextColour@{SetTemplateTextColour}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{SetTemplateTextColour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} \& phys::UI::ListBox::SetTemplateTextColour (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{TextColour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1ListBox_a0106fde625c9e950f27a3e2611444359}
+
+
+Sets the text colour to be applied to all created Selections. 
+
+Optional parameter. 
+\begin{DoxyParams}{Parameters}
+{\em TextColour} & The Colour of the text. This defaults to black. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to this List Box. 
+\end{DoxyReturn}
+
+
+Definition at line 309 of file uilistbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1ListBox_a160bc4d74c99f544a4339a3ba050868a}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateTextScale@{SetTemplateTextScale}}
+\index{SetTemplateTextScale@{SetTemplateTextScale}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{SetTemplateTextScale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} \& phys::UI::ListBox::SetTemplateTextScale (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1ListBox_a160bc4d74c99f544a4339a3ba050868a}
+
+
+Sets the text scale to be applied to all created Selections. 
+
+Optional parameter. 
+\begin{DoxyParams}{Parameters}
+{\em Scale} & The scale you wish to apply to the text in all created selections. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to this List Box. 
+\end{DoxyReturn}
+
+
+Definition at line 315 of file uilistbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1ListBox_ab3b48e58a0049552c22aa17b7b8e8f1f}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateVerticalAlign@{SetTemplateVerticalAlign}}
+\index{SetTemplateVerticalAlign@{SetTemplateVerticalAlign}!phys::UI::ListBox@{phys::UI::ListBox}}
+\paragraph[{SetTemplateVerticalAlign}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} \& phys::UI::ListBox::SetTemplateVerticalAlign (
+\begin{DoxyParamCaption}
+\item[{const UI::TextVerticalAlign \&}]{VertAlign}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1ListBox_ab3b48e58a0049552c22aa17b7b8e8f1f}
+
+
+Sets the vertical alignment to be applied to all created Selections. 
+
+Optional parameter. 
+\begin{DoxyParams}{Parameters}
+{\em VertAlign} & The Vertical text alignment. This defaults to UI::Center. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to this List Box. 
+\end{DoxyReturn}
+
+
+Definition at line 339 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_abb3c87bf6669100296c1fa4f4913ea33}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetVisible@{SetVisible}}
@@ -798,7 +926,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e
 
 
 
-Definition at line 216 of file uilistbox.cpp.
+Definition at line 231 of file uilistbox.cpp.
 
 
 
@@ -809,10 +937,10 @@ Definition at line 216 of file uilistbox.cpp.
 \paragraph[{VertScroll}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar}$\ast$ {\bf phys::UI::ListBox::VertScroll}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1ListBox_ab2b012b345ff4bb1a5b228fef88d895c}
 \begin{Desc}
-\item[\hyperlink{todo__todo000028}{Todo}]Third instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
+\item[\hyperlink{todo__todo000031}{Todo}]Third instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
 
 
-Definition at line 66 of file uilistbox.h.
+Definition at line 78 of file uilistbox.h.
 
 
 

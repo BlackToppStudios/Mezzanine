@@ -14,10 +14,10 @@ This class is a helper class, specifically for use with background sprites and c
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1Rectangle_a845e2591ee5bd2d0a7b60debfad1cc57}{Rectangle} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1Rectangle_a6e6e88eb63cc8131da9c8de0fb691801}{Rectangle} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}{
-\hyperlink{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}{$\sim$Rectangle} ()}
+virtual \hyperlink{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}{$\sim$Rectangle} ()}
 \label{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
@@ -121,26 +121,23 @@ Definition at line 68 of file uirectangle.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1Rectangle_a845e2591ee5bd2d0a7b60debfad1cc57}{
+\hypertarget{classphys_1_1UI_1_1Rectangle_a6e6e88eb63cc8131da9c8de0fb691801}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!Rectangle@{Rectangle}}
 \index{Rectangle@{Rectangle}!phys::UI::Rectangle@{phys::UI::Rectangle}}
 \paragraph[{Rectangle}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Rectangle::Rectangle (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1Rectangle_a845e2591ee5bd2d0a7b60debfad1cc57}
+\label{classphys_1_1UI_1_1Rectangle_a6e6e88eb63cc8131da9c8de0fb691801}
 
 
 Class constructor. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Position} & The top left position of the rectangle. \\
-\hline
-{\em Size} & The size of the rectangle. \\
+{\em Rect} & The Rect representing the position and size of the rectangle. \\
 \hline
 {\em \hyperlink{classphys_1_1UI_1_1Layer}{Layer}} & Pointer to the parent \hyperlink{classphys_1_1UI_1_1Layer}{Layer} that created this rectangle. \\
 \hline
@@ -170,7 +167,7 @@ Returns a bool indicating whether the mouse is over this rectangle.
 \end{DoxyReturn}
 
 
-Definition at line 95 of file uirectangle.cpp.
+Definition at line 103 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a976f977ee23e805b4a193fc0f9e8392f}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!GetActualPosition@{GetActualPosition}}
@@ -190,7 +187,7 @@ Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of
 \end{DoxyReturn}
 
 
-Definition at line 159 of file uirectangle.cpp.
+Definition at line 167 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_ae29501765e3af7eac37d5ac581e77b24}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!GetActualSize@{GetActualSize}}
@@ -210,7 +207,7 @@ Returns a vector2 representing the size of this rectangle.
 \end{DoxyReturn}
 
 
-Definition at line 185 of file uirectangle.cpp.
+Definition at line 193 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a20903adb6d1b8650d73774190a2b9c57}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!GetMouseHover@{GetMouseHover}}
@@ -230,7 +227,7 @@ Returns the stored value of whether or not the mouse is over the rectangle.
 \end{DoxyReturn}
 
 
-Definition at line 109 of file uirectangle.cpp.
+Definition at line 117 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_aa0e2d6170f0b2d5b1f915c705e7fca10}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!GetPosition@{GetPosition}}
@@ -250,7 +247,7 @@ Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of
 \end{DoxyReturn}
 
 
-Definition at line 148 of file uirectangle.cpp.
+Definition at line 156 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_ab4fe2f73e386c9735ad17789ce6cc51a}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!GetPrimaryAtlas@{GetPrimaryAtlas}}
@@ -270,7 +267,7 @@ Returns a string containing the name of the primary atlas that is set, or an emp
 \end{DoxyReturn}
 
 
-Definition at line 236 of file uirectangle.cpp.
+Definition at line 244 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a8445b7d0dcb2c92f29aeadac305af420}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!GetRenderPriority@{GetRenderPriority}}
@@ -290,7 +287,7 @@ Returns an enum value representing this button's priority level.
 \end{DoxyReturn}
 
 
-Definition at line 211 of file uirectangle.cpp.
+Definition at line 219 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a5f54debc5c435cda9505b40ce82f4f24}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!GetSize@{GetSize}}
@@ -310,7 +307,7 @@ Returns a vector2 representing the size of this rectangle.
 \end{DoxyReturn}
 
 
-Definition at line 173 of file uirectangle.cpp.
+Definition at line 181 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_aad47a2d9a7c9d8d9111b2edbf44541d5}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!IsVisible@{IsVisible}}
@@ -330,7 +327,7 @@ Returns a bool representing the visibility of this rectangle.
 \end{DoxyReturn}
 
 
-Definition at line 80 of file uirectangle.cpp.
+Definition at line 88 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a8a5af1cc3360196f793deb8a0db604e4}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetActualPosition@{SetActualPosition}}
@@ -352,7 +349,7 @@ Sets the top left position of this rectangle in pixels.
 \end{DoxyParams}
 
 
-Definition at line 153 of file uirectangle.cpp.
+Definition at line 161 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_ab2afb04d539b2b1fc384fa1050b1ba21}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetActualSize@{SetActualSize}}
@@ -374,7 +371,7 @@ Sets the size of this rectangle in pixels.
 \end{DoxyParams}
 
 
-Definition at line 178 of file uirectangle.cpp.
+Definition at line 186 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a687b524b89e6a76bc102b60023d36abd}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetBackgroundColour@{SetBackgroundColour}}
@@ -396,7 +393,7 @@ Sets the background colour of the rectangle.
 \end{DoxyParams}
 
 
-Definition at line 114 of file uirectangle.cpp.
+Definition at line 122 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_ae9cc47125e075aaa9bfd397762de6e0c}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetBackgroundSprite@{SetBackgroundSprite}}
@@ -418,7 +415,7 @@ Sets the background image(if provided in the atlas) of the rectangle.
 \end{DoxyParams}
 
 
-Definition at line 119 of file uirectangle.cpp.
+Definition at line 127 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_aa20172e511e24ed24e21e0bdac0e00c4}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetBackgroundSprite@{SetBackgroundSprite}}
@@ -443,7 +440,7 @@ Sets the background image(if provided in the atlas) of the rectangle.
 \end{DoxyParams}
 
 
-Definition at line 125 of file uirectangle.cpp.
+Definition at line 133 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_aaea6f9d5cd62b63a132c03c894a6d8de}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetBorder@{SetBorder}}
@@ -466,7 +463,7 @@ Enables a border and sets it's colour.
 \end{DoxyParams}
 
 
-Definition at line 131 of file uirectangle.cpp.
+Definition at line 139 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a16fd918d53d0ae1f82af2574c0396b2c}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetPosition@{SetPosition}}
@@ -488,7 +485,7 @@ Sets the relative top left position of this rectangle.
 \end{DoxyParams}
 
 
-Definition at line 141 of file uirectangle.cpp.
+Definition at line 149 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a275a1495bdbb3829b5f94525d6caa9ed}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetPrimaryAtlas@{SetPrimaryAtlas}}
@@ -510,7 +507,7 @@ Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
 \end{DoxyParams}
 
 
-Definition at line 231 of file uirectangle.cpp.
+Definition at line 239 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a79a98cac2cdd05d6ea6fa3865c9c4b6e}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetRenderPriority@{SetRenderPriority}}
@@ -532,7 +529,7 @@ The default value for this is Medium.
 \end{DoxyParams}
 
 
-Definition at line 191 of file uirectangle.cpp.
+Definition at line 199 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a5fa81c05e32b454c313f25609a03c58f}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetSize@{SetSize}}
@@ -554,7 +551,7 @@ Sets the relative size of this rectangle.
 \end{DoxyParams}
 
 
-Definition at line 165 of file uirectangle.cpp.
+Definition at line 173 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a4fa5021010e8cdaf9a9e35b3d4c82461}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!SetVisible@{SetVisible}}
@@ -576,7 +573,7 @@ Sets the visibility of this rectangle.
 \end{DoxyParams}
 
 
-Definition at line 75 of file uirectangle.cpp.
+Definition at line 83 of file uirectangle.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a090cfa5a1298c333335258d52d81c017}{
 \index{phys::UI::Rectangle@{phys::UI::Rectangle}!UpdateDimensions@{UpdateDimensions}}
@@ -593,7 +590,7 @@ Updates the dimensions of this rectangle to match those of the new screen size.
 
 This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
 
-Definition at line 241 of file uirectangle.cpp.
+Definition at line 249 of file uirectangle.cpp.
 
 
 

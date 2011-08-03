@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 689.655172
+%%BoundingBox: 0 0 500 738.255034
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 0.725000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 0.677273 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 10 def
+/rows 11 def
 /cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -178,6 +178,7 @@ boxfont setfont
 (phys::UI::Cell) cw
 (phys::UI::CellGrid) cw
 (phys::UI::CheckBox) cw
+(phys::UI::DropDownList) cw
 (phys::UI::ListBox) cw
 (phys::UI::Menu) cw
 (phys::UI::Scrollbar) cw
@@ -194,12 +195,13 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (phys::UI::Widget) 0.000000 9.000000 box
- (phys::UI::ButtonListBox) 1.000000 8.000000 box
- (phys::UI::Cell) 1.000000 7.000000 box
- (phys::UI::CellGrid) 1.000000 6.000000 box
-1.000000 6.000000 mark
- (phys::UI::CheckBox) 1.000000 5.000000 box
+ (phys::UI::Widget) 0.000000 10.000000 box
+ (phys::UI::ButtonListBox) 1.000000 9.000000 box
+ (phys::UI::Cell) 1.000000 8.000000 box
+ (phys::UI::CellGrid) 1.000000 7.000000 box
+1.000000 7.000000 mark
+ (phys::UI::CheckBox) 1.000000 6.000000 box
+ (phys::UI::DropDownList) 1.000000 5.000000 box
  (phys::UI::ListBox) 1.000000 4.000000 box
  (phys::UI::Menu) 1.000000 3.000000 box
  (phys::UI::Scrollbar) 1.000000 2.000000 box
@@ -210,7 +212,9 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-1 0.000000 8.250000 out
+1 0.000000 9.250000 out
+solid
+0 0.000000 9.500000 hedge
 solid
 0 0.000000 8.500000 hedge
 solid
@@ -230,4 +234,4 @@ solid
 solid
 0 0.000000 0.500000 hedge
 solid
-0.000000 9.000000 0.500000 vedge
+0.000000 10.000000 0.500000 vedge

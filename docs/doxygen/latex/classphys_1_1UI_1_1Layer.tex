@@ -17,121 +17,121 @@ This class is the basic container class for UI elements.
 \hyperlink{classphys_1_1UI_1_1Layer_a26fd46d043fa1786a543b4c6b3863643}{Layer} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, Gorilla::Layer $\ast$GLayer, \hyperlink{classphys_1_1UI_1_1Screen}{Screen} $\ast$PScreen)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Layer_a02f12501f3efbb5b06d59bfc04fab50d}{
-\hyperlink{classphys_1_1UI_1_1Layer_a02f12501f3efbb5b06d59bfc04fab50d}{$\sim$Layer} ()}
+virtual \hyperlink{classphys_1_1UI_1_1Layer_a02f12501f3efbb5b06d59bfc04fab50d}{$\sim$Layer} ()}
 \label{classphys_1_1UI_1_1Layer_a02f12501f3efbb5b06d59bfc04fab50d}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1UI_1_1Layer_a362edb47fdc9aa595dcaffc1ed617ae4}{GetName} ()
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1UI_1_1Layer_a362edb47fdc9aa595dcaffc1ed617ae4}{GetName} ()
 \begin{DoxyCompactList}\small\item\em Gets the name of this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Screen}{Screen} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a484d10cf74177dea47d00ad7ddef8527}{GetParent} ()
+virtual \hyperlink{classphys_1_1UI_1_1Screen}{Screen} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a484d10cf74177dea47d00ad7ddef8527}{GetParent} ()
 \begin{DoxyCompactList}\small\item\em Gets the parent screen of this layer. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Layer_a421ed59dd2f50bed32a9e32c03327c39}{SetVisible} (bool Visible)
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_a421ed59dd2f50bed32a9e32c03327c39}{SetVisible} (bool Visible)
 \begin{DoxyCompactList}\small\item\em Sets the layers' visability. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1UI_1_1Layer_a33f23515b8ac60adc2e99435574a2d9d}{IsVisible} ()
+virtual bool \hyperlink{classphys_1_1UI_1_1Layer_a33f23515b8ac60adc2e99435574a2d9d}{IsVisible} ()
 \begin{DoxyCompactList}\small\item\em Gets the layers' visability. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Layer_ad8828d0c891ebbb9d7b9ca112793c725}{
-void \hyperlink{classphys_1_1UI_1_1Layer_ad8828d0c891ebbb9d7b9ca112793c725}{Show} ()}
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_ad8828d0c891ebbb9d7b9ca112793c725}{Show} ()}
 \label{classphys_1_1UI_1_1Layer_ad8828d0c891ebbb9d7b9ca112793c725}
 
 \begin{DoxyCompactList}\small\item\em Forces the layer to be shown. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Layer_ad69fc503170e52b2248f76a87f57a2b8}{
-void \hyperlink{classphys_1_1UI_1_1Layer_ad69fc503170e52b2248f76a87f57a2b8}{Hide} ()}
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_ad69fc503170e52b2248f76a87f57a2b8}{Hide} ()}
 \label{classphys_1_1UI_1_1Layer_ad69fc503170e52b2248f76a87f57a2b8}
 
 \begin{DoxyCompactList}\small\item\em Forces the layer to hide. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a22fb2a442ecbaf85e7e216b204d07f21}{CreateButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a3ccff67009451eb1468d78a52edcbccf}{CreateButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
 \begin{DoxyCompactList}\small\item\em Creates a button within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_ab8f427ee8bffc24bac27eae700d8cb6f}{CreateTextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
+virtual \hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a4a6246485351ecc9db995c749dc18f13}{CreateTextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a text button within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a559f7ae08fb6da07aa1c2b829f2a7070}{CreateTextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
+virtual \hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_ad2c0cfc59e34aeda647a7659b4522e55}{CreateTextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a text button within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a6331e3e7a049deba36aba957d0dcecd8}{GetButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a6331e3e7a049deba36aba957d0dcecd8}{GetButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets an already created button by name. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a96d3a5d016d435878c0184d02c839089}{GetButton} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a96d3a5d016d435878c0184d02c839089}{GetButton} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created button by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_acebe9d678fe60e02fa4d37647bb9780c}{GetNumButtons} ()
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_acebe9d678fe60e02fa4d37647bb9780c}{GetNumButtons} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of buttons created and stored in this class. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Layer_ac011ff1dd631287500f5b2aff43726e3}{DestroyButton} (\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ToBeDestroyed)
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_ac011ff1dd631287500f5b2aff43726e3}{DestroyButton} (\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a button. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a0bbeb9de6fce3087afc2f569f2a7d6db}{CreateRectangle} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+virtual \hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_aea42a78478489c92c39e5e0b1ca6d289}{CreateRectangle} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
 \begin{DoxyCompactList}\small\item\em Creates a rectangle within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_ac96bb33f2c47d3ab1b615fc91aa5ad91}{GetRectangle} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
+virtual \hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_ac96bb33f2c47d3ab1b615fc91aa5ad91}{GetRectangle} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created rectangle by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_a1a006c096c7eb87669f00cb6a385567e}{GetNumRectangles} ()
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_a1a006c096c7eb87669f00cb6a385567e}{GetNumRectangles} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of rectangles created and stored in this class. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Layer_a8bfa08dad890a56e056054b09162cdf4}{DestroyRectangle} (\hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ToBeDestroyed)
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_a8bfa08dad890a56e056054b09162cdf4}{DestroyRectangle} (\hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a rectangle. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_acdd3e11a5be126d58f9ca43d3f1d1e8f}{CreateCaption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
+virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a6722d243df34dbcf0337292b5bdb9cab}{CreateCaption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a caption within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a65fc6e261069c8bf594c844bc66bd5e4}{CreateCaption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
+virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a82d231a873ea03ad80e70072800eecd4}{CreateCaption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a caption within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_af2dd8dc0a5b8775f069b98ce36ce9af6}{GetCaption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_af2dd8dc0a5b8775f069b98ce36ce9af6}{GetCaption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets an already created caption by name. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a78334cb4e75aaa559bfb76af31e2d0e0}{GetCaption} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
+virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a78334cb4e75aaa559bfb76af31e2d0e0}{GetCaption} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created caption by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_a0e8df4319db95b3573c53b041686e66b}{GetNumCaptions} ()
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_a0e8df4319db95b3573c53b041686e66b}{GetNumCaptions} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of captions created and stored in this class. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Layer_a62195d1732e1d200f0b847331ef6d3b0}{DestroyCaption} (\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ToBeDestroyed)
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_a62195d1732e1d200f0b847331ef6d3b0}{DestroyCaption} (\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a caption. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a403ff55e8e15409db1a97fe210b5a38f}{CreateMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
+virtual \hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a62338ca48dce418a53c4d9d027152a4c}{CreateMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a markup text within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a50a71dac395e7143c385119da669df8e}{CreateMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
+virtual \hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a556d60552d49483bda837b27fcb0f985}{CreateMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a markup text within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_aed2d7a1ad478f3d92005aeec4a777473}{GetMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+virtual \hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_aed2d7a1ad478f3d92005aeec4a777473}{GetMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets an already created markup text by name. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_ae69320aefcfbc6f7f8c7364a04b2ae59}{GetMarkupText} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
+virtual \hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_ae69320aefcfbc6f7f8c7364a04b2ae59}{GetMarkupText} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created markup text by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_acc0fbbeabb701ad86826312b2ce88d60}{GetNumMarkupTexts} ()
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_acc0fbbeabb701ad86826312b2ce88d60}{GetNumMarkupTexts} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of markup texts created and stored in this class. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Layer_a30a9991d13023b2bb941dab0667f91e6}{DestroyMarkupText} (\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ToBeDestroyed)
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_a30a9991d13023b2bb941dab0667f91e6}{DestroyMarkupText} (\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a markup text. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Layer_a16c50950bb79c8b06a046f2820329728}{
-\hyperlink{classphys_1_1UI_1_1LineList}{LineList} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a16c50950bb79c8b06a046f2820329728}{CreateLineList} ()}
+virtual \hyperlink{classphys_1_1UI_1_1LineList}{LineList} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a16c50950bb79c8b06a046f2820329728}{CreateLineList} ()}
 \label{classphys_1_1UI_1_1Layer_a16c50950bb79c8b06a046f2820329728}
 
 \begin{DoxyCompactList}\small\item\em Creates a line list within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1LineList}{LineList} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_aa0ec04b512d7c2ad2808a2dc0e435905}{GetLineList} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
+virtual \hyperlink{classphys_1_1UI_1_1LineList}{LineList} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_aa0ec04b512d7c2ad2808a2dc0e435905}{GetLineList} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created line list by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_aa25225bb0011d26038959420153d9714}{GetNumLineLists} ()
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_aa25225bb0011d26038959420153d9714}{GetNumLineLists} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of line lists created and stored in this class. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Layer_aa0854e22fefd9378b0cdf7a217a3aeeb}{DestroyLineList} (\hyperlink{classphys_1_1UI_1_1LineList}{LineList} $\ast$ToBeDestroyed)
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_aa0854e22fefd9378b0cdf7a217a3aeeb}{DestroyLineList} (\hyperlink{classphys_1_1UI_1_1LineList}{LineList} $\ast$ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a line list. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Layer_ae2425e1ca2a7dd8f5912dad497f3beca}{AddWidget} (\hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ToAdd)
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_ae2425e1ca2a7dd8f5912dad497f3beca}{AddWidget} (\hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ToAdd)
 \begin{DoxyCompactList}\small\item\em Adds a widget to this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a4340e70c9ab4083236d4a4c8d804c62a}{GetWidget} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+virtual \hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a4340e70c9ab4083236d4a4c8d804c62a}{GetWidget} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets an already created widget by name. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a8506cbb9fda26895300e4ade376754ab}{GetWidget} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+virtual \hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a8506cbb9fda26895300e4ade376754ab}{GetWidget} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created widget by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_a9501026d0546e37f2f7989a555f47500}{GetNumWidgets} ()
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Layer_a9501026d0546e37f2f7989a555f47500}{GetNumWidgets} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of widgets created and stored in this class. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Layer_a472de1771d8e80232292ec6a19c871a6}{DestroyWidget} (\hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ToBeDestroyed)
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_a472de1771d8e80232292ec6a19c871a6}{DestroyWidget} (\hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a widget. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a29f07dd621c99d2d5dbafd05ab7cc8a3}{CreateScrollbar} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const UI::ScrollbarStyle \&Style)
+virtual \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_ab7ad4b0db348beddfe63d1f9c914f1ca}{CreateScrollbar} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const UI::ScrollbarStyle \&Style)
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a47ae847dbeea56ebccad238586e2542c}{CreateCheckBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&LabelText)
+virtual \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_aac8bb17722c2a603c40be5cfa7cfe5cc}{CreateCheckBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&LabelText)
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox} within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1ButtonListBox}{ButtonListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a210f6094577ca79cbbf28d4fdd6cbd31}{CreateButtonListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollbarStyle)
+virtual \hyperlink{classphys_1_1UI_1_1ButtonListBox}{ButtonListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a27df96a5487380afae0b665242da061a}{CreateButtonListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollbarStyle)
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_aef07620ee732d4e679bf6f7a4d704b5b}{CreateListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollbarStyle)
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a9bb957261e17e11ed7a320d8ba10f9c6}{CreateListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollbarStyle)
 \begin{DoxyCompactList}\small\item\em Creates a List Box within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Window}{Window} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a383551d12e332d756260d87a54e4ef8e}{CreateWidgetWindow} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+virtual \hyperlink{classphys_1_1UI_1_1Window}{Window} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a2efe08dca3cb4300a68c7f4d8e5296a0}{CreateWidgetWindow} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1Window}{Window} within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Menu}{Menu} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a49e7872455622d7e17871fd5fa4c41c1}{CreateMenu} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+virtual \hyperlink{classphys_1_1UI_1_1Menu}{Menu} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_afe5b5ed6409890ba6d9511e3246e69a9}{CreateMenu} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1Menu}{Menu} within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Spinner}{Spinner} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a7da3e07d9df3908f89b68b9d1705aad7}{CreateSpinner} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const UI::SpinnerStyle \&SStyle, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight)
+virtual \hyperlink{classphys_1_1UI_1_1Spinner}{Spinner} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_aaa21b066649965bec3b992b92fe0eeb7}{CreateSpinner} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const UI::SpinnerStyle \&SStyle, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight)
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1Spinner}{Spinner} within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1ScrolledCellGrid}{ScrolledCellGrid} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_afd17e29c5dcd4a36b884e07f42c1907f}{CreateScrolledCellGrid} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Thickness, const UI::ScrollbarStyle \&Style)
+virtual \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid}{ScrolledCellGrid} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a967b2ff1bcc006a909b623325182da4a}{CreateScrolledCellGrid} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Thickness, const UI::ScrollbarStyle \&Style)
 \begin{DoxyCompactList}\small\item\em Creates a scrolled cell grid within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1PagedCellGrid}{PagedCellGrid} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a536c636ead9c0ff283fa655ab4bf68f8}{CreatePagedCellGrid} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{classphys_1_1Vector2}{Vector2} \&SpnPosition, const \hyperlink{classphys_1_1Vector2}{Vector2} \&SpnSize, const UI::SpinnerStyle \&SStyle, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight)
+virtual \hyperlink{classphys_1_1UI_1_1PagedCellGrid}{PagedCellGrid} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a1c8326e5c53dc64d53288883d8a0496a}{CreatePagedCellGrid} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&SpnRect, const UI::SpinnerStyle \&SStyle, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight)
 \begin{DoxyCompactList}\small\item\em Creates a paged cell grid within this layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a3d401a77704cba509b418c53f92cc09d}{CheckButtonMouseIsOver} ()
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a3d401a77704cba509b418c53f92cc09d}{CheckButtonMouseIsOver} ()
 \begin{DoxyCompactList}\small\item\em Gets the button the mouse is over if any. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_ae80bef48442ac0737bfc1939fc2f9af1}{CheckWidgetMouseIsOver} ()
+virtual \hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_ae80bef48442ac0737bfc1939fc2f9af1}{CheckWidgetMouseIsOver} ()
 \begin{DoxyCompactList}\small\item\em Gets the widget the mouse is over if any. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Layer_a832101f21d8601f296782fc24ac02705}{ViewportUpdate} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
+virtual void \hyperlink{classphys_1_1UI_1_1Layer_a832101f21d8601f296782fc24ac02705}{ViewportUpdate} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
 \begin{DoxyCompactList}\small\item\em Updates UI elements positions and sizes after a change in the viewport size. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Layer_a6528081453b4f2be4d7a4ad8878edbf0}{
-Gorilla::Layer $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a6528081453b4f2be4d7a4ad8878edbf0}{GetGorillaLayer} ()}
+virtual Gorilla::Layer $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a6528081453b4f2be4d7a4ad8878edbf0}{GetGorillaLayer} ()}
 \label{classphys_1_1UI_1_1Layer_a6528081453b4f2be4d7a4ad8878edbf0}
 
 \begin{DoxyCompactList}\small\item\em Gets the internal gorilla layer pointer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -236,7 +236,7 @@ Definition at line 71 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf Widget} $\ast$}]{ToAdd}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_ae2425e1ca2a7dd8f5912dad497f3beca}
 
 
@@ -258,7 +258,7 @@ Definition at line 385 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a3d401a77704cba509b418c53f92cc09d}
 
 
@@ -278,7 +278,7 @@ Definition at line 489 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_ae80bef48442ac0737bfc1939fc2f9af1}
 
 
@@ -291,64 +291,58 @@ Returns the widget the mouse is over, or NULL if there are none.
 
 Definition at line 510 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a22fb2a442ecbaf85e7e216b204d07f21}{
+\hypertarget{classphys_1_1UI_1_1Layer_a3ccff67009451eb1468d78a52edcbccf}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateButton@{CreateButton}}
 \index{CreateButton@{CreateButton}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::Layer::CreateButton (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size}
+\item[{const {\bf RenderableRect} \&}]{Rect}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a22fb2a442ecbaf85e7e216b204d07f21}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a3ccff67009451eb1468d78a52edcbccf}
 
 
 Creates a button within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created button. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the button. \\
 \hline
-{\em Position} & The top left position of the button. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the button. \\
 \hline
 \end{DoxyParams}
 
 
 Definition at line 150 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a210f6094577ca79cbbf28d4fdd6cbd31}{
+\hypertarget{classphys_1_1UI_1_1Layer_a27df96a5487380afae0b665242da061a}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateButtonListBox@{CreateButtonListBox}}
 \index{CreateButtonListBox@{CreateButtonListBox}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateButtonListBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ButtonListBox} $\ast$ phys::UI::Layer::CreateButtonListBox (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{ScrollbarWidth, }
 \item[{const UI::ScrollbarStyle \&}]{ScrollbarStyle}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a210f6094577ca79cbbf28d4fdd6cbd31}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a27df96a5487380afae0b665242da061a}
 
 
 Creates a \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \\
 \hline
-{\em Position} & The top left position of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \\
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \\
 \hline
 {\em ScrollbarWidth} & The relative width of the scrollbar thats created with this widget. \\
 \hline
@@ -359,33 +353,30 @@ Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Button}{Button} L
 
 Definition at line 440 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_acdd3e11a5be126d58f9ca43d3f1d1e8f}{
+\hypertarget{classphys_1_1UI_1_1Layer_a6722d243df34dbcf0337292b5bdb9cab}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateCaption@{CreateCaption}}
 \index{CreateCaption@{CreateCaption}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::Layer::CreateCaption (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Whole} \&}]{Glyph, }
 \item[{const {\bf String} \&}]{Text}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_acdd3e11a5be126d58f9ca43d3f1d1e8f}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a6722d243df34dbcf0337292b5bdb9cab}
 
 
 Creates a caption within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created caption. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of this caption. \\
 \hline
-{\em Position} & The top left position of the caption. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the caption. \\
 \hline
 {\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
 \hline
@@ -396,33 +387,30 @@ Returns a pointer to the created caption.
 
 Definition at line 255 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a65fc6e261069c8bf594c844bc66bd5e4}{
+\hypertarget{classphys_1_1UI_1_1Layer_a82d231a873ea03ad80e70072800eecd4}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateCaption@{CreateCaption}}
 \index{CreateCaption@{CreateCaption}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::Layer::CreateCaption (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{LineHeight, }
 \item[{const {\bf String} \&}]{Text}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a65fc6e261069c8bf594c844bc66bd5e4}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a82d231a873ea03ad80e70072800eecd4}
 
 
 Creates a caption within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created caption. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of this caption. \\
 \hline
-{\em Position} & The top left position of the caption. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the caption. \\
 \hline
 {\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
 \hline
@@ -433,33 +421,30 @@ Returns a pointer to the created caption.
 
 Definition at line 262 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a47ae847dbeea56ebccad238586e2542c}{
+\hypertarget{classphys_1_1UI_1_1Layer_aac8bb17722c2a603c40be5cfa7cfe5cc}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateCheckBox@{CreateCheckBox}}
 \index{CreateCheckBox@{CreateCheckBox}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateCheckBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CheckBox} $\ast$ phys::UI::Layer::CreateCheckBox (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Whole} \&}]{Glyph, }
 \item[{const {\bf String} \&}]{LabelText}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a47ae847dbeea56ebccad238586e2542c}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_aac8bb17722c2a603c40be5cfa7cfe5cc}
 
 
 Creates a \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox} within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox}. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox}. \\
 \hline
-{\em Position} & The top left position of the \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox}. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox}. \\
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox}. \\
 \hline
 {\em Glyph} & The glyphs to use by default for use with the label. Glyphs are defined in your .gorilla file. \\
 \hline
@@ -470,33 +455,30 @@ Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBo
 
 Definition at line 433 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_aef07620ee732d4e679bf6f7a4d704b5b}{
+\hypertarget{classphys_1_1UI_1_1Layer_a9bb957261e17e11ed7a320d8ba10f9c6}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateListBox@{CreateListBox}}
 \index{CreateListBox@{CreateListBox}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateListBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} $\ast$ phys::UI::Layer::CreateListBox (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{ScrollbarWidth, }
 \item[{const UI::ScrollbarStyle \&}]{ScrollbarStyle}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_aef07620ee732d4e679bf6f7a4d704b5b}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a9bb957261e17e11ed7a320d8ba10f9c6}
 
 
 Creates a List Box within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created List Box. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the List Box. \\
 \hline
-{\em Position} & The top left position of the List Box. \\
-\hline
-{\em Size} & The size of the List Box. \\
+{\em Rect} & The Rect representing the position and size of the List Box. \\
 \hline
 {\em ScrollbarWidth} & The relative width of the scrollbar thats created with this widget. \\
 \hline
@@ -507,30 +489,30 @@ Returns a pointer to the created List Box.
 
 Definition at line 447 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a50a71dac395e7143c385119da669df8e}{
+\hypertarget{classphys_1_1UI_1_1Layer_a556d60552d49483bda837b27fcb0f985}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateMarkupText@{CreateMarkupText}}
 \index{CreateMarkupText@{CreateMarkupText}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ phys::UI::Layer::CreateMarkupText (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{LineHeight, }
 \item[{const {\bf String} \&}]{Text}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a50a71dac395e7143c385119da669df8e}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a556d60552d49483bda837b27fcb0f985}
 
 
 Creates a markup text within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. \begin{DoxyReturn}{Returns}
 Returns a pointer to the created markup text. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of this markup text. \\
 \hline
-{\em Position} & The top left position of the markup text. \\
+{\em Rect} & The Rect representing the position and size of the markup text. \\
 \hline
 {\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
 \hline
@@ -541,30 +523,30 @@ Returns a pointer to the created markup text.
 
 Definition at line 312 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a403ff55e8e15409db1a97fe210b5a38f}{
+\hypertarget{classphys_1_1UI_1_1Layer_a62338ca48dce418a53c4d9d027152a4c}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateMarkupText@{CreateMarkupText}}
 \index{CreateMarkupText@{CreateMarkupText}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ phys::UI::Layer::CreateMarkupText (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Whole} \&}]{Glyph, }
 \item[{const {\bf String} \&}]{Text}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a403ff55e8e15409db1a97fe210b5a38f}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a62338ca48dce418a53c4d9d027152a4c}
 
 
 Creates a markup text within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. \begin{DoxyReturn}{Returns}
 Returns a pointer to the created markup text. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of this markup text. \\
 \hline
-{\em Position} & The top left position of the markup text. \\
+{\em Rect} & The Rect representing the position and size of the markup text. \\
 \hline
 {\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
 \hline
@@ -575,70 +557,61 @@ Returns a pointer to the created markup text.
 
 Definition at line 305 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a49e7872455622d7e17871fd5fa4c41c1}{
+\hypertarget{classphys_1_1UI_1_1Layer_afe5b5ed6409890ba6d9511e3246e69a9}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateMenu@{CreateMenu}}
 \index{CreateMenu@{CreateMenu}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateMenu}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Menu} $\ast$ phys::UI::Layer::CreateMenu (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size}
+\item[{const {\bf RenderableRect} \&}]{Rect}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a49e7872455622d7e17871fd5fa4c41c1}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_afe5b5ed6409890ba6d9511e3246e69a9}
 
 
 Creates a \hyperlink{classphys_1_1UI_1_1Menu}{Menu} within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Menu}{Menu}. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the \hyperlink{classphys_1_1UI_1_1Menu}{Menu}. \\
 \hline
-{\em Position} & The top left position of the \hyperlink{classphys_1_1UI_1_1Menu}{Menu}. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Menu}{Menu}. \\
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1Menu}{Menu}. \\
 \hline
 \end{DoxyParams}
 
 
 Definition at line 461 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a536c636ead9c0ff283fa655ab4bf68f8}{
+\hypertarget{classphys_1_1UI_1_1Layer_a1c8326e5c53dc64d53288883d8a0496a}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreatePagedCellGrid@{CreatePagedCellGrid}}
 \index{CreatePagedCellGrid@{CreatePagedCellGrid}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreatePagedCellGrid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PagedCellGrid} $\ast$ phys::UI::Layer::CreatePagedCellGrid (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
-\item[{const {\bf Vector2} \&}]{SpnPosition, }
-\item[{const {\bf Vector2} \&}]{SpnSize, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf RenderableRect} \&}]{SpnRect, }
 \item[{const UI::SpinnerStyle \&}]{SStyle, }
 \item[{const {\bf Real} \&}]{GlyphHeight}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a536c636ead9c0ff283fa655ab4bf68f8}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a1c8326e5c53dc64d53288883d8a0496a}
 
 
 Creates a paged cell grid within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1PagedCellGrid}{PagedCellGrid}. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the widget. \\
 \hline
-{\em Position} & The position of the widget. \\
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1PagedCellGrid}{PagedCellGrid}. \\
 \hline
-{\em Size} & The size of the widget. \\
-\hline
-{\em SpnPosition} & The position of the spinner created alongside this widget. \\
-\hline
-{\em SpnSize} & The size of the spinner created alongside this widget. \\
+{\em SpnRect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1Spinner}{Spinner}. \\
 \hline
 {\em SStyle} & The style of spinner to create. \\
 \hline
@@ -649,58 +622,54 @@ Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1PagedCellGrid}{Pa
 
 Definition at line 482 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a0bbeb9de6fce3087afc2f569f2a7d6db}{
+\hypertarget{classphys_1_1UI_1_1Layer_aea42a78478489c92c39e5e0b1ca6d289}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateRectangle@{CreateRectangle}}
 \index{CreateRectangle@{CreateRectangle}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateRectangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ phys::UI::Layer::CreateRectangle (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size}
+\item[{const {\bf RenderableRect} \&}]{Rect}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a0bbeb9de6fce3087afc2f569f2a7d6db}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_aea42a78478489c92c39e5e0b1ca6d289}
 
 
 Creates a rectangle within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \par
- Rectangles are innately put behind all captions, so z-\/order is not necessary. 
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created rectangle. 
+\end{DoxyReturn}
+
 \begin{DoxyParams}{Parameters}
-{\em Position} & The top left position of the button. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the rectangle. \\
 \hline
 \end{DoxyParams}
 
 
 Definition at line 225 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a29f07dd621c99d2d5dbafd05ab7cc8a3}{
+\hypertarget{classphys_1_1UI_1_1Layer_ab7ad4b0db348beddfe63d1f9c914f1ca}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateScrollbar@{CreateScrollbar}}
 \index{CreateScrollbar@{CreateScrollbar}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateScrollbar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scrollbar} $\ast$ phys::UI::Layer::CreateScrollbar (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const UI::ScrollbarStyle \&}]{Style}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a29f07dd621c99d2d5dbafd05ab7cc8a3}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_ab7ad4b0db348beddfe63d1f9c914f1ca}
 
 
 Creates a \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar}. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar}. \\
 \hline
-{\em Position} & The top left position of the \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar}. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar}. \\
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar}. \\
 \hline
 {\em Style} & The style of scrollbar you want to create, see \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \\
 \hline
@@ -709,33 +678,30 @@ Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scroll
 
 Definition at line 426 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_afd17e29c5dcd4a36b884e07f42c1907f}{
+\hypertarget{classphys_1_1UI_1_1Layer_a967b2ff1bcc006a909b623325182da4a}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateScrolledCellGrid@{CreateScrolledCellGrid}}
 \index{CreateScrolledCellGrid@{CreateScrolledCellGrid}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateScrolledCellGrid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ScrolledCellGrid} $\ast$ phys::UI::Layer::CreateScrolledCellGrid (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{Thickness, }
 \item[{const UI::ScrollbarStyle \&}]{Style}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_afd17e29c5dcd4a36b884e07f42c1907f}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a967b2ff1bcc006a909b623325182da4a}
 
 
 Creates a scrolled cell grid within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid}{ScrolledCellGrid}. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the widget. \\
 \hline
-{\em Position} & The position of the widget. \\
-\hline
-{\em Size} & The size of the widget. \\
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid}{ScrolledCellGrid}. \\
 \hline
 {\em Thickness} & The width of the vertical scrollbar in relative units. The same amount of actual pixels is used to determine the height of the horizontal scrollbar. \\
 \hline
@@ -746,33 +712,30 @@ Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid}
 
 Definition at line 475 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a7da3e07d9df3908f89b68b9d1705aad7}{
+\hypertarget{classphys_1_1UI_1_1Layer_aaa21b066649965bec3b992b92fe0eeb7}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateSpinner@{CreateSpinner}}
 \index{CreateSpinner@{CreateSpinner}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateSpinner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spinner} $\ast$ phys::UI::Layer::CreateSpinner (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const UI::SpinnerStyle \&}]{SStyle, }
 \item[{const {\bf Real} \&}]{GlyphHeight}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a7da3e07d9df3908f89b68b9d1705aad7}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_aaa21b066649965bec3b992b92fe0eeb7}
 
 
 Creates a \hyperlink{classphys_1_1UI_1_1Spinner}{Spinner} within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Spinner}{Spinner}. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The Name for the \hyperlink{classphys_1_1UI_1_1Widget}{Widget}. \\
 \hline
-{\em Position} & The position of the widget. \\
-\hline
-{\em Size} & The size of the widget. \\
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1Spinner}{Spinner}. \\
 \hline
 {\em SStyle} & The layout of buttons this widget will have. See SpinnerStyle enum or class description for more details. \\
 \hline
@@ -783,33 +746,30 @@ Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Spinner}{Spinner}
 
 Definition at line 468 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a559f7ae08fb6da07aa1c2b829f2a7070}{
+\hypertarget{classphys_1_1UI_1_1Layer_ad2c0cfc59e34aeda647a7659b4522e55}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateTextButton@{CreateTextButton}}
 \index{CreateTextButton@{CreateTextButton}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateTextButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ phys::UI::Layer::CreateTextButton (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{LineHeight, }
 \item[{{\bf ConstString} \&}]{Text}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a559f7ae08fb6da07aa1c2b829f2a7070}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_ad2c0cfc59e34aeda647a7659b4522e55}
 
 
 Creates a text button within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created button. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the button. \\
 \hline
-{\em Position} & The top left position of the button. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the button. \\
 \hline
 {\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
 \hline
@@ -820,33 +780,30 @@ Returns a pointer to the created button.
 
 Definition at line 176 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_ab8f427ee8bffc24bac27eae700d8cb6f}{
+\hypertarget{classphys_1_1UI_1_1Layer_a4a6246485351ecc9db995c749dc18f13}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateTextButton@{CreateTextButton}}
 \index{CreateTextButton@{CreateTextButton}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateTextButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ phys::UI::Layer::CreateTextButton (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Whole} \&}]{Glyph, }
 \item[{{\bf ConstString} \&}]{Text}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_ab8f427ee8bffc24bac27eae700d8cb6f}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a4a6246485351ecc9db995c749dc18f13}
 
 
 Creates a text button within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created button. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the button. \\
 \hline
-{\em Position} & The top left position of the button. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \\
+{\em Rect} & The Rect representing the position and size of the button. \\
 \hline
 {\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
 \hline
@@ -857,31 +814,28 @@ Returns a pointer to the created button.
 
 Definition at line 163 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a383551d12e332d756260d87a54e4ef8e}{
+\hypertarget{classphys_1_1UI_1_1Layer_a2efe08dca3cb4300a68c7f4d8e5296a0}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateWidgetWindow@{CreateWidgetWindow}}
 \index{CreateWidgetWindow@{CreateWidgetWindow}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateWidgetWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Window} $\ast$ phys::UI::Layer::CreateWidgetWindow (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size}
+\item[{const {\bf RenderableRect} \&}]{Rect}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1UI_1_1Layer_a383551d12e332d756260d87a54e4ef8e}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Layer_a2efe08dca3cb4300a68c7f4d8e5296a0}
 
 
 Creates a \hyperlink{classphys_1_1UI_1_1Window}{Window} within this layer. 
 
-This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the \hyperlink{classphys_1_1UI_1_1Window}{Window}. \\
 \hline
-{\em Position} & The top left position of the \hyperlink{classphys_1_1UI_1_1Window}{Window}. \\
-\hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Window}{Window}. \\
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1Window}{Window}. \\
 \hline
 \end{DoxyParams}
 
@@ -895,7 +849,7 @@ Definition at line 454 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf Button} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_ac011ff1dd631287500f5b2aff43726e3}
 
 
@@ -917,7 +871,7 @@ Definition at line 212 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf Caption} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a62195d1732e1d200f0b847331ef6d3b0}
 
 
@@ -939,7 +893,7 @@ Definition at line 292 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf LineList} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_aa0854e22fefd9378b0cdf7a217a3aeeb}
 
 
@@ -961,7 +915,7 @@ Definition at line 372 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf MarkupText} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a30a9991d13023b2bb941dab0667f91e6}
 
 
@@ -983,7 +937,7 @@ Definition at line 342 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf Rectangle} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a8bfa08dad890a56e056054b09162cdf4}
 
 
@@ -1005,7 +959,7 @@ Definition at line 242 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf Widget} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a472de1771d8e80232292ec6a19c871a6}
 
 
@@ -1027,7 +981,7 @@ Definition at line 413 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{const {\bf Whole} \&}]{Index}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a96d3a5d016d435878c0184d02c839089}
 
 
@@ -1047,7 +1001,7 @@ Definition at line 202 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a6331e3e7a049deba36aba957d0dcecd8}
 
 
@@ -1067,7 +1021,7 @@ Definition at line 189 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_af2dd8dc0a5b8775f069b98ce36ce9af6}
 
 
@@ -1087,7 +1041,7 @@ Definition at line 269 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{const {\bf Whole} \&}]{Index}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a78334cb4e75aaa559bfb76af31e2d0e0}
 
 
@@ -1107,7 +1061,7 @@ Definition at line 282 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{const {\bf Whole} \&}]{Index}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_aa0ec04b512d7c2ad2808a2dc0e435905}
 
 
@@ -1127,7 +1081,7 @@ Definition at line 362 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{const {\bf Whole} \&}]{Index}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_ae69320aefcfbc6f7f8c7364a04b2ae59}
 
 
@@ -1147,7 +1101,7 @@ Definition at line 332 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_aed2d7a1ad478f3d92005aeec4a777473}
 
 
@@ -1167,7 +1121,7 @@ Definition at line 319 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a362edb47fdc9aa595dcaffc1ed617ae4}
 
 
@@ -1187,7 +1141,7 @@ Definition at line 120 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_acebe9d678fe60e02fa4d37647bb9780c}
 
 
@@ -1207,7 +1161,7 @@ Definition at line 207 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a0e8df4319db95b3573c53b041686e66b}
 
 
@@ -1227,7 +1181,7 @@ Definition at line 287 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_aa25225bb0011d26038959420153d9714}
 
 
@@ -1247,7 +1201,7 @@ Definition at line 367 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_acc0fbbeabb701ad86826312b2ce88d60}
 
 
@@ -1267,7 +1221,7 @@ Definition at line 337 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a1a006c096c7eb87669f00cb6a385567e}
 
 
@@ -1287,7 +1241,7 @@ Definition at line 237 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a9501026d0546e37f2f7989a555f47500}
 
 
@@ -1307,7 +1261,7 @@ Definition at line 408 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a484d10cf74177dea47d00ad7ddef8527}
 
 
@@ -1327,7 +1281,7 @@ Definition at line 125 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{const {\bf Whole} \&}]{Index}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_ac96bb33f2c47d3ab1b615fc91aa5ad91}
 
 
@@ -1347,7 +1301,7 @@ Definition at line 232 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf Whole}}]{Index}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a8506cbb9fda26895300e4ade376754ab}
 
 
@@ -1367,7 +1321,7 @@ Definition at line 403 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a4340e70c9ab4083236d4a4c8d804c62a}
 
 
@@ -1387,7 +1341,7 @@ Definition at line 390 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a33f23515b8ac60adc2e99435574a2d9d}
 
 
@@ -1407,7 +1361,7 @@ Definition at line 135 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{bool}]{Visible}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a421ed59dd2f50bed32a9e32c03327c39}
 
 
@@ -1429,7 +1383,7 @@ Definition at line 130 of file uilayer.cpp.
 \begin{DoxyParamCaption}
 \item[{const {\bf Vector2} \&}]{OldViewportSize}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Layer_a832101f21d8601f296782fc24ac02705}
 
 

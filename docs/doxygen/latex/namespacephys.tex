@@ -129,6 +129,8 @@ class \hyperlink{classphys_1_1ObjectReference}{ObjectReference}
 \begin{DoxyCompactList}\small\item\em This is a small class used to store a reference to a world object. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ParticleEffect}{ParticleEffect}
 \begin{DoxyCompactList}\small\item\em This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo}
+\item 
 class \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager}
 \begin{DoxyCompactList}\small\item\em This is simply a place for storing all the Physics Related functions. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1Plane}{Plane}
@@ -214,6 +216,20 @@ enum \hyperlink{namespacephys_a7d434b1a52cf5290a9ecc972b87a6a40}{ActorActivation
 {\bfseries AAS\_\-DisableSimulation} =  5
  \}
 \begin{DoxyCompactList}\small\item\em This is used by all the actors to monitor and set their physics activation. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aed}{AspectRatio} \{ \par
+\hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aeda62f10909139757e92c17b8fbaf82ce6a}{AR\_\-3\_\-By\_\-2}, 
+\hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aedad2b8f8c1b929fabdf195c2da12a2ec68}{AR\_\-4\_\-By\_\-3}, 
+\hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aeda432bcb71dfc521ec7cbcf7e40d591ded}{AR\_\-5\_\-By\_\-3}, 
+\hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aeda75a48f55181fcf03646b7a7bfe3bf0aa}{AR\_\-5\_\-By\_\-4}, 
+\par
+\hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aeda1e17b1da7c1ba4fb6710fa85886fa28a}{AR\_\-8\_\-By\_\-5}, 
+\hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aedab6449430d220e985cdcf8a9ee8093750}{AR\_\-16\_\-By\_\-9}, 
+\hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aeda7402aa5b653dbe3ac902bd4c88f28634}{AR\_\-17\_\-By\_\-9}, 
+\hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aeda5ddf9db3420597cc625cdae1f2c3308a}{AR\_\-1\_\-85\_\-By\_\-1}, 
+\par
+\hyperlink{namespacephys_aa48055a9624c26d73f77ca67499c7aeda8f306098ebf907f3bede3c99d4ec41b9}{AR\_\-2\_\-39\_\-By\_\-1}
+ \}
+\begin{DoxyCompactList}\small\item\em This is used primarily by the GraphicsManager to keep track of the supported and currently used aspect ratios. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespacephys_ad4ce7ee5c1cc164f2ea3d5f28211739f}{AttenuationStyle} \{ \hyperlink{namespacephys_ad4ce7ee5c1cc164f2ea3d5f28211739faec47e7157a10201b7aef0c1cbb6ccb5d}{Att\_\-None}, 
 \hyperlink{namespacephys_ad4ce7ee5c1cc164f2ea3d5f28211739fabcceb16182220293f2260edb41b548f1}{Att\_\-Linear}, 
 \hyperlink{namespacephys_ad4ce7ee5c1cc164f2ea3d5f28211739fac9ef08c39daa338975f4f8879e86100b}{Att\_\-Quadratic}
@@ -393,6 +409,61 @@ Definition at line 79 of file datatypes.h.
 
 
 \subsubsection{Enumeration Type Documentation}
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aed}{
+\index{phys@{phys}!AspectRatio@{AspectRatio}}
+\index{AspectRatio@{AspectRatio}!phys@{phys}}
+\paragraph[{AspectRatio}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::AspectRatio}}\hfill}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aed}
+
+
+This is used primarily by the \hyperlink{classphys_1_1GraphicsManager}{GraphicsManager} to keep track of the supported and currently used aspect ratios. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{AR\_\-3\_\-By\_\-2@{AR\_\-3\_\-By\_\-2}!phys@{phys}}\index{phys@{phys}!AR\_\-3\_\-By\_\-2@{AR\_\-3\_\-By\_\-2}}\item[{\em 
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aeda62f10909139757e92c17b8fbaf82ce6a}{
+AR\_\-3\_\-By\_\-2}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aeda62f10909139757e92c17b8fbaf82ce6a}
+}]1.5 \index{AR\_\-4\_\-By\_\-3@{AR\_\-4\_\-By\_\-3}!phys@{phys}}\index{phys@{phys}!AR\_\-4\_\-By\_\-3@{AR\_\-4\_\-By\_\-3}}\item[{\em 
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aedad2b8f8c1b929fabdf195c2da12a2ec68}{
+AR\_\-4\_\-By\_\-3}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aedad2b8f8c1b929fabdf195c2da12a2ec68}
+}]1.334 \index{AR\_\-5\_\-By\_\-3@{AR\_\-5\_\-By\_\-3}!phys@{phys}}\index{phys@{phys}!AR\_\-5\_\-By\_\-3@{AR\_\-5\_\-By\_\-3}}\item[{\em 
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aeda432bcb71dfc521ec7cbcf7e40d591ded}{
+AR\_\-5\_\-By\_\-3}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aeda432bcb71dfc521ec7cbcf7e40d591ded}
+}]1.667 \index{AR\_\-5\_\-By\_\-4@{AR\_\-5\_\-By\_\-4}!phys@{phys}}\index{phys@{phys}!AR\_\-5\_\-By\_\-4@{AR\_\-5\_\-By\_\-4}}\item[{\em 
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aeda75a48f55181fcf03646b7a7bfe3bf0aa}{
+AR\_\-5\_\-By\_\-4}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aeda75a48f55181fcf03646b7a7bfe3bf0aa}
+}]1.25 \index{AR\_\-8\_\-By\_\-5@{AR\_\-8\_\-By\_\-5}!phys@{phys}}\index{phys@{phys}!AR\_\-8\_\-By\_\-5@{AR\_\-8\_\-By\_\-5}}\item[{\em 
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aeda1e17b1da7c1ba4fb6710fa85886fa28a}{
+AR\_\-8\_\-By\_\-5}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aeda1e17b1da7c1ba4fb6710fa85886fa28a}
+}]1.6 \index{AR\_\-16\_\-By\_\-9@{AR\_\-16\_\-By\_\-9}!phys@{phys}}\index{phys@{phys}!AR\_\-16\_\-By\_\-9@{AR\_\-16\_\-By\_\-9}}\item[{\em 
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aedab6449430d220e985cdcf8a9ee8093750}{
+AR\_\-16\_\-By\_\-9}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aedab6449430d220e985cdcf8a9ee8093750}
+}]1.778 \index{AR\_\-17\_\-By\_\-9@{AR\_\-17\_\-By\_\-9}!phys@{phys}}\index{phys@{phys}!AR\_\-17\_\-By\_\-9@{AR\_\-17\_\-By\_\-9}}\item[{\em 
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aeda7402aa5b653dbe3ac902bd4c88f28634}{
+AR\_\-17\_\-By\_\-9}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aeda7402aa5b653dbe3ac902bd4c88f28634}
+}]1.889 \index{AR\_\-1\_\-85\_\-By\_\-1@{AR\_\-1\_\-85\_\-By\_\-1}!phys@{phys}}\index{phys@{phys}!AR\_\-1\_\-85\_\-By\_\-1@{AR\_\-1\_\-85\_\-By\_\-1}}\item[{\em 
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aeda5ddf9db3420597cc625cdae1f2c3308a}{
+AR\_\-1\_\-85\_\-By\_\-1}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aeda5ddf9db3420597cc625cdae1f2c3308a}
+}]1.85 \index{AR\_\-2\_\-39\_\-By\_\-1@{AR\_\-2\_\-39\_\-By\_\-1}!phys@{phys}}\index{phys@{phys}!AR\_\-2\_\-39\_\-By\_\-1@{AR\_\-2\_\-39\_\-By\_\-1}}\item[{\em 
+\hypertarget{namespacephys_aa48055a9624c26d73f77ca67499c7aeda8f306098ebf907f3bede3c99d4ec41b9}{
+AR\_\-2\_\-39\_\-By\_\-1}
+\label{namespacephys_aa48055a9624c26d73f77ca67499c7aeda8f306098ebf907f3bede3c99d4ec41b9}
+}]2.39 \end{description}
+\end{Desc}
+
+
+
+Definition at line 62 of file enumerations.h.
+
 \hypertarget{namespacephys_ad4ce7ee5c1cc164f2ea3d5f28211739f}{
 \index{phys@{phys}!AttenuationStyle@{AttenuationStyle}}
 \index{AttenuationStyle@{AttenuationStyle}!phys@{phys}}
@@ -422,7 +493,7 @@ Att\_\-Quadratic}
 
 
 
-Definition at line 67 of file enumerations.h.
+Definition at line 83 of file enumerations.h.
 
 \hypertarget{namespacephys_aa69523df12b54123e76c40734556ca35}{
 \index{phys@{phys}!CollisionFilter@{CollisionFilter}}
@@ -435,7 +506,7 @@ These are the various filters that can be applied to all physics accelerated wor
 
 You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with any of the existing groups defined here. Simply pass in the Whole where appropriate. 
 
-Definition at line 78 of file enumerations.h.
+Definition at line 94 of file enumerations.h.
 
 \hypertarget{namespacephys_a3d9969958345dec81ed83544445e3c28}{
 \index{phys@{phys}!ConstraintParams@{ConstraintParams}}
@@ -448,7 +519,7 @@ Used by constraints for setting some parameters.
 
 See the constraint class documentation for more details. 
 
-Definition at line 97 of file enumerations.h.
+Definition at line 113 of file enumerations.h.
 
 \hypertarget{namespacephys_a56410935e1c614a932dbc91ee7330df1}{
 \index{phys@{phys}!WorldObjectType@{WorldObjectType}}
@@ -461,7 +532,7 @@ Used by various classes to help identify what class an object is.
 
 This is mostly used internally for casting void pointers. 
 
-Definition at line 108 of file enumerations.h.
+Definition at line 124 of file enumerations.h.
 
 
 

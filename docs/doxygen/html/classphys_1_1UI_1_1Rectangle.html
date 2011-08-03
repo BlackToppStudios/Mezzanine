@@ -83,10 +83,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a845e2591ee5bd2d0a7b60debfad1cc57">Rectangle</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position, const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a845e2591ee5bd2d0a7b60debfad1cc57"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a6e6e88eb63cc8131da9c8de0fb691801">Rectangle</a> (const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a6e6e88eb63cc8131da9c8de0fb691801"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8862c7e04c2b8911eac4a2d3b6aff165"></a><!-- doxytag: member="phys::UI::Rectangle::~Rectangle" ref="a8862c7e04c2b8911eac4a2d3b6aff165" args="()" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a8862c7e04c2b8911eac4a2d3b6aff165">~Rectangle</a> ()</td></tr>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a8862c7e04c2b8911eac4a2d3b6aff165">~Rectangle</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a4fa5021010e8cdaf9a9e35b3d4c82461">SetVisible</a> (bool Visible)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this rectangle.  <a href="#a4fa5021010e8cdaf9a9e35b3d4c82461"></a><br/></td></tr>
@@ -160,21 +160,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 
 <p>Definition at line <a class="el" href="uirectangle_8h_source.html#l00068">68</a> of file <a class="el" href="uirectangle_8h_source.html">uirectangle.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a845e2591ee5bd2d0a7b60debfad1cc57"></a><!-- doxytag: member="phys::UI::Rectangle::Rectangle" ref="a845e2591ee5bd2d0a7b60debfad1cc57" args="(const Vector2 &amp;Position, const Vector2 &amp;Size, Layer *PLayer)" -->
+<a class="anchor" id="a6e6e88eb63cc8131da9c8de0fb691801"></a><!-- doxytag: member="phys::UI::Rectangle::Rectangle" ref="a6e6e88eb63cc8131da9c8de0fb691801" args="(const RenderableRect &amp;Rect, Layer *PLayer)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">phys::UI::Rectangle::Rectangle </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Position</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Size</em>, </td>
+          <td class="paramtype">const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rect</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -194,8 +188,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Class constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Position</td><td>The top left position of the rectangle. </td></tr>
-    <tr><td class="paramname">Size</td><td>The size of the rectangle. </td></tr>
+    <tr><td class="paramname">Rect</td><td>The Rect representing the position and size of the rectangle. </td></tr>
     <tr><td class="paramname"><a class="el" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a></td><td>Pointer to the parent <a class="el" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a> that created this rectangle. </td></tr>
   </table>
   </dd>
@@ -223,7 +216,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Determines whether the mouse is over this rectangle. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether the mouse is over this rectangle. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00095">95</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00103">103</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -244,7 +237,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Gets the top left position of this rectangle in pixels. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this rectangle. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00159">159</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00167">167</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -265,7 +258,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Gets the size of this rectangle in pixels. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this rectangle. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00185">185</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00193">193</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -287,7 +280,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>This function does not perform any checks. If you want to do a manual check, call <a class="el" href="classphys_1_1UI_1_1Rectangle.html#a246070a93416c2c50d63720b354154d7" title="Determines whether the mouse is over this rectangle.">CheckMouseHover()</a>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the stored value of whether or not the mouse is over the rectangle. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00109">109</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00117">117</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -308,7 +301,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Gets the relative top left position of this rectangle. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this rectangle. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00148">148</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00156">156</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -329,7 +322,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Gets the currently set primary atlas. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of the primary atlas that is set, or an empty string if none. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00236">236</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00244">244</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -350,7 +343,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Gets the priority this button should be rendered with. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value representing this button's priority level. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00211">211</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00219">219</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -371,7 +364,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Gets the relative size of this rectangle. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this rectangle. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00173">173</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00181">181</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -392,7 +385,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Gets the visibility of this rectangle. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool representing the visibility of this rectangle. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00080">80</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00088">88</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -419,7 +412,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00153">153</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00161">161</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -446,7 +439,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00178">178</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00186">186</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -473,7 +466,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00114">114</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00122">122</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +493,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00119">119</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00127">127</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -538,7 +531,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00125">125</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00133">133</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -575,7 +568,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00131">131</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00139">139</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -602,7 +595,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00141">141</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00149">149</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -629,7 +622,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00231">231</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00239">239</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -657,7 +650,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00191">191</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00199">199</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -684,7 +677,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00165">165</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00173">173</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -711,7 +704,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00075">75</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00083">83</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -732,7 +725,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 <p>Updates the dimensions of this rectangle to match those of the new screen size. </p>
 <p>This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. </p>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00241">241</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00249">249</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -755,7 +748,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:32 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:49 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

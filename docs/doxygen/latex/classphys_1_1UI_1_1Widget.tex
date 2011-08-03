@@ -14,7 +14,7 @@ This class is the base class for all widgets.
 Inheritance diagram for phys::UI::Widget:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=10.000000cm]{classphys_1_1UI_1_1Widget}
+\includegraphics[height=11.000000cm]{classphys_1_1UI_1_1Widget}
 \end{center}
 \end{figure}
 \subsubsection*{Public Types}
@@ -26,16 +26,17 @@ enum {\bfseries WidgetType} \{ \par
 {\bfseries CellGrid}, 
 {\bfseries CheckBox}, 
 \par
+{\bfseries DropDownList}, 
 {\bfseries DropDownMenu}, 
 {\bfseries ListBox}, 
 {\bfseries Menu}, 
-{\bfseries MenuWindow}, 
 \par
+{\bfseries MenuWindow}, 
 {\bfseries RadioButton}, 
 {\bfseries Scrollbar}, 
 {\bfseries Spinner}, 
-{\bfseries TextBox}, 
 \par
+{\bfseries TextBox}, 
 {\bfseries Window}
  \}
 \end{DoxyCompactItemize}
@@ -63,7 +64,7 @@ virtual void \hyperlink{classphys_1_1UI_1_1Widget_abc8e3f88f780e3b36b38086c45311
 \label{classphys_1_1UI_1_1Widget_abc8e3f88f780e3b36b38086c45311795}
 
 \begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
-WidgetType \hyperlink{classphys_1_1UI_1_1Widget_a76337b279bd372ce225f94ab1da191ea}{GetType} () const 
+virtual WidgetType \hyperlink{classphys_1_1UI_1_1Widget_a76337b279bd372ce225f94ab1da191ea}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em Gets the type of widget this is. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1Widget_af8498cbe2d6cf37115cf8ade52e22557}{IsInputCaptureWidget} ()
 \begin{DoxyCompactList}\small\item\em Checks if this is an input capturing widget. \item\end{DoxyCompactList}\item 
@@ -71,6 +72,10 @@ virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \
 \begin{DoxyCompactList}\small\item\em Gets the name of this widget. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259dc}{CheckMouseHover} ()=0
 \begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a5ef3d6feab24fd891b17780069e012e5}{SetRect} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Sets the Rect(Position and Size) of this \hyperlink{classphys_1_1UI_1_1Widget}{Widget}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \hyperlink{classphys_1_1UI_1_1Widget_a0a09859c063ac222d0e736af5050e556}{GetRect} (bool Relative=true)
+\begin{DoxyCompactList}\small\item\em Gets this Widgets' Rect. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d00}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
 \begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{GetPosition} ()=0
@@ -242,7 +247,7 @@ Returns a bool value, true if the mouse is over this widget, false if it's not.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_aaa8b11b174a0475cadee3d3349ef1a58}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_aff6472ccb5d6d7bd3e7d3a967c67674d}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a9c5f899c7db6c24d9aa2b03e59e5f0f0}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a3c9b10c692dfb62dedbd091dac12c115}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a789faeb98d98bb4d4d89cae8c53d4bc0}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_af2514d2614322856f604be2e167d0872}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a859ed3c174faf86962df4d0fd2b43fab}{phys::UI::PagedCellGrid}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a8afdd63e36a7fdc15bd8660d9800f2c5}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a976e99e204f912d82712872e4e80b833}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_ae594a38213702563841f5817609c492e}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a771bc9e43c0492ab179d8126c30665cf}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_aaa8b11b174a0475cadee3d3349ef1a58}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_aff6472ccb5d6d7bd3e7d3a967c67674d}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a9c5f899c7db6c24d9aa2b03e59e5f0f0}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a3c9b10c692dfb62dedbd091dac12c115}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_a2ac515cb3282a0f190d002417e509424}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a789faeb98d98bb4d4d89cae8c53d4bc0}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_af2514d2614322856f604be2e167d0872}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a859ed3c174faf86962df4d0fd2b43fab}{phys::UI::PagedCellGrid}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a8afdd63e36a7fdc15bd8660d9800f2c5}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a976e99e204f912d82712872e4e80b833}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_ae594a38213702563841f5817609c492e}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a771bc9e43c0492ab179d8126c30665cf}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e7}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetActualPosition@{GetActualPosition}}
@@ -262,7 +267,7 @@ Returns a vector2 representing the pixel position of this widget.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_addc5d7c6ab2a48ffa0d4b2e46c20d9a5}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a1b0deb9738bc4da73e0be4dd355b23fb}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a1ead8b427b5989ec137aa0ca8e017f73}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a33bedaa00456be8ca0e9b2eafcd5b21a}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a44046453283fb2c54e10dc868705352a}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a74a1b8e9b1c5d36c12e5a0a7f813c40a}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a73337985c0f1f173e253c88705ae5d6e}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_a7ee24e3f5c11550950696a2c9094d716}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a811fb495bc698752e03778b18f2b1a30}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_addc5d7c6ab2a48ffa0d4b2e46c20d9a5}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a1b0deb9738bc4da73e0be4dd355b23fb}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a1ead8b427b5989ec137aa0ca8e017f73}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a33bedaa00456be8ca0e9b2eafcd5b21a}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_a2c3b3dc073aebecd9216fa48e7cc10f2}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a44046453283fb2c54e10dc868705352a}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a74a1b8e9b1c5d36c12e5a0a7f813c40a}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a73337985c0f1f173e253c88705ae5d6e}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_a7ee24e3f5c11550950696a2c9094d716}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a811fb495bc698752e03778b18f2b1a30}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed2}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetActualSize@{GetActualSize}}
@@ -282,7 +287,7 @@ Returns a vector2 representing the pixel size of this widget.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a77d992f8858bf9b9eeb190dd1ea8a4fd}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a6301ce41a7a44a97de36fb54388ad430}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_ad0ea7915446ba7821212e6a43aede7e1}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_aa13946ced3947a13f8f30dd97ffba245}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a23133ed4a98994d838acee4c6a981e04}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_af7566b83c50a4a02ac78d174d7c61817}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a2b3d791cbbe4c787f284d8b12a0edf27}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_af2843083a652f2d7ca6e929582f501fd}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a22f5ca800e44c5e2cfeed59c243b03ed}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a77d992f8858bf9b9eeb190dd1ea8a4fd}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a6301ce41a7a44a97de36fb54388ad430}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_ad0ea7915446ba7821212e6a43aede7e1}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_aa13946ced3947a13f8f30dd97ffba245}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_afa9ccaef200f9ee8f22be5f32ba1f0a3}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a23133ed4a98994d838acee4c6a981e04}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_af7566b83c50a4a02ac78d174d7c61817}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a2b3d791cbbe4c787f284d8b12a0edf27}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_af2843083a652f2d7ca6e929582f501fd}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a22f5ca800e44c5e2cfeed59c243b03ed}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_ab563c13db418e4c3ff0a0dd766550251}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetHoveredButton@{GetHoveredButton}}
@@ -302,7 +307,7 @@ Returns a pointer to the button within this widget the mouse is hovering over, o
 \end{DoxyReturn}
 
 
-Definition at line 152 of file uiwidget.cpp.
+Definition at line 170 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a38764b73bc6087e2611660735840ba3f}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetHoveredSubWidget@{GetHoveredSubWidget}}
@@ -322,7 +327,7 @@ Returns a pointer to the sub-\/widget within this widget the mouse is hovering o
 \end{DoxyReturn}
 
 
-Definition at line 157 of file uiwidget.cpp.
+Definition at line 175 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a900184fbe7af51581d6bddafb45d953a}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetInputCaptureData@{GetInputCaptureData}}
@@ -342,7 +347,7 @@ Returns a pointer to the \hyperlink{classphys_1_1UI_1_1InputCaptureData}{InputCa
 \end{DoxyReturn}
 
 
-Definition at line 167 of file uiwidget.cpp.
+Definition at line 185 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a33f97d7da0ac48a35006cb71676e6c2e}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetLayer@{GetLayer}}
@@ -362,7 +367,7 @@ Returns a pointer to the layer this eidget belongs to.
 \end{DoxyReturn}
 
 
-Definition at line 162 of file uiwidget.cpp.
+Definition at line 180 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a35d6e7ce60a9b295d8659345627cf7e0}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetName@{GetName}}
@@ -402,7 +407,32 @@ Returns a vector2 representing the relative position of this widget.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_ab7834542f8940adba8df6b1eace92e95}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a17475dbdde2d71be3d774f0402792f0d}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a6b7fcbfd8a965e69c6e3e92d474f121f}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a8a8630b27ab769b6e42657c5388ec7fe}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_af688db0628a5588865a890584f754b02}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a3c19fe2596fe4049325cc580daa70387}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_ad049af26ff2247cfcd988cb5639fa003}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_a0cfed1bd9532351eac373b0f23495225}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a29fca96d9a2dab29d77a36d6a329f306}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_ab7834542f8940adba8df6b1eace92e95}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a17475dbdde2d71be3d774f0402792f0d}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a6b7fcbfd8a965e69c6e3e92d474f121f}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a8a8630b27ab769b6e42657c5388ec7fe}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_a179dbf5e16fa6dd10ec8a72ae4349d3c}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_af688db0628a5588865a890584f754b02}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a3c19fe2596fe4049325cc580daa70387}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_ad049af26ff2247cfcd988cb5639fa003}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_a0cfed1bd9532351eac373b0f23495225}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a29fca96d9a2dab29d77a36d6a329f306}{phys::UI::Window}.
+
+\hypertarget{classphys_1_1UI_1_1Widget_a0a09859c063ac222d0e736af5050e556}{
+\index{phys::UI::Widget@{phys::UI::Widget}!GetRect@{GetRect}}
+\index{GetRect@{GetRect}!phys::UI::Widget@{phys::UI::Widget}}
+\paragraph[{GetRect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf RenderableRect} phys::UI::Widget::GetRect (
+\begin{DoxyParamCaption}
+\item[{bool}]{Relative = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Widget_a0a09859c063ac222d0e736af5050e556}
+
+
+Gets this Widgets' Rect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Relative} & Whether or not you want the Rect to be populated with Relative values. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a Rect containing this Widgets' Position and Size. 
+\end{DoxyReturn}
+
+
+Definition at line 157 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetSize@{GetSize}}
@@ -422,7 +452,7 @@ Returns a vector2 representing the relative size of this widget.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a0084510b0b9c53761e5b4a45f65604ab}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_ab8288a97a63aad7cc02f32541b1b7351}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_aa0ad4f1e0159f8c6ca3928595dffd837}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a99c6ab5087522fbd4825032b9a058585}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a7af2cced185d63be6a62d5122c700d81}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a81781199a62bbe7c2e7693ef301223b4}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_aff97ce371ee21fcf3b648dcf8b38e055}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_a670d8ff577a8feb6df6f507843f08756}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a9946100eb6e6e985921bbea9e87cede3}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a0084510b0b9c53761e5b4a45f65604ab}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_ab8288a97a63aad7cc02f32541b1b7351}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_aa0ad4f1e0159f8c6ca3928595dffd837}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a99c6ab5087522fbd4825032b9a058585}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_ae47b0e9786a39a79fb613c2d1b1fcd38}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a7af2cced185d63be6a62d5122c700d81}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a81781199a62bbe7c2e7693ef301223b4}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_aff97ce371ee21fcf3b648dcf8b38e055}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_a670d8ff577a8feb6df6f507843f08756}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a9946100eb6e6e985921bbea9e87cede3}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a76337b279bd372ce225f94ab1da191ea}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetType@{GetType}}
@@ -431,7 +461,7 @@ Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a0084510b0b9c53761e5b
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1Widget_a76337b279bd372ce225f94ab1da191ea}
 
 
@@ -482,7 +512,7 @@ Returns a bool representing the visibility of this widget.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a1282a1494079e47b48c8e3296b1a8bb0}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a77625842ac8ad87bd5b5a7f6ed0590b8}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_af53601ab18e77237550c3eb97043e68c}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a8a2be0cba227f0921071fb14de24f76d}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_ae23321617d7e14448e2fab3b455c3dc7}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a213c946ccadd3b689f59e2761a1d1848}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_a3bb14ddd6426debf035e65b9885bc25b}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_aa1d88c50c0965510b494b51f3e5a7bf0}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a1282a1494079e47b48c8e3296b1a8bb0}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a77625842ac8ad87bd5b5a7f6ed0590b8}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_af53601ab18e77237550c3eb97043e68c}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a8a2be0cba227f0921071fb14de24f76d}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_ae4bd94c8f891dadf2423cef16c28e3f9}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_ae23321617d7e14448e2fab3b455c3dc7}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a213c946ccadd3b689f59e2761a1d1848}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_a3bb14ddd6426debf035e65b9885bc25b}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_aa1d88c50c0965510b494b51f3e5a7bf0}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetActualPosition@{SetActualPosition}}
@@ -504,7 +534,7 @@ Sets the pixel position of this widget.
 \end{DoxyParams}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a3b027750d7d1a5b84a98fc348dee4e64}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_ae8b1850754b6b9ea48636b619dada5ea}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a911ce43c124ca7ac9f02ba7d8e08d919}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a186fcf91ed44c813d6dbd9cb53ff60c3}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a4bf1911c639429c783915ba8a543fec3}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a1d5434382755df214b169d3e9901c1e1}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a93dfa3232185d72f274462636a833465}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aceff3ee36c2677d55e1a4e355611eef9}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a66bc26a2252cacd71e8c409e35672909}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a45a3d0454803ce26a053f645b965d16b}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a3b027750d7d1a5b84a98fc348dee4e64}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_ae8b1850754b6b9ea48636b619dada5ea}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a911ce43c124ca7ac9f02ba7d8e08d919}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a186fcf91ed44c813d6dbd9cb53ff60c3}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_af4d36a88b9629284d22d023bdcfd4074}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a4bf1911c639429c783915ba8a543fec3}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a1d5434382755df214b169d3e9901c1e1}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a93dfa3232185d72f274462636a833465}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aceff3ee36c2677d55e1a4e355611eef9}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a66bc26a2252cacd71e8c409e35672909}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a45a3d0454803ce26a053f645b965d16b}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120d}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetActualSize@{SetActualSize}}
@@ -526,7 +556,7 @@ Sets the pixel size of this widget.
 \end{DoxyParams}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a40f357673d774cbecae7104a02be365e}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a3666c40546d1e6a225421d3bfd0288f9}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a86a0ff7a5a916278d901bae05df01847}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a623769e2a3ba24cc1a3e2e64b72edb41}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a742810da75f2b3889794498f05af8860}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_acc3fb39539fd3c13def35be54570ae81}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_aabdb8b727f1f84712a5f7c1fca6e830f}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a32ee6cc683f7357afef8b7075d8b8f20}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a564782cd7135a708295c51e722f22716}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a002150cd8db87283bead5f10b2310152}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a40f357673d774cbecae7104a02be365e}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a3666c40546d1e6a225421d3bfd0288f9}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a86a0ff7a5a916278d901bae05df01847}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a623769e2a3ba24cc1a3e2e64b72edb41}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_ad85c38f98f467565f2b895993ab92f96}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a742810da75f2b3889794498f05af8860}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_acc3fb39539fd3c13def35be54570ae81}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_aabdb8b727f1f84712a5f7c1fca6e830f}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a32ee6cc683f7357afef8b7075d8b8f20}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a564782cd7135a708295c51e722f22716}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a002150cd8db87283bead5f10b2310152}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d00}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetPosition@{SetPosition}}
@@ -548,7 +578,29 @@ The position is relative to the screen size. Values range from 0.0 to 1.0.
 \end{DoxyParams}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a9c6b0bc4eb93b53c4f7172ce3a537178}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_af43b353b0033d3605dad04e925363f2b}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_abf0552ebbe369f6b695f91fdaa220c20}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_ae0a000643e0f96f12d754a8e1e5dd04b}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a0c4c7141142caca342157ce4460b907d}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a53ff13bb9b850fb8196c1c0c637afbd5}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a4a87f32e31e8e4443c4aaec46307864e}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef62a124cb71b39bc73bda770741882f}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a7b520a5aa26772bd15e880887d174fa6}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a17e6284d4ac5aa95f257c5168d6cc5ac}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a9c6b0bc4eb93b53c4f7172ce3a537178}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_af43b353b0033d3605dad04e925363f2b}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_abf0552ebbe369f6b695f91fdaa220c20}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_ae0a000643e0f96f12d754a8e1e5dd04b}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_a91dbfd382be8c505021739602a7a64e6}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a0c4c7141142caca342157ce4460b907d}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a53ff13bb9b850fb8196c1c0c637afbd5}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a4a87f32e31e8e4443c4aaec46307864e}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef62a124cb71b39bc73bda770741882f}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a7b520a5aa26772bd15e880887d174fa6}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a17e6284d4ac5aa95f257c5168d6cc5ac}{phys::UI::Window}.
+
+\hypertarget{classphys_1_1UI_1_1Widget_a5ef3d6feab24fd891b17780069e012e5}{
+\index{phys::UI::Widget@{phys::UI::Widget}!SetRect@{SetRect}}
+\index{SetRect@{SetRect}!phys::UI::Widget@{phys::UI::Widget}}
+\paragraph[{SetRect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Widget::SetRect (
+\begin{DoxyParamCaption}
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Widget_a5ef3d6feab24fd891b17780069e012e5}
+
+
+Sets the Rect(Position and Size) of this \hyperlink{classphys_1_1UI_1_1Widget}{Widget}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rect} & The Rect to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 145 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24d}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetSize@{SetSize}}
@@ -570,7 +622,7 @@ The size is relative to the screen size. Values range from 0.0 to 1.0.
 \end{DoxyParams}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_affc95f7b3c3753b5a89eda7f84c78fb0}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a59075a5ae35c2080876fcc78a97e5b31}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a83de47589cb02ce49882f795e9281f57}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a3cacea11779470e31efb6020c22e0c54}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a2e1f6514f83be768dad7e357beb6ac98}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_adef3f9d3351c959f711e929a5e1c8f76}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a5581675d3f250ed7270018e184b02b1d}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a793a775a3603e71db5ad29686c27ae68}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a01641c5ed2b360307f3056f142964bf4}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a88ed4d21758cee9afeadc4069c3e0b04}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_affc95f7b3c3753b5a89eda7f84c78fb0}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a59075a5ae35c2080876fcc78a97e5b31}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_a83de47589cb02ce49882f795e9281f57}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a3cacea11779470e31efb6020c22e0c54}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_aebcb4fe708e7d1af4609120039e276a6}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a2e1f6514f83be768dad7e357beb6ac98}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_adef3f9d3351c959f711e929a5e1c8f76}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a5581675d3f250ed7270018e184b02b1d}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a793a775a3603e71db5ad29686c27ae68}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a01641c5ed2b360307f3056f142964bf4}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a88ed4d21758cee9afeadc4069c3e0b04}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetVisible@{SetVisible}}
@@ -592,7 +644,7 @@ Sets the visibility of this widget.
 \end{DoxyParams}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_acee378e954050801fa8fffe835441bf4}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_aceb2d399897a502d99c72b2e9e5c859e}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_abd1b3b422680a8b549c1c897b300da5d}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_aac2babdb951a7b716b5cfff9b925420f}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_abb3c87bf6669100296c1fa4f4913ea33}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a4847e0de055a9c2f708f98742fa59a87}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a76ff4b649f4687203ba9d1473474ce99}{phys::UI::PagedCellGrid}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a2d8997e0bbbb1c17af5128fea98fb1e4}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef5b78f205e75d33fff05623a1b61aa4}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a4fddc28f38174c4a89761efa00ae88c3}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a351439e78013bc87ecadcc00bce08573}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_acee378e954050801fa8fffe835441bf4}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_aceb2d399897a502d99c72b2e9e5c859e}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_abd1b3b422680a8b549c1c897b300da5d}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_aac2babdb951a7b716b5cfff9b925420f}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_ac86730fe238d990505667bb9a475fb77}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_abb3c87bf6669100296c1fa4f4913ea33}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a4847e0de055a9c2f708f98742fa59a87}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a76ff4b649f4687203ba9d1473474ce99}{phys::UI::PagedCellGrid}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a2d8997e0bbbb1c17af5128fea98fb1e4}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef5b78f205e75d33fff05623a1b61aa4}{phys::UI::ScrolledCellGrid}, \hyperlink{classphys_1_1UI_1_1Spinner_a4fddc28f38174c4a89761efa00ae88c3}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_a351439e78013bc87ecadcc00bce08573}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_acbda7003549c6caac46078c034657929}{
 \index{phys::UI::Widget@{phys::UI::Widget}!UpdateDimensions@{UpdateDimensions}}
@@ -614,11 +666,11 @@ This function is called automatically when a viewport changes in size, and shoul
 \end{DoxyParams}
 
 
-Reimplemented in \hyperlink{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf3ff787837e5}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1Menu_a60a678cc2be8f3eebfe65b3628557928}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1MenuWindow_a9845f7bd61f5c3f06594c4bbcbd4e063}{phys::UI::MenuWindow}, \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a7d6ddd7126f86d2ea6592ac3f9a91037}{phys::UI::PagedCellGrid}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aed1f61cbdab04c555e26076ec933bbf2}{phys::UI::ScrolledCellGrid}, and \hyperlink{classphys_1_1UI_1_1Window_a0be6c93e5660757a5f94227f2e076ba9}{phys::UI::Window}.
+Reimplemented in \hyperlink{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf3ff787837e5}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1DropDownList_aa204411b17521b92acb78926d1d3f98e}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1Menu_a60a678cc2be8f3eebfe65b3628557928}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1MenuWindow_a9845f7bd61f5c3f06594c4bbcbd4e063}{phys::UI::MenuWindow}, \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a7d6ddd7126f86d2ea6592ac3f9a91037}{phys::UI::PagedCellGrid}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aed1f61cbdab04c555e26076ec933bbf2}{phys::UI::ScrolledCellGrid}, and \hyperlink{classphys_1_1UI_1_1Window_a0be6c93e5660757a5f94227f2e076ba9}{phys::UI::Window}.
 
 
 
-Definition at line 145 of file uiwidget.cpp.
+Definition at line 163 of file uiwidget.cpp.
 
 
 

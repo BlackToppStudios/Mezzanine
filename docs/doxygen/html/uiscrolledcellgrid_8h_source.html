@@ -138,13 +138,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00075"></a>00075             <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00076"></a>00076 <span class="comment">                /// @brief Class constructor.</span>
 <a name="l00077"></a>00077 <span class="comment">                /// @param name The name of the widget.</span>
-<a name="l00078"></a>00078 <span class="comment">                /// @param Position The position of the widget.</span>
-<a name="l00079"></a>00079 <span class="comment">                /// @param Size The size of the widget.</span>
-<a name="l00080"></a>00080 <span class="comment">                /// @param Thickness The width of the vertical scrollbar in relative units.  The same amount of actual pixels is used</span>
-<a name="l00081"></a>00081 <span class="comment">                /// to determine the height of the horizontal scrollbar.</span>
+<a name="l00078"></a>00078 <span class="comment">                /// @param Rect The Rect representing the position and size of the widget.</span>
+<a name="l00079"></a>00079 <span class="comment">                /// @param Thickness The width of the vertical scrollbar.  The same amount of actual pixels is used</span>
+<a name="l00080"></a>00080 <span class="comment">                /// to determine the height of the horizontal scrollbar.</span>
+<a name="l00081"></a>00081 <span class="comment">                /// If the Rect passed in is relative, this will expect Thickness to be relative as well.</span>
 <a name="l00082"></a>00082 <span class="comment">                /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.</span>
 <a name="l00083"></a>00083 <span class="comment">                /// @param parent The parent layer this widget belongs to.</span>
-<a name="l00084"></a>00084 <span class="comment"></span>                <a class="code" href="classphys_1_1UI_1_1ScrolledCellGrid.html" title="This is a specialization of the cell grid that allows you to use scrollbars to navigate the cells on ...">ScrolledCellGrid</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Thickness, <span class="keyword">const</span> UI::ScrollbarStyle&amp; Style, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent);<span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment"></span>                <a class="code" href="classphys_1_1UI_1_1ScrolledCellGrid.html" title="This is a specialization of the cell grid that allows you to use scrollbars to navigate the cells on ...">ScrolledCellGrid</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Thickness, <span class="keyword">const</span> UI::ScrollbarStyle&amp; Style, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent);<span class="comment"></span>
 <a name="l00085"></a>00085 <span class="comment">                /// @brief Class destructor.</span>
 <a name="l00086"></a>00086 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1UI_1_1ScrolledCellGrid.html" title="This is a specialization of the cell grid that allows you to use scrollbars to navigate the cells on ...">ScrolledCellGrid</a>();<span class="comment"></span>
 <a name="l00087"></a>00087 <span class="comment">                /// @brief Sets the visibility of this widget.</span>
@@ -208,7 +208,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:23 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:39 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

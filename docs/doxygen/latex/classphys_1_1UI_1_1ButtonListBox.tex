@@ -20,10 +20,10 @@ Inheritance diagram for phys::UI::ButtonListBox:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1ButtonListBox_a0728b3456dc7abba4e1d8945ee4e2dfa}{ButtonListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1ButtonListBox_a43ac98232280969a8ce2641d36658808}{ButtonListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_afb7cf0d76f1f6825276694f0ebb7f4a6}{
-\hyperlink{classphys_1_1UI_1_1ButtonListBox_afb7cf0d76f1f6825276694f0ebb7f4a6}{$\sim$ButtonListBox} ()}
+virtual \hyperlink{classphys_1_1UI_1_1ButtonListBox_afb7cf0d76f1f6825276694f0ebb7f4a6}{$\sim$ButtonListBox} ()}
 \label{classphys_1_1UI_1_1ButtonListBox_afb7cf0d76f1f6825276694f0ebb7f4a6}
 
 \begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
@@ -179,20 +179,19 @@ Definition at line 60 of file uibuttonlistbox.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1ButtonListBox_a0728b3456dc7abba4e1d8945ee4e2dfa}{
+\hypertarget{classphys_1_1UI_1_1ButtonListBox_a43ac98232280969a8ce2641d36658808}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!ButtonListBox@{ButtonListBox}}
 \index{ButtonListBox@{ButtonListBox}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
 \paragraph[{ButtonListBox}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::ButtonListBox::ButtonListBox (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{ScrollbarWidth, }
 \item[{const UI::ScrollbarStyle \&}]{ScrollStyle, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1ButtonListBox_a0728b3456dc7abba4e1d8945ee4e2dfa}
+\label{classphys_1_1UI_1_1ButtonListBox_a43ac98232280969a8ce2641d36658808}
 
 
 Standard initialization constructor. 
@@ -201,11 +200,9 @@ Standard initialization constructor.
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \\
 \hline
-{\em Position} & The position of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \\
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \\
 \hline
-{\em Size} & The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \\
-\hline
-{\em ScrollbarWidth} & The relative(to screensize) width of the vertical scrollbar. If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look. \\
+{\em ScrollbarWidth} & The width of the vertical scrollbar. If the Rect passed in is relative, this will expect Scrollwidth to be relative as well. If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look. \\
 \hline
 {\em ScrollStyle} & The style of the scrollbar you want for this \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. See \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} class for more information. \\
 \hline
@@ -215,7 +212,7 @@ Standard initialization constructor.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000024}{Todo}]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
+\item[\hyperlink{todo__todo000026}{Todo}]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
 
 
 
@@ -254,7 +251,7 @@ Returns a pointer to the created button.
 \end{DoxyReturn}
 
 
-Definition at line 289 of file uibuttonlistbox.cpp.
+Definition at line 302 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_aaa8b11b174a0475cadee3d3349ef1a58}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!CheckMouseHover@{CheckMouseHover}}
@@ -278,7 +275,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259d
 
 
 
-Definition at line 249 of file uibuttonlistbox.cpp.
+Definition at line 262 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a4ac91d2219d9fa471976bd482dc909b4}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!DestroySelection@{DestroySelection}}
@@ -300,7 +297,7 @@ Destroys a selectable button.
 \end{DoxyParams}
 
 
-Definition at line 322 of file uibuttonlistbox.cpp.
+Definition at line 337 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a2717ab6e1ad39bb7db634a97c4f4157a}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!DestroySelection@{DestroySelection}}
@@ -322,7 +319,7 @@ Destroys a selectable button.
 \end{DoxyParams}
 
 
-Definition at line 336 of file uibuttonlistbox.cpp.
+Definition at line 351 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a7171571edf9dbf1a5f5543ecdaf119eb}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!EnableBorderSelector@{EnableBorderSelector}}
@@ -347,7 +344,7 @@ Enables the setting of a border on the button you select.
 \end{DoxyParams}
 
 
-Definition at line 362 of file uibuttonlistbox.cpp.
+Definition at line 377 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_addc5d7c6ab2a48ffa0d4b2e46c20d9a5}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetActualPosition@{GetActualPosition}}
@@ -371,7 +368,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e
 
 
 
-Definition at line 397 of file uibuttonlistbox.cpp.
+Definition at line 412 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a77d992f8858bf9b9eeb190dd1ea8a4fd}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetActualSize@{GetActualSize}}
@@ -395,7 +392,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed
 
 
 
-Definition at line 431 of file uibuttonlistbox.cpp.
+Definition at line 446 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a043ce9d76af4538043551bf508811b12}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetBoxBack@{GetBoxBack}}
@@ -415,7 +412,7 @@ Returns a pointer to the background of this \hyperlink{classphys_1_1UI_1_1Button
 \end{DoxyReturn}
 
 
-Definition at line 441 of file uibuttonlistbox.cpp.
+Definition at line 456 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_ab7834542f8940adba8df6b1eace92e95}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetPosition@{GetPosition}}
@@ -439,7 +436,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c3
 
 
 
-Definition at line 383 of file uibuttonlistbox.cpp.
+Definition at line 398 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a2774799b087576f9085c0d713c129e76}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetSelected@{GetSelected}}
@@ -459,7 +456,7 @@ Returns a pointer to the currently selected button, or NULL if none are selected
 \end{DoxyReturn}
 
 
-Definition at line 436 of file uibuttonlistbox.cpp.
+Definition at line 451 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a88796d75b2677b0a8e5d70fcf3677348}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetSelection@{GetSelection}}
@@ -484,7 +481,7 @@ Returns a pointer to the named button.
 \end{DoxyReturn}
 
 
-Definition at line 309 of file uibuttonlistbox.cpp.
+Definition at line 324 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a0084510b0b9c53761e5b4a45f65604ab}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetSize@{GetSize}}
@@ -508,7 +505,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a
 
 
 
-Definition at line 414 of file uibuttonlistbox.cpp.
+Definition at line 429 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_ad0988e4abe0daef3b9949e42c6dfc5fd}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetVertScroll@{GetVertScroll}}
@@ -528,7 +525,7 @@ Returns a pointer to the scrollbar of this \hyperlink{classphys_1_1UI_1_1Button}
 \end{DoxyReturn}
 
 
-Definition at line 446 of file uibuttonlistbox.cpp.
+Definition at line 461 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a1282a1494079e47b48c8e3296b1a8bb0}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!IsVisible@{IsVisible}}
@@ -552,7 +549,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7a
 
 
 
-Definition at line 224 of file uibuttonlistbox.cpp.
+Definition at line 237 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a3b027750d7d1a5b84a98fc348dee4e64}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetActualPosition@{SetActualPosition}}
@@ -578,7 +575,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e
 
 
 
-Definition at line 388 of file uibuttonlistbox.cpp.
+Definition at line 403 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a40f357673d774cbecae7104a02be365e}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetActualSize@{SetActualSize}}
@@ -604,7 +601,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120
 
 
 
-Definition at line 419 of file uibuttonlistbox.cpp.
+Definition at line 434 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_ab5caa7d6bd929875bb8ca1278743ff40}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetAutoHideScroll@{SetAutoHideScroll}}
@@ -626,7 +623,7 @@ Eanbles or disables the scrollbar autohide.
 \end{DoxyParams}
 
 
-Definition at line 355 of file uibuttonlistbox.cpp.
+Definition at line 370 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a9c6b0bc4eb93b53c4f7172ce3a537178}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetPosition@{SetPosition}}
@@ -652,7 +649,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d0
 
 
 
-Definition at line 374 of file uibuttonlistbox.cpp.
+Definition at line 389 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a843a4975bb7913bcc53d3a66c7f802fa}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetSelectionDistance@{SetSelectionDistance}}
@@ -674,7 +671,7 @@ This function expects a relative value to the screen size(0.0 to 1.0). This valu
 \end{DoxyParams}
 
 
-Definition at line 350 of file uibuttonlistbox.cpp.
+Definition at line 365 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_affc95f7b3c3753b5a89eda7f84c78fb0}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetSize@{SetSize}}
@@ -700,7 +697,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24
 
 
 
-Definition at line 402 of file uibuttonlistbox.cpp.
+Definition at line 417 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_ac14c18e280d1e9fd39a850a9397633e0}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetTemplateParameters@{SetTemplateParameters}}
@@ -725,7 +722,7 @@ This function needs to be called before adding any selections to this widget.
 \end{DoxyParams}
 
 
-Definition at line 279 of file uibuttonlistbox.cpp.
+Definition at line 292 of file uibuttonlistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_acee378e954050801fa8fffe835441bf4}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetVisible@{SetVisible}}
@@ -751,7 +748,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e
 
 
 
-Definition at line 214 of file uibuttonlistbox.cpp.
+Definition at line 227 of file uibuttonlistbox.cpp.
 
 
 
@@ -762,7 +759,7 @@ Definition at line 214 of file uibuttonlistbox.cpp.
 \paragraph[{VertScroll}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar}$\ast$ {\bf phys::UI::ButtonListBox::VertScroll}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1ButtonListBox_aa47d94d75c58e3408a97766eace2c20e}
 \begin{Desc}
-\item[\hyperlink{todo__todo000025}{Todo}]Third instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
+\item[\hyperlink{todo__todo000027}{Todo}]Third instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
 
 
 Definition at line 65 of file uibuttonlistbox.h.

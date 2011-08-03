@@ -20,7 +20,7 @@ Inheritance diagram for phys::UI::PagedCellGrid:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1PagedCellGrid_a0b5ab33e9ec040898fc667682016003d}{PagedCellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{classphys_1_1Vector2}{Vector2} \&SpnPosition, const \hyperlink{classphys_1_1Vector2}{Vector2} \&SpnSize, const UI::SpinnerStyle \&SStyle, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\hyperlink{classphys_1_1UI_1_1PagedCellGrid_a3038df62663e3ee8b860bd6f035af732}{PagedCellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&SpnRect, const UI::SpinnerStyle \&SStyle, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1PagedCellGrid_a6b9c8876b41321b77321efcf27feb2c6}{
 virtual \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a6b9c8876b41321b77321efcf27feb2c6}{$\sim$PagedCellGrid} ()}
@@ -119,22 +119,20 @@ Definition at line 57 of file uipagedcellgrid.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a0b5ab33e9ec040898fc667682016003d}{
+\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a3038df62663e3ee8b860bd6f035af732}{
 \index{phys::UI::PagedCellGrid@{phys::UI::PagedCellGrid}!PagedCellGrid@{PagedCellGrid}}
 \index{PagedCellGrid@{PagedCellGrid}!phys::UI::PagedCellGrid@{phys::UI::PagedCellGrid}}
 \paragraph[{PagedCellGrid}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::PagedCellGrid::PagedCellGrid (
 \begin{DoxyParamCaption}
 \item[{const {\bf String} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
-\item[{const {\bf Vector2} \&}]{SpnPosition, }
-\item[{const {\bf Vector2} \&}]{SpnSize, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf RenderableRect} \&}]{SpnRect, }
 \item[{const UI::SpinnerStyle \&}]{SStyle, }
 \item[{const {\bf Real} \&}]{GlyphHeight, }
 \item[{{\bf Layer} $\ast$}]{parent}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1PagedCellGrid_a0b5ab33e9ec040898fc667682016003d}
+\label{classphys_1_1UI_1_1PagedCellGrid_a3038df62663e3ee8b860bd6f035af732}
 
 
 Class constructor. 
@@ -143,13 +141,9 @@ Class constructor.
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of the widget. \\
 \hline
-{\em Position} & The position of the widget. \\
+{\em Rect} & The Rect representing the position and size of the widget. \\
 \hline
-{\em Size} & The size of the widget. \\
-\hline
-{\em SpnPosition} & The position of the spinner created alongside this widget. \\
-\hline
-{\em SpnSize} & The size of the spinner created alongside this widget. \\
+{\em SpnRect} & The Rect representing the position and size of the spinner to be created alonhside this widget. \\
 \hline
 {\em SStyle} & The style of spinner to create. \\
 \hline

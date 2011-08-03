@@ -94,8 +94,8 @@ Inheritance diagram for phys::UI::ScrolledCellGrid:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#ac5c8216540515fef2d30ddd075ccb941">ScrolledCellGrid</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;name, const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position, const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Thickness, const UI::ScrollbarStyle &amp;Style, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *parent)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#ac5c8216540515fef2d30ddd075ccb941"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#a55568ced472f194c6fd6a07310b68561">ScrolledCellGrid</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;name, const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Thickness, const UI::ScrollbarStyle &amp;Style, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *parent)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a55568ced472f194c6fd6a07310b68561"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27a91d4fe26c101718f8593c8775f0cb"></a><!-- doxytag: member="phys::UI::ScrolledCellGrid::~ScrolledCellGrid" ref="a27a91d4fe26c101718f8593c8775f0cb" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#a27a91d4fe26c101718f8593c8775f0cb">~ScrolledCellGrid</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
@@ -161,7 +161,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 
 <p>Definition at line <a class="el" href="uiscrolledcellgrid_8h_source.html#l00057">57</a> of file <a class="el" href="uiscrolledcellgrid_8h_source.html">uiscrolledcellgrid.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ac5c8216540515fef2d30ddd075ccb941"></a><!-- doxytag: member="phys::UI::ScrolledCellGrid::ScrolledCellGrid" ref="ac5c8216540515fef2d30ddd075ccb941" args="(const String &amp;name, const Vector2 &amp;Position, const Vector2 &amp;Size, const Real &amp;Thickness, const UI::ScrollbarStyle &amp;Style, Layer *parent)" -->
+<a class="anchor" id="a55568ced472f194c6fd6a07310b68561"></a><!-- doxytag: member="phys::UI::ScrolledCellGrid::ScrolledCellGrid" ref="a55568ced472f194c6fd6a07310b68561" args="(const String &amp;name, const RenderableRect &amp;Rect, const Real &amp;Thickness, const UI::ScrollbarStyle &amp;Style, Layer *parent)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -174,14 +174,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Position</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Size</em>, </td>
+          <td class="paramtype">const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rect</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -214,9 +208,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the widget. </td></tr>
-    <tr><td class="paramname">Position</td><td>The position of the widget. </td></tr>
-    <tr><td class="paramname">Size</td><td>The size of the widget. </td></tr>
-    <tr><td class="paramname">Thickness</td><td>The width of the vertical scrollbar in relative units. The same amount of actual pixels is used to determine the height of the horizontal scrollbar. </td></tr>
+    <tr><td class="paramname">Rect</td><td>The Rect representing the position and size of the widget. </td></tr>
+    <tr><td class="paramname">Thickness</td><td>The width of the vertical scrollbar. The same amount of actual pixels is used to determine the height of the horizontal scrollbar. If the Rect passed in is relative, this will expect Thickness to be relative as well. </td></tr>
     <tr><td class="paramname">Style</td><td>An enum value representing how you want your scrollbar constructed. See class details for more info. </td></tr>
     <tr><td class="paramname">parent</td><td>The parent layer this widget belongs to. </td></tr>
   </table>
@@ -247,7 +240,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a9c5f899c7db6c24d9aa2b03e59e5f0f0">phys::UI::CellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00265">265</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00278">278</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -268,7 +261,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 <p>Gets whether or not the scrollbars are auto-hiding. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether or not scrollbar auto-hide is enabled. </dd></dl>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00260">260</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00273">273</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -289,7 +282,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 <p>Gets the horizontal scrollbar of this grid, if present. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the horizontal scrollbar of this Grid, or NULL if it's paged. </dd></dl>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00349">349</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00362">362</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -310,7 +303,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 <p>Gets the vertical scrollbar of this grid, if present. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the vertical scrollbar of this Grid, or NULL if it's paged. </dd></dl>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00354">354</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00367">367</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -339,7 +332,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a911ce43c124ca7ac9f02ba7d8e08d919">phys::UI::CellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00297">297</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00310">310</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -368,7 +361,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a86a0ff7a5a916278d901bae05df01847">phys::UI::CellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00323">323</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00336">336</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -395,7 +388,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00255">255</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00268">268</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -425,7 +418,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1UI_1_1CellGrid.html#abf0552ebbe369f6b695f91fdaa220c20">phys::UI::CellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00286">286</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00299">299</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -455,7 +448,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a83de47589cb02ce49882f795e9281f57">phys::UI::CellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00308">308</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00321">321</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -484,7 +477,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1UI_1_1CellGrid.html#abd1b3b422680a8b549c1c897b300da5d">phys::UI::CellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00233">233</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00246">246</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -504,12 +497,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 
 <p>Forces this widget to be shown. </p>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000030">Todo:</a></b></dt><dd>Currently this and SetVisible disregard auto-hides. Something should be implemented to account for that. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000033">Todo:</a></b></dt><dd>Currently this and SetVisible disregard auto-hides. Something should be implemented to account for that. </dd></dl>
 </p>
 
 <p>Reimplemented from <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a772ea260724d009cfe6241e8dac5585b">phys::UI::CellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00240">240</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00253">253</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -539,7 +532,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1UI_1_1CellGrid.html#addbc1338b3b321018cbaf3ff787837e5">phys::UI::CellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00338">338</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiscrolledcellgrid_8cpp_source.html#l00351">351</a> of file <a class="el" href="uiscrolledcellgrid_8cpp_source.html">uiscrolledcellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -562,7 +555,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHide</b></td></tr
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:32 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:50 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

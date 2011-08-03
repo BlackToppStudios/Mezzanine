@@ -87,15 +87,16 @@ Inheritance diagram for phys::UI::Widget:</div>
  <div class="center">
   <img src="classphys_1_1UI_1_1Widget.png" usemap="#phys::UI::Widget_map" alt=""/>
   <map id="phys::UI::Widget_map" name="phys::UI::Widget_map">
-<area href="classphys_1_1UI_1_1ButtonListBox.html" alt="phys::UI::ButtonListBox" shape="rect" coords="147,56,284,80"/>
-<area href="classphys_1_1UI_1_1Cell.html" alt="phys::UI::Cell" shape="rect" coords="147,112,284,136"/>
-<area href="classphys_1_1UI_1_1CellGrid.html" alt="phys::UI::CellGrid" shape="rect" coords="147,168,284,192"/>
-<area href="classphys_1_1UI_1_1CheckBox.html" alt="phys::UI::CheckBox" shape="rect" coords="147,224,284,248"/>
-<area href="classphys_1_1UI_1_1ListBox.html" alt="phys::UI::ListBox" shape="rect" coords="147,280,284,304"/>
-<area href="classphys_1_1UI_1_1Menu.html" alt="phys::UI::Menu" shape="rect" coords="147,336,284,360"/>
-<area href="classphys_1_1UI_1_1Scrollbar.html" alt="phys::UI::Scrollbar" shape="rect" coords="147,392,284,416"/>
-<area href="classphys_1_1UI_1_1Spinner.html" alt="phys::UI::Spinner" shape="rect" coords="147,448,284,472"/>
-<area href="classphys_1_1UI_1_1Window.html" alt="phys::UI::Window" shape="rect" coords="147,504,284,528"/>
+<area href="classphys_1_1UI_1_1ButtonListBox.html" alt="phys::UI::ButtonListBox" shape="rect" coords="151,56,292,80"/>
+<area href="classphys_1_1UI_1_1Cell.html" alt="phys::UI::Cell" shape="rect" coords="151,112,292,136"/>
+<area href="classphys_1_1UI_1_1CellGrid.html" alt="phys::UI::CellGrid" shape="rect" coords="151,168,292,192"/>
+<area href="classphys_1_1UI_1_1CheckBox.html" alt="phys::UI::CheckBox" shape="rect" coords="151,224,292,248"/>
+<area href="classphys_1_1UI_1_1DropDownList.html" alt="phys::UI::DropDownList" shape="rect" coords="151,280,292,304"/>
+<area href="classphys_1_1UI_1_1ListBox.html" alt="phys::UI::ListBox" shape="rect" coords="151,336,292,360"/>
+<area href="classphys_1_1UI_1_1Menu.html" alt="phys::UI::Menu" shape="rect" coords="151,392,292,416"/>
+<area href="classphys_1_1UI_1_1Scrollbar.html" alt="phys::UI::Scrollbar" shape="rect" coords="151,448,292,472"/>
+<area href="classphys_1_1UI_1_1Spinner.html" alt="phys::UI::Spinner" shape="rect" coords="151,504,292,528"/>
+<area href="classphys_1_1UI_1_1Window.html" alt="phys::UI::Window" shape="rect" coords="151,560,292,584"/>
 </map>
  </div></div>
 
@@ -109,17 +110,18 @@ Public Types</h2></td></tr>
 <b>CellGrid</b>, 
 <b>CheckBox</b>, 
 <br/>
-&#160;&#160;<b>DropDownMenu</b>, 
+&#160;&#160;<b>DropDownList</b>, 
+<b>DropDownMenu</b>, 
 <b>ListBox</b>, 
 <b>Menu</b>, 
-<b>MenuWindow</b>, 
 <br/>
-&#160;&#160;<b>RadioButton</b>, 
+&#160;&#160;<b>MenuWindow</b>, 
+<b>RadioButton</b>, 
 <b>Scrollbar</b>, 
 <b>Spinner</b>, 
-<b>TextBox</b>, 
 <br/>
-&#160;&#160;<b>Window</b>
+&#160;&#160;<b>TextBox</b>, 
+<b>Window</b>
 <br/>
  }</td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
@@ -139,7 +141,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc8e3f88f780e3b36b38086c45311795"></a><!-- doxytag: member="phys::UI::Widget::Hide" ref="abc8e3f88f780e3b36b38086c45311795" args="()=0" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Widget.html#abc8e3f88f780e3b36b38086c45311795">Hide</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this widget to hide. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">WidgetType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Widget.html#a76337b279bd372ce225f94ab1da191ea">GetType</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual WidgetType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Widget.html#a76337b279bd372ce225f94ab1da191ea">GetType</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of widget this is.  <a href="#a76337b279bd372ce225f94ab1da191ea"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Widget.html#af8498cbe2d6cf37115cf8ade52e22557">IsInputCaptureWidget</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this is an input capturing widget.  <a href="#af8498cbe2d6cf37115cf8ade52e22557"></a><br/></td></tr>
@@ -147,6 +149,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of this widget.  <a href="#a35d6e7ce60a9b295d8659345627cf7e0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Widget.html#a613df6dbb42efe139d185043a00259dc">CheckMouseHover</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the current mouse position is over this widget.  <a href="#a613df6dbb42efe139d185043a00259dc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Widget.html#a5ef3d6feab24fd891b17780069e012e5">SetRect</a> (const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Rect(Position and Size) of this <a class="el" href="classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>.  <a href="#a5ef3d6feab24fd891b17780069e012e5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Widget.html#a0a09859c063ac222d0e736af5050e556">GetRect</a> (bool Relative=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this Widgets' Rect.  <a href="#a0a09859c063ac222d0e736af5050e556"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Widget.html#a3ef894be2c0868105b2bf495ae944d00">SetPosition</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative position of this widget.  <a href="#a3ef894be2c0868105b2bf495ae944d00"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Widget.html#a3e464b028b0d1b5755923b8790260c33">GetPosition</a> ()=0</td></tr>
@@ -277,7 +283,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Checks to see if the current mouse position is over this widget. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool value, true if the mouse is over this widget, false if it's not. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#aaa8b11b174a0475cadee3d3349ef1a58">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#aff6472ccb5d6d7bd3e7d3a967c67674d">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a9c5f899c7db6c24d9aa2b03e59e5f0f0">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a3c9b10c692dfb62dedbd091dac12c115">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a789faeb98d98bb4d4d89cae8c53d4bc0">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#af2514d2614322856f604be2e167d0872">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1PagedCellGrid.html#a859ed3c174faf86962df4d0fd2b43fab">phys::UI::PagedCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a8afdd63e36a7fdc15bd8660d9800f2c5">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#a976e99e204f912d82712872e4e80b833">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#ae594a38213702563841f5817609c492e">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a771bc9e43c0492ab179d8126c30665cf">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#aaa8b11b174a0475cadee3d3349ef1a58">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#aff6472ccb5d6d7bd3e7d3a967c67674d">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a9c5f899c7db6c24d9aa2b03e59e5f0f0">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a3c9b10c692dfb62dedbd091dac12c115">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#a2ac515cb3282a0f190d002417e509424">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a789faeb98d98bb4d4d89cae8c53d4bc0">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#af2514d2614322856f604be2e167d0872">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1PagedCellGrid.html#a859ed3c174faf86962df4d0fd2b43fab">phys::UI::PagedCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a8afdd63e36a7fdc15bd8660d9800f2c5">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#a976e99e204f912d82712872e4e80b833">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#ae594a38213702563841f5817609c492e">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a771bc9e43c0492ab179d8126c30665cf">phys::UI::Window</a>.</p>
 
 </div>
 </div>
@@ -298,7 +304,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Sets the pixel position of this widget. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the pixel position of this widget. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#addc5d7c6ab2a48ffa0d4b2e46c20d9a5">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a1b0deb9738bc4da73e0be4dd355b23fb">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a1ead8b427b5989ec137aa0ca8e017f73">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a33bedaa00456be8ca0e9b2eafcd5b21a">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a44046453283fb2c54e10dc868705352a">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a74a1b8e9b1c5d36c12e5a0a7f813c40a">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a73337985c0f1f173e253c88705ae5d6e">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a7ee24e3f5c11550950696a2c9094d716">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a811fb495bc698752e03778b18f2b1a30">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#addc5d7c6ab2a48ffa0d4b2e46c20d9a5">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a1b0deb9738bc4da73e0be4dd355b23fb">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a1ead8b427b5989ec137aa0ca8e017f73">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a33bedaa00456be8ca0e9b2eafcd5b21a">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#a2c3b3dc073aebecd9216fa48e7cc10f2">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a44046453283fb2c54e10dc868705352a">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a74a1b8e9b1c5d36c12e5a0a7f813c40a">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a73337985c0f1f173e253c88705ae5d6e">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a7ee24e3f5c11550950696a2c9094d716">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a811fb495bc698752e03778b18f2b1a30">phys::UI::Window</a>.</p>
 
 </div>
 </div>
@@ -319,7 +325,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Sets the pixel size of this widget. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the pixel size of this widget. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a77d992f8858bf9b9eeb190dd1ea8a4fd">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a6301ce41a7a44a97de36fb54388ad430">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#ad0ea7915446ba7821212e6a43aede7e1">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#aa13946ced3947a13f8f30dd97ffba245">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a23133ed4a98994d838acee4c6a981e04">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#af7566b83c50a4a02ac78d174d7c61817">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2b3d791cbbe4c787f284d8b12a0edf27">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#af2843083a652f2d7ca6e929582f501fd">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a22f5ca800e44c5e2cfeed59c243b03ed">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a77d992f8858bf9b9eeb190dd1ea8a4fd">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a6301ce41a7a44a97de36fb54388ad430">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#ad0ea7915446ba7821212e6a43aede7e1">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#aa13946ced3947a13f8f30dd97ffba245">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#afa9ccaef200f9ee8f22be5f32ba1f0a3">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a23133ed4a98994d838acee4c6a981e04">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#af7566b83c50a4a02ac78d174d7c61817">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2b3d791cbbe4c787f284d8b12a0edf27">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#af2843083a652f2d7ca6e929582f501fd">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a22f5ca800e44c5e2cfeed59c243b03ed">phys::UI::Window</a>.</p>
 
 </div>
 </div>
@@ -340,7 +346,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Gets the hovered button within this widget, if any. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none. </dd></dl>
 
-<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00152">152</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00170">170</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -361,7 +367,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Gets the hovered sub-widget within this widget, if any. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the sub-widget within this widget the mouse is hovering over, or NULL if none. </dd></dl>
 
-<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00157">157</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00175">175</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -382,7 +388,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Gets the data determining what input should be captured. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the <a class="el" href="classphys_1_1UI_1_1InputCaptureData.html" title="This class contains all the utilities necessary for capturing input.">InputCaptureData</a>, or NULL if this widget doesn't capture data. </dd></dl>
 
-<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00167">167</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00185">185</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -403,7 +409,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Gets the layer this widget belongs to. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the layer this eidget belongs to. </dd></dl>
 
-<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00162">162</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00180">180</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -446,7 +452,35 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>The position is relative to the screen size. Values range from 0.0 to 1.0. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the relative position of this widget. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#ab7834542f8940adba8df6b1eace92e95">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a17475dbdde2d71be3d774f0402792f0d">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a6b7fcbfd8a965e69c6e3e92d474f121f">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a8a8630b27ab769b6e42657c5388ec7fe">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#af688db0628a5588865a890584f754b02">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a3c19fe2596fe4049325cc580daa70387">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#ad049af26ff2247cfcd988cb5639fa003">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a0cfed1bd9532351eac373b0f23495225">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a29fca96d9a2dab29d77a36d6a329f306">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#ab7834542f8940adba8df6b1eace92e95">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a17475dbdde2d71be3d774f0402792f0d">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a6b7fcbfd8a965e69c6e3e92d474f121f">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a8a8630b27ab769b6e42657c5388ec7fe">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#a179dbf5e16fa6dd10ec8a72ae4349d3c">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#af688db0628a5588865a890584f754b02">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a3c19fe2596fe4049325cc580daa70387">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#ad049af26ff2247cfcd988cb5639fa003">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a0cfed1bd9532351eac373b0f23495225">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a29fca96d9a2dab29d77a36d6a329f306">phys::UI::Window</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a09859c063ac222d0e736af5050e556"></a><!-- doxytag: member="phys::UI::Widget::GetRect" ref="a0a09859c063ac222d0e736af5050e556" args="(bool Relative=true)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> phys::UI::Widget::GetRect </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Relative</em> = <code>true</code></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets this Widgets' Rect. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Relative</td><td>Whether or not you want the Rect to be populated with Relative values. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Rect containing this Widgets' Position and Size. </dd></dl>
+
+<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00157">157</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -468,7 +502,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>The size is relative to the screen size. Values range from 0.0 to 1.0. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the relative size of this widget. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a0084510b0b9c53761e5b4a45f65604ab">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#ab8288a97a63aad7cc02f32541b1b7351">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#aa0ad4f1e0159f8c6ca3928595dffd837">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a99c6ab5087522fbd4825032b9a058585">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a7af2cced185d63be6a62d5122c700d81">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a81781199a62bbe7c2e7693ef301223b4">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#aff97ce371ee21fcf3b648dcf8b38e055">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a670d8ff577a8feb6df6f507843f08756">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a9946100eb6e6e985921bbea9e87cede3">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a0084510b0b9c53761e5b4a45f65604ab">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#ab8288a97a63aad7cc02f32541b1b7351">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#aa0ad4f1e0159f8c6ca3928595dffd837">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a99c6ab5087522fbd4825032b9a058585">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#ae47b0e9786a39a79fb613c2d1b1fcd38">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a7af2cced185d63be6a62d5122c700d81">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a81781199a62bbe7c2e7693ef301223b4">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#aff97ce371ee21fcf3b648dcf8b38e055">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a670d8ff577a8feb6df6f507843f08756">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a9946100eb6e6e985921bbea9e87cede3">phys::UI::Window</a>.</p>
 
 </div>
 </div>
@@ -480,7 +514,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
           <td class="memname">Widget::WidgetType phys::UI::Widget::GetType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -531,7 +565,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Gets the visibility of this widget. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool representing the visibility of this widget. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a1282a1494079e47b48c8e3296b1a8bb0">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a77625842ac8ad87bd5b5a7f6ed0590b8">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#af53601ab18e77237550c3eb97043e68c">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a8a2be0cba227f0921071fb14de24f76d">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a638f19eb6e5a0bd3291fab1ebaccc84f">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#ae23321617d7e14448e2fab3b455c3dc7">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a213c946ccadd3b689f59e2761a1d1848">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a3bb14ddd6426debf035e65b9885bc25b">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#aa1d88c50c0965510b494b51f3e5a7bf0">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a1282a1494079e47b48c8e3296b1a8bb0">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a77625842ac8ad87bd5b5a7f6ed0590b8">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#af53601ab18e77237550c3eb97043e68c">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a8a2be0cba227f0921071fb14de24f76d">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#ae4bd94c8f891dadf2423cef16c28e3f9">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a638f19eb6e5a0bd3291fab1ebaccc84f">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#ae23321617d7e14448e2fab3b455c3dc7">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a213c946ccadd3b689f59e2761a1d1848">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a3bb14ddd6426debf035e65b9885bc25b">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#aa1d88c50c0965510b494b51f3e5a7bf0">phys::UI::Window</a>.</p>
 
 </div>
 </div>
@@ -558,7 +592,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a3b027750d7d1a5b84a98fc348dee4e64">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#ae8b1850754b6b9ea48636b619dada5ea">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a911ce43c124ca7ac9f02ba7d8e08d919">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a186fcf91ed44c813d6dbd9cb53ff60c3">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a4bf1911c639429c783915ba8a543fec3">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a1d5434382755df214b169d3e9901c1e1">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a93dfa3232185d72f274462636a833465">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#aceff3ee36c2677d55e1a4e355611eef9">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a66bc26a2252cacd71e8c409e35672909">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a45a3d0454803ce26a053f645b965d16b">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a3b027750d7d1a5b84a98fc348dee4e64">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#ae8b1850754b6b9ea48636b619dada5ea">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a911ce43c124ca7ac9f02ba7d8e08d919">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a186fcf91ed44c813d6dbd9cb53ff60c3">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#af4d36a88b9629284d22d023bdcfd4074">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a4bf1911c639429c783915ba8a543fec3">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a1d5434382755df214b169d3e9901c1e1">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a93dfa3232185d72f274462636a833465">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#aceff3ee36c2677d55e1a4e355611eef9">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a66bc26a2252cacd71e8c409e35672909">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a45a3d0454803ce26a053f645b965d16b">phys::UI::Window</a>.</p>
 
 </div>
 </div>
@@ -585,7 +619,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a40f357673d774cbecae7104a02be365e">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a3666c40546d1e6a225421d3bfd0288f9">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a86a0ff7a5a916278d901bae05df01847">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a623769e2a3ba24cc1a3e2e64b72edb41">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a742810da75f2b3889794498f05af8860">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#acc3fb39539fd3c13def35be54570ae81">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#aabdb8b727f1f84712a5f7c1fca6e830f">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#a32ee6cc683f7357afef8b7075d8b8f20">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a564782cd7135a708295c51e722f22716">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a002150cd8db87283bead5f10b2310152">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a40f357673d774cbecae7104a02be365e">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a3666c40546d1e6a225421d3bfd0288f9">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a86a0ff7a5a916278d901bae05df01847">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a623769e2a3ba24cc1a3e2e64b72edb41">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#ad85c38f98f467565f2b895993ab92f96">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a742810da75f2b3889794498f05af8860">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#acc3fb39539fd3c13def35be54570ae81">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#aabdb8b727f1f84712a5f7c1fca6e830f">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#a32ee6cc683f7357afef8b7075d8b8f20">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a564782cd7135a708295c51e722f22716">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a002150cd8db87283bead5f10b2310152">phys::UI::Window</a>.</p>
 
 </div>
 </div>
@@ -613,7 +647,34 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a9c6b0bc4eb93b53c4f7172ce3a537178">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#af43b353b0033d3605dad04e925363f2b">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#abf0552ebbe369f6b695f91fdaa220c20">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#ae0a000643e0f96f12d754a8e1e5dd04b">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a0c4c7141142caca342157ce4460b907d">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a53ff13bb9b850fb8196c1c0c637afbd5">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4a87f32e31e8e4443c4aaec46307864e">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#aef62a124cb71b39bc73bda770741882f">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a7b520a5aa26772bd15e880887d174fa6">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a17e6284d4ac5aa95f257c5168d6cc5ac">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a9c6b0bc4eb93b53c4f7172ce3a537178">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#af43b353b0033d3605dad04e925363f2b">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#abf0552ebbe369f6b695f91fdaa220c20">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#ae0a000643e0f96f12d754a8e1e5dd04b">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#a91dbfd382be8c505021739602a7a64e6">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a0c4c7141142caca342157ce4460b907d">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a53ff13bb9b850fb8196c1c0c637afbd5">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4a87f32e31e8e4443c4aaec46307864e">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#aef62a124cb71b39bc73bda770741882f">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a7b520a5aa26772bd15e880887d174fa6">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a17e6284d4ac5aa95f257c5168d6cc5ac">phys::UI::Window</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ef3d6feab24fd891b17780069e012e5"></a><!-- doxytag: member="phys::UI::Widget::SetRect" ref="a5ef3d6feab24fd891b17780069e012e5" args="(const RenderableRect &amp;Rect)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::UI::Widget::SetRect </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rect</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the Rect(Position and Size) of this <a class="el" href="classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Rect</td><td>The Rect to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00145">145</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -641,7 +702,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#affc95f7b3c3753b5a89eda7f84c78fb0">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a59075a5ae35c2080876fcc78a97e5b31">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a83de47589cb02ce49882f795e9281f57">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a3cacea11779470e31efb6020c22e0c54">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a2e1f6514f83be768dad7e357beb6ac98">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#adef3f9d3351c959f711e929a5e1c8f76">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a5581675d3f250ed7270018e184b02b1d">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#a793a775a3603e71db5ad29686c27ae68">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a01641c5ed2b360307f3056f142964bf4">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a88ed4d21758cee9afeadc4069c3e0b04">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#affc95f7b3c3753b5a89eda7f84c78fb0">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#a59075a5ae35c2080876fcc78a97e5b31">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#a83de47589cb02ce49882f795e9281f57">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a3cacea11779470e31efb6020c22e0c54">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#aebcb4fe708e7d1af4609120039e276a6">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#a2e1f6514f83be768dad7e357beb6ac98">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#adef3f9d3351c959f711e929a5e1c8f76">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a5581675d3f250ed7270018e184b02b1d">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#a793a775a3603e71db5ad29686c27ae68">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a01641c5ed2b360307f3056f142964bf4">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a88ed4d21758cee9afeadc4069c3e0b04">phys::UI::Window</a>.</p>
 
 </div>
 </div>
@@ -668,7 +729,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#acee378e954050801fa8fffe835441bf4">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#aceb2d399897a502d99c72b2e9e5c859e">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#abd1b3b422680a8b549c1c897b300da5d">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#aac2babdb951a7b716b5cfff9b925420f">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#abb3c87bf6669100296c1fa4f4913ea33">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a4847e0de055a9c2f708f98742fa59a87">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1PagedCellGrid.html#a76ff4b649f4687203ba9d1473474ce99">phys::UI::PagedCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2d8997e0bbbb1c17af5128fea98fb1e4">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#aef5b78f205e75d33fff05623a1b61aa4">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a4fddc28f38174c4a89761efa00ae88c3">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a351439e78013bc87ecadcc00bce08573">phys::UI::Window</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#acee378e954050801fa8fffe835441bf4">phys::UI::ButtonListBox</a>, <a class="el" href="classphys_1_1UI_1_1Cell.html#aceb2d399897a502d99c72b2e9e5c859e">phys::UI::Cell</a>, <a class="el" href="classphys_1_1UI_1_1CellGrid.html#abd1b3b422680a8b549c1c897b300da5d">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1CheckBox.html#aac2babdb951a7b716b5cfff9b925420f">phys::UI::CheckBox</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#ac86730fe238d990505667bb9a475fb77">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1ListBox.html#abb3c87bf6669100296c1fa4f4913ea33">phys::UI::ListBox</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a4847e0de055a9c2f708f98742fa59a87">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1PagedCellGrid.html#a76ff4b649f4687203ba9d1473474ce99">phys::UI::PagedCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2d8997e0bbbb1c17af5128fea98fb1e4">phys::UI::Scrollbar</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#aef5b78f205e75d33fff05623a1b61aa4">phys::UI::ScrolledCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Spinner.html#a4fddc28f38174c4a89761efa00ae88c3">phys::UI::Spinner</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a351439e78013bc87ecadcc00bce08573">phys::UI::Window</a>.</p>
 
 </div>
 </div>
@@ -696,9 +757,9 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1CellGrid.html#addbc1338b3b321018cbaf3ff787837e5">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a60a678cc2be8f3eebfe65b3628557928">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1MenuWindow.html#a9845f7bd61f5c3f06594c4bbcbd4e063">phys::UI::MenuWindow</a>, <a class="el" href="classphys_1_1UI_1_1PagedCellGrid.html#a7d6ddd7126f86d2ea6592ac3f9a91037">phys::UI::PagedCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#aed1f61cbdab04c555e26076ec933bbf2">phys::UI::ScrolledCellGrid</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a0be6c93e5660757a5f94227f2e076ba9">phys::UI::Window</a>.</p>
+<p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1CellGrid.html#addbc1338b3b321018cbaf3ff787837e5">phys::UI::CellGrid</a>, <a class="el" href="classphys_1_1UI_1_1DropDownList.html#aa204411b17521b92acb78926d1d3f98e">phys::UI::DropDownList</a>, <a class="el" href="classphys_1_1UI_1_1Menu.html#a60a678cc2be8f3eebfe65b3628557928">phys::UI::Menu</a>, <a class="el" href="classphys_1_1UI_1_1MenuWindow.html#a9845f7bd61f5c3f06594c4bbcbd4e063">phys::UI::MenuWindow</a>, <a class="el" href="classphys_1_1UI_1_1PagedCellGrid.html#a7d6ddd7126f86d2ea6592ac3f9a91037">phys::UI::PagedCellGrid</a>, <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#aed1f61cbdab04c555e26076ec933bbf2">phys::UI::ScrolledCellGrid</a>, and <a class="el" href="classphys_1_1UI_1_1Window.html#a0be6c93e5660757a5f94227f2e076ba9">phys::UI::Window</a>.</p>
 
-<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00145">145</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uiwidget_8cpp_source.html#l00163">163</a> of file <a class="el" href="uiwidget_8cpp_source.html">uiwidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -721,7 +782,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:33 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:50 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

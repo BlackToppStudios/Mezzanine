@@ -48,6 +48,10 @@ virtual void \hyperlink{classphys_1_1AreaEffect_a6d1499c36db3bbb5341ee3aa2e90b52
 \begin{DoxyCompactList}\small\item\em Sets the origin for the area effect. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1AreaEffect_ac3ca23ffdcec077d0e7f36a471602b88}{GetLocation} () const 
 \begin{DoxyCompactList}\small\item\em Gets the origin for the area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a426c3cb70e8de1fc90d4acdf2e425cd6}{SetOrientation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the area effect. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1AreaEffect_a48946a43238686044cb4101a218102d6}{GetOrientation} ()
+\begin{DoxyCompactList}\small\item\em Gets the orientation of the area effect. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1AreaEffect_ac61255fb998e6d76ba6678f70796174d}{GetName} () const 
 \begin{DoxyCompactList}\small\item\em Gets the Area Effects name. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1AreaEffect_a99b8746c43eac266d48ad613110dc6f9}{AreaEffect::AEShapeType} \hyperlink{classphys_1_1AreaEffect_a994162616c167a878dd5c0eff372bc06}{GetShapeType} () const 
@@ -325,7 +329,7 @@ When making the vector to be passed in, remember to pass in only half values of 
 \end{DoxyParams}
 
 
-Definition at line 248 of file areaeffect.cpp.
+Definition at line 393 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a3b5e2da0598ded89ccdf2dee80441336}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateCylinderShapeX@{CreateCylinderShapeX}}
@@ -347,7 +351,7 @@ When making the vector to be passed in, remember the layout should be as such: (
 \end{DoxyParams}
 
 
-Definition at line 227 of file areaeffect.cpp.
+Definition at line 372 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_aa66eaddac1b2c945bf66346097180506}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateCylinderShapeY@{CreateCylinderShapeY}}
@@ -369,7 +373,7 @@ When making the vector to be passed in, remember the layout should be as such: (
 \end{DoxyParams}
 
 
-Definition at line 234 of file areaeffect.cpp.
+Definition at line 379 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a23fe0cbe64fd47dd70c62df434352eb4}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateCylinderShapeZ@{CreateCylinderShapeZ}}
@@ -391,7 +395,7 @@ When making the vector to be passed in, remember the layout should be as such: (
 \end{DoxyParams}
 
 
-Definition at line 241 of file areaeffect.cpp.
+Definition at line 386 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a6c31aa396851e4e17de53d9e83e2f8ee}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateGhostObject@{CreateGhostObject}}
@@ -435,7 +439,7 @@ This function will create a material script on the fly for you to use with your 
 \end{DoxyParams}
 
 
-Definition at line 462 of file areaeffect.cpp.
+Definition at line 620 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a169a8cba1c9aec84573788dff001fb31}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsBox@{CreateGraphicsBox}}
@@ -463,7 +467,7 @@ Creates a box mesh based on the physics shape for this area effect.
 
 
 
-Definition at line 473 of file areaeffect.cpp.
+Definition at line 631 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_af9a44284ceb691fdd21e4fc01811f04d}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsCylinder@{CreateGraphicsCylinder}}
@@ -485,7 +489,7 @@ This function will create a material script on the fly for you to use with your 
 \end{DoxyParams}
 
 
-Definition at line 423 of file areaeffect.cpp.
+Definition at line 581 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a7ace0990c2e9282cfc91847fddeac3e0}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsCylinder@{CreateGraphicsCylinder}}
@@ -507,7 +511,7 @@ Creates a cylinder mesh based on the physics shape for this area effect.
 \end{DoxyParams}
 
 
-Definition at line 434 of file areaeffect.cpp.
+Definition at line 592 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a6d1e8ddcea39fa441f02010af1970a16}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsSphere@{CreateGraphicsSphere}}
@@ -535,7 +539,7 @@ This function will create a material script on the fly for you to use with your 
 \end{DoxyParams}
 
 
-Definition at line 397 of file areaeffect.cpp.
+Definition at line 555 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_acf78863312a29935efbfdf60c073ae3c}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsSphere@{CreateGraphicsSphere}}
@@ -563,7 +567,7 @@ Creates a sphere mesh based on the physics shape for this area effect.
 \end{DoxyParams}
 
 
-Definition at line 408 of file areaeffect.cpp.
+Definition at line 566 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a8b7c0c8c9becb9aad10ac31ad923c0e2}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateShapeFromMesh@{CreateShapeFromMesh}}
@@ -591,7 +595,7 @@ Creates a shape from a .mesh model for the field.
 \end{DoxyParams}
 
 
-Definition at line 255 of file areaeffect.cpp.
+Definition at line 400 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a5a4337e4b7a01b9b4d16a5e8bbdec1c8}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateSphereShape@{CreateSphereShape}}
@@ -613,7 +617,7 @@ Creates a Sphere shape for the field.
 \end{DoxyParams}
 
 
-Definition at line 220 of file areaeffect.cpp.
+Definition at line 365 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a72a9673c926ce876df630c4aecfc09f6}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetAddedActors@{GetAddedActors}}
@@ -633,7 +637,7 @@ Returns the vector storing all the actors that have been added to the list since
 \end{DoxyReturn}
 
 
-Definition at line 494 of file areaeffect.cpp.
+Definition at line 652 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a4157e5e4142cbc3f0908942b4271b9b7}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetFieldShapeScale@{GetFieldShapeScale}}
@@ -653,7 +657,7 @@ Returns the current scale applied to the fields shape.
 \end{DoxyReturn}
 
 
-Definition at line 344 of file areaeffect.cpp.
+Definition at line 489 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_ac3ca23ffdcec077d0e7f36a471602b88}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetLocation@{GetLocation}}
@@ -673,7 +677,7 @@ Returns the vector3 representing the location of the area effect.
 \end{DoxyReturn}
 
 
-Definition at line 357 of file areaeffect.cpp.
+Definition at line 502 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_ac61255fb998e6d76ba6678f70796174d}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetName@{GetName}}
@@ -693,7 +697,27 @@ Returns the name of the Area Effect.
 \end{DoxyReturn}
 
 
-Definition at line 363 of file areaeffect.cpp.
+Definition at line 521 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_a48946a43238686044cb4101a218102d6}{
+\index{phys::AreaEffect@{phys::AreaEffect}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!phys::AreaEffect@{phys::AreaEffect}}
+\paragraph[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::AreaEffect::GetOrientation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1AreaEffect_a48946a43238686044cb4101a218102d6}
+
+
+Gets the orientation of the area effect. 
+
+\begin{DoxyReturn}{Returns}
+Returns a quaternion representing the rotation of the area effect. 
+\end{DoxyReturn}
+
+
+Definition at line 515 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_ab995fec11d9e5fbae1851109067958db}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetOverlappingActors@{GetOverlappingActors}}
@@ -713,7 +737,7 @@ Returns the list of actors contained within this field.
 \end{DoxyReturn}
 
 
-Definition at line 489 of file areaeffect.cpp.
+Definition at line 647 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a021763db69e977a3a19ad7cc39df073b}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetRemovedActors@{GetRemovedActors}}
@@ -733,7 +757,7 @@ Returns the vector storing all the actors that have been removed from the list s
 \end{DoxyReturn}
 
 
-Definition at line 499 of file areaeffect.cpp.
+Definition at line 657 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a994162616c167a878dd5c0eff372bc06}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetShapeType@{GetShapeType}}
@@ -753,7 +777,7 @@ Returns an enum value representing the type of shape being used by this class.
 \end{DoxyReturn}
 
 
-Definition at line 368 of file areaeffect.cpp.
+Definition at line 526 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a2ef4bb9389dd9296e680a77058609712}{
 \index{phys::AreaEffect@{phys::AreaEffect}!IsInWorld@{IsInWorld}}
@@ -773,7 +797,7 @@ Returns a bool indication whether or not this object is currently in the world.
 \end{DoxyReturn}
 
 
-Definition at line 373 of file areaeffect.cpp.
+Definition at line 531 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_aecdf8cb72c6182e2495cf25c01afc249}{
 \index{phys::AreaEffect@{phys::AreaEffect}!IsStatic@{IsStatic}}
@@ -793,7 +817,7 @@ Returns a bool indicating if this object is static.
 \end{DoxyReturn}
 
 
-Definition at line 392 of file areaeffect.cpp.
+Definition at line 550 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a140c51a8761f487e1c8f4e7123bb0b31}{
 \index{phys::AreaEffect@{phys::AreaEffect}!ScaleFieldShape@{ScaleFieldShape}}
@@ -815,7 +839,7 @@ The default scale is 1.0.
 \end{DoxyParams}
 
 
-Definition at line 339 of file areaeffect.cpp.
+Definition at line 484 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a6d1499c36db3bbb5341ee3aa2e90b52f}{
 \index{phys::AreaEffect@{phys::AreaEffect}!SetLocation@{SetLocation}}
@@ -837,7 +861,29 @@ In most cases you won't want to call this, with the exception of when you want a
 \end{DoxyParams}
 
 
-Definition at line 350 of file areaeffect.cpp.
+Definition at line 495 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_a426c3cb70e8de1fc90d4acdf2e425cd6}{
+\index{phys::AreaEffect@{phys::AreaEffect}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!phys::AreaEffect@{phys::AreaEffect}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1AreaEffect_a426c3cb70e8de1fc90d4acdf2e425cd6}
+
+
+Sets the orientation of the area effect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The \hyperlink{classphys_1_1Quaternion}{Quaternion} representing the Rotation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 508 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_acc55b82b29952902c3e9a3810decf3d9}{
 \index{phys::AreaEffect@{phys::AreaEffect}!SetStatic@{SetStatic}}
@@ -859,7 +905,7 @@ Default: true.
 \end{DoxyParams}
 
 
-Definition at line 378 of file areaeffect.cpp.
+Definition at line 536 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a0a0e6dfc6353d19b19e7bea037172072}{
 \index{phys::AreaEffect@{phys::AreaEffect}!UpdateActorList@{UpdateActorList}}
@@ -875,6 +921,12 @@ Definition at line 378 of file areaeffect.cpp.
 Updates the actors listed as within the field. 
 
 This function is automatically called once every simulation step. This shouldn't be called manually unless your usage of this class requires more then one update per step. 
+
+New-\/ish way using the dispatcher. Gives inconsistent results at startup.
+
+Old way, checks AABB's only...as it turns out. 
+
+
 
 Definition at line 154 of file areaeffect.cpp.
 

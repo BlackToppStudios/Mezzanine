@@ -1,0 +1,147 @@
+\hypertarget{classphys_1_1PhysicsConstructionInfo}{
+\subsection{phys::PhysicsConstructionInfo Class Reference}
+\label{classphys_1_1PhysicsConstructionInfo}\index{phys::PhysicsConstructionInfo@{phys::PhysicsConstructionInfo}}
+}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classphys_1_1PhysicsConstructionInfo_af37c7fea33a2150f0a199e9e208b2d67}{PhysicsConstructionFlags} \{ {\bfseries PCF\_\-SoftRigidWorld} =  1, 
+{\bfseries PCF\_\-LimitlessWorld} =  2
+ \}
+\begin{DoxyCompactList}\small\item\em This is an enum used by the physics manager to determine what internal classes should be used when creating the world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1PhysicsConstructionInfo_a4ac8eccf1d73e949fdf753509a784c91}{
+\hyperlink{classphys_1_1PhysicsConstructionInfo_a4ac8eccf1d73e949fdf753509a784c91}{PhysicsConstructionInfo} ()}
+\label{classphys_1_1PhysicsConstructionInfo_a4ac8eccf1d73e949fdf753509a784c91}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1PhysicsConstructionInfo_ae795723590da96922fefbdf507381ba5}{
+\hyperlink{classphys_1_1PhysicsConstructionInfo_ae795723590da96922fefbdf507381ba5}{$\sim$PhysicsConstructionInfo} ()}
+\label{classphys_1_1PhysicsConstructionInfo_ae795723590da96922fefbdf507381ba5}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \& \hyperlink{classphys_1_1PhysicsConstructionInfo_a69aff9644621d3a76c6901bb94c2a33d}{operator=} (const \hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \&Other)
+\begin{DoxyCompactList}\small\item\em Assignment Operator. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1PhysicsConstructionInfo_ae477435ddd66f9424f7014463899bcf8}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsConstructionInfo_ae477435ddd66f9424f7014463899bcf8}{PhysicsFlags}}
+\label{classphys_1_1PhysicsConstructionInfo_ae477435ddd66f9424f7014463899bcf8}
+
+\begin{DoxyCompactList}\small\item\em The flags to initialize the physics system with. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsConstructionInfo_ab45b8f19cf4d10351a8ea5ecce56363a}{GeographyLowerBounds}
+\begin{DoxyCompactList}\small\item\em The lower limits of the worlds AABB. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsConstructionInfo_aca489cc9e35eeb816ad3d0d069c29688}{GeographyUpperBounds}
+\begin{DoxyCompactList}\small\item\em The upper limits of the worlds AABB. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsConstructionInfo_aae25b797d7ea11b812bc3433c38f554a}{MaxProxies}
+\begin{DoxyCompactList}\small\item\em The maximum number of Actors and Area Effects you expect to have in the world at one time. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1PhysicsConstructionInfo_a213ced8debbdd59a2a489298f292182c}{
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsConstructionInfo_a213ced8debbdd59a2a489298f292182c}{Gravity}}
+\label{classphys_1_1PhysicsConstructionInfo_a213ced8debbdd59a2a489298f292182c}
+
+\begin{DoxyCompactList}\small\item\em The gravity to set for the world. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1PhysicsConstructionInfo_a8e6ad425c2010f7db9a45111c1ed39c5}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsConstructionInfo_a8e6ad425c2010f7db9a45111c1ed39c5}{EventFilterAge}}
+\label{classphys_1_1PhysicsConstructionInfo_a8e6ad425c2010f7db9a45111c1ed39c5}
+
+\begin{DoxyCompactList}\small\item\em The age a collision contact has to have(number of simulation steps) to generate an event for it. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1PhysicsConstructionInfo_a710a01f32882ae90b71e66ea84642898}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1PhysicsConstructionInfo_a710a01f32882ae90b71e66ea84642898}{EventFilterImpulse}}
+\label{classphys_1_1PhysicsConstructionInfo_a710a01f32882ae90b71e66ea84642898}
+
+\begin{DoxyCompactList}\small\item\em The amount of force a collision has to have to generate an event for it. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+
+
+Definition at line 81 of file physicsmanager.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1PhysicsConstructionInfo_a69aff9644621d3a76c6901bb94c2a33d}{
+\index{phys::PhysicsConstructionInfo@{phys::PhysicsConstructionInfo}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::PhysicsConstructionInfo@{phys::PhysicsConstructionInfo}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysicsConstructionInfo} \& phys::PhysicsConstructionInfo::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf PhysicsConstructionInfo} \&}]{Other}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1PhysicsConstructionInfo_a69aff9644621d3a76c6901bb94c2a33d}
+
+
+Assignment Operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} to be copied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to this. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file physicsmanager.cpp.
+
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{classphys_1_1PhysicsConstructionInfo_ab45b8f19cf4d10351a8ea5ecce56363a}{
+\index{phys::PhysicsConstructionInfo@{phys::PhysicsConstructionInfo}!GeographyLowerBounds@{GeographyLowerBounds}}
+\index{GeographyLowerBounds@{GeographyLowerBounds}!phys::PhysicsConstructionInfo@{phys::PhysicsConstructionInfo}}
+\paragraph[{GeographyLowerBounds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} {\bf phys::PhysicsConstructionInfo::GeographyLowerBounds}}\hfill}
+\label{classphys_1_1PhysicsConstructionInfo_ab45b8f19cf4d10351a8ea5ecce56363a}
+
+
+The lower limits of the worlds AABB. 
+
+\begin{DoxyNote}{Note}
+This member is ignored if the \char`\"{}PCF\_\-LimitlessWorld\char`\"{} flag is passed in. 
+\end{DoxyNote}
+
+
+Definition at line 109 of file physicsmanager.h.
+
+\hypertarget{classphys_1_1PhysicsConstructionInfo_aca489cc9e35eeb816ad3d0d069c29688}{
+\index{phys::PhysicsConstructionInfo@{phys::PhysicsConstructionInfo}!GeographyUpperBounds@{GeographyUpperBounds}}
+\index{GeographyUpperBounds@{GeographyUpperBounds}!phys::PhysicsConstructionInfo@{phys::PhysicsConstructionInfo}}
+\paragraph[{GeographyUpperBounds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} {\bf phys::PhysicsConstructionInfo::GeographyUpperBounds}}\hfill}
+\label{classphys_1_1PhysicsConstructionInfo_aca489cc9e35eeb816ad3d0d069c29688}
+
+
+The upper limits of the worlds AABB. 
+
+\begin{DoxyNote}{Note}
+This member is ignored if the \char`\"{}PCF\_\-LimitlessWorld\char`\"{} flag is passed in. 
+\end{DoxyNote}
+
+
+Definition at line 112 of file physicsmanager.h.
+
+\hypertarget{classphys_1_1PhysicsConstructionInfo_aae25b797d7ea11b812bc3433c38f554a}{
+\index{phys::PhysicsConstructionInfo@{phys::PhysicsConstructionInfo}!MaxProxies@{MaxProxies}}
+\index{MaxProxies@{MaxProxies}!phys::PhysicsConstructionInfo@{phys::PhysicsConstructionInfo}}
+\paragraph[{MaxProxies}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} {\bf phys::PhysicsConstructionInfo::MaxProxies}}\hfill}
+\label{classphys_1_1PhysicsConstructionInfo_aae25b797d7ea11b812bc3433c38f554a}
+
+
+The maximum number of Actors and Area Effects you expect to have in the world at one time. 
+
+\begin{DoxyNote}{Note}
+This member is ignored if the \char`\"{}PCF\_\-LimitlessWorld\char`\"{} flag is passed in. 
+\end{DoxyNote}
+
+
+Definition at line 115 of file physicsmanager.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+physicsmanager.h\item 
+physicsmanager.cpp\end{DoxyCompactItemize}

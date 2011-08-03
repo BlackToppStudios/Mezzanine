@@ -93,10 +93,10 @@ Inheritance diagram for phys::UI::ButtonListBox:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a0728b3456dc7abba4e1d8945ee4e2dfa">ButtonListBox</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;name, const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position, const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;ScrollbarWidth, const UI::ScrollbarStyle &amp;ScrollStyle, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a0728b3456dc7abba4e1d8945ee4e2dfa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a43ac98232280969a8ce2641d36658808">ButtonListBox</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;name, const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;ScrollbarWidth, const UI::ScrollbarStyle &amp;ScrollStyle, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a43ac98232280969a8ce2641d36658808"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb7cf0d76f1f6825276694f0ebb7f4a6"></a><!-- doxytag: member="phys::UI::ButtonListBox::~ButtonListBox" ref="afb7cf0d76f1f6825276694f0ebb7f4a6" args="()" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#afb7cf0d76f1f6825276694f0ebb7f4a6">~ButtonListBox</a> ()</td></tr>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#afb7cf0d76f1f6825276694f0ebb7f4a6">~ButtonListBox</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#acee378e954050801fa8fffe835441bf4">SetVisible</a> (bool visible)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box.  <a href="#acee378e954050801fa8fffe835441bf4"></a><br/></td></tr>
@@ -195,7 +195,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Definition at line <a class="el" href="uibuttonlistbox_8h_source.html#l00060">60</a> of file <a class="el" href="uibuttonlistbox_8h_source.html">uibuttonlistbox.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a0728b3456dc7abba4e1d8945ee4e2dfa"></a><!-- doxytag: member="phys::UI::ButtonListBox::ButtonListBox" ref="a0728b3456dc7abba4e1d8945ee4e2dfa" args="(ConstString &amp;name, const Vector2 &amp;Position, const Vector2 &amp;Size, const Real &amp;ScrollbarWidth, const UI::ScrollbarStyle &amp;ScrollStyle, Layer *PLayer)" -->
+<a class="anchor" id="a43ac98232280969a8ce2641d36658808"></a><!-- doxytag: member="phys::UI::ButtonListBox::ButtonListBox" ref="a43ac98232280969a8ce2641d36658808" args="(ConstString &amp;name, const RenderableRect &amp;Rect, const Real &amp;ScrollbarWidth, const UI::ScrollbarStyle &amp;ScrollStyle, Layer *PLayer)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -208,14 +208,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Position</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Size</em>, </td>
+          <td class="paramtype">const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rect</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -248,16 +242,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box. </td></tr>
-    <tr><td class="paramname">Position</td><td>The position of the <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box. </td></tr>
-    <tr><td class="paramname">Size</td><td>The size of the <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box. </td></tr>
-    <tr><td class="paramname">ScrollbarWidth</td><td>The relative(to screensize) width of the vertical scrollbar. If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look. </td></tr>
+    <tr><td class="paramname">Rect</td><td>The Rect representing the position and size of the <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box. </td></tr>
+    <tr><td class="paramname">ScrollbarWidth</td><td>The width of the vertical scrollbar. If the Rect passed in is relative, this will expect Scrollwidth to be relative as well. If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look. </td></tr>
     <tr><td class="paramname">ScrollStyle</td><td>The style of the scrollbar you want for this <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box. See <a class="el" href="classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">Scrollbar</a> class for more information. </td></tr>
     <tr><td class="paramname"><a class="el" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a></td><td>The parent layer this <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box belongs to. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>Fourth instance of needing to include the namespace in the declaration seemingly needlessly. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>Fourth instance of needing to include the namespace in the declaration seemingly needlessly. </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00061">61</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
@@ -308,7 +301,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the created button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00289">289</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00302">302</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -331,7 +324,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a613df6dbb42efe139d185043a00259dc">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00249">249</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00262">262</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -358,7 +351,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00322">322</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00337">337</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -385,7 +378,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00336">336</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00351">351</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -423,7 +416,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00362">362</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00377">377</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -446,7 +439,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a0a29fecff7f56d7909f65fd63b0990e7">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00397">397</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00412">412</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -469,7 +462,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#af3a685621ed220748c0940ea38c96ed2">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00431">431</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00446">446</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -490,7 +483,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 <p>Gets the background of this <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the background of this <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00441">441</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00456">456</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -514,7 +507,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a3e464b028b0d1b5755923b8790260c33">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00383">383</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00398">398</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -535,7 +528,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 <p>Gets the currently selected button. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the currently selected button, or NULL if none are selected. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00436">436</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00451">451</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -563,7 +556,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the named button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00309">309</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00324">324</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -587,7 +580,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a07039c19e57de314147ce066417da0a2">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00414">414</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00429">429</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -608,7 +601,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 <p>Gets the scrollbar used within this <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the scrollbar of this <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00446">446</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00461">461</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -631,7 +624,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#aaf1a1bd31b8e626467ce9cdb69bdf7ac">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00224">224</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00237">237</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -660,7 +653,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a77727351d98b10f1f4eb45048cb882e3">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00388">388</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00403">403</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -689,7 +682,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#acda63a62fa158d5fe00c86f50e5c120d">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00419">419</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00434">434</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -716,7 +709,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00355">355</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00370">370</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -746,7 +739,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a3ef894be2c0868105b2bf495ae944d00">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00374">374</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00389">389</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -774,7 +767,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00350">350</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00365">365</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -804,7 +797,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a00f73c12583d25a75c089f944075b24d">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00402">402</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00417">417</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -843,7 +836,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00279">279</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00292">292</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -872,7 +865,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#ab049233d8d5522a6ab42654b8924a3e0">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00214">214</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibuttonlistbox_8cpp_source.html#l00227">227</a> of file <a class="el" href="uibuttonlistbox_8cpp_source.html">uibuttonlistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -887,7 +880,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
       </table>
 </div>
 <div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>Third instance of needing to include the namespace in the declaration seemingly needlessly. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>Third instance of needing to include the namespace in the declaration seemingly needlessly. </dd></dl>
 
 <p>Definition at line <a class="el" href="uibuttonlistbox_8h_source.html#l00065">65</a> of file <a class="el" href="uibuttonlistbox_8h_source.html">uibuttonlistbox.h</a>.</p>
 
@@ -912,7 +905,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:31 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:48 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

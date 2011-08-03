@@ -14,9 +14,9 @@ This is a helper class for use with specialized text display.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1MarkupText_af22d52732e11ae4f6e037751fe3ea6a3}{MarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1MarkupText_aeb1fe3a0dd2a996bf50bd4c695d1af94}{MarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1MarkupText_abc0232756941cd10002d0d7fa6bddabe}{MarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classphys_1_1UI_1_1MarkupText_a9050a1cdd940e80023744a8476a78f21}{MarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a7c5d8033801123c938089ef9ca647f01}{
 virtual \hyperlink{classphys_1_1UI_1_1MarkupText_a7c5d8033801123c938089ef9ca647f01}{$\sim$MarkupText} ()}
@@ -84,9 +84,9 @@ virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_af66aa4c6c09ba9714f2ae3afa
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1MarkupText_a30fdf650958fddab91caed23a36066b5}{
-void {\bfseries ConstructMarkupText} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)}
-\label{classphys_1_1UI_1_1MarkupText_a30fdf650958fddab91caed23a36066b5}
+\hypertarget{classphys_1_1UI_1_1MarkupText_a8c82cd91573f7bdd9687500ee5aa2a3c}{
+void {\bfseries ConstructMarkupText} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)}
+\label{classphys_1_1UI_1_1MarkupText_a8c82cd91573f7bdd9687500ee5aa2a3c}
 
 \end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
@@ -147,28 +147,28 @@ Definition at line 69 of file uimarkuptext.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1MarkupText_af22d52732e11ae4f6e037751fe3ea6a3}{
+\hypertarget{classphys_1_1UI_1_1MarkupText_aeb1fe3a0dd2a996bf50bd4c695d1af94}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!MarkupText@{MarkupText}}
 \index{MarkupText@{MarkupText}!phys::UI::MarkupText@{phys::UI::MarkupText}}
 \paragraph[{MarkupText}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::MarkupText::MarkupText (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Whole} \&}]{Glyph, }
 \item[{const {\bf String} \&}]{Text, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1MarkupText_af22d52732e11ae4f6e037751fe3ea6a3}
+\label{classphys_1_1UI_1_1MarkupText_aeb1fe3a0dd2a996bf50bd4c695d1af94}
 
 
 Internal constructor. 
 
-
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. 
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of this markup text. \\
 \hline
-{\em Position} & The top left position of the markup text. \\
+{\em Rect} & The Rect representing the position and size of the markup text. \\
 \hline
 {\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
 \hline
@@ -181,28 +181,28 @@ Internal constructor.
 
 Definition at line 55 of file uimarkuptext.cpp.
 
-\hypertarget{classphys_1_1UI_1_1MarkupText_abc0232756941cd10002d0d7fa6bddabe}{
+\hypertarget{classphys_1_1UI_1_1MarkupText_a9050a1cdd940e80023744a8476a78f21}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!MarkupText@{MarkupText}}
 \index{MarkupText@{MarkupText}!phys::UI::MarkupText@{phys::UI::MarkupText}}
 \paragraph[{MarkupText}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::MarkupText::MarkupText (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{LineHeight, }
 \item[{const {\bf String} \&}]{Text, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1MarkupText_abc0232756941cd10002d0d7fa6bddabe}
+\label{classphys_1_1UI_1_1MarkupText_a9050a1cdd940e80023744a8476a78f21}
 
 
 Internal constructor. 
 
-
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. 
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of this markup text. \\
 \hline
-{\em Position} & The top left position of the markup text. \\
+{\em Rect} & The Rect representing the position and size of the markup text. \\
 \hline
 {\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
 \hline
@@ -213,7 +213,7 @@ Internal constructor.
 \end{DoxyParams}
 
 
-Definition at line 68 of file uimarkuptext.cpp.
+Definition at line 67 of file uimarkuptext.cpp.
 
 
 
@@ -236,7 +236,7 @@ Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of
 \end{DoxyReturn}
 
 
-Definition at line 209 of file uimarkuptext.cpp.
+Definition at line 216 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a0fd8fa24b2e3a40f6fe3a8314c8e489f}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetAutoScaleText@{GetAutoScaleText}}
@@ -256,7 +256,7 @@ Returns a bool indicating whether or not this caption will automatically scale i
 \end{DoxyReturn}
 
 
-Definition at line 296 of file uimarkuptext.cpp.
+Definition at line 303 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a02872d0b9828b34e9b2ceec82cce237b}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetDefaultGlyphIndex@{GetDefaultGlyphIndex}}
@@ -276,7 +276,7 @@ Returns a Whole representing the index of the glyph in use by this markup text.
 \end{DoxyReturn}
 
 
-Definition at line 145 of file uimarkuptext.cpp.
+Definition at line 152 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a4a742f4d64038ded68c5480f4cf3e017}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetMaxActualSize@{GetMaxActualSize}}
@@ -296,7 +296,7 @@ Returns a vector2 representing the maximum size of this markup text.
 \end{DoxyReturn}
 
 
-Definition at line 235 of file uimarkuptext.cpp.
+Definition at line 242 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_ae68fd261f2dc9494a16e3089c7a35b8a}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetMaxSize@{GetMaxSize}}
@@ -316,7 +316,7 @@ Returns a vector2 representing the maximum size of this markup text.
 \end{DoxyReturn}
 
 
-Definition at line 223 of file uimarkuptext.cpp.
+Definition at line 230 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_afa64067f890466ad4844c4836e7667fd}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetName@{GetName}}
@@ -336,7 +336,7 @@ Returns a string containing the name of this markup text.
 \end{DoxyReturn}
 
 
-Definition at line 114 of file uimarkuptext.cpp.
+Definition at line 121 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a9d92f03e1cad181a5d8f20f3f95cf7cc}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetPosition@{GetPosition}}
@@ -356,7 +356,7 @@ Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of
 \end{DoxyReturn}
 
 
-Definition at line 198 of file uimarkuptext.cpp.
+Definition at line 205 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_ac7773396203de98705ea7b138908028e}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetPrimaryAtlas@{GetPrimaryAtlas}}
@@ -376,7 +376,7 @@ Returns a string containing the name of the primary atlas that is set.
 \end{DoxyReturn}
 
 
-Definition at line 286 of file uimarkuptext.cpp.
+Definition at line 293 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a86afb23309534d86ed9675170b321874}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetRenderPriority@{GetRenderPriority}}
@@ -396,7 +396,7 @@ Returns an enum value representing this markup text's priority level.
 \end{DoxyReturn}
 
 
-Definition at line 261 of file uimarkuptext.cpp.
+Definition at line 268 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_af5d8a7e6ca03e15fc488608c28a54c1e}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetText@{GetText}}
@@ -416,7 +416,7 @@ Returns the text being displayed.
 \end{DoxyReturn}
 
 
-Definition at line 124 of file uimarkuptext.cpp.
+Definition at line 131 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_aa69d77428171e0c49c51a5d1854ffaff}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!GetTextScale@{GetTextScale}}
@@ -436,7 +436,7 @@ Returns a Real value representing the scale applied to the text in this caption.
 \end{DoxyReturn}
 
 
-Definition at line 134 of file uimarkuptext.cpp.
+Definition at line 141 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a17873359c7387926c7e759665ad4312d}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!IsVisible@{IsVisible}}
@@ -456,7 +456,7 @@ Returns a bool representing the visibility of this markup text.
 \end{DoxyReturn}
 
 
-Definition at line 99 of file uimarkuptext.cpp.
+Definition at line 106 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_acb44480453d2228e0f1a7bcd77a0bd17}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetActualPosition@{SetActualPosition}}
@@ -478,7 +478,7 @@ Sets the top left position of this markup text in pixels.
 \end{DoxyParams}
 
 
-Definition at line 203 of file uimarkuptext.cpp.
+Definition at line 210 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a860efc65536fbaf274fc64e26881b84b}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetAutoScaleText@{SetAutoScaleText}}
@@ -500,7 +500,7 @@ Enables or disables scaling the text automatically on a screen size change.
 \end{DoxyParams}
 
 
-Definition at line 291 of file uimarkuptext.cpp.
+Definition at line 298 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_ac4571478569a161f919d6439c4f8d1d2}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetDefaultGlyphIndex@{SetDefaultGlyphIndex}}
@@ -522,7 +522,7 @@ The glyph index is defined in your gorilla file. This class can change which gly
 \end{DoxyParams}
 
 
-Definition at line 139 of file uimarkuptext.cpp.
+Definition at line 146 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_af14f0447c4785ab8555c897c66e87b79}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetMaxActualSize@{SetMaxActualSize}}
@@ -544,7 +544,7 @@ Sets the maximum size of this markup text in pixels.
 \end{DoxyParams}
 
 
-Definition at line 228 of file uimarkuptext.cpp.
+Definition at line 235 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_ad4381a00f10d02152fd6df737fba60a4}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetMaxSize@{SetMaxSize}}
@@ -566,7 +566,7 @@ Sets the maximum relative size of this markup text.
 \end{DoxyParams}
 
 
-Definition at line 215 of file uimarkuptext.cpp.
+Definition at line 222 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a7ab3316271d5b08005f7555b397e0fca}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetPosition@{SetPosition}}
@@ -588,7 +588,7 @@ Sets the relative top left position of this markup text.
 \end{DoxyParams}
 
 
-Definition at line 190 of file uimarkuptext.cpp.
+Definition at line 197 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a354219ee5ad95b4eb6bd83cadbab6a69}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetPrimaryAtlas@{SetPrimaryAtlas}}
@@ -610,7 +610,7 @@ Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
 \end{DoxyParams}
 
 
-Definition at line 281 of file uimarkuptext.cpp.
+Definition at line 288 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a232c86702720af9d919e51846a79d35a}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetRenderPriority@{SetRenderPriority}}
@@ -632,7 +632,7 @@ The default value for this is Medium.
 \end{DoxyParams}
 
 
-Definition at line 241 of file uimarkuptext.cpp.
+Definition at line 248 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a1c2989d96cb297b61ee4050bfe79fe23}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetText@{SetText}}
@@ -654,7 +654,7 @@ Sets the text displayed within the markup text.
 \end{DoxyParams}
 
 
-Definition at line 119 of file uimarkuptext.cpp.
+Definition at line 126 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_ada66a8df7627bd30021728232afdcf59}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetTextScale@{SetTextScale}}
@@ -676,7 +676,7 @@ Sets the scaling to be applied to the text being rendered.
 \end{DoxyParams}
 
 
-Definition at line 129 of file uimarkuptext.cpp.
+Definition at line 136 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_ac5c38c21af2fbc3533697cacfec8fdc3}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!SetVisible@{SetVisible}}
@@ -698,7 +698,7 @@ Sets the visibility of this markup text.
 \end{DoxyParams}
 
 
-Definition at line 94 of file uimarkuptext.cpp.
+Definition at line 101 of file uimarkuptext.cpp.
 
 \hypertarget{classphys_1_1UI_1_1MarkupText_af66aa4c6c09ba9714f2ae3afaeeb2527}{
 \index{phys::UI::MarkupText@{phys::UI::MarkupText}!UpdateDimensions@{UpdateDimensions}}
@@ -715,7 +715,7 @@ Updates the dimensions of this markup text to match those of the new screen size
 
 This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
 
-Definition at line 301 of file uimarkuptext.cpp.
+Definition at line 308 of file uimarkuptext.cpp.
 
 
 

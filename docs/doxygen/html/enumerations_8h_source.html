@@ -119,168 +119,184 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00056"></a>00056         AAS_DisableSimulation = 5
 <a name="l00057"></a>00057     };
 <a name="l00058"></a>00058 <span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">    /// @enum AttenuationStyle</span>
-<a name="l00060"></a>00060 <span class="comment">    /// @brief These values represent the kind of attenuation applied to the field strength</span>
-<a name="l00061"></a>00061 <span class="comment">    /// over a distance.</span>
-<a name="l00062"></a>00062 <span class="comment">    /// @details None is the default, where the force is constant in all area&#39;s of the</span>
-<a name="l00063"></a>00063 <span class="comment">    /// field.  Linear is where the force applied drops by the attenuation value times the distance</span>
-<a name="l00064"></a>00064 <span class="comment">    /// (strength - (attenuation amount * distance to AE center)).  Quadratic is where the force</span>
-<a name="l00065"></a>00065 <span class="comment">    /// applied drops by the attenuation value times the distance squared (strength -</span>
-<a name="l00066"></a>00066 <span class="comment">    /// (attenuation amount * distance to AE center * distance to AE center)).</span>
-<a name="l00067"></a><a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739f">00067</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739f" title="These values represent the kind of attenuation applied to the field strength over a distance...">AttenuationStyle</a>
-<a name="l00068"></a>00068     {
-<a name="l00069"></a><a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739faec47e7157a10201b7aef0c1cbb6ccb5d">00069</a>         <a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739faec47e7157a10201b7aef0c1cbb6ccb5d" title="No Attentuation, Equal strength through.">Att_None</a>,        <span class="comment">///&lt; No Attentuation, Equal strength through.</span>
-<a name="l00070"></a><a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fabcceb16182220293f2260edb41b548f1">00070</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fabcceb16182220293f2260edb41b548f1" title="Linear attentuation, Strength weaker farther from center.">Att_Linear</a>,      <span class="comment">///&lt; Linear attentuation, Strength weaker farther from center.</span>
-<a name="l00071"></a><a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fac9ef08c39daa338975f4f8879e86100b">00071</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fac9ef08c39daa338975f4f8879e86100b" title="Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the c...">Att_Quadratic</a>    <span class="comment">///&lt; Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.</span>
-<a name="l00072"></a>00072 <span class="comment"></span>    };
-<a name="l00073"></a>00073 <span class="comment"></span>
-<a name="l00074"></a>00074 <span class="comment">    /// @enum CollisionFilter</span>
-<a name="l00075"></a>00075 <span class="comment">    /// @brief These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with.</span>
-<a name="l00076"></a>00076 <span class="comment">    /// @details You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with</span>
-<a name="l00077"></a>00077 <span class="comment">    /// any of the existing groups defined here.  Simply pass in the Whole where appropriate.</span>
-<a name="l00078"></a><a class="code" href="namespacephys.html#aa69523df12b54123e76c40734556ca35">00078</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespacephys.html#aa69523df12b54123e76c40734556ca35" title="These are the various filters that can be applied to all physics accelerated world objects to limit w...">CollisionFilter</a>
-<a name="l00079"></a>00079     {
-<a name="l00080"></a>00080         <span class="comment">// Standard base filters</span>
-<a name="l00081"></a>00081         CF_GenericFilter = 1,
-<a name="l00082"></a>00082         CF_StaticFilter = 2,
-<a name="l00083"></a>00083         CF_KinematicFilter = 4,
-<a name="l00084"></a>00084         CF_DebrisFilter = 8,
-<a name="l00085"></a>00085         CF_SensorFilter = 16,
-<a name="l00086"></a>00086         CF_CharacterFilter = 32,
-<a name="l00087"></a>00087         CF_AllFilter = -1,
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089         <span class="comment">// Non-Standard Filters</span>
-<a name="l00090"></a>00090         CF_UserFilter1 = 64,
-<a name="l00091"></a>00091         CF_UserFilter2 = 128
-<a name="l00092"></a>00092     };
-<a name="l00093"></a>00093 <span class="comment"></span>
-<a name="l00094"></a>00094 <span class="comment">    /// @enum ConstraintParams</span>
-<a name="l00095"></a>00095 <span class="comment">    /// @brief Used by constraints for setting some parameters.</span>
-<a name="l00096"></a>00096 <span class="comment">    /// @details See the constraint class documentation for more details.</span>
-<a name="l00097"></a><a class="code" href="namespacephys.html#a3d9969958345dec81ed83544445e3c28">00097</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespacephys.html#a3d9969958345dec81ed83544445e3c28" title="Used by constraints for setting some parameters.">ConstraintParams</a>
-<a name="l00098"></a>00098     {
-<a name="l00099"></a>00099         Con_ERP = 1,
-<a name="l00100"></a>00100         Con_Stop_ERP,
-<a name="l00101"></a>00101         Con_CFM,
-<a name="l00102"></a>00102         Con_Stop_CFM
-<a name="l00103"></a>00103     };
-<a name="l00104"></a>00104 <span class="comment"></span>
-<a name="l00105"></a>00105 <span class="comment">    /// @enum WorldObjectType</span>
-<a name="l00106"></a>00106 <span class="comment">    /// @brief Used by various classes to help identify what class an object is.</span>
-<a name="l00107"></a>00107 <span class="comment">    /// @details This is mostly used internally for casting void pointers.</span>
-<a name="l00108"></a><a class="code" href="namespacephys.html#a56410935e1c614a932dbc91ee7330df1">00108</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespacephys.html#a56410935e1c614a932dbc91ee7330df1" title="Used by various classes to help identify what class an object is.">WorldObjectType</a>
-<a name="l00109"></a>00109     {
-<a name="l00110"></a>00110         <span class="comment">// Actors</span>
-<a name="l00111"></a>00111         WOT_ActorBase = 1,
-<a name="l00112"></a>00112         WOT_ActorRigid = 2,
-<a name="l00113"></a>00113         WOT_ActorSoft = 4,
-<a name="l00114"></a>00114         WOT_ActorCharacter = 8,
-<a name="l00115"></a>00115         WOT_ActorTerrain = 16,
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117         <span class="comment">// AE Fields</span>
-<a name="l00118"></a>00118         WOT_AreaEffect = 32,
-<a name="l00119"></a>00119         WOT_CustomAE  = 64,
-<a name="l00120"></a>00120         WOT_GravityField = 128,
-<a name="l00121"></a>00121         WOT_GravityWell = 256,
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123         <span class="comment">// Scene Objects</span>
-<a name="l00124"></a>00124         WOT_Light = 512,
-<a name="l00125"></a>00125         WOT_ParticleEffect = 1024,
-<a name="l00126"></a>00126         WOT_Camera = 2048
-<a name="l00127"></a>00127     };
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129     <span class="keyword">namespace </span>UI
-<a name="l00130"></a>00130     {<span class="comment"></span>
-<a name="l00131"></a>00131 <span class="comment">        /// @enum ActivationCondition</span>
-<a name="l00132"></a>00132 <span class="comment">        /// @brief Used primarily by UI buttons to decide how/when a button is activated.</span>
-<a name="l00133"></a>00133 <span class="comment">        /// @details Essentially used to decide if a button should activate when it&#39;s activation button</span>
-<a name="l00134"></a>00134 <span class="comment">        /// is pressed or lifted.</span>
-<a name="l00135"></a>00135 <span class="comment"></span>        <span class="keyword">enum</span> ActivationCondition
-<a name="l00136"></a>00136         {
-<a name="l00137"></a>00137             AC_OnPress,
-<a name="l00138"></a>00138             AC_OnLift
-<a name="l00139"></a>00139         };<span class="comment"></span>
-<a name="l00140"></a>00140 <span class="comment">        /// @enum RenderPriority</span>
-<a name="l00141"></a>00141 <span class="comment">        /// @brief Used by UI elements created by layers to determine z-ordering within a layer.</span>
-<a name="l00142"></a>00142 <span class="comment">        /// @details This essentially means we&#39;re adding layers to our layers without the messy</span>
-<a name="l00143"></a>00143 <span class="comment">        /// and un-intuitive re-coding necessary to actually accomplish that.</span>
-<a name="l00144"></a>00144 <span class="comment"></span>        <span class="keyword">enum</span> RenderPriority
-<a name="l00145"></a>00145         {
-<a name="l00146"></a>00146             RP_Low,
-<a name="l00147"></a>00147             RP_Medium,
-<a name="l00148"></a>00148             RP_High
-<a name="l00149"></a>00149         };<span class="comment"></span>
-<a name="l00150"></a>00150 <span class="comment">        /// @enum ResizeableAnchor</span>
-<a name="l00151"></a>00151 <span class="comment">        /// @brief Used by UI container classes to determine their movement behavior when the container is resized.</span>
-<a name="l00152"></a>00152 <span class="comment">        /// @details RA_AnchorTop means it stays in the same position if given a resize event relative to the top.</span>
-<a name="l00153"></a>00153 <span class="comment">        /// RA_AnchorBottom means the same as RA_AnchorTop but for the bottom of the container.  RA_AnchorMiddle means</span>
-<a name="l00154"></a>00154 <span class="comment">        /// it&#39;ll change position by half of the pixels that the container was resized.</span>
-<a name="l00155"></a>00155 <span class="comment"></span>        <span class="keyword">enum</span> ResizeableAnchor
-<a name="l00156"></a>00156         {
-<a name="l00157"></a>00157             RA_AnchorTopLeft,
-<a name="l00158"></a>00158             RA_AnchorTop,
-<a name="l00159"></a>00159             RA_AnchorTopRight,
-<a name="l00160"></a>00160             RA_AnchorLeft,
-<a name="l00161"></a>00161             RA_AnchorMiddle,
-<a name="l00162"></a>00162             RA_AnchorRight,
-<a name="l00163"></a>00163             RA_AnchorBottomLeft,
-<a name="l00164"></a>00164             RA_AnchorBottom,
-<a name="l00165"></a>00165             RA_AnchorBottomRight
-<a name="l00166"></a>00166         };<span class="comment"></span>
-<a name="l00167"></a>00167 <span class="comment">        /// @enum ResizeableTether</span>
-<a name="l00168"></a>00168 <span class="comment">        /// @brief Used by UI container classes to determine their resize behavior when the container is resized.</span>
-<a name="l00169"></a>00169 <span class="comment">        /// @details RT_TetherHorizontal means it will resize itself equally during any Horizontal resizing of the container.</span>
-<a name="l00170"></a>00170 <span class="comment">        /// RT_TetherVertical means the same as RT_TetherHorizontal, but for Vertical resizes.  RT_TetherBoth means it&#39;ll do both.</span>
-<a name="l00171"></a>00171 <span class="comment"></span>        <span class="keyword">enum</span> ResizeableTether
+<a name="l00059"></a>00059 <span class="comment">    /// @enum AspectRatio</span>
+<a name="l00060"></a>00060 <span class="comment">    /// @brief This is used primarily by the GraphicsManager to keep track of the supported</span>
+<a name="l00061"></a>00061 <span class="comment">    /// and currently used aspect ratios.</span>
+<a name="l00062"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aed">00062</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aed" title="This is used primarily by the GraphicsManager to keep track of the supported and currently used aspec...">AspectRatio</a>
+<a name="l00063"></a>00063     {
+<a name="l00064"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda62f10909139757e92c17b8fbaf82ce6a">00064</a>         <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda62f10909139757e92c17b8fbaf82ce6a" title="1.5">AR_3_By_2</a>,     <span class="comment">///&lt; 1.5</span>
+<a name="l00065"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aedad2b8f8c1b929fabdf195c2da12a2ec68">00065</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aedad2b8f8c1b929fabdf195c2da12a2ec68" title="1.334">AR_4_By_3</a>,     <span class="comment">///&lt; 1.334</span>
+<a name="l00066"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda432bcb71dfc521ec7cbcf7e40d591ded">00066</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda432bcb71dfc521ec7cbcf7e40d591ded" title="1.667">AR_5_By_3</a>,     <span class="comment">///&lt; 1.667</span>
+<a name="l00067"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda75a48f55181fcf03646b7a7bfe3bf0aa">00067</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda75a48f55181fcf03646b7a7bfe3bf0aa" title="1.25">AR_5_By_4</a>,     <span class="comment">///&lt; 1.25</span>
+<a name="l00068"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda1e17b1da7c1ba4fb6710fa85886fa28a">00068</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda1e17b1da7c1ba4fb6710fa85886fa28a" title="1.6">AR_8_By_5</a>,     <span class="comment">///&lt; 1.6</span>
+<a name="l00069"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aedab6449430d220e985cdcf8a9ee8093750">00069</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aedab6449430d220e985cdcf8a9ee8093750" title="1.778">AR_16_By_9</a>,    <span class="comment">///&lt; 1.778</span>
+<a name="l00070"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda7402aa5b653dbe3ac902bd4c88f28634">00070</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda7402aa5b653dbe3ac902bd4c88f28634" title="1.889">AR_17_By_9</a>,    <span class="comment">///&lt; 1.889</span>
+<a name="l00071"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda5ddf9db3420597cc625cdae1f2c3308a">00071</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda5ddf9db3420597cc625cdae1f2c3308a" title="1.85">AR_1_85_By_1</a>,  <span class="comment">///&lt; 1.85</span>
+<a name="l00072"></a><a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda8f306098ebf907f3bede3c99d4ec41b9">00072</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#aa48055a9624c26d73f77ca67499c7aeda8f306098ebf907f3bede3c99d4ec41b9" title="2.39">AR_2_39_By_1</a>   <span class="comment">///&lt; 2.39</span>
+<a name="l00073"></a>00073 <span class="comment"></span>    };
+<a name="l00074"></a>00074 <span class="comment"></span>
+<a name="l00075"></a>00075 <span class="comment">    /// @enum AttenuationStyle</span>
+<a name="l00076"></a>00076 <span class="comment">    /// @brief These values represent the kind of attenuation applied to the field strength</span>
+<a name="l00077"></a>00077 <span class="comment">    /// over a distance.</span>
+<a name="l00078"></a>00078 <span class="comment">    /// @details None is the default, where the force is constant in all area&#39;s of the</span>
+<a name="l00079"></a>00079 <span class="comment">    /// field.  Linear is where the force applied drops by the attenuation value times the distance</span>
+<a name="l00080"></a>00080 <span class="comment">    /// (strength - (attenuation amount * distance to AE center)).  Quadratic is where the force</span>
+<a name="l00081"></a>00081 <span class="comment">    /// applied drops by the attenuation value times the distance squared (strength -</span>
+<a name="l00082"></a>00082 <span class="comment">    /// (attenuation amount * distance to AE center * distance to AE center)).</span>
+<a name="l00083"></a><a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739f">00083</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739f" title="These values represent the kind of attenuation applied to the field strength over a distance...">AttenuationStyle</a>
+<a name="l00084"></a>00084     {
+<a name="l00085"></a><a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739faec47e7157a10201b7aef0c1cbb6ccb5d">00085</a>         <a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739faec47e7157a10201b7aef0c1cbb6ccb5d" title="No Attentuation, Equal strength through.">Att_None</a>,        <span class="comment">///&lt; No Attentuation, Equal strength through.</span>
+<a name="l00086"></a><a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fabcceb16182220293f2260edb41b548f1">00086</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fabcceb16182220293f2260edb41b548f1" title="Linear attentuation, Strength weaker farther from center.">Att_Linear</a>,      <span class="comment">///&lt; Linear attentuation, Strength weaker farther from center.</span>
+<a name="l00087"></a><a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fac9ef08c39daa338975f4f8879e86100b">00087</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#ad4ce7ee5c1cc164f2ea3d5f28211739fac9ef08c39daa338975f4f8879e86100b" title="Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the c...">Att_Quadratic</a>    <span class="comment">///&lt; Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.</span>
+<a name="l00088"></a>00088 <span class="comment"></span>    };
+<a name="l00089"></a>00089 <span class="comment"></span>
+<a name="l00090"></a>00090 <span class="comment">    /// @enum CollisionFilter</span>
+<a name="l00091"></a>00091 <span class="comment">    /// @brief These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with.</span>
+<a name="l00092"></a>00092 <span class="comment">    /// @details You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with</span>
+<a name="l00093"></a>00093 <span class="comment">    /// any of the existing groups defined here.  Simply pass in the Whole where appropriate.</span>
+<a name="l00094"></a><a class="code" href="namespacephys.html#aa69523df12b54123e76c40734556ca35">00094</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespacephys.html#aa69523df12b54123e76c40734556ca35" title="These are the various filters that can be applied to all physics accelerated world objects to limit w...">CollisionFilter</a>
+<a name="l00095"></a>00095     {
+<a name="l00096"></a>00096         <span class="comment">// Standard base filters</span>
+<a name="l00097"></a>00097         CF_GenericFilter = 1,
+<a name="l00098"></a>00098         CF_StaticFilter = 2,
+<a name="l00099"></a>00099         CF_KinematicFilter = 4,
+<a name="l00100"></a>00100         CF_DebrisFilter = 8,
+<a name="l00101"></a>00101         CF_SensorFilter = 16,
+<a name="l00102"></a>00102         CF_CharacterFilter = 32,
+<a name="l00103"></a>00103         CF_AllFilter = -1,
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105         <span class="comment">// Non-Standard Filters</span>
+<a name="l00106"></a>00106         CF_UserFilter1 = 64,
+<a name="l00107"></a>00107         CF_UserFilter2 = 128
+<a name="l00108"></a>00108     };
+<a name="l00109"></a>00109 <span class="comment"></span>
+<a name="l00110"></a>00110 <span class="comment">    /// @enum ConstraintParams</span>
+<a name="l00111"></a>00111 <span class="comment">    /// @brief Used by constraints for setting some parameters.</span>
+<a name="l00112"></a>00112 <span class="comment">    /// @details See the constraint class documentation for more details.</span>
+<a name="l00113"></a><a class="code" href="namespacephys.html#a3d9969958345dec81ed83544445e3c28">00113</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespacephys.html#a3d9969958345dec81ed83544445e3c28" title="Used by constraints for setting some parameters.">ConstraintParams</a>
+<a name="l00114"></a>00114     {
+<a name="l00115"></a>00115         Con_ERP = 1,
+<a name="l00116"></a>00116         Con_Stop_ERP,
+<a name="l00117"></a>00117         Con_CFM,
+<a name="l00118"></a>00118         Con_Stop_CFM
+<a name="l00119"></a>00119     };
+<a name="l00120"></a>00120 <span class="comment"></span>
+<a name="l00121"></a>00121 <span class="comment">    /// @enum WorldObjectType</span>
+<a name="l00122"></a>00122 <span class="comment">    /// @brief Used by various classes to help identify what class an object is.</span>
+<a name="l00123"></a>00123 <span class="comment">    /// @details This is mostly used internally for casting void pointers.</span>
+<a name="l00124"></a><a class="code" href="namespacephys.html#a56410935e1c614a932dbc91ee7330df1">00124</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespacephys.html#a56410935e1c614a932dbc91ee7330df1" title="Used by various classes to help identify what class an object is.">WorldObjectType</a>
+<a name="l00125"></a>00125     {
+<a name="l00126"></a>00126         <span class="comment">// Actors</span>
+<a name="l00127"></a>00127         WOT_ActorBase = 1,
+<a name="l00128"></a>00128         WOT_ActorRigid = 2,
+<a name="l00129"></a>00129         WOT_ActorSoft = 4,
+<a name="l00130"></a>00130         WOT_ActorCharacter = 8,
+<a name="l00131"></a>00131         WOT_ActorTerrain = 16,
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133         <span class="comment">// AE Fields</span>
+<a name="l00134"></a>00134         WOT_AreaEffect = 32,
+<a name="l00135"></a>00135         WOT_CustomAE  = 64,
+<a name="l00136"></a>00136         WOT_GravityField = 128,
+<a name="l00137"></a>00137         WOT_GravityWell = 256,
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139         <span class="comment">// Scene Objects</span>
+<a name="l00140"></a>00140         WOT_Light = 512,
+<a name="l00141"></a>00141         WOT_ParticleEffect = 1024,
+<a name="l00142"></a>00142         WOT_Camera = 2048
+<a name="l00143"></a>00143     };
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145     <span class="keyword">namespace </span>UI
+<a name="l00146"></a>00146     {<span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">        /// @enum ActivationCondition</span>
+<a name="l00148"></a>00148 <span class="comment">        /// @brief Used primarily by UI buttons to decide how/when a button is activated.</span>
+<a name="l00149"></a>00149 <span class="comment">        /// @details Essentially used to decide if a button should activate when it&#39;s activation button</span>
+<a name="l00150"></a>00150 <span class="comment">        /// is pressed or lifted.</span>
+<a name="l00151"></a>00151 <span class="comment"></span>        <span class="keyword">enum</span> ActivationCondition
+<a name="l00152"></a>00152         {
+<a name="l00153"></a>00153             AC_OnPress,
+<a name="l00154"></a>00154             AC_OnLift
+<a name="l00155"></a>00155         };<span class="comment"></span>
+<a name="l00156"></a>00156 <span class="comment">        /// @enum RenderPriority</span>
+<a name="l00157"></a>00157 <span class="comment">        /// @brief Used by UI elements created by layers to determine z-ordering within a layer.</span>
+<a name="l00158"></a>00158 <span class="comment">        /// @details This essentially means we&#39;re adding layers to our layers without the messy</span>
+<a name="l00159"></a>00159 <span class="comment">        /// and un-intuitive re-coding necessary to actually accomplish that.</span>
+<a name="l00160"></a>00160 <span class="comment"></span>        <span class="keyword">enum</span> RenderPriority
+<a name="l00161"></a>00161         {
+<a name="l00162"></a>00162             RP_Low,
+<a name="l00163"></a>00163             RP_Medium,
+<a name="l00164"></a>00164             RP_High
+<a name="l00165"></a>00165         };<span class="comment"></span>
+<a name="l00166"></a>00166 <span class="comment">        /// @enum ResizeableAnchor</span>
+<a name="l00167"></a>00167 <span class="comment">        /// @brief Used by UI container classes to determine their movement behavior when the container is resized.</span>
+<a name="l00168"></a>00168 <span class="comment">        /// @details RA_AnchorTop means it stays in the same position if given a resize event relative to the top.</span>
+<a name="l00169"></a>00169 <span class="comment">        /// RA_AnchorBottom means the same as RA_AnchorTop but for the bottom of the container.  RA_AnchorMiddle means</span>
+<a name="l00170"></a>00170 <span class="comment">        /// it&#39;ll change position by half of the pixels that the container was resized.</span>
+<a name="l00171"></a>00171 <span class="comment"></span>        <span class="keyword">enum</span> ResizeableAnchor
 <a name="l00172"></a>00172         {
-<a name="l00173"></a>00173             RT_TetherBoth,
-<a name="l00174"></a>00174             RT_TetherNone,
-<a name="l00175"></a>00175             RT_TetherHorizontal,
-<a name="l00176"></a>00176             RT_TetherVertical
-<a name="l00177"></a>00177         };<span class="comment"></span>
-<a name="l00178"></a>00178 <span class="comment">        /// @enum ScrollbarStyle</span>
-<a name="l00179"></a>00179 <span class="comment">        /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.</span>
-<a name="l00180"></a>00180 <span class="comment">        /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.</span>
-<a name="l00181"></a>00181 <span class="comment"></span>        <span class="keyword">enum</span> ScrollbarStyle
-<a name="l00182"></a>00182         {
-<a name="l00183"></a>00183             SB_NoButtons,
-<a name="l00184"></a>00184             SB_Separate,
-<a name="l00185"></a>00185             SB_TogetherUpLeft,
-<a name="l00186"></a>00186             SB_TogetherDownRight
-<a name="l00187"></a>00187         };<span class="comment"></span>
-<a name="l00188"></a>00188 <span class="comment">        /// @enum SpinnerStyle</span>
-<a name="l00189"></a>00189 <span class="comment">        /// @brief Used by the spinner class to determine what styling should be used for the spinner.</span>
-<a name="l00190"></a>00190 <span class="comment">        /// @details In the case of the buttons being together, the increment button will be above the decrement button.</span>
-<a name="l00191"></a>00191 <span class="comment"></span>        <span class="keyword">enum</span> SpinnerStyle
-<a name="l00192"></a>00192         {
-<a name="l00193"></a>00193             Spn_Separate,
-<a name="l00194"></a>00194             Spn_Together_Left,
-<a name="l00195"></a>00195             Spn_Together_Right
-<a name="l00196"></a>00196         };<span class="comment"></span>
-<a name="l00197"></a>00197 <span class="comment">        /// @enum TextHorizontalAlign</span>
-<a name="l00198"></a>00198 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
-<a name="l00199"></a>00199 <span class="comment">        /// @details This enum determines the Horizontal alignment of text.</span>
-<a name="l00200"></a>00200 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
-<a name="l00201"></a>00201 <span class="comment"></span>        <span class="keyword">enum</span> TextHorizontalAlign
-<a name="l00202"></a>00202         {
-<a name="l00203"></a>00203             Txt_Left,
-<a name="l00204"></a>00204             Txt_Right,
-<a name="l00205"></a>00205             Txt_Middle
-<a name="l00206"></a>00206         };<span class="comment"></span>
-<a name="l00207"></a>00207 <span class="comment">        /// @enum TextVerticalAlign</span>
-<a name="l00208"></a>00208 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
-<a name="l00209"></a>00209 <span class="comment">        /// @details This enum determines the Vertical alignment of text.</span>
-<a name="l00210"></a>00210 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
-<a name="l00211"></a>00211 <span class="comment"></span>        <span class="keyword">enum</span> TextVerticalAlign
-<a name="l00212"></a>00212         {
-<a name="l00213"></a>00213             Txt_Top,
-<a name="l00214"></a>00214             Txt_Bottom,
-<a name="l00215"></a>00215             Txt_Center
-<a name="l00216"></a>00216         };
-<a name="l00217"></a>00217     }
-<a name="l00218"></a>00218 }
-<a name="l00219"></a>00219 
-<a name="l00220"></a>00220 <span class="preprocessor">#endif</span>
+<a name="l00173"></a>00173             RA_AnchorTopLeft,
+<a name="l00174"></a>00174             RA_AnchorTop,
+<a name="l00175"></a>00175             RA_AnchorTopRight,
+<a name="l00176"></a>00176             RA_AnchorLeft,
+<a name="l00177"></a>00177             RA_AnchorMiddle,
+<a name="l00178"></a>00178             RA_AnchorRight,
+<a name="l00179"></a>00179             RA_AnchorBottomLeft,
+<a name="l00180"></a>00180             RA_AnchorBottom,
+<a name="l00181"></a>00181             RA_AnchorBottomRight
+<a name="l00182"></a>00182         };<span class="comment"></span>
+<a name="l00183"></a>00183 <span class="comment">        /// @enum ResizeableTether</span>
+<a name="l00184"></a>00184 <span class="comment">        /// @brief Used by UI container classes to determine their resize behavior when the container is resized.</span>
+<a name="l00185"></a>00185 <span class="comment">        /// @details RT_TetherHorizontal means it will resize itself equally during any Horizontal resizing of the container.</span>
+<a name="l00186"></a>00186 <span class="comment">        /// RT_TetherVertical means the same as RT_TetherHorizontal, but for Vertical resizes.  RT_TetherBoth means it&#39;ll do both.</span>
+<a name="l00187"></a>00187 <span class="comment"></span>        <span class="keyword">enum</span> ResizeableTether
+<a name="l00188"></a>00188         {
+<a name="l00189"></a>00189             RT_TetherBoth,
+<a name="l00190"></a>00190             RT_TetherNone,
+<a name="l00191"></a>00191             RT_TetherHorizontal,
+<a name="l00192"></a>00192             RT_TetherVertical
+<a name="l00193"></a>00193         };<span class="comment"></span>
+<a name="l00194"></a>00194 <span class="comment">        /// @enum ScrollbarStyle</span>
+<a name="l00195"></a>00195 <span class="comment">        /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.</span>
+<a name="l00196"></a>00196 <span class="comment">        /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.</span>
+<a name="l00197"></a>00197 <span class="comment"></span>        <span class="keyword">enum</span> ScrollbarStyle
+<a name="l00198"></a>00198         {
+<a name="l00199"></a>00199             SB_NoButtons,
+<a name="l00200"></a>00200             SB_Separate,
+<a name="l00201"></a>00201             SB_TogetherUpLeft,
+<a name="l00202"></a>00202             SB_TogetherDownRight
+<a name="l00203"></a>00203         };<span class="comment"></span>
+<a name="l00204"></a>00204 <span class="comment">        /// @enum SpinnerStyle</span>
+<a name="l00205"></a>00205 <span class="comment">        /// @brief Used by the spinner class to determine what styling should be used for the spinner.</span>
+<a name="l00206"></a>00206 <span class="comment">        /// @details In the case of the buttons being together, the increment button will be above the decrement button.</span>
+<a name="l00207"></a>00207 <span class="comment"></span>        <span class="keyword">enum</span> SpinnerStyle
+<a name="l00208"></a>00208         {
+<a name="l00209"></a>00209             Spn_Separate,
+<a name="l00210"></a>00210             Spn_Together_Left,
+<a name="l00211"></a>00211             Spn_Together_Right
+<a name="l00212"></a>00212         };<span class="comment"></span>
+<a name="l00213"></a>00213 <span class="comment">        /// @enum TextHorizontalAlign</span>
+<a name="l00214"></a>00214 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
+<a name="l00215"></a>00215 <span class="comment">        /// @details This enum determines the Horizontal alignment of text.</span>
+<a name="l00216"></a>00216 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
+<a name="l00217"></a>00217 <span class="comment"></span>        <span class="keyword">enum</span> TextHorizontalAlign
+<a name="l00218"></a>00218         {
+<a name="l00219"></a>00219             Txt_Left,
+<a name="l00220"></a>00220             Txt_Right,
+<a name="l00221"></a>00221             Txt_Middle
+<a name="l00222"></a>00222         };<span class="comment"></span>
+<a name="l00223"></a>00223 <span class="comment">        /// @enum TextVerticalAlign</span>
+<a name="l00224"></a>00224 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
+<a name="l00225"></a>00225 <span class="comment">        /// @details This enum determines the Vertical alignment of text.</span>
+<a name="l00226"></a>00226 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
+<a name="l00227"></a>00227 <span class="comment"></span>        <span class="keyword">enum</span> TextVerticalAlign
+<a name="l00228"></a>00228         {
+<a name="l00229"></a>00229             Txt_Top,
+<a name="l00230"></a>00230             Txt_Bottom,
+<a name="l00231"></a>00231             Txt_Center
+<a name="l00232"></a>00232         };
+<a name="l00233"></a>00233     }
+<a name="l00234"></a>00234 }
+<a name="l00235"></a>00235 
+<a name="l00236"></a>00236 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -297,7 +313,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:22 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:39 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

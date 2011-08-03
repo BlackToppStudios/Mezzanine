@@ -183,53 +183,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00120"></a>00120 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1ActorRigidPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorRigid.">ActorRigidPhysicsSettings</a>* GetPhysicsSettings();
 <a name="l00121"></a>00121 <span class="comment"></span>
 <a name="l00122"></a>00122 <span class="comment">            /// @brief Restricts movement on the axis or axies of your choice.</span>
-<a name="l00123"></a>00123 <span class="comment">            /// @details This function will lock any and all axies you define you want to be locked.</span>
-<a name="l00124"></a>00124 <span class="comment">            /// Simply pass true to allow movement on that axis, false if you don&#39;t.  This function</span>
-<a name="l00125"></a>00125 <span class="comment">            /// is primarily useful for 2D games, in which if you are viewing the playing area from</span>
-<a name="l00126"></a>00126 <span class="comment">            /// the side you can pass in LimitMovementOnAxis(true,true,false) and the object will</span>
-<a name="l00127"></a>00127 <span class="comment">            /// only be able to move up, down, or side to side, but not in or out.</span>
-<a name="l00128"></a>00128 <span class="comment">            /// @param x Allow or Disallow use of the X axis for movement.</span>
-<a name="l00129"></a>00129 <span class="comment">            /// @param y Allow or Disallow use of the Y axis for movement.</span>
-<a name="l00130"></a>00130 <span class="comment">            /// @param z Allow or Disallow use of the Z axis for movement.</span>
-<a name="l00131"></a>00131 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> LimitMovementOnAxis(<span class="keywordtype">bool</span> x, <span class="keywordtype">bool</span> y, <span class="keywordtype">bool</span> z);
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133             <span class="comment">// Inherited from ActorBase</span>
-<a name="l00134"></a>00134             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddObjectToWorld (<a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld);
-<a name="l00135"></a>00135             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveObjectFromWorld(<a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld);
-<a name="l00136"></a>00136 <span class="comment"></span>
-<a name="l00137"></a>00137 <span class="comment">            /// @internal</span>
-<a name="l00138"></a>00138 <span class="comment">            /// @brief Get the Physics data raw from the physic subsystem</span>
-<a name="l00139"></a>00139 <span class="comment">            /// @return Currently this returns a pointer to a btRigidBody.</span>
-<a name="l00140"></a>00140 <span class="comment"></span>            <span class="keyword">virtual</span> btRigidBody* GetBulletObject();
-<a name="l00141"></a>00141 <span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00143"></a>00143 <span class="comment"></span><span class="comment">// Serialization</span><span class="comment"></span>
-<a name="l00144"></a>00144 <span class="comment">///////////////////////////////////////</span>
-<a name="l00145"></a>00145 <span class="comment"></span><span class="preprocessor">#ifdef PHYSXML</span>
-<a name="l00146"></a>00146 <span class="preprocessor"></span>        <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00147"></a>00147 <span class="comment">            /// @internal</span>
-<a name="l00148"></a>00148 <span class="comment">            /// @brief a Helper function that assembles strings and throws an exception</span>
-<a name="l00149"></a>00149 <span class="comment">            /// @param Fail The item that failed.</span>
-<a name="l00150"></a>00150 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ThrowSerialError(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Fail) <span class="keyword">const</span>;
-<a name="l00151"></a>00151 
-<a name="l00152"></a>00152         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00153"></a>00153 <span class="comment">            /// @brief Get all the this in an xml::Node.</span>
-<a name="l00154"></a>00154 <span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.</span>
-<a name="l00155"></a>00155 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(<a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; CurrentRoot) <span class="keyword">const</span>;
-<a name="l00156"></a>00156 <span class="preprocessor">#endif</span>
-<a name="l00157"></a>00157 <span class="preprocessor"></span>
-<a name="l00158"></a>00158     };
-<a name="l00159"></a>00159 }
+<a name="l00123"></a>00123 <span class="comment">            /// @details This function can lock or limit any and all axes you define.</span>
+<a name="l00124"></a>00124 <span class="comment">            /// 0.0 means no linear movement on that axis.  1.0 means normal movement.</span>
+<a name="l00125"></a>00125 <span class="comment">            /// @param Factor Vector3 containing the Factors for the 3 linear axes.</span>
+<a name="l00126"></a>00126 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLinearMovementFactor(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Factor);
+<a name="l00127"></a>00127 <span class="comment"></span>
+<a name="l00128"></a>00128 <span class="comment">            /// @brief Gets the current linear factors being applied to this actor.</span>
+<a name="l00129"></a>00129 <span class="comment">            /// @return Returns a Vector3 representing the factors on the 3 linear axes.</span>
+<a name="l00130"></a>00130 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetLinearMovementFactor();
+<a name="l00131"></a>00131 <span class="comment"></span>
+<a name="l00132"></a>00132 <span class="comment">            /// @brief Restricts movement on the axis or axies of your choice.</span>
+<a name="l00133"></a>00133 <span class="comment">            /// @details This function can lock or limit any and all axes you define.</span>
+<a name="l00134"></a>00134 <span class="comment">            /// 0.0 means no angular movement on that axis.  1.0 means normal movement.</span>
+<a name="l00135"></a>00135 <span class="comment">            /// @param Factor Vector3 containing the Factors for the 3 angular axes.</span>
+<a name="l00136"></a>00136 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetAngularMovementFactor(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Factor);
+<a name="l00137"></a>00137 <span class="comment"></span>
+<a name="l00138"></a>00138 <span class="comment">            /// @brief Gets the current angular factors being applied to this actor.</span>
+<a name="l00139"></a>00139 <span class="comment">            /// @return Returns a Vector3 representing the factors on the 3 angular axes.</span>
+<a name="l00140"></a>00140 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetAngularMovementFactor();
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142             <span class="comment">// Inherited from ActorBase</span>
+<a name="l00143"></a>00143             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddObjectToWorld (<a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld);
+<a name="l00144"></a>00144             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveObjectFromWorld(<a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld);
+<a name="l00145"></a>00145 <span class="comment"></span>
+<a name="l00146"></a>00146 <span class="comment">            /// @internal</span>
+<a name="l00147"></a>00147 <span class="comment">            /// @brief Get the Physics data raw from the physic subsystem</span>
+<a name="l00148"></a>00148 <span class="comment">            /// @return Currently this returns a pointer to a btRigidBody.</span>
+<a name="l00149"></a>00149 <span class="comment"></span>            <span class="keyword">virtual</span> btRigidBody* GetBulletObject();
+<a name="l00150"></a>00150 <span class="comment"></span>
+<a name="l00151"></a>00151 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00152"></a>00152 <span class="comment"></span><span class="comment">// Serialization</span><span class="comment"></span>
+<a name="l00153"></a>00153 <span class="comment">///////////////////////////////////////</span>
+<a name="l00154"></a>00154 <span class="comment"></span><span class="preprocessor">#ifdef PHYSXML</span>
+<a name="l00155"></a>00155 <span class="preprocessor"></span>        <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00156"></a>00156 <span class="comment">            /// @internal</span>
+<a name="l00157"></a>00157 <span class="comment">            /// @brief a Helper function that assembles strings and throws an exception</span>
+<a name="l00158"></a>00158 <span class="comment">            /// @param Fail The item that failed.</span>
+<a name="l00159"></a>00159 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ThrowSerialError(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Fail) <span class="keyword">const</span>;
 <a name="l00160"></a>00160 
-<a name="l00161"></a>00161 <span class="preprocessor">#ifdef PHYSXML</span>
-<a name="l00162"></a>00162 <span class="preprocessor"></span><span class="comment">/// @brief Serialize an actor and send it to a stream</span>
-<a name="l00163"></a>00163 <span class="comment"></span><span class="comment">/// @param ActorToSerialize The actor serialize</span>
-<a name="l00164"></a>00164 <span class="comment"></span><span class="comment">/// @param stream the std::ostream to send the actors xml to.</span>
-<a name="l00165"></a>00165 <span class="comment"></span><span class="comment">/// @return The ostream after the new data has been inserted.</span>
-<a name="l00166"></a>00166 <span class="comment"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">phys::ActorRigid</a>&amp; ActorToSerialize);
-<a name="l00167"></a>00167 <span class="preprocessor">#endif  // \physxml</span>
-<a name="l00168"></a>00168 <span class="preprocessor"></span>
-<a name="l00169"></a>00169 <span class="preprocessor">#endif</span>
+<a name="l00161"></a>00161         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00162"></a>00162 <span class="comment">            /// @brief Get all the this in an xml::Node.</span>
+<a name="l00163"></a>00163 <span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.</span>
+<a name="l00164"></a>00164 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(<a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; CurrentRoot) <span class="keyword">const</span>;
+<a name="l00165"></a>00165 <span class="preprocessor">#endif</span>
+<a name="l00166"></a>00166 <span class="preprocessor"></span>
+<a name="l00167"></a>00167     };
+<a name="l00168"></a>00168 }
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170 <span class="preprocessor">#ifdef PHYSXML</span>
+<a name="l00171"></a>00171 <span class="preprocessor"></span><span class="comment">/// @brief Serialize an actor and send it to a stream</span>
+<a name="l00172"></a>00172 <span class="comment"></span><span class="comment">/// @param ActorToSerialize The actor serialize</span>
+<a name="l00173"></a>00173 <span class="comment"></span><span class="comment">/// @param stream the std::ostream to send the actors xml to.</span>
+<a name="l00174"></a>00174 <span class="comment"></span><span class="comment">/// @return The ostream after the new data has been inserted.</span>
+<a name="l00175"></a>00175 <span class="comment"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">phys::ActorRigid</a>&amp; ActorToSerialize);
+<a name="l00176"></a>00176 <span class="preprocessor">#endif  // \physxml</span>
+<a name="l00177"></a>00177 <span class="preprocessor"></span>
+<a name="l00178"></a>00178 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -246,7 +255,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:22 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:39 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

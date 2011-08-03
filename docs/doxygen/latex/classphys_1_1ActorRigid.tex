@@ -34,8 +34,14 @@ virtual void \hyperlink{classphys_1_1ActorRigid_a5adfa6199955f9c0de4e0af54aeb96f
 \begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorRigid_ac531871f990894cf64d0ece918eb18d0}{GetPhysicsSettings} ()
 \begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this actor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{LimitMovementOnAxis} (bool x, bool y, bool z)
+virtual void \hyperlink{classphys_1_1ActorRigid_a2a6aca8c598716ee24558878f869f163}{SetLinearMovementFactor} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Factor)
 \begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigid_ae29ab60e2c0e4762d2698c60b8df1d23}{GetLinearMovementFactor} ()
+\begin{DoxyCompactList}\small\item\em Gets the current linear factors being applied to this actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigid_a574fc272f603b879643872dbced36cc2}{SetAngularMovementFactor} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Factor)
+\begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigid_a0d29535332ac613f9a14ea32e843d612}{GetAngularMovementFactor} ()
+\begin{DoxyCompactList}\small\item\em Gets the current angular factors being applied to this actor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_acaf29ca7058b39185dd09a5059200e91}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
@@ -167,7 +173,7 @@ Implements \hyperlink{classphys_1_1ActorBase_a3d28e4c4a33f50210101695cb33ded3b}{
 
 
 
-Definition at line 264 of file actorrigid.cpp.
+Definition at line 279 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a3d50613a6992e7de6a09d3e710d83b60}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
@@ -278,6 +284,26 @@ Will dynamically create a sphere collision shape from the loaded mesh file.
 
 Definition at line 207 of file actorrigid.cpp.
 
+\hypertarget{classphys_1_1ActorRigid_a0d29535332ac613f9a14ea32e843d612}{
+\index{phys::ActorRigid@{phys::ActorRigid}!GetAngularMovementFactor@{GetAngularMovementFactor}}
+\index{GetAngularMovementFactor@{GetAngularMovementFactor}!phys::ActorRigid@{phys::ActorRigid}}
+\paragraph[{GetAngularMovementFactor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigid::GetAngularMovementFactor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorRigid_a0d29535332ac613f9a14ea32e843d612}
+
+
+Gets the current angular factors being applied to this actor. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing the factors on the 3 angular axes. 
+\end{DoxyReturn}
+
+
+Definition at line 273 of file actorrigid.cpp.
+
 \hypertarget{classphys_1_1ActorRigid_a9c8f1f4b99f41ab97050f5b15c802f14}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetBulletObject@{GetBulletObject}}
 \index{GetBulletObject@{GetBulletObject}!phys::ActorRigid@{phys::ActorRigid}}
@@ -296,7 +322,27 @@ Currently this returns a pointer to a btRigidBody.
 \end{DoxyReturn}
 
 
-Definition at line 277 of file actorrigid.cpp.
+Definition at line 292 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_ae29ab60e2c0e4762d2698c60b8df1d23}{
+\index{phys::ActorRigid@{phys::ActorRigid}!GetLinearMovementFactor@{GetLinearMovementFactor}}
+\index{GetLinearMovementFactor@{GetLinearMovementFactor}!phys::ActorRigid@{phys::ActorRigid}}
+\paragraph[{GetLinearMovementFactor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigid::GetLinearMovementFactor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorRigid_ae29ab60e2c0e4762d2698c60b8df1d23}
+
+
+Gets the current linear factors being applied to this actor. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing the factors on the 3 linear axes. 
+\end{DoxyReturn}
+
+
+Definition at line 262 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84b43}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetName@{GetName}}
@@ -342,34 +388,6 @@ Returns a pointer to the physics settings class in use by this actor.
 
 Definition at line 252 of file actorrigid.cpp.
 
-\hypertarget{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{
-\index{phys::ActorRigid@{phys::ActorRigid}!LimitMovementOnAxis@{LimitMovementOnAxis}}
-\index{LimitMovementOnAxis@{LimitMovementOnAxis}!phys::ActorRigid@{phys::ActorRigid}}
-\paragraph[{LimitMovementOnAxis}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::LimitMovementOnAxis (
-\begin{DoxyParamCaption}
-\item[{bool}]{x, }
-\item[{bool}]{y, }
-\item[{bool}]{z}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}
-
-
-Restricts movement on the axis or axies of your choice. 
-
-This function will lock any and all axies you define you want to be locked. Simply pass true to allow movement on that axis, false if you don't. This function is primarily useful for 2D games, in which if you are viewing the playing area from the side you can pass in LimitMovementOnAxis(true,true,false) and the object will only be able to move up, down, or side to side, but not in or out. 
-\begin{DoxyParams}{Parameters}
-{\em x} & Allow or Disallow use of the X axis for movement. \\
-\hline
-{\em y} & Allow or Disallow use of the Y axis for movement. \\
-\hline
-{\em z} & Allow or Disallow use of the Z axis for movement. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 257 of file actorrigid.cpp.
-
 \hypertarget{classphys_1_1ActorRigid_add4e731eb3a5481d05e2d0f543745fcd}{
 \index{phys::ActorRigid@{phys::ActorRigid}!ProtoSerialize@{ProtoSerialize}}
 \index{ProtoSerialize@{ProtoSerialize}!phys::ActorRigid@{phys::ActorRigid}}
@@ -394,7 +412,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a402b408b6ebb5ce82181a75dff
 
 
 
-Definition at line 289 of file actorrigid.cpp.
+Definition at line 304 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}{
 \index{phys::ActorRigid@{phys::ActorRigid}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
@@ -421,7 +439,51 @@ Implements \hyperlink{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{
 
 
 
-Definition at line 270 of file actorrigid.cpp.
+Definition at line 285 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a574fc272f603b879643872dbced36cc2}{
+\index{phys::ActorRigid@{phys::ActorRigid}!SetAngularMovementFactor@{SetAngularMovementFactor}}
+\index{SetAngularMovementFactor@{SetAngularMovementFactor}!phys::ActorRigid@{phys::ActorRigid}}
+\paragraph[{SetAngularMovementFactor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetAngularMovementFactor (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Factor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorRigid_a574fc272f603b879643872dbced36cc2}
+
+
+Restricts movement on the axis or axies of your choice. 
+
+This function can lock or limit any and all axes you define. 0.0 means no angular movement on that axis. 1.0 means normal movement. 
+\begin{DoxyParams}{Parameters}
+{\em Factor} & \hyperlink{classphys_1_1Vector3}{Vector3} containing the Factors for the 3 angular axes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 268 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a2a6aca8c598716ee24558878f869f163}{
+\index{phys::ActorRigid@{phys::ActorRigid}!SetLinearMovementFactor@{SetLinearMovementFactor}}
+\index{SetLinearMovementFactor@{SetLinearMovementFactor}!phys::ActorRigid@{phys::ActorRigid}}
+\paragraph[{SetLinearMovementFactor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetLinearMovementFactor (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Factor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorRigid_a2a6aca8c598716ee24558878f869f163}
+
+
+Restricts movement on the axis or axies of your choice. 
+
+This function can lock or limit any and all axes you define. 0.0 means no linear movement on that axis. 1.0 means normal movement. 
+\begin{DoxyParams}{Parameters}
+{\em Factor} & \hyperlink{classphys_1_1Vector3}{Vector3} containing the Factors for the 3 linear axes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 257 of file actorrigid.cpp.
 
 
 

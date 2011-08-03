@@ -92,8 +92,8 @@ Inheritance diagram for phys::PhysicsManager:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html#ab3ecdc295799ad9858ca80743b25006d">PhysicsManager</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple Constructor.  <a href="#ab3ecdc295799ad9858ca80743b25006d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html#a1072c647c64ec82381ddc9f1a17c5909">PhysicsManager</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;GeographyLowerBounds_, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple Constructor.  <a href="#a1072c647c64ec82381ddc9f1a17c5909"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html#abb3bd1e6aaadba95ce219d9d3643ebfe">PhysicsManager</a> (const <a class="el" href="classphys_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a> &amp;Info)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple Constructor.  <a href="#abb3bd1e6aaadba95ce219d9d3643ebfe"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html#a4898702f889c6b4aa7c0b59991d310b0">~PhysicsManager</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor.  <a href="#a4898702f889c6b4aa7c0b59991d310b0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html#a107d5540a9bef91325807f77542c9176">PauseSimulation</a> (bool Pause)</td></tr>
@@ -161,6 +161,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets how many WireFrames are being drawn.  <a href="#a8f46e55e4cadfcd1c2c03bcdbfe6c06f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html#a54a48fdfd9db914c25a0f892c2f56301">GetActorOffset</a> (const <a class="el" href="classphys_1_1Vector3WActor.html">Vector3WActor</a> &amp;OffsetInfo)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the offset between a point and an actor.  <a href="#a54a48fdfd9db914c25a0f892c2f56301"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html#a22e76681b153c170dd6bfef2edbbbcd3">ResetPhysicsWorld</a> (<a class="el" href="classphys_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a> *Info=0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all the internal physics structures in this manager.  <a href="#a22e76681b153c170dd6bfef2edbbbcd3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html#aa9f964240e51a92abf0afbb045721396">ClearPhysicsMetaData</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all data relating to actors and other simulation objects from the physics world.  <a href="#aa9f964240e51a92abf0afbb045721396"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1PhysicsManager.html#ad363d6683a0276395eeb2c42a56f95fc">DoMainLoopItems</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;TimeElapsed)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This does all the work reuired for the main loop to process physics.  <a href="#ad363d6683a0276395eeb2c42a56f95fc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b4f8a23259a94a50c81649f39256d7f"></a><!-- doxytag: member="phys::PhysicsManager::GetPhysicsWorldPointer" ref="a4b4f8a23259a94a50c81649f39256d7f" args="()" -->
@@ -177,7 +181,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <div class="textblock"><p>This is simply a place for storing all the Physics Related functions. </p>
 <p>This is a place for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00080">80</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00132">132</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab3ecdc295799ad9858ca80743b25006d"></a><!-- doxytag: member="phys::PhysicsManager::PhysicsManager" ref="ab3ecdc295799ad9858ca80743b25006d" args="()" -->
 <div class="memitem">
@@ -196,36 +200,20 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>Simple Constructor. </p>
 <p>This constructor will assign some sane default values and will create a physics world that can be used immediately </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00267">267</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00291">291</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1072c647c64ec82381ddc9f1a17c5909"></a><!-- doxytag: member="phys::PhysicsManager::PhysicsManager" ref="a1072c647c64ec82381ddc9f1a17c5909" args="(const Vector3 &amp;GeographyLowerBounds_, const Vector3 &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_)" -->
+<a class="anchor" id="abb3bd1e6aaadba95ce219d9d3643ebfe"></a><!-- doxytag: member="phys::PhysicsManager::PhysicsManager" ref="abb3bd1e6aaadba95ce219d9d3643ebfe" args="(const PhysicsConstructionInfo &amp;Info)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">phys::PhysicsManager::PhysicsManager </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
-          <td class="paramname"><em>GeographyLowerBounds_</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const <a class="el" href="classphys_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>Info</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
-          <td class="paramname"><em>GeographyUpperbounds_</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned short int &amp;&#160;</td>
-          <td class="paramname"><em>MaxPhysicsProxies_</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -235,14 +223,12 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>This constructor will assign some sane default values and will create a physics world that can be used immediately </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">GeographyLowerBounds_</td><td>This <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> will loosely represent the lower right conrer of the world </td></tr>
-    <tr><td class="paramname">GeographyUpperbounds_</td><td>This <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> will loosely represent the upper left conrer of the world </td></tr>
-    <tr><td class="paramname">MaxPhysicsProxies_</td><td>This approximates the maximum amount of items allowed in the physics world </td></tr>
+    <tr><td class="paramname">Info</td><td>The construction info class with all the settings you wish the world to have. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00273">273</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00300">300</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -263,7 +249,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>Deconstructor. </p>
 <p>This deletes all those crazy pointers that Bullet, the physics subsystem need. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00279">279</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00307">307</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,7 +278,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00480">480</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00522">522</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -331,7 +317,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00400">400</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00442">442</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -359,7 +345,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00523">523</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00565">565</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -398,7 +384,28 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00445">445</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00487">487</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa9f964240e51a92abf0afbb045721396"></a><!-- doxytag: member="phys::PhysicsManager::ClearPhysicsMetaData" ref="aa9f964240e51a92abf0afbb045721396" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::PhysicsManager::ClearPhysicsMetaData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Clears all data relating to actors and other simulation objects from the physics world. </p>
+<p>This is best used with simulation cleanup. </p>
+
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00703">703</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -419,7 +426,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>Destroys all constraints currently in the manager. </p>
 <p>In practice it is cleaner to remove constraints from the world before removing any constrained actors. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00429">429</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00471">471</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -446,7 +453,10 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00637">637</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>This chunk of code won't take the upcoming terrain system into account, and should be modified accordingly </dd></dl>
+</p>
+
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00728">728</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -469,7 +479,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 
 <p>Implements <a class="el" href="classphys_1_1ManagerBase.html#aa9e13a3f7c398b708f0f242610b5abf7">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00742">742</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00841">841</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -498,7 +508,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the actors offset from the world point. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00624">624</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00666">666</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -526,7 +536,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the named area effect, or NULL if it doesn't exist. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00488">488</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00530">530</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -548,7 +558,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>Gets the CollisionAge used in filtering out collision contacts used to make events. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This function will return the number of physics ticks the collision has to have existed to be used. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00565">565</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00607">607</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -576,7 +586,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the specified constraint. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00406">406</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00448">448</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -598,7 +608,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>lets you check if Physics Debug Drawing is enabled or not. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00592">592</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00634">634</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -620,7 +630,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>This will tell you how many frames worth of previous in game events are being drawn. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount . </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00616">616</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00658">658</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -642,7 +652,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>Gets the currently set world gravity. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the currently set world gravity. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00374">374</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00416">416</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -664,7 +674,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>Gets the Collision Impulse used in filtering out collision contacts used to make events. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This function will return the lower limit of the allowed force of the collision to generate an event. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00570">570</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00612">612</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -685,7 +695,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>Gets the number of constraints currently in the world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a whole representing the number of constraints in the world. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00411">411</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00453">453</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -707,7 +717,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>Gets the currently set soft body world gravity. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the currently set soft body world gravity. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00385">385</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00427">427</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -730,7 +740,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 
 <p>Implements <a class="el" href="classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00747">747</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00846">846</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -758,7 +768,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the named trigger, or NULL if it doesn't exist. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00528">528</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00570">570</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -781,7 +791,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 
 <p>Implements <a class="el" href="classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00737">737</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00836">836</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -808,7 +818,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00359">359</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00401">401</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -836,7 +846,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00500">500</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00542">542</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -864,7 +874,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00416">416</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00458">458</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -892,7 +902,35 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00540">540</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00582">582</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a22e76681b153c170dd6bfef2edbbbcd3"></a><!-- doxytag: member="phys::PhysicsManager::ResetPhysicsWorld" ref="a22e76681b153c170dd6bfef2edbbbcd3" args="(PhysicsConstructionInfo *Info=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::PhysicsManager::ResetPhysicsWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classphys_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a> *&#160;</td>
+          <td class="paramname"><em>Info</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Resets all the internal physics structures in this manager. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This should only be called while the world is emtpy and objects have be unloaded from it. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Info</td><td>If you want to change the configuration of the world when restarting, you can optionally provide a new set of parameters to build the world with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00679">679</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -932,7 +970,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00559">559</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00601">601</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -960,7 +998,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00576">576</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00618">618</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -988,7 +1026,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00605">605</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00647">647</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1016,7 +1054,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00369">369</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00411">411</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1055,7 +1093,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00391">391</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00433">433</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1083,7 +1121,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00380">380</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00422">422</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1104,7 +1142,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <p>Gets Whether or not the simulation is currently paused. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns whether or not the simulation is paused. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00364">364</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00406">406</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1143,7 +1181,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00439">439</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00481">481</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1166,7 +1204,7 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:29 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:46 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

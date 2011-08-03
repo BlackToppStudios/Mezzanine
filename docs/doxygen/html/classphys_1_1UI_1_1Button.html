@@ -93,8 +93,8 @@ Inheritance diagram for phys::UI::Button:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Button.html#ada143b3ce98b414348c43c8af7cf4006">Button</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;name, const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position, const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal constructor.  <a href="#ada143b3ce98b414348c43c8af7cf4006"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Button.html#a42ae60edce5a262254e4608a3ed9fc3c">Button</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;name, const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal constructor.  <a href="#a42ae60edce5a262254e4608a3ed9fc3c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80c8c92ae289e3161dde94bf1a5de59e"></a><!-- doxytag: member="phys::UI::Button::~Button" ref="a80c8c92ae289e3161dde94bf1a5de59e" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Button.html#a80c8c92ae289e3161dde94bf1a5de59e">~Button</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
@@ -241,7 +241,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Definition at line <a class="el" href="uibutton_8h_source.html#l00072">72</a> of file <a class="el" href="uibutton_8h_source.html">uibutton.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ada143b3ce98b414348c43c8af7cf4006"></a><!-- doxytag: member="phys::UI::Button::Button" ref="ada143b3ce98b414348c43c8af7cf4006" args="(ConstString &amp;name, const Vector2 &amp;Position, const Vector2 &amp;Size, Layer *PLayer)" -->
+<a class="anchor" id="a42ae60edce5a262254e4608a3ed9fc3c"></a><!-- doxytag: member="phys::UI::Button::Button" ref="a42ae60edce5a262254e4608a3ed9fc3c" args="(ConstString &amp;name, const RenderableRect &amp;Rect, Layer *PLayer)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -254,14 +254,8 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Position</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Size</em>, </td>
+          <td class="paramtype">const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rect</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -282,8 +276,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the button. </td></tr>
-    <tr><td class="paramname">Position</td><td>The top left position of the button. </td></tr>
-    <tr><td class="paramname">Size</td><td>The size of the <a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>. </td></tr>
+    <tr><td class="paramname">Rect</td><td>The Rect representing the position and size of the button. </td></tr>
     <tr><td class="paramname"><a class="el" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a></td><td>Pointer to the <a class="el" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a> that created this button. </td></tr>
   </table>
   </dd>
@@ -318,10 +311,10 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>Throw an error? </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>Throw an error? </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00133">133</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00141">141</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -343,7 +336,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <p>While this can be called manually, it'll provide the same result if called more the once per frame. Currently the <a class="el" href="classphys_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a> calls this on it's own once per frame, so there isn't much point in calling this manually. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether the mouse is over this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00233">233</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00241">241</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,7 +365,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00223">223</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00231">231</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -399,7 +392,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00292">292</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00300">300</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -421,7 +414,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <p>See the ActivationCondition enum for more details. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value indicating the condition for activation for this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00204">204</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00212">212</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -444,7 +437,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#ab406bec58bf6244c3e867fefd19d4d7f">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00332">332</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00340">340</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +460,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#a062b31c199f875d4f825f6be1d11fb55">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00358">358</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00366">366</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,7 +481,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <p>Gets a vector with all the keyboard input codes used to activate this button. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to an std::vector containing all the keyboard keys that will activate this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00414">414</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00422">422</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -509,7 +502,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <p>Gets a vector with all the mouse input codes used to activate this button. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to an std::vector containing all the mouse buttons that will activate this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00419">419</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00427">427</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -531,7 +524,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <p>This function does not perform any checks. If you want to do a manual check, call <a class="el" href="classphys_1_1UI_1_1Button.html#a72d76501d15053e3fbd9e7eb933e22de" title="Determines whether the mouse is over this button.">CheckMouseHover()</a>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the stored value of whether or not the mouse is over the button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00244">244</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00252">252</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -552,7 +545,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <p>Gets the name of this button. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00118">118</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00126">126</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -575,7 +568,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#a09768e0666a109b7d35fd8b78240cfd3">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00320">320</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00328">328</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -596,7 +589,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <p>Gets the currently set primary atlas. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of the primary atlas that is set, or an empty string if none. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00409">409</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00417">417</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -619,7 +612,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#ad339621af6e73ff9702c0dd4cdadbb73">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00384">384</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00392">392</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -642,7 +635,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#a21f1ff24070711e5a42eae4eb54d02d6">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00346">346</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00354">354</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -664,7 +657,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <p><a class="el" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> activations are cleared every frame by the UI manager. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns whether or not this button has been activated. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00218">218</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00226">226</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -685,7 +678,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 <p>Gets whether or not multiple activations per frame are enabled for this button. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether or not multiple activations are allowed for this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00228">228</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00236">236</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -708,7 +701,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#ad3d493189347077db92e609e47f837f5">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00123">123</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00131">131</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -731,7 +724,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#a505167a00d343d704df1f759cd12ed1e">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00103">103</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00111">111</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -759,7 +752,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00209">209</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00217">217</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -787,7 +780,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00199">199</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00207">207</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -816,7 +809,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#aa82c174bba5db127a5a9977b9fdf1384">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00325">325</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00333">333</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -845,7 +838,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#a768d203a323cca2054fa355c25fab9ef">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00351">351</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00359">359</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -872,7 +865,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00249">249</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00257">257</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -899,7 +892,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00254">254</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00262">262</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -937,7 +930,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00261">261</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00269">269</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -974,7 +967,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00302">302</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00310">310</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1002,7 +995,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00128">128</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00136">136</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1029,7 +1022,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00268">268</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00276">276</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1067,7 +1060,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00274">274</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00282">282</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1096,7 +1089,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#a52230b17c81743438bc0cd08eb49a5c5">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00312">312</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00320">320</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1123,7 +1116,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00404">404</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00412">412</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1153,7 +1146,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#a60b433a61f163f275e3fd834d74d9092">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00364">364</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00372">372</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1182,7 +1175,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#abceee9ffe1dd12e0e593a84f57d9b279">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00338">338</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00346">346</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1209,7 +1202,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00280">280</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00288">288</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1247,7 +1240,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00286">286</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00294">294</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1276,7 +1269,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#a07e030ef92f314b1eff663cbc1712d42">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00098">98</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00106">106</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1303,7 +1296,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00157">157</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00165">165</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1326,7 +1319,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 
 <p>Reimplemented in <a class="el" href="classphys_1_1UI_1_1TextButton.html#a5099be328baf55b9925227d11128c328">phys::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00424">424</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00432">432</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1349,7 +1342,7 @@ UI::ActivationCondition&#160;</td><td class="memItemRight" valign="bottom"><b>Ac
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:31 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:48 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

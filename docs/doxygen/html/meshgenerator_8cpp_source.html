@@ -240,7 +240,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00177"></a>00177         <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> GroupName = TheMaterial-&gt;getGroup();
 <a name="l00178"></a>00178 
 <a name="l00179"></a>00179         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> deltaAngle = (Ogre::Math::TWO_PI / CircleRes);
-<a name="l00180"></a>00180         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> deltaHeight = (Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> * 2)/(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)Segments;
+<a name="l00180"></a>00180         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> deltaHeight = (Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> * 2)/(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)Segments;
 <a name="l00181"></a>00181         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> radius = Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>;
 <a name="l00182"></a>00182         <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> offset = 0;
 <a name="l00183"></a>00183 
@@ -258,124 +258,135 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00195"></a>00195                 cylinder-&gt;textureCoord(j/(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)CircleRes, i/(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)Segments);
 <a name="l00196"></a>00196 
 <a name="l00197"></a>00197                 <span class="keywordflow">if</span> (i != Segments)
-<a name="l00198"></a>00198                 {
-<a name="l00199"></a>00199                     cylinder-&gt;index(offset + CircleRes + 1);
-<a name="l00200"></a>00200                     cylinder-&gt;index(offset);
-<a name="l00201"></a>00201                     cylinder-&gt;index(offset + CircleRes);
-<a name="l00202"></a>00202                     cylinder-&gt;index(offset + CircleRes + 1);
-<a name="l00203"></a>00203                     cylinder-&gt;index(offset + 1);
-<a name="l00204"></a>00204                     cylinder-&gt;index(offset);
-<a name="l00205"></a>00205                 }
-<a name="l00206"></a>00206                 offset ++;
-<a name="l00207"></a>00207             }
-<a name="l00208"></a>00208                 }
-<a name="l00209"></a>00209 
-<a name="l00210"></a>00210                 <span class="comment">//low cap</span>
-<a name="l00211"></a>00211                 <span class="keywordtype">int</span> centerIndex = offset;
-<a name="l00212"></a>00212                 cylinder-&gt;position(0,-Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>,0);
-<a name="l00213"></a>00213                 cylinder-&gt;normal(Ogre::Vector3::NEGATIVE_UNIT_Y);
-<a name="l00214"></a>00214                 cylinder-&gt;textureCoord(0,1);
-<a name="l00215"></a>00215                 offset++;
-<a name="l00216"></a>00216                 <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;=CircleRes;j++)
-<a name="l00217"></a>00217                 {
-<a name="l00218"></a>00218                         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> x0 = radius * cosf(j*deltaAngle);
-<a name="l00219"></a>00219                         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> z0 = radius * sinf(j*deltaAngle);
+<a name="l00198"></a>00198                 {<span class="comment"></span>
+<a name="l00199"></a>00199 <span class="comment">                    /// @todo These if/elses aren&#39;t really a long term solution</span>
+<a name="l00200"></a>00200 <span class="comment">                    /// as they won&#39;t work for any more then 1 segment.  This needs to be addressed.</span>
+<a name="l00201"></a>00201 <span class="comment"></span>                    <span class="keywordflow">if</span>(offset + CircleRes + 1 == CircleRes * 2)
+<a name="l00202"></a>00202                         cylinder-&gt;index(CircleRes);
+<a name="l00203"></a>00203                     <span class="keywordflow">else</span>
+<a name="l00204"></a>00204                         cylinder-&gt;index(offset + CircleRes + 1);
+<a name="l00205"></a>00205 
+<a name="l00206"></a>00206                     cylinder-&gt;index(offset);
+<a name="l00207"></a>00207                     cylinder-&gt;index(offset + CircleRes);
+<a name="l00208"></a>00208 
+<a name="l00209"></a>00209                     <span class="keywordflow">if</span>(offset + CircleRes + 1 == CircleRes * 2)
+<a name="l00210"></a>00210                         cylinder-&gt;index(0);
+<a name="l00211"></a>00211                     <span class="keywordflow">else</span>
+<a name="l00212"></a>00212                         cylinder-&gt;index(offset + CircleRes + 1);
+<a name="l00213"></a>00213 
+<a name="l00214"></a>00214                     cylinder-&gt;index(offset + 1);
+<a name="l00215"></a>00215                     cylinder-&gt;index(offset);
+<a name="l00216"></a>00216                 }
+<a name="l00217"></a>00217                 offset ++;
+<a name="l00218"></a>00218             }
+<a name="l00219"></a>00219                 }
 <a name="l00220"></a>00220 
-<a name="l00221"></a>00221                         cylinder-&gt;position(x0,-Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>, z0);
-<a name="l00222"></a>00222                         cylinder-&gt;normal(Ogre::Vector3::NEGATIVE_UNIT_Y);
-<a name="l00223"></a>00223                         cylinder-&gt;textureCoord(j/(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)CircleRes,0.0);
-<a name="l00224"></a>00224                         <span class="keywordflow">if</span> (j!=CircleRes)
-<a name="l00225"></a>00225                         {
-<a name="l00226"></a>00226                                 cylinder-&gt;index(centerIndex);
-<a name="l00227"></a>00227                                 cylinder-&gt;index(offset);
-<a name="l00228"></a>00228                                 cylinder-&gt;index(offset+1);
-<a name="l00229"></a>00229                         }
-<a name="l00230"></a>00230                         offset++;
-<a name="l00231"></a>00231                 }
-<a name="l00232"></a>00232 
-<a name="l00233"></a>00233                 <span class="comment">// high cap</span>
-<a name="l00234"></a>00234                 centerIndex = offset;
-<a name="l00235"></a>00235                 cylinder-&gt;position(0,Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>,0);
-<a name="l00236"></a>00236                 cylinder-&gt;normal(Ogre::Vector3::UNIT_Y);
-<a name="l00237"></a>00237                 cylinder-&gt;textureCoord(0,0);
-<a name="l00238"></a>00238                 offset++;
-<a name="l00239"></a>00239                 <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;=CircleRes;j++)
-<a name="l00240"></a>00240                 {
-<a name="l00241"></a>00241                         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> x0 = radius * cosf(j*deltaAngle);
-<a name="l00242"></a>00242                         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> z0 = radius * sinf(j*deltaAngle);
+<a name="l00221"></a>00221                 <span class="comment">//low cap</span>
+<a name="l00222"></a>00222                 <span class="keywordtype">int</span> centerIndex = offset;
+<a name="l00223"></a>00223                 cylinder-&gt;position(0,-Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>,0);
+<a name="l00224"></a>00224                 cylinder-&gt;normal(Ogre::Vector3::NEGATIVE_UNIT_Y);
+<a name="l00225"></a>00225                 cylinder-&gt;textureCoord(0,1);
+<a name="l00226"></a>00226                 offset++;
+<a name="l00227"></a>00227                 <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;=CircleRes;j++)
+<a name="l00228"></a>00228                 {
+<a name="l00229"></a>00229                         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> x0 = radius * cosf(j*deltaAngle);
+<a name="l00230"></a>00230                         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> z0 = radius * sinf(j*deltaAngle);
+<a name="l00231"></a>00231 
+<a name="l00232"></a>00232                         cylinder-&gt;position(x0,-Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>, z0);
+<a name="l00233"></a>00233                         cylinder-&gt;normal(Ogre::Vector3::NEGATIVE_UNIT_Y);
+<a name="l00234"></a>00234                         cylinder-&gt;textureCoord(j/(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)CircleRes,0.0);
+<a name="l00235"></a>00235                         <span class="keywordflow">if</span> (j!=CircleRes)
+<a name="l00236"></a>00236                         {
+<a name="l00237"></a>00237                                 cylinder-&gt;index(centerIndex);
+<a name="l00238"></a>00238                                 cylinder-&gt;index(offset);
+<a name="l00239"></a>00239                                 cylinder-&gt;index(offset+1);
+<a name="l00240"></a>00240                         }
+<a name="l00241"></a>00241                         offset++;
+<a name="l00242"></a>00242                 }
 <a name="l00243"></a>00243 
-<a name="l00244"></a>00244                         cylinder-&gt;position(x0, Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>, z0);
-<a name="l00245"></a>00245                         cylinder-&gt;normal(Ogre::Vector3::UNIT_Y);
-<a name="l00246"></a>00246                         cylinder-&gt;textureCoord(j/(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)CircleRes,1);
-<a name="l00247"></a>00247                         <span class="keywordflow">if</span> (j!=CircleRes)
-<a name="l00248"></a>00248                         {
-<a name="l00249"></a>00249                                 cylinder-&gt;index(centerIndex);
-<a name="l00250"></a>00250                                 cylinder-&gt;index(offset+1);
-<a name="l00251"></a>00251                                 cylinder-&gt;index(offset);
-<a name="l00252"></a>00252                         }
-<a name="l00253"></a>00253                         offset++;
-<a name="l00254"></a>00254                 }
-<a name="l00255"></a>00255 
-<a name="l00256"></a>00256                 cylinder-&gt;end();
-<a name="l00257"></a>00257         Ogre::MeshPtr cylindermesh = cylinder-&gt;convertToMesh(MeshName, GroupName);
-<a name="l00258"></a>00258         cylindermesh-&gt;_setBounds(Ogre::AxisAlignedBox(-Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>,-Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>,-Half.<a class="code" href="classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>,Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>,Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>,Half.<a class="code" href="classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>));
-<a name="l00259"></a>00259         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> FirstCheck = Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> &gt; Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> ? Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> : Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00260"></a>00260         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Largest = FirstCheck &gt; Half.<a class="code" href="classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a> ? FirstCheck : Half.<a class="code" href="classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>;
-<a name="l00261"></a>00261         cylindermesh-&gt;_setBoundingSphereRadius(1.4 * Largest);
-<a name="l00262"></a>00262         GeneratedMeshNames.push_back(MeshName);
-<a name="l00263"></a>00263         <span class="keyword">delete</span> cylinder;<span class="comment"></span>
-<a name="l00264"></a>00264 <span class="comment">/// End of MIT(Ogre Proceadural) License ///</span>
-<a name="l00265"></a>00265 <span class="comment"></span>    }
+<a name="l00244"></a>00244                 <span class="comment">// high cap</span>
+<a name="l00245"></a>00245                 centerIndex = offset;
+<a name="l00246"></a>00246                 cylinder-&gt;position(0,Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>,0);
+<a name="l00247"></a>00247                 cylinder-&gt;normal(Ogre::Vector3::UNIT_Y);
+<a name="l00248"></a>00248                 cylinder-&gt;textureCoord(0,0);
+<a name="l00249"></a>00249                 offset++;
+<a name="l00250"></a>00250                 <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;=CircleRes;j++)
+<a name="l00251"></a>00251                 {
+<a name="l00252"></a>00252                         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> x0 = radius * cosf(j*deltaAngle);
+<a name="l00253"></a>00253                         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> z0 = radius * sinf(j*deltaAngle);
+<a name="l00254"></a>00254 
+<a name="l00255"></a>00255                         cylinder-&gt;position(x0, Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>, z0);
+<a name="l00256"></a>00256                         cylinder-&gt;normal(Ogre::Vector3::UNIT_Y);
+<a name="l00257"></a>00257                         cylinder-&gt;textureCoord(j/(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)CircleRes,1);
+<a name="l00258"></a>00258                         <span class="keywordflow">if</span> (j!=CircleRes)
+<a name="l00259"></a>00259                         {
+<a name="l00260"></a>00260                                 cylinder-&gt;index(centerIndex);
+<a name="l00261"></a>00261                                 cylinder-&gt;index(offset+1);
+<a name="l00262"></a>00262                                 cylinder-&gt;index(offset);
+<a name="l00263"></a>00263                         }
+<a name="l00264"></a>00264                         offset++;
+<a name="l00265"></a>00265                 }
 <a name="l00266"></a>00266 
-<a name="l00267"></a><a class="code" href="classphys_1_1MeshGenerator.html#a2d1dfdfe8fae04773de67118a4513f5d">00267</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1MeshGenerator.html#a2d1dfdfe8fae04773de67118a4513f5d" title="Creates a sphere graphical mesh which can be used for actors.">MeshGenerator::CreateSphereMesh</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; MeshName, <span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; MaterialName, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radius, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Rings, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Segments)
-<a name="l00268"></a>00268     {
-<a name="l00269"></a>00269         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
-<a name="l00270"></a>00270         <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> GroupName = TheMaterial-&gt;getGroup();
-<a name="l00271"></a>00271 
-<a name="l00272"></a>00272         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RingAngle = (Ogre::Math::PI / Rings);
-<a name="l00273"></a>00273         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> SegAngle = (2 * Ogre::Math::PI / Segments);
-<a name="l00274"></a>00274         <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> VertIndex = 0;
-<a name="l00275"></a>00275 
-<a name="l00276"></a>00276         Ogre::ManualObject* sphere = <span class="keyword">new</span> Ogre::ManualObject(<span class="stringliteral">&quot;TempMan&quot;</span>);
-<a name="l00277"></a>00277         sphere-&gt;begin(MaterialName);
-<a name="l00278"></a>00278 
-<a name="l00279"></a>00279         <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> ring = 0 ; ring &lt;= Rings ; ring++ ) {
-<a name="l00280"></a>00280         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> r0 = Radius * sinf (ring * RingAngle);
-<a name="l00281"></a>00281         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> y0 = Radius * cosf (ring * RingAngle);
+<a name="l00267"></a>00267                 cylinder-&gt;end();
+<a name="l00268"></a>00268         Ogre::MeshPtr cylindermesh = cylinder-&gt;convertToMesh(MeshName, GroupName);
+<a name="l00269"></a>00269         cylindermesh-&gt;_setBounds(Ogre::AxisAlignedBox(-Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>,-Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>,-Half.<a class="code" href="classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>,Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>,Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>,Half.<a class="code" href="classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>));
+<a name="l00270"></a>00270         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> FirstCheck = Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> &gt; Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> ? Half.<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> : Half.<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00271"></a>00271         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Largest = FirstCheck &gt; Half.<a class="code" href="classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a> ? FirstCheck : Half.<a class="code" href="classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>;
+<a name="l00272"></a>00272         cylindermesh-&gt;_setBoundingSphereRadius(1.4 * Largest);
+<a name="l00273"></a>00273         GeneratedMeshNames.push_back(MeshName);
+<a name="l00274"></a>00274         <span class="keyword">delete</span> cylinder;<span class="comment"></span>
+<a name="l00275"></a>00275 <span class="comment">/// End of MIT(Ogre Proceadural) License ///</span>
+<a name="l00276"></a>00276 <span class="comment"></span>    }
+<a name="l00277"></a>00277 
+<a name="l00278"></a><a class="code" href="classphys_1_1MeshGenerator.html#a2d1dfdfe8fae04773de67118a4513f5d">00278</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1MeshGenerator.html#a2d1dfdfe8fae04773de67118a4513f5d" title="Creates a sphere graphical mesh which can be used for actors.">MeshGenerator::CreateSphereMesh</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; MeshName, <span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; MaterialName, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radius, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Rings, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Segments)
+<a name="l00279"></a>00279     {
+<a name="l00280"></a>00280         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
+<a name="l00281"></a>00281         <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> GroupName = TheMaterial-&gt;getGroup();
 <a name="l00282"></a>00282 
-<a name="l00283"></a>00283             <span class="comment">// Generate the group of segments for the current ring</span>
-<a name="l00284"></a>00284             <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> seg = 0 ; seg &lt;= Segments ; seg++ ) {
-<a name="l00285"></a>00285                 <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> x0 = r0 * sinf(seg * SegAngle);
-<a name="l00286"></a>00286                 <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> z0 = r0 * cosf(seg * SegAngle);
-<a name="l00287"></a>00287 
-<a name="l00288"></a>00288                 <span class="comment">// Add one vertex to the strip which makes up the sphere</span>
-<a name="l00289"></a>00289                 sphere-&gt;position( x0, y0, z0);
-<a name="l00290"></a>00290                 sphere-&gt;normal(Ogre::Vector3(x0, y0, z0).normalisedCopy());
-<a name="l00291"></a>00291                 sphere-&gt;textureCoord((<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>) seg / (<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>) Segments, (<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>) ring / (<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>) Rings);
-<a name="l00292"></a>00292 
-<a name="l00293"></a>00293                 <span class="keywordflow">if</span> (ring != Rings) {
-<a name="l00294"></a>00294                     <span class="comment">// each vertex (except the last) has six indicies pointing to it</span>
-<a name="l00295"></a>00295                     sphere-&gt;index(VertIndex + Segments + 1);
-<a name="l00296"></a>00296                     sphere-&gt;index(VertIndex);
-<a name="l00297"></a>00297                     sphere-&gt;index(VertIndex + Segments);
-<a name="l00298"></a>00298                     sphere-&gt;index(VertIndex + Segments + 1);
-<a name="l00299"></a>00299                     sphere-&gt;index(VertIndex + 1);
-<a name="l00300"></a>00300                     sphere-&gt;index(VertIndex);
-<a name="l00301"></a>00301                     VertIndex++;
-<a name="l00302"></a>00302                 }
-<a name="l00303"></a>00303             }
-<a name="l00304"></a>00304         }
-<a name="l00305"></a>00305 
-<a name="l00306"></a>00306         sphere-&gt;end();
-<a name="l00307"></a>00307         Ogre::MeshPtr spheremesh = sphere-&gt;convertToMesh(MeshName, GroupName);
-<a name="l00308"></a>00308         spheremesh-&gt;_setBounds(Ogre::AxisAlignedBox(-Radius,-Radius,-Radius,Radius,Radius,Radius));
-<a name="l00309"></a>00309         spheremesh-&gt;_setBoundingSphereRadius(Radius);
-<a name="l00310"></a>00310         GeneratedMeshNames.push_back(MeshName);
-<a name="l00311"></a>00311         <span class="keyword">delete</span> sphere;
-<a name="l00312"></a>00312     }
-<a name="l00313"></a>00313 }
-<a name="l00314"></a>00314 
-<a name="l00315"></a>00315 <span class="preprocessor">#endif</span>
+<a name="l00283"></a>00283         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RingAngle = (Ogre::Math::PI / Rings);
+<a name="l00284"></a>00284         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> SegAngle = (2 * Ogre::Math::PI / Segments);
+<a name="l00285"></a>00285         <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> VertIndex = 0;
+<a name="l00286"></a>00286 
+<a name="l00287"></a>00287         Ogre::ManualObject* sphere = <span class="keyword">new</span> Ogre::ManualObject(<span class="stringliteral">&quot;TempMan&quot;</span>);
+<a name="l00288"></a>00288         sphere-&gt;begin(MaterialName);
+<a name="l00289"></a>00289 
+<a name="l00290"></a>00290         <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> ring = 0 ; ring &lt;= Rings ; ring++ ) {
+<a name="l00291"></a>00291         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> r0 = Radius * sinf (ring * RingAngle);
+<a name="l00292"></a>00292         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> y0 = Radius * cosf (ring * RingAngle);
+<a name="l00293"></a>00293 
+<a name="l00294"></a>00294             <span class="comment">// Generate the group of segments for the current ring</span>
+<a name="l00295"></a>00295             <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> seg = 0 ; seg &lt;= Segments ; seg++ ) {
+<a name="l00296"></a>00296                 <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> x0 = r0 * sinf(seg * SegAngle);
+<a name="l00297"></a>00297                 <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> z0 = r0 * cosf(seg * SegAngle);
+<a name="l00298"></a>00298 
+<a name="l00299"></a>00299                 <span class="comment">// Add one vertex to the strip which makes up the sphere</span>
+<a name="l00300"></a>00300                 sphere-&gt;position( x0, y0, z0);
+<a name="l00301"></a>00301                 sphere-&gt;normal(Ogre::Vector3(x0, y0, z0).normalisedCopy());
+<a name="l00302"></a>00302                 sphere-&gt;textureCoord((<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>) seg / (<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>) Segments, (<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>) ring / (<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>) Rings);
+<a name="l00303"></a>00303 
+<a name="l00304"></a>00304                 <span class="keywordflow">if</span> (ring != Rings) {
+<a name="l00305"></a>00305                     <span class="comment">// each vertex (except the last) has six indicies pointing to it</span>
+<a name="l00306"></a>00306                     sphere-&gt;index(VertIndex + Segments + 1);
+<a name="l00307"></a>00307                     sphere-&gt;index(VertIndex);
+<a name="l00308"></a>00308                     sphere-&gt;index(VertIndex + Segments);
+<a name="l00309"></a>00309                     sphere-&gt;index(VertIndex + Segments + 1);
+<a name="l00310"></a>00310                     sphere-&gt;index(VertIndex + 1);
+<a name="l00311"></a>00311                     sphere-&gt;index(VertIndex);
+<a name="l00312"></a>00312                     VertIndex++;
+<a name="l00313"></a>00313                 }
+<a name="l00314"></a>00314             }
+<a name="l00315"></a>00315         }
+<a name="l00316"></a>00316 
+<a name="l00317"></a>00317         sphere-&gt;end();
+<a name="l00318"></a>00318         Ogre::MeshPtr spheremesh = sphere-&gt;convertToMesh(MeshName, GroupName);
+<a name="l00319"></a>00319         spheremesh-&gt;_setBounds(Ogre::AxisAlignedBox(-Radius,-Radius,-Radius,Radius,Radius,Radius));
+<a name="l00320"></a>00320         spheremesh-&gt;_setBoundingSphereRadius(Radius);
+<a name="l00321"></a>00321         GeneratedMeshNames.push_back(MeshName);
+<a name="l00322"></a>00322         <span class="keyword">delete</span> sphere;
+<a name="l00323"></a>00323     }
+<a name="l00324"></a>00324 }
+<a name="l00325"></a>00325 
+<a name="l00326"></a>00326 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -392,7 +403,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:23 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:39 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

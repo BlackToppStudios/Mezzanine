@@ -179,121 +179,120 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00116"></a>00116             <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00117"></a>00117 <span class="comment">                /// @brief Class constructor.</span>
 <a name="l00118"></a>00118 <span class="comment">                /// @param name The name of the widget.</span>
-<a name="l00119"></a>00119 <span class="comment">                /// @param Position The position of the widget.</span>
-<a name="l00120"></a>00120 <span class="comment">                /// @param Size The size of the widget.</span>
-<a name="l00121"></a>00121 <span class="comment">                /// @param parent The parent layer this widget belongs to.</span>
-<a name="l00122"></a>00122 <span class="comment"></span>                <a class="code" href="classphys_1_1UI_1_1CellGrid.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellGrid</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent);<span class="comment"></span>
-<a name="l00123"></a>00123 <span class="comment">                /// @brief Class destructor.</span>
-<a name="l00124"></a>00124 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1UI_1_1CellGrid.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellGrid</a>();<span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">                /// @brief Sets the visibility of this widget.</span>
-<a name="l00126"></a>00126 <span class="comment">                /// @param visible Bool determining whether or not this widget should be visible.</span>
-<a name="l00127"></a>00127 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetVisible(<span class="keywordtype">bool</span> visible);<span class="comment"></span>
-<a name="l00128"></a>00128 <span class="comment">                /// @brief Gets the visibility of this widget.</span>
-<a name="l00129"></a>00129 <span class="comment">                /// @return Returns a bool representing the visibility of this widget.</span>
-<a name="l00130"></a>00130 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsVisible();<span class="comment"></span>
-<a name="l00131"></a>00131 <span class="comment">                /// @brief Forces this widget to be shown.</span>
-<a name="l00132"></a>00132 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Show();<span class="comment"></span>
-<a name="l00133"></a>00133 <span class="comment">                /// @brief Forces this widget to hide.</span>
-<a name="l00134"></a>00134 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Hide();<span class="comment"></span>
-<a name="l00135"></a>00135 <span class="comment">                /// @brief Sets the fixed size cells in this grid are to have.</span>
-<a name="l00136"></a>00136 <span class="comment">                /// @param FixedSize The fixed size to apply to cells.</span>
-<a name="l00137"></a>00137 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetFixedCellSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; FixedSize);<span class="comment"></span>
-<a name="l00138"></a>00138 <span class="comment">                /// @brief Gets the currently set fixed size applied to all cells in this widget.</span>
-<a name="l00139"></a>00139 <span class="comment">                /// @return Returns a Vector2 containing the size applied to all cells in this widget.</span>
-<a name="l00140"></a>00140 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetFixedCellSize();<span class="comment"></span>
-<a name="l00141"></a>00141 <span class="comment">                /// @brief Addes a Cell to this widget that will be rendered.</span>
-<a name="l00142"></a>00142 <span class="comment">                /// @param ToBeAdded The Cell to be added to this widget.</span>
-<a name="l00143"></a>00143 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddCell(<a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* ToBeAdded);<span class="comment"></span>
-<a name="l00144"></a>00144 <span class="comment">                /// @brief Gets a Cell on the grid by name.</span>
-<a name="l00145"></a>00145 <span class="comment">                /// @param Name The name of the Cell to get.</span>
-<a name="l00146"></a>00146 <span class="comment">                /// @return Returns a pointer to the Cell requested, or NULL if not found.</span>
-<a name="l00147"></a>00147 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* GetCell(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
-<a name="l00148"></a>00148 <span class="comment">                /// @brief Gets a Cell at the specified row/column.</span>
-<a name="l00149"></a>00149 <span class="comment">                /// @param Row The Row to check.  Specified a point on the grid when used along side &quot;Column&quot; param.</span>
-<a name="l00150"></a>00150 <span class="comment">                /// @param Column The Column to check.  Specifies a point on the grid when used along side &quot;Row&quot; param.</span>
-<a name="l00151"></a>00151 <span class="comment">                /// @return Returns a pointer to the cell requested, or NULL if nothing is at the requested row/column.</span>
-<a name="l00152"></a>00152 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* GetCell(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Row, <span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Column);<span class="comment"></span>
-<a name="l00153"></a>00153 <span class="comment">                /// @brief Removes a Cell from this widget.</span>
-<a name="l00154"></a>00154 <span class="comment">                /// @param ToBeRemoved The Cell to be removed from this widget.</span>
-<a name="l00155"></a>00155 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveCell(<a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* ToBeRemoved);<span class="comment"></span>
-<a name="l00156"></a>00156 <span class="comment">                /// @brief Destroys all Cells currently stored within this widget.</span>
-<a name="l00157"></a>00157 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroyAllCells();<span class="comment"></span>
-<a name="l00158"></a>00158 <span class="comment">                /// @brief Forces a reconstruction of the grid.</span>
-<a name="l00159"></a>00159 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> GenerateGrid();<span class="comment"></span>
-<a name="l00160"></a>00160 <span class="comment">                /// @brief Sets the limits of the grid, to determine when and where objects need to be wrapped.</span>
-<a name="l00161"></a>00161 <span class="comment">                /// @details This does not alter the actual size of the widget, just the logical area the widget has to work with.</span>
-<a name="l00162"></a>00162 <span class="comment">                /// @param Area The new limits to the grid.</span>
-<a name="l00163"></a>00163 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetWorkAreaLimits(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; AreaLimit);<span class="comment"></span>
-<a name="l00164"></a>00164 <span class="comment">                /// @brief Gets the currently set logical limits for the grid.</span>
-<a name="l00165"></a>00165 <span class="comment">                /// @return Returns a Vector2 representing the logical limits of the grid.</span>
-<a name="l00166"></a>00166 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetWorkAreaLimits();<span class="comment"></span>
-<a name="l00167"></a>00167 <span class="comment">                /// @brief Sets the spacing from the edge of the entire grid area that no cell should overlap.</span>
-<a name="l00168"></a>00168 <span class="comment">                /// @details Default: 0,0.</span>
-<a name="l00169"></a>00169 <span class="comment">                /// @param Spacing The minimum amount of space (in relative units) from the edge Cells should be.</span>
-<a name="l00170"></a>00170 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetEdgeSpacing(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Spacing);<span class="comment"></span>
-<a name="l00171"></a>00171 <span class="comment">                /// @brief Gets the currently set edge spacing.</span>
-<a name="l00172"></a>00172 <span class="comment">                /// @return Returns a Real representing the spacing to be used on edges of this widget.</span>
-<a name="l00173"></a>00173 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetEdgeSpacing();<span class="comment"></span>
-<a name="l00174"></a>00174 <span class="comment">                /// @brief Sets the spacing from each cell around any given cell there should be.</span>
-<a name="l00175"></a>00175 <span class="comment">                /// @details Default 0.01,0.01.</span>
-<a name="l00176"></a>00176 <span class="comment">                /// @param Spacing The minimum amount of space (in relative units) from each cell a given cell should be.</span>
-<a name="l00177"></a>00177 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetCellSpacing(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Spacing);<span class="comment"></span>
-<a name="l00178"></a>00178 <span class="comment">                /// @brief Gets the currently set cell spacing.</span>
-<a name="l00179"></a>00179 <span class="comment">                /// @return Returns a Real representing the spacing to be used between Cells of this widget.</span>
-<a name="l00180"></a>00180 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetCellSpacing();<span class="comment"></span>
-<a name="l00181"></a>00181 <span class="comment">                /// @brief Checks to see if there are any remaining cells that aren&#39;t on the grid due to a lack of space.</span>
-<a name="l00182"></a>00182 <span class="comment">                /// @return Returns a bool indicating whether or not this widgets work area needs to be increased.</span>
-<a name="l00183"></a>00183 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> CellsOffGrid();<span class="comment"></span>
-<a name="l00184"></a>00184 <span class="comment">                /// @brief Sorts the grid based on the priority set in the cells.</span>
-<a name="l00185"></a>00185 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SortGrid();<span class="comment"></span>
-<a name="l00186"></a>00186 <span class="comment">                /// @brief Sets the selected pointer to NULL, so no cells are selected.</span>
-<a name="l00187"></a>00187 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> ClearSelected();<span class="comment"></span>
-<a name="l00188"></a>00188 <span class="comment">                /// @brief Checks to see if the current mouse position is over this widget.</span>
-<a name="l00189"></a>00189 <span class="comment">                /// @return Returns a bool value, true if the mouse is over this widget, false if it&#39;s not.</span>
-<a name="l00190"></a>00190 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> CheckMouseHover();<span class="comment"></span>
-<a name="l00191"></a>00191 <span class="comment">                /// @brief Sets the relative position of this widget.</span>
-<a name="l00192"></a>00192 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00193"></a>00193 <span class="comment">                /// @param Position A vector2 representing the relative position of this widget.</span>
-<a name="l00194"></a>00194 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPosition(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position);<span class="comment"></span>
-<a name="l00195"></a>00195 <span class="comment">                /// @brief Gets the relative position of this widget.</span>
-<a name="l00196"></a>00196 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00197"></a>00197 <span class="comment">                /// @return Returns a vector2 representing the relative position of this widget.</span>
-<a name="l00198"></a>00198 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetPosition();<span class="comment"></span>
-<a name="l00199"></a>00199 <span class="comment">                /// @brief Sets the pixel position of this widget.</span>
-<a name="l00200"></a>00200 <span class="comment">                /// @param Position A vector2 representing the pixel position of this widget.</span>
-<a name="l00201"></a>00201 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualPosition(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position);<span class="comment"></span>
-<a name="l00202"></a>00202 <span class="comment">                /// @brief Sets the pixel position of this widget.</span>
-<a name="l00203"></a>00203 <span class="comment">                /// @return Returns a vector2 representing the pixel position of this widget.</span>
-<a name="l00204"></a>00204 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualPosition();<span class="comment"></span>
-<a name="l00205"></a>00205 <span class="comment">                /// @brief Sets the relative size of this widget.</span>
-<a name="l00206"></a>00206 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00207"></a>00207 <span class="comment">                /// @param Size A vector2 representing the relative size of this widget.</span>
-<a name="l00208"></a>00208 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
-<a name="l00209"></a>00209 <span class="comment">                /// @brief Gets the relative size of this widget.</span>
-<a name="l00210"></a>00210 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00211"></a>00211 <span class="comment">                /// @return Returns a vector2 representing the relative size of this widget.</span>
-<a name="l00212"></a>00212 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetSize();<span class="comment"></span>
-<a name="l00213"></a>00213 <span class="comment">                /// @brief Sets the pixel size of this widget.</span>
-<a name="l00214"></a>00214 <span class="comment">                /// @param Size A vector2 representing the pixel size of this widget.</span>
-<a name="l00215"></a>00215 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
-<a name="l00216"></a>00216 <span class="comment">                /// @brief Sets the pixel size of this widget.</span>
-<a name="l00217"></a>00217 <span class="comment">                /// @return Returns a vector2 representing the pixel size of this widget.</span>
-<a name="l00218"></a>00218 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualSize();<span class="comment"></span>
-<a name="l00219"></a>00219 <span class="comment">                /// @brief Updates the dimensions of this widget to match those of the new screen size.</span>
-<a name="l00220"></a>00220 <span class="comment">                /// @details This function is called automatically when a viewport changes in size, and shouldn&#39;t need to be called manually.</span>
-<a name="l00221"></a>00221 <span class="comment">                /// @param OldViewportSize The old size of the viewport.</span>
-<a name="l00222"></a>00222 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> UpdateDimensions(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; OldViewportSize);<span class="comment"></span>
-<a name="l00223"></a>00223 <span class="comment">                /// @brief Gets the background to this Grid.</span>
-<a name="l00224"></a>00224 <span class="comment">                /// @return Returns a pointer to the background of this grid.</span>
-<a name="l00225"></a>00225 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* GetGridBack();<span class="comment"></span>
-<a name="l00226"></a>00226 <span class="comment">                /// @brief Gets the currently selected Cell.</span>
-<a name="l00227"></a>00227 <span class="comment">                /// @return Returns a pointer to the selected Cell.</span>
-<a name="l00228"></a>00228 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* GetSelected();
-<a name="l00229"></a>00229         };<span class="comment">//cellgrid</span>
-<a name="l00230"></a>00230     }<span class="comment">//ui</span>
-<a name="l00231"></a>00231 }<span class="comment">//phys</span>
-<a name="l00232"></a>00232 
-<a name="l00233"></a>00233 <span class="preprocessor">#endif</span>
+<a name="l00119"></a>00119 <span class="comment">                /// @param Rect The Rect representing the position and size of the widget.</span>
+<a name="l00120"></a>00120 <span class="comment">                /// @param parent The parent layer this widget belongs to.</span>
+<a name="l00121"></a>00121 <span class="comment"></span>                <a class="code" href="classphys_1_1UI_1_1CellGrid.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellGrid</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent);<span class="comment"></span>
+<a name="l00122"></a>00122 <span class="comment">                /// @brief Class destructor.</span>
+<a name="l00123"></a>00123 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1UI_1_1CellGrid.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellGrid</a>();<span class="comment"></span>
+<a name="l00124"></a>00124 <span class="comment">                /// @brief Sets the visibility of this widget.</span>
+<a name="l00125"></a>00125 <span class="comment">                /// @param visible Bool determining whether or not this widget should be visible.</span>
+<a name="l00126"></a>00126 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetVisible(<span class="keywordtype">bool</span> visible);<span class="comment"></span>
+<a name="l00127"></a>00127 <span class="comment">                /// @brief Gets the visibility of this widget.</span>
+<a name="l00128"></a>00128 <span class="comment">                /// @return Returns a bool representing the visibility of this widget.</span>
+<a name="l00129"></a>00129 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsVisible();<span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">                /// @brief Forces this widget to be shown.</span>
+<a name="l00131"></a>00131 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Show();<span class="comment"></span>
+<a name="l00132"></a>00132 <span class="comment">                /// @brief Forces this widget to hide.</span>
+<a name="l00133"></a>00133 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Hide();<span class="comment"></span>
+<a name="l00134"></a>00134 <span class="comment">                /// @brief Sets the fixed size cells in this grid are to have.</span>
+<a name="l00135"></a>00135 <span class="comment">                /// @param FixedSize The fixed size to apply to cells.</span>
+<a name="l00136"></a>00136 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetFixedCellSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; FixedSize);<span class="comment"></span>
+<a name="l00137"></a>00137 <span class="comment">                /// @brief Gets the currently set fixed size applied to all cells in this widget.</span>
+<a name="l00138"></a>00138 <span class="comment">                /// @return Returns a Vector2 containing the size applied to all cells in this widget.</span>
+<a name="l00139"></a>00139 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetFixedCellSize();<span class="comment"></span>
+<a name="l00140"></a>00140 <span class="comment">                /// @brief Addes a Cell to this widget that will be rendered.</span>
+<a name="l00141"></a>00141 <span class="comment">                /// @param ToBeAdded The Cell to be added to this widget.</span>
+<a name="l00142"></a>00142 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddCell(<a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* ToBeAdded);<span class="comment"></span>
+<a name="l00143"></a>00143 <span class="comment">                /// @brief Gets a Cell on the grid by name.</span>
+<a name="l00144"></a>00144 <span class="comment">                /// @param Name The name of the Cell to get.</span>
+<a name="l00145"></a>00145 <span class="comment">                /// @return Returns a pointer to the Cell requested, or NULL if not found.</span>
+<a name="l00146"></a>00146 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* GetCell(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">                /// @brief Gets a Cell at the specified row/column.</span>
+<a name="l00148"></a>00148 <span class="comment">                /// @param Row The Row to check.  Specified a point on the grid when used along side &quot;Column&quot; param.</span>
+<a name="l00149"></a>00149 <span class="comment">                /// @param Column The Column to check.  Specifies a point on the grid when used along side &quot;Row&quot; param.</span>
+<a name="l00150"></a>00150 <span class="comment">                /// @return Returns a pointer to the cell requested, or NULL if nothing is at the requested row/column.</span>
+<a name="l00151"></a>00151 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* GetCell(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Row, <span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Column);<span class="comment"></span>
+<a name="l00152"></a>00152 <span class="comment">                /// @brief Removes a Cell from this widget.</span>
+<a name="l00153"></a>00153 <span class="comment">                /// @param ToBeRemoved The Cell to be removed from this widget.</span>
+<a name="l00154"></a>00154 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveCell(<a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* ToBeRemoved);<span class="comment"></span>
+<a name="l00155"></a>00155 <span class="comment">                /// @brief Destroys all Cells currently stored within this widget.</span>
+<a name="l00156"></a>00156 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroyAllCells();<span class="comment"></span>
+<a name="l00157"></a>00157 <span class="comment">                /// @brief Forces a reconstruction of the grid.</span>
+<a name="l00158"></a>00158 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> GenerateGrid();<span class="comment"></span>
+<a name="l00159"></a>00159 <span class="comment">                /// @brief Sets the limits of the grid, to determine when and where objects need to be wrapped.</span>
+<a name="l00160"></a>00160 <span class="comment">                /// @details This does not alter the actual size of the widget, just the logical area the widget has to work with.</span>
+<a name="l00161"></a>00161 <span class="comment">                /// @param Area The new limits to the grid.</span>
+<a name="l00162"></a>00162 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetWorkAreaLimits(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; AreaLimit);<span class="comment"></span>
+<a name="l00163"></a>00163 <span class="comment">                /// @brief Gets the currently set logical limits for the grid.</span>
+<a name="l00164"></a>00164 <span class="comment">                /// @return Returns a Vector2 representing the logical limits of the grid.</span>
+<a name="l00165"></a>00165 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetWorkAreaLimits();<span class="comment"></span>
+<a name="l00166"></a>00166 <span class="comment">                /// @brief Sets the spacing from the edge of the entire grid area that no cell should overlap.</span>
+<a name="l00167"></a>00167 <span class="comment">                /// @details Default: 0,0.</span>
+<a name="l00168"></a>00168 <span class="comment">                /// @param Spacing The minimum amount of space (in relative units) from the edge Cells should be.</span>
+<a name="l00169"></a>00169 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetEdgeSpacing(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Spacing);<span class="comment"></span>
+<a name="l00170"></a>00170 <span class="comment">                /// @brief Gets the currently set edge spacing.</span>
+<a name="l00171"></a>00171 <span class="comment">                /// @return Returns a Real representing the spacing to be used on edges of this widget.</span>
+<a name="l00172"></a>00172 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetEdgeSpacing();<span class="comment"></span>
+<a name="l00173"></a>00173 <span class="comment">                /// @brief Sets the spacing from each cell around any given cell there should be.</span>
+<a name="l00174"></a>00174 <span class="comment">                /// @details Default 0.01,0.01.</span>
+<a name="l00175"></a>00175 <span class="comment">                /// @param Spacing The minimum amount of space (in relative units) from each cell a given cell should be.</span>
+<a name="l00176"></a>00176 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetCellSpacing(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Spacing);<span class="comment"></span>
+<a name="l00177"></a>00177 <span class="comment">                /// @brief Gets the currently set cell spacing.</span>
+<a name="l00178"></a>00178 <span class="comment">                /// @return Returns a Real representing the spacing to be used between Cells of this widget.</span>
+<a name="l00179"></a>00179 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetCellSpacing();<span class="comment"></span>
+<a name="l00180"></a>00180 <span class="comment">                /// @brief Checks to see if there are any remaining cells that aren&#39;t on the grid due to a lack of space.</span>
+<a name="l00181"></a>00181 <span class="comment">                /// @return Returns a bool indicating whether or not this widgets work area needs to be increased.</span>
+<a name="l00182"></a>00182 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> CellsOffGrid();<span class="comment"></span>
+<a name="l00183"></a>00183 <span class="comment">                /// @brief Sorts the grid based on the priority set in the cells.</span>
+<a name="l00184"></a>00184 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SortGrid();<span class="comment"></span>
+<a name="l00185"></a>00185 <span class="comment">                /// @brief Sets the selected pointer to NULL, so no cells are selected.</span>
+<a name="l00186"></a>00186 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> ClearSelected();<span class="comment"></span>
+<a name="l00187"></a>00187 <span class="comment">                /// @brief Checks to see if the current mouse position is over this widget.</span>
+<a name="l00188"></a>00188 <span class="comment">                /// @return Returns a bool value, true if the mouse is over this widget, false if it&#39;s not.</span>
+<a name="l00189"></a>00189 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> CheckMouseHover();<span class="comment"></span>
+<a name="l00190"></a>00190 <span class="comment">                /// @brief Sets the relative position of this widget.</span>
+<a name="l00191"></a>00191 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00192"></a>00192 <span class="comment">                /// @param Position A vector2 representing the relative position of this widget.</span>
+<a name="l00193"></a>00193 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPosition(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position);<span class="comment"></span>
+<a name="l00194"></a>00194 <span class="comment">                /// @brief Gets the relative position of this widget.</span>
+<a name="l00195"></a>00195 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00196"></a>00196 <span class="comment">                /// @return Returns a vector2 representing the relative position of this widget.</span>
+<a name="l00197"></a>00197 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetPosition();<span class="comment"></span>
+<a name="l00198"></a>00198 <span class="comment">                /// @brief Sets the pixel position of this widget.</span>
+<a name="l00199"></a>00199 <span class="comment">                /// @param Position A vector2 representing the pixel position of this widget.</span>
+<a name="l00200"></a>00200 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualPosition(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position);<span class="comment"></span>
+<a name="l00201"></a>00201 <span class="comment">                /// @brief Sets the pixel position of this widget.</span>
+<a name="l00202"></a>00202 <span class="comment">                /// @return Returns a vector2 representing the pixel position of this widget.</span>
+<a name="l00203"></a>00203 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualPosition();<span class="comment"></span>
+<a name="l00204"></a>00204 <span class="comment">                /// @brief Sets the relative size of this widget.</span>
+<a name="l00205"></a>00205 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00206"></a>00206 <span class="comment">                /// @param Size A vector2 representing the relative size of this widget.</span>
+<a name="l00207"></a>00207 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
+<a name="l00208"></a>00208 <span class="comment">                /// @brief Gets the relative size of this widget.</span>
+<a name="l00209"></a>00209 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00210"></a>00210 <span class="comment">                /// @return Returns a vector2 representing the relative size of this widget.</span>
+<a name="l00211"></a>00211 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetSize();<span class="comment"></span>
+<a name="l00212"></a>00212 <span class="comment">                /// @brief Sets the pixel size of this widget.</span>
+<a name="l00213"></a>00213 <span class="comment">                /// @param Size A vector2 representing the pixel size of this widget.</span>
+<a name="l00214"></a>00214 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
+<a name="l00215"></a>00215 <span class="comment">                /// @brief Sets the pixel size of this widget.</span>
+<a name="l00216"></a>00216 <span class="comment">                /// @return Returns a vector2 representing the pixel size of this widget.</span>
+<a name="l00217"></a>00217 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualSize();<span class="comment"></span>
+<a name="l00218"></a>00218 <span class="comment">                /// @brief Updates the dimensions of this widget to match those of the new screen size.</span>
+<a name="l00219"></a>00219 <span class="comment">                /// @details This function is called automatically when a viewport changes in size, and shouldn&#39;t need to be called manually.</span>
+<a name="l00220"></a>00220 <span class="comment">                /// @param OldViewportSize The old size of the viewport.</span>
+<a name="l00221"></a>00221 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> UpdateDimensions(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; OldViewportSize);<span class="comment"></span>
+<a name="l00222"></a>00222 <span class="comment">                /// @brief Gets the background to this Grid.</span>
+<a name="l00223"></a>00223 <span class="comment">                /// @return Returns a pointer to the background of this grid.</span>
+<a name="l00224"></a>00224 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* GetGridBack();<span class="comment"></span>
+<a name="l00225"></a>00225 <span class="comment">                /// @brief Gets the currently selected Cell.</span>
+<a name="l00226"></a>00226 <span class="comment">                /// @return Returns a pointer to the selected Cell.</span>
+<a name="l00227"></a>00227 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* GetSelected();
+<a name="l00228"></a>00228         };<span class="comment">//cellgrid</span>
+<a name="l00229"></a>00229     }<span class="comment">//ui</span>
+<a name="l00230"></a>00230 }<span class="comment">//phys</span>
+<a name="l00231"></a>00231 
+<a name="l00232"></a>00232 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -310,7 +309,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:23 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:39 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

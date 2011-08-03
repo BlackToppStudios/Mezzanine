@@ -20,7 +20,7 @@ Inheritance diagram for phys::UI::ScrolledCellGrid:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_ac5c8216540515fef2d30ddd075ccb941}{ScrolledCellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Thickness, const UI::ScrollbarStyle \&Style, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a55568ced472f194c6fd6a07310b68561}{ScrolledCellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Thickness, const UI::ScrollbarStyle \&Style, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a27a91d4fe26c101718f8593c8775f0cb}{
 virtual \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a27a91d4fe26c101718f8593c8775f0cb}{$\sim$ScrolledCellGrid} ()}
@@ -122,20 +122,19 @@ Definition at line 57 of file uiscrolledcellgrid.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_ac5c8216540515fef2d30ddd075ccb941}{
+\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a55568ced472f194c6fd6a07310b68561}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!ScrolledCellGrid@{ScrolledCellGrid}}
 \index{ScrolledCellGrid@{ScrolledCellGrid}!phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}}
 \paragraph[{ScrolledCellGrid}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::ScrolledCellGrid::ScrolledCellGrid (
 \begin{DoxyParamCaption}
 \item[{const {\bf String} \&}]{name, }
-\item[{const {\bf Vector2} \&}]{Position, }
-\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
 \item[{const {\bf Real} \&}]{Thickness, }
 \item[{const UI::ScrollbarStyle \&}]{Style, }
 \item[{{\bf Layer} $\ast$}]{parent}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1UI_1_1ScrolledCellGrid_ac5c8216540515fef2d30ddd075ccb941}
+\label{classphys_1_1UI_1_1ScrolledCellGrid_a55568ced472f194c6fd6a07310b68561}
 
 
 Class constructor. 
@@ -144,11 +143,9 @@ Class constructor.
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of the widget. \\
 \hline
-{\em Position} & The position of the widget. \\
+{\em Rect} & The Rect representing the position and size of the widget. \\
 \hline
-{\em Size} & The size of the widget. \\
-\hline
-{\em Thickness} & The width of the vertical scrollbar in relative units. The same amount of actual pixels is used to determine the height of the horizontal scrollbar. \\
+{\em Thickness} & The width of the vertical scrollbar. The same amount of actual pixels is used to determine the height of the horizontal scrollbar. If the Rect passed in is relative, this will expect Thickness to be relative as well. \\
 \hline
 {\em Style} & An enum value representing how you want your scrollbar constructed. See class details for more info. \\
 \hline
@@ -184,7 +181,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1CellGrid_a9c5f899c7db6c24d9aa2b
 
 
 
-Definition at line 265 of file uiscrolledcellgrid.cpp.
+Definition at line 278 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_ac45c0e5d0ecd6f032bfa2ec630394b96}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!GetAutoHide@{GetAutoHide}}
@@ -204,7 +201,7 @@ Returns a bool indicating whether or not scrollbar auto-\/hide is enabled.
 \end{DoxyReturn}
 
 
-Definition at line 260 of file uiscrolledcellgrid.cpp.
+Definition at line 273 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a32bad5e7312430285d93a9beee06a12b}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!GetHorizontalScroll@{GetHorizontalScroll}}
@@ -224,7 +221,7 @@ Returns a pointer to the horizontal scrollbar of this Grid, or NULL if it's page
 \end{DoxyReturn}
 
 
-Definition at line 349 of file uiscrolledcellgrid.cpp.
+Definition at line 362 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_afcc80eceed64b8dac28832d4effade31}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!GetVerticalScroll@{GetVerticalScroll}}
@@ -244,7 +241,7 @@ Returns a pointer to the vertical scrollbar of this Grid, or NULL if it's paged.
 \end{DoxyReturn}
 
 
-Definition at line 354 of file uiscrolledcellgrid.cpp.
+Definition at line 367 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_aceff3ee36c2677d55e1a4e355611eef9}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!SetActualPosition@{SetActualPosition}}
@@ -270,7 +267,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1CellGrid_a911ce43c124ca7ac9f02b
 
 
 
-Definition at line 297 of file uiscrolledcellgrid.cpp.
+Definition at line 310 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a32ee6cc683f7357afef8b7075d8b8f20}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!SetActualSize@{SetActualSize}}
@@ -296,7 +293,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1CellGrid_a86a0ff7a5a916278d901b
 
 
 
-Definition at line 323 of file uiscrolledcellgrid.cpp.
+Definition at line 336 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_ab3b8ac3f85185c1a9236cf80569659d8}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!SetAutoHide@{SetAutoHide}}
@@ -318,7 +315,7 @@ Sets whether or not the scrollbars should auto-\/hide, or always be visible.
 \end{DoxyParams}
 
 
-Definition at line 255 of file uiscrolledcellgrid.cpp.
+Definition at line 268 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_aef62a124cb71b39bc73bda770741882f}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!SetPosition@{SetPosition}}
@@ -344,7 +341,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1CellGrid_abf0552ebbe369f6b695f9
 
 
 
-Definition at line 286 of file uiscrolledcellgrid.cpp.
+Definition at line 299 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a793a775a3603e71db5ad29686c27ae68}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!SetSize@{SetSize}}
@@ -370,7 +367,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1CellGrid_a83de47589cb02ce49882f
 
 
 
-Definition at line 308 of file uiscrolledcellgrid.cpp.
+Definition at line 321 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_aef5b78f205e75d33fff05623a1b61aa4}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!SetVisible@{SetVisible}}
@@ -396,7 +393,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1CellGrid_abd1b3b422680a8b549c1c
 
 
 
-Definition at line 233 of file uiscrolledcellgrid.cpp.
+Definition at line 246 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_af75c87ada3a1bac3dda208485ebc5f94}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!Show@{Show}}
@@ -414,7 +411,7 @@ Forces this widget to be shown.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000030}{Todo}]Currently this and SetVisible disregard auto-\/hides. Something should be implemented to account for that. \end{Desc}
+\item[\hyperlink{todo__todo000033}{Todo}]Currently this and SetVisible disregard auto-\/hides. Something should be implemented to account for that. \end{Desc}
 
 
 
@@ -423,7 +420,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe624
 
 
 
-Definition at line 240 of file uiscrolledcellgrid.cpp.
+Definition at line 253 of file uiscrolledcellgrid.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_aed1f61cbdab04c555e26076ec933bbf2}{
 \index{phys::UI::ScrolledCellGrid@{phys::UI::ScrolledCellGrid}!UpdateDimensions@{UpdateDimensions}}
@@ -449,7 +446,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf
 
 
 
-Definition at line 338 of file uiscrolledcellgrid.cpp.
+Definition at line 351 of file uiscrolledcellgrid.cpp.
 
 
 

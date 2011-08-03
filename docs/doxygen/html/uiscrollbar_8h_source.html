@@ -151,10 +151,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00088"></a>00088                 <span class="keywordtype">bool</span> DownRightLock;<span class="comment"></span>
 <a name="l00089"></a>00089 <span class="comment">                /// @internal</span>
 <a name="l00090"></a>00090 <span class="comment">                /// @brief Constructor helper function for creating a horizontally aligned scrollbar.</span>
-<a name="l00091"></a>00091 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> CreateHorizontalScrollbar(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> CreateHorizontalScrollbar(<span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect);<span class="comment"></span>
 <a name="l00092"></a>00092 <span class="comment">                /// @internal</span>
 <a name="l00093"></a>00093 <span class="comment">                /// @brief Constructor helper function for creating a vertically aligned scrollbar.</span>
-<a name="l00094"></a>00094 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> CreateVerticalScrollbar(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
+<a name="l00094"></a>00094 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> CreateVerticalScrollbar(<span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect);<span class="comment"></span>
 <a name="l00095"></a>00095 <span class="comment">                /// @internal</span>
 <a name="l00096"></a>00096 <span class="comment">                /// @brief Determines if the dimensions passed into this object are valid and can be used.</span>
 <a name="l00097"></a>00097 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsValidDimensions(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
@@ -194,84 +194,83 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00131"></a>00131             <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00132"></a>00132 <span class="comment">                /// @brief Standard initialization constructor.</span>
 <a name="l00133"></a>00133 <span class="comment">                /// @param Name The name of this scrollbar.</span>
-<a name="l00134"></a>00134 <span class="comment">                /// @param Position A vector2 representing the top left position for this widget to be placed on screen.</span>
-<a name="l00135"></a>00135 <span class="comment">                /// @param Size A vector2 representing the size of this widget.</span>
-<a name="l00136"></a>00136 <span class="comment">                /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.</span>
-<a name="l00137"></a>00137 <span class="comment">                /// @param parent The Layer that created this scrollbar.</span>
-<a name="l00138"></a>00138 <span class="comment"></span>                <a class="code" href="classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">Scrollbar</a>(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size, <span class="keyword">const</span> UI::ScrollbarStyle&amp; Style, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent);<span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">                /// @brief Standard class destructor.</span>
-<a name="l00140"></a>00140 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">Scrollbar</a>();<span class="comment"></span>
-<a name="l00141"></a>00141 <span class="comment">                /// @brief Sets the visibility of this scrollbar.</span>
-<a name="l00142"></a>00142 <span class="comment">                /// @param visible Bool determining whether or not this scrollbar should be visible.</span>
-<a name="l00143"></a>00143 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetVisible(<span class="keywordtype">bool</span> visible);<span class="comment"></span>
-<a name="l00144"></a>00144 <span class="comment">                /// @brief Gets the visibility of this scrollbar.</span>
-<a name="l00145"></a>00145 <span class="comment">                /// @return Returns a bool representing the visibility of this scrollbar.</span>
-<a name="l00146"></a>00146 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsVisible();<span class="comment"></span>
-<a name="l00147"></a>00147 <span class="comment">                /// @brief Forces this scrollbar to be shown.</span>
-<a name="l00148"></a>00148 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Show();<span class="comment"></span>
-<a name="l00149"></a>00149 <span class="comment">                /// @brief Forces this scrollbar to hide.</span>
-<a name="l00150"></a>00150 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Hide();<span class="comment"></span>
-<a name="l00151"></a>00151 <span class="comment">                /// @brief Checks to see if the current mouse position is over this widget.</span>
-<a name="l00152"></a>00152 <span class="comment">                /// @return Returns a bool value, true if the mouse is over this widget, false if it&#39;s not.</span>
-<a name="l00153"></a>00153 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> CheckMouseHover();<span class="comment"></span>
-<a name="l00154"></a>00154 <span class="comment">                /// @brief Get the currnent scroll position represented by a value between 0 and 1.</span>
-<a name="l00155"></a>00155 <span class="comment">                /// @details For example, if the scroller is halfway down the limits it&#39;s allowed, this will return 0.5. @n</span>
-<a name="l00156"></a>00156 <span class="comment">                /// Like other values, the top and left represent origin(0) values.</span>
-<a name="l00157"></a>00157 <span class="comment">                /// @return Returns the stored scroll position.</span>
-<a name="l00158"></a>00158 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetScrollerValue();<span class="comment"></span>
-<a name="l00159"></a>00159 <span class="comment">                /// @brief Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed.</span>
-<a name="l00160"></a>00160 <span class="comment">                /// @param IncDist A real representing the amount to increment.  Can be negative.</span>
-<a name="l00161"></a>00161 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetIncrementDistance(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; IncDist);<span class="comment"></span>
-<a name="l00162"></a>00162 <span class="comment">                /// @brief Sets the length(or height) of the scroller based on the relative size of it&#39;s background.</span>
-<a name="l00163"></a>00163 <span class="comment">                /// @param Size The relative size you with to set the scroller to.  Values range from 0.0 to 1.0.</span>
-<a name="l00164"></a>00164 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetScrollerSize(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Size);<span class="comment"></span>
-<a name="l00165"></a>00165 <span class="comment">                /// @brief Sets the relative position of this widget in pixels.</span>
-<a name="l00166"></a>00166 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0. @n</span>
-<a name="l00167"></a>00167 <span class="comment">                /// The top and the left are considered the origin, thus values of 0 represent one of these points.</span>
-<a name="l00168"></a>00168 <span class="comment">                /// @param Position A vector2 representing the relative position of this widget.</span>
-<a name="l00169"></a>00169 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPosition(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position);<span class="comment"></span>
-<a name="l00170"></a>00170 <span class="comment">                /// @brief Gets the relative position of this widget.</span>
-<a name="l00171"></a>00171 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00172"></a>00172 <span class="comment">                /// @return Returns a vector2 representing the relative position of this widget.</span>
-<a name="l00173"></a>00173 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetPosition();<span class="comment"></span>
-<a name="l00174"></a>00174 <span class="comment">                /// @brief Sets the pixel position of this widget.</span>
-<a name="l00175"></a>00175 <span class="comment">                /// @param Position A vector2 representing the pixel position of this widget.</span>
-<a name="l00176"></a>00176 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualPosition(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position);<span class="comment"></span>
-<a name="l00177"></a>00177 <span class="comment">                /// @brief Sets the pixel position of this widget.</span>
-<a name="l00178"></a>00178 <span class="comment">                /// @return Returns a vector2 representing the pixel position of this widget.</span>
-<a name="l00179"></a>00179 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualPosition();<span class="comment"></span>
-<a name="l00180"></a>00180 <span class="comment">                /// @brief Sets the relative size of this widget.</span>
-<a name="l00181"></a>00181 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00182"></a>00182 <span class="comment">                /// @param Size A vector2 representing the relative size of this widget.</span>
-<a name="l00183"></a>00183 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
-<a name="l00184"></a>00184 <span class="comment">                /// @brief Gets the relative size of this widget.</span>
-<a name="l00185"></a>00185 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00186"></a>00186 <span class="comment">                /// @return Returns a vector2 representing the relative size of this widget.</span>
-<a name="l00187"></a>00187 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetSize();<span class="comment"></span>
-<a name="l00188"></a>00188 <span class="comment">                /// @brief Sets the pixel size of this widget.</span>
-<a name="l00189"></a>00189 <span class="comment">                /// @param Size A vector2 representing the pixel size of this widget.</span>
-<a name="l00190"></a>00190 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
-<a name="l00191"></a>00191 <span class="comment">                /// @brief Sets the pixel size of this widget.</span>
-<a name="l00192"></a>00192 <span class="comment">                /// @return Returns a vector2 representing the pixel size of this widget.</span>
-<a name="l00193"></a>00193 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualSize();<span class="comment"></span>
-<a name="l00194"></a>00194 <span class="comment">                /// @brief Gets the Scroller button within this widget.</span>
-<a name="l00195"></a>00195 <span class="comment">                /// @return Returns a pointer to the Scroller button within this widget.</span>
-<a name="l00196"></a>00196 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* GetScroller();<span class="comment"></span>
-<a name="l00197"></a>00197 <span class="comment">                /// @brief Gets the UpLeft button within this widget, if it was initialized.</span>
-<a name="l00198"></a>00198 <span class="comment">                /// @return Returns a pointer to the UpLeft button within this widget, or NULL if none.</span>
-<a name="l00199"></a>00199 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* GetUpLeftButton();<span class="comment"></span>
-<a name="l00200"></a>00200 <span class="comment">                /// @brief Gets the DownRight button within this widget, if it was initialized.</span>
-<a name="l00201"></a>00201 <span class="comment">                /// @return Returns a pointer to the DownRight button within this widget, or NULL if none.</span>
-<a name="l00202"></a>00202 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* GetDownRightButton();<span class="comment"></span>
-<a name="l00203"></a>00203 <span class="comment">                /// @brief Gets the Scroller background within this widget.</span>
-<a name="l00204"></a>00204 <span class="comment">                /// @return Returns a pointer to the Scroller background within this widget.</span>
-<a name="l00205"></a>00205 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* GetScrollBack();
-<a name="l00206"></a>00206         };<span class="comment">//scrollbar</span>
-<a name="l00207"></a>00207     }<span class="comment">//UI</span>
-<a name="l00208"></a>00208 }<span class="comment">//phys</span>
-<a name="l00209"></a>00209 
-<a name="l00210"></a>00210 <span class="preprocessor">#endif</span>
-<a name="l00211"></a>00211 <span class="preprocessor"></span>
+<a name="l00134"></a>00134 <span class="comment">                /// @param Rect The Rect representing the position and size of the scrollbar.</span>
+<a name="l00135"></a>00135 <span class="comment">                /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.</span>
+<a name="l00136"></a>00136 <span class="comment">                /// @param parent The Layer that created this scrollbar.</span>
+<a name="l00137"></a>00137 <span class="comment"></span>                <a class="code" href="classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">Scrollbar</a>(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> UI::ScrollbarStyle&amp; Style, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent);<span class="comment"></span>
+<a name="l00138"></a>00138 <span class="comment">                /// @brief Standard class destructor.</span>
+<a name="l00139"></a>00139 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">Scrollbar</a>();<span class="comment"></span>
+<a name="l00140"></a>00140 <span class="comment">                /// @brief Sets the visibility of this scrollbar.</span>
+<a name="l00141"></a>00141 <span class="comment">                /// @param visible Bool determining whether or not this scrollbar should be visible.</span>
+<a name="l00142"></a>00142 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetVisible(<span class="keywordtype">bool</span> visible);<span class="comment"></span>
+<a name="l00143"></a>00143 <span class="comment">                /// @brief Gets the visibility of this scrollbar.</span>
+<a name="l00144"></a>00144 <span class="comment">                /// @return Returns a bool representing the visibility of this scrollbar.</span>
+<a name="l00145"></a>00145 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsVisible();<span class="comment"></span>
+<a name="l00146"></a>00146 <span class="comment">                /// @brief Forces this scrollbar to be shown.</span>
+<a name="l00147"></a>00147 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Show();<span class="comment"></span>
+<a name="l00148"></a>00148 <span class="comment">                /// @brief Forces this scrollbar to hide.</span>
+<a name="l00149"></a>00149 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Hide();<span class="comment"></span>
+<a name="l00150"></a>00150 <span class="comment">                /// @brief Checks to see if the current mouse position is over this widget.</span>
+<a name="l00151"></a>00151 <span class="comment">                /// @return Returns a bool value, true if the mouse is over this widget, false if it&#39;s not.</span>
+<a name="l00152"></a>00152 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> CheckMouseHover();<span class="comment"></span>
+<a name="l00153"></a>00153 <span class="comment">                /// @brief Get the currnent scroll position represented by a value between 0 and 1.</span>
+<a name="l00154"></a>00154 <span class="comment">                /// @details For example, if the scroller is halfway down the limits it&#39;s allowed, this will return 0.5. @n</span>
+<a name="l00155"></a>00155 <span class="comment">                /// Like other values, the top and left represent origin(0) values.</span>
+<a name="l00156"></a>00156 <span class="comment">                /// @return Returns the stored scroll position.</span>
+<a name="l00157"></a>00157 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetScrollerValue();<span class="comment"></span>
+<a name="l00158"></a>00158 <span class="comment">                /// @brief Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed.</span>
+<a name="l00159"></a>00159 <span class="comment">                /// @param IncDist A real representing the amount to increment.  Can be negative.</span>
+<a name="l00160"></a>00160 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetIncrementDistance(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; IncDist);<span class="comment"></span>
+<a name="l00161"></a>00161 <span class="comment">                /// @brief Sets the length(or height) of the scroller based on the relative size of it&#39;s background.</span>
+<a name="l00162"></a>00162 <span class="comment">                /// @param Size The relative size you with to set the scroller to.  Values range from 0.0 to 1.0.</span>
+<a name="l00163"></a>00163 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetScrollerSize(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Size);<span class="comment"></span>
+<a name="l00164"></a>00164 <span class="comment">                /// @brief Sets the relative position of this widget in pixels.</span>
+<a name="l00165"></a>00165 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0. @n</span>
+<a name="l00166"></a>00166 <span class="comment">                /// The top and the left are considered the origin, thus values of 0 represent one of these points.</span>
+<a name="l00167"></a>00167 <span class="comment">                /// @param Position A vector2 representing the relative position of this widget.</span>
+<a name="l00168"></a>00168 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPosition(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position);<span class="comment"></span>
+<a name="l00169"></a>00169 <span class="comment">                /// @brief Gets the relative position of this widget.</span>
+<a name="l00170"></a>00170 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00171"></a>00171 <span class="comment">                /// @return Returns a vector2 representing the relative position of this widget.</span>
+<a name="l00172"></a>00172 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetPosition();<span class="comment"></span>
+<a name="l00173"></a>00173 <span class="comment">                /// @brief Sets the pixel position of this widget.</span>
+<a name="l00174"></a>00174 <span class="comment">                /// @param Position A vector2 representing the pixel position of this widget.</span>
+<a name="l00175"></a>00175 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualPosition(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position);<span class="comment"></span>
+<a name="l00176"></a>00176 <span class="comment">                /// @brief Sets the pixel position of this widget.</span>
+<a name="l00177"></a>00177 <span class="comment">                /// @return Returns a vector2 representing the pixel position of this widget.</span>
+<a name="l00178"></a>00178 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualPosition();<span class="comment"></span>
+<a name="l00179"></a>00179 <span class="comment">                /// @brief Sets the relative size of this widget.</span>
+<a name="l00180"></a>00180 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00181"></a>00181 <span class="comment">                /// @param Size A vector2 representing the relative size of this widget.</span>
+<a name="l00182"></a>00182 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
+<a name="l00183"></a>00183 <span class="comment">                /// @brief Gets the relative size of this widget.</span>
+<a name="l00184"></a>00184 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00185"></a>00185 <span class="comment">                /// @return Returns a vector2 representing the relative size of this widget.</span>
+<a name="l00186"></a>00186 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetSize();<span class="comment"></span>
+<a name="l00187"></a>00187 <span class="comment">                /// @brief Sets the pixel size of this widget.</span>
+<a name="l00188"></a>00188 <span class="comment">                /// @param Size A vector2 representing the pixel size of this widget.</span>
+<a name="l00189"></a>00189 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualSize(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size);<span class="comment"></span>
+<a name="l00190"></a>00190 <span class="comment">                /// @brief Sets the pixel size of this widget.</span>
+<a name="l00191"></a>00191 <span class="comment">                /// @return Returns a vector2 representing the pixel size of this widget.</span>
+<a name="l00192"></a>00192 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualSize();<span class="comment"></span>
+<a name="l00193"></a>00193 <span class="comment">                /// @brief Gets the Scroller button within this widget.</span>
+<a name="l00194"></a>00194 <span class="comment">                /// @return Returns a pointer to the Scroller button within this widget.</span>
+<a name="l00195"></a>00195 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* GetScroller();<span class="comment"></span>
+<a name="l00196"></a>00196 <span class="comment">                /// @brief Gets the UpLeft button within this widget, if it was initialized.</span>
+<a name="l00197"></a>00197 <span class="comment">                /// @return Returns a pointer to the UpLeft button within this widget, or NULL if none.</span>
+<a name="l00198"></a>00198 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* GetUpLeftButton();<span class="comment"></span>
+<a name="l00199"></a>00199 <span class="comment">                /// @brief Gets the DownRight button within this widget, if it was initialized.</span>
+<a name="l00200"></a>00200 <span class="comment">                /// @return Returns a pointer to the DownRight button within this widget, or NULL if none.</span>
+<a name="l00201"></a>00201 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* GetDownRightButton();<span class="comment"></span>
+<a name="l00202"></a>00202 <span class="comment">                /// @brief Gets the Scroller background within this widget.</span>
+<a name="l00203"></a>00203 <span class="comment">                /// @return Returns a pointer to the Scroller background within this widget.</span>
+<a name="l00204"></a>00204 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* GetScrollBack();
+<a name="l00205"></a>00205         };<span class="comment">//scrollbar</span>
+<a name="l00206"></a>00206     }<span class="comment">//UI</span>
+<a name="l00207"></a>00207 }<span class="comment">//phys</span>
+<a name="l00208"></a>00208 
+<a name="l00209"></a>00209 <span class="preprocessor">#endif</span>
+<a name="l00210"></a>00210 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -288,7 +287,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:34:23 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:39 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
