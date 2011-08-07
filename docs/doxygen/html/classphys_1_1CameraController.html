@@ -53,6 +53,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
@@ -98,54 +99,54 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a6a47754c33f3dca26f2c7fe1a5b25a9f">CameraController</a> (<a class="el" href="classphys_1_1Camera.html">Camera</a> *ToBeControlled)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a6a47754c33f3dca26f2c7fe1a5b25a9f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0cb476611eadd8bf27480f59162db7"></a><!-- doxytag: member="phys::CameraController::~CameraController" ref="afe0cb476611eadd8bf27480f59162db7" args="()" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#afe0cb476611eadd8bf27480f59162db7">~CameraController</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#af992a4b3b720ac8179f78d5940a1bf1f">GetControlledCamera</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the camera this controller is controlling.  <a href="#af992a4b3b720ac8179f78d5940a1bf1f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#aa8e4d48573a2443af3b2111ab82f8a17">SetMovementMode</a> (const <a class="el" href="classphys_1_1CameraController.html#af7ea701f4b768a0335e8e0115d516af8">MovementMode</a> &amp;MoveMode)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the movement mode for this camera/controller.  <a href="#aa8e4d48573a2443af3b2111ab82f8a17"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1CameraController.html#af7ea701f4b768a0335e8e0115d516af8">MovementMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a16f448ab4f9765f9435e0d3ac0fb89d3">GetMovementMode</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set movement mode.  <a href="#a16f448ab4f9765f9435e0d3ac0fb89d3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a188b2fe215da11a2afc60e1b69b42c09">SetHoverHeight</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Hover)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the hover distance for the camera while it's moving.  <a href="#a188b2fe215da11a2afc60e1b69b42c09"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#af0bd947fa14276b01a27d68a4ca9a34d">GetHoverHeight</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the distance the camera hovers over terrain while in CCM_Walk mode.  <a href="#af0bd947fa14276b01a27d68a4ca9a34d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a0c19fba402f176361aea139ead5a9a40">SetYawLimits</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;UpperLimit, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;LowerLimit)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets rotational limits on the Y axis.  <a href="#a0c19fba402f176361aea139ead5a9a40"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a356fa13a243b5f3645576b9b857ce085"></a><!-- doxytag: member="phys::CameraController::RemoveYawLimits" ref="a356fa13a243b5f3645576b9b857ce085" args="()" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a356fa13a243b5f3645576b9b857ce085">RemoveYawLimits</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears any set limits on yaw(Y axis) rotation. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a9ca0500582f46a20189cdc39555b79b3">SetPitchLimits</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;UpperLimit, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;LowerLimit)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets rotational limits on the X axis.  <a href="#a9ca0500582f46a20189cdc39555b79b3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1CameraController.html#af7ea701f4b768a0335e8e0115d516af8">MovementMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a16f448ab4f9765f9435e0d3ac0fb89d3">GetMovementMode</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set movement mode.  <a href="#a16f448ab4f9765f9435e0d3ac0fb89d3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a932450504666cf4820339deb3651bfb3">MoveBackward</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Units)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera backward.  <a href="#a932450504666cf4820339deb3651bfb3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a8763326e900562dd6e934f79d52d5d50">MoveForward</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Units)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera forward.  <a href="#a8763326e900562dd6e934f79d52d5d50"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19478dd2688262f9652410a630dfa731"></a><!-- doxytag: member="phys::CameraController::RemovePitchLimits" ref="a19478dd2688262f9652410a630dfa731" args="()" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a19478dd2688262f9652410a630dfa731">RemovePitchLimits</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears any set limits on pitch(X axis) rotation. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a047f16cf47f9648472db34fc8337bd45">SetRollLimits</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;UpperLimit, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;LowerLimit)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets rotational limits on the Z axis.  <a href="#a047f16cf47f9648472db34fc8337bd45"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2ea07b9eb9c4ebc1d753a7376c307b3"></a><!-- doxytag: member="phys::CameraController::RemoveRollLimits" ref="ad2ea07b9eb9c4ebc1d753a7376c307b3" args="()" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#ad2ea07b9eb9c4ebc1d753a7376c307b3">RemoveRollLimits</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears any set limits on roll(Z axis) rotation. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a8763326e900562dd6e934f79d52d5d50">MoveForward</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Units)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera forward.  <a href="#a8763326e900562dd6e934f79d52d5d50"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a932450504666cf4820339deb3651bfb3">MoveBackward</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Units)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera backward.  <a href="#a932450504666cf4820339deb3651bfb3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a1b2e0c40120c3604f1929d5fac3cd61f">StrafeLeft</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Units)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera to the left.  <a href="#a1b2e0c40120c3604f1929d5fac3cd61f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#ad494cf9a1e3e233319799116424ad43f">StrafeRight</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Units)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera to the right.  <a href="#ad494cf9a1e3e233319799116424ad43f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a356fa13a243b5f3645576b9b857ce085"></a><!-- doxytag: member="phys::CameraController::RemoveYawLimits" ref="a356fa13a243b5f3645576b9b857ce085" args="()" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a356fa13a243b5f3645576b9b857ce085">RemoveYawLimits</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears any set limits on yaw(Y axis) rotation. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a3ad0f3ecf0777a8feb2e4f22f2d644bf">Rotate</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Yaw, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Pitch, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Roll)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates the camera.  <a href="#a3ad0f3ecf0777a8feb2e4f22f2d644bf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a23d1b811021fc77135a556de86f4f32a">Rotate6DOF</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Yaw, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Pitch, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Roll)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates the camera.  <a href="#a23d1b811021fc77135a556de86f4f32a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a188b2fe215da11a2afc60e1b69b42c09">SetHoverHeight</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Hover)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the hover distance for the camera while it's moving.  <a href="#a188b2fe215da11a2afc60e1b69b42c09"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#aa8e4d48573a2443af3b2111ab82f8a17">SetMovementMode</a> (const <a class="el" href="classphys_1_1CameraController.html#af7ea701f4b768a0335e8e0115d516af8">MovementMode</a> &amp;MoveMode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the movement mode for this camera/controller.  <a href="#aa8e4d48573a2443af3b2111ab82f8a17"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a9ca0500582f46a20189cdc39555b79b3">SetPitchLimits</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;UpperLimit, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;LowerLimit)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets rotational limits on the X axis.  <a href="#a9ca0500582f46a20189cdc39555b79b3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a047f16cf47f9648472db34fc8337bd45">SetRollLimits</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;UpperLimit, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;LowerLimit)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets rotational limits on the Z axis.  <a href="#a047f16cf47f9648472db34fc8337bd45"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a0c19fba402f176361aea139ead5a9a40">SetYawLimits</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;UpperLimit, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;LowerLimit)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets rotational limits on the Y axis.  <a href="#a0c19fba402f176361aea139ead5a9a40"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#a1b2e0c40120c3604f1929d5fac3cd61f">StrafeLeft</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Units)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera to the left.  <a href="#a1b2e0c40120c3604f1929d5fac3cd61f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#ad494cf9a1e3e233319799116424ad43f">StrafeRight</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Units)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera to the right.  <a href="#ad494cf9a1e3e233319799116424ad43f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0cb476611eadd8bf27480f59162db7"></a><!-- doxytag: member="phys::CameraController::~CameraController" ref="afe0cb476611eadd8bf27480f59162db7" args="()" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CameraController.html#afe0cb476611eadd8bf27480f59162db7">~CameraController</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2225da030d5a28930c460d0067103274"></a><!-- doxytag: member="phys::CameraController::CheckAngleRollover" ref="a2225da030d5a28930c460d0067103274" args="(Real Angle)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CheckAngleRollover</b> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Angle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97de22bfe1e8d98ff2fdde03d38332c9"></a><!-- doxytag: member="phys::CameraController::CheckAngleLimits" ref="a97de22bfe1e8d98ff2fdde03d38332c9" args="()" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CheckAngleLimits</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a9984ddd68c2a97c52682f90a3008cd"></a><!-- doxytag: member="phys::CameraController::CheckAllAngles" ref="a0a9984ddd68c2a97c52682f90a3008cd" args="()" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><b>CheckAllAngles</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97de22bfe1e8d98ff2fdde03d38332c9"></a><!-- doxytag: member="phys::CameraController::CheckAngleLimits" ref="a97de22bfe1e8d98ff2fdde03d38332c9" args="()" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><b>CheckAngleLimits</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2225da030d5a28930c460d0067103274"></a><!-- doxytag: member="phys::CameraController::CheckAngleRollover" ref="a2225da030d5a28930c460d0067103274" args="(Real Angle)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><b>CheckAngleRollover</b> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Angle)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ee87ff32c7fcb04ddb65cb9ac1535da"></a><!-- doxytag: member="phys::CameraController::CheckHeight" ref="a1ee87ff32c7fcb04ddb65cb9ac1535da" args="()" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><b>CheckHeight</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acadfca85be36af4f631b9427cd8e958a"></a><!-- doxytag: member="phys::CameraController::FindDistanceToGround" ref="acadfca85be36af4f631b9427cd8e958a" args="()" -->
@@ -158,18 +159,18 @@ Protected Attributes</h2></td></tr>
 <a class="el" href="classphys_1_1CameraController.html#af7ea701f4b768a0335e8e0115d516af8">MovementMode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentMMode</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9fafefcfbd8d60683cfcaf7e629796c"></a><!-- doxytag: member="phys::CameraController::HoverHeight" ref="af9fafefcfbd8d60683cfcaf7e629796c" args="" -->
 <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>HoverHeight</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab381584b4af14aecf7ad4a8946f41b41"></a><!-- doxytag: member="phys::CameraController::YawRad" ref="ab381584b4af14aecf7ad4a8946f41b41" args="" -->
-<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>YawRad</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c6ea95a1099bf7494c2ee666b5f61a9"></a><!-- doxytag: member="phys::CameraController::PitchLimits" ref="a4c6ea95a1099bf7494c2ee666b5f61a9" args="" -->
+<a class="el" href="structphys_1_1CameraController_1_1AngleLimits.html">AngleLimits</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>PitchLimits</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9ca55bb71c2d3b0a85dabcc207c79a0"></a><!-- doxytag: member="phys::CameraController::PitchRad" ref="ac9ca55bb71c2d3b0a85dabcc207c79a0" args="" -->
 <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>PitchRad</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad99abab0906a57263d3ca530194a125d"></a><!-- doxytag: member="phys::CameraController::RollLimits" ref="ad99abab0906a57263d3ca530194a125d" args="" -->
+<a class="el" href="structphys_1_1CameraController_1_1AngleLimits.html">AngleLimits</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>RollLimits</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf396244a387ec1cf4d9303e9b930dc9"></a><!-- doxytag: member="phys::CameraController::RollRad" ref="abf396244a387ec1cf4d9303e9b930dc9" args="" -->
 <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RollRad</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89d97e79c04f9a807fd7ff487eb3a3b5"></a><!-- doxytag: member="phys::CameraController::YawLimits" ref="a89d97e79c04f9a807fd7ff487eb3a3b5" args="" -->
 <a class="el" href="structphys_1_1CameraController_1_1AngleLimits.html">AngleLimits</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>YawLimits</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c6ea95a1099bf7494c2ee666b5f61a9"></a><!-- doxytag: member="phys::CameraController::PitchLimits" ref="a4c6ea95a1099bf7494c2ee666b5f61a9" args="" -->
-<a class="el" href="structphys_1_1CameraController_1_1AngleLimits.html">AngleLimits</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>PitchLimits</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad99abab0906a57263d3ca530194a125d"></a><!-- doxytag: member="phys::CameraController::RollLimits" ref="ad99abab0906a57263d3ca530194a125d" args="" -->
-<a class="el" href="structphys_1_1CameraController_1_1AngleLimits.html">AngleLimits</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>RollLimits</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab381584b4af14aecf7ad4a8946f41b41"></a><!-- doxytag: member="phys::CameraController::YawRad" ref="ab381584b4af14aecf7ad4a8946f41b41" args="" -->
+<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>YawRad</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is a simplified controller class for use with cameras. </p>
@@ -687,7 +688,7 @@ Protected Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:43 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Aug 7 2011 04:03:00 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

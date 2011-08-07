@@ -14,29 +14,31 @@ A single XPath variable.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariable_adeecf4d048c98de6fe7e9fcdb7174bcc}{Name} () const 
-\begin{DoxyCompactList}\small\item\em Retrieve the name of this variable. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} \hyperlink{classphys_1_1xml_1_1XPathVariable_a6c2986292fe674b79ea9dbf261c4a96f}{Type} () const 
-\begin{DoxyCompactList}\small\item\em Get the variable type. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1XPathVariable_ade5e5da86817afc6fafd64d4f9b21e9c}{GetBoolean} () const 
 \begin{DoxyCompactList}\small\item\em Get this as a bool. \item\end{DoxyCompactList}\item 
+const \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \& \hyperlink{classphys_1_1xml_1_1XPathVariable_a773036e3c3c3db0af26fa662782f7e56}{GetNodeSet} () const 
+\begin{DoxyCompactList}\small\item\em Get this as a \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet}. \item\end{DoxyCompactList}\item 
 double \hyperlink{classphys_1_1xml_1_1XPathVariable_ac3798fc142b781c48bd694f1cdd386c4}{GetNumber} () const 
 \begin{DoxyCompactList}\small\item\em Get this as a double. \item\end{DoxyCompactList}\item 
 const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariable_a5354bcb8e5c2ffa6ececcf259049338b}{GetString} () const 
 \begin{DoxyCompactList}\small\item\em Get this as a c-\/string. \item\end{DoxyCompactList}\item 
-const \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \& \hyperlink{classphys_1_1xml_1_1XPathVariable_a773036e3c3c3db0af26fa662782f7e56}{GetNodeSet} () const 
-\begin{DoxyCompactList}\small\item\em Get this as a \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet}. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1xml_1_1XPathVariable_aea78a6ac9a12a1be68db8a56fbffebc3}{Set} (bool Value)
-\begin{DoxyCompactList}\small\item\em Set variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1xml_1_1XPathVariable_abb5f6da9b731d770e1a34ee9981b22be}{Set} (double Value)
+const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariable_adeecf4d048c98de6fe7e9fcdb7174bcc}{Name} () const 
+\begin{DoxyCompactList}\small\item\em Retrieve the name of this variable. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1XPathVariable_a121079abb73e70ade34f4e69181e5694}{Set} (const \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \&Value)
 \begin{DoxyCompactList}\small\item\em Set variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1XPathVariable_acf825ac8cd7dd20fc6f1c9fd7bb997fe}{Set} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Value)
 \begin{DoxyCompactList}\small\item\em Set variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1xml_1_1XPathVariable_a121079abb73e70ade34f4e69181e5694}{Set} (const \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \&Value)
-\begin{DoxyCompactList}\small\item\em Set variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \hyperlink{classphys_1_1xml_1_1XPathVariable_abb5f6da9b731d770e1a34ee9981b22be}{Set} (double Value)
+\begin{DoxyCompactList}\small\item\em Set variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1XPathVariable_aea78a6ac9a12a1be68db8a56fbffebc3}{Set} (bool Value)
+\begin{DoxyCompactList}\small\item\em Set variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} \hyperlink{classphys_1_1xml_1_1XPathVariable_a6c2986292fe674b79ea9dbf261c4a96f}{Type} () const 
+\begin{DoxyCompactList}\small\item\em Get the variable type. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} \& \hyperlink{classphys_1_1xml_1_1XPathVariable_aa0d4555101b253e1864a5226dd098ad3}{operator=} (const \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} \&)
+\begin{DoxyCompactList}\small\item\em Protected assignment operator, used to force noncopyable semantics. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1XPathVariable_a8dd3bc4deb8cebad6796ffa10bbbcb21}{
 \hyperlink{classphys_1_1xml_1_1XPathVariable_a8dd3bc4deb8cebad6796ffa10bbbcb21}{XPathVariable} ()}
 \label{classphys_1_1xml_1_1XPathVariable_a8dd3bc4deb8cebad6796ffa10bbbcb21}
@@ -46,22 +48,20 @@ bool \hyperlink{classphys_1_1xml_1_1XPathVariable_a121079abb73e70ade34f4e69181e5
 \hyperlink{classphys_1_1xml_1_1XPathVariable_a37a47c3f05c4509f83193c1fa1c355e5}{XPathVariable} (const \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} \&)}
 \label{classphys_1_1xml_1_1XPathVariable_a37a47c3f05c4509f83193c1fa1c355e5}
 
-\begin{DoxyCompactList}\small\item\em Protected Copy Constructor, used to force noncopyable semantics. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} \& \hyperlink{classphys_1_1xml_1_1XPathVariable_aa0d4555101b253e1864a5226dd098ad3}{operator=} (const \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} \&)
-\begin{DoxyCompactList}\small\item\em Protected assignment operator, used to force noncopyable semantics. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Protected Copy Constructor, used to force noncopyable semantics. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1xml_1_1XPathVariable_a8841d47677912f4b88743928cf931eac}{
-\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} \hyperlink{classphys_1_1xml_1_1XPathVariable_a8841d47677912f4b88743928cf931eac}{\_\-type}}
-\label{classphys_1_1xml_1_1XPathVariable_a8841d47677912f4b88743928cf931eac}
-
-\begin{DoxyCompactList}\small\item\em What kind of data does this variable store. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1XPathVariable_abe57b58f8b6d2622d5e1ae93bc5361a3}{
 \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariable_abe57b58f8b6d2622d5e1ae93bc5361a3}{\_\-next}}
 \label{classphys_1_1xml_1_1XPathVariable_abe57b58f8b6d2622d5e1ae93bc5361a3}
 
-\begin{DoxyCompactList}\small\item\em The next variable in the variable set. I think, and I am not certain, that this is a circularly linked list. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The next variable in the variable set. I think, and I am not certain, that this is a circularly linked list. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1XPathVariable_a8841d47677912f4b88743928cf931eac}{
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} \hyperlink{classphys_1_1xml_1_1XPathVariable_a8841d47677912f4b88743928cf931eac}{\_\-type}}
+\label{classphys_1_1xml_1_1XPathVariable_a8841d47677912f4b88743928cf931eac}
+
+\begin{DoxyCompactList}\small\item\em What kind of data does this variable store. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 

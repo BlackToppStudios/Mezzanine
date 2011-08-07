@@ -20,51 +20,51 @@ Inheritance diagram for phys::GraphicsManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1GraphicsManager_a8ad84818a761900ef4d03575d7543fa1}{GraphicsManager} ()
-\begin{DoxyCompactList}\small\item\em Basic constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1GraphicsManager_a886beb1a86c4d25fde0a2965e464be62}{GraphicsManager} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const bool \&FullScreen)
-\begin{DoxyCompactList}\small\item\em Versatile Constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1GraphicsManager_a3a2cb4b7e078faa168025c835062e78f}{
-\hyperlink{classphys_1_1GraphicsManager_a3a2cb4b7e078faa168025c835062e78f}{$\sim$GraphicsManager} ()}
-\label{classphys_1_1GraphicsManager_a3a2cb4b7e078faa168025c835062e78f}
-
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classphys_1_1GraphicsManager_a31c4d90e4ee016b96b7f4e78e20d87a0}{CreateGameWindow} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&WindowCaption, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Flags)
 \begin{DoxyCompactList}\small\item\em Creates a new game window to be rendered to. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GraphicsManager_a2824743d519bcc98abe5c95d0180c73c}{DestroyAllGameWindows} (bool ExcludePrimary=true)
+\begin{DoxyCompactList}\small\item\em Destroys every game window created. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GraphicsManager_a814eb66a4da0075dc8f46199a4716241}{DestroyGameWindow} (\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a created game window by index. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em This is where the rendering takes place. \item\end{DoxyCompactList}\item 
+const \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} \& \hyperlink{classphys_1_1GraphicsManager_ab2b1a8f5e714454f26f936bd746b256a}{GetDesktopSettings} ()
+\begin{DoxyCompactList}\small\item\em Gets the desktop display settings. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classphys_1_1GraphicsManager_a94952747ba141966fb138101b10864ee}{GetGameWindow} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets a game window by index. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GraphicsManager_ae54cf5861681ef6b1849b35bfaa55bb6}{GetNumGameWindows} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of game windows within this manager. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GraphicsManager_a814eb66a4da0075dc8f46199a4716241}{DestroyGameWindow} (\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ToBeDestroyed)
-\begin{DoxyCompactList}\small\item\em Destroys a created game window by index. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GraphicsManager_a2824743d519bcc98abe5c95d0180c73c}{DestroyAllGameWindows} (bool ExcludePrimary=true)
-\begin{DoxyCompactList}\small\item\em Destroys every game window created. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classphys_1_1GraphicsManager_a4a0ef06c307c1521f60d39bd7a020643}{GetPrimaryGameWindow} ()
 \begin{DoxyCompactList}\small\item\em Gets the primary(first) game window. \item\end{DoxyCompactList}\item 
-const \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} \& \hyperlink{classphys_1_1GraphicsManager_ab2b1a8f5e714454f26f936bd746b256a}{GetDesktopSettings} ()
-\begin{DoxyCompactList}\small\item\em Gets the desktop display settings. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1GraphicsManager_ad07600281c765e22bc413a1a9df1a22c}{HasSDLBeenInitialized} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not SDL has been started. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1GraphicsManager_ab7ab98ff594726f8cc6d3ca0fac0ecdf}{HasOgreBeenInitialized} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not Ogre has been started. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1GraphicsManager_adcded385b6442aa5da6097f1edd5471a}{ShowGraphicsSettingDialog} ()
-\begin{DoxyCompactList}\small\item\em This Shows an Engine Generated Configuration Screen. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1GraphicsManager_a9138c2f79ff9b711494089802724615e}{GetRenderSystemName} ()
 \begin{DoxyCompactList}\small\item\em Gets the name of the render system in current use. \item\end{DoxyCompactList}\item 
-const std::vector$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} $>$ $\ast$ \hyperlink{classphys_1_1GraphicsManager_a4bfa1c07f2c2305ec892e603a71c6341}{GetSupportedResolutions} ()
-\begin{DoxyCompactList}\small\item\em Gets a vector containing all the resolutions supported by this render system on the current hardware. \item\end{DoxyCompactList}\item 
 const std::vector$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} $>$ $\ast$ \hyperlink{classphys_1_1GraphicsManager_a7d1cce1c63d5678266337323da1e8ff5}{GetSupportedDevices} ()
 \begin{DoxyCompactList}\small\item\em Gets a vector containing all the devices supported by this render system on the current hardware. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1GraphicsManager_ac4b864de93827447bf8f47487da3bf32}{ResetRenderTimer} ()
-\begin{DoxyCompactList}\small\item\em Resets the Render timer. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{Initialize} ()
-\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{DoMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em This is where the rendering takes place. \item\end{DoxyCompactList}\item 
+const std::vector$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} $>$ $\ast$ \hyperlink{classphys_1_1GraphicsManager_a4bfa1c07f2c2305ec892e603a71c6341}{GetSupportedResolutions} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector containing all the resolutions supported by this render system on the current hardware. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GraphicsManager_a886beb1a86c4d25fde0a2965e464be62}{GraphicsManager} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const bool \&FullScreen)
+\begin{DoxyCompactList}\small\item\em Versatile Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GraphicsManager_a8ad84818a761900ef4d03575d7543fa1}{GraphicsManager} ()
+\begin{DoxyCompactList}\small\item\em Basic constructor. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1GraphicsManager_ab7ab98ff594726f8cc6d3ca0fac0ecdf}{HasOgreBeenInitialized} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not Ogre has been started. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1GraphicsManager_ad07600281c765e22bc413a1a9df1a22c}{HasSDLBeenInitialized} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not SDL has been started. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1GraphicsManager_ae2330172be150cd4d12aa2ed62b0474c}{PostMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em This is derived from and uses the \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is derived from and uses the \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1GraphicsManager_ac4b864de93827447bf8f47487da3bf32}{ResetRenderTimer} ()
+\begin{DoxyCompactList}\small\item\em Resets the Render timer. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1GraphicsManager_adcded385b6442aa5da6097f1edd5471a}{ShowGraphicsSettingDialog} ()
+\begin{DoxyCompactList}\small\item\em This Shows an Engine Generated Configuration Screen. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1GraphicsManager_a3a2cb4b7e078faa168025c835062e78f}{
+\hyperlink{classphys_1_1GraphicsManager_a3a2cb4b7e078faa168025c835062e78f}{$\sim$GraphicsManager} ()}
+\label{classphys_1_1GraphicsManager_a3a2cb4b7e078faa168025c835062e78f}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

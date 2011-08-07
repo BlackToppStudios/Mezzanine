@@ -86,11 +86,52 @@ namespace phys
     ///         - @ref XMLAcknowledgments
     ///         - @ref XMLLicense
     ///     - @ref XMLDOM
+    ///         - @ref XMLTreeStructure
+    ///         - @ref XMLInterface
+    ///         - @ref XMLUnicode
+    ///         - @ref XMLThreadSafety
+    ///         - @ref XMLExceptionSafety
+    ///         - @ref XMLMemory
+    ///             - @ref XMLCustomAlloc
+    ///             - @ref XMLMemoryInternals
     ///     - @ref XMLLoading
+    ///         - @ref XMLLoadingFiles
+    ///         - @ref XMLLoadingFromMemory
+    ///         - @ref XMLLoadingStreams
+    ///         - @ref XMLLoadingErrors
+    ///         - @ref XMLLoadingParsingOptions
+    ///         - @ref XMLLoadingEncodings
+    ///         - @ref XMLLoadingStandards
     ///     - @ref XMLAccessing
+    ///         - @ref XMLAccessingBasics
+    ///         - @ref XMLAccessingNodeData
+    ///         - @ref XMLAccessingAttributeData
+    ///         - @ref XMLAccessingContentBased
+    ///         - @ref XMLAccessingIterators
+    ///         - @ref XMLAccessingWalker
+    ///         - @ref XMLAccessingPredicates
+    ///         - @ref XMLAccessingMisc
     ///     - @ref XMLModifying
+    ///         - @ref XMLModifyingNodeData
+    ///         - @ref XMLModifyingAttributeData
+    ///         - @ref XMLModifyingAdding
+    ///         - @ref XMLModifyingRemoving
+    ///         - @ref XMLModifyingCloning
     ///     - @ref XMLSaving
+    ///         - @ref XMLSavingFile
+    ///         - @ref XMLSavingStreams
+    ///         - @ref XMLSavingWriter
+    ///         - @ref XMLSavingSubtree
+    ///         - @ref XMLSavingOptions
+    ///         - @ref XMLSavingEncodings
     ///     - @ref XMLXPath
+    ///         - @ref XMLXPathTypes
+    ///         - @ref XMLXPathSelecting
+    ///         - @ref XMLXPathQuery
+    ///         - @ref XMLXPathVariables
+    ///         - @ref XMLXPathError
+    ///         - @ref XMLXPathStandards
+    ///
     /// \n \n
     /// @section XMLOverview Overview
     ///     - @ref XMLIntroduction
@@ -110,6 +151,7 @@ namespace phys
     /// \n \n
     /// This is the complete manual for phys::xml, which describes all features of the library in detail. If you want to start writing code as quickly as
     /// possible, you are advised to @ref XMLQuickStart "read the quick start guide first".
+    /// \n \n
     /// @subsection XMLFeedBack FeedBack
     /// If you believe you've found a bug in phys::xml (bugs include compilation problems (errors/warnings), crashes, performance degradation and incorrect
     /// behavior), please contact Blacktopp Studios Inc ( http://www.blacktoppstudios.com/ ) . We check the the Forums ( http://www.blacktoppstudios.com/?page_id=753 )
@@ -128,6 +170,7 @@ namespace phys
     /// or pugixml author ( arseny.kapoulkine@gmail.com ) by e-mail directly. If you have an issue that pertains to pugixml and not phys::xml you can visit the
     /// pugixml issue submission form ( http://code.google.com/p/pugixml/issues/entry ) of the pugixml feature request form
     /// ( http://code.google.com/p/pugixml/issues/entry?template=Feature%20request ).
+    /// \n \n
     /// @subsection XMLAcknowledgments Acknowledgments
     /// phys::xml and pugixml could not be developed without the help from many people; some of them are listed in this section. If you've played a part in
     /// phys::xml or pugixml development and you can not find yourself on this list, I'm truly sorry; please send me an e-mail ( toppij@blacktoppstudios.com )
@@ -142,12 +185,14 @@ namespace phys
     /// Thanks to \b Artyom \b Palvelev for suggesting a lazy gap contraction approach.
     /// \n \n
     /// Thanks to \b Vyacheslav \b Egorov for documentation proofreading.
+    /// \n \n
     /// @subsection XMLLicense License
     /// With written permission as per @ref OriginalpugixmlLicense "The original pugixml license" we he sublicensed phys::xml under the @ref GPLLicense "GPL Version 3". In short
     /// This allows you to use phys::xml however you like with a few restrictions. If you change phys::xml you need to make the changes publically available.
     /// If you make software using phys::xml you need to make the source code publicly available. You may not use and Digital Rights Management (DRM) software
     /// to limit how others use the combined work you make. You can sell resulting works, but not through a digital distribution store that uses DRM.
     ///
+    /// \n \n
     /// @section XMLDOM Document Object Model
     /// phys::xml stores XML data in DOM-like way: the entire XML document (both document structure and element data) is stored in memory as a tree. The tree can be
     /// loaded from a character stream (file, string, C++ I/O stream), then traversed with the special API or XPath expressions. The whole tree is mutable: both node
@@ -161,6 +206,7 @@ namespace phys
     ///     - @ref XMLMemory
     ///         - @ref XMLCustomAlloc
     ///         - @ref XMLMemoryInternals
+    ///
     /// @subsection XMLTreeStructure Tree structure
     /// The XML document is represented with a tree data structure. The root of the tree is the document itself, which corresponds to C++ type phys::xml::Document.
     /// A Document has one or more child nodes, which correspond to C++ type phys::xml::Node. Nodes have different types; depending on a type, a node can have a
@@ -211,7 +257,7 @@ namespace phys
     ///     @code <!DOCTYPE greeting [ <!ELEMENT greeting (#PCDATA)> ]> @endcode
     ///     Here the node has value "greeting [ <!ELEMENT greeting (#PCDATA)> ]". By default document type declaration nodes are treated as non-essential part of XML markup
     ///     and are not loaded during XML parsing. You can override this behavior with phys::xml::ParseDocType flag. \n
-    /// \n
+    /// \n \n
     /// Finally, here is a complete example of XML document and the corresponding tree representation:
     /// @code
     /// <?xml version="1.0"?>
@@ -336,7 +382,7 @@ namespace phys
     /// you'll have to do
     /// \n \n
     /// @code phys::xml::Node node = doc.GetChild(L"bookstore").FindChildbyAttribute(L"book", L"id", L"12345"); @endcode
-    ///
+    /// \n \n
     /// @subsection XMLThreadSafety Thread-safety guarantees
     ///Almost all functions in phys::xml have the following thread-safety guarantees:
     ///     - It is safe to call free (non-member) functions from multiple threads
@@ -346,8 +392,9 @@ namespace phys
     /// Concurrent modification and traversing of a single tree requires synchronization, for example via reader-writer lock. Modification includes altering document structure
     /// and altering individual node/attribute data, i.e. changing names/values.
     /// \n \n
-    /// The only exception is phys::SetMemory_management_functions; it modifies global variables and as such is not thread-safe. Its usage policy has more restrictions, see
+    /// The only exception is phys::xml::SetMemory_management_functions; it modifies global variables and as such is not thread-safe. Its usage policy has more restrictions, see
     /// @ref XMLCustomAlloc .
+    /// \n \n
     /// @subsection XMLExceptionSafety Exception guarantees
     /// With the exception of XPath, phys::xml itself does not throw any exceptions. Additionally, most phys::xml functions have a no-throw exception guarantee.
     /// \n \n
@@ -357,28 +404,1518 @@ namespace phys
     /// \n \n
     /// If exception handling is not disabled with XML_NO_EXCEPTIONS define, XPath functions may throw phys::xml::XPathException on parsing errors; also, XPath functions may
     /// throw std::bad_alloc in low memory conditions. Still, XPath functions provide strong exception guarantee.
+    /// \n \n
     /// @subsection XMLMemory Memory management
-    /// Still in progress
+    /// phys::xml requests the memory needed for document storage in big chunks, and allocates document data inside those chunks. This section discusses replacing functions
+    /// used for chunk allocation and internal memory management implementation.
+    /// \n \n
+    /// @warning The phys::xml memory system is pending tighter integration with memory management from the rest of the system. The functions and features described here should be
+    /// considered deprecated and internal to the engine. It is highly likely they will be replaced without warning by a global system to allocate memory in a more efficient way.
+    ///
+    /// \n \n
     /// @subsubsection XMLCustomAlloc Custom memory allocation/deallocation functions
-    /// Still in progress
+    /// All memory for tree structure, tree data and XPath objects is allocated via globally specified functions, which default to malloc/free. You can set your own allocation
+    /// functions with phys::xml::SetMemory_management_functions function. The function interfaces are the same as that of malloc/free:
+    /// @code
+    /// typedef void* (*AllocationFunction)(size_t size);
+    /// typedef void (*deAllocationFunction)(void* ptr);
+    /// @endcode
+    /// You can use the following accessor functions to change or get current memory management functions:
+    /// @code
+    /// void phys::xml::SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate);
+    /// AllocationFunction GetMemoryAllocationFunctionn();
+    /// deAllocationFunction GetMemoryDeallocationFunction();
+    /// @endcode
+    /// Allocation function is called with the size (in bytes) as an argument and should return a pointer to a memory block with alignment that is suitable for storage of primitive
+    /// types (usually a maximum of void* and double types alignment is sufficient) and size that is greater than or equal to the requested one. If the allocation fails, the function
+    /// has to return null pointer (throwing an exception from allocation function results in undefined behavior).
+    /// \n \n
+    /// Deallocation function is called with the pointer that was returned by some call to allocation function; it is never called with a null pointer. If memory management functions
+    /// are not thread-safe, library thread safety is not guaranteed.
+    /// \n \n
+    /// When setting new memory management functions, care must be taken to make sure that there are no live phys::xml objects. Otherwise when the objects are destroyed, the new
+    /// deallocation function will be called with the memory obtained by the old allocation function, resulting in undefined behavior.
+    /// \n \n
     /// @subsubsection XMLMemoryInternals Document memory management internals
-    /// Still in progress
-    /// @subsection XMLUnicode Unicode
-    /// Still in progress
+    /// Constructing a document object using the default constructor does not result in any allocations; document node is stored inside the phys::xml::Document object
+    /// \n \n
+    /// When the document is loaded from file/buffer, unless an inplace loading function is used ( see @ref XMLLoadingFromMemory ), a complete copy of character stream is made; all
+    /// names/values of nodes and attributes are allocated in this buffer. This buffer is allocated via a single large allocation and is only freed when document memory is reclaimed
+    /// (i.e. if the phys::xml::Document object is destroyed or if another document is loaded in the same object). Also when loading from file or stream, an additional large allocation
+    /// may be performed if encoding conversion is required; a temporary buffer is allocated, and it is freed before load function returns.
+    /// \n \n
+    /// All additional memory, such as memory for document structure (node/attribute objects) and memory for node/attribute names/values is allocated in pages on the order of 32
+    /// kilobytes; actual objects are allocated inside the pages using a memory management scheme optimized for fast allocation/deallocation of many small objects. Because of the
+    /// scheme specifics, the pages are only destroyed if all objects inside them are destroyed; also, generally destroying an object does not mean that subsequent object creation
+    /// will reuse the same memory. This means that it is possible to devise a usage scheme which will lead to higher memory usage than expected; one example is adding a lot of nodes,
+    /// and them removing all even numbered ones; not a single page is reclaimed in the process. However this is an example specifically crafted to produce unsatisfying behavior;
+    /// in all practical usage scenarios the memory consumption is less than that of a general-purpose allocator because allocation meta-data is very small in size.
+    /// \n \n
     /// @section XMLLoading Loading Documents
-    /// Still in progress
+    ///     - @ref XMLLoadingFiles
+    ///     - @ref XMLLoadingFromMemory
+    ///     - @ref XMLLoadingStreams
+    ///     - @ref XMLLoadingErrors
+    ///     - @ref XMLLoadingParsingOptions
+    ///     - @ref XMLLoadingEncodings
+    ///     - @ref XMLLoadingStandards
+    ///
+    /// phys::xml provides several functions for loading XML data from various places - files, C++ iostreams, memory buffers. All functions use an extremely fast non-validating parser.
+    /// This parser is not fully W3C conformant - it can load any valid XML document, but does not perform some well-formedness checks. While considerable effort is made to reject
+    /// invalid XML documents, some validation is not performed for performance reasons. Also some XML transformations (i.e. EOL handling or attribute value normalization) can impact
+    /// parsing speed and thus can be disabled. However for vast majority of XML documents there is no performance difference between different parsing options. Parsing options also
+    /// control whether certain XML nodes are parsed; see @ref XMLLoadingParsingOptions for more information.
+    /// \n \n
+    /// XML data is always converted to internal character format ( see @ref XMLUnicode ) before parsing. phys::xml supports all popular Unicode encodings (UTF-8, UTF-16 (big and little
+    /// endian), UTF-32 (big and little endian); UCS-2 is naturally supported since it's a strict subset of UTF-16) and handles all encoding conversions automatically. Unless explicit
+    /// encoding is specified, loading functions perform automatic encoding detection based on first few characters of XML data, so in almost all cases you do not have to specify
+    /// document encoding. Encoding conversion is described in more detail in @ref XMLLoadingEncodings.
+    /// \n \n
+    /// @subsection XMLLoadingFiles Loading Document from a File
+    /// The most common source of XML data is files; phys::xml provides dedicated functions for loading an XML document from file:
+    /// @code
+    /// phys::xml::ParseResult phys::xml::Document::LoadFile(const char* path, unsigned int options = ParseDefault, phys::xml::Encoding DocumentEncoding = EncodingAuto);
+    /// phys::xml::ParseResult phys::xml::Document::LoadFile(const wchar_t* path, unsigned int options = ParseDefault, phys::xml::Encoding DocumentEncoding = EncodingAuto);
+    /// @endcode
+    /// These functions accept the file path as its first argument, and also two optional arguments, which specify parsing options (see Parsing options) and input data encoding ( see
+    /// @ref XMLLoadingEncodings ). The path has the target operating system format, so it can be a relative or absolute one, it should have the delimiters of the target system, it
+    /// should have the exact case if the target file system is case-sensitive, and is subject to any other restrictions of the underlying filesystem.
+    /// \n \n
+    /// File path is passed to the system file opening function as is in case of the first function (which accepts const char* path); the second function either uses a special file
+    /// opening function if it is provided by the runtime library or converts the path to UTF-8 and uses the system file opening function.
+    /// \n \n
+    /// Document::LoadFile destroys the existing document tree and then tries to load the new tree from the specified file. The result of the operation is returned in an
+    /// phys::xml::ParseResult object; this object contains the operation status and the related information (i.e. last successfully parsed position in the input file, if parsing
+    /// fails). See @ref XMLLoadingErrors for error handling details.
+    /// \n \n
+    /// This is an example of loading XML document from file:
+    /// @code
+    /// phys::xml::Document Doc;
+    /// phys::xml::ParseResult Result = Doc.LoadFile("tree.xml");
+    /// std::cout << "Load result: " << Result.Description() << std::endl;
+    /// @endcode
+    /// @subsection XMLLoadingFromMemory Loading document from memory
+    /// Sometimes XML data should be loaded from some other source than a file, i.e. HTTP URL; also you may want to load XML data from file using non-standard functions, i.e. to use
+    /// your virtual file system facilities or to load XML from gzip-compressed files. All these scenarios require loading document from memory. First you should prepare a contiguous
+    /// memory block with all XML data; then you have to invoke one of buffer loading functions. These functions will handle the necessary encoding conversions, if any, and then will
+    /// parse the data into the corresponding XML tree. There are several buffer loading functions, which differ in the behavior and thus in performance/memory usage:
+    /// @code
+    /// phys::xml::ParseResult phys::xml::Document::LoadBuffer (const void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto);
+    /// phys::xml::ParseResult phys::xml::Document::LoadBufferInplace (void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto);
+    /// phys::xml::ParseResult phys::xml::Document::LoadBufferInplaceOwn (void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto)
+    /// @endcode
+    /// All functions accept the buffer which is represented by a pointer to XML data, contents, and data size in bytes. Also there are two optional arguments, which specify parsing
+    /// options ( see @ref XMLLoadingParsingOptions ) and input data encoding ( see @ref XMLLoadingEncodings ). The buffer does not have to be zero-terminated.
+    /// \n \n
+    /// phys::xml::Document::LoadBuffer function works with immutable buffer - it does not ever modify the buffer. Because of this restriction it has to create a private buffer and
+    /// copy XML data to it before parsing (applying encoding conversions if necessary). This copy operation carries a performance penalty, so inplace functions are provided -
+    /// phys::xml::Document::LoadBufferInplace and phys::xml::Document::LoadBufferInplaceOwn store the document data in the buffer, modifying it in the process. In order for the
+    /// document to stay valid, you have to make sure that the buffer's lifetime exceeds that of the tree if you're using inplace functions. In addition to that,
+    /// phys::xml::Document::LoadBufferInplace does not assume ownership of the buffer, so you'll have to destroy it yourself; phys::xml::Document::LoadBufferInplaceOwn assumes
+    /// ownership of the buffer and destroys it once it is not needed. This means that if you're using phys::xml::Document::LoadBufferInplaceOwn, you have to allocate memory with
+    /// phys::xml allocation function ( Not recomended, the Allocation API may be getting updates in the near future ).
+    /// \n \n
+    /// The best way from the performance/memory point of view is to load document using phys::xml::Document::LoadBufferInplaceOwn; this function has maximum control of the buffer
+    /// with XML data so it is able to avoid redundant copies and reduce peak memory usage while parsing. However, this is not recommendeded unless you have to load the document
+    /// from memory and performance is critical. Once the memory portion of the API has stabilized this will become the ideal
+    /// \n \n
+    /// There is also a simple helper function for cases when you want to load the XML document from null-terminated character string:
+    /// @code
+    /// phys::xml::ParseResult phys::xml::Document::Load(const char_t *contents, unsigned int options=ParseDefault);
+    /// @endcode
+    /// It is equivalent to calling phys::xml::Document::LoadBuffer with size being either strlen(contents) or wcslen(contents) * sizeof(wchar_t), depending on the character type.
+    /// This function assumes native encoding for input data, so it does not do any encoding conversion. In general, this function is fine for loading small documents from string
+    /// literals, but has more overhead and less functionality than the buffer loading functions.
+    /// \n \n
+    /// This is an example of loading XML document from memory using LoadBuffer:
+    /// @code
+    /// const char Source[] = "<mesh name='sphere'><bounds>0 0 1 1</bounds></mesh>";
+    /// size_t Size = sizeof(Source);
+    ///
+    /// // You can use LoadBuffer to load the document from an immutable memory block:
+    /// phys::xml::ParseResult Result = doc.LoadBuffer(Source, Size);
+    /// @endcode
+    /// This is an example of loading XML document from memory using LoadBufferInplace:
+    /// @code
+    /// const char Source[] = "<mesh name='sphere'><bounds>0 0 1 1</bounds></mesh>";
+    /// size_t Size = sizeof(Source);
+    ///
+    /// // You can use LoadBufferInplace to load document from mutable memory block
+    /// // the block's lifetime must exceed that of document
+    /// char* Buffer = new char[Size];
+    /// memcpy(Buffer, Source, Size);
+    ///
+    /// // The block can be allocated by any method; the block is modified during parsing
+    /// phys::xml::ParseResult Result = doc.LoadBufferInplace(Buffer, Size);
+    ///
+    /// // You have to destroy the block yourself after the document is no longer used
+    /// delete[] Buffer;
+    /// @endcode
+    /// This is an example of loading XML document from memory using Load and a string literal:
+    /// @code
+    /// // You can use Load to load document from null-terminated strings, for example literals:
+    /// phys::xml::ParseResult Result = doc.Load("<mesh name='sphere'><bounds>0 0 1 1</bounds></mesh>");
+    /// @endcode
+    /// @subsection XMLLoadingStreams Loading document from C++ IOstreams
+    /// To enhance interoperability, phys::xml provides functions for loading document from any object which implements C++ std::istream interface. This allows you to load documents
+    /// from any standard C++ stream (i.e. file stream) or any third-party compliant implementation (i.e. Boost Iostreams). There are two functions, one works with narrow character
+    /// streams, another handles wide character ones:
+    /// @code
+    /// phys::xml::ParseResult phys::xml::Document::Load (std::basic_istream< char, std::char_traits< char > > &stream, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto);
+    /// phys::xml::ParseResult phys::xml::Document::Load (std::basic_istream< wchar_t, std::char_traits< wchar_t > > &stream, unsigned int options=ParseDefault);
+    /// @endcode
+    /// phys::xml::Document::Load with std::istream argument loads the document from stream from the current read position to the end, treating the stream contents as a byte stream
+    /// of the specified encoding (with encoding autodetection as necessary). Thus calling phys::xml::Document::Load on an opened std::ifstream object is equivalent to calling
+    /// phys::xml::Document::LoadFile.
+    /// \n \n
+    /// phys::xml::Document::Load with std::wstream argument treats the stream contents as a wide character stream ( encoding is always @ref phys::xml::Encoding "Encoding::Encodingwchar_t" ).
+    /// Because of this, using phys::xml::Document::LoadFile with wide character streams requires careful (usually platform-specific) stream setup (i.e. using the imbue function).
+    /// Generally use of wide streams is discouraged, however it provides you the ability to load documents from non-Unicode encodings, i.e. you can load Shift-JIS encoded data if
+    /// you set the correct locale.
+    /// \n \n
+    /// This is a simple example of loading XML document from a file using streams read:
+    /// @code
+    /// std::ifstream Stream("weekly-utf-8.xml");
+    /// phys::xml::ParseResult Result = Doc.Load(Stream);
+    /// @endcode
+    /// Stream loading requires working seek/tell functions and therefore may fail when used with some stream implementations like gzstream.
+    /// \n \n
+    /// @subsection XMLLoadingErrors Handling Parsing Errors
+    /// All document loading functions return the parsing result via phys::xml::ParseResult object. It contains parsing status, the offset of last successfully parsed character from
+    /// the beginning of the source stream, and the encoding of the source stream.
+    /// \n \n
+    /// Parsing status is represented as the phys::xml::ParseStatus enumeration and can be one of the following:
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusOk" means that no error was encountered during parsing; the source stream represents the valid XML document which was
+    ///     fully parsed and converted to a tree.
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusFileNotFound" is only returned by Document::LoadFile function and means that file could not be opened.
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusIOError" is returned by Document::LoadFile function and by load functions with std::istream/std::wstream arguments; it
+    ///     means that some I/O error has occurred during reading the file/stream.
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusOutOfMemory" means that there was not enough memory during some allocation; any allocation failure during parsing results
+    ///     in this error.
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusInternalError" means that something went horribly wrong; currently this error does not occur.
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusUnrecognizedTag" means that parsing stopped due to a tag with either an empty name or a name which starts with incorrect
+    ///     character, such as #.
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusBadPi" means that parsing stopped due to incorrect document declaration/processing instruction.
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusBadComment, StatusBadCdata, StatusBadDocType and StatusBadPcdata" mean that parsing stopped due to the invalid construct
+    ///     of the respective type
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusBadStartElement" means that parsing stopped because starting tag either had no closing \> symbol or contained some incorrect
+    ///     symbol
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusBadAttribute" means that parsing stopped because there was an incorrect attribute, such as an attribute without value or
+    ///     with value that is not quoted (note that \<node attr=1\> is incorrect in XML)
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusBadEndElement" means that parsing stopped because ending tag had incorrect syntax (i.e. extra non-whitespace symbols between
+    ///     tag name and \>)
+    ///     - @ref phys::xml::ParseStatus "ParseStatus::StatusEndElementMismatch" means that parsing stopped because the closing tag did not match the opening one (i.e. \<node\>\</nedo\>)
+    ///     or because some tag was not closed at all.
+    ///
+    /// phys::xml::ParseResult::Description member function can be used to convert parsing status to a string; the returned message is always in English, so you'll have to write your own
+    /// function if you need a localized string. However please note that the exact messages returned by the Description() function may change from version to version, so any complex
+    /// status handling should be based on the Status value.
+    /// \n \n
+    /// If parsing failed because the source data was not a valid XML, the resulting tree is not destroyed - despite the fact that load function returns error, you can use the part of the
+    /// tree that was successfully parsed. Obviously, the last element may have an unexpected name/value; for example, if the attribute value does not end with the necessary quotation
+    /// mark, like in <node attr="value>some data</node> example, the value of attribute attr will contain the string "value\>some data\</node\>".
+    /// \n \n
+    /// In addition to the Status code, phys::xml::ParseResult has an Offset member, which contains the offset of last successfully parsed character if parsing failed because of an error
+    /// in source data; otherwise offset is 0. For parsing efficiency reasons, phys::xml does not track the current line during parsing; this offset is in units of phys::xml::char_t
+    /// (bytes for character mode, wide characters for wide character mode). Many text editors support 'Go To Position' feature - you can use it to locate the exact error position.
+    /// Alternatively, if you're loading the document from memory, you can display the error chunk along with the error description.
+    /// @warning Offset is calculated in the XML buffer in native encoding; if encoding conversion is performed during parsing, offset can not be used to reliably track the error position.
+    ///
+    /// phys::xml::ParseResult also has a DocumentEncoding member, which can be used to check that the source data encoding was correctly guessed. It is equal to the exact encoding used
+    /// during parsing (i.e. with the exact endianness); see @ref XMLLoadingEncodings for more information.
+    /// \n \n
+    /// A phys::xml::ParseResult object can be implicitly converted to bool; if you do not want to handle parsing errors thoroughly, you can just check the return value of load functions
+    /// as if it was a bool: if (doc.load_file("file.xml")) { //on Successful parse } else { //on failed parse }. A True is returned if parsing was successful.
+    /// \n \n
+    /// This is an example of handling loading errors:
+    /// @code
+    /// const char Source[] = "<mesh name='sphere'><bounds>0 0 1 1</bounds></mesh>";
+    /// phys::xml::Document Doc;
+    /// phys::xml::ParseResult Result = Doc.Load(Source);
+    ///
+    /// if (Result)
+    ///     std::cout << "XML [" << Source << "] parsed without errors\n\n";
+    /// else
+    /// {
+    ///     std::cout << "XML [" << Source << "] parsed with errors\n";
+    ///     std::cout << "Error description: " << Result.Description() << "\n";
+    ///     std::cout << "Error offset: " << Result.Offset << " (error at [..." << (Source + Result.Offset) << "]\n\n";
+    /// }
+    /// @endcode
+    /// @subsection XMLLoadingParsingOptions Parsing Options
+    /// All document loading functions accept the optional parameter options. This is a bitmask that customizes the parsing process: you can select the node types that are parsed and
+    /// various transformations that are performed with the XML text. Disabling certain transformations can improve parsing performance for some documents; however, the code for all
+    /// transformations is very well optimized, and thus the majority of documents won't get any performance benefit. As a general rule, only modify parsing flags if you want to get some
+    /// nodes in the document that are excluded by default (i.e. declaration or comment nodes).
+    /// @note You should use the usual bitwise arithmetic to manipulate the bitmask: to enable a flag, use mask | flag; to disable a flag, use mask & ~flag.
+    ///
+    /// These flags control the resulting tree contents:
+    ///     - @ref phys::xml::ParseDeclaration determines if XML document declaration (node with type @ref phys::xml::NodeType "NodeDeclaration" ) is to be put in DOM tree. If this flag
+    ///     is off, it is not put in the tree, but is still parsed and checked for correctness. This flag is off by default.
+    ///     - @ref phys::xml::ParseDocType determines if XML document type declaration (node with type @ref phys::xml::NodeType "NodeDocType" ) is to be put in DOM tree. If this flag is
+    ///     off, it is not put in the tree, but is still parsed and checked for correctness. This flag is off by default.
+    ///     - @ref phys::xml::ParsePi determines if processing instructions (nodes with type @ref phys::xml::NodeType "NodePi" ) are to be put in DOM tree. If this flag is off, they are
+    ///     not put in the tree, but are still parsed and checked for correctness. Note that "<?xml ...?>" (document declaration) is not considered to be a PI. This flag is off by default.
+    ///     - @ref phys::xml::ParseComments determines if comments (nodes with type @ref phys::xml::NodeType "NodeComment" ) are to be put in DOM tree. If this flag is off, they are not
+    ///     put in the tree, but are still parsed and checked for correctness. This flag is off by default.
+    ///     - @ref phys::xml::ParseCdata determines if CDATA sections (nodes with type @ref phys::xml::NodeType "NodeCdata" ) are to be put in DOM tree. If this flag is off, they are not
+    ///     put in the tree, but are still parsed and checked for correctness. This flag is on by default.
+    ///     - @ref phys::xml::ParseWsPcdata determines if PCDATA nodes (nodes with type @ref phys::xml::NodeType "NodePcdata" ) that consist only of whitespace characters are to be put
+    ///     in DOM tree. Often whitespace-only data is not significant for the application, and the cost of allocating and storing such nodes (both memory and speed-wise) can be
+    ///     significant. For example, after parsing XML string "<node> <a/> </node>, <node>" element will have three children when phys::xml::ParseWsPcdata is set (child with type
+    ///     @ref phys::xml::NodeType "NodePcdata" and value " ", child with type @ref phys::xml::NodeType "NodeElement" and name "a", and another child with type
+    ///     @ref phys::xml::NodeType "NodePcdata" and value " "), and only one child when phys::xml::ParseWsPcdata is not set. This flag is off by default.
+    ///
+    /// These flags control the transformation of tree element contents:
+    ///     - @ref phys::xml::ParseEscapes determines if character and entity references are to be expanded during the parsing process. Character references have the form \&#...; or
+    ///     \&#x...; (... is Unicode numeric representation of character in either decimal ( \&#...; ) or hexadecimal ( \&#x...; ) form), entity references are \&lt;, \&gt;, \&amp;,
+    ///     \&apos; and \&quot; (note that as phys::xml does not handle DTD, the only allowed entities are predefined ones). If character/entity reference can not be expanded, it is
+    ///     left as is, so you can do additional processing later. Reference expansion is performed on attribute values and PCDATA content. This flag is on by default.
+    ///     - @ref phys::xml::ParseEol determines if EOL handling (that is, replacing sequences 0x0d 0x0a by a single 0x0a character, and replacing all standalone 0x0d characters by
+    ///     0x0a) is to be performed on input data (that is, comments contents, PCDATA/CDATA contents and attribute values). If this is set all \\r \\n will replaced with \\n.
+    ///     This flag is on by default.
+    ///     - @ref phys::xml::ParseWconvAttribute determines if attribute value normalization should be performed for all attributes. This means, that whitespace characters (new line,
+    ///     tab and space) are replaced with space (' '). New line characters are always treated as if phys::xml::ParseEol is set, i.e. \\r \\n is converted to a single space. This
+    ///     flag is on by default.
+    ///     - @ref phys::xml::ParseWnormAttribute determines if extended attribute value normalization should be performed for all attributes. This means, that after attribute values
+    ///     are normalized as if phys::xml::ParseWconvAttribute was set, leading and trailing space characters are removed, and all sequences of space characters are replaced by a
+    ///     single space character. The value of phys::xml::ParseWconvAttribute was set has no effect if this flag is on. This flag is off by default.
+    ///
+    /// @note phys::xml::ParseWconvAttribute option performs transformations that are required by W3C specification for attributes that are declared as CDATA; ParseWnormAttribute performs
+    /// transformations required for NMTOKENS attributes. In the absence of document type declaration all attributes should behave as if they are declared as CDATA, thus
+    /// phys::xml::ParseWconvAttribute is the default option.
+    ///
+    /// Additionally there are three predefined option masks:
+    ///     - phys::xml::ParseMinimal has all options turned off. This option mask means that phys::xml does not add declaration nodes, document type declaration nodes, PI nodes,
+    ///     CDATA sections and comments to the resulting tree and does not perform any conversion for input data, so theoretically it is the fastest mode. However, as mentioned above,
+    ///     in practice phys::xml::ParseDefault is usually equally fast.
+    ///     - phys::xml::ParseDefault is the default set of flags, i.e. it has all options set to their default values. It includes parsing CDATA sections (comments/PIs are not parsed),
+    ///     performing character and entity reference expansion, replacing whitespace characters with spaces in attribute values and performing EOL handling. Note, that PCDATA sections
+    ///     consisting only of whitespace characters are not parsed (by default) for performance reasons.
+    ///     - phys::xml::ParseFull is the set of flags which adds nodes of all types to the resulting tree and performs default conversions for input data. It includes parsing CDATA
+    ///     sections, comments, PI nodes, document declaration node and document type declaration node, performing character and entity reference expansion, replacing whitespace
+    ///     characters with spaces in attribute values and performing EOL handling. Note, that PCDATA sections consisting only of whitespace characters are not parsed in this mode.
+    ///
+    /// This is an example of using different parsing options:
+    /// @code
+    /// const char* Source = "<!--comment--><node>&lt;</node>";
+    ///
+    ///  // Parsing with default options; note that comment node is not added to the tree, and entity reference &lt; is expanded
+    /// Doc.Load(Source);
+    /// std::cout << "First node value: [" << Doc.GetFirstChild().Value() << "], node child value: [" << Doc.ChildValue("node") << "]\n";
+    ///
+    /// // Parsing with additional value option; comment node is now added to the tree
+    /// Doc.Load(Source, phys::xml::ParseDefault | phys::xml::ParseComments);
+    /// std::cout << "First node value: [" << Doc.GetFirstChild().Value() << "], node child value: [" << Doc.ChildValue("node") << "]\n";
+    ///
+    /// // Parsing with additional value option and without the (default) parse_escapes option; &lt; is not expanded
+    /// Doc.Load(Source, (phys::xml::ParseDefault | phys::xml::ParseComments) & ~phys::xml::ParseEscapes);
+    /// std::cout << "First node value: [" << Doc.GetFirstChild().Value() << "], node child value: [" << Doc.ChildValue("node") << "]\n";
+    ///
+    /// // Parsing with minimal option mask; comment node is not added to the tree, and &lt; is not expanded
+    /// Doc.Load(Source, phys::xml::ParseMinimal);
+    /// std::cout << "First node value: [" << Doc.GetFirstChild().Value() << "], node child value: [" << Doc.ChildValue("node") << "]\n";
+    /// @endcode
+    /// @subsection XMLLoadingEncodings Encodings
+    /// phys::xml supports all popular Unicode encodings (UTF-8, UTF-16 (big and little endian), UTF-32 (big and little endian); UCS-2 is naturally supported since it's a strict subset
+    /// of UTF-16) and handles all encoding conversions. Most loading functions accept the optional parameter encoding. This is a value of enumeration type phys::xml::Encoding, that
+    /// can have the following values:
+    ///     - @ref phys::xml::Encoding "Encoding::EncodingAuto" means that pugixml will try to guess the encoding based on source XML data. The algorithm is a modified version of the
+    ///     one presented in Appendix F.1 of XML recommendation; it tries to match the first few bytes of input data with the following patterns in strict order:
+    ///             - If first four bytes match UTF-32 BOM (Byte Order Mark), encoding is assumed to be UTF-32 with the endianness equal to that of BOM;
+    ///             - If first two bytes match UTF-16 BOM, encoding is assumed to be UTF-16 with the endianness equal to that of BOM;
+    ///             - If first three bytes match UTF-8 BOM, encoding is assumed to be UTF-8;
+    ///             - If first four bytes match UTF-32 representation of \<, encoding is assumed to be UTF-32 with the corresponding endianness;
+    ///             - If first four bytes match UTF-16 representation of \<?, encoding is assumed to be UTF-16 with the corresponding endianness;
+    ///             - If first two bytes match UTF-16 representation of \<, encoding is assumed to be UTF-16 with the corresponding endianness (this guess may yield incorrect result,
+    ///             but it's better than UTF-8);
+    ///             - Otherwise encoding is assumed to be UTF-8.
+    ///     - @ref phys::xml::Encoding "Encoding::EncodingUTF8" corresponds to UTF-8 encoding as defined in the Unicode standard; UTF-8 sequences with length equal to 5 or 6 are not
+    ///     standard and are rejected.
+    ///     - @ref phys::xml::Encoding "Encoding::EncodingUTF16LE" corresponds to little-endian UTF-16 encoding as defined in the Unicode standard; surrogate pairs are supported.
+    ///     - @ref phys::xml::Encoding "Encoding::EncodingUTF16BE" corresponds to big-endian UTF-16 encoding as defined in the Unicode standard; surrogate pairs are supported.
+    ///     - @ref phys::xml::Encoding "Encoding::EncodingUTF16" corresponds to UTF-16 encoding as defined in the Unicode standard; the endianness is assumed to be that of the target
+    ///     platform.
+    ///     - @ref phys::xml::Encoding "Encoding::EncodingUTF32LE" corresponds to little-endian UTF-32 encoding as defined in the Unicode standard.
+    ///     - @ref phys::xml::Encoding "Encoding::EncodingUTF32BE" corresponds to big-endian UTF-32 encoding as defined in the Unicode standard.
+    ///     - @ref phys::xml::Encoding "Encoding::EncodingUTF32" corresponds to UTF-32 encoding as defined in the Unicode standard; the endianness is assumed to be that of the target
+    ///     platform.
+    ///     - @ref phys::xml::Encoding "Encoding::Encodingwchar_t " corresponds to the encoding of phys::xml::wchar_t type; it has the same meaning as either
+    ///     @ref phys::xml::Encoding "EncodingUTF16" or @ref phys::xml::Encoding "EncodingUTF32", depending on phys::xml::wchar_t size.
+    ///
+    /// The algorithm used for @ref phys::xml::Encoding "EncodingAuto" correctly detects any supported Unicode encoding for all well-formed XML documents (since they start with document
+    /// declaration) and for all other XML documents that start with \<; if your XML document does not start with \< and has encoding that is different from UTF-8, use the specific encoding.
+    /// @note The current behavior for Unicode conversion is to skip all invalid UTF sequences during conversion. This behavior should not be relied upon; moreover, in case no encoding
+    /// conversion is performed, the invalid sequences are not removed, so you'll get them as is in node/attribute contents.
+    ///
+    /// @subsection XMLLoadingStandards Conformance to W3C Specification
+    /// phys::xml is not fully W3C conformant - it can load any valid XML document, but does not perform some well-formedness checks. While considerable effort is made to reject invalid
+    /// XML documents, some validation is not performed because of performance reasons.
+    /// \n \n There is only one non-conformant behavior when dealing with valid XML documents, phys::xml does not use information supplied in document type declaration for parsing. This
+    /// means that entities declared in DOCTYPE are not expanded, and all attribute/PCDATA values are always processed in a uniform way that depends only on parsing options.
+    /// \n \n
+    /// As for rejecting invalid XML documents, there are a number of incompatibilities with W3C specification, including:
+    ///     - Multiple attributes of the same node can have equal names.
+    ///     - All non-ASCII characters are treated in the same way as symbols of English alphabet, so some invalid tag names are not rejected.
+    ///     - Attribute values which contain \< are not rejected.
+    ///     - Invalid entity/character references are not rejected and are instead left as is.
+    ///     - Comment values can contain --.
+    ///     - XML data is not required to begin with document declaration; additionally, document declaration can appear after comments and other nodes.
+    ///     - Invalid document type declarations are silently ignored in some cases.
+    ///
     /// @section XMLAccessing Accessing Document Data
-    /// Still in progress
-    /// @section XMLModifying Modifiying Document
-    /// Still in progress
+    ///     - @ref XMLAccessingBasics
+    ///     - @ref XMLAccessingNodeData
+    ///     - @ref XMLAccessingAttributeData
+    ///     - @ref XMLAccessingContentBased
+    ///     - @ref XMLAccessingIterators
+    ///     - @ref XMLAccessingWalker
+    ///     - @ref XMLAccessingPredicates
+    ///     - @ref XMLAccessingMisc
+    ///
+    /// phys::xml features an extensive interface for getting various types of data from the document and for traversing the document. This section provides documentation for all such
+    /// functions that do not modify the tree except for XPath-related functions; see @ref XMLXPath for XPath reference. As discussed in @ref XMLInterface, there are two types of handles
+    /// to tree data - phys::xml::Node and phys::xml::Attribute. The handles have special null (empty) values which propagate through various functions and thus are useful for writing
+    /// more concise code; see @ref XMLInterface for details. The documentation in this section will explicitly state the results of all function in case of null inputs.
+    /// @subsection XMLAccessingBasics Basic traversal functions
+    /// The internal representation of the document is a tree, where each node has a list of child nodes (the order of children corresponds to their order in the XML representation),
+    /// additionally element nodes have a list of attributes, which is also ordered. Several functions are provided in order to let you get from one node in the tree to the other. These
+    /// functions roughly correspond to the internal representation, and thus are usually building blocks for other methods of traversing (i.e. XPath traversals are based on these
+    /// functions).
+    /// @code
+    /// phys::xml::Node phys::xml::Node::GetParent() const;
+    /// phys::xml::Node phys::xml::Node::GetFirstChild() const;
+    /// phys::xml::Node phys::xml::Node::GetLastChild() const;
+    /// phys::xml::Node phys::xml::Node::GetNextSibling() const;
+    /// phys::xml::Node phys::xml::Node::GetPreviousSibling() const;
+    ///
+    /// phys::xml::Attribute phys::xml::Node::GetFirstAttribute() const;
+    /// phys::xml::Attribute phys::xml::Node::GetLastAttribute() const;
+    /// phys::xml::Attribute phys::xml::Attribute::GetNextAttribute() const;
+    /// phys::xml::Attribute phys::xml::Attribute::GetPreviousAttribute() const;
+    /// @endcode
+    /// The GetParent function returns the node's parent; all non-null nodes except the document have non-null parent. GetFirstChild and GetLastChild return the first and last child of the
+    /// node, respectively; note that only document nodes and element nodes can have non-empty child node list. If node has no children, both functions return null nodes. GetNextSibling
+    /// and GetPreviousSibling return the node that's immediately to the right/left of this node in the children list, respectively - for example, in \<a/> \<b/> \<c/>, calling GetNextSibling
+    /// for a handle that points to \<b/> results in a handle pointing to \<c/>, and calling GetPreviousSibling results in handle pointing to \<a/>. If node does not have next/previous sibling
+    /// (this happens if it is the last/first node in the list, respectively), the functions return null nodes. GetFirstAttribute, GetLastAttribute, GetNextAttribute and GetPreviousAttribute
+    /// functions behave similarly to the corresponding child node functions and allow to iterate through attribute list in the same way.
+    /// @note Because of memory consumption reasons, attributes do not have a link to their parent nodes. Thus there is no phys::xml::attribute::parent() function.
+    ///
+    /// Calling any of the functions above on the null handle results in a null handle - i.e. node.GetFirstChild().GetNextSibling() returns the second child of node, and null handle if node
+    /// is null, has no children at all or if it has only one child node.
+    /// \n \n
+    /// With these functions, you can iterate through all child nodes and display all attributes like this:
+    /// @code
+    /// for (phys::xml::Node tool = tools.GetFirstChild(); tool; tool = tool.GetNextSibling())
+    /// {
+    ///     std::cout << "Tool:";
+    ///
+    ///     for (phys::xml::Attribute attr = tool.GetFirstAttribute(); attr; attr = attr.GetNextAttribute())
+    ///     {
+    ///         std::cout << " " << attr.Name() << "=" << attr.Value();
+    ///     }
+    ///
+    ///     std::cout << std::endl;
+    /// }
+    /// @endcode
+    /// @subsection XMLAccessingNodeData Getting Node Data
+    /// Apart from structural information (parent, child nodes, attributes), nodes can have name and value, both of which are strings. Depending on node type, name or value may be absent.
+    /// @ref phys::xml::NodeType "NodeDocument" nodes do not have a name or value, @ref phys::xml::NodeType "NodeElement" and @ref phys::xml::NodeType "NodeType::NodeDeclaration" nodes
+    /// always have a name but never have a value, @ref phys::xml::NodeType "NodeType::NodePcdata", @ref phys::xml::NodeType "NodeType::NodeCdata",
+    /// @ref phys::xml::NodeType "NodeType::NodeComment" and @ref phys::xml::NodeType "NodeType::NodeDocType" nodes never have a name but always have a value (it may be empty though),
+    /// @ref phys::xml::NodeType "NodeType::NodePi" nodes always have a name and a value (again, value may be empty). In order to get node's name or value, you can use the following
+    /// functions:
+    /// @code
+    /// const char_t* phys::xml::Node::Name() const;
+    /// const char_t* phys::xml::Node::Value() const;
+    /// @endcode
+    /// In case node does not have a name or value or if the node handle is null, both functions return empty strings - they never return null pointers.
+    /// \n \n
+    /// It is common to store data as text contents of some node - i.e. \<node> \<description> This is a node \</description> \</node>. In this case, \<description> node does not have
+    /// a value, but instead has a child of type @ref phys::xml::NodeType "NodeType::NodePcdata" with value "This is a node". phys::xml provides two helper functions to parse such data:
+    /// @code
+    /// const char_t* phys::xml::Node::ChildValue() const;
+    /// const char_t* phys::xml::Node::ChildValue(const char_t* name) const;
+    /// @endcode
+    /// ChildValue() returns the value of the first child with type @ref phys::xml::NodeType "NodeType::NodePcdata" or @ref phys::xml::NodeType "NodeType::NodeCdata";
+    /// ChildValue(Name) is a simple wrapper for Child(Name).ChildValue(). For the above example, calling node.ChildValue("description") and description.ChildValue() will both produce
+    /// string "This is a node". If there is no child with relevant type, or if the handle is null, ChildValue functions return empty string.
+    /// \n \n
+    /// There is an example of using some of these functions @ref XMLAccessingAttributeData "at the end of the next section".
+    /// @subsection XMLAccessingAttributeData Getting attribute data
+    /// All attributes have name and value, both of which are strings (value may be empty). There are two corresponding accessors:
+    /// @code
+    /// const char_t* phys::xml::Attribute::Name() const;
+    /// const char_t* phys::xml::Attribute::Value() const;
+    /// @endcode
+    /// In case the attribute handle is null, both functions return empty strings - they never return null pointers.
+    /// \n \n
+    /// In many cases attribute values have types that are not strings - i.e. an attribute may always contain values that should be treated as integers, despite the fact that they are
+    /// represented as strings in XML. phys::xml provides several accessors that convert attribute value to some other type:
+    /// @code
+    /// // Native C++ types
+    /// bool phys::xml::Attribute::AsBool() const;
+    /// double phys::xml::Attribute::AsDouble() const;
+    /// float phys::xml::Attribute::AsFloat() const;
+    /// int phys::xml::Attribute::AsInt() const;
+    /// unsigned int phys::xml::Attribute::AsUint() const;
+    ///
+    /// //Physgame abstracted types
+    /// Real phys::xml::Attribute::AsReal() const;
+    /// String phys::xml::Attribute::AsString() const;
+    /// Whole phys::xml::Attribute::AsWhole() const;
+    /// @endcode
+    /// AsDouble, AsFloat, AsInt, AsUint, AsReal and AsWhole convert attribute values to numbers. If attribute handle is null or attribute value is empty, 0 is returned. Otherwise, all
+    /// leading whitespace characters are truncated, and the remaining string is parsed as a decimal number (AsInt, AsUint or AsWhole) or as a floating point number in either decimal
+    /// or scientific form (AsDouble, AsFloat or AsReal). Any extra characters are silently discarded, i.e. AsInt will return 1 for string "1abc".
+    /// \n \n
+    /// In case the input string contains a number that is out of the target numeric range, the result is undefined.
+    /// @warning Some number conversion functions depend on current C locale as set with setlocale, so may return unexpected results if the locale is different from "C".
+    ///
+    /// AsBool converts attribute value to boolean as follows: if attribute handle is null or attribute value is empty, false is returned. Otherwise, true is returned if the first
+    /// character is one of '1', 't', 'T', 'y', 'Y'. This means that strings like "true" and "yes" are recognized as true, while strings like "false" and "no" are recognized as false.
+    /// For more complex matching you'll have to write your own function.
+    /// @note There are no portable 64-bit types in C++, so there is no corresponding conversion function. If your platform has a 64-bit integer, you can easily write a conversion
+    /// function yourself. We are planning on addressing this with a new Physgame abstracted type, but we have not done so yet.
+    ///
+    /// This is an example of using these functions, along with node data retrieval ones:
+    /// @code
+    /// for (phys::xml::Node tool = tools.GetChild("Tool"); tool; tool = tool.GetNextSibling("Tool"))
+    /// {
+    ///     std::cout << "Tool " << tool.GetAttribute("Filename").Value();
+    ///     std::cout << ": AllowRemote " << tool.GetAttribute("AllowRemote").AsBool();
+    ///     std::cout << ", Timeout " << tool.GetAttribute("Timeout").AsInt();
+    ///     std::cout << ", Description '" << tool.ChildValue("Description") << "'\n";
+    /// }
+    /// @endcode
+    /// @subsection XMLAccessingContentBased Content Based Traversal Functions
+    /// Since a lot of document traversal consists of finding the node/attribute with the correct name, there are special functions for that purpose:
+    /// @code
+    /// phys::xml::Node phys::xml::Node::GetChild(const char_t* name) const;
+    /// phys::xml::Attribute phys::xml::Node::GetAttribute(const char_t* name) const;
+    /// phys::xml::Node phys::xml::Node::GetNextSibling(const char_t* name) const;
+    /// phys::xml::Node phys::xml::Node::GetPreviousSibling(const char_t* name) const;
+    /// @endcode
+    /// GetChild and GetAttribute return the first child/attribute with the specified name; GetNextSibling and GetPreviousSibling return the first sibling in the corresponding direction
+    /// with the specified name. All string comparisons are case-sensitive. In case the node handle is null or there is no node/attribute with the specified name, null handle is returned.
+    /// \n \n
+    /// GetChild and GetNextSibling functions can be used together to loop through all child nodes with the desired name like this:
+    /// @code
+    /// for (phys::xml::Node tool = tools.GetChild("Tool"); tool; tool = tool.GetNextSibling("Tool"))
+    ///     {}
+    /// @endcode
+    /// Occasionally the needed node is specified not by the unique name but instead by the value of some attribute; for example, it is common to have node collections with each node
+    /// having a unique id: \<group> \<item id="1"/> \<item id="2"/> \</group>. There are two functions for finding child nodes based on the attribute values:
+    /// @code
+    /// phys::xml::Node phys::xml::Node::FindChildbyAttribute(const char_t* name, const char_t* attr_name, const char_t* attr_value) const;
+    /// phys::xml::Node phys::xml::Node::FindChildbyAttribute(const char_t* attr_name, const char_t* attr_value) const;
+    /// @endcode
+    /// The three-argument function returns the first child node with the specified name which has an attribute with the specified name/value; the two-argument function skips the name
+    /// test for the node, which can be useful for searching in heterogeneous collections. If the node handle is null or if no node is found, null handle is returned. All string
+    /// comparisons are case-sensitive.
+    /// \n \n
+    /// In all of the above functions, all arguments have to be valid strings; passing null pointers results in undefined behavior.
+    ///
+    /// This is an example of using these functions:
+    /// @code
+    /// std::cout << "Tool for *.dae generation: " << tools.FindChildbyAttribute("Tool", "OutputFileMasks", "*.dae").GetAttribute("Filename").Value() << "\n";
+    ///
+    /// for (phys::xml::Node tool = tools.GetChild("Tool"); tool; tool = tool.GetNextSibling("Tool"))
+    /// {
+    ///     std::cout << "Tool " << tool.GetAttribute("Filename").Value() << "\n";
+    /// }
+    /// @endcode
+    /// @subsection XMLAccessingIterators Traversing Node/Attribute Lists via Iterators
+    /// Child node lists and attribute lists are simply double-linked lists; while you can use GetPreviousSibling/GetNextSibling and other such functions for iteration, phys::xml
+    /// additionally provides node and attribute iterators, so that you can treat nodes as containers of other nodes or attributes:
+    /// @code
+    /// class phys::xml::NodeIterator;
+    /// class phys::xml::AttributeIterator;
+    ///
+    /// typedef phys::xml::NodeIterator phys::xml::Node::iterator;
+    /// iterator phys::xml::Node::begin() const;
+    /// iterator phys::xml::Node::end() const;
+    ///
+    /// typedef phys::xml::AttributeIterator phys::xml::Node::attribute_iterator;
+    /// attribute_iterator phys::xml::Node::attributes_begin() const;
+    /// attribute_iterator phys::xml::Node::attributes_end() const;
+    /// @endcode
+    /// begin and attributes_begin return iterators that point to the first node/attribute, respectively; end and attributes_end return past-the-end iterator for node/attribute list,
+    /// respectively - this iterator can't be dereferenced, but decrementing it results in an iterator pointing to the last element in the list (except for empty lists, where decrementing
+    /// past-the-end iterator results in undefined behavior). Past-the-end iterator is commonly used as a termination value for iteration loops (see sample below). If you want to get an
+    /// iterator that points to an existing handle, you can construct the iterator with the handle as a single constructor argument, like so: phys::xml::NodeIterator(node). For
+    /// phys::xml::AttributeIterator, you'll have to provide both an attribute and its parent node.
+    /// \n \n
+    /// begin and end return equal iterators if called on null node; such iterators can't be dereferenced. attributes_begin and attributes_end behave the same way. For correct iterator
+    /// usage this means that child node/attribute collections of null nodes appear to be empty.
+    /// @note The names begin, end, attribute_begin and attribute_end were chosen for maximum compatibility. Some template functions that act on containers rely on the name begin and end.
+    /// We may develop a naming scheme that fits better into the existing API in the future.
+    ///
+    /// Both types of iterators have bidirectional iterator semantics (i.e. they can be incremented and decremented, but efficient random access is not supported) and support all usual
+    /// iterator operations - comparison, dereference, etc. The iterators are invalidated if the node/attribute objects they're pointing to are removed from the tree; adding
+    /// nodes/attributes does not invalidate any iterators.
+    /// \n \n
+    /// Here is an example of using iterators for document traversal:
+    /// @code
+    /// for (phys::xml::NodeIterator it = tools.begin(); it != tools.end(); ++it)
+    /// {
+    ///     std::cout << "Tool:";
+    ///
+    ///     for (phys::xml::AttributeIterator ait = it->attributes_begin(); ait != it->attributes_end(); ++ait)
+    ///     {
+    ///         std::cout << " " << ait->Name() << "=" << ait->Value();
+    ///     }
+    ///
+    ///     std::cout << std::endl;
+    /// }
+    /// @endcode
+    /// @warning Node and attribute iterators are somewhere in the middle between const and non-const iterators. While dereference operation yields a non-constant reference to the object,
+    /// so that you can use it for tree modification operations, modifying this reference by assignment - i.e. passing iterators to a function like std::sort - will not give expected results,
+    /// as assignment modifies local handle that's stored in the iterator.
+    ///
+    /// @subsection XMLAccessingWalker Recursive traversal with phys::xml::TreeWalker
+    /// The methods described above allow traversal of immediate children of some node; if you want to do a deep tree traversal, you'll have to do it via a recursive function or some
+    /// equivalent method. However, pugixml provides a helper for depth-first traversal of a subtree. In order to use it, you have to implement the phys::xml::TreeWalker interface and to
+    /// call the phys::xml::Node::Traverse function.
+    /// @code
+    /// bool phys::xml::Node::Traverse(phys::xml::TreeWalker& walker);
+    /// @endcode
+    /// The traversal is launched by calling traverse function on traversal root and proceeds as follows:
+    ///     - First, TreeWalker::begin function is called with traversal root as its argument.
+    ///     - Then, TreeWalker::for_each function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Node is passed as an argument.
+    ///     - Finally, TreeWalker::end function is called with traversal root as its argument.
+    ///
+    /// @warning The Names of the Treewalker could change without notice prior to the initial of the engine.
+    ///
+    /// If begin, end or any of the for_each calls return false, the traversal is terminated and false is returned as the traversal result; otherwise, the traversal results in true.
+    /// Note that you don't have to override begin or end functions; their default implementations return true.
+    /// \n \n
+    /// You can get the node's depth relative to the traversal root at any point by calling TreeWalker::Depth function. It returns -1 if called from begin/end, and returns 0-based depth if
+    /// called from TreeWalker::for_each - depth is 0 for all children of the traversal root, 1 for all grandchildren and so on.
+    /// \n \n
+    /// This is an example of traversing tree hierarchy with phys::xml::TreeWalker:
+    /// @code
+    /// struct SimpleWalker: phys::xml::TreeWalker
+    /// {
+    ///     virtual bool for_each(phys::xml::Node& node)
+    ///     {
+    ///         for (int i = 0; i < Depth(); ++i) std::cout << "  "; // indentation
+    ///
+    ///         std::cout << ": Name='" << node.Name() << "', Value='" << node.Value() << "'\n";
+    ///
+    ///         return true; // continue traversal
+    ///     }
+    /// };
+    /// @endcode
+    /// @code
+    /// SimpleWalker walker;
+    /// Doc.Traverse(walker);
+    /// @endcode
+    /// @subsection XMLAccessingPredicates Searching for Nodes/Attributes with Predicates
+    /// While there are existing functions for getting a node/attribute with known contents, they are often not sufficient for simple queries. As an alternative for manual iteration
+    /// through nodes/attributes until the needed one is found, you can make a predicate and call one of Find functions:
+    /// @code
+    /// template <typename Predicate> phys::xml::Attribute phys::xml::Node::FindAttribute(Predicate pred) const;
+    /// template <typename Predicate> phys::xml::Node phys::xml::Node::FindChild(Predicate pred) const;
+    /// template <typename Predicate> phys::xml::Node phys::xml::Node::FindNode(Predicate pred) const;
+    /// @endcode
+    /// The predicate should be either a plain function or a function object which accepts one argument of type phys::xml::Attribute (for FindAttribute) or phys::xml::Node (for FindChild
+    /// and FindNode), and returns bool. The predicate is never called with null handle as an argument.
+    /// \n \n
+    /// phys::xml::Node::FindAttribute function iterates through all attributes of the specified node, and returns the first attribute for which the predicate returned true. If the
+    /// predicate returned false for all attributes or if there were no attributes (including the case where the node is null), null attribute is returned.
+    /// \n \n
+    /// phys::xml::Node::FindChild function iterates through all child nodes of the specified node, and returns the first node for which the predicate returned true. If the predicate
+    /// returned false for all nodes or if there were no child nodes (including the case where the node is null), null node is returned.
+    /// \n \n
+    /// phys::xml::Node::FindNode function performs a depth-first traversal through the subtree of the specified node (excluding the node itself), and returns the first node for which
+    /// the predicate returned true. If the predicate returned false for all nodes or if subtree was empty, null node is returned.
+    /// \n \n
+    /// Here are some sample predicates:
+    /// @code
+    /// bool SmallTimeout(phys::xml::Node node)
+    /// {
+    ///     return node.GetAttribute("Timeout").AsInt() < 20;
+    /// }
+    ///
+    /// struct AllowRemotePredicate
+    /// {
+    ///     bool operator()(phys::xml::Attribute attr) const
+    ///     {
+    ///         return strcmp(attr.Name(), "AllowRemote") == 0;
+    ///     }
+    ///
+    ///     bool operator()(phys::xml::Node node) const
+    ///     {
+    ///         return node.GetAttribute("AllowRemote").AsBool();
+    ///     }
+    /// };
+    /// @endcode
+    /// This is an example of using predicate-based functions:
+    /// @code
+    /// // Find child via predicate (looks for direct children only)
+    /// std::cout << tools.FindChild(AllowRemotePredicate()).GetAttribute("Filename").Value() << std::endl;
+    ///
+    /// // Find node via predicate (looks for all descendants in depth-first order)
+    /// std::cout << doc.FindNode(AllowRemotePredicate()).GetAttribute("Filename").Value() << std::endl;
+    ///
+    /// // Find attribute via predicate
+    /// std::cout << tools.LastChild().FindAttribute(AllowRemotePredicate()).Value() << std::endl;
+    ///
+    /// // We can use simple functions instead of function objects
+    /// std::cout << tools.FindChild(SmallTimeout).GetAttribute("Filename").Value() << std::endl;
+    /// @endcode
+    /// @subsection XMLAccessingMisc Miscellaneous functions
+    /// If you need to get the document root of some node, you can use the following function:
+    /// @code
+    /// phys::xml::Node phys::xml::Node::GetRoot() const;
+    /// @endcode
+    /// This function returns the node with type @ref phys::xml::NodeType "NodeDocument", which is the root node of the document the node belongs to (unless the node is null, in which
+    /// case null node is returned).
+    /// \n \n
+    /// While phys::xml supports complex XPath expressions, sometimes a simple path handling facility is needed. There are two functions, for getting node path and for converting path
+    /// to a node:
+    /// @code
+    /// phys::String phys::xml::Node::Path(char_t delimiter = '/') const;
+    /// phys::xml::Node phys::xml::Node::FirstElementByPath(const char_t* Path, char_t delimiter = '/') const;
+    /// @endcode
+    /// Node paths consist of node names, separated with a delimiter (which is / by default); also paths can contain self (.) and parent (..) pseudo-names, so that this is a valid path:
+    /// "../../foo/./bar". path returns the path to the node from the document root, FirstElementByPath looks for a node represented by a given path; a path can be an absolute one
+    /// (absolute paths start with the delimiter), in which case the rest of the path is treated as document root relative, and relative to the given node. For example, in the following
+    /// document: \<a> \<b> \<c/> \</b> \</a>, node \<c/> has path "a/b/c"; calling FirstElementByPath for document with path "a/b" results in node \<b/>; calling FirstElementByPath for
+    /// node \<a/> with path "../a/./b/../." results in node \<a/>; calling FirstElementByPath with path "/a" results in node \<a/> for any node.
+    /// \n \n
+    /// In case path component is ambiguous (if there are two nodes with given name), the first one is selected; paths are not guaranteed to uniquely identify nodes in a document. If any
+    /// component of a path is not found, the result of FirstElementByPath is null node; also FirstElementByPath returns null node for null nodes, in which case the path does not matter.
+    /// path returns an empty string for null nodes.
+    /// @note The Path function returns the result as String which is currently a typedef of std::string, and thus is not available if XML_NO_STL is defined.
+    ///
+    /// phys::xml does not record row/column information for nodes upon parsing for efficiency reasons. However, if the node has not changed in a significant way since parsing (the
+    /// name/value are not changed, and the node itself is the original one, i.e. it was not deleted from the tree and re-added later), it is possible to get the offset from the
+    /// beginning of XML buffer:
+    /// @code
+    /// ptrdiff_t phys::xml::node::OffSetDebug() const;
+    /// @endcode
+    /// If the offset is not available (this happens if the node is null, was not originally parsed from a stream, or has changed in a significant way), the function returns -1. Otherwise
+    /// it returns the offset to node's data from the beginning of XML buffer in phys::xml::char_t units. For more information on parsing offsets, see parsing error handling documentation.
+    /// \n \n
+    /// @section XMLModifying Modifiying Documents
+    ///     - @ref XMLModifyingNodeData
+    ///     - @ref XMLModifyingAttributeData
+    ///     - @ref XMLModifyingAdding
+    ///     - @ref XMLModifyingRemoving
+    ///     - @ref XMLModifyingCloning
+    ///
+    /// The document in phys::xml is fully mutable: you can completely change the document structure and modify the data of nodes/attributes. This section provides documentation for the
+    /// relevant functions. All functions take care of memory management and structural integrity themselves, so they always result in structurally valid tree - however, it is possible to
+    /// create an invalid XML tree (for example, by adding two attributes with the same name or by setting attribute/node name to empty/invalid string). Tree modification is optimized for
+    /// performance and for memory consumption, so if you have enough memory you can create documents from scratch with phys::xml and later save them to file/stream instead of relying on
+    /// error-prone manual text writing and without too much overhead.
+    /// \n \n
+    /// All member functions that change node/attribute data or structure are non-constant and thus can not be called on constant handles. However, you can easily convert constant handle
+    /// to non-constant one by simple assignment: void foo(const phys::xml::Node& n) { phys::xml::Node nc = n; }, so const-correctness here mainly provides additional documentation.
+    /// \n \n
+    /// @subsection XMLModifyingNodeData Setting Node Data
+    ///As discussed before, nodes can have name and value, both of which are c-strings. Depending on node type, name or value may be absent. @ref phys::xml::NodeType "NodeDocument" nodes
+    /// do not have a name or value, @ref phys::xml::NodeType "NodeElement" and @ref phys::xml::NodeType "NodeDeclaration" nodes always have a name but never have a value,
+    /// @ref phys::xml::NodeType "NodePcdata", @ref phys::xml::NodeType "NodeCdata", @ref phys::xml::NodeType "NodeComment" and @ref phys::xml::NodeType "NodeDocType" nodes never have a
+    /// name but always have a value (it may be empty though), @ref phys::xml::NodeType "NodePi" nodes always have a name and a value (again, value may be empty). In order to set node's
+    /// name or value, you can use the following functions:
+    /// @code
+    /// bool phys::xml::Node::SetName(const char_t* rhs);
+    /// bool phys::xml::Node::SetValue(const char_t* rhs);
+    /// @endcode
+    /// Both functions try to set the name/value to the specified string, and return the operation result. The operation fails if the node can not have name or value (for instance, when
+    /// trying to call SetName on a @ref phys::xml::NodeType "NodePcdata" node), if the node handle is null, or if there is insufficient memory to handle the request. The provided string
+    /// is copied into document managed memory and can be destroyed after the function returns (for example, you can safely pass stack-allocated buffers to these functions). The name/value
+    /// content is not verified, so take care to use only valid XML names, or the document may become malformed.
+    /// \n \n
+    /// There is no equivalent of ChildValue function for modifying text children of the node.
+    /// \n \n
+    /// This is an example of setting node name and value:
+    /// @code
+    /// phys::xml::Node node = doc.GetChild("node");
+    ///
+    /// // change node name
+    /// std::cout << node.SetName("notnode");
+    /// std::cout << ", new node name: " << node.Name() << std::endl;
+    ///
+    /// // change comment text
+    /// std::cout << doc.GetLastChild().SetValue("useless comment");
+    /// std::cout << ", new comment text: " << doc.LastChild().Value() << std::endl;
+    ///
+    /// // we can't change value of the element or name of the comment
+    /// std::cout << node.SetValue("1") << ", " << doc.LastChild().SetName("2") << std::endl;
+    /// @endcode
+    /// @subsection XMLModifyingAttributeData Setting Attribute Data
+    /// All attributes have name and value, both of which are strings (value may be empty). You can set them with the following functions:
+    /// @code
+    /// bool phys::xml::Attribute::SetName(const char_t* rhs);
+    /// bool phys::xml::Attribute::SetValue(const char_t* rhs);
+    /// @endcode
+    /// Both functions try to set the name/value to the specified string, and return the operation result. The operation fails if the attribute handle is null, or if there is insufficient
+    /// memory to handle the request. The provided string is copied into document managed memory and can be destroyed after the function returns (for example, you can safely pass
+    /// stack-allocated buffers to these functions). The name/value content is not verified, so take care to use only valid XML names, or the document may become malformed.
+    /// \n \n
+    /// In addition to string functions, several functions are provided for handling attributes with numbers and booleans as values:
+    /// @code
+    /// bool phys::xml::Attribute::SetValue(int rhs);
+    /// bool phys::xml::Attribute::SetValue(unsigned int rhs);
+    /// bool phys::xml::Attribute::SetValue(double rhs);
+    /// bool phys::xml::Attribute::SetValue(bool rhs);
+    /// @endcode
+    /// The above functions convert the argument to string and then call the base SetValue function. Integers are converted to a decimal form, floating-point numbers are converted to either
+    /// decimal or scientific form, depending on the number magnitude, boolean values are converted to either "true" or "false".
+    /// @warning Number conversion functions depend on current C locale as set with setlocale, so may generate unexpected results if the locale is different from "C".
+    ///
+    /// @note There are no portable 64-bit types in C++, so there is no corresponding SetValue function. If your platform has a 64-bit integer, you can easily write such a function yourself.
+    ///
+    /// For convenience, all set_value functions have the corresponding assignment operators:
+    /// @code
+    /// phys::xml::Attribute& phys::xml::Attribute::operator=(const char_t* rhs);
+    /// phys::xml::Attribute& phys::xml::Attribute::operator=(int rhs);
+    /// phys::xml::Attribute& phys::xml::Attribute::operator=(unsigned int rhs);
+    /// phys::xml::Attribute& phys::xml::Attribute::operator=(double rhs);
+    /// phys::xml::Attribute& phys::xml::Attribute::operator=(bool rhs);
+    /// @endcode
+    /// These operators simply call the right SetValue function and return the attribute they're called on; the return value of SetValue is ignored, so errors are ignored.
+    /// \n \n
+    /// This is an example of setting attribute name and value:
+    /// @code
+    /// phys::xml::Attribute attr = node.GetAttribute("id");
+    ///
+    /// // change attribute name/value
+    /// std::cout << attr.SetName("key") << ", " << attr.SetValue("345");
+    /// std::cout << ", new attribute: " << attr.name() << "=" << attr.value() << std::endl;
+    ///
+    /// // we can use numbers or booleans
+    /// attr.SetValue(1.234);
+    /// std::cout << "new attribute value: " << attr.Value() << std::endl;
+    ///
+    /// // we can also use assignment operators for more concise code
+    /// attr = true;
+    /// std::cout << "final attribute value: " << attr.value() << std::endl;
+    /// @endcode
+    /// @subsection XMLModifyingAdding Adding Nodes/Attributes
+    /// Nodes and attributes do not exist without a document tree, so you can't create them without adding them to some document. A node or attribute can be created at the end of
+    /// node/attribute list or before/after some other node:
+    /// @code
+    /// phys::xml::Attribute phys::xml::Node::AppendAttribute(const char_t* Name);
+    /// phys::xml::Attribute phys::xml::Node::PrependAttribute(const char_t* Name);
+    /// phys::xml::Attribute phys::xml::Node::InsertAttributeAfter(const char_t* Name, const phys::xml::Attribute& attr);
+    /// phys::xml::Attribute phys::xml::Node::InsertAttributeBefore(const char_t* Name, const phys::xml::Attribute& attr);
+    ///
+    /// phys::xml::Node phys::xml::Node::AppendChild(phys::xml::NodeType type = NodeElement);
+    /// phys::xml::Node phys::xml::Node::PrependChild(phys::xml::NodeType type = NodeElement);
+    /// phys::xml::Node phys::xml::Node::InsertChildAfter(phys::xml::NodeType type, const phys::xml::Node& node);
+    /// phys::xml::Node phys::xml::Node::InsertChildBefore(phys::xml::NodeType type, const phys::xml::Node& node);
+    ///
+    /// phys::xml::Node phys::xml::Node::AppendChild(const char_t* Name);
+    /// phys::xml::Node phys::xml::Node::PrependChild(const char_t* Name);
+    /// phys::xml::Node phys::xml::Node::InsertChildAfter(const char_t* Name, const phys::xml::Node& node);
+    /// phys::xml::Node phys::xml::Node::InsertChildBefore(const char_t* Name, const phys::xml::Node& node);
+    /// @endcode
+    /// AppendAttribute and AppendChild create a new node/attribute at the end of the corresponding list of the node the method is called on; PrependAttribute and PrependChild create a new
+    /// node/attribute at the beginning of the list; InsertAttributeAfter, InsertAttributeBefore, InsertChildAfter and InsertAttributeBefore add the node/attribute before or after the
+    /// specified node/attribute.
+    /// \n \n
+    /// Attribute functions create an attribute with the specified name; you can specify the empty name and change the name later if you want to. Node functions with the type argument
+    /// create the node with the specified type; since node type can't be changed, you have to know the desired type beforehand. Also note that not all types can be added as children; see
+    /// below for clarification. Node functions with the name argument create the element node (NodeElement) with the specified name.
+    /// \n \n
+    /// All functions return the handle to the created object on success, and null handle on failure. There are several reasons for failure:
+    ///     - Adding fails if the target node is null;
+    ///     - Only @ref phys::xml::NodeType "NodeType::NodeElement" nodes can contain attributes, so attribute adding fails if node is not an element;
+    ///     - Only @ref phys::xml::NodeType "NodeType::NodeDocument" and @ref phys::xml::NodeType "NodeType::NodeElement" nodes can contain children, so child node adding fails if the
+    ///     target node is not an element or a document;
+    ///     - @ref phys::xml::NodeType "NodeType::NodeDocument" and @ref phys::xml::NodeType "NodeType::NodeNull" nodes can not be inserted as children, so passing
+    ///     @ref phys::xml::NodeType "NodeType::NodeDocument" or @ref phys::xml::NodeType "NodeType::NodeNull value as type results in operation failure;
+    ///     - @ref phys::xml::NodeType "NodeType::NodeDeclaration" nodes can only be added as children of the document node; attempt to insert declaration node as a child of an element node fails;
+    ///     - Adding node/attribute results in memory allocation, which may fail;
+    ///     - Insertion functions fail if the specified node or attribute is null or is not in the target node's children/attribute list.
+    ///
+    /// Even if the operation fails, the document remains in consistent state, but the requested node/attribute is not added.
+    /// @warning GetAttribute() and GetChild() functions do not add attributes or nodes to the tree, so code like node.GetAttribute("id") = 123; will not do anything if node does not
+    /// have an attribute with name "id". Make sure you're operating with existing attributes/nodes by adding them if necessary.
+    ///
+    /// This is an example of adding new attributes/nodes to the document:
+    /// @code
+    /// // add node with some name
+    /// phys::xml::Node node = doc.AppendChild("node");
+    ///
+    /// // add description node with text child
+    /// phys::xml::Node descr = node.AppendChild("description");
+    /// descr.AppendChild(phys::xml::NodePcdata).SetValue("Simple node");
+    ///
+    /// // add param node before the description
+    /// phys::xml::Node param = node.InsertChildBefore("param", descr);
+    ///
+    /// // add attributes to param node
+    /// param.AppendAttribute("name") = "version";
+    /// param.AppendAttribute("value") = 1.1;
+    /// param.InsertAttributeAfter("type", param.GetAttribute("name")) = "float";
+    /// @endcode
+    /// @subsection XMLModifyingRemoving Removing Nodes/Attributes
+    /// If you do not want your document to contain some node or attribute, you can remove it with one of the following functions:
+    /// @code
+    /// bool phys::xml::Node::RemoveAttribute(const phys::xml::Attribute& a);
+    /// bool phys::xml::Node::RemoveChild(const phys::xml::Node& n);
+    /// @endcode
+    /// RemoveAttribute removes the attribute from the attribute list of the node, and returns the operation result. RemoveChild removes the child node with the entire subtree (including
+    /// all descendant nodes and attributes) from the document, and returns the operation result. Removing fails if one of the following is true:
+    ///     - The node the function is called on is null;
+    ///     - The attribute/node to be removed is null;
+    ///     - The attribute/node to be removed is not in the node's attribute/child list.
+    ///
+    /// Removing the attribute or node invalidates all handles to the same underlying object, and also invalidates all iterators pointing to the same object. Removing node also invalidates
+    /// all past-the-end iterators to its attribute or child node list. Be careful to ensure that all such handles and iterators either do not exist or are not used after the attribute/node
+    /// is removed.
+    /// \n \n
+    /// If you want to remove the attribute or child node by its name, two additional helper functions are available:
+    /// @code
+    /// bool phys::xml::Node::RemoveAttribute(const char_t* Name);
+    /// bool phys::xml::Node::RemoveChild(const char_t* Name);
+    /// @endcode
+    /// These functions look for the first attribute or child with the specified name, and then remove it, returning the result. If there is no attribute or child with such name, the
+    /// function returns false; if there are two nodes with the given name, only the first node is deleted. If you want to delete all nodes with the specified name, you can use code
+    /// like this: while (node.RemoveChild("tool")) ;.
+    /// \n \n
+    /// This is an example of removing attributes/nodes from the document:
+    /// @code
+    /// // remove description node with the whole subtree
+    /// phys::xml::Node node = doc.GetChild("node");
+    /// node.RemoveChild("description");
+    ///
+    /// // remove id attribute
+    /// phys::xml::Node param = node.GetChild("param");
+    /// param.RemoveAttribute("value");
+    ///
+    /// // we can also remove nodes/attributes by handles
+    /// phys::xml::Attribute id = param.GetAttribute("name");
+    /// param.RemoveAttribute(id);
+    /// @endcode
+    /// @subsection XMLModifyingCloning Cloning Nodes/Attributes
+    /// With the help of previously described functions, it is possible to create trees with any contents and structure, including cloning the existing data. However since this is an often
+    /// needed operation, phys::xml provides built-in node/attribute cloning facilities. Since nodes and attributes do not exist without a document tree, you can't create a standalone copy
+    /// - you have to immediately insert it somewhere in the tree. For this, you can use one of the following functions:
+    /// @code
+    /// phys::xml::Attribute phys::xml::Node::AppendCopy(const phys::xml::Attribute& proto);
+    /// phys::xml::Attribute phys::xml::Node::PrependCopy(const phys::xml::Attribute& proto);
+    /// phys::xml::Attribute phys::xml::Node::InsertCopyAfter(const phys::xml::Attribute& proto, const phys::xml::Attribute& attr);
+    /// phys::xml::Attribute phys::xml::Node::InsertCopyAfter(const phys::xml::Attribute& proto, const phys::xml::Attribute& attr);
+    ///
+    /// phys::xml::Node phys::xml::Node::AppendCopy(const phys::xml::Node& proto);
+    /// phys::xml::Node phys::xml::Node::PrependCopy(const phys::xml::Node& proto);
+    /// phys::xml::Node phys::xml::Node::InsertCopyAfter(const phys::xml::Node& proto, const phys::xml::Node& node);
+    /// phys::xml::Node phys::xml::Node::InsertCopyAfter(const phys::xml::Node& proto, const phys::xml::Node& node);
+    /// @endcode
+    ///
+    /// These functions mirror the structure of AppendChild, PrependChild, InsertChildBefore and related functions - they take the handle to the prototype object, which is to be cloned,
+    /// insert a new attribute/node at the appropriate place, and then copy the attribute data or the whole node subtree to the new object. The functions return the handle to the resulting
+    /// duplicate object, or null handle on failure.
+    /// \n \n
+    /// The attribute is copied along with the name and value; the node is copied along with its type, name and value; additionally attribute list and all children are recursively cloned,
+    /// resulting in the deep subtree clone. The prototype object can be a part of the same document, or a part of any other document.
+    /// \n \n
+    /// The failure conditions resemble those of AppendChild, InsertChild_before and related functions, consult their documentation for more information. There are additional caveats
+    /// specific to cloning functions:
+    ///     - Cloning null handles results in operation failure;
+    ///     - Node cloning starts with insertion of the node of the same type as that of the prototype; for this reason, cloning functions can not be directly used to clone entire
+    ///     documents, since @ref phys::xml::NodeType "NodeType::NodeDocument" is not a valid insertion type. The example below provides a workaround.
+    ///     - It is possible to copy a subtree as a child of some node inside this subtree, i.e. node.AppendCopy(node.GetParent().GetParent());. This is a valid operation, and it results
+    ///     in a clone of the subtree in the state before cloning started, i.e. no infinite recursion takes place.
+    ///
+    /// This is an example with one possible implementation of include tags in XML. It illustrates node cloning and usage of other document modification functions:
+    /// @code
+    /// bool LoadPreprocess(phys::xml::Document& doc, const char* path);
+    ///
+    /// bool PreProcess(phys::xml::Node node)
+    /// {
+    ///     for (phys::xml::Node child = node.GetFirstChild(); child; )
+    ///     {
+    ///         if (child.Type() == phys::xml::NodePi && strcmp(child.Name(), "include") == 0)
+    ///         {
+    ///             phys::xml::Node include = child;
+    ///
+    ///             // load new preprocessed document (note: ideally this should handle relative paths)
+    ///             const char* path = include.Value();
+    ///
+    ///             phys::xml::Document doc;
+    ///             if (!LoadPreprocess(doc, path)) return false;
+    ///
+    ///             // insert the comment marker above include directive
+    ///             node.InsertChildBefore(pugi::NodeComment, include).SetValue(path);
+    ///
+    ///             // copy the document above the include directive (this retains the original order!)
+    ///             for (phys::xml::Node ic = doc.FirstChild(); ic; ic = ic.NextSibling())
+    ///             {
+    ///                 node.InsertCopyAfter(ic, include);
+    ///             }
+    ///
+    ///             // remove the include node and move to the next child
+    ///             child = child.NextSibling();
+    ///
+    ///             node.RemoveChild(include);
+    ///         }
+    ///         else
+    ///         {
+    ///             if (!PreProcess(child)) return false;
+    ///
+    ///             child = child.NextSibling();
+    ///         }
+    ///     }
+    ///
+    ///     return true;
+    /// }
+    ///
+    /// bool LoadPreprocess(phys::xml::Document& doc, const char* path)
+    /// {
+    ///     phys::xml::ParseResult result = doc.LoadFile(path, phys::xml::ParseDefault | phys::xml::ParsePi); // for <?include?>
+    ///
+    ///     return result ? PreProcess(doc) : false;
+    /// }
+    /// @endcode
     /// @section XMLSaving Saving Documents
-    /// Still in progress
-    /// @section XMLXPath
-    /// Still in progress
+    ///     - @ref XMLSavingFile
+    ///     - @ref XMLSavingStreams
+    ///     - @ref XMLSavingWriter
+    ///     - @ref XMLSavingSubtree
+    ///     - @ref XMLSavingOptions
+    ///     - @ref XMLSavingEncodings
+    ///
+    /// Often after creating a new document or loading the existing one and processing it, it is necessary to save the result back to file. Also it is occasionally useful to output the
+    /// whole document or a subtree to some stream; use cases include debug printing, serialization via network or other text-oriented medium, etc. phys::xml provides several functions
+    /// to output any subtree of the document to a file, stream or another generic transport interface; these functions allow one to customize the output format ( see @ref XMLSavingOptions ), and
+    /// also perform necessary encoding conversions ( see @ref XMLSavingEncodings ). This section documents the relevant functionality.
+    /// \n \n
+    /// Before writing to the destination the node/attribute data is properly formatted according to the node type; all special XML symbols, such as \< and \&, are properly escaped. In
+    /// order to guard against forgotten node/attribute names, empty node/attribute names are printed as ":anonymous". For well-formed output, make sure all node and attribute names are
+    /// set to meaningful values.
+    /// \n \n
+    /// CDATA sections with values that contain "]]>" are split into several sections as follows: section with value "pre]]>post" is written as <![CDATA[pre]]]]><![CDATA[>post]]>. While
+    /// this alters the structure of the document (if you load the document after saving it, there will be two CDATA sections instead of one), this is the only way to escape CDATA contents.
+    /// @subsection XMLSavingFile Saving Documents to Files
+    /// If you want to save the whole document to a file, you can use one of the following functions:
+    /// @code
+    /// bool phys::xml::Document::SaveFile(const char* Path, const phys::xml::char_t* indent = "\t", unsigned int flags = phys::xml::FormatDefault, phys::xml::Encoding encoding = EncodingAuto) const;
+    /// bool phys::xml::Document::SaveFile(const wchar_t* Path, const phys::xml::char_t* indent = "\t", unsigned int flags = phys::xml::FormatDefault, phys::xml::Encoding encoding = EncodingAuto) const;
+    /// @endcode
+    /// These functions accept file path as its first argument, and also three optional arguments, which specify indentation and other output options (see Output options) and output data
+    /// encoding ( see @ ref XMLSavingEncodings ). The Path has the target operating system format, so it can be a relative or absolute one, it should have the delimiters of the target
+    /// system, it should have the exact case if the target file system is case-sensitive, etc.
+    /// \n \n
+    /// File path is passed to the system file opening function as is in case of the first function (which accepts const char* Path); the second function either uses a special file opening
+    /// function if it is provided by the runtime library or converts the path to UTF-8 and uses the system file opening function.
+    /// \n \n
+    /// SaveFile opens the target file for writing, outputs the requested header (by default a document declaration is output, unless the document already has one), and then saves the
+    /// document contents. If the file could not be opened, the function returns false. Calling SaveFile is equivalent to creating an phys::xml::WriterFile object with FILE* handle as the
+    /// only constructor argument and then calling save; see @ref XMLSavingWriter for writer interface details.
+    /// \n \n
+    /// This is a simple example of saving XML document to a file :
+    /// @code
+    /// // save document to file
+    /// std::cout << "Saving result: " << doc.SaveFile("save_file_output.xml") << std::endl;
+    /// @endcode
+    /// @subsection XMLSavingStreams Saving Documents to C++ IOstreams
+    /// To enhance interoperability phys::xml provides functions for saving document to any object which implements C++ std::ostream interface. This allows you to save documents to any
+    /// standard C++ stream (i.e. file stream) or any third-party compliant implementation (i.e. Boost Iostreams). Most notably, this allows for easy debug output, since you can use
+    /// std::cout stream as saving target. There are two functions, one works with narrow character streams, another handles wide character ones:
+    /// @code
+    /// void phys::xml::Document::Save(std::ostream& stream, const char_t* indent = "\t", unsigned int flags = phys::xml::FormatDefault, phys::xml::Encoding encoding = EncodingAuto) const;
+    /// void phys::xml::Document::Save(std::wostream& stream, const char_t* indent = "\t", unsigned int flags = phys::xml::FormatDefault) const;
+    /// @endcode
+    /// Calling Save with an std::ostream argument saves the document to the stream in the same way as SaveFile (i.e. with requested header and with encoding conversions). On the other
+    /// hand, save with std::wstream argument saves the document to the wide stream with @ref phys::xml::Encoding "Encoding::Encodingwchar_t" encoding. Because of this, using save with wide
+    /// character streams requires careful (usually platform-specific) stream setup (i.e. using the imbue function). Generally use of wide streams is discouraged, however it provides you
+    /// with the ability to save documents to non-Unicode encodings, i.e. you can save Shift-JIS encoded data if you set the correct locale.
+    /// \n \n
+    /// Calling Save with stream target is equivalent to creating an phys::xml::WriterStream object with stream as the only constructor argument and then calling save; see
+    /// @ref XMLSavingWriter for writer interface details.
+    /// \n \n
+    /// This is a simple example of saving XML document to standard output:
+    /// @code
+    /// // save document to standard output
+    /// std::cout << "Document:\n";
+    /// doc.Save(std::cout);
+    /// @endcode
+    /// @subsection XMLSavingWriter Saving Document via Writer Interface
+    /// All of the above saving functions are implemented in terms of the phys::xml::Writer interface. This is a simple interface with a single function, which is called several times
+    /// during output process with chunks of document data as input.
+    /// @code
+    /// class Writer
+    /// {
+    /// public:
+    ///     virtual void Write(const void* data, size_t size) = 0;
+    /// };
+    ///
+    /// void phys::xml::Document::Save (Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const;
+    /// @endcode
+    /// In order to output the document via some custom transport, for example sockets, you should create an object which implements phys::xml::Writer interface and pass it to save function.
+    /// phys::xml::Writer::Write function is called with a buffer as an input, where data points to buffer start, and size is equal to the buffer size in bytes. The Write implementation must
+    /// write the buffer to the transport; it can not save the passed buffer pointer, as the buffer contents will change after write returns. The buffer contains the chunk of document data
+    /// in the desired encoding.
+    /// \n \n
+    /// The Write function is called with relatively large blocks (size is usually several kilobytes, except for the first block with BOM, which is output only if phys::xml::FormatWriteBom
+    /// is set, and last block, which may be small), so there is often no need for additional buffering in the implementation.
+    /// \n \n
+    /// This is a simple example of custom writer for saving document data to STL string:
+    /// @code
+    /// struct StringWriter: phys::xml::Writer
+    /// {
+    ///     std::string Result;
+    ///
+    ///     virtual void Write(const void* data, size_t size)
+    ///     {
+    ///         Result += std::string(static_cast<const char*>(data), size);
+    ///     }
+    /// };
+    /// @endcode
+    /// @subsection XMLSavingSubtree Saving a Single Subtree
+    /// While the previously described functions save the whole document to the destination, it is easy to save a single subtree. The following functions are provided:
+    /// @code
+    /// void phys::xml::Node::Print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const ;
+    /// void phys::xml::Node::Print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, unsigned int Depth=0) const ) const;
+    /// void phys::xml::Node::Print(phys::xml::Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const;
+    /// @endcode
+    /// These functions have the same arguments with the same meaning as the corresponding phys::xml::Document::Save functions, and allow you to save the subtree to either a C++ IOstream
+    /// or to any object that implements phys::xml::Writer interface.
+    /// \n \n
+    /// Saving a subtree differs from saving the whole document: the process behaves as if phys::xml::FormatWriteBom is off, and phys::xml::FormatNoDeclaration is on, even if actual values
+    /// of the flags are different. This means that BOM is not written to the destination, and document declaration is only written if it is the node itself or is one of node's children.
+    /// Note that this also holds if you're saving a document; this example illustrates the difference:
+    /// @code
+    /// // get a test document
+    /// phys::xml::Document doc;
+    /// doc.Load("<foo bar='baz'><call>hey</call></foo>");
+    ///
+    /// // print document to standard output (prints <?xml version="1.0"?><foo bar="baz"><call>hey</call></foo>)
+    /// doc.Save(std::cout, "", phys::xml::FormatRaw);
+    /// std::cout << std::endl;
+    ///
+    /// // print document to standard output as a regular node (prints <foo bar="baz"><call>hey</call></foo>)
+    /// doc.Print(std::cout, "", phys::xml::FormatRaw);
+    /// std::cout << std::endl;
+    ///
+    /// // print a subtree to standard output (prints <call>hey</call>)
+    /// doc.GetChild("foo").GetChild("call").Print(std::cout, "", phys::xml::FormatRaw);
+    /// std::cout << std::endl;
+    /// @endcode
+    /// @subsection XMLSavingOptions Output Options
+    /// All saving functions accept the optional parameter flags. This is a bitmask that customizes the output format; you can select the way the document nodes are printed and select the
+    /// needed additional information that is output before the document contents.
+    /// @note You should use the usual bitwise arithmetics to manipulate the bitmask: to enable a flag, use mask | flag; to disable a flag, use mask & ~flag.
+    ///
+    /// These flags control the resulting tree contents:
+    ///     - phys::xml::FormatIndent determines if all nodes should be indented with the indentation string (this is an additional parameter for all saving functions, and is "\t" by - default).
+    ///     If this flag is on, before every node the indentation string is output several times, where the amount of indentation depends on the node's depth relative to the
+    ///     output subtree. This flag has no effect if phys::xml::FormatRaw is enabled. This flag is off by default.
+    ///     - phys::xml::FormatRaw switches between formatted and raw output. If this flag is on, the nodes are not indented in any way, and also no newlines that are not part of
+    ///     document text are printed. Raw mode can be used for serialization where the result is not intended to be read by humans; also it can be useful if the document was parsed
+    ///     with phys::xml::ParseWsPcdata flag, to preserve the original document formatting as much as possible. This flag is on by default.
+    ///
+    ///These flags control the additional output information:
+    ///     - phys::xml::FormatNoDeclaration disables default node declaration output. By default, if the document is saved via save or SaveFile function, and it does not have any
+    ///     document declaration, a default declaration is output before the document contents. Enabling this flag disables this declaration. This flag has no effect in
+    ///     phys::xml::Node::Print functions: they never output the default declaration. This flag is off by default.
+    ///     - phys::xml::FormatWriteBom enables Byte Order Mark (BOM) output. By default, no BOM is output, so in case of non UTF-8 encodings the resulting document's encoding may not
+    ///     be recognized by some parsers and text editors, if they do not implement sophisticated encoding detection. Enabling this flag adds an encoding-specific BOM to the output. This
+    ///     flag has no effect in phys::xml::Node::Print functions: they never output the BOM. This flag is off by default.
+    ///
+    /// Additionally, there is one predefined option mask:
+    ///     - phys::xml::FormatDefault is the default set of flags, i.e. it has all options set to their default values. This differs from the default pugixml settings and only sets
+    ///     phys::xml::FormatRaw . This is to minimize output size, and optimize for computer consumption of xml.
+    ///
+    /// @subsection XMLSavingEncodings Encodings
+    /// phys::xml supports all popular Unicode encodings (UTF-8, UTF-16 (big and little endian), UTF-32 (big and little endian); UCS-2 is naturally supported since it's a strict subset
+    /// of UTF-16) and handles all encoding conversions during output. The output encoding is set via the encoding parameter of saving functions, which is of type xml_encoding. The
+    /// possible values for the encoding are documented in Encodings; the only flag that has a different meaning is EncodingAuto.
+    /// \n \n
+    /// While all other flags set the exact encoding, EncodingAuto is meant for automatic encoding detection. The automatic detection does not make sense for output encoding, since there
+    /// is usually nothing to infer the actual encoding from, so here @ref phys::xml::Encoding "EncodingAuto" means UTF-8 encoding, which is the most popular encoding for XML data storage. This is also the default
+    /// value of output encoding; specify another value if you do not want UTF-8 encoded output.
+    /// \n \n
+    /// Also note that wide stream saving functions do not have encoding argument and always assume @ref phys::xml::Encoding "Encodingwchar_t" encoding.
+    /// @note The current behavior for Unicode conversion is to skip all invalid UTF sequences during conversion. This behavior should not be relied upon; if your node/attribute names do
+    /// not contain any valid UTF sequences, they may be output as if they are empty, which will result in malformed XML document.
+    /// @section XMLXPath XPath
+    ///     - @ref XMLXPathTypes
+    ///     - @ref XMLXPathSelecting
+    ///     - @ref XMLXPathQuery
+    ///     - @ref XMLXPathVariables
+    ///     - @ref XMLXPathError
+    ///     - @ref XMLXPathStandards
+    ///
+    /// If the task at hand is to select a subset of document nodes that match some criteria, it is possible to code a function using the existing traversal functionality for any practical
+    /// criteria. However, often either a data-driven approach is desirable, in case the criteria are not predefined and come from a file, or it is inconvenient to use traversal interfaces
+    /// and a higher-level Domain Specific Language is required. There is a standard language for XML processing, XPath, that can be useful for these cases. phys::xml implements an almost
+    /// complete subset of XPath 1.0. Because of differences in document object model and some performance implications, there are minor violations of the official specifications, which
+    /// can be found in @ref XMLXPathStandards . The rest of this section describes the interface for XPath functionality. Please note that if you wish to learn to use XPath language, you
+    /// have to look for other tutorials or manuals.
+    /// \n \n
+    /// @subsection XMLXPathTypes XPath Types
+    /// Each XPath expression can have one of the following types: boolean, number, string or node set. Boolean type corresponds to bool type, number type corresponds to double type, string
+    /// type corresponds to either std::string or std::wstring, depending on whether wide character interface is enabled, and node set corresponds to phys::xml::XPathNodeSet type. There is
+    /// an enumeration, phys::xml::XPathValueType, which can take the values @ref phys::xml::XPathValueType "XPathTypeBoolean", @ref phys::xml::XPathValueType "XPathTypeNumber",
+    /// @ref phys::xml::XPathValueType XPathTypeString or @ref phys::xml::XPathValueType XPathTypeNodeSet, accordingly.
+    /// \n \n
+    /// Because an XPath node can be either a node or an attribute, there is a special type, phys::xml::XPathNode, which is a discriminated union of these types. A value of this type
+    /// contains two node handles, one of phys::xml::Node type, and another one of phys::xml::Attribute type; at most one of them can be non-null. The accessors to get these handles are
+    /// available:
+    /// @code
+    /// phys::xml::Node phys::xml::XPathNode::GetNode() const;
+    /// phys::xml::Attribute phys::xml::XPathNode::GetAttribute() const;
+    /// @endcode
+    /// XPath nodes can be null, in which case both accessors return null handles.
+    /// \n \n
+    /// Note that as per XPath specification, each XPath node has a parent, which can be retrieved via this function:
+    /// @code
+    /// phys::xml::Node phys::xml::XPathNode::GetParent() const;
+    /// @endcode
+    /// The GetParent function returns the node's parent if the XPath node corresponds to phys::xml::Node handle (equivalent to GetNode().GetParent()), or the node to which the attribute
+    /// belongs to, if the XPath node corresponds to phys::xml::Attribute handle. For null nodes, parent returns null handle.
+    /// \n \n
+    /// Like node and attribute handles, XPath node handles can be implicitly cast to boolean-like object to check if it is a null node, and also can be compared for equality with
+    /// each other.
+    /// \n \n
+    /// You can also create XPath nodes with one of the three constructors: the default constructor, the constructor that takes node argument, and the constructor that takes an attribute
+    /// and a node argument (in which case the attribute must belong to the attribute list of the node). The constructor from phys::xml::Node is implicit, so you can usually pass
+    /// phys::xml::Node to functions that expect phys::xml::XPathNode. Apart from that you usually don't need to create your own XPath node objects, since they are returned to you via
+    /// selection functions.
+    /// \n \n
+    /// XPath expressions operate not on single nodes, but instead on node sets. A node set is a collection of nodes, which can be optionally ordered in either a forward document order
+    /// or a reverse one. Document order is defined in XPath specification; an XPath node is before another node in document order if it appears before it in XML representation of the
+    /// corresponding document.
+    /// \n \n
+    /// Node sets are represented by phys::xml::XPathNodeSet object, which has an interface that resembles one of sequential random-access containers. It has an iterator type along with
+    /// usual begin/past-the-end iterator accessors:
+    /// @code
+    /// typedef const phys::xml::XPathNode* phys::xml::XPathNodeSet::const_iterator;
+    /// const_iterator phys::xml::XPathNodeSet::begin() const;
+    /// const_iterator phys::xml::XPathNodeSet::end() const;
+    /// @endcode
+    /// And it also can be iterated via indices, just like std::vector:
+    /// @code
+    /// const phys::xml::XPathNode& phys::xml::XPathNodeSet::operator[](size_t index) const;
+    /// size_t phys::xml::XPathNodeSet::size() const;
+    /// bool phys::xml::XPathNodeSet::empty() const;
+    /// @endcode
+    /// All of the above operations have the same semantics as that of std::vector: the iterators are random-access, all of the above operations are constant time, and accessing the element
+    /// at index that is greater or equal than the set size results in undefined behavior. You can use both iterator-based and index-based access for iteration, however the iterator-based
+    /// one can be faster.
+    /// \n \n
+    /// The order of iteration depends on the order of nodes inside the set; the order can be queried via the following function:
+    /// @code
+    /// enum phys::xml::XPathNodeSet::CollectionType { TypeUnsorted, TypeSorted, TypeSortedReverse };
+    /// CollectionType phys::xml::XPathNodeSet::Type() const;
+    /// @endcode
+    /// The Type function returns the current order of nodes; TypeSorted means that the nodes are in forward document order, TypeSortedReverse means that the nodes are in reverse document
+    /// order, and TypeUnsorted means that neither order is guaranteed (nodes can accidentally be in a sorted order even if Type() returns TypeUnsorted). If you require a specific order of
+    /// iteration, you can change it via sort function:
+    /// void phys::xml::XPathNodeSet::sort(bool reverse = false);
+    /// @warning When converted from the pugixml naming scheme, changes were made to this class conservatively. Once it is determine what the new names should be. this could be changed.
+    ///
+    /// Calling sort sorts the nodes in either forward or reverse document order, depending on the argument; after this call Type() will return TypeSorted or TypeSortedReverse.
+    /// \n \n
+    /// Often the actual iteration is not needed; instead, only the first element in document order is required. For this, a special accessor is provided:
+    /// @code
+    /// phys::xml::XPathNode phys::xml::XPathNodeSet::first() const;
+    /// @endcode
+    /// This function returns the first node in forward document order from the set, or null node if the set is empty. Note that while the result of the node does not depend on the order of
+    /// nodes in the set (i.e. on the result of Type()), the complexity does - if the set is sorted, the complexity is constant, otherwise it is linear in the number of elements or worse.
+    /// \n \n
+    /// While in the majority of cases the node set is returned by XPath functions, sometimes there is a need to manually construct a node set. For such cases, a constructor is provided
+    /// which takes an iterator range (const_iterator is a typedef for const phys::xml::XPathNode*), and an optional type:
+    /// @code
+    /// phys::xml::XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type=TypeUnsorted);
+    /// @endcode
+    /// The constructor copies the specified range and sets the specified type. The objects in the range are not checked in any way; you'll have to ensure that the range contains no
+    /// duplicates, and that the objects are sorted according to the type parameter. Otherwise XPath operations with this set may produce unexpected results.
+    /// \n \n
+    /// @subsection XMLXPathSelecting Selecting Nodes via XPath Expression
+    /// If you want to select nodes that match some XPath expression, you can do it with the following functions:
+    /// @code
+    /// phys::xml::XPathNode phys::xml::Node::FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;
+    /// phys::xml::XPathNodeSet phys::xml::Node::FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;
+    /// @endcode
+    /// The FindNodes function compiles the expression and then executes it with the node as a context node, and returns the resulting node set. FindSingleNode returns only the first node
+    /// in document order from the result, and is equivalent to calling FindNodes(query).first(). If the XPath expression does not match anything, or the node handle is null, FindNodes
+    /// returns an empty set, and FindSingleNode returns null XPath node.
+    /// \n \n
+    /// If exception handling is not disabled, both functions throw phys::xml::XPathException if the query can not be compiled or if it returns a value with type other than node set; see
+    /// Error handling for details.
+    /// \n \n
+    /// While compiling expressions is fast, the compilation time can introduce a significant overhead if the same expression is used many times on small subtrees. If you're doing many
+    /// similar queries, consider compiling them into query objects (see @ref XMLXPathQuery for further reference). Once you get a compiled query object, you can pass it to Find functions
+    /// instead of an expression string:
+    /// @code
+    /// phys::xml::XPathNode phys::xml::Node::FindSingleNode(const phys::xml::XPathQuery& query) const;
+    /// phys::xml::XPathNodeSet phys::xml::Node::FindNodes(const phys::xml::XPathQuery& query) const;
+    /// @endcode
+    /// If exception handling is not disabled, both functions throw phys::xml::XPathException if the query returns a value with type other than node set.
+    /// \n \n
+    /// This is an example of selecting nodes using XPath expressions:
+    /// @code
+    /// phys::xml::XPathNodeSet tools = doc.FindNodes("/Profile/Tools/Tool[@AllowRemote='true' and @DeriveCaptionFrom='lastparam']");
+    ///
+    /// std::cout << "Tools:";
+    ///
+    /// for (phys::xml::XPathNodeSet::const_iterator it = tools.begin(); it != tools.end(); ++it)
+    /// {
+    ///     phys::xml::XPathNode node = *it;
+    ///     std::cout << " " << node.GetNode().GetAttribute("Filename").Value();
+    /// }
+    ///
+    /// phys::xml::XPathNode BuildTool = doc.FindSingleNode("//Tool[contains(Description, 'build system')]");
+    ///
+    /// std::cout << "\nBuild tool: " << BuildTool.GetNode().GetAttribute("Filename").Value() << "\n";
+    /// @endcode
+    /// @subsection XMLXPathQuery Using Query Objects
+    /// When you call FindNodes with an expression string as an argument, a query object is created behind the scenes. A query object represents a compiled XPath expression. Query objects
+    /// can be useful in the following circumstances:
+    ///     - You can precompile expressions to query objects to save compilation time if it becomes an issue;
+    ///     - You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings;
+    ///     - You can get the type of expression value via query object.
+    ///
+    /// Query objects correspond to phys::xml::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to
+    /// put query objects in a container, allocate them on heap via new operator and store pointers to phys::xml::XPathQuery in the container.
+    /// \n \n
+    /// You can create a query object with the constructor that takes XPath expression as an argument:
+    /// @code
+    /// explicit phys::xml::XPathQuery::XPathQuery(const char_t* query, XPathVariableSet* variables = 0);
+    /// @endcode
+    /// The expression is compiled and the compiled representation is stored in the new query object. If compilation fails, XPathException is thrown if exception handling is not disabled
+    /// (see @ref XMLXPathError for details). After the query is created, you can query the type of the evaluation result using the following function:
+    /// @code
+    /// phys::xml::XPathValueType phys::xml::XPathQuery::ReturnType() const;
+    /// @endcode
+    /// You can evaluate the query using one of the following functions:
+    /// @code
+    /// bool phys::xml::XPathQuery::EvaluateBoolean(const phys::xml::XPathNode& n) const;
+    /// double phys::xml::XPathQuery::EvaluateNumber(const phys::xml::XPathNode& n) const;
+    /// phys::String phys::xml::XPathQuery::EvaluateString(const phys::xml::XPathNode& n) const;
+    /// phys::xml::XPathNodeSet phys::xml::XPathQuery::EvaluateNodeSet(const phys::xml::XPathNode& n) const;
+    /// @endcode
+    /// All functions take the context node as an argument, compute the expression and return the result, converted to the requested type. According to XPath specification, value of any
+    /// type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, EvaluateBoolean, EvaluateNumber and
+    /// EvaluateString always return a result, but EvaluateNodeSet results in an error if the return type is not node set ( see @ref XMLXPathError ).
+    /// @note Calling node.FindNodes("query") is equivalent to calling phys::xml::XPathQuery("query").EvaluateNodeSet(node).
+    ///
+    /// Note that EvaluateString function returns the STL string; as such, it's not available in XML_NO_STL mode and also usually allocates memory. There is another string evaluation
+    /// function:
+    /// @code
+    /// size_t phys::xml::XPathQuery::EvaluateString(char_t* buffer, size_t capacity, const phys::xml::XPathNode& n) const;
+    /// @endcode
+    /// This function evaluates the string, and then writes the result to buffer (but at most capacity characters); then it returns the full size of the result in characters, including
+    /// the terminating zero. If capacity is not 0, the resulting buffer is always zero-terminated. You can use this function as follows:
+    ///     - First call the function with buffer = 0 and capacity = 0; then allocate the returned amount of characters, and call the function again, passing the allocated storage and the
+    ///     amount of characters;
+    ///     - First call the function with small buffer and buffer capacity; then, if the result is larger than the capacity, the output has been trimmed, so allocate a larger buffer and
+    ///     call the function again.
+    ///
+    /// This is an example of using query objects:
+    /// @code
+    /// // Select nodes via compiled query
+    /// phys::xml::XPathQuery QueryRemoteTools("/Profile/Tools/Tool[@AllowRemote='true']");
+    ///
+    /// phys::xml::XPathNodeSet tools = QueryRemoteTools.EvaluateNodeSet(doc);
+    /// std::cout << "Remote tool: ";
+    /// tools[2].node().print(std::cout);
+    ///
+    /// // Evaluate numbers via compiled query
+    /// phys::xml::XPathQuery QueryTimeouts("sum(//Tool/@Timeout)");
+    /// std::cout << QueryTimeouts.EvaluateNumber(doc) << std::endl;
+    ///
+    /// // Evaluate strings via compiled query for different context nodes
+    /// phys::xml::XPathQuery QueryNameValid("string-length(substring-before(@Filename, '_')) > 0 and @OutputFileMasks");
+    /// phys::xml::XPathQuery QueryName("concat(substring-before(@Filename, '_'), ' produces ', @OutputFileMasks)");
+    ///
+    /// for (phys::xml::Node tool = doc.FirstElementByPath("Profile/Tools/Tool"); tool; tool = tool.NextSibling())
+    /// {
+    ///     std::string s = QueryName.EvaluateString(tool);
+    ///
+    ///     if (QueryNameValid.EvaluateBoolean(tool)) std::cout << s << std::endl;
+    /// }
+    /// @endcode
+    /// @subsection XMLXPathVariables Using Variables
+    /// XPath queries may contain references to variables; this is useful if you want to use queries that depend on some dynamic parameter without manually preparing the complete query
+    /// string, or if you want to reuse the same query object for similar queries.
+    /// \n \n
+    /// Variable references have the form $name; in order to use them, you have to provide a variable set, which includes all variables present in the query with correct types. This set
+    /// is passed to phys::xml::XPathQuery constructor or to FindNodes/FindNode functions:
+    /// @code
+    /// explicit phys::xml::XPathQuery::phys::xml::XPathQuery(const char_t* query, XPathVariableSet* variables = 0);
+    /// phys::xml::XPathNode xml_node::FindNode(const char_t* query, XPathVariableSet* variables = 0) const;
+    /// XPathNodeSet xml_node::FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;
+    /// @endcode
+    /// If you're using query objects, you can change the variable values before evaluate/select calls to change the query behavior.
+    /// @note The variable set pointer is stored in the query object; you have to ensure that the lifetime of the set exceeds that of query object.
+    ///
+    /// Variable sets correspond to XPathVariableSet type, which is essentially a variable container.
+    /// \n \n
+    /// You can add new variables with the following function:
+    /// @code
+    /// phys::xml::XPathVariable* phys::xml::XPathVariableSet::Add(const char_t* Name, phys::xml::XPathValueType type);
+    /// @endcode
+    /// The function tries to add a new variable with the specified name and type; if the variable with such name does not exist in the set, the function adds a new variable and returns
+    /// the variable handle; if there is already a variable with the specified name, the function returns the variable handle if variable has the specified type. Otherwise the function
+    /// returns null pointer; it also returns null pointer on allocation failure.
+    /// \n \n
+    /// New variables are assigned the default value which depends on the type: 0 for numbers, false for booleans, empty string for strings and empty set for node sets.
+    /// \n \n
+    /// You can get the existing variables with the following functions:
+    /// @code
+    /// XPathVariable* XPathVariableSet::Get(const char_t* Name);
+    /// const XPathVariable* XPathVariableSet::Get(const char_t* Name) const;
+    /// @endcode
+    /// The functions return the variable handle, or null pointer if the variable with the specified name is not found.
+    /// \n \n
+    /// Additionally, there are the helper functions for setting the variable value by name; they try to add the variable with the corresponding type, if it does not exist, and to set the
+    /// value. If the variable with the same name but with different type is already present, they return false; they also return false on allocation failure. Note that these functions do
+    /// not perform any type conversions.
+    /// @code
+    /// bool XPathVariableSet::Set(const char_t* Name, bool Value);
+    /// bool XPathVariableSet::Set(const char_t* Name, double Value);
+    /// bool XPathVariableSet::Set(const char_t* Name, const char_t* Value);
+    /// bool XPathVariableSet::Set(const char_t* Name, const XPathNodeSet& Value);
+    /// @endcode
+    /// The variable values are copied to the internal variable storage, so you can modify or destroy them after the functions return.
+    /// \n \n
+    /// If setting variables by name is not efficient enough, or if you have to inspect variable information or get variable values, you can use variable handles. A variable corresponds to
+    /// the XPathVariable type, and a variable handle is simply a pointer to XPathVariable.
+    /// \n \n
+    /// In order to get variable information, you can use one of the following functions:
+    /// @code
+    /// const char_t* phys::xml::XPathVariable::Name() const;
+    /// phys::xml::XPathValueType phys::xml::XPathVariable::Type() const;
+    /// @endcode
+    /// Note that each variable has a distinct type which is specified upon variable creation and can not be changed later.
+    /// \n \n
+    /// In order to get variable value, you should use one of the following functions, depending on the variable type:
+    /// @code
+    /// bool phys::xml::XPathVariable::GetBoolean() const;
+    /// double phys::xml::XPathVariable::GetNumber() const;
+    /// const char_t* phys::xml::XPathVariable::GetString() const;
+    /// const phys::xml::XPathNodeSet& phys::xml::XPathVariable::GetNodeSet() const;
+    /// @endcode
+    /// These functions return the value of the variable. Note that no type conversions are performed; if the type mismatch occurs, a dummy value is returned (false for booleans, NaN for
+    /// numbers, empty string for strings and empty set for node sets).
+    /// \n \n
+    /// In order to set variable value, you should use one of the following functions, depending on the variable type:
+    /// @code
+    /// bool XPathVariable::Set(bool Value);
+    /// bool XPathVariable::Set(double Value);
+    /// bool XPathVariable::Set(const char_t* Value);
+    /// bool XPathVariable::Set(const XPathNodeSet& Value);
+    /// @endcode
+    /// These functions modify the variable value. Note that no type conversions are performed; if the type mismatch occurs, the functions return false; they also return false on allocation
+    /// failure. The variable values are copied to the internal variable storage, so you can modify or destroy them after the functions return.
+    /// \n \n
+    /// This is an example of using variables in XPath queries:
+    /// @code
+    /// // Select nodes via compiled query
+    /// phys::xml::XPathVariableSet vars;
+    /// vars.Add("remote", phys::xml::XPathTypeBoolean);
+    ///
+    /// phys::xml::XPathQuery QueryRemoteTools("/Profile/Tools/Tool[@AllowRemote = string($remote)]", &vars);
+    ///
+    /// vars.Set("remote", true);
+    /// XPathNodeSet ToolsRemote = QueryRemoteTools.EvaluateNodeSet(doc);
+    ///
+    /// vars.Set("remote", false);
+    /// phys::xml::XPathNodeSet ToolsLocal = QueryRemoteTools.EvaluateNodeSet(doc);
+    ///
+    /// std::cout << "Remote tool: ";
+    /// ToolsRemote[2].GetNode().Print(std::cout);
+    ///
+    /// std::cout << "Local tool: ";
+    /// ToolsLocal[0].GetNode().Print(std::cout);
+    ///
+    /// // You can pass the context directly to FindNodes/FindNode
+    /// phys::xml::XPathNodeSet ToolsLocalImm = doc.FindNodes("/Profile/Tools/Tool[@AllowRemote = string($remote)]", &vars);
+    ///
+    /// std::cout << "Local tool imm: ";
+    /// ToolsLocalImm[0].GetNode().Print(std::cout);
+    /// @endcode
+    /// @subsection XMLXPathError Error Handling
+    /// There are two different mechanisms for error handling in XPath implementation; the mechanism used depends on whether exception support is disabled (this is controlled with
+    /// XML_NO_EXCEPTIONS define).
+    /// \n \n
+    /// By default, XPath functions throw phys::xml::XPathException object in case of errors; additionally, in the event any memory allocation fails, an std::bad_alloc exception is thrown. Also
+    /// phys::xml::XPathException is thrown if the query is evaluated to a node set, but the return type is not node set. If the query constructor succeeds (i.e. no exception is thrown), the query
+    /// object is valid. Otherwise you can get the error details via one of the following functions:
+    /// @code
+    /// virtual const char* phys::xml::XPathException::what() const throw();
+    /// const phys::xml::XPathParseResult& phys::xml::XPathException::Result() const;
+    /// @endcode
+    /// If exceptions are disabled, then in the event of parsing failure the query is initialized to invalid state; you can test if the query object is valid by using it in a boolean
+    /// expression: if (query) { ... }. Additionally, you can get parsing result via the Result() accessor:
+    /// @code
+    /// const XPathParseResult& XPathQuery::Result() const;
+    /// @endcode
+    /// Without exceptions, evaluating invalid query results in false, empty string, NaN or an empty node set, depending on the type; evaluating a query as a node set results in an empty
+    /// node set if the return type is not node set.
+    /// \n \n
+    /// The information about parsing result is returned via phys::xml::XPathParseResult object. It contains parsing status and the offset of last successfully parsed character from the
+    /// beginning of the source stream.
+    /// \n \n
+    /// Parsing result is represented as the error message; it is either a null pointer, in case there is no error, or the error message in the form of ASCII zero-terminated string.
+    /// \n \n
+    /// The Description() member function can be used to get the error message; it never returns the null pointer, so you can safely use Description() even if query parsing succeeded.
+    /// \n \n
+    /// In addition to the error message, parsing result has an OffSet member, which contains the offset of last successfully parsed character. This offset is in units of phys::xml::char_t
+    /// (bytes for character mode, wide characters for wide character mode).
+    /// \n \n
+    /// Parsing result object can be implicitly converted to bool like this: if (result) { ... } else { ... }.
+    /// \n \n
+    /// This is an example of XPath error handling:
+    /// @code
+    /// // Exception is thrown for incorrect query syntax
+    /// try
+    /// {
+    ///     doc.FindNodes("//nodes[#true()]");
+    /// }
+    /// catch (const phys::xml::XPathException& e)
+    /// {
+    ///     std::cout << "Select failed: " << e.what() << std::endl;
+    /// }
+    ///
+    /// // Exception is thrown for incorrect query semantics
+    /// try
+    /// {
+    /// doc.FindNodes("(123)/next");
+    /// }
+    /// catch (const phys::xml::XPathException& e)
+    /// {
+    ///     std::cout << "Select failed: " << e.what() << std::endl;
+    /// }
+    ///
+    /// // Exception is thrown for query with incorrect return type
+    /// try
+    /// {
+    ///     doc.FindNodes("123");
+    /// }
+    /// catch (const phys::xml::XPathException& e)
+    /// {
+    ///     std::cout << "Select failed: " << e.what() << std::endl;
+    /// }
+    /// @endcode
+    /// @subsection XMLXPathStandards Conformance to W3C Specification
+    /// Because of the differences in document object models, performance considerations and implementation complexity, pugixml does not provide a fully conformant XPath 1.0 implementation.
+    /// This is the current list of incompatibilities:
+    ///     - Consecutive text nodes sharing the same parent are not merged, i.e. in \<node>text1 \<![CDATA[data]]> text2 \</node> node should have one text node children, but instead has
+    ///     three.
+    ///     - Since the document type declaration is not used for parsing, id() function always returns an empty node set.
+    ///     - Namespace nodes are not supported (affects namespace:: axis).
+    ///     - Name tests are performed on QNames in XML document instead of expanded names; for \<foo xmlns:ns1='uri' xmlns:ns2='uri'> \<ns1:child/> \<ns2:child/> \</foo>, query foo/ns1:*
+    ///     will return only the first child, not both of them. Compliant XPath implementations can return both nodes if the user provides appropriate namespace declarations.
+    ///     - String functions consider a character to be either a single char value or a single wchar_t value, depending on the library configuration; this means that some string functions
+    ///     are not fully Unicode-aware. This affects substring(), string-length() and translate() functions.
 
 
     /// @page XMLQuickStart Jumping into phys::xml
-    /// copy : http://pugixml.googlecode.com/svn/tags/latest/docs/quickstart.html
+    /// in progress
+    //copy : http://pugixml.googlecode.com/svn/tags/latest/docs/quickstart.html
 
     /**
     @page OriginalpugixmlLicense Original pugixml License

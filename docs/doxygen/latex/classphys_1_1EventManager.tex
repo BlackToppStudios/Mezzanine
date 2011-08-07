@@ -20,84 +20,84 @@ Inheritance diagram for phys::EventManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1EventManager_a018b36588bf2a2e90536e64be060d6fc}{EventManager} ()
-\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventManager_aa6df8df9b7a11dadcd9bc79ecdf54558}{$\sim$EventManager} ()
-\begin{DoxyCompactList}\small\item\em Default Deconstructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_a0b36c605c2a059c96e787ed4c1fd68bc}{DetectJoysticks} ()
-\begin{DoxyCompactList}\small\item\em Look for Joysticks that are hooked up to the system. \item\end{DoxyCompactList}\item 
-size\_\-t \hyperlink{classphys_1_1EventManager_af3e02562344e4de9c40d91446acd84dc}{GetRemainingEventCount} ()
-\begin{DoxyCompactList}\small\item\em Gets a count of events. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_aa0937763961aefc59aea197a8f9bc0dc}{GetNextEvent} ()
-\begin{DoxyCompactList}\small\item\em Return a pointer to the Next event. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_ae403b203bc425744377ec5fc311f4e5d}{PopNextEvent} ()
-\begin{DoxyCompactList}\small\item\em Return a pointer to the Next event, and removes the Event from storage. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_a2389a44d199f121e1fea741f83248513}{RemoveNextEvent} ()
-\begin{DoxyCompactList}\small\item\em Removes an Event From the que without looking at it. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_abada23d83ef38e59a38eb91a88a07404}{AddEvent} (\hyperlink{classphys_1_1EventBase}{EventBase} $\ast$EventToAdd)
 \begin{DoxyCompactList}\small\item\em Adds an event of any kind to the end of the Event Queue. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents} ()
-\begin{DoxyCompactList}\small\item\em Pulls Events from the all the subsystems for use in the \hyperlink{classphys_1_1EventManager}{EventManager}. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventCollision}{EventCollision} $\ast$ \hyperlink{classphys_1_1EventManager_a8e8f88684cd9167ae59734cf14b64b76}{GetNextCollisionEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Collision event. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventCollision}{EventCollision} $\ast$ \hyperlink{classphys_1_1EventManager_a6a6ae165032e429c12653565590040cd}{PopNextCollisionEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Collision event and removes it from the Que. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_a9556b702c4b84bc8e49f1491104b688f}{RemoveNextCollisionEvent} ()
-\begin{DoxyCompactList}\small\item\em Removes the First Collision Event From the que without looking at it. \item\end{DoxyCompactList}\item 
-std::list$<$ \hyperlink{classphys_1_1EventCollision}{EventCollision} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a1881421e075a5965d6d5a0678f93ad9a}{GetAllCollisionEvents} ()
-\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} $\ast$ \hyperlink{classphys_1_1EventManager_aead881349edba3f0bcca34eaae41a8ee}{GetNextGameWindowEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1GameWindow}{GameWindow} event. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} $\ast$ \hyperlink{classphys_1_1EventManager_abc62c29549957c314a8784eac4fb16ad}{PopNextGameWindowEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1GameWindow}{GameWindow} event and removes it from the Que. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_a8172d685143bf18d0e48810fac25860e}{RemoveNextGameWindowEvent} ()
-\begin{DoxyCompactList}\small\item\em Removes the First \hyperlink{classphys_1_1GameWindow}{GameWindow} Event From the que without looking at it. \item\end{DoxyCompactList}\item 
-std::list$<$ \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aacdd185f6334f1258d0d7022bae3932d}{GetAllGameWindowEvents} ()
-\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ \hyperlink{classphys_1_1EventManager_ae8730b039a280449af052d75f2e60b06}{GetNextRenderTimeEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ \hyperlink{classphys_1_1EventManager_aa7e800d34ad8b9295ac87dfa822a2a03}{PopNextRenderTimeEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event and removes it from the Que. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_af1204912be3554312e66d3a777c1f99b}{RemoveNextRenderTimeEvent} ()
-\begin{DoxyCompactList}\small\item\em Removes the First Rendertime Event From the que without looking at it. \item\end{DoxyCompactList}\item 
-std::list$<$ \hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aee73dff2d113826b8c01db7f7417d527}{GetAllRenderTimeEvents} ()
-\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}{GetNextUserInputEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_afa89317d4b16c2b7065b9f79a4354654}{PopNextUserInputEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event and removes it from the Que. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_add41b5f4d2942461bcaf40a97ad40b09}{RemoveNextUserInputEvent} ()
-\begin{DoxyCompactList}\small\item\em Removes the First User Input Event From the que without looking at it. \item\end{DoxyCompactList}\item 
-std::list$<$ \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aef240dacae9479c4385d540e4feab867}{GetAllUserInputEvents} ()
-\begin{DoxyCompactList}\small\item\em This returns a complete list of all the User Input events. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ \hyperlink{classphys_1_1EventManager_ad7da09e5422b1db79ac4187ee9198d0c}{GetNextQuitEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1EventQuit}{EventQuit}. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ \hyperlink{classphys_1_1EventManager_a9b0d8e4d76fef35423bb862d7127b747}{PopNextQuitEvent} ()
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1EventQuit}{EventQuit} and removes it from the Que. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_a5031871aa6e044764ec2963228f735dd}{RemoveNextQuitEvent} ()
-\begin{DoxyCompactList}\small\item\em Removes the First \hyperlink{classphys_1_1EventQuit}{EventQuit} From the que without looking at it. \item\end{DoxyCompactList}\item 
-std::list$<$ \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_afefd52a9693bc5541592997abbf3c53f}{GetAllQuitEvents} ()
-\begin{DoxyCompactList}\small\item\em This returns a complete list of all the quit events. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_a7340cfab326856cf4ebc653b11101016}{GetNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_a156ba3c53cc799499272430111bbdfa4}{PopNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_a486c1173a2c1a64885bfdbe7ca267611}{RemoveNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
-\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
-std::list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a300e537d27cd53ac8276438d4c91a3f6}{GetAllSpecificEvents} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
-\begin{DoxyCompactList}\small\item\em This returns a complete list of all the specified events. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_ac38a5a7d003a3f92e40c842916094bde}{RemoveAllSpecificEvents} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
-\begin{DoxyCompactList}\small\item\em This removes all the events of the specified type. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_a6ff66883358344908afd11204f79f196}{AddPollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToTryPolling)
 \begin{DoxyCompactList}\small\item\em Generates extra events each iteration of the main loop, based on user input polling. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1EventManager_adaf7d5346932506ed43f893eb071fd39}{RemovePollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToStopPolling)
-\begin{DoxyCompactList}\small\item\em Removes Events from the list(s) of what needs to be polled. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{Initialize} ()
-\begin{DoxyCompactList}\small\item\em Empty Initializer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_a0b36c605c2a059c96e787ed4c1fd68bc}{DetectJoysticks} ()
+\begin{DoxyCompactList}\small\item\em Look for Joysticks that are hooked up to the system. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1EventManager_aca8fb3d285484dcdb943824bf11f3596}{DoMainLoopItems} ()
 \begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventManager_a018b36588bf2a2e90536e64be060d6fc}{EventManager} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+std::list$<$ \hyperlink{classphys_1_1EventCollision}{EventCollision} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a1881421e075a5965d6d5a0678f93ad9a}{GetAllCollisionEvents} ()
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. \item\end{DoxyCompactList}\item 
+std::list$<$ \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aacdd185f6334f1258d0d7022bae3932d}{GetAllGameWindowEvents} ()
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. \item\end{DoxyCompactList}\item 
+std::list$<$ \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_afefd52a9693bc5541592997abbf3c53f}{GetAllQuitEvents} ()
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the quit events. \item\end{DoxyCompactList}\item 
+std::list$<$ \hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aee73dff2d113826b8c01db7f7417d527}{GetAllRenderTimeEvents} ()
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. \item\end{DoxyCompactList}\item 
+std::list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a300e537d27cd53ac8276438d4c91a3f6}{GetAllSpecificEvents} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the specified events. \item\end{DoxyCompactList}\item 
+std::list$<$ \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aef240dacae9479c4385d540e4feab867}{GetAllUserInputEvents} ()
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the User Input events. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventCollision}{EventCollision} $\ast$ \hyperlink{classphys_1_1EventManager_a8e8f88684cd9167ae59734cf14b64b76}{GetNextCollisionEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Collision event. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_aa0937763961aefc59aea197a8f9bc0dc}{GetNextEvent} ()
+\begin{DoxyCompactList}\small\item\em Return a pointer to the Next event. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} $\ast$ \hyperlink{classphys_1_1EventManager_aead881349edba3f0bcca34eaae41a8ee}{GetNextGameWindowEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1GameWindow}{GameWindow} event. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ \hyperlink{classphys_1_1EventManager_ad7da09e5422b1db79ac4187ee9198d0c}{GetNextQuitEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1EventQuit}{EventQuit}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ \hyperlink{classphys_1_1EventManager_ae8730b039a280449af052d75f2e60b06}{GetNextRenderTimeEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_a7340cfab326856cf4ebc653b11101016}{GetNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}{GetNextUserInputEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event. \item\end{DoxyCompactList}\item 
+size\_\-t \hyperlink{classphys_1_1EventManager_af3e02562344e4de9c40d91446acd84dc}{GetRemainingEventCount} ()
+\begin{DoxyCompactList}\small\item\em Gets a count of events. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initializer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventCollision}{EventCollision} $\ast$ \hyperlink{classphys_1_1EventManager_a6a6ae165032e429c12653565590040cd}{PopNextCollisionEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Collision event and removes it from the Que. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_ae403b203bc425744377ec5fc311f4e5d}{PopNextEvent} ()
+\begin{DoxyCompactList}\small\item\em Return a pointer to the Next event, and removes the Event from storage. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} $\ast$ \hyperlink{classphys_1_1EventManager_abc62c29549957c314a8784eac4fb16ad}{PopNextGameWindowEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1GameWindow}{GameWindow} event and removes it from the Que. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ \hyperlink{classphys_1_1EventManager_a9b0d8e4d76fef35423bb862d7127b747}{PopNextQuitEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1EventQuit}{EventQuit} and removes it from the Que. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ \hyperlink{classphys_1_1EventManager_aa7e800d34ad8b9295ac87dfa822a2a03}{PopNextRenderTimeEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event and removes it from the Que. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_a156ba3c53cc799499272430111bbdfa4}{PopNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_afa89317d4b16c2b7065b9f79a4354654}{PopNextUserInputEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event and removes it from the Que. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_ac38a5a7d003a3f92e40c842916094bde}{RemoveAllSpecificEvents} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
+\begin{DoxyCompactList}\small\item\em This removes all the events of the specified type. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_a9556b702c4b84bc8e49f1491104b688f}{RemoveNextCollisionEvent} ()
+\begin{DoxyCompactList}\small\item\em Removes the First Collision Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_a2389a44d199f121e1fea741f83248513}{RemoveNextEvent} ()
+\begin{DoxyCompactList}\small\item\em Removes an Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_a8172d685143bf18d0e48810fac25860e}{RemoveNextGameWindowEvent} ()
+\begin{DoxyCompactList}\small\item\em Removes the First \hyperlink{classphys_1_1GameWindow}{GameWindow} Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_a5031871aa6e044764ec2963228f735dd}{RemoveNextQuitEvent} ()
+\begin{DoxyCompactList}\small\item\em Removes the First \hyperlink{classphys_1_1EventQuit}{EventQuit} From the que without looking at it. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_af1204912be3554312e66d3a777c1f99b}{RemoveNextRenderTimeEvent} ()
+\begin{DoxyCompactList}\small\item\em Removes the First Rendertime Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_a486c1173a2c1a64885bfdbe7ca267611}{RemoveNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_add41b5f4d2942461bcaf40a97ad40b09}{RemoveNextUserInputEvent} ()
+\begin{DoxyCompactList}\small\item\em Removes the First User Input Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_adaf7d5346932506ed43f893eb071fd39}{RemovePollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToStopPolling)
+\begin{DoxyCompactList}\small\item\em Removes Events from the list(s) of what needs to be polled. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents} ()
+\begin{DoxyCompactList}\small\item\em Pulls Events from the all the subsystems for use in the \hyperlink{classphys_1_1EventManager}{EventManager}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventManager_aa6df8df9b7a11dadcd9bc79ecdf54558}{$\sim$EventManager} ()
+\begin{DoxyCompactList}\small\item\em Default Deconstructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -106,14 +106,14 @@ std::ostream \& {\bfseries PHYS\_\-LIB::operator$<$$<$} (std::ostream \&stream, 
 \label{classphys_1_1EventManager_ad68113acdef0b428e8180ee4192aca09}
 
 \item 
-\hypertarget{classphys_1_1EventManager_ac32b5a1ad8a8171298bd544eda444865}{
-std::istream \& {\bfseries PHYS\_\-LIB::operator$>$$>$} (std::istream \&stream, \hyperlink{classphys_1_1EventManager}{phys::EventManager} \&Mgr)}
-\label{classphys_1_1EventManager_ac32b5a1ad8a8171298bd544eda444865}
-
-\item 
 \hypertarget{classphys_1_1EventManager_a04e666d9104e325839dc9a6e63cd3c6f}{
 void {\bfseries PHYS\_\-LIB::operator$>$$>$} (const \hyperlink{classphys_1_1xml_1_1Node}{phys::xml::Node} \&OneNode, \hyperlink{classphys_1_1EventManager}{phys::EventManager} \&Mgr)}
 \label{classphys_1_1EventManager_a04e666d9104e325839dc9a6e63cd3c6f}
+
+\item 
+\hypertarget{classphys_1_1EventManager_ac32b5a1ad8a8171298bd544eda444865}{
+std::istream \& {\bfseries PHYS\_\-LIB::operator$>$$>$} (std::istream \&stream, \hyperlink{classphys_1_1EventManager}{phys::EventManager} \&Mgr)}
+\label{classphys_1_1EventManager_ac32b5a1ad8a8171298bd544eda444865}
 
 \end{DoxyCompactItemize}
 

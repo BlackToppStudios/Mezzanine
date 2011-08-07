@@ -27,74 +27,74 @@ enum \hyperlink{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86a}{Projectio
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+virtual void \hyperlink{classphys_1_1Camera_afaa81ebb01f1c64a324f802b6743b6f7}{AttachToFinal} (Ogre::SceneNode $\ast$RawTarget, \hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$Target)
+\begin{DoxyCompactList}\small\item\em Does the Final Work to attach on the \hyperlink{classphys_1_1Attachable}{Attachable} Side, should only be called by WorldNode::AttachFinal. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Camera_a863e7b7a0fb4db7969014d8391b5ca30}{Camera} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$Manager)
 \begin{DoxyCompactList}\small\item\em Basic \hyperlink{classphys_1_1Camera}{Camera} Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Camera_a0510d4f9bf6fb195115272cbd116e8dd}{Camera} (Ogre::Camera $\ast$\hyperlink{classphys_1_1Camera}{Camera}, \hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$Manager)
 \begin{DoxyCompactList}\small\item\em Ogre Cam Constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Camera_aa45f340a6f7ba0970aa2602a928463ea}{$\sim$Camera} ()
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1Camera_ae24490b8589796cb5f51d291cc418d84}{GetName} () const 
-\begin{DoxyCompactList}\small\item\em Gets the camera's set name. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a95d04ee7482ae6670229f59d63ee8926}{SetCameraType} (const \hyperlink{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86a}{ProjectionType} Type)
-\begin{DoxyCompactList}\small\item\em Sets the type of projection to be used with this camera. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Camera_a087e4e09b4b0c7adf4c267c5e8e1a6d9}{DetachFromFinal} (Ogre::SceneNode $\ast$RawTarget)
+\begin{DoxyCompactList}\small\item\em Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1Camera_a4dce38bad69f1bc58f510ce01d6d6edf}{GetAttachableType} () const 
+\begin{DoxyCompactList}\small\item\em What kind of \hyperlink{classphys_1_1Attachable}{Attachable} is this. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Camera_a01d119eb8bd10a8654493b043110ca0f}{GetCameraToViewportRay} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screenx, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screeny) const 
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1Ray}{Ray} from the camera to the viewport. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86a}{Camera::ProjectionType} \hyperlink{classphys_1_1Camera_aa79582e78a3eff11a8c4fe9c058566b0}{GetCameraType} () const 
 \begin{DoxyCompactList}\small\item\em Get the type of projection used by the camera. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a24cb50ccb644f3f7e925819aba3ddad2}{SetOrthoWindow} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height)
-\begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a76c140a73a4d862f260b4a76d85b4e34}{SetOrthoWindowHeight} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height)
-\begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a1e5ba572ce27880def46538157f4ccb7}{SetOrthoWindowWidth} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width)
-\begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1Camera_afd2a77e96dd6d0dec1071dcc3229425f}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
-\begin{DoxyCompactList}\small\item\em Sets the location of a camera. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a75b3f25ff664c4f95f0e04cb9edceeb4}{GetLocation} () const 
-\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_ae3dc70090e83e19a9c5f6df302bb57a5}{GetRelativeLocation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the relative location of the camera. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a7f71146cd533f6a1fc8426a9ed40b763}{GetGlobalLocation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the global/absolute location of the camera. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a6ece06a179798b3240362b1bcb751f2f}{SetDirection} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Direction)
-\begin{DoxyCompactList}\small\item\em Sets the Direction for the camera. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a6f0294569edb3e65de4139da361f83a9}{GetDirection} () const 
 \begin{DoxyCompactList}\small\item\em Gets the direction the camera is currently facing. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_adbfa4a59eb09c0578c9aac792b78ef55}{SetOrientation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Orientation)
-\begin{DoxyCompactList}\small\item\em Sets the orientation of the camera. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a1f4126761e14d9b960395c79b6c4f13f}{GetFixedYawAxis} () const 
+\begin{DoxyCompactList}\small\item\em If fixed yaw is enabled, on which axis is yawing disabled. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a7f71146cd533f6a1fc8426a9ed40b763}{GetGlobalLocation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the global/absolute location of the camera. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a75b3f25ff664c4f95f0e04cb9edceeb4}{GetLocation} () const 
+\item 
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1Camera_ae24490b8589796cb5f51d291cc418d84}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the camera's set name. \item\end{DoxyCompactList}\item 
+Ogre::Camera $\ast$ \hyperlink{classphys_1_1Camera_a4f78f7a62580fa538d5bf2cb361644b2}{GetOgreCamera} () const 
+\begin{DoxyCompactList}\small\item\em Gets the internal camera this camera is based on. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Camera_a48e0b33e0f12247bc0a0e0d6f759683e}{GetOrientation} () const 
 \begin{DoxyCompactList}\small\item\em Gets the direction the camera is facing. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a0fdf28666baba46e907d6a8eac714915}{SetNearClipDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&NearDist)
-\begin{DoxyCompactList}\small\item\em Sets the short range clip distance. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a77f0fa5cb6b934cfda8f5143afae3a0e}{SetFarClipDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&FarDist)
-\begin{DoxyCompactList}\small\item\em Sets the long range clip distance. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a731d933c30bc95a83555412184d65cf8}{SetAspectRatio} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Ratio)
-\begin{DoxyCompactList}\small\item\em Sets the aspect ratio of the cameras veiw. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_ae3dc70090e83e19a9c5f6df302bb57a5}{GetRelativeLocation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the relative location of the camera. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Camera_a9b0aa17df46c427ab531bd587bd76e0f}{IsFixedYawEnabled} () const 
+\begin{DoxyCompactList}\small\item\em Is fixed yaw enabled. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Camera_a299de2281cc566df476b4684ac7d89fa}{LookAt} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&TargetLoc)
 \begin{DoxyCompactList}\small\item\em Sets the direction the camera faces. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Camera_a63cce67b42008ee8ce481b1ffd7fcbdf}{Move} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&ToMove)
 \begin{DoxyCompactList}\small\item\em Moves the camera without factoring orientation. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Camera_a34a5a7b76016042ce8b2278c35437486}{MoveRelative} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&ToMove)
 \begin{DoxyCompactList}\small\item\em Moves the camera while factoring orientation. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_aa6d7285b7a3fc43e3c6dd05ff30f89ab}{SetFixedYawAxis} (bool UseFixed, const \hyperlink{classphys_1_1Vector3}{Vector3} \&Axis)
-\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a1b4d5be85c528541c7a1cbebb41bfd89}{SetFixedYawAxis} (bool UseFixed)
-\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Camera_a9b0aa17df46c427ab531bd587bd76e0f}{IsFixedYawEnabled} () const 
-\begin{DoxyCompactList}\small\item\em Is fixed yaw enabled. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a1f4126761e14d9b960395c79b6c4f13f}{GetFixedYawAxis} () const 
-\begin{DoxyCompactList}\small\item\em If fixed yaw is enabled, on which axis is yawing disabled. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Camera_a01d119eb8bd10a8654493b043110ca0f}{GetCameraToViewportRay} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screenx, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screeny) const 
-\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1Ray}{Ray} from the camera to the viewport. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Camera_a66e2854557687d98cc5882363e6d6606}{ZoomCamera} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Zoom)
-\begin{DoxyCompactList}\small\item\em Will zoom in or out the camera. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Camera_a181465e6add36c07a63fdd26aee7c69a}{ResetZoom} ()
 \begin{DoxyCompactList}\small\item\em Resets the zoom level back to the default. \item\end{DoxyCompactList}\item 
-Ogre::Camera $\ast$ \hyperlink{classphys_1_1Camera_a4f78f7a62580fa538d5bf2cb361644b2}{GetOgreCamera} () const 
-\begin{DoxyCompactList}\small\item\em Gets the internal camera this camera is based on. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1Camera_a4dce38bad69f1bc58f510ce01d6d6edf}{GetAttachableType} () const 
-\begin{DoxyCompactList}\small\item\em What kind of \hyperlink{classphys_1_1Attachable}{Attachable} is this. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1Camera_afaa81ebb01f1c64a324f802b6743b6f7}{AttachToFinal} (Ogre::SceneNode $\ast$RawTarget, \hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$Target)
-\begin{DoxyCompactList}\small\item\em Does the Final Work to attach on the \hyperlink{classphys_1_1Attachable}{Attachable} Side, should only be called by WorldNode::AttachFinal. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1Camera_a087e4e09b4b0c7adf4c267c5e8e1a6d9}{DetachFromFinal} (Ogre::SceneNode $\ast$RawTarget)
-\begin{DoxyCompactList}\small\item\em Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{classphys_1_1Camera_a731d933c30bc95a83555412184d65cf8}{SetAspectRatio} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Ratio)
+\begin{DoxyCompactList}\small\item\em Sets the aspect ratio of the cameras veiw. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a95d04ee7482ae6670229f59d63ee8926}{SetCameraType} (const \hyperlink{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86a}{ProjectionType} Type)
+\begin{DoxyCompactList}\small\item\em Sets the type of projection to be used with this camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a6ece06a179798b3240362b1bcb751f2f}{SetDirection} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Direction)
+\begin{DoxyCompactList}\small\item\em Sets the Direction for the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a77f0fa5cb6b934cfda8f5143afae3a0e}{SetFarClipDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&FarDist)
+\begin{DoxyCompactList}\small\item\em Sets the long range clip distance. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a1b4d5be85c528541c7a1cbebb41bfd89}{SetFixedYawAxis} (bool UseFixed)
+\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_aa6d7285b7a3fc43e3c6dd05ff30f89ab}{SetFixedYawAxis} (bool UseFixed, const \hyperlink{classphys_1_1Vector3}{Vector3} \&Axis)
+\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Camera_afd2a77e96dd6d0dec1071dcc3229425f}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Sets the location of a camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a0fdf28666baba46e907d6a8eac714915}{SetNearClipDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&NearDist)
+\begin{DoxyCompactList}\small\item\em Sets the short range clip distance. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_adbfa4a59eb09c0578c9aac792b78ef55}{SetOrientation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Orientation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a24cb50ccb644f3f7e925819aba3ddad2}{SetOrthoWindow} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height)
+\begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a76c140a73a4d862f260b4a76d85b4e34}{SetOrthoWindowHeight} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height)
+\begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a1e5ba572ce27880def46538157f4ccb7}{SetOrthoWindowWidth} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width)
+\begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a66e2854557687d98cc5882363e6d6606}{ZoomCamera} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Zoom)
+\begin{DoxyCompactList}\small\item\em Will zoom in or out the camera. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Camera_aa45f340a6f7ba0970aa2602a928463ea}{$\sim$Camera} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 

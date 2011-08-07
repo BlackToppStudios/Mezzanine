@@ -21,22 +21,28 @@ This provides a number of utilities for getting input information.
 \subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{classphys_1_1InputQueryTool_a1df560487b85fcb90fd9294f3009eee6}{GetMouseX} ()
-\begin{DoxyCompactList}\small\item\em This gets the X coordinate of the mouse. \item\end{DoxyCompactList}\item 
-static int \hyperlink{classphys_1_1InputQueryTool_a5cab535728ba864a83e7c374cc683d0b}{GetMouseY} ()
-\begin{DoxyCompactList}\small\item\em This gets the Y coordinate of the mouse. \item\end{DoxyCompactList}\item 
+static void \hyperlink{classphys_1_1InputQueryTool_a9779d812418f1fddb0880df0c607242b}{GatherEvents} (bool ClearEventsFromEventMgr=false)
+\begin{DoxyCompactList}\small\item\em This gathers any user-\/input/event data that might be queryed. \item\end{DoxyCompactList}\item 
 static int \hyperlink{classphys_1_1InputQueryTool_ae8b922315b271a2eeb376f10a7c97cf4}{GetJoystickAxis} (short unsigned int Axis)
 \begin{DoxyCompactList}\small\item\em This Gets the value of the given joystick axis. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState} \hyperlink{classphys_1_1InputQueryTool_a457529e30edf8d3cf5ef04ae6a8db506}{GetKeyboardButtonState} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&KeyboardButton)
+\begin{DoxyCompactList}\small\item\em Gets the button state of the provided keyboard button ID. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState} \hyperlink{classphys_1_1InputQueryTool_ada22b6ee93632c85f7b7a0490d418382}{GetMouseButtonState} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&MouseButton)
+\begin{DoxyCompactList}\small\item\em Gets the button state of the provided mouse button ID. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState} \hyperlink{classphys_1_1InputQueryTool_a1ef8b70af163d8bc703fd16c3fcce22d}{GetMouseButtonState} (short unsigned int MouseButton)
+\begin{DoxyCompactList}\small\item\em Gets the button state of the provided mouse button ID. \item\end{DoxyCompactList}\item 
 static \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1InputQueryTool_affd9523f67b542b208e6d36c3395e72b}{GetMouseCoordinates} ()
 \begin{DoxyCompactList}\small\item\em This gets a vector2 containing both X and Y coordinates of the mouse. \item\end{DoxyCompactList}\item 
 static \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1InputQueryTool_aea2da0aeb97353f9d7af75f2a8cb7d91}{GetMousePrevFrameOffset} ()
 \begin{DoxyCompactList}\small\item\em This gets the offset location of the mouse since the previous frame. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757}{MetaCode::DirectionalMotionState} \hyperlink{classphys_1_1InputQueryTool_aa214535768fa838ad9799d3e5ca3cece}{GetMouseWheelState} ()
+\begin{DoxyCompactList}\small\item\em Gets the current status of the mouse wheel. \item\end{DoxyCompactList}\item 
+static int \hyperlink{classphys_1_1InputQueryTool_a1df560487b85fcb90fd9294f3009eee6}{GetMouseX} ()
+\begin{DoxyCompactList}\small\item\em This gets the X coordinate of the mouse. \item\end{DoxyCompactList}\item 
+static int \hyperlink{classphys_1_1InputQueryTool_a5cab535728ba864a83e7c374cc683d0b}{GetMouseY} ()
+\begin{DoxyCompactList}\small\item\em This gets the Y coordinate of the mouse. \item\end{DoxyCompactList}\item 
 static int \hyperlink{classphys_1_1InputQueryTool_a44ad555f277bf035648fb1eeddb94514}{GetRawMetaValue} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&AnyCode)
 \begin{DoxyCompactList}\small\item\em Get an unfiltered uninterpretted version of the value for an user input. \item\end{DoxyCompactList}\item 
-static bool \hyperlink{classphys_1_1InputQueryTool_aab9a7be4d95289d828378f7f3d5fc065}{IsMouseButtonPushed} (short unsigned int MouseButton)
-\begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\item 
-static bool \hyperlink{classphys_1_1InputQueryTool_ab061aab57ff35cb1c18656f5ee4f384e}{IsMouseButtonPushed} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&MouseButton)
-\begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\item 
 static bool \hyperlink{classphys_1_1InputQueryTool_ae3e63f8f93a0b270b22e685d3b86c890}{IsJoystickButtonPushed} (short unsigned int JoyStickButton)
 \begin{DoxyCompactList}\small\item\em Returns whether a specific Joystick button is pushed. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1InputQueryTool_a47b0d887f62fcd43f75308c6269e8411}{
@@ -46,16 +52,10 @@ static bool {\bfseries IsJoystickHatPushedInDirection} (\hyperlink{classphys_1_1
 \item 
 static bool \hyperlink{classphys_1_1InputQueryTool_a3d8efa04d2f98c35d60a4086f930778a}{IsKeyboardButtonPushed} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&KeyboardButton)
 \begin{DoxyCompactList}\small\item\em Returns whether a specific Keyboard button is pushed. \item\end{DoxyCompactList}\item 
-static \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState} \hyperlink{classphys_1_1InputQueryTool_a1ef8b70af163d8bc703fd16c3fcce22d}{GetMouseButtonState} (short unsigned int MouseButton)
-\begin{DoxyCompactList}\small\item\em Gets the button state of the provided mouse button ID. \item\end{DoxyCompactList}\item 
-static \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState} \hyperlink{classphys_1_1InputQueryTool_ada22b6ee93632c85f7b7a0490d418382}{GetMouseButtonState} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&MouseButton)
-\begin{DoxyCompactList}\small\item\em Gets the button state of the provided mouse button ID. \item\end{DoxyCompactList}\item 
-static \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState} \hyperlink{classphys_1_1InputQueryTool_a457529e30edf8d3cf5ef04ae6a8db506}{GetKeyboardButtonState} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&KeyboardButton)
-\begin{DoxyCompactList}\small\item\em Gets the button state of the provided keyboard button ID. \item\end{DoxyCompactList}\item 
-static \hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757}{MetaCode::DirectionalMotionState} \hyperlink{classphys_1_1InputQueryTool_aa214535768fa838ad9799d3e5ca3cece}{GetMouseWheelState} ()
-\begin{DoxyCompactList}\small\item\em Gets the current status of the mouse wheel. \item\end{DoxyCompactList}\item 
-static void \hyperlink{classphys_1_1InputQueryTool_a9779d812418f1fddb0880df0c607242b}{GatherEvents} (bool ClearEventsFromEventMgr=false)
-\begin{DoxyCompactList}\small\item\em This gathers any user-\/input/event data that might be queryed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+static bool \hyperlink{classphys_1_1InputQueryTool_ab061aab57ff35cb1c18656f5ee4f384e}{IsMouseButtonPushed} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&MouseButton)
+\begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\item 
+static bool \hyperlink{classphys_1_1InputQueryTool_aab9a7be4d95289d828378f7f3d5fc065}{IsMouseButtonPushed} (short unsigned int MouseButton)
+\begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 

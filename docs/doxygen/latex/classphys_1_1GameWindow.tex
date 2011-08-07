@@ -33,70 +33,70 @@ enum \hyperlink{classphys_1_1GameWindow_ae4c6f1cc436ac9f20e43bd21a99885f5}{Windo
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1GameWindow_ad7b69b7f128ca12ed18bcaca4c638a4e}{GameWindow} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&WindowCaption, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Flags)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1GameWindow_a2bda2adad1b64d1f85593cdcc74ece54}{
-\hyperlink{classphys_1_1GameWindow_a2bda2adad1b64d1f85593cdcc74ece54}{$\sim$GameWindow} ()}
-\label{classphys_1_1GameWindow_a2bda2adad1b64d1f85593cdcc74ece54}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GameWindow_a95a0f35d2546c36d5698e835902f010c}{SetWindowCaption} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&NewCaption)
-\begin{DoxyCompactList}\small\item\em This can set the the Text in the titlebar. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Viewport}{Viewport} $\ast$ \hyperlink{classphys_1_1GameWindow_a85802f1c30d43bb2992f95ac58683961}{CreateViewport} (\hyperlink{classphys_1_1Camera}{Camera} $\ast$ViewportCamera, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&ZOrder=0)
 \begin{DoxyCompactList}\small\item\em Creates an additional \hyperlink{classphys_1_1Viewport}{Viewport} within a created render window. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Viewport}{Viewport} $\ast$ \hyperlink{classphys_1_1GameWindow_a048bdd313420da1902bdc5226d14ae47}{GetViewport} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
-\begin{DoxyCompactList}\small\item\em Gets a viewport by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GameWindow_a4b97aaa248a2382b78520b1623dc2978}{GetNumViewports} ()
-\begin{DoxyCompactList}\small\item\em Gets the number of viewports within this window. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1GameWindow_ac9c359317e9a1612fbc5fef886de4040}{DestroyViewport} (\hyperlink{classphys_1_1Viewport}{Viewport} $\ast$ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a viewport within this window. \item\end{DoxyCompactList}\item 
-const \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} \& \hyperlink{classphys_1_1GameWindow_a9f74d3e37c8ad83727c050175927bdc1}{GetSettings} ()
-\begin{DoxyCompactList}\small\item\em Gets the current window settings. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GameWindow_a3c710c93a4fca54b5249de09bd4335dc}{setFullscreen} (const bool \&Fullscreen)
-\begin{DoxyCompactList}\small\item\em Set the Fullscreen Setting. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1GameWindow_a05ab7d5525e73f5eecf1f6ef6d3598ab}{getFullscreen} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Fullscreen Setting. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GameWindow_a92e705ba782ff87dacd9ce487141fcab}{setRenderHeight} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height)
-\begin{DoxyCompactList}\small\item\em Sets the Height. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GameWindow_a9c4d207a8889453ac5f35e7925fd13ef}{getRenderHeight} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Height of the Rendering Area. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GameWindow_a4a6087112f5a958d153fc74bc03897ba}{setRenderWidth} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width)
-\begin{DoxyCompactList}\small\item\em Sets the Width. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GameWindow_a77e2ec6f64b7a7d1229aca32de57c872}{getRenderWidth} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Width of the Rendering Area. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GameWindow_a35ecbf1cb77037d33671e0f879f46a30}{setRenderResolution} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height)
-\begin{DoxyCompactList}\small\item\em Changes the X and Y Resolution at the same time. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GameWindow_a430e91d4aeb6d1eb62ae84f498310593}{setRenderOptions} (const \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} \&NewSettings)
-\begin{DoxyCompactList}\small\item\em Changes the X Resolution, Y Resolution, and fullscreen at the same time. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_ab2b0d9150f394aa1b71f001768c6b011}{GetLastFPS} ()
-\begin{DoxyCompactList}\small\item\em Gets the FPS based on the last frame rendered. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GameWindow_ad7b69b7f128ca12ed18bcaca4c638a4e}{GameWindow} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&WindowCaption, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Flags)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_a3ec29af7b989701e3c14409f34497a15}{GetAverageFPS} ()
 \begin{DoxyCompactList}\small\item\em Gets the Average FPS. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_ab0fbfc031d5ace19cd79d8c3e6c8f4aa}{GetBestFPS} ()
 \begin{DoxyCompactList}\small\item\em Gets the Best FPS. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_a26518aba7a4edbc6628d9f777b62bcaa}{GetWorstFPS} ()
-\begin{DoxyCompactList}\small\item\em Gets the Worst FPS. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_a128723e10c8a3ab778b30da38d351fc4}{GetBestFrameTime} ()
 \begin{DoxyCompactList}\small\item\em Gets the shortest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_a3e8bcceb201cc2e319fba6b6bf34ee93}{GetWorstFrameTime} ()
-\begin{DoxyCompactList}\small\item\em Gets the longest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{classphys_1_1GameWindow_ad2d4163536db5b6e61147c5acf3d5b4f}{GetRenderContext} ()
-\begin{DoxyCompactList}\small\item\em Gets the render context being used by this window. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1GameWindow_a05ab7d5525e73f5eecf1f6ef6d3598ab}{getFullscreen} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Fullscreen Setting. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_ab2b0d9150f394aa1b71f001768c6b011}{GetLastFPS} ()
+\begin{DoxyCompactList}\small\item\em Gets the FPS based on the last frame rendered. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GameWindow_a4b97aaa248a2382b78520b1623dc2978}{GetNumViewports} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of viewports within this window. \item\end{DoxyCompactList}\item 
 Ogre::RenderWindow $\ast$ \hyperlink{classphys_1_1GameWindow_ad94dbdf063bd5dd9a285a7803928aede}{GetOgreWindowPointer} ()
 \begin{DoxyCompactList}\small\item\em This will get a pointer to the Ogre RenderWindow. \item\end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classphys_1_1GameWindow_ad2d4163536db5b6e61147c5acf3d5b4f}{GetRenderContext} ()
+\begin{DoxyCompactList}\small\item\em Gets the render context being used by this window. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GameWindow_a9c4d207a8889453ac5f35e7925fd13ef}{getRenderHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Height of the Rendering Area. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GameWindow_a77e2ec6f64b7a7d1229aca32de57c872}{getRenderWidth} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Width of the Rendering Area. \item\end{DoxyCompactList}\item 
 SDL\_\-Window $\ast$ \hyperlink{classphys_1_1GameWindow_aefddde0d6790e9e71687310b0328b043}{GetSDLWindowPointer} ()
-\begin{DoxyCompactList}\small\item\em This will get a pointer to the SDL Window. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This will get a pointer to the SDL Window. \item\end{DoxyCompactList}\item 
+const \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} \& \hyperlink{classphys_1_1GameWindow_a9f74d3e37c8ad83727c050175927bdc1}{GetSettings} ()
+\begin{DoxyCompactList}\small\item\em Gets the current window settings. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Viewport}{Viewport} $\ast$ \hyperlink{classphys_1_1GameWindow_a048bdd313420da1902bdc5226d14ae47}{GetViewport} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets a viewport by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_a26518aba7a4edbc6628d9f777b62bcaa}{GetWorstFPS} ()
+\begin{DoxyCompactList}\small\item\em Gets the Worst FPS. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_a3e8bcceb201cc2e319fba6b6bf34ee93}{GetWorstFrameTime} ()
+\begin{DoxyCompactList}\small\item\em Gets the longest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GameWindow_a3c710c93a4fca54b5249de09bd4335dc}{setFullscreen} (const bool \&Fullscreen)
+\begin{DoxyCompactList}\small\item\em Set the Fullscreen Setting. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GameWindow_a92e705ba782ff87dacd9ce487141fcab}{setRenderHeight} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height)
+\begin{DoxyCompactList}\small\item\em Sets the Height. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GameWindow_a430e91d4aeb6d1eb62ae84f498310593}{setRenderOptions} (const \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} \&NewSettings)
+\begin{DoxyCompactList}\small\item\em Changes the X Resolution, Y Resolution, and fullscreen at the same time. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GameWindow_a35ecbf1cb77037d33671e0f879f46a30}{setRenderResolution} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height)
+\begin{DoxyCompactList}\small\item\em Changes the X and Y Resolution at the same time. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GameWindow_a4a6087112f5a958d153fc74bc03897ba}{setRenderWidth} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width)
+\begin{DoxyCompactList}\small\item\em Sets the Width. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GameWindow_a95a0f35d2546c36d5698e835902f010c}{SetWindowCaption} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&NewCaption)
+\begin{DoxyCompactList}\small\item\em This can set the the Text in the titlebar. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1GameWindow_a2bda2adad1b64d1f85593cdcc74ece54}{
+\hyperlink{classphys_1_1GameWindow_a2bda2adad1b64d1f85593cdcc74ece54}{$\sim$GameWindow} ()}
+\label{classphys_1_1GameWindow_a2bda2adad1b64d1f85593cdcc74ece54}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1GameWindow_adc0759b53d44ac8a81018a9f961a97c9}{
-void {\bfseries CreateGameWindow} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&WindowCaption, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Flags)}
-\label{classphys_1_1GameWindow_adc0759b53d44ac8a81018a9f961a97c9}
-
 \item 
 \hypertarget{classphys_1_1GameWindow_a899c591968cc67db902eb3490b44bfec}{
 void {\bfseries CorrectViewportAndCamera} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)}
 \label{classphys_1_1GameWindow_a899c591968cc67db902eb3490b44bfec}
+
+\item 
+\hypertarget{classphys_1_1GameWindow_adc0759b53d44ac8a81018a9f961a97c9}{
+void {\bfseries CreateGameWindow} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&WindowCaption, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Flags)}
+\label{classphys_1_1GameWindow_adc0759b53d44ac8a81018a9f961a97c9}
 
 \item 
 \hypertarget{classphys_1_1GameWindow_a94674f9c968898df68fb58f30f91542e}{
@@ -106,6 +106,11 @@ int {\bfseries IsLargerThenDesktop} (const \hyperlink{namespacephys_a460f6bc24c8
 \end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1GameWindow_aace5dc5e9cf498b22b9a905af66a7a4f}{
+\hyperlink{classphys_1_1GraphicsManager}{GraphicsManager} $\ast$ {\bfseries Manager}}
+\label{classphys_1_1GameWindow_aace5dc5e9cf498b22b9a905af66a7a4f}
+
 \item 
 \hypertarget{classphys_1_1GameWindow_a0d8246623e8eec745b03f029215b2a6b}{
 Ogre::RenderWindow $\ast$ {\bfseries OgreWindow}}
@@ -125,11 +130,6 @@ SDL\_\-Window $\ast$ {\bfseries SDLWindow}}
 \hypertarget{classphys_1_1GameWindow_a64b3471c627e82f4f66eb25d1db2893a}{
 std::vector$<$ \hyperlink{classphys_1_1Viewport}{Viewport} $\ast$ $>$ {\bfseries Viewports}}
 \label{classphys_1_1GameWindow_a64b3471c627e82f4f66eb25d1db2893a}
-
-\item 
-\hypertarget{classphys_1_1GameWindow_aace5dc5e9cf498b22b9a905af66a7a4f}{
-\hyperlink{classphys_1_1GraphicsManager}{GraphicsManager} $\ast$ {\bfseries Manager}}
-\label{classphys_1_1GameWindow_aace5dc5e9cf498b22b9a905af66a7a4f}
 
 \end{DoxyCompactItemize}
 

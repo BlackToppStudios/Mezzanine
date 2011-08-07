@@ -36,23 +36,20 @@ enum \hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attac
 \begin{DoxyCompactList}\small\item\em No initialization class constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Attachable_adec6826c5d9fada8b86d587d7d85a1ef}{Attachable} (\hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$\_\-AttachedToWorldNode)
 \begin{DoxyCompactList}\small\item\em Create this already attached. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1Attachable_af7187e29053b7fe339634394883729d4}{
-virtual \hyperlink{classphys_1_1Attachable_af7187e29053b7fe339634394883729d4}{$\sim$Attachable} ()}
-\label{classphys_1_1Attachable_af7187e29053b7fe339634394883729d4}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$ \hyperlink{classphys_1_1Attachable_a6df6034ed61c98d350378bdd7a3129f6}{GetAttachedTo} () const 
-\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classphys_1_1WorldNode}{WorldNode} this thinks it is attached to. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Attachable_aeec2532772cddde03d3894d99e637367}{AttachTo} (\hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$Target)
 \begin{DoxyCompactList}\small\item\em Attach this to a \hyperlink{classphys_1_1WorldNode}{WorldNode}. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1Attachable_ab9687346893dd8170726410828d684dd}{DetachFrom} ()
-\begin{DoxyCompactList}\small\item\em Detach from the \hyperlink{classphys_1_1WorldNode}{WorldNode}. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Attachable_a77c8234874f53b159f4156c0c984fad0}{AttachToFinal} (Ogre::SceneNode $\ast$RawTarget, \hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$Target)
 \begin{DoxyCompactList}\small\item\em Does the Final Work to attach on the \hyperlink{classphys_1_1Attachable}{Attachable} Side, should only be called by WorldNode::AttachFinal. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Attachable_ab9687346893dd8170726410828d684dd}{DetachFrom} ()
+\begin{DoxyCompactList}\small\item\em Detach from the \hyperlink{classphys_1_1WorldNode}{WorldNode}. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Attachable_a3e4d8113c4b45ece63c29180cf96029a}{DetachFromFinal} (Ogre::SceneNode $\ast$RawTarget)
 \begin{DoxyCompactList}\small\item\em Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1Attachable_a1c84342fe19d8eef33de4789e19c9d00}{GetAttachableType} () const =0
 \begin{DoxyCompactList}\small\item\em Gets the type of element this is. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$ \hyperlink{classphys_1_1Attachable_a6df6034ed61c98d350378bdd7a3129f6}{GetAttachedTo} () const 
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classphys_1_1WorldNode}{WorldNode} this thinks it is attached to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Attachable_acb410686b2719524eb484b50cc9054a4}{GetLocation} () const =0
+\begin{DoxyCompactList}\small\item\em Get the location of the attachable object, relative to the Object is is attached to. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Attachable_a0a07d727fa2630dc3550fd991ca28256}{
 virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1Attachable_a0a07d727fa2630dc3550fd991ca28256}{GetName} () const =0}
 \label{classphys_1_1Attachable_a0a07d727fa2630dc3550fd991ca28256}
@@ -60,8 +57,11 @@ virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString}
 \begin{DoxyCompactList}\small\item\em Gets the name of the attachable element. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Attachable_a3555ca694cfc9ff96665c16b3e95c698}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec)=0
 \begin{DoxyCompactList}\small\item\em Set the location of this atachable object relative to the object it is attached to. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Attachable_acb410686b2719524eb484b50cc9054a4}{GetLocation} () const =0
-\begin{DoxyCompactList}\small\item\em Get the location of the attachable object, relative to the Object is is attached to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{classphys_1_1Attachable_af7187e29053b7fe339634394883729d4}{
+virtual \hyperlink{classphys_1_1Attachable_af7187e29053b7fe339634394883729d4}{$\sim$Attachable} ()}
+\label{classphys_1_1Attachable_af7187e29053b7fe339634394883729d4}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -70,13 +70,13 @@ virtual void \hyperlink{classphys_1_1Attachable_a6f06a8c9950d5a9bfec0c73792cdd65
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1Attachable_af574d5f08a304c6e0ae002bb2fc057c7}{ElementType}
-\begin{DoxyCompactList}\small\item\em Enum value representing the type of element this is. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Attachable_ac781addd4313b292b7f6bf87015286fd}{
 \hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$ \hyperlink{classphys_1_1Attachable_ac781addd4313b292b7f6bf87015286fd}{AttachedTo}}
 \label{classphys_1_1Attachable_ac781addd4313b292b7f6bf87015286fd}
 
-\begin{DoxyCompactList}\small\item\em The \hyperlink{classphys_1_1WorldNode}{WorldNode} this is attached to or null if not attached. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classphys_1_1WorldNode}{WorldNode} this is attached to or null if not attached. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1Attachable_af574d5f08a304c6e0ae002bb2fc057c7}{ElementType}
+\begin{DoxyCompactList}\small\item\em Enum value representing the type of element this is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 

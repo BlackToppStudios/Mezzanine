@@ -14,39 +14,39 @@ This class is for creating and managing viewports within a game window.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1Viewport_a83634ee2144fadd80fec3028885b92f2}{Viewport} (\hyperlink{classphys_1_1Camera}{Camera} $\ast$ViewportCamera, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ZOrder, \hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ParentWindow)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1Viewport_a2ac669dde60b69641d309e81c3108db4}{
-\hyperlink{classphys_1_1Viewport_a2ac669dde60b69641d309e81c3108db4}{$\sim$Viewport} ()}
-\label{classphys_1_1Viewport_a2ac669dde60b69641d309e81c3108db4}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classphys_1_1Viewport_ac350d4c2e790edd488b212ccb6b20991}{GetParentWindow} ()
-\begin{DoxyCompactList}\small\item\em Gets the game window this viewport belongs to. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Camera}{Camera} $\ast$ \hyperlink{classphys_1_1Viewport_a755f7ede5f6552ef8b64d75f745b7957}{GetViewportCamera} ()
-\begin{DoxyCompactList}\small\item\em Gets the camera associated with this viewport. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Viewport_a0d0c47add1187921fd40a8c8c363bc30}{SetDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the position and size of this viewport within the game window. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Viewport_a49269f1ada31f280adc8d832c9536514}{SetDimensions} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Left, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Top, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height)
-\begin{DoxyCompactList}\small\item\em Sets the position and size of this viewport within the game window. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_a9a5667cbbb1127a89e4702219fe44c7a}{GetLeft} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative left position of the viewport. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_af5d0413ab59dcd7bd428d73762a239e4}{GetTop} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative top position of the viewport. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_af6df304a6b33f34134b29a61deb98e55}{GetWidth} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative width of the viewport. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_ae1a6473f3ccdac16535f985453caf691}{GetHeight} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative height of the viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Viewport_a1eee22594548a38910dee8e838e6449d}{GetActualHeight} ()
+\begin{DoxyCompactList}\small\item\em Gets the height of the viewport in pixels. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Viewport_ad0390466fc2980e8469ddcbed66900ca}{GetActualLeft} ()
 \begin{DoxyCompactList}\small\item\em Gets the left position of the viewport in pixels. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Viewport_a1eff4fac830986548cb94123b6b31898}{GetActualTop} ()
 \begin{DoxyCompactList}\small\item\em Gets the top position of the viewport in pixels. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Viewport_a301262e5da6926296241f0e2cc2de7d2}{GetActualWidth} ()
 \begin{DoxyCompactList}\small\item\em Gets the width of the viewport in pixels. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Viewport_a1eee22594548a38910dee8e838e6449d}{GetActualHeight} ()
-\begin{DoxyCompactList}\small\item\em Gets the height of the viewport in pixels. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_ae1a6473f3ccdac16535f985453caf691}{GetHeight} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative height of the viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_a9a5667cbbb1127a89e4702219fe44c7a}{GetLeft} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative left position of the viewport. \item\end{DoxyCompactList}\item 
 Ogre::Viewport $\ast$ \hyperlink{classphys_1_1Viewport_a005b39a37464c4f4a365c2bdb08ffb04}{GetOgreViewport} () const 
-\begin{DoxyCompactList}\small\item\em Gets the internal Ogre \hyperlink{classphys_1_1Viewport}{Viewport}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the internal Ogre \hyperlink{classphys_1_1Viewport}{Viewport}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classphys_1_1Viewport_ac350d4c2e790edd488b212ccb6b20991}{GetParentWindow} ()
+\begin{DoxyCompactList}\small\item\em Gets the game window this viewport belongs to. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_af5d0413ab59dcd7bd428d73762a239e4}{GetTop} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative top position of the viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Camera}{Camera} $\ast$ \hyperlink{classphys_1_1Viewport_a755f7ede5f6552ef8b64d75f745b7957}{GetViewportCamera} ()
+\begin{DoxyCompactList}\small\item\em Gets the camera associated with this viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_af6df304a6b33f34134b29a61deb98e55}{GetWidth} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative width of the viewport. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Viewport_a0d0c47add1187921fd40a8c8c363bc30}{SetDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the position and size of this viewport within the game window. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Viewport_a49269f1ada31f280adc8d832c9536514}{SetDimensions} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Left, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Top, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height)
+\begin{DoxyCompactList}\small\item\em Sets the position and size of this viewport within the game window. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Viewport_a83634ee2144fadd80fec3028885b92f2}{Viewport} (\hyperlink{classphys_1_1Camera}{Camera} $\ast$ViewportCamera, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ZOrder, \hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ParentWindow)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Viewport_a2ac669dde60b69641d309e81c3108db4}{
+\hyperlink{classphys_1_1Viewport_a2ac669dde60b69641d309e81c3108db4}{$\sim$Viewport} ()}
+\label{classphys_1_1Viewport_a2ac669dde60b69641d309e81c3108db4}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 

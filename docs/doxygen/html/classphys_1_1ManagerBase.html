@@ -53,6 +53,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
@@ -101,6 +102,9 @@ Inheritance diagram for phys::ManagerBase:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a753f5f0127131529767beab2502f480b"></a><!-- doxytag: member="phys::ManagerBase::Callback" ref="a753f5f0127131529767beab2502f480b" args=")()" -->
+typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a> )()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This makes working with Callback function pointer a bit easier. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a> { <br/>
 &#160;&#160;<b>ActorManager</b>, 
 <b>CameraManager</b>, 
@@ -120,61 +124,58 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>A listing of Manager TypeNames. </p>
  <a href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a753f5f0127131529767beab2502f480b"></a><!-- doxytag: member="phys::ManagerBase::Callback" ref="a753f5f0127131529767beab2502f480b" args=")()" -->
-typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a> )()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This makes working with Callback function pointer a bit easier. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80c0d01d0dc19511cd08fc6ac805a616"></a><!-- doxytag: member="phys::ManagerBase::ManagerBase" ref="a80c0d01d0dc19511cd08fc6ac805a616" args="()" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a80c0d01d0dc19511cd08fc6ac805a616">ManagerBase</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Constructor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a802dace8381459637297e9a372bfdf0c">~ManagerBase</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor.  <a href="#a802dace8381459637297e9a372bfdf0c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">Initialize</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure Items requiring other Managers.  <a href="#a57dd8e54e767427d5bdcc86dc66d73ed"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1World.html">World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#addfd62fbc444ca4c2aba40768d1b284e">GetGameWorld</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the <a class="el" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> that this manager is working with.  <a href="#addfd62fbc444ca4c2aba40768d1b284e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a97eb1e77c1f7a0925fc623836368a262">SetGameWorld</a> (<a class="el" href="classphys_1_1World.html">World</a> *GameWorld_)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This sets the <a class="el" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a> that this Manager works with.  <a href="#a97eb1e77c1f7a0925fc623836368a262"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">GetType</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the type of this manager.  <a href="#aff400b6599db635e24796d8221e9a0e3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a3fcf207a451d0047f884babadd0bc53e">SetPreMainLoopItems</a> (<a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a> PreMainCallback)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This assigns a function to be the callback function to run prior to the main loop.  <a href="#a3fcf207a451d0047f884babadd0bc53e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#af6210834a8af592481cf6aefa9916d88">PreMainLoopItems</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This runs any callback that is required before the mainloop items are run.  <a href="#af6210834a8af592481cf6aefa9916d88"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a02a92b0d5df8b8b877822bdf57ec8ffc">GetPreMainLoopItems</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the Callback that would be called before the main loop items.  <a href="#a02a92b0d5df8b8b877822bdf57ec8ffc"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa068aefaf902c87dc641b463ac93ff36"></a><!-- doxytag: member="phys::ManagerBase::ErasePreMainLoopItems" ref="aa068aefaf902c87dc641b463ac93ff36" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#aa068aefaf902c87dc641b463ac93ff36">ErasePreMainLoopItems</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This simply calls <a class="el" href="classphys_1_1ManagerBase.html#a3fcf207a451d0047f884babadd0bc53e" title="This assigns a function to be the callback function to run prior to the main loop.">SetPreMainLoopItems()</a> passing it 0. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#aa9e13a3f7c398b708f0f242610b5abf7">DoMainLoopItems</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The main loop calls this once per frame.  <a href="#aa9e13a3f7c398b708f0f242610b5abf7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a673b3adef73c467f4d90514a5133bf7c">SetPostMainLoopItems</a> (<a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a> PostMainCallback)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This assigns a function to be the callback function to run prior to the main loop.  <a href="#a673b3adef73c467f4d90514a5133bf7c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#afc3572602f96bdeb8215c386ff870820">PostMainLoopItems</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This runs any callback that is required after the mainloop items are run.  <a href="#afc3572602f96bdeb8215c386ff870820"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a1e541b261e5747ebcfcefdd3dcff78ce">GetPostMainLoopItems</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the Callback that would be called before the main loop items.  <a href="#a1e541b261e5747ebcfcefdd3dcff78ce"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9306dafe9ffe52916b84cf157fbc12d8"></a><!-- doxytag: member="phys::ManagerBase::ErasePostMainLoopItems" ref="a9306dafe9ffe52916b84cf157fbc12d8" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a9306dafe9ffe52916b84cf157fbc12d8">ErasePostMainLoopItems</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This simply calls <a class="el" href="classphys_1_1ManagerBase.html#a673b3adef73c467f4d90514a5133bf7c" title="This assigns a function to be the callback function to run prior to the main loop.">SetPostMainLoopItems()</a> passing it 0. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa068aefaf902c87dc641b463ac93ff36"></a><!-- doxytag: member="phys::ManagerBase::ErasePreMainLoopItems" ref="aa068aefaf902c87dc641b463ac93ff36" args="()" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#aa068aefaf902c87dc641b463ac93ff36">ErasePreMainLoopItems</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This simply calls <a class="el" href="classphys_1_1ManagerBase.html#a3fcf207a451d0047f884babadd0bc53e" title="This assigns a function to be the callback function to run prior to the main loop.">SetPreMainLoopItems()</a> passing it 0. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1World.html">World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#addfd62fbc444ca4c2aba40768d1b284e">GetGameWorld</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the <a class="el" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> that this manager is working with.  <a href="#addfd62fbc444ca4c2aba40768d1b284e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a1e541b261e5747ebcfcefdd3dcff78ce">GetPostMainLoopItems</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the Callback that would be called before the main loop items.  <a href="#a1e541b261e5747ebcfcefdd3dcff78ce"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a02a92b0d5df8b8b877822bdf57ec8ffc">GetPreMainLoopItems</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the Callback that would be called before the main loop items.  <a href="#a02a92b0d5df8b8b877822bdf57ec8ffc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual short int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#af1798db3b808a658bdf14d8914d9b91d">GetPriority</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the Priority of this manager.  <a href="#af1798db3b808a658bdf14d8914d9b91d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a6e30dc5f2a9c64f95efb2ef4428b0f98">SetPriority</a> (short int Priority_)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the Priority of this manager.  <a href="#a6e30dc5f2a9c64f95efb2ef4428b0f98"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">GetType</a> () const =0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the type of this manager.  <a href="#aff400b6599db635e24796d8221e9a0e3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a5b4c1105696b868b7858c59541af4756">GetTypeName</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This Allows any manager to be sent to a stream. Primarily used for logging.  <a href="#a5b4c1105696b868b7858c59541af4756"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">Initialize</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure Items requiring other Managers.  <a href="#a57dd8e54e767427d5bdcc86dc66d73ed"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80c0d01d0dc19511cd08fc6ac805a616"></a><!-- doxytag: member="phys::ManagerBase::ManagerBase" ref="a80c0d01d0dc19511cd08fc6ac805a616" args="()" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a80c0d01d0dc19511cd08fc6ac805a616">ManagerBase</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Constructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#afc3572602f96bdeb8215c386ff870820">PostMainLoopItems</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This runs any callback that is required after the mainloop items are run.  <a href="#afc3572602f96bdeb8215c386ff870820"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#af6210834a8af592481cf6aefa9916d88">PreMainLoopItems</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This runs any callback that is required before the mainloop items are run.  <a href="#af6210834a8af592481cf6aefa9916d88"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a97eb1e77c1f7a0925fc623836368a262">SetGameWorld</a> (<a class="el" href="classphys_1_1World.html">World</a> *GameWorld_)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This sets the <a class="el" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a> that this Manager works with.  <a href="#a97eb1e77c1f7a0925fc623836368a262"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a673b3adef73c467f4d90514a5133bf7c">SetPostMainLoopItems</a> (<a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a> PostMainCallback)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This assigns a function to be the callback function to run prior to the main loop.  <a href="#a673b3adef73c467f4d90514a5133bf7c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a3fcf207a451d0047f884babadd0bc53e">SetPreMainLoopItems</a> (<a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a> PreMainCallback)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This assigns a function to be the callback function to run prior to the main loop.  <a href="#a3fcf207a451d0047f884babadd0bc53e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a6e30dc5f2a9c64f95efb2ef4428b0f98">SetPriority</a> (short int Priority_)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the Priority of this manager.  <a href="#a6e30dc5f2a9c64f95efb2ef4428b0f98"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a802dace8381459637297e9a372bfdf0c">~ManagerBase</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor.  <a href="#a802dace8381459637297e9a372bfdf0c"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2f158b4b2fef1bf2bee2524e0236c7b"></a><!-- doxytag: member="phys::ManagerBase::GameWorld" ref="ae2f158b4b2fef1bf2bee2524e0236c7b" args="" -->
 <a class="el" href="classphys_1_1World.html">World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b">GameWorld</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual pointer to the world. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93eb2f1a30d913a4e99180b0965eb5db"></a><!-- doxytag: member="phys::ManagerBase::PreMainLoop" ref="a93eb2f1a30d913a4e99180b0965eb5db" args="" -->
-<a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a93eb2f1a30d913a4e99180b0965eb5db">PreMainLoop</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a function pointer to the function that should be called before running Main Loop Items. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1e80a30f151c07e06d1f4650f315da5"></a><!-- doxytag: member="phys::ManagerBase::PostMainLoop" ref="aa1e80a30f151c07e06d1f4650f315da5" args="" -->
 <a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#aa1e80a30f151c07e06d1f4650f315da5">PostMainLoop</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a function pointer to the function that should be called after running Main Loop Items. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93eb2f1a30d913a4e99180b0965eb5db"></a><!-- doxytag: member="phys::ManagerBase::PreMainLoop" ref="a93eb2f1a30d913a4e99180b0965eb5db" args="" -->
+<a class="el" href="classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a93eb2f1a30d913a4e99180b0965eb5db">PreMainLoop</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a function pointer to the function that should be called before running Main Loop Items. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">short int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef">Priority</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a weighting used by the main loop to decide what order the managers should be called in.  <a href="#a28e2690fbcf644a7780a53b81821d8ef"></a><br/></td></tr>
 </table>
@@ -591,7 +592,7 @@ Protected Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:46 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Aug 7 2011 04:03:02 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

@@ -14,73 +14,73 @@ This is a helper class for use with specialized text display.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1MarkupText_aeb1fe3a0dd2a996bf50bd4c695d1af94}{MarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1MarkupText_a9050a1cdd940e80023744a8476a78f21}{MarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1MarkupText_a7c5d8033801123c938089ef9ca647f01}{
-virtual \hyperlink{classphys_1_1UI_1_1MarkupText_a7c5d8033801123c938089ef9ca647f01}{$\sim$MarkupText} ()}
-\label{classphys_1_1UI_1_1MarkupText_a7c5d8033801123c938089ef9ca647f01}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_ac5c38c21af2fbc3533697cacfec8fdc3}{SetVisible} (bool Visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this markup text. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1MarkupText_a17873359c7387926c7e759665ad4312d}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this markup text. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1MarkupText_a223df1155960fd6a4ddde7a43e87fa09}{
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a223df1155960fd6a4ddde7a43e87fa09}{Show} ()}
-\label{classphys_1_1UI_1_1MarkupText_a223df1155960fd6a4ddde7a43e87fa09}
-
-\begin{DoxyCompactList}\small\item\em Forces this markup text to be shown. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1MarkupText_a1e5bfba8d1686cb4188793fd695c7090}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this markup text in pixels. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1MarkupText_a0fd8fa24b2e3a40f6fe3a8314c8e489f}{GetAutoScaleText} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not text from this caption will automatically scale on a screen size change. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1MarkupText_a02872d0b9828b34e9b2ceec82cce237b}{GetDefaultGlyphIndex} ()
+\begin{DoxyCompactList}\small\item\em Gets the Default glyph index in use by this markup text. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1MarkupText_a4a742f4d64038ded68c5480f4cf3e017}{GetMaxActualSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the maximum size of this markup text in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1MarkupText_ae68fd261f2dc9494a16e3089c7a35b8a}{GetMaxSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the maximum relative size of this markup text. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1UI_1_1MarkupText_afa64067f890466ad4844c4836e7667fd}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this markup text. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1MarkupText_a9d92f03e1cad181a5d8f20f3f95cf7cc}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this markup text. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1MarkupText_ac7773396203de98705ea7b138908028e}{GetPrimaryAtlas} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
+virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1MarkupText_a86afb23309534d86ed9675170b321874}{GetRenderPriority} ()
+\begin{DoxyCompactList}\small\item\em Gets the priority this markup text should be rendered with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1MarkupText_af5d8a7e6ca03e15fc488608c28a54c1e}{GetText} ()
+\begin{DoxyCompactList}\small\item\em Gets the text displayed within the markup text. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1UI_1_1MarkupText_aa69d77428171e0c49c51a5d1854ffaff}{GetTextScale} ()
+\begin{DoxyCompactList}\small\item\em Gets the scaling currently being applied to the rendered text. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1MarkupText_ad0a4b1d27341426d08d367c4891c23f9}{
 virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_ad0a4b1d27341426d08d367c4891c23f9}{Hide} ()}
 \label{classphys_1_1UI_1_1MarkupText_ad0a4b1d27341426d08d367c4891c23f9}
 
 \begin{DoxyCompactList}\small\item\em Forces this markup text to hide. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1UI_1_1MarkupText_afa64067f890466ad4844c4836e7667fd}{GetName} ()
-\begin{DoxyCompactList}\small\item\em Gets the name of this markup text. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a1c2989d96cb297b61ee4050bfe79fe23}{SetText} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
-\begin{DoxyCompactList}\small\item\em Sets the text displayed within the markup text. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1MarkupText_af5d8a7e6ca03e15fc488608c28a54c1e}{GetText} ()
-\begin{DoxyCompactList}\small\item\em Gets the text displayed within the markup text. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_ada66a8df7627bd30021728232afdcf59}{SetTextScale} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Scale)
-\begin{DoxyCompactList}\small\item\em Sets the scaling to be applied to the text being rendered. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1UI_1_1MarkupText_aa69d77428171e0c49c51a5d1854ffaff}{GetTextScale} ()
-\begin{DoxyCompactList}\small\item\em Gets the scaling currently being applied to the rendered text. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_ac4571478569a161f919d6439c4f8d1d2}{SetDefaultGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&DefaultGlyphIndex)
-\begin{DoxyCompactList}\small\item\em Sets the Default glyph index to be used with this markup text. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1MarkupText_a02872d0b9828b34e9b2ceec82cce237b}{GetDefaultGlyphIndex} ()
-\begin{DoxyCompactList}\small\item\em Gets the Default glyph index in use by this markup text. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a7ab3316271d5b08005f7555b397e0fca}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this markup text. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1MarkupText_a9d92f03e1cad181a5d8f20f3f95cf7cc}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this markup text. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1MarkupText_a17873359c7387926c7e759665ad4312d}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this markup text. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText_aeb1fe3a0dd2a996bf50bd4c695d1af94}{MarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText_a9050a1cdd940e80023744a8476a78f21}{MarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_acb44480453d2228e0f1a7bcd77a0bd17}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the top left position of this markup text in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1MarkupText_a1e5bfba8d1686cb4188793fd695c7090}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the top left position of this markup text in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_ad4381a00f10d02152fd6df737fba60a4}{SetMaxSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the maximum relative size of this markup text. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1MarkupText_ae68fd261f2dc9494a16e3089c7a35b8a}{GetMaxSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the maximum relative size of this markup text. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_af14f0447c4785ab8555c897c66e87b79}{SetMaxActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the maximum size of this markup text in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1MarkupText_a4a742f4d64038ded68c5480f4cf3e017}{GetMaxActualSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the maximum size of this markup text in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a232c86702720af9d919e51846a79d35a}{SetRenderPriority} (const UI::RenderPriority \&Priority)
-\begin{DoxyCompactList}\small\item\em Sets the priority this markup text should be rendered with. \item\end{DoxyCompactList}\item 
-virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1MarkupText_a86afb23309534d86ed9675170b321874}{GetRenderPriority} ()
-\begin{DoxyCompactList}\small\item\em Gets the priority this markup text should be rendered with. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a354219ee5ad95b4eb6bd83cadbab6a69}{SetPrimaryAtlas} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1MarkupText_ac7773396203de98705ea7b138908028e}{GetPrimaryAtlas} ()
-\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a860efc65536fbaf274fc64e26881b84b}{SetAutoScaleText} (bool Enable)
 \begin{DoxyCompactList}\small\item\em Enables or disables scaling the text automatically on a screen size change. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1MarkupText_a0fd8fa24b2e3a40f6fe3a8314c8e489f}{GetAutoScaleText} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not text from this caption will automatically scale on a screen size change. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_ac4571478569a161f919d6439c4f8d1d2}{SetDefaultGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&DefaultGlyphIndex)
+\begin{DoxyCompactList}\small\item\em Sets the Default glyph index to be used with this markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_af14f0447c4785ab8555c897c66e87b79}{SetMaxActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the maximum size of this markup text in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_ad4381a00f10d02152fd6df737fba60a4}{SetMaxSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the maximum relative size of this markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a7ab3316271d5b08005f7555b397e0fca}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a354219ee5ad95b4eb6bd83cadbab6a69}{SetPrimaryAtlas} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a232c86702720af9d919e51846a79d35a}{SetRenderPriority} (const UI::RenderPriority \&Priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority this markup text should be rendered with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a1c2989d96cb297b61ee4050bfe79fe23}{SetText} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Sets the text displayed within the markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_ada66a8df7627bd30021728232afdcf59}{SetTextScale} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Scale)
+\begin{DoxyCompactList}\small\item\em Sets the scaling to be applied to the text being rendered. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_ac5c38c21af2fbc3533697cacfec8fdc3}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this markup text. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1MarkupText_a223df1155960fd6a4ddde7a43e87fa09}{
+virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_a223df1155960fd6a4ddde7a43e87fa09}{Show} ()}
+\label{classphys_1_1UI_1_1MarkupText_a223df1155960fd6a4ddde7a43e87fa09}
+
+\begin{DoxyCompactList}\small\item\em Forces this markup text to be shown. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1MarkupText_af66aa4c6c09ba9714f2ae3afaeeb2527}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this markup text to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this markup text to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1MarkupText_a7c5d8033801123c938089ef9ca647f01}{
+virtual \hyperlink{classphys_1_1UI_1_1MarkupText_a7c5d8033801123c938089ef9ca647f01}{$\sim$MarkupText} ()}
+\label{classphys_1_1UI_1_1MarkupText_a7c5d8033801123c938089ef9ca647f01}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -92,14 +92,19 @@ void {\bfseries ConstructMarkupText} (const \hyperlink{structphys_1_1UI_1_1Rende
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classphys_1_1UI_1_1MarkupText_a7c6d65b48e3a35eb6346e4df7729412d}{
+bool {\bfseries AutoScaleText}}
+\label{classphys_1_1UI_1_1MarkupText_a7c6d65b48e3a35eb6346e4df7729412d}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1MarkupText_abbb2984fb489b7470e04b6e5c9dc0217}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries Glyphs}}
+\label{classphys_1_1UI_1_1MarkupText_abbb2984fb489b7470e04b6e5c9dc0217}
+
+\item 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a620d8d94f82242d452776e90f3b01982}{
 Gorilla::MarkupText $\ast$ {\bfseries GMarkup}}
 \label{classphys_1_1UI_1_1MarkupText_a620d8d94f82242d452776e90f3b01982}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1MarkupText_a3ad7ca831fea055b1d5fe2f1467c4b87}{
-\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
-\label{classphys_1_1UI_1_1MarkupText_a3ad7ca831fea055b1d5fe2f1467c4b87}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1MarkupText_a0c2c2d00a0cc3fc18929996ca8469efe}{
@@ -107,9 +112,19 @@ Gorilla::MarkupText $\ast$ {\bfseries GMarkup}}
 \label{classphys_1_1UI_1_1MarkupText_a0c2c2d00a0cc3fc18929996ca8469efe}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1MarkupText_abbb2984fb489b7470e04b6e5c9dc0217}{
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries Glyphs}}
-\label{classphys_1_1UI_1_1MarkupText_abbb2984fb489b7470e04b6e5c9dc0217}
+\hypertarget{classphys_1_1UI_1_1MarkupText_ab56e816bda785c058f9440e7aebd52cb}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
+\label{classphys_1_1UI_1_1MarkupText_ab56e816bda785c058f9440e7aebd52cb}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1MarkupText_a3ad7ca831fea055b1d5fe2f1467c4b87}{
+\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
+\label{classphys_1_1UI_1_1MarkupText_a3ad7ca831fea055b1d5fe2f1467c4b87}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1MarkupText_adeccdf7dc0e099e67e0361c92de029fb}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries RelLineHeight}}
+\label{classphys_1_1UI_1_1MarkupText_adeccdf7dc0e099e67e0361c92de029fb}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1MarkupText_af4fce680f510b38537f7b1db0eda8598}{
@@ -120,21 +135,6 @@ Gorilla::MarkupText $\ast$ {\bfseries GMarkup}}
 \hypertarget{classphys_1_1UI_1_1MarkupText_a184fb78af719fb52fcf0408501738cdc}{
 \hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries RelSize}}
 \label{classphys_1_1UI_1_1MarkupText_a184fb78af719fb52fcf0408501738cdc}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1MarkupText_a7c6d65b48e3a35eb6346e4df7729412d}{
-bool {\bfseries AutoScaleText}}
-\label{classphys_1_1UI_1_1MarkupText_a7c6d65b48e3a35eb6346e4df7729412d}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1MarkupText_adeccdf7dc0e099e67e0361c92de029fb}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries RelLineHeight}}
-\label{classphys_1_1UI_1_1MarkupText_adeccdf7dc0e099e67e0361c92de029fb}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1MarkupText_ab56e816bda785c058f9440e7aebd52cb}{
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
-\label{classphys_1_1UI_1_1MarkupText_ab56e816bda785c058f9440e7aebd52cb}
 
 \end{DoxyCompactItemize}
 

@@ -20,6 +20,11 @@ Inheritance diagram for phys::ManagerBase:\begin{figure}[H]
 \subsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{
+typedef bool($\ast$ \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} )()}
+\label{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}
+
+\begin{DoxyCompactList}\small\item\em This makes working with Callback function pointer a bit easier. \item\end{DoxyCompactList}\item 
 enum \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \{ \par
 {\bfseries ActorManager}, 
 {\bfseries CameraManager}, 
@@ -36,60 +41,55 @@ enum \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{Mana
 {\bfseries UIManager}, 
 \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c}{UserCreated}
  \}
-\begin{DoxyCompactList}\small\item\em A listing of Manager TypeNames. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{
-typedef bool($\ast$ \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} )()}
-\label{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}
-
-\begin{DoxyCompactList}\small\item\em This makes working with Callback function pointer a bit easier. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A listing of Manager TypeNames. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}{
-\hyperlink{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}{ManagerBase} ()}
-\label{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}
-
-\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ManagerBase_a802dace8381459637297e9a372bfdf0c}{$\sim$ManagerBase} ()
-\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{Initialize} ()=0
-\begin{DoxyCompactList}\small\item\em Configure Items requiring other Managers. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1ManagerBase_addfd62fbc444ca4c2aba40768d1b284e}{GetGameWorld} () const 
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1World}{World} that this manager is working with. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}{SetGameWorld} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-)
-\begin{DoxyCompactList}\small\item\em This sets the \hyperlink{classphys_1_1World}{phys::World} that this Manager works with. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{GetType} () const =0
-\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ManagerBase_a3fcf207a451d0047f884babadd0bc53e}{SetPreMainLoopItems} (\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} PreMainCallback)
-\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function to run prior to the main loop. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1ManagerBase_af6210834a8af592481cf6aefa9916d88}{PreMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em This runs any callback that is required before the mainloop items are run. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_a02a92b0d5df8b8b877822bdf57ec8ffc}{GetPreMainLoopItems} () const 
-\begin{DoxyCompactList}\small\item\em This returns the Callback that would be called before the main loop items. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ManagerBase_aa068aefaf902c87dc641b463ac93ff36}{
-virtual void \hyperlink{classphys_1_1ManagerBase_aa068aefaf902c87dc641b463ac93ff36}{ErasePreMainLoopItems} ()}
-\label{classphys_1_1ManagerBase_aa068aefaf902c87dc641b463ac93ff36}
-
-\begin{DoxyCompactList}\small\item\em This simply calls \hyperlink{classphys_1_1ManagerBase_a3fcf207a451d0047f884babadd0bc53e}{SetPreMainLoopItems()} passing it 0. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{DoMainLoopItems} ()=0
 \begin{DoxyCompactList}\small\item\em The main loop calls this once per frame. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ManagerBase_a673b3adef73c467f4d90514a5133bf7c}{SetPostMainLoopItems} (\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} PostMainCallback)
-\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function to run prior to the main loop. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1ManagerBase_afc3572602f96bdeb8215c386ff870820}{PostMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em This runs any callback that is required after the mainloop items are run. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_a1e541b261e5747ebcfcefdd3dcff78ce}{GetPostMainLoopItems} () const 
-\begin{DoxyCompactList}\small\item\em This returns the Callback that would be called before the main loop items. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ManagerBase_a9306dafe9ffe52916b84cf157fbc12d8}{
 virtual void \hyperlink{classphys_1_1ManagerBase_a9306dafe9ffe52916b84cf157fbc12d8}{ErasePostMainLoopItems} ()}
 \label{classphys_1_1ManagerBase_a9306dafe9ffe52916b84cf157fbc12d8}
 
 \begin{DoxyCompactList}\small\item\em This simply calls \hyperlink{classphys_1_1ManagerBase_a673b3adef73c467f4d90514a5133bf7c}{SetPostMainLoopItems()} passing it 0. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ManagerBase_aa068aefaf902c87dc641b463ac93ff36}{
+virtual void \hyperlink{classphys_1_1ManagerBase_aa068aefaf902c87dc641b463ac93ff36}{ErasePreMainLoopItems} ()}
+\label{classphys_1_1ManagerBase_aa068aefaf902c87dc641b463ac93ff36}
+
+\begin{DoxyCompactList}\small\item\em This simply calls \hyperlink{classphys_1_1ManagerBase_a3fcf207a451d0047f884babadd0bc53e}{SetPreMainLoopItems()} passing it 0. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1ManagerBase_addfd62fbc444ca4c2aba40768d1b284e}{GetGameWorld} () const 
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1World}{World} that this manager is working with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_a1e541b261e5747ebcfcefdd3dcff78ce}{GetPostMainLoopItems} () const 
+\begin{DoxyCompactList}\small\item\em This returns the Callback that would be called before the main loop items. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_a02a92b0d5df8b8b877822bdf57ec8ffc}{GetPreMainLoopItems} () const 
+\begin{DoxyCompactList}\small\item\em This returns the Callback that would be called before the main loop items. \item\end{DoxyCompactList}\item 
 virtual short int \hyperlink{classphys_1_1ManagerBase_af1798db3b808a658bdf14d8914d9b91d}{GetPriority} ()
 \begin{DoxyCompactList}\small\item\em This gets the Priority of this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{GetType} () const =0
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
+std::string \hyperlink{classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af4756}{GetTypeName} ()
+\begin{DoxyCompactList}\small\item\em This Allows any manager to be sent to a stream. Primarily used for logging. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{Initialize} ()=0
+\begin{DoxyCompactList}\small\item\em Configure Items requiring other Managers. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}{
+\hyperlink{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}{ManagerBase} ()}
+\label{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}
+
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1ManagerBase_afc3572602f96bdeb8215c386ff870820}{PostMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em This runs any callback that is required after the mainloop items are run. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1ManagerBase_af6210834a8af592481cf6aefa9916d88}{PreMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em This runs any callback that is required before the mainloop items are run. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}{SetGameWorld} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-)
+\begin{DoxyCompactList}\small\item\em This sets the \hyperlink{classphys_1_1World}{phys::World} that this Manager works with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ManagerBase_a673b3adef73c467f4d90514a5133bf7c}{SetPostMainLoopItems} (\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} PostMainCallback)
+\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function to run prior to the main loop. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ManagerBase_a3fcf207a451d0047f884babadd0bc53e}{SetPreMainLoopItems} (\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} PreMainCallback)
+\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function to run prior to the main loop. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ManagerBase_a6e30dc5f2a9c64f95efb2ef4428b0f98}{SetPriority} (short int Priority\_\-)
 \begin{DoxyCompactList}\small\item\em This gets the Priority of this manager. \item\end{DoxyCompactList}\item 
-std::string \hyperlink{classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af4756}{GetTypeName} ()
-\begin{DoxyCompactList}\small\item\em This Allows any manager to be sent to a stream. Primarily used for logging. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual \hyperlink{classphys_1_1ManagerBase_a802dace8381459637297e9a372bfdf0c}{$\sim$ManagerBase} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -98,16 +98,16 @@ std::string \hyperlink{classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af475
 \label{classphys_1_1ManagerBase_ae2f158b4b2fef1bf2bee2524e0236c7b}
 
 \begin{DoxyCompactList}\small\item\em The actual pointer to the world. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{
-\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{PreMainLoop}}
-\label{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}
-
-\begin{DoxyCompactList}\small\item\em This is a function pointer to the function that should be called before running Main Loop Items. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{
 \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{PostMainLoop}}
 \label{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}
 
 \begin{DoxyCompactList}\small\item\em This is a function pointer to the function that should be called after running Main Loop Items. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{
+\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{PreMainLoop}}
+\label{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}
+
+\begin{DoxyCompactList}\small\item\em This is a function pointer to the function that should be called before running Main Loop Items. \item\end{DoxyCompactList}\item 
 short int \hyperlink{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}{Priority}
 \begin{DoxyCompactList}\small\item\em This is a weighting used by the main loop to decide what order the managers should be called in. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 

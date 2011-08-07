@@ -10,28 +10,28 @@ This is used to draw wireframse for the Physics subsystem.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a0e701e00e1080fdadfcf35e9051789a3}{InternalDebugDrawer} (\hyperlink{classphys_1_1World}{phys::World} $\ast$ParentWorld\_\-, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-=2)
-\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a9b5cb5ec48541effddb305de12508323}{$\sim$InternalDebugDrawer} ()
-\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}{drawLine} (const btVector3 \&from, const btVector3 \&to, const btVector3 \&color)
-\begin{DoxyCompactList}\small\item\em This will prepare a line segment for being drawn. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}{PrepareForRendering} ()
-\begin{DoxyCompactList}\small\item\em This add all the rendering information to the graphics subsystem. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{SetWireFrameCount} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-)
-\begin{DoxyCompactList}\small\item\em Sets the amount of previous wireframes to leave visible. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}{GetWireFrameCount} ()
-\begin{DoxyCompactList}\small\item\em This returns the amount of wireframes to be drawn. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a8b912aaff8dfd9f4e97ffb2d867121b2}{drawContactPoint} (const btVector3 \&PointOnB, const btVector3 \&normalOnB, btScalar distance, int lifeTime, const btVector3 \&color)
-\begin{DoxyCompactList}\small\item\em Currently Unused. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a4e3b4cbc861f76696b4d32f0cf068ea6}{reportErrorWarning} (const char $\ast$warningString)
-\begin{DoxyCompactList}\small\item\em Used by the physics subsystem to report errors using the renderer. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a1266d3fad8868ade2d515e9c92e76b4a}{draw3dText} (const btVector3 \&location, const char $\ast$textString)
 \begin{DoxyCompactList}\small\item\em Currently Unused. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a8b912aaff8dfd9f4e97ffb2d867121b2}{drawContactPoint} (const btVector3 \&PointOnB, const btVector3 \&normalOnB, btScalar distance, int lifeTime, const btVector3 \&color)
+\begin{DoxyCompactList}\small\item\em Currently Unused. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}{drawLine} (const btVector3 \&from, const btVector3 \&to, const btVector3 \&color)
+\begin{DoxyCompactList}\small\item\em This will prepare a line segment for being drawn. \item\end{DoxyCompactList}\item 
+virtual int \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d741e970ce5aafb668e84}{getDebugMode} () const 
+\begin{DoxyCompactList}\small\item\em This will return the current debug mode. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}{GetWireFrameCount} ()
+\begin{DoxyCompactList}\small\item\em This returns the amount of wireframes to be drawn. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a0e701e00e1080fdadfcf35e9051789a3}{InternalDebugDrawer} (\hyperlink{classphys_1_1World}{phys::World} $\ast$ParentWorld\_\-, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-=2)
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}{PrepareForRendering} ()
+\begin{DoxyCompactList}\small\item\em This add all the rendering information to the graphics subsystem. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a4e3b4cbc861f76696b4d32f0cf068ea6}{reportErrorWarning} (const char $\ast$warningString)
+\begin{DoxyCompactList}\small\item\em Used by the physics subsystem to report errors using the renderer. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a63059b273ed6031a393b2d994b820bcc}{setDebugMode} (int debugMode)
 \begin{DoxyCompactList}\small\item\em This is used to decide how much the debug render should draw. \item\end{DoxyCompactList}\item 
-virtual int \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d741e970ce5aafb668e84}{getDebugMode} () const 
-\begin{DoxyCompactList}\small\item\em This will return the current debug mode. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{SetWireFrameCount} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-)
+\begin{DoxyCompactList}\small\item\em Sets the amount of previous wireframes to leave visible. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a9b5cb5ec48541effddb305de12508323}{$\sim$InternalDebugDrawer} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

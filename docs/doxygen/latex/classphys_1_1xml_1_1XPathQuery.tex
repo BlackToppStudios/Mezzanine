@@ -14,31 +14,31 @@ A compiled XPath query object.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1xml_1_1XPathQuery_a1a63135370ef4999f3dd27540c9009a2}{XPathQuery} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0)
-\begin{DoxyCompactList}\small\item\em Construct a compiled object from XPath expression. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1XPathQuery_a063a1c4513d62695ae73c981f2050dc4}{
-\hyperlink{classphys_1_1xml_1_1XPathQuery_a063a1c4513d62695ae73c981f2050dc4}{$\sim$XPathQuery} ()}
-\label{classphys_1_1xml_1_1XPathQuery_a063a1c4513d62695ae73c981f2050dc4}
-
-\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} \hyperlink{classphys_1_1xml_1_1XPathQuery_af4c6025009b1e09cdf56124a047ca4f0}{ReturnType} () const 
-\begin{DoxyCompactList}\small\item\em Get query expression return Type. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1XPathQuery_a44fed594a458aa4b6cf4f3d12d5089a8}{EvaluateBoolean} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
 \begin{DoxyCompactList}\small\item\em Evaluate expression as boolean value in the specified context; performs Type conversion if necessary. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \hyperlink{classphys_1_1xml_1_1XPathQuery_af00ba3d0346ccc01f249274947191333}{EvaluateNodeSet} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
+\begin{DoxyCompactList}\small\item\em Evaluate expression as node set in the specified context. \item\end{DoxyCompactList}\item 
 double \hyperlink{classphys_1_1xml_1_1XPathQuery_aacfcff30901ce20b92de56ec0e2d70e5}{EvaluateNumber} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
 \begin{DoxyCompactList}\small\item\em Evaluate expression as double value in the specified context; performs Type conversion if necessary. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \hyperlink{classphys_1_1xml_1_1XPathQuery_ab7084be2e608b38872167fe3321554b9}{EvaluateString} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
 \begin{DoxyCompactList}\small\item\em Evaluate expression as string value in the specified context; performs Type conversion if necessary. \item\end{DoxyCompactList}\item 
 size\_\-t \hyperlink{classphys_1_1xml_1_1XPathQuery_ac9f4705c639cbd7f3aef8266fa683cc2}{EvaluateString} (\hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$buffer, size\_\-t capacity, const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
 \begin{DoxyCompactList}\small\item\em Evaluate expression as string value in the specified context; performs Type conversion if necessary. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \hyperlink{classphys_1_1xml_1_1XPathQuery_af00ba3d0346ccc01f249274947191333}{EvaluateNodeSet} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
-\begin{DoxyCompactList}\small\item\em Evaluate expression as node set in the specified context. \item\end{DoxyCompactList}\item 
-const \hyperlink{structphys_1_1xml_1_1XPathParseResult}{XPathParseResult} \& \hyperlink{classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}{Result} () const 
-\begin{DoxyCompactList}\small\item\em Get parsing Result (used to get compilation errors when XML\_\-NO\_\-EXCEPTIONS is enabled) \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1XPathQuery_a1c6a8e78133a177792ade031f4ed0a89}{operator unspecified\_\-bool\_\-type} () const 
 \begin{DoxyCompactList}\small\item\em Used to convert this to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1XPathQuery_afe0b62e0ab607855f5267b0690bda33b}{operator!} () const 
-\begin{DoxyCompactList}\small\item\em Logical not operator, used a workaround for borland compiler. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Logical not operator, used a workaround for borland compiler. \item\end{DoxyCompactList}\item 
+const \hyperlink{structphys_1_1xml_1_1XPathParseResult}{XPathParseResult} \& \hyperlink{classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}{Result} () const 
+\begin{DoxyCompactList}\small\item\em Get parsing Result (used to get compilation errors when XML\_\-NO\_\-EXCEPTIONS is enabled) \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} \hyperlink{classphys_1_1xml_1_1XPathQuery_af4c6025009b1e09cdf56124a047ca4f0}{ReturnType} () const 
+\begin{DoxyCompactList}\small\item\em Get query expression return Type. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1XPathQuery_a1a63135370ef4999f3dd27540c9009a2}{XPathQuery} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0)
+\begin{DoxyCompactList}\small\item\em Construct a compiled object from XPath expression. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1XPathQuery_a063a1c4513d62695ae73c981f2050dc4}{
+\hyperlink{classphys_1_1xml_1_1XPathQuery_a063a1c4513d62695ae73c981f2050dc4}{$\sim$XPathQuery} ()}
+\label{classphys_1_1xml_1_1XPathQuery_a063a1c4513d62695ae73c981f2050dc4}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

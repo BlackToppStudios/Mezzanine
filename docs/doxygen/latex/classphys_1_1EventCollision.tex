@@ -29,18 +29,28 @@ Inheritance diagram for phys::EventCollision:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventCollision_a85c999154866380d232ddcdfd9534c85}{EventCollision} (const \hyperlink{classphys_1_1EventCollision}{EventCollision} \&Other)
 \begin{DoxyCompactList}\small\item\em Copy Constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1EventCollision_afcbf057fc955ce6c05b21c08325b1822}{$\sim$EventCollision} ()
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \hyperlink{classphys_1_1EventCollision_a96c2809f1bbab78b9f2758cea15a9a36}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em This returns EventType::Collision. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This returns EventType::Collision. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1EventCollision_afcbf057fc955ce6c05b21c08325b1822}{$\sim$EventCollision} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1EventCollision_a8f8a80d921bfe1ec24171c5be3ed7641}{
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1EventCollision_a8f8a80d921bfe1ec24171c5be3ed7641}{WorldLocation}}
-\label{classphys_1_1EventCollision_a8f8a80d921bfe1ec24171c5be3ed7641}
+\hypertarget{classphys_1_1EventCollision_a2de905d0332c66293cbe990fe2dbbb07}{
+\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1EventCollision_a2de905d0332c66293cbe990fe2dbbb07}{ActorA}}
+\label{classphys_1_1EventCollision_a2de905d0332c66293cbe990fe2dbbb07}
 
-\begin{DoxyCompactList}\small\item\em The location in the world where the collision occured. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The first Actor involved in the collision. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1EventCollision_a922fd42b74db6df7a59cb5fd54cbadbe}{
+\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1EventCollision_a922fd42b74db6df7a59cb5fd54cbadbe}{ActorB}}
+\label{classphys_1_1EventCollision_a922fd42b74db6df7a59cb5fd54cbadbe}
+
+\begin{DoxyCompactList}\small\item\em The second Actor invovled in the collision. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1EventCollision_a577552db818f54a4092baccf597823a2}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1EventCollision_a577552db818f54a4092baccf597823a2}{Impulse}}
+\label{classphys_1_1EventCollision_a577552db818f54a4092baccf597823a2}
+
+\begin{DoxyCompactList}\small\item\em The amount of force of the collision. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1EventCollision_a2fa146b8453d2f504abcd5055d2c2a90}{
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1EventCollision_a2fa146b8453d2f504abcd5055d2c2a90}{LocalALocation}}
 \label{classphys_1_1EventCollision_a2fa146b8453d2f504abcd5055d2c2a90}
@@ -51,21 +61,11 @@ virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{Eve
 \label{classphys_1_1EventCollision_a50d6df6b25532530cd296353ac0b55c6}
 
 \begin{DoxyCompactList}\small\item\em The location in ActorB's local space where the collision occured. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1EventCollision_a577552db818f54a4092baccf597823a2}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1EventCollision_a577552db818f54a4092baccf597823a2}{Impulse}}
-\label{classphys_1_1EventCollision_a577552db818f54a4092baccf597823a2}
+\hypertarget{classphys_1_1EventCollision_a8f8a80d921bfe1ec24171c5be3ed7641}{
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1EventCollision_a8f8a80d921bfe1ec24171c5be3ed7641}{WorldLocation}}
+\label{classphys_1_1EventCollision_a8f8a80d921bfe1ec24171c5be3ed7641}
 
-\begin{DoxyCompactList}\small\item\em The amount of force of the collision. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1EventCollision_a2de905d0332c66293cbe990fe2dbbb07}{
-\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1EventCollision_a2de905d0332c66293cbe990fe2dbbb07}{ActorA}}
-\label{classphys_1_1EventCollision_a2de905d0332c66293cbe990fe2dbbb07}
-
-\begin{DoxyCompactList}\small\item\em The first Actor involved in the collision. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1EventCollision_a922fd42b74db6df7a59cb5fd54cbadbe}{
-\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1EventCollision_a922fd42b74db6df7a59cb5fd54cbadbe}{ActorB}}
-\label{classphys_1_1EventCollision_a922fd42b74db6df7a59cb5fd54cbadbe}
-
-\begin{DoxyCompactList}\small\item\em The second Actor invovled in the collision. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The location in the world where the collision occured. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

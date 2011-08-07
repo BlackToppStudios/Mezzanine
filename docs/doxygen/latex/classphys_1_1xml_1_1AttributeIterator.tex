@@ -19,9 +19,9 @@ typedef ptrdiff\_\-t \hyperlink{classphys_1_1xml_1_1AttributeIterator_a9ce268d2f
 \label{classphys_1_1xml_1_1AttributeIterator_a9ce268d2fe4a507c7a9b3f687cbc7dbf}
 
 \begin{DoxyCompactList}\small\item\em An Iterator trait. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1AttributeIterator_a2802171caa10acb5b47bca7576f346f7}{
-typedef \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \hyperlink{classphys_1_1xml_1_1AttributeIterator_a2802171caa10acb5b47bca7576f346f7}{value\_\-type}}
-\label{classphys_1_1xml_1_1AttributeIterator_a2802171caa10acb5b47bca7576f346f7}
+\hypertarget{classphys_1_1xml_1_1AttributeIterator_ab731cb4734fb2f2d6e1f3e106ac97ee3}{
+typedef std::bidirectional\_\-iterator\_\-tag \hyperlink{classphys_1_1xml_1_1AttributeIterator_ab731cb4734fb2f2d6e1f3e106ac97ee3}{iterator\_\-category}}
+\label{classphys_1_1xml_1_1AttributeIterator_ab731cb4734fb2f2d6e1f3e106ac97ee3}
 
 \begin{DoxyCompactList}\small\item\em An Iterator trait. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1AttributeIterator_a87ea5bf9f43a66eca8675625486376ab}{
@@ -34,9 +34,9 @@ typedef \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{class
 \label{classphys_1_1xml_1_1AttributeIterator_a55e06f521ba2e8a78bd77f447c172a3f}
 
 \begin{DoxyCompactList}\small\item\em An Iterator trait. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1AttributeIterator_ab731cb4734fb2f2d6e1f3e106ac97ee3}{
-typedef std::bidirectional\_\-iterator\_\-tag \hyperlink{classphys_1_1xml_1_1AttributeIterator_ab731cb4734fb2f2d6e1f3e106ac97ee3}{iterator\_\-category}}
-\label{classphys_1_1xml_1_1AttributeIterator_ab731cb4734fb2f2d6e1f3e106ac97ee3}
+\hypertarget{classphys_1_1xml_1_1AttributeIterator_a2802171caa10acb5b47bca7576f346f7}{
+typedef \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \hyperlink{classphys_1_1xml_1_1AttributeIterator_a2802171caa10acb5b47bca7576f346f7}{value\_\-type}}
+\label{classphys_1_1xml_1_1AttributeIterator_a2802171caa10acb5b47bca7576f346f7}
 
 \begin{DoxyCompactList}\small\item\em An Iterator trait. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Member Functions}
@@ -49,25 +49,25 @@ typedef std::bidirectional\_\-iterator\_\-tag \hyperlink{classphys_1_1xml_1_1Att
 \begin{DoxyCompactList}\small\item\em Default Constructor, makes a blank iterator. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1AttributeIterator_a175551035493cea0c9a56e36adcbac23}{AttributeIterator} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&attr, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&GetParent)
 \begin{DoxyCompactList}\small\item\em Construct an iterator which points to the specified node. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1xml_1_1AttributeIterator_a0eb472612438f4541ad27390ce74f6f4}{operator==} (const \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \&rhs) const 
-\begin{DoxyCompactList}\small\item\em Compares this \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} to another \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} for equality. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1AttributeIterator_a600802085aa88e41bcb2611f8044af59}{operator!=} (const \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \&rhs) const 
 \begin{DoxyCompactList}\small\item\em Compares this \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} to another \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} for inequality. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classphys_1_1xml_1_1AttributeIterator_afe43d9e4a66adadf8eedc3fbcb883bcd}{operator$\ast$} ()
 \begin{DoxyCompactList}\small\item\em Deferences this Iterator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} $\ast$ \hyperlink{classphys_1_1xml_1_1AttributeIterator_a77fb7dfd9b834d6663201870e8550217}{operator-\/$>$} ()
-\begin{DoxyCompactList}\small\item\em Get the pointer the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this points to. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \hyperlink{classphys_1_1xml_1_1AttributeIterator_a2109817056f299a9f2b132ade6901800}{operator++} (int)
+\begin{DoxyCompactList}\small\item\em Increment the iterator to the next member of the container. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1AttributeIterator_ad09623beef0359e64bc6b5a2635cd34a}{
 const \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \& \hyperlink{classphys_1_1xml_1_1AttributeIterator_ad09623beef0359e64bc6b5a2635cd34a}{operator++} ()}
 \label{classphys_1_1xml_1_1AttributeIterator_ad09623beef0359e64bc6b5a2635cd34a}
 
 \begin{DoxyCompactList}\small\item\em Increment the iterator to the next member of the container. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \hyperlink{classphys_1_1xml_1_1AttributeIterator_a2109817056f299a9f2b132ade6901800}{operator++} (int)
-\begin{DoxyCompactList}\small\item\em Increment the iterator to the next member of the container. \item\end{DoxyCompactList}\item 
 const \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \& \hyperlink{classphys_1_1xml_1_1AttributeIterator_a76a060aab7cc7666cd5016035de714b0}{operator-\/-\/} ()
 \begin{DoxyCompactList}\small\item\em Decrement the iterator to the next member of the container. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \hyperlink{classphys_1_1xml_1_1AttributeIterator_ab8b0d4867b14816c80cf74ac7a0a1561}{operator-\/-\/} (int)
-\begin{DoxyCompactList}\small\item\em Decrement the iterator to the next member of the container. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Decrement the iterator to the next member of the container. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} $\ast$ \hyperlink{classphys_1_1xml_1_1AttributeIterator_a77fb7dfd9b834d6663201870e8550217}{operator-\/$>$} ()
+\begin{DoxyCompactList}\small\item\em Get the pointer the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this points to. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1AttributeIterator_a0eb472612438f4541ad27390ce74f6f4}{operator==} (const \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \&rhs) const 
+\begin{DoxyCompactList}\small\item\em Compares this \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} to another \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} for equality. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 

@@ -20,66 +20,66 @@ Inheritance diagram for phys::AreaEffect:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1AreaEffect_aff3adf2220fecc6954cf7b9512390bf5}{AreaEffect} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
-\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1AreaEffect_aa9e6d721d337c32aa47357060d319924}{$\sim$AreaEffect} ()
-\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1AreaEffect_a3b285ecfcf9c9200662d510e48dd222a}{ApplyEffect} ()=0
 \begin{DoxyCompactList}\small\item\em Defines and applies the effect of the field. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a0a0e6dfc6353d19b19e7bea037172072}{UpdateActorList} ()
-\begin{DoxyCompactList}\small\item\em Updates the actors listed as within the field. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a5a4337e4b7a01b9b4d16a5e8bbdec1c8}{CreateSphereShape} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radius)
-\begin{DoxyCompactList}\small\item\em Creates a Sphere shape for the field. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1AreaEffect_aff3adf2220fecc6954cf7b9512390bf5}{AreaEffect} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a58fe9be01a1c3bdc08ea84cfbf785fdf}{CreateBoxShape} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents)
+\begin{DoxyCompactList}\small\item\em Creates a Box shape for the field. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1AreaEffect_a3b5e2da0598ded89ccdf2dee80441336}{CreateCylinderShapeX} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents)
 \begin{DoxyCompactList}\small\item\em Creates a Cylinder shape for the field that is alligned on the X axis. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1AreaEffect_aa66eaddac1b2c945bf66346097180506}{CreateCylinderShapeY} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents)
 \begin{DoxyCompactList}\small\item\em Creates a Cylinder shape for the field that is alligned on the Y axis. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1AreaEffect_a23fe0cbe64fd47dd70c62df434352eb4}{CreateCylinderShapeZ} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents)
 \begin{DoxyCompactList}\small\item\em Creates a Cylinder shape for the field that is alligned on the Z axis. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a58fe9be01a1c3bdc08ea84cfbf785fdf}{CreateBoxShape} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents)
-\begin{DoxyCompactList}\small\item\em Creates a Box shape for the field. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a8b7c0c8c9becb9aad10ac31ad923c0e2}{CreateShapeFromMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Filename, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, bool MakeVisible)
-\begin{DoxyCompactList}\small\item\em Creates a shape from a .mesh model for the field. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a140c51a8761f487e1c8f4e7123bb0b31}{ScaleFieldShape} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Scale)
-\begin{DoxyCompactList}\small\item\em Sets the scale of the shape of the field. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1AreaEffect_a4157e5e4142cbc3f0908942b4271b9b7}{GetFieldShapeScale} () const 
-\begin{DoxyCompactList}\small\item\em Gets the scale of the shape of the field. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a6d1499c36db3bbb5341ee3aa2e90b52f}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
-\begin{DoxyCompactList}\small\item\em Sets the origin for the area effect. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1AreaEffect_ac3ca23ffdcec077d0e7f36a471602b88}{GetLocation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the origin for the area effect. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a426c3cb70e8de1fc90d4acdf2e425cd6}{SetOrientation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Rotation)
-\begin{DoxyCompactList}\small\item\em Sets the orientation of the area effect. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1AreaEffect_a48946a43238686044cb4101a218102d6}{GetOrientation} ()
-\begin{DoxyCompactList}\small\item\em Gets the orientation of the area effect. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1AreaEffect_ac61255fb998e6d76ba6678f70796174d}{GetName} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Area Effects name. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1AreaEffect_a99b8746c43eac266d48ad613110dc6f9}{AreaEffect::AEShapeType} \hyperlink{classphys_1_1AreaEffect_a994162616c167a878dd5c0eff372bc06}{GetShapeType} () const 
-\begin{DoxyCompactList}\small\item\em Gets the current shape type in use by this class. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1AreaEffect_a2ef4bb9389dd9296e680a77058609712}{IsInWorld} () const 
-\begin{DoxyCompactList}\small\item\em Checks to see if the ghost object is currently in the world. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_acc55b82b29952902c3e9a3810decf3d9}{SetStatic} (bool Static)
-\begin{DoxyCompactList}\small\item\em Sets(or un-\/sets) this AE as a static object. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1AreaEffect_aecdf8cb72c6182e2495cf25c01afc249}{IsStatic} () const 
-\begin{DoxyCompactList}\small\item\em Gets whether or not this AR is static. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a6d1e8ddcea39fa441f02010af1970a16}{CreateGraphicsSphere} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Rings=16, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Segments=16)
-\begin{DoxyCompactList}\small\item\em Creates a sphere mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_acf78863312a29935efbfdf60c073ae3c}{CreateGraphicsSphere} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Rings=16, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Segments=16)
-\begin{DoxyCompactList}\small\item\em Creates a sphere mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_af9a44284ceb691fdd21e4fc01811f04d}{CreateGraphicsCylinder} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
-\begin{DoxyCompactList}\small\item\em Creates a cylinder mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a7ace0990c2e9282cfc91847fddeac3e0}{CreateGraphicsCylinder} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName)
-\begin{DoxyCompactList}\small\item\em Creates a cylinder mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1AreaEffect_a12655c60d5461ef6053c8bdd5cc9afea}{CreateGraphicsBox} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
 \begin{DoxyCompactList}\small\item\em Creates a box mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1AreaEffect_a169a8cba1c9aec84573788dff001fb31}{CreateGraphicsBox} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName)
 \begin{DoxyCompactList}\small\item\em Creates a box mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
-virtual std::list$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classphys_1_1AreaEffect_ab995fec11d9e5fbae1851109067958db}{GetOverlappingActors} ()
-\begin{DoxyCompactList}\small\item\em Gets the list of actors within this field. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a7ace0990c2e9282cfc91847fddeac3e0}{CreateGraphicsCylinder} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName)
+\begin{DoxyCompactList}\small\item\em Creates a cylinder mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_af9a44284ceb691fdd21e4fc01811f04d}{CreateGraphicsCylinder} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Creates a cylinder mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a6d1e8ddcea39fa441f02010af1970a16}{CreateGraphicsSphere} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Rings=16, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Segments=16)
+\begin{DoxyCompactList}\small\item\em Creates a sphere mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_acf78863312a29935efbfdf60c073ae3c}{CreateGraphicsSphere} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Rings=16, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Segments=16)
+\begin{DoxyCompactList}\small\item\em Creates a sphere mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a8b7c0c8c9becb9aad10ac31ad923c0e2}{CreateShapeFromMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Filename, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, bool MakeVisible)
+\begin{DoxyCompactList}\small\item\em Creates a shape from a .mesh model for the field. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a5a4337e4b7a01b9b4d16a5e8bbdec1c8}{CreateSphereShape} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radius)
+\begin{DoxyCompactList}\small\item\em Creates a Sphere shape for the field. \item\end{DoxyCompactList}\item 
 virtual std::vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classphys_1_1AreaEffect_a72a9673c926ce876df630c4aecfc09f6}{GetAddedActors} ()
 \begin{DoxyCompactList}\small\item\em Gets the list of actors that have been added to the list since the last simulation step. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1AreaEffect_a4157e5e4142cbc3f0908942b4271b9b7}{GetFieldShapeScale} () const 
+\begin{DoxyCompactList}\small\item\em Gets the scale of the shape of the field. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1AreaEffect_ac3ca23ffdcec077d0e7f36a471602b88}{GetLocation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the origin for the area effect. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1AreaEffect_ac61255fb998e6d76ba6678f70796174d}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Area Effects name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1AreaEffect_a48946a43238686044cb4101a218102d6}{GetOrientation} ()
+\begin{DoxyCompactList}\small\item\em Gets the orientation of the area effect. \item\end{DoxyCompactList}\item 
+virtual std::list$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classphys_1_1AreaEffect_ab995fec11d9e5fbae1851109067958db}{GetOverlappingActors} ()
+\begin{DoxyCompactList}\small\item\em Gets the list of actors within this field. \item\end{DoxyCompactList}\item 
 virtual std::vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classphys_1_1AreaEffect_a021763db69e977a3a19ad7cc39df073b}{GetRemovedActors} ()
-\begin{DoxyCompactList}\small\item\em Gets the list of actors that have been removed from the list since the last simulation step. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the list of actors that have been removed from the list since the last simulation step. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1AreaEffect_a99b8746c43eac266d48ad613110dc6f9}{AreaEffect::AEShapeType} \hyperlink{classphys_1_1AreaEffect_a994162616c167a878dd5c0eff372bc06}{GetShapeType} () const 
+\begin{DoxyCompactList}\small\item\em Gets the current shape type in use by this class. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1AreaEffect_a2ef4bb9389dd9296e680a77058609712}{IsInWorld} () const 
+\begin{DoxyCompactList}\small\item\em Checks to see if the ghost object is currently in the world. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1AreaEffect_aecdf8cb72c6182e2495cf25c01afc249}{IsStatic} () const 
+\begin{DoxyCompactList}\small\item\em Gets whether or not this AR is static. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a140c51a8761f487e1c8f4e7123bb0b31}{ScaleFieldShape} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Scale)
+\begin{DoxyCompactList}\small\item\em Sets the scale of the shape of the field. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a6d1499c36db3bbb5341ee3aa2e90b52f}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Sets the origin for the area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a426c3cb70e8de1fc90d4acdf2e425cd6}{SetOrientation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_acc55b82b29952902c3e9a3810decf3d9}{SetStatic} (bool Static)
+\begin{DoxyCompactList}\small\item\em Sets(or un-\/sets) this AE as a static object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a0a0e6dfc6353d19b19e7bea037172072}{UpdateActorList} ()
+\begin{DoxyCompactList}\small\item\em Updates the actors listed as within the field. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1AreaEffect_aa9e6d721d337c32aa47357060d319924}{$\sim$AreaEffect} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -97,28 +97,28 @@ enum \hyperlink{classphys_1_1AreaEffect_a99b8746c43eac266d48ad613110dc6f9}{AESha
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{classphys_1_1AreaEffect_a6c31aa396851e4e17de53d9e83e2f8ee}{CreateGhostObject} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
-\begin{DoxyCompactList}\small\item\em Constructor Function. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1AreaEffect_aef2925aaa94dffb2b4d3755cfe41cb7d}{
-virtual Ogre::MaterialPtr \hyperlink{classphys_1_1AreaEffect_aef2925aaa94dffb2b4d3755cfe41cb7d}{CreateColouredMaterial} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)}
-\label{classphys_1_1AreaEffect_aef2925aaa94dffb2b4d3755cfe41cb7d}
-
-\begin{DoxyCompactList}\small\item\em Creates a basic material in code using the provided colour. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1AreaEffect_a923efe92684ce71e138ad182b356b9c0}{
-virtual void \hyperlink{classphys_1_1AreaEffect_a923efe92684ce71e138ad182b356b9c0}{PreGraphicsMeshCreate} ()}
-\label{classphys_1_1AreaEffect_a923efe92684ce71e138ad182b356b9c0}
-
-\begin{DoxyCompactList}\small\item\em Convenience function for the common starting steps in making a graphics object. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1AreaEffect_ad301f97450bd17deeb66ccef9bc61647}{
-virtual void \hyperlink{classphys_1_1AreaEffect_ad301f97450bd17deeb66ccef9bc61647}{PostGraphicsMeshCreate} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&GroupName)}
-\label{classphys_1_1AreaEffect_ad301f97450bd17deeb66ccef9bc61647}
-
-\begin{DoxyCompactList}\small\item\em Convenience function for the common final steps in making a graphics object. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1AreaEffect_a7af039b84f8d55e2c1c2d5a1b57afd8a}{
 virtual void \hyperlink{classphys_1_1AreaEffect_a7af039b84f8d55e2c1c2d5a1b57afd8a}{AddActorToList} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor)}
 \label{classphys_1_1AreaEffect_a7af039b84f8d55e2c1c2d5a1b57afd8a}
 
 \begin{DoxyCompactList}\small\item\em Helper function for adding actors to relevant lists. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1AreaEffect_aef2925aaa94dffb2b4d3755cfe41cb7d}{
+virtual Ogre::MaterialPtr \hyperlink{classphys_1_1AreaEffect_aef2925aaa94dffb2b4d3755cfe41cb7d}{CreateColouredMaterial} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)}
+\label{classphys_1_1AreaEffect_aef2925aaa94dffb2b4d3755cfe41cb7d}
+
+\begin{DoxyCompactList}\small\item\em Creates a basic material in code using the provided colour. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a6c31aa396851e4e17de53d9e83e2f8ee}{CreateGhostObject} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Constructor Function. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1AreaEffect_ad301f97450bd17deeb66ccef9bc61647}{
+virtual void \hyperlink{classphys_1_1AreaEffect_ad301f97450bd17deeb66ccef9bc61647}{PostGraphicsMeshCreate} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&GroupName)}
+\label{classphys_1_1AreaEffect_ad301f97450bd17deeb66ccef9bc61647}
+
+\begin{DoxyCompactList}\small\item\em Convenience function for the common final steps in making a graphics object. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1AreaEffect_a923efe92684ce71e138ad182b356b9c0}{
+virtual void \hyperlink{classphys_1_1AreaEffect_a923efe92684ce71e138ad182b356b9c0}{PreGraphicsMeshCreate} ()}
+\label{classphys_1_1AreaEffect_a923efe92684ce71e138ad182b356b9c0}
+
+\begin{DoxyCompactList}\small\item\em Convenience function for the common starting steps in making a graphics object. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1AreaEffect_a98bf156da3c7f8bb98d5ce9d37b6aa0f}{
 virtual void \hyperlink{classphys_1_1AreaEffect_a98bf156da3c7f8bb98d5ce9d37b6aa0f}{RemoveActorFromList} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor)}
 \label{classphys_1_1AreaEffect_a98bf156da3c7f8bb98d5ce9d37b6aa0f}
@@ -127,21 +127,11 @@ virtual void \hyperlink{classphys_1_1AreaEffect_a98bf156da3c7f8bb98d5ce9d37b6aa0
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1AreaEffect_a1cf5a878eb22b30a166f5b065944a986}{
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1AreaEffect_a1cf5a878eb22b30a166f5b065944a986}{Name}}
-\label{classphys_1_1AreaEffect_a1cf5a878eb22b30a166f5b065944a986}
+\hypertarget{classphys_1_1AreaEffect_a5bd2ad15db98ecc140a8bf2fee8d0c1f}{
+std::vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \hyperlink{classphys_1_1AreaEffect_a5bd2ad15db98ecc140a8bf2fee8d0c1f}{AddedActors}}
+\label{classphys_1_1AreaEffect_a5bd2ad15db98ecc140a8bf2fee8d0c1f}
 
-\begin{DoxyCompactList}\small\item\em The name of the Area Effect. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1AreaEffect_a1465c564cc8e32b8a530881c5db70b88}{
-\hyperlink{classphys_1_1AreaEffect_a99b8746c43eac266d48ad613110dc6f9}{AEShapeType} \hyperlink{classphys_1_1AreaEffect_a1465c564cc8e32b8a530881c5db70b88}{ShapeType}}
-\label{classphys_1_1AreaEffect_a1465c564cc8e32b8a530881c5db70b88}
-
-\begin{DoxyCompactList}\small\item\em The type of physics shape in use by this AE field. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1AreaEffect_af8189f9e8dc4bf04f44550918e0ee117}{
-btCollisionShape $\ast$ \hyperlink{classphys_1_1AreaEffect_af8189f9e8dc4bf04f44550918e0ee117}{Shape}}
-\label{classphys_1_1AreaEffect_af8189f9e8dc4bf04f44550918e0ee117}
-
-\begin{DoxyCompactList}\small\item\em Stores the shape of the AE field. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Container of actors that have been added since last frame. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1AreaEffect_ae730c591bf929404f337d71d4119bde8}{
 btPairCachingGhostObject $\ast$ \hyperlink{classphys_1_1AreaEffect_ae730c591bf929404f337d71d4119bde8}{Ghost}}
 \label{classphys_1_1AreaEffect_ae730c591bf929404f337d71d4119bde8}
@@ -157,26 +147,36 @@ Ogre::Entity $\ast$ \hyperlink{classphys_1_1AreaEffect_a31b755c85d318438e42e300d
 \label{classphys_1_1AreaEffect_a31b755c85d318438e42e300de56d2e5c}
 
 \begin{DoxyCompactList}\small\item\em The Ogre object being added to the scene graph. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1AreaEffect_a3008e8e90236141ca4c21a9580e6f5de}{
-\hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1AreaEffect_a3008e8e90236141ca4c21a9580e6f5de}{TheWorld}}
-\label{classphys_1_1AreaEffect_a3008e8e90236141ca4c21a9580e6f5de}
+\hypertarget{classphys_1_1AreaEffect_a1cf5a878eb22b30a166f5b065944a986}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1AreaEffect_a1cf5a878eb22b30a166f5b065944a986}{Name}}
+\label{classphys_1_1AreaEffect_a1cf5a878eb22b30a166f5b065944a986}
 
-\begin{DoxyCompactList}\small\item\em \hyperlink{classphys_1_1World}{World} pointer simply to enable the effects of this class to be as diverse as the engine features. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The name of the Area Effect. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1AreaEffect_a45834591f0ea49ba6657ce58d070ee9b}{
 std::list$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \hyperlink{classphys_1_1AreaEffect_a45834591f0ea49ba6657ce58d070ee9b}{OverlappingActors}}
 \label{classphys_1_1AreaEffect_a45834591f0ea49ba6657ce58d070ee9b}
 
 \begin{DoxyCompactList}\small\item\em Container for actors within the field area. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1AreaEffect_a5bd2ad15db98ecc140a8bf2fee8d0c1f}{
-std::vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \hyperlink{classphys_1_1AreaEffect_a5bd2ad15db98ecc140a8bf2fee8d0c1f}{AddedActors}}
-\label{classphys_1_1AreaEffect_a5bd2ad15db98ecc140a8bf2fee8d0c1f}
-
-\begin{DoxyCompactList}\small\item\em Container of actors that have been added since last frame. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1AreaEffect_a1b1b6cced61ead4d6de3d8bad5c2125a}{
 std::vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \hyperlink{classphys_1_1AreaEffect_a1b1b6cced61ead4d6de3d8bad5c2125a}{RemovedActors}}
 \label{classphys_1_1AreaEffect_a1b1b6cced61ead4d6de3d8bad5c2125a}
 
-\begin{DoxyCompactList}\small\item\em Container of actors that have been removed since last frame. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Container of actors that have been removed since last frame. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1AreaEffect_af8189f9e8dc4bf04f44550918e0ee117}{
+btCollisionShape $\ast$ \hyperlink{classphys_1_1AreaEffect_af8189f9e8dc4bf04f44550918e0ee117}{Shape}}
+\label{classphys_1_1AreaEffect_af8189f9e8dc4bf04f44550918e0ee117}
+
+\begin{DoxyCompactList}\small\item\em Stores the shape of the AE field. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1AreaEffect_a1465c564cc8e32b8a530881c5db70b88}{
+\hyperlink{classphys_1_1AreaEffect_a99b8746c43eac266d48ad613110dc6f9}{AEShapeType} \hyperlink{classphys_1_1AreaEffect_a1465c564cc8e32b8a530881c5db70b88}{ShapeType}}
+\label{classphys_1_1AreaEffect_a1465c564cc8e32b8a530881c5db70b88}
+
+\begin{DoxyCompactList}\small\item\em The type of physics shape in use by this AE field. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1AreaEffect_a3008e8e90236141ca4c21a9580e6f5de}{
+\hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1AreaEffect_a3008e8e90236141ca4c21a9580e6f5de}{TheWorld}}
+\label{classphys_1_1AreaEffect_a3008e8e90236141ca4c21a9580e6f5de}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classphys_1_1World}{World} pointer simply to enable the effects of this class to be as diverse as the engine features. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 

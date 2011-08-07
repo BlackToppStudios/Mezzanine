@@ -53,6 +53,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
@@ -93,67 +94,58 @@ Inheritance diagram for phys::UI::Scrollbar:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#afa32dd9599bd7a2150faa950b72f16e1">Scrollbar</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;Name, const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, const UI::ScrollbarStyle &amp;Style, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *parent)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#afa32dd9599bd7a2150faa950b72f16e1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9fb189c7856353a930c0a228fc0cf42"></a><!-- doxytag: member="phys::UI::Scrollbar::~Scrollbar" ref="af9fb189c7856353a930c0a228fc0cf42" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#af9fb189c7856353a930c0a228fc0cf42">~Scrollbar</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard class destructor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2d8997e0bbbb1c17af5128fea98fb1e4">SetVisible</a> (bool visible)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this scrollbar.  <a href="#a2d8997e0bbbb1c17af5128fea98fb1e4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a213c946ccadd3b689f59e2761a1d1848">IsVisible</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility of this scrollbar.  <a href="#a213c946ccadd3b689f59e2761a1d1848"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42955ae0e2b273ca9ea392a8dbc62604"></a><!-- doxytag: member="phys::UI::Scrollbar::Show" ref="a42955ae0e2b273ca9ea392a8dbc62604" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a42955ae0e2b273ca9ea392a8dbc62604">Show</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this scrollbar to be shown. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a8afdd63e36a7fdc15bd8660d9800f2c5">CheckMouseHover</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the current mouse position is over this widget.  <a href="#a8afdd63e36a7fdc15bd8660d9800f2c5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a73337985c0f1f173e253c88705ae5d6e">GetActualPosition</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel position of this widget.  <a href="#a73337985c0f1f173e253c88705ae5d6e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2b3d791cbbe4c787f284d8b12a0edf27">GetActualSize</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel size of this widget.  <a href="#a2b3d791cbbe4c787f284d8b12a0edf27"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1UI_1_1Button.html">Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#abf733d00087050d575fca1abc2d4ba0e">GetDownRightButton</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the DownRight button within this widget, if it was initialized.  <a href="#abf733d00087050d575fca1abc2d4ba0e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#ad049af26ff2247cfcd988cb5639fa003">GetPosition</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative position of this widget.  <a href="#ad049af26ff2247cfcd988cb5639fa003"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1UI_1_1Rectangle.html">Rectangle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a1c24fbb88f9d86aff1b2f0abc033116a">GetScrollBack</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Scroller background within this widget.  <a href="#a1c24fbb88f9d86aff1b2f0abc033116a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1UI_1_1Button.html">Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a28024d2f3a017e4ed3c2a4df62a1e8be">GetScroller</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Scroller button within this widget.  <a href="#a28024d2f3a017e4ed3c2a4df62a1e8be"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#abd70ba640ef9475a77334aa209121812">GetScrollerValue</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the currnent scroll position represented by a value between 0 and 1.  <a href="#abd70ba640ef9475a77334aa209121812"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#aff97ce371ee21fcf3b648dcf8b38e055">GetSize</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative size of this widget.  <a href="#aff97ce371ee21fcf3b648dcf8b38e055"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1UI_1_1Button.html">Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#ab298f9747da2eed451ddce8b1a416c15">GetUpLeftButton</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the UpLeft button within this widget, if it was initialized.  <a href="#ab298f9747da2eed451ddce8b1a416c15"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0aa0d3441ec9c8162025a7e06ec773b"></a><!-- doxytag: member="phys::UI::Scrollbar::Hide" ref="aa0aa0d3441ec9c8162025a7e06ec773b" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#aa0aa0d3441ec9c8162025a7e06ec773b">Hide</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this scrollbar to hide. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a8afdd63e36a7fdc15bd8660d9800f2c5">CheckMouseHover</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the current mouse position is over this widget.  <a href="#a8afdd63e36a7fdc15bd8660d9800f2c5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#abd70ba640ef9475a77334aa209121812">GetScrollerValue</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the currnent scroll position represented by a value between 0 and 1.  <a href="#abd70ba640ef9475a77334aa209121812"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a238097181d00ac3bbff0d31d2dc0b237">SetIncrementDistance</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;IncDist)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed.  <a href="#a238097181d00ac3bbff0d31d2dc0b237"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4bd103fd17411e5abc6a8c731ccb9183">SetScrollerSize</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the length(or height) of the scroller based on the relative size of it's background.  <a href="#a4bd103fd17411e5abc6a8c731ccb9183"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4a87f32e31e8e4443c4aaec46307864e">SetPosition</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative position of this widget in pixels.  <a href="#a4a87f32e31e8e4443c4aaec46307864e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#ad049af26ff2247cfcd988cb5639fa003">GetPosition</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative position of this widget.  <a href="#ad049af26ff2247cfcd988cb5639fa003"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a213c946ccadd3b689f59e2761a1d1848">IsVisible</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility of this scrollbar.  <a href="#a213c946ccadd3b689f59e2761a1d1848"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#afa32dd9599bd7a2150faa950b72f16e1">Scrollbar</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;Name, const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, const UI::ScrollbarStyle &amp;Style, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *parent)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#afa32dd9599bd7a2150faa950b72f16e1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a93dfa3232185d72f274462636a833465">SetActualPosition</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel position of this widget.  <a href="#a93dfa3232185d72f274462636a833465"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a73337985c0f1f173e253c88705ae5d6e">GetActualPosition</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel position of this widget.  <a href="#a73337985c0f1f173e253c88705ae5d6e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a5581675d3f250ed7270018e184b02b1d">SetSize</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative size of this widget.  <a href="#a5581675d3f250ed7270018e184b02b1d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#aff97ce371ee21fcf3b648dcf8b38e055">GetSize</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative size of this widget.  <a href="#aff97ce371ee21fcf3b648dcf8b38e055"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#aabdb8b727f1f84712a5f7c1fca6e830f">SetActualSize</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel size of this widget.  <a href="#aabdb8b727f1f84712a5f7c1fca6e830f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2b3d791cbbe4c787f284d8b12a0edf27">GetActualSize</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel size of this widget.  <a href="#a2b3d791cbbe4c787f284d8b12a0edf27"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1UI_1_1Button.html">Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a28024d2f3a017e4ed3c2a4df62a1e8be">GetScroller</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Scroller button within this widget.  <a href="#a28024d2f3a017e4ed3c2a4df62a1e8be"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1UI_1_1Button.html">Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#ab298f9747da2eed451ddce8b1a416c15">GetUpLeftButton</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the UpLeft button within this widget, if it was initialized.  <a href="#ab298f9747da2eed451ddce8b1a416c15"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1UI_1_1Button.html">Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#abf733d00087050d575fca1abc2d4ba0e">GetDownRightButton</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the DownRight button within this widget, if it was initialized.  <a href="#abf733d00087050d575fca1abc2d4ba0e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1UI_1_1Rectangle.html">Rectangle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a1c24fbb88f9d86aff1b2f0abc033116a">GetScrollBack</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Scroller background within this widget.  <a href="#a1c24fbb88f9d86aff1b2f0abc033116a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a238097181d00ac3bbff0d31d2dc0b237">SetIncrementDistance</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;IncDist)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed.  <a href="#a238097181d00ac3bbff0d31d2dc0b237"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4a87f32e31e8e4443c4aaec46307864e">SetPosition</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative position of this widget in pixels.  <a href="#a4a87f32e31e8e4443c4aaec46307864e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4bd103fd17411e5abc6a8c731ccb9183">SetScrollerSize</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the length(or height) of the scroller based on the relative size of it's background.  <a href="#a4bd103fd17411e5abc6a8c731ccb9183"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a5581675d3f250ed7270018e184b02b1d">SetSize</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative size of this widget.  <a href="#a5581675d3f250ed7270018e184b02b1d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2d8997e0bbbb1c17af5128fea98fb1e4">SetVisible</a> (bool visible)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this scrollbar.  <a href="#a2d8997e0bbbb1c17af5128fea98fb1e4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42955ae0e2b273ca9ea392a8dbc62604"></a><!-- doxytag: member="phys::UI::Scrollbar::Show" ref="a42955ae0e2b273ca9ea392a8dbc62604" args="()" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a42955ae0e2b273ca9ea392a8dbc62604">Show</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this scrollbar to be shown. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9fb189c7856353a930c0a228fc0cf42"></a><!-- doxytag: member="phys::UI::Scrollbar::~Scrollbar" ref="af9fb189c7856353a930c0a228fc0cf42" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#af9fb189c7856353a930c0a228fc0cf42">~Scrollbar</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard class destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c42cf0a45ec4f59c9e6199fc2d3f0e3"></a><!-- doxytag: member="phys::UI::Scrollbar::CreateHorizontalScrollbar" ref="a4c42cf0a45ec4f59c9e6199fc2d3f0e3" args="(const RenderableRect &amp;Rect)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4c42cf0a45ec4f59c9e6199fc2d3f0e3">CreateHorizontalScrollbar</a> (const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor helper function for creating a horizontally aligned scrollbar. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a762ec4462368f3921b0646b0edae7278"></a><!-- doxytag: member="phys::UI::Scrollbar::CreateVerticalScrollbar" ref="a762ec4462368f3921b0646b0edae7278" args="(const RenderableRect &amp;Rect)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a762ec4462368f3921b0646b0edae7278">CreateVerticalScrollbar</a> (const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor helper function for creating a vertically aligned scrollbar. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4953ac8c0b711ed9c1be468897e09ce8"></a><!-- doxytag: member="phys::UI::Scrollbar::IsValidDimensions" ref="a4953ac8c0b711ed9c1be468897e09ce8" args="(const Vector2 &amp;Size)" -->
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4953ac8c0b711ed9c1be468897e09ce8">IsValidDimensions</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the dimensions passed into this object are valid and can be used. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb5622bfb508d54f7802811e5dda4704"></a><!-- doxytag: member="phys::UI::Scrollbar::SetHorizontal" ref="acb5622bfb508d54f7802811e5dda4704" args="(const Vector2 &amp;Size)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#acb5622bfb508d54f7802811e5dda4704">SetHorizontal</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the horizontal perameter as necessary based on the size provided for the widget. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31a2e11f27f087154fd61d7cc2cd6dc1"></a><!-- doxytag: member="phys::UI::Scrollbar::ButtonScroll" ref="a31a2e11f27f087154fd61d7cc2cd6dc1" args="(bool UpLeft)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a31a2e11f27f087154fd61d7cc2cd6dc1">ButtonScroll</a> (bool UpLeft)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Scrolls the scroller either up/left or down/right, based on the parameter. For use with buttons. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4621d6713a059196f1a358a23b9ad5ae"></a><!-- doxytag: member="phys::UI::Scrollbar::CalculateOffsets" ref="a4621d6713a059196f1a358a23b9ad5ae" args="(const Vector2 &amp;Size)" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4621d6713a059196f1a358a23b9ad5ae">CalculateOffsets</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the relative offsets for the UI elements that make up this widget. <br/></td></tr>
@@ -163,65 +155,74 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc9eb290c8dcf3935e2b3046063989e9"></a><!-- doxytag: member="phys::UI::Scrollbar::CalculateScrollValue" ref="afc9eb290c8dcf3935e2b3046063989e9" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#afc9eb290c8dcf3935e2b3046063989e9">CalculateScrollValue</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the scrollbar value based on the scrollers current position. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2048345c29ba15b8820971492f2bdea1"></a><!-- doxytag: member="phys::UI::Scrollbar::SetToWithinLimits" ref="a2048345c29ba15b8820971492f2bdea1" args="(Real &amp;Coord)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2048345c29ba15b8820971492f2bdea1">SetToWithinLimits</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Coord)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a provided coordinate is within the defined limits, and adjusts it if not. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add3d5f729e542fe17eda663fce86d3a3"></a><!-- doxytag: member="phys::UI::Scrollbar::SetLocation" ref="add3d5f729e542fe17eda663fce86d3a3" args="(const Vector2 &amp;Position)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#add3d5f729e542fe17eda663fce86d3a3">SetLocation</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal function for setting the location(position) of this widget. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82ee692ee5215893d31dab0dd76374ba"></a><!-- doxytag: member="phys::UI::Scrollbar::SetArea" ref="a82ee692ee5215893d31dab0dd76374ba" args="(const Vector2 &amp;Size)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a82ee692ee5215893d31dab0dd76374ba">SetArea</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal function for setting the area(size) of this widget. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31a2e11f27f087154fd61d7cc2cd6dc1"></a><!-- doxytag: member="phys::UI::Scrollbar::ButtonScroll" ref="a31a2e11f27f087154fd61d7cc2cd6dc1" args="(bool UpLeft)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a31a2e11f27f087154fd61d7cc2cd6dc1">ButtonScroll</a> (bool UpLeft)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Scrolls the scroller either up/left or down/right, based on the parameter. For use with buttons. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c42cf0a45ec4f59c9e6199fc2d3f0e3"></a><!-- doxytag: member="phys::UI::Scrollbar::CreateHorizontalScrollbar" ref="a4c42cf0a45ec4f59c9e6199fc2d3f0e3" args="(const RenderableRect &amp;Rect)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4c42cf0a45ec4f59c9e6199fc2d3f0e3">CreateHorizontalScrollbar</a> (const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor helper function for creating a horizontally aligned scrollbar. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a762ec4462368f3921b0646b0edae7278"></a><!-- doxytag: member="phys::UI::Scrollbar::CreateVerticalScrollbar" ref="a762ec4462368f3921b0646b0edae7278" args="(const RenderableRect &amp;Rect)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a762ec4462368f3921b0646b0edae7278">CreateVerticalScrollbar</a> (const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor helper function for creating a vertically aligned scrollbar. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4953ac8c0b711ed9c1be468897e09ce8"></a><!-- doxytag: member="phys::UI::Scrollbar::IsValidDimensions" ref="a4953ac8c0b711ed9c1be468897e09ce8" args="(const Vector2 &amp;Size)" -->
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a4953ac8c0b711ed9c1be468897e09ce8">IsValidDimensions</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the dimensions passed into this object are valid and can be used. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac50a2cd5b85c8b2ff0cabf22b898a0fa"></a><!-- doxytag: member="phys::UI::Scrollbar::MouseScroll" ref="ac50a2cd5b85c8b2ff0cabf22b898a0fa" args="(Vector2 &amp;Scroll)" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#ac50a2cd5b85c8b2ff0cabf22b898a0fa">MouseScroll</a> (<a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Scroll)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Scrolls the scroller either up/left or down/right. For use with the mouse. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c6ca6b135d09d284b31fda2230c9286"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollBackScroll" ref="a1c6ca6b135d09d284b31fda2230c9286" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a1c6ca6b135d09d284b31fda2230c9286">ScrollBackScroll</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Scrolls the scroller either up/left or down/right. For use with the scrollback. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82ee692ee5215893d31dab0dd76374ba"></a><!-- doxytag: member="phys::UI::Scrollbar::SetArea" ref="a82ee692ee5215893d31dab0dd76374ba" args="(const Vector2 &amp;Size)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a82ee692ee5215893d31dab0dd76374ba">SetArea</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal function for setting the area(size) of this widget. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb5622bfb508d54f7802811e5dda4704"></a><!-- doxytag: member="phys::UI::Scrollbar::SetHorizontal" ref="acb5622bfb508d54f7802811e5dda4704" args="(const Vector2 &amp;Size)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#acb5622bfb508d54f7802811e5dda4704">SetHorizontal</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the horizontal perameter as necessary based on the size provided for the widget. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add3d5f729e542fe17eda663fce86d3a3"></a><!-- doxytag: member="phys::UI::Scrollbar::SetLocation" ref="add3d5f729e542fe17eda663fce86d3a3" args="(const Vector2 &amp;Position)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#add3d5f729e542fe17eda663fce86d3a3">SetLocation</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal function for setting the location(position) of this widget. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2048345c29ba15b8820971492f2bdea1"></a><!-- doxytag: member="phys::UI::Scrollbar::SetToWithinLimits" ref="a2048345c29ba15b8820971492f2bdea1" args="(Real &amp;Coord)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a2048345c29ba15b8820971492f2bdea1">SetToWithinLimits</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Coord)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a provided coordinate is within the defined limits, and adjusts it if not. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a628999b4caa32f3c273d45e64d5c62a0"></a><!-- doxytag: member="phys::UI::Scrollbar::Update" ref="a628999b4caa32f3c273d45e64d5c62a0" args="(bool Force=false)" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Scrollbar.html#a628999b4caa32f3c273d45e64d5c62a0">Update</a> (bool Force=false)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs all the necessary update and automation processes for this widget. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ba94ec51f1f43360b0ba5db53e66b80"></a><!-- doxytag: member="phys::UI::Scrollbar::Scroller" ref="a8ba94ec51f1f43360b0ba5db53e66b80" args="" -->
-<a class="el" href="classphys_1_1UI_1_1Button.html">UI::Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Scroller</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d75376bd2552c1cc699f53d053d94a3"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollBack" ref="a4d75376bd2552c1cc699f53d053d94a3" args="" -->
-<a class="el" href="classphys_1_1UI_1_1Rectangle.html">UI::Rectangle</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollBack</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad26cf0a164ce7fb68b1d2ac12c643bb6"></a><!-- doxytag: member="phys::UI::Scrollbar::UpLeftButton" ref="ad26cf0a164ce7fb68b1d2ac12c643bb6" args="" -->
-<a class="el" href="classphys_1_1UI_1_1Button.html">UI::Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>UpLeftButton</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c5a881c5b752320687729e363e3c829"></a><!-- doxytag: member="phys::UI::Scrollbar::DownRightButton" ref="a3c5a881c5b752320687729e363e3c829" args="" -->
 <a class="el" href="classphys_1_1UI_1_1Button.html">UI::Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>DownRightButton</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac87b0be84fa48e36cdfa25473d0c720f"></a><!-- doxytag: member="phys::UI::Scrollbar::HoveredBack" ref="ac87b0be84fa48e36cdfa25473d0c720f" args="" -->
-<a class="el" href="classphys_1_1UI_1_1Rectangle.html">UI::Rectangle</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>HoveredBack</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3be8970f658c345a49a86ef437ad03e"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollBackOffset" ref="af3be8970f658c345a49a86ef437ad03e" args="" -->
-<a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollBackOffset</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfc66ada8456f085f5d8dfcb9f9f19f1"></a><!-- doxytag: member="phys::UI::Scrollbar::UpLeftButtonOffset" ref="abfc66ada8456f085f5d8dfcb9f9f19f1" args="" -->
-<a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpLeftButtonOffset</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adee823001982ec29bd5d8ea4b3ed3959"></a><!-- doxytag: member="phys::UI::Scrollbar::DownRightButtonOffset" ref="adee823001982ec29bd5d8ea4b3ed3959" args="" -->
 <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>DownRightButtonOffset</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7aeffef5b28306e912e23571b5f690e1"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollerUpperLimit" ref="a7aeffef5b28306e912e23571b5f690e1" args="" -->
-<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollerUpperLimit</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29e5e2fd8b70f8b2663d0594b49f2174"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollerLowerLimit" ref="a29e5e2fd8b70f8b2663d0594b49f2174" args="" -->
-<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollerLowerLimit</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6ad474b7ad0282cce7aad9cca3a3ed8"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollerValue" ref="ab6ad474b7ad0282cce7aad9cca3a3ed8" args="" -->
-<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollerValue</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bb288a799ad346588942806b85b4477"></a><!-- doxytag: member="phys::UI::Scrollbar::IncrementDistance" ref="a1bb288a799ad346588942806b85b4477" args="" -->
-<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>IncrementDistance</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a422d2b6f7a54c860e39cf83c8e5012af"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollStyle" ref="a422d2b6f7a54c860e39cf83c8e5012af" args="" -->
-UI::ScrollbarStyle&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollStyle</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac370fd2917bf654e5650087fff21c8ae"></a><!-- doxytag: member="phys::UI::Scrollbar::Horizontal" ref="ac370fd2917bf654e5650087fff21c8ae" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Horizontal</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1eb9202a09c2ab00c033f304787fb50"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollerLock" ref="ac1eb9202a09c2ab00c033f304787fb50" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollerLock</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a318f64194eb7726d9dfe5b758a0292"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollBackLock" ref="a1a318f64194eb7726d9dfe5b758a0292" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollBackLock</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10a45c7c3aad71f760b419412786eb8c"></a><!-- doxytag: member="phys::UI::Scrollbar::UpLeftLock" ref="a10a45c7c3aad71f760b419412786eb8c" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>UpLeftLock</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a133c6d99a33147a62826f0e0c925fcec"></a><!-- doxytag: member="phys::UI::Scrollbar::DownRightLock" ref="a133c6d99a33147a62826f0e0c925fcec" args="" -->
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>DownRightLock</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac370fd2917bf654e5650087fff21c8ae"></a><!-- doxytag: member="phys::UI::Scrollbar::Horizontal" ref="ac370fd2917bf654e5650087fff21c8ae" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Horizontal</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac87b0be84fa48e36cdfa25473d0c720f"></a><!-- doxytag: member="phys::UI::Scrollbar::HoveredBack" ref="ac87b0be84fa48e36cdfa25473d0c720f" args="" -->
+<a class="el" href="classphys_1_1UI_1_1Rectangle.html">UI::Rectangle</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>HoveredBack</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bb288a799ad346588942806b85b4477"></a><!-- doxytag: member="phys::UI::Scrollbar::IncrementDistance" ref="a1bb288a799ad346588942806b85b4477" args="" -->
+<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>IncrementDistance</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d75376bd2552c1cc699f53d053d94a3"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollBack" ref="a4d75376bd2552c1cc699f53d053d94a3" args="" -->
+<a class="el" href="classphys_1_1UI_1_1Rectangle.html">UI::Rectangle</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollBack</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a318f64194eb7726d9dfe5b758a0292"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollBackLock" ref="a1a318f64194eb7726d9dfe5b758a0292" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollBackLock</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3be8970f658c345a49a86ef437ad03e"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollBackOffset" ref="af3be8970f658c345a49a86ef437ad03e" args="" -->
+<a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollBackOffset</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ba94ec51f1f43360b0ba5db53e66b80"></a><!-- doxytag: member="phys::UI::Scrollbar::Scroller" ref="a8ba94ec51f1f43360b0ba5db53e66b80" args="" -->
+<a class="el" href="classphys_1_1UI_1_1Button.html">UI::Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Scroller</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1eb9202a09c2ab00c033f304787fb50"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollerLock" ref="ac1eb9202a09c2ab00c033f304787fb50" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollerLock</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29e5e2fd8b70f8b2663d0594b49f2174"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollerLowerLimit" ref="a29e5e2fd8b70f8b2663d0594b49f2174" args="" -->
+<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollerLowerLimit</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7aeffef5b28306e912e23571b5f690e1"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollerUpperLimit" ref="a7aeffef5b28306e912e23571b5f690e1" args="" -->
+<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollerUpperLimit</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6ad474b7ad0282cce7aad9cca3a3ed8"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollerValue" ref="ab6ad474b7ad0282cce7aad9cca3a3ed8" args="" -->
+<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollerValue</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a422d2b6f7a54c860e39cf83c8e5012af"></a><!-- doxytag: member="phys::UI::Scrollbar::ScrollStyle" ref="a422d2b6f7a54c860e39cf83c8e5012af" args="" -->
+UI::ScrollbarStyle&#160;</td><td class="memItemRight" valign="bottom"><b>ScrollStyle</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad26cf0a164ce7fb68b1d2ac12c643bb6"></a><!-- doxytag: member="phys::UI::Scrollbar::UpLeftButton" ref="ad26cf0a164ce7fb68b1d2ac12c643bb6" args="" -->
+<a class="el" href="classphys_1_1UI_1_1Button.html">UI::Button</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>UpLeftButton</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfc66ada8456f085f5d8dfcb9f9f19f1"></a><!-- doxytag: member="phys::UI::Scrollbar::UpLeftButtonOffset" ref="abfc66ada8456f085f5d8dfcb9f9f19f1" args="" -->
+<a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpLeftButtonOffset</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10a45c7c3aad71f760b419412786eb8c"></a><!-- doxytag: member="phys::UI::Scrollbar::UpLeftLock" ref="a10a45c7c3aad71f760b419412786eb8c" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>UpLeftLock</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This class is a widget class, to be used alongside any scrollable widget. </p>
@@ -751,7 +752,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>DownRightLock</b></td
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:50 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Aug 7 2011 04:03:07 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

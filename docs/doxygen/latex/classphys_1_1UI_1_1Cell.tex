@@ -25,57 +25,57 @@ Inheritance diagram for phys::UI::Cell:\begin{figure}[H]
 \label{classphys_1_1UI_1_1Cell_aef652c34ef1ea441cf00a4d757d41453}
 
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Cell_a8bbad377a79e72497d033b2e8c06cfc4}{
-virtual \hyperlink{classphys_1_1UI_1_1Cell_a8bbad377a79e72497d033b2e8c06cfc4}{$\sim$Cell} ()}
-\label{classphys_1_1UI_1_1Cell_a8bbad377a79e72497d033b2e8c06cfc4}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Cell_a886778f945fc31bdc118d101d67f9f80}{SetPriority} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Priority)
-\begin{DoxyCompactList}\small\item\em Sets the priority of this cell for use in sorting on the cell grid. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Cell_aff6472ccb5d6d7bd3e7d3a967c67674d}{CheckMouseHover} ()=0
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Cell_a1b0deb9738bc4da73e0be4dd355b23fb}{GetActualPosition} ()=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Cell_a6301ce41a7a44a97de36fb54388ad430}{GetActualSize} ()=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Cell_a17475dbdde2d71be3d774f0402792f0d}{GetPosition} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Cell_abb2a0c04c89df4a25cb5298c1a23e522}{GetPriority} ()
 \begin{DoxyCompactList}\small\item\em Gets the currently set priority of this \hyperlink{classphys_1_1UI_1_1Cell}{Cell}. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Cell_abb516a7a4fa2abe00ff037987beea745}{SetSelected} (bool Select)
-\begin{DoxyCompactList}\small\item\em Sets whether or not this \hyperlink{classphys_1_1UI_1_1Cell}{Cell} is currently selected. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Cell_a5f7008c9177a44786215970a3f0849d3}{IsSelected} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not this \hyperlink{classphys_1_1UI_1_1Cell}{Cell} is currently selected. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Cell_a141d5642d251d102a3c87220b5c8607e}{SetCellCallback} (\hyperlink{classphys_1_1UI_1_1CellCallback}{CellCallback} $\ast$CB)
-\begin{DoxyCompactList}\small\item\em Sets a callback for this \hyperlink{classphys_1_1UI_1_1Cell}{Cell}. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Cell_aceb2d399897a502d99c72b2e9e5c859e}{SetVisible} (bool visible)=0
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Cell_a77625842ac8ad87bd5b5a7f6ed0590b8}{IsVisible} ()=0
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Cell_ae0d424d873b9bb8712afbcc1bd548dc0}{
-virtual void \hyperlink{classphys_1_1UI_1_1Cell_ae0d424d873b9bb8712afbcc1bd548dc0}{Show} ()=0}
-\label{classphys_1_1UI_1_1Cell_ae0d424d873b9bb8712afbcc1bd548dc0}
-
-\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Cell_ab8288a97a63aad7cc02f32541b1b7351}{GetSize} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Cell_a73b4c96e986bbd0f28cc542bcc4c8d7c}{
 virtual void \hyperlink{classphys_1_1UI_1_1Cell_a73b4c96e986bbd0f28cc542bcc4c8d7c}{Hide} ()=0}
 \label{classphys_1_1UI_1_1Cell_a73b4c96e986bbd0f28cc542bcc4c8d7c}
 
 \begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Cell_aff6472ccb5d6d7bd3e7d3a967c67674d}{CheckMouseHover} ()=0
-\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Cell_af43b353b0033d3605dad04e925363f2b}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
-\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Cell_a17475dbdde2d71be3d774f0402792f0d}{GetPosition} ()=0
-\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Cell_ae8b1850754b6b9ea48636b619dada5ea}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Cell_a1b0deb9738bc4da73e0be4dd355b23fb}{GetActualPosition} ()=0
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Cell_a59075a5ae35c2080876fcc78a97e5b31}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)=0
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Cell_ab8288a97a63aad7cc02f32541b1b7351}{GetSize} ()=0
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Cell_a3666c40546d1e6a225421d3bfd0288f9}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)=0
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Cell_a6301ce41a7a44a97de36fb54388ad430}{GetActualSize} ()=0
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Cell_a5f7008c9177a44786215970a3f0849d3}{IsSelected} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not this \hyperlink{classphys_1_1UI_1_1Cell}{Cell} is currently selected. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Cell_a77625842ac8ad87bd5b5a7f6ed0590b8}{IsVisible} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1Cell_a99be02a1d02b65f653d46e00bef0c819}{operator$<$} (\hyperlink{classphys_1_1UI_1_1Cell}{Cell} $\ast$Other)
 \begin{DoxyCompactList}\small\item\em Overloaded Less-\/Than operator used for sorting on the grid. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1Cell_ac60ff0871b40be61f51fc82e09fb8a5f}{operator$>$} (\hyperlink{classphys_1_1UI_1_1Cell}{Cell} $\ast$Other)
-\begin{DoxyCompactList}\small\item\em Overloaded Greater-\/Than operator used for sorting on the grid. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Overloaded Greater-\/Than operator used for sorting on the grid. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Cell_ae8b1850754b6b9ea48636b619dada5ea}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Cell_a3666c40546d1e6a225421d3bfd0288f9}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Cell_a141d5642d251d102a3c87220b5c8607e}{SetCellCallback} (\hyperlink{classphys_1_1UI_1_1CellCallback}{CellCallback} $\ast$CB)
+\begin{DoxyCompactList}\small\item\em Sets a callback for this \hyperlink{classphys_1_1UI_1_1Cell}{Cell}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Cell_af43b353b0033d3605dad04e925363f2b}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Cell_a886778f945fc31bdc118d101d67f9f80}{SetPriority} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority of this cell for use in sorting on the cell grid. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Cell_abb516a7a4fa2abe00ff037987beea745}{SetSelected} (bool Select)
+\begin{DoxyCompactList}\small\item\em Sets whether or not this \hyperlink{classphys_1_1UI_1_1Cell}{Cell} is currently selected. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Cell_a59075a5ae35c2080876fcc78a97e5b31}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)=0
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Cell_aceb2d399897a502d99c72b2e9e5c859e}{SetVisible} (bool visible)=0
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Cell_ae0d424d873b9bb8712afbcc1bd548dc0}{
+virtual void \hyperlink{classphys_1_1UI_1_1Cell_ae0d424d873b9bb8712afbcc1bd548dc0}{Show} ()=0}
+\label{classphys_1_1UI_1_1Cell_ae0d424d873b9bb8712afbcc1bd548dc0}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Cell_a8bbad377a79e72497d033b2e8c06cfc4}{
+virtual \hyperlink{classphys_1_1UI_1_1Cell_a8bbad377a79e72497d033b2e8c06cfc4}{$\sim$Cell} ()}
+\label{classphys_1_1UI_1_1Cell_a8bbad377a79e72497d033b2e8c06cfc4}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -87,9 +87,9 @@ virtual void \hyperlink{classphys_1_1UI_1_1Cell_a96227e2648a280f9f7baa0760f8643d
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1Cell_ab5c230b34ef233a3f51b19448ee78b20}{
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries SortPriority}}
-\label{classphys_1_1UI_1_1Cell_ab5c230b34ef233a3f51b19448ee78b20}
+\hypertarget{classphys_1_1UI_1_1Cell_acb99abbc3dfed845840bc948ba9dda26}{
+\hyperlink{classphys_1_1UI_1_1CellCallback}{CellCallback} $\ast$ {\bfseries Callback}}
+\label{classphys_1_1UI_1_1Cell_acb99abbc3dfed845840bc948ba9dda26}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Cell_afe3d730ca22d70326aaef627a4707c7d}{
@@ -97,9 +97,9 @@ bool {\bfseries Selected}}
 \label{classphys_1_1UI_1_1Cell_afe3d730ca22d70326aaef627a4707c7d}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Cell_acb99abbc3dfed845840bc948ba9dda26}{
-\hyperlink{classphys_1_1UI_1_1CellCallback}{CellCallback} $\ast$ {\bfseries Callback}}
-\label{classphys_1_1UI_1_1Cell_acb99abbc3dfed845840bc948ba9dda26}
+\hypertarget{classphys_1_1UI_1_1Cell_ab5c230b34ef233a3f51b19448ee78b20}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries SortPriority}}
+\label{classphys_1_1UI_1_1Cell_ab5c230b34ef233a3f51b19448ee78b20}
 
 \end{DoxyCompactItemize}
 

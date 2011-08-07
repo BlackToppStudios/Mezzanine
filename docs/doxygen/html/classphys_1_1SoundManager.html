@@ -53,6 +53,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
@@ -91,54 +92,54 @@ Inheritance diagram for phys::SoundManager:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a42d41090652f8ef12d575d78881d6a05">SoundManager</a> (bool DefaultSettings=true)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="#a42d41090652f8ef12d575d78881d6a05"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#af557110e5f0eccc7be861f163e1670d0">~SoundManager</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor.  <a href="#af557110e5f0eccc7be861f163e1670d0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#ae6d3957f965b54e06ec540e903cec68d">Initialize</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited Initializer.  <a href="#ae6d3957f965b54e06ec540e903cec68d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">DoMainLoopItems</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty MainLoopItems.  <a href="#a577b228753ea19856b8476ab831e547e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a735ca3ad1554d70623ac60f38ca4cefc">InitializeManager</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Manager.  <a href="#a735ca3ad1554d70623ac60f38ca4cefc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a89c05a5628e187939ea30b0e4b149931">AddSoundToSoundSet</a> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> SoundSetName, <a class="el" href="classphys_1_1Sound.html">Sound</a> *SoundInst)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Add's a sound to the defined set.  <a href="#a89c05a5628e187939ea30b0e4b149931"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#acc3551bcda7b1c681d83d81cc25747ae">ClearLogs</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This empties logs that the audio subystem creates.  <a href="#acc3551bcda7b1c681d83d81cc25747ae"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Sound.html">Sound</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a4504934e7a6a75045f0a8d303b7be0b8">CreateSound</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;SoundName, <a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;FilePath, bool Stream)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a sound instance from a file that can be used to play sounds.  <a href="#a4504934e7a6a75045f0a8d303b7be0b8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Sound.html">Sound</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#aa039c3d7a5ee961be0934a58fd3826fa">CreateSoundFromMemory</a> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;SoundName, const char *Data, int Size, <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Extension)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a sound instance from a memory buffer.  <a href="#aa039c3d7a5ee961be0934a58fd3826fa"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a6a996829cab647ccf1ca401361af7167">DestroySound</a> (<a class="el" href="classphys_1_1Sound.html">Sound</a> *SoundName)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a <a class="el" href="classphys_1_1Sound.html" title="This is an instance of a sound that can be played and manipulated.">Sound</a>.  <a href="#a6a996829cab647ccf1ca401361af7167"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Sound.html">Sound</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#aa325440a688757ad74812b7f093e2423">GetSoundByName</a> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> SoundName)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a sound by it's name.  <a href="#aa325440a688757ad74812b7f093e2423"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a0f523240530abd5ab437c9eace78056a">DestroyAllSounds</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all stored sounds.  <a href="#a0f523240530abd5ab437c9eace78056a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1SoundSet.html">SoundSet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#afccb11a6f6d9aa9768a185febb0af45a">CreateSoundSet</a> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> SoundSetName)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a sound set.  <a href="#afccb11a6f6d9aa9768a185febb0af45a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1SoundSet.html">SoundSet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a419edd2aed481ed7eff4beb11c9a6cf2">GetSoundSet</a> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> SoundSetName)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an existing sound set.  <a href="#a419edd2aed481ed7eff4beb11c9a6cf2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a89c05a5628e187939ea30b0e4b149931">AddSoundToSoundSet</a> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> SoundSetName, <a class="el" href="classphys_1_1Sound.html">Sound</a> *SoundInst)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Add's a sound to the defined set.  <a href="#a89c05a5628e187939ea30b0e4b149931"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a0f523240530abd5ab437c9eace78056a">DestroyAllSounds</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all stored sounds.  <a href="#a0f523240530abd5ab437c9eace78056a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a6a996829cab647ccf1ca401361af7167">DestroySound</a> (<a class="el" href="classphys_1_1Sound.html">Sound</a> *SoundName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a <a class="el" href="classphys_1_1Sound.html" title="This is an instance of a sound that can be played and manipulated.">Sound</a>.  <a href="#a6a996829cab647ccf1ca401361af7167"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">DoMainLoopItems</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty MainLoopItems.  <a href="#a577b228753ea19856b8476ab831e547e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#adb5717af71da8829600fd613a2ce615b">GetAvailableDeviceCount</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of available devices.  <a href="#adb5717af71da8829600fd613a2ce615b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a842f7cba6b12585bca77f642ecb8be79">GetAvailableDeviceNameByIndex</a> (<a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> Index)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of an available device.  <a href="#a842f7cba6b12585bca77f642ecb8be79"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#ac4814331683597034b26fac5c1c69bfa">GetDefaultDeviceName</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the default device.  <a href="#ac4814331683597034b26fac5c1c69bfa"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#adb5717af71da8829600fd613a2ce615b">GetAvailableDeviceCount</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of available devices.  <a href="#adb5717af71da8829600fd613a2ce615b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1SoundListener.html">SoundListener</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#af0c700e283c44c20466185e1150fc6a3">GetListener</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve's the listener for this sound manager.  <a href="#af0c700e283c44c20466185e1150fc6a3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a6815f78a6170b119e2d1d24e862ffbf8">GetType</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the manager type.  <a href="#a6815f78a6170b119e2d1d24e862ffbf8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::stringstream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a284fbc2fdbecdf66e717366b09e2c9da">GetLogs</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the logs that the audio subystem creates.  <a href="#a284fbc2fdbecdf66e717366b09e2c9da"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#acc3551bcda7b1c681d83d81cc25747ae">ClearLogs</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This empties logs that the audio subystem creates.  <a href="#acc3551bcda7b1c681d83d81cc25747ae"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Sound.html">Sound</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#aa325440a688757ad74812b7f093e2423">GetSoundByName</a> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> SoundName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a sound by it's name.  <a href="#aa325440a688757ad74812b7f093e2423"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1SoundSet.html">SoundSet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a419edd2aed481ed7eff4beb11c9a6cf2">GetSoundSet</a> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> SoundSetName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an existing sound set.  <a href="#a419edd2aed481ed7eff4beb11c9a6cf2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a6815f78a6170b119e2d1d24e862ffbf8">GetType</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the manager type.  <a href="#a6815f78a6170b119e2d1d24e862ffbf8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#ae6d3957f965b54e06ec540e903cec68d">Initialize</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited Initializer.  <a href="#ae6d3957f965b54e06ec540e903cec68d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a735ca3ad1554d70623ac60f38ca4cefc">InitializeManager</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Manager.  <a href="#a735ca3ad1554d70623ac60f38ca4cefc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#a42d41090652f8ef12d575d78881d6a05">SoundManager</a> (bool DefaultSettings=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="#a42d41090652f8ef12d575d78881d6a05"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1SoundManager.html#af557110e5f0eccc7be861f163e1670d0">~SoundManager</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor.  <a href="#af557110e5f0eccc7be861f163e1670d0"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b882ae37b8fbe843eee1f865be72a51"></a><!-- doxytag: member="phys::SoundManager::AudioListener" ref="a5b882ae37b8fbe843eee1f865be72a51" args="" -->
+cAudio::IListener *&#160;</td><td class="memItemRight" valign="bottom"><b>AudioListener</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16bf0c35e031e2359d27c6b12536c98d"></a><!-- doxytag: member="phys::SoundManager::AudioManager" ref="a16bf0c35e031e2359d27c6b12536c98d" args="" -->
 cAudio::IAudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>AudioManager</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a8e89ec9886d28cf6331930b4269fb3"></a><!-- doxytag: member="phys::SoundManager::SoundSets" ref="a7a8e89ec9886d28cf6331930b4269fb3" args="" -->
 std::map&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>, <a class="el" href="classphys_1_1SoundSet.html">SoundSet</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>SoundSets</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b882ae37b8fbe843eee1f865be72a51"></a><!-- doxytag: member="phys::SoundManager::AudioListener" ref="a5b882ae37b8fbe843eee1f865be72a51" args="" -->
-cAudio::IListener *&#160;</td><td class="memItemRight" valign="bottom"><b>AudioListener</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Todo de/serialize sound set. </p>
@@ -739,7 +740,7 @@ cAudio::IListener *&#160;</td><td class="memItemRight" valign="bottom"><b>AudioL
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:47 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Aug 7 2011 04:03:04 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

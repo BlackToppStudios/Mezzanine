@@ -20,39 +20,39 @@ Inheritance diagram for phys::UI::PagedCellGrid:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1PagedCellGrid_a3038df62663e3ee8b860bd6f035af732}{PagedCellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&SpnRect, const UI::SpinnerStyle \&SStyle, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a6b9c8876b41321b77321efcf27feb2c6}{
-virtual \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a6b9c8876b41321b77321efcf27feb2c6}{$\sim$PagedCellGrid} ()}
-\label{classphys_1_1UI_1_1PagedCellGrid_a6b9c8876b41321b77321efcf27feb2c6}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a76ff4b649f4687203ba9d1473474ce99}{SetVisible} (bool visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1PagedCellGrid_aae7ae6fbe4d0fc1006c6abd8d1f22727}{
-virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_aae7ae6fbe4d0fc1006c6abd8d1f22727}{Show} ()}
-\label{classphys_1_1UI_1_1PagedCellGrid_aae7ae6fbe4d0fc1006c6abd8d1f22727}
-
-\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a859ed3c174faf86962df4d0fd2b43fab}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Spinner}{UI::Spinner} $\ast$ \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a6d21af1cc6490d1aacbb054dd5fdd555}{GetPageSpinner} ()
+\begin{DoxyCompactList}\small\item\em Gets the spinner in use by this widget. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1PagedCellGrid_ae4cbcf05df48dfcb0871f4d3604010ec}{
 virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_ae4cbcf05df48dfcb0871f4d3604010ec}{Hide} ()}
 \label{classphys_1_1UI_1_1PagedCellGrid_ae4cbcf05df48dfcb0871f4d3604010ec}
 
 \begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a0083810bb8c7857ef2b4e2ce40dbaa8d}{SetFixedCellSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&FixedSize)
-\begin{DoxyCompactList}\small\item\em Sets the fixed size cells in this grid are to have. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_af50d0b6337d727ac914f1f0c6f15c198}{SetWorkAreaLimits} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&AreaLimit)
-\begin{DoxyCompactList}\small\item\em Sets the limits of the grid, to determine when and where objects need to be wrapped. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a1bfa7f6ebfc9cec285509f5ddb649f08}{SetEdgeSpacing} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Spacing)
-\begin{DoxyCompactList}\small\item\em Sets the spacing from the edge of the entire grid area that no cell should overlap. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1PagedCellGrid_a3038df62663e3ee8b860bd6f035af732}{PagedCellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&SpnRect, const UI::SpinnerStyle \&SStyle, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_ad565437a52149f099c1757903f930723}{SetCellSpacing} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Spacing)
 \begin{DoxyCompactList}\small\item\em Sets the spacing from each cell around any given cell there should be. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a859ed3c174faf86962df4d0fd2b43fab}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a1bfa7f6ebfc9cec285509f5ddb649f08}{SetEdgeSpacing} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Spacing)
+\begin{DoxyCompactList}\small\item\em Sets the spacing from the edge of the entire grid area that no cell should overlap. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a0083810bb8c7857ef2b4e2ce40dbaa8d}{SetFixedCellSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&FixedSize)
+\begin{DoxyCompactList}\small\item\em Sets the fixed size cells in this grid are to have. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a76ff4b649f4687203ba9d1473474ce99}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_af50d0b6337d727ac914f1f0c6f15c198}{SetWorkAreaLimits} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&AreaLimit)
+\begin{DoxyCompactList}\small\item\em Sets the limits of the grid, to determine when and where objects need to be wrapped. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1PagedCellGrid_aae7ae6fbe4d0fc1006c6abd8d1f22727}{
+virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_aae7ae6fbe4d0fc1006c6abd8d1f22727}{Show} ()}
+\label{classphys_1_1UI_1_1PagedCellGrid_aae7ae6fbe4d0fc1006c6abd8d1f22727}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a7d6ddd7126f86d2ea6592ac3f9a91037}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
 \begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Spinner}{UI::Spinner} $\ast$ \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a6d21af1cc6490d1aacbb054dd5fdd555}{GetPageSpinner} ()
-\begin{DoxyCompactList}\small\item\em Gets the spinner in use by this widget. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a6b9c8876b41321b77321efcf27feb2c6}{
+virtual \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a6b9c8876b41321b77321efcf27feb2c6}{$\sim$PagedCellGrid} ()}
+\label{classphys_1_1UI_1_1PagedCellGrid_a6b9c8876b41321b77321efcf27feb2c6}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -61,21 +61,21 @@ virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a635b2821bf9876a21d91da
 \label{classphys_1_1UI_1_1PagedCellGrid_a635b2821bf9876a21d91da749ec9db79}
 
 \begin{DoxyCompactList}\small\item\em Calculates the cells per page with existing parameters. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1PagedCellGrid_aed3d35d22a9282d7603cd6f5ed0d7f1c}{
-virtual std::pair$<$ \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole}, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} $>$ \hyperlink{classphys_1_1UI_1_1PagedCellGrid_aed3d35d22a9282d7603cd6f5ed0d7f1c}{FindTopLeftOfPage} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Page)}
-\label{classphys_1_1UI_1_1PagedCellGrid_aed3d35d22a9282d7603cd6f5ed0d7f1c}
-
-\begin{DoxyCompactList}\small\item\em Finds the top left of the passed in page. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a9eb862a9e31767dd02bf8cf03178392e}{
-virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a9eb862a9e31767dd02bf8cf03178392e}{DrawGrid} ()}
-\label{classphys_1_1UI_1_1PagedCellGrid_a9eb862a9e31767dd02bf8cf03178392e}
-
-\begin{DoxyCompactList}\small\item\em Draws the grid, used for updating after any change. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1PagedCellGrid_a85dedc7f0ed0a387b58486350a9c40a7}{
 virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a85dedc7f0ed0a387b58486350a9c40a7}{DrawGrid} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&WinDim)}
 \label{classphys_1_1UI_1_1PagedCellGrid_a85dedc7f0ed0a387b58486350a9c40a7}
 
 \begin{DoxyCompactList}\small\item\em Draws the grid, used for updating after any change. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a9eb862a9e31767dd02bf8cf03178392e}{
+virtual void \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a9eb862a9e31767dd02bf8cf03178392e}{DrawGrid} ()}
+\label{classphys_1_1UI_1_1PagedCellGrid_a9eb862a9e31767dd02bf8cf03178392e}
+
+\begin{DoxyCompactList}\small\item\em Draws the grid, used for updating after any change. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1PagedCellGrid_aed3d35d22a9282d7603cd6f5ed0d7f1c}{
+virtual std::pair$<$ \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole}, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} $>$ \hyperlink{classphys_1_1UI_1_1PagedCellGrid_aed3d35d22a9282d7603cd6f5ed0d7f1c}{FindTopLeftOfPage} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Page)}
+\label{classphys_1_1UI_1_1PagedCellGrid_aed3d35d22a9282d7603cd6f5ed0d7f1c}
+
+\begin{DoxyCompactList}\small\item\em Finds the top left of the passed in page. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1PagedCellGrid_a31d1ab9c67af49b992162e84ad750356}{
 virtual bool \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a31d1ab9c67af49b992162e84ad750356}{GridNeedsRedraw} ()}
 \label{classphys_1_1UI_1_1PagedCellGrid_a31d1ab9c67af49b992162e84ad750356}
@@ -89,16 +89,6 @@ virtual bool \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a31d1ab9c67af49b992162e
 \label{classphys_1_1UI_1_1PagedCellGrid_ae2ce49bd86b1c675b3a0eaef3252a9da}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a914e320c60481730adde14b6db386882}{
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries XCellsPerPage}}
-\label{classphys_1_1UI_1_1PagedCellGrid_a914e320c60481730adde14b6db386882}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a27a1dd0c82747c04b3d4ff7f077f553b}{
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries YCellsPerPage}}
-\label{classphys_1_1UI_1_1PagedCellGrid_a27a1dd0c82747c04b3d4ff7f077f553b}
-
-\item 
 \hypertarget{classphys_1_1UI_1_1PagedCellGrid_a8154eb0cf03edbe96f59d92b526058ef}{
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries MaxPages}}
 \label{classphys_1_1UI_1_1PagedCellGrid_a8154eb0cf03edbe96f59d92b526058ef}
@@ -107,6 +97,16 @@ virtual bool \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a31d1ab9c67af49b992162e
 \hypertarget{classphys_1_1UI_1_1PagedCellGrid_a07b1db6a9b7adda5b66588fac8c7e4a1}{
 \hyperlink{classphys_1_1UI_1_1Spinner}{UI::Spinner} $\ast$ {\bfseries PageSpinner}}
 \label{classphys_1_1UI_1_1PagedCellGrid_a07b1db6a9b7adda5b66588fac8c7e4a1}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a914e320c60481730adde14b6db386882}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries XCellsPerPage}}
+\label{classphys_1_1UI_1_1PagedCellGrid_a914e320c60481730adde14b6db386882}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1PagedCellGrid_a27a1dd0c82747c04b3d4ff7f077f553b}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries YCellsPerPage}}
+\label{classphys_1_1UI_1_1PagedCellGrid_a27a1dd0c82747c04b3d4ff7f077f553b}
 
 \end{DoxyCompactItemize}
 

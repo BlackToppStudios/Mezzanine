@@ -53,6 +53,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
@@ -83,25 +84,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a6e6e88eb63cc8131da9c8de0fb691801">Rectangle</a> (const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a6e6e88eb63cc8131da9c8de0fb691801"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8862c7e04c2b8911eac4a2d3b6aff165"></a><!-- doxytag: member="phys::UI::Rectangle::~Rectangle" ref="a8862c7e04c2b8911eac4a2d3b6aff165" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a8862c7e04c2b8911eac4a2d3b6aff165">~Rectangle</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a4fa5021010e8cdaf9a9e35b3d4c82461">SetVisible</a> (bool Visible)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this rectangle.  <a href="#a4fa5021010e8cdaf9a9e35b3d4c82461"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#aad47a2d9a7c9d8d9111b2edbf44541d5">IsVisible</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility of this rectangle.  <a href="#aad47a2d9a7c9d8d9111b2edbf44541d5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab408c7607150b24fbc4f70870705a121"></a><!-- doxytag: member="phys::UI::Rectangle::Show" ref="ab408c7607150b24fbc4f70870705a121" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#ab408c7607150b24fbc4f70870705a121">Show</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this rectangle to be shown. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a246070a93416c2c50d63720b354154d7">CheckMouseHover</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether the mouse is over this rectangle.  <a href="#a246070a93416c2c50d63720b354154d7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a976f977ee23e805b4a193fc0f9e8392f">GetActualPosition</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the top left position of this rectangle in pixels.  <a href="#a976f977ee23e805b4a193fc0f9e8392f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#ae29501765e3af7eac37d5ac581e77b24">GetActualSize</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of this rectangle in pixels.  <a href="#ae29501765e3af7eac37d5ac581e77b24"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a20903adb6d1b8650d73774190a2b9c57">GetMouseHover</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stored value of whether or not the mouse is over the rectangle.  <a href="#a20903adb6d1b8650d73774190a2b9c57"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#aa0e2d6170f0b2d5b1f915c705e7fca10">GetPosition</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative top left position of this rectangle.  <a href="#aa0e2d6170f0b2d5b1f915c705e7fca10"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#ab4fe2f73e386c9735ad17789ce6cc51a">GetPrimaryAtlas</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set primary atlas.  <a href="#ab4fe2f73e386c9735ad17789ce6cc51a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual UI::RenderPriority&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a8445b7d0dcb2c92f29aeadac305af420">GetRenderPriority</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the priority this button should be rendered with.  <a href="#a8445b7d0dcb2c92f29aeadac305af420"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a5f54debc5c435cda9505b40ce82f4f24">GetSize</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative size of this rectangle.  <a href="#a5f54debc5c435cda9505b40ce82f4f24"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25bad72cff62c5c69b224bcb74304661"></a><!-- doxytag: member="phys::UI::Rectangle::Hide" ref="a25bad72cff62c5c69b224bcb74304661" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a25bad72cff62c5c69b224bcb74304661">Hide</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this rectangle to hide. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a246070a93416c2c50d63720b354154d7">CheckMouseHover</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether the mouse is over this rectangle.  <a href="#a246070a93416c2c50d63720b354154d7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a20903adb6d1b8650d73774190a2b9c57">GetMouseHover</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stored value of whether or not the mouse is over the rectangle.  <a href="#a20903adb6d1b8650d73774190a2b9c57"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#aad47a2d9a7c9d8d9111b2edbf44541d5">IsVisible</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility of this rectangle.  <a href="#aad47a2d9a7c9d8d9111b2edbf44541d5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebeea2052a72be49eb9dece731022c78"></a><!-- doxytag: member="phys::UI::Rectangle::NoBorder" ref="aebeea2052a72be49eb9dece731022c78" args="()" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#aebeea2052a72be49eb9dece731022c78">NoBorder</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables any border set on this rectangle if one is currently set. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a6e6e88eb63cc8131da9c8de0fb691801">Rectangle</a> (const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a6e6e88eb63cc8131da9c8de0fb691801"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a8a5af1cc3360196f793deb8a0db604e4">SetActualPosition</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the top left position of this rectangle in pixels.  <a href="#a8a5af1cc3360196f793deb8a0db604e4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#ab2afb04d539b2b1fc384fa1050b1ba21">SetActualSize</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the size of this rectangle in pixels.  <a href="#ab2afb04d539b2b1fc384fa1050b1ba21"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a687b524b89e6a76bc102b60023d36abd">SetBackgroundColour</a> (const <a class="el" href="classphys_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background colour of the rectangle.  <a href="#a687b524b89e6a76bc102b60023d36abd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#ae9cc47125e075aaa9bfd397762de6e0c">SetBackgroundSprite</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Name)</td></tr>
@@ -110,49 +122,38 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the rectangle.  <a href="#aa20172e511e24ed24e21e0bdac0e00c4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#aaea6f9d5cd62b63a132c03c894a6d8de">SetBorder</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Width, const <a class="el" href="classphys_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables a border and sets it's colour.  <a href="#aaea6f9d5cd62b63a132c03c894a6d8de"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebeea2052a72be49eb9dece731022c78"></a><!-- doxytag: member="phys::UI::Rectangle::NoBorder" ref="aebeea2052a72be49eb9dece731022c78" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#aebeea2052a72be49eb9dece731022c78">NoBorder</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables any border set on this rectangle if one is currently set. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a16fd918d53d0ae1f82af2574c0396b2c">SetPosition</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative top left position of this rectangle.  <a href="#a16fd918d53d0ae1f82af2574c0396b2c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#aa0e2d6170f0b2d5b1f915c705e7fca10">GetPosition</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative top left position of this rectangle.  <a href="#aa0e2d6170f0b2d5b1f915c705e7fca10"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a8a5af1cc3360196f793deb8a0db604e4">SetActualPosition</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the top left position of this rectangle in pixels.  <a href="#a8a5af1cc3360196f793deb8a0db604e4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a976f977ee23e805b4a193fc0f9e8392f">GetActualPosition</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the top left position of this rectangle in pixels.  <a href="#a976f977ee23e805b4a193fc0f9e8392f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a5fa81c05e32b454c313f25609a03c58f">SetSize</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative size of this rectangle.  <a href="#a5fa81c05e32b454c313f25609a03c58f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a5f54debc5c435cda9505b40ce82f4f24">GetSize</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative size of this rectangle.  <a href="#a5f54debc5c435cda9505b40ce82f4f24"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#ab2afb04d539b2b1fc384fa1050b1ba21">SetActualSize</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the size of this rectangle in pixels.  <a href="#ab2afb04d539b2b1fc384fa1050b1ba21"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#ae29501765e3af7eac37d5ac581e77b24">GetActualSize</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of this rectangle in pixels.  <a href="#ae29501765e3af7eac37d5ac581e77b24"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a79a98cac2cdd05d6ea6fa3865c9c4b6e">SetRenderPriority</a> (const UI::RenderPriority &amp;Priority)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority this button should be rendered with.  <a href="#a79a98cac2cdd05d6ea6fa3865c9c4b6e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual UI::RenderPriority&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a8445b7d0dcb2c92f29aeadac305af420">GetRenderPriority</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the priority this button should be rendered with.  <a href="#a8445b7d0dcb2c92f29aeadac305af420"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a275a1495bdbb3829b5f94525d6caa9ed">SetPrimaryAtlas</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Atlas)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Atlas to be assumed when one isn't provided for atlas related tasks.  <a href="#a275a1495bdbb3829b5f94525d6caa9ed"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#ab4fe2f73e386c9735ad17789ce6cc51a">GetPrimaryAtlas</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set primary atlas.  <a href="#ab4fe2f73e386c9735ad17789ce6cc51a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a79a98cac2cdd05d6ea6fa3865c9c4b6e">SetRenderPriority</a> (const UI::RenderPriority &amp;Priority)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority this button should be rendered with.  <a href="#a79a98cac2cdd05d6ea6fa3865c9c4b6e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a5fa81c05e32b454c313f25609a03c58f">SetSize</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative size of this rectangle.  <a href="#a5fa81c05e32b454c313f25609a03c58f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a4fa5021010e8cdaf9a9e35b3d4c82461">SetVisible</a> (bool Visible)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this rectangle.  <a href="#a4fa5021010e8cdaf9a9e35b3d4c82461"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab408c7607150b24fbc4f70870705a121"></a><!-- doxytag: member="phys::UI::Rectangle::Show" ref="ab408c7607150b24fbc4f70870705a121" args="()" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#ab408c7607150b24fbc4f70870705a121">Show</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this rectangle to be shown. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a090cfa5a1298c333335258d52d81c017">UpdateDimensions</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this rectangle to match those of the new screen size.  <a href="#a090cfa5a1298c333335258d52d81c017"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8862c7e04c2b8911eac4a2d3b6aff165"></a><!-- doxytag: member="phys::UI::Rectangle::~Rectangle" ref="a8862c7e04c2b8911eac4a2d3b6aff165" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1Rectangle.html#a8862c7e04c2b8911eac4a2d3b6aff165">~Rectangle</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2646b0bcc1602757852c21fd70e169cc"></a><!-- doxytag: member="phys::UI::Rectangle::GRectangle" ref="a2646b0bcc1602757852c21fd70e169cc" args="" -->
 Gorilla::Rectangle *&#160;</td><td class="memItemRight" valign="bottom"><b>GRectangle</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac54c65c81e321d6ba3c58f32af71d407"></a><!-- doxytag: member="phys::UI::Rectangle::Parent" ref="ac54c65c81e321d6ba3c58f32af71d407" args="" -->
-<a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Parent</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c78c2e48573d00290f3374e53971a4c"></a><!-- doxytag: member="phys::UI::Rectangle::Manager" ref="a3c78c2e48573d00290f3374e53971a4c" args="" -->
 <a class="el" href="classphys_1_1UIManager.html">UIManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98b63e58485ebb065c1ad62dc39ac63b"></a><!-- doxytag: member="phys::UI::Rectangle::MouseHover" ref="a98b63e58485ebb065c1ad62dc39ac63b" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac54c65c81e321d6ba3c58f32af71d407"></a><!-- doxytag: member="phys::UI::Rectangle::Parent" ref="ac54c65c81e321d6ba3c58f32af71d407" args="" -->
+<a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Parent</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae059b550f2d6c490f769bcab07b37910"></a><!-- doxytag: member="phys::UI::Rectangle::RelPosition" ref="ae059b550f2d6c490f769bcab07b37910" args="" -->
 <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RelPosition</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acac4d6cf1b71363d9c27f900b215667e"></a><!-- doxytag: member="phys::UI::Rectangle::RelSize" ref="acac4d6cf1b71363d9c27f900b215667e" args="" -->
 <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RelSize</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98b63e58485ebb065c1ad62dc39ac63b"></a><!-- doxytag: member="phys::UI::Rectangle::MouseHover" ref="a98b63e58485ebb065c1ad62dc39ac63b" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This class is a helper class, specifically for use with background sprites and colours. </p>
@@ -748,7 +749,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:49 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Aug 7 2011 04:03:07 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

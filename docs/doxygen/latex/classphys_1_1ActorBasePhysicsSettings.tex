@@ -22,49 +22,49 @@ Inheritance diagram for phys::ActorBasePhysicsSettings:\begin{figure}[H]
 \item 
 \hyperlink{classphys_1_1ActorBasePhysicsSettings_af9f4413b1cb7c84c3c546db6de3ac662}{ActorBasePhysicsSettings} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, btCollisionObject $\ast$PhysicsObject)
 \begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ActorBasePhysicsSettings_a6e10308c8888c67a196982bc6cbdebbf}{
-virtual \hyperlink{classphys_1_1ActorBasePhysicsSettings_a6e10308c8888c67a196982bc6cbdebbf}{$\sim$ActorBasePhysicsSettings} ()}
-\label{classphys_1_1ActorBasePhysicsSettings_a6e10308c8888c67a196982bc6cbdebbf}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a992771e73cd1f98628618cf75938a5ef}{SetCollisionGroupAndMask} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Group, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Mask)
-\begin{DoxyCompactList}\small\item\em Set the collision group and mask for the actor to determine what it should collide with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a89e61d914542bb6e16e22e7f39ba26c1}{DisableCollisionResponse} ()
+\begin{DoxyCompactList}\small\item\em Sets the actor to be unable to collide with other objects in the world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_aeb1dafd6d1e4875bf89be4de93208c03}{EnableCollisionResponse} ()
+\begin{DoxyCompactList}\small\item\em Sets the actor to be able to collide with other objects in the world. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a7d434b1a52cf5290a9ecc972b87a6a40}{ActorActivationState} \hyperlink{classphys_1_1ActorBasePhysicsSettings_ad7d02ace01a30cb3ae9ab187d2449f38}{GetActivationState} () const 
+\begin{DoxyCompactList}\small\item\em How activated or deactivated is the object. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_a375c4b19c81e87021266c90e7327888b}{GetBasePointer} ()
+\begin{DoxyCompactList}\small\item\em Get a pointer to this class of type \hyperlink{classphys_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a6090c93f35beea7c82550076a17aef24}{GetCollisionGroup} () const 
 \begin{DoxyCompactList}\small\item\em Gets the actors collision group. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a8a3a7ca225dd9697495bcc7d51b0942a}{GetCollisionMask} () const 
 \begin{DoxyCompactList}\small\item\em Gets the actors collision mask. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_ad76ddc51fb8514c1cffa9d5f222b580c}{SetFriction} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Friction)
-\begin{DoxyCompactList}\small\item\em Sets the Actors' friction coefficient. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1ActorBasePhysicsSettings_aa131aa28b9e5c7a53c65c4e229f13ed1}{GetCollisionResponse} () const 
+\begin{DoxyCompactList}\small\item\em Will this respond to 3d collisions. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ActorBasePhysicsSettings_ad38f4ccdbc0ecf997bb9745c23961f6d}{GetFriction} () const 
 \begin{DoxyCompactList}\small\item\em Gets the Actors' friction coefficient. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_ab379008b313aeeecfe82f641ce8b6305}{SetRestitution} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Restitution)
-\begin{DoxyCompactList}\small\item\em Sets the Actors' restitution coefficient. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a937e66bb0293c4162fae48d9e37196f4}{GetRestitution} () const 
 \begin{DoxyCompactList}\small\item\em Gets the Actors' restitution coefficient. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a3e2a58dbbe32fd193f80821e8dd6e7f5}{SetKinematic} ()
-\begin{DoxyCompactList}\small\item\em Sets the state of the object to Kinematic. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1ActorBasePhysicsSettings_aeb966cf55b9b626897731f42b5a2fc64}{IsActive} () const 
+\begin{DoxyCompactList}\small\item\em Checks if the object is active in the simulation. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1ActorBasePhysicsSettings_a8128bcfc407909a57026eb38812b1d1d}{IsKinematic} () const 
 \begin{DoxyCompactList}\small\item\em Is the actir kinematic. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a20addfbc6cdfdc7d6f7847a8695f1172}{SetStatic} ()
-\begin{DoxyCompactList}\small\item\em Sets the state of the object to Static. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1ActorBasePhysicsSettings_a68c32cbe7329e138c5ea11c5b098483f}{IsStatic} () const 
 \begin{DoxyCompactList}\small\item\em Is the actor static. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1ActorBasePhysicsSettings_a5fe007187584b836ada963f8a23eb377}{IsStaticOrKinematic} () const 
 \begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_aeb1dafd6d1e4875bf89be4de93208c03}{EnableCollisionResponse} ()
-\begin{DoxyCompactList}\small\item\em Sets the actor to be able to collide with other objects in the world. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a89e61d914542bb6e16e22e7f39ba26c1}{DisableCollisionResponse} ()
-\begin{DoxyCompactList}\small\item\em Sets the actor to be unable to collide with other objects in the world. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1ActorBasePhysicsSettings_aa131aa28b9e5c7a53c65c4e229f13ed1}{GetCollisionResponse} () const 
-\begin{DoxyCompactList}\small\item\em Will this respond to 3d collisions. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1ActorBasePhysicsSettings_aeb966cf55b9b626897731f42b5a2fc64}{IsActive} () const 
-\begin{DoxyCompactList}\small\item\em Checks if the object is active in the simulation. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_ab0b1760f3730e85470097d44985a5b56}{SetActivationState} (\hyperlink{namespacephys_a7d434b1a52cf5290a9ecc972b87a6a40}{ActorActivationState} State, bool Force=false)
 \begin{DoxyCompactList}\small\item\em Sets the activation state of the actor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a7d434b1a52cf5290a9ecc972b87a6a40}{ActorActivationState} \hyperlink{classphys_1_1ActorBasePhysicsSettings_ad7d02ace01a30cb3ae9ab187d2449f38}{GetActivationState} () const 
-\begin{DoxyCompactList}\small\item\em How activated or deactivated is the object. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_a375c4b19c81e87021266c90e7327888b}{GetBasePointer} ()
-\begin{DoxyCompactList}\small\item\em Get a pointer to this class of type \hyperlink{classphys_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a992771e73cd1f98628618cf75938a5ef}{SetCollisionGroupAndMask} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Group, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Mask)
+\begin{DoxyCompactList}\small\item\em Set the collision group and mask for the actor to determine what it should collide with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_ad76ddc51fb8514c1cffa9d5f222b580c}{SetFriction} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Friction)
+\begin{DoxyCompactList}\small\item\em Sets the Actors' friction coefficient. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a3e2a58dbbe32fd193f80821e8dd6e7f5}{SetKinematic} ()
+\begin{DoxyCompactList}\small\item\em Sets the state of the object to Kinematic. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_ab379008b313aeeecfe82f641ce8b6305}{SetRestitution} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Restitution)
+\begin{DoxyCompactList}\small\item\em Sets the Actors' restitution coefficient. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a20addfbc6cdfdc7d6f7847a8695f1172}{SetStatic} ()
+\begin{DoxyCompactList}\small\item\em Sets the state of the object to Static. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_a6e10308c8888c67a196982bc6cbdebbf}{
+virtual \hyperlink{classphys_1_1ActorBasePhysicsSettings_a6e10308c8888c67a196982bc6cbdebbf}{$\sim$ActorBasePhysicsSettings} ()}
+\label{classphys_1_1ActorBasePhysicsSettings_a6e10308c8888c67a196982bc6cbdebbf}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -73,11 +73,6 @@ btCollisionObject $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_a259d4
 \label{classphys_1_1ActorBasePhysicsSettings_a259d4d10541b28d389ffa287f07ec916}
 
 \begin{DoxyCompactList}\small\item\em Physics Object of the actor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ActorBasePhysicsSettings_a2bd46cc0b9e675c409d5e09772126030}{
-\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_a2bd46cc0b9e675c409d5e09772126030}{Parent}}
-\label{classphys_1_1ActorBasePhysicsSettings_a2bd46cc0b9e675c409d5e09772126030}
-
-\begin{DoxyCompactList}\small\item\em The Actor this belongs to. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a6a95b9dceba9a60f87b2ae0f3109b638}{
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a6a95b9dceba9a60f87b2ae0f3109b638}{CollisionGroup}}
 \label{classphys_1_1ActorBasePhysicsSettings_a6a95b9dceba9a60f87b2ae0f3109b638}
@@ -87,7 +82,12 @@ btCollisionObject $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_a259d4
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorBasePhysicsSettings_ae5f0c41d16868bf67e834b643207521f}{CollisionMask}}
 \label{classphys_1_1ActorBasePhysicsSettings_ae5f0c41d16868bf67e834b643207521f}
 
-\begin{DoxyCompactList}\small\item\em Stores the kind of actors that can collide with each other. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Stores the kind of actors that can collide with each other. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_a2bd46cc0b9e675c409d5e09772126030}{
+\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_a2bd46cc0b9e675c409d5e09772126030}{Parent}}
+\label{classphys_1_1ActorBasePhysicsSettings_a2bd46cc0b9e675c409d5e09772126030}
+
+\begin{DoxyCompactList}\small\item\em The Actor this belongs to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

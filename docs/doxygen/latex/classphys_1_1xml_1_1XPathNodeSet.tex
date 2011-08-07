@@ -27,6 +27,27 @@ typedef const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} $\ast$ \hyper
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classphys_1_1xml_1_1XPathNode}{const\_\-iterator} \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a887d84cf19f5d2155ab9153bc02e8d1e}{begin} () const 
+\begin{DoxyCompactList}\small\item\em Get Beginning iterator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a91fa85dbf474c51bc7a9df1baf38d43a}{Empty} () const 
+\begin{DoxyCompactList}\small\item\em Check if collection is empty. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1XPathNodeSet_a1b5507aca9b87bbaa0c698f293ae8fd4}{
+\hyperlink{classphys_1_1xml_1_1XPathNode}{const\_\-iterator} \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a1b5507aca9b87bbaa0c698f293ae8fd4}{end} () const }
+\label{classphys_1_1xml_1_1XPathNodeSet_a1b5507aca9b87bbaa0c698f293ae8fd4}
+
+\begin{DoxyCompactList}\small\item\em Get Ending iterator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \hyperlink{classphys_1_1xml_1_1XPathNodeSet_ae38baf21701ebbe42af3abfb6976d100}{first} () const 
+\begin{DoxyCompactList}\small\item\em Get first node in the collection by document order. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \& \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a10ab6b5b2188af5d7db6930473fa0190}{operator=} (const \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \&ns)
+\begin{DoxyCompactList}\small\item\em Assignment Operator. \item\end{DoxyCompactList}\item 
+const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \& \hyperlink{classphys_1_1xml_1_1XPathNodeSet_ad620a6cd79b94ae644d10a10d0519029}{operator\mbox{[}$\,$\mbox{]}} (size\_\-t index) const 
+\begin{DoxyCompactList}\small\item\em Indexing operator. \item\end{DoxyCompactList}\item 
+size\_\-t \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a306178fdaf66f2d0ccefd617f7afc7f3}{size} () const 
+\begin{DoxyCompactList}\small\item\em Get collection size. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a509bb7206dfc0fa79887c7ab7c5999db}{sort} (bool reverse=false)
+\begin{DoxyCompactList}\small\item\em Sort the collection in ascending/descending order by document order. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1XPathNodeSet_ab178d39e119369702541033c067a995c}{CollectionType} \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a95c90708290e045ef04425a71b2ddf25}{Type} () const 
+\begin{DoxyCompactList}\small\item\em Get collection Type. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1XPathNodeSet_a24b0e325cd45548e3f63bd37557eab93}{
 \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a24b0e325cd45548e3f63bd37557eab93}{XPathNodeSet} ()}
 \label{classphys_1_1xml_1_1XPathNodeSet_a24b0e325cd45548e3f63bd37557eab93}
@@ -35,28 +56,7 @@ typedef const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} $\ast$ \hyper
 \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a4184ec067744749dd044f7740d2dc6e3}{XPathNodeSet} (\hyperlink{classphys_1_1xml_1_1XPathNode}{const\_\-iterator} begin, \hyperlink{classphys_1_1xml_1_1XPathNode}{const\_\-iterator} end, \hyperlink{classphys_1_1xml_1_1XPathNodeSet_ab178d39e119369702541033c067a995c}{CollectionType} Type=TypeUnsorted)
 \begin{DoxyCompactList}\small\item\em Constructs a set from iterator range. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1XPathNodeSet_af4ac7af973425828bd66dc278887695c}{XPathNodeSet} (const \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \&ns)
-\begin{DoxyCompactList}\small\item\em Copy constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \& \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a10ab6b5b2188af5d7db6930473fa0190}{operator=} (const \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \&ns)
-\begin{DoxyCompactList}\small\item\em Assignment Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1XPathNodeSet_ab178d39e119369702541033c067a995c}{CollectionType} \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a95c90708290e045ef04425a71b2ddf25}{Type} () const 
-\begin{DoxyCompactList}\small\item\em Get collection Type. \item\end{DoxyCompactList}\item 
-size\_\-t \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a306178fdaf66f2d0ccefd617f7afc7f3}{size} () const 
-\begin{DoxyCompactList}\small\item\em Get collection size. \item\end{DoxyCompactList}\item 
-const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \& \hyperlink{classphys_1_1xml_1_1XPathNodeSet_ad620a6cd79b94ae644d10a10d0519029}{operator\mbox{[}$\,$\mbox{]}} (size\_\-t index) const 
-\begin{DoxyCompactList}\small\item\em Indexing operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1XPathNode}{const\_\-iterator} \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a887d84cf19f5d2155ab9153bc02e8d1e}{begin} () const 
-\begin{DoxyCompactList}\small\item\em Get Beginning iterator. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1XPathNodeSet_a1b5507aca9b87bbaa0c698f293ae8fd4}{
-\hyperlink{classphys_1_1xml_1_1XPathNode}{const\_\-iterator} \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a1b5507aca9b87bbaa0c698f293ae8fd4}{end} () const }
-\label{classphys_1_1xml_1_1XPathNodeSet_a1b5507aca9b87bbaa0c698f293ae8fd4}
-
-\begin{DoxyCompactList}\small\item\em Get Ending iterator. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a509bb7206dfc0fa79887c7ab7c5999db}{sort} (bool reverse=false)
-\begin{DoxyCompactList}\small\item\em Sort the collection in ascending/descending order by document order. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \hyperlink{classphys_1_1xml_1_1XPathNodeSet_ae38baf21701ebbe42af3abfb6976d100}{first} () const 
-\begin{DoxyCompactList}\small\item\em Get first node in the collection by document order. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1xml_1_1XPathNodeSet_a91fa85dbf474c51bc7a9df1baf38d43a}{Empty} () const 
-\begin{DoxyCompactList}\small\item\em Check if collection is empty. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Copy constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

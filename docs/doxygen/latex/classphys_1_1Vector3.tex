@@ -14,129 +14,129 @@ This is used to represent a point in space, or a vector through space.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1Vector3_af328c400a03fdb8d2a99fd58382d61cb}{Vector3} ()
-\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3_af1d323b44d7b6ee3d0a79a196d9967da}{Vector3} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a23660f9d1e21a25c53aa06aa737bb56b}{X}, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a6c9bc2ab0995d5056dba8272c650e58e}{Y}, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a53c84fa4b38fb9c4a4d822b04c200b13}{Z})
-\begin{DoxyCompactList}\small\item\em Real value Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3_ac08281de8f4929593b6f4469646691da}{Vector3} (const Ogre::Vector3 \&Vec)
-\begin{DoxyCompactList}\small\item\em Ogre Value Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3_ac13a263c5e2f84578884183cee890570}{Vector3} (const btVector3 \&Vec)
-\begin{DoxyCompactList}\small\item\em Bullet Value Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3_a9f0f452baf92e0c10e6eb0944dc2b3d3}{Vector3} (const cAudio::cVector3 \&Vec)
-\begin{DoxyCompactList}\small\item\em cAudio Value Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3_ac22e136942a20df0129ef166f6fafb87}{Vector3} (const \hyperlink{classphys_1_1Vector3}{phys::Vector3} \&Vec)
-\begin{DoxyCompactList}\small\item\em Copy Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a6bf00999b090258a0acb96368aa1bf38}{operator=} (const btVector3 \&Vec)
-\begin{DoxyCompactList}\small\item\em Assignment operator to convert from Bullet Vectors. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a666d681f28de675cb45c4772a7d4a3ad}{operator=} (const Ogre::Vector3 \&Vec)
-\begin{DoxyCompactList}\small\item\em Assignment operator to convert from Ogre Vectors. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_aef23e947ca4e3f24a34ccbcb412d24b5}{operator=} (const cAudio::cVector3 \&Vec)
-\begin{DoxyCompactList}\small\item\em Assignment operator to convert from cAudio Vectors. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_afb86ac7edd78353ec3d11d9f2efdf0cb}{operator-\/} ()
-\begin{DoxyCompactList}\small\item\em Additive Inverse Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ab9b40eb9eb73d806434550604e048faa}{operator$\ast$} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar) const 
-\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a4bb5377ad78c299b40a8bc9fb66a902f}{operator/} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar) const 
-\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a9dfb27e2ce041ce6141df76438960af0}{operator$\ast$=} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
-\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_abf6d1850c3ce246a0d8b038f0f5ec46c}{operator/=} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
-\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Vector3_a009087c59c69f69be76ba84ad90b1468}{operator==} (const \hyperlink{classphys_1_1Vector3}{phys::Vector3} \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Vector3_a87076a2c336aedef5642ff1cc9fe0cad}{operator==} (const btVector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Vector3_aeabe5d949276abe8ea00c8b22b4e652c}{operator==} (const Ogre::Vector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Vector3_a858a1ade83b947158eb438dae123b062}{operator==} (const cAudio::cVector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Vector3_a9753e8b2540e15f77f724c7882462ce9}{operator!=} (const \hyperlink{classphys_1_1Vector3}{phys::Vector3} \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ad9f0c1eee59e8a0d221eca49f49e0970}{CrossProduct} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em This is used to calculate the crossproduct of this and another vector. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_af59a586331fe9497056b7e0f207658a3}{Distance} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&OtherVec) const 
+\begin{DoxyCompactList}\small\item\em This return the distance between this point and another. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a1f5f1ad3c7e67a1e88b461d2b2ea5a8d}{DotProduct} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em This is used to calculate the dotproduct of this and another vector. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}{ExtractBulletVector3} (btVector3 temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing Bullet vector3. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_aa12021e9cdc092c8628ced1c5910c04c}{ExtractcAudioVector3} (cAudio::cVector3 temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing cAudio vector3. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}{ExtractOgreVector3} (Ogre::Vector3 temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing Ogre vector3. \item\end{DoxyCompactList}\item 
+btVector3 \hyperlink{classphys_1_1Vector3_adf4129007ee41f5a03e97502f2df9c41}{GetBulletVector3} () const 
+\begin{DoxyCompactList}\small\item\em Gets a Bullet vector3. \item\end{DoxyCompactList}\item 
+cAudio::cVector3 \hyperlink{classphys_1_1Vector3_a58b1ac39dfee4c360c16944a7e7f657d}{GetcAudioVector3} () const 
+\begin{DoxyCompactList}\small\item\em Gets a cAudio vector3. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a63cd464cdd9ba976ac112fdf8bb620be}{GetDirection} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Destination) const 
+\begin{DoxyCompactList}\small\item\em This will get the direction between two points. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a81e11f45378758391c97ec55b519951c}{GetNormal} () const 
+\begin{DoxyCompactList}\small\item\em This returns the normal for this relative to the origin. \item\end{DoxyCompactList}\item 
+Ogre::Vector3 \hyperlink{classphys_1_1Vector3_a17265d86a74139398d310b56ba7e89b8}{GetOgreVector3} () const 
+\begin{DoxyCompactList}\small\item\em Gets a Ogre vector3. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_a30af9c8ae51596fa00fa7f350f9668f5}{Inverse} ()
+\begin{DoxyCompactList}\small\item\em This will inverse the reals in the vector. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a28d3cdf9457a14be4db6dfce584796c0}{Normalize} ()
+\begin{DoxyCompactList}\small\item\em This will change this point into it's own normal relative to the origin. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1Vector3_a4c2b4de43118a6fa05288d053f75eb87}{operator!=} (const btVector3 \&Vec) const 
 \begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1Vector3_a8806444791efb7caa9cffc10b4deebef}{operator!=} (const Ogre::Vector3 \&Vec) const 
 \begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector3_a9753e8b2540e15f77f724c7882462ce9}{operator!=} (const \hyperlink{classphys_1_1Vector3}{phys::Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1Vector3_a710970ea3bc8322f983ef9be3bd01c82}{operator!=} (const cAudio::cVector3 \&Vec) const 
 \begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a982248aea63e87a3163c3b591ab0a225}{operator+} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Addition Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a8dd6dad4d32d2c7045a31e8fbdc16b8f}{operator-\/} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Subraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ae28e8373fb05d55edbde46eda64c431a}{operator$\ast$} (const Ogre::Vector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Ogre Multiplication Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a8bfb89d47b4aceed530fe81202c6f368}{operator$\ast$} (const cAudio::cVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em cAudio Multiplication Operator \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ab9b40eb9eb73d806434550604e048faa}{operator$\ast$} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar) const 
+\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a19eef355e6376acfb1d631aab63fdea5}{operator$\ast$} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
 \begin{DoxyCompactList}\small\item\em Multiplaction Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a75bb5dd58d66a039a1a651398417110f}{operator/} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Division Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a88fd674d6a8eaf2d256bdd10f7f8d05a}{operator+} (const btVector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Bullet Addition Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_affbba2c1aa5dd5cd788f4f7e440cd52e}{operator-\/} (const btVector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Bullet Subtraction Operator. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ac9b49852c6bd2fa2b81f4972d7761697}{operator$\ast$} (const btVector3 \&Vec) const 
 \begin{DoxyCompactList}\small\item\em Bullet Multiplication Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a998a6b51433f43ac8b9434279137a1dd}{operator/} (const btVector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Bullet Division Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a9dfb27e2ce041ce6141df76438960af0}{operator$\ast$=} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_aef08d2451bb4959e02f1b09067284b5c}{operator+} (const cAudio::cVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em cAudio Addition Operator \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a982248aea63e87a3163c3b591ab0a225}{operator+} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Addition Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a88fd674d6a8eaf2d256bdd10f7f8d05a}{operator+} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Bullet Addition Operator. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a9d08649625ad4d5a7e8665c1234168b9}{operator+} (const Ogre::Vector3 \&Vec) const 
 \begin{DoxyCompactList}\small\item\em Ogre Addition Operator. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a1110bc38c3cb60f97c3946d13917401b}{operator-\/} (const Ogre::Vector3 \&Vec) const 
 \begin{DoxyCompactList}\small\item\em Ogre Subtraction Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ae28e8373fb05d55edbde46eda64c431a}{operator$\ast$} (const Ogre::Vector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Ogre Multiplication Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_afadb345e180a9be607ec33de68c7a71b}{operator/} (const Ogre::Vector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em Ogre Division Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_aef08d2451bb4959e02f1b09067284b5c}{operator+} (const cAudio::cVector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em cAudio Addition Operator \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_afb86ac7edd78353ec3d11d9f2efdf0cb}{operator-\/} ()
+\begin{DoxyCompactList}\small\item\em Additive Inverse Operator. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a84bcf6d8e0c850e32c642f1b634d38e9}{operator-\/} (const cAudio::cVector3 \&Vec) const 
 \begin{DoxyCompactList}\small\item\em cAudio Subtraction Operator \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a8bfb89d47b4aceed530fe81202c6f368}{operator$\ast$} (const cAudio::cVector3 \&Vec) const 
-\begin{DoxyCompactList}\small\item\em cAudio Multiplication Operator \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a8dd6dad4d32d2c7045a31e8fbdc16b8f}{operator-\/} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Subraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_affbba2c1aa5dd5cd788f4f7e440cd52e}{operator-\/} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Bullet Subtraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_afadb345e180a9be607ec33de68c7a71b}{operator/} (const Ogre::Vector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Ogre Division Operator. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ad2e1c9f24ea2127380e772058a91130c}{operator/} (const cAudio::cVector3 \&Vec) const 
 \begin{DoxyCompactList}\small\item\em cAudio Division Operator \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ad9f0c1eee59e8a0d221eca49f49e0970}{CrossProduct} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
-\begin{DoxyCompactList}\small\item\em This is used to calculate the crossproduct of this and another vector. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a1f5f1ad3c7e67a1e88b461d2b2ea5a8d}{DotProduct} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
-\begin{DoxyCompactList}\small\item\em This is used to calculate the dotproduct of this and another vector. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a28d3cdf9457a14be4db6dfce584796c0}{Normalize} ()
-\begin{DoxyCompactList}\small\item\em This will change this point into it's own normal relative to the origin. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a81e11f45378758391c97ec55b519951c}{GetNormal} () const 
-\begin{DoxyCompactList}\small\item\em This returns the normal for this relative to the origin. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a63cd464cdd9ba976ac112fdf8bb620be}{GetDirection} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Destination) const 
-\begin{DoxyCompactList}\small\item\em This will get the direction between two points. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Vector3_a30af9c8ae51596fa00fa7f350f9668f5}{Inverse} ()
-\begin{DoxyCompactList}\small\item\em This will inverse the reals in the vector. \item\end{DoxyCompactList}\item 
-btVector3 \hyperlink{classphys_1_1Vector3_adf4129007ee41f5a03e97502f2df9c41}{GetBulletVector3} () const 
-\begin{DoxyCompactList}\small\item\em Gets a Bullet vector3. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}{ExtractBulletVector3} (btVector3 temp)
-\begin{DoxyCompactList}\small\item\em Copies an existing Bullet vector3. \item\end{DoxyCompactList}\item 
-Ogre::Vector3 \hyperlink{classphys_1_1Vector3_a17265d86a74139398d310b56ba7e89b8}{GetOgreVector3} () const 
-\begin{DoxyCompactList}\small\item\em Gets a Ogre vector3. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}{ExtractOgreVector3} (Ogre::Vector3 temp)
-\begin{DoxyCompactList}\small\item\em Copies an existing Ogre vector3. \item\end{DoxyCompactList}\item 
-cAudio::cVector3 \hyperlink{classphys_1_1Vector3_a58b1ac39dfee4c360c16944a7e7f657d}{GetcAudioVector3} () const 
-\begin{DoxyCompactList}\small\item\em Gets a cAudio vector3. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Vector3_aa12021e9cdc092c8628ced1c5910c04c}{ExtractcAudioVector3} (cAudio::cVector3 temp)
-\begin{DoxyCompactList}\small\item\em Copies an existing cAudio vector3. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_af59a586331fe9497056b7e0f207658a3}{Distance} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&OtherVec) const 
-\begin{DoxyCompactList}\small\item\em This return the distance between this point and another. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1Vector3_a6713cfb8c5cd8918701ec8bee58b7322}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
-\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a4bb5377ad78c299b40a8bc9fb66a902f}{operator/} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar) const 
+\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a75bb5dd58d66a039a1a651398417110f}{operator/} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Division Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a998a6b51433f43ac8b9434279137a1dd}{operator/} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Bullet Division Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_abf6d1850c3ce246a0d8b038f0f5ec46c}{operator/=} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_aef23e947ca4e3f24a34ccbcb412d24b5}{operator=} (const cAudio::cVector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Assignment operator to convert from cAudio Vectors. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a6bf00999b090258a0acb96368aa1bf38}{operator=} (const btVector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Assignment operator to convert from Bullet Vectors. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a666d681f28de675cb45c4772a7d4a3ad}{operator=} (const Ogre::Vector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Assignment operator to convert from Ogre Vectors. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector3_aeabe5d949276abe8ea00c8b22b4e652c}{operator==} (const Ogre::Vector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector3_a858a1ade83b947158eb438dae123b062}{operator==} (const cAudio::cVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector3_a009087c59c69f69be76ba84ad90b1468}{operator==} (const \hyperlink{classphys_1_1Vector3}{phys::Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector3_a87076a2c336aedef5642ff1cc9fe0cad}{operator==} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Vector3_a2b1f6cb180e84747d34092cb5aeeb14b}{ProtoDeSerialize} (const \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&OneNode)
 \begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Vector3_a6713cfb8c5cd8918701ec8bee58b7322}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Vector3_afce4c1d9b2ed48bea39a6d7b66af240e}{SerializableName} () const 
-\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_a9f0f452baf92e0c10e6eb0944dc2b3d3}{Vector3} (const cAudio::cVector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em cAudio Value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_af328c400a03fdb8d2a99fd58382d61cb}{Vector3} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_ac13a263c5e2f84578884183cee890570}{Vector3} (const btVector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Bullet Value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_ac22e136942a20df0129ef166f6fafb87}{Vector3} (const \hyperlink{classphys_1_1Vector3}{phys::Vector3} \&Vec)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_af1d323b44d7b6ee3d0a79a196d9967da}{Vector3} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a23660f9d1e21a25c53aa06aa737bb56b}{X}, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a6c9bc2ab0995d5056dba8272c650e58e}{Y}, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a53c84fa4b38fb9c4a4d822b04c200b13}{Z})
+\begin{DoxyCompactList}\small\item\em Real value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_ac08281de8f4929593b6f4469646691da}{Vector3} (const Ogre::Vector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Ogre Value Constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_aa2f573233982cb27cb05e5bfe38b327e}{Unit\_\-X} ()
-\begin{DoxyCompactList}\small\item\em Gets a vector representing the X unit of a \hyperlink{classphys_1_1Vector3}{Vector3}. \item\end{DoxyCompactList}\item 
-static \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ab9d8ea65d744278a87aeeeea059d5895}{Unit\_\-Y} ()
-\begin{DoxyCompactList}\small\item\em Gets a vector representing the Y unit of a vector. \item\end{DoxyCompactList}\item 
-static \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a9c25ec99cf982fe28eeaff4ddfc67715}{Unit\_\-Z} ()
-\begin{DoxyCompactList}\small\item\em Gets a vector representing the Z unit of a vector. \item\end{DoxyCompactList}\item 
 static \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_aa94ab8ce5d5cab51a4c2ef1e78430731}{Neg\_\-Unit\_\-X} ()
 \begin{DoxyCompactList}\small\item\em Gets a vector representing the negative X unit of a vector. \item\end{DoxyCompactList}\item 
 static \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a0ac8b5f2e0d28de9294502c1e4391b8c}{Neg\_\-Unit\_\-Y} ()
 \begin{DoxyCompactList}\small\item\em Gets a vector representing the negative Y unit of a vector. \item\end{DoxyCompactList}\item 
 static \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a2e5bc13758eaa6a45ae45fbb9df0c732}{Neg\_\-Unit\_\-Z} ()
-\begin{DoxyCompactList}\small\item\em Gets a vector representing the negative Z unit of a vector. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the negative Z unit of a vector. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_aa2f573233982cb27cb05e5bfe38b327e}{Unit\_\-X} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the X unit of a \hyperlink{classphys_1_1Vector3}{Vector3}. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ab9d8ea65d744278a87aeeeea059d5895}{Unit\_\-Y} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the Y unit of a vector. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a9c25ec99cf982fe28eeaff4ddfc67715}{Unit\_\-Z} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the Z unit of a vector. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 

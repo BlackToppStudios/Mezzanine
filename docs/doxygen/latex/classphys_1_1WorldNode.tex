@@ -20,115 +20,115 @@ Inheritance diagram for phys::WorldNode:\begin{figure}[H]
 \subsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{NodeType} \{ \hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aaa4f848b95586fc581aa1f749c82a1fb5}{Free} =  0, 
-\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa06be3334346d6ba7913197ee0dd5b8bb}{Center} =  1, 
-\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aae9751e5fc4396425fbd7b93171541a22}{Orbit} =  2, 
-\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa2ae400375e79106ae01adf39dd5c1185}{Stand} =  3
- \}
-\begin{DoxyCompactList}\small\item\em Kinds of movement (or non-\/movement modes) a world node could have. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}{
+typedef std::vector$<$ \hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ $>$::\hyperlink{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}{const\_\-iterator} \hyperlink{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}{const\_\-iterator}}
+\label{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}
+
+\begin{DoxyCompactList}\small\item\em Used to make working with the attached items easier, and avoid the risk of accidentally changing them. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1WorldNode_ad7f553f256c4e500e35c36196db26287}{
 typedef std::vector$<$ \hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ $>$::\hyperlink{classphys_1_1WorldNode_ad7f553f256c4e500e35c36196db26287}{iterator} \hyperlink{classphys_1_1WorldNode_ad7f553f256c4e500e35c36196db26287}{iterator}}
 \label{classphys_1_1WorldNode_ad7f553f256c4e500e35c36196db26287}
 
 \begin{DoxyCompactList}\small\item\em Used to make working with the attached items easier. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}{
-typedef std::vector$<$ \hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ $>$::\hyperlink{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}{const\_\-iterator} \hyperlink{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}{const\_\-iterator}}
-\label{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}
-
-\begin{DoxyCompactList}\small\item\em Used to make working with the attached items easier, and avoid the risk of accidentally changing them. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+enum \hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{NodeType} \{ \hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aaa4f848b95586fc581aa1f749c82a1fb5}{Free} =  0, 
+\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa06be3334346d6ba7913197ee0dd5b8bb}{Center} =  1, 
+\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aae9751e5fc4396425fbd7b93171541a22}{Orbit} =  2, 
+\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa2ae400375e79106ae01adf39dd5c1185}{Stand} =  3
+ \}
+\begin{DoxyCompactList}\small\item\em Kinds of movement (or non-\/movement modes) a world node could have. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1WorldNode_a02ab92f8a5f9da35926ef133a11a441e}{WorldNode} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
-\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1WorldNode_ae813a2aa737980824725b1909372484e}{WorldNode} (Ogre::SceneNode $\ast$snode, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
-\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1WorldNode_a357c18b6e04a9ae0d0855841a3c774b2}{
-\hyperlink{classphys_1_1WorldNode_a357c18b6e04a9ae0d0855841a3c774b2}{$\sim$WorldNode} ()}
-\label{classphys_1_1WorldNode_a357c18b6e04a9ae0d0855841a3c774b2}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1WorldNode_af276da0d87f4ddc1405bc87b9e2e034d}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
-\begin{DoxyCompactList}\small\item\em Sets the Location of this node. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1WorldNode_a1e45730a3e7ad6bc30dc98982fe64624}{GetLocation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Location of this node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldNode_a583cbdca344ac23894ef469c7b7f6062}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation)
-\begin{DoxyCompactList}\small\item\em Sets the orientation of this node. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1WorldNode_a90b439d8af095c040b2d9e4576a113d1}{GetOrientation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the orientation of this node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldNode_aa0373976b11af2171188d2ee8c114420}{LookAt} (\hyperlink{classphys_1_1Vector3}{Vector3} LookAt)
-\begin{DoxyCompactList}\small\item\em Automatically sets the orientation needed to point this node at a location in the world. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldNode_a0849395a47c9cd3182a6a3717b95bcbc}{IncrementOrbit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Radians)
-\begin{DoxyCompactList}\small\item\em Increments the orbit of this node if this is an orbiting node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldNode_a3c8447cd6de0af06a6004cdd968671f0}{SetAutoTracking} (\hyperlink{classphys_1_1WorldNode}{WorldNode} $\ast$node, \hyperlink{classphys_1_1Vector3}{Vector3} Offset=\hyperlink{classphys_1_1Vector3}{Vector3}())
-\begin{DoxyCompactList}\small\item\em Makes this node autotrack another node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldNode_a3bd06b9d4a4baa6937a8a3a33a33b047}{SetAutoTracking} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{classphys_1_1Vector3}{Vector3} Offset=\hyperlink{classphys_1_1Vector3}{Vector3}())
-\begin{DoxyCompactList}\small\item\em Makes this node autotrack an actor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1WorldNode_aec20d9b24a8de76a227307a9d287d127}{
-void \hyperlink{classphys_1_1WorldNode_aec20d9b24a8de76a227307a9d287d127}{DisableAutoTracking} ()}
-\label{classphys_1_1WorldNode_aec20d9b24a8de76a227307a9d287d127}
-
-\begin{DoxyCompactList}\small\item\em Disables any active autotracking for this node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldNode_abc4cf216177c0a3f4397c83fe3b58e75}{SetType} (\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{WorldNode::NodeType} type)
-\begin{DoxyCompactList}\small\item\em Sets the type of node that this is. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{WorldNode::NodeType} \hyperlink{classphys_1_1WorldNode_a438a26ff58e93e611deea737a95ae654}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em Gets the type of node that this is. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1WorldNode_a166d3204c44959c1c77498f1f03e1ec9}{GetAttachableType} () const 
-\begin{DoxyCompactList}\small\item\em What kind of \hyperlink{classphys_1_1Attachable}{Attachable} is this. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1WorldNode_ae3c12e7aced8f84e2191a5e08e2767a8}{GetName} () const 
-\begin{DoxyCompactList}\small\item\em Gets the name of this node. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1WorldNode_a25b5a05bb87967fe21f153ce4418b43e}{AttachObject} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Target)
 \begin{DoxyCompactList}\small\item\em Attaches an attachable element to this Node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldNode_a15da2580dfbe1c684819d8783b3359ae}{DetachObject} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Target)
-\begin{DoxyCompactList}\small\item\em Detaches an attachable element from this Node. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1WorldNode_a6e4aa8bc4b916cfff06d03814a7dd80f}{AttachObjectFinal} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Target)
 \begin{DoxyCompactList}\small\item\em Does the actual work of attaching on the \hyperlink{classphys_1_1WorldNode}{WorldNode} Side so that \hyperlink{classphys_1_1WorldNode_a25b5a05bb87967fe21f153ce4418b43e}{WorldNode::AttachObject(Attachable$\ast$ Target)} can be called on \hyperlink{classphys_1_1WorldNode}{WorldNode} or \hyperlink{classphys_1_1Attachable}{Attachable} without caveats. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldNode_ae300db6515b782b165e77d19b7137851}{DetachObjectFinal} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Target)
-\begin{DoxyCompactList}\small\item\em Does the actual work of dettaching on the \hyperlink{classphys_1_1WorldNode}{WorldNode} Side so that \hyperlink{classphys_1_1WorldNode_a15da2580dfbe1c684819d8783b3359ae}{WorldNode::DetachObject(Attachable$\ast$ Target)} can be called on \hyperlink{classphys_1_1WorldNode}{WorldNode} or \hyperlink{classphys_1_1Attachable}{Attachable} without caveats. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1WorldNode_a398d3202233431eb3a2f110bd761f7a0}{AttachToFinal} (Ogre::SceneNode $\ast$RawTarget, \hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$Target)
+\item 
+\hyperlink{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}{const\_\-iterator} \hyperlink{classphys_1_1WorldNode_ac42af926430269aeb7d31b2753bb08d5}{begin} () const 
+\begin{DoxyCompactList}\small\item\em Get an const\_\-iterator to the first item. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1WorldNode_ad7f553f256c4e500e35c36196db26287}{iterator} \hyperlink{classphys_1_1WorldNode_a3ea7e2d0a4191a936ac9bd4fb2671a97}{begin} ()
+\begin{DoxyCompactList}\small\item\em Get an iterator to the first item. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1WorldNode_ab13dcee1719c95f8328eba2e2d7a94da}{
 void \hyperlink{classphys_1_1WorldNode_ab13dcee1719c95f8328eba2e2d7a94da}{DetachAll} ()}
 \label{classphys_1_1WorldNode_ab13dcee1719c95f8328eba2e2d7a94da}
 
 \begin{DoxyCompactList}\small\item\em Detaches all attached cameras, lights, particle effects and anything else attached. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1WorldNode_a409eca3c9a924f1485e1c25c7d60e43d}{GetNumAttached} () const 
-\begin{DoxyCompactList}\small\item\em Gets the number of elements attached to this node. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ \hyperlink{classphys_1_1WorldNode_ad29bcbb80647d3a792af6578e6bc4c13}{GetAttached} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index) const 
-\begin{DoxyCompactList}\small\item\em Get a specific attached Item. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1WorldNode_ad7f553f256c4e500e35c36196db26287}{iterator} \hyperlink{classphys_1_1WorldNode_a3ea7e2d0a4191a936ac9bd4fb2671a97}{begin} ()
-\begin{DoxyCompactList}\small\item\em Get an iterator to the first item. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1WorldNode_abab10f16b3d49c93a35443523cdb5a4f}{DetachFromFinal} (Ogre::SceneNode $\ast$RawTarget)
+\begin{DoxyCompactList}\small\item\em Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1WorldNode_a15da2580dfbe1c684819d8783b3359ae}{DetachObject} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Target)
+\begin{DoxyCompactList}\small\item\em Detaches an attachable element from this Node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1WorldNode_ae300db6515b782b165e77d19b7137851}{DetachObjectFinal} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Target)
+\begin{DoxyCompactList}\small\item\em Does the actual work of dettaching on the \hyperlink{classphys_1_1WorldNode}{WorldNode} Side so that \hyperlink{classphys_1_1WorldNode_a15da2580dfbe1c684819d8783b3359ae}{WorldNode::DetachObject(Attachable$\ast$ Target)} can be called on \hyperlink{classphys_1_1WorldNode}{WorldNode} or \hyperlink{classphys_1_1Attachable}{Attachable} without caveats. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1WorldNode_aec20d9b24a8de76a227307a9d287d127}{
+void \hyperlink{classphys_1_1WorldNode_aec20d9b24a8de76a227307a9d287d127}{DisableAutoTracking} ()}
+\label{classphys_1_1WorldNode_aec20d9b24a8de76a227307a9d287d127}
+
+\begin{DoxyCompactList}\small\item\em Disables any active autotracking for this node. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1WorldNode_ad7f553f256c4e500e35c36196db26287}{iterator} \hyperlink{classphys_1_1WorldNode_ad71a9f4e8aa60767997e900a1fd80051}{end} ()
 \begin{DoxyCompactList}\small\item\em Get an iterator to one past the last item. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}{const\_\-iterator} \hyperlink{classphys_1_1WorldNode_ac42af926430269aeb7d31b2753bb08d5}{begin} () const 
-\begin{DoxyCompactList}\small\item\em Get an const\_\-iterator to the first item. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1WorldNode_a76139100e549fd31310cd1bed75338ba}{const\_\-iterator} \hyperlink{classphys_1_1WorldNode_a25a2a1866850812cab926c31598344a2}{end} () const 
 \begin{DoxyCompactList}\small\item\em Get an const\_\-iterator to one past the last item. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1WorldNode_a398d3202233431eb3a2f110bd761f7a0}{AttachToFinal} (Ogre::SceneNode $\ast$RawTarget, \hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$Target)
-\item 
-virtual void \hyperlink{classphys_1_1WorldNode_abab10f16b3d49c93a35443523cdb5a4f}{DetachFromFinal} (Ogre::SceneNode $\ast$RawTarget)
-\begin{DoxyCompactList}\small\item\em Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual \hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1WorldNode_a166d3204c44959c1c77498f1f03e1ec9}{GetAttachableType} () const 
+\begin{DoxyCompactList}\small\item\em What kind of \hyperlink{classphys_1_1Attachable}{Attachable} is this. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ \hyperlink{classphys_1_1WorldNode_ad29bcbb80647d3a792af6578e6bc4c13}{GetAttached} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index) const 
+\begin{DoxyCompactList}\small\item\em Get a specific attached Item. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1WorldNode_a1e45730a3e7ad6bc30dc98982fe64624}{GetLocation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Location of this node. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1WorldNode_ae3c12e7aced8f84e2191a5e08e2767a8}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of this node. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1WorldNode_a409eca3c9a924f1485e1c25c7d60e43d}{GetNumAttached} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of elements attached to this node. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1WorldNode_a90b439d8af095c040b2d9e4576a113d1}{GetOrientation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the orientation of this node. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{WorldNode::NodeType} \hyperlink{classphys_1_1WorldNode_a438a26ff58e93e611deea737a95ae654}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em Gets the type of node that this is. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1WorldNode_a0849395a47c9cd3182a6a3717b95bcbc}{IncrementOrbit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Radians)
+\begin{DoxyCompactList}\small\item\em Increments the orbit of this node if this is an orbiting node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1WorldNode_aa0373976b11af2171188d2ee8c114420}{LookAt} (\hyperlink{classphys_1_1Vector3}{Vector3} LookAt)
+\begin{DoxyCompactList}\small\item\em Automatically sets the orientation needed to point this node at a location in the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1WorldNode_a3c8447cd6de0af06a6004cdd968671f0}{SetAutoTracking} (\hyperlink{classphys_1_1WorldNode}{WorldNode} $\ast$node, \hyperlink{classphys_1_1Vector3}{Vector3} Offset=\hyperlink{classphys_1_1Vector3}{Vector3}())
+\begin{DoxyCompactList}\small\item\em Makes this node autotrack another node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1WorldNode_a3bd06b9d4a4baa6937a8a3a33a33b047}{SetAutoTracking} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{classphys_1_1Vector3}{Vector3} Offset=\hyperlink{classphys_1_1Vector3}{Vector3}())
+\begin{DoxyCompactList}\small\item\em Makes this node autotrack an actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1WorldNode_af276da0d87f4ddc1405bc87b9e2e034d}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Sets the Location of this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1WorldNode_a583cbdca344ac23894ef469c7b7f6062}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1WorldNode_abc4cf216177c0a3f4397c83fe3b58e75}{SetType} (\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{WorldNode::NodeType} type)
+\begin{DoxyCompactList}\small\item\em Sets the type of node that this is. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1WorldNode_ae813a2aa737980824725b1909372484e}{WorldNode} (Ogre::SceneNode $\ast$snode, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1WorldNode_a02ab92f8a5f9da35926ef133a11a441e}{WorldNode} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1WorldNode_a357c18b6e04a9ae0d0855841a3c774b2}{
+\hyperlink{classphys_1_1WorldNode_a357c18b6e04a9ae0d0855841a3c774b2}{$\sim$WorldNode} ()}
+\label{classphys_1_1WorldNode_a357c18b6e04a9ae0d0855841a3c774b2}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1WorldNode_abc3e4ddcd1dc2f15ffa40ed2d18b5fd8}{
-Ogre::SceneNode $\ast$ \hyperlink{classphys_1_1WorldNode_abc3e4ddcd1dc2f15ffa40ed2d18b5fd8}{OgreNode}}
-\label{classphys_1_1WorldNode_abc3e4ddcd1dc2f15ffa40ed2d18b5fd8}
+\hypertarget{classphys_1_1WorldNode_a2a17c53f3a7ad3d5bd322855096fcbc3}{
+std::vector$<$ \hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ $>$ \hyperlink{classphys_1_1WorldNode_a2a17c53f3a7ad3d5bd322855096fcbc3}{Elements}}
+\label{classphys_1_1WorldNode_a2a17c53f3a7ad3d5bd322855096fcbc3}
 
-\begin{DoxyCompactList}\small\item\em Pointer to the ogre scenenode from which this class gets it's functionality. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Vector storing all attached cameras, lights, etc... . \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1WorldNode_a070f1686f70880dac0241c96518c7a8a}{
 \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ \hyperlink{classphys_1_1WorldNode_a070f1686f70880dac0241c96518c7a8a}{Manager}}
 \label{classphys_1_1WorldNode_a070f1686f70880dac0241c96518c7a8a}
 
 \begin{DoxyCompactList}\small\item\em Pointer to the manager that created this class. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1WorldNode_abc3e4ddcd1dc2f15ffa40ed2d18b5fd8}{
+Ogre::SceneNode $\ast$ \hyperlink{classphys_1_1WorldNode_abc3e4ddcd1dc2f15ffa40ed2d18b5fd8}{OgreNode}}
+\label{classphys_1_1WorldNode_abc3e4ddcd1dc2f15ffa40ed2d18b5fd8}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the ogre scenenode from which this class gets it's functionality. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1WorldNode_aef2329f38799c3d67f1f1f69b35dda20}{
 \hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{WorldNode::NodeType} \hyperlink{classphys_1_1WorldNode_aef2329f38799c3d67f1f1f69b35dda20}{Type}}
 \label{classphys_1_1WorldNode_aef2329f38799c3d67f1f1f69b35dda20}
 
-\begin{DoxyCompactList}\small\item\em Enum value storing the type of node this class is. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1WorldNode_a2a17c53f3a7ad3d5bd322855096fcbc3}{
-std::vector$<$ \hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ $>$ \hyperlink{classphys_1_1WorldNode_a2a17c53f3a7ad3d5bd322855096fcbc3}{Elements}}
-\label{classphys_1_1WorldNode_a2a17c53f3a7ad3d5bd322855096fcbc3}
-
-\begin{DoxyCompactList}\small\item\em Vector storing all attached cameras, lights, etc... . \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Enum value storing the type of node this class is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

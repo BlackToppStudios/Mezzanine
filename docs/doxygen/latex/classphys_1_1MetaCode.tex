@@ -14,6 +14,17 @@ This Determines the kind of user input.
 \subsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
+enum \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{ButtonState} \{ \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a6b5564408703517f36debd8c423e2dee}{BUTTON\_\-LIFTING} =  -\/1, 
+\hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3}{BUTTON\_\-UP} =  0, 
+\hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d}{BUTTON\_\-PRESSING} =  1, 
+\hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438}{BUTTON\_\-DOWN} =  2
+ \}
+\begin{DoxyCompactList}\small\item\em An Optional listing of value that can be used in a metacode to represent the information of a button press. \item\end{DoxyCompactList}\item 
+enum \hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757}{DirectionalMotionState} \{ \hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757ae4b09c3b8e79b189d9fbc2ea8a1bcade}{DIRECTIONALMOTION\_\-UPLEFT} =  1, 
+\hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757a01bfdb29aaa2cb816b704667d5cc348f}{DIRECTIONALMOTION\_\-UNCHANGED} =  0, 
+\hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757af4a101f9bcd1baedca43bacd3845eb41}{DIRECTIONALMOTION\_\-DOWNRIGHT} =  -\/1
+ \}
+\begin{DoxyCompactList}\small\item\em An Optional listing of values that can be used in a metacode Indicate spin, digital or binary travel in a directionl. \item\end{DoxyCompactList}\item 
 enum \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{InputCode} \{ \par
 \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5}{KEY\_\-FIRST} =  0, 
 \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f}{KEY\_\-UNKNOWN} =  0, 
@@ -438,18 +449,7 @@ enum \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{InputCo
 \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8afa71c1a74177cf69c80c08a010b97dff}{JOYSTICK\_\-LAST} =  512, 
 \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8adc78bfd04a85c4bbe39718f9acacbbe3}{INPUTEVENT\_\-LAST} =  1024
  \}
-\begin{DoxyCompactList}\small\item\em The InputCode enum defines all the posible types of inputs. \item\end{DoxyCompactList}\item 
-enum \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{ButtonState} \{ \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a6b5564408703517f36debd8c423e2dee}{BUTTON\_\-LIFTING} =  -\/1, 
-\hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3}{BUTTON\_\-UP} =  0, 
-\hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d}{BUTTON\_\-PRESSING} =  1, 
-\hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438}{BUTTON\_\-DOWN} =  2
- \}
-\begin{DoxyCompactList}\small\item\em An Optional listing of value that can be used in a metacode to represent the information of a button press. \item\end{DoxyCompactList}\item 
-enum \hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757}{DirectionalMotionState} \{ \hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757ae4b09c3b8e79b189d9fbc2ea8a1bcade}{DIRECTIONALMOTION\_\-UPLEFT} =  1, 
-\hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757a01bfdb29aaa2cb816b704667d5cc348f}{DIRECTIONALMOTION\_\-UNCHANGED} =  0, 
-\hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757af4a101f9bcd1baedca43bacd3845eb41}{DIRECTIONALMOTION\_\-DOWNRIGHT} =  -\/1
- \}
-\begin{DoxyCompactList}\small\item\em An Optional listing of values that can be used in a metacode Indicate spin, digital or binary travel in a directionl. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The InputCode enum defines all the posible types of inputs. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \begin{Indent}{\bf Usage page 0x0C}\par
 {\em These values are mapped from usage page 0x0C (USB consumer page). }\end{Indent}
 \begin{Indent}{\bf Walther keys}\par
@@ -457,55 +457,55 @@ enum \hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757}{Directi
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1MetaCode_ae2c80c84f924ddfd880f46ffe6a1746e}{MetaCode} ()
-\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1MetaCode_a590e6b767952e278b72ff71eddf369d4}{MetaCode} (const int \&MetaValue\_\-, const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code\_\-)
-\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1MetaCode_ad9a618b5cc6f9d0cf0a4bc4f47bf98e8}{MetaCode} (const \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent} \&RawEvent\_\-)
-\begin{DoxyCompactList}\small\item\em The Heavy Lifting Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} () const 
 \begin{DoxyCompactList}\small\item\em This Returns the Inputcode. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{SetCode} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code\_\-)
-\begin{DoxyCompactList}\small\item\em This Sets The InputCode. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1MetaCode_a26dd1a0b3b099b080fade8e33e9dde70}{SetCode} (int Code\_\-)
-\begin{DoxyCompactList}\small\item\em This Sets The InputCode using an int. \item\end{DoxyCompactList}\item 
 int \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} () const 
 \begin{DoxyCompactList}\small\item\em This Returns the MetaValue. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState} \hyperlink{classphys_1_1MetaCode_a4f8da25e905ac23d935e343ec6d7e695}{GetMetaValueAsButtonState} () const 
 \begin{DoxyCompactList}\small\item\em Get the MetaValue as a \hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState}. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1MetaCode_ad6ed6266b5f4219a6f5da29ebe018757}{MetaCode::DirectionalMotionState} \hyperlink{classphys_1_1MetaCode_a461d2c8c077838889ef33ef54284f7e1}{GetMetaValueAsDirectionalMotionState} () const 
 \begin{DoxyCompactList}\small\item\em Get the MetaValue as a \hyperlink{classphys_1_1MetaCode}{MetaCode}:: \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}{SetMetaValue} (const int \&MetaValue\_\-)
-\begin{DoxyCompactList}\small\item\em This Sets The MetaValue. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1MetaCode_ad86e1599eccea8edecb721eb84c06c72}{IsKeyboardButton} () const 
-\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a keyboard key. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1MetaCode_a080323eaed78e0f9b9b3f2049ee036a1}{IsAltKey} () const 
 \begin{DoxyCompactList}\small\item\em Is this a left or right Alt key. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1MetaCode_a25ce58069979e189e91ecbd77729ed22}{IsCtrlKey} () const 
 \begin{DoxyCompactList}\small\item\em Is this a left or right Ctrl key. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1MetaCode_a00ad1171e9e081318e6efc25a371ee05}{IsJoyStickEvent} () const 
+\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a Joystick Event. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1MetaCode_ad86e1599eccea8edecb721eb84c06c72}{IsKeyboardButton} () const 
+\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a keyboard key. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1MetaCode_a95fd9fa05a35711c5970490cee7889d1}{IsMouseButton} () const 
+\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a Mouse button. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1MetaCode_a6eb682ae2a56238c6afd3933cb40843b}{IsOtherInputEvent} () const 
+\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent some other (non-\/keyboard and non-\/mouse button) \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1MetaCode_ac8709e0a9791db4cbd0fe9f6089efd57}{IsPollable} () const 
+\begin{DoxyCompactList}\small\item\em Is this metacode a pollable event. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1MetaCode_a2b2e4758229d1bba55ab47a2ca57863e}{IsShiftKey} () const 
 \begin{DoxyCompactList}\small\item\em Is this a left or right Shift key. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1MetaCode_a8b63b7227b27c2be9de969c6b3a0963a}{IsSuperKey} () const 
 \begin{DoxyCompactList}\small\item\em Is this a left or right Super key (Windows logo key, Apple logo key, etc...) \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1MetaCode_a95fd9fa05a35711c5970490cee7889d1}{IsMouseButton} () const 
-\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a Mouse button. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1MetaCode_ac8709e0a9791db4cbd0fe9f6089efd57}{IsPollable} () const 
-\begin{DoxyCompactList}\small\item\em Is this metacode a pollable event. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1MetaCode_a00ad1171e9e081318e6efc25a371ee05}{IsJoyStickEvent} () const 
-\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a Joystick Event. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1MetaCode_a6eb682ae2a56238c6afd3933cb40843b}{IsOtherInputEvent} () const 
-\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent some other (non-\/keyboard and non-\/mouse button) \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1MetaCode_ad9a618b5cc6f9d0cf0a4bc4f47bf98e8}{MetaCode} (const \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent} \&RawEvent\_\-)
+\begin{DoxyCompactList}\small\item\em The Heavy Lifting Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1MetaCode_a590e6b767952e278b72ff71eddf369d4}{MetaCode} (const int \&MetaValue\_\-, const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code\_\-)
+\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1MetaCode_ae2c80c84f924ddfd880f46ffe6a1746e}{MetaCode} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1MetaCode_a506486e5a6f08d50a5af42fa6d48a7f5}{operator==} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&other) const 
-\begin{DoxyCompactList}\small\item\em Compares two MetaCodes for equality. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Compares two MetaCodes for equality. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{SetCode} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code\_\-)
+\begin{DoxyCompactList}\small\item\em This Sets The InputCode. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1MetaCode_a26dd1a0b3b099b080fade8e33e9dde70}{SetCode} (int Code\_\-)
+\begin{DoxyCompactList}\small\item\em This Sets The InputCode using an int. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}{SetMetaValue} (const int \&MetaValue\_\-)
+\begin{DoxyCompactList}\small\item\em This Sets The MetaValue. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \hyperlink{classphys_1_1MetaCode_a4c5475be837b3ea5cc66223d53ca3e1a}{GetMouseButtonCode} (short unsigned int ButtonNumber)
-\begin{DoxyCompactList}\small\item\em Accepts a int and returns the InputCode for the Corresponding Mouse button. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \hyperlink{classphys_1_1MetaCode_ac09685ca056e3c5423adeae712a3c436}{GetJoystickAxisCode} (short unsigned int AxisNumber)
+\begin{DoxyCompactList}\small\item\em Accepts a int and returns the InputCode for the Corresponding Joystick Axis. \item\end{DoxyCompactList}\item 
 static \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \hyperlink{classphys_1_1MetaCode_a5e6e5f53b8c581b68a4b7e0a217032ca}{GetJoystickButtonCode} (short unsigned int ButtonNumber)
 \begin{DoxyCompactList}\small\item\em Accepts a int and returns the InputCode for the Corresponding Joystick button. \item\end{DoxyCompactList}\item 
-static \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \hyperlink{classphys_1_1MetaCode_ac09685ca056e3c5423adeae712a3c436}{GetJoystickAxisCode} (short unsigned int AxisNumber)
-\begin{DoxyCompactList}\small\item\em Accepts a int and returns the InputCode for the Corresponding Joystick Axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+static \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \hyperlink{classphys_1_1MetaCode_a4c5475be837b3ea5cc66223d53ca3e1a}{GetMouseButtonCode} (short unsigned int ButtonNumber)
+\begin{DoxyCompactList}\small\item\em Accepts a int and returns the InputCode for the Corresponding Mouse button. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

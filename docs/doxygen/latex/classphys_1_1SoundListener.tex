@@ -14,36 +14,36 @@ This is the listener class used for 3D sound.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1SoundListener_ab4063bdd8b0bc654a416915354ed0312}{SoundListener} (cAudio::IListener $\ast$Listener)
-\begin{DoxyCompactList}\small\item\em Class constructor. Internal use only. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1SoundListener_ab32dd020228ca0e09271f988d3a2e7f9}{$\sim$SoundListener} ()
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundListener_ab2a679aaf18c646365285c8691ffcb0c}{SetPosition} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
-\begin{DoxyCompactList}\small\item\em Sets the listener position. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundListener_ad4ba93b650897e355c26b09e3f95bce0}{SetDirection} (\hyperlink{classphys_1_1Vector3}{Vector3} Direction)
-\begin{DoxyCompactList}\small\item\em Sets the direction the listener is facing. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundListener_a51d6f4ccbbbe059e330eba6ef218eda8}{SetUpVector} (\hyperlink{classphys_1_1Vector3}{Vector3} Up)
-\begin{DoxyCompactList}\small\item\em Sets the up direction for the listener. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundListener_a22e63d58ca9710f9a54fb08dbd9be4d9}{SetVelocity} (\hyperlink{classphys_1_1Vector3}{Vector3} Velocity)
-\begin{DoxyCompactList}\small\item\em Sets the velocity of the listener. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundListener_a8375218557d4a79889bc59da6b064a43}{SetMasterVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Volume)
-\begin{DoxyCompactList}\small\item\em Sets the master volume for all sources heard by this listener. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundListener_a6fb5a26760d0ec460271393fd493dda2}{Move} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
-\begin{DoxyCompactList}\small\item\em Moves the listener to a new location. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1SoundListener_ad0bec6f468f7bcfa3cadfafbd22a8603}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the current position of the listener. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1SoundListener_a5277c24127bd23796710516c21154b49}{GetDirection} ()
 \begin{DoxyCompactList}\small\item\em Gets the current direction of the listener. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1SoundListener_a03acbadb9e7ebad0014269bf5c3bcf3d}{GetMasterVolume} ()
+\begin{DoxyCompactList}\small\item\em Gets the master volume used to scale sound sources. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1SoundListener_a97c834a1b8fec9ce3a0e705468d531e5}{GetMetersPerUnit} ()
+\begin{DoxyCompactList}\small\item\em Gets the scale used by the manager for this listener. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1SoundListener_ad0bec6f468f7bcfa3cadfafbd22a8603}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the current position of the listener. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1SoundListener_aff27f90cad8b2eec53e28d28ee2203c3}{GetUpVector} ()
 \begin{DoxyCompactList}\small\item\em Sets the upward orientation of the listener. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1SoundListener_a6b4bbf974c48ba2028bcf2f943a1b1c2}{GetVelocity} ()
 \begin{DoxyCompactList}\small\item\em Gets the current velocity of the listener. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1SoundListener_a03acbadb9e7ebad0014269bf5c3bcf3d}{GetMasterVolume} ()
-\begin{DoxyCompactList}\small\item\em Gets the master volume used to scale sound sources. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_a6fb5a26760d0ec460271393fd493dda2}{Move} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
+\begin{DoxyCompactList}\small\item\em Moves the listener to a new location. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_ad4ba93b650897e355c26b09e3f95bce0}{SetDirection} (\hyperlink{classphys_1_1Vector3}{Vector3} Direction)
+\begin{DoxyCompactList}\small\item\em Sets the direction the listener is facing. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_a8375218557d4a79889bc59da6b064a43}{SetMasterVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Volume)
+\begin{DoxyCompactList}\small\item\em Sets the master volume for all sources heard by this listener. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1SoundListener_ae5d432f4e1bf7eb788364e7ea0c4e0a6}{SetMetersPerUnit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Meters)
 \begin{DoxyCompactList}\small\item\em Sets the scale to be used by the manager for this listener. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1SoundListener_a97c834a1b8fec9ce3a0e705468d531e5}{GetMetersPerUnit} ()
-\begin{DoxyCompactList}\small\item\em Gets the scale used by the manager for this listener. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{classphys_1_1SoundListener_ab2a679aaf18c646365285c8691ffcb0c}{SetPosition} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
+\begin{DoxyCompactList}\small\item\em Sets the listener position. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_a51d6f4ccbbbe059e330eba6ef218eda8}{SetUpVector} (\hyperlink{classphys_1_1Vector3}{Vector3} Up)
+\begin{DoxyCompactList}\small\item\em Sets the up direction for the listener. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_a22e63d58ca9710f9a54fb08dbd9be4d9}{SetVelocity} (\hyperlink{classphys_1_1Vector3}{Vector3} Velocity)
+\begin{DoxyCompactList}\small\item\em Sets the velocity of the listener. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SoundListener_ab4063bdd8b0bc654a416915354ed0312}{SoundListener} (cAudio::IListener $\ast$Listener)
+\begin{DoxyCompactList}\small\item\em Class constructor. Internal use only. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SoundListener_ab32dd020228ca0e09271f988d3a2e7f9}{$\sim$SoundListener} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 

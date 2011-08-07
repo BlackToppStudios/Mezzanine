@@ -20,52 +20,32 @@ Inheritance diagram for phys::UI::CellGrid:\begin{figure}[H]
 \subsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75}{PageStyle} \{ \hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75a5cc13206330cf9ed55fb443ff4600c77}{CG\_\-Paged}, 
-\hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75add8259b571786b4e1976dcdb97a8e9c6}{CG\_\-Scrolled}
- \}
-\item 
 enum \hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496b}{OrderingStyle} \{ \hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496ba40efb4a2512c8f3129eaf967522c9b30}{CG\_\-Horizontal\_\-Vertical\_\-Ascending}, 
 \hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496badecf0f97dbc2c5f4df2ac84b1c063de6}{CG\_\-Horizontal\_\-Vertical\_\-Decending}, 
 \hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496ba6114116f4ee36620ca28d2ca052d6839}{CG\_\-Vertical\_\-Horizontal\_\-Ascending}, 
 \hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496bab220567598ddaadfe133b9fef6f14b43}{CG\_\-Vertical\_\-Horizontal\_\-Decending}
  \}
+\item 
+enum \hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75}{PageStyle} \{ \hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75a5cc13206330cf9ed55fb443ff4600c77}{CG\_\-Paged}, 
+\hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75add8259b571786b4e1976dcdb97a8e9c6}{CG\_\-Scrolled}
+ \}
 \end{DoxyCompactItemize}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1CellGrid_adabf84eb8411de0bcf9b57f648ca5810}{CellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}{
-virtual \hyperlink{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}{$\sim$CellGrid} ()}
-\label{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_abd1b3b422680a8b549c1c897b300da5d}{SetVisible} (bool visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_af53601ab18e77237550c3eb97043e68c}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe6241e8dac5585b}{
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe6241e8dac5585b}{Show} ()}
-\label{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe6241e8dac5585b}
-
-\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_a8f1ea23b55724f3346a6c32c87f4eabc}{
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a8f1ea23b55724f3346a6c32c87f4eabc}{Hide} ()}
-\label{classphys_1_1UI_1_1CellGrid_a8f1ea23b55724f3346a6c32c87f4eabc}
-
-\begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ad8a6d111b1906b0eb165fcedc0917452}{SetFixedCellSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&FixedSize)
-\begin{DoxyCompactList}\small\item\em Sets the fixed size cells in this grid are to have. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a7106972be4c03ac453894fcb7ef4782f}{GetFixedCellSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the currently set fixed size applied to all cells in this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ac4f29519b3e2bca1fa146b2a9a20ec61}{AddCell} (\hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ToBeAdded)
 \begin{DoxyCompactList}\small\item\em Addes a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} to this widget that will be rendered. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a563d2fcfdb017579633727094a3176f3}{GetCell} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} on the grid by name. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a6a39785b673abb8cffc8bbd0b8837208}{GetCell} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Row, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Column)
-\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} at the specified row/column. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_af7ff6b201aa24939c82ee34e96e67a32}{RemoveCell} (\hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ToBeRemoved)
-\begin{DoxyCompactList}\small\item\em Removes a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} from this widget. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1CellGrid_adabf84eb8411de0bcf9b57f648ca5810}{CellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_ae901b18d90b8ed0d16da25ccfa91e84e}{CellsOffGrid} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if there are any remaining cells that aren't on the grid due to a lack of space. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_a9c5f899c7db6c24d9aa2b03e59e5f0f0}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ae2ad049f3e426c8a26cca6c59fb853aa}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ae2ad049f3e426c8a26cca6c59fb853aa}{ClearSelected} ()}
+\label{classphys_1_1UI_1_1CellGrid_ae2ad049f3e426c8a26cca6c59fb853aa}
+
+\begin{DoxyCompactList}\small\item\em Sets the selected pointer to NULL, so no cells are selected. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a12736adff3718820b4915cbe9961c66f}{
 virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a12736adff3718820b4915cbe9961c66f}{DestroyAllCells} ()}
 \label{classphys_1_1UI_1_1CellGrid_a12736adff3718820b4915cbe9961c66f}
@@ -76,54 +56,74 @@ virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a7a990cd514b6c02ea8f7747b0b0
 \label{classphys_1_1UI_1_1CellGrid_a7a990cd514b6c02ea8f7747b0b058c93}
 
 \begin{DoxyCompactList}\small\item\em Forces a reconstruction of the grid. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a785a41fd3e38dbd5a58d9a4f72f06a26}{SetWorkAreaLimits} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&AreaLimit)
-\begin{DoxyCompactList}\small\item\em Sets the limits of the grid, to determine when and where objects need to be wrapped. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a328392c90b93da93354756607e328e0c}{GetWorkAreaLimits} ()
-\begin{DoxyCompactList}\small\item\em Gets the currently set logical limits for the grid. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_aa55c328e2d222570d5c72bb50a48f8a5}{SetEdgeSpacing} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Spacing)
-\begin{DoxyCompactList}\small\item\em Sets the spacing from the edge of the entire grid area that no cell should overlap. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_afcf2689f1cc38acb157deb8ee5717906}{GetEdgeSpacing} ()
-\begin{DoxyCompactList}\small\item\em Gets the currently set edge spacing. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ac62bf02320f381012d22941d07ae62a2}{SetCellSpacing} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Spacing)
-\begin{DoxyCompactList}\small\item\em Sets the spacing from each cell around any given cell there should be. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a1ead8b427b5989ec137aa0ca8e017f73}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_ad0ea7915446ba7821212e6a43aede7e1}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a563d2fcfdb017579633727094a3176f3}{GetCell} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} on the grid by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a6a39785b673abb8cffc8bbd0b8837208}{GetCell} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Row, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Column)
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} at the specified row/column. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a232260f23808cd7099f2f9a15850a14e}{GetCellSpacing} ()
 \begin{DoxyCompactList}\small\item\em Gets the currently set cell spacing. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_ae901b18d90b8ed0d16da25ccfa91e84e}{CellsOffGrid} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if there are any remaining cells that aren't on the grid due to a lack of space. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_afcf2689f1cc38acb157deb8ee5717906}{GetEdgeSpacing} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set edge spacing. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a7106972be4c03ac453894fcb7ef4782f}{GetFixedCellSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set fixed size applied to all cells in this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a25796d285052da2f0d833e6c8694edd1}{GetGridBack} ()
+\begin{DoxyCompactList}\small\item\em Gets the background to this Grid. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a6b7fcbfd8a965e69c6e3e92d474f121f}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a4c68b88de0b02ef66ee192db430435ee}{GetSelected} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently selected \hyperlink{classphys_1_1UI_1_1Cell}{Cell}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_aa0ad4f1e0159f8c6ca3928595dffd837}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a328392c90b93da93354756607e328e0c}{GetWorkAreaLimits} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set logical limits for the grid. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a8f1ea23b55724f3346a6c32c87f4eabc}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a8f1ea23b55724f3346a6c32c87f4eabc}{Hide} ()}
+\label{classphys_1_1UI_1_1CellGrid_a8f1ea23b55724f3346a6c32c87f4eabc}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_af53601ab18e77237550c3eb97043e68c}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_af7ff6b201aa24939c82ee34e96e67a32}{RemoveCell} (\hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ToBeRemoved)
+\begin{DoxyCompactList}\small\item\em Removes a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} from this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a911ce43c124ca7ac9f02ba7d8e08d919}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a86a0ff7a5a916278d901bae05df01847}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ac62bf02320f381012d22941d07ae62a2}{SetCellSpacing} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Spacing)
+\begin{DoxyCompactList}\small\item\em Sets the spacing from each cell around any given cell there should be. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_aa55c328e2d222570d5c72bb50a48f8a5}{SetEdgeSpacing} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Spacing)
+\begin{DoxyCompactList}\small\item\em Sets the spacing from the edge of the entire grid area that no cell should overlap. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ad8a6d111b1906b0eb165fcedc0917452}{SetFixedCellSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&FixedSize)
+\begin{DoxyCompactList}\small\item\em Sets the fixed size cells in this grid are to have. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_abf0552ebbe369f6b695f91fdaa220c20}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a83de47589cb02ce49882f795e9281f57}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_abd1b3b422680a8b549c1c897b300da5d}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a785a41fd3e38dbd5a58d9a4f72f06a26}{SetWorkAreaLimits} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&AreaLimit)
+\begin{DoxyCompactList}\small\item\em Sets the limits of the grid, to determine when and where objects need to be wrapped. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe6241e8dac5585b}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe6241e8dac5585b}{Show} ()}
+\label{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe6241e8dac5585b}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_ae539f6b21c3ed84852df37153ae2aebf}{
 virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ae539f6b21c3ed84852df37153ae2aebf}{SortGrid} ()}
 \label{classphys_1_1UI_1_1CellGrid_ae539f6b21c3ed84852df37153ae2aebf}
 
 \begin{DoxyCompactList}\small\item\em Sorts the grid based on the priority set in the cells. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_ae2ad049f3e426c8a26cca6c59fb853aa}{
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ae2ad049f3e426c8a26cca6c59fb853aa}{ClearSelected} ()}
-\label{classphys_1_1UI_1_1CellGrid_ae2ad049f3e426c8a26cca6c59fb853aa}
-
-\begin{DoxyCompactList}\small\item\em Sets the selected pointer to NULL, so no cells are selected. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_a9c5f899c7db6c24d9aa2b03e59e5f0f0}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_abf0552ebbe369f6b695f91fdaa220c20}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a6b7fcbfd8a965e69c6e3e92d474f121f}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a911ce43c124ca7ac9f02ba7d8e08d919}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a1ead8b427b5989ec137aa0ca8e017f73}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a83de47589cb02ce49882f795e9281f57}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_aa0ad4f1e0159f8c6ca3928595dffd837}{GetSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a86a0ff7a5a916278d901bae05df01847}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_ad0ea7915446ba7821212e6a43aede7e1}{GetActualSize} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf3ff787837e5}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
 \begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a25796d285052da2f0d833e6c8694edd1}{GetGridBack} ()
-\begin{DoxyCompactList}\small\item\em Gets the background to this Grid. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a4c68b88de0b02ef66ee192db430435ee}{GetSelected} ()
-\begin{DoxyCompactList}\small\item\em Gets the currently selected \hyperlink{classphys_1_1UI_1_1Cell}{Cell}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}{
+virtual \hyperlink{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}{$\sim$CellGrid} ()}
+\label{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -140,16 +140,21 @@ typedef std::vector$<$ \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ $>$ 
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_ab031e5d26dcb8b2617533e284816b5ed}{
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1CellGrid_ab031e5d26dcb8b2617533e284816b5ed}{GetMaxRows} ()}
-\label{classphys_1_1UI_1_1CellGrid_ab031e5d26dcb8b2617533e284816b5ed}
+\hypertarget{classphys_1_1UI_1_1CellGrid_a62025df19045011c3ef7958c253f8f3c}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a62025df19045011c3ef7958c253f8f3c}{ClearGrid} ()}
+\label{classphys_1_1UI_1_1CellGrid_a62025df19045011c3ef7958c253f8f3c}
 
-\begin{DoxyCompactList}\small\item\em Gets the max number of rows in the grid. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_ac7338fc2ba7cc9575c9f47d70d998574}{
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1CellGrid_ac7338fc2ba7cc9575c9f47d70d998574}{GetMaxColumns} ()}
-\label{classphys_1_1UI_1_1CellGrid_ac7338fc2ba7cc9575c9f47d70d998574}
+\begin{DoxyCompactList}\small\item\em Removes all Cells from the grid. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_af4f183946fb12cb9150b337c17343c31}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_af4f183946fb12cb9150b337c17343c31}{CreateOrDestroyRow} (CellVector $\ast$ToDestory)}
+\label{classphys_1_1UI_1_1CellGrid_af4f183946fb12cb9150b337c17343c31}
 
-\begin{DoxyCompactList}\small\item\em Gest the max number of columns in the grid. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Creates(if null) or destroys(if pointer is valid) a CellVector. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ada5c15ae1b0372277d1bde05e348ccfd}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ada5c15ae1b0372277d1bde05e348ccfd}{DrawGrid} ()=0}
+\label{classphys_1_1UI_1_1CellGrid_ada5c15ae1b0372277d1bde05e348ccfd}
+
+\begin{DoxyCompactList}\small\item\em Draws the grid, used for updating after any change. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_ae2970e94e9f4e79520ff93bb0c3238b0}{
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1CellGrid_ae2970e94e9f4e79520ff93bb0c3238b0}{FindTallestInRow} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&RowIndex)}
 \label{classphys_1_1UI_1_1CellGrid_ae2970e94e9f4e79520ff93bb0c3238b0}
@@ -160,36 +165,31 @@ virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hype
 \label{classphys_1_1UI_1_1CellGrid_af659299b53bb143d6593c6ac84ef45a3}
 
 \begin{DoxyCompactList}\small\item\em Finds the Widest cell in a column. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_af4f183946fb12cb9150b337c17343c31}{
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_af4f183946fb12cb9150b337c17343c31}{CreateOrDestroyRow} (CellVector $\ast$ToDestory)}
-\label{classphys_1_1UI_1_1CellGrid_af4f183946fb12cb9150b337c17343c31}
+\hypertarget{classphys_1_1UI_1_1CellGrid_ac7338fc2ba7cc9575c9f47d70d998574}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1CellGrid_ac7338fc2ba7cc9575c9f47d70d998574}{GetMaxColumns} ()}
+\label{classphys_1_1UI_1_1CellGrid_ac7338fc2ba7cc9575c9f47d70d998574}
 
-\begin{DoxyCompactList}\small\item\em Creates(if null) or destroys(if pointer is valid) a CellVector. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_a62025df19045011c3ef7958c253f8f3c}{
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a62025df19045011c3ef7958c253f8f3c}{ClearGrid} ()}
-\label{classphys_1_1UI_1_1CellGrid_a62025df19045011c3ef7958c253f8f3c}
+\begin{DoxyCompactList}\small\item\em Gest the max number of columns in the grid. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ab031e5d26dcb8b2617533e284816b5ed}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1CellGrid_ab031e5d26dcb8b2617533e284816b5ed}{GetMaxRows} ()}
+\label{classphys_1_1UI_1_1CellGrid_ab031e5d26dcb8b2617533e284816b5ed}
 
-\begin{DoxyCompactList}\small\item\em Removes all Cells from the grid. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_a1fecbe653e802df38b5bb416a73efda9}{
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a1fecbe653e802df38b5bb416a73efda9}{RegenerateGrid} ()}
-\label{classphys_1_1UI_1_1CellGrid_a1fecbe653e802df38b5bb416a73efda9}
-
-\begin{DoxyCompactList}\small\item\em Re-\/populates the grid and the positions of it's elements. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_ab426bff9fe6c637aa4438fd00cdde71b}{
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ab426bff9fe6c637aa4438fd00cdde71b}{RegenerateGrid} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&WinDim)}
-\label{classphys_1_1UI_1_1CellGrid_ab426bff9fe6c637aa4438fd00cdde71b}
-
-\begin{DoxyCompactList}\small\item\em Re-\/populates the grid and the positions of it's elements. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_ada5c15ae1b0372277d1bde05e348ccfd}{
-virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ada5c15ae1b0372277d1bde05e348ccfd}{DrawGrid} ()=0}
-\label{classphys_1_1UI_1_1CellGrid_ada5c15ae1b0372277d1bde05e348ccfd}
-
-\begin{DoxyCompactList}\small\item\em Draws the grid, used for updating after any change. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets the max number of rows in the grid. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_aa4c2f8c2c5f11ce5cffa1b8a1c44d57d}{
 virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_aa4c2f8c2c5f11ce5cffa1b8a1c44d57d}{GridNeedsRedraw} ()=0}
 \label{classphys_1_1UI_1_1CellGrid_aa4c2f8c2c5f11ce5cffa1b8a1c44d57d}
 
 \begin{DoxyCompactList}\small\item\em Determines whether or not the grid needs to be redrawn. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ab426bff9fe6c637aa4438fd00cdde71b}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ab426bff9fe6c637aa4438fd00cdde71b}{RegenerateGrid} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&WinDim)}
+\label{classphys_1_1UI_1_1CellGrid_ab426bff9fe6c637aa4438fd00cdde71b}
+
+\begin{DoxyCompactList}\small\item\em Re-\/populates the grid and the positions of it's elements. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a1fecbe653e802df38b5bb416a73efda9}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a1fecbe653e802df38b5bb416a73efda9}{RegenerateGrid} ()}
+\label{classphys_1_1UI_1_1CellGrid_a1fecbe653e802df38b5bb416a73efda9}
+
+\begin{DoxyCompactList}\small\item\em Re-\/populates the grid and the positions of it's elements. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_ae72ca5a4a8924596df199c66e64c136f}{
 virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ae72ca5a4a8924596df199c66e64c136f}{Update} (bool Force=false)}
 \label{classphys_1_1UI_1_1CellGrid_ae72ca5a4a8924596df199c66e64c136f}
@@ -197,6 +197,26 @@ virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ae72ca5a4a8924596df199c66e64
 \begin{DoxyCompactList}\small\item\em For use with widget update/automation. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ac4bb16b8e9fa149d2196362e32a57fdf}{
+CellList {\bfseries Cells}}
+\label{classphys_1_1UI_1_1CellGrid_ac4bb16b8e9fa149d2196362e32a57fdf}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a68050ec93322d9368c2229871d397596}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries CellSpacing}}
+\label{classphys_1_1UI_1_1CellGrid_a68050ec93322d9368c2229871d397596}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ad8ba6bc71f9c8f6b6b45c44a018710fd}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries EdgeSpacing}}
+\label{classphys_1_1UI_1_1CellGrid_ad8ba6bc71f9c8f6b6b45c44a018710fd}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a36827609cc2e20dcc7b8350632c19f4e}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries FixedCellSize}}
+\label{classphys_1_1UI_1_1CellGrid_a36827609cc2e20dcc7b8350632c19f4e}
+
 \item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a587671fd85e0b5ce7e9e70522a8cc413}{
 \hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ {\bfseries GridBack}}
@@ -208,24 +228,9 @@ bool {\bfseries GridDirty}}
 \label{classphys_1_1UI_1_1CellGrid_a4b764a148bda707ee96ce6e918b9159e}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_a36827609cc2e20dcc7b8350632c19f4e}{
-\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries FixedCellSize}}
-\label{classphys_1_1UI_1_1CellGrid_a36827609cc2e20dcc7b8350632c19f4e}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_ad8ba6bc71f9c8f6b6b45c44a018710fd}{
-\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries EdgeSpacing}}
-\label{classphys_1_1UI_1_1CellGrid_ad8ba6bc71f9c8f6b6b45c44a018710fd}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_a68050ec93322d9368c2229871d397596}{
-\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries CellSpacing}}
-\label{classphys_1_1UI_1_1CellGrid_a68050ec93322d9368c2229871d397596}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_a13d9fb5036b9e47fe04614079ca0f801}{
-\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries WorkAreaLimits}}
-\label{classphys_1_1UI_1_1CellGrid_a13d9fb5036b9e47fe04614079ca0f801}
+\hypertarget{classphys_1_1UI_1_1CellGrid_afb953bc3382663245dc6abba83a31c17}{
+\hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496b}{CellGrid::OrderingStyle} {\bfseries Ordering}}
+\label{classphys_1_1UI_1_1CellGrid_afb953bc3382663245dc6abba83a31c17}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_add1de3de8d067ef7efa60b5b23081fde}{
@@ -233,19 +238,14 @@ bool {\bfseries GridDirty}}
 \label{classphys_1_1UI_1_1CellGrid_add1de3de8d067ef7efa60b5b23081fde}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_afb953bc3382663245dc6abba83a31c17}{
-\hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496b}{CellGrid::OrderingStyle} {\bfseries Ordering}}
-\label{classphys_1_1UI_1_1CellGrid_afb953bc3382663245dc6abba83a31c17}
-
-\item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_ae5864a7174fee981647f339075a11e10}{
 \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ {\bfseries Selected}}
 \label{classphys_1_1UI_1_1CellGrid_ae5864a7174fee981647f339075a11e10}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_ac4bb16b8e9fa149d2196362e32a57fdf}{
-CellList {\bfseries Cells}}
-\label{classphys_1_1UI_1_1CellGrid_ac4bb16b8e9fa149d2196362e32a57fdf}
+\hypertarget{classphys_1_1UI_1_1CellGrid_a38f49946396c1d3f1f34edb3e9bf4297}{
+std::vector$<$ CellVector $\ast$ $>$ {\bfseries TheGrid}}
+\label{classphys_1_1UI_1_1CellGrid_a38f49946396c1d3f1f34edb3e9bf4297}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1CellGrid_a7fcb9ac98852926abf686df661acc72d}{
@@ -253,9 +253,9 @@ CellVector {\bfseries VisibleCells}}
 \label{classphys_1_1UI_1_1CellGrid_a7fcb9ac98852926abf686df661acc72d}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1CellGrid_a38f49946396c1d3f1f34edb3e9bf4297}{
-std::vector$<$ CellVector $\ast$ $>$ {\bfseries TheGrid}}
-\label{classphys_1_1UI_1_1CellGrid_a38f49946396c1d3f1f34edb3e9bf4297}
+\hypertarget{classphys_1_1UI_1_1CellGrid_a13d9fb5036b9e47fe04614079ca0f801}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries WorkAreaLimits}}
+\label{classphys_1_1UI_1_1CellGrid_a13d9fb5036b9e47fe04614079ca0f801}
 
 \end{DoxyCompactItemize}
 

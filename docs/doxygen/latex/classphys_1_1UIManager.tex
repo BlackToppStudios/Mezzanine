@@ -20,93 +20,98 @@ Inheritance diagram for phys::UIManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UIManager_aeb502f11f170efd806b4153923c55359}{UIManager} ()
-\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UIManager_a203144f08dbaf8068746359c22aa4f1e}{$\sim$UIManager} ()
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{
-void \hyperlink{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{Initialize} ()}
-\label{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}
-
-\begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classphys_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{
-void \hyperlink{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{DoMainLoopItems} ()}
-\label{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}
-
-\begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classphys_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UIManager_afda4422105d6ab353fd40410adffbc0a}{LoadGorilla} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Loads a Gorilla file for use with this manager. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UIManager_a4a4ce18dc4f32f8274a50fb4b99b87e3}{RedrawAll} (bool Force=false)
-\begin{DoxyCompactList}\small\item\em Forces everything loaded into the UI system to be redrawn. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UIManager_a935d79d7b2ba71075c330e6bc0c7391c}{BindHotKey} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&HotKey, \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$BoundButton)
-\begin{DoxyCompactList}\small\item\em Binds a key to a button. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UIManager_a9d79615c0c9f9895dd10ac0399aa6e81}{UnbindHotKey} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&HotKey, \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$BoundButton)
-\begin{DoxyCompactList}\small\item\em Removes a previously set hotkey binding. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UIManager_ac09c26ff3d5bade09f0480d5702d2042}{
-void \hyperlink{classphys_1_1UIManager_ac09c26ff3d5bade09f0480d5702d2042}{RemoveAllHotKeys} ()}
-\label{classphys_1_1UIManager_ac09c26ff3d5bade09f0480d5702d2042}
-
-\begin{DoxyCompactList}\small\item\em Clears all registered hotkeys. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UIManager_a210e1607f0fa63aa44a1f7a6b4156f60}{EnableButtonAutoRegister} (bool Enable)
-\begin{DoxyCompactList}\small\item\em Enables whether or not to automatically set the activation key or button for UI buttons. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1UIManager_aa55bfb557af6569914662e3786b86a7a}{ButtonAutoRegisterEnabled} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not the ButtonAutoRegister feature is enabled. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1UIManager_ac44c38c26dece8a5d2087cb9ab2eac15}{AddAutoRegisterCode} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} Code)
 \begin{DoxyCompactList}\small\item\em Adds a key or button that will be auto-\/registered with every created UI button. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UIManager_a0335a3ee8134edf514222896790a71d1}{RemoveAutoRegisterCode} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} Code)
-\begin{DoxyCompactList}\small\item\em Removes a previously set auto-\/registering input code. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UIManager_a006ae9f06562877b0a7fe315c25d96a0}{
-void \hyperlink{classphys_1_1UIManager_a006ae9f06562877b0a7fe315c25d96a0}{RemoveAllAutoRegisterCodes} ()}
-\label{classphys_1_1UIManager_a006ae9f06562877b0a7fe315c25d96a0}
-
-\begin{DoxyCompactList}\small\item\em Removes all auto-\/registering input codes. \item\end{DoxyCompactList}\item 
-std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classphys_1_1UIManager_a4ba0a6ae3044fb70aeece69fd5befbf9}{GetAutoRegisteredCodes} ()
-\begin{DoxyCompactList}\small\item\em Gets the list of codes that will be auto-\/registered with each UI button. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UIManager_acd08dba5be95182a6c923ed698822277}{GetHoveredButton} ()
-\begin{DoxyCompactList}\small\item\em Gets the button the mouse is hovering over. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UIManager_a1dbcd08fc03131de3f68521a3d877071}{GetHoveredWidgetButton} ()
-\begin{DoxyCompactList}\small\item\em Gets the button the mouse is hovering over, if the button is inside a widget. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_a5772b611b6881eb98932f4b400b44d09}{GetHoveredWidget} ()
-\begin{DoxyCompactList}\small\item\em Gets the Widget the mouse is hovering over. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_a99694297814d2e82ec507c6f4d6bec1a}{GetWidgetFocus} ()
-\begin{DoxyCompactList}\small\item\em Gets the current widget being controlled. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_ad686b75d17ac2f674a9aa2dd0e097030}{GetWidgetCapturingInput} ()
-\begin{DoxyCompactList}\small\item\em Gets the widget that is currently capturing input. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UIManager_a935d79d7b2ba71075c330e6bc0c7391c}{BindHotKey} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&HotKey, \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$BoundButton)
+\begin{DoxyCompactList}\small\item\em Binds a key to a button. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1UIManager_aa55bfb557af6569914662e3786b86a7a}{ButtonAutoRegisterEnabled} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not the ButtonAutoRegister feature is enabled. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UIManager_aa1022fcbe8e1efc7a383b2eff834a152}{CheckButtonMouseIsOver} ()
+\begin{DoxyCompactList}\small\item\em Searches all visible screens and layers to see if a button was clicked. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_ab9840b483409d3453a67931b4d858d1b}{CheckWidgetMouseIsOver} ()
+\begin{DoxyCompactList}\small\item\em Searches all visable screens and layers to see if a widget was clicked. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Screen}{UI::Screen} $\ast$ \hyperlink{classphys_1_1UIManager_acbc318b4d152db7ba83201feb7d8ed12}{CreateScreen} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ScreenName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas, \hyperlink{classphys_1_1Viewport}{Viewport} $\ast$WindowViewport)
 \begin{DoxyCompactList}\small\item\em Creates an internal HUD screen. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Screen}{UI::Screen} $\ast$ \hyperlink{classphys_1_1UIManager_ad1ea734a094d7dcac729c6e2aa2987ad}{GetScreen} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Gets an already created screen by name. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Screen}{UI::Screen} $\ast$ \hyperlink{classphys_1_1UIManager_a82f130c650b679347f3bf66533f75db7}{GetScreen} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
-\begin{DoxyCompactList}\small\item\em Gets an already created screen by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UIManager_a3bd28c361f6fc79a182ebd3ec0a26ec7}{GetNumScreens} ()
-\begin{DoxyCompactList}\small\item\em Gets the number of screens created and stored in this manager. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UIManager_a6c44c94905d7a01eb004efda66b53af8}{DestroyScreen} (\hyperlink{classphys_1_1UI_1_1Screen}{UI::Screen} $\ast$Screen)
-\begin{DoxyCompactList}\small\item\em Deletes a screen and removes all trace of it from the manager. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UIManager_a97555e02aad6c85cac6bf67fbe074cd1}{
 void \hyperlink{classphys_1_1UIManager_a97555e02aad6c85cac6bf67fbe074cd1}{DestroyAllScreens} ()}
 \label{classphys_1_1UIManager_a97555e02aad6c85cac6bf67fbe074cd1}
 
 \begin{DoxyCompactList}\small\item\em Deletes all screens stored in this manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UIManager_a6c44c94905d7a01eb004efda66b53af8}{DestroyScreen} (\hyperlink{classphys_1_1UI_1_1Screen}{UI::Screen} $\ast$Screen)
+\begin{DoxyCompactList}\small\item\em Deletes a screen and removes all trace of it from the manager. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{
+void \hyperlink{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{DoMainLoopItems} ()}
+\label{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}
+
+\begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classphys_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UIManager_a210e1607f0fa63aa44a1f7a6b4156f60}{EnableButtonAutoRegister} (bool Enable)
+\begin{DoxyCompactList}\small\item\em Enables whether or not to automatically set the activation key or button for UI buttons. \item\end{DoxyCompactList}\item 
+std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classphys_1_1UIManager_a4ba0a6ae3044fb70aeece69fd5befbf9}{GetAutoRegisteredCodes} ()
+\begin{DoxyCompactList}\small\item\em Gets the list of codes that will be auto-\/registered with each UI button. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UIManager_acd08dba5be95182a6c923ed698822277}{GetHoveredButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the button the mouse is hovering over. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_a5772b611b6881eb98932f4b400b44d09}{GetHoveredWidget} ()
+\begin{DoxyCompactList}\small\item\em Gets the Widget the mouse is hovering over. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UIManager_a1dbcd08fc03131de3f68521a3d877071}{GetHoveredWidgetButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the button the mouse is hovering over, if the button is inside a widget. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Layer}{UI::Layer} $\ast$ \hyperlink{classphys_1_1UIManager_ab51c45a1ac2cbc6a4f1d826d1407ed65}{GetLayer} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Searches all screens and gets the named Layer. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UIManager_aa1022fcbe8e1efc7a383b2eff834a152}{CheckButtonMouseIsOver} ()
-\begin{DoxyCompactList}\small\item\em Searches all visible screens and layers to see if a button was clicked. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_ab9840b483409d3453a67931b4d858d1b}{CheckWidgetMouseIsOver} ()
-\begin{DoxyCompactList}\small\item\em Searches all visable screens and layers to see if a widget was clicked. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1UIManager_a38bc8d2ed1930a8ff6e82ef5f991dbe1}{MouseIsInUISystem} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the mouse is over a UI element. \item\end{DoxyCompactList}\item 
-std::pair$<$ \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole}, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} $>$ \hyperlink{classphys_1_1UIManager_a9fff50f9a977e603e7c62a950b796a74}{SuggestGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Suggests a glyph index based on the desired actual height. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UIManager_a3bd28c361f6fc79a182ebd3ec0a26ec7}{GetNumScreens} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of screens created and stored in this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Screen}{UI::Screen} $\ast$ \hyperlink{classphys_1_1UIManager_ad1ea734a094d7dcac729c6e2aa2987ad}{GetScreen} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created screen by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Screen}{UI::Screen} $\ast$ \hyperlink{classphys_1_1UIManager_a82f130c650b679347f3bf66533f75db7}{GetScreen} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created screen by index. \item\end{DoxyCompactList}\item 
+Gorilla::Silverback $\ast$ \hyperlink{classphys_1_1UIManager_a21623edd39c3e23de29f4cf3ed6e490a}{GetSilverbackPointer} ()
+\begin{DoxyCompactList}\small\item\em Gets the internal silverback pointer. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \hyperlink{classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em Gets the type of manager that this manager is. \item\end{DoxyCompactList}\item 
-Gorilla::Silverback $\ast$ \hyperlink{classphys_1_1UIManager_a21623edd39c3e23de29f4cf3ed6e490a}{GetSilverbackPointer} ()
-\begin{DoxyCompactList}\small\item\em Gets the internal silverback pointer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_ad686b75d17ac2f674a9aa2dd0e097030}{GetWidgetCapturingInput} ()
+\begin{DoxyCompactList}\small\item\em Gets the widget that is currently capturing input. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_a99694297814d2e82ec507c6f4d6bec1a}{GetWidgetFocus} ()
+\begin{DoxyCompactList}\small\item\em Gets the current widget being controlled. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{
+void \hyperlink{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{Initialize} ()}
+\label{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}
+
+\begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classphys_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UIManager_afda4422105d6ab353fd40410adffbc0a}{LoadGorilla} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Loads a Gorilla file for use with this manager. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1UIManager_a38bc8d2ed1930a8ff6e82ef5f991dbe1}{MouseIsInUISystem} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the mouse is over a UI element. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UIManager_a4a4ce18dc4f32f8274a50fb4b99b87e3}{RedrawAll} (bool Force=false)
+\begin{DoxyCompactList}\small\item\em Forces everything loaded into the UI system to be redrawn. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIManager_a006ae9f06562877b0a7fe315c25d96a0}{
+void \hyperlink{classphys_1_1UIManager_a006ae9f06562877b0a7fe315c25d96a0}{RemoveAllAutoRegisterCodes} ()}
+\label{classphys_1_1UIManager_a006ae9f06562877b0a7fe315c25d96a0}
+
+\begin{DoxyCompactList}\small\item\em Removes all auto-\/registering input codes. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIManager_ac09c26ff3d5bade09f0480d5702d2042}{
+void \hyperlink{classphys_1_1UIManager_ac09c26ff3d5bade09f0480d5702d2042}{RemoveAllHotKeys} ()}
+\label{classphys_1_1UIManager_ac09c26ff3d5bade09f0480d5702d2042}
+
+\begin{DoxyCompactList}\small\item\em Clears all registered hotkeys. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UIManager_a0335a3ee8134edf514222896790a71d1}{RemoveAutoRegisterCode} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} Code)
+\begin{DoxyCompactList}\small\item\em Removes a previously set auto-\/registering input code. \item\end{DoxyCompactList}\item 
+std::pair$<$ \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole}, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} $>$ \hyperlink{classphys_1_1UIManager_a9fff50f9a977e603e7c62a950b796a74}{SuggestGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Suggests a glyph index based on the desired actual height. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UIManager_aeb502f11f170efd806b4153923c55359}{UIManager} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UIManager_a9d79615c0c9f9895dd10ac0399aa6e81}{UnbindHotKey} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&HotKey, \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$BoundButton)
+\begin{DoxyCompactList}\small\item\em Removes a previously set hotkey binding. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UIManager_a203144f08dbaf8068746359c22aa4f1e}{$\sim$UIManager} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UIManager_ae5beaafe73c68d39eb84463033941057}{
-void {\bfseries HoverChecks} ()}
-\label{classphys_1_1UIManager_ae5beaafe73c68d39eb84463033941057}
+\hypertarget{classphys_1_1UIManager_a6ad508c48abf98bfccf3d04cd46d4f77}{
+void {\bfseries ClearButtonActivations} ()}
+\label{classphys_1_1UIManager_a6ad508c48abf98bfccf3d04cd46d4f77}
+
+\item 
+\hypertarget{classphys_1_1UIManager_a8340da0109e0c473af342ab4a514afc2}{
+void {\bfseries HotKeyActivationCheck} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)}
+\label{classphys_1_1UIManager_a8340da0109e0c473af342ab4a514afc2}
 
 \item 
 \hypertarget{classphys_1_1UIManager_aafbc4428f35b8ec2be7cff6fd0b534d1}{
@@ -114,19 +119,9 @@ void {\bfseries HotKeyAndInputCaptureChecks} ()}
 \label{classphys_1_1UIManager_aafbc4428f35b8ec2be7cff6fd0b534d1}
 
 \item 
-\hypertarget{classphys_1_1UIManager_aefbf6f02f0b1049c321139fa399eb7ee}{
-void {\bfseries WidgetUpdates} ()}
-\label{classphys_1_1UIManager_aefbf6f02f0b1049c321139fa399eb7ee}
-
-\item 
-\hypertarget{classphys_1_1UIManager_a6ad508c48abf98bfccf3d04cd46d4f77}{
-void {\bfseries ClearButtonActivations} ()}
-\label{classphys_1_1UIManager_a6ad508c48abf98bfccf3d04cd46d4f77}
-
-\item 
-\hypertarget{classphys_1_1UIManager_aba919b3f29058271e4681f9ca7a8a17e}{
-void {\bfseries ViewportUpdateChecks} ()}
-\label{classphys_1_1UIManager_aba919b3f29058271e4681f9ca7a8a17e}
+\hypertarget{classphys_1_1UIManager_ae5beaafe73c68d39eb84463033941057}{
+void {\bfseries HoverChecks} ()}
+\label{classphys_1_1UIManager_ae5beaafe73c68d39eb84463033941057}
 
 \item 
 \hypertarget{classphys_1_1UIManager_af1e9285e30826b1c075bb8ca17fcc31e}{
@@ -134,23 +129,18 @@ void {\bfseries MouseActivationCheck} (\hyperlink{classphys_1_1UI_1_1Button}{UI:
 \label{classphys_1_1UIManager_af1e9285e30826b1c075bb8ca17fcc31e}
 
 \item 
-\hypertarget{classphys_1_1UIManager_a8340da0109e0c473af342ab4a514afc2}{
-void {\bfseries HotKeyActivationCheck} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)}
-\label{classphys_1_1UIManager_a8340da0109e0c473af342ab4a514afc2}
+\hypertarget{classphys_1_1UIManager_aba919b3f29058271e4681f9ca7a8a17e}{
+void {\bfseries ViewportUpdateChecks} ()}
+\label{classphys_1_1UIManager_aba919b3f29058271e4681f9ca7a8a17e}
+
+\item 
+\hypertarget{classphys_1_1UIManager_aefbf6f02f0b1049c321139fa399eb7ee}{
+void {\bfseries WidgetUpdates} ()}
+\label{classphys_1_1UIManager_aefbf6f02f0b1049c321139fa399eb7ee}
 
 \end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1UIManager_ab4c5b8c7e3c4c7b03847b1af18bea02a}{
-Gorilla::Silverback $\ast$ \hyperlink{classphys_1_1UIManager_ab4c5b8c7e3c4c7b03847b1af18bea02a}{Silver}}
-\label{classphys_1_1UIManager_ab4c5b8c7e3c4c7b03847b1af18bea02a}
-
-\begin{DoxyCompactList}\small\item\em Pointer for the Gorilla core class, where this manager gets it's functionality. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UIManager_aebd9d3b20ad2822e227df77442240557}{
-std::vector$<$ \hyperlink{classphys_1_1UI_1_1Screen}{UI::Screen} $\ast$ $>$ {\bfseries Screens}}
-\label{classphys_1_1UIManager_aebd9d3b20ad2822e227df77442240557}
-
 \item 
 \hypertarget{classphys_1_1UIManager_a519fd2a2f1febb4c3d2a647a512c7581}{
 std::vector$<$ \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ $>$ {\bfseries ActivatedButtons}}
@@ -160,6 +150,11 @@ std::vector$<$ \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ $>$ {\bf
 \hypertarget{classphys_1_1UIManager_affa048cc6e6930ba0f0b18fb4ee94c2e}{
 std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ {\bfseries AutoRegisterCodes}}
 \label{classphys_1_1UIManager_affa048cc6e6930ba0f0b18fb4ee94c2e}
+
+\item 
+\hypertarget{classphys_1_1UIManager_a7c4cec440bfdfe8d1c1b0bf052edd842}{
+bool {\bfseries ButtonAutoRegister}}
+\label{classphys_1_1UIManager_a7c4cec440bfdfe8d1c1b0bf052edd842}
 
 \item 
 \hypertarget{classphys_1_1UIManager_a6b43cf8529d403ff13d1ba342847d006}{
@@ -172,19 +167,14 @@ std::multimap$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda
 \label{classphys_1_1UIManager_a37293b9d9ba8b05c9a03e4640a56c6c1}
 
 \item 
-\hypertarget{classphys_1_1UIManager_aed72bede8e73d9d083e6faf352e60c0d}{
-\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries HoveredWidgetButton}}
-\label{classphys_1_1UIManager_aed72bede8e73d9d083e6faf352e60c0d}
-
-\item 
 \hypertarget{classphys_1_1UIManager_a3bcf192e061273695e99a85484c5056a}{
 \hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries HoveredWidget}}
 \label{classphys_1_1UIManager_a3bcf192e061273695e99a85484c5056a}
 
 \item 
-\hypertarget{classphys_1_1UIManager_a932c928b9246717725c264326660bd6d}{
-\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries WidgetFocus}}
-\label{classphys_1_1UIManager_a932c928b9246717725c264326660bd6d}
+\hypertarget{classphys_1_1UIManager_aed72bede8e73d9d083e6faf352e60c0d}{
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries HoveredWidgetButton}}
+\label{classphys_1_1UIManager_aed72bede8e73d9d083e6faf352e60c0d}
 
 \item 
 \hypertarget{classphys_1_1UIManager_aefa756d0c982299df8567e92c9de6c46}{
@@ -197,9 +187,19 @@ std::multimap$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda
 \label{classphys_1_1UIManager_aac5b0665a4703cf3d10cda216cbb9def}
 
 \item 
-\hypertarget{classphys_1_1UIManager_a7c4cec440bfdfe8d1c1b0bf052edd842}{
-bool {\bfseries ButtonAutoRegister}}
-\label{classphys_1_1UIManager_a7c4cec440bfdfe8d1c1b0bf052edd842}
+\hypertarget{classphys_1_1UIManager_aebd9d3b20ad2822e227df77442240557}{
+std::vector$<$ \hyperlink{classphys_1_1UI_1_1Screen}{UI::Screen} $\ast$ $>$ {\bfseries Screens}}
+\label{classphys_1_1UIManager_aebd9d3b20ad2822e227df77442240557}
+
+\item 
+\hypertarget{classphys_1_1UIManager_ab4c5b8c7e3c4c7b03847b1af18bea02a}{
+Gorilla::Silverback $\ast$ \hyperlink{classphys_1_1UIManager_ab4c5b8c7e3c4c7b03847b1af18bea02a}{Silver}}
+\label{classphys_1_1UIManager_ab4c5b8c7e3c4c7b03847b1af18bea02a}
+
+\begin{DoxyCompactList}\small\item\em Pointer for the Gorilla core class, where this manager gets it's functionality. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIManager_a932c928b9246717725c264326660bd6d}{
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries WidgetFocus}}
+\label{classphys_1_1UIManager_a932c928b9246717725c264326660bd6d}
 
 \end{DoxyCompactItemize}
 

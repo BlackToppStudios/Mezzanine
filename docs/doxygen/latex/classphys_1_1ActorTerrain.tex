@@ -22,24 +22,24 @@ Inheritance diagram for phys::ActorTerrain:\begin{figure}[H]
 \item 
 \hyperlink{classphys_1_1ActorTerrain_af0d3b88d5ee409c5451bb13a20254176}{ActorTerrain} (\hyperlink{classphys_1_1Vector3}{Vector3} InitPosition, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ActorTerrain_af6ef2e3694b7afe0b59cfa0909c0490c}{$\sim$ActorTerrain} ()
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorTerrain_aaed245d7af66230aaabb02a84e891bb0}{CreateShapeFromMeshStatic} (bool UseAllSubmeshes=false)
-\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorTerrain_a890ee6f67fda30381bce9c949ae36566}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
+\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorTerrain_a9fed38501411c0cf7a1e9f4f36af6ac7}{CreateShapeFromMeshDynamic} (short unsigned int Accuracy, bool UseAllSubmeshes=false)
 \begin{DoxyCompactList}\small\item\em Compatability function. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1ActorTerrain_a37d0fb3d028ac1946e3553f7f0eef56d}{IsStaticOrKinematic} ()
-\begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorTerrain_aaed245d7af66230aaabb02a84e891bb0}{CreateShapeFromMeshStatic} (bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
+virtual btRigidBody $\ast$ \hyperlink{classphys_1_1ActorTerrain_a1bed32f1b9afd1bd28c231b7505c267e}{GetBulletObject} ()
+\begin{DoxyCompactList}\small\item\em Get the Physics data raw from the physic subsystem. \item\end{DoxyCompactList}\item 
 std::string \hyperlink{classphys_1_1ActorTerrain_a08f306ae189e55d780dcaa2c43d7b6eb}{GetName} () const 
 \begin{DoxyCompactList}\small\item\em Retrieves the name of the object. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorTerrain_a4210cd05b0ec97f089fc6420e4b0bae8}{GetPhysicsSettings} ()
 \begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this actor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorTerrain_a890ee6f67fda30381bce9c949ae36566}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
-\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1ActorTerrain_a37d0fb3d028ac1946e3553f7f0eef56d}{IsStaticOrKinematic} ()
+\begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorTerrain_aeded1fdabfc4dd407f81fcc5b97c1f77}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
 \begin{DoxyCompactList}\small\item\em Removes the actor from the physics world. \item\end{DoxyCompactList}\item 
-virtual btRigidBody $\ast$ \hyperlink{classphys_1_1ActorTerrain_a1bed32f1b9afd1bd28c231b7505c267e}{GetBulletObject} ()
-\begin{DoxyCompactList}\small\item\em Get the Physics data raw from the physic subsystem. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classphys_1_1ActorTerrain_af6ef2e3694b7afe0b59cfa0909c0490c}{$\sim$ActorTerrain} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 

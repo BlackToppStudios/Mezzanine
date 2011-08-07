@@ -18,93 +18,93 @@ This class is a helper class, specifically for use with text.
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Caption_a4b7961affde3559d2bd60f248fc2dece}{Caption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}{
-virtual \hyperlink{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}{$\sim$Caption} ()}
-\label{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_afce46e42eb3ab522c29d5c13a5691065}{SetVisible} (bool Visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this caption. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Caption_a965d162160c26a2f9a2a16b88aa8f05d}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this caption. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Caption_a9801eaaadf70f7373b410995b255936e}{
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_a9801eaaadf70f7373b410995b255936e}{Show} ()}
-\label{classphys_1_1UI_1_1Caption_a9801eaaadf70f7373b410995b255936e}
-
-\begin{DoxyCompactList}\small\item\em Forces this caption to be shown. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Caption_a3dc84a08ea80de8d75e9614decbad605}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_aae3e6728a26111e12b081992d6d04e1a}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_aa80a4328d76458a6e869c485bea48b98}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the size of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Caption_a04303c21feae9a3bf4a73fa0fb1176c7}{GetAutoScaleText} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not text from this caption will automatically scale on a screen size change. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Caption_a381133922b882500ae0bf503acb4c6a4}{GetCursorOffset} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of pixels text should be offset from the side when rendering. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Caption_a4181591a3186ec4d1f87946891a0ef26}{GetGlyphIndex} ()
+\begin{DoxyCompactList}\small\item\em Gets the glyph index in use by this caption. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Caption_afdb8c018e33bc28c77291ea797c042c0}{GetMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1UI_1_1Caption_ac189115176b58b77b32b5b61fe8fec1b}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_a3096383b16f81c3b4894afd61110ffa0}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Caption_a14b5704d66e3a1800f43e49605a9a504}{GetPrimaryAtlas} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
+virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1Caption_ada0bf1e830f8f672adbc3263e7095896}{GetRenderPriority} ()
+\begin{DoxyCompactList}\small\item\em Gets the priority this caption should be rendered with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_a1da2e0e9ce0d904595f53a10244fcaf4}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Caption_ad35be48f6f9df9ca9d9a2e3d0cb99c78}{GetText} ()
+\begin{DoxyCompactList}\small\item\em Gets the text displayed within the caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_1UI_1_1Caption_a32bb578e6e92986839e1cd49edfe9422}{GetTextColour} ()
+\begin{DoxyCompactList}\small\item\em Gets the colour for the text in this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1UI_1_1Caption_a6c916aef18864826feca84a6b8ddf619}{GetTextScale} ()
+\begin{DoxyCompactList}\small\item\em Gets the scaling currently being applied to the rendered text. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Caption_a12e772b19e723334747fcf2ca009965c}{
 virtual void \hyperlink{classphys_1_1UI_1_1Caption_a12e772b19e723334747fcf2ca009965c}{Hide} ()}
 \label{classphys_1_1UI_1_1Caption_a12e772b19e723334747fcf2ca009965c}
 
 \begin{DoxyCompactList}\small\item\em Forces this caption to hide. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Caption_a3dc84a08ea80de8d75e9614decbad605}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this caption. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Caption_afdb8c018e33bc28c77291ea797c042c0}{GetMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the caption. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1UI_1_1Caption_ac189115176b58b77b32b5b61fe8fec1b}{GetName} ()
-\begin{DoxyCompactList}\small\item\em Gets the name of this caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_a4592228fd6874958e6767b9d461ac2ce}{SetText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
-\begin{DoxyCompactList}\small\item\em Sets the text displayed within the caption. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Caption_ad35be48f6f9df9ca9d9a2e3d0cb99c78}{GetText} ()
-\begin{DoxyCompactList}\small\item\em Gets the text displayed within the caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_a050347af6977e21804bac00fb208c18d}{SetTextScale} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Scale)
-\begin{DoxyCompactList}\small\item\em Sets the scaling to be applied to the text being rendered. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1UI_1_1Caption_a6c916aef18864826feca84a6b8ddf619}{GetTextScale} ()
-\begin{DoxyCompactList}\small\item\em Gets the scaling currently being applied to the rendered text. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_a48e02a811a03a7542ee9bdcc4303a264}{SetTextColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&TextColour)
-\begin{DoxyCompactList}\small\item\em Sets the colour for the text in this caption. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_1UI_1_1Caption_a32bb578e6e92986839e1cd49edfe9422}{GetTextColour} ()
-\begin{DoxyCompactList}\small\item\em Gets the colour for the text in this caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_aacf236680c364176d70ff2cc753afece}{SetGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&GlyphIndex)
-\begin{DoxyCompactList}\small\item\em Sets the glyph index to be used with this caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_a057f739be58fcc79c03d7089b71d3d9d}{SetGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&GlyphIndex, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Sets the glyph index to be used with this caption from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Caption_a4181591a3186ec4d1f87946891a0ef26}{GetGlyphIndex} ()
-\begin{DoxyCompactList}\small\item\em Gets the glyph index in use by this caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_ae1b58390d4308f17dd204dbe38208b7d}{SetCursorOffset} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Offset)
-\begin{DoxyCompactList}\small\item\em Sets the number of pixels text should be offset from the side when rendering. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Caption_a381133922b882500ae0bf503acb4c6a4}{GetCursorOffset} ()
-\begin{DoxyCompactList}\small\item\em Gets the number of pixels text should be offset from the side when rendering. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a9a84336bc94432f6cdf621da6e917ba9}{HorizontallyAlign} (const UI::TextHorizontalAlign \&Align)
+\begin{DoxyCompactList}\small\item\em Aligns the text of the caption. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Caption_a965d162160c26a2f9a2a16b88aa8f05d}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a2a95b13bc8c30197630b563d6e4443d3}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the top left position of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_adf86621e59a91112d011f0d1a1afe492}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the size of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_aee1c527c48cb9789cd28de68ad549393}{SetAutoScaleText} (bool Enable)
+\begin{DoxyCompactList}\small\item\em Enables or disables scaling the text automatically on a screen size change. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Caption_a33ec6c09671474529b0f33f0f1cd51ad}{SetBackgroundColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
 \begin{DoxyCompactList}\small\item\em Sets the background colour of the caption. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Caption_a98422dc633dfb68ea87d0f54fda25f48}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the caption. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Caption_ade543d9f6565c0d254c3709036c4628c}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
 \begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the caption from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_a9a84336bc94432f6cdf621da6e917ba9}{HorizontallyAlign} (const UI::TextHorizontalAlign \&Align)
-\begin{DoxyCompactList}\small\item\em Aligns the text of the caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_ad8345d8e18613483df34dcdda2844cb1}{VerticallyAlign} (const UI::TextVerticalAlign \&Align)
-\begin{DoxyCompactList}\small\item\em Aligns the text of the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_ae1b58390d4308f17dd204dbe38208b7d}{SetCursorOffset} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Offset)
+\begin{DoxyCompactList}\small\item\em Sets the number of pixels text should be offset from the side when rendering. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_aacf236680c364176d70ff2cc753afece}{SetGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&GlyphIndex)
+\begin{DoxyCompactList}\small\item\em Sets the glyph index to be used with this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a057f739be58fcc79c03d7089b71d3d9d}{SetGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&GlyphIndex, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the glyph index to be used with this caption from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Caption_a1468264121aa579147799fec959ce579}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative top left position of this caption. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_a3096383b16f81c3b4894afd61110ffa0}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_a2a95b13bc8c30197630b563d6e4443d3}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the top left position of this caption in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_aae3e6728a26111e12b081992d6d04e1a}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the top left position of this caption in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_a4354cc59deb62b1e2b52a07f775c085e}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this caption. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_a1da2e0e9ce0d904595f53a10244fcaf4}{GetSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_adf86621e59a91112d011f0d1a1afe492}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the size of this caption in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_aa80a4328d76458a6e869c485bea48b98}{GetActualSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the size of this caption in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_aa822a05b96ca9c61a65b8f366d24a9aa}{SetRenderPriority} (const UI::RenderPriority \&Priority)
-\begin{DoxyCompactList}\small\item\em Sets the priority this caption should be rendered with. \item\end{DoxyCompactList}\item 
-virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1Caption_ada0bf1e830f8f672adbc3263e7095896}{GetRenderPriority} ()
-\begin{DoxyCompactList}\small\item\em Gets the priority this caption should be rendered with. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Caption_aa4fe1b042c9fed96a4da1b1c9c465071}{SetPrimaryAtlas} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
 \begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Caption_a14b5704d66e3a1800f43e49605a9a504}{GetPrimaryAtlas} ()
-\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Caption_aee1c527c48cb9789cd28de68ad549393}{SetAutoScaleText} (bool Enable)
-\begin{DoxyCompactList}\small\item\em Enables or disables scaling the text automatically on a screen size change. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Caption_a04303c21feae9a3bf4a73fa0fb1176c7}{GetAutoScaleText} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not text from this caption will automatically scale on a screen size change. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_aa822a05b96ca9c61a65b8f366d24a9aa}{SetRenderPriority} (const UI::RenderPriority \&Priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority this caption should be rendered with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a4354cc59deb62b1e2b52a07f775c085e}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a4592228fd6874958e6767b9d461ac2ce}{SetText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
+\begin{DoxyCompactList}\small\item\em Sets the text displayed within the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a48e02a811a03a7542ee9bdcc4303a264}{SetTextColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&TextColour)
+\begin{DoxyCompactList}\small\item\em Sets the colour for the text in this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a050347af6977e21804bac00fb208c18d}{SetTextScale} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Scale)
+\begin{DoxyCompactList}\small\item\em Sets the scaling to be applied to the text being rendered. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_afce46e42eb3ab522c29d5c13a5691065}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this caption. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a9801eaaadf70f7373b410995b255936e}{
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a9801eaaadf70f7373b410995b255936e}{Show} ()}
+\label{classphys_1_1UI_1_1Caption_a9801eaaadf70f7373b410995b255936e}
+
+\begin{DoxyCompactList}\small\item\em Forces this caption to be shown. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Caption_a082be5cb2197fdd1cdc06efb410b2e14}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this caption to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this caption to match those of the new screen size. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_ad8345d8e18613483df34dcdda2844cb1}{VerticallyAlign} (const UI::TextVerticalAlign \&Align)
+\begin{DoxyCompactList}\small\item\em Aligns the text of the caption. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}{
+virtual \hyperlink{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}{$\sim$Caption} ()}
+\label{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -116,6 +116,16 @@ void {\bfseries ConstructCaption} (const \hyperlink{structphys_1_1UI_1_1Renderab
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classphys_1_1UI_1_1Caption_a3d4d7dab1e46d51179034ce403fd876d}{
+bool {\bfseries AutoScaleText}}
+\label{classphys_1_1UI_1_1Caption_a3d4d7dab1e46d51179034ce403fd876d}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a466a606964575ebbd1af6a91ed3b9375}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries Glyphs}}
+\label{classphys_1_1UI_1_1Caption_a466a606964575ebbd1af6a91ed3b9375}
+
+\item 
 \hypertarget{classphys_1_1UI_1_1Caption_a7a93d509acea460f79c40cb0306709d4}{
 Gorilla::Caption $\ast$ {\bfseries GorillaCaption}}
 \label{classphys_1_1UI_1_1Caption_a7a93d509acea460f79c40cb0306709d4}
@@ -126,19 +136,9 @@ Gorilla::Rectangle $\ast$ {\bfseries GorillaRectangle}}
 \label{classphys_1_1UI_1_1Caption_a784ae5ce5d499f1905e6e7a121e26ac0}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Caption_a9c2b21eb7fc2c32dab565762bb9d6072}{
-\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
-\label{classphys_1_1UI_1_1Caption_a9c2b21eb7fc2c32dab565762bb9d6072}
-
-\item 
 \hypertarget{classphys_1_1UI_1_1Caption_a1102b88d8e70c89191f15826aac2afa5}{
 \hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
 \label{classphys_1_1UI_1_1Caption_a1102b88d8e70c89191f15826aac2afa5}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Caption_a466a606964575ebbd1af6a91ed3b9375}{
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries Glyphs}}
-\label{classphys_1_1UI_1_1Caption_a466a606964575ebbd1af6a91ed3b9375}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Caption_a9923417253f29965257d7fb9f707542e}{
@@ -146,9 +146,14 @@ bool {\bfseries MouseHover}}
 \label{classphys_1_1UI_1_1Caption_a9923417253f29965257d7fb9f707542e}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Caption_a3d4d7dab1e46d51179034ce403fd876d}{
-bool {\bfseries AutoScaleText}}
-\label{classphys_1_1UI_1_1Caption_a3d4d7dab1e46d51179034ce403fd876d}
+\hypertarget{classphys_1_1UI_1_1Caption_a6d5f0c79c720695e3f4e009e590a8827}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
+\label{classphys_1_1UI_1_1Caption_a6d5f0c79c720695e3f4e009e590a8827}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a9c2b21eb7fc2c32dab565762bb9d6072}{
+\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
+\label{classphys_1_1UI_1_1Caption_a9c2b21eb7fc2c32dab565762bb9d6072}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Caption_ac89797b4707a025257fe10b6d217160d}{
@@ -164,11 +169,6 @@ bool {\bfseries AutoScaleText}}
 \hypertarget{classphys_1_1UI_1_1Caption_acd511c5bc0d19986a1869d5d5e4f9094}{
 \hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries RelSize}}
 \label{classphys_1_1UI_1_1Caption_acd511c5bc0d19986a1869d5d5e4f9094}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Caption_a6d5f0c79c720695e3f4e009e590a8827}{
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
-\label{classphys_1_1UI_1_1Caption_a6d5f0c79c720695e3f4e009e590a8827}
 
 \end{DoxyCompactItemize}
 

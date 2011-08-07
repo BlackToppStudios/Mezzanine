@@ -53,6 +53,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
@@ -92,48 +93,48 @@ Inheritance diagram for phys::ResourceManager:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#af114d84fa357432db4184bfd322495b6">ResourceManager</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#af114d84fa357432db4184bfd322495b6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a426d4d684a9ecf98359362243ce01072">~ResourceManager</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a9511ec29e5c732602b1495173abf56ef">ExportShapeData</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports an actors shape data to a file.  <a href="#a9511ec29e5c732602b1495173abf56ef"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a6fb3434f5d7be221e7a474765c625ad9">ImportShapeData</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Imports serialized shape data from the disk to be used in an Actor.  <a href="#a6fb3434f5d7be221e7a474765c625ad9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a0d7d3adce2ad4c70a3e867396e17b090">AddResourceLocation</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Location, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Type, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Group, const bool &amp;recursive=false)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a location for graphical resources.  <a href="#a0d7d3adce2ad4c70a3e867396e17b090"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#afa5d686ad3b4c863580050994169cb6b">DestroyResourceGroup</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;GroupName)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a resource group, unloading all of it's resources.  <a href="#afa5d686ad3b4c863580050994169cb6b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a6ac7835a02dff32e60a73320f9c9dabb">DeclareResource</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Name, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Type, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Group)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares the resource for use.  <a href="#a6ac7835a02dff32e60a73320f9c9dabb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#afa5d686ad3b4c863580050994169cb6b">DestroyResourceGroup</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;GroupName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a resource group, unloading all of it's resources.  <a href="#afa5d686ad3b4c863580050994169cb6b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a2114714999441c095bc28d3673c2490e">DoMainLoopItems</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty MainLoopItems.  <a href="#a2114714999441c095bc28d3673c2490e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a9511ec29e5c732602b1495173abf56ef">ExportShapeData</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports an actors shape data to a file.  <a href="#a9511ec29e5c732602b1495173abf56ef"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1ResourceInputStream.html">ResourceInputStream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a13f0aef080b9a353fe6c910c2781de50">GetResourceStream</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a stream to read from the specified file.  <a href="#a13f0aef080b9a353fe6c910c2781de50"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerBase::ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a9e5468e5428f5c108c7b3c01e94eba46">GetType</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the type of this manager.  <a href="#a9e5468e5428f5c108c7b3c01e94eba46"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a6fb3434f5d7be221e7a474765c625ad9">ImportShapeData</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Imports serialized shape data from the disk to be used in an Actor.  <a href="#a6fb3434f5d7be221e7a474765c625ad9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a9be3250f1f1153c9e079f82736eb00a8">Initialize</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty Initializor.  <a href="#a9be3250f1f1153c9e079f82736eb00a8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#aa2f44129dfc3dc0b0ee332a2bba6078d">InitResourceGroup</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a resource group ready to use.  <a href="#aa2f44129dfc3dc0b0ee332a2bba6078d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a348f333ffd9638decd144bf9d65ca05d"></a><!-- doxytag: member="phys::ResourceManager::ParseMaterialScripts" ref="a348f333ffd9638decd144bf9d65ca05d" args="()" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a348f333ffd9638decd144bf9d65ca05d">ParseMaterialScripts</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses all Ogre Material scripts. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1ResourceInputStream.html">ResourceInputStream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a13f0aef080b9a353fe6c910c2781de50">GetResourceStream</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a stream to read from the specified file.  <a href="#a13f0aef080b9a353fe6c910c2781de50"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a9be3250f1f1153c9e079f82736eb00a8">Initialize</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty Initializor.  <a href="#a9be3250f1f1153c9e079f82736eb00a8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a2114714999441c095bc28d3673c2490e">DoMainLoopItems</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty MainLoopItems.  <a href="#a2114714999441c095bc28d3673c2490e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerBase::ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a9e5468e5428f5c108c7b3c01e94eba46">GetType</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the type of this manager.  <a href="#a9e5468e5428f5c108c7b3c01e94eba46"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#af114d84fa357432db4184bfd322495b6">ResourceManager</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#af114d84fa357432db4184bfd322495b6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a426d4d684a9ecf98359362243ce01072">~ResourceManager</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c84034fc45e64fc3a07f736230afd38"></a><!-- doxytag: member="phys::ResourceManager::AddResourceGroupName" ref="a7c84034fc45e64fc3a07f736230afd38" args="(String Name)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddResourceGroupName</b> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> Name)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1823d2d08fc3b6052ed893896eef6291"></a><!-- doxytag: member="phys::ResourceManager::ApplyShapeToActor" ref="a1823d2d08fc3b6052ed893896eef6291" args="(ActorBase *Actor, btCollisionShape *ColShape)" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a1823d2d08fc3b6052ed893896eef6291">ApplyShapeToActor</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, btCollisionShape *ColShape)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a saved shape to an Actor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c84034fc45e64fc3a07f736230afd38"></a><!-- doxytag: member="phys::ResourceManager::AddResourceGroupName" ref="a7c84034fc45e64fc3a07f736230afd38" args="(String Name)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AddResourceGroupName</b> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> Name)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af19bf0549a0896cf84696a39f4ca817d"></a><!-- doxytag: member="phys::ResourceManager::OgreResource" ref="af19bf0549a0896cf84696a39f4ca817d" args="" -->
-Ogre::ResourceGroupManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#af19bf0549a0896cf84696a39f4ca817d">OgreResource</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the functionality of the ogre resource group manager. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03a283e02f3639f5c1f2de915ed798ae"></a><!-- doxytag: member="phys::ResourceManager::DeleteList" ref="a03a283e02f3639f5c1f2de915ed798ae" args="" -->
 std::vector<br class="typebreak"/>
 &lt; <a class="el" href="classphys_1_1ResourceInputStream.html">ResourceInputStream</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a03a283e02f3639f5c1f2de915ed798ae">DeleteList</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of Pointers to streams created to delete periodically. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af19bf0549a0896cf84696a39f4ca817d"></a><!-- doxytag: member="phys::ResourceManager::OgreResource" ref="af19bf0549a0896cf84696a39f4ca817d" args="" -->
+Ogre::ResourceGroupManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#af19bf0549a0896cf84696a39f4ca817d">OgreResource</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the functionality of the ogre resource group manager. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a284bc8b042fffbb607355f7874692b54"></a><!-- doxytag: member="phys::ResourceManager::ResourceGroups" ref="a284bc8b042fffbb607355f7874692b54" args="" -->
 std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ResourceGroups</b></td></tr>
 </table>
@@ -534,7 +535,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:46 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Aug 7 2011 04:03:03 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

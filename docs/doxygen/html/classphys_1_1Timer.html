@@ -53,6 +53,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
@@ -108,11 +109,14 @@ Public Types</h2></td></tr>
  <a href="classphys_1_1Timer.html#aacbbca9cc5543fc8414de59cd085c1c1">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#a25b70d2d45c5c56cce475841b7b18cd0">Timer</a> (const <a class="el" href="classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329">Timer::TimerStyle</a> style)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a25b70d2d45c5c56cce475841b7b18cd0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab96eede362c41f1ab56f1530cbae22b8"></a><!-- doxytag: member="phys::Timer::~Timer" ref="ab96eede362c41f1ab56f1530cbae22b8" args="()" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#ab96eede362c41f1ab56f1530cbae22b8">~Timer</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Timer.html#aacbbca9cc5543fc8414de59cd085c1c1">Timer::TimerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#af0eaa87bf3074047db36ba1c6fd33c70">GetType</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of timer this is.  <a href="#af0eaa87bf3074047db36ba1c6fd33c70"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3cdb46639055107c23c3de971d913ec1"></a><!-- doxytag: member="phys::Timer::IsStopped" ref="a3cdb46639055107c23c3de971d913ec1" args="()" -->
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#a3cdb46639055107c23c3de971d913ec1">IsStopped</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Whether or not this timer is currently running. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6010a6dab70b542c3e9d5a09caa422f7"></a><!-- doxytag: member="phys::Timer::Reset" ref="a6010a6dab70b542c3e9d5a09caa422f7" args="()=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#a6010a6dab70b542c3e9d5a09caa422f7">Reset</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current values to their initial values. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#a046ca4f7dcf2503e5993a18e11172f5e">SetCallback</a> (<a class="el" href="classphys_1_1TimerCallback.html">TimerCallback</a> *Call)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback to be used with this timer.  <a href="#a046ca4f7dcf2503e5993a18e11172f5e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ec14a41cda7c31637351ab63f63304a"></a><!-- doxytag: member="phys::Timer::Start" ref="a2ec14a41cda7c31637351ab63f63304a" args="()" -->
@@ -121,34 +125,31 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa934478424678f84e8f4afb472eebbae"></a><!-- doxytag: member="phys::Timer::Stop" ref="aa934478424678f84e8f4afb472eebbae" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#aa934478424678f84e8f4afb472eebbae">Stop</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivates the <a class="el" href="classphys_1_1Timer.html" title="A base timer class for the different timers.">Timer</a>. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3cdb46639055107c23c3de971d913ec1"></a><!-- doxytag: member="phys::Timer::IsStopped" ref="a3cdb46639055107c23c3de971d913ec1" args="()" -->
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#a3cdb46639055107c23c3de971d913ec1">IsStopped</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Whether or not this timer is currently running. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6010a6dab70b542c3e9d5a09caa422f7"></a><!-- doxytag: member="phys::Timer::Reset" ref="a6010a6dab70b542c3e9d5a09caa422f7" args="()=0" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#a6010a6dab70b542c3e9d5a09caa422f7">Reset</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current values to their initial values. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Timer.html#aacbbca9cc5543fc8414de59cd085c1c1">Timer::TimerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#af0eaa87bf3074047db36ba1c6fd33c70">GetType</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of timer this is.  <a href="#af0eaa87bf3074047db36ba1c6fd33c70"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#a25b70d2d45c5c56cce475841b7b18cd0">Timer</a> (const <a class="el" href="classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329">Timer::TimerStyle</a> style)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a25b70d2d45c5c56cce475841b7b18cd0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab96eede362c41f1ab56f1530cbae22b8"></a><!-- doxytag: member="phys::Timer::~Timer" ref="ab96eede362c41f1ab56f1530cbae22b8" args="()" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Timer.html#ab96eede362c41f1ab56f1530cbae22b8">~Timer</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45d7e290f9cb8c03f2376e48ff794f24"></a><!-- doxytag: member="phys::Timer::Update" ref="a45d7e290f9cb8c03f2376e48ff794f24" args="(const Whole MicroSecondsElapsed)=0" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (const <a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> MicroSecondsElapsed)=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a636d546064abe43b1c549efaca777613"></a><!-- doxytag: member="phys::Timer::GoalReached" ref="a636d546064abe43b1c549efaca777613" args="()=0" -->
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>GoalReached</b> ()=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45d7e290f9cb8c03f2376e48ff794f24"></a><!-- doxytag: member="phys::Timer::Update" ref="a45d7e290f9cb8c03f2376e48ff794f24" args="(const Whole MicroSecondsElapsed)=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (const <a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> MicroSecondsElapsed)=0</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b0ece69e1df2bd7dd3c8001c279276a"></a><!-- doxytag: member="phys::Timer::Style" ref="a4b0ece69e1df2bd7dd3c8001c279276a" args="" -->
-<a class="el" href="classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329">Timer::TimerStyle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Style</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac22ea3e7dfa49b2653d03b9579a04972"></a><!-- doxytag: member="phys::Timer::Type" ref="ac22ea3e7dfa49b2653d03b9579a04972" args="" -->
-<a class="el" href="classphys_1_1Timer.html#aacbbca9cc5543fc8414de59cd085c1c1">Timer::TimerType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b2206e862a28209d72975d2c880aabd"></a><!-- doxytag: member="phys::Timer::IsSimple" ref="a3b2206e862a28209d72975d2c880aabd" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsSimple</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a3508f2d43623da08ed2944e26063fd"></a><!-- doxytag: member="phys::Timer::ResetAtGoal" ref="a5a3508f2d43623da08ed2944e26063fd" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ResetAtGoal</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7336fd0658dfd6688bdd1d885b65c4b4"></a><!-- doxytag: member="phys::Timer::Active" ref="a7336fd0658dfd6688bdd1d885b65c4b4" args="" -->
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Active</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaaf41b293cd70432d1d3224fc4f6aaae"></a><!-- doxytag: member="phys::Timer::Callback" ref="aaaf41b293cd70432d1d3224fc4f6aaae" args="" -->
 <a class="el" href="classphys_1_1TimerCallback.html">TimerCallback</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Callback</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b2206e862a28209d72975d2c880aabd"></a><!-- doxytag: member="phys::Timer::IsSimple" ref="a3b2206e862a28209d72975d2c880aabd" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsSimple</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a3508f2d43623da08ed2944e26063fd"></a><!-- doxytag: member="phys::Timer::ResetAtGoal" ref="a5a3508f2d43623da08ed2944e26063fd" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ResetAtGoal</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b0ece69e1df2bd7dd3c8001c279276a"></a><!-- doxytag: member="phys::Timer::Style" ref="a4b0ece69e1df2bd7dd3c8001c279276a" args="" -->
+<a class="el" href="classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329">Timer::TimerStyle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Style</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac22ea3e7dfa49b2653d03b9579a04972"></a><!-- doxytag: member="phys::Timer::Type" ref="ac22ea3e7dfa49b2653d03b9579a04972" args="" -->
+<a class="el" href="classphys_1_1Timer.html#aacbbca9cc5543fc8414de59cd085c1c1">Timer::TimerType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f762e12639d620eb0f10068e6ab6521"></a><!-- doxytag: member="phys::Timer::TimerManager" ref="a8f762e12639d620eb0f10068e6ab6521" args="" -->
@@ -312,7 +313,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TimerManager</b></td
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:47 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Aug 7 2011 04:03:04 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

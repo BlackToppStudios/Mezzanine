@@ -20,48 +20,53 @@ Inheritance diagram for phys::SoundManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1SoundManager_a42d41090652f8ef12d575d78881d6a05}{SoundManager} (bool DefaultSettings=true)
-\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1SoundManager_af557110e5f0eccc7be861f163e1670d0}{$\sim$SoundManager} ()
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{Initialize} ()
-\begin{DoxyCompactList}\small\item\em Inherited Initializer. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{DoMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundManager_a735ca3ad1554d70623ac60f38ca4cefc}{InitializeManager} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&DeviceName, int OutputFrequency=-\/1, int EAXEffectSlots=4)
-\begin{DoxyCompactList}\small\item\em Initializes the Manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_a89c05a5628e187939ea30b0e4b149931}{AddSoundToSoundSet} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundSetName, \hyperlink{classphys_1_1Sound}{Sound} $\ast$SoundInst)
+\begin{DoxyCompactList}\small\item\em Add's a sound to the defined set. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_acc3551bcda7b1c681d83d81cc25747ae}{ClearLogs} ()
+\begin{DoxyCompactList}\small\item\em This empties logs that the audio subystem creates. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_a4504934e7a6a75045f0a8d303b7be0b8}{CreateSound} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&SoundName, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&FilePath, bool Stream)
 \begin{DoxyCompactList}\small\item\em Creates a sound instance from a file that can be used to play sounds. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_aa039c3d7a5ee961be0934a58fd3826fa}{CreateSoundFromMemory} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&SoundName, const char $\ast$Data, int Size, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Extension)
 \begin{DoxyCompactList}\small\item\em Creates a sound instance from a memory buffer. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundManager_a6a996829cab647ccf1ca401361af7167}{DestroySound} (\hyperlink{classphys_1_1Sound}{Sound} $\ast$SoundName)
-\begin{DoxyCompactList}\small\item\em Deletes a \hyperlink{classphys_1_1Sound}{Sound}. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_aa325440a688757ad74812b7f093e2423}{GetSoundByName} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundName)
-\begin{DoxyCompactList}\small\item\em Gets a sound by it's name. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundManager_a0f523240530abd5ab437c9eace78056a}{DestroyAllSounds} ()
-\begin{DoxyCompactList}\small\item\em Deletes all stored sounds. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1SoundSet}{SoundSet} $\ast$ \hyperlink{classphys_1_1SoundManager_afccb11a6f6d9aa9768a185febb0af45a}{CreateSoundSet} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundSetName)
 \begin{DoxyCompactList}\small\item\em Creates a sound set. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1SoundSet}{SoundSet} $\ast$ \hyperlink{classphys_1_1SoundManager_a419edd2aed481ed7eff4beb11c9a6cf2}{GetSoundSet} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundSetName)
-\begin{DoxyCompactList}\small\item\em Gets an existing sound set. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundManager_a89c05a5628e187939ea30b0e4b149931}{AddSoundToSoundSet} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundSetName, \hyperlink{classphys_1_1Sound}{Sound} $\ast$SoundInst)
-\begin{DoxyCompactList}\small\item\em Add's a sound to the defined set. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_a0f523240530abd5ab437c9eace78056a}{DestroyAllSounds} ()
+\begin{DoxyCompactList}\small\item\em Deletes all stored sounds. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_a6a996829cab647ccf1ca401361af7167}{DestroySound} (\hyperlink{classphys_1_1Sound}{Sound} $\ast$SoundName)
+\begin{DoxyCompactList}\small\item\em Deletes a \hyperlink{classphys_1_1Sound}{Sound}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SoundManager_adb5717af71da8829600fd613a2ce615b}{GetAvailableDeviceCount} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of available devices. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1SoundManager_a842f7cba6b12585bca77f642ecb8be79}{GetAvailableDeviceNameByIndex} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
 \begin{DoxyCompactList}\small\item\em Gets the name of an available device. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1SoundManager_ac4814331683597034b26fac5c1c69bfa}{GetDefaultDeviceName} ()
 \begin{DoxyCompactList}\small\item\em Gets the name of the default device. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SoundManager_adb5717af71da8829600fd613a2ce615b}{GetAvailableDeviceCount} ()
-\begin{DoxyCompactList}\small\item\em Gets the number of available devices. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1SoundListener}{SoundListener} $\ast$ \hyperlink{classphys_1_1SoundManager_af0c700e283c44c20466185e1150fc6a3}{GetListener} ()
 \begin{DoxyCompactList}\small\item\em Retrieve's the listener for this sound manager. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em Gets the manager type. \item\end{DoxyCompactList}\item 
 std::stringstream $\ast$ \hyperlink{classphys_1_1SoundManager_a284fbc2fdbecdf66e717366b09e2c9da}{GetLogs} ()
 \begin{DoxyCompactList}\small\item\em This gets the logs that the audio subystem creates. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundManager_acc3551bcda7b1c681d83d81cc25747ae}{ClearLogs} ()
-\begin{DoxyCompactList}\small\item\em This empties logs that the audio subystem creates. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_aa325440a688757ad74812b7f093e2423}{GetSoundByName} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundName)
+\begin{DoxyCompactList}\small\item\em Gets a sound by it's name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SoundSet}{SoundSet} $\ast$ \hyperlink{classphys_1_1SoundManager_a419edd2aed481ed7eff4beb11c9a6cf2}{GetSoundSet} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundSetName)
+\begin{DoxyCompactList}\small\item\em Gets an existing sound set. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em Gets the manager type. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Inherited Initializer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_a735ca3ad1554d70623ac60f38ca4cefc}{InitializeManager} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&DeviceName, int OutputFrequency=-\/1, int EAXEffectSlots=4)
+\begin{DoxyCompactList}\small\item\em Initializes the Manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SoundManager_a42d41090652f8ef12d575d78881d6a05}{SoundManager} (bool DefaultSettings=true)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SoundManager_af557110e5f0eccc7be861f163e1670d0}{$\sim$SoundManager} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1SoundManager_a5b882ae37b8fbe843eee1f865be72a51}{
+cAudio::IListener $\ast$ {\bfseries AudioListener}}
+\label{classphys_1_1SoundManager_a5b882ae37b8fbe843eee1f865be72a51}
+
 \item 
 \hypertarget{classphys_1_1SoundManager_a16bf0c35e031e2359d27c6b12536c98d}{
 cAudio::IAudioManager $\ast$ {\bfseries AudioManager}}
@@ -71,11 +76,6 @@ cAudio::IAudioManager $\ast$ {\bfseries AudioManager}}
 \hypertarget{classphys_1_1SoundManager_a7a8e89ec9886d28cf6331930b4269fb3}{
 std::map$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}, \hyperlink{classphys_1_1SoundSet}{SoundSet} $\ast$ $>$ {\bfseries SoundSets}}
 \label{classphys_1_1SoundManager_a7a8e89ec9886d28cf6331930b4269fb3}
-
-\item 
-\hypertarget{classphys_1_1SoundManager_a5b882ae37b8fbe843eee1f865be72a51}{
-cAudio::IListener $\ast$ {\bfseries AudioListener}}
-\label{classphys_1_1SoundManager_a5b882ae37b8fbe843eee1f865be72a51}
 
 \end{DoxyCompactItemize}
 

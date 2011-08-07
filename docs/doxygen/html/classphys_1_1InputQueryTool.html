@@ -53,6 +53,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
@@ -89,39 +90,39 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a6a37616800928b691932045ba34759b8"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a1df560487b85fcb90fd9294f3009eee6">GetMouseX</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the X coordinate of the mouse.  <a href="#a1df560487b85fcb90fd9294f3009eee6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a5cab535728ba864a83e7c374cc683d0b">GetMouseY</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the Y coordinate of the mouse.  <a href="#a5cab535728ba864a83e7c374cc683d0b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a9779d812418f1fddb0880df0c607242b">GatherEvents</a> (bool ClearEventsFromEventMgr=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gathers any user-input/event data that might be queryed.  <a href="#a9779d812418f1fddb0880df0c607242b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#ae8b922315b271a2eeb376f10a7c97cf4">GetJoystickAxis</a> (short unsigned int Axis)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This Gets the value of the given joystick axis.  <a href="#ae8b922315b271a2eeb376f10a7c97cf4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2">MetaCode::ButtonState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a457529e30edf8d3cf5ef04ae6a8db506">GetKeyboardButtonState</a> (const <a class="el" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;KeyboardButton)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the button state of the provided keyboard button ID.  <a href="#a457529e30edf8d3cf5ef04ae6a8db506"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2">MetaCode::ButtonState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#ada22b6ee93632c85f7b7a0490d418382">GetMouseButtonState</a> (const <a class="el" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;MouseButton)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the button state of the provided mouse button ID.  <a href="#ada22b6ee93632c85f7b7a0490d418382"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2">MetaCode::ButtonState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a1ef8b70af163d8bc703fd16c3fcce22d">GetMouseButtonState</a> (short unsigned int MouseButton)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the button state of the provided mouse button ID.  <a href="#a1ef8b70af163d8bc703fd16c3fcce22d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#affd9523f67b542b208e6d36c3395e72b">GetMouseCoordinates</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets a vector2 containing both X and Y coordinates of the mouse.  <a href="#affd9523f67b542b208e6d36c3395e72b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classphys_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#aea2da0aeb97353f9d7af75f2a8cb7d91">GetMousePrevFrameOffset</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the offset location of the mouse since the previous frame.  <a href="#aea2da0aeb97353f9d7af75f2a8cb7d91"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <br class="typebreak"/>
+<a class="el" href="classphys_1_1MetaCode.html#ad6ed6266b5f4219a6f5da29ebe018757">MetaCode::DirectionalMotionState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#aa214535768fa838ad9799d3e5ca3cece">GetMouseWheelState</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current status of the mouse wheel.  <a href="#aa214535768fa838ad9799d3e5ca3cece"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a1df560487b85fcb90fd9294f3009eee6">GetMouseX</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the X coordinate of the mouse.  <a href="#a1df560487b85fcb90fd9294f3009eee6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a5cab535728ba864a83e7c374cc683d0b">GetMouseY</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the Y coordinate of the mouse.  <a href="#a5cab535728ba864a83e7c374cc683d0b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a44ad555f277bf035648fb1eeddb94514">GetRawMetaValue</a> (const <a class="el" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;AnyCode)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an unfiltered uninterpretted version of the value for an user input.  <a href="#a44ad555f277bf035648fb1eeddb94514"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#aab9a7be4d95289d828378f7f3d5fc065">IsMouseButtonPushed</a> (short unsigned int MouseButton)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a specific Mouse button is pushed.  <a href="#aab9a7be4d95289d828378f7f3d5fc065"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#ab061aab57ff35cb1c18656f5ee4f384e">IsMouseButtonPushed</a> (const <a class="el" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;MouseButton)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a specific Mouse button is pushed.  <a href="#ab061aab57ff35cb1c18656f5ee4f384e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#ae3e63f8f93a0b270b22e685d3b86c890">IsJoystickButtonPushed</a> (short unsigned int JoyStickButton)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a specific Joystick button is pushed.  <a href="#ae3e63f8f93a0b270b22e685d3b86c890"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47b0d887f62fcd43f75308c6269e8411"></a><!-- doxytag: member="phys::InputQueryTool::IsJoystickHatPushedInDirection" ref="a47b0d887f62fcd43f75308c6269e8411" args="(MetaCode::DirectionalMotionState WhichWay, bool IsVertical)" -->
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsJoystickHatPushedInDirection</b> (<a class="el" href="classphys_1_1MetaCode.html#ad6ed6266b5f4219a6f5da29ebe018757">MetaCode::DirectionalMotionState</a> WhichWay, bool IsVertical)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a3d8efa04d2f98c35d60a4086f930778a">IsKeyboardButtonPushed</a> (const <a class="el" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;KeyboardButton)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a specific Keyboard button is pushed.  <a href="#a3d8efa04d2f98c35d60a4086f930778a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2">MetaCode::ButtonState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a1ef8b70af163d8bc703fd16c3fcce22d">GetMouseButtonState</a> (short unsigned int MouseButton)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the button state of the provided mouse button ID.  <a href="#a1ef8b70af163d8bc703fd16c3fcce22d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2">MetaCode::ButtonState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#ada22b6ee93632c85f7b7a0490d418382">GetMouseButtonState</a> (const <a class="el" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;MouseButton)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the button state of the provided mouse button ID.  <a href="#ada22b6ee93632c85f7b7a0490d418382"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2">MetaCode::ButtonState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a457529e30edf8d3cf5ef04ae6a8db506">GetKeyboardButtonState</a> (const <a class="el" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;KeyboardButton)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the button state of the provided keyboard button ID.  <a href="#a457529e30edf8d3cf5ef04ae6a8db506"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <br class="typebreak"/>
-<a class="el" href="classphys_1_1MetaCode.html#ad6ed6266b5f4219a6f5da29ebe018757">MetaCode::DirectionalMotionState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#aa214535768fa838ad9799d3e5ca3cece">GetMouseWheelState</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current status of the mouse wheel.  <a href="#aa214535768fa838ad9799d3e5ca3cece"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a9779d812418f1fddb0880df0c607242b">GatherEvents</a> (bool ClearEventsFromEventMgr=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This gathers any user-input/event data that might be queryed.  <a href="#a9779d812418f1fddb0880df0c607242b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#ab061aab57ff35cb1c18656f5ee4f384e">IsMouseButtonPushed</a> (const <a class="el" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;MouseButton)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a specific Mouse button is pushed.  <a href="#ab061aab57ff35cb1c18656f5ee4f384e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#aab9a7be4d95289d828378f7f3d5fc065">IsMouseButtonPushed</a> (short unsigned int MouseButton)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a specific Mouse button is pushed.  <a href="#aab9a7be4d95289d828378f7f3d5fc065"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1InputQueryTool.html#a609970101c63859e1f9fb3ff81ca1797">CodeCache</a></td></tr>
@@ -609,7 +610,7 @@ Static Protected Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:45 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Aug 7 2011 04:03:02 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

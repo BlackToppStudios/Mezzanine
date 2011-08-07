@@ -236,12 +236,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#af669654308122897f98858563375bf4c">phys::xml::Attribute::SetName</a> (const char_t *rhs) </dt>
 <dd>update this to make the error return code redudant and use an exception instead. </dd>
 </dl>
-<p><a class="anchor" id="_todo000038"></a> </p>
+<p><a class="anchor" id="_todo000041"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#a289ac36b218f3912224fd904ccade1ed">phys::xml::Attribute::SetValue</a> (unsigned int rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow. </p>
-</dd>
+<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#af9b12723a227b833d7f8986a524b0e48">phys::xml::Attribute::SetValue</a> (T rhs) </dt>
+<dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd>
 </dl>
 <p><a class="anchor" id="_todo000039"></a> </p>
 <dl>
@@ -250,14 +248,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000041"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#af9b12723a227b833d7f8986a524b0e48">phys::xml::Attribute::SetValue</a> (T rhs) </dt>
-<dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd>
-</dl>
 <p><a class="anchor" id="_todo000037"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#a693f7bd8015866c3c4979101c343ce50">phys::xml::Attribute::SetValue</a> (int rhs) </dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow. </p>
+</dd>
+</dl>
+<p><a class="anchor" id="_todo000038"></a> </p>
+<dl>
+<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#a289ac36b218f3912224fd904ccade1ed">phys::xml::Attribute::SetValue</a> (unsigned int rhs) </dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
@@ -320,7 +320,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 3 2011 02:56:40 for PhysGameEngine by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Aug 7 2011 04:02:57 for PhysGameEngine by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

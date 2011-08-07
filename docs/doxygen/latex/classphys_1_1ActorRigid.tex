@@ -22,34 +22,34 @@ Inheritance diagram for phys::ActorRigid:\begin{figure}[H]
 \item 
 \hyperlink{classphys_1_1ActorRigid_a3005e81009d9b5b5bfb9a6f5068917d3}{ActorRigid} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&mass, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&file, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&group)
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{$\sim$ActorRigid} ()
-\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84b43}{GetName} () const 
-\begin{DoxyCompactList}\small\item\em Retrieves the name of the object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigid_acaf29ca7058b39185dd09a5059200e91}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
+\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_a78f2f2dfc8b35f13e9a7680189bbdd48}{CreateShapeFromMeshDynamic} (short unsigned int Accuracy=1, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigid_a5adfa6199955f9c0de4e0af54aeb96f6}{CreateShapeFromMeshStatic} (bool UseAllSubmeshes=false)
 \begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}{CreateSphereShapeFromMesh} ()
 \begin{DoxyCompactList}\small\item\em Creates a sphere collision shape. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorRigid_a5adfa6199955f9c0de4e0af54aeb96f6}{CreateShapeFromMeshStatic} (bool UseAllSubmeshes=false)
-\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorRigid_ac531871f990894cf64d0ece918eb18d0}{GetPhysicsSettings} ()
-\begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this actor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorRigid_a2a6aca8c598716ee24558878f869f163}{SetLinearMovementFactor} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Factor)
-\begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigid_ae29ab60e2c0e4762d2698c60b8df1d23}{GetLinearMovementFactor} ()
-\begin{DoxyCompactList}\small\item\em Gets the current linear factors being applied to this actor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorRigid_a574fc272f603b879643872dbced36cc2}{SetAngularMovementFactor} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Factor)
-\begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigid_a0d29535332ac613f9a14ea32e843d612}{GetAngularMovementFactor} ()
 \begin{DoxyCompactList}\small\item\em Gets the current angular factors being applied to this actor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorRigid_acaf29ca7058b39185dd09a5059200e91}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
-\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
-\begin{DoxyCompactList}\small\item\em Removes the actor from the physics world. \item\end{DoxyCompactList}\item 
 virtual btRigidBody $\ast$ \hyperlink{classphys_1_1ActorRigid_a9c8f1f4b99f41ab97050f5b15c802f14}{GetBulletObject} ()
 \begin{DoxyCompactList}\small\item\em Get the Physics data raw from the physic subsystem. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigid_ae29ab60e2c0e4762d2698c60b8df1d23}{GetLinearMovementFactor} ()
+\begin{DoxyCompactList}\small\item\em Gets the current linear factors being applied to this actor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84b43}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Retrieves the name of the object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorRigid_ac531871f990894cf64d0ece918eb18d0}{GetPhysicsSettings} ()
+\begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this actor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_add4e731eb3a5481d05e2d0f543745fcd}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
-\begin{DoxyCompactList}\small\item\em Get all the this in an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get all the this in an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
+\begin{DoxyCompactList}\small\item\em Removes the actor from the physics world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigid_a574fc272f603b879643872dbced36cc2}{SetAngularMovementFactor} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Factor)
+\begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigid_a2a6aca8c598716ee24558878f869f163}{SetLinearMovementFactor} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Factor)
+\begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{$\sim$ActorRigid} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -58,16 +58,6 @@ virtual void \hyperlink{classphys_1_1ActorRigid_a3d50613a6992e7de6a09d3e710d83b6
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}{
-btRigidBody $\ast$ \hyperlink{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}{physrigidbody}}
-\label{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}
-
-\begin{DoxyCompactList}\small\item\em Used to simulate the behavior of a btRigidBody. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ActorRigid_af86eb5347cb6bb31a561404efc3d8245}{
-\hyperlink{classphys_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorRigid_af86eb5347cb6bb31a561404efc3d8245}{PhysicsSettings}}
-\label{classphys_1_1ActorRigid_af86eb5347cb6bb31a561404efc3d8245}
-
-\begin{DoxyCompactList}\small\item\em This class encapsulates physics specific configuration for this actor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorRigid_a8719d076cf8790e3523af7c8a7666478}{
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorRigid_a8719d076cf8790e3523af7c8a7666478}{ModelFile}}
 \label{classphys_1_1ActorRigid_a8719d076cf8790e3523af7c8a7666478}
@@ -77,7 +67,17 @@ btRigidBody $\ast$ \hyperlink{classphys_1_1ActorRigid_a690889f942e177644f4f8521f
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorRigid_a7c72e4c7c89964be93dc5c6c0ed64578}{ModelGroup}}
 \label{classphys_1_1ActorRigid_a7c72e4c7c89964be93dc5c6c0ed64578}
 
-\begin{DoxyCompactList}\small\item\em The resource group associated with the 3d model this Actor uses. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The resource group associated with the 3d model this Actor uses. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorRigid_af86eb5347cb6bb31a561404efc3d8245}{
+\hyperlink{classphys_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorRigid_af86eb5347cb6bb31a561404efc3d8245}{PhysicsSettings}}
+\label{classphys_1_1ActorRigid_af86eb5347cb6bb31a561404efc3d8245}
+
+\begin{DoxyCompactList}\small\item\em This class encapsulates physics specific configuration for this actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}{
+btRigidBody $\ast$ \hyperlink{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}{physrigidbody}}
+\label{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}
+
+\begin{DoxyCompactList}\small\item\em Used to simulate the behavior of a btRigidBody. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 

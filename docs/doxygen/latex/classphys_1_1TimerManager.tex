@@ -20,6 +20,22 @@ Inheritance diagram for phys::TimerManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} $\ast$ \hyperlink{classphys_1_1TimerManager_a44ba4749b2ca6c31994813e97f88ec79}{CreateExtendedTimer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} Style)
+\begin{DoxyCompactList}\small\item\em Creates an extended timer within this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1SimpleTimer}{SimpleTimer} $\ast$ \hyperlink{classphys_1_1TimerManager_a7d666a65aee80dd354dfdd6de671e186}{CreateSimpleTimer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} Style)
+\begin{DoxyCompactList}\small\item\em Creates a simple timer within this manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1TimerManager_ae2dc6385cf9997aacd61ea5a0f9f1c66}{DestroyTimer} (\hyperlink{classphys_1_1Timer}{Timer} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a timer within this manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1TimerManager_a98b7e74fe1e3eff7aee506477abe2a9c}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Items to be done during the mainloop. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1TimerManager_a70ea3a58c3b71cd79a3e9a8b0f069dd5}{GetNumTimers} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of Timers created and stored in this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Timer}{Timer} $\ast$ \hyperlink{classphys_1_1TimerManager_a5e2912df5f17cd8af1ab8457b95c5a75}{GetTimer} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1Timer}{Timer} by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1TimerManager_a716811f51cb9e97ed6e9db310f34e9dc}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1TimerManager_ab6ee47352a406682178b4496544bcf6f}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1TimerManager_a53e30a8cb528de39ac94937781b96d39}{
 \hyperlink{classphys_1_1TimerManager_a53e30a8cb528de39ac94937781b96d39}{TimerManager} ()}
 \label{classphys_1_1TimerManager_a53e30a8cb528de39ac94937781b96d39}
@@ -29,34 +45,18 @@ Inheritance diagram for phys::TimerManager:\begin{figure}[H]
 virtual \hyperlink{classphys_1_1TimerManager_a75bcaca5c292ecfb62ad46a6156b7d87}{$\sim$TimerManager} ()}
 \label{classphys_1_1TimerManager_a75bcaca5c292ecfb62ad46a6156b7d87}
 
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1SimpleTimer}{SimpleTimer} $\ast$ \hyperlink{classphys_1_1TimerManager_a7d666a65aee80dd354dfdd6de671e186}{CreateSimpleTimer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} Style)
-\begin{DoxyCompactList}\small\item\em Creates a simple timer within this manager. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} $\ast$ \hyperlink{classphys_1_1TimerManager_a44ba4749b2ca6c31994813e97f88ec79}{CreateExtendedTimer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} Style)
-\begin{DoxyCompactList}\small\item\em Creates an extended timer within this manager. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Timer}{Timer} $\ast$ \hyperlink{classphys_1_1TimerManager_a5e2912df5f17cd8af1ab8457b95c5a75}{GetTimer} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
-\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1Timer}{Timer} by index. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1TimerManager_a70ea3a58c3b71cd79a3e9a8b0f069dd5}{GetNumTimers} ()
-\begin{DoxyCompactList}\small\item\em Gets the number of Timers created and stored in this manager. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1TimerManager_ae2dc6385cf9997aacd61ea5a0f9f1c66}{DestroyTimer} (\hyperlink{classphys_1_1Timer}{Timer} $\ast$ToBeDestroyed)
-\begin{DoxyCompactList}\small\item\em Destroys a timer within this manager. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1TimerManager_ab6ee47352a406682178b4496544bcf6f}{Initialize} ()
-\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1TimerManager_a98b7e74fe1e3eff7aee506477abe2a9c}{DoMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em Items to be done during the mainloop. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1TimerManager_a716811f51cb9e97ed6e9db310f34e9dc}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1TimerManager_abaee576a7ee35350aac057c6970d0256}{
-std::vector$<$ \hyperlink{classphys_1_1Timer}{Timer} $\ast$ $>$ {\bfseries Timers}}
-\label{classphys_1_1TimerManager_abaee576a7ee35350aac057c6970d0256}
-
 \item 
 \hypertarget{classphys_1_1TimerManager_aa892d5ff53ecbe14f557baccdc16dc4f}{
 Ogre::Timer $\ast$ {\bfseries MasterTimer}}
 \label{classphys_1_1TimerManager_aa892d5ff53ecbe14f557baccdc16dc4f}
+
+\item 
+\hypertarget{classphys_1_1TimerManager_abaee576a7ee35350aac057c6970d0256}{
+std::vector$<$ \hyperlink{classphys_1_1Timer}{Timer} $\ast$ $>$ {\bfseries Timers}}
+\label{classphys_1_1TimerManager_abaee576a7ee35350aac057c6970d0256}
 
 \end{DoxyCompactItemize}
 

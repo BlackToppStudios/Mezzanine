@@ -21,16 +21,16 @@ This provides a number of optional tools for working with a \hyperlink{classphys
 \subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1RayQueryTool_a89a45879ef765c569ca2b2f0a54f3dcd}{GetFirstActorOnRayByPolygon} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ObjectFlags)
-\begin{DoxyCompactList}\small\item\em This will find the first Actor to intesect the Given ray. \item\end{DoxyCompactList}\item 
-static \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1RayQueryTool_af4bba2ed8f201d4b0e9a05728d8bd1b6}{GetFirstActorOnRayByAABB} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ObjectFlags)
-\begin{DoxyCompactList}\small\item\em Partially implemented. This should find the first Actor that is on or almost on the a given \hyperlink{classphys_1_1Ray}{Ray}. \item\end{DoxyCompactList}\item 
 static \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1RayQueryTool_a15b961426b667f9b9cbec9dd0d72c2b1}{GetActorUnderMouse} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ObjectFlags, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} RayLength=1000.0, bool UsePolygon=true)
 \begin{DoxyCompactList}\small\item\em This will find the actor under the mouse. \item\end{DoxyCompactList}\item 
-static \hyperlink{classphys_1_1Vector3}{Vector3} $\ast$ \hyperlink{classphys_1_1RayQueryTool_aa9daac724e8af535d1ec2b71f2ac5d83}{RayPlaneIntersection} (const \hyperlink{classphys_1_1Ray}{Ray} \&QueryRay, const \hyperlink{classphys_1_1Plane}{Plane} \&QueryPlane)
-\begin{DoxyCompactList}\small\item\em Where does this \hyperlink{classphys_1_1Ray}{Ray} Meet this \hyperlink{classphys_1_1Plane}{Plane}? \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1RayQueryTool_af4bba2ed8f201d4b0e9a05728d8bd1b6}{GetFirstActorOnRayByAABB} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ObjectFlags)
+\begin{DoxyCompactList}\small\item\em Partially implemented. This should find the first Actor that is on or almost on the a given \hyperlink{classphys_1_1Ray}{Ray}. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1RayQueryTool_a89a45879ef765c569ca2b2f0a54f3dcd}{GetFirstActorOnRayByPolygon} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ObjectFlags)
+\begin{DoxyCompactList}\small\item\em This will find the first Actor to intesect the Given ray. \item\end{DoxyCompactList}\item 
 static \hyperlink{classphys_1_1Ray}{Ray} $\ast$ \hyperlink{classphys_1_1RayQueryTool_a33d1350b7ce016b2b1c5a6ef329eb193}{GetMouseRay} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Length=1000)
-\begin{DoxyCompactList}\small\item\em Get a \hyperlink{classphys_1_1Ray}{Ray} from the current viewport, following the mouse. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get a \hyperlink{classphys_1_1Ray}{Ray} from the current viewport, following the mouse. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Vector3}{Vector3} $\ast$ \hyperlink{classphys_1_1RayQueryTool_aa9daac724e8af535d1ec2b71f2ac5d83}{RayPlaneIntersection} (const \hyperlink{classphys_1_1Ray}{Ray} \&QueryRay, const \hyperlink{classphys_1_1Plane}{Plane} \&QueryPlane)
+\begin{DoxyCompactList}\small\item\em Where does this \hyperlink{classphys_1_1Ray}{Ray} Meet this \hyperlink{classphys_1_1Plane}{Plane}? \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

@@ -28,60 +28,60 @@ enum \hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}
 \item 
 \hyperlink{classphys_1_1CameraController_a6a47754c33f3dca26f2c7fe1a5b25a9f}{CameraController} (\hyperlink{classphys_1_1Camera}{Camera} $\ast$ToBeControlled)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1CameraController_afe0cb476611eadd8bf27480f59162db7}{
-\hyperlink{classphys_1_1CameraController_afe0cb476611eadd8bf27480f59162db7}{$\sim$CameraController} ()}
-\label{classphys_1_1CameraController_afe0cb476611eadd8bf27480f59162db7}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Camera}{Camera} $\ast$ \hyperlink{classphys_1_1CameraController_af992a4b3b720ac8179f78d5940a1bf1f}{GetControlledCamera} () const 
 \begin{DoxyCompactList}\small\item\em Gets the camera this controller is controlling. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraController_aa8e4d48573a2443af3b2111ab82f8a17}{SetMovementMode} (const \hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}{MovementMode} \&MoveMode)
-\begin{DoxyCompactList}\small\item\em Sets the movement mode for this camera/controller. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}{MovementMode} \hyperlink{classphys_1_1CameraController_a16f448ab4f9765f9435e0d3ac0fb89d3}{GetMovementMode} () const 
-\begin{DoxyCompactList}\small\item\em Gets the currently set movement mode. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraController_a188b2fe215da11a2afc60e1b69b42c09}{SetHoverHeight} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Hover)
-\begin{DoxyCompactList}\small\item\em Sets the hover distance for the camera while it's moving. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1CameraController_af0bd947fa14276b01a27d68a4ca9a34d}{GetHoverHeight} () const 
 \begin{DoxyCompactList}\small\item\em Gets the distance the camera hovers over terrain while in CCM\_\-Walk mode. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraController_a0c19fba402f176361aea139ead5a9a40}{SetYawLimits} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&UpperLimit, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LowerLimit)
-\begin{DoxyCompactList}\small\item\em Sets rotational limits on the Y axis. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1CameraController_a356fa13a243b5f3645576b9b857ce085}{
-void \hyperlink{classphys_1_1CameraController_a356fa13a243b5f3645576b9b857ce085}{RemoveYawLimits} ()}
-\label{classphys_1_1CameraController_a356fa13a243b5f3645576b9b857ce085}
-
-\begin{DoxyCompactList}\small\item\em Clears any set limits on yaw(Y axis) rotation. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraController_a9ca0500582f46a20189cdc39555b79b3}{SetPitchLimits} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&UpperLimit, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LowerLimit)
-\begin{DoxyCompactList}\small\item\em Sets rotational limits on the X axis. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}{MovementMode} \hyperlink{classphys_1_1CameraController_a16f448ab4f9765f9435e0d3ac0fb89d3}{GetMovementMode} () const 
+\begin{DoxyCompactList}\small\item\em Gets the currently set movement mode. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a932450504666cf4820339deb3651bfb3}{MoveBackward} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera backward. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a8763326e900562dd6e934f79d52d5d50}{MoveForward} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera forward. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1CameraController_a19478dd2688262f9652410a630dfa731}{
 void \hyperlink{classphys_1_1CameraController_a19478dd2688262f9652410a630dfa731}{RemovePitchLimits} ()}
 \label{classphys_1_1CameraController_a19478dd2688262f9652410a630dfa731}
 
 \begin{DoxyCompactList}\small\item\em Clears any set limits on pitch(X axis) rotation. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraController_a047f16cf47f9648472db34fc8337bd45}{SetRollLimits} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&UpperLimit, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LowerLimit)
-\begin{DoxyCompactList}\small\item\em Sets rotational limits on the Z axis. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1CameraController_ad2ea07b9eb9c4ebc1d753a7376c307b3}{
 void \hyperlink{classphys_1_1CameraController_ad2ea07b9eb9c4ebc1d753a7376c307b3}{RemoveRollLimits} ()}
 \label{classphys_1_1CameraController_ad2ea07b9eb9c4ebc1d753a7376c307b3}
 
 \begin{DoxyCompactList}\small\item\em Clears any set limits on roll(Z axis) rotation. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraController_a8763326e900562dd6e934f79d52d5d50}{MoveForward} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
-\begin{DoxyCompactList}\small\item\em Moves the camera forward. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraController_a932450504666cf4820339deb3651bfb3}{MoveBackward} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
-\begin{DoxyCompactList}\small\item\em Moves the camera backward. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CameraController_a356fa13a243b5f3645576b9b857ce085}{
+void \hyperlink{classphys_1_1CameraController_a356fa13a243b5f3645576b9b857ce085}{RemoveYawLimits} ()}
+\label{classphys_1_1CameraController_a356fa13a243b5f3645576b9b857ce085}
+
+\begin{DoxyCompactList}\small\item\em Clears any set limits on yaw(Y axis) rotation. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a3ad0f3ecf0777a8feb2e4f22f2d644bf}{Rotate} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Yaw, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Pitch, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Roll)
+\begin{DoxyCompactList}\small\item\em Rotates the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a23d1b811021fc77135a556de86f4f32a}{Rotate6DOF} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Yaw, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Pitch, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Roll)
+\begin{DoxyCompactList}\small\item\em Rotates the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a188b2fe215da11a2afc60e1b69b42c09}{SetHoverHeight} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Hover)
+\begin{DoxyCompactList}\small\item\em Sets the hover distance for the camera while it's moving. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_aa8e4d48573a2443af3b2111ab82f8a17}{SetMovementMode} (const \hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}{MovementMode} \&MoveMode)
+\begin{DoxyCompactList}\small\item\em Sets the movement mode for this camera/controller. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a9ca0500582f46a20189cdc39555b79b3}{SetPitchLimits} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&UpperLimit, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LowerLimit)
+\begin{DoxyCompactList}\small\item\em Sets rotational limits on the X axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a047f16cf47f9648472db34fc8337bd45}{SetRollLimits} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&UpperLimit, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LowerLimit)
+\begin{DoxyCompactList}\small\item\em Sets rotational limits on the Z axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a0c19fba402f176361aea139ead5a9a40}{SetYawLimits} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&UpperLimit, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LowerLimit)
+\begin{DoxyCompactList}\small\item\em Sets rotational limits on the Y axis. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1CameraController_a1b2e0c40120c3604f1929d5fac3cd61f}{StrafeLeft} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
 \begin{DoxyCompactList}\small\item\em Moves the camera to the left. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1CameraController_ad494cf9a1e3e233319799116424ad43f}{StrafeRight} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
 \begin{DoxyCompactList}\small\item\em Moves the camera to the right. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraController_a3ad0f3ecf0777a8feb2e4f22f2d644bf}{Rotate} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Yaw, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Pitch, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Roll)
-\begin{DoxyCompactList}\small\item\em Rotates the camera. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraController_a23d1b811021fc77135a556de86f4f32a}{Rotate6DOF} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Yaw, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Pitch, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Roll)
-\begin{DoxyCompactList}\small\item\em Rotates the camera. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{classphys_1_1CameraController_afe0cb476611eadd8bf27480f59162db7}{
+\hyperlink{classphys_1_1CameraController_afe0cb476611eadd8bf27480f59162db7}{$\sim$CameraController} ()}
+\label{classphys_1_1CameraController_afe0cb476611eadd8bf27480f59162db7}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1CameraController_a2225da030d5a28930c460d0067103274}{
-void {\bfseries CheckAngleRollover} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Angle)}
-\label{classphys_1_1CameraController_a2225da030d5a28930c460d0067103274}
+\hypertarget{classphys_1_1CameraController_a0a9984ddd68c2a97c52682f90a3008cd}{
+void {\bfseries CheckAllAngles} ()}
+\label{classphys_1_1CameraController_a0a9984ddd68c2a97c52682f90a3008cd}
 
 \item 
 \hypertarget{classphys_1_1CameraController_a97de22bfe1e8d98ff2fdde03d38332c9}{
@@ -89,9 +89,9 @@ void {\bfseries CheckAngleLimits} ()}
 \label{classphys_1_1CameraController_a97de22bfe1e8d98ff2fdde03d38332c9}
 
 \item 
-\hypertarget{classphys_1_1CameraController_a0a9984ddd68c2a97c52682f90a3008cd}{
-void {\bfseries CheckAllAngles} ()}
-\label{classphys_1_1CameraController_a0a9984ddd68c2a97c52682f90a3008cd}
+\hypertarget{classphys_1_1CameraController_a2225da030d5a28930c460d0067103274}{
+void {\bfseries CheckAngleRollover} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Angle)}
+\label{classphys_1_1CameraController_a2225da030d5a28930c460d0067103274}
 
 \item 
 \hypertarget{classphys_1_1CameraController_a1ee87ff32c7fcb04ddb65cb9ac1535da}{
@@ -122,14 +122,19 @@ void {\bfseries CheckHeight} ()}
 \label{classphys_1_1CameraController_af9fafefcfbd8d60683cfcaf7e629796c}
 
 \item 
-\hypertarget{classphys_1_1CameraController_ab381584b4af14aecf7ad4a8946f41b41}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries YawRad}}
-\label{classphys_1_1CameraController_ab381584b4af14aecf7ad4a8946f41b41}
+\hypertarget{classphys_1_1CameraController_a4c6ea95a1099bf7494c2ee666b5f61a9}{
+\hyperlink{structphys_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries PitchLimits}}
+\label{classphys_1_1CameraController_a4c6ea95a1099bf7494c2ee666b5f61a9}
 
 \item 
 \hypertarget{classphys_1_1CameraController_ac9ca55bb71c2d3b0a85dabcc207c79a0}{
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries PitchRad}}
 \label{classphys_1_1CameraController_ac9ca55bb71c2d3b0a85dabcc207c79a0}
+
+\item 
+\hypertarget{classphys_1_1CameraController_ad99abab0906a57263d3ca530194a125d}{
+\hyperlink{structphys_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries RollLimits}}
+\label{classphys_1_1CameraController_ad99abab0906a57263d3ca530194a125d}
 
 \item 
 \hypertarget{classphys_1_1CameraController_abf396244a387ec1cf4d9303e9b930dc9}{
@@ -142,14 +147,9 @@ void {\bfseries CheckHeight} ()}
 \label{classphys_1_1CameraController_a89d97e79c04f9a807fd7ff487eb3a3b5}
 
 \item 
-\hypertarget{classphys_1_1CameraController_a4c6ea95a1099bf7494c2ee666b5f61a9}{
-\hyperlink{structphys_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries PitchLimits}}
-\label{classphys_1_1CameraController_a4c6ea95a1099bf7494c2ee666b5f61a9}
-
-\item 
-\hypertarget{classphys_1_1CameraController_ad99abab0906a57263d3ca530194a125d}{
-\hyperlink{structphys_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries RollLimits}}
-\label{classphys_1_1CameraController_ad99abab0906a57263d3ca530194a125d}
+\hypertarget{classphys_1_1CameraController_ab381584b4af14aecf7ad4a8946f41b41}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries YawRad}}
+\label{classphys_1_1CameraController_ab381584b4af14aecf7ad4a8946f41b41}
 
 \end{DoxyCompactItemize}
 
