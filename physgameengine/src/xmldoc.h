@@ -149,9 +149,6 @@ namespace phys
     /// XML documents that do not fit in memory; also the parser is a non-validating one, so if you need DTD or XML Schema validation, the XML parser
     /// is not for you.
     /// \n \n
-    /// This is the complete manual for phys::xml, which describes all features of the library in detail. If you want to start writing code as quickly as
-    /// possible, you are advised to @ref XMLQuickStart "read the quick start guide first".
-    /// \n \n
     /// @subsection XMLFeedBack FeedBack
     /// If you believe you've found a bug in phys::xml (bugs include compilation problems (errors/warnings), crashes, performance degradation and incorrect
     /// behavior), please contact Blacktopp Studios Inc ( http://www.blacktoppstudios.com/ ) . We check the the Forums ( http://www.blacktoppstudios.com/?page_id=753 )
@@ -1912,11 +1909,6 @@ namespace phys
     ///     - String functions consider a character to be either a single char value or a single wchar_t value, depending on the library configuration; this means that some string functions
     ///     are not fully Unicode-aware. This affects substring(), string-length() and translate() functions.
 
-
-    /// @page XMLQuickStart Jumping into phys::xml
-    /// in progress
-    //copy : http://pugixml.googlecode.com/svn/tags/latest/docs/quickstart.html
-
     /**
     @page OriginalpugixmlLicense Original pugixml License
     The original pugixml software had the following license text:
@@ -2925,30 +2917,10 @@ namespace phys
         /// @brief Protected assignment operator, used to force noncopyable semantics
         /// @return Shouldn't be used, not implemented.
 
-		/// @fn XPathVariable::GetBoolean() const;
-		/// @brief Get this as a bool.
-		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
-		/// @return A This as a bool, without conversion.
-
-		/// @fn XPathVariable::GetNumber() const;
-		/// @brief Get this as a double.
-		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
-        /// @return A This as a double, without conversion.
-
-		/// @fn XPathVariable::GetString() const;
-		/// @brief Get this as a c-string.
-		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
-		/// @return A This as a c-string of char_t, without conversion.
-
-		/// @fn XPathVariable::GetNodeSet() const;
-		/// @brief Get this as a XPathNodeSet.
-		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
-        /// @return A This as an XPathNodeSet, without conversion.
-
         /// @fn XPathVariable::Set(bool Value);
         /// @brief Set variable Value; no Type conversion is performed.
+        /// @return True is returned on Success, false is returned on Type mismatch error.
         /// @param Value The value to attempt to put into this.
-		/// @return True is return, false is returned on Type mismatch error.
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathVariableSet
@@ -2962,20 +2934,14 @@ namespace phys
 
         /// @fn XPathVariableSet::Add(const char_t* Name, XPathValueType Type);
         /// @brief Add a new variable or get the existing one, if the Types match
+        /// @return A pointer to the XPathVariable you referenced or just created.
         /// @param Name The name of variable to add.
         /// @param Type The Type of the new value to add as an XPathValueType.
-        /// @return A pointer to the XPathVariable you referenced or just created.
-
-        /// @fn XPathVariableSet::Set(const char_t* Name, bool Value);
-        /// @brief Set contained variable Value; no Type conversion is performed.
-        /// @param Name The name of variable to change.
-        /// @param Value The value to attempt to put into the named variable.
-		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
 
    		/// @fn XPathVariableSet::Get(const char_t* Name);
    		/// @brief Get the named XPathVariable.
-   		/// @param Name The name of the XPathVariable you want.
         /// @return A pointer to the specified XPathVariable.
+   		/// @param Name The name of the XPathVariable you want.
 
 		/// @fn XPathVariableSet::Get(const char_t* Name) const;
 		/// @brief Get the named XPathVariable.
@@ -2998,9 +2964,9 @@ namespace phys
 
         /// @fn XPathQuery::EvaluateBoolean(const XPathNode& n) const;
         /// @brief Evaluate expression as boolean value in the specified context; performs Type conversion if necessary.
+        /// @return A bool result of evaluating the expression.
+        /// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
         /// @param n The XPathNode that will serve as the context for the query.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
-		/// @return A bool result of evaluating the expression.
 
         /// @fn XPathQuery::Result() const;
         /// @brief Get parsing Result (used to get compilation errors when XML_NO_EXCEPTIONS is enabled)
@@ -3082,8 +3048,8 @@ namespace phys
 
 		/// @fn XPathNodeSet::operator=(const XPathNodeSet& ns);
 		/// @brief Assignment Operator.
+		/// @return A reference to the freshly assigned XPathNodeSet.
 		/// @param ns The XPathNodeSet to copy.
-        /// @return A reference to the freshly assigned XPathNodeSet.
 
 		/// @fn XPathNodeSet::Type() const;
 		/// @brief Get collection Type.

@@ -161,7 +161,7 @@ namespace phys
             virtual ConstString& GetName() const = 0;
 
             /// @brief Set the location of this atachable object relative to the object it is attached to.
-            /// @param vec The location.
+            /// @param Vec The location.
             virtual void SetLocation(const Vector3& Vec) = 0;
 
             /// @brief Get the location of the attachable object, relative to the Object is is attached to.

@@ -7,12 +7,8 @@
 /home/sqeaky/physgame/physgameengine/src/xmldoc.h:1061: warning: explicit link request to 'wstream' could not be resolved
 /home/sqeaky/physgame/physgameengine/src/xmldoc.h:1055: warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/physgame/physgameengine/src/xmldoc.h:1055: warning: explicit link request to 'x' could not be resolved
-/home/sqeaky/physgame/physgameengine/src/actorserializer.h:59: warning: Member ActorSerializer(ActorManager *DeSerializeTarget) (function) of class phys::ActorSerializer is not documented.
 /home/sqeaky/physgame/physgameengine/src/actorterrain.h:85: warning: parameters of member phys::ActorTerrain::CreateShapeFromMeshDynamic are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/actorterrain.h:95: warning: return type of member phys::ActorTerrain::GetName is not documented
-/home/sqeaky/physgame/physgameengine/src/attachable.h:163: warning: argument 'vec' of command @param is not found in the argument list of phys::Attachable::SetLocation(const Vector3 &Vec)
-/home/sqeaky/physgame/physgameengine/src/attachable.h:163: warning: The following parameters of phys::Attachable::SetLocation(const Vector3 &Vec) are not documented:
-  parameter 'Vec'
 /home/sqeaky/physgame/physgameengine/src/camera.h:142: warning: parameters of member phys::Camera::Camera are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/camera.h:145: warning: parameters of member phys::Camera::Camera are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/camera.h:279: warning: return type of member phys::Camera::GetCameraToViewportRay is not documented
@@ -36,23 +32,10 @@
 /home/sqeaky/physgame/physgameengine/src/cameramanager.h:81: warning: Member CameraControllers (variable) of class phys::CameraManager is not documented.
 /home/sqeaky/physgame/physgameengine/src/cameramanager.h:80: warning: Member Cameras (variable) of class phys::CameraManager is not documented.
 /home/sqeaky/physgame/physgameengine/src/cameramanager.h:79: warning: Member DefaultCamera (variable) of class phys::CameraManager is not documented.
-/home/sqeaky/physgame/physgameengine/src/cameramanager.h:88: warning: argument 'SceneManagerName' of command @param is not found in the argument list of phys::CameraManager::CameraManager(Whole SceneManagerIndex)
-/home/sqeaky/physgame/physgameengine/src/cameramanager.h:88: warning: argument 'SManager' of command @param is not found in the argument list of phys::CameraManager::CameraManager(Whole SceneManagerIndex)
-/home/sqeaky/physgame/physgameengine/src/cameramanager.h:88: warning: The following parameters of phys::CameraManager::CameraManager(Whole SceneManagerIndex) are not documented:
-  parameter 'SceneManagerIndex'
-/home/sqeaky/physgame/physgameengine/src/cameramanager.h:104: warning: parameters of member phys::CameraManager::CreateCamera are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/cameramanager.h:104: warning: return type of member phys::CameraManager::CreateCamera is not documented
-/home/sqeaky/physgame/physgameengine/src/cameramanager.h:108: warning: parameters of member phys::CameraManager::GetCamera are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/cameramanager.h:111: warning: parameters of member phys::CameraManager::GetCamera are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: argument 'red' of command @param is not found in the argument list of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0)
-/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: argument 'green' of command @param is not found in the argument list of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0)
-/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: argument 'blue' of command @param is not found in the argument list of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0)
-/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: argument 'alpha' of command @param is not found in the argument list of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0)
-/home/sqeaky/physgame/physgameengine/src/colourvalue.h:79: warning: The following parameters of phys::ColourValue::ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0) are not documented:
-  parameter 'Red'
-  parameter 'Green'
-  parameter 'Blue'
-  parameter 'Alpha'
+/home/sqeaky/physgame/physgameengine/src/cameramanager.h:105: warning: parameters of member phys::CameraManager::CreateCamera are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/cameramanager.h:105: warning: return type of member phys::CameraManager::CreateCamera is not documented
+/home/sqeaky/physgame/physgameengine/src/cameramanager.h:109: warning: parameters of member phys::CameraManager::GetCamera are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/cameramanager.h:112: warning: parameters of member phys::CameraManager::GetCamera are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/eventcollision.h:97: warning: return type of member phys::EventCollision::GetType is not documented
 /home/sqeaky/physgame/physgameengine/src/eventgamewindow.h:108: warning: return type of member phys::EventGameWindow::GetType is not documented
 /home/sqeaky/physgame/physgameengine/src/eventgamewindow.cpp:61: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class phys::EventGameWindowData is not documented.
@@ -77,32 +60,13 @@
 /home/sqeaky/physgame/physgameengine/src/extendedtimer.h:83: warning: Member CurrentTime (variable) of class phys::ExtendedTimer is not documented.
 /home/sqeaky/physgame/physgameengine/src/extendedtimer.h:84: warning: Member GoalTime (variable) of class phys::ExtendedTimer is not documented.
 /home/sqeaky/physgame/physgameengine/src/extendedtimer.h:85: warning: Member InitialTime (variable) of class phys::ExtendedTimer is not documented.
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:100: warning: argument 'Style' of command @param is not found in the argument list of phys::ExtendedTimer::ExtendedTimer(const Timer::TimerStyle style)
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:100: warning: The following parameters of phys::ExtendedTimer::ExtendedTimer(const Timer::TimerStyle style) are not documented:
-  parameter 'style'
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:152: warning: parameters of member phys::ExtendedTimer::GetDays are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:149: warning: parameters of member phys::ExtendedTimer::GetHours are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:140: warning: parameters of member phys::ExtendedTimer::GetMilliseconds are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:146: warning: parameters of member phys::ExtendedTimer::GetMinutes are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:143: warning: parameters of member phys::ExtendedTimer::GetSeconds are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/extendedtimer.h:107: warning: parameters of member phys::ExtendedTimer::SetAutoReset are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:136: warning: The following parameters of phys::ExtendedTimer::SetDays(Integer Day, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
-  parameter 'Struct'
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:131: warning: The following parameters of phys::ExtendedTimer::SetHours(Integer Hr, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
-  parameter 'Struct'
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:111: warning: The following parameters of phys::ExtendedTimer::SetMicroseconds(Integer MS, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
-  parameter 'Struct'
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:116: warning: The following parameters of phys::ExtendedTimer::SetMilliseconds(Integer MS, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
-  parameter 'Struct'
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:126: warning: The following parameters of phys::ExtendedTimer::SetMinutes(Integer Min, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
-  parameter 'Struct'
-/home/sqeaky/physgame/physgameengine/src/extendedtimer.h:121: warning: The following parameters of phys::ExtendedTimer::SetSeconds(Integer Sec, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
-  parameter 'Struct'
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:106: warning: Member CorrectViewportAndCamera(const Whole &Index) (function) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:105: warning: Member CreateGameWindow(const String &WindowCaption, const Whole &Width, const Whole &Height, const Whole &Flags) (function) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:107: warning: Member IsLargerThenDesktop(const Whole &Width, const Whole &Height) (function) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:101: warning: Member Manager (variable) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:95: warning: Member OgreWindow (variable) of class phys::GameWindow is not documented.
+/home/sqeaky/physgame/physgameengine/src/gamewindow.h:103: warning: Member RenderContext (variable) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:96: warning: Member SDLWindow (variable) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:97: warning: Member Settings (variable) of class phys::GameWindow is not documented.
 /home/sqeaky/physgame/physgameengine/src/gamewindow.h:99: warning: Member Viewports (variable) of class phys::GameWindow is not documented.
@@ -316,8 +280,6 @@
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:134: warning: Member BulletFilePtr(const Ogre::ResourcePtr &r) (function) of class phys::internal::BulletFilePtr is not documented.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:132: warning: Member BulletFilePtr(const BulletFilePtr &r) (function) of class phys::internal::BulletFilePtr is not documented.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:149: warning: Member operator=(const Ogre::ResourcePtr &r) (function) of class phys::internal::BulletFilePtr is not documented.
-/home/sqeaky/physgame/physgameengine/src/eventmanager.cpp:134: warning: Member ManualCheckIterator (typedef) of class phys::internal::EventManagerInternalData is not documented.
-/home/sqeaky/physgame/physgameengine/src/eventmanager.cpp:225: warning: argument 'Drops' of command @param is not found in the argument list of phys::internal::EventManagerInternalData::DropAllKeyPresses()
 /home/sqeaky/physgame/physgameengine/src/actorgraphicssettings.cpp:86: warning: Member InternalActorGraphicsSettings(ActorBase *Actor, Ogre::Entity *GraphicsObject) (function) of class phys::internal::InternalActorGraphicsSettings is not documented.
 /home/sqeaky/physgame/physgameengine/src/linegroup.cpp:87: warning: parameters of member phys::internal::Line3D::getPoint are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/linegroup.cpp:117: warning: return type of member phys::internal::Line3D::getSquaredViewDepth is not documented
@@ -657,8 +619,3 @@
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:215: warning: parameters of member phys::UI::Window::GetRectangle are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:299: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:295: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:3083: warning: return type of member phys::xml::XPathNodeSet::operator= is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:2999: warning: return type of member phys::xml::XPathQuery::EvaluateBoolean is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:2943: warning: return type of member phys::xml::XPathVariable::GetNodeSet is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:2933: warning: return type of member phys::xml::XPathVariable::GetNumber is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:2969: warning: return type of member phys::xml::XPathVariableSet::Set is not documented

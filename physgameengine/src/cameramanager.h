@@ -88,8 +88,9 @@ namespace phys
             /// @brief Class Constructor.
             /// @details This is the class constructor.  This is automatcally called in the World.CreateRenderWindow()
             /// function and should never need to be called manually.
-            /// @param SceneManagerName Name of the created SceneManager for this camera manager to use.
-            /// @param SManager A pointer to the Scenemanager where you will be creating/manipulating all the cameras.
+            /// @param SceneManagerIndex The SceneManager to user as indexed by phys::World
+            // /// @param SceneManagerName Name of the created SceneManager for this camera manager to use.
+            // /// @param SManager A pointer to the Scenemanager where you will be creating/manipulating all the cameras.
             CameraManager(Whole SceneManagerIndex);
             /// @brief Class Destructor.
             /// @details The calss Destuctor

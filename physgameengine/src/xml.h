@@ -1174,9 +1174,22 @@ namespace phys
 		XPathValueType Type() const; 
  
 		// Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error 
+		/// @brief Get this as a bool.
+		/// @details Get variable Value; Minimal Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return This as a bool, with any appropriate downcasting.
 		bool GetBoolean() const; 
+		/// @details Get variable Value; default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return This as a double.
+		/// @brief Get this as a double.
 		double GetNumber() const; 
+		/// @brief Get this as a c-string.
+		/// @details Get variable Value; default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return This as a c-string of char_t, without conversion.
 		const char_t* GetString() const; 
+		/// @brief Get this as a XPathNodeSet.
+		/// @details Get variable Value; no Type conversion is performed, if type of variable is not a XPathNodeSet then an XPathException is thrown
+		/// @throw XPathException on type mismatch or allocation error
+		/// @return A This as an XPathNodeSet, without conversion.
 		const XPathNodeSet& GetNodeSet() const; 
  
 		// Set variable Value; no Type conversion is performed, false is returned on Type mismatch error 
@@ -1215,7 +1228,10 @@ namespace phys
 		// Add a new variable or get the existing one, if the Types match 
 		XPathVariable* Add(const char_t* Name, XPathValueType Type); 
  
-		// Set Value of an existing variable; no Type conversion is performed, false is returned if there is no such variable or if Types mismatch 
+		/// @brief Set contained variable Value; no Type conversion is performed.
+		/// @param Name The name of variable to change.
+		/// @param Value The value to attempt to put into the named variable.
+		/// @return True is return, false is returned if there is no such variable or on Type mismatch error. 
 		bool Set(const char_t* Name, bool Value); 
 		/// @brief Set contained variable Value; no Type conversion is performed.
 		/// @param Name The name of variable to change.

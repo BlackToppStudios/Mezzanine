@@ -129,6 +129,7 @@ namespace phys
             std::map<MetaCode::InputCode, PollingType> ManualCheck;
 
             /// @internal
+            /// @brief an Iterator suitable for use with internal structures that correlate polling type and metacodes
             typedef std::map<MetaCode::InputCode, PollingType>::iterator ManualCheckIterator;
 
             /// @internal
@@ -221,7 +222,7 @@ namespace phys
             }
 
             /// @internal
-            /// @param Drops all keypresses from the list of items to be perpetuated each frame.
+            /// @brief Drops all keypresses from the list of items to be perpetuated each frame.
             void DropAllKeyPresses()
             {
                 for (ManualCheckIterator Which = ManualCheck.begin(); Which!=ManualCheck.end(); ++Which)

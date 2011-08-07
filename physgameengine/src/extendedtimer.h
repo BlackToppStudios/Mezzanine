@@ -98,7 +98,7 @@ namespace phys
             virtual bool GoalReached();
         public:
             /// @brief Standard Constructor.
-            /// @param Style The styling/type of timer to be constructed.
+            /// @param style The styling/type of timer to be constructed.
             ExtendedTimer(const Timer::TimerStyle style);
             /// @brief Class destructor.
             virtual ~ExtendedTimer();
@@ -112,45 +112,56 @@ namespace phys
             /// @details If a number greater then 999 is passed in, it will be reduced to 999.
             /// @return Returns a reference to this timer.
             /// @param MS The number of Microseconds to set.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual ExtendedTimer& SetMicroseconds(Integer MS, const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Sets the value for Milliseconds of the specified struct.
             /// @details If a number greater then 999 is passed in, it will be reduced to 999.
             /// @return Returns a reference to this timer.
             /// @param MS The number of Milliseconds to set.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual ExtendedTimer& SetMilliseconds(Integer MS, const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Sets the value for Seconds of the specified struct.
             /// @details If a number greater then 59 is passed in, it will be reduced to 59.
             /// @return Returns a reference to this timer.
             /// @param Sec The number of Seconds to set.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual ExtendedTimer& SetSeconds(Integer Sec, const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Sets the value for Minutes of the specified struct.
             /// @details If a number greater then 59 is passed in, it will be reduced to 59.
             /// @return Returns a reference to this timer.
             /// @param Min The number of Minutes to set.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual ExtendedTimer& SetMinutes(Integer Min, const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Sets the value for Hours of the specified struct.
             /// @details If a number greater then 23 is passed in, it will be reduced to 23.
             /// @return Returns a reference to this timer.
             /// @param Hr The number of Hours to set.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual ExtendedTimer& SetHours(Integer Hr, const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Sets the value for Days of the specified struct.
             /// @return Returns a reference to this timer.
             /// @param Day The number of Days to set.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual ExtendedTimer& SetDays(Integer Day, const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Gets the current internal Millisecond count.
             /// @return Returns an Integer representing the current Millisecond count of this Timer.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual Integer GetMilliseconds(const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Gets the current internal Second count.
             /// @return Returns an Integer representing the current Second count of this Timer.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual Integer GetSeconds(const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Gets the current internal Minute count.
             /// @return Returns an Integer representing the current Minute count of this Timer.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual Integer GetMinutes(const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Gets the current internal Hour count.
             /// @return Returns an Integer representing the current Hour count of this Timer.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual Integer GetHours(const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
             /// @brief Gets the current internal Day count.
             /// @return Returns an Integer representing the current Day count of this Timer.
+            /// @param Struct The Kind of TimeStructure this timer should use, defaults to ExtendedTimer::Current
             virtual Integer GetDays(const ExtendedTimer::TimeStruct Struct = ExtendedTimer::Current);
     };
 }

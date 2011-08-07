@@ -28,7 +28,10 @@ size\_\-t \hyperlink{classphys_1_1xml_1_1XPathQuery_ac9f4705c639cbd7f3aef8266fa6
 \begin{DoxyCompactList}\small\item\em Used to convert this to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1XPathQuery_afe0b62e0ab607855f5267b0690bda33b}{operator!} () const 
 \begin{DoxyCompactList}\small\item\em Logical not operator, used a workaround for borland compiler. \item\end{DoxyCompactList}\item 
-const \hyperlink{structphys_1_1xml_1_1XPathParseResult}{XPathParseResult} \& \hyperlink{classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}{Result} () const 
+\hypertarget{classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}{
+const \hyperlink{structphys_1_1xml_1_1XPathParseResult}{XPathParseResult} \& \hyperlink{classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}{Result} () const }
+\label{classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}
+
 \begin{DoxyCompactList}\small\item\em Get parsing Result (used to get compilation errors when XML\_\-NO\_\-EXCEPTIONS is enabled) \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} \hyperlink{classphys_1_1xml_1_1XPathQuery_af4c6025009b1e09cdf56124a047ca4f0}{ReturnType} () const 
 \begin{DoxyCompactList}\small\item\em Get query expression return Type. \item\end{DoxyCompactList}\item 
@@ -59,7 +62,7 @@ When you call select\_\-nodes with an expression string as an argument, a query 
  To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, \hyperlink{classphys_1_1xml_1_1XPathQuery_a44fed594a458aa4b6cf4f3d12d5089a8}{XPathQuery::EvaluateBoolean()}, \hyperlink{classphys_1_1xml_1_1XPathQuery_aacfcff30901ce20b92de56ec0e2d70e5}{XPathQuery::EvaluateNumber()} and \hyperlink{classphys_1_1xml_1_1XPathQuery_ab7084be2e608b38872167fe3321554b9}{XPathQuery::EvaluateString()} always return a result, but EvaluateNodeSet results in an error if the return type is not node set. 
 \end{DoxyItemize}
 
-Definition at line 1242 of file xml.h.
+Definition at line 1258 of file xml.h.
 
 
 
@@ -106,6 +109,14 @@ Construct a compiled object from XPath expression.
 
 Evaluate expression as boolean value in the specified context; performs Type conversion if necessary. 
 
+\begin{DoxyReturn}{Returns}
+A bool result of evaluating the expression. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em If} & XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. \\
+\hline
+\end{DoxyExceptions}
 
 \begin{DoxyParams}{Parameters}
 {\em n} & The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that will serve as the context for the query. \\
@@ -254,27 +265,6 @@ Logical not operator, used a workaround for borland compiler.
 A const reference to an \hyperlink{structphys_1_1xml_1_1XPathParseResult}{XPathParseResult}. 
 
 A bool that is the opposite of evaluatig this as a bool normally. 
-\end{DoxyReturn}
-\hypertarget{classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}{
-\index{phys::xml::XPathQuery@{phys::xml::XPathQuery}!Result@{Result}}
-\index{Result@{Result}!phys::xml::XPathQuery@{phys::xml::XPathQuery}}
-\paragraph[{Result}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathQuery::Result (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\hfill}
-\label{classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}
-
-
-Get parsing Result (used to get compilation errors when XML\_\-NO\_\-EXCEPTIONS is enabled) 
-
-
-\begin{DoxyExceptions}{Exceptions}
-{\em If} & XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. \\
-\hline
-\end{DoxyExceptions}
-\begin{DoxyReturn}{Returns}
-A bool result of evaluating the expression. 
 \end{DoxyReturn}
 \hypertarget{classphys_1_1xml_1_1XPathQuery_af4c6025009b1e09cdf56124a047ca4f0}{
 \index{phys::xml::XPathQuery@{phys::xml::XPathQuery}!ReturnType@{ReturnType}}

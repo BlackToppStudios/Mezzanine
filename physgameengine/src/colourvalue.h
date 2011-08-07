@@ -78,10 +78,10 @@ namespace phys
 */
             /// @brief 4 Reals constructor.
             /// @details This constructor allows you to set any values, if unset, they default to 1.0.
-            /// @param red Real representing the amount of red present in the colour.
-            /// @param green Real representing the amount of green present in the colour.
-            /// @param blue Real representing the amount of blue present in the colour.
-            /// @param alpha Real representing the transparency of the colours.
+            /// @param Red Real representing the amount of red present in the colour.
+            /// @param Green Real representing the amount of green present in the colour.
+            /// @param Blue Real representing the amount of blue present in the colour.
+            /// @param Alpha Real representing the transparency of the colours.
             ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0);
 
             /// @brief Ogre constructor.
