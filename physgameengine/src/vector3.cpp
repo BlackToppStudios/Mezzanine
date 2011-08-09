@@ -364,8 +364,8 @@ namespace phys
         // Serializable
         void Vector3::ProtoSerialize(xml::Node& CurrentRoot) const
         {
-            phys::xml::Node VecNode = CurrentRoot.AppendChild("Vector3");
-            VecNode.SetName("Vector3");
+            phys::xml::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+            VecNode.SetName(SerializableName());
 
             phys::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
             phys::xml::Attribute XAttr = VecNode.AppendAttribute("X");
@@ -377,17 +377,17 @@ namespace phys
                 {
                     return;
                 }else{
-                    throw(Exception("Could not Stream Vector3 XML Attribute Values."));
+                    throw(Exception(StringCat("Could not Stream ",SerializableName()," XML Attribute Values.")));
                 }
             }else{
-                throw(Exception("Could not Stream Vector3 XML Attribute Names."));
+                throw(Exception(StringCat("Could not Stream ",SerializableName()," XML Attribute Names.")));
             }
         }
 
         // DeSerializable
         void Vector3::ProtoDeSerialize(const xml::Node& OneNode)
         {
-            if ( phys::String(OneNode.Name())==phys::String("Vector3") )
+            if ( phys::String(OneNode.Name())==phys::String(SerializableName()) )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
@@ -395,10 +395,10 @@ namespace phys
                     this->Y=OneNode.GetAttribute("Y").AsReal();
                     this->Z=OneNode.GetAttribute("Z").AsReal();
                 }else{
-                    throw( phys::Exception("Incompatible XML Version for Vector3: Not Version 1"));
+                    throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
                 }
             }else{
-                throw( phys::Exception(phys::StringCat("Attempting to deserialize a Vector3, found a ", OneNode.Name())));
+                throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
             }
         }
 

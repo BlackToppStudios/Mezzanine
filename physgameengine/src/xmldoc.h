@@ -340,6 +340,7 @@ namespace phys
     /// @code
     /// const char* phys::xml::Node::Name() const;
     /// bool phys::xml::Node::SetName(const char* value);
+    /// bool phys::xml::Node::SetName(const String& value);
     /// @endcode
     /// and like this in wchar_t mode:
     /// @code
@@ -349,9 +350,9 @@ namespace phys
     /// There is a special type, phys::xml::char_t, that is defined as the character type and depends on the engine configuration; it will be also used in the documentation
     /// hereafter. There is also a type phys::xml::string_t, which is defined as the STL string of the character type; it corresponds to std::string in char mode and to
     /// std::wstring in wchar_t mode.
-    /// @note This is one our list of items to integrate more tighlty. At some point phys::xml::char_t will be replace by phys::Character, and phys::xml::string_t will be
-    /// replaced by phys::String. For now they remain Interoperable.
-    ///
+    /// \n \n
+    /// The version of this function that accepts a String simply converts it to a c-style string and calls the other SetName function.
+    /// \n \n
     /// In addition to the interface, the internal implementation changes to store XML data as phys::xml::char_t; this means that these two modes have different memory usage
     /// characteristics. The conversion to phys::xml::char_t upon document loading and from phys::xml::char_t upon document saving happen automatically, which also carries
     /// minor performance penalty. The general advice however is to select the character mode based on usage scenario, i.e. if UTF-8 is inconvenient to process and most of
@@ -1121,6 +1122,7 @@ namespace phys
     /// name or value, you can use the following functions:
     /// @code
     /// bool phys::xml::Node::SetName(const char_t* rhs);
+    /// bool phys::xml::Node::SetName(const String& rhs);
     /// bool phys::xml::Node::SetValue(const char_t* rhs);
     /// @endcode
     /// Both functions try to set the name/value to the specified string, and return the operation result. The operation fails if the node can not have name or value (for instance, when
@@ -1209,13 +1211,17 @@ namespace phys
     /// phys::xml::Node phys::xml::Node::InsertChildBefore(phys::xml::NodeType type, const phys::xml::Node& node);
     ///
     /// phys::xml::Node phys::xml::Node::AppendChild(const char_t* Name);
+    /// phys::xml::Node phys::xml::Node::AppendChild(const String& Name);
     /// phys::xml::Node phys::xml::Node::PrependChild(const char_t* Name);
+    /// phys::xml::Node phys::xml::Node::PrependChild(const String& Name);
     /// phys::xml::Node phys::xml::Node::InsertChildAfter(const char_t* Name, const phys::xml::Node& node);
     /// phys::xml::Node phys::xml::Node::InsertChildBefore(const char_t* Name, const phys::xml::Node& node);
     /// @endcode
     /// AppendAttribute and AppendChild create a new node/attribute at the end of the corresponding list of the node the method is called on; PrependAttribute and PrependChild create a new
     /// node/attribute at the beginning of the list; InsertAttributeAfter, InsertAttributeBefore, InsertChildAfter and InsertAttributeBefore add the node/attribute before or after the
     /// specified node/attribute.
+    /// \n \n
+    /// The overloads of AppendChild and PrependChild that accept phys::String references convert it to a string, then call the version of the function that accepts a c-style string.
     /// \n \n
     /// Attribute functions create an attribute with the specified name; you can specify the empty name and change the name later if you want to. Node functions with the type argument
     /// create the node with the specified type; since node type can't be changed, you have to know the desired type beforehand. Also note that not all types can be added as children; see
@@ -1909,6 +1915,8 @@ namespace phys
     ///     - String functions consider a character to be either a single char value or a single wchar_t value, depending on the library configuration; this means that some string functions
     ///     are not fully Unicode-aware. This affects substring(), string-length() and translate() functions.
 
+
+
     /**
     @page OriginalpugixmlLicense Original pugixml License
     The original pugixml software had the following license text:
@@ -2314,12 +2322,6 @@ namespace phys
         /// @brief Attempts to convert the value of the attribute to a float and returns the results.
         /// @return Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty
 
-		/// @fn Attribute::SetName(const char_t* rhs);
-		/// @brief Set the name of this attribute.
-		/// @param rhs The new name.
-		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
-
 		/// @fn Attribute::operator=(const char_t* rhs);
 		/// @param rhs The new value as an c-style string.
 		/// @brief The same as @ref Attribute::SetValue(const char_t* rhs); without the error return
@@ -2497,11 +2499,6 @@ namespace phys
         /// @brief Get the PCDATA of a given child. The same a calling "GetChild(Name).ChildValue()".
         /// @param Name The Name of the desired child node.
         /// @return This will return the Value of the first available matching PCDATA node.
-
-        /// @fn Node::SetName(const char_t* rhs);
-        /// @brief Set the name of this Node.
-        /// @param rhs The desired name of the Node.
-        /// @return True if successful, returns false if Node cannot store a name or there is not enough memory.
 
         /// @fn Node::PrependAttribute(const char_t* Name);
         /// @brief Creates an Attribute and puts it at the begining of this Nodes attributes

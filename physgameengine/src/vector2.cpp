@@ -176,6 +176,54 @@ namespace phys
         Temp.Y/=Vec2.Y;
         return Temp;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+#ifdef PHYSXML
+    // Serializable
+    void Vector2::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        phys::xml::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+        VecNode.SetName(SerializableName());
+
+        phys::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+        phys::xml::Attribute XAttr = VecNode.AppendAttribute("X");
+        phys::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
+        if( VersionAttr && XAttr && YAttr )
+        {
+            if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) )
+            {
+                return;
+            }else{
+                throw(Exception(StringCat("Could not Stream",SerializableName()," XML Attribute Values.")));
+            }
+        }else{
+            throw(Exception(StringCat("Could not Stream ",SerializableName()," XML Attribute Names.")));
+        }
+    }
+
+    // DeSerializable
+    void Vector2::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==phys::String(SerializableName()) )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                this->X=OneNode.GetAttribute("X").AsReal();
+                this->Y=OneNode.GetAttribute("Y").AsReal();
+            }else{
+                throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+            }
+        }else{
+            throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+        }
+    }
+
+    String Vector2::SerializableName() const
+        { return String("Vector3"); }
+
+#endif
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
