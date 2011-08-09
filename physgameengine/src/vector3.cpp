@@ -453,7 +453,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 std::istream& operator >> (std::istream& stream, phys::Vector3& Vec)
     { return DeSerialize(stream, Vec); }
 
-phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec)
+void operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec)
     { Vec.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 

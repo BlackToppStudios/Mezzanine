@@ -175,6 +175,7 @@ class Vector2Tests : public UnitTest
                 XMLstream<<Vec;
                 phys::String Actual(XMLstream.str());
                 phys::String Ideal("<Vector2 Version=\"1\" X=\"3\" Y=\"4\" />");
+                cout << XMLstream.str();
                 if(Actual==Ideal)
                     { temp=Success; }
                 else

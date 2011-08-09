@@ -128,7 +128,9 @@ int main (int argc, char** argv)
     {
         String ThisArg(AllLower(argv[c]));
         if(ThisArg=="help")
-            { Usage(argv[0]); return ExitSuccess; }
+            { return Usage(argv[0]); }
+        else if(ThisArg=="testlist")
+            { return PrintList(); }
         else if(ThisArg=="interactive")
             { RunInteractiveTests=true; }
         else if(ThisArg=="automatic")
@@ -152,7 +154,7 @@ int main (int argc, char** argv)
     if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running all tests if no type of test is specified
         { RunAutomaticTests=true; RunInteractiveTests=true; }
 
-    Runner.RunTests(RunAutomaticTests,RunInteractiveTests);
+    Runner.RunTests(RunAutomaticTests, RunInteractiveTests);
     Runner.DisplayResults(SummaryDisplay, FullDisplay);
 
     return ExitSuccess;

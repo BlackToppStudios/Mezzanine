@@ -525,7 +525,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec);
 /// @param Vec the phys::Vector3 to store the deserialized Vector3
 /// @return This returns a reference to the xml::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
-phys::xml::Node& PHYS_LIB  operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec);
+void PHYS_LIB  operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec);
 #endif // \PHYSXML
 
 /// @brief Conversion Assignment Operator to Ogre::Vector3.

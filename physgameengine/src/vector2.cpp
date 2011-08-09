@@ -40,9 +40,10 @@
 #ifndef _vector2_cpp
 #define _vector2_cpp
 
+#include "serialization.h"
 #include "vector2.h"
 
-#include <memory>
+//#include <memory>
 
 #include <Ogre.h>
 
@@ -220,7 +221,7 @@ namespace phys
     }
 
     String Vector2::SerializableName() const
-        { return String("Vector3"); }
+        { return String("Vector2"); }
 
 #endif
 
@@ -243,8 +244,8 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector2& x)
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector2& Vec)
     { return DeSerialize(stream, Vec); }
 
-phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector2& Vec)
-    { return Vec.ProtoDeSerialize(OneNode); }
+void operator >> (const phys::xml::Node& OneNode, phys::Vector2& Vec)
+    { Vec.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 
 #endif

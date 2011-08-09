@@ -272,29 +272,36 @@ enum ExitCodes
 
 int Usage(phys::String ThisName)
 {
-    std::cout   << endl << "Usage: " << ThisName << " [help] [summary] [interactive|automatic] [all] Test Group Names ..." << endl << endl
+    std::cout   << endl << "Usage: " << ThisName << " [help] [summary] [testlist] [interactive|automatic] [all] Test Group Names ..." << endl << endl
                 << "All:         All test groups will be run." << endl
                 << "Interactive: Only interactive tests will be performed on specified test groups." << endl
                 << "Automatic:   Only automated tests will be performed on specified test groups." << endl
                 //<< "Interactive and Automatic: All tests will be run on specificied test groups." << endl << endl
                 << "Summary:     Only display a count of failures and successes" << endl
+                << "testlist:    Output a list of all tests, one per line" << endl
                 << "Help:        Display this message"<< endl << endl
                 << "If only test group names are entered, then all tests in those groups are run." << endl
                 << "This command is not case sensitive." << endl << endl
                 << "Current Test Groups: " << endl;
     phys::Whole c = 0;
     for(map<phys::String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
-        {
-            cout << "\t" << Iter->first << " ";
-            ++c;        //enforce 4 names per line
-            if (4==c)
-                { cout<<endl; c=0; }
-        }
+    {
+        cout << "\t" << Iter->first << " ";
+        ++c;        //enforce 4 names per line
+        if (4==c)
+            { cout<<endl; c=0; }
+    }
     cout << endl;
 
     return ExitInvalidArguments;
 }
 
+int PrintList()
+{
+    for(map<phys::String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+        { cout << Iter->first << endl; }
+    return ExitSuccess;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////
 //This next block of code creates a minimal engine environment for testing managers and other ngine components
