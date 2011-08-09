@@ -1,4 +1,3 @@
-Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:127: warning: Compound phys::internal::BulletFilePtr is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:65: warning: Compound phys::UI::ListBox::TemplateParams is not documented.
 /home/sqeaky/physgame/physgameengine/src/collisionshapegenerator.h:53: warning: Compound phys::CollisionShapeGenerator is not documented.

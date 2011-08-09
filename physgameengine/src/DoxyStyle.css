@@ -13,6 +13,11 @@ body, table, div, p, dl {
 	line-height: 18px;
 }
 
+body {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
 body, table.param , div.header {
 	background-color: #444;
 }
@@ -37,7 +42,7 @@ div {
 }
 
 li {
-	margin-bottom: 4px;
+	margin-bottom: 0px;
 }
 
 div.center > img {
@@ -65,25 +70,25 @@ div.center > img {
 /* Tabs.css */
 
 .tabs, .tabs2, .tabs3 {
-	background-image: url('tab_b.png');
+	/* background-image: url('tab_b.png'); */
 	width: 100%;
 	z-index: 101;
 	margin: 0 0 0 0;
 	padding: 0;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
-	-moz-border-radius-topleft: 0px;
-	-moz-border-radius-topright: 0px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
 	-moz-border-radius-bottomleft: 0px;
 	-moz-border-radius-bottomright: 0px;
-	-webkit-border-top-left-radius: 0px;
-	-webkit-border-top-right-radius: 0px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
 	-webkit-border-bottom-left-radius: 0px;
 	-webkit-border-bottom-right-radius: 0px;
-	-khtml-border-top-left-radius: 0px;
-	-khtml-border-top-right-radius: 0px;
+	-khtml-border-top-left-radius: 5px;
+	-khtml-border-top-right-radius: 5px;
 	-khtml-border-bottom-left-radius: 0px;
 	-khtml-border-bottom-right-radius: 0px;
 }
@@ -100,47 +105,96 @@ div.center > img {
 	font-size: 80%;
 }
 
+/* #navrow {
+	margin-left: 10%;
+	margin-right: 10%;
+}*/
+
 #navrow1 a {
+	border: 1px solid #666;
+	background-color: #000;
 	color: #EEE;
 }
 
 #navrow2 a {
 	color: #EEE;
+	border: 1px solid #666;
+	background-color: #000;
+	margin-bottom: 4px;
 }
 
 #navrow3 a {
 	color: #EEE;
+	border: 1px solid #666;
+	background-color: #000;
+	margin-bottom: 4px;
 }
 
 #navrow4 a {
 	color: #EEE;
+	border: 1px solid #666;
+	background-color: #000;
+	margin-bottom: 4px;
 }
 
 .tablist {
 	margin: 0 0 0 0;
 	padding: 0;
 	display: table;
+	/* border: 10px solid #F00; */
 }
 
-.tablist li {
+.tablist li {			
 	float: left;
 	display: table-cell;
-	background-image: url('tab_b.png');
+	/* background-image: url('tab_b.png'); */
 	line-height: 28px;
 	list-style: none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	-khtml-border-top-left-radius: 5px;
+	-khtml-border-top-right-radius: 5px;
+	-khtml-border-bottom-left-radius: 0px;
+	-khtml-border-bottom-right-radius: 0px;
 }
 
 .tablist a {
 	display: block;
 	padding: 0 20px;
 	font-weight: bold;
-	background-image:url('tab_s.png');
+	/* background-image:url('tab_s.png'); 
 	background-repeat:no-repeat;
-	background-position:right;
+	background-position:right; The Seperator in the menus */
 	/* text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.9); */
 	text-shadow: 0px 1px 1px rgba(0, 0, 0, 1.0);
 	text-decoration: none;
 	outline: none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	-khtml-border-top-left-radius: 5px;
+	-khtml-border-top-right-radius: 5px;
+	-khtml-border-bottom-left-radius: 0px;
+	-khtml-border-bottom-right-radius: 0px;
 }
 
 .tabs3 .tablist a {
@@ -152,6 +206,22 @@ div.center > img {
 	background-image: url('tab_h.png');
 	background-repeat:repeat-x;
 	text-decoration: none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	-khtml-border-top-left-radius: 5px;
+	-khtml-border-top-right-radius: 5px;
+	-khtml-border-bottom-left-radius: 0px;
+	-khtml-border-bottom-right-radius: 0px;
 }
 
 .tablist li.current a {
@@ -160,6 +230,19 @@ div.center > img {
 	background-repeat:repeat-x;
 }
 
+div#MSearchBox {
+	margin-left: auto;
+	margin-right: 10%;
+}
+
+img#MSearchCloseImg, a#MSearchClose {
+	border: 0px solid #FFF;
+	background-color: #FFF;
+}
+
+div.SRResult a, div.SREntry a, div.SRChildren a {
+	color: #528f6c;
+}
 
 /* @group Heading Levels */
 
@@ -287,6 +370,11 @@ a.qindexHL {
         color: #ffffff;*/
 }
 
+li.navelem a.el {
+	font-weight: bold;
+	color: #EEE;
+}
+
 a.el {
 	font-weight: bold;
 }
@@ -370,8 +458,8 @@ div.groupText {
 div.contents {
 	padding: 10px 10px 10px;
 	margin-top: 10px;
-	margin-left: 10%;
-	margin-right: 10%;
+/*	margin-left: 10%;
+	margin-right: 10%; */
 	border: 1px solid #bbb;
 	background-color: #000;
 }
@@ -863,7 +951,7 @@ table.doxtable th {
 	text-align:left;
 }
 
-.tabsearch {
+/* .tabsearch {
 	top: 0px;
 	left: 10px;
 	height: 36px;
@@ -871,13 +959,13 @@ table.doxtable th {
 	z-index: 101;
 	overflow: hidden;
 	font-size: 13px;
-}
+}*/
 
 .navpath ul
 {
 	font-size: 11px;
-	background-image:url('tab_b.png');
-	background-repeat:repeat-x;
+	/* background-image:url('tab_b.png');
+	background-repeat:repeat-x; */
 	height:30px;
 	line-height:30px;
 	/* color:#8AA0CC;
@@ -909,7 +997,7 @@ table.doxtable th {
 
 .navpath li.navelem a:hover
 {
-	/* color:#6884BD; */
+	color:#EEE;
 }
 
 .navpath li.footer
@@ -961,7 +1049,7 @@ div.header
         background-repeat:repeat-x;
 	background-color: #F9FAFC;
 	margin:  0px; */
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid #aaa; 
 	border-bottom-right-radius: 0px;
 	border-bottom-left-radius: 0px;
 	-moz-border-radius-bottomleft: 0px;
@@ -1054,7 +1142,8 @@ dl.bug
 #projectname
 {
 	font: 300% Verdana,arial,sans-serif;
-	margin: 0px;
+	/* margin-left: 10%; 
+	margin-right: 10%; */
 	padding: 0px;
 }
     
@@ -1077,7 +1166,7 @@ dl.bug
 	padding: 0px;
 	margin: 0px;
 	width: 100%;
-	border-bottom: 1px solid #111;
+	/*border-bottom: 1px solid #111;
 	border-bottom-right-radius: 0px;
 	border-bottom-left-radius: 0px;
 	-moz-border-radius-bottomleft: 0px;
@@ -1085,7 +1174,7 @@ dl.bug
 	-webkit-border-bottom-left-radius: 0px;
 	-webkit-border-bottom-right-radius: 0px;
 	-khtml-border-bottom-left-radius: 0px;
-	-khtml-border-bottom-right-radius: 0px;
+	-khtml-border-bottom-right-radius: 0px;*/
 }
 
 
