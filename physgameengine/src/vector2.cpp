@@ -231,7 +231,8 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::Vector2& x)
 {
     #ifdef PHYSXML
-        stream << "<Vector2 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" />";
+        //stream << "<Vector2 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" />";
+        Serialize(stream,x);
     #else
         stream << "[" << x.X << "," << x.Y << "]";
     #endif // \PHYSXML
@@ -240,30 +241,10 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector2& x)
 
 #ifdef PHYSXML
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector2& Vec)
-{
-    phys::String OneTag( phys::xml::GetOneTag(stream) );
-    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Vector2", OneTag) );
-
-    Doc->GetFirstChild() >> Vec;
-
-    return stream;
-}
+    { return DeSerialize(stream, Vec); }
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector2& Vec)
-{
-    if ( phys::String(OneNode.Name())==phys::String("Vector2") )
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-            Vec.X=OneNode.GetAttribute("X").AsReal();
-            Vec.Y=OneNode.GetAttribute("Y").AsReal();
-        }else{
-            throw( phys::Exception("Incompatible XML Version for Vector2: Not Version 1"));
-        }
-    }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a Vector2, found a ", OneNode.Name())));
-    }
-}
+    { return Vec.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 
 #endif

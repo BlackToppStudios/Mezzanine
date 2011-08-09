@@ -454,9 +454,7 @@ std::istream& operator >> (std::istream& stream, phys::Vector3& Vec)
     { return DeSerialize(stream, Vec); }
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec)
-{
-    Vec.ProtoDeSerialize(OneNode);
-}
+    { Vec.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 
 Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom)
