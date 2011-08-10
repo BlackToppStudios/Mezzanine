@@ -65,6 +65,17 @@ class btUniversalConstraint;
 
 namespace phys
 {
+    /// @enum ConstraintParams
+    /// @brief Used by constraints for setting some parameters.
+    /// @details See the constraint class documentation for more details.
+    enum ConstraintParams
+    {
+        Con_ERP         = 1,    ///< ERP values adjust how fast the errors in the constraints are reduced. @n
+        Con_Stop_ERP    = 2,
+        Con_CFM         = 3,    ///< CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
+        Con_Stop_CFM    = 4
+    };
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class TypedConstraint
     /// @headerfile constraint.h
@@ -92,10 +103,10 @@ namespace phys
             void SetBodies(ActorRigid* Act1, ActorRigid* Act2);
             /// @brief Sets the Internal actor pointers.
             void SetBodies(ActorRigid* Act1);
-        public:
             /// @brief No initialization constructor.
-            /// @details The no initialization class constructor.
+            /// @details This is protected to prevent creating an instance of this directly.
             TypedConstraint();
+        public:
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~TypedConstraint();
@@ -106,19 +117,17 @@ namespace phys
             /// @return Returns a pointer to the second actor this constraint applies to.
             virtual ActorRigid* GetActorB();
             /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
-            /// ERP values adjust how fast the errors in the constraints are reduced. @n
-            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
-            /// @param num The parameter to override.
-            /// @param value The new value for the parameter.
-            /// @param axis Optional axis.
-            virtual void SetParam(int num, Real value, int axis=-1) = 0;
+            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis.
+            /// @param Param The parameter to override.
+            /// @param Value The new value for the parameter.
+            /// @param Axis Optional axis.
+            virtual void SetParam(ConstraintParams Param, Real Value, int Axis=-1);
             /// @brief Gets value of constraint parameters.
             /// @details See SetParam() for clarification.  Gets information on constraint parameters.
-            /// @param num The parameter to get information for.
-            /// @param axis Optional axis.
+            /// @param Para, The parameter to get information for.
+            /// @param Axis Optional axis.
             /// @return Returns the value for the requested parameter.
-            virtual Real GetParam(int num, int axis=-1) = 0;
+            virtual Real GetParam(ConstraintParams Param, int Axis=-1);
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -149,20 +158,6 @@ namespace phys
             virtual void SetMotorTargetInConstraintSpace(const Quaternion& Quat);
             virtual void EnableMotor(bool Enable);
             virtual bool IsPassedSwingLimit();
-            /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
-            /// ERP values adjust how fast the errors in the constraints are reduced. @n
-            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
-            /// @param num The parameter to override.
-            /// @param value The new value for the parameter.
-            /// @param axis Optional axis.
-            virtual void SetParam(int num, Real value, int axis=-1);
-            /// @brief Gets value of constraint parameters.
-            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
-            /// @param num The parameter to get information for.
-            /// @param axis Optional axis.
-            /// @return Returns the value for the requested parameter.
-            virtual Real GetParam(int num, int axis=-1);
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -194,20 +189,6 @@ namespace phys
             virtual void SetUseFrameOffset(bool UseOffset);
             virtual void SetLimit(int Axis, Real Low, Real High);
             virtual void CalculateTransforms();
-            /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
-            /// ERP values adjust how fast the errors in the constraints are reduced. @n
-            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
-            /// @param num The parameter to override.
-            /// @param value The new value for the parameter.
-            /// @param axis Optional axis.
-            virtual void SetParam(int num, Real value, int axis=-1);
-            /// @brief Gets value of constraint parameters.
-            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
-            /// @param num The parameter to get information for.
-            /// @param axis Optional axis.
-            /// @return Returns the value for the requested parameter.
-            virtual Real GetParam(int num, int axis=-1);
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -310,20 +291,6 @@ namespace phys
             /// @param AxisInA A vector3 representing the axis to be used with this constraint.
             virtual void SetAxis(const Vector3& AxisInA);
             virtual void SetUseFrameOffset(bool FrameOffset);
-            /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
-            /// ERP values adjust how fast the errors in the constraints are reduced. @n
-            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
-            /// @param num The parameter to override.
-            /// @param value The new value for the parameter.
-            /// @param axis Optional axis.
-            virtual void SetParam(int num, Real value, int axis=-1);
-            /// @brief Gets value of constraint parameters.
-            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
-            /// @param num The parameter to get information for.
-            /// @param axis Optional axis.
-            /// @return Returns the value for the requested parameter.
-            virtual Real GetParam(int num, int axis=-1);
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -377,20 +344,6 @@ namespace phys
             virtual Vector3 GetPivotInB();
             virtual void SetImpulseClamping(Real Clamping);
             virtual void SetTAU(Real TAU);
-            /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
-            /// ERP values adjust how fast the errors in the constraints are reduced. @n
-            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
-            /// @param num The parameter to override.
-            /// @param value The new value for the parameter.
-            /// @param axis Optional axis.
-            virtual void SetParam(int num, Real value, int axis=-1);
-            /// @brief Gets value of constraint parameters.
-            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
-            /// @param num The parameter to get information for.
-            /// @param axis Optional axis.
-            /// @return Returns the value for the requested parameter.
-            virtual Real GetParam(int num, int axis=-1);
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -441,20 +394,6 @@ namespace phys
             virtual void SetSoftnessOrthoAng(Real SoftnessOrthoAng);
             virtual void SetRestitutionOrthoAng(Real RestitutionOrthoAng);
             virtual void SetDampingOrthoAng(Real DampingOrthoAng);
-            /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
-            /// ERP values adjust how fast the errors in the constraints are reduced. @n
-            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
-            /// @param num The parameter to override.
-            /// @param value The new value for the parameter.
-            /// @param axis Optional axis.
-            virtual void SetParam(int num, Real value, int axis=-1);
-            /// @brief Gets value of constraint parameters.
-            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
-            /// @param num The parameter to get information for.
-            /// @param axis Optional axis.
-            /// @return Returns the value for the requested parameter.
-            virtual Real GetParam(int num, int axis=-1);
     };
 
     ///////////////////////////////////////////////////////////////////////////////

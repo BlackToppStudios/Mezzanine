@@ -86,6 +86,12 @@ namespace phys
         return ActB;
     }
 
+    void TypedConstraint::SetParam(ConstraintParams Param, Real Value, int Axis)
+        { this->ConstraintBase->setParam(Param, Value, Axis); }
+
+    Real TypedConstraint::GetParam(ConstraintParams Param, int Axis)
+        { return this->ConstraintBase->getParam(Param, Axis); }
+
     /////////////////////////////////////////
     // ConeTwist Constraint Functions
 
@@ -170,16 +176,6 @@ namespace phys
         return this->ConeTwist->isPastSwingLimit();
     }
 
-    void ConeTwistConstraint::SetParam(int num, Real value, int axis)
-    {
-        this->ConeTwist->setParam(num, value, axis);
-    }
-
-    Real ConeTwistConstraint::GetParam(int num, int axis)
-    {
-        return this->ConeTwist->getParam(num, axis);
-    }
-
     /////////////////////////////////////////
     // Generic6Dof Constraint Functions
 
@@ -256,16 +252,6 @@ namespace phys
     void Generic6DofConstraint::CalculateTransforms()
     {
         this->Generic6dof->calculateTransforms();
-    }
-
-    void Generic6DofConstraint::SetParam(int num, Real value, int axis)
-    {
-        this->Generic6dof->setParam(num, value, axis);
-    }
-
-    Real Generic6DofConstraint::GetParam(int num, int axis)
-    {
-        return this->Generic6dof->getParam (num, axis);
     }
 
     /////////////////////////////////////////
@@ -411,16 +397,6 @@ namespace phys
         this->Hinge->setUseFrameOffset(FrameOffset);
     }
 
-    void HingeConstraint::SetParam(int num, Real value, int axis)
-    {
-        this->Hinge->setParam(num, value, axis);
-    }
-
-    Real HingeConstraint::GetParam(int num, int axis)
-    {
-        return this->Hinge->getParam(num, axis);
-    }
-
     /////////////////////////////////////////
     // Hinge2 Constraint Functions
 
@@ -509,16 +485,6 @@ namespace phys
     void Point2PointConstraint::SetTAU(Real TAU)
     {
         this->Point2Point->m_setting.m_tau = TAU;
-    }
-
-    void Point2PointConstraint::SetParam(int num, Real value, int axis)
-    {
-        this->Point2Point->setParam(num, value, axis);
-    }
-
-    Real Point2PointConstraint::GetParam(int num, int axis)
-    {
-        return this->Point2Point->getParam(num, axis);
     }
 
     /////////////////////////////////////////
@@ -701,16 +667,6 @@ namespace phys
     void SliderConstraint::SetDampingOrthoAng(Real DampingOrthoAng)
     {
         this->Slider->setDampingOrthoAng(DampingOrthoAng);
-    }
-
-    void SliderConstraint::SetParam(int num, Real value, int axis)
-    {
-        this->Slider->setParam(num, value, axis);
-    }
-
-    Real SliderConstraint::GetParam(int num, int axis)
-    {
-        return this->Slider->getParam(num, axis);
     }
 
     /////////////////////////////////////////

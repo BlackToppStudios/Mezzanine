@@ -103,7 +103,7 @@ class Vector2Tests : public UnitTest
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("Vector2::operator!=(Ogre::Vector2)", temp);              //test
+                AddTestResult("Vector2::operator==(Ogre::Vector2)", temp);              //test
 
                 if(Vec!=Ovec2 && !(Vec!=Ovec))
                     { temp=Success; }

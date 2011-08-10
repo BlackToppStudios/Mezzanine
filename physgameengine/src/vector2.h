@@ -163,7 +163,7 @@ namespace phys
 #ifdef PHYSXML
         // Serializable
         /// @brief Convert this class to an xml::Node ready for serialization
-        /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+        /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
         virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
 
         // DeSerializable
@@ -172,7 +172,7 @@ namespace phys
         virtual void ProtoDeSerialize(const xml::Node& OneNode);
 
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-        /// @return A string containing "Vector3"
+        /// @return A string containing "Vector2"
         String SerializableName() const;
 #endif
 

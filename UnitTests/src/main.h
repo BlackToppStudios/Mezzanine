@@ -391,16 +391,16 @@ bool PostInputCheck()
             MetaCode::InputCode ThisCode = ThisInput->GetMetaCode(c).GetCode();
             switch(ThisCode)
             {
-                case MetaCode::KEY_T: case MetaCode::KEY_Y:
+                case MetaCode::KEY_T: case MetaCode::KEY_Y: // True or Yes
                     AnswerToQuestion = Success;
                     break;
-                case MetaCode::KEY_F: case MetaCode::KEY_N:
+                case MetaCode::KEY_F: case MetaCode::KEY_N: // False or No
                     AnswerToQuestion = Failed;
                     break;
-                case MetaCode::KEY_C:
+                case MetaCode::KEY_C:                       // Cancel
                     AnswerToQuestion = Cancelled;
                     break;
-                case MetaCode::KEY_U: case MetaCode::KEY_I:
+                case MetaCode::KEY_U: case MetaCode::KEY_I: // Unknown or Inconclusive
                     AnswerToQuestion = Inconclusive;
                     break;
                 default:

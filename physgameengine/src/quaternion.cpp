@@ -47,6 +47,7 @@
 #include <memory>
 
 #include "quaternion.h"
+#include "serialization.h"
 #include "vector3.h"
 #include "world.h"
 
@@ -348,6 +349,55 @@ namespace phys
 
     bool Quaternion::operator== (const btQuaternion& Other) const
         { return (this->X==Other.getX() && this->Y==Other.getY() && this->Z==Other.getZ() && this->W==Other.getW()); }
+
+#ifdef PHYSXML
+        // Serializable
+        void Quaternion::ProtoSerialize(xml::Node& CurrentRoot) const
+        {
+            phys::xml::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+            VecNode.SetName(SerializableName());
+
+            phys::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+            phys::xml::Attribute XAttr = VecNode.AppendAttribute("X");
+            phys::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
+            phys::xml::Attribute ZAttr = VecNode.AppendAttribute("Z");
+            phys::xml::Attribute WAttr = VecNode.AppendAttribute("Z");
+            if( VersionAttr && XAttr && YAttr && ZAttr && WAttr)
+            {
+                if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z) && WAttr.SetValue(this->W))
+                {
+                    return;
+                }else{
+                    throw(Exception(StringCat("Could not Stream ",SerializableName()," XML Attribute Values.")));
+                }
+            }else{
+                throw(Exception(StringCat("Could not Stream ",SerializableName()," XML Attribute Names.")));
+            }
+        }
+
+        // DeSerializable
+        void Quaternion::ProtoDeSerialize(const xml::Node& OneNode)
+        {
+            if ( phys::String(OneNode.Name())==phys::String(SerializableName()) )
+            {
+                if(OneNode.GetAttribute("Version").AsInt() == 1)
+                {
+                    this->X=OneNode.GetAttribute("X").AsReal();
+                    this->Y=OneNode.GetAttribute("Y").AsReal();
+                    this->Z=OneNode.GetAttribute("Z").AsReal();
+                    this->W=OneNode.GetAttribute("W").AsReal();
+                }else{
+                    throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+                }
+            }else{
+                throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+            }
+        }
+
+        String Quaternion::SerializableName() const
+            { return String("Quaternion"); }
+#endif
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -412,7 +462,7 @@ Ogre::Quaternion& operator<< ( Ogre::Quaternion& Other, const btQuaternion& Othe
 std::ostream& operator << (std::ostream& stream, const phys::Quaternion& x)
 {
     #ifdef PHYSXML
-        stream << "<Quaternion Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" W=\"" << x.W << "\" />";
+        stream << Serialize(stream, x);// '"<Quaternion Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" W=\"" << x.W << "\" />";
     #else
         stream << "[" << x.X << "," << x.Y << "," << x.Z << "," << x.W << "]";
     #endif // \PHYSXML
@@ -421,34 +471,12 @@ std::ostream& operator << (std::ostream& stream, const phys::Quaternion& x)
 
 #ifdef PHYSXML
 std::istream& operator >> (std::istream& stream, phys::Quaternion& Ev)
-{
-    phys::String OneTag( phys::xml::GetOneTag(stream) );
-    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Quaternion", OneTag) );
+    { return DeSerialize(stream,Ev); }
 
-    Doc->GetFirstChild() >> Ev;
-
-    return stream;
-}
-
-phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Quaternion& Ev)
-{
-    if ( phys::String(OneNode.Name())==phys::String("Quaternion") )
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-            Ev.X=OneNode.GetAttribute("X").AsReal();
-            Ev.Y=OneNode.GetAttribute("Y").AsReal();
-            Ev.Z=OneNode.GetAttribute("Z").AsReal();
-            Ev.W=OneNode.GetAttribute("W").AsReal();
-        }else{
-            throw( phys::Exception("Incompatible XML Version for Quaternion: Not Version 1"));
-        }
-    }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a Quaternion, found a ", OneNode.Name())));
-    }
-}
+void operator >> (const phys::xml::Node& OneNode, phys::Quaternion& Ev)
+    { Ev.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 
 
 
-#endif
+#endif  // \_quaternion_cpp
