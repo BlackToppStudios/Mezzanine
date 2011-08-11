@@ -3154,7 +3154,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l03090"></a>03090                 { 
 <a name="l03091"></a>03091                 <span class="keywordflow">case</span> <a class="code" href="namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node/&amp;gt;&amp;#39;.">NodeElement</a>: 
 <a name="l03092"></a>03092                 { 
-<a name="l03093"></a>03093                         dest.<a class="code" href="classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(source.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
+<a name="l03093"></a>03093                         dest.<a class="code" href="classphys_1_1xml_1_1Node.html#ab686e72f297e120682e7278538fa7e66" title="Set the name of .">SetName</a>(source.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
 <a name="l03094"></a>03094  
 <a name="l03095"></a>03095                         <span class="keywordflow">for</span> (<a class="code" href="classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = source.<a class="code" href="classphys_1_1xml_1_1Node.html#ae484caac4f1fb2a4b7767ddfed28bf0c" title="Get the First Attribute in this Node.">GetFirstAttribute</a>(); a; a = a.GetNextAttribute()) 
 <a name="l03096"></a>03096                                 dest.<a class="code" href="classphys_1_1xml_1_1Node.html#a09ae0a1499b13de2db447fc95dd3b747" title="Creates an Attribute and puts it at the end of this Nodes attributes.">AppendAttribute</a>(a.Name()).SetValue(a.Value()); 
@@ -3180,13 +3180,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l03116"></a>03116                         <span class="keywordflow">break</span>; 
 <a name="l03117"></a>03117  
 <a name="l03118"></a>03118                 <span class="keywordflow">case</span> <a class="code" href="namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa" title="Processing instructions to the XML parser, i.e. &amp;#39;&amp;lt;?name?&amp;gt;&amp;#39;.">NodePi</a>: 
-<a name="l03119"></a>03119                         dest.<a class="code" href="classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(source.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
+<a name="l03119"></a>03119                         dest.<a class="code" href="classphys_1_1xml_1_1Node.html#ab686e72f297e120682e7278538fa7e66" title="Set the name of .">SetName</a>(source.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
 <a name="l03120"></a>03120                         dest.<a class="code" href="classphys_1_1xml_1_1Node.html#a50ff9948dac721339561ed3442fb7034" title="Set the value of this.">SetValue</a>(source.<a class="code" href="classphys_1_1xml_1_1Node.html#a90e8efb31007ade54d62c1752979461f" title="Get the Value of this Node.">Value</a>()); 
 <a name="l03121"></a>03121                         <span class="keywordflow">break</span>; 
 <a name="l03122"></a>03122  
 <a name="l03123"></a>03123                 <span class="keywordflow">case</span> <a class="code" href="namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>: 
 <a name="l03124"></a>03124                 { 
-<a name="l03125"></a>03125                         dest.<a class="code" href="classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(source.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
+<a name="l03125"></a>03125                         dest.<a class="code" href="classphys_1_1xml_1_1Node.html#ab686e72f297e120682e7278538fa7e66" title="Set the name of .">SetName</a>(source.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
 <a name="l03126"></a>03126  
 <a name="l03127"></a>03127                         <span class="keywordflow">for</span> (<a class="code" href="classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = source.<a class="code" href="classphys_1_1xml_1_1Node.html#ae484caac4f1fb2a4b7767ddfed28bf0c" title="Get the First Attribute in this Node.">GetFirstAttribute</a>(); a; a = a.GetNextAttribute()) 
 <a name="l03128"></a>03128                                 dest.<a class="code" href="classphys_1_1xml_1_1Node.html#a09ae0a1499b13de2db447fc95dd3b747" title="Creates an Attribute and puts it at the end of this Nodes attributes.">AppendAttribute</a>(a.Name()).SetValue(a.Value()); 
@@ -4133,7 +4133,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l04069"></a>04069         { 
 <a name="l04070"></a>04070                 <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Result = AppendChild(<a class="code" href="namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node/&amp;gt;&amp;#39;.">NodeElement</a>); 
 <a name="l04071"></a>04071  
-<a name="l04072"></a>04072                 Result.<a class="code" href="classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(Name); 
+<a name="l04072"></a>04072                 Result.<a class="code" href="classphys_1_1xml_1_1Node.html#ab686e72f297e120682e7278538fa7e66" title="Set the name of .">SetName</a>(Name); 
 <a name="l04073"></a>04073  
 <a name="l04074"></a>04074                 <span class="keywordflow">return</span> Result; 
 <a name="l04075"></a>04075         } 
@@ -4142,7 +4142,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l04078"></a>04078         { 
 <a name="l04079"></a>04079                 <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Result = PrependChild(<a class="code" href="namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node/&amp;gt;&amp;#39;.">NodeElement</a>); 
 <a name="l04080"></a>04080  
-<a name="l04081"></a>04081                 Result.<a class="code" href="classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(Name); 
+<a name="l04081"></a>04081                 Result.<a class="code" href="classphys_1_1xml_1_1Node.html#ab686e72f297e120682e7278538fa7e66" title="Set the name of .">SetName</a>(Name); 
 <a name="l04082"></a>04082  
 <a name="l04083"></a>04083                 <span class="keywordflow">return</span> Result; 
 <a name="l04084"></a>04084         } 
@@ -4151,7 +4151,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l04087"></a>04087         { 
 <a name="l04088"></a>04088                 <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Result = InsertChildAfter(<a class="code" href="namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node/&amp;gt;&amp;#39;.">NodeElement</a>, node); 
 <a name="l04089"></a>04089  
-<a name="l04090"></a>04090                 Result.<a class="code" href="classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(Name); 
+<a name="l04090"></a>04090                 Result.<a class="code" href="classphys_1_1xml_1_1Node.html#ab686e72f297e120682e7278538fa7e66" title="Set the name of .">SetName</a>(Name); 
 <a name="l04091"></a>04091  
 <a name="l04092"></a>04092                 <span class="keywordflow">return</span> Result; 
 <a name="l04093"></a>04093         } 
@@ -4160,7 +4160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l04096"></a>04096         { 
 <a name="l04097"></a>04097                 <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Result = InsertChildBefore(<a class="code" href="namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node/&amp;gt;&amp;#39;.">NodeElement</a>, node); 
 <a name="l04098"></a>04098  
-<a name="l04099"></a>04099                 Result.<a class="code" href="classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(Name); 
+<a name="l04099"></a>04099                 Result.<a class="code" href="classphys_1_1xml_1_1Node.html#ab686e72f297e120682e7278538fa7e66" title="Set the name of .">SetName</a>(Name); 
 <a name="l04100"></a>04100  
 <a name="l04101"></a>04101                 <span class="keywordflow">return</span> Result; 
 <a name="l04102"></a>04102         } 
@@ -9742,6 +9742,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 8 2011 21:11:02 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Aug 11 2011 13:06:27 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

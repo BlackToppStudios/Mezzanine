@@ -311,13 +311,6 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with. </p>
  <a href="namespacephys.html#aa69523df12b54123e76c40734556ca35">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacephys.html#a3d9969958345dec81ed83544445e3c28">ConstraintParams</a> { <b>Con_ERP</b> =  1, 
-<b>Con_Stop_ERP</b>, 
-<b>Con_CFM</b>, 
-<b>Con_Stop_CFM</b>
- }</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Used by constraints for setting some parameters. </p>
- <a href="namespacephys.html#a3d9969958345dec81ed83544445e3c28">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacephys.html#a56410935e1c614a932dbc91ee7330df1">WorldObjectType</a> { <br/>
 &#160;&#160;<b>WOT_ActorBase</b> =  1, 
 <b>WOT_ActorRigid</b> =  2, 
@@ -342,6 +335,8 @@ Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacephys.html#adbc8714ac6e9a549a5ef261d1bda1505">DeSerialize</a> (std::istream &amp;Stream, T &amp;Converted)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize the next xml tag in the stream into a specific in memory class instance.  <a href="#adbc8714ac6e9a549a5ef261d1bda1505"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacephys.html#aecaa80117c517257e0af9ebd687ed667">DeSerializeError</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FailedTo, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;ClassName, bool SOrD=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simply does some string concatenation, then throws an <a class="el" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>.  <a href="#aecaa80117c517257e0af9ebd687ed667"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacephys.html#aca0ab1969773dbd0d8799bdd6a5cb745">Serialize</a> (std::ostream &amp;Stream, const T &amp;Converted, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Indent=<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>(&quot;&quot;))</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert any class that supports serialization or has a serializer to a string of chars in a stream.  <a href="#aca0ab1969773dbd0d8799bdd6a5cb745"></a><br/></td></tr>
@@ -613,24 +608,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3d9969958345dec81ed83544445e3c28"></a><!-- doxytag: member="phys::ConstraintParams" ref="a3d9969958345dec81ed83544445e3c28" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="namespacephys.html#a3d9969958345dec81ed83544445e3c28">phys::ConstraintParams</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Used by constraints for setting some parameters. </p>
-<p>See the constraint class documentation for more details. </p>
-
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00113">113</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a56410935e1c614a932dbc91ee7330df1"></a><!-- doxytag: member="phys::WorldObjectType" ref="a56410935e1c614a932dbc91ee7330df1" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -645,7 +622,7 @@ Functions</h2></td></tr>
 <p>Used by various classes to help identify what class an object is. </p>
 <p>This is mostly used internally for casting void pointers. </p>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00124">124</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00113">113</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -689,6 +666,58 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns the istream that provided the serialized data. </dd></dl>
 
 <p>Definition at line <a class="el" href="serialization_8h_source.html#l00166">166</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aecaa80117c517257e0af9ebd687ed667"></a><!-- doxytag: member="phys::DeSerializeError" ref="aecaa80117c517257e0af9ebd687ed667" args="(const String &amp;FailedTo, const String &amp;ClassName, bool SOrD=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::DeSerializeError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>FailedTo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>ClassName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>SOrD</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Simply does some string concatenation, then throws an <a class="el" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">FailedTo</td><td>What failed to happed for example "create testnode" or "acquire a mutex" </td></tr>
+    <tr><td class="paramname">ClassName</td><td>The name of the class throw the exception </td></tr>
+    <tr><td class="paramname">SOrD</td><td>Defaults to false, and if true uses the word "Serialization", otherwise uses the word "DeSerialization" </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">A</td><td><a class="el" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a> with the message "Could not {FailedTo} during {ClassName} [De]Serialization."</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This just calls <a class="el" href="namespacephys.html#a3d75403c50afb8ed658bb9f22a70939f" title="Simply does some string concatenation, then throws an Exception.">SerializeError()</a> with the third parameter false. This exists solely to make code A little more readable. </p>
+
+<p>Definition at line <a class="el" href="serialization_8cpp_source.html#l00050">50</a> of file <a class="el" href="serialization_8cpp_source.html">serialization.cpp</a>.</p>
 
 </div>
 </div>
@@ -1358,6 +1387,6 @@ template&lt;class T &gt; </div>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 8 2011 21:11:02 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Aug 11 2011 13:06:27 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

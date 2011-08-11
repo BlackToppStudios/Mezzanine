@@ -230,16 +230,18 @@ All tree functions that work with strings work with either C-\/style null termin
 \begin{DoxyCode}
  const char* phys::xml::Node::Name() const;
  bool phys::xml::Node::SetName(const char* value);
+ bool phys::xml::Node::SetName(const String& value);
 \end{DoxyCode}
  and like this in wchar\_\-t mode: 
 \begin{DoxyCode}
  const wchar_t* phys::xml::Node::Name() const;
  bool phys::xml::Node::SetName(const wchar_t* value);
 \end{DoxyCode}
- There is a special type, \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t}, that is defined as the character type and depends on the engine configuration; it will be also used in the documentation hereafter. There is also a type phys::xml::string\_\-t, which is defined as the STL string of the character type; it corresponds to std::string in char mode and to std::wstring in wchar\_\-t mode. \begin{DoxyNote}{Note}
-This is one our list of items to integrate more tighlty. At some point \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t} will be replace by \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{phys::Character}, and phys::xml::string\_\-t will be replaced by \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String}. For now they remain Interoperable.
-\end{DoxyNote}
-In addition to the interface, the internal implementation changes to store XML data as \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t}; this means that these two modes have different memory usage characteristics. The conversion to \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t} upon document loading and from \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t} upon document saving happen automatically, which also carries minor performance penalty. The general advice however is to select the character mode based on usage scenario, i.e. if UTF-\/8 is inconvenient to process and most of your XML data is non-\/ASCII, wchar\_\-t mode is probably a better choice (if this is the case any patches, notifications or bugfixes that could be sent our way would help.) \par
+ There is a special type, \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t}, that is defined as the character type and depends on the engine configuration; it will be also used in the documentation hereafter. There is also a type phys::xml::string\_\-t, which is defined as the STL string of the character type; it corresponds to std::string in char mode and to std::wstring in wchar\_\-t mode. \par
+ \par
+ The version of this function that accepts a String simply converts it to a c-\/style string and calls the other SetName function. \par
+ \par
+ In addition to the interface, the internal implementation changes to store XML data as \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t}; this means that these two modes have different memory usage characteristics. The conversion to \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t} upon document loading and from \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t} upon document saving happen automatically, which also carries minor performance penalty. The general advice however is to select the character mode based on usage scenario, i.e. if UTF-\/8 is inconvenient to process and most of your XML data is non-\/ASCII, wchar\_\-t mode is probably a better choice (if this is the case any patches, notifications or bugfixes that could be sent our way would help.) \par
  \par
  There are cases when you'll have to convert string data between UTF-\/8 and wchar\_\-t encodings; the following helper functions are provided for such purposes: 
 \begin{DoxyCode}
@@ -905,6 +907,7 @@ The document in \hyperlink{namespacephys_1_1xml}{phys::xml} is fully mutable: yo
 As discussed before, nodes can have name and value, both of which are c-\/strings. Depending on node type, name or value may be absent. \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeDocument} nodes do not have a name or value, \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeElement} and \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeDeclaration} nodes always have a name but never have a value, \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodePcdata}, \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeCdata}, \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeComment} and \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeDocType} nodes never have a name but always have a value (it may be empty though), \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodePi} nodes always have a name and a value (again, value may be empty). In order to set node's name or value, you can use the following functions: 
 \begin{DoxyCode}
  bool phys::xml::Node::SetName(const char_t* rhs);
+ bool phys::xml::Node::SetName(const String& rhs);
  bool phys::xml::Node::SetValue(const char_t* rhs);
 \end{DoxyCode}
  Both functions try to set the name/value to the specified string, and return the operation result. The operation fails if the node can not have name or value (for instance, when trying to call SetName on a \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodePcdata} node), if the node handle is null, or if there is insufficient memory to handle the request. The provided string is copied into document managed memory and can be destroyed after the function returns (for example, you can safely pass stack-\/allocated buffers to these functions). The name/value content is not verified, so take care to use only valid XML names, or the document may become malformed. \par
@@ -979,6 +982,7 @@ For convenience, all set\_\-value functions have the corresponding assignment op
 Nodes and attributes do not exist without a document tree, so you can't create them without adding them to some document. A node or attribute can be created at the end of node/attribute list or before/after some other node: 
 \begin{DoxyCode}
  phys::xml::Attribute phys::xml::Node::AppendAttribute(const char_t* Name);
+ phys::xml::Attribute phys::xml::Node::AppendAttribute(const String& Name);
  phys::xml::Attribute phys::xml::Node::PrependAttribute(const char_t* Name);
  phys::xml::Attribute phys::xml::Node::InsertAttributeAfter(const char_t* Name, c
       onst phys::xml::Attribute& attr);
@@ -995,13 +999,17 @@ Nodes and attributes do not exist without a document tree, so you can't create t
       st phys::xml::Node& node);
 
  phys::xml::Node phys::xml::Node::AppendChild(const char_t* Name);
+ phys::xml::Node phys::xml::Node::AppendChild(const String& Name);
  phys::xml::Node phys::xml::Node::PrependChild(const char_t* Name);
+ phys::xml::Node phys::xml::Node::PrependChild(const String& Name);
  phys::xml::Node phys::xml::Node::InsertChildAfter(const char_t* Name, const 
       phys::xml::Node& node);
  phys::xml::Node phys::xml::Node::InsertChildBefore(const char_t* Name, const 
       phys::xml::Node& node);
 \end{DoxyCode}
  AppendAttribute and AppendChild create a new node/attribute at the end of the corresponding list of the node the method is called on; PrependAttribute and PrependChild create a new node/attribute at the beginning of the list; InsertAttributeAfter, InsertAttributeBefore, InsertChildAfter and InsertAttributeBefore add the node/attribute before or after the specified node/attribute. \par
+ \par
+ The overloads of AppendChild and PrependChild that accept \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String} references convert it to a string, then call the version of the function that accepts a c-\/style string. \par
  \par
  Attribute functions create an attribute with the specified name; you can specify the empty name and change the name later if you want to. Node functions with the type argument create the node with the specified type; since node type can't be changed, you have to know the desired type beforehand. Also note that not all types can be added as children; see below for clarification. Node functions with the name argument create the element node (NodeElement) with the specified name. \par
  \par

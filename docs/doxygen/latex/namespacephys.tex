@@ -249,12 +249,6 @@ enum \hyperlink{namespacephys_aa69523df12b54123e76c40734556ca35}{CollisionFilter
 {\bfseries CF\_\-UserFilter2} =  128
  \}
 \begin{DoxyCompactList}\small\item\em These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with. \item\end{DoxyCompactList}\item 
-enum \hyperlink{namespacephys_a3d9969958345dec81ed83544445e3c28}{ConstraintParams} \{ {\bfseries Con\_\-ERP} =  1, 
-{\bfseries Con\_\-Stop\_\-ERP}, 
-{\bfseries Con\_\-CFM}, 
-{\bfseries Con\_\-Stop\_\-CFM}
- \}
-\begin{DoxyCompactList}\small\item\em Used by constraints for setting some parameters. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespacephys_a56410935e1c614a932dbc91ee7330df1}{WorldObjectType} \{ \par
 {\bfseries WOT\_\-ActorBase} =  1, 
 {\bfseries WOT\_\-ActorRigid} =  2, 
@@ -277,6 +271,8 @@ enum \hyperlink{namespacephys_a56410935e1c614a932dbc91ee7330df1}{WorldObjectType
 \item 
 {\footnotesize template$<$class T $>$ }\\std::istream \& \hyperlink{namespacephys_adbc8714ac6e9a549a5ef261d1bda1505}{DeSerialize} (std::istream \&Stream, T \&Converted)
 \begin{DoxyCompactList}\small\item\em Deserialize the next xml tag in the stream into a specific in memory class instance. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespacephys_aecaa80117c517257e0af9ebd687ed667}{DeSerializeError} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FailedTo, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ClassName, bool SOrD=false)
+\begin{DoxyCompactList}\small\item\em Simply does some string concatenation, then throws an \hyperlink{classphys_1_1Exception}{Exception}. \item\end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std::ostream \& \hyperlink{namespacephys_aca0ab1969773dbd0d8799bdd6a5cb745}{Serialize} (std::ostream \&Stream, const T \&Converted, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Indent=\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}(\char`\"{}\char`\"{}))
 \begin{DoxyCompactList}\small\item\em Convert any class that supports serialization or has a serializer to a string of chars in a stream. \item\end{DoxyCompactList}\item 
 void \hyperlink{namespacephys_a3d75403c50afb8ed658bb9f22a70939f}{SerializeError} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FailedTo, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ClassName, bool SOrD=true)
@@ -508,19 +504,6 @@ You can create your own groups on top of the ones that exist here, but they have
 
 Definition at line 94 of file enumerations.h.
 
-\hypertarget{namespacephys_a3d9969958345dec81ed83544445e3c28}{
-\index{phys@{phys}!ConstraintParams@{ConstraintParams}}
-\index{ConstraintParams@{ConstraintParams}!phys@{phys}}
-\paragraph[{ConstraintParams}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::ConstraintParams}}\hfill}
-\label{namespacephys_a3d9969958345dec81ed83544445e3c28}
-
-
-Used by constraints for setting some parameters. 
-
-See the constraint class documentation for more details. 
-
-Definition at line 113 of file enumerations.h.
-
 \hypertarget{namespacephys_a56410935e1c614a932dbc91ee7330df1}{
 \index{phys@{phys}!WorldObjectType@{WorldObjectType}}
 \index{WorldObjectType@{WorldObjectType}!phys@{phys}}
@@ -532,7 +515,7 @@ Used by various classes to help identify what class an object is.
 
 This is mostly used internally for casting void pointers. 
 
-Definition at line 124 of file enumerations.h.
+Definition at line 113 of file enumerations.h.
 
 
 
@@ -564,6 +547,39 @@ This returns the istream that provided the serialized data.
 
 
 Definition at line 166 of file serialization.h.
+
+\hypertarget{namespacephys_aecaa80117c517257e0af9ebd687ed667}{
+\index{phys@{phys}!DeSerializeError@{DeSerializeError}}
+\index{DeSerializeError@{DeSerializeError}!phys@{phys}}
+\paragraph[{DeSerializeError}]{\setlength{\rightskip}{0pt plus 5cm}void phys::DeSerializeError (
+\begin{DoxyParamCaption}
+\item[{const String \&}]{FailedTo, }
+\item[{const String \&}]{ClassName, }
+\item[{bool}]{SOrD = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespacephys_aecaa80117c517257e0af9ebd687ed667}
+
+
+Simply does some string concatenation, then throws an \hyperlink{classphys_1_1Exception}{Exception}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FailedTo} & What failed to happed for example \char`\"{}create testnode\char`\"{} or \char`\"{}acquire a mutex\char`\"{} \\
+\hline
+{\em ClassName} & The name of the class throw the exception \\
+\hline
+{\em SOrD} & Defaults to false, and if true uses the word \char`\"{}Serialization\char`\"{}, otherwise uses the word \char`\"{}DeSerialization\char`\"{} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em A} & \hyperlink{classphys_1_1Exception}{phys::Exception} with the message \char`\"{}Could not \{FailedTo\} during \{ClassName\} \mbox{[}De\mbox{]}Serialization.\char`\"{}\\
+\hline
+\end{DoxyExceptions}
+This just calls \hyperlink{namespacephys_a3d75403c50afb8ed658bb9f22a70939f}{SerializeError()} with the third parameter false. This exists solely to make code A little more readable. 
+
+Definition at line 50 of file serialization.cpp.
 
 \hypertarget{namespacephys_aca0ab1969773dbd0d8799bdd6a5cb745}{
 \index{phys@{phys}!Serialize@{Serialize}}
