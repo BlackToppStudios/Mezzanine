@@ -5,7 +5,7 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = PhysGameEngine
-PROJECT_NUMBER         = "August 8, 2011"
+PROJECT_NUMBER         = "August 11, 2011"
 PROJECT_BRIEF          = A Game "Engine" Designed to ease the creation of cross platform games with 3d physics, 3d graphics and 3d Sound.
 PROJECT_LOGO           = doxyfiles/logogreen100pxtall.png
 OUTPUT_DIRECTORY       = ../../docs/doxygen

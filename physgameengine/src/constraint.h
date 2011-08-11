@@ -121,6 +121,14 @@ namespace phys
             /// @param Param The parameter to override.
             /// @param Value The new value for the parameter.
             /// @param Axis Optional axis.
+
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Constraint
+
+            typedef std::vector<ConstraintParams> ParamList;
+
+
             virtual void SetParam(ConstraintParams Param, Real Value, int Axis=-1);
             /// @brief Gets value of constraint parameters.
             /// @details See SetParam() for clarification.  Gets information on constraint parameters.
@@ -128,6 +136,24 @@ namespace phys
             /// @param Axis Optional axis.
             /// @return Returns the value for the requested parameter.
             virtual Real GetParam(ConstraintParams Param, int Axis=-1);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+#ifdef PHYSXML
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "TypedConstraint"
+            String SerializableName() const;
+#endif
     };
 
     ///////////////////////////////////////////////////////////////////////////////

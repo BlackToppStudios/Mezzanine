@@ -42,7 +42,12 @@
 
 #include "constraint.h"
 #include "actorrigid.h"
+#include "serialization.h"
+#include "world.h"
+
+
 #include <btBulletDynamicsCommon.h>
+
 
 /// @cond 0
 
@@ -91,6 +96,60 @@ namespace phys
 
     Real TypedConstraint::GetParam(ConstraintParams Param, int Axis)
         { return this->ConstraintBase->getParam(Param, Axis); }
+
+    // Serializable
+    void TypedConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node ConNode = CurrentRoot.AppendChild(SerializableName());
+        ConNode.SetName(SerializableName());
+
+
+        xml::Node ErpNode = ConNode.AppendChild("ERP");                    // We should probably not store the default values once we figure out what those are
+        if (ErpNode)
+        {
+            String CurrentAxis;
+            for (int c=-1; c<3; ++c)
+            {
+                CurrentAxis=StringCat("Axis",ToString(c));
+                xml::Attribute ErpAttr = ErpNode.AppendAttribute(CurrentAxis);
+                if (ErpAttr)
+                {
+
+                }else {
+
+                }
+            }
+
+        }else{
+            SerializeError("Create Erp Node", SerializableName());
+        }
+        /*
+        Con_ERP
+        Con_Stop_ERP
+        Con_CFM
+        Con_Stop_CFM
+        if( VersionAttr && XAttr && YAttr )
+        {
+            if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values", SerializableName(),true);
+            }
+        }else{
+            SerializeError("Create XML Attributes", SerializableName(),true);
+        }*/
+
+    }
+
+    // DeSerializable
+    void TypedConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+    }
+
+    String TypedConstraint::SerializableName() const
+        { return String("TypedConstraint"); }
+
 
     /////////////////////////////////////////
     // ConeTwist Constraint Functions

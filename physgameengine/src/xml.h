@@ -584,7 +584,12 @@ namespace phys
 		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
 		/// fail and return an empty attribute if this Node is empty.
 		/// @return The created Attribute or an empty Attribute on Failure.
-		Attribute AppendAttribute(const char_t* Name);  
+		Attribute AppendAttribute(const char_t* Name);
+		/// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
+		/// @param Name The name of the New attribute to be created
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute AppendAttribute(const String& Name)
+			{ return AppendAttribute(Name.c_str()); } 
 		Attribute PrependAttribute(const char_t* Name); 
 		Attribute InsertAttributeAfter(const char_t* Name, const Attribute& attr); 
 		Attribute InsertAttributeBefore(const char_t* Name, const Attribute& attr); 

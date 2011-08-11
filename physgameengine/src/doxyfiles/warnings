@@ -1,12 +1,13 @@
+Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:127: warning: Compound phys::internal::BulletFilePtr is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:65: warning: Compound phys::UI::ListBox::TemplateParams is not documented.
 /home/sqeaky/physgame/physgameengine/src/collisionshapegenerator.h:53: warning: Compound phys::CollisionShapeGenerator is not documented.
 /home/sqeaky/physgame/physgameengine/src/physicsmanager.h:82: warning: Compound phys::PhysicsConstructionInfo is not documented.
 /home/sqeaky/physgame/physgameengine/src/actorserializer.h:51: warning: Compound phys::ActorSerializer is not documented.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfilemanager.cpp:49: warning: documented function `BulletFileManager * phys::internal::Ogre::Singleton::ms_Singleton' was not declared or defined.
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1061: warning: explicit link request to 'wstream' could not be resolved
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1055: warning: explicit link request to 'x' could not be resolved
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1055: warning: explicit link request to 'x' could not be resolved
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1093: warning: explicit link request to 'wstream' could not be resolved
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1087: warning: explicit link request to 'x' could not be resolved
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1087: warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/physgame/physgameengine/src/actorterrain.h:85: warning: parameters of member phys::ActorTerrain::CreateShapeFromMeshDynamic are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/actorterrain.h:95: warning: return type of member phys::ActorTerrain::GetName is not documented
 /home/sqeaky/physgame/physgameengine/src/camera.h:142: warning: parameters of member phys::Camera::Camera are not (all) documented
@@ -118,7 +119,7 @@
 /home/sqeaky/physgame/physgameengine/src/particleeffect.h:131: warning: argument 'vec' of command @param is not found in the argument list of phys::ParticleEffect::SetLocation(const Vector3 &Vec)
 /home/sqeaky/physgame/physgameengine/src/particleeffect.h:131: warning: The following parameters of phys::ParticleEffect::SetLocation(const Vector3 &Vec) are not documented:
   parameter 'Vec'
-/home/sqeaky/physgame/physgameengine/src/quaternion.h:154: warning: return type of member phys::Quaternion::GetOgreQuaternion is not documented
+/home/sqeaky/physgame/physgameengine/src/quaternion.h:155: warning: return type of member phys::Quaternion::GetOgreQuaternion is not documented
 /home/sqeaky/physgame/physgameengine/src/resourceinputstream.h:98: warning: Member operator>>(T &Data) (function) of class phys::ResourceInputStream is not documented.
 /home/sqeaky/physgame/physgameengine/src/resourcemanager.h:80: warning: Member AddResourceGroupName(String Name) (function) of class phys::ResourceManager is not documented.
 /home/sqeaky/physgame/physgameengine/src/resourcemanager.h:79: warning: Member ResourceGroups (variable) of class phys::ResourceManager is not documented.

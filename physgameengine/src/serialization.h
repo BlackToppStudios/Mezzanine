@@ -198,6 +198,15 @@ namespace phys
     /// @param SOrD Defaults to true, and if true uses the word "Serialization", otherwise uses the word "DeSerialization"
     /// @throw A phys::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization."
     void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD = true);
+
+    /// @brief Simply does some string concatenation, then throws an Exception
+    /// @param FailedTo What failed to happed for example "create testnode" or "acquire a mutex"
+    /// @param ClassName The name of the class throw the exception
+    /// @param SOrD Defaults to false, and if true uses the word "Serialization", otherwise uses the word "DeSerialization"
+    /// @throw A phys::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization."
+    /// @details This just calls SerializeError() with the third parameter false. This exists solely to make code
+    /// A little more readable.
+    void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD = false);
 }
 
 /*

@@ -196,10 +196,10 @@ namespace phys
             {
                 return;
             }else{
-                throw(Exception(StringCat("Could not Stream",SerializableName()," XML Attribute Values.")));
+                SerializeError("Create XML Attribute Values", SerializableName(),true);
             }
         }else{
-            throw(Exception(StringCat("Could not Stream ",SerializableName()," XML Attribute Names.")));
+            SerializeError("Create XML Attributes", SerializableName(),true);
         }
     }
 

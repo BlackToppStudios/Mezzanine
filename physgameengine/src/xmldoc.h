@@ -1201,6 +1201,7 @@ namespace phys
     /// node/attribute list or before/after some other node:
     /// @code
     /// phys::xml::Attribute phys::xml::Node::AppendAttribute(const char_t* Name);
+    /// phys::xml::Attribute phys::xml::Node::AppendAttribute(const String& Name);
     /// phys::xml::Attribute phys::xml::Node::PrependAttribute(const char_t* Name);
     /// phys::xml::Attribute phys::xml::Node::InsertAttributeAfter(const char_t* Name, const phys::xml::Attribute& attr);
     /// phys::xml::Attribute phys::xml::Node::InsertAttributeBefore(const char_t* Name, const phys::xml::Attribute& attr);
