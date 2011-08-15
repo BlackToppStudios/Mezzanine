@@ -444,9 +444,9 @@ namespace phys
             return BLB;
         }
 
-        ListBox* Layer::CreateListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
+        ListBox* Layer::CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle)
         {
-            ListBox* LB = new ListBox(Name,Rect,ScrollbarWidth,ScrollStyle,this);
+            ListBox* LB = new ListBox(Name,Rect,ScrollStyle,this);
             Widgets.push_back(LB);
             return LB;
         }

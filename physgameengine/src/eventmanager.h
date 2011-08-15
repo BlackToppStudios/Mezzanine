@@ -229,8 +229,8 @@ namespace phys
             /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
             void RemoveNextCollisionEvent();
 
-            /// @brief This returns a complete list of all the Render Time events.
-            /// @details This finds all the EventUserInput Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.
+            /// @brief This returns a complete list of all the Collision Events.
+            /// @details This finds all the Collision Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.
             /// @return This returns a list<EventCollision*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. This list pointer must be deleted, but not the events in it.
             std::list<EventCollision*>* GetAllCollisionEvents();
 

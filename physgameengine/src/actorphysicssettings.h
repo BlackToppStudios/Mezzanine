@@ -58,6 +58,8 @@ namespace phys
     class ActorBase;
     class ActorRigid;
     class ActorSoft;
+    class ActorTerrain;
+    class CollisionShape;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorBasePhysicsSettings
     /// @headerfile actorphysicssettings.h
@@ -73,6 +75,8 @@ namespace phys
             btCollisionObject* ActorCO;
             /// @brief The Actor this belongs to.
             ActorBase* Parent;
+            /// @brief The physics shape of the actor.
+            CollisionShape* ActorShape;
 
             /// @internal
             /// @brief A number of actors will use this in conjuction with the physics system
@@ -81,6 +85,8 @@ namespace phys
             /// @internal
             /// @brief Stores the kind of actors that can collide with each other.
             Whole CollisionMask;
+
+            void AssignShape(CollisionShape* Shape);
         public:
             /// @brief Standard Constructor.
             /// @param Actor The actor this settings class configures.
@@ -89,6 +95,14 @@ namespace phys
 
             /// @brief Class destructor.
             virtual ~ActorBasePhysicsSettings();
+
+            /// @brief Sets the collision shape to be used.
+            /// @param Shape The shape to be applied.
+            virtual void SetCollisionShape(CollisionShape* Shape);
+
+            /// @brief Gets the collision shape currently in use by this actor.
+            /// @return Returns a pointer to the collision shape being used.
+            virtual CollisionShape* GetCollisionShape() const;
 
             /// @brief Set the collision group and mask for the actor to determine what it should collide with.
             /// @details These values are automatically calculated for you with some sane default values.  Only edit these if you know what you are doing.
@@ -204,6 +218,10 @@ namespace phys
             /// @brief Class destructor.
             virtual ~ActorRigidPhysicsSettings();
 
+            /// @brief Sets the collision shape to be used.
+            /// @param Shape The shape to be applied.
+            virtual void SetCollisionShape(CollisionShape* Shape);
+
             /// @brief Sets the Damping for this object.
             /// @details Both of Linear Damping and Angular Damping default to zero.  This is useful if you wish to simulate
             /// something like air resistance.  Values can range from 0.0 to 1.0.
@@ -286,7 +304,40 @@ namespace phys
 
             /// @brief Class destructor.
             virtual ~ActorSoftPhysicsSettings();
+
+            /// @brief Sets the collision shape to be used.
+            /// @param Shape The shape to be applied.
+            virtual void SetCollisionShape(CollisionShape* Shape);
     };//actorsoftphysicssettings
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ActorTerrainPhysicsSettings
+    /// @headerfile actorphysicssettings.h
+    /// @brief This is a helper class for configuring physics settings of an ActorRigid.
+    /// @details This class contains functions for the configuring of physics specific settings of an ActorRigid.
+    /// This class can only configure the ActorRigids physics.  For configuring actor graphics, see ActorGraphicsSettings.
+    ///////////////////////////////////////
+    class PHYS_LIB ActorTerrainPhysicsSettings : public ActorBasePhysicsSettings
+    {
+        protected:
+            /// @internal
+            /// @brief Physics Object of the actor.
+            btRigidBody* ActorRB;
+            /// @brief The Actor this belongs to.
+            ActorTerrain* TerrainParent;
+        public:
+            /// @brief Standard Constructor.
+            /// @param Actor The actor this settings class configures.
+            /// @param PhysicsObject The physics object belonging to the actor this class configures.
+            ActorTerrainPhysicsSettings(ActorTerrain* Actor, btRigidBody* PhysicsObject);
+
+            /// @brief Class destructor.
+            virtual ~ActorTerrainPhysicsSettings();
+
+            /// @brief Sets the collision shape to be used.
+            /// @param Shape The shape to be applied.
+            virtual void SetCollisionShape(CollisionShape* Shape);
+    };//actorterrainphysicssettings
 }//phys
 
 #ifdef PHYSXML

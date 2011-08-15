@@ -155,6 +155,10 @@ namespace phys
             { this->AddManager(new UIManager()); }
         if(this->GetTimerManager()==0)
             { this->AddManager(new TimerManager()); }
+        if(this->GetMeshManager()==0)
+            { this->AddManager(new MeshManager()); }
+        if(this->GetCollisionShapeManager()==0)
+            { this->AddManager(new CollisionShapeManager()); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -662,6 +666,11 @@ namespace phys
         return dynamic_cast<CameraManager*> (this->GetManager(ManagerBase::CameraManager, WhichOne));
     }
 
+    CollisionShapeManager* World::GetCollisionShapeManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<CollisionShapeManager*> (this->GetManager(ManagerBase::CollisionShapeManager, WhichOne));
+    }
+
     EventManager* World::GetEventManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<EventManager*> (this->GetManager(ManagerBase::EventManager, WhichOne));
@@ -670,6 +679,11 @@ namespace phys
     GraphicsManager* World::GetGraphicsManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
+    }
+
+    MeshManager* World::GetMeshManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<MeshManager*> (this->GetManager(ManagerBase::MeshManager, WhichOne));
     }
 
     PhysicsManager* World::GetPhysicsManager(const short unsigned int &WhichOne)

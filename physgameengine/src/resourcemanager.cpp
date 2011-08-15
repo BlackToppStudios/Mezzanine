@@ -106,68 +106,6 @@ namespace phys {
         Actor->Shape = ColShape;
     }
 
-    bool ResourceManager::ExportShapeData(ActorBase* Actor, const String &FileName)
-    {
-        //Copy pasta'd from Erwin Coumans with permission
-        btDefaultSerializer* Serializer = new btDefaultSerializer(1024*1024*5);
-        Serializer->startSerialization();
-        int len = Actor->Shape->calculateSerializeBufferSize();
-        btChunk* chunk = Serializer->allocate(len,1);
-        const char* structType = Actor->Shape->serialize(chunk->m_oldPtr, Serializer);
-        Serializer->finalizeChunk(chunk,structType,BT_SHAPE_CODE,Actor->Shape);
-        Serializer->finishSerialization();
-        FILE* f2 = fopen(FileName.c_str(),"wb");
-        size_t verify = fwrite(Serializer->getBufferPointer(),Serializer->getCurrentBufferSize(),1,f2);
-        fclose(f2);
-        if(1 != verify)
-        {
-            return false;
-        }
-        return true;
-    }
-
-    bool ResourceManager::ImportShapeData(ActorBase* Actor, const String &FileName)
-    {
-        btBulletWorldImporter* Importer = new btBulletWorldImporter();
-
-        //Check root directory first
-        if(Importer->loadFile(FileName.c_str()))
-        {
-            btCollisionShape* shape = Importer->getCollisionShapeByIndex(0);
-            if(shape)
-            {
-                ApplyShapeToActor(Actor, shape);
-                delete Importer;
-                return true;
-            }
-            delete Importer;
-            return false;
-        }
-
-        Ogre::DataStreamPtr Stream = OgreResource->openResource(FileName);
-        assert(sizeof(char)==1);
-        char* buffer = new char[Stream->size()];
-        Stream->read((void*)buffer, Stream->size());
-        if(Importer->loadFileFromMemory(buffer, Stream->size()))
-        {
-            btCollisionShape* shape = Importer->getCollisionShapeByIndex(0);
-            if(shape)
-            {
-                ApplyShapeToActor(Actor, shape);
-                delete buffer;
-                delete Importer;
-                return true;
-            }
-            delete buffer;
-            delete Importer;
-            return false;
-        }
-
-        delete buffer;
-        delete Importer;
-        return false;
-    }
-
     void ResourceManager::AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive)
     {
         this->OgreResource->addResourceLocation(Location, Type, Group, recursive);

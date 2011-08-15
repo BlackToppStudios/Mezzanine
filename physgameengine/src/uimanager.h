@@ -59,6 +59,12 @@ namespace phys
 {
     class Viewport;
     class InputQueryTool;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @namespace phys::ui
+    /// @brief This is where the GUI subsystem resides(with the exception of the UIManager).
+    /// @details
+    ///////////////////////////////////////
     namespace UI
     {
         class Screen;

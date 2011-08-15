@@ -92,6 +92,8 @@ namespace phys
             friend class ActorContainerBase;
             friend class PhysicsManager;
             friend class ResourceManager;
+            friend class ActorGraphicsSettings;
+            friend class ActorBasePhysicsSettings;
 
         public:
             /// @enum ActorTypeName
@@ -330,14 +332,6 @@ namespace phys
             /// @brief Gets the current scaling being applied to the actor.
             /// @return Returns a vector3 representing the scaling being applied on all axes of this actor.
             virtual Vector3 GetActorScaling() const;
-
-            /// @brief Creates a collision shape from mesh file.
-            /// @details This function will read the location of every verticy in the mesh file and use that to
-            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
-            /// be used with only with Dynamic objects.
-            /// @param Accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent.
-            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
-            virtual void CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes = false) = 0;
 
             /// @brief Gets the graphics settings class associated with this actor.
             /// @return Returns a pointer to the graphics settings class in use by this actor.

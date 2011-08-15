@@ -440,10 +440,12 @@ void CatchApp::UnloadLevel()
     SceneManager* SceneMan = TheWorld->GetSceneManager();
     ActorManager* ActorMan = TheWorld->GetActorManager();
     TimerManager* TimeMan = TheWorld->GetTimerManager();
+    EventManager* EventMan = TheWorld->GetEventManager();
     UIManager* UIMan = TheWorld->GetUIManager();
 
     PhysMan->DestroyAllConstraints();
     ActorMan->DestroyAllActors();
+    PhysMan->DestroyAllWorldTriggers();
     PhysMan->DestroyAllAreaEffects();
     PhysMan->DestroyAllPhysicsShapes();
     SceneMan->DestroyAllLights();
@@ -456,7 +458,13 @@ void CatchApp::UnloadLevel()
     PlayZone = NULL;
 
     ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
-    PhysMan->ResetPhysicsWorld();
+    PhysMan->ClearPhysicsMetaData();
+    /// @todo Probably should make a "RemoveAll" for the events as well.
+    for( EventCollision* OneCollision = EventMan->PopNextCollisionEvent() ; NULL != OneCollision ;  )
+    {
+        delete OneCollision;
+        OneCollision = EventMan->PopNextCollisionEvent();
+    }
     MeshGenerator::DestroyAllGeneratedMeshes();
     CurrScore = 0;
     TimeMan->DestroyTimer(EndTimer);

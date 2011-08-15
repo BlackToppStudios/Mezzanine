@@ -942,12 +942,12 @@ namespace phys
             return BLB;
         }
 
-        UI::ListBox* Window::CreateListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
+        UI::ListBox* Window::CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle)
         {
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
-            UI::ListBox* LB = new UI::ListBox(Name,Rect,ScrollbarWidth,ScrollStyle,Parent);
+            UI::ListBox* LB = new UI::ListBox(Name,Rect,ScrollStyle,Parent);
             OffsetWidgetInfo LBInfo(LB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(LBInfo);
             LB->SetVisible(Visible);

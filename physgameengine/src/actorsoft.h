@@ -187,9 +187,6 @@ namespace phys
             /// @param Rotation The Quaternion representing the Rotation.
             virtual void SetOrientation(Quaternion Rotation);
 
-            /// @brief Inherited from Actorbase.
-            virtual void CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes = false);
-
             // Inherited from ActorBase
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);

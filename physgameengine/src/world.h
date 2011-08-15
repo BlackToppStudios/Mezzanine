@@ -193,6 +193,8 @@ namespace phys
     class ResourceManager;
     class TimerManager;
     class UIManager;
+    class MeshManager;
+    class CollisionShapeManager;
     class PhysicsConstructionInfo;
 }
 #include <list>
@@ -503,6 +505,11 @@ namespace phys
             /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
             CameraManager* GetCameraManager(const short unsigned int &WhichOne=0);
 
+            /// @brief This gets the CollisionShapeManager from the manager list.
+            /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
+            /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.
+            CollisionShapeManager* GetCollisionShapeManager(const short unsigned int &WhichOne=0);
+
             /// @brief This gets the EventManager from the manager list.
             /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
             /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
@@ -512,6 +519,11 @@ namespace phys
             /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
             /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
             GraphicsManager* GetGraphicsManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the MeshManager from the manager list.
+            /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
+            /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.
+            MeshManager* GetMeshManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the PhysicsManager from the manager list.
             /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.

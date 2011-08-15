@@ -86,15 +86,6 @@ namespace phys
             /// @details Class Destructor.
             ~ResourceManager();
 
-            /// @brief Exports an actors shape data to a file.
-            /// @param FileName The Filename to save the data too. Remember to include a ".bullet" extension to the filename when serializing.
-            /// @param Actor The Actor's Shape to save
-            bool ExportShapeData(ActorBase* Actor, const String &FileName);
-            /// @brief Imports serialized shape data from the disk to be used in an Actor.
-            /// @param FileName The Filename to load the data from. Remember to include a ".bullet" extension to the filename when serializing.
-            /// @param Actor The Actor's Shape to restore from file
-            bool ImportShapeData(ActorBase* Actor, const String &FileName);
-
             /// @brief Adds a location for graphical resources.
             /// @details This function will add a location on the disk to find files needed to create and
             /// manipulate graphical objects. Once a resource is added it must be initalized using

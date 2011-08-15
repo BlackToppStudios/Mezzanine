@@ -4,6 +4,7 @@
 #include "levelloader.h"
 #include "catchapp.h"
 #include "throwablegenerator.h"
+#include "leveltriggers.h"
 
 LevelLoader::LevelLoader()
     : LevelToLoad("")
@@ -270,14 +271,14 @@ void LevelLoader::LoadBigCurve()
     GameApp->AddThrowable(Uranium2);// */
     ActorRigid* Pyrite1 = new ActorRigid(PyriteData->Mass,"Pyrite1",PyriteData->MeshName,CommonGroup);
     Pyrite1->CreateShapeFromMeshDynamic(1);
-    Pyrite1->SetLocation(-155,-50,0);
+    Pyrite1->SetLocation(-155,-60,0);
     Pyrite1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Pyrite1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Pyrite1);
     GameApp->AddThrowable(Pyrite1);
     ActorRigid* Pyrite2 = new ActorRigid(PyriteData->Mass,"Pyrite2",PyriteData->MeshName,CommonGroup);
     Pyrite2->CreateShapeFromMeshDynamic(1);
-    Pyrite2->SetLocation(-205,-50,0);
+    Pyrite2->SetLocation(-205,-60,0);
     Pyrite2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Pyrite2->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Pyrite2);
@@ -359,16 +360,16 @@ void LevelLoader::LoadBlowsNotSucks()
     FanBody->SetLocation(Vector3(132.5,-70,25));
     ActMan->AddActor(FanBody);
 
-    ActorRigid* FanButton = new ActorRigid(0.5,"FanButton","button.mesh",BlowsNotSucksGroup);
+    ActorRigid* FanButton = new ActorRigid(2.5,"FanButton","button.mesh",BlowsNotSucksGroup);
     FanButton->CreateShapeFromMeshDynamic(1);
-    FanButton->SetLocation(Vector3(0,0,0));
+    FanButton->SetLocation(Vector3(-10.5,-107.0,-0.5));
     FanButton->SetAngularMovementFactor(Vector3(0,0,0));
     ActMan->AddActor(FanButton);
+    PhysMan->SetIndividualGravity(FanButton,Vector3(0,0,0));
 
     // Create the series of constraints for assembling the fan
     HingeConstraint* FanToBody = new HingeConstraint(FanBody,Fan,Vector3(-12,-6,-17.5),Vector3(0,-24.2,0),Vector3(-1,1,0).Normalize(),Vector3(0,1,0),false);
     PhysMan->AddConstraint(FanToBody,true);
-    FanToBody->EnableAngularMotor(true,2000.f,400.0f);
     FanToBody->SetLimit(1.0,-1.0);
 
     Generic6DofSpringConstraint* ButtonToBody = new Generic6DofSpringConstraint(FanBody,FanButton,Vector3(-143,-52,-25.5),Vector3(0,0,0),Quaternion(0,0,0,1),Quaternion(0,0,0,1),true);
@@ -377,7 +378,7 @@ void LevelLoader::LoadBlowsNotSucks()
     ButtonToBody->SetAngularUpperLimit(Vector3(0,0,0));
     ButtonToBody->SetAngularLowerLimit(Vector3(0,0,0));
     ButtonToBody->EnableSpring(1,true);
-    ButtonToBody->SetStiffness(1,150.f);
+    ButtonToBody->SetStiffness(1,500.f);
     ButtonToBody->SetEquilibriumPoint(1);
     PhysMan->AddConstraint(ButtonToBody,true);
 
@@ -391,10 +392,19 @@ void LevelLoader::LoadBlowsNotSucks()
     FanWind->SetFieldStrength(1000.f);
     PhysMan->AddAreaEffect(FanWind);
 
+    // Create the trigger for the fan
+    BNS_Fan* FanTrigger = new BNS_Fan("FanTigger",FanToBody,FanButton,Fan,FanWind);
+    PhysMan->AddWorldTrigger(FanTrigger);
+
     // Create the goal tray
+    ActorRigid* GoalTray = new ActorRigid(0,"GoalTray","tray.mesh",BlowsNotSucksGroup);
+    GoalTray->CreateShapeFromMeshStatic();
+    GoalTray->SetLocation(Vector3(-170,100,0));
+    ActMan->AddActor(GoalTray);
 
     // Create some throwable objects
     ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
+    ThrowableData* StyrofoamData = ThrowableGenerator::GetThrowableData("Styrofoam");
     ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
     Uranium1->CreateShapeFromMeshDynamic(1);
     Uranium1->SetLocation(-155,-20,0);
@@ -402,6 +412,27 @@ void LevelLoader::LoadBlowsNotSucks()
     Uranium1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
+    ActorRigid* Uranium2 = new ActorRigid(UraniumData->Mass,"Uranium2",UraniumData->MeshName,CommonGroup);
+    Uranium2->CreateShapeFromMeshDynamic(1);
+    Uranium2->SetLocation(-185,-20,0);
+    Uranium2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Uranium2->SetLinearMovementFactor(Vector3(1,1,0));
+    ActMan->AddActor(Uranium2);
+    GameApp->AddThrowable(Uranium2);// */
+    ActorRigid* Styrofoam1 = new ActorRigid(StyrofoamData->Mass,"Styrofoam1",StyrofoamData->MeshName,CommonGroup);
+    Styrofoam1->CreateShapeFromMeshDynamic(1);
+    Styrofoam1->SetLocation(-155,-60,0);
+    Styrofoam1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Styrofoam1->SetLinearMovementFactor(Vector3(1,1,0));
+    ActMan->AddActor(Styrofoam1);
+    GameApp->AddThrowable(Styrofoam1);
+    ActorRigid* Styrofoam2 = new ActorRigid(StyrofoamData->Mass,"Styrofoam2",StyrofoamData->MeshName,CommonGroup);
+    Styrofoam2->CreateShapeFromMeshDynamic(1);
+    Styrofoam2->SetLocation(-185,-60,0);
+    Styrofoam2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Styrofoam2->SetLinearMovementFactor(Vector3(1,1,0));
+    ActMan->AddActor(Styrofoam2);
+    GameApp->AddThrowable(Styrofoam2);// */
 
     // Create the zones
     AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
@@ -409,11 +440,22 @@ void LevelLoader::LoadBlowsNotSucks()
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
 
-    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,-30,0));
-    StartZone->CreateBoxShape(Vector3(50,60,15));
+    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,-70,0));
+    StartZone->CreateBoxShape(Vector3(50,70,15));
     StartZone->CreateGraphicsBox(ColourValue(0.1,0.8,0.1,0.2));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
+
+    ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-10.5,-100.0,0.0));
+    ScoreZone1->CreateBoxShape(Vector3(25,21,25));
+    ScoreZone1->CreateGraphicsBox(ColourValue(0.2,0.2,0.8,0.2));
+    PhysMan->AddAreaEffect(ScoreZone1);
+    GameApp->RegisterScoreArea(ScoreZone1);
+    ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(-170,100,0));
+    ScoreZone2->CreateBoxShape(Vector3(55,48,15));
+    ScoreZone2->CreateGraphicsBox(ColourValue(0.2,0.2,0.8,0.2));
+    PhysMan->AddAreaEffect(ScoreZone2);
+    GameApp->RegisterScoreArea(ScoreZone2);// */
 }
 
 void LevelLoader::LoadJustice()
@@ -586,7 +628,66 @@ void LevelLoader::LoadJustice()
 
 void LevelLoader::LoadRollers()
 {
+    // Get managers
+    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
+    SceneManager* SceneMan = TheWorld->GetSceneManager();
+    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
+    ActorManager* ActMan = TheWorld->GetActorManager();
 
+    String CommonGroup("Common");
+    String RollersGroup("Rollers");
+    String datadir = "Levels/";
+    ResourceMan->AddResourceLocation(datadir+"Rollers.lvl", "Zip", RollersGroup, false);
+    ResourceMan->InitResourceGroup(RollersGroup);
+
+    // Camera Setup
+	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	DefCamera->SetLocation(Vector3(0,0,425));
+	DefCamera->LookAt(Vector3(0,0,0));
+
+	// Lights Setup
+    //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    Light* DLight = SceneMan->CreateLight("SceneLight");
+    DLight->SetType(Light::Directional);
+    Vector3 Loc(-150,100,200);
+    DLight->SetLocation(Loc);
+    Loc.Normalize();
+    DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
+    DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+
+    // Physics Setup
+    PhysMan->SetGravity(Vector3(0,-1000,0));
+
+    //Configure the wireframe Drawer
+    //PhysMan->SetDebugPhysicsWireCount(2);
+    //PhysMan->SetDebugPhysicsRendering(1);
+
+    // Assuming all mass amounts are in metric kg.
+    // Assuming all distances are in metric cm.
+
+    // Create the background
+    Plane SkyPlane(Vector3(-15,-10,120),Vector3(15,-10,120),Vector3(0,10,120));
+    SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
+
+    // Create the basic terrain that will be used
+    ActorRigid* RollersFrame = new ActorRigid(0,"RollersFrame","frame.mesh",RollersGroup);
+    RollersFrame->CreateShapeFromMeshStatic();
+    RollersFrame->SetLocation(Vector3(0,-25,0));
+    ActMan->AddActor(RollersFrame);
+
+    // Create the individual Rollers
+    ActorRigid* Roller1 = new ActorRigid(10,"Roller1","rubberroller.mesh",RollersGroup);
+
+    ActorRigid* Roller2 = new ActorRigid(10,"Roller2","rubberroller.mesh",RollersGroup);
+
+    ActorRigid* Roller3 = new ActorRigid(10,"Roller3","rubberroller.mesh",RollersGroup);
+
+    // Create the constraints to place the Rollers
+
+    // Create some throwable objects
+
+    // Create the zones
 }
 
 bool LevelLoader::HasALevelToLoad()

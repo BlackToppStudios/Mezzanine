@@ -9,6 +9,8 @@ struct ThrowableData
 {
     Whole ThrowableCount;
     Real Mass;
+    Real Friction;
+    Real Restitution;
     String ThrowableName;
     String MeshName;
     String GroupName;

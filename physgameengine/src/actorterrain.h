@@ -60,6 +60,9 @@ namespace phys
             /// @brief The physics data.
             btRigidBody* RigidBody;
 
+            /// @brief This class encapsulates physics specific configuration for this actor.
+            ActorTerrainPhysicsSettings* PhysicsSettings;
+
             /// @brief Uses value already passed into this to create the physics shapes
             void CreateCollisionTerrain();
         public:
@@ -73,19 +76,7 @@ namespace phys
 
             /// @brief Class destructor.
             /// @details The class destructor.
-            ~ActorTerrain();
-
-            /// @brief Creates a collision shape from mesh file.
-            /// @details This function will read the location of every verticy in the mesh file and use that to
-            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
-            /// be used with only with Static objects.
-            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
-            void CreateShapeFromMeshStatic(bool UseAllSubmeshes = false);
-
-            /// @brief Compatability function.
-            /// @details This function does nothing, as this class isn't dynamic.  This is simply here to
-            /// allow the engine to compile.
-            void CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes = false);
+            virtual ~ActorTerrain();
 
             /// @brief Checks of the actor is static or kinematic.
             /// @details Checks of the actor is static or kinematic, returns true if it is either.
@@ -98,7 +89,7 @@ namespace phys
 
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.
-            virtual ActorRigidPhysicsSettings* GetPhysicsSettings();
+            virtual ActorTerrainPhysicsSettings* GetPhysicsSettings();
 
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);

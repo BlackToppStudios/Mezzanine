@@ -920,15 +920,16 @@ namespace phys{
                 }
                 //Collect necessary data
                 ActRig = static_cast<ActorRigid*>(*OA);
-                InvMass = ActRig->GetBulletObject()->getInvMass();
-                if(0 != InvMass)
-                    AppliedStrength *= (1 / ActRig->GetBulletObject()->getInvMass());
-                else
-                    AppliedStrength = 0;
+                //InvMass = ActRig->GetBulletObject()->getInvMass();
+                //if(0 != InvMass)
+                //    AppliedStrength *= (1 / ActRig->GetBulletObject()->getInvMass());
+                //else
+                //    AppliedStrength = 0;
                 if(0 > AppliedStrength)
                     AppliedStrength = 0;
                 //Apply the Force
                 ActRig->GetBulletObject()->applyCentralForce((Direction * AppliedStrength).GetBulletVector3());
+                //ActRig->GetBulletObject()->applyCentralImpulse((Direction * AppliedStrength).GetBulletVector3());
             }
         }
     }

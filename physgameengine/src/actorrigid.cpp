@@ -42,10 +42,9 @@
 
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
-#include "BulletCollision/CollisionShapes/btShapeHull.h"
-#include "BulletCollision/Gimpact/btGImpactShape.h"
 
 #include "world.h"
+#include "meshmanager.h"
 #include "physicsmanager.h"
 #include "actorrigid.h"
 #include "objectreference.h"
@@ -59,8 +58,10 @@ namespace phys{
     // ActorRigid class functions
 
     ActorRigid::ActorRigid(const Real& mass, const String& name, const String& file, const String& group)
-        : ActorBase (), ModelFile(file), ModelGroup(group)
+        : ActorBase ()
     {
+        // this isn't required to operate, but it does allow the mesh manager to know what is loaded.
+        World::GetWorldPointer()->GetMeshManager()->LoadMesh(file,group);
 
         this->GraphicsObject = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
@@ -97,154 +98,6 @@ namespace phys{
     std::string ActorRigid::GetName() const
     {
         return this->GraphicsObject->getName();
-    }
-
-    void ActorRigid::CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes)
-    {
-        if(Accuracy==1)
-        {
-            if(!ShapeIsSaved)
-            {
-                delete Shape;
-            }
-            /// @todo - Check for thread safety
-            btConvexShape *tmpshape = new btConvexTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(GraphicsObject,UseAllSubmeshes));
-            btShapeHull *hull = new btShapeHull(tmpshape);
-            btScalar margin = tmpshape->getMargin();
-            hull->buildHull(margin);
-            tmpshape->setUserPointer(hull);
-            btConvexHullShape* convexShape = new btConvexHullShape();
-            for (int b=0;b<hull->numVertices();b++)
-            {
-                convexShape->addPoint(hull->getVertexPointer()[b]);
-            }
-            delete tmpshape;
-            delete hull;
-            btScalar mass=this->physrigidbody->getInvMass();
-            if(0 != mass)
-                mass=1/mass;
-            btVector3 inertia(0,0,0);
-            convexShape->calculateLocalInertia(mass, inertia);
-            Shape = convexShape;
-            ShapeIsSaved = false;
-            this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
-            this->physrigidbody->setCollisionShape(this->Shape);
-            this->physrigidbody->setMassProps(mass,inertia);
-            this->physrigidbody->updateInertiaTensor();
-            return;
-        }
-        if(Accuracy==2)
-        {
-            if(!ShapeIsSaved)
-            {
-                delete Shape;
-            }
-            int depth=5;
-            float cpercent=5;
-            float ppercent=15;
-            Shape = internal::MeshTools::PerformConvexDecomposition(GraphicsObject,depth,cpercent,ppercent,UseAllSubmeshes);
-            ShapeIsSaved = false;
-            this->physrigidbody->setCollisionShape(this->Shape);
-
-            btScalar mass=this->physrigidbody->getInvMass();
-            if(0 != mass)
-                mass=1/mass;
-            btVector3 inertia(0,0,0);
-            Shape->calculateLocalInertia(mass, inertia);
-            this->physrigidbody->setMassProps(mass,inertia);
-            this->physrigidbody->updateInertiaTensor();
-            return;
-        }
-        if(Accuracy==3)
-        {
-            if(!ShapeIsSaved)
-            {
-                delete Shape;
-            }
-            int depth=7;
-            float cpercent=5;
-            float ppercent=10;
-            Shape = internal::MeshTools::PerformConvexDecomposition(GraphicsObject,depth,cpercent,ppercent,UseAllSubmeshes);
-            ShapeIsSaved = false;
-            this->physrigidbody->setCollisionShape(this->Shape);
-
-            btScalar mass=this->physrigidbody->getInvMass();
-            if(0 != mass)
-                mass=1/mass;
-            btVector3 inertia(0,0,0);
-            Shape->calculateLocalInertia(mass, inertia);
-            this->physrigidbody->setMassProps(mass,inertia);
-            this->physrigidbody->updateInertiaTensor();
-            return;
-        }
-        if(Accuracy==4)
-        {
-            if(!ShapeIsSaved)
-            {
-                delete Shape;
-            }
-            btGImpactMeshShape* gimpact = new btGImpactMeshShape(internal::MeshTools::CreateBulletTrimesh(GraphicsObject,UseAllSubmeshes));
-            btScalar mass=this->physrigidbody->getInvMass();
-            if(0 != mass)
-                mass=1/mass;
-            btVector3 inertia(0,0,0);
-            gimpact->calculateLocalInertia(mass, inertia);
-            gimpact->setLocalScaling(btVector3(1.f,1.f,1.f));
-            gimpact->setMargin(0.04);
-            gimpact->updateBound();
-            Shape=gimpact;
-            ShapeIsSaved = false;
-            this->physrigidbody->setCollisionShape(this->Shape);
-            this->physrigidbody->setMassProps(mass,inertia);
-            this->physrigidbody->updateInertiaTensor();
-            return;
-        }
-        return;
-    }
-
-    void ActorRigid::CreateSphereShapeFromMesh()
-    {
-        Vector3 test(this->GraphicsObject->getMesh()->getBounds().getSize());
-        if(test.X==test.Y && test.Y==test.Z)
-        {
-            if(!ShapeIsSaved)
-            {
-                delete Shape;
-            }
-            Real radius=test.X*0.5;
-            btSphereShape* sphereshape = new btSphereShape(radius);
-            btScalar mass=this->physrigidbody->getInvMass();
-            if(0 != mass)
-                mass=1/mass;
-            btVector3 inertia(0,0,0);
-            sphereshape->calculateLocalInertia(mass, inertia);
-            Shape = sphereshape;
-            ShapeIsSaved = false;
-            this->Shape->setLocalScaling(btVector3(1.f,1.f,1.f));
-            this->physrigidbody->setCollisionShape(this->Shape);
-            this->physrigidbody->setMassProps(mass,inertia);
-            this->physrigidbody->updateInertiaTensor();
-            return;
-        }
-        else
-        {
-            return;
-        }
-    }
-
-    void ActorRigid::CreateShapeFromMeshStatic(bool UseAllSubmeshes)
-    {
-        if(!ShapeIsSaved)
-        {
-            delete Shape;
-        }
-        /// @todo - Check for thread safety
-        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(GraphicsObject,UseAllSubmeshes),true);
-        this->Shape=tmpshape;
-        ShapeIsSaved = false;
-        //this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
-        this->physrigidbody->setCollisionShape(this->Shape);
-        this->physrigidbody->updateInertiaTensor();
     }
 
     ActorRigidPhysicsSettings* ActorRigid::GetPhysicsSettings()
@@ -307,9 +160,9 @@ namespace phys{
         xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
             ActorName.SetValue(this->GetName());
         xml::Attribute ActorFile = ActorNode.AppendAttribute("File");
-            ActorFile.SetValue(this->ModelFile);
+            ActorFile.SetValue(this->GraphicsObject->getMesh()->getName());
         xml::Attribute ActorGroup = ActorNode.AppendAttribute("Group");
-            ActorGroup.SetValue(this->ModelGroup);
+            ActorGroup.SetValue(this->GraphicsObject->getMesh()->getGroup());
         if( !(ActorName && ActorFile && ActorGroup) )
             { ThrowSerialError("creating ActorRigid Attributes");}
 

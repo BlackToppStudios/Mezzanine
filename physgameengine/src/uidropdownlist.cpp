@@ -132,7 +132,7 @@ namespace phys
 
             Selection = new Caption(Name+"Select",SelectionRect,Glyph,"",Parent);
             ListToggle = new Button(Name+"Toggle",ListToggleRect,Parent);
-            SelectionList = new UI::ListBox(Name+"List",SelectionListRect,ScrollbarWidth,ScrollStyle,Parent);
+            SelectionList = new UI::ListBox(Name+"List",SelectionListRect,ScrollStyle,Parent);
 
             SelectionList->SetTemplateSize(Selection->GetSize(),true).SetTemplateGlyphIndex(Glyph);
         }

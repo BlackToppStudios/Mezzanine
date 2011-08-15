@@ -72,12 +72,6 @@ namespace phys
             /// @param pmass "Real Mass" The mass of the object.
             virtual void CreateRigidObject(const Real& pmass);
 
-            /// @brief The File that will store the main 3d model this works with.
-            String ModelFile;
-
-            /// @brief The resource group associated with the 3d model this Actor uses.
-            String ModelGroup;
-
         public:
             /// @brief Descriptive constructor.
             /// @details This constructor contains the basic information needed to make a Rigid Object. @n
@@ -95,25 +89,6 @@ namespace phys
             /// @brief Retrieves the name of the object.
             /// @return This function will return the name of the object in a String
             virtual String GetName() const;
-
-            /// @brief Creates a collision shape from mesh file.
-            /// @details This function will read the location of every verticy in the mesh file and use that to
-            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
-            /// be used with only with Dynamic objects.
-            /// @param Accuracy A value from 1 to 4. The higher the more accurate, but the more resource intensive
-            /// @param UseAllSubmeshes Should Child meshes, if any, be used when approximating physics shapes
-            virtual void CreateShapeFromMeshDynamic(short unsigned int Accuracy = 1, bool UseAllSubmeshes = false);
-
-            /// @brief Creates a sphere collision shape.
-            /// @details Will dynamically create a sphere collision shape from the loaded mesh file.
-            virtual void CreateSphereShapeFromMesh();
-
-            /// @brief Creates a collision shape from mesh file.
-            /// @details This function will read the location of every verticy in the mesh file and use that to
-            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
-            /// be used with only with Static objects.
-            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
-            virtual void CreateShapeFromMeshStatic(bool UseAllSubmeshes = false);
 
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.

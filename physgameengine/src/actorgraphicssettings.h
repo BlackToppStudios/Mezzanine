@@ -59,6 +59,7 @@ namespace phys
         class InternalActorGraphicsSettings;
     }
     class ActorBase;
+    class Mesh;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorGraphicsSettings
     /// @headerfile actorgraphicssettings.h
@@ -72,6 +73,14 @@ namespace phys
             /// @internal
             /// @brief Stores all the data to go with the
             internal::InternalActorGraphicsSettings* IAGS;
+
+            /// @internal
+            /// @brief The Actor this belongs to.
+            ActorBase* Parent;
+
+            /// @internal
+            /// @brief The mesh being used by the Actor.
+            Mesh* ActorMesh;
 
             ///@internal
             /// @brief Material/textures for the actor
@@ -87,6 +96,13 @@ namespace phys
             ActorGraphicsSettings(ActorBase* Actor, Ogre::Entity* GraphicsObject);
             /// @brief Class destructor.
             ~ActorGraphicsSettings();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Mesh Management
+
+            /// @brief Gets the mesh being used by this actor.
+            /// @return Returns a pointer to the mesh being used by this actor.
+            Mesh* GetMesh() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Material Management
@@ -113,7 +129,6 @@ namespace phys
             /// @brief Creates a copy of the material script of the graphics object and places it in the same resource group.
             /// @param newName of the cloned material script.
             void CloneMaterial(const String& newName);
-
 
             ///////////////////////////////////////////////////////////////////////////////
             // Material Colors

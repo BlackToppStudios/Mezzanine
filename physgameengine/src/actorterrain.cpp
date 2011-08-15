@@ -46,6 +46,7 @@
 
 #include "actorterrain.h"
 #include "world.h"
+#include "meshmanager.h"
 #include "physicsmanager.h"
 #include "objectreference.h"
 #include "actorgraphicssettings.h"
@@ -57,10 +58,14 @@ namespace phys
     ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group)
         : ActorBase()
     {
+        // this isn't required to operate, but it does allow the mesh manager to know what is loaded.
+        World::GetWorldPointer()->GetMeshManager()->LoadMesh(file,group);
+
         this->GraphicsObject = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->MotionState->SetPosition(InitPosition);
+        this->PhysicsSettings = new ActorTerrainPhysicsSettings(this,RigidBody);
         CreateCollisionTerrain();
         ActorType = ActorBase::Actorterrain;
     }
@@ -81,25 +86,6 @@ namespace phys
         CollisionObject->setUserPointer(ActorRef);
     }
 
-    void ActorTerrain::CreateShapeFromMeshStatic(bool UseAllSubmeshes)
-    {
-        if(!ShapeIsSaved)
-        {
-            delete Shape;
-        }
-        /// @todo - Check for thread safety
-        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(GraphicsObject,UseAllSubmeshes),true);
-        this->Shape=tmpshape;
-        ShapeIsSaved = false;
-        this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
-        this->CollisionObject->setCollisionShape(this->Shape);
-        this->RigidBody->updateInertiaTensor();
-    }
-
-    void ActorTerrain::CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes)
-    {
-    }
-
     bool ActorTerrain::IsStaticOrKinematic()
     {
         return RigidBody->isStaticOrKinematicObject();
@@ -110,9 +96,9 @@ namespace phys
         return this->GraphicsObject->getName();
     }
 
-    ActorRigidPhysicsSettings* ActorTerrain::GetPhysicsSettings()
+    ActorTerrainPhysicsSettings* ActorTerrain::GetPhysicsSettings()
     {
-        return 0;
+        return PhysicsSettings;
     }
 
     void ActorTerrain::AddObjectToWorld (World *TargetWorld)

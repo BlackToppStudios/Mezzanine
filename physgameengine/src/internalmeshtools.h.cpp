@@ -115,16 +115,9 @@ namespace phys{
                 /// @param TheEntity The entity from which to extract the information.
                 /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
                 static btTriangleMesh* CreateBulletTrimesh(Ogre::Entity* TheEntity, bool UseAllSubmeshes = false);
-                /// @brief This creates an estimation of the shape of a body using a number of simpler primitives.
-                /// @param TheEntity The entity from which to extract the information.
-                /// @param depth How many times should we subdivide. Larger means more parts, each one smaller, more CPU time.
-                /// @param cpercent How concave the resulting shapes will be, lower means more accurate with more pieces.
-                /// @param ppercent Undocumented -  set to similar number to cpercent.
-                /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
-                static btCompoundShape* PerformConvexDecomposition(Ogre::Entity* TheEntity, unsigned int depth, float cpercent, float ppercent, bool UseAllSubmeshes = false);
-        };
-    }
-}
+        };//internalmeshtool
+    }//internal
+}//phys
 
 /// @endcond
 

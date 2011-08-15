@@ -95,13 +95,12 @@ namespace phys
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the List Box.
                 /// @param Rect The Rect representing the position and size of the List Box.
-                /// @param ScrollbarWidth The width of the vertical scrollbar.
-                /// If the Rect passed in is relative, this will expect Scrollwidth to be relative as well.
-                /// If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look).
+                /// The size portion of this rect would be in reference to the size of a single selection.
+                /// The actual size of this widget will be a result of how many selections are currently being displayed.
                 /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this List Box belongs to.
-                ListBox(ConstString& name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer);
+                ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer);
                 /// @brief Standard destructor.
                 virtual ~ListBox();
                 /// @brief Sets the visibility of this List Box.
@@ -118,8 +117,6 @@ namespace phys
                 /// @return Returns a bool value, true if the mouse is over this List Box, false if it's not.
                 virtual bool CheckMouseHover();
                 /// @brief Sets the size to be applied to all created Selections.
-                /// @details This needs to be called prior to the creation of any selections(captions).
-                /// This defaults to 0,0, so if it is not called, you won't see anything.
                 /// @param Size The size of the caption to make.  Applied to all captions created by this class.
                 /// @param Relative Whether or not the size provided is in relative units(rather then pixels).
                 /// @return Returns a reference to this List Box.

@@ -34,6 +34,8 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     ClayData->MeshName = "clay.mesh";
     ClayData->GroupName = "Common";
     ClayData->Mass = 2.25;//1.74
+    ClayData->Friction = 0.6;
+    ClayData->Restitution = 0.02;
     Throwables.push_back(ClayData);
 
     ThrowableData* GoldData = new ThrowableData();
@@ -42,6 +44,8 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     GoldData->MeshName = "gold.mesh";
     GoldData->GroupName = "Common";
     GoldData->Mass = 12.5;//17.8
+    GoldData->Friction = 0.4;
+    GoldData->Restitution = 0.02;
     Throwables.push_back(GoldData);
 
     ThrowableData* LeadData = new ThrowableData();
@@ -50,6 +54,8 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     LeadData->MeshName = "lead.mesh";
     LeadData->GroupName = "Common";
     LeadData->Mass = 14.0;//11.3
+    LeadData->Friction = 0.43;//0.43
+    LeadData->Restitution = 0.02;
     Throwables.push_back(LeadData);
 
     ThrowableData* PyriteData = new ThrowableData();
@@ -58,6 +64,8 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     PyriteData->MeshName = "pyrite.mesh";
     PyriteData->GroupName = "Common";
     PyriteData->Mass = 7.0;//
+    PyriteData->Friction = 0.5;
+    PyriteData->Restitution = 0.02;
     Throwables.push_back(PyriteData);
 
     ThrowableData* RubberData = new ThrowableData();
@@ -66,6 +74,8 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     RubberData->MeshName = "rubber.mesh";
     RubberData->GroupName = "Common";
     RubberData->Mass = 3.0;//1.52
+    RubberData->Friction = 0.8;// 0.5 - 0.9
+    RubberData->Restitution = 0.8;
     Throwables.push_back(RubberData);
 
     ThrowableData* StyrofoamData = new ThrowableData();
@@ -74,6 +84,8 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     StyrofoamData->MeshName = "styrofoam.mesh";
     StyrofoamData->GroupName = "Common";
     StyrofoamData->Mass = 0.15;//0.1
+    StyrofoamData->Friction = 0.55;
+    StyrofoamData->Restitution = 0.1;
     Throwables.push_back(StyrofoamData);
 
     ThrowableData* UraniumData = new ThrowableData();
@@ -82,6 +94,8 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     UraniumData->MeshName = "uranium.mesh";
     UraniumData->GroupName = "Common";
     UraniumData->Mass = 15.5;//18.74
+    UraniumData->Friction = 0.5;
+    UraniumData->Restitution = 0.02;
     Throwables.push_back(UraniumData);
 
     ThrowableData* WoodData = new ThrowableData();
@@ -89,7 +103,9 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     WoodData->ThrowableName = "Wood";
     WoodData->MeshName = "woodpin.mesh";
     WoodData->GroupName = "Common";
-    WoodData->Mass = 4.5;//18.74
+    WoodData->Mass = 4.5;//
+    WoodData->Friction = 0.3;// 0.25 - 0.5
+    WoodData->Restitution = 0.05;
     Throwables.push_back(UraniumData);
 }
 
@@ -114,6 +130,8 @@ ActorRigid* ThrowableGenerator::CreateThrowable(const String& Throwable)
     ActorRigid* Created = new ActorRigid(ToBeCreated->Mass,NameGen.str(),ToBeCreated->MeshName,ToBeCreated->GroupName);
     Created->SetLinearMovementFactor(Vector3(1,1,0));
     Created->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Created->GetPhysicsSettings()->SetFriction(ToBeCreated->Friction);
+    Created->GetPhysicsSettings()->SetRestitution(ToBeCreated->Restitution);
     return Created;
 }
 

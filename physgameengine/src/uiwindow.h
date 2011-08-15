@@ -340,9 +340,8 @@ namespace phys
                 /// @return Returns a pointer to the created List Box.
                 /// @param Name The name of the List Box.
                 /// @param Rect The Rect representing the position and size of the widget.
-                /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
                 /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                virtual UI::ListBox* CreateListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollbarStyle);
+                virtual UI::ListBox* CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollbarStyle);
                 /// @brief Creates a Spinner within this layer.
                 /// @return Returns a pointer to the created Spinner.
                 /// @param Name The Name for the Widget.

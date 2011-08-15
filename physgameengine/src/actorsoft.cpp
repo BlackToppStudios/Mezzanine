@@ -44,6 +44,7 @@
 //#include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 #include "BulletSoftBody/btSoftBodyHelpers.h"
+#include "BulletSoftBody/btSoftBodyInternals.h"
 //#include "BulletCollision/CollisionShapes/btShapeHull.h"
 //#include "BulletCollision/Gimpact/btGImpactShape.h"
 
@@ -251,10 +252,6 @@ namespace phys{
     {
         this->SetBulletOrientation(Rotation);
         this->SetOgreOrientation(Rotation);
-    }
-
-    void ActorSoft::CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes)
-    {
     }
 
     void ActorSoft::AddObjectToWorld (World *TargetWorld)

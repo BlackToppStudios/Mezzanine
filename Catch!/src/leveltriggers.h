@@ -11,8 +11,9 @@ class BNS_Fan : public WorldTrigger
         ActorRigid* Fan;
         ActorRigid* Button;
         FieldOfForce* Wind;
+        HingeConstraint* Motor;
     public:
-        BNS_Fan(const String& name, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind);
+        BNS_Fan(const String& name, HingeConstraint* Motor, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind);
         virtual ~BNS_Fan();
         virtual bool ConditionsAreMet();
         virtual void ApplyTrigger();

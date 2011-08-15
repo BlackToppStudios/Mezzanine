@@ -42,7 +42,10 @@
 
 #include "actorgraphicssettings.h"
 #include "actorbase.h"
+#include "mesh.h"
 #include "datatypes.h"
+#include "world.h"
+#include "meshmanager.h"
 
 #include <map>
 
@@ -65,10 +68,6 @@ namespace phys
             Ogre::Entity* ActorEnt;
 
             /// @internal
-            /// @brief The Actor this belongs to.
-            ActorBase* Parent;
-
-            /// @internal
             /// @brief Used for tracking ambient color on sub-meshes
             std::map<Whole, ColourValue> Ambient;
 
@@ -80,9 +79,8 @@ namespace phys
             /// @brief Used for tracking Specular color on sub-meshes
             std::map<Whole, ColourValue> Specular;
 
-            InternalActorGraphicsSettings(ActorBase* Actor, Ogre::Entity* GraphicsObject)
-              : Parent(Actor),
-                ActorEnt(GraphicsObject)
+            InternalActorGraphicsSettings(Ogre::Entity* GraphicsObject)
+              : ActorEnt(GraphicsObject)
             {
             }
 
@@ -93,8 +91,10 @@ namespace phys
     // Construction
 
     ActorGraphicsSettings::ActorGraphicsSettings(ActorBase* Actor, Ogre::Entity* GraphicsObject)
+        : Parent(Actor)
     {
-        this->IAGS = new internal::InternalActorGraphicsSettings(Actor, GraphicsObject);
+        this->IAGS = new internal::InternalActorGraphicsSettings(GraphicsObject);
+        ActorMesh = World::GetWorldPointer()->GetMeshManager()->GetMesh(GraphicsObject->getMesh()->getName());
     }
 
     ActorGraphicsSettings::~ActorGraphicsSettings()

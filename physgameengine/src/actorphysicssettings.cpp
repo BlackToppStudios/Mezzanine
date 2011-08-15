@@ -44,7 +44,10 @@
 #include "actorbase.h"
 #include "actorrigid.h"
 #include "actorsoft.h"
+#include "actorterrain.h"
 #include "world.h"
+#include "collisionshape.h"
+#include "collisionshapemanager.h"
 
 #ifdef PHYSXML
 #include <memory>
@@ -65,6 +68,21 @@ namespace phys
 
     ActorBasePhysicsSettings::~ActorBasePhysicsSettings()
     {
+    }
+
+    void ActorBasePhysicsSettings::AssignShape(CollisionShape* Shape)
+    {
+        this->ActorShape = Shape;
+        Parent->Shape = Shape->GetBulletShape();
+    }
+
+    void ActorBasePhysicsSettings::SetCollisionShape(CollisionShape* Shape)
+    {
+    }
+
+    CollisionShape* ActorBasePhysicsSettings::GetCollisionShape() const
+    {
+        return ActorShape;
     }
 
     void ActorBasePhysicsSettings::SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask)
@@ -233,6 +251,23 @@ namespace phys
     {
     }
 
+    void ActorRigidPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
+    {
+        AssignShape(Shape);
+        if(CollisionShape::ST_TriMesh != Shape->GetType())
+        {
+            btScalar mass = this->ActorRB->getInvMass();
+            if(0 != mass)
+                mass=1/mass;
+            btVector3 inertia(0,0,0);
+            Shape->GetBulletShape()->calculateLocalInertia(mass, inertia);
+            this->ActorRB->setMassProps(mass,inertia);
+            this->ActorRB->updateInertiaTensor();
+        }
+        this->ActorRB->setCollisionShape(Shape->GetBulletShape());
+        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Shape);
+    }
+
     void ActorRigidPhysicsSettings::SetDamping(const Real& LinDamping, const Real& AngDamping)
         { ActorRB->setDamping(LinDamping, AngDamping); }
 
@@ -302,6 +337,40 @@ namespace phys
     {
     }
 
+    void ActorSoftPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
+    {
+        // do nothing, cause soft bodies get unique custom shapes.
+    }
+
+    ActorTerrainPhysicsSettings::ActorTerrainPhysicsSettings(ActorTerrain* Actor, btRigidBody* PhysicsObject)
+        : ActorBasePhysicsSettings(Actor,PhysicsObject),
+          TerrainParent(Actor),
+          ActorRB(PhysicsObject)
+    {
+        CollisionGroup = phys::CF_StaticFilter;
+        CollisionMask = phys::CF_AllFilter ^ phys::CF_StaticFilter;
+    }
+
+    ActorTerrainPhysicsSettings::~ActorTerrainPhysicsSettings()
+    {
+    }
+
+    void ActorTerrainPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
+    {
+        AssignShape(Shape);
+        if(CollisionShape::ST_TriMesh != Shape->GetType())
+        {
+            btScalar mass = this->ActorRB->getInvMass();
+            if(0 != mass)
+                mass=1/mass;
+            btVector3 inertia(0,0,0);
+            Shape->GetBulletShape()->calculateLocalInertia(mass, inertia);
+            this->ActorRB->setMassProps(mass,inertia);
+            this->ActorRB->updateInertiaTensor();
+        }
+        this->ActorRB->setCollisionShape(Shape->GetBulletShape());
+        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Shape);
+    }
 }
 
 #ifdef PHYSXML

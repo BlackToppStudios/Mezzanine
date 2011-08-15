@@ -57,13 +57,13 @@ namespace phys
 {
     namespace UI
     {
-        ListBox::ListBox(ConstString& name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
+        ListBox::ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
             : Widget(name,PLayer),
               Selected(NULL),
               AutoHideScroll(true),
               LastScrollValue(0),
               NumVisible(0),
-              MaxDisplay(2)
+              MaxDisplay(3)
         {
             /// @todo Currently this class has little support for a border around the selections.
             /// Ideally when the UI system is more complete we'll be able to seemlessly move
@@ -73,6 +73,7 @@ namespace phys
             Type = Widget::ListBox;
 
             // Set some sane template defaults
+            SelectionTemplate.Size = Rect.Size;
             SelectionTemplate.BackgroundColour = ColourValue(1.0,1.0,1.0,1.0);
             SelectionTemplate.TextColour = ColourValue(0.0,0.0,0.0,1.0);
             SelectionTemplate.TextScale = 1.0;
@@ -85,16 +86,17 @@ namespace phys
             {
                 RelPosition = Rect.Position;
                 RelSize = Rect.Size;
+                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
 
-                ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
-                ScrollRect.Size = Vector2(ScrollbarWidth,RelSize.Y);
+                ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ((Rect.Size.Y * WinDim.Y) / WinDim.X),RelPosition.Y);
+                ScrollRect.Size = Vector2((Rect.Size.Y * WinDim.Y) / WinDim.X,RelSize.Y * 3);
                 ScrollRect.Relative = Rect.Relative;
             }else{
                 RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
                 RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
 
-                ScrollRect.Position = Vector2((Rect.Position.X + Rect.Size.X) - ScrollbarWidth,Rect.Position.Y);
-                ScrollRect.Size = Vector2(ScrollbarWidth,Rect.Size.Y);
+                ScrollRect.Position = Vector2((Rect.Position.X + Rect.Size.X) - Rect.Size.Y,Rect.Position.Y);
+                ScrollRect.Size = Vector2(Rect.Size.Y,Rect.Size.Y * 3);
                 ScrollRect.Relative = Rect.Relative;
             }
 

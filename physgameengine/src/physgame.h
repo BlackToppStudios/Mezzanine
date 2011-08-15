@@ -67,6 +67,7 @@
 #include "cameracontroller.h"
 #include "cameramanager.h"
 #include "collisionshapegenerator.h"
+#include "collisionshapemanager.h"
 #include "colourvalue.h"                // done
 #include "constraint.h"
 #include "crossplatform.h"              // nothing to do
@@ -91,6 +92,7 @@
 #include "managerbase.h"
 #include "mathtool.h"
 #include "meshgenerator.h"
+#include "meshmanager.h"
 #include "metacode.h"                   // done
 #include "particleeffect.h"             // done
 #include "physicsmanager.h"
