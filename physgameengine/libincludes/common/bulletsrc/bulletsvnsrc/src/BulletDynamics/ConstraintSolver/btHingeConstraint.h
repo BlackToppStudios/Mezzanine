@@ -82,7 +82,9 @@ public:
 
 	btScalar	m_accMotorImpulse;
 
+	public: //Made public by BTS with PublicizeBullet.sh
 	int			m_flags;
+	private:
 	btScalar	m_normalCFM;
 	btScalar	m_stopCFM;
 	btScalar	m_stopERP;

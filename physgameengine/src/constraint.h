@@ -156,6 +156,7 @@ namespace phys
             /// @brief Has the given Param on the Given Axis been set yet.
             /// @param Param The parameter to Check
             /// @param Axis The Axis on which to check the param
+            /// @details This will probably have to implement the same logic aas what is in the respective get/setparam function of each constraint http://bulletphysics.com/Bullet/BulletFull/classbtTypedConstraint.html#a11f44dd743b59bc05e25d500456e2559
             /// @return True if it has been set, false if it has.
             virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const = 0;
 
