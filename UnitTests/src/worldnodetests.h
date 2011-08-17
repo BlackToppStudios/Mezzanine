@@ -42,7 +42,7 @@
 
 #include "main.h"
 
-class WorldNodeTests : public UnitTest
+class WorldNodeTests : public UnitTestGroup
 {
     public:
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
@@ -70,28 +70,28 @@ class WorldNodeTests : public UnitTest
                     AddTestResult("WorldNode::AttachTo", Failed);
                     Test1->AttachObject(Test2);
                     Test0->AttachObject(Test1);
-                    AddTestResult("WorldNode::AttachObject", Success, UnitTest::OverWriteIfMoreSuccessful);
-                    AddTestResult("WorldNode::AttachTo", Success, UnitTest::OverWriteIfMoreSuccessful);
+                    AddTestResult("WorldNode::AttachObject", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
+                    AddTestResult("WorldNode::AttachTo", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
 
                     stringstream XMLstream;
-                    AddTestResult("WorldNode::operator<<", Failed, UnitTest::OverWriteIfMoreSuccessful);
+                    AddTestResult("WorldNode::operator<<", Failed, UnitTestGroup::OverWriteIfMoreSuccessful);
                     XMLstream << *Test1;
                     if (XMLstream.str() == String("<WorldNode Version=\"1\" Name=\"Beta\" AttachedTo=\"Alpha\"><Attached Name=\"Gamma\"/><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0.707107\" Z=\"0\" W=\"0.707107\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\"/></Location></WorldNode>"))
-                        { AddTestResult("WorldNode::operator<<", Success, UnitTest::OverWriteIfMoreSuccessful); }
+                        { AddTestResult("WorldNode::operator<<", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
                     cout << *Test1 << endl;
                     AddTestResult("WorldNode::DetachFrom", Failed);
                     Test2->DetachFrom();
                     Test1->DetachFrom();
                     if(0==Test2->GetAttachedTo()&&0==Test1->GetAttachedTo())
-                        { AddTestResult("WorldNode::DetachFrom", Success, UnitTest::OverWriteIfMoreSuccessful); }
+                        { AddTestResult("WorldNode::DetachFrom", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
 
                     WorldNode* Test3 = TheWorld->GetSceneManager()->CreateFreeNode("Omega", Vector3(0,0,0),Vector3(0,0,0));
-                    AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Failed, UnitTest::OverWriteIfMoreSuccessful);
+                    AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Failed, UnitTestGroup::OverWriteIfMoreSuccessful);
                     XMLstream >> *Test3;
                     cout << *Test1 << endl;
                     cout << *Test3 << endl;
                     if (ToString(*Test3) == String("<WorldNode Version=\"1\" Name=\"Omega\" AttachedTo=\"Alpha\"><Attached Name=\"Gamma\"/><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0.707107\" Z=\"0\" W=\"0.707107\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\"/></Location></WorldNode>"))
-                        { AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Success, UnitTest::OverWriteIfMoreSuccessful); }
+                        { AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
 
                     StartCountdown(2);
                     TheWorld->MainLoop();

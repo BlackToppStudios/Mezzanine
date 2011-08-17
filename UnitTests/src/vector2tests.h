@@ -46,7 +46,7 @@
 
 using namespace phys;
 
-class Vector2Tests : public UnitTest
+class Vector2Tests : public UnitTestGroup
 {
     public:
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)

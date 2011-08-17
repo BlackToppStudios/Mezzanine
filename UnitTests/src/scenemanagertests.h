@@ -42,7 +42,7 @@
 
 #include "main.h"
 
-class SceneManagerTests : public UnitTest
+class SceneManagerTests : public UnitTestGroup
 {
     public:
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
@@ -64,10 +64,10 @@ class SceneManagerTests : public UnitTest
                     GetAnswer();
                     TheWorld->MainLoop();
                     StopEngine();
-                    AddTestResult("SceneManager::DisplaySkyPlane", AnswerToQuestion, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::DisplaySkyPlane", AnswerToQuestion, UnitTestGroup::OverWrite);
                 } catch (std::exception e) {
                     cout << e.what();
-                    AddTestResult("SceneManager::DisplaySkyPlane", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::DisplaySkyPlane", Failed, UnitTestGroup::OverWrite);
                 }
 
                 try
@@ -81,10 +81,10 @@ class SceneManagerTests : public UnitTest
                     GetAnswer();
                     TheWorld->MainLoop();
                     StopEngine();
-                    AddTestResult("SceneManager::DisplaySkyBox", AnswerToQuestion, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::DisplaySkyBox", AnswerToQuestion, UnitTestGroup::OverWrite);
                 } catch (std::exception e) {
                     cout << e.what();
-                    AddTestResult("SceneManager::DisplaySkyBox", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::DisplaySkyBox", Failed, UnitTestGroup::OverWrite);
                 }
 
                 try
@@ -98,10 +98,10 @@ class SceneManagerTests : public UnitTest
                     GetAnswer();
                     TheWorld->MainLoop();
                     StopEngine();
-                    AddTestResult("SceneManager::DisplaySkyDome", AnswerToQuestion, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::DisplaySkyDome", AnswerToQuestion, UnitTestGroup::OverWrite);
                 } catch (std::exception e) {
                     cout << e.what();
-                    AddTestResult("SceneManager::DisplaySkyDome", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::DisplaySkyDome", Failed, UnitTestGroup::OverWrite);
                 }
 
 
@@ -124,9 +124,9 @@ class SceneManagerTests : public UnitTest
                 SerializeTest1 << *SM;
                 if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"0\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"Examples/GreenyNimbus\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest1.str())
                 {
-                    AddTestResult("SceneManager::operator<< (No Sky)", Success, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator<< (No Sky)", Success, UnitTestGroup::OverWrite);
                 }else{
-                    AddTestResult("SceneManager::operator<< (No Sky)", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator<< (No Sky)", Failed, UnitTestGroup::OverWrite);
                 }
                 StopEngine();
 
@@ -141,12 +141,12 @@ class SceneManagerTests : public UnitTest
                     //TheWorld->LogStream << std::endl << SerializeTest1a.str() << "==" << SerializeTest1.str() << std::endl;
                     if ( SerializeTest1a.str() == SerializeTest1.str())
                     {
-                        AddTestResult("SceneManager::operator>> (No Sky)", Success, UnitTest::OverWrite);
+                        AddTestResult("SceneManager::operator>> (No Sky)", Success, UnitTestGroup::OverWrite);
                     }else{
-                        AddTestResult("SceneManager::operator>> (No Sky)", Failed, UnitTest::OverWrite);
+                        AddTestResult("SceneManager::operator>> (No Sky)", Failed, UnitTestGroup::OverWrite);
                     }
                 }catch(Exception E){
-                    AddTestResult("SceneManager::operator>> (No Sky)", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator>> (No Sky)", Failed, UnitTestGroup::OverWrite);
                     TheWorld->LogStream << endl << "SceneManager::operator>> (No Sky) - Failed With: " << E.what();
                 }
                 StopEngine();
@@ -164,9 +164,9 @@ class SceneManagerTests : public UnitTest
                 SerializeTest2 << *SM;
                 if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"3\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><SkyDome Version=\"1\" MaterialName=\"Examples/CloudPlane\" MaterialGroupName=\"files\" DrawFirst=\"1\" Distance=\"50\" Curvature=\"10\" Tiling=\"8\" XSegments=\"16\" YSegments=\"16\" YSegments_keep=\"-1\" ><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation></SkyDome><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"Examples/GreenyNimbus\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest2.str())
                 {
-                    AddTestResult("SceneManager::operator<< (SkyDome)", Success, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator<< (SkyDome)", Success, UnitTestGroup::OverWrite);
                 }else{
-                    AddTestResult("SceneManager::operator<< (SkyDome)", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator<< (SkyDome)", Failed, UnitTestGroup::OverWrite);
                 }
                 StopEngine();
 
@@ -181,12 +181,12 @@ class SceneManagerTests : public UnitTest
                     //TheWorld->LogStream << std::endl << SerializeTest2a.str() << "==" << SerializeTest2.str() << std::endl;
                     if ( SerializeTest2a.str() == SerializeTest2.str())
                     {
-                        AddTestResult("SceneManager::operator>> (SkyDome)", Success, UnitTest::OverWrite);
+                        AddTestResult("SceneManager::operator>> (SkyDome)", Success, UnitTestGroup::OverWrite);
                     }else{
-                        AddTestResult("SceneManager::operator>> (SkyDome)", Failed, UnitTest::OverWrite);
+                        AddTestResult("SceneManager::operator>> (SkyDome)", Failed, UnitTestGroup::OverWrite);
                     }
                 }catch(Exception E){
-                    AddTestResult("SceneManager::operator>> (SkyDome)", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator>> (SkyDome)", Failed, UnitTestGroup::OverWrite);
                     TheWorld->LogStream << endl << "SceneManager::operator>> (SkyDome) - Failed With: " << E.what();
                 }
                 StopEngine();
@@ -205,9 +205,9 @@ class SceneManagerTests : public UnitTest
                 SerializeTest3 << *SM;
                 if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"1\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><SkyPlane Version=\"1\" MaterialName=\"Examples/CloudPlane\" MaterialGroupName=\"files\" DrawFirst=\"1\" Scale=\"1000\" Tiling=\"10\" Bow=\"0\" XSegments=\"1\" YSegments=\"1\" ><Plane Version=\"1\" Distance=\"5\" ><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Plane></SkyPlane><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"Examples/GreenyNimbus\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest3.str())
                 {
-                    AddTestResult("SceneManager::operator<< (SkyPlane)", Success, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator<< (SkyPlane)", Success, UnitTestGroup::OverWrite);
                 }else{
-                    AddTestResult("SceneManager::operator<< (SkyPlane)", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator<< (SkyPlane)", Failed, UnitTestGroup::OverWrite);
                 }
                 StopEngine();
 
@@ -222,12 +222,12 @@ class SceneManagerTests : public UnitTest
                     //TheWorld->LogStream << std::endl << SerializeTest3a.str() << "==" << SerializeTest3.str() << std::endl;
                     if ( SerializeTest3a.str() == SerializeTest3.str())
                     {
-                        AddTestResult("SceneManager::operator>> (SkyPlane)", Success, UnitTest::OverWrite);
+                        AddTestResult("SceneManager::operator>> (SkyPlane)", Success, UnitTestGroup::OverWrite);
                     }else{
-                        AddTestResult("SceneManager::operator>> (SkyPlane)", Failed, UnitTest::OverWrite);
+                        AddTestResult("SceneManager::operator>> (SkyPlane)", Failed, UnitTestGroup::OverWrite);
                     }
                 }catch(Exception E){
-                    AddTestResult("SceneManager::operator>> (SkyPlane)", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator>> (SkyPlane)", Failed, UnitTestGroup::OverWrite);
                     TheWorld->LogStream << endl << "SceneManager::operator>> (SkyPlane) - Failed With: " << E.what();
                 }
                 StopEngine();
@@ -246,9 +246,9 @@ class SceneManagerTests : public UnitTest
                 TheWorld->CommitLog();
                 if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"2\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><SkyBox Version=\"1\" MaterialName=\"Examples/CloudBox\" MaterialGroupName=\"files\" DrawFirst=\"1\" Distance=\"50\" ><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation></SkyBox><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"Examples/GreenyNimbus\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest4.str())
                 {
-                    AddTestResult("SceneManager::operator<< (SkyBox)", Success, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator<< (SkyBox)", Success, UnitTestGroup::OverWrite);
                 }else{
-                    AddTestResult("SceneManager::operator<< (SkyBox)", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator<< (SkyBox)", Failed, UnitTestGroup::OverWrite);
                 }
                 StopEngine();
 
@@ -263,12 +263,12 @@ class SceneManagerTests : public UnitTest
                     //TheWorld->LogStream << std::endl << SerializeTest4a.str() << "==" << SerializeTest4.str() << std::endl;
                     if ( SerializeTest4a.str() == SerializeTest4.str())
                     {
-                        AddTestResult("SceneManager::operator>> (SkyBox)", Success, UnitTest::OverWrite);
+                        AddTestResult("SceneManager::operator>> (SkyBox)", Success, UnitTestGroup::OverWrite);
                     }else{
-                        AddTestResult("SceneManager::operator>> (SkyBox)", Failed, UnitTest::OverWrite);
+                        AddTestResult("SceneManager::operator>> (SkyBox)", Failed, UnitTestGroup::OverWrite);
                     }
                 }catch(Exception E){
-                    AddTestResult("SceneManager::operator>> (SkyBox)", Failed, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator>> (SkyBox)", Failed, UnitTestGroup::OverWrite);
                     TheWorld->LogStream << endl << "SceneManager::operator>> (SkyBox) - Failed With: " << E.what();
                 }
                 StopEngine();

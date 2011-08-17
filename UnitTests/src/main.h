@@ -52,14 +52,16 @@
 // Define some Results of tests
 enum TestResult
 {
-    Success         = 0,
-    Skipped         = 1,
+    Success         = 0,        // test was ran and appeared to work
+    Skipped         = 1,        // Test was simply not ran
     Cancelled       = 2,        // Was canceled by user, so success is unknown, but user doesn't cared
     Inconclusive    = 3,        // if a user answers that they don't know what happened in a test that involved interaction, it likely worked, but we can't be sure
     Failed          = 4,        // Known failure
-    Unknown         = 5         // Since we don't know what happed this is the worst kind of failure
+    Unknown         = 5,        // Since we don't know what happened this is the worst kind of failure
+    NotApplicable   = 6         // This is not even a kind of failure, This is used to when referencing a test, so if this winds up coming out of a test, then something has failed
 };
 
+// convert the above enum to a Striong that matchins the in-code name.
 phys::String TestResultToString(TestResult Convertable)
 {
     switch(Convertable)
@@ -76,11 +78,14 @@ phys::String TestResultToString(TestResult Convertable)
             return "Failed";
         case Unknown:
             return "Unknown";
+        case NotApplicable:
+            return "N/A";
         default:
             throw(phys::Exception(phys::StringCat("Cannot convert TestResult with value ", phys::ToString(Convertable))));
     }
 }
 
+// Used for padding spaces, after a piece of leader text, such that it always ends at teh expected colum
 phys::String MakePadding(phys::String Leader, unsigned int Column)
 {
     phys::String Spaces(" ");
@@ -96,7 +101,7 @@ typedef std::pair<phys::String,TestResult> TestData;
 // inherits from std::map to make storage location of of the TestData obvious
 typedef std::map<phys::String,TestResult> TestDataStorage;
 
-class UnitTest : public TestDataStorage
+class UnitTestGroup : public TestDataStorage
 {
     protected:
 
@@ -104,13 +109,32 @@ class UnitTest : public TestDataStorage
         unsigned int LongestNameLength;
 
     public:
-        UnitTest() :
+        UnitTestGroup() :
             LongestNameLength(0)
         {}
+/*
+        virtual TestResult RunAutomaticTest() = 0;
+        virtual TestResult RunManualTest() = 0;
+        virtual TestResult SkipAutomaticTest() = 0;
+        virtual TestResult SkipManualTest() = 0;
+
+        virtual TestDataStorage ExecutableTests() = 0;
+*/
+
+// Simply naming tests
+// make iterating over tests that could be possible
+//      use to set skips and run
 
         // This is expected to run all the tests that meet the criteria passed in
         // This should return the LeastSuccessful TestResult, this will make it easier for the main to find and report errors
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests) = 0;
+        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        {
+            TestResult Answer;
+
+            //
+
+            return Answer;
+        }
 
         enum OverWriteResults{
             OverWriteIfLessSuccessful,
@@ -166,7 +190,7 @@ class UnitTest : public TestDataStorage
             { AddTestResult(TestData(Fresh,Meat),Behavior); }
 
         // make it a little easier to aggregate answers in one place
-        const UnitTest& operator+=(const UnitTest& rhs)
+        const UnitTestGroup& operator+=(const UnitTestGroup& rhs)
         {
             if(rhs.LongestNameLength>LongestNameLength)
                 { LongestNameLength=rhs.LongestNameLength; }
@@ -205,7 +229,7 @@ class UnitTest : public TestDataStorage
 };
 
 // The list of all the testgroups
-map<phys::String, UnitTest*> TestGroups;
+map<phys::String, UnitTestGroup*> TestGroups;
 
 // Drops a String to all lower case, changes the string passed in
 char* AllLower(char* CString)
@@ -263,7 +287,7 @@ TestResult GetTestAnswer(phys::String Question)
 
 }
 
-///Possible ways to exit the UnitTest Program
+///Possible ways to exit the UnitTestGroup Program
 enum ExitCodes
 {
     ExitSuccess             = 0,
@@ -284,7 +308,7 @@ int Usage(phys::String ThisName)
                 << "This command is not case sensitive." << endl << endl
                 << "Current Test Groups: " << endl;
     phys::Whole c = 0;
-    for(map<phys::String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+    for(map<phys::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
     {
         cout << "\t" << Iter->first << " ";
         ++c;        //enforce 4 names per line
@@ -298,7 +322,7 @@ int Usage(phys::String ThisName)
 
 int PrintList()
 {
-    for(map<phys::String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+    for(map<phys::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
         { cout << Iter->first << endl; }
     return ExitSuccess;
 }

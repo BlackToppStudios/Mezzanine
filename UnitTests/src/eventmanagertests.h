@@ -55,7 +55,7 @@ namespace
 
 }
 
-class EventManagerTests : public UnitTest
+class EventManagerTests : public UnitTestGroup
 {
     public:
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)

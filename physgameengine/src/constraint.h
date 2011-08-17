@@ -45,7 +45,8 @@
 #include "quaternion.h"
 #include "vector3.h"
 
-/// @cond 0
+#include <algorithm>
+#include <vector>
 
 namespace phys
 {
@@ -65,16 +66,25 @@ class btUniversalConstraint;
 
 namespace phys
 {
-    /// @enum ConstraintParams
+    /// @enum ConstraintParam
     /// @brief Used by constraints for setting some parameters.
     /// @details See the constraint class documentation for more details.
-    enum ConstraintParams
+    enum ConstraintParam
     {
-        Con_ERP         = 1,    ///< ERP values adjust how fast the errors in the constraints are reduced. @n
+        Con_ERP         = 1,    ///< ERP values adjust how fast the errors in the constraints are reduced.
         Con_Stop_ERP    = 2,
         Con_CFM         = 3,    ///< CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
         Con_Stop_CFM    = 4
     };
+
+    /// @brief Get a Constraint Parameter as a String
+    /// @param Param The Parameter to get as a String
+    /// @return A String That contains the name of a ConstraintParam
+    String ConstraintParamAsString(ConstraintParam Param);
+
+    /// @brief How many ConstraintParam Exist.
+    /// @details Used in some algorithms and we didn't want it to look like a magic so we defined it here.
+    const int ConstraintParamCount = 4;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class TypedConstraint
@@ -112,30 +122,121 @@ namespace phys
             virtual ~TypedConstraint();
             /// @brief Gets the first actor this constraint applies to.
             /// @return Returns a pointer to the first actor this constraint applies to.
-            virtual ActorRigid* GetActorA();
+            virtual ActorRigid* GetActorA() const;
             /// @brief Gets the second actor this constraint applies to.
             /// @return Returns a pointer to the second actor this constraint applies to.
-            virtual ActorRigid* GetActorB();
+            virtual ActorRigid* GetActorB() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Constraint
+
+            /// @brief Used to Store lists of param for return types
+            typedef std::vector<ConstraintParam> ParamList;
+
+            /// @brief Used to Store lists of Int Axis for return types
+            /// @details In general Axis will come in groups of three, such as 0,1,2, or 0,1,2,3,4,5 which could represent X,Y, and Z or multiple grousp of X,Y, and Z. These Axis
+            /// can represent Linear/Translation or Angular/Rotation information. Some Constraints support values that affect all constraints, this is usually represented a -1.
+            typedef std::vector<int> AxisList;
+
+            /// @brief Get a sorted (low to high) list of Parameters that are valid on this Axis
+            /// @param Axis the Axis to check.
+            /// @return A Paramlist with all the valid parameters for this axis, even if they are not valid on any other axis.
+            virtual ParamList ValidParamOnAxis(int Axis) const = 0;
+
+            /// @brief Get a sorted (low to high) list of all axis that operate linearly (that lock sliding/translation)
+            /// @warning Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other
+            /// @return An Axislist with the Axis this constraint linearly supports.
+            virtual AxisList ValidLinearAxis() const = 0;
+
+            /// @brief Get A list sorted (low to high) of all axis that operate Angularly (that lock sliding/translation)
+            /// @warning Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other
+            /// @return An Axislist with the Axis this constraint Angularly supports.
+            virtual AxisList ValidAngularAxis() const = 0;
+
+            /// @brief Has the given Param on the Given Axis been set yet.
+            /// @param Param The parameter to Check
+            /// @param Axis The Axis on which to check the param
+            /// @return True if it has been set, false if it has.
+            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const = 0;
+
+            /// @brief Get a sorted (low to high) list of All Valid Axis
+            /// @details This is implemented using ValidLinearAxis and ValidAngularAxis, Derived versions of this class may wish to make a more specialized
+            /// implementation of this method that doesn't have the overhead of passing around 3 vectors by value.
+            /// @return An Axislist with all the Axis this constraint supports.
+            virtual AxisList ValidAxis() const
+            {
+                AxisList Ang = this->ValidAngularAxis();
+                AxisList Lin = this->ValidLinearAxis();
+                Lin.insert(Lin.end()-1,Ang.begin(),Ang.end());              // just kinda stuck the two together and return that, no checking is performed for uniqueness.
+                sort(Lin.begin(),Lin.end());                                // Usually the Linear axis are 0,1,2 and the angular are 3,4,5 so hopefully, this will hardly ever need to do work.
+                return Lin;
+            }
+
+            /// @brief Is a certain Parameter valid on a certain axis
+            /// @param Param The Parameter to Check
+            /// @param Axis The Axis to Check
+            /// @details This is implemented using ValidParamOnAxis, Derived versions of this class may wish to make a more specialized
+            /// implementation of this method.
+            /// @return True if Param is valid on Axis, and Axis is valid. If anything is invalid this returns false.
+            virtual bool IsParamValidOnAxis(ConstraintParam Param, int Axis) const
+            {
+                ParamList Supported = ValidParamOnAxis(Axis);
+                if(ConstraintParamCount == Supported.size())                           // no need to check deeper if everything is supported
+                {
+                    return true;
+                }else{
+                    if(Supported.size())
+                    {
+                        return ( std::find(Supported.begin(),Supported.end(),Param) != Supported.end() );     // should return true if found
+                    }else{
+                        return false;                                                   // size is 0 of course it is not supported
+                    }
+                }
+            }
+
+            /// @brief Get A sorted (low to high) list of Parameters that are valid on all Axis
+            /// @details This is implemented using ValidAxis and ValidParamOnAxis, Derived versions of this class may wish to make a more specialized
+            /// implementation of this method that doesn't have the overhead of passing around many vectors by value and executing slow loops. Most
+            /// likely all of these constraint Parameter and axis functions could be replaced with some fairly simple switch statements and statically
+            /// coded values that are specific to the kind of constraint.
+            /// @return A Paramlist with the parameters valid on all axis.
+            virtual ParamList ValidParams() const
+            {
+                AxisList AllAxis = this->ValidAxis();
+                ParamList Results;
+                if(AllAxis.size())                                              //If we have no Axis, the we have no valid Parameters.
+                {
+                    Results = this->ValidParamOnAxis(*(AllAxis.begin()));       // Let's start off with whatever the first Axis Support, then we will trim from here.
+
+                    if(AllAxis.size()>1)                                        //if the constraint only support one axis then we already have our answer, and we don't want to run of the end of the Paramlist
+                    {
+                        for(AxisList::iterator AxisIter = AllAxis.begin()+1; AllAxis.end()!=AxisIter; ++AxisIter)       //For each axis after the first
+                        {
+                            for(int ParamID = Results.size(); ParamID<=0; --ParamID)        // We start at the back and work by index because reverse erase does no accept rever iterators, and
+                            {
+                                if (!IsParamValidOnAxis(Results.at(ParamID),*AxisIter))     // if an Item is erase near the beginning, it changes all the items after, making forward iteration logic that
+                                    { Results.erase( Results.begin()+ParamID ); }           // erases needlessly complicated, and potentially expensive depending on the Vector implementation
+                            }
+                        }
+                    }
+                }
+                sort(Results.begin(),Results.end());
+                return Results;
+            }
+
             /// @brief Provides override of constraint parameters.
             /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis.
             /// @param Param The parameter to override.
             /// @param Value The new value for the parameter.
             /// @param Axis Optional axis.
+            virtual void SetParam(ConstraintParam Param, Real Value, int Axis=-1);
 
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Constraint
-
-            typedef std::vector<ConstraintParams> ParamList;
-
-
-            virtual void SetParam(ConstraintParams Param, Real Value, int Axis=-1);
             /// @brief Gets value of constraint parameters.
             /// @details See SetParam() for clarification.  Gets information on constraint parameters.
             /// @param Para, The parameter to get information for.
             /// @param Axis Optional axis.
             /// @return Returns the value for the requested parameter.
-            virtual Real GetParam(ConstraintParams Param, int Axis=-1);
+            virtual Real GetParam(ConstraintParam Param, int Axis=-1) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -341,9 +442,9 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Point2PointConstraint
-    /// @headerfile constraint.h
-    /// @brief
-    /// @details
+    /// @brief Tries to make a point relative to each of two actors match in 3d space, without regard to rotation.
+    /// @details This will translate (push around) the actors to attempt to get the offsets to match up in 3d space.
+    /// The actors can freely rotate about their relative offsets.
     ///////////////////////////////////////
     class PHYS_LIB Point2PointConstraint : public TypedConstraint
     {
@@ -364,12 +465,59 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Point2PointConstraint();
+            /// @brief Set offset of the first actor.
+            /// @param PivotA The offset as a Vector3 relative to the center of mass of ActorA.
             virtual void SetPivotA(const Vector3& PivotA);
+            /// @brief Set offset of the second actor.
+            /// @param PivotB The offset as a Vector3 relative to the center of mass of ActorB.
             virtual void SetPivotB(const Vector3& PivotB);
-            virtual Vector3 GetPivotInA();
-            virtual Vector3 GetPivotInB();
+            /// @brief Get offset of the first actor.
+            /// @return The offset as a Vector3 relative to the center of mass of ActorA.
+            virtual Vector3 GetPivotA() const;
+            /// @brief Get offset of the second actor.
+            /// @return The offset as a Vector3 relative to the center of mass of ActorB.
+            virtual Vector3 GetPivotB() const;
+
             virtual void SetImpulseClamping(Real Clamping);
+            virtual Real GetImpulseClamping() const;
+
+            /// @todo Research this more carefully
+            /// @brief This may be a scalar for how strongly Angular momentum affects linear momemtum
+            /// @details This function is a tightly wrapped bullet 3d function. No real documentation for it exists, from its responsibility/location in Bullet3d and
+            /// a basic understanding of torque ( see http://en.wikipedia.org/wiki/Torque ) It is highly likely that it is a value to adjust how torque affects momentum.
             virtual void SetTAU(Real TAU);
+
+            /// @brief Retrieve the Tau Setting
+            /// @return The Tau value as a Real
+            virtual Real GetTAU() const;
+
+            /// @copydoc TypedConstraint::ValidParamOnAxis(int) const
+            virtual TypedConstraint::ParamList ValidParamOnAxis(int Axis) const;
+            /// @copydoc TypedConstraint::ValidLinearAxis() const
+            virtual TypedConstraint::AxisList ValidLinearAxis() const;
+            /// @copydoc TypedConstraint::ValidAngularAxis() const
+            virtual TypedConstraint::AxisList ValidAngularAxis() const;
+            /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const
+            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+#ifdef PHYSXML
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Point2PointConstraint"
+            String SerializableName() const;
+#endif
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -443,7 +591,29 @@ namespace phys
     };
 }//phys
 
+#ifdef PHYSXML
+    ///////////////////////////////////////////////////////////////////////////////
+    // Class External << Operators for streaming or assignment
 
-/// @endcond
+    /// @brief Convert a constraint to XML and send it down a stream
+    /// @param stream The stream to send it down
+    /// @param x The constraint to send down
+    /// @return This returns the output stream to allow operator chaining.
+    std::ostream& operator << (std::ostream& stream, const phys::TypedConstraint& x);
+
+    /// @brief Get a constraint from an XML stream
+    /// @param stream The stream to get it out of
+    /// @param x The it you will get out of the stream
+    /// @return This returns the input stream to allow operator chaining.
+    std::istream& operator >> (std::istream& stream, phys::TypedConstraint& x);
+
+    /// @brief Converts an XML Node into a functional in memory construct.
+    /// @param OneNode The xml node that contains the deserialize class instance.
+    /// @param x The class instance to overwrite witht the proto serialized version in the node.
+    void operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x);
+#endif // \PHYSXML
+
+
+
 #endif
 

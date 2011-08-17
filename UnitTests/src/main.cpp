@@ -42,6 +42,7 @@
 
 #include "actortests.h"
 #include "compilerflagtests.h"
+#include "constrainttests.h"
 #include "eventmanagertests.h"
 #include "particleeffecttests.h"
 #include "scenemanagertests.h"
@@ -54,10 +55,10 @@
 #include <vector>
 
 // this does all the heavy lifting
-class AllUnitTests : public UnitTest
+class AllUnitTestGroups : public UnitTestGroup
 {
     public:
-        AllUnitTests():RunAll(false)                    //constructor, just to set a bool ;)
+        AllUnitTestGroups():RunAll(false)                    //constructor, just to set a bool ;)
         {};
 
         vector<phys::String> TestGroupsToRun;           //List of tests to run
@@ -68,7 +69,7 @@ class AllUnitTests : public UnitTest
             TestResult LowResults = Unknown;
             if(RunAll)
             {                                   //Run every test in the big list of tests
-                for(map<String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+                for(map<String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
                 {
                     TestResult temp = Iter->second->RunTests(RunAutomaticTests, RunInteractiveTests);
                     if (temp < LowResults)
@@ -90,7 +91,7 @@ class AllUnitTests : public UnitTest
 
 void DeleteTests()
 {
-    for(map<String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+    for(map<String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
     {
         //cout << Iter->first << endl;
         delete Iter->second;
@@ -103,6 +104,7 @@ int main (int argc, char** argv)
     // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here
     TestGroups["actor"] = new ActorTests;
     TestGroups["compilerflag"] = new CompilerFlagTests;
+    TestGroups["constraint"] = new ConstraintTests;
     TestGroups["eventmanager"] = new EventManagerTests;
     TestGroups["particleeffect"] = new ParticleEffectTests;
     TestGroups["scenemanager"] = new SceneManagerTests;
@@ -117,12 +119,12 @@ int main (int argc, char** argv)
     if (argc > 0)                                                   //Not really sure how this would happen, but I would rather test for it than have it fail
         { CommandName=argv[0]; }
     else
-        { return Usage("UnitTests"); }
+        { return Usage("UnitTestGroups"); }
 
     if (argc == 1)
         { return Usage(CommandName); }
 
-    AllUnitTests Runner;
+    AllUnitTestGroups Runner;
 
     for (int c=1; c<argc; ++c)                                                  // Check Command line for keywords and get all the test names
     {

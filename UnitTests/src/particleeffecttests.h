@@ -44,7 +44,7 @@
 
 #include <Ogre.h>
 
-class ParticleEffectTests : public UnitTest
+class ParticleEffectTests : public UnitTestGroup
 {
     public:
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
@@ -69,43 +69,43 @@ class ParticleEffectTests : public UnitTest
                     WorldNode* Test0 = TheWorld->GetSceneManager()->CreateFreeNode("Alpha", Vector3(0,0,0),Vector3(10,0,0));
                     ParticleEffect* Test1 = TheWorld->GetSceneManager()->CreateParticleEffect("Beta", "Examples/GreenyNimbus");
 
-                    AddTestResult("ParticleEffect::SetOrientation", Failed, UnitTest::OverWrite);
-                    AddTestResult("ParticleEffect::GetOrientation", Failed, UnitTest::OverWrite);
+                    AddTestResult("ParticleEffect::SetOrientation", Failed, UnitTestGroup::OverWrite);
+                    AddTestResult("ParticleEffect::GetOrientation", Failed, UnitTestGroup::OverWrite);
                     Test1->SetOrientation(Quaternion(0.426162,0.473514,0.520865,0.568217));
                     if(Test1->GetOrientation().GetNormalizedCopy()==Quaternion(0.426162,0.473514,0.520865,0.568217).GetNormalizedCopy())
                     {
-                        AddTestResult("ParticleEffect::SetOrientation", Success, UnitTest::OverWriteIfMoreSuccessful);
-                        AddTestResult("ParticleEffect::GetOrientation", Success, UnitTest::OverWriteIfMoreSuccessful);
+                        AddTestResult("ParticleEffect::SetOrientation", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
+                        AddTestResult("ParticleEffect::GetOrientation", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
                     }
 
-                    AddTestResult("ParticleEffect::SetLocation", Failed, UnitTest::OverWrite);
-                    AddTestResult("ParticleEffect::GetLocation", Failed, UnitTest::OverWrite);
+                    AddTestResult("ParticleEffect::SetLocation", Failed, UnitTestGroup::OverWrite);
+                    AddTestResult("ParticleEffect::GetLocation", Failed, UnitTestGroup::OverWrite);
                     Test1->SetLocation(Vector3(1,2,3));
                     if(Test1->GetLocation()==Vector3(1,2,3))
                     {
-                        AddTestResult("ParticleEffect::SetLocation", Success, UnitTest::OverWriteIfMoreSuccessful);
-                        AddTestResult("ParticleEffect::GetLocation", Success, UnitTest::OverWriteIfMoreSuccessful);
+                        AddTestResult("ParticleEffect::SetLocation", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
+                        AddTestResult("ParticleEffect::GetLocation", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
                     }
 
-                    AddTestResult("ParticleEffect::AttachTo", Failed, UnitTest::OverWrite);
+                    AddTestResult("ParticleEffect::AttachTo", Failed, UnitTestGroup::OverWrite);
                     Test1->AttachTo(Test0);
-                    AddTestResult("ParticleEffect::AttachTo", Success, UnitTest::OverWriteIfMoreSuccessful);
+                    AddTestResult("ParticleEffect::AttachTo", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
 
                     stringstream XMLstream;
-                    AddTestResult("ParticleEffect::operator<<", Failed, UnitTest::OverWrite);
+                    AddTestResult("ParticleEffect::operator<<", Failed, UnitTestGroup::OverWrite);
                     XMLstream << *Test1;
                     if (XMLstream.str() == String("<ParticleEffect Version=\"1\" Name=\"Beta\" AttachedTo=\"Alpha\" Enabled=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.426162\" Y=\"0.473514\" Z=\"0.520865\" W=\"0.568217\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\"/></Location></ParticleEffect>"))
-                        { AddTestResult("ParticleEffect::operator<<", Success, UnitTest::OverWriteIfMoreSuccessful); }
-                    AddTestResult("ParticleEffect::DetachFrom", Failed, UnitTest::OverWrite);
+                        { AddTestResult("ParticleEffect::operator<<", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
+                    AddTestResult("ParticleEffect::DetachFrom", Failed, UnitTestGroup::OverWrite);
                     Test1->DetachFrom();
                     if(0==Test1->GetAttachedTo())
-                        { AddTestResult("ParticleEffect::DetachFrom", Success, UnitTest::OverWriteIfMoreSuccessful); }
+                        { AddTestResult("ParticleEffect::DetachFrom", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
 
                     ParticleEffect* Test3 = TheWorld->GetSceneManager()->CreateParticleEffect("Omega", "Examples/GreenyNimbus");
-                    AddTestResult("ParticleEffect::operator>>(std::stream,ParticleEffect)", Failed, UnitTest::OverWriteIfMoreSuccessful);
+                    AddTestResult("ParticleEffect::operator>>(std::stream,ParticleEffect)", Failed, UnitTestGroup::OverWriteIfMoreSuccessful);
                     XMLstream >> *Test3;
                     if (ToString(*Test3) == String("<ParticleEffect Version=\"1\" Name=\"Omega\" AttachedTo=\"Alpha\" Enabled=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.426162\" Y=\"0.473514\" Z=\"0.520865\" W=\"0.568217\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\"/></Location></ParticleEffect>"))
-                        { AddTestResult("ParticleEffect::operator>>(std::stream,ParticleEffect)", Success, UnitTest::OverWriteIfMoreSuccessful); }
+                        { AddTestResult("ParticleEffect::operator>>(std::stream,ParticleEffect)", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
 
                     StartCountdown(2);
                     TheWorld->MainLoop();
