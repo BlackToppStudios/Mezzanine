@@ -139,8 +139,10 @@ namespace phys
             typedef std::vector<int> AxisList;
 
             /// @brief Get a sorted (low to high) list of Parameters that are valid on this Axis
+            /// @details Parameters returned from this will work on the given axis even if they are not valid on any other axis. There is no guarantee that the Parameters
+            /// will be uniquely stored per an axis. There is no guarantee that changing one parameter will not change another.
             /// @param Axis the Axis to check.
-            /// @return A Paramlist with all the valid parameters for this axis, even if they are not valid on any other axis.
+            /// @return A Paramlist with all the valid parameters for this axis.
             virtual ParamList ValidParamOnAxis(int Axis) const = 0;
 
             /// @brief Get a sorted (low to high) list of all axis that operate linearly (that lock sliding/translation)
@@ -317,6 +319,15 @@ namespace phys
             virtual void SetUseFrameOffset(bool UseOffset);
             virtual void SetLimit(int Axis, Real Low, Real High);
             virtual void CalculateTransforms();
+
+            /// @copydoc TypedConstraint::ValidParamOnAxis(int) const
+            virtual TypedConstraint::ParamList ValidParamOnAxis(int Axis) const;
+            /// @copydoc TypedConstraint::ValidLinearAxis() const
+            virtual TypedConstraint::AxisList ValidLinearAxis() const;
+            /// @copydoc TypedConstraint::ValidAngularAxis() const
+            virtual TypedConstraint::AxisList ValidAngularAxis() const;
+            /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const
+            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -419,6 +430,16 @@ namespace phys
             /// @param AxisInA A vector3 representing the axis to be used with this constraint.
             virtual void SetAxis(const Vector3& AxisInA);
             virtual void SetUseFrameOffset(bool FrameOffset);
+
+            /// @copydoc TypedConstraint::ValidParamOnAxis(int) const
+            virtual TypedConstraint::ParamList ValidParamOnAxis(int Axis) const;
+            /// @copydoc TypedConstraint::ValidLinearAxis() const
+            virtual TypedConstraint::AxisList ValidLinearAxis() const;
+            /// @copydoc TypedConstraint::ValidAngularAxis() const
+            virtual TypedConstraint::AxisList ValidAngularAxis() const;
+            /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const
+            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
+
     };
 
     ///////////////////////////////////////////////////////////////////////////////

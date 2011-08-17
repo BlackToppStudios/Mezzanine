@@ -314,7 +314,9 @@ protected:
     bool	m_useLinearReferenceFrameA;
 	bool	m_useOffsetForConstraintFrame;
 
+	public: //Made public by BTS with PublicizeBullet.sh
 	int			m_flags;
+	private:
 
     //!@}
 

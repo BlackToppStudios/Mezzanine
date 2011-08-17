@@ -326,6 +326,46 @@ namespace phys
         this->Generic6dof->calculateTransforms();
     }
 
+    TypedConstraint::ParamList Generic6DofConstraint::ValidParamOnAxis(int Axis) const
+    {
+        TypedConstraint::ParamList Results;
+        if(0<=Axis && 5>=Axis)
+        {
+            Results.push_back(Con_Stop_ERP);
+            Results.push_back(Con_CFM);
+            Results.push_back(Con_Stop_CFM);
+        }
+        return Results;
+    }
+
+    TypedConstraint::AxisList Generic6DofConstraint::ValidLinearAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        Results.push_back(0);
+        Results.push_back(1);
+        Results.push_back(2);
+        return Results;
+    }
+
+    TypedConstraint::AxisList Generic6DofConstraint::ValidAngularAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        Results.push_back(3);
+        Results.push_back(4);
+        Results.push_back(5);
+        return Results;
+    }
+
+    bool Generic6DofConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+    {
+        // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btGeneric6DofConstraint_8cpp_source.html#l00964
+        if(0<=Axis && 5>=Axis)
+            { return false; }
+        return  ( Con_Stop_ERP==Param && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_ERP_STOP << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ||  //if we are checking the stop_erp AND the stop_erp bit is set for the correct axis
+                ( Con_Stop_CFM==Param && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_CFM_STOP << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ||  //if we are checking the stop_cfm AND the stop_cfm bit is set
+                ( Con_CFM==Param      && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_CFM_NORM << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ;   //if we are checking the cfm AND the cfm bit is set
+    }
+
     /////////////////////////////////////////
     // Generic6Dof Spring Constraint Functions
 
@@ -469,6 +509,44 @@ namespace phys
         this->Hinge->setUseFrameOffset(FrameOffset);
     }
 
+
+    TypedConstraint::ParamList HingeConstraint::ValidParamOnAxis(int Axis) const
+    {
+        TypedConstraint::ParamList Results;
+        if(-1==Axis||5==Axis)
+        {
+            Results.push_back(Con_Stop_ERP);
+            Results.push_back(Con_CFM);
+            Results.push_back(Con_Stop_CFM);
+        }
+        return Results;
+    }
+
+    TypedConstraint::AxisList HingeConstraint::ValidLinearAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        Results.push_back(-1);
+        return Results;
+    }
+
+    TypedConstraint::AxisList HingeConstraint::ValidAngularAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        Results.push_back(5);
+        return Results;
+    }
+
+    bool HingeConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+    {
+        // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btHingeConstraint_8cpp_source.html#l00962
+        if ( -1!=Axis && 5!=Axis )
+            { return false; }
+        return  ( Con_Stop_ERP==Param && this->Hinge->m_flags & BT_HINGE_FLAGS_ERP_STOP )   ||  //if we are checking the stop_erp AND the stop_erp bit is set
+                ( Con_Stop_CFM==Param && this->Hinge->m_flags & BT_HINGE_FLAGS_CFM_STOP )   ||  //if we are checking the stop_cfm AND the stop_cfm bit is set
+                ( Con_CFM==Param      && this->Hinge->m_flags & BT_HINGE_FLAGS_CFM_NORM )   ;   //if we are checking the cfm AND the cfm bit is set
+    }
+
+
     /////////////////////////////////////////
     // Hinge2 Constraint Functions
 
@@ -591,9 +669,10 @@ namespace phys
     bool Point2PointConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
     {
         // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btPoint2PointConstraint_8cpp_source.html#l00202
+        if (-1!=Axis)
+            { return false; }
         return  ( (Con_ERP==Param||Con_Stop_ERP==Param) && this->Point2Point->m_flags & BT_P2P_FLAGS_ERP )     ||   //If we are checking erp OR we are checking stoperp AND the erp Flag is set OR
                 ( (Con_CFM==Param||Con_Stop_CFM==Param) && this->Point2Point->m_flags & BT_P2P_FLAGS_CFM )      ;   //   we are checking cfm OR we are checking stopcfm AND the cfm Flag is set
-        //return this->GetParam(Param, Axis) != FLT_MAX;
     }
 
     void Point2PointConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
