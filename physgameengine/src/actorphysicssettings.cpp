@@ -380,6 +380,7 @@ namespace phys
 std::ostream& operator<< (std::ostream& stream, const phys::ActorBasePhysicsSettings& Ev)
 {
     stream      << "<ActorBasePhysicsSettings Version=\"1\" "
+                << "CollisionShape=\"" << Ev.GetCollisionShape()->GetName() << "\" "
                 << "Friction=\"" << Ev.GetFriction() << "\" "
                 << "Restitution=\"" << Ev.GetRestitution() << "\" "
                 << "Kinematic=\"" << Ev.IsKinematic() << "\" "
@@ -408,6 +409,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhy
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
+            Ev.SetCollisionShape( phys::World::GetWorldPointer()->GetCollisionShapeManager()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString()  ) );
             Ev.SetFriction(OneNode.GetAttribute("Friction").AsReal());
             Ev.SetRestitution(OneNode.GetAttribute("Restitution").AsReal());
             if (OneNode.GetAttribute("Kinematic").AsBool())
@@ -435,8 +437,6 @@ std::ostream& operator << (std::ostream& stream, const phys::ActorRigidPhysicsSe
                 << "<IndividualGravity>" << Ev.GetIndividualGravity() << "</IndividualGravity>"
                 << "<TotalTorque>" << Ev.GetTorque() << "</TotalTorque>"
                 << "<TotalForce>" << Ev.GetForce() << "</TotalForce>";
-
-
 
         operator<<(stream, static_cast<const phys::ActorBasePhysicsSettings>(Ev));
 

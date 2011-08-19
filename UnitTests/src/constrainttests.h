@@ -70,18 +70,18 @@ class ConstraintTests : public UnitTestGroup
                 AddTestResult("Point2PointConstraint::HasParamBeenSet-UnsetStopERP", Unknown);
                 AddTestResult("Point2PointConstraint::HasParamBeenSet-SetStopERP", Unknown);
 
-
                 // Make minimal set for constraint
                 String groupname ("Group1");
                 String filerobot ("robot.mesh");
                 TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
 
                 ActorRigid *ActorA = new ActorRigid (20.0,"RobotA",filerobot,groupname);
-                ActorA->CreateShapeFromMeshDynamic(1);
+                ActorA->GetPhysicsSettings();//->SetCollisionShape();
+                ActorA->GetPhysicsSettings()->SetCollisionShape( TheWorld->GetCollisionShapeManager()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname) );
                 ActorA->SetLocation(Vector3(100,0,0));
 
                 ActorRigid *ActorB = new ActorRigid (20.0,"RobotB",filerobot,groupname);
-                ActorB->CreateShapeFromMeshDynamic(1);
+                ActorB->GetPhysicsSettings()->SetCollisionShape( TheWorld->GetCollisionShapeManager()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname) );
                 ActorB->SetLocation(Vector3(110,0,0));
 
                 Point2PointConstraint Testee( ActorA, ActorB, Vector3(0.0,0.0,5.0), Vector3(0.0,5.0,0.0) );

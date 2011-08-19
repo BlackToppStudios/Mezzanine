@@ -510,7 +510,7 @@ namespace phys
         //assert(sizeof(char)==1); // the c++ guarantees this assert will always be true, caution is good though
         char* buffer = new char[Stream->size()];
         Stream->read((void*)buffer, Stream->size());
-        if(!Importer->loadFileFromMemory(buffer, Stream->size()))  // I stepped signiifcantly far into bullet loading/parsing, and it appeared to load a name. :(
+        if(!Importer->loadFileFromMemory(buffer, Stream->size()))  // I stepped signifcantly far into bullet loading/parsing, and it appeared to load a name. :(
         {
             std::stringstream logstream;
             logstream << "Failed to load file: " << FileName << " , in CollisionShapeManager::LoadAllShapesFromFile";

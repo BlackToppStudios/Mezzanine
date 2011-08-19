@@ -168,7 +168,7 @@ namespace phys
 #ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::ActorGraphicsSettings& Ev)
 {
-    stream      << "<ActorGraphicsSettings Version=\"1\">";
+    stream      << "<ActorGraphicsSettings Version=\"1\" >";
         for(phys::Whole Counter = 0; Ev.GetNumSubmeshes()>Counter; ++Counter)
         {
             if(Ev.GetMaterialAmbient(Counter)!=phys::ColourValue())

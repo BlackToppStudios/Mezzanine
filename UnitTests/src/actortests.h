@@ -67,7 +67,7 @@ class ActorTests : public UnitTestGroup
                 TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
 
                 ActorRigid *object1 = new ActorRigid (20.0,"ABasicRobot",filerobot,groupname);
-                object1->CreateShapeFromMeshDynamic(1);
+                object1->GetPhysicsSettings()->SetCollisionShape( TheWorld->GetCollisionShapeManager()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname) );
                 object1->SetLocation(Vector3(400,70,100));
                 object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
                 object1->SetAnimation("Idle", true);
@@ -88,7 +88,7 @@ class ActorTests : public UnitTestGroup
                 SerializeTest2 << *(object1->GetGraphicsSettings());
                 SerializeTestp2 << *(object1->GetPhysicsSettings());
 
-                String Test1("<ActorGraphicsSettings Version=\"1\"></ActorGraphicsSettings>");
+                String Test1("<ActorGraphicsSettings Version=\"1\" ></ActorGraphicsSettings>");
                 if ( Test1 == SerializeTestA1.str())
                 {
                     AddTestResult("Actor::operator<< (ActorGraphicsSetting-empty)", Success, UnitTestGroup::OverWrite);
@@ -96,7 +96,7 @@ class ActorTests : public UnitTestGroup
                     AddTestResult("Actor::operator<< (ActorGraphicsSetting-empty)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String Test2("<ActorGraphicsSettings Version=\"1\"><AmbientMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.1\" Green=\"0.2\" Blue=\"0.3\" Alpha=\"0.4\" /></AmbientMaterial><SpecularMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.2\" Green=\"0.3\" Blue=\"0.4\" Alpha=\"0.5\" /></SpecularMaterial><DiffuseMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.3\" Green=\"0.4\" Blue=\"0.5\" Alpha=\"0.6\" /></DiffuseMaterial></ActorGraphicsSettings>");
+                String Test2("<ActorGraphicsSettings Version=\"1\" ><AmbientMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.1\" Green=\"0.2\" Blue=\"0.3\" Alpha=\"0.4\" /></AmbientMaterial><SpecularMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.2\" Green=\"0.3\" Blue=\"0.4\" Alpha=\"0.5\" /></SpecularMaterial><DiffuseMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.3\" Green=\"0.4\" Blue=\"0.5\" Alpha=\"0.6\" /></DiffuseMaterial></ActorGraphicsSettings>");
                 if (Test2 == SerializeTest2.str())
                 {
                     AddTestResult("Actor::operator<< (ActorGraphicsSetting-3colour)", Success, UnitTestGroup::OverWrite);
@@ -104,7 +104,7 @@ class ActorTests : public UnitTestGroup
                     AddTestResult("Actor::operator<< (ActorGraphicsSetting-3colour)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String Testp1("<ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0\" LinearDamping=\"0\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><ActorBasePhysicsSettings Version=\"1\" Friction=\"0.5\" Restitution=\"0\" Kinematic=\"0\" Static=\"0\" CollisionResponse=\"1\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" /></ActorRigidPhysicsSettings>");
+                String Testp1("<ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0\" LinearDamping=\"0\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.5\" Restitution=\"0\" Kinematic=\"0\" Static=\"0\" CollisionResponse=\"1\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" /></ActorRigidPhysicsSettings>");
                 if ( Testp1 == SerializeTestP1.str())
                 {
                     AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-empty)", Success, UnitTestGroup::OverWrite);
@@ -112,7 +112,7 @@ class ActorTests : public UnitTestGroup
                     AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-empty)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String Testp2("<ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0.01\" LinearDamping=\"0.9\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0.9\" Y=\"9.8\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><ActorBasePhysicsSettings Version=\"1\" Friction=\"0.01\" Restitution=\"0\" Kinematic=\"0\" Static=\"0\" CollisionResponse=\"1\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" /></ActorRigidPhysicsSettings>");
+                String Testp2("<ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0.01\" LinearDamping=\"0.9\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0.9\" Y=\"9.8\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.01\" Restitution=\"0\" Kinematic=\"0\" Static=\"0\" CollisionResponse=\"1\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" /></ActorRigidPhysicsSettings>");
                 if (Testp2 == SerializeTestp2.str())
                 {
                     AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-populated)", Success, UnitTestGroup::OverWrite);
