@@ -546,6 +546,76 @@ namespace phys
                 ( Con_CFM==Param      && this->Hinge->m_flags & BT_HINGE_FLAGS_CFM_NORM )   ;   //if we are checking the cfm AND the cfm bit is set
     }
 
+#ifdef PHYSXML
+    void HingeConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node HingeNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        if (!HingeNode)
+            { SerializeError("Create HingeNode", SerializableName()); }
+
+
+        // ActorA/B
+            // Name
+            // Pivot
+            // Axis
+
+        // Limit
+            // LowLimit
+            // HighLimit
+            // Softness
+            // BiasFactor
+            // RelaxationFactor
+
+
+/*
+        xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
+        xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
+        xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
+
+        //xml::Attribute FltAttr = P2PNode.AppendAttribute("FLT_MAX"); FltAttr.SetValue(FLT_MAX);
+        //xml::Attribute InfAttr = P2PNode.AppendAttribute("SIMD_INFINITY"); InfAttr.SetValue(SIMD_INFINITY);
+        //xml::Attribute InpAttr = P2PNode.AppendAttribute("IN_PARALLELL_SOLVER"); InpAttr.SetValue(IN_PARALLELL_SOLVER);
+
+        if( VerAttr && TauAttr && ClaAttr )
+        {
+            VerAttr.SetValue(1);
+            TauAttr.SetValue(this->GetTAU());
+            ClaAttr.SetValue(this->GetImpulseClamping());
+        }else{
+            SerializeError("Create P2PNode Attributes", SerializableName());
+        }
+
+        xml::Node ActorANode = P2PNode.AppendChild("ActorA");
+        if (!ActorANode)
+            { SerializeError("Create ActorANode", SerializableName()); }
+        this->GetPivotA().ProtoSerialize(ActorANode);
+
+        xml::Node ActorBNode = P2PNode.AppendChild("ActorB");
+        if (!ActorBNode)
+            { SerializeError("Create ActorBNode", SerializableName()); }
+        this->GetPivotB().ProtoSerialize(ActorBNode);
+
+        xml::Attribute NameAAttr = ActorANode.AppendAttribute("Name");
+        xml::Attribute NameBAttr = ActorBNode.AppendAttribute("Name");
+
+        if( NameAAttr && NameBAttr)
+        {
+            NameAAttr.SetValue(this->GetActorA()->GetName());
+            NameBAttr.SetValue(this->GetActorB()->GetName());
+        }
+*/
+        this->TypedConstraint::ProtoSerialize(HingeNode);
+    }
+
+    void HingeConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+
+    }
+
+    String HingeConstraint::SerializableName() const
+        { return String("HingeConstraint"); }
+#endif // /PHYSXML
+
 
     /////////////////////////////////////////
     // Hinge2 Constraint Functions
@@ -675,6 +745,7 @@ namespace phys
                 ( (Con_CFM==Param||Con_Stop_CFM==Param) && this->Point2Point->m_flags & BT_P2P_FLAGS_CFM )      ;   //   we are checking cfm OR we are checking stopcfm AND the cfm Flag is set
     }
 
+#ifdef PHYSXML
     void Point2PointConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
         xml::Node P2PNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
@@ -727,6 +798,7 @@ namespace phys
 
     String Point2PointConstraint::SerializableName() const
         { return String("Point2PointConstraint"); }
+#endif // /PHYSXML
 
     /////////////////////////////////////////
     // Slider Constraint Functions

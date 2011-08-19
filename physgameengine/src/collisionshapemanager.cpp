@@ -69,6 +69,18 @@ namespace phys
         DestroyAllShapes();
     }
 
+    CollisionShapeManager::iterator CollisionShapeManager::begin()
+        { return this->CollisionShapes.begin(); }
+
+    CollisionShapeManager::const_iterator CollisionShapeManager::begin() const
+        { return this->CollisionShapes.begin(); }
+
+    CollisionShapeManager::iterator CollisionShapeManager::end()
+        { return this->CollisionShapes.end(); }
+
+    CollisionShapeManager::const_iterator CollisionShapeManager::end() const
+        { return this->CollisionShapes.end(); }
+
     btTriangleMesh* CollisionShapeManager::CreateBulletTrimesh(Mesh* ObjectMesh, bool UseAllSubmeshes)
     {
         Ogre::MeshPtr myMesh = ObjectMesh->GetOgreMesh();
@@ -488,39 +500,50 @@ namespace phys
         return this->PerformConvexDecomposition(Name,ObjectMesh,Depth,CPercent,PPercent,UseAllSubmeshes);
     }
 
+
+#include <iostream>
     void CollisionShapeManager::LoadAllShapesFromFile(const String& FileName, const String& Group)
     {
         btBulletWorldImporter* Importer = new btBulletWorldImporter();
         Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(FileName,Group);
         //size_t StreamSize = Stream->size();
-        //assert(sizeof(char)==1);
+        //assert(sizeof(char)==1); // the c++ guarantees this assert will always be true, caution is good though
         char* buffer = new char[Stream->size()];
         Stream->read((void*)buffer, Stream->size());
-        if(!Importer->loadFileFromMemory(buffer, Stream->size()))
+        if(!Importer->loadFileFromMemory(buffer, Stream->size()))  // I stepped signiifcantly far into bullet loading/parsing, and it appeared to load a name. :(
         {
             std::stringstream logstream;
             logstream << "Failed to load file: " << FileName << " , in CollisionShapeManager::LoadAllShapesFromFile";
             World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
             return;
         }
-        for( Whole X = 0 ; X < Importer->getNumCollisionShapes() ; X++ )
+        delete[] buffer;
+        for( Whole X = 0 ; X < Importer->getNumCollisionShapes() ; ++X ) //Switched to prefix increment, it is never slower but might be faster, only use postifx, if you need the return value Pre-increment
         {
-            btCollisionShape* Shape = Importer->getCollisionShapeByIndex(X);
-            String Name = Importer->getNameForPointer((void*)Shape);
+            btCollisionShape* Shape = Importer->getCollisionShapeByIndex(X); // I Stepped through this and it seemed to create valid shapes.
+            const char* MaybeAName = Importer->getNameForPointer((void*)Shape); // This function was returning a void pointer for some reason,  this makes me want to check the loading/parsing
+            String Name;
+            if(MaybeAName)
+                { Name = String(MaybeAName); }
+            else
+            {
+                static Whole NameCount = 0; // Maybe this part should throw an exception  instead of silently fail to get name
+                Name = StringCat("GenericShape",ToString(NameCount++)); //Using pre-increment return value so shape anems begin at 0, like "GenericShape0","GenericShape1", ...
+            }
             switch(Shape->getShapeType())
             {
                 case BOX_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
-                    BoxCollisionShape* BoxShape = new BoxCollisionShape(Name,(btBoxShape*)Shape);
+                    BoxCollisionShape* BoxShape = new BoxCollisionShape(Name,(btBoxShape*)Shape); // If each of these collision shapes accepted CollisionShape* and would cast itself or throw an error, then this switch could be abstracted away.
                     CollisionShapes[Name] = BoxShape;
                     break;
                 }
                 case CAPSULE_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                   CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     CapsuleCollisionShape* CapsuleShape = new CapsuleCollisionShape(Name,(btCapsuleShape*)Shape);
@@ -529,7 +552,7 @@ namespace phys
                 }
                 case CONE_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     ConeCollisionShape* ConeShape = new ConeCollisionShape(Name,(btConeShape*)Shape);
@@ -538,7 +561,7 @@ namespace phys
                 }
                 case CONVEX_HULL_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     ConvexHullCollisionShape* ConvexHullShape = new ConvexHullCollisionShape(Name,(btConvexHullShape*)Shape);
@@ -547,7 +570,7 @@ namespace phys
                 }
                 case CYLINDER_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     CylinderCollisionShape* CylinderShape = new CylinderCollisionShape(Name,(btCylinderShape*)Shape);
@@ -556,7 +579,7 @@ namespace phys
                 }
                 case MULTI_SPHERE_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     MultiSphereCollisionShape* MultiSphereShape = new MultiSphereCollisionShape(Name,(btMultiSphereShape*)Shape);
@@ -565,7 +588,7 @@ namespace phys
                 }
                 case SPHERE_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     SphereCollisionShape* SphereShape = new SphereCollisionShape(Name,(btSphereShape*)Shape);
@@ -574,7 +597,7 @@ namespace phys
                 }
                 case GIMPACT_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     DynamicMeshCollisionShape* GImpactShape = new DynamicMeshCollisionShape(Name,(btGImpactMeshShape*)Shape);
@@ -583,7 +606,7 @@ namespace phys
                 }
                 case TERRAIN_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     HeightfieldCollisionShape* HeightFieldShape = new HeightfieldCollisionShape(Name,(btHeightfieldTerrainShape*)Shape);
@@ -592,7 +615,7 @@ namespace phys
                 }
                 case STATIC_PLANE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     PlaneCollisionShape* PlaneShape = new PlaneCollisionShape(Name,(btStaticPlaneShape*)Shape);
@@ -601,7 +624,7 @@ namespace phys
                 }
                 case SOFTBODY_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     ActorSoftCollisionShape* SoftBodyShape = new ActorSoftCollisionShape(Name,(btSoftBodyCollisionShape*)Shape);
@@ -610,7 +633,7 @@ namespace phys
                 }
                 case TRIANGLE_MESH_SHAPE_PROXYTYPE:
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     StaticMeshCollisionShape* BvhShape = new StaticMeshCollisionShape(Name,(btBvhTriangleMeshShape*)Shape);
@@ -619,7 +642,7 @@ namespace phys
                 }
                 case COMPOUND_SHAPE_PROXYTYPE: // holy recursive batman
                 {
-                    std::map<String,CollisionShape*>::iterator it = CollisionShapes.find(Name);
+                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                     if(it != CollisionShapes.end())
                         break;
                     CompoundCollisionShape* Compound = new CompoundCollisionShape(Name,(btCompoundShape*)Shape);
@@ -632,7 +655,7 @@ namespace phys
                 }//default
             }//switch
         }//for
-        delete buffer;
+        //delete buffer; // why not delete[] this looks like it should technically cause undefined behavior, most likely a leak
         delete Importer;
     }
 

@@ -70,7 +70,7 @@ void LevelLoader::LoadFerris()
     ActorRigid* FerrisWheel = new ActorRigid(100.0,"FerrisWheel","wheel.mesh",FerrisGroup);
     FerrisWheel->SetLocation(100,0,0);
     FerrisWheel->GetPhysicsSettings()->SetDamping(0,0.1);
-    FerrisWheel->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("wheel"));
+    FerrisWheel->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("wheel")); // The names aren't being loaded as we expected
     ActMan->AddActor(FerrisWheel);
 
     // Create the trayz

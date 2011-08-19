@@ -65,15 +65,38 @@ namespace phys
     class PHYS_LIB CollisionShapeManager : public ManagerBase
     {
         protected:
+            /// @brief This Stores the names and collision Shapes
             std::map<String,CollisionShape*> CollisionShapes;
 
             /// @brief Creates a TriMesh to be used in TriMesh based collision shapes.
             btTriangleMesh* CreateBulletTrimesh(Mesh* ObjectMesh, bool UseAllSubmeshes);
+
         public:
             /// @brief Class constructor.
             CollisionShapeManager();
             /// @brief Class destructor.
             virtual ~CollisionShapeManager();
+
+            ///////////////////////////////////////////////////////////////////////////////     // There are reasons why maybe this should not be public
+            // Iteration
+
+            /// @brief An iterator that should be compatible with most iterator algorithms
+            typedef std::map<String,CollisionShape*>::iterator iterator;
+            /// @brief An const_iterator that should be compatible with most iterator algorithms
+            typedef std::map<String,CollisionShape*>::const_iterator const_iterator;
+
+            /// @brief Get an Iterator pointing to the first item in the container.
+            /// @return An iterator that is compatible with most std algorithms and points to the first collisionshape entry.
+            iterator begin();
+            /// @brief Get a const Iterator pointing at the first item in the container.
+            /// @return A const iterator that is compatible with most std algorithms and points to the first collisionshape entry.
+            const_iterator begin() const;
+            /// @brief Get an Iterator pointing to one past the last item in the container.
+            /// @return An iterator that is compatible with most std algorithms and points to one past the last valid collision shape entry.
+            iterator end();
+            /// @brief Get an const Iterator pointing to one past the last item in the container.
+            /// @return An const iterator that is compatible with most std algorithms and points to one past the last valid collision shape entry.
+            const_iterator end() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Generic Shape Management
