@@ -20,13 +20,18 @@ Inheritance diagram for phys::SimpleTimer:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1SimpleTimer_a3094be3aaf4cf65189604a413fa56f95}{SimpleTimer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} style)
-\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1SimpleTimer_ae7ef0b3d2b00b97d9c8a69654d9f6d74}{
-virtual \hyperlink{classphys_1_1SimpleTimer_ae7ef0b3d2b00b97d9c8a69654d9f6d74}{$\sim$SimpleTimer} ()}
-\label{classphys_1_1SimpleTimer_ae7ef0b3d2b00b97d9c8a69654d9f6d74}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_aa0cda0797bfb501240016177ff1450a5}{GetCurrentTime} ()
+\begin{DoxyCompactList}\small\item\em Gets the Current time in Microseconds. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a334e151fd080489c1704abd3039b1843}{GetCurrentTimeInMilli} ()
+\begin{DoxyCompactList}\small\item\em Gets the Current time in Milliseconds. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a37b29b36164f5538988df955fd46e89b}{GetGoalTime} ()
+\begin{DoxyCompactList}\small\item\em Gets the Goal time in Microseconds. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a69b08da65148ea36b62d9d0f672e8325}{GetGoalTimeInMilli} ()
+\begin{DoxyCompactList}\small\item\em Gets the Goal time in Milliseconds. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a6d56952c8b2f2e3405a1bc2cc3b8a833}{GetInitialTime} ()
+\begin{DoxyCompactList}\small\item\em Gets the Initial time in Microseconds. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a6ff614afe79f0426c371f67dfe3016fc}{GetInitialTimeInMilli} ()
+\begin{DoxyCompactList}\small\item\em Gets the Initial time in Milliseconds. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1SimpleTimer_adea8d8b608e5abb96460c83f7b47f94f}{
 virtual void \hyperlink{classphys_1_1SimpleTimer_adea8d8b608e5abb96460c83f7b47f94f}{Reset} ()}
 \label{classphys_1_1SimpleTimer_adea8d8b608e5abb96460c83f7b47f94f}
@@ -41,24 +46,29 @@ virtual \hyperlink{classphys_1_1SimpleTimer}{SimpleTimer} \& \hyperlink{classphy
 \begin{DoxyCompactList}\small\item\em Sets the goal time in Microseconds. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1SimpleTimer}{SimpleTimer} \& \hyperlink{classphys_1_1SimpleTimer_a00bf7f837c8ed515a65bd8dbf6d9d593}{SetInitialTime} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Initial)
 \begin{DoxyCompactList}\small\item\em Sets the initial time in Microseconds. The time that resetting sets the timer to. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_aa0cda0797bfb501240016177ff1450a5}{GetCurrentTime} ()
-\begin{DoxyCompactList}\small\item\em Gets the Current time in Microseconds. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a37b29b36164f5538988df955fd46e89b}{GetGoalTime} ()
-\begin{DoxyCompactList}\small\item\em Gets the Goal time in Microseconds. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a6d56952c8b2f2e3405a1bc2cc3b8a833}{GetInitialTime} ()
-\begin{DoxyCompactList}\small\item\em Gets the Initial time in Microseconds. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a334e151fd080489c1704abd3039b1843}{GetCurrentTimeInMilli} ()
-\begin{DoxyCompactList}\small\item\em Gets the Current time in Milliseconds. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a69b08da65148ea36b62d9d0f672e8325}{GetGoalTimeInMilli} ()
-\begin{DoxyCompactList}\small\item\em Gets the Goal time in Milliseconds. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a6ff614afe79f0426c371f67dfe3016fc}{GetInitialTimeInMilli} ()
-\begin{DoxyCompactList}\small\item\em Gets the Initial time in Milliseconds. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classphys_1_1SimpleTimer_a3094be3aaf4cf65189604a413fa56f95}{SimpleTimer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} style)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1SimpleTimer_ae7ef0b3d2b00b97d9c8a69654d9f6d74}{
+virtual \hyperlink{classphys_1_1SimpleTimer_ae7ef0b3d2b00b97d9c8a69654d9f6d74}{$\sim$SimpleTimer} ()}
+\label{classphys_1_1SimpleTimer_ae7ef0b3d2b00b97d9c8a69654d9f6d74}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1SimpleTimer_a435c974da0511d6beafcefb9b987a21c}{
+virtual bool {\bfseries GoalReached} ()}
+\label{classphys_1_1SimpleTimer_a435c974da0511d6beafcefb9b987a21c}
+
 \item 
 \hypertarget{classphys_1_1SimpleTimer_a4fa114aae9cf0418edd8a80f307f3906}{
 virtual void {\bfseries Update} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} MicroSecondsElapsed)}
 \label{classphys_1_1SimpleTimer_a4fa114aae9cf0418edd8a80f307f3906}
+
+\item 
+\hypertarget{classphys_1_1SimpleTimer_a7fcd77c7b49f807cc9e43b3b521d2056}{
+virtual void {\bfseries UpdateAsAlarm} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} MicroSecondsElapsed)}
+\label{classphys_1_1SimpleTimer_a7fcd77c7b49f807cc9e43b3b521d2056}
 
 \item 
 \hypertarget{classphys_1_1SimpleTimer_ab7ff17f3515f07713b65df8887801f0d}{
@@ -69,16 +79,6 @@ virtual void {\bfseries UpdateAsNormal} (const \hyperlink{namespacephys_a460f6bc
 \hypertarget{classphys_1_1SimpleTimer_a5b9cdf890b478ab1f0bf8d0919df4157}{
 virtual void {\bfseries UpdateAsStopWatch} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} MicroSecondsElapsed)}
 \label{classphys_1_1SimpleTimer_a5b9cdf890b478ab1f0bf8d0919df4157}
-
-\item 
-\hypertarget{classphys_1_1SimpleTimer_a7fcd77c7b49f807cc9e43b3b521d2056}{
-virtual void {\bfseries UpdateAsAlarm} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} MicroSecondsElapsed)}
-\label{classphys_1_1SimpleTimer_a7fcd77c7b49f807cc9e43b3b521d2056}
-
-\item 
-\hypertarget{classphys_1_1SimpleTimer_a435c974da0511d6beafcefb9b987a21c}{
-virtual bool {\bfseries GoalReached} ()}
-\label{classphys_1_1SimpleTimer_a435c974da0511d6beafcefb9b987a21c}
 
 \end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}

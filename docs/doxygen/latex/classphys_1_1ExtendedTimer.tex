@@ -30,11 +30,16 @@ enum \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{Ti
 \item 
 \hyperlink{classphys_1_1ExtendedTimer_aef0ba967eabeae973d9354257de43fc8}{ExtendedTimer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} style)
 \begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ExtendedTimer_a7a9ce42ffda17cbe366adde1688120af}{
-virtual \hyperlink{classphys_1_1ExtendedTimer_a7a9ce42ffda17cbe366adde1688120af}{$\sim$ExtendedTimer} ()}
-\label{classphys_1_1ExtendedTimer_a7a9ce42ffda17cbe366adde1688120af}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_ac3fe4d0a31999d8f6e3a900f8aaa6816}{GetDays} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Day count. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_af5cada222452ad347062efa9eb6f365a}{GetHours} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Hour count. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_a91e0b11c0e77c7eea5152efb5bed9453}{GetMilliseconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Millisecond count. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_a4081b9972f76c424b4ca067c8358a926}{GetMinutes} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Minute count. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_a4b8cd596878863ce9272f0484067c1f3}{GetSeconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Second count. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ExtendedTimer_a33f0cb87c37031ec54b99d09a522bafb}{
 virtual void \hyperlink{classphys_1_1ExtendedTimer_a33f0cb87c37031ec54b99d09a522bafb}{Reset} ()}
 \label{classphys_1_1ExtendedTimer_a33f0cb87c37031ec54b99d09a522bafb}
@@ -43,34 +48,74 @@ virtual void \hyperlink{classphys_1_1ExtendedTimer_a33f0cb87c37031ec54b99d09a522
 virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_aa16dfa7e855f9b8b55c85058cb24d03a}{SetAutoReset} (const bool AutoReset)
 \begin{DoxyCompactList}\small\item\em Sets whether or not the \hyperlink{classphys_1_1Timer}{Timer} should reset if it reaches it's goal. \par
  Ex. If a stopwatch reaches 0. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_a3aeeb90ac4e4b20a59b29fc1ee738141}{SetDays} (\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Day, const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Sets the value for Days of the specified struct. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_a33f3d02bdf07073dc4fdf979dd3f68bc}{SetHours} (\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Hr, const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Sets the value for Hours of the specified struct. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_a86f1e5d470565a2dda78b66aca47d667}{SetMicroseconds} (\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} MS, const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
 \begin{DoxyCompactList}\small\item\em Sets the value for Microseconds of the specified struct. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_ab64ddc2dc49d4daf9b0e5a33dc9dc68a}{SetMilliseconds} (\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} MS, const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
 \begin{DoxyCompactList}\small\item\em Sets the value for Milliseconds of the specified struct. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_ad9303e618cb0ea171441d595eb5a3e55}{SetSeconds} (\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Sec, const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
-\begin{DoxyCompactList}\small\item\em Sets the value for Seconds of the specified struct. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_a780114f83344b2cd15a558f054b4e8e8}{SetMinutes} (\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Min, const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
 \begin{DoxyCompactList}\small\item\em Sets the value for Minutes of the specified struct. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_a33f3d02bdf07073dc4fdf979dd3f68bc}{SetHours} (\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Hr, const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
-\begin{DoxyCompactList}\small\item\em Sets the value for Hours of the specified struct. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_a3aeeb90ac4e4b20a59b29fc1ee738141}{SetDays} (\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Day, const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
-\begin{DoxyCompactList}\small\item\em Sets the value for Days of the specified struct. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_a91e0b11c0e77c7eea5152efb5bed9453}{GetMilliseconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
-\begin{DoxyCompactList}\small\item\em Gets the current internal Millisecond count. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_a4b8cd596878863ce9272f0484067c1f3}{GetSeconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
-\begin{DoxyCompactList}\small\item\em Gets the current internal Second count. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_a4081b9972f76c424b4ca067c8358a926}{GetMinutes} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
-\begin{DoxyCompactList}\small\item\em Gets the current internal Minute count. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_af5cada222452ad347062efa9eb6f365a}{GetHours} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
-\begin{DoxyCompactList}\small\item\em Gets the current internal Hour count. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{classphys_1_1ExtendedTimer_ac3fe4d0a31999d8f6e3a900f8aaa6816}{GetDays} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
-\begin{DoxyCompactList}\small\item\em Gets the current internal Day count. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classphys_1_1ExtendedTimer_ad9303e618cb0ea171441d595eb5a3e55}{SetSeconds} (\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Sec, const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Sets the value for Seconds of the specified struct. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ExtendedTimer_a7a9ce42ffda17cbe366adde1688120af}{
+virtual \hyperlink{classphys_1_1ExtendedTimer_a7a9ce42ffda17cbe366adde1688120af}{$\sim$ExtendedTimer} ()}
+\label{classphys_1_1ExtendedTimer_a7a9ce42ffda17cbe366adde1688120af}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ExtendedTimer_af92fcaca7cea1a2d48f7411b1b18223f}{
+virtual bool {\bfseries CheckAll} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
+\label{classphys_1_1ExtendedTimer_af92fcaca7cea1a2d48f7411b1b18223f}
+
+\item 
+\hypertarget{classphys_1_1ExtendedTimer_a9782d2866e39777ebfa2193460a1c457}{
+virtual bool {\bfseries CheckDays} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
+\label{classphys_1_1ExtendedTimer_a9782d2866e39777ebfa2193460a1c457}
+
+\item 
+\hypertarget{classphys_1_1ExtendedTimer_aee17ef0ce61f2d587ff6734ca54a5747}{
+virtual bool {\bfseries CheckHours} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
+\label{classphys_1_1ExtendedTimer_aee17ef0ce61f2d587ff6734ca54a5747}
+
+\item 
+\hypertarget{classphys_1_1ExtendedTimer_a4ae8b42ab14c7eb0b667968362eb9fbc}{
+virtual bool {\bfseries CheckMicroSeconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
+\label{classphys_1_1ExtendedTimer_a4ae8b42ab14c7eb0b667968362eb9fbc}
+
+\item 
+\hypertarget{classphys_1_1ExtendedTimer_ac70c02c75c9172a16dbd1dd3cdc1c554}{
+virtual bool {\bfseries CheckMilliSeconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
+\label{classphys_1_1ExtendedTimer_ac70c02c75c9172a16dbd1dd3cdc1c554}
+
+\item 
+\hypertarget{classphys_1_1ExtendedTimer_a14ed25abe8070ba5e016e9c45c6974d6}{
+virtual bool {\bfseries CheckMinutes} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
+\label{classphys_1_1ExtendedTimer_a14ed25abe8070ba5e016e9c45c6974d6}
+
+\item 
+\hypertarget{classphys_1_1ExtendedTimer_a2a2d9aa7baacdd86f0007510e8808db9}{
+virtual bool {\bfseries CheckSeconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
+\label{classphys_1_1ExtendedTimer_a2a2d9aa7baacdd86f0007510e8808db9}
+
+\item 
+\hypertarget{classphys_1_1ExtendedTimer_ae71b57d5a274f77edb37a9606eaa02bb}{
+virtual bool {\bfseries CompareCurrentAndGoal} (const \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Current, const \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Goal)}
+\label{classphys_1_1ExtendedTimer_ae71b57d5a274f77edb37a9606eaa02bb}
+
 \item 
 \hypertarget{classphys_1_1ExtendedTimer_a94f3140d4eba930ed76cc530b4f847b7}{
 virtual \hyperlink{structphys_1_1Time}{Time} \& {\bfseries GetStruct} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
 \label{classphys_1_1ExtendedTimer_a94f3140d4eba930ed76cc530b4f847b7}
+
+\item 
+\hypertarget{classphys_1_1ExtendedTimer_ae3684bd4b2638617e86df3cb78813ce6}{
+virtual bool {\bfseries GoalReached} ()}
+\label{classphys_1_1ExtendedTimer_ae3684bd4b2638617e86df3cb78813ce6}
 
 \item 
 \hypertarget{classphys_1_1ExtendedTimer_ac5e604ad911911939ba190520f8c3399}{
@@ -86,51 +131,6 @@ virtual void {\bfseries UpdateAsNormal} (const \hyperlink{namespacephys_a460f6bc
 \hypertarget{classphys_1_1ExtendedTimer_a2df54619bf6a74d8c44c877352b3f323}{
 virtual void {\bfseries UpdateAsStopWatch} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} MicroSecondsElapsed)}
 \label{classphys_1_1ExtendedTimer_a2df54619bf6a74d8c44c877352b3f323}
-
-\item 
-\hypertarget{classphys_1_1ExtendedTimer_a4ae8b42ab14c7eb0b667968362eb9fbc}{
-virtual bool {\bfseries CheckMicroSeconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
-\label{classphys_1_1ExtendedTimer_a4ae8b42ab14c7eb0b667968362eb9fbc}
-
-\item 
-\hypertarget{classphys_1_1ExtendedTimer_ac70c02c75c9172a16dbd1dd3cdc1c554}{
-virtual bool {\bfseries CheckMilliSeconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
-\label{classphys_1_1ExtendedTimer_ac70c02c75c9172a16dbd1dd3cdc1c554}
-
-\item 
-\hypertarget{classphys_1_1ExtendedTimer_a2a2d9aa7baacdd86f0007510e8808db9}{
-virtual bool {\bfseries CheckSeconds} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
-\label{classphys_1_1ExtendedTimer_a2a2d9aa7baacdd86f0007510e8808db9}
-
-\item 
-\hypertarget{classphys_1_1ExtendedTimer_a14ed25abe8070ba5e016e9c45c6974d6}{
-virtual bool {\bfseries CheckMinutes} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
-\label{classphys_1_1ExtendedTimer_a14ed25abe8070ba5e016e9c45c6974d6}
-
-\item 
-\hypertarget{classphys_1_1ExtendedTimer_aee17ef0ce61f2d587ff6734ca54a5747}{
-virtual bool {\bfseries CheckHours} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
-\label{classphys_1_1ExtendedTimer_aee17ef0ce61f2d587ff6734ca54a5747}
-
-\item 
-\hypertarget{classphys_1_1ExtendedTimer_a9782d2866e39777ebfa2193460a1c457}{
-virtual bool {\bfseries CheckDays} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
-\label{classphys_1_1ExtendedTimer_a9782d2866e39777ebfa2193460a1c457}
-
-\item 
-\hypertarget{classphys_1_1ExtendedTimer_af92fcaca7cea1a2d48f7411b1b18223f}{
-virtual bool {\bfseries CheckAll} (const \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554b}{ExtendedTimer::TimeStruct} Struct)}
-\label{classphys_1_1ExtendedTimer_af92fcaca7cea1a2d48f7411b1b18223f}
-
-\item 
-\hypertarget{classphys_1_1ExtendedTimer_ae71b57d5a274f77edb37a9606eaa02bb}{
-virtual bool {\bfseries CompareCurrentAndGoal} (const \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Current, const \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} Goal)}
-\label{classphys_1_1ExtendedTimer_ae71b57d5a274f77edb37a9606eaa02bb}
-
-\item 
-\hypertarget{classphys_1_1ExtendedTimer_ae3684bd4b2638617e86df3cb78813ce6}{
-virtual bool {\bfseries GoalReached} ()}
-\label{classphys_1_1ExtendedTimer_ae3684bd4b2638617e86df3cb78813ce6}
 
 \end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
@@ -210,7 +210,7 @@ Standard Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Style} & The styling/type of timer to be constructed. \\
+{\em style} & The styling/type of timer to be constructed. \\
 \hline
 \end{DoxyParams}
 
@@ -237,6 +237,11 @@ Gets the current internal Day count.
 Returns an Integer representing the current Day count of this \hyperlink{classphys_1_1Timer}{Timer}. 
 \end{DoxyReturn}
 
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
 
 Definition at line 366 of file extendedtimer.cpp.
 
@@ -256,6 +261,11 @@ Gets the current internal Hour count.
 \begin{DoxyReturn}{Returns}
 Returns an Integer representing the current Hour count of this \hyperlink{classphys_1_1Timer}{Timer}. 
 \end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 361 of file extendedtimer.cpp.
@@ -277,6 +287,11 @@ Gets the current internal Millisecond count.
 Returns an Integer representing the current Millisecond count of this \hyperlink{classphys_1_1Timer}{Timer}. 
 \end{DoxyReturn}
 
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
 
 Definition at line 346 of file extendedtimer.cpp.
 
@@ -297,6 +312,11 @@ Gets the current internal Minute count.
 Returns an Integer representing the current Minute count of this \hyperlink{classphys_1_1Timer}{Timer}. 
 \end{DoxyReturn}
 
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
 
 Definition at line 356 of file extendedtimer.cpp.
 
@@ -316,6 +336,11 @@ Gets the current internal Second count.
 \begin{DoxyReturn}{Returns}
 Returns an Integer representing the current Second count of this \hyperlink{classphys_1_1Timer}{Timer}. 
 \end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 351 of file extendedtimer.cpp.
@@ -362,6 +387,8 @@ Returns a reference to this timer.
 \begin{DoxyParams}{Parameters}
 {\em Day} & The number of Days to set. \\
 \hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
+\hline
 \end{DoxyParams}
 
 
@@ -387,6 +414,8 @@ Returns a reference to this timer.
 
 \begin{DoxyParams}{Parameters}
 {\em Hr} & The number of Hours to set. \\
+\hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
 \hline
 \end{DoxyParams}
 
@@ -414,6 +443,8 @@ Returns a reference to this timer.
 \begin{DoxyParams}{Parameters}
 {\em MS} & The number of Microseconds to set. \\
 \hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
+\hline
 \end{DoxyParams}
 
 
@@ -439,6 +470,8 @@ Returns a reference to this timer.
 
 \begin{DoxyParams}{Parameters}
 {\em MS} & The number of Milliseconds to set. \\
+\hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
 \hline
 \end{DoxyParams}
 
@@ -466,6 +499,8 @@ Returns a reference to this timer.
 \begin{DoxyParams}{Parameters}
 {\em Min} & The number of Minutes to set. \\
 \hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
+\hline
 \end{DoxyParams}
 
 
@@ -491,6 +526,8 @@ Returns a reference to this timer.
 
 \begin{DoxyParams}{Parameters}
 {\em Sec} & The number of Seconds to set. \\
+\hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classphys_1_1ExtendedTimer_a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4}{ExtendedTimer::Current} \\
 \hline
 \end{DoxyParams}
 

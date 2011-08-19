@@ -10,26 +10,26 @@ Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys:
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1internal_1_1Line3D_ab22b8f5fae0bb2585b1031adfff424bd}{Line3D} (void)
-\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1internal_1_1Line3D_acddc95dd5f319d6afc68260af8bea39c}{$\sim$Line3D} (void)
-\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1internal_1_1Line3D_aeb3b828b35b4c8ed76158285be6ddc67}{addPoint} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&p)
 \begin{DoxyCompactList}\small\item\em This adds a point to the list of what should be rendered. \item\end{DoxyCompactList}\item 
-const \hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1internal_1_1Line3D_a190af0e38be28297ed2f6a7aecf0c316}{getPoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index) const 
-\begin{DoxyCompactList}\small\item\em Access a specific point by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1internal_1_1Line3D_ab72a9dab3a355035c24c15e4a737ea2f}{getNumPoints} (void) const 
-\begin{DoxyCompactList}\small\item\em How many points are in this \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1internal_1_1Line3D_a4b2dec1619e4456ab0cb034ad34eb9d1}{updatePoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index, const \hyperlink{classphys_1_1Vector3}{Vector3} \&value)
-\begin{DoxyCompactList}\small\item\em Change an existing point. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}{drawLine} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&start, const \hyperlink{classphys_1_1Vector3}{Vector3} \&end)
 \begin{DoxyCompactList}\small\item\em Adds two points. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1internal_1_1Line3D_a008f0874c2213002e0c39330561f80f2}{drawLines} (void)
 \begin{DoxyCompactList}\small\item\em Renders this. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1internal_1_1Line3D_a3fdd0ff2b7b22cebc71f796431afc7c8}{getBoundingRadius} (void) const 
+\begin{DoxyCompactList}\small\item\em How big would a circle need to be to encapsulate this. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1internal_1_1Line3D_ab72a9dab3a355035c24c15e4a737ea2f}{getNumPoints} (void) const 
+\begin{DoxyCompactList}\small\item\em How many points are in this \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}. \item\end{DoxyCompactList}\item 
+const \hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1internal_1_1Line3D_a190af0e38be28297ed2f6a7aecf0c316}{getPoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index) const 
+\begin{DoxyCompactList}\small\item\em Access a specific point by index. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1internal_1_1Line3D_a5d2622c10ef432e84cad59634dcee340}{getSquaredViewDepth} (const Ogre::Camera $\ast$cam) const 
 \begin{DoxyCompactList}\small\item\em Not Used. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1internal_1_1Line3D_a3fdd0ff2b7b22cebc71f796431afc7c8}{getBoundingRadius} (void) const 
-\begin{DoxyCompactList}\small\item\em How big would a circle need to be to encapsulate this. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classphys_1_1internal_1_1Line3D_ab22b8f5fae0bb2585b1031adfff424bd}{Line3D} (void)
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1internal_1_1Line3D_a4b2dec1619e4456ab0cb034ad34eb9d1}{updatePoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index, const \hyperlink{classphys_1_1Vector3}{Vector3} \&value)
+\begin{DoxyCompactList}\small\item\em Change an existing point. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1internal_1_1Line3D_acddc95dd5f319d6afc68260af8bea39c}{$\sim$Line3D} (void)
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -40,16 +40,16 @@ const \hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1inter
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}{
-std::vector$<$ \hyperlink{classphys_1_1Vector3}{Vector3} $>$ \hyperlink{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}{mPoints}}
-\label{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}
-
-\begin{DoxyCompactList}\small\item\em This is a vector which stores the point data. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1internal_1_1Line3D_a7f3a190db3c0cd83ff4fdf3d95d6f0ee}{
 bool \hyperlink{classphys_1_1internal_1_1Line3D_a7f3a190db3c0cd83ff4fdf3d95d6f0ee}{mDrawn}}
 \label{classphys_1_1internal_1_1Line3D_a7f3a190db3c0cd83ff4fdf3d95d6f0ee}
 
-\begin{DoxyCompactList}\small\item\em This indicates whether or not the the line have been done yet. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This indicates whether or not the the line have been done yet. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}{
+std::vector$<$ \hyperlink{classphys_1_1Vector3}{Vector3} $>$ \hyperlink{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}{mPoints}}
+\label{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}
+
+\begin{DoxyCompactList}\small\item\em This is a vector which stores the point data. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

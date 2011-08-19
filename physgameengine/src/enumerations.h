@@ -107,17 +107,6 @@ namespace phys
         CF_UserFilter2 = 128
     };
 
-    /// @enum ConstraintParams
-    /// @brief Used by constraints for setting some parameters.
-    /// @details See the constraint class documentation for more details.
-    enum ConstraintParams
-    {
-        Con_ERP = 1,
-        Con_Stop_ERP,
-        Con_CFM,
-        Con_Stop_CFM
-    };
-
     /// @enum WorldObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This is mostly used internally for casting void pointers.

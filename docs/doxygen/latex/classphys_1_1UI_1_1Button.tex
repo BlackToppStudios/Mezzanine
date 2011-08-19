@@ -20,37 +20,104 @@ Inheritance diagram for phys::UI::Button:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a3b51fa981fdf869240bff082bafb56a9}{BindActivationKeyOrButton} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)
+\begin{DoxyCompactList}\small\item\em Registers a keyboard key or mouse button that can activate this button. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Button_a42ae60edce5a262254e4608a3ed9fc3c}{Button} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}{
-virtual \hyperlink{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}{$\sim$Button} ()}
-\label{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a293a0a5296778fb3d638c31c5d9d4c75}{SetVisible} (bool Visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this button. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Button_a2bca8ace690157fa2646bcf1cb54397a}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this button. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Button_aad25b9ec4b9c7cc232d419dcd68f420e}{
-virtual void \hyperlink{classphys_1_1UI_1_1Button_aad25b9ec4b9c7cc232d419dcd68f420e}{Show} ()}
-\label{classphys_1_1UI_1_1Button_aad25b9ec4b9c7cc232d419dcd68f420e}
-
-\begin{DoxyCompactList}\small\item\em Forces this button to be shown. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Button_a72d76501d15053e3fbd9e7eb933e22de}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a8524260064c118597de5c18175f56493}{EnableMultipleActivations} (bool Enable)
+\begin{DoxyCompactList}\small\item\em Enables or disables whether or not the button should be allowed to activate multiple times per frame. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a4fe6560484f1d78b08c96eaf967404d2}{EnableUserSprite} (bool Enable)
+\begin{DoxyCompactList}\small\item\em Enables(or disables) the currently set User sprite. \item\end{DoxyCompactList}\item 
+virtual UI::ActivationCondition \hyperlink{classphys_1_1UI_1_1Button_a193f5fa1554d978a5061c08bd4eca86b}{GetActivationCondition} ()
+\begin{DoxyCompactList}\small\item\em Gets the condition for activation for this button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_a0b991ada87707d8d951dae7c0e3246f6}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_ab6640af433afe96d5f6bd7016986d73f}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the size of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classphys_1_1UI_1_1Button_adb1a79145196e9682261f18fa8de04fe}{GetKeyboardActivationKeys} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector with all the keyboard input codes used to activate this button. \item\end{DoxyCompactList}\item 
+virtual std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classphys_1_1UI_1_1Button_a2256e2f15cf3aea5abd3279178dc3199}{GetMouseActivationButtons} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector with all the mouse input codes used to activate this button. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Button_a66522ebf5f3c75e96a6dfd99700a0f74}{GetMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1UI_1_1Button_a1b757862cd1f4935d62c05ef4596b8a0}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_adfa08ace813b88cae114e18f88942642}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Button_a8aad3cb0e33a2bfc4fc4913bf19396a5}{GetPrimaryAtlas} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
+virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1Button_aa17ffbc9b0d4eed151ff5ecbf93d88b8}{GetRenderPriority} ()
+\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_ade75e042d1a19be5d4fb1b16913af5a5}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this button. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Button_a5a68803daf10281a85b4db1d4c18e412}{
 virtual void \hyperlink{classphys_1_1UI_1_1Button_a5a68803daf10281a85b4db1d4c18e412}{Hide} ()}
 \label{classphys_1_1UI_1_1Button_a5a68803daf10281a85b4db1d4c18e412}
 
 \begin{DoxyCompactList}\small\item\em Forces this button to hide. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1UI_1_1Button_a1b757862cd1f4935d62c05ef4596b8a0}{GetName} ()
-\begin{DoxyCompactList}\small\item\em Gets the name of this button. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Button_ac54dde0e137f207bdec9a14b58063a6d}{IsActivated} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not this button is currently activated. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Button_a6630a0e94a3998f6972b35a4e368b3ff}{IsMultipleActivationsEnabled} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not multiple activations per frame are enabled for this button. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1Button_a9c575f6433a5a455dc8c5de73d37839c}{IsTextButton} ()
 \begin{DoxyCompactList}\small\item\em Gets whether this is a text button. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Button_a2bca8ace690157fa2646bcf1cb54397a}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this button. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Button_adaf3f9ed9f8478e180278b71cb355db6}{
+virtual void \hyperlink{classphys_1_1UI_1_1Button_adaf3f9ed9f8478e180278b71cb355db6}{NoBorder} ()}
+\label{classphys_1_1UI_1_1Button_adaf3f9ed9f8478e180278b71cb355db6}
+
+\begin{DoxyCompactList}\small\item\em Disables any border set on this rectangle if one is currently set. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_ae875686ae568fc121eef980b24949cc1}{SetActivation} (bool Activate)
+\begin{DoxyCompactList}\small\item\em Sets the button as activated, also calling any set callbacks. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a888cafb544472bbe3c5b023f4279030e}{SetActivationCondition} (const UI::ActivationCondition \&Condition)
+\begin{DoxyCompactList}\small\item\em Sets the condition for activation for this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a50f175a9a9002b3270edc74154d4255b}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_ab6c806b1bef7d1a3b9455914a1e9c8c0}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the size of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a390aa5a409361507b5802141380bc1d3}{SetBackgroundColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Sets the background colour of the button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a7cecb219a59fb55db6ac0070359bb23f}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a13899540adb0b039fec892f24a312686}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the button from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a8e7fa03ebbdf0c71dc60e5b95635894c}{SetBorder} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Enables a border and sets it's colour. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Button_aa9f8c1e2e91e22405bacd298c88eb845}{SetButtonCallback} (\hyperlink{classphys_1_1UI_1_1ButtonCallback}{ButtonCallback} $\ast$Call)
 \begin{DoxyCompactList}\small\item\em Sets the callback for this button. See the \hyperlink{classphys_1_1UI_1_1ButtonCallback}{ButtonCallback} class for more info. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a3b51fa981fdf869240bff082bafb56a9}{BindActivationKeyOrButton} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)
-\begin{DoxyCompactList}\small\item\em Registers a keyboard key or mouse button that can activate this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_abf5f5997d71829bd7902139932a4b26b}{SetHoveredSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that will be applied when the mouse is over this button from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a12cfac0dcc6324694f29968c0ca25d03}{SetHoveredSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that will be applied when the mouse is over this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a68e1d9043a614e152c514a959be07d8c}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a23bea9f25eabd941f859208e39735b5b}{SetPrimaryAtlas} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_ad3e723b07cfdc73db7276d0339d15f38}{SetRenderPriority} (const UI::RenderPriority \&Priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a956fe6caf82304cf1332a62b51b6b5de}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_aeb5ec136d8f307c5380c407f066b2ac1}{SetUserSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a8c3a5657daf79a882f71691e91785d4d}{SetUserSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a293a0a5296778fb3d638c31c5d9d4c75}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this button. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Button_aad25b9ec4b9c7cc232d419dcd68f420e}{
+virtual void \hyperlink{classphys_1_1UI_1_1Button_aad25b9ec4b9c7cc232d419dcd68f420e}{Show} ()}
+\label{classphys_1_1UI_1_1Button_aad25b9ec4b9c7cc232d419dcd68f420e}
+
+\begin{DoxyCompactList}\small\item\em Forces this button to be shown. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Button_a18f51eeb5685ed858b8842f65d566102}{UnbindActivationKeyOrButton} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)
 \begin{DoxyCompactList}\small\item\em Removes a previously registered activation key or button. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Button_a6b1a993ca1b4050e3741a77f0f1643df}{
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a6b1a993ca1b4050e3741a77f0f1643df}{UnbindAllActivationKeysAndButtons} ()}
+\label{classphys_1_1UI_1_1Button_a6b1a993ca1b4050e3741a77f0f1643df}
+
+\begin{DoxyCompactList}\small\item\em Clears all keyboard and mouse input codes from the list of activators. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Button_a76b52d72810865ab05a6423a60894d50}{
 virtual void \hyperlink{classphys_1_1UI_1_1Button_a76b52d72810865ab05a6423a60894d50}{UnbindAllKeyboardActivationKeys} ()}
 \label{classphys_1_1UI_1_1Button_a76b52d72810865ab05a6423a60894d50}
@@ -61,80 +128,13 @@ virtual void \hyperlink{classphys_1_1UI_1_1Button_ac1e6ed278f41bc49329e1fc1e4456
 \label{classphys_1_1UI_1_1Button_ac1e6ed278f41bc49329e1fc1e445699c}
 
 \begin{DoxyCompactList}\small\item\em Clears all mouse input codes from the list of activation buttons. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Button_a6b1a993ca1b4050e3741a77f0f1643df}{
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a6b1a993ca1b4050e3741a77f0f1643df}{UnbindAllActivationKeysAndButtons} ()}
-\label{classphys_1_1UI_1_1Button_a6b1a993ca1b4050e3741a77f0f1643df}
-
-\begin{DoxyCompactList}\small\item\em Clears all keyboard and mouse input codes from the list of activators. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a888cafb544472bbe3c5b023f4279030e}{SetActivationCondition} (const UI::ActivationCondition \&Condition)
-\begin{DoxyCompactList}\small\item\em Sets the condition for activation for this button. \item\end{DoxyCompactList}\item 
-virtual UI::ActivationCondition \hyperlink{classphys_1_1UI_1_1Button_a193f5fa1554d978a5061c08bd4eca86b}{GetActivationCondition} ()
-\begin{DoxyCompactList}\small\item\em Gets the condition for activation for this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_ae875686ae568fc121eef980b24949cc1}{SetActivation} (bool Activate)
-\begin{DoxyCompactList}\small\item\em Sets the button as activated, also calling any set callbacks. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Button_ac54dde0e137f207bdec9a14b58063a6d}{IsActivated} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not this button is currently activated. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a8524260064c118597de5c18175f56493}{EnableMultipleActivations} (bool Enable)
-\begin{DoxyCompactList}\small\item\em Enables or disables whether or not the button should be allowed to activate multiple times per frame. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Button_a6630a0e94a3998f6972b35a4e368b3ff}{IsMultipleActivationsEnabled} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not multiple activations per frame are enabled for this button. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Button_a72d76501d15053e3fbd9e7eb933e22de}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this button. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Button_a66522ebf5f3c75e96a6dfd99700a0f74}{GetMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a390aa5a409361507b5802141380bc1d3}{SetBackgroundColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
-\begin{DoxyCompactList}\small\item\em Sets the background colour of the button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a7cecb219a59fb55db6ac0070359bb23f}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a13899540adb0b039fec892f24a312686}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the button from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a12cfac0dcc6324694f29968c0ca25d03}{SetHoveredSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Sets an alternate background image that will be applied when the mouse is over this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_abf5f5997d71829bd7902139932a4b26b}{SetHoveredSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Sets an alternate background image that will be applied when the mouse is over this button from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a8c3a5657daf79a882f71691e91785d4d}{SetUserSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_aeb5ec136d8f307c5380c407f066b2ac1}{SetUserSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a4fe6560484f1d78b08c96eaf967404d2}{EnableUserSprite} (bool Enable)
-\begin{DoxyCompactList}\small\item\em Enables(or disables) the currently set User sprite. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a8e7fa03ebbdf0c71dc60e5b95635894c}{SetBorder} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
-\begin{DoxyCompactList}\small\item\em Enables a border and sets it's colour. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Button_adaf3f9ed9f8478e180278b71cb355db6}{
-virtual void \hyperlink{classphys_1_1UI_1_1Button_adaf3f9ed9f8478e180278b71cb355db6}{NoBorder} ()}
-\label{classphys_1_1UI_1_1Button_adaf3f9ed9f8478e180278b71cb355db6}
-
-\begin{DoxyCompactList}\small\item\em Disables any border set on this rectangle if one is currently set. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a68e1d9043a614e152c514a959be07d8c}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this button. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_adfa08ace813b88cae114e18f88942642}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a50f175a9a9002b3270edc74154d4255b}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_a0b991ada87707d8d951dae7c0e3246f6}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a956fe6caf82304cf1332a62b51b6b5de}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this button. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_ade75e042d1a19be5d4fb1b16913af5a5}{GetSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_ab6c806b1bef7d1a3b9455914a1e9c8c0}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the size of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_ab6640af433afe96d5f6bd7016986d73f}{GetActualSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the size of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_ad3e723b07cfdc73db7276d0339d15f38}{SetRenderPriority} (const UI::RenderPriority \&Priority)
-\begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
-virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1Button_aa17ffbc9b0d4eed151ff5ecbf93d88b8}{GetRenderPriority} ()
-\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a23bea9f25eabd941f859208e39735b5b}{SetPrimaryAtlas} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Button_a8aad3cb0e33a2bfc4fc4913bf19396a5}{GetPrimaryAtlas} ()
-\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
-virtual std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classphys_1_1UI_1_1Button_adb1a79145196e9682261f18fa8de04fe}{GetKeyboardActivationKeys} ()
-\begin{DoxyCompactList}\small\item\em Gets a vector with all the keyboard input codes used to activate this button. \item\end{DoxyCompactList}\item 
-virtual std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classphys_1_1UI_1_1Button_a2256e2f15cf3aea5abd3279178dc3199}{GetMouseActivationButtons} ()
-\begin{DoxyCompactList}\small\item\em Gets a vector with all the mouse input codes used to activate this button. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Button_ae69604605a9b4de08dbaf6738a241bb6}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this button to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this button to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}{
+virtual \hyperlink{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}{$\sim$Button} ()}
+\label{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -146,44 +146,9 @@ void {\bfseries SetHovered} (bool Hovered)}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1Button_ae58fc40169b6fb2acc06db63dcbff953}{
-Gorilla::Rectangle $\ast$ {\bfseries GorillaRectangle}}
-\label{classphys_1_1UI_1_1Button_ae58fc40169b6fb2acc06db63dcbff953}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_a611bab3af086add9cbc7a138e97af3b0}{
-\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
-\label{classphys_1_1UI_1_1Button_a611bab3af086add9cbc7a138e97af3b0}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_ad98260c77b904ec926a2acc47268c16c}{
-\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
-\label{classphys_1_1UI_1_1Button_ad98260c77b904ec926a2acc47268c16c}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_a4d6914524ef1d6c0248fee2c31bdb86a}{
-Gorilla::Sprite $\ast$ {\bfseries NormalSprite}}
-\label{classphys_1_1UI_1_1Button_a4d6914524ef1d6c0248fee2c31bdb86a}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_ab5d48f6d336d35645ffcc3061c0bcc48}{
-Gorilla::Sprite $\ast$ {\bfseries HoveredSprite}}
-\label{classphys_1_1UI_1_1Button_ab5d48f6d336d35645ffcc3061c0bcc48}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_afa82b63c5997cb9ec9dce3071048a556}{
-Gorilla::Sprite $\ast$ {\bfseries UserSprite}}
-\label{classphys_1_1UI_1_1Button_afa82b63c5997cb9ec9dce3071048a556}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_a56fd3cc8871d0c112bcb46dcd7d59aed}{
-\hyperlink{classphys_1_1UI_1_1ButtonCallback}{ButtonCallback} $\ast$ {\bfseries Callback}}
-\label{classphys_1_1UI_1_1Button_a56fd3cc8871d0c112bcb46dcd7d59aed}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_a021052f6c6632623dfdf89bdc8ad8ec4}{
-bool {\bfseries MouseHover}}
-\label{classphys_1_1UI_1_1Button_a021052f6c6632623dfdf89bdc8ad8ec4}
+\hypertarget{classphys_1_1UI_1_1Button_a659d498ea38854038a3ed487b24bd331}{
+UI::ActivationCondition {\bfseries ActCond}}
+\label{classphys_1_1UI_1_1Button_a659d498ea38854038a3ed487b24bd331}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Button_a7f4ee543e998a4bd369f05b531b1a04e}{
@@ -191,9 +156,59 @@ bool {\bfseries Activated}}
 \label{classphys_1_1UI_1_1Button_a7f4ee543e998a4bd369f05b531b1a04e}
 
 \item 
+\hypertarget{classphys_1_1UI_1_1Button_a56fd3cc8871d0c112bcb46dcd7d59aed}{
+\hyperlink{classphys_1_1UI_1_1ButtonCallback}{ButtonCallback} $\ast$ {\bfseries Callback}}
+\label{classphys_1_1UI_1_1Button_a56fd3cc8871d0c112bcb46dcd7d59aed}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ae58fc40169b6fb2acc06db63dcbff953}{
+Gorilla::Rectangle $\ast$ {\bfseries GorillaRectangle}}
+\label{classphys_1_1UI_1_1Button_ae58fc40169b6fb2acc06db63dcbff953}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ab5d48f6d336d35645ffcc3061c0bcc48}{
+Gorilla::Sprite $\ast$ {\bfseries HoveredSprite}}
+\label{classphys_1_1UI_1_1Button_ab5d48f6d336d35645ffcc3061c0bcc48}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ae5df151f265267d289adc904bfff5833}{
+std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ {\bfseries KeyboardActivationKeys}}
+\label{classphys_1_1UI_1_1Button_ae5df151f265267d289adc904bfff5833}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ad98260c77b904ec926a2acc47268c16c}{
+\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
+\label{classphys_1_1UI_1_1Button_ad98260c77b904ec926a2acc47268c16c}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_af0ec4864f55387a715cc4cccd76676c8}{
+std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ {\bfseries MouseActivationButtons}}
+\label{classphys_1_1UI_1_1Button_af0ec4864f55387a715cc4cccd76676c8}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_a021052f6c6632623dfdf89bdc8ad8ec4}{
+bool {\bfseries MouseHover}}
+\label{classphys_1_1UI_1_1Button_a021052f6c6632623dfdf89bdc8ad8ec4}
+
+\item 
 \hypertarget{classphys_1_1UI_1_1Button_af33ffe0a2d4c4e5344e810c313a06e6f}{
 bool {\bfseries MultipleActivations}}
 \label{classphys_1_1UI_1_1Button_af33ffe0a2d4c4e5344e810c313a06e6f}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ab3151f18855c8de2ffb80975f04041c1}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
+\label{classphys_1_1UI_1_1Button_ab3151f18855c8de2ffb80975f04041c1}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_a4d6914524ef1d6c0248fee2c31bdb86a}{
+Gorilla::Sprite $\ast$ {\bfseries NormalSprite}}
+\label{classphys_1_1UI_1_1Button_a4d6914524ef1d6c0248fee2c31bdb86a}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_a611bab3af086add9cbc7a138e97af3b0}{
+\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
+\label{classphys_1_1UI_1_1Button_a611bab3af086add9cbc7a138e97af3b0}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Button_a981baa14d909cd6750553e3802545380}{
@@ -206,24 +221,9 @@ bool {\bfseries MultipleActivations}}
 \label{classphys_1_1UI_1_1Button_a413a4e4c3b815275051a881b7539a8f9}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Button_ab3151f18855c8de2ffb80975f04041c1}{
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
-\label{classphys_1_1UI_1_1Button_ab3151f18855c8de2ffb80975f04041c1}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_ae5df151f265267d289adc904bfff5833}{
-std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ {\bfseries KeyboardActivationKeys}}
-\label{classphys_1_1UI_1_1Button_ae5df151f265267d289adc904bfff5833}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_af0ec4864f55387a715cc4cccd76676c8}{
-std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ {\bfseries MouseActivationButtons}}
-\label{classphys_1_1UI_1_1Button_af0ec4864f55387a715cc4cccd76676c8}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Button_a659d498ea38854038a3ed487b24bd331}{
-UI::ActivationCondition {\bfseries ActCond}}
-\label{classphys_1_1UI_1_1Button_a659d498ea38854038a3ed487b24bd331}
+\hypertarget{classphys_1_1UI_1_1Button_afa82b63c5997cb9ec9dce3071048a556}{
+Gorilla::Sprite $\ast$ {\bfseries UserSprite}}
+\label{classphys_1_1UI_1_1Button_afa82b63c5997cb9ec9dce3071048a556}
 
 \end{DoxyCompactItemize}
 

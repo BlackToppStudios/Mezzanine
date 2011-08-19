@@ -45,7 +45,7 @@
 
 // A simple test to see if the compiler flag are set correctly
 // mostly this is a sample of a very simple, but useful unit test (it fixed 2 bugs when we wrote it.)
-class CompilerFlagTests : public UnitTest
+class CompilerFlagTests : public UnitTestGroup
 {
     public:
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)

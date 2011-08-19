@@ -14,28 +14,28 @@ This class contains all the utilities necessary for capturing input.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \hyperlink{classphys_1_1UI_1_1InputCaptureData_a46e7c734c74bbf8983ef0e87449dd931}{AddInput} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)
+\begin{DoxyCompactList}\small\item\em Adds a single input code to the list of codes to be captured. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1InputCaptureData_af63178e71795b7a1a011c85e76c0e81d}{AddInputRange} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Lower, const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Upper)
+\begin{DoxyCompactList}\small\item\em Adds a range of input codes to the list of codes to be captured. \item\end{DoxyCompactList}\item 
+std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classphys_1_1UI_1_1InputCaptureData_abe46fa1848ded1b019287da766cfda25}{GetCapturedInputs} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector of inputs that have been captured this frame. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1InputCaptureData_ac1cbd55bfa9a161f8f545679620491d8}{GetNumCapturedInputs} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of input codes this class is currently set to capture. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1InputCaptureData_a3880b8daa9662bc5c117343040661563}{
 \hyperlink{classphys_1_1UI_1_1InputCaptureData_a3880b8daa9662bc5c117343040661563}{InputCaptureData} ()}
 \label{classphys_1_1UI_1_1InputCaptureData_a3880b8daa9662bc5c117343040661563}
 
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1UI_1_1InputCaptureData_a2f22f9d9e8259b8687bfb5dfa8be960d}{IsInputToBeCaptured} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)
+\begin{DoxyCompactList}\small\item\em Checks this class to see if the provided code is set to be captured. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1InputCaptureData_ac6ed81ccf6e1fc7ac8c86b71ef7ed6d0}{UpdateCapturedInputs} (std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ \&InputCodes)
+\begin{DoxyCompactList}\small\item\em Updates the list of captured inputs for the frame. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1InputCaptureData_a7bd115ce3c6ab7e3a886c26ea99407a5}{
 \hyperlink{classphys_1_1UI_1_1InputCaptureData_a7bd115ce3c6ab7e3a886c26ea99407a5}{$\sim$InputCaptureData} ()}
 \label{classphys_1_1UI_1_1InputCaptureData_a7bd115ce3c6ab7e3a886c26ea99407a5}
 
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1InputCaptureData_a46e7c734c74bbf8983ef0e87449dd931}{AddInput} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)
-\begin{DoxyCompactList}\small\item\em Adds a single input code to the list of codes to be captured. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1InputCaptureData_af63178e71795b7a1a011c85e76c0e81d}{AddInputRange} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Lower, const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Upper)
-\begin{DoxyCompactList}\small\item\em Adds a range of input codes to the list of codes to be captured. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1InputCaptureData_ac1cbd55bfa9a161f8f545679620491d8}{GetNumCapturedInputs} ()
-\begin{DoxyCompactList}\small\item\em Gets the number of input codes this class is currently set to capture. \item\end{DoxyCompactList}\item 
-std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classphys_1_1UI_1_1InputCaptureData_abe46fa1848ded1b019287da766cfda25}{GetCapturedInputs} ()
-\begin{DoxyCompactList}\small\item\em Gets a vector of inputs that have been captured this frame. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1UI_1_1InputCaptureData_a2f22f9d9e8259b8687bfb5dfa8be960d}{IsInputToBeCaptured} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)
-\begin{DoxyCompactList}\small\item\em Checks this class to see if the provided code is set to be captured. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1InputCaptureData_ac6ed81ccf6e1fc7ac8c86b71ef7ed6d0}{UpdateCapturedInputs} (std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ \&InputCodes)
-\begin{DoxyCompactList}\small\item\em Updates the list of captured inputs for the frame. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 

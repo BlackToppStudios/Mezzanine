@@ -396,7 +396,15 @@ namespace phys
 		bool AsBool() const; 
  
 		// Set GetAttribute Name/Value (returns false if GetAttribute is empty or there is not enough memory) 
-		bool SetName(const char_t* rhs); 
+		/// @brief Set the name of .
+		/// @param rhs The desired name.
+		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
+		bool SetName(const char_t* rhs);
+		/// @brief Set the name of this object
+		/// @param rhs The desired name .
+		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
+		bool SetName(const String& rhs)
+			{ return SetName(rhs.c_str()); } 
 		/// @brief Set the value of this.
 		/// @param rhs The new Value.
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
@@ -552,7 +560,15 @@ namespace phys
 		const char_t* ChildValue(const char_t* Name) const; 
  
 		// Set node Name/Value (returns false if node is empty, there is not enough memory, or node can not have Name/Value) 
-		bool SetName(const char_t* rhs); 
+		/// @brief Set the name of .
+		/// @param rhs The desired name.
+		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
+		bool SetName(const char_t* rhs);
+		/// @brief Set the name of this object
+		/// @param rhs The desired name .
+		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
+		bool SetName(const String& rhs)
+			{ return SetName(rhs.c_str()); } 
 		/// @brief Set the value of this.
 		/// @param rhs The new Value.
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
@@ -568,7 +584,12 @@ namespace phys
 		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
 		/// fail and return an empty attribute if this Node is empty.
 		/// @return The created Attribute or an empty Attribute on Failure.
-		Attribute AppendAttribute(const char_t* Name);  
+		Attribute AppendAttribute(const char_t* Name);
+		/// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
+		/// @param Name The name of the New attribute to be created
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute AppendAttribute(const String& Name)
+			{ return AppendAttribute(Name.c_str()); } 
 		Attribute PrependAttribute(const char_t* Name); 
 		Attribute InsertAttributeAfter(const char_t* Name, const Attribute& attr); 
 		Attribute InsertAttributeBefore(const char_t* Name, const Attribute& attr); 
@@ -605,8 +626,7 @@ namespace phys
 		/// @brief Creates a Node and makes it a child of this one.
 		/// @param Type The NodeType of the Node to be added to list of child Nodes.
 		/// @return A Node representing the freshly added Node, or an empty Node if there was an error.
-		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
-		Node AppendChild(NodeType Type = NodeElement);  
+		Node AppendChild(NodeType Type = NodeElement); 
 		Node PrependChild(NodeType Type = NodeElement); 
 		Node InsertChildAfter(NodeType Type, const Node& node); 
 		/// @brief Creates a Node and makes it a child of this one, and puts at the middle of the Child Nodes.
@@ -616,17 +636,29 @@ namespace phys
 		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
 		Node InsertChildBefore(NodeType Type, const Node& node); 
  
-		/// @fn Node::AppendChild(const char_t* Name);
+		// Add GetChild element with specified Name. Returns added node, or empty node on errors. 
 		/// @brief Creates an element Node as a child of this Node, with the given name.
 		/// @param Name The name of the Node to be created.
 		/// @details Calls @ref Node::AppendChild(NodeType); using NodeElement as the NodeType.
-		/// @return The desired Node on success, an empty Node on failure. 
-		Node AppendChild(const char_t* Name); 
+		/// @return The desired Node on success, an empty Node on failure.
+		Node AppendChild(const char_t* Name);
+		/// @brief Creates an element Node as a child of this Node, with the given name.
+		/// @param Name The name of the Node to be created.
+		/// @details Calls @ref Node::AppendChild(const char_t*)
+		/// @return The desired Node on success, an empty Node on failure.
+		Node AppendChild(const String& Name)
+			{ return AppendChild(Name.c_str()); } 
 		/// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
 		/// @param Name The name of the Node to be created.
 		/// @details Calls @ref Node::PrependChild(NodeType); using NodeElement as the NodeType.
 		/// @return The desired Node on success, an empty Node on failure.
-		Node PrependChild(const char_t* Name); 
+		Node PrependChild(const char_t* Name);
+		/// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
+		/// @param Name The name of the Node to be created.
+		/// @details Calls @ref Node::PrependChild(const char_t*);
+		/// @return The desired Node on success, an empty Node on failure.
+		Node PrependChild(const String& Name)
+			{ return PrependChild(Name.c_str()); } 
 		
 		/// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children
 		/// @param Name The name of the Node to be created.
@@ -1174,9 +1206,22 @@ namespace phys
 		XPathValueType Type() const; 
  
 		// Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error 
+		/// @brief Get this as a bool.
+		/// @details Get variable Value; Minimal Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return This as a bool, with any appropriate downcasting.
 		bool GetBoolean() const; 
+		/// @details Get variable Value; default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return This as a double.
+		/// @brief Get this as a double.
 		double GetNumber() const; 
+		/// @brief Get this as a c-string.
+		/// @details Get variable Value; default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return This as a c-string of char_t, without conversion.
 		const char_t* GetString() const; 
+		/// @brief Get this as a XPathNodeSet.
+		/// @details Get variable Value; no Type conversion is performed, if type of variable is not a XPathNodeSet then an XPathException is thrown
+		/// @throw XPathException on type mismatch or allocation error
+		/// @return A This as an XPathNodeSet, without conversion.
 		const XPathNodeSet& GetNodeSet() const; 
  
 		// Set variable Value; no Type conversion is performed, false is returned on Type mismatch error 
@@ -1215,7 +1260,10 @@ namespace phys
 		// Add a new variable or get the existing one, if the Types match 
 		XPathVariable* Add(const char_t* Name, XPathValueType Type); 
  
-		// Set Value of an existing variable; no Type conversion is performed, false is returned if there is no such variable or if Types mismatch 
+		/// @brief Set contained variable Value; no Type conversion is performed.
+		/// @param Name The name of variable to change.
+		/// @param Value The value to attempt to put into the named variable.
+		/// @return True is return, false is returned if there is no such variable or on Type mismatch error. 
 		bool Set(const char_t* Name, bool Value); 
 		/// @brief Set contained variable Value; no Type conversion is performed.
 		/// @param Name The name of variable to change.

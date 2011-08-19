@@ -20,55 +20,45 @@ Inheritance diagram for phys::UI::ScrolledCellGrid:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a55568ced472f194c6fd6a07310b68561}{ScrolledCellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Thickness, const UI::ScrollbarStyle \&Style, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a27a91d4fe26c101718f8593c8775f0cb}{
-virtual \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a27a91d4fe26c101718f8593c8775f0cb}{$\sim$ScrolledCellGrid} ()}
-\label{classphys_1_1UI_1_1ScrolledCellGrid_a27a91d4fe26c101718f8593c8775f0cb}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef5b78f205e75d33fff05623a1b61aa4}{SetVisible} (bool visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_af75c87ada3a1bac3dda208485ebc5f94}{Show} ()
-\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a976e99e204f912d82712872e4e80b833}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_ac45c0e5d0ecd6f032bfa2ec630394b96}{GetAutoHide} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not the scrollbars are auto-\/hiding. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Scrollbar}{UI::Scrollbar} $\ast$ \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a32bad5e7312430285d93a9beee06a12b}{GetHorizontalScroll} ()
+\begin{DoxyCompactList}\small\item\em Gets the horizontal scrollbar of this grid, if present. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Scrollbar}{UI::Scrollbar} $\ast$ \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_afcc80eceed64b8dac28832d4effade31}{GetVerticalScroll} ()
+\begin{DoxyCompactList}\small\item\em Gets the vertical scrollbar of this grid, if present. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a489a88ad115f0059dabb4519f6139bd8}{
 virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a489a88ad115f0059dabb4519f6139bd8}{Hide} ()}
 \label{classphys_1_1UI_1_1ScrolledCellGrid_a489a88ad115f0059dabb4519f6139bd8}
 
 \begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_ab3b8ac3f85185c1a9236cf80569659d8}{SetAutoHide} (bool Auto)
-\begin{DoxyCompactList}\small\item\em Sets whether or not the scrollbars should auto-\/hide, or always be visible. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_ac45c0e5d0ecd6f032bfa2ec630394b96}{GetAutoHide} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not the scrollbars are auto-\/hiding. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a976e99e204f912d82712872e4e80b833}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef62a124cb71b39bc73bda770741882f}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a55568ced472f194c6fd6a07310b68561}{ScrolledCellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Thickness, const UI::ScrollbarStyle \&Style, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aceff3ee36c2677d55e1a4e355611eef9}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a793a775a3603e71db5ad29686c27ae68}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a32ee6cc683f7357afef8b7075d8b8f20}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_ab3b8ac3f85185c1a9236cf80569659d8}{SetAutoHide} (bool Auto)
+\begin{DoxyCompactList}\small\item\em Sets whether or not the scrollbars should auto-\/hide, or always be visible. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef62a124cb71b39bc73bda770741882f}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a793a775a3603e71db5ad29686c27ae68}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef5b78f205e75d33fff05623a1b61aa4}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_af75c87ada3a1bac3dda208485ebc5f94}{Show} ()
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aed1f61cbdab04c555e26076ec933bbf2}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
 \begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Scrollbar}{UI::Scrollbar} $\ast$ \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a32bad5e7312430285d93a9beee06a12b}{GetHorizontalScroll} ()
-\begin{DoxyCompactList}\small\item\em Gets the horizontal scrollbar of this grid, if present. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Scrollbar}{UI::Scrollbar} $\ast$ \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_afcc80eceed64b8dac28832d4effade31}{GetVerticalScroll} ()
-\begin{DoxyCompactList}\small\item\em Gets the vertical scrollbar of this grid, if present. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a27a91d4fe26c101718f8593c8775f0cb}{
+virtual \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a27a91d4fe26c101718f8593c8775f0cb}{$\sim$ScrolledCellGrid} ()}
+\label{classphys_1_1UI_1_1ScrolledCellGrid_a27a91d4fe26c101718f8593c8775f0cb}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a39fd3d566131310f4a2e5713216e7ef2}{
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a39fd3d566131310f4a2e5713216e7ef2}{FindTopRow} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollPos)}
-\label{classphys_1_1UI_1_1ScrolledCellGrid_a39fd3d566131310f4a2e5713216e7ef2}
-
-\begin{DoxyCompactList}\small\item\em Gets the top row to be rendered based on the scroller position. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_abe9fe1c56866ecc796f5b2ea8f72b853}{
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_abe9fe1c56866ecc796f5b2ea8f72b853}{FindLeftColumn} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollPos)}
-\label{classphys_1_1UI_1_1ScrolledCellGrid_abe9fe1c56866ecc796f5b2ea8f72b853}
-
-\begin{DoxyCompactList}\small\item\em Gets the left column to be rendered based on the scroller position. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_aab9b6520eefbc712c9577ae0db121f13}{
 virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aab9b6520eefbc712c9577ae0db121f13}{DrawGrid} ()}
 \label{classphys_1_1UI_1_1ScrolledCellGrid_aab9b6520eefbc712c9577ae0db121f13}
@@ -79,6 +69,16 @@ virtual void \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a2931912dae2aabe0dcf
 \label{classphys_1_1UI_1_1ScrolledCellGrid_a2931912dae2aabe0dcfd3a30f9ad8634}
 
 \begin{DoxyCompactList}\small\item\em Draws the grid, used for updating after any change. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_abe9fe1c56866ecc796f5b2ea8f72b853}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_abe9fe1c56866ecc796f5b2ea8f72b853}{FindLeftColumn} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollPos)}
+\label{classphys_1_1UI_1_1ScrolledCellGrid_abe9fe1c56866ecc796f5b2ea8f72b853}
+
+\begin{DoxyCompactList}\small\item\em Gets the left column to be rendered based on the scroller position. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a39fd3d566131310f4a2e5713216e7ef2}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a39fd3d566131310f4a2e5713216e7ef2}{FindTopRow} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollPos)}
+\label{classphys_1_1UI_1_1ScrolledCellGrid_a39fd3d566131310f4a2e5713216e7ef2}
+
+\begin{DoxyCompactList}\small\item\em Gets the top row to be rendered based on the scroller position. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a726ac5925e2b13110ac7bc92788904e0}{
 virtual bool \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a726ac5925e2b13110ac7bc92788904e0}{GridNeedsRedraw} ()}
 \label{classphys_1_1UI_1_1ScrolledCellGrid_a726ac5925e2b13110ac7bc92788904e0}
@@ -86,16 +86,6 @@ virtual bool \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a726ac5925e2b13110ac
 \begin{DoxyCompactList}\small\item\em Determines whether or not the grid needs to be redrawn. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a0621569548639e6293a4023f4f90f909}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries HScrollVal}}
-\label{classphys_1_1UI_1_1ScrolledCellGrid_a0621569548639e6293a4023f4f90f909}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a87f8e96ba30a29c6f466c06ba7f06b91}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries VScrollVal}}
-\label{classphys_1_1UI_1_1ScrolledCellGrid_a87f8e96ba30a29c6f466c06ba7f06b91}
-
 \item 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a07339986f5695fbaf9ef25a584c1d28f}{
 bool {\bfseries AutoHide}}
@@ -107,9 +97,19 @@ bool {\bfseries AutoHide}}
 \label{classphys_1_1UI_1_1ScrolledCellGrid_ae979ab2f4889db9517317cc0cf3e37f9}
 
 \item 
+\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a0621569548639e6293a4023f4f90f909}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries HScrollVal}}
+\label{classphys_1_1UI_1_1ScrolledCellGrid_a0621569548639e6293a4023f4f90f909}
+
+\item 
 \hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a8bb7423d7d222b977d777098f7fb3217}{
 \hyperlink{classphys_1_1UI_1_1Scrollbar}{UI::Scrollbar} $\ast$ {\bfseries VerticalScroll}}
 \label{classphys_1_1UI_1_1ScrolledCellGrid_a8bb7423d7d222b977d777098f7fb3217}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1ScrolledCellGrid_a87f8e96ba30a29c6f466c06ba7f06b91}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries VScrollVal}}
+\label{classphys_1_1UI_1_1ScrolledCellGrid_a87f8e96ba30a29c6f466c06ba7f06b91}
 
 \end{DoxyCompactItemize}
 

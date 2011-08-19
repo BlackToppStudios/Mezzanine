@@ -157,6 +157,25 @@ namespace phys
             /// @details Allows for division from a phys::Vector2
             /// @param Vec2 This is the other phys::Vector2
             Vector2 operator/ (const Vector2 &Vec2) const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+#ifdef PHYSXML
+        // Serializable
+        /// @brief Convert this class to an xml::Node ready for serialization
+        /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+        virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+        // DeSerializable
+        /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+        /// @param OneNode and xml::Node containing the data.
+        virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+        /// @return A string containing "Vector2"
+        String SerializableName() const;
+#endif
+
     };
 }
 
@@ -188,7 +207,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector2& Vec);
 /// @param Vec the phys::Vector2 to store the deserialized Vector2
 /// @return This returns a reference to the xml::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
-phys::xml::Node& PHYS_LIB  operator >> (const phys::xml::Node& OneNode, phys::Vector2& Vec);
+void PHYS_LIB  operator >> (const phys::xml::Node& OneNode, phys::Vector2& Vec);
 #endif // \PHYSXML
 
 

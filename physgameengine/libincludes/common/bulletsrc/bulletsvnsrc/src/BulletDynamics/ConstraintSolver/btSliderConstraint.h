@@ -116,7 +116,9 @@ protected:
 	bool m_solveLinLim;
 	bool m_solveAngLim;
 
-	int m_flags;
+	public: //Made public by BTS with PublicizeBullet.sh
+	int			m_flags;
+	private:
 
 	btJacobianEntry	m_jacLin[3];
 	btScalar		m_jacLinDiagABInv[3];

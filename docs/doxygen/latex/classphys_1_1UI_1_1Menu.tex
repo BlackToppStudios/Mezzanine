@@ -20,53 +20,53 @@ Inheritance diagram for phys::UI::Menu:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1Menu_abe99c5c7a18947dde5d3f44ce6fa0727}{Menu} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}{
-virtual \hyperlink{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}{$\sim$Menu} ()}
-\label{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}
-
-\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Menu_a7eb3efc2675bf281a829f69416b46327}{RollMenuBackToWindow} (\hyperlink{classphys_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$Win)
-\begin{DoxyCompactList}\small\item\em Hides and removes from the stack all windows from the top until it reaches the specified window, or root window. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Menu_a4847e0de055a9c2f708f98742fa59a87}{SetVisible} (bool visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this menu. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Menu_ae23321617d7e14448e2fab3b455c3dc7}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this menu. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Menu_aeb6373cc1be7da0bf5966129f271c861}{
-virtual void \hyperlink{classphys_1_1UI_1_1Menu_aeb6373cc1be7da0bf5966129f271c861}{Show} ()}
-\label{classphys_1_1UI_1_1Menu_aeb6373cc1be7da0bf5966129f271c861}
-
-\begin{DoxyCompactList}\small\item\em Forces this menu to be shown. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Menu_af2514d2614322856f604be2e167d0872}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this menu. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_a74a1b8e9b1c5d36c12e5a0a7f813c40a}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this menu. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_af7566b83c50a4a02ac78d174d7c61817}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this menu. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_a3c19fe2596fe4049325cc580daa70387}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this menu. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1Menu_a9926f44b122c804b68034a759ea4a967}{GetRootWindow} ()
+\begin{DoxyCompactList}\small\item\em Gets the Root window of this menu. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_a81781199a62bbe7c2e7693ef301223b4}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this menu. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1Menu_acf9a3bc3dd097093cce077cc60c14a6f}{GetTopWindow} ()
+\begin{DoxyCompactList}\small\item\em Gets the current window at the top of the stack. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Menu_a23f7b18c8bae528dc15bf8f3ff40d435}{
 virtual void \hyperlink{classphys_1_1UI_1_1Menu_a23f7b18c8bae528dc15bf8f3ff40d435}{Hide} ()}
 \label{classphys_1_1UI_1_1Menu_a23f7b18c8bae528dc15bf8f3ff40d435}
 
 \begin{DoxyCompactList}\small\item\em Forces this menu to hide. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Menu_af2514d2614322856f604be2e167d0872}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this menu. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Menu_a53ff13bb9b850fb8196c1c0c637afbd5}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the relative position of this menu. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_a3c19fe2596fe4049325cc580daa70387}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative position of this menu. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Menu_ae23321617d7e14448e2fab3b455c3dc7}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this menu. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Menu_abe99c5c7a18947dde5d3f44ce6fa0727}{Menu} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Menu_a7eb3efc2675bf281a829f69416b46327}{RollMenuBackToWindow} (\hyperlink{classphys_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$Win)
+\begin{DoxyCompactList}\small\item\em Hides and removes from the stack all windows from the top until it reaches the specified window, or root window. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Menu_a1d5434382755df214b169d3e9901c1e1}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this menu. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_a74a1b8e9b1c5d36c12e5a0a7f813c40a}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this menu. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Menu_adef3f9d3351c959f711e929a5e1c8f76}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this menu. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_a81781199a62bbe7c2e7693ef301223b4}{GetSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this menu. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Menu_acc3fb39539fd3c13def35be54570ae81}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this menu. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_af7566b83c50a4a02ac78d174d7c61817}{GetActualSize} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this menu. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Menu_a53ff13bb9b850fb8196c1c0c637afbd5}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this menu. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Menu_adef3f9d3351c959f711e929a5e1c8f76}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this menu. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Menu_a4847e0de055a9c2f708f98742fa59a87}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this menu. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Menu_aeb6373cc1be7da0bf5966129f271c861}{
+virtual void \hyperlink{classphys_1_1UI_1_1Menu_aeb6373cc1be7da0bf5966129f271c861}{Show} ()}
+\label{classphys_1_1UI_1_1Menu_aeb6373cc1be7da0bf5966129f271c861}
+
+\begin{DoxyCompactList}\small\item\em Forces this menu to be shown. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Menu_a60a678cc2be8f3eebfe65b3628557928}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&NewViewportSize)
 \begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1Menu_a9926f44b122c804b68034a759ea4a967}{GetRootWindow} ()
-\begin{DoxyCompactList}\small\item\em Gets the Root window of this menu. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1Menu_acf9a3bc3dd097093cce077cc60c14a6f}{GetTopWindow} ()
-\begin{DoxyCompactList}\small\item\em Gets the current window at the top of the stack. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}{
+virtual \hyperlink{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}{$\sim$Menu} ()}
+\label{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}
+
+\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -78,14 +78,14 @@ virtual void \hyperlink{classphys_1_1UI_1_1Menu_a8759b8656fdbbc0e1231a3f8d2ad483
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1Menu_a02ca1c85ecb8cacf57c7fdad8ea16385}{
-\hyperlink{classphys_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$ {\bfseries RootWindow}}
-\label{classphys_1_1UI_1_1Menu_a02ca1c85ecb8cacf57c7fdad8ea16385}
-
-\item 
 \hypertarget{classphys_1_1UI_1_1Menu_a79081cb1d293f75fc69f20ed7e91dff6}{
 std::vector$<$ \hyperlink{classphys_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$ $>$ {\bfseries MenuStack}}
 \label{classphys_1_1UI_1_1Menu_a79081cb1d293f75fc69f20ed7e91dff6}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Menu_a02ca1c85ecb8cacf57c7fdad8ea16385}{
+\hyperlink{classphys_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$ {\bfseries RootWindow}}
+\label{classphys_1_1UI_1_1Menu_a02ca1c85ecb8cacf57c7fdad8ea16385}
 
 \end{DoxyCompactItemize}
 

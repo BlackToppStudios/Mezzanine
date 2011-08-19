@@ -54,7 +54,9 @@ namespace phys
 
         public:
 
-            ActorSerializer(ActorManager* DeSerializeTarget)
+            /// @brief Constructor
+            /// @param DeSerializeTarget A pointer to the actor manager that will be populated with deserialized actors.
+            explicit ActorSerializer(ActorManager* DeSerializeTarget)
                     : Target(DeSerializeTarget)
             {}
 

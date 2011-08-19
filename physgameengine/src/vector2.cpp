@@ -40,9 +40,10 @@
 #ifndef _vector2_cpp
 #define _vector2_cpp
 
+#include "serialization.h"
 #include "vector2.h"
 
-#include <memory>
+//#include <memory>
 
 #include <Ogre.h>
 
@@ -176,6 +177,54 @@ namespace phys
         Temp.Y/=Vec2.Y;
         return Temp;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+#ifdef PHYSXML
+    // Serializable
+    void Vector2::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        phys::xml::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+        VecNode.SetName(SerializableName());
+
+        phys::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+        phys::xml::Attribute XAttr = VecNode.AppendAttribute("X");
+        phys::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
+        if( VersionAttr && XAttr && YAttr )
+        {
+            if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values", SerializableName(),true);
+            }
+        }else{
+            SerializeError("Create XML Attributes", SerializableName(),true);
+        }
+    }
+
+    // DeSerializable
+    void Vector2::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==phys::String(SerializableName()) )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                this->X=OneNode.GetAttribute("X").AsReal();
+                this->Y=OneNode.GetAttribute("Y").AsReal();
+            }else{
+                throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+            }
+        }else{
+            throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+        }
+    }
+
+    String Vector2::SerializableName() const
+        { return String("Vector2"); }
+
+#endif
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -183,7 +232,8 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::Vector2& x)
 {
     #ifdef PHYSXML
-        stream << "<Vector2 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" />";
+        //stream << "<Vector2 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" />";
+        Serialize(stream,x);
     #else
         stream << "[" << x.X << "," << x.Y << "]";
     #endif // \PHYSXML
@@ -192,30 +242,10 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector2& x)
 
 #ifdef PHYSXML
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector2& Vec)
-{
-    phys::String OneTag( phys::xml::GetOneTag(stream) );
-    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Vector2", OneTag) );
+    { return DeSerialize(stream, Vec); }
 
-    Doc->GetFirstChild() >> Vec;
-
-    return stream;
-}
-
-phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector2& Vec)
-{
-    if ( phys::String(OneNode.Name())==phys::String("Vector2") )
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-            Vec.X=OneNode.GetAttribute("X").AsReal();
-            Vec.Y=OneNode.GetAttribute("Y").AsReal();
-        }else{
-            throw( phys::Exception("Incompatible XML Version for Vector2: Not Version 1"));
-        }
-    }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a Vector2, found a ", OneNode.Name())));
-    }
-}
+void operator >> (const phys::xml::Node& OneNode, phys::Vector2& Vec)
+    { Vec.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 
 #endif

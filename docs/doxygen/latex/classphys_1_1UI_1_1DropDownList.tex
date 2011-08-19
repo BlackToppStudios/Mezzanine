@@ -20,55 +20,55 @@ Inheritance diagram for phys::UI::DropDownList:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+virtual bool \hyperlink{classphys_1_1UI_1_1DropDownList_a2ac515cb3282a0f190d002417e509424}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1DropDownList_a4646bc366b489a131747ea01629af428}{DropDownList} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1DropDownList_a9868ebcc629cf6b43a3913be5358e0b8}{DropDownList} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1DropDownList_abef8eec322f0e2a6af99aac6bfc3a6eb}{
-virtual \hyperlink{classphys_1_1UI_1_1DropDownList_abef8eec322f0e2a6af99aac6bfc3a6eb}{$\sim$DropDownList} ()}
-\label{classphys_1_1UI_1_1DropDownList_abef8eec322f0e2a6af99aac6bfc3a6eb}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_ac86730fe238d990505667bb9a475fb77}{SetVisible} (bool visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1DropDownList_ae4bd94c8f891dadf2423cef16c28e3f9}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1DropDownList_aa30bdfe138516a0f51efa2034cd9f595}{
-virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_aa30bdfe138516a0f51efa2034cd9f595}{Show} ()}
-\label{classphys_1_1UI_1_1DropDownList_aa30bdfe138516a0f51efa2034cd9f595}
-
-\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_a2c3b3dc073aebecd9216fa48e7cc10f2}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_afa9ccaef200f9ee8f22be5f32ba1f0a3}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1DropDownList_abfbbeee72ba061a226f64c2ca93a36a9}{GetListToggle} ()
+\begin{DoxyCompactList}\small\item\em Gets the button that toggles the appearance of the listbox in this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_a179dbf5e16fa6dd10ec8a72ae4349d3c}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1DropDownList_a78b41941db0b3d8196249ab31d2b174a}{GetSelection} ()
+\begin{DoxyCompactList}\small\item\em Gets the caption showing the current selection in this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{UI::ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1DropDownList_a3b89efdefadc83e7257d34954c0816a6}{GetSelectionList} ()
+\begin{DoxyCompactList}\small\item\em Gets the listbox showing all the selections in this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_ae47b0e9786a39a79fb613c2d1b1fcd38}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1DropDownList_a919966f2143ad3fd967b6e17092891b3}{
 virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_a919966f2143ad3fd967b6e17092891b3}{Hide} ()}
 \label{classphys_1_1UI_1_1DropDownList_a919966f2143ad3fd967b6e17092891b3}
 
 \begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1DropDownList_a2ac515cb3282a0f190d002417e509424}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_a91dbfd382be8c505021739602a7a64e6}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_a179dbf5e16fa6dd10ec8a72ae4349d3c}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1DropDownList_ae4bd94c8f891dadf2423cef16c28e3f9}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_af4d36a88b9629284d22d023bdcfd4074}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_a2c3b3dc073aebecd9216fa48e7cc10f2}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_aebcb4fe708e7d1af4609120039e276a6}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_ae47b0e9786a39a79fb613c2d1b1fcd38}{GetSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_ad85c38f98f467565f2b895993ab92f96}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1DropDownList_afa9ccaef200f9ee8f22be5f32ba1f0a3}{GetActualSize} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_a91dbfd382be8c505021739602a7a64e6}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_aebcb4fe708e7d1af4609120039e276a6}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_ac86730fe238d990505667bb9a475fb77}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_aa30bdfe138516a0f51efa2034cd9f595}{
+virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_aa30bdfe138516a0f51efa2034cd9f595}{Show} ()}
+\label{classphys_1_1UI_1_1DropDownList_aa30bdfe138516a0f51efa2034cd9f595}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_aa204411b17521b92acb78926d1d3f98e}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
 \begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1DropDownList_a78b41941db0b3d8196249ab31d2b174a}{GetSelection} ()
-\begin{DoxyCompactList}\small\item\em Gets the caption showing the current selection in this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1DropDownList_abfbbeee72ba061a226f64c2ca93a36a9}{GetListToggle} ()
-\begin{DoxyCompactList}\small\item\em Gets the button that toggles the appearance of the listbox in this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1ListBox}{UI::ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1DropDownList_a3b89efdefadc83e7257d34954c0816a6}{GetSelectionList} ()
-\begin{DoxyCompactList}\small\item\em Gets the listbox showing all the selections in this widget. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{classphys_1_1UI_1_1DropDownList_abef8eec322f0e2a6af99aac6bfc3a6eb}{
+virtual \hyperlink{classphys_1_1UI_1_1DropDownList_abef8eec322f0e2a6af99aac6bfc3a6eb}{$\sim$DropDownList} ()}
+\label{classphys_1_1UI_1_1DropDownList_abef8eec322f0e2a6af99aac6bfc3a6eb}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -85,14 +85,14 @@ virtual void \hyperlink{classphys_1_1UI_1_1DropDownList_a1356da2f60b5ca6539f98a9
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1DropDownList_a91eee0b439bb7241ac5fd25eaa8cb554}{
-\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ {\bfseries Selection}}
-\label{classphys_1_1UI_1_1DropDownList_a91eee0b439bb7241ac5fd25eaa8cb554}
-
-\item 
 \hypertarget{classphys_1_1UI_1_1DropDownList_a7483ac2d5fb3113a2c05eae863f925c8}{
 \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ {\bfseries ListToggle}}
 \label{classphys_1_1UI_1_1DropDownList_a7483ac2d5fb3113a2c05eae863f925c8}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1DropDownList_a91eee0b439bb7241ac5fd25eaa8cb554}{
+\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ {\bfseries Selection}}
+\label{classphys_1_1UI_1_1DropDownList_a91eee0b439bb7241ac5fd25eaa8cb554}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1DropDownList_a55d5b34f7ec20da239caf1af1aad1abf}{

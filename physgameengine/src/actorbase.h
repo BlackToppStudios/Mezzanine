@@ -210,7 +210,7 @@ namespace phys
 ///////////////////////////////////////////////////////////////////////////////
 // Creation, Destruction and Initialization
 ///////////////////////////////////////
-            /// @brief Descriptive constructor.
+            /// @brief Constructor.
             /// @details This constructor contains the basic information needed to make an actor.
             // @param name The name of the actor.
             // @param file The 3d mesh file that contains the 3d model the actor will use.

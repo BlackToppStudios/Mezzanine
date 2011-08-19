@@ -20,39 +20,39 @@ Inheritance diagram for phys::ParticleEffect:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}{ParticleEffect} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Template, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
-\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ParticleEffect_aaf5a40f8c22ca3cd01f0feeb08b8308b}{ParticleEffect} (Ogre::ParticleSystem $\ast$System, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Template, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
-\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}{
-\hyperlink{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}{$\sim$ParticleEffect} ()}
-\label{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1ParticleEffect_a770309a3ec74b8bff6169ce5aecc64e7}{GetName} () const 
-\begin{DoxyCompactList}\small\item\em Gets the name of this particle effect. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1ParticleEffect_a86553a292cee35953b98d1d7e34b6a0d}{GetAttachableType} () const 
-\begin{DoxyCompactList}\small\item\em What kind of \hyperlink{classphys_1_1Attachable}{Attachable} is this. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ParticleEffect_a83a533b22d3926775562bdf0a1dd8e5b}{AttachToFinal} (Ogre::SceneNode $\ast$RawTarget, \hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$Target)
 \begin{DoxyCompactList}\small\item\em Does the Final Work to attach on the \hyperlink{classphys_1_1Attachable}{Attachable} Side, should only be called by WorldNode::AttachFinal. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ParticleEffect_a6cecfcd4177514f4323c653d0ea2c2c5}{DetachFromFinal} (Ogre::SceneNode $\ast$RawTarget)
 \begin{DoxyCompactList}\small\item\em Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ParticleEffect_aee95ac9b688885361d3066a5a4b83965}{EnableParticleEffect} ()
-\begin{DoxyCompactList}\small\item\em Enables the particle effect, allowing it to render. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ParticleEffect_abd9f2339d22582055fe4ae45f986ff8c}{DisableParticleEffect} ()
 \begin{DoxyCompactList}\small\item\em Disables the particle effect, preventing it from rendering. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1ParticleEffect_aaa4f853811fe2f638d03f09143fd08ca}{IsEnabled} () const 
-\begin{DoxyCompactList}\small\item\em Is this effect enabled. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ParticleEffect_a4371533c2d1d533208b7bc8a067a67e5}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec)
-\begin{DoxyCompactList}\small\item\em Set the location of this Particle effect relative to the object it is attached to. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ParticleEffect_aee95ac9b688885361d3066a5a4b83965}{EnableParticleEffect} ()
+\begin{DoxyCompactList}\small\item\em Enables the particle effect, allowing it to render. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1ParticleEffect_a86553a292cee35953b98d1d7e34b6a0d}{GetAttachableType} () const 
+\begin{DoxyCompactList}\small\item\em What kind of \hyperlink{classphys_1_1Attachable}{Attachable} is this. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ParticleEffect_a1776793641c2133def40b572883b4241}{GetLocation} () const 
 \begin{DoxyCompactList}\small\item\em Get the location of the Particle Effect, relative to the Object is is attached to. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ParticleEffect_aab98a28c2a7984fca81cdfee5e1d2086}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation)
-\begin{DoxyCompactList}\small\item\em Sets the orientation of this node. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1ParticleEffect_a770309a3ec74b8bff6169ce5aecc64e7}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of this particle effect. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1ParticleEffect_ac3f90a940601fbe0657f5d8eb51f0509}{GetOrientation} () const 
 \begin{DoxyCompactList}\small\item\em Gets the orientation of this node. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1ParticleEffect_a7234a58e42de201111439b58433c2319}{GetTemplate} () const 
-\begin{DoxyCompactList}\small\item\em The name of the template used to create this. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The name of the template used to create this. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ParticleEffect_aaa4f853811fe2f638d03f09143fd08ca}{IsEnabled} () const 
+\begin{DoxyCompactList}\small\item\em Is this effect enabled. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}{ParticleEffect} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Template, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ParticleEffect_aaf5a40f8c22ca3cd01f0feeb08b8308b}{ParticleEffect} (Ogre::ParticleSystem $\ast$System, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Template, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ParticleEffect_a4371533c2d1d533208b7bc8a067a67e5}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec)
+\begin{DoxyCompactList}\small\item\em Set the location of this Particle effect relative to the object it is attached to. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ParticleEffect_aab98a28c2a7984fca81cdfee5e1d2086}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of this node. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}{
+\hyperlink{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}{$\sim$ParticleEffect} ()}
+\label{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

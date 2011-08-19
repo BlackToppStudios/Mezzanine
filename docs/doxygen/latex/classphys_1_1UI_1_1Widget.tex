@@ -43,100 +43,90 @@ enum {\bfseries WidgetType} \{ \par
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259dc}{CheckMouseHover} ()=0
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e7}{GetActualPosition} ()=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed2}{GetActualSize} ()=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Widget_ab563c13db418e4c3ff0a0dd766550251}{GetHoveredButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the hovered button within this widget, if any. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Widget_a38764b73bc6087e2611660735840ba3f}{GetHoveredSubWidget} ()
+\begin{DoxyCompactList}\small\item\em Gets the hovered sub-\/widget within this widget, if any. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1InputCaptureData}{InputCaptureData} $\ast$ \hyperlink{classphys_1_1UI_1_1Widget_a900184fbe7af51581d6bddafb45d953a}{GetInputCaptureData} ()
+\begin{DoxyCompactList}\small\item\em Gets the data determining what input should be captured. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classphys_1_1UI_1_1Widget_a33f97d7da0ac48a35006cb71676e6c2e}{GetLayer} ()
+\begin{DoxyCompactList}\small\item\em Gets the layer this widget belongs to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1UI_1_1Widget_a35d6e7ce60a9b295d8659345627cf7e0}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{GetPosition} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \hyperlink{classphys_1_1UI_1_1Widget_a0a09859c063ac222d0e736af5050e556}{GetRect} (bool Relative=true)
+\begin{DoxyCompactList}\small\item\em Gets this Widgets' Rect. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{GetSize} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual WidgetType \hyperlink{classphys_1_1UI_1_1Widget_a76337b279bd372ce225f94ab1da191ea}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em Gets the type of widget this is. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Widget_abc8e3f88f780e3b36b38086c45311795}{
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_abc8e3f88f780e3b36b38086c45311795}{Hide} ()=0}
+\label{classphys_1_1UI_1_1Widget_abc8e3f88f780e3b36b38086c45311795}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Widget_af8498cbe2d6cf37115cf8ade52e22557}{IsInputCaptureWidget} ()
+\begin{DoxyCompactList}\small\item\em Checks if this is an input capturing widget. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}{IsVisible} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120d}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d00}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a5ef3d6feab24fd891b17780069e012e5}{SetRect} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Sets the Rect(Position and Size) of this \hyperlink{classphys_1_1UI_1_1Widget}{Widget}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24d}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)=0
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{SetVisible} (bool visible)=0
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Widget_aa53e64903afc4a1fecd066c814b6c8d4}{
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_aa53e64903afc4a1fecd066c814b6c8d4}{Show} ()=0}
+\label{classphys_1_1UI_1_1Widget_aa53e64903afc4a1fecd066c814b6c8d4}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_acbda7003549c6caac46078c034657929}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Widget_a7f992cc7513f1e41795b3569aa8faced}{Widget} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Widget_a95bde61e93544334b376938274617d15}{
 virtual \hyperlink{classphys_1_1UI_1_1Widget_a95bde61e93544334b376938274617d15}{$\sim$Widget} ()}
 \label{classphys_1_1UI_1_1Widget_a95bde61e93544334b376938274617d15}
 
-\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{SetVisible} (bool visible)=0
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}{IsVisible} ()=0
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Widget_aa53e64903afc4a1fecd066c814b6c8d4}{
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_aa53e64903afc4a1fecd066c814b6c8d4}{Show} ()=0}
-\label{classphys_1_1UI_1_1Widget_aa53e64903afc4a1fecd066c814b6c8d4}
-
-\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Widget_abc8e3f88f780e3b36b38086c45311795}{
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_abc8e3f88f780e3b36b38086c45311795}{Hide} ()=0}
-\label{classphys_1_1UI_1_1Widget_abc8e3f88f780e3b36b38086c45311795}
-
-\begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
-virtual WidgetType \hyperlink{classphys_1_1UI_1_1Widget_a76337b279bd372ce225f94ab1da191ea}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em Gets the type of widget this is. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Widget_af8498cbe2d6cf37115cf8ade52e22557}{IsInputCaptureWidget} ()
-\begin{DoxyCompactList}\small\item\em Checks if this is an input capturing widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1UI_1_1Widget_a35d6e7ce60a9b295d8659345627cf7e0}{GetName} ()
-\begin{DoxyCompactList}\small\item\em Gets the name of this widget. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259dc}{CheckMouseHover} ()=0
-\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_a5ef3d6feab24fd891b17780069e012e5}{SetRect} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
-\begin{DoxyCompactList}\small\item\em Sets the Rect(Position and Size) of this \hyperlink{classphys_1_1UI_1_1Widget}{Widget}. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \hyperlink{classphys_1_1UI_1_1Widget_a0a09859c063ac222d0e736af5050e556}{GetRect} (bool Relative=true)
-\begin{DoxyCompactList}\small\item\em Gets this Widgets' Rect. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d00}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
-\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{GetPosition} ()=0
-\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e7}{GetActualPosition} ()=0
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24d}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)=0
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{GetSize} ()=0
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120d}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)=0
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed2}{GetActualSize} ()=0
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_acbda7003549c6caac46078c034657929}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Widget_ab563c13db418e4c3ff0a0dd766550251}{GetHoveredButton} ()
-\begin{DoxyCompactList}\small\item\em Gets the hovered button within this widget, if any. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Widget_a38764b73bc6087e2611660735840ba3f}{GetHoveredSubWidget} ()
-\begin{DoxyCompactList}\small\item\em Gets the hovered sub-\/widget within this widget, if any. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classphys_1_1UI_1_1Widget_a33f97d7da0ac48a35006cb71676e6c2e}{GetLayer} ()
-\begin{DoxyCompactList}\small\item\em Gets the layer this widget belongs to. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1InputCaptureData}{InputCaptureData} $\ast$ \hyperlink{classphys_1_1UI_1_1Widget_a900184fbe7af51581d6bddafb45d953a}{GetInputCaptureData} ()
-\begin{DoxyCompactList}\small\item\em Gets the data determining what input should be captured. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1Widget_a1806425fcd684c2f0d50cd0ef4a6b0da}{
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_a1806425fcd684c2f0d50cd0ef4a6b0da}{Update} (bool Force=false)=0}
-\label{classphys_1_1UI_1_1Widget_a1806425fcd684c2f0d50cd0ef4a6b0da}
+\hypertarget{classphys_1_1UI_1_1Widget_ac51b863fb1a9c5ebaef1386b77dbda99}{
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_ac51b863fb1a9c5ebaef1386b77dbda99}{ProcessCapturedInputs} ()}
+\label{classphys_1_1UI_1_1Widget_ac51b863fb1a9c5ebaef1386b77dbda99}
 
-\begin{DoxyCompactList}\small\item\em For use with widget update/automation. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Widget_a3472e5d0f8281e704d67d419980cd918}{
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_a3472e5d0f8281e704d67d419980cd918}{SubWidgetUpdate} (bool Force=false)}
-\label{classphys_1_1UI_1_1Widget_a3472e5d0f8281e704d67d419980cd918}
-
-\begin{DoxyCompactList}\small\item\em For use with sub-\/widget update/automation. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Processes the captured inputs. This is an empty function and should be overridden if making an input capturing widget. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Widget_a4a7e18c48a7cd230fd4a0aa274c6a654}{
 virtual void \hyperlink{classphys_1_1UI_1_1Widget_a4a7e18c48a7cd230fd4a0aa274c6a654}{SubWidgetFocusUpdate} (bool Force=false)}
 \label{classphys_1_1UI_1_1Widget_a4a7e18c48a7cd230fd4a0aa274c6a654}
 
 \begin{DoxyCompactList}\small\item\em For use with sub-\/widget update/automation when the mouse isn't hovered. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Widget_ac51b863fb1a9c5ebaef1386b77dbda99}{
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_ac51b863fb1a9c5ebaef1386b77dbda99}{ProcessCapturedInputs} ()}
-\label{classphys_1_1UI_1_1Widget_ac51b863fb1a9c5ebaef1386b77dbda99}
+\hypertarget{classphys_1_1UI_1_1Widget_a3472e5d0f8281e704d67d419980cd918}{
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a3472e5d0f8281e704d67d419980cd918}{SubWidgetUpdate} (bool Force=false)}
+\label{classphys_1_1UI_1_1Widget_a3472e5d0f8281e704d67d419980cd918}
 
-\begin{DoxyCompactList}\small\item\em Processes the captured inputs. This is an empty function and should be overridden if making an input capturing widget. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em For use with sub-\/widget update/automation. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Widget_a1806425fcd684c2f0d50cd0ef4a6b0da}{
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a1806425fcd684c2f0d50cd0ef4a6b0da}{Update} (bool Force=false)=0}
+\label{classphys_1_1UI_1_1Widget_a1806425fcd684c2f0d50cd0ef4a6b0da}
+
+\begin{DoxyCompactList}\small\item\em For use with widget update/automation. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1UI_1_1Widget_a812fbbc32757b89af66053ea9b0f956c}{
-\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
-\label{classphys_1_1UI_1_1Widget_a812fbbc32757b89af66053ea9b0f956c}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Widget_aa86407b2762dd0e164bccdd571c184ff}{
-\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
-\label{classphys_1_1UI_1_1Widget_aa86407b2762dd0e164bccdd571c184ff}
-
 \item 
 \hypertarget{classphys_1_1UI_1_1Widget_a94dbd052a2983aef7c719053dc182810}{
 \hyperlink{classphys_1_1UI_1_1InputCaptureData}{InputCaptureData} $\ast$ {\bfseries CaptureData}}
@@ -153,14 +143,19 @@ virtual void \hyperlink{classphys_1_1UI_1_1Widget_ac51b863fb1a9c5ebaef1386b77dbd
 \label{classphys_1_1UI_1_1Widget_a8a1940556d7fd20c937671b2d87a70c9}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Widget_accfbf9586fddb6d31fee3e59b9b1628c}{
-\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries SubWidgetFocus}}
-\label{classphys_1_1UI_1_1Widget_accfbf9586fddb6d31fee3e59b9b1628c}
+\hypertarget{classphys_1_1UI_1_1Widget_a812fbbc32757b89af66053ea9b0f956c}{
+\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
+\label{classphys_1_1UI_1_1Widget_a812fbbc32757b89af66053ea9b0f956c}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Widget_a752b4b76947c1e55d8a6f74ab772b875}{
-bool {\bfseries Visible}}
-\label{classphys_1_1UI_1_1Widget_a752b4b76947c1e55d8a6f74ab772b875}
+\hypertarget{classphys_1_1UI_1_1Widget_a863f635b86ec75076e4c3978dc427679}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
+\label{classphys_1_1UI_1_1Widget_a863f635b86ec75076e4c3978dc427679}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Widget_aa86407b2762dd0e164bccdd571c184ff}{
+\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
+\label{classphys_1_1UI_1_1Widget_aa86407b2762dd0e164bccdd571c184ff}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Widget_a9b7d9a6919cf49639585634090c09ec7}{
@@ -173,14 +168,19 @@ bool {\bfseries Visible}}
 \label{classphys_1_1UI_1_1Widget_a0b239b76dc82d6bf5c5c3fa268f83f3e}
 
 \item 
+\hypertarget{classphys_1_1UI_1_1Widget_accfbf9586fddb6d31fee3e59b9b1628c}{
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries SubWidgetFocus}}
+\label{classphys_1_1UI_1_1Widget_accfbf9586fddb6d31fee3e59b9b1628c}
+
+\item 
 \hypertarget{classphys_1_1UI_1_1Widget_af957da7e0342010f3dad1c7b4a73f334}{
 WidgetType {\bfseries Type}}
 \label{classphys_1_1UI_1_1Widget_af957da7e0342010f3dad1c7b4a73f334}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Widget_a863f635b86ec75076e4c3978dc427679}{
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
-\label{classphys_1_1UI_1_1Widget_a863f635b86ec75076e4c3978dc427679}
+\hypertarget{classphys_1_1UI_1_1Widget_a752b4b76947c1e55d8a6f74ab772b875}{
+bool {\bfseries Visible}}
+\label{classphys_1_1UI_1_1Widget_a752b4b76947c1e55d8a6f74ab772b875}
 
 \end{DoxyCompactItemize}
 \subsubsection*{Friends}

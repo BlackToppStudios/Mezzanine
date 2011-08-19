@@ -20,96 +20,96 @@ Inheritance diagram for phys::UI::TextButton:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1TextButton_a0ac20e0541794bbc6d708fe3be6acb26}{TextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1TextButton_aa7cf2c89310ead3a15413ca1a278253e}{TextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}{
-virtual \hyperlink{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}{$\sim$TextButton} ()}
-\label{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_a07e030ef92f314b1eff663cbc1712d42}{SetVisible} (bool Visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this button. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1TextButton_a505167a00d343d704df1f759cd12ed1e}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this button. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1TextButton_add95c812af6ef7584a2d515a33bac72b}{
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_add95c812af6ef7584a2d515a33bac72b}{Show} ()}
-\label{classphys_1_1UI_1_1TextButton_add95c812af6ef7584a2d515a33bac72b}
-
-\begin{DoxyCompactList}\small\item\em Forces this button to be shown. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1TextButton_ab406bec58bf6244c3e867fefd19d4d7f}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1TextButton_a062b31c199f875d4f825f6be1d11fb55}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the size of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1TextButton_a0fed05cef1c311aa1b08c8f1a6830988}{GetAutoScaleText} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not text from this caption will automatically scale on a screen size change. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1TextButton_a93f53557fcea98ea2426b798628e310f}{GetGlyphIndex} ()
+\begin{DoxyCompactList}\small\item\em Gets the glyph index in use by this button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1TextButton_a09768e0666a109b7d35fd8b78240cfd3}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this button. \item\end{DoxyCompactList}\item 
+virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1TextButton_ad339621af6e73ff9702c0dd4cdadbb73}{GetRenderPriority} ()
+\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1TextButton_a21f1ff24070711e5a42eae4eb54d02d6}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1TextButton_a8dc28f2fa610dc9bb72e5886613996bd}{GetText} ()
+\begin{DoxyCompactList}\small\item\em Gets the text displayed within the button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1UI_1_1TextButton_a5cc3750a8565b91d4b4bc91e953f8401}{GetTextScale} ()
+\begin{DoxyCompactList}\small\item\em Gets the scaling currently being applied to the rendered text. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1TextButton_aef823890ba8c829183f1b618473c1bac}{
 virtual void \hyperlink{classphys_1_1UI_1_1TextButton_aef823890ba8c829183f1b618473c1bac}{Hide} ()}
 \label{classphys_1_1UI_1_1TextButton_aef823890ba8c829183f1b618473c1bac}
 
 \begin{DoxyCompactList}\small\item\em Forces this button to hide. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_ae64641f1a7c54e869a44adbe6b0d9c0a}{HorizontallyAlign} (const UI::TextHorizontalAlign \&Align)
+\begin{DoxyCompactList}\small\item\em Aligns the text of the button. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1TextButton_ad3d493189347077db92e609e47f837f5}{IsTextButton} ()
 \begin{DoxyCompactList}\small\item\em Gets whether this is a text button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_ae66f149489c4215963dc5b853c838c50}{SetText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
-\begin{DoxyCompactList}\small\item\em Sets the text displayed within the button. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1TextButton_a8dc28f2fa610dc9bb72e5886613996bd}{GetText} ()
-\begin{DoxyCompactList}\small\item\em Gets the text displayed within the button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_aa02f940e49a66417fa58cf335bd48f46}{SetTextScale} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Scale)
-\begin{DoxyCompactList}\small\item\em Sets the scaling to be applied to the text being rendered. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1UI_1_1TextButton_a5cc3750a8565b91d4b4bc91e953f8401}{GetTextScale} ()
-\begin{DoxyCompactList}\small\item\em Gets the scaling currently being applied to the rendered text. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1TextButton_a505167a00d343d704df1f759cd12ed1e}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_aa82c174bba5db127a5a9977b9fdf1384}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_a768d203a323cca2054fa355c25fab9ef}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the size of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_afa1fd7dea37485b0b364328e62154a4f}{SetAutoScaleText} (bool Enable)
+\begin{DoxyCompactList}\small\item\em Enables or disables scaling the text automatically on a screen size change. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1TextButton_af421f9558333657e0d2d81c33fbf9eb3}{SetGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&GlyphIndex)
 \begin{DoxyCompactList}\small\item\em Sets the glyph index to be used with this button. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1TextButton_a731b313c31cea79f92180e18ab1ad783}{SetGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&GlyphIndex, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
 \begin{DoxyCompactList}\small\item\em Sets the glyph index to be used with this button from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1TextButton_a93f53557fcea98ea2426b798628e310f}{GetGlyphIndex} ()
-\begin{DoxyCompactList}\small\item\em Gets the glyph index in use by this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_ae64641f1a7c54e869a44adbe6b0d9c0a}{HorizontallyAlign} (const UI::TextHorizontalAlign \&Align)
-\begin{DoxyCompactList}\small\item\em Aligns the text of the button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_adbd6f7c69f78dfcba1054591e3afb838}{VerticallyAlign} (const UI::TextVerticalAlign \&Align)
-\begin{DoxyCompactList}\small\item\em Aligns the text of the button. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1TextButton_a52230b17c81743438bc0cd08eb49a5c5}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative top left position of this button. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1TextButton_a09768e0666a109b7d35fd8b78240cfd3}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_aa82c174bba5db127a5a9977b9fdf1384}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1TextButton_ab406bec58bf6244c3e867fefd19d4d7f}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_abceee9ffe1dd12e0e593a84f57d9b279}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this button. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1TextButton_a21f1ff24070711e5a42eae4eb54d02d6}{GetSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_a768d203a323cca2054fa355c25fab9ef}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the size of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1TextButton_a062b31c199f875d4f825f6be1d11fb55}{GetActualSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the size of this button in pixels. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1TextButton_a60b433a61f163f275e3fd834d74d9092}{SetRenderPriority} (const UI::RenderPriority \&Priority)
 \begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
-virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1TextButton_ad339621af6e73ff9702c0dd4cdadbb73}{GetRenderPriority} ()
-\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_afa1fd7dea37485b0b364328e62154a4f}{SetAutoScaleText} (bool Enable)
-\begin{DoxyCompactList}\small\item\em Enables or disables scaling the text automatically on a screen size change. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1TextButton_a0fed05cef1c311aa1b08c8f1a6830988}{GetAutoScaleText} ()
-\begin{DoxyCompactList}\small\item\em Gets whether or not text from this caption will automatically scale on a screen size change. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_abceee9ffe1dd12e0e593a84f57d9b279}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_ae66f149489c4215963dc5b853c838c50}{SetText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
+\begin{DoxyCompactList}\small\item\em Sets the text displayed within the button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_aa02f940e49a66417fa58cf335bd48f46}{SetTextScale} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Scale)
+\begin{DoxyCompactList}\small\item\em Sets the scaling to be applied to the text being rendered. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_a07e030ef92f314b1eff663cbc1712d42}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this button. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1TextButton_add95c812af6ef7584a2d515a33bac72b}{
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_add95c812af6ef7584a2d515a33bac72b}{Show} ()}
+\label{classphys_1_1UI_1_1TextButton_add95c812af6ef7584a2d515a33bac72b}
+
+\begin{DoxyCompactList}\small\item\em Forces this button to be shown. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1TextButton_aa7cf2c89310ead3a15413ca1a278253e}{TextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1TextButton_a0ac20e0541794bbc6d708fe3be6acb26}{TextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1TextButton_a5099be328baf55b9925227d11128c328}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this caption to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this caption to match those of the new screen size. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_adbd6f7c69f78dfcba1054591e3afb838}{VerticallyAlign} (const UI::TextVerticalAlign \&Align)
+\begin{DoxyCompactList}\small\item\em Aligns the text of the button. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}{
+virtual \hyperlink{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}{$\sim$TextButton} ()}
+\label{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1UI_1_1TextButton_a33fe39747602f948b462e008cb75bb5e}{
-Gorilla::Caption $\ast$ {\bfseries GorillaButton}}
-\label{classphys_1_1UI_1_1TextButton_a33fe39747602f948b462e008cb75bb5e}
-
 \item 
 \hypertarget{classphys_1_1UI_1_1TextButton_a152be1fc0fb97f69253fd50cd6cf1cd6}{
 bool {\bfseries AutoScaleText}}
 \label{classphys_1_1UI_1_1TextButton_a152be1fc0fb97f69253fd50cd6cf1cd6}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1TextButton_a75a5f79946d09fe71b71d6391e451997}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries RelLineHeight}}
-\label{classphys_1_1UI_1_1TextButton_a75a5f79946d09fe71b71d6391e451997}
-
-\item 
 \hypertarget{classphys_1_1UI_1_1TextButton_a493927c140a55924aedd4d6229b03cef}{
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries Glyphs}}
 \label{classphys_1_1UI_1_1TextButton_a493927c140a55924aedd4d6229b03cef}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1TextButton_a33fe39747602f948b462e008cb75bb5e}{
+Gorilla::Caption $\ast$ {\bfseries GorillaButton}}
+\label{classphys_1_1UI_1_1TextButton_a33fe39747602f948b462e008cb75bb5e}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1TextButton_a75a5f79946d09fe71b71d6391e451997}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries RelLineHeight}}
+\label{classphys_1_1UI_1_1TextButton_a75a5f79946d09fe71b71d6391e451997}
 
 \end{DoxyCompactItemize}
 

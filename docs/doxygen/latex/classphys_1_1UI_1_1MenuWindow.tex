@@ -20,60 +20,55 @@ Inheritance diagram for phys::UI::MenuWindow:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1MenuWindow_a966a303c617819dc5360f2e76ea59194}{MenuWindow} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Menu}{UI::Menu} $\ast$TheMenu, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1MenuWindow_a8de1eab7a7897e24dfb722cce7d903eb}{
-virtual \hyperlink{classphys_1_1UI_1_1MenuWindow_a8de1eab7a7897e24dfb722cce7d903eb}{$\sim$MenuWindow} ()}
-\label{classphys_1_1UI_1_1MenuWindow_a8de1eab7a7897e24dfb722cce7d903eb}
-
-\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MenuWindow_ac531ecb7994c9f7718a36f57c85db1b1}{SetAutoHide} (bool AutoHide)
-\begin{DoxyCompactList}\small\item\em Sets whether or not thie window should auto hide when another window is added to the menu stack. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1MenuWindow_ab7210297e9bf76bea6e0e610ab266eed}{GetAutoHide} ()
-\begin{DoxyCompactList}\small\item\em Gets wether or not this window is set to auto hide when another window is added to the menu stack. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_ac47ccc564f09ac33e13e56860b6ae281}{GetParentWindow} ()
-\begin{DoxyCompactList}\small\item\em Gets the parent window of this window. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a450627ceff35e1454204f3dfe6bbb891}{CreateBackButton} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
-\begin{DoxyCompactList}\small\item\em Creates a back button for this window. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a45c9524dc77b6436fcc12a52201442e3}{CreateBackButton} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
-\begin{DoxyCompactList}\small\item\em Creates a back button that is a text button for this window. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a414693da51ed5cf46999c6c16c01ccd1}{CreateBackButton} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
-\begin{DoxyCompactList}\small\item\em Creates a back button that is a text button for this window. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a7c286758bac0e21154f41a56d9da8c08}{GetBackButton} ()
-\begin{DoxyCompactList}\small\item\em Gets the back button of this window. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a20dc3081047b3fb88a47d730f5da084a}{CreateAccessorButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
 \begin{DoxyCompactList}\small\item\em Creates a button to be used for accessing child windows. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a6af950740ba52d93e293d8958ab5f1e4}{CreateAccessorButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a text button to be used for accessing child windows. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_ac9dd762c93f68e5cac2b0b27dae8a448}{CreateAccessorButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a text button to be used for accessing child windows. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a7ee13fd6573f8c6d4f6c4992d414e7c2}{GetAccessorButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
-\begin{DoxyCompactList}\small\item\em Gets an Accessor button by name. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a12b1586cd33bc03b5902018376878961}{GetWindowOfAccessButton} (\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$Accessor)
-\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classphys_1_1UI_1_1Window}{Window} corresponding to the access button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a450627ceff35e1454204f3dfe6bbb891}{CreateBackButton} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Creates a back button for this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a414693da51ed5cf46999c6c16c01ccd1}{CreateBackButton} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LineHeight, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a back button that is a text button for this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a45c9524dc77b6436fcc12a52201442e3}{CreateBackButton} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a back button that is a text button for this window. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a2a799315e974c7f58e1e186abd6504e0}{CreateChildMenuWindow} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$Accessor)
 \begin{DoxyCompactList}\small\item\em Adds a child window to this window. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MenuWindow_ace2796c2d250fe1582f7c43333a7295e}{DestroyChildMenuWindow} (\hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a menu window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a7ee13fd6573f8c6d4f6c4992d414e7c2}{GetAccessorButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an Accessor button by name. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1MenuWindow_ab7210297e9bf76bea6e0e610ab266eed}{GetAutoHide} ()
+\begin{DoxyCompactList}\small\item\em Gets wether or not this window is set to auto hide when another window is added to the menu stack. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a7c286758bac0e21154f41a56d9da8c08}{GetBackButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the back button of this window. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_ad1136c4e4b2ff9b9dc5d6aac2dba45a7}{GetChildMenuWindow} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets an already created menu window by name. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_af05d6512de0370e24638d6fe2dbc69cc}{GetChildMenuWindow} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created menu window by index. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1MenuWindow_ab3a6ae708ba2cea16cd0de176e265459}{GetNumChildMenuWindows} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of menu windows created and stored in this class. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1MenuWindow_ace2796c2d250fe1582f7c43333a7295e}{DestroyChildMenuWindow} (\hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ToBeDestroyed)
-\begin{DoxyCompactList}\small\item\em Destroys a menu window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_ac47ccc564f09ac33e13e56860b6ae281}{GetParentWindow} ()
+\begin{DoxyCompactList}\small\item\em Gets the parent window of this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a12b1586cd33bc03b5902018376878961}{GetWindowOfAccessButton} (\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$Accessor)
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classphys_1_1UI_1_1Window}{Window} corresponding to the access button. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MenuWindow_a966a303c617819dc5360f2e76ea59194}{MenuWindow} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Menu}{UI::Menu} $\ast$TheMenu, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MenuWindow_ac531ecb7994c9f7718a36f57c85db1b1}{SetAutoHide} (bool AutoHide)
+\begin{DoxyCompactList}\small\item\em Sets whether or not thie window should auto hide when another window is added to the menu stack. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1MenuWindow_a9845f7bd61f5c3f06594c4bbcbd4e063}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this window to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this window to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a8de1eab7a7897e24dfb722cce7d903eb}{
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow_a8de1eab7a7897e24dfb722cce7d903eb}{$\sim$MenuWindow} ()}
+\label{classphys_1_1UI_1_1MenuWindow_a8de1eab7a7897e24dfb722cce7d903eb}
+
+\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1MenuWindow_a94ec8861afbc6f39ac4b443a912bc0c1}{
-\hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ {\bfseries ParentWindow}}
-\label{classphys_1_1UI_1_1MenuWindow_a94ec8861afbc6f39ac4b443a912bc0c1}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1MenuWindow_adeed2fd68308846df8885febee141111}{
-\hyperlink{classphys_1_1UI_1_1Menu}{UI::Menu} $\ast$ {\bfseries MasterMenu}}
-\label{classphys_1_1UI_1_1MenuWindow_adeed2fd68308846df8885febee141111}
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a7bceef4e75b7f179fb2b71f822c376fd}{
+bool {\bfseries AutoHideWindow}}
+\label{classphys_1_1UI_1_1MenuWindow_a7bceef4e75b7f179fb2b71f822c376fd}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1MenuWindow_a02826ad4a8d0b8934a7dbe86e4ea3edf}{
@@ -81,14 +76,19 @@ virtual void \hyperlink{classphys_1_1UI_1_1MenuWindow_a9845f7bd61f5c3f06594c4bbc
 \label{classphys_1_1UI_1_1MenuWindow_a02826ad4a8d0b8934a7dbe86e4ea3edf}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1MenuWindow_a7bceef4e75b7f179fb2b71f822c376fd}{
-bool {\bfseries AutoHideWindow}}
-\label{classphys_1_1UI_1_1MenuWindow_a7bceef4e75b7f179fb2b71f822c376fd}
-
-\item 
 \hypertarget{classphys_1_1UI_1_1MenuWindow_ae55c88520920e44c0bb125e812d62272}{
 std::vector$<$ std::pair$<$ \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$, \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ $>$ $>$ {\bfseries ChildWindows}}
 \label{classphys_1_1UI_1_1MenuWindow_ae55c88520920e44c0bb125e812d62272}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1MenuWindow_adeed2fd68308846df8885febee141111}{
+\hyperlink{classphys_1_1UI_1_1Menu}{UI::Menu} $\ast$ {\bfseries MasterMenu}}
+\label{classphys_1_1UI_1_1MenuWindow_adeed2fd68308846df8885febee141111}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a94ec8861afbc6f39ac4b443a912bc0c1}{
+\hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ {\bfseries ParentWindow}}
+\label{classphys_1_1UI_1_1MenuWindow_a94ec8861afbc6f39ac4b443a912bc0c1}
 
 \end{DoxyCompactItemize}
 

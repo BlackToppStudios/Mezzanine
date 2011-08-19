@@ -10,26 +10,26 @@ All functionality that needs different implemenations per platform will go in he
 \subsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{namespacephys_1_1crossplatform_a8f7321f409f1f2a5fa07881ae22fcc2d}{GetPluginsDotCFG} ()
-\begin{DoxyCompactList}\small\item\em Returns a string with a path/filename to the default Plugins config file. \item\end{DoxyCompactList}\item 
-string \hyperlink{namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a08152f}{GetSettingsDotCFG} ()
-\begin{DoxyCompactList}\small\item\em Returns a string with a path/filename to the default Graphics Subsytem settings file. \item\end{DoxyCompactList}\item 
 string \hyperlink{namespacephys_1_1crossplatform_ae7b1d4b6dac634392c6224f26ab85001}{GetDataDirectory} ()
 \begin{DoxyCompactList}\small\item\em Gets the Default Data Directory. \item\end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{namespacephys_1_1crossplatform_a16d9a4174cbcac20670925e3d60465da}{GetSDLOgreBinder} (SDL\_\-Window $\ast$window, const size\_\-t \&winGlContext)
-\begin{DoxyCompactList}\small\item\em This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) \item\end{DoxyCompactList}\item 
-void \hyperlink{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}{WaitMilliseconds} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&WaitTime)
-\begin{DoxyCompactList}\small\item\em Pauses the program for a given period of time. \item\end{DoxyCompactList}\item 
-void \hyperlink{namespacephys_1_1crossplatform_a7c0ef3957423db484714c3356603c09d}{RenderPhysWorld} ()
-\begin{DoxyCompactList}\small\item\em Renders the current world contents to the screen. \item\end{DoxyCompactList}\item 
+std::set$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} $>$ $\ast$ \hyperlink{namespacephys_1_1crossplatform_ae9467e352901b33f7483fe8cc974b578}{GetDirContents} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Dir=\char`\"{}.\char`\"{})
+\begin{DoxyCompactList}\small\item\em Get a Listing of the files and subdirectories in a directory. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_1_1crossplatform_af34fd6dc13360417a87c579744932dce}{GetPlatform} ()
 \begin{DoxyCompactList}\small\item\em Gets the platform currently being run on. \item\end{DoxyCompactList}\item 
-void \hyperlink{namespacephys_1_1crossplatform_ab8bf982a60b008f32c91c90354efc162}{SanitizeWindowedRes} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&ActualWidth, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&ActualHeight)
-\begin{DoxyCompactList}\small\item\em Gets cleaned dimensions for a game window. \item\end{DoxyCompactList}\item 
+string \hyperlink{namespacephys_1_1crossplatform_a8f7321f409f1f2a5fa07881ae22fcc2d}{GetPluginsDotCFG} ()
+\begin{DoxyCompactList}\small\item\em Returns a string with a path/filename to the default Plugins config file. \item\end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{namespacephys_1_1crossplatform_a16d9a4174cbcac20670925e3d60465da}{GetSDLOgreBinder} (SDL\_\-Window $\ast$window, const size\_\-t \&winGlContext)
+\begin{DoxyCompactList}\small\item\em This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) \item\end{DoxyCompactList}\item 
+string \hyperlink{namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a08152f}{GetSettingsDotCFG} ()
+\begin{DoxyCompactList}\small\item\em Returns a string with a path/filename to the default Graphics Subsytem settings file. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_1_1crossplatform_aa13f8bf79ac9313095e9a1b935ef3a10}{GetWorkingDir} ()
 \begin{DoxyCompactList}\small\item\em Get the working directory as a \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String}. \item\end{DoxyCompactList}\item 
-std::set$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} $>$ $\ast$ \hyperlink{namespacephys_1_1crossplatform_ae9467e352901b33f7483fe8cc974b578}{GetDirContents} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Dir=\char`\"{}.\char`\"{})
-\begin{DoxyCompactList}\small\item\em Get a Listing of the files and subdirectories in a directory. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{namespacephys_1_1crossplatform_a7c0ef3957423db484714c3356603c09d}{RenderPhysWorld} ()
+\begin{DoxyCompactList}\small\item\em Renders the current world contents to the screen. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespacephys_1_1crossplatform_ab8bf982a60b008f32c91c90354efc162}{SanitizeWindowedRes} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&ActualWidth, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&ActualHeight)
+\begin{DoxyCompactList}\small\item\em Gets cleaned dimensions for a game window. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}{WaitMilliseconds} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&WaitTime)
+\begin{DoxyCompactList}\small\item\em Pauses the program for a given period of time. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

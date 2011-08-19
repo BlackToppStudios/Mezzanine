@@ -20,20 +20,24 @@ Inheritance diagram for phys::ResourceManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1ResourceManager_af114d84fa357432db4184bfd322495b6}{ResourceManager} ()
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ResourceManager_a426d4d684a9ecf98359362243ce01072}{$\sim$ResourceManager} ()
-\item 
-bool \hyperlink{classphys_1_1ResourceManager_a9511ec29e5c732602b1495173abf56ef}{ExportShapeData} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName)
-\begin{DoxyCompactList}\small\item\em Exports an actors shape data to a file. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1ResourceManager_a6fb3434f5d7be221e7a474765c625ad9}{ImportShapeData} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName)
-\begin{DoxyCompactList}\small\item\em Imports serialized shape data from the disk to be used in an Actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ResourceManager_a0d7d3adce2ad4c70a3e867396e17b090}{AddResourceLocation} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Location, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Type, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, const bool \&recursive=false)
 \begin{DoxyCompactList}\small\item\em Adds a location for graphical resources. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ResourceManager_afa5d686ad3b4c863580050994169cb6b}{DestroyResourceGroup} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&GroupName)
-\begin{DoxyCompactList}\small\item\em Destroys a resource group, unloading all of it's resources. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ResourceManager_a6ac7835a02dff32e60a73320f9c9dabb}{DeclareResource} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Type, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group)
 \begin{DoxyCompactList}\small\item\em Prepares the resource for use. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ResourceManager_afa5d686ad3b4c863580050994169cb6b}{DestroyResourceGroup} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&GroupName)
+\begin{DoxyCompactList}\small\item\em Destroys a resource group, unloading all of it's resources. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ResourceManager_a9511ec29e5c732602b1495173abf56ef}{ExportShapeData} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName)
+\begin{DoxyCompactList}\small\item\em Exports an actors shape data to a file. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ResourceInputStream}{ResourceInputStream} $\ast$ \hyperlink{classphys_1_1ResourceManager_a13f0aef080b9a353fe6c910c2781de50}{GetResourceStream} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName)
+\begin{DoxyCompactList}\small\item\em Get a stream to read from the specified file. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \hyperlink{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ResourceManager_a6fb3434f5d7be221e7a474765c625ad9}{ImportShapeData} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName)
+\begin{DoxyCompactList}\small\item\em Imports serialized shape data from the disk to be used in an Actor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ResourceManager_aa2f44129dfc3dc0b0ee332a2bba6078d}{InitResourceGroup} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Makes a resource group ready to use. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ResourceManager_a348f333ffd9638decd144bf9d65ca05d}{
@@ -41,40 +45,36 @@ void \hyperlink{classphys_1_1ResourceManager_a348f333ffd9638decd144bf9d65ca05d}{
 \label{classphys_1_1ResourceManager_a348f333ffd9638decd144bf9d65ca05d}
 
 \begin{DoxyCompactList}\small\item\em Parses all Ogre Material scripts. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ResourceInputStream}{ResourceInputStream} $\ast$ \hyperlink{classphys_1_1ResourceManager_a13f0aef080b9a353fe6c910c2781de50}{GetResourceStream} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName)
-\begin{DoxyCompactList}\small\item\em Get a stream to read from the specified file. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{Initialize} ()
-\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{DoMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \hyperlink{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classphys_1_1ResourceManager_af114d84fa357432db4184bfd322495b6}{ResourceManager} ()
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ResourceManager_a426d4d684a9ecf98359362243ce01072}{$\sim$ResourceManager} ()
+\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ResourceManager_a7c84034fc45e64fc3a07f736230afd38}{
+void {\bfseries AddResourceGroupName} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)}
+\label{classphys_1_1ResourceManager_a7c84034fc45e64fc3a07f736230afd38}
+
 \item 
 \hypertarget{classphys_1_1ResourceManager_a1823d2d08fc3b6052ed893896eef6291}{
 void \hyperlink{classphys_1_1ResourceManager_a1823d2d08fc3b6052ed893896eef6291}{ApplyShapeToActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, btCollisionShape $\ast$ColShape)}
 \label{classphys_1_1ResourceManager_a1823d2d08fc3b6052ed893896eef6291}
 
-\begin{DoxyCompactList}\small\item\em Applies a saved shape to an Actor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ResourceManager_a7c84034fc45e64fc3a07f736230afd38}{
-void {\bfseries AddResourceGroupName} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)}
-\label{classphys_1_1ResourceManager_a7c84034fc45e64fc3a07f736230afd38}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Applies a saved shape to an Actor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1ResourceManager_af19bf0549a0896cf84696a39f4ca817d}{
-Ogre::ResourceGroupManager $\ast$ \hyperlink{classphys_1_1ResourceManager_af19bf0549a0896cf84696a39f4ca817d}{OgreResource}}
-\label{classphys_1_1ResourceManager_af19bf0549a0896cf84696a39f4ca817d}
-
-\begin{DoxyCompactList}\small\item\em Encapsulates the functionality of the ogre resource group manager. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ResourceManager_a03a283e02f3639f5c1f2de915ed798ae}{
 std::vector$<$ \hyperlink{classphys_1_1ResourceInputStream}{ResourceInputStream} $\ast$ $>$ \hyperlink{classphys_1_1ResourceManager_a03a283e02f3639f5c1f2de915ed798ae}{DeleteList}}
 \label{classphys_1_1ResourceManager_a03a283e02f3639f5c1f2de915ed798ae}
 
 \begin{DoxyCompactList}\small\item\em A list of Pointers to streams created to delete periodically. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ResourceManager_af19bf0549a0896cf84696a39f4ca817d}{
+Ogre::ResourceGroupManager $\ast$ \hyperlink{classphys_1_1ResourceManager_af19bf0549a0896cf84696a39f4ca817d}{OgreResource}}
+\label{classphys_1_1ResourceManager_af19bf0549a0896cf84696a39f4ca817d}
+
+\begin{DoxyCompactList}\small\item\em Encapsulates the functionality of the ogre resource group manager. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ResourceManager_a284bc8b042fffbb607355f7874692b54}{
 std::vector$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} $>$ {\bfseries ResourceGroups}}
 \label{classphys_1_1ResourceManager_a284bc8b042fffbb607355f7874692b54}

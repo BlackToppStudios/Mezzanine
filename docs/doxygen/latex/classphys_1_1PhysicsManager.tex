@@ -20,100 +20,100 @@ Inheritance diagram for phys::PhysicsManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1PhysicsManager_ab3ecdc295799ad9858ca80743b25006d}{PhysicsManager} ()
-\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1PhysicsManager_abb3bd1e6aaadba95ce219d9d3643ebfe}{PhysicsManager} (const \hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \&Info)
-\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}{$\sim$PhysicsManager} ()
-\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a107d5540a9bef91325807f77542c9176}{PauseSimulation} (bool Pause)
-\begin{DoxyCompactList}\small\item\em Pauses the simulation, preventing the physics world from taking action. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1PhysicsManager_a62e19a64f13c5dff40a6f454331dae70}{SimulationIsPaused} ()
-\begin{DoxyCompactList}\small\item\em Gets Whether or not the simulation is currently paused. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}{SetGravity} (\hyperlink{classphys_1_1Vector3}{Vector3} pgrav)
-\begin{DoxyCompactList}\small\item\em Sets the gravity. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsManager_a880950ca6093afd3267dcadf30934574}{GetGravity} ()
-\begin{DoxyCompactList}\small\item\em Gets the gravity. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_acd1fe36f7cd593da0c466002304065eb}{SetSoftGravity} (\hyperlink{classphys_1_1Vector3}{Vector3} sgrav)
-\begin{DoxyCompactList}\small\item\em Sets the gravity for soft bodies. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsManager_acdaad0849c3d6386e8cff5c98fc46664}{GetSoftGravity} ()
-\begin{DoxyCompactList}\small\item\em Gets the soft body gravity. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_af6acab3a35e52b1e25f1ab47f494d90d}{SetIndividualGravity} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{classphys_1_1Vector3}{Vector3} igrav)
-\begin{DoxyCompactList}\small\item\em Sets the gravity to be applied to a single object. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_aa2e58b40c1031c777d828b2409befbb9}{AddConstraint} (TypedConstraint $\ast$Constraint, bool DisableCollisions=false)
-\begin{DoxyCompactList}\small\item\em Adds a constraint to the world. \item\end{DoxyCompactList}\item 
-TypedConstraint $\ast$ \hyperlink{classphys_1_1PhysicsManager_af3a7b3a98c885785875375cae608b4d5}{GetConstraint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
-\begin{DoxyCompactList}\small\item\em Gets a constraint by index. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsManager_aa21fe7e9349d638020627c58b90faa38}{GetNumConstraints} ()
-\begin{DoxyCompactList}\small\item\em Gets the number of constraints currently in the world. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_ace94aa20b5191b01630e7a5046cb7af6}{RemoveConstraint} (TypedConstraint $\ast$Constraint)
-\begin{DoxyCompactList}\small\item\em Removes a constraint from the world. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a34b684f447c56dee94dc80d8df8051eb}{DestroyAllConstraints} ()
-\begin{DoxyCompactList}\small\item\em Destroys all constraints currently in the manager. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_aee6b1c15ac2689e8d228ff074f79f224}{StorePhysicsShape} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ShapeName)
-\begin{DoxyCompactList}\small\item\em Stores an already generated physics shape. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a5b8767880619cefce97218207c251544}{ApplyPhysicsShape} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ShapeName)
-\begin{DoxyCompactList}\small\item\em Applies a previously stored shape. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1PhysicsManager_a51a1fc148baa6d4d32a0f47cbc0dbc97}{
-void \hyperlink{classphys_1_1PhysicsManager_a51a1fc148baa6d4d32a0f47cbc0dbc97}{DestroyAllPhysicsShapes} ()}
-\label{classphys_1_1PhysicsManager_a51a1fc148baa6d4d32a0f47cbc0dbc97}
-
-\begin{DoxyCompactList}\small\item\em Destroys all physics shapes currently in the manager. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1PhysicsManager_a64e75a71598b6440c4feb1a2214a1420}{AddAreaEffect} (\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$AE)
 \begin{DoxyCompactList}\small\item\em Adds an area effect to the world. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$ \hyperlink{classphys_1_1PhysicsManager_a458b0649bee606aa6dd2d724135f1871}{GetAreaEffect} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Gets an Area Effect by name. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a5ee0f784a8239be56164a7a67a28f227}{RemoveAreaEffect} (\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$AE)
-\begin{DoxyCompactList}\small\item\em Removes an area effect from the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_aa2e58b40c1031c777d828b2409befbb9}{AddConstraint} (TypedConstraint $\ast$Constraint, bool DisableCollisions=false)
+\begin{DoxyCompactList}\small\item\em Adds a constraint to the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_abed0578d971b6df80120a0a5fcc4a1d9}{AddWorldTrigger} (\hyperlink{classphys_1_1WorldTrigger}{WorldTrigger} $\ast$Trig)
+\begin{DoxyCompactList}\small\item\em Adds a trigger to the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a5b8767880619cefce97218207c251544}{ApplyPhysicsShape} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ShapeName)
+\begin{DoxyCompactList}\small\item\em Applies a previously stored shape. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_aa9f964240e51a92abf0afbb045721396}{ClearPhysicsMetaData} ()
+\begin{DoxyCompactList}\small\item\em Clears all data relating to actors and other simulation objects from the physics world. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1PhysicsManager_ac0157bc0c953b13162c680d1c49980f6}{
 void \hyperlink{classphys_1_1PhysicsManager_ac0157bc0c953b13162c680d1c49980f6}{DestroyAllAreaEffects} ()}
 \label{classphys_1_1PhysicsManager_ac0157bc0c953b13162c680d1c49980f6}
 
 \begin{DoxyCompactList}\small\item\em Destroys all area effects currently in the manager. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_abed0578d971b6df80120a0a5fcc4a1d9}{AddWorldTrigger} (\hyperlink{classphys_1_1WorldTrigger}{WorldTrigger} $\ast$Trig)
-\begin{DoxyCompactList}\small\item\em Adds a trigger to the world. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1WorldTrigger}{WorldTrigger} $\ast$ \hyperlink{classphys_1_1PhysicsManager_a6d55d03e86909138587c0b36012ba4a6}{GetWorldTrigger} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Gets a trigger by name. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a48bd725a1a2b3e8193b549a915ef4dc2}{RemoveWorldTrigger} (\hyperlink{classphys_1_1WorldTrigger}{WorldTrigger} $\ast$Trig)
-\begin{DoxyCompactList}\small\item\em Removes a trigger from the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a34b684f447c56dee94dc80d8df8051eb}{DestroyAllConstraints} ()
+\begin{DoxyCompactList}\small\item\em Destroys all constraints currently in the manager. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1PhysicsManager_a51a1fc148baa6d4d32a0f47cbc0dbc97}{
+void \hyperlink{classphys_1_1PhysicsManager_a51a1fc148baa6d4d32a0f47cbc0dbc97}{DestroyAllPhysicsShapes} ()}
+\label{classphys_1_1PhysicsManager_a51a1fc148baa6d4d32a0f47cbc0dbc97}
+
+\begin{DoxyCompactList}\small\item\em Destroys all physics shapes currently in the manager. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1PhysicsManager_a778ebdcf3d67f4527978f51bb4249af2}{
 void \hyperlink{classphys_1_1PhysicsManager_a778ebdcf3d67f4527978f51bb4249af2}{DestroyAllWorldTriggers} ()}
 \label{classphys_1_1PhysicsManager_a778ebdcf3d67f4527978f51bb4249af2}
 
 \begin{DoxyCompactList}\small\item\em Destroys all triggers currently in the manager. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a98ee9704eec230ff759850ffa8394489}{SetCollisionParams} (const unsigned short int Age, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Force)
-\begin{DoxyCompactList}\small\item\em Sets the Collision Parameters. \item\end{DoxyCompactList}\item 
-unsigned short int \hyperlink{classphys_1_1PhysicsManager_a4232e8cd52e70b623ef30c40be6cdb4a}{GetCollisionAge} ()
-\begin{DoxyCompactList}\small\item\em Gets the Collision Age limit. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1PhysicsManager_ad11ee3904e1725f95ce9bd58f4ee3925}{GetImpulse} ()
-\begin{DoxyCompactList}\small\item\em Gets the Collision Impulse limit. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}{SetDebugPhysicsRendering} (int ToBeEnabled)
-\begin{DoxyCompactList}\small\item\em Enables and Disables Physics Debug Drawing. \item\end{DoxyCompactList}\item 
-int \hyperlink{classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}{GetDebugPhysicsRendering} ()
-\begin{DoxyCompactList}\small\item\em Is Physics Debug Drawing currently enabled? \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}{SetDebugPhysicsWireCount} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-)
-\begin{DoxyCompactList}\small\item\em How many Wireframes do you want drawn from previous events. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}{GetDebugPhysicsWireCount} ()
-\begin{DoxyCompactList}\small\item\em This gets how many WireFrames are being drawn. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsManager_a54a48fdfd9db914c25a0f892c2f56301}{GetActorOffset} (const \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} \&OffsetInfo)
-\begin{DoxyCompactList}\small\item\em Gets the offset between a point and an actor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a22e76681b153c170dd6bfef2edbbbcd3}{ResetPhysicsWorld} (\hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} $\ast$Info=0)
-\begin{DoxyCompactList}\small\item\em Resets all the internal physics structures in this manager. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_aa9f964240e51a92abf0afbb045721396}{ClearPhysicsMetaData} ()
-\begin{DoxyCompactList}\small\item\em Clears all data relating to actors and other simulation objects from the physics world. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{DoMainLoopItems} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&TimeElapsed)
 \begin{DoxyCompactList}\small\item\em This does all the work reuired for the main loop to process physics. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Physics stepping during the main loop. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsManager_a54a48fdfd9db914c25a0f892c2f56301}{GetActorOffset} (const \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} \&OffsetInfo)
+\begin{DoxyCompactList}\small\item\em Gets the offset between a point and an actor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$ \hyperlink{classphys_1_1PhysicsManager_a458b0649bee606aa6dd2d724135f1871}{GetAreaEffect} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an Area Effect by name. \item\end{DoxyCompactList}\item 
+unsigned short int \hyperlink{classphys_1_1PhysicsManager_a4232e8cd52e70b623ef30c40be6cdb4a}{GetCollisionAge} ()
+\begin{DoxyCompactList}\small\item\em Gets the Collision Age limit. \item\end{DoxyCompactList}\item 
+TypedConstraint $\ast$ \hyperlink{classphys_1_1PhysicsManager_af3a7b3a98c885785875375cae608b4d5}{GetConstraint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets a constraint by index. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}{GetDebugPhysicsRendering} ()
+\begin{DoxyCompactList}\small\item\em Is Physics Debug Drawing currently enabled? \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}{GetDebugPhysicsWireCount} ()
+\begin{DoxyCompactList}\small\item\em This gets how many WireFrames are being drawn. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsManager_a880950ca6093afd3267dcadf30934574}{GetGravity} ()
+\begin{DoxyCompactList}\small\item\em Gets the gravity. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1PhysicsManager_ad11ee3904e1725f95ce9bd58f4ee3925}{GetImpulse} ()
+\begin{DoxyCompactList}\small\item\em Gets the Collision Impulse limit. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsManager_aa21fe7e9349d638020627c58b90faa38}{GetNumConstraints} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of constraints currently in the world. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{
 btSoftRigidDynamicsWorld $\ast$ \hyperlink{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{GetPhysicsWorldPointer} ()}
 \label{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}
 
 \begin{DoxyCompactList}\small\item\em This returns a pointer to the bullet physics world. This is for internal use only. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsManager_acdaad0849c3d6386e8cff5c98fc46664}{GetSoftGravity} ()
+\begin{DoxyCompactList}\small\item\em Gets the soft body gravity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1WorldTrigger}{WorldTrigger} $\ast$ \hyperlink{classphys_1_1PhysicsManager_a6d55d03e86909138587c0b36012ba4a6}{GetWorldTrigger} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets a trigger by name. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{Initialize} ()
 \begin{DoxyCompactList}\small\item\em This configures the Physics Manager to work with the Graphic settings. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{DoMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em Physics stepping during the main loop. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{classphys_1_1PhysicsManager_a107d5540a9bef91325807f77542c9176}{PauseSimulation} (bool Pause)
+\begin{DoxyCompactList}\small\item\em Pauses the simulation, preventing the physics world from taking action. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1PhysicsManager_ab3ecdc295799ad9858ca80743b25006d}{PhysicsManager} ()
+\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1PhysicsManager_abb3bd1e6aaadba95ce219d9d3643ebfe}{PhysicsManager} (const \hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \&Info)
+\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a5ee0f784a8239be56164a7a67a28f227}{RemoveAreaEffect} (\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$AE)
+\begin{DoxyCompactList}\small\item\em Removes an area effect from the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_ace94aa20b5191b01630e7a5046cb7af6}{RemoveConstraint} (TypedConstraint $\ast$Constraint)
+\begin{DoxyCompactList}\small\item\em Removes a constraint from the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a48bd725a1a2b3e8193b549a915ef4dc2}{RemoveWorldTrigger} (\hyperlink{classphys_1_1WorldTrigger}{WorldTrigger} $\ast$Trig)
+\begin{DoxyCompactList}\small\item\em Removes a trigger from the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a22e76681b153c170dd6bfef2edbbbcd3}{ResetPhysicsWorld} (\hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} $\ast$Info=0)
+\begin{DoxyCompactList}\small\item\em Resets all the internal physics structures in this manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a98ee9704eec230ff759850ffa8394489}{SetCollisionParams} (const unsigned short int Age, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Force)
+\begin{DoxyCompactList}\small\item\em Sets the Collision Parameters. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}{SetDebugPhysicsRendering} (int ToBeEnabled)
+\begin{DoxyCompactList}\small\item\em Enables and Disables Physics Debug Drawing. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}{SetDebugPhysicsWireCount} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-)
+\begin{DoxyCompactList}\small\item\em How many Wireframes do you want drawn from previous events. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}{SetGravity} (\hyperlink{classphys_1_1Vector3}{Vector3} pgrav)
+\begin{DoxyCompactList}\small\item\em Sets the gravity. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_af6acab3a35e52b1e25f1ab47f494d90d}{SetIndividualGravity} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{classphys_1_1Vector3}{Vector3} igrav)
+\begin{DoxyCompactList}\small\item\em Sets the gravity to be applied to a single object. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_acd1fe36f7cd593da0c466002304065eb}{SetSoftGravity} (\hyperlink{classphys_1_1Vector3}{Vector3} sgrav)
+\begin{DoxyCompactList}\small\item\em Sets the gravity for soft bodies. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1PhysicsManager_a62e19a64f13c5dff40a6f454331dae70}{SimulationIsPaused} ()
+\begin{DoxyCompactList}\small\item\em Gets Whether or not the simulation is currently paused. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_aee6b1c15ac2689e8d228ff074f79f224}{StorePhysicsShape} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ShapeName)
+\begin{DoxyCompactList}\small\item\em Stores an already generated physics shape. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}{$\sim$PhysicsManager} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

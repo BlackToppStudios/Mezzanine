@@ -34,6 +34,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/main.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actortests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/compilerflagtests.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/constrainttests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanagertests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffecttests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanagertests.h"

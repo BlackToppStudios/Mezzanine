@@ -22,20 +22,22 @@ Inheritance diagram for phys::UI::CheckBox:\begin{figure}[H]
 \item 
 \hyperlink{classphys_1_1UI_1_1CheckBox_abeaca46fbfa961670c20ad949627d0fa}{CheckBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&LabelText, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CheckBox_a60c4d62c357a7158d69888a367b5dc56}{
-virtual \hyperlink{classphys_1_1UI_1_1CheckBox_a60c4d62c357a7158d69888a367b5dc56}{$\sim$CheckBox} ()}
-\label{classphys_1_1UI_1_1CheckBox_a60c4d62c357a7158d69888a367b5dc56}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_aac2babdb951a7b716b5cfff9b925420f}{SetVisible} (bool visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this checkbox. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1CheckBox_a8a2be0cba227f0921071fb14de24f76d}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this checkbox. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1CheckBox_afceb8a1afac295be23227462e6cbc369}{
-virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_afceb8a1afac295be23227462e6cbc369}{Show} ()}
-\label{classphys_1_1UI_1_1CheckBox_afceb8a1afac295be23227462e6cbc369}
-
-\begin{DoxyCompactList}\small\item\em Forces this checkbox to be shown. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CheckBox_a3c9b10c692dfb62dedbd091dac12c115}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this checkbox. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_a33bedaa00456be8ca0e9b2eafcd5b21a}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this checkbox. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_aa13946ced3947a13f8f30dd97ffba245}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this checkbox. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1CheckBox_a728de15a5c8e512fd3fbb2b8a3f808ee}{GetCheckBoxButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classphys_1_1UI_1_1Button}{Button} this checkbox is based on. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1CheckBox_a5f37379e69ef1259ab48c37a8dc200e9}{GetCheckBoxLabel} ()
+\begin{DoxyCompactList}\small\item\em Gets the label for this checkbox. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1CheckBox_a19078efa52e8b2c133f3b5229b8742eb}{GetLabelText} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set label being displayed with this checkbox. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_a8a8630b27ab769b6e42657c5388ec7fe}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this checkbox. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_a99c6ab5087522fbd4825032b9a058585}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this checkbox. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1CheckBox_ad58dd6a164e3a3b394899955b612659e}{
 virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_ad58dd6a164e3a3b394899955b612659e}{Hide} ()}
 \label{classphys_1_1UI_1_1CheckBox_ad58dd6a164e3a3b394899955b612659e}
@@ -43,38 +45,36 @@ virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_ad58dd6a164e3a3b394899955b61
 \begin{DoxyCompactList}\small\item\em Forces this checkbox to hide. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1CheckBox_acf01a9b19251212fb626d022d02b53d5}{IsChecked} ()
 \begin{DoxyCompactList}\small\item\em Gets whether this checkbox is checked or not. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CheckBox_a8a2be0cba227f0921071fb14de24f76d}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this checkbox. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a3720c3f110a3594e45a8115c21deba00}{ManualCheck} (bool Check)
 \begin{DoxyCompactList}\small\item\em Manually check or uncheck this checkbox. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1CheckBox_a3c9b10c692dfb62dedbd091dac12c115}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this checkbox. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_aa25bc0f39dca43c00585d107e9a3bcb7}{SetLabelText} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&LabelText)
-\begin{DoxyCompactList}\small\item\em Sets the text label to be displayed with this checkbox. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1CheckBox_a19078efa52e8b2c133f3b5229b8742eb}{GetLabelText} ()
-\begin{DoxyCompactList}\small\item\em Gets the currently set label being displayed with this checkbox. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_ab4b6304f4203a244dea48185eff81f43}{SetUncheckedSprite} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Unchecked, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Hovered=\char`\"{}\char`\"{})
-\begin{DoxyCompactList}\small\item\em Sets the unchecked status sprite and an optional unchecked hovered sprite. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a283705ddaab86875a3a025d34f53bec1}{SetCheckedSprite} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Checked, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Hovered=\char`\"{}\char`\"{})
-\begin{DoxyCompactList}\small\item\em Sets the checked status sprite and an optional checked hovered sprite. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_ae0a000643e0f96f12d754a8e1e5dd04b}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the relative position of this checkbox. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_a8a8630b27ab769b6e42657c5388ec7fe}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative position of this checkbox. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a186fcf91ed44c813d6dbd9cb53ff60c3}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this checkbox. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_a33bedaa00456be8ca0e9b2eafcd5b21a}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this checkbox. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a3cacea11779470e31efb6020c22e0c54}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this checkbox. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_a99c6ab5087522fbd4825032b9a058585}{GetSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this checkbox. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a623769e2a3ba24cc1a3e2e64b72edb41}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this checkbox. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_aa13946ced3947a13f8f30dd97ffba245}{GetActualSize} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this checkbox. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1CheckBox_a728de15a5c8e512fd3fbb2b8a3f808ee}{GetCheckBoxButton} ()
-\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classphys_1_1UI_1_1Button}{Button} this checkbox is based on. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1CheckBox_a5f37379e69ef1259ab48c37a8dc200e9}{GetCheckBoxLabel} ()
-\begin{DoxyCompactList}\small\item\em Gets the label for this checkbox. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a283705ddaab86875a3a025d34f53bec1}{SetCheckedSprite} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Checked, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Hovered=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the checked status sprite and an optional checked hovered sprite. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_aa25bc0f39dca43c00585d107e9a3bcb7}{SetLabelText} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&LabelText)
+\begin{DoxyCompactList}\small\item\em Sets the text label to be displayed with this checkbox. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_ae0a000643e0f96f12d754a8e1e5dd04b}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this checkbox. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a3cacea11779470e31efb6020c22e0c54}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this checkbox. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_ab4b6304f4203a244dea48185eff81f43}{SetUncheckedSprite} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Unchecked, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Hovered=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the unchecked status sprite and an optional unchecked hovered sprite. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_aac2babdb951a7b716b5cfff9b925420f}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this checkbox. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_afceb8a1afac295be23227462e6cbc369}{
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_afceb8a1afac295be23227462e6cbc369}{Show} ()}
+\label{classphys_1_1UI_1_1CheckBox_afceb8a1afac295be23227462e6cbc369}
+
+\begin{DoxyCompactList}\small\item\em Forces this checkbox to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_a60c4d62c357a7158d69888a367b5dc56}{
+virtual \hyperlink{classphys_1_1UI_1_1CheckBox_a60c4d62c357a7158d69888a367b5dc56}{$\sim$CheckBox} ()}
+\label{classphys_1_1UI_1_1CheckBox_a60c4d62c357a7158d69888a367b5dc56}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -96,16 +96,19 @@ virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_ad988ce71809fd1dea6def42da50
 \label{classphys_1_1UI_1_1CheckBox_a1118ba10131845d77085bc1b9e41fdab}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1CheckBox_a99640351f23baac8e36ef3d64140e404}{
-\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ {\bfseries Label}}
-\label{classphys_1_1UI_1_1CheckBox_a99640351f23baac8e36ef3d64140e404}
+\hypertarget{classphys_1_1UI_1_1CheckBox_af539bce89119b8e21fa19f170cc5d7e5}{
+bool {\bfseries Checked}}
+\label{classphys_1_1UI_1_1CheckBox_af539bce89119b8e21fa19f170cc5d7e5}
 
-\item 
-std::pair$<$ std::string, std::string $>$ \hyperlink{classphys_1_1UI_1_1CheckBox_a7b670d93f119193283ec78b94f842429}{UncheckedSet}
 \item 
 \hypertarget{classphys_1_1UI_1_1CheckBox_ae4bb7dad2474b7f74ebe1320fef7a58e}{
 std::pair$<$ std::string, std::string $>$ {\bfseries CheckedSet}}
 \label{classphys_1_1UI_1_1CheckBox_ae4bb7dad2474b7f74ebe1320fef7a58e}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_ae8f71565ce43129a44930131850d6e16}{
+bool {\bfseries CheckLock}}
+\label{classphys_1_1UI_1_1CheckBox_ae8f71565ce43129a44930131850d6e16}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1CheckBox_afc37b1eaaf6ab441a71569757802571b}{
@@ -113,15 +116,12 @@ std::pair$<$ std::string, std::string $>$ {\bfseries CheckedSet}}
 \label{classphys_1_1UI_1_1CheckBox_afc37b1eaaf6ab441a71569757802571b}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1CheckBox_af539bce89119b8e21fa19f170cc5d7e5}{
-bool {\bfseries Checked}}
-\label{classphys_1_1UI_1_1CheckBox_af539bce89119b8e21fa19f170cc5d7e5}
+\hypertarget{classphys_1_1UI_1_1CheckBox_a99640351f23baac8e36ef3d64140e404}{
+\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ {\bfseries Label}}
+\label{classphys_1_1UI_1_1CheckBox_a99640351f23baac8e36ef3d64140e404}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1CheckBox_ae8f71565ce43129a44930131850d6e16}{
-bool {\bfseries CheckLock}}
-\label{classphys_1_1UI_1_1CheckBox_ae8f71565ce43129a44930131850d6e16}
-
+std::pair$<$ std::string, std::string $>$ \hyperlink{classphys_1_1UI_1_1CheckBox_a7b670d93f119193283ec78b94f842429}{UncheckedSet}
 \end{DoxyCompactItemize}
 \subsubsection*{Friends}
 \begin{DoxyCompactItemize}

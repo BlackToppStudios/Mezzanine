@@ -22,13 +22,34 @@ Inheritance diagram for phys::ActorContainerVector:\begin{figure}[H]
 \item 
 \hyperlink{classphys_1_1ActorContainerVector_aafcce4ad4694e7f42a3a7f2c24087688}{ActorContainerVector} ()
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ActorContainerVector_a0bcc6e728a3ea94532e2c58248b43342}{
-virtual \hyperlink{classphys_1_1ActorContainerVector_a0bcc6e728a3ea94532e2c58248b43342}{$\sim$ActorContainerVector} ()}
-\label{classphys_1_1ActorContainerVector_a0bcc6e728a3ea94532e2c58248b43342}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerVector_a4bc3e38f16caddee021a97739bebaf6e}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)
 \begin{DoxyCompactList}\small\item\em This will add an Actor to this container and the world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerVector_ad9c2eb2a9405dcf687c86745afc9c031}{CursorToFirst} ()
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the first item in the container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerVector_aa6b08266bbb57a22c07ab50514e58db4}{CursorToLast} ()
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the last item in the container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerVector_a1c72366a6261d8e98dc0a9d2fad9f70f}{CursorToNext} ()
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the next item in the container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}{CursorToPrevious} ()
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the previous item in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a99ea0e27153c0a652264853fca7cd1b1}{FindActor} (Ogre::SceneNode $\ast$GraphicsNode)
+\begin{DoxyCompactList}\small\item\em This finds an actor by searching for a graphics subsystem nodes. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a5ebcdeb3018f3baf92154ddec79cd054}{FindActor} (btCollisionObject $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em This finds an actor by searching for a physics subsystem object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{FindActor} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)
+\begin{DoxyCompactList}\small\item\em This finds an actor based on its name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorContainerVector_a6d2e5e68e23f5798ad10ba41e479d0f7}{GetActorCount} () const 
+\begin{DoxyCompactList}\small\item\em Returns how many actors this stores. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a280700490b368a963dd8feae044c7a6d}{GetAtCursor} () const 
+\begin{DoxyCompactList}\small\item\em This gets the actor at the cursor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorContainerVector_ae18c29b30d840e0f4fc9b553dd5ca32c}{GetContainerType} () const 
+\begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a55ceecd017455f3185aa62798811e3c6}{GetFirst} () const 
+\begin{DoxyCompactList}\small\item\em This gets the first actor in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a5519eb0000073a2f397e158bfc368349}{GetGameWorld} () const 
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1World}{World} that this class is working with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{GetLast} () const 
+\begin{DoxyCompactList}\small\item\em This gets the last actor in the container. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a49e643bdeff78521de9c4a9fea59a0d2}{LastActorAdded} ()
 \begin{DoxyCompactList}\small\item\em This provides an easy way to access the last Actor added to this container. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerVector_aeee5bd81601faed85e6a35f576c8d476}{RemoveActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToRemove)
@@ -40,36 +61,15 @@ virtual void \hyperlink{classphys_1_1ActorContainerVector_a2e3d86e13cdf46ea73bce
 \label{classphys_1_1ActorContainerVector_a2e3d86e13cdf46ea73bce70c3dcced3b}
 
 \begin{DoxyCompactList}\small\item\em Clears this container of all actors it is storing. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorContainerVector_a6d2e5e68e23f5798ad10ba41e479d0f7}{GetActorCount} () const 
-\begin{DoxyCompactList}\small\item\em Returns how many actors this stores. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorContainerVector_ad9c2eb2a9405dcf687c86745afc9c031}{CursorToFirst} ()
-\begin{DoxyCompactList}\small\item\em This moves the cursor to the first item in the container. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}{CursorToPrevious} ()
-\begin{DoxyCompactList}\small\item\em This moves the cursor to the previous item in the container. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorContainerVector_a1c72366a6261d8e98dc0a9d2fad9f70f}{CursorToNext} ()
-\begin{DoxyCompactList}\small\item\em This moves the cursor to the next item in the container. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorContainerVector_aa6b08266bbb57a22c07ab50514e58db4}{CursorToLast} ()
-\begin{DoxyCompactList}\small\item\em This moves the cursor to the last item in the container. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a280700490b368a963dd8feae044c7a6d}{GetAtCursor} () const 
-\begin{DoxyCompactList}\small\item\em This gets the actor at the cursor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a55ceecd017455f3185aa62798811e3c6}{GetFirst} () const 
-\begin{DoxyCompactList}\small\item\em This gets the first actor in the container. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{GetLast} () const 
-\begin{DoxyCompactList}\small\item\em This gets the last actor in the container. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorContainerVector_ae18c29b30d840e0f4fc9b553dd5ca32c}{GetContainerType} () const 
-\begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a5519eb0000073a2f397e158bfc368349}{GetGameWorld} () const 
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1World}{World} that this class is working with. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a99ea0e27153c0a652264853fca7cd1b1}{FindActor} (Ogre::SceneNode $\ast$GraphicsNode)
-\begin{DoxyCompactList}\small\item\em This finds an actor by searching for a graphics subsystem nodes. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a5ebcdeb3018f3baf92154ddec79cd054}{FindActor} (btCollisionObject $\ast$PhysicsObject)
-\begin{DoxyCompactList}\small\item\em This finds an actor by searching for a physics subsystem object. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{FindActor} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)
-\begin{DoxyCompactList}\small\item\em This finds an actor based on its name. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerVector_ab4c1394254057465f7a2f89b87dc49aa}{SetGameWorld} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-)
 \begin{DoxyCompactList}\small\item\em This safely move all the Actors out of or into a \hyperlink{classphys_1_1World}{phys::World}. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerVector_a721d0cde6fc4f1e8d3b33867cd5c82df}{SetGameWorld} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-, bool AddToWorld, bool RemoveFromWorld)
-\begin{DoxyCompactList}\small\item\em Optionally move actors into or out of a physworld. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Optionally move actors into or out of a physworld. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorContainerVector_a0bcc6e728a3ea94532e2c58248b43342}{
+virtual \hyperlink{classphys_1_1ActorContainerVector_a0bcc6e728a3ea94532e2c58248b43342}{$\sim$ActorContainerVector} ()}
+\label{classphys_1_1ActorContainerVector_a0bcc6e728a3ea94532e2c58248b43342}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 

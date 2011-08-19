@@ -14,33 +14,33 @@ This is used to represent a flat infinite slice of the game world.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1Plane_a8896c8a09a604fff0668e5044889bea7}{Plane} ()
-\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Plane_a921d5668dfee52875ba025528604182f}{Plane} (\hyperlink{classphys_1_1Vector3}{Vector3} Normal\_\-, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Distance\_\-)
-\begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Plane_aa6c075364461a2996a6575fb022c47a9}{Plane} (Ogre::Plane Plane\_\-)
-\begin{DoxyCompactList}\small\item\em Compatibily constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Plane_a9b0fde4e97a7391259b2e659e46b3c30}{Plane} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkPoint0, const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkPoint1, const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkPoint2)
-\begin{DoxyCompactList}\small\item\em Triangle constructor. \item\end{DoxyCompactList}\item 
-Ogre::Plane \hyperlink{classphys_1_1Plane_abbdcdd8d6e7c0d8de92cabd250ff41dc}{GetOgrePlane} () const 
-\begin{DoxyCompactList}\small\item\em Gets an Ogre::Plane that contains this Plane's information. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}{ExtractOgrePlane} (const Ogre::Plane \&Plane2)
 \begin{DoxyCompactList}\small\item\em Changes this \hyperlink{classphys_1_1Plane}{Plane} to match the Ogre \hyperlink{classphys_1_1Plane}{Plane}. \item\end{DoxyCompactList}\item 
+Ogre::Plane \hyperlink{classphys_1_1Plane_abbdcdd8d6e7c0d8de92cabd250ff41dc}{GetOgrePlane} () const 
+\begin{DoxyCompactList}\small\item\em Gets an Ogre::Plane that contains this Plane's information. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Plane_ac045b7b0aac024a5fe771786d0c433f7}{operator=} (const Ogre::Plane \&Plane2)
-\begin{DoxyCompactList}\small\item\em The assignment operator from Ogre::Plane to \hyperlink{classphys_1_1Plane}{phys::Plane}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The assignment operator from Ogre::Plane to \hyperlink{classphys_1_1Plane}{phys::Plane}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Plane_a921d5668dfee52875ba025528604182f}{Plane} (\hyperlink{classphys_1_1Vector3}{Vector3} Normal\_\-, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Distance\_\-)
+\begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Plane_a9b0fde4e97a7391259b2e659e46b3c30}{Plane} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkPoint0, const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkPoint1, const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkPoint2)
+\begin{DoxyCompactList}\small\item\em Triangle constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Plane_aa6c075364461a2996a6575fb022c47a9}{Plane} (Ogre::Plane Plane\_\-)
+\begin{DoxyCompactList}\small\item\em Compatibily constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Plane_a8896c8a09a604fff0668e5044889bea7}{Plane} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1Plane_ac54624aabcdede3d45e06dd869419c9f}{
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Plane_ac54624aabcdede3d45e06dd869419c9f}{Normal}}
-\label{classphys_1_1Plane_ac54624aabcdede3d45e06dd869419c9f}
-
-\begin{DoxyCompactList}\small\item\em The rotation of the plane. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Plane_ac352595324c4df7f8385c3ad7014e65c}{
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Plane_ac352595324c4df7f8385c3ad7014e65c}{Distance}}
 \label{classphys_1_1Plane_ac352595324c4df7f8385c3ad7014e65c}
 
-\begin{DoxyCompactList}\small\item\em How from from the origin the plane is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em How from from the origin the plane is. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Plane_ac54624aabcdede3d45e06dd869419c9f}{
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Plane_ac54624aabcdede3d45e06dd869419c9f}{Normal}}
+\label{classphys_1_1Plane_ac54624aabcdede3d45e06dd869419c9f}
+
+\begin{DoxyCompactList}\small\item\em The rotation of the plane. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

@@ -53,6 +53,7 @@ namespace Ogre
 namespace phys
 {
     class Vector3;
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Quaternion
     /// @headerfile quaternion.h
@@ -300,6 +301,23 @@ namespace phys
             /// @return True if the Quaternions are semantically equal, false otherwise.
             bool operator== (const btQuaternion& Other) const;
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+#ifdef PHYSXML
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Quaternion"
+            String SerializableName() const;
+#endif
     };
 }
 
@@ -370,7 +388,6 @@ Ogre::Quaternion& PHYS_LIB operator<< ( Ogre::Quaternion& Other, const phys::Qua
 /// @return A Ogre::Quaternion containing the contents of the converted Quaternion.
 Ogre::Quaternion& PHYS_LIB operator<< ( Ogre::Quaternion& Other, const btQuaternion& Other2);
 
-
 /// @brief Used to Serialize an phys::Quaternion to a human readable stream
 /// @details If PHYSXML is disabled, this outputs to the format of [x,y,z,w], where x is replaced with the X value,
 /// y is replaced with the Y value, Z is replaced with the Z value and W is replaced with the W value. For example [1,2,3,0] could be
@@ -401,7 +418,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Quaternion& Vec)
 /// @param Vec the phys::Quaternion to store the deserialized Quaternion
 /// @return This returns a reference to the xml::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
-phys::xml::Node& PHYS_LIB  operator >> (const phys::xml::Node& OneNode, phys::Quaternion& Vec);
+void PHYS_LIB  operator >> (const phys::xml::Node& OneNode, phys::Quaternion& Vec);
 #endif // \PHYSXML
 
 #endif

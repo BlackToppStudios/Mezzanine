@@ -20,82 +20,67 @@ Inheritance diagram for phys::UI::Scrollbar:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1Scrollbar_afa32dd9599bd7a2150faa950b72f16e1}{Scrollbar} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const UI::ScrollbarStyle \&Style, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
-\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_af9fb189c7856353a930c0a228fc0cf42}{
-virtual \hyperlink{classphys_1_1UI_1_1Scrollbar_af9fb189c7856353a930c0a228fc0cf42}{$\sim$Scrollbar} ()}
-\label{classphys_1_1UI_1_1Scrollbar_af9fb189c7856353a930c0a228fc0cf42}
-
-\begin{DoxyCompactList}\small\item\em Standard class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a2d8997e0bbbb1c17af5128fea98fb1e4}{SetVisible} (bool visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this scrollbar. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Scrollbar_a213c946ccadd3b689f59e2761a1d1848}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this scrollbar. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a42955ae0e2b273ca9ea392a8dbc62604}{
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a42955ae0e2b273ca9ea392a8dbc62604}{Show} ()}
-\label{classphys_1_1UI_1_1Scrollbar_a42955ae0e2b273ca9ea392a8dbc62604}
-
-\begin{DoxyCompactList}\small\item\em Forces this scrollbar to be shown. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Scrollbar_a8afdd63e36a7fdc15bd8660d9800f2c5}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_a73337985c0f1f173e253c88705ae5d6e}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_a2b3d791cbbe4c787f284d8b12a0edf27}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Scrollbar_abf733d00087050d575fca1abc2d4ba0e}{GetDownRightButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the DownRight button within this widget, if it was initialized. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_ad049af26ff2247cfcd988cb5639fa003}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1Scrollbar_a1c24fbb88f9d86aff1b2f0abc033116a}{GetScrollBack} ()
+\begin{DoxyCompactList}\small\item\em Gets the Scroller background within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Scrollbar_a28024d2f3a017e4ed3c2a4df62a1e8be}{GetScroller} ()
+\begin{DoxyCompactList}\small\item\em Gets the Scroller button within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1UI_1_1Scrollbar_abd70ba640ef9475a77334aa209121812}{GetScrollerValue} ()
+\begin{DoxyCompactList}\small\item\em Get the currnent scroll position represented by a value between 0 and 1. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_aff97ce371ee21fcf3b648dcf8b38e055}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Scrollbar_ab298f9747da2eed451ddce8b1a416c15}{GetUpLeftButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the UpLeft button within this widget, if it was initialized. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_aa0aa0d3441ec9c8162025a7e06ec773b}{
 virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_aa0aa0d3441ec9c8162025a7e06ec773b}{Hide} ()}
 \label{classphys_1_1UI_1_1Scrollbar_aa0aa0d3441ec9c8162025a7e06ec773b}
 
 \begin{DoxyCompactList}\small\item\em Forces this scrollbar to hide. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Scrollbar_a8afdd63e36a7fdc15bd8660d9800f2c5}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1UI_1_1Scrollbar_abd70ba640ef9475a77334aa209121812}{GetScrollerValue} ()
-\begin{DoxyCompactList}\small\item\em Get the currnent scroll position represented by a value between 0 and 1. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a238097181d00ac3bbff0d31d2dc0b237}{SetIncrementDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&IncDist)
-\begin{DoxyCompactList}\small\item\em Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4bd103fd17411e5abc6a8c731ccb9183}{SetScrollerSize} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the length(or height) of the scroller based on the relative size of it's background. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4a87f32e31e8e4443c4aaec46307864e}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_ad049af26ff2247cfcd988cb5639fa003}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Scrollbar_a213c946ccadd3b689f59e2761a1d1848}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this scrollbar. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Scrollbar_afa32dd9599bd7a2150faa950b72f16e1}{Scrollbar} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const UI::ScrollbarStyle \&Style, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a93dfa3232185d72f274462636a833465}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_a73337985c0f1f173e253c88705ae5d6e}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a5581675d3f250ed7270018e184b02b1d}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_aff97ce371ee21fcf3b648dcf8b38e055}{GetSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_aabdb8b727f1f84712a5f7c1fca6e830f}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_a2b3d791cbbe4c787f284d8b12a0edf27}{GetActualSize} ()
-\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Scrollbar_a28024d2f3a017e4ed3c2a4df62a1e8be}{GetScroller} ()
-\begin{DoxyCompactList}\small\item\em Gets the Scroller button within this widget. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Scrollbar_ab298f9747da2eed451ddce8b1a416c15}{GetUpLeftButton} ()
-\begin{DoxyCompactList}\small\item\em Gets the UpLeft button within this widget, if it was initialized. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Scrollbar_abf733d00087050d575fca1abc2d4ba0e}{GetDownRightButton} ()
-\begin{DoxyCompactList}\small\item\em Gets the DownRight button within this widget, if it was initialized. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1Scrollbar_a1c24fbb88f9d86aff1b2f0abc033116a}{GetScrollBack} ()
-\begin{DoxyCompactList}\small\item\em Gets the Scroller background within this widget. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a238097181d00ac3bbff0d31d2dc0b237}{SetIncrementDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&IncDist)
+\begin{DoxyCompactList}\small\item\em Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4a87f32e31e8e4443c4aaec46307864e}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4bd103fd17411e5abc6a8c731ccb9183}{SetScrollerSize} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the length(or height) of the scroller based on the relative size of it's background. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a5581675d3f250ed7270018e184b02b1d}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a2d8997e0bbbb1c17af5128fea98fb1e4}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this scrollbar. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a42955ae0e2b273ca9ea392a8dbc62604}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a42955ae0e2b273ca9ea392a8dbc62604}{Show} ()}
+\label{classphys_1_1UI_1_1Scrollbar_a42955ae0e2b273ca9ea392a8dbc62604}
+
+\begin{DoxyCompactList}\small\item\em Forces this scrollbar to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_af9fb189c7856353a930c0a228fc0cf42}{
+virtual \hyperlink{classphys_1_1UI_1_1Scrollbar_af9fb189c7856353a930c0a228fc0cf42}{$\sim$Scrollbar} ()}
+\label{classphys_1_1UI_1_1Scrollbar_af9fb189c7856353a930c0a228fc0cf42}
+
+\begin{DoxyCompactList}\small\item\em Standard class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a4c42cf0a45ec4f59c9e6199fc2d3f0e3}{
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4c42cf0a45ec4f59c9e6199fc2d3f0e3}{CreateHorizontalScrollbar} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)}
-\label{classphys_1_1UI_1_1Scrollbar_a4c42cf0a45ec4f59c9e6199fc2d3f0e3}
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}{ButtonScroll} (bool UpLeft)}
+\label{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}
 
-\begin{DoxyCompactList}\small\item\em Constructor helper function for creating a horizontally aligned scrollbar. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a762ec4462368f3921b0646b0edae7278}{
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a762ec4462368f3921b0646b0edae7278}{CreateVerticalScrollbar} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)}
-\label{classphys_1_1UI_1_1Scrollbar_a762ec4462368f3921b0646b0edae7278}
-
-\begin{DoxyCompactList}\small\item\em Constructor helper function for creating a vertically aligned scrollbar. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}{
-virtual bool \hyperlink{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}{IsValidDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
-\label{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}
-
-\begin{DoxyCompactList}\small\item\em Determines if the dimensions passed into this object are valid and can be used. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}{
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}{SetHorizontal} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
-\label{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}
-
-\begin{DoxyCompactList}\small\item\em Sets the horizontal perameter as necessary based on the size provided for the widget. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Scrolls the scroller either up/left or down/right, based on the parameter. For use with buttons. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a4621d6713a059196f1a358a23b9ad5ae}{
 virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4621d6713a059196f1a358a23b9ad5ae}{CalculateOffsets} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
 \label{classphys_1_1UI_1_1Scrollbar_a4621d6713a059196f1a358a23b9ad5ae}
@@ -111,26 +96,21 @@ virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_afc9eb290c8dcf3935e2b304606
 \label{classphys_1_1UI_1_1Scrollbar_afc9eb290c8dcf3935e2b3046063989e9}
 
 \begin{DoxyCompactList}\small\item\em Calculates the scrollbar value based on the scrollers current position. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}{
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}{SetToWithinLimits} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Coord)}
-\label{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a4c42cf0a45ec4f59c9e6199fc2d3f0e3}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4c42cf0a45ec4f59c9e6199fc2d3f0e3}{CreateHorizontalScrollbar} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)}
+\label{classphys_1_1UI_1_1Scrollbar_a4c42cf0a45ec4f59c9e6199fc2d3f0e3}
 
-\begin{DoxyCompactList}\small\item\em Checks if a provided coordinate is within the defined limits, and adjusts it if not. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}{
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}{SetLocation} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)}
-\label{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}
+\begin{DoxyCompactList}\small\item\em Constructor helper function for creating a horizontally aligned scrollbar. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a762ec4462368f3921b0646b0edae7278}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a762ec4462368f3921b0646b0edae7278}{CreateVerticalScrollbar} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)}
+\label{classphys_1_1UI_1_1Scrollbar_a762ec4462368f3921b0646b0edae7278}
 
-\begin{DoxyCompactList}\small\item\em Internal function for setting the location(position) of this widget. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}{
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}{SetArea} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
-\label{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}
+\begin{DoxyCompactList}\small\item\em Constructor helper function for creating a vertically aligned scrollbar. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}{
+virtual bool \hyperlink{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}{IsValidDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}
 
-\begin{DoxyCompactList}\small\item\em Internal function for setting the area(size) of this widget. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}{
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}{ButtonScroll} (bool UpLeft)}
-\label{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}
-
-\begin{DoxyCompactList}\small\item\em Scrolls the scroller either up/left or down/right, based on the parameter. For use with buttons. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Determines if the dimensions passed into this object are valid and can be used. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_ac50a2cd5b85c8b2ff0cabf22b898a0fa}{
 virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_ac50a2cd5b85c8b2ff0cabf22b898a0fa}{MouseScroll} (\hyperlink{classphys_1_1Vector2}{Vector2} \&Scroll)}
 \label{classphys_1_1UI_1_1Scrollbar_ac50a2cd5b85c8b2ff0cabf22b898a0fa}
@@ -141,6 +121,26 @@ virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a1c6ca6b135d09d284b31fda223
 \label{classphys_1_1UI_1_1Scrollbar_a1c6ca6b135d09d284b31fda2230c9286}
 
 \begin{DoxyCompactList}\small\item\em Scrolls the scroller either up/left or down/right. For use with the scrollback. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}{SetArea} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}
+
+\begin{DoxyCompactList}\small\item\em Internal function for setting the area(size) of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}{SetHorizontal} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}
+
+\begin{DoxyCompactList}\small\item\em Sets the horizontal perameter as necessary based on the size provided for the widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}{SetLocation} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)}
+\label{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}
+
+\begin{DoxyCompactList}\small\item\em Internal function for setting the location(position) of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}{SetToWithinLimits} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Coord)}
+\label{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}
+
+\begin{DoxyCompactList}\small\item\em Checks if a provided coordinate is within the defined limits, and adjusts it if not. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d5c62a0}{
 virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d5c62a0}{Update} (bool Force=false)}
 \label{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d5c62a0}
@@ -149,39 +149,9 @@ virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a8ba94ec51f1f43360b0ba5db53e66b80}{
-\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries Scroller}}
-\label{classphys_1_1UI_1_1Scrollbar_a8ba94ec51f1f43360b0ba5db53e66b80}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a4d75376bd2552c1cc699f53d053d94a3}{
-\hyperlink{classphys_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ {\bfseries ScrollBack}}
-\label{classphys_1_1UI_1_1Scrollbar_a4d75376bd2552c1cc699f53d053d94a3}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_ad26cf0a164ce7fb68b1d2ac12c643bb6}{
-\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries UpLeftButton}}
-\label{classphys_1_1UI_1_1Scrollbar_ad26cf0a164ce7fb68b1d2ac12c643bb6}
-
-\item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a3c5a881c5b752320687729e363e3c829}{
 \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries DownRightButton}}
 \label{classphys_1_1UI_1_1Scrollbar_a3c5a881c5b752320687729e363e3c829}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_ac87b0be84fa48e36cdfa25473d0c720f}{
-\hyperlink{classphys_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ {\bfseries HoveredBack}}
-\label{classphys_1_1UI_1_1Scrollbar_ac87b0be84fa48e36cdfa25473d0c720f}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_af3be8970f658c345a49a86ef437ad03e}{
-\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries ScrollBackOffset}}
-\label{classphys_1_1UI_1_1Scrollbar_af3be8970f658c345a49a86ef437ad03e}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_abfc66ada8456f085f5d8dfcb9f9f19f1}{
-\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries UpLeftButtonOffset}}
-\label{classphys_1_1UI_1_1Scrollbar_abfc66ada8456f085f5d8dfcb9f9f19f1}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_adee823001982ec29bd5d8ea4b3ed3959}{
@@ -189,29 +159,9 @@ virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d
 \label{classphys_1_1UI_1_1Scrollbar_adee823001982ec29bd5d8ea4b3ed3959}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a7aeffef5b28306e912e23571b5f690e1}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries ScrollerUpperLimit}}
-\label{classphys_1_1UI_1_1Scrollbar_a7aeffef5b28306e912e23571b5f690e1}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a29e5e2fd8b70f8b2663d0594b49f2174}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries ScrollerLowerLimit}}
-\label{classphys_1_1UI_1_1Scrollbar_a29e5e2fd8b70f8b2663d0594b49f2174}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_ab6ad474b7ad0282cce7aad9cca3a3ed8}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries ScrollerValue}}
-\label{classphys_1_1UI_1_1Scrollbar_ab6ad474b7ad0282cce7aad9cca3a3ed8}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a1bb288a799ad346588942806b85b4477}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries IncrementDistance}}
-\label{classphys_1_1UI_1_1Scrollbar_a1bb288a799ad346588942806b85b4477}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a422d2b6f7a54c860e39cf83c8e5012af}{
-UI::ScrollbarStyle {\bfseries ScrollStyle}}
-\label{classphys_1_1UI_1_1Scrollbar_a422d2b6f7a54c860e39cf83c8e5012af}
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a133c6d99a33147a62826f0e0c925fcec}{
+bool {\bfseries DownRightLock}}
+\label{classphys_1_1UI_1_1Scrollbar_a133c6d99a33147a62826f0e0c925fcec}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_ac370fd2917bf654e5650087fff21c8ae}{
@@ -219,9 +169,19 @@ bool {\bfseries Horizontal}}
 \label{classphys_1_1UI_1_1Scrollbar_ac370fd2917bf654e5650087fff21c8ae}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_ac1eb9202a09c2ab00c033f304787fb50}{
-bool {\bfseries ScrollerLock}}
-\label{classphys_1_1UI_1_1Scrollbar_ac1eb9202a09c2ab00c033f304787fb50}
+\hypertarget{classphys_1_1UI_1_1Scrollbar_ac87b0be84fa48e36cdfa25473d0c720f}{
+\hyperlink{classphys_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ {\bfseries HoveredBack}}
+\label{classphys_1_1UI_1_1Scrollbar_ac87b0be84fa48e36cdfa25473d0c720f}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a1bb288a799ad346588942806b85b4477}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries IncrementDistance}}
+\label{classphys_1_1UI_1_1Scrollbar_a1bb288a799ad346588942806b85b4477}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a4d75376bd2552c1cc699f53d053d94a3}{
+\hyperlink{classphys_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ {\bfseries ScrollBack}}
+\label{classphys_1_1UI_1_1Scrollbar_a4d75376bd2552c1cc699f53d053d94a3}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a1a318f64194eb7726d9dfe5b758a0292}{
@@ -229,14 +189,54 @@ bool {\bfseries ScrollBackLock}}
 \label{classphys_1_1UI_1_1Scrollbar_a1a318f64194eb7726d9dfe5b758a0292}
 
 \item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_af3be8970f658c345a49a86ef437ad03e}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries ScrollBackOffset}}
+\label{classphys_1_1UI_1_1Scrollbar_af3be8970f658c345a49a86ef437ad03e}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a8ba94ec51f1f43360b0ba5db53e66b80}{
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries Scroller}}
+\label{classphys_1_1UI_1_1Scrollbar_a8ba94ec51f1f43360b0ba5db53e66b80}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_ac1eb9202a09c2ab00c033f304787fb50}{
+bool {\bfseries ScrollerLock}}
+\label{classphys_1_1UI_1_1Scrollbar_ac1eb9202a09c2ab00c033f304787fb50}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a29e5e2fd8b70f8b2663d0594b49f2174}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries ScrollerLowerLimit}}
+\label{classphys_1_1UI_1_1Scrollbar_a29e5e2fd8b70f8b2663d0594b49f2174}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a7aeffef5b28306e912e23571b5f690e1}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries ScrollerUpperLimit}}
+\label{classphys_1_1UI_1_1Scrollbar_a7aeffef5b28306e912e23571b5f690e1}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_ab6ad474b7ad0282cce7aad9cca3a3ed8}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries ScrollerValue}}
+\label{classphys_1_1UI_1_1Scrollbar_ab6ad474b7ad0282cce7aad9cca3a3ed8}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a422d2b6f7a54c860e39cf83c8e5012af}{
+UI::ScrollbarStyle {\bfseries ScrollStyle}}
+\label{classphys_1_1UI_1_1Scrollbar_a422d2b6f7a54c860e39cf83c8e5012af}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_ad26cf0a164ce7fb68b1d2ac12c643bb6}{
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries UpLeftButton}}
+\label{classphys_1_1UI_1_1Scrollbar_ad26cf0a164ce7fb68b1d2ac12c643bb6}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Scrollbar_abfc66ada8456f085f5d8dfcb9f9f19f1}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries UpLeftButtonOffset}}
+\label{classphys_1_1UI_1_1Scrollbar_abfc66ada8456f085f5d8dfcb9f9f19f1}
+
+\item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a10a45c7c3aad71f760b419412786eb8c}{
 bool {\bfseries UpLeftLock}}
 \label{classphys_1_1UI_1_1Scrollbar_a10a45c7c3aad71f760b419412786eb8c}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a133c6d99a33147a62826f0e0c925fcec}{
-bool {\bfseries DownRightLock}}
-\label{classphys_1_1UI_1_1Scrollbar_a133c6d99a33147a62826f0e0c925fcec}
 
 \end{DoxyCompactItemize}
 

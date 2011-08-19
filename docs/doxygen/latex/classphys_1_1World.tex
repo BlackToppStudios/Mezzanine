@@ -23,20 +23,44 @@ enum \hyperlink{classphys_1_1World_a8c754464edbb78270fa0ee1e395b963d}{LoggingFre
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1World_ab1b7cc9871373b4f14e40e28c32ead53}{World} (const \hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \&PhysicsInfo, \hyperlink{classphys_1_1SceneManager_a14fe15dcf41564fdf12f3e11c1a4b774}{SceneManager::SceneManagerType} SceneType, std::string LogFileName=\char`\"{}Physgame.log\char`\"{})
-\begin{DoxyCompactList}\small\item\em Descriptive constructor With Manager Pointers. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1World_aae14ef90dc110e24d26f1df1b767fc56}{World} (const \hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \&PhysicsInfo, \hyperlink{classphys_1_1SceneManager_a14fe15dcf41564fdf12f3e11c1a4b774}{SceneManager::SceneManagerType} SceneType, const std::string \&LogFileName, const std::vector$<$ \hyperlink{classphys_1_1ManagerBase}{ManagerBase} $\ast$ $>$ \&ManagerToBeAdded)
-\begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1World_a7f762724406c874250c3dc8910a1e695}{World} ()
-\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1World_a8b2c74c7e5d5ce3c46a814e183a7aff1}{$\sim$World} ()
-\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_ab99299b841603b035eac217924b01f11}{SetLoggingFrequency} (\hyperlink{classphys_1_1World_a8c754464edbb78270fa0ee1e395b963d}{LoggingFrequency} HowOften, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} FrequencyCounter=5)
-\begin{DoxyCompactList}\small\item\em Set how often log message should be commited to disk (or network, or whatever). \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1World_a8c754464edbb78270fa0ee1e395b963d}{LoggingFrequency} \hyperlink{classphys_1_1World_a17c8c584fc80d8d4734b3c5a9c449ec1}{GetLoggingFrequency} ()
-\begin{DoxyCompactList}\small\item\em Returns the frequency of logging commits. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1World_aa709932e21d9d19a91ee38cd7a575556}{AddManager} (\hyperlink{classphys_1_1ManagerBase}{ManagerBase} $\ast$ManagerToAdd)
+\begin{DoxyCompactList}\small\item\em This adds a manager, in the correct order, to the list that the world calls on. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1World_a126dde1a91def5521a1ebc7aafeeaebd}{BreakMainLoop} ()
+\begin{DoxyCompactList}\small\item\em This makes the main loop end after it's current iteration. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_ae2b1c8d6e96f94d329769abbd43ab1d2}{CommitLog} ()
 \begin{DoxyCompactList}\small\item\em Forces the log to commit to disk (or whereever) \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1World_a1461e6c9d16214aa2cc310035b149378}{DoMainLoopLogging} ()
+\begin{DoxyCompactList}\small\item\em This commits the log stream to the log. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{GameInit} (const bool \&CallMainLoop=true)
+\begin{DoxyCompactList}\small\item\em This creates the game window and starts the game. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ActorManager}{ActorManager} $\ast$ \hyperlink{classphys_1_1World_abe5e7e90d42ed64aeddb339af40dd857}{GetActorManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1ActorManager}{ActorManager} from the manager list. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$ \hyperlink{classphys_1_1World_a33ab68866da54b7f8f766d5d29171fb7}{GetCameraManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1CameraManager}{CameraManager} from the manager list. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventManager}{EventManager} $\ast$ \hyperlink{classphys_1_1World_ac20a304413b4d47f9ae657983e903a67}{GetEventManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1EventManager}{EventManager} from the manager list. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1World_a348cebf8f15202a9916ac1b2400c63b1}{GetFrameTime} ()
+\begin{DoxyCompactList}\small\item\em Gets the amount of time since the last time Rendering began. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GraphicsManager}{GraphicsManager} $\ast$ \hyperlink{classphys_1_1World_a15f968adb5d841da6c5eb51607a8f525}{GetGraphicsManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1GraphicsManager}{GraphicsManager} from the manager list. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1World_a8c754464edbb78270fa0ee1e395b963d}{LoggingFrequency} \hyperlink{classphys_1_1World_a17c8c584fc80d8d4734b3c5a9c449ec1}{GetLoggingFrequency} ()
+\begin{DoxyCompactList}\small\item\em Returns the frequency of logging commits. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ManagerBase}{ManagerBase} $\ast$ \hyperlink{classphys_1_1World_a910befc904c0d0e73b913dedd08e9d98}{GetManager} (const \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \&ManagersToRemoveType, short unsigned int WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This is will find the manager of a given type. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1PhysicsManager}{PhysicsManager} $\ast$ \hyperlink{classphys_1_1World_a1b9eb6206ee15c2ef49665a07de3d83c}{GetPhysicsManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager} from the manager list. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ResourceManager}{ResourceManager} $\ast$ \hyperlink{classphys_1_1World_a8a5381637922598411a4369be6904228}{GetResourceManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1ResourceManager}{ResourceManager} from the manager list. These are responsible for reading and writing files on the disk. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ \hyperlink{classphys_1_1World_a86a86a78851845837ccc43da8b3a3019}{GetSceneManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1SceneManager}{SceneManager} from the manager list. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SoundManager}{SoundManager} $\ast$ \hyperlink{classphys_1_1World_ac662bf5d5737a99cd3bc3ff45e7d79b8}{GetSoundManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1SoundManager}{SoundManager} from the manager list. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1World_aa063ace52be484c7b03ec5859453f48b}{GetTargetFrameTime} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1TimerManager}{TimerManager} $\ast$ \hyperlink{classphys_1_1World_a8e25bc6da5864d303b246224901af852}{GetTimerManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1TimerManager}{TimerManager} from the manager list. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ \hyperlink{classphys_1_1World_ab7888bf9286df602490c30df6382fde9}{GetUIManager} (const short unsigned int \&WhichOne=0)
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1UIManager}{UIManager} from the manager list. \item\end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\void \hyperlink{classphys_1_1World_a4ab573bc3b060d6b3f58483bab04fca2}{Log} (const T \&Message)
 \begin{DoxyCompactList}\small\item\em Runtime event and message logging. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1World_a7dbf83226aaa109a09efab00ae682761}{
@@ -50,56 +74,32 @@ void \hyperlink{classphys_1_1World_a372ee96d395d735531f755fc0a72de4a}{LogAndThro
 \begin{DoxyCompactList}\small\item\em This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_abf6cb15d85be4e7dcb99db24f979319b}{LogString} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&message)
 \begin{DoxyCompactList}\small\item\em Log String directly with no conversion. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1World_aa063ace52be484c7b03ec5859453f48b}{GetTargetFrameTime} ()
-\begin{DoxyCompactList}\small\item\em Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_ad95b5a5ad73e0a05826b5bd834876333}{SetTargetFrameTime} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&NewTargetTime)
-\begin{DoxyCompactList}\small\item\em This sets a new Target \hyperlink{structphys_1_1Time}{Time}. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_a76dfcde35392291aafd6eb1a64b3c95c}{SetTargetFrameRate} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&NewFrameRate)
-\begin{DoxyCompactList}\small\item\em This sets a new Target Frame Rate. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1World_a348cebf8f15202a9916ac1b2400c63b1}{GetFrameTime} ()
-\begin{DoxyCompactList}\small\item\em Gets the amount of time since the last time Rendering began. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_a0168122baeb30d4b90ddecdda46c8fea}{SetFrameTime} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&FrameTime\_\-)
-\begin{DoxyCompactList}\small\item\em Sets the amount of time since the last time Rendering began. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{GameInit} (const bool \&CallMainLoop=true)
-\begin{DoxyCompactList}\small\item\em This creates the game window and starts the game. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_af1d9e36d43f5e50543fa2351a32c8362}{MainLoop} ()
 \begin{DoxyCompactList}\small\item\em This Function house the main loop. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_a1461e6c9d16214aa2cc310035b149378}{DoMainLoopLogging} ()
-\begin{DoxyCompactList}\small\item\em This commits the log stream to the log. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_a126dde1a91def5521a1ebc7aafeeaebd}{BreakMainLoop} ()
-\begin{DoxyCompactList}\small\item\em This makes the main loop end after it's current iteration. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_aa709932e21d9d19a91ee38cd7a575556}{AddManager} (\hyperlink{classphys_1_1ManagerBase}{ManagerBase} $\ast$ManagerToAdd)
-\begin{DoxyCompactList}\small\item\em This adds a manager, in the correct order, to the list that the world calls on. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_ae3be85997185935421bf5230651d8e37}{RemoveManager} (\hyperlink{classphys_1_1ManagerBase}{ManagerBase} $\ast$ManagerToRemove)
 \begin{DoxyCompactList}\small\item\em This removes a manager by finding the matching pointer. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_ad885d1102ecdd13cc277ee3f7dfcb742}{RemoveManager} (const \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \&ManagersToRemoveType, short unsigned int WhichOne)
 \begin{DoxyCompactList}\small\item\em This removes a manager of a specific type from the list. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ManagerBase}{ManagerBase} $\ast$ \hyperlink{classphys_1_1World_a910befc904c0d0e73b913dedd08e9d98}{GetManager} (const \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \&ManagersToRemoveType, short unsigned int WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This is will find the manager of a given type. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_abbe8ceecc6bdbd542a250fd721c05276}{UpdateManagerOrder} (\hyperlink{classphys_1_1ManagerBase}{ManagerBase} $\ast$ManagerToChange, short int Priority\_\-)
-\begin{DoxyCompactList}\small\item\em Changes a Manager's time of execution. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1World_a0168122baeb30d4b90ddecdda46c8fea}{SetFrameTime} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&FrameTime\_\-)
+\begin{DoxyCompactList}\small\item\em Sets the amount of time since the last time Rendering began. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1World_ab99299b841603b035eac217924b01f11}{SetLoggingFrequency} (\hyperlink{classphys_1_1World_a8c754464edbb78270fa0ee1e395b963d}{LoggingFrequency} HowOften, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} FrequencyCounter=5)
+\begin{DoxyCompactList}\small\item\em Set how often log message should be commited to disk (or network, or whatever). \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1World_a76dfcde35392291aafd6eb1a64b3c95c}{SetTargetFrameRate} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&NewFrameRate)
+\begin{DoxyCompactList}\small\item\em This sets a new Target Frame Rate. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1World_ad95b5a5ad73e0a05826b5bd834876333}{SetTargetFrameTime} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&NewTargetTime)
+\begin{DoxyCompactList}\small\item\em This sets a new Target \hyperlink{structphys_1_1Time}{Time}. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_ae807112b9494a94a6ff0d60df0a4d424}{UpdateManagerOrder} ()
 \begin{DoxyCompactList}\small\item\em This forces the list of managers to be resorted. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ActorManager}{ActorManager} $\ast$ \hyperlink{classphys_1_1World_abe5e7e90d42ed64aeddb339af40dd857}{GetActorManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1ActorManager}{ActorManager} from the manager list. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$ \hyperlink{classphys_1_1World_a33ab68866da54b7f8f766d5d29171fb7}{GetCameraManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1CameraManager}{CameraManager} from the manager list. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1EventManager}{EventManager} $\ast$ \hyperlink{classphys_1_1World_ac20a304413b4d47f9ae657983e903a67}{GetEventManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1EventManager}{EventManager} from the manager list. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1GraphicsManager}{GraphicsManager} $\ast$ \hyperlink{classphys_1_1World_a15f968adb5d841da6c5eb51607a8f525}{GetGraphicsManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1GraphicsManager}{GraphicsManager} from the manager list. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1PhysicsManager}{PhysicsManager} $\ast$ \hyperlink{classphys_1_1World_a1b9eb6206ee15c2ef49665a07de3d83c}{GetPhysicsManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager} from the manager list. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ \hyperlink{classphys_1_1World_a86a86a78851845837ccc43da8b3a3019}{GetSceneManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1SceneManager}{SceneManager} from the manager list. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1SoundManager}{SoundManager} $\ast$ \hyperlink{classphys_1_1World_ac662bf5d5737a99cd3bc3ff45e7d79b8}{GetSoundManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1SoundManager}{SoundManager} from the manager list. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ResourceManager}{ResourceManager} $\ast$ \hyperlink{classphys_1_1World_a8a5381637922598411a4369be6904228}{GetResourceManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1ResourceManager}{ResourceManager} from the manager list. These are responsible for reading and writing files on the disk. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1TimerManager}{TimerManager} $\ast$ \hyperlink{classphys_1_1World_a8e25bc6da5864d303b246224901af852}{GetTimerManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1TimerManager}{TimerManager} from the manager list. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ \hyperlink{classphys_1_1World_ab7888bf9286df602490c30df6382fde9}{GetUIManager} (const short unsigned int \&WhichOne=0)
-\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1UIManager}{UIManager} from the manager list. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{classphys_1_1World_abbe8ceecc6bdbd542a250fd721c05276}{UpdateManagerOrder} (\hyperlink{classphys_1_1ManagerBase}{ManagerBase} $\ast$ManagerToChange, short int Priority\_\-)
+\begin{DoxyCompactList}\small\item\em Changes a Manager's time of execution. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1World_aae14ef90dc110e24d26f1df1b767fc56}{World} (const \hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \&PhysicsInfo, \hyperlink{classphys_1_1SceneManager_a14fe15dcf41564fdf12f3e11c1a4b774}{SceneManager::SceneManagerType} SceneType, const std::string \&LogFileName, const std::vector$<$ \hyperlink{classphys_1_1ManagerBase}{ManagerBase} $\ast$ $>$ \&ManagerToBeAdded)
+\begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1World_ab1b7cc9871373b4f14e40e28c32ead53}{World} (const \hyperlink{classphys_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \&PhysicsInfo, \hyperlink{classphys_1_1SceneManager_a14fe15dcf41564fdf12f3e11c1a4b774}{SceneManager::SceneManagerType} SceneType, std::string LogFileName=\char`\"{}Physgame.log\char`\"{})
+\begin{DoxyCompactList}\small\item\em Descriptive constructor With Manager Pointers. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1World_a7f762724406c874250c3dc8910a1e695}{World} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1World_a8b2c74c7e5d5ce3c46a814e183a7aff1}{$\sim$World} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 

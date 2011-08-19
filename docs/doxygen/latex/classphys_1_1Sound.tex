@@ -14,123 +14,123 @@ This is an instance of a sound that can be played and manipulated.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1Sound_a6a9d4b475da9453c9b02ca2c49a6fa76}{Sound} ()
-\begin{DoxyCompactList}\small\item\em Class Constructor. Internal use only. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Sound_a0452d6079bcb201f9d2f3b2742eb21b6}{Sound} (cAudio::IAudioSource $\ast$Source, cAudio::IAudioManager $\ast$manager)
-\begin{DoxyCompactList}\small\item\em Class Constructor. Internal use only. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Sound_ad49df56479e003d0990a5dcb1c506d39}{$\sim$Sound} ()
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1Sound_af568fd5293ecab6185f509e52209a0a2}{GetCompressedAudioSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the original compressed size of the sound. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1Sound_a0ef4ddd4096758f9c883fe93194b9b3b}{GetCurrentAudioPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the current position in the audio stream in bytes. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ace3c118ee42540be51dcf64940d4f1e0}{GetCurrentAudioTime} ()
+\begin{DoxyCompactList}\small\item\em Gets the current position in the audio stream in seconds. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1Sound_adbcd16d55670bc6d97a1ce9b3d22d90c}{GetCurrentCompressedAudioPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the current position in the original audio stream in bytes. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Sound_a228e07cbcf0c8fee7b0f1f86a0162484}{GetDirection} ()
+\begin{DoxyCompactList}\small\item\em Gets the objects direction. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a894e1390d76c6a6e79404569afeaf168}{GetDopplerStrength} ()
+\begin{DoxyCompactList}\small\item\em Gets the Doppler Strength of the sound. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Sound_a9d4e845004b59ba5bdc066f7f12ff7d7}{GetDopplerVelocity} ()
+\begin{DoxyCompactList}\small\item\em Gets the doppler velocity vector. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a5e39752133cd5d8d160455bbbcb360fd}{GetInnerConeAngle} ()
+\begin{DoxyCompactList}\small\item\em Gets the inner cone angle of the sound source. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a5a9868c589bf85bf1775481e0c8fe4d3}{GetMaxDistance} ()
+\begin{DoxyCompactList}\small\item\em Gets the distance at which sound attenuation will stop. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_aebda862caeda83fed2789f1e8bfca7ea}{GetMaxVolume} ()
+\begin{DoxyCompactList}\small\item\em Gets the Maximum volume of the sound source. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a45534a33db7c3aec3861b44327925bc2}{GetMinDistance} ()
+\begin{DoxyCompactList}\small\item\em Gets the distance at which sound attenuation will start. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a366c57366bbbfc13eea18e1908f19eb4}{GetMinVolume} ()
+\begin{DoxyCompactList}\small\item\em Gets the minimum volume of the sound source. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ad39ca4504655a777283fd2e238b729d1}{GetOuterConeAngle} ()
+\begin{DoxyCompactList}\small\item\em Gets the outer cone angle of the sound source. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a2607037d0c40d32f402d0ebb98586a00}{GetOuterConeVolume} ()
+\begin{DoxyCompactList}\small\item\em Gets the outer cone volume of the sound source. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ae28ce63dc22eb8a80edf9dbfe8ea64cd}{GetPitch} ()
+\begin{DoxyCompactList}\small\item\em Gets the pitch of the sound source. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Sound_a6d7097965cb87491896f688a8ef12d45}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the objects position. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ab87182be43ed55e44acf7143a7b08213}{GetRolloffFactor} ()
+\begin{DoxyCompactList}\small\item\em Gets the Rolloff factor of the sound source. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ab839e69523500591b40252e32bafbbb3}{GetStrength} ()
+\begin{DoxyCompactList}\small\item\em Gets the Strength of the sound source. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1Sound_a2891732590e4276a64583ee9bdab555e}{GetTotalAudioSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the total size of the sound in memory. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a2c3864cbc6c25cd9a47529c75dea142b}{GetTotalAudioTime} ()
+\begin{DoxyCompactList}\small\item\em Gets the total size of the sound in seconds. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Sound_a48e996b687ec11ff1d19400a010c4f07}{GetVelocity} ()
+\begin{DoxyCompactList}\small\item\em Gets the objects velocity. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ad386c2247f87d4b57bfae2c722282417}{GetVolume} ()
+\begin{DoxyCompactList}\small\item\em Gets the current volume of the sound source. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Sound_a67f4a5475bc634c8ee894933cc09f933}{IsLooping} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the sound is currently set to loop. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Sound_a21ad445ca3e3b4836ee838c41584d8c1}{IsPaused} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the sound is currently paused. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Sound_a382b26fd5289da4fdb2b536e953b7ea0}{IsPlaying} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the sound is currently playing. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Sound_ac35ba604ca2aaab246e5ce5f524d10f9}{IsStopped} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the sound is currently stopped. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_afd5645195ac744de62c5eefc01dbf0d0}{Loop} (bool ToLoop)
+\begin{DoxyCompactList}\small\item\em Sets whether this sound should loop. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a62075a732f25c0a07b428c09c6232814}{Move} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
+\begin{DoxyCompactList}\small\item\em Moves the sound source. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a805bef416bec70b5e250dd29e622cf46}{Pause} ()
+\item 
 void \hyperlink{classphys_1_1Sound_ae7caa90deb9e5a4cab2d5ada27f5e5b5}{Play} ()
 \begin{DoxyCompactList}\small\item\em Plays the sound. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Sound_a853bb9a2c1b41cd82a385608614861e7}{Play2d} (bool Loop=false)
 \begin{DoxyCompactList}\small\item\em Plays the sound in 2D mode. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Sound_adbb79c9d1a37bf541bfb259551c6067f}{Play3d} (\hyperlink{classphys_1_1Vector3}{Vector3} Position, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} SoundStrength=1.0, bool Loop=false)
 \begin{DoxyCompactList}\small\item\em Plays the sound in 3D mode. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a805bef416bec70b5e250dd29e622cf46}{Pause} ()
-\item 
-void \hyperlink{classphys_1_1Sound_a662d760ec0e6214537b13810a8ac9955}{Stop} ()
-\item 
-void \hyperlink{classphys_1_1Sound_afd5645195ac744de62c5eefc01dbf0d0}{Loop} (bool ToLoop)
-\begin{DoxyCompactList}\small\item\em Sets whether this sound should loop. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Sound_a8dfc3b7e9419a3c50c0ac6ecf6ece096}{Seek} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Seconds, bool Relative)
 \begin{DoxyCompactList}\small\item\em Allows you to go to a specific point in the sound. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a2c3864cbc6c25cd9a47529c75dea142b}{GetTotalAudioTime} ()
-\begin{DoxyCompactList}\small\item\em Gets the total size of the sound in seconds. \item\end{DoxyCompactList}\item 
-int \hyperlink{classphys_1_1Sound_a2891732590e4276a64583ee9bdab555e}{GetTotalAudioSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the total size of the sound in memory. \item\end{DoxyCompactList}\item 
-int \hyperlink{classphys_1_1Sound_af568fd5293ecab6185f509e52209a0a2}{GetCompressedAudioSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the original compressed size of the sound. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ace3c118ee42540be51dcf64940d4f1e0}{GetCurrentAudioTime} ()
-\begin{DoxyCompactList}\small\item\em Gets the current position in the audio stream in seconds. \item\end{DoxyCompactList}\item 
-int \hyperlink{classphys_1_1Sound_a0ef4ddd4096758f9c883fe93194b9b3b}{GetCurrentAudioPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the current position in the audio stream in bytes. \item\end{DoxyCompactList}\item 
-int \hyperlink{classphys_1_1Sound_adbcd16d55670bc6d97a1ce9b3d22d90c}{GetCurrentCompressedAudioPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the current position in the original audio stream in bytes. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Sound_a382b26fd5289da4fdb2b536e953b7ea0}{IsPlaying} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the sound is currently playing. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Sound_a21ad445ca3e3b4836ee838c41584d8c1}{IsPaused} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the sound is currently paused. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Sound_ac35ba604ca2aaab246e5ce5f524d10f9}{IsStopped} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the sound is currently stopped. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1Sound_a67f4a5475bc634c8ee894933cc09f933}{IsLooping} ()
-\begin{DoxyCompactList}\small\item\em Checks to see if the sound is currently set to loop. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a245bc4d760bcf30e9520aee00cf40c61}{SetPosition} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
-\begin{DoxyCompactList}\small\item\em Sets the position of the sound source. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a673a0ab44fa32fdcd15180e813b7b02b}{SetVelocity} (\hyperlink{classphys_1_1Vector3}{Vector3} Velocity)
-\begin{DoxyCompactList}\small\item\em Sets the velocity of the sound source. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Sound_af2d6aa7e1b3b2e9f60b8dbbe8aa2d381}{SetDirection} (\hyperlink{classphys_1_1Vector3}{Vector3} Direction)
 \begin{DoxyCompactList}\small\item\em Sets the direction the sound source is facing. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a56e657013dc4d561dbc3b0c5d12d542d}{SetRolloffFactor} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Rolloff)
-\begin{DoxyCompactList}\small\item\em Sets the Rolloff factor used to attenuate the sound over a distance. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a44d6c066fad6f09553e47892a14bf5ef}{SetStrength} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} SoundStrength)
-\begin{DoxyCompactList}\small\item\em Sets the strength of the sound source. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_ae32d4c4b8a09bfbdcfea68cfa71aa354}{SetMinDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MinDistance)
-\begin{DoxyCompactList}\small\item\em Sets the distance from the sound source where attenuation will start. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a54d04549f0851b00736fdab18a81ec70}{SetMaxDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxDistance)
-\begin{DoxyCompactList}\small\item\em Sets the distance from the sound source where attenuation will stop. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a4c7eac57c162f264d8c0868c4f360aab}{SetPitch} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Pitch)
-\begin{DoxyCompactList}\small\item\em Sets the pitch of the sound source. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a62438fb7916e1e7e9abe66722de83821}{SetVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Volume)
-\begin{DoxyCompactList}\small\item\em Sets the current volume of the sound source before effects. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a76a487c8a455556ba4307c99cc41ea80}{SetMinVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MinVolume)
-\begin{DoxyCompactList}\small\item\em Sets the minimum volume the sound source can achieve. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a04994399e336c8a0726c5da9f6349545}{SetMaxVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxVolume)
-\begin{DoxyCompactList}\small\item\em Sets the maximum volume the sound source can achieve. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_ae231936d44db727eb48f9ff259ae0dd6}{SetInnerConeAngle} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} InnerAngle)
-\begin{DoxyCompactList}\small\item\em Sets the inner cone angle of the sound source if you want the sound to be projected as a cone. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a4fc7d07d303ddb97acc15524950d0442}{SetOuterConeAngle} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} OuterAngle)
-\begin{DoxyCompactList}\small\item\em Sets the outer cone angle of the sound source if you want the sound to be projected as a cone. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a55b0eadd492fc1a5fbae9848f5682ac9}{SetOuterConeVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} OuterVolume)
-\begin{DoxyCompactList}\small\item\em Sets how much the volume is scaled in the outer cone. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Sound_a159a5ac92577b55e86a8fc2dbf8bc806}{SetDopplerStrength} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} DopStr)
 \begin{DoxyCompactList}\small\item\em Sets the doppler strength, which impacts the doppler effect. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Sound_a5a7f337dbc533f49269f736f51d25b85}{SetDopplerVelocity} (\hyperlink{classphys_1_1Vector3}{Vector3} Velocity)
 \begin{DoxyCompactList}\small\item\em Sets the doppler velocity vector. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Sound_a62075a732f25c0a07b428c09c6232814}{Move} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
-\begin{DoxyCompactList}\small\item\em Moves the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Sound_a6d7097965cb87491896f688a8ef12d45}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the objects position. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Sound_a48e996b687ec11ff1d19400a010c4f07}{GetVelocity} ()
-\begin{DoxyCompactList}\small\item\em Gets the objects velocity. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Sound_a228e07cbcf0c8fee7b0f1f86a0162484}{GetDirection} ()
-\begin{DoxyCompactList}\small\item\em Gets the objects direction. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ab87182be43ed55e44acf7143a7b08213}{GetRolloffFactor} ()
-\begin{DoxyCompactList}\small\item\em Gets the Rolloff factor of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ab839e69523500591b40252e32bafbbb3}{GetStrength} ()
-\begin{DoxyCompactList}\small\item\em Gets the Strength of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a45534a33db7c3aec3861b44327925bc2}{GetMinDistance} ()
-\begin{DoxyCompactList}\small\item\em Gets the distance at which sound attenuation will start. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a5a9868c589bf85bf1775481e0c8fe4d3}{GetMaxDistance} ()
-\begin{DoxyCompactList}\small\item\em Gets the distance at which sound attenuation will stop. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ae28ce63dc22eb8a80edf9dbfe8ea64cd}{GetPitch} ()
-\begin{DoxyCompactList}\small\item\em Gets the pitch of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ad386c2247f87d4b57bfae2c722282417}{GetVolume} ()
-\begin{DoxyCompactList}\small\item\em Gets the current volume of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a366c57366bbbfc13eea18e1908f19eb4}{GetMinVolume} ()
-\begin{DoxyCompactList}\small\item\em Gets the minimum volume of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_aebda862caeda83fed2789f1e8bfca7ea}{GetMaxVolume} ()
-\begin{DoxyCompactList}\small\item\em Gets the Maximum volume of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a5e39752133cd5d8d160455bbbcb360fd}{GetInnerConeAngle} ()
-\begin{DoxyCompactList}\small\item\em Gets the inner cone angle of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_ad39ca4504655a777283fd2e238b729d1}{GetOuterConeAngle} ()
-\begin{DoxyCompactList}\small\item\em Gets the outer cone angle of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a2607037d0c40d32f402d0ebb98586a00}{GetOuterConeVolume} ()
-\begin{DoxyCompactList}\small\item\em Gets the outer cone volume of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Sound_a894e1390d76c6a6e79404569afeaf168}{GetDopplerStrength} ()
-\begin{DoxyCompactList}\small\item\em Gets the Doppler Strength of the sound. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Sound_a9d4e845004b59ba5bdc066f7f12ff7d7}{GetDopplerVelocity} ()
-\begin{DoxyCompactList}\small\item\em Gets the doppler velocity vector. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{classphys_1_1Sound_ae231936d44db727eb48f9ff259ae0dd6}{SetInnerConeAngle} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} InnerAngle)
+\begin{DoxyCompactList}\small\item\em Sets the inner cone angle of the sound source if you want the sound to be projected as a cone. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a54d04549f0851b00736fdab18a81ec70}{SetMaxDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxDistance)
+\begin{DoxyCompactList}\small\item\em Sets the distance from the sound source where attenuation will stop. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a04994399e336c8a0726c5da9f6349545}{SetMaxVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxVolume)
+\begin{DoxyCompactList}\small\item\em Sets the maximum volume the sound source can achieve. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_ae32d4c4b8a09bfbdcfea68cfa71aa354}{SetMinDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MinDistance)
+\begin{DoxyCompactList}\small\item\em Sets the distance from the sound source where attenuation will start. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a76a487c8a455556ba4307c99cc41ea80}{SetMinVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MinVolume)
+\begin{DoxyCompactList}\small\item\em Sets the minimum volume the sound source can achieve. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a4fc7d07d303ddb97acc15524950d0442}{SetOuterConeAngle} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} OuterAngle)
+\begin{DoxyCompactList}\small\item\em Sets the outer cone angle of the sound source if you want the sound to be projected as a cone. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a55b0eadd492fc1a5fbae9848f5682ac9}{SetOuterConeVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} OuterVolume)
+\begin{DoxyCompactList}\small\item\em Sets how much the volume is scaled in the outer cone. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a4c7eac57c162f264d8c0868c4f360aab}{SetPitch} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Pitch)
+\begin{DoxyCompactList}\small\item\em Sets the pitch of the sound source. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a245bc4d760bcf30e9520aee00cf40c61}{SetPosition} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
+\begin{DoxyCompactList}\small\item\em Sets the position of the sound source. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a56e657013dc4d561dbc3b0c5d12d542d}{SetRolloffFactor} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Rolloff)
+\begin{DoxyCompactList}\small\item\em Sets the Rolloff factor used to attenuate the sound over a distance. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a44d6c066fad6f09553e47892a14bf5ef}{SetStrength} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} SoundStrength)
+\begin{DoxyCompactList}\small\item\em Sets the strength of the sound source. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a673a0ab44fa32fdcd15180e813b7b02b}{SetVelocity} (\hyperlink{classphys_1_1Vector3}{Vector3} Velocity)
+\begin{DoxyCompactList}\small\item\em Sets the velocity of the sound source. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a62438fb7916e1e7e9abe66722de83821}{SetVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Volume)
+\begin{DoxyCompactList}\small\item\em Sets the current volume of the sound source before effects. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Sound_a6a9d4b475da9453c9b02ca2c49a6fa76}{Sound} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. Internal use only. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Sound_a0452d6079bcb201f9d2f3b2742eb21b6}{Sound} (cAudio::IAudioSource $\ast$Source, cAudio::IAudioManager $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Class Constructor. Internal use only. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Sound_a662d760ec0e6214537b13810a8ac9955}{Stop} ()
+\item 
+\hyperlink{classphys_1_1Sound_ad49df56479e003d0990a5dcb1c506d39}{$\sim$Sound} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1Sound_a7cd63202ea3dbc96c6f466a60b89b0fe}{
-cAudio::IAudioSource $\ast$ {\bfseries SoundSource}}
-\label{classphys_1_1Sound_a7cd63202ea3dbc96c6f466a60b89b0fe}
-
 \item 
 \hypertarget{classphys_1_1Sound_a84b31e91bd1363ba430a51f579a07e0b}{
 cAudio::IAudioManager $\ast$ {\bfseries Manager}}
 \label{classphys_1_1Sound_a84b31e91bd1363ba430a51f579a07e0b}
+
+\item 
+\hypertarget{classphys_1_1Sound_a7cd63202ea3dbc96c6f466a60b89b0fe}{
+cAudio::IAudioSource $\ast$ {\bfseries SoundSource}}
+\label{classphys_1_1Sound_a7cd63202ea3dbc96c6f466a60b89b0fe}
 
 \end{DoxyCompactItemize}
 \subsubsection*{Friends}

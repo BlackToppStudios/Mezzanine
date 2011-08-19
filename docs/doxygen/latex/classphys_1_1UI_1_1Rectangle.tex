@@ -14,31 +14,40 @@ This class is a helper class, specifically for use with background sprites and c
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1Rectangle_a6e6e88eb63cc8131da9c8de0fb691801}{Rectangle} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}{
-virtual \hyperlink{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}{$\sim$Rectangle} ()}
-\label{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a4fa5021010e8cdaf9a9e35b3d4c82461}{SetVisible} (bool Visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this rectangle. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Rectangle_aad47a2d9a7c9d8d9111b2edbf44541d5}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this rectangle. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Rectangle_ab408c7607150b24fbc4f70870705a121}{
-virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_ab408c7607150b24fbc4f70870705a121}{Show} ()}
-\label{classphys_1_1UI_1_1Rectangle_ab408c7607150b24fbc4f70870705a121}
-
-\begin{DoxyCompactList}\small\item\em Forces this rectangle to be shown. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Rectangle_a246070a93416c2c50d63720b354154d7}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this rectangle. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Rectangle_a976f977ee23e805b4a193fc0f9e8392f}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this rectangle in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Rectangle_ae29501765e3af7eac37d5ac581e77b24}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the size of this rectangle in pixels. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Rectangle_a20903adb6d1b8650d73774190a2b9c57}{GetMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the rectangle. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Rectangle_aa0e2d6170f0b2d5b1f915c705e7fca10}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this rectangle. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Rectangle_ab4fe2f73e386c9735ad17789ce6cc51a}{GetPrimaryAtlas} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
+virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1Rectangle_a8445b7d0dcb2c92f29aeadac305af420}{GetRenderPriority} ()
+\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Rectangle_a5f54debc5c435cda9505b40ce82f4f24}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this rectangle. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a25bad72cff62c5c69b224bcb74304661}{
 virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a25bad72cff62c5c69b224bcb74304661}{Hide} ()}
 \label{classphys_1_1UI_1_1Rectangle_a25bad72cff62c5c69b224bcb74304661}
 
 \begin{DoxyCompactList}\small\item\em Forces this rectangle to hide. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Rectangle_a246070a93416c2c50d63720b354154d7}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this rectangle. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Rectangle_a20903adb6d1b8650d73774190a2b9c57}{GetMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the rectangle. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Rectangle_aad47a2d9a7c9d8d9111b2edbf44541d5}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this rectangle. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Rectangle_aebeea2052a72be49eb9dece731022c78}{
+virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_aebeea2052a72be49eb9dece731022c78}{NoBorder} ()}
+\label{classphys_1_1UI_1_1Rectangle_aebeea2052a72be49eb9dece731022c78}
+
+\begin{DoxyCompactList}\small\item\em Disables any border set on this rectangle if one is currently set. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Rectangle_a6e6e88eb63cc8131da9c8de0fb691801}{Rectangle} (const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a8a5af1cc3360196f793deb8a0db604e4}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the top left position of this rectangle in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_ab2afb04d539b2b1fc384fa1050b1ba21}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the size of this rectangle in pixels. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a687b524b89e6a76bc102b60023d36abd}{SetBackgroundColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
 \begin{DoxyCompactList}\small\item\em Sets the background colour of the rectangle. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_ae9cc47125e075aaa9bfd397762de6e0c}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
@@ -47,37 +56,28 @@ virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_aa20172e511e24ed24e21e0bdac
 \begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the rectangle. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_aaea6f9d5cd62b63a132c03c894a6d8de}{SetBorder} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
 \begin{DoxyCompactList}\small\item\em Enables a border and sets it's colour. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1UI_1_1Rectangle_aebeea2052a72be49eb9dece731022c78}{
-virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_aebeea2052a72be49eb9dece731022c78}{NoBorder} ()}
-\label{classphys_1_1UI_1_1Rectangle_aebeea2052a72be49eb9dece731022c78}
-
-\begin{DoxyCompactList}\small\item\em Disables any border set on this rectangle if one is currently set. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a16fd918d53d0ae1f82af2574c0396b2c}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative top left position of this rectangle. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Rectangle_aa0e2d6170f0b2d5b1f915c705e7fca10}{GetPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this rectangle. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a8a5af1cc3360196f793deb8a0db604e4}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the top left position of this rectangle in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Rectangle_a976f977ee23e805b4a193fc0f9e8392f}{GetActualPosition} ()
-\begin{DoxyCompactList}\small\item\em Gets the top left position of this rectangle in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a5fa81c05e32b454c313f25609a03c58f}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this rectangle. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Rectangle_a5f54debc5c435cda9505b40ce82f4f24}{GetSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this rectangle. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_ab2afb04d539b2b1fc384fa1050b1ba21}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the size of this rectangle in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Rectangle_ae29501765e3af7eac37d5ac581e77b24}{GetActualSize} ()
-\begin{DoxyCompactList}\small\item\em Gets the size of this rectangle in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a79a98cac2cdd05d6ea6fa3865c9c4b6e}{SetRenderPriority} (const UI::RenderPriority \&Priority)
-\begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
-virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1Rectangle_a8445b7d0dcb2c92f29aeadac305af420}{GetRenderPriority} ()
-\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a275a1495bdbb3829b5f94525d6caa9ed}{SetPrimaryAtlas} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas)
 \begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Rectangle_ab4fe2f73e386c9735ad17789ce6cc51a}{GetPrimaryAtlas} ()
-\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a79a98cac2cdd05d6ea6fa3865c9c4b6e}{SetRenderPriority} (const UI::RenderPriority \&Priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a5fa81c05e32b454c313f25609a03c58f}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this rectangle. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a4fa5021010e8cdaf9a9e35b3d4c82461}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this rectangle. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Rectangle_ab408c7607150b24fbc4f70870705a121}{
+virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_ab408c7607150b24fbc4f70870705a121}{Show} ()}
+\label{classphys_1_1UI_1_1Rectangle_ab408c7607150b24fbc4f70870705a121}
+
+\begin{DoxyCompactList}\small\item\em Forces this rectangle to be shown. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Rectangle_a090cfa5a1298c333335258d52d81c017}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this rectangle to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this rectangle to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}{
+virtual \hyperlink{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}{$\sim$Rectangle} ()}
+\label{classphys_1_1UI_1_1Rectangle_a8862c7e04c2b8911eac4a2d3b6aff165}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -86,14 +86,19 @@ Gorilla::Rectangle $\ast$ {\bfseries GRectangle}}
 \label{classphys_1_1UI_1_1Rectangle_a2646b0bcc1602757852c21fd70e169cc}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1Rectangle_ac54c65c81e321d6ba3c58f32af71d407}{
-\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
-\label{classphys_1_1UI_1_1Rectangle_ac54c65c81e321d6ba3c58f32af71d407}
-
-\item 
 \hypertarget{classphys_1_1UI_1_1Rectangle_a3c78c2e48573d00290f3374e53971a4c}{
 \hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
 \label{classphys_1_1UI_1_1Rectangle_a3c78c2e48573d00290f3374e53971a4c}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Rectangle_a98b63e58485ebb065c1ad62dc39ac63b}{
+bool {\bfseries MouseHover}}
+\label{classphys_1_1UI_1_1Rectangle_a98b63e58485ebb065c1ad62dc39ac63b}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Rectangle_ac54c65c81e321d6ba3c58f32af71d407}{
+\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
+\label{classphys_1_1UI_1_1Rectangle_ac54c65c81e321d6ba3c58f32af71d407}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Rectangle_ae059b550f2d6c490f769bcab07b37910}{
@@ -104,11 +109,6 @@ Gorilla::Rectangle $\ast$ {\bfseries GRectangle}}
 \hypertarget{classphys_1_1UI_1_1Rectangle_acac4d6cf1b71363d9c27f900b215667e}{
 \hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries RelSize}}
 \label{classphys_1_1UI_1_1Rectangle_acac4d6cf1b71363d9c27f900b215667e}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Rectangle_a98b63e58485ebb065c1ad62dc39ac63b}{
-bool {\bfseries MouseHover}}
-\label{classphys_1_1UI_1_1Rectangle_a98b63e58485ebb065c1ad62dc39ac63b}
 
 \end{DoxyCompactItemize}
 

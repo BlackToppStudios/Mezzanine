@@ -14,6 +14,12 @@ Used to call a function for\_\-each member of the subtree of nodes descended fro
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+virtual bool \hyperlink{classphys_1_1xml_1_1TreeWalker_a649d9e5a06542be0282d3d20994a62fc}{begin} (\hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Called by the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal begins. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1xml_1_1TreeWalker_a210f6d60579a152f89e651be797885b9}{end} (\hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Called on the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal ends. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1xml_1_1TreeWalker_a03267e73acac44809f16739fd00a536d}{for\_\-each} (\hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)=0
+\begin{DoxyCompactList}\small\item\em A Pure Virtual function that is expected to be implemented to create the desired behavior. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1TreeWalker_a5b4e97d7a0b433770431f8ebd8fc6489}{
 \hyperlink{classphys_1_1xml_1_1TreeWalker_a5b4e97d7a0b433770431f8ebd8fc6489}{TreeWalker} ()}
 \label{classphys_1_1xml_1_1TreeWalker_a5b4e97d7a0b433770431f8ebd8fc6489}
@@ -23,13 +29,7 @@ Used to call a function for\_\-each member of the subtree of nodes descended fro
 virtual \hyperlink{classphys_1_1xml_1_1TreeWalker_a84d0c68cf364a81e29f0cc321098ae28}{$\sim$TreeWalker} ()}
 \label{classphys_1_1xml_1_1TreeWalker_a84d0c68cf364a81e29f0cc321098ae28}
 
-\begin{DoxyCompactList}\small\item\em Virtual deconstructor. Tears down a \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker}. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1xml_1_1TreeWalker_a649d9e5a06542be0282d3d20994a62fc}{begin} (\hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
-\begin{DoxyCompactList}\small\item\em Called by the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal begins. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1xml_1_1TreeWalker_a03267e73acac44809f16739fd00a536d}{for\_\-each} (\hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)=0
-\begin{DoxyCompactList}\small\item\em A Pure Virtual function that is expected to be implemented to create the desired behavior. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1xml_1_1TreeWalker_a210f6d60579a152f89e651be797885b9}{end} (\hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
-\begin{DoxyCompactList}\small\item\em Called on the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal ends. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Virtual deconstructor. Tears down a \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -59,7 +59,7 @@ If you want to do a deep tree traversal, you'll either have to do it via a recur
 \par
  You can get the node's depth relative to the traversal root at any point by calling \hyperlink{classphys_1_1xml_1_1TreeWalker_a90fdd705ae4d5e8e3b931bb8896e4397}{TreeWalker::Depth()} function. 
 
-Definition at line 927 of file xml.h.
+Definition at line 959 of file xml.h.
 
 
 

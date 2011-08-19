@@ -14,6 +14,23 @@ A set of XPath variables.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariableSet_a26c9bb8f7aa3aaedfcdcdca2e1822deb}{Add} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, \hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} Type)
+\begin{DoxyCompactList}\small\item\em Add a new variable or get the existing one, if the Types match. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1XPathVariableSet_aaf4a46b271298bbb86a6379567e590ee}{
+\hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariableSet_aaf4a46b271298bbb86a6379567e590ee}{Get} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)}
+\label{classphys_1_1xml_1_1XPathVariableSet_aaf4a46b271298bbb86a6379567e590ee}
+
+\begin{DoxyCompactList}\small\item\em Get the named \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable}. \item\end{DoxyCompactList}\item 
+const \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariableSet_a64274e4889036c318c701614d2cfa5ab}{Get} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name) const 
+\begin{DoxyCompactList}\small\item\em Get the named \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable}. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1XPathVariableSet_a61fe3aa60d13a4a224d301456a230a7c}{Set} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \&Value)
+\begin{DoxyCompactList}\small\item\em Set contained variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1XPathVariableSet_af21e7f97081284d98b18562b59299543}{Set} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, bool Value)
+\begin{DoxyCompactList}\small\item\em Set contained variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1XPathVariableSet_aa713e33048ee463a58b9e6988daab214}{Set} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, double Value)
+\begin{DoxyCompactList}\small\item\em Set contained variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1XPathVariableSet_afa99a98b5c4e4790a921f67a153a9ff4}{Set} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Value)
+\begin{DoxyCompactList}\small\item\em Set contained variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1XPathVariableSet_a34733feeb7720d30c2a752f6f9cd6858}{
 \hyperlink{classphys_1_1xml_1_1XPathVariableSet_a34733feeb7720d30c2a752f6f9cd6858}{XPathVariableSet} ()}
 \label{classphys_1_1xml_1_1XPathVariableSet_a34733feeb7720d30c2a752f6f9cd6858}
@@ -23,30 +40,13 @@ A set of XPath variables.
 \hyperlink{classphys_1_1xml_1_1XPathVariableSet_af9ac0b922e9399a30ee81a59eb44e464}{$\sim$XPathVariableSet} ()}
 \label{classphys_1_1xml_1_1XPathVariableSet_af9ac0b922e9399a30ee81a59eb44e464}
 
-\begin{DoxyCompactList}\small\item\em Default Deconstructor, Deletes any \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} it contains. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariableSet_a26c9bb8f7aa3aaedfcdcdca2e1822deb}{Add} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, \hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} Type)
-\begin{DoxyCompactList}\small\item\em Add a new variable or get the existing one, if the Types match. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1xml_1_1XPathVariableSet_a7095efef6fc3978479fb8b6f203c6f4c}{Set} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, bool Value)
-\begin{DoxyCompactList}\small\item\em Set contained variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1xml_1_1XPathVariableSet_aa713e33048ee463a58b9e6988daab214}{Set} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, double Value)
-\begin{DoxyCompactList}\small\item\em Set contained variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1xml_1_1XPathVariableSet_afa99a98b5c4e4790a921f67a153a9ff4}{Set} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Value)
-\begin{DoxyCompactList}\small\item\em Set contained variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1xml_1_1XPathVariableSet_a61fe3aa60d13a4a224d301456a230a7c}{Set} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \&Value)
-\begin{DoxyCompactList}\small\item\em Set contained variable Value; no Type conversion is performed. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariableSet_aaf4a46b271298bbb86a6379567e590ee}{Get} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)
-\begin{DoxyCompactList}\small\item\em Get the named \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable}. \item\end{DoxyCompactList}\item 
-const \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} $\ast$ \hyperlink{classphys_1_1xml_1_1XPathVariableSet_a64274e4889036c318c701614d2cfa5ab}{Get} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name) const 
-\begin{DoxyCompactList}\small\item\em Get the named \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Default Deconstructor, Deletes any \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} it contains. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
-A set of XPath variables. \begin{DoxyReturn}{Returns}
-True is return, false is returned on Type mismatch error. 
-\end{DoxyReturn}
+A set of XPath variables. 
 
-
-Definition at line 1199 of file xml.h.
+Definition at line 1244 of file xml.h.
 
 
 
@@ -65,6 +65,9 @@ Definition at line 1199 of file xml.h.
 
 Add a new variable or get the existing one, if the Types match. 
 
+\begin{DoxyReturn}{Returns}
+A pointer to the \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} you referenced or just created. 
+\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of variable to add. \\
@@ -72,9 +75,6 @@ Add a new variable or get the existing one, if the Types match.
 {\em Type} & The Type of the new value to add as an XPathValueType. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A pointer to the \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} you referenced or just created. 
-\end{DoxyReturn}
 \hypertarget{classphys_1_1xml_1_1XPathVariableSet_a64274e4889036c318c701614d2cfa5ab}{
 \index{phys::xml::XPathVariableSet@{phys::xml::XPathVariableSet}!Get@{Get}}
 \index{Get@{Get}!phys::xml::XPathVariableSet@{phys::xml::XPathVariableSet}}
@@ -95,25 +95,6 @@ A pointer to the specified \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVa
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} you want. \\
 \hline
-\end{DoxyParams}
-\hypertarget{classphys_1_1xml_1_1XPathVariableSet_aaf4a46b271298bbb86a6379567e590ee}{
-\index{phys::xml::XPathVariableSet@{phys::xml::XPathVariableSet}!Get@{Get}}
-\index{Get@{Get}!phys::xml::XPathVariableSet@{phys::xml::XPathVariableSet}}
-\paragraph[{Get}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathVariableSet::Get (
-\begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{Name}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classphys_1_1xml_1_1XPathVariableSet_aaf4a46b271298bbb86a6379567e590ee}
-
-
-Get the named \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable}. 
-
-\begin{DoxyReturn}{Returns}
-True is return, false is returned if there is no such variable or on Type mismatch error. 
-\end{DoxyReturn}
-
-\begin{DoxyParams}{Parameters}
 {\em Name} & The name of the \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable} you want. \\
 \hline
 \end{DoxyParams}
@@ -189,16 +170,16 @@ Set contained variable Value; no Type conversion is performed.
 \begin{DoxyReturn}{Returns}
 True is return, false is returned if there is no such variable or on Type mismatch error. 
 \end{DoxyReturn}
-\hypertarget{classphys_1_1xml_1_1XPathVariableSet_a7095efef6fc3978479fb8b6f203c6f4c}{
+\hypertarget{classphys_1_1xml_1_1XPathVariableSet_af21e7f97081284d98b18562b59299543}{
 \index{phys::xml::XPathVariableSet@{phys::xml::XPathVariableSet}!Set@{Set}}
 \index{Set@{Set}!phys::xml::XPathVariableSet@{phys::xml::XPathVariableSet}}
-\paragraph[{Set}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathVariableSet::Set (
+\paragraph[{Set}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::XPathVariableSet::Set (
 \begin{DoxyParamCaption}
 \item[{const {\bf char\_\-t} $\ast$}]{Name, }
 \item[{bool}]{Value}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1xml_1_1XPathVariableSet_a7095efef6fc3978479fb8b6f203c6f4c}
+\label{classphys_1_1xml_1_1XPathVariableSet_af21e7f97081284d98b18562b59299543}
 
 
 Set contained variable Value; no Type conversion is performed. 
@@ -210,6 +191,9 @@ Set contained variable Value; no Type conversion is performed.
 {\em Value} & The value to attempt to put into the named variable. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True is return, false is returned if there is no such variable or on Type mismatch error. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}

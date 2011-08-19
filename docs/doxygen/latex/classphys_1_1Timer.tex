@@ -32,13 +32,18 @@ enum \hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{TimerType}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1Timer_a25b70d2d45c5c56cce475841b7b18cd0}{Timer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} style)
-\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1Timer_ab96eede362c41f1ab56f1530cbae22b8}{
-\hyperlink{classphys_1_1Timer_ab96eede362c41f1ab56f1530cbae22b8}{$\sim$Timer} ()}
-\label{classphys_1_1Timer_ab96eede362c41f1ab56f1530cbae22b8}
+virtual \hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{Timer::TimerType} \hyperlink{classphys_1_1Timer_af0eaa87bf3074047db36ba1c6fd33c70}{GetType} ()
+\begin{DoxyCompactList}\small\item\em Gets the type of timer this is. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Timer_a3cdb46639055107c23c3de971d913ec1}{
+virtual bool \hyperlink{classphys_1_1Timer_a3cdb46639055107c23c3de971d913ec1}{IsStopped} ()}
+\label{classphys_1_1Timer_a3cdb46639055107c23c3de971d913ec1}
 
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets Whether or not this timer is currently running. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}{
+virtual void \hyperlink{classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}{Reset} ()=0}
+\label{classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}
+
+\begin{DoxyCompactList}\small\item\em Sets the current values to their initial values. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Timer_a046ca4f7dcf2503e5993a18e11172f5e}{SetCallback} (\hyperlink{classphys_1_1TimerCallback}{TimerCallback} $\ast$Call)
 \begin{DoxyCompactList}\small\item\em Sets the callback to be used with this timer. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Timer_a2ec14a41cda7c31637351ab63f63304a}{
@@ -51,42 +56,37 @@ virtual void \hyperlink{classphys_1_1Timer_aa934478424678f84e8f4afb472eebbae}{St
 \label{classphys_1_1Timer_aa934478424678f84e8f4afb472eebbae}
 
 \begin{DoxyCompactList}\small\item\em Deactivates the \hyperlink{classphys_1_1Timer}{Timer}. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1Timer_a3cdb46639055107c23c3de971d913ec1}{
-virtual bool \hyperlink{classphys_1_1Timer_a3cdb46639055107c23c3de971d913ec1}{IsStopped} ()}
-\label{classphys_1_1Timer_a3cdb46639055107c23c3de971d913ec1}
+\hyperlink{classphys_1_1Timer_a25b70d2d45c5c56cce475841b7b18cd0}{Timer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} style)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Timer_ab96eede362c41f1ab56f1530cbae22b8}{
+\hyperlink{classphys_1_1Timer_ab96eede362c41f1ab56f1530cbae22b8}{$\sim$Timer} ()}
+\label{classphys_1_1Timer_ab96eede362c41f1ab56f1530cbae22b8}
 
-\begin{DoxyCompactList}\small\item\em Gets Whether or not this timer is currently running. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}{
-virtual void \hyperlink{classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}{Reset} ()=0}
-\label{classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}
-
-\begin{DoxyCompactList}\small\item\em Sets the current values to their initial values. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{Timer::TimerType} \hyperlink{classphys_1_1Timer_af0eaa87bf3074047db36ba1c6fd33c70}{GetType} ()
-\begin{DoxyCompactList}\small\item\em Gets the type of timer this is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1Timer_a45d7e290f9cb8c03f2376e48ff794f24}{
-virtual void {\bfseries Update} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} MicroSecondsElapsed)=0}
-\label{classphys_1_1Timer_a45d7e290f9cb8c03f2376e48ff794f24}
-
 \item 
 \hypertarget{classphys_1_1Timer_a636d546064abe43b1c549efaca777613}{
 virtual bool {\bfseries GoalReached} ()=0}
 \label{classphys_1_1Timer_a636d546064abe43b1c549efaca777613}
 
+\item 
+\hypertarget{classphys_1_1Timer_a45d7e290f9cb8c03f2376e48ff794f24}{
+virtual void {\bfseries Update} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} MicroSecondsElapsed)=0}
+\label{classphys_1_1Timer_a45d7e290f9cb8c03f2376e48ff794f24}
+
 \end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1Timer_a4b0ece69e1df2bd7dd3c8001c279276a}{
-\hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} {\bfseries Style}}
-\label{classphys_1_1Timer_a4b0ece69e1df2bd7dd3c8001c279276a}
+\hypertarget{classphys_1_1Timer_a7336fd0658dfd6688bdd1d885b65c4b4}{
+bool {\bfseries Active}}
+\label{classphys_1_1Timer_a7336fd0658dfd6688bdd1d885b65c4b4}
 
 \item 
-\hypertarget{classphys_1_1Timer_ac22ea3e7dfa49b2653d03b9579a04972}{
-\hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{Timer::TimerType} {\bfseries Type}}
-\label{classphys_1_1Timer_ac22ea3e7dfa49b2653d03b9579a04972}
+\hypertarget{classphys_1_1Timer_aaaf41b293cd70432d1d3224fc4f6aaae}{
+\hyperlink{classphys_1_1TimerCallback}{TimerCallback} $\ast$ {\bfseries Callback}}
+\label{classphys_1_1Timer_aaaf41b293cd70432d1d3224fc4f6aaae}
 
 \item 
 \hypertarget{classphys_1_1Timer_a3b2206e862a28209d72975d2c880aabd}{
@@ -99,14 +99,14 @@ bool {\bfseries ResetAtGoal}}
 \label{classphys_1_1Timer_a5a3508f2d43623da08ed2944e26063fd}
 
 \item 
-\hypertarget{classphys_1_1Timer_a7336fd0658dfd6688bdd1d885b65c4b4}{
-bool {\bfseries Active}}
-\label{classphys_1_1Timer_a7336fd0658dfd6688bdd1d885b65c4b4}
+\hypertarget{classphys_1_1Timer_a4b0ece69e1df2bd7dd3c8001c279276a}{
+\hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} {\bfseries Style}}
+\label{classphys_1_1Timer_a4b0ece69e1df2bd7dd3c8001c279276a}
 
 \item 
-\hypertarget{classphys_1_1Timer_aaaf41b293cd70432d1d3224fc4f6aaae}{
-\hyperlink{classphys_1_1TimerCallback}{TimerCallback} $\ast$ {\bfseries Callback}}
-\label{classphys_1_1Timer_aaaf41b293cd70432d1d3224fc4f6aaae}
+\hypertarget{classphys_1_1Timer_ac22ea3e7dfa49b2653d03b9579a04972}{
+\hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{Timer::TimerType} {\bfseries Type}}
+\label{classphys_1_1Timer_ac22ea3e7dfa49b2653d03b9579a04972}
 
 \end{DoxyCompactItemize}
 \subsubsection*{Friends}

@@ -42,12 +42,32 @@
 
 #include "constraint.h"
 #include "actorrigid.h"
+#include "serialization.h"
+#include "world.h"
+
+
 #include <btBulletDynamicsCommon.h>
+
 
 /// @cond 0
 
 namespace phys
 {
+    /////////////////////////////////////////
+    // Functions
+
+    String ConstraintParamAsString(ConstraintParam Param)
+    {
+        switch (Param)
+        {
+            case Con_ERP:           return String("Con_ERP");
+            case Con_Stop_ERP:      return String("Con_Stop_ERP");
+            case Con_CFM:           return String("Con_CFM");
+            case Con_Stop_CFM:      return String("Con_Stop_CFM");
+            default: throw(phys::Exception("Attempted to convert invalid Constraint Paramater to a String."));
+        }
+    }
+
     /////////////////////////////////////////
     // TypedConstraint Functions
 
@@ -76,15 +96,73 @@ namespace phys
         BodyB = NULL;
     }
 
-    ActorRigid* TypedConstraint::GetActorA()
+    ActorRigid* TypedConstraint::GetActorA() const
+        { return ActA; }
+
+    ActorRigid* TypedConstraint::GetActorB() const
+        { return ActB; }
+
+    void TypedConstraint::SetParam(ConstraintParam Param, Real Value, int Axis)
+        { this->ConstraintBase->setParam(Param, Value, Axis); }
+
+    Real TypedConstraint::GetParam(ConstraintParam Param, int Axis) const
+        { return this->ConstraintBase->getParam(Param, Axis); }
+
+    // Serializable
+    void TypedConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        return ActA;
+        xml::Node TypedConstraintNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        if (!TypedConstraintNode)
+            { SerializeError("Create TypedConstraintNode", SerializableName()); }
+
+        xml::Attribute Version = TypedConstraintNode.AppendAttribute("Version");
+        xml::Attribute ActorNameA = TypedConstraintNode.AppendAttribute("ActorNameA");
+        xml::Attribute ActorNameB = TypedConstraintNode.AppendAttribute("ActorNameB");
+
+        if (Version && ActorNameA && ActorNameB)
+        {
+            Version.SetValue(1);
+            ActorNameA.SetValue( this->GetActorA()->GetName() );
+            ActorNameB.SetValue( this->GetActorB()->GetName() );
+        }else{
+            SerializeError("Create Attributes on TypedConstraintNode", SerializableName());
+        }
+
+        String CurrentAxisName;
+        AxisList AllAxis = this->ValidAxis();
+        for(AxisList::iterator AxisIter=AllAxis.begin(); AllAxis.end()!=AxisIter; ++AxisIter)
+        {
+            xml::Node OneAxisNode;
+            CurrentAxisName = String(StringCat("Axis",ToString(*AxisIter)));                        // Should result in "Axis-1", "Axis0", "Axis1" ...
+            ParamList AxisParams = ValidParamOnAxis(*AxisIter);
+            for(ParamList::iterator ParamIter=AxisParams.begin(); AxisParams.end()!=ParamIter; ++ParamIter)
+            {
+                if(HasParamBeenSet(*ParamIter,*AxisIter))                                           // No need to create a node if no attributes exist for it, so we will create one for the first attribute that does exist and
+                {                                                                                   // reuse it until we move onto the next Axis
+                    if (!OneAxisNode)
+                    {
+                        OneAxisNode = TypedConstraintNode.AppendChild(CurrentAxisName);
+                        if (!OneAxisNode)
+                            { SerializeError( StringCat("Create ", CurrentAxisName ," Node"), SerializableName()); }
+                    }
+
+                    xml::Attribute CurrenParamAttribute = OneAxisNode.AppendAttribute( ConstraintParamAsString(*ParamIter) );
+                    if (!CurrenParamAttribute)
+                        { SerializeError( StringCat("Create ", ConstraintParamAsString(*ParamIter), " Attribute in ", CurrentAxisName ," Node"), SerializableName()); }
+                    CurrenParamAttribute.SetValue( this->GetParam(*ParamIter,*AxisIter));
+                }
+            }
+        }
+
     }
 
-    ActorRigid* TypedConstraint::GetActorB()
+    // DeSerializable
+    void TypedConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
-        return ActB;
     }
+
+    String TypedConstraint::SerializableName() const
+        { return String("TypedConstraint"); }
 
     /////////////////////////////////////////
     // ConeTwist Constraint Functions
@@ -170,16 +248,6 @@ namespace phys
         return this->ConeTwist->isPastSwingLimit();
     }
 
-    void ConeTwistConstraint::SetParam(int num, Real value, int axis)
-    {
-        this->ConeTwist->setParam(num, value, axis);
-    }
-
-    Real ConeTwistConstraint::GetParam(int num, int axis)
-    {
-        return this->ConeTwist->getParam(num, axis);
-    }
-
     /////////////////////////////////////////
     // Generic6Dof Constraint Functions
 
@@ -258,14 +326,44 @@ namespace phys
         this->Generic6dof->calculateTransforms();
     }
 
-    void Generic6DofConstraint::SetParam(int num, Real value, int axis)
+    TypedConstraint::ParamList Generic6DofConstraint::ValidParamOnAxis(int Axis) const
     {
-        this->Generic6dof->setParam(num, value, axis);
+        TypedConstraint::ParamList Results;
+        if(0<=Axis && 5>=Axis)
+        {
+            Results.push_back(Con_Stop_ERP);
+            Results.push_back(Con_CFM);
+            Results.push_back(Con_Stop_CFM);
+        }
+        return Results;
     }
 
-    Real Generic6DofConstraint::GetParam(int num, int axis)
+    TypedConstraint::AxisList Generic6DofConstraint::ValidLinearAxis() const
     {
-        return this->Generic6dof->getParam (num, axis);
+        TypedConstraint::AxisList Results;
+        Results.push_back(0);
+        Results.push_back(1);
+        Results.push_back(2);
+        return Results;
+    }
+
+    TypedConstraint::AxisList Generic6DofConstraint::ValidAngularAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        Results.push_back(3);
+        Results.push_back(4);
+        Results.push_back(5);
+        return Results;
+    }
+
+    bool Generic6DofConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+    {
+        // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btGeneric6DofConstraint_8cpp_source.html#l00964
+        if(0<=Axis && 5>=Axis)
+            { return false; }
+        return  ( Con_Stop_ERP==Param && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_ERP_STOP << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ||  //if we are checking the stop_erp AND the stop_erp bit is set for the correct axis
+                ( Con_Stop_CFM==Param && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_CFM_STOP << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ||  //if we are checking the stop_cfm AND the stop_cfm bit is set
+                ( Con_CFM==Param      && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_CFM_NORM << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ;   //if we are checking the cfm AND the cfm bit is set
     }
 
     /////////////////////////////////////////
@@ -411,15 +509,43 @@ namespace phys
         this->Hinge->setUseFrameOffset(FrameOffset);
     }
 
-    void HingeConstraint::SetParam(int num, Real value, int axis)
+
+    TypedConstraint::ParamList HingeConstraint::ValidParamOnAxis(int Axis) const
     {
-        this->Hinge->setParam(num, value, axis);
+        TypedConstraint::ParamList Results;
+        if(-1==Axis||5==Axis)
+        {
+            Results.push_back(Con_Stop_ERP);
+            Results.push_back(Con_CFM);
+            Results.push_back(Con_Stop_CFM);
+        }
+        return Results;
     }
 
-    Real HingeConstraint::GetParam(int num, int axis)
+    TypedConstraint::AxisList HingeConstraint::ValidLinearAxis() const
     {
-        return this->Hinge->getParam(num, axis);
+        TypedConstraint::AxisList Results;
+        Results.push_back(-1);
+        return Results;
     }
+
+    TypedConstraint::AxisList HingeConstraint::ValidAngularAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        Results.push_back(5);
+        return Results;
+    }
+
+    bool HingeConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+    {
+        // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btHingeConstraint_8cpp_source.html#l00962
+        if ( -1!=Axis && 5!=Axis )
+            { return false; }
+        return  ( Con_Stop_ERP==Param && this->Hinge->m_flags & BT_HINGE_FLAGS_ERP_STOP )   ||  //if we are checking the stop_erp AND the stop_erp bit is set
+                ( Con_Stop_CFM==Param && this->Hinge->m_flags & BT_HINGE_FLAGS_CFM_STOP )   ||  //if we are checking the stop_cfm AND the stop_cfm bit is set
+                ( Con_CFM==Param      && this->Hinge->m_flags & BT_HINGE_FLAGS_CFM_NORM )   ;   //if we are checking the cfm AND the cfm bit is set
+    }
+
 
     /////////////////////////////////////////
     // Hinge2 Constraint Functions
@@ -489,37 +615,118 @@ namespace phys
         this->Point2Point->setPivotB(PivotB.GetBulletVector3());
     }
 
-    Vector3 Point2PointConstraint::GetPivotInA()
+    Vector3 Point2PointConstraint::GetPivotA() const
     {
-        Vector3 Pivot(this->Point2Point->getPivotInA());
-        return Pivot;
+        return Vector3(this->Point2Point->getPivotInA());
     }
 
-    Vector3 Point2PointConstraint::GetPivotInB()
-    {
-        Vector3 Pivot(this->Point2Point->getPivotInB());
-        return Pivot;
-    }
+    Vector3 Point2PointConstraint::GetPivotB() const
+        { return Vector3(this->Point2Point->getPivotInB()); }
 
     void Point2PointConstraint::SetImpulseClamping(Real Clamping)
-    {
-        this->Point2Point->m_setting.m_impulseClamp = Clamping;
-    }
+        { this->Point2Point->m_setting.m_impulseClamp = Clamping; }
+
+    Real Point2PointConstraint::GetImpulseClamping() const
+        { return this->Point2Point->m_setting.m_impulseClamp; }
+
 
     void Point2PointConstraint::SetTAU(Real TAU)
     {
         this->Point2Point->m_setting.m_tau = TAU;
     }
 
-    void Point2PointConstraint::SetParam(int num, Real value, int axis)
+    Real Point2PointConstraint::GetTAU() const
     {
-        this->Point2Point->setParam(num, value, axis);
+        return this->Point2Point->m_setting.m_tau;
     }
 
-    Real Point2PointConstraint::GetParam(int num, int axis)
+    TypedConstraint::ParamList Point2PointConstraint::ValidParamOnAxis(int Axis) const
     {
-        return this->Point2Point->getParam(num, axis);
+        TypedConstraint::ParamList Results;
+        if(-1==Axis)
+        {
+            Results.push_back(Con_ERP);
+            Results.push_back(Con_Stop_ERP);
+            Results.push_back(Con_CFM);
+            Results.push_back(Con_Stop_CFM);
+        }
+        return Results;
     }
+
+    TypedConstraint::AxisList Point2PointConstraint::ValidLinearAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        Results.push_back(-1);
+        return Results;
+    }
+
+    TypedConstraint::AxisList Point2PointConstraint::ValidAngularAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        return Results;
+    }
+
+    bool Point2PointConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+    {
+        // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btPoint2PointConstraint_8cpp_source.html#l00202
+        if (-1!=Axis)
+            { return false; }
+        return  ( (Con_ERP==Param||Con_Stop_ERP==Param) && this->Point2Point->m_flags & BT_P2P_FLAGS_ERP )     ||   //If we are checking erp OR we are checking stoperp AND the erp Flag is set OR
+                ( (Con_CFM==Param||Con_Stop_CFM==Param) && this->Point2Point->m_flags & BT_P2P_FLAGS_CFM )      ;   //   we are checking cfm OR we are checking stopcfm AND the cfm Flag is set
+    }
+
+    void Point2PointConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node P2PNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        if (!P2PNode)
+            { SerializeError("Create P2PNode", SerializableName()); }
+
+        xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
+        xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
+        xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
+
+        //xml::Attribute FltAttr = P2PNode.AppendAttribute("FLT_MAX"); FltAttr.SetValue(FLT_MAX);
+        //xml::Attribute InfAttr = P2PNode.AppendAttribute("SIMD_INFINITY"); InfAttr.SetValue(SIMD_INFINITY);
+        //xml::Attribute InpAttr = P2PNode.AppendAttribute("IN_PARALLELL_SOLVER"); InpAttr.SetValue(IN_PARALLELL_SOLVER);
+
+        if( VerAttr && TauAttr && ClaAttr )
+        {
+            VerAttr.SetValue(1);
+            TauAttr.SetValue(this->GetTAU());
+            ClaAttr.SetValue(this->GetImpulseClamping());
+        }else{
+            SerializeError("Create P2PNode Attributes", SerializableName());
+        }
+
+        xml::Node ActorANode = P2PNode.AppendChild("ActorA");
+        if (!ActorANode)
+            { SerializeError("Create ActorANode", SerializableName()); }
+        this->GetPivotA().ProtoSerialize(ActorANode);
+
+        xml::Node ActorBNode = P2PNode.AppendChild("ActorB");
+        if (!ActorBNode)
+            { SerializeError("Create ActorBNode", SerializableName()); }
+        this->GetPivotB().ProtoSerialize(ActorBNode);
+
+        xml::Attribute NameAAttr = ActorANode.AppendAttribute("Name");
+        xml::Attribute NameBAttr = ActorBNode.AppendAttribute("Name");
+
+        if( NameAAttr && NameBAttr)
+        {
+            NameAAttr.SetValue(this->GetActorA()->GetName());
+            NameBAttr.SetValue(this->GetActorB()->GetName());
+        }
+
+        this->TypedConstraint::ProtoSerialize(P2PNode);
+    }
+
+    void Point2PointConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+
+    }
+
+    String Point2PointConstraint::SerializableName() const
+        { return String("Point2PointConstraint"); }
 
     /////////////////////////////////////////
     // Slider Constraint Functions
@@ -703,16 +910,6 @@ namespace phys
         this->Slider->setDampingOrthoAng(DampingOrthoAng);
     }
 
-    void SliderConstraint::SetParam(int num, Real value, int axis)
-    {
-        this->Slider->setParam(num, value, axis);
-    }
-
-    Real SliderConstraint::GetParam(int num, int axis)
-    {
-        return this->Slider->getParam(num, axis);
-    }
-
     /////////////////////////////////////////
     // Universal Constraint Functions
 
@@ -745,6 +942,25 @@ namespace phys
         this->Universal->setLowerLimit(Ang1Min, Ang2Min);
     }
 }//phys
+
+
+#ifdef PHYSXML
+    ///////////////////////////////////////////////////////////////////////////////
+    // Class External << Operators for streaming or assignment
+    std::ostream& operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::TypedConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+#endif // \PHYSXML
+
+
 
 /// @endcond
 
