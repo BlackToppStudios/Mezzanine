@@ -66,7 +66,7 @@
 #include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"
 #include "cameramanager.h"
-#include "collisionshapegenerator.h"
+#include "collisionshape.h"
 #include "collisionshapemanager.h"
 #include "colourvalue.h"                // done
 #include "constraint.h"
@@ -91,7 +91,7 @@
 #include "linegroup.h"
 #include "managerbase.h"
 #include "mathtool.h"
-#include "meshgenerator.h"
+#include "mesh.h"
 #include "meshmanager.h"
 #include "metacode.h"                   // done
 #include "particleeffect.h"             // done

@@ -177,6 +177,13 @@ namespace phys
         return NewMesh;
     }
 
+    Mesh* MeshManager::CreateBoxMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents)
+    {
+        String MatName(MeshName+"Mat");
+        CreateColouredMaterial(MatName,Colour);
+        return CreateBoxMesh(MeshName,MatName,HalfExtents);
+    }
+
     Mesh* MeshManager::CreateCylinderMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes, const Whole& Segments)
     {
 /// Start of MIT(Ogre Proceadural) License ///
@@ -290,6 +297,13 @@ namespace phys
 /// End of MIT(Ogre Proceadural) License ///
     }
 
+    Mesh* MeshManager::CreateCylinderMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes, const Whole& Segments)
+    {
+        String MatName(MeshName+"Mat");
+        CreateColouredMaterial(MatName,Colour);
+        return CreateCylinderMesh(MeshName,MatName,HalfExtents,AxisOrientation,CircleRes,Segments);
+    }
+
     Mesh* MeshManager::CreateSphereMesh(const String& MeshName, const String& MaterialName, const Real& Radius, const Real& Rings, const Real& Segments)
     {
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
@@ -337,6 +351,35 @@ namespace phys
         GeneratedMeshes[MeshName] = NewMesh;
         delete sphere;
         return NewMesh;
+    }
+
+    Mesh* MeshManager::CreateSphereMesh(const String& MeshName, const ColourValue& Colour, const Real& Radius, const Real& Rings, const Real& Segments)
+    {
+        String MatName(MeshName+"Mat");
+        CreateColouredMaterial(MatName,Colour);
+        return CreateSphereMesh(MeshName,MatName,Radius,Rings,Segments);
+    }
+
+    Mesh* MeshManager::CreateMeshFromShape(const String& MeshName, const String& MaterialName, CollisionShape* Shape)
+    {
+        return NULL;
+    }
+
+    const String& MeshManager::CreateColouredMaterial(const String& MatName, const ColourValue& Colour)
+    {
+        Ogre::ResourceManager::ResourceCreateOrRetrieveResult Result = Ogre::MaterialManager::getSingletonPtr()->createOrRetrieve(MatName, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        Ogre::MaterialPtr NewMaterial = static_cast<Ogre::MaterialPtr>(Result.first);
+        NewMaterial->setReceiveShadows(false);
+        Ogre::Pass* pass = NewMaterial->getTechnique(0)->getPass(0);
+        pass->setCullingMode(Ogre::CULL_NONE);
+        pass->setDepthCheckEnabled(true);
+        pass->setDepthWriteEnabled(false);
+        pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+        pass->setAmbient(Colour.GetOgreColourValue());
+        pass->setDiffuse(Colour.GetOgreColourValue());
+        NewMaterial->prepare();
+        NewMaterial->load();
+        return MatName;
     }
 
     void MeshManager::Initialize()

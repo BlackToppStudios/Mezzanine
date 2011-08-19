@@ -441,13 +441,16 @@ void CatchApp::UnloadLevel()
     ActorManager* ActorMan = TheWorld->GetActorManager();
     TimerManager* TimeMan = TheWorld->GetTimerManager();
     EventManager* EventMan = TheWorld->GetEventManager();
+    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
+    MeshManager* MeshMan = TheWorld->GetMeshManager();
     UIManager* UIMan = TheWorld->GetUIManager();
 
     PhysMan->DestroyAllConstraints();
     ActorMan->DestroyAllActors();
     PhysMan->DestroyAllWorldTriggers();
     PhysMan->DestroyAllAreaEffects();
-    PhysMan->DestroyAllPhysicsShapes();
+    CShapeMan->DestroyAllShapes();
+    MeshMan->DestroyAllGeneratedMeshes();
     SceneMan->DestroyAllLights();
     SceneMan->DestroyAllParticleEffects();
     SceneMan->DestroyAllWorldNodes();
@@ -465,7 +468,6 @@ void CatchApp::UnloadLevel()
         delete OneCollision;
         OneCollision = EventMan->PopNextCollisionEvent();
     }
-    MeshGenerator::DestroyAllGeneratedMeshes();
     CurrScore = 0;
     TimeMan->DestroyTimer(EndTimer);
     EndTimer = NULL;

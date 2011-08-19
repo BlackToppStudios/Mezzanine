@@ -145,9 +145,6 @@ namespace phys
             /// @brief This variable stores the type of actor that this class is.
             ActorTypeName ActorType;
 
-            /// @brief Stores whether or not the current physics shape has been saved in the manager.
-            bool ShapeIsSaved;
-
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
 ///////////////////////////////////////
@@ -280,11 +277,6 @@ namespace phys
             /// @details The WorldNode returned by this function is not stored in the scene manasger.
             /// @return Returns a WorldNode pointer pointing to this actor's world node.
             virtual WorldNode* GetActorNode() const;
-
-            /// @brief Gets whether this actors current shape has been saved or not.
-            /// @details This function will tell you if it's current physics shape has been saved for later use or not.
-            /// @return Returns whether or not the shape of this actor has been saved.
-            virtual const bool GetShapeIsSaved() const;
 
             /// @brief Gets whether or not this object is currently in the world.
             /// @return Returns a bool indicating if this object has been added to the world.

@@ -64,27 +64,22 @@ namespace phys{
     ActorBase::ActorBase()
         : GraphicsObject(NULL),
           GraphicsSettings(NULL),
+          Shape(NULL),
           BasePhysicsSettings(NULL),
           MotionState(NULL),
           ActorSounds(NULL),
           Animation(NULL),
-          ShapeIsSaved(false),
           ActorType(ActorBase::Actorbase)
     {
         //this->GameWorld = World::GetWorldPointer();
         this->GraphicsNode = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         this->ActorWorldNode = new WorldNode(GraphicsNode,World::GetWorldPointer()->GetSceneManager());
-        this->Shape = new btEmptyShape();
     }
 
     ActorBase::~ActorBase()
     {
         DetachFromGraphics();
         delete MotionState;
-        if(!ShapeIsSaved)
-        {
-            delete Shape;
-        }
         //delete GraphicsObject;
         World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
         delete ActorWorldNode;
@@ -213,11 +208,6 @@ namespace phys{
         return ActorWorldNode;
     }
 
-    const bool ActorBase::GetShapeIsSaved() const
-    {
-        return ShapeIsSaved;
-    }
-
     bool ActorBase::IsInWorld() const
     {
         return CollisionObject->getBroadphaseHandle() != 0;
@@ -341,9 +331,7 @@ namespace phys{
             ActorVersion.SetValue(1);
         xml::Attribute ActorIsInWorld = ActorNode.AppendAttribute("IsInWorld");
             ActorIsInWorld.SetValue(this->IsInWorld());
-        xml::Attribute ActorShapeIsSaved = ActorNode.AppendAttribute("ShapeIsSaved");
-            ActorShapeIsSaved.SetValue(this->GetShapeIsSaved());
-        if ( !(ActorName && ActorVersion && ActorIsInWorld && ActorShapeIsSaved) )
+        if ( !(ActorName && ActorVersion && ActorIsInWorld) )
             { ThrowSerialError("create ActorNode Attributes"); }
 
         xml::Attribute ActorSoundSetName = ActorNode.AppendAttribute("SoundSet");

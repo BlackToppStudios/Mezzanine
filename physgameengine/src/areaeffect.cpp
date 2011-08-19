@@ -45,7 +45,10 @@
 #include "actorbase.h"
 #include "actorrigid.h"
 #include "physicsmanager.h"
-#include "meshgenerator.h"
+#include "collisionshape.h"
+#include "collisionshapemanager.h"
+#include "mesh.h"
+#include "meshmanager.h"
 #include "objectreference.h"
 #include "internalmeshtools.h.cpp"
 
@@ -60,11 +63,11 @@
 namespace phys{
 
     AreaEffect::AreaEffect(const String &name, const Vector3& Location)
-        : Name (name),
-          Shape (NULL),
+        : Name(name),
+          FieldShape(NULL),
+          FieldMesh(NULL),
           GraphicsNode(NULL),
-          GraphicsObject(NULL),
-          ShapeType(AE_Unassigned)
+          GraphicsObject(NULL)
     {
         TheWorld = World::GetWorldPointer();
         CreateGhostObject(Location);
@@ -73,8 +76,6 @@ namespace phys{
     AreaEffect::~AreaEffect()
     {
         delete Ghost;
-        if(Shape)
-            delete Shape;
         PreGraphicsMeshCreate();
     }
 
@@ -85,22 +86,6 @@ namespace phys{
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
         ObjectReference* ActorRef = new ObjectReference(phys::WOT_AreaEffect,this);
         Ghost->setUserPointer(ActorRef);
-    }
-
-    Ogre::MaterialPtr AreaEffect::CreateColouredMaterial(const ColourValue& Colour)
-    {
-        Ogre::MaterialPtr AEMaterial = Ogre::MaterialManager::getSingletonPtr()->create(Name+"Material", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-        AEMaterial->setReceiveShadows(false);
-        Ogre::Pass* pass = AEMaterial->getTechnique(0)->getPass(0);
-        pass->setCullingMode(Ogre::CULL_NONE);
-        pass->setDepthCheckEnabled(true);
-        pass->setDepthWriteEnabled(false);
-        pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-        pass->setAmbient(Colour.GetOgreColourValue());
-        pass->setDiffuse(Colour.GetOgreColourValue());
-        AEMaterial->prepare();
-        AEMaterial->load();
-        return AEMaterial;
     }
 
     void AreaEffect::PreGraphicsMeshCreate()
@@ -116,19 +101,6 @@ namespace phys{
             OgreManager->destroySceneNode(GraphicsNode);
             GraphicsNode = NULL;
         }
-    }
-
-    void AreaEffect::PostGraphicsMeshCreate(const String& GroupName)
-    {
-        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
-        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
-        GraphicsNode = OgreManager->createSceneNode();
-        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
-        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
-        GraphicsNode->attachObject(GraphicsObject);
-        ObjectReference* AERef = (ObjectReference*)Ghost->getUserPointer();
-        Ogre::Any OgreRef(AERef);
-        GraphicsObject->setUserAny(OgreRef);
     }
 
     void AreaEffect::AddActorToList(ActorBase* Actor)
@@ -360,123 +332,16 @@ namespace phys{
         }// */
     }
 
-    void AreaEffect::CreateSphereShape(const Real& Radius)
+    void AreaEffect::SetFieldShape(CollisionShape* FieldShape)
     {
-        Shape = new btSphereShape(Radius);
-        Ghost->setCollisionShape(Shape);
-        ShapeType = AE_Sphere;
+        this->FieldShape = FieldShape;
+        Ghost->setCollisionShape(this->FieldShape->GetBulletShape());
+        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(this->FieldShape);
     }
 
-    void AreaEffect::CreateCylinderShapeX(const Vector3& HalfExtents)
+    CollisionShape* AreaEffect::GetFieldShape() const
     {
-        Shape = new btCylinderShapeX(HalfExtents.GetBulletVector3());
-        Ghost->setCollisionShape(Shape);
-        ShapeType = AE_CylinderX;
-    }
-
-    void AreaEffect::CreateCylinderShapeY(const Vector3& HalfExtents)
-    {
-        Shape = new btCylinderShape(HalfExtents.GetBulletVector3());
-        Ghost->setCollisionShape(Shape);
-        ShapeType = AE_CylinderY;
-    }
-
-    void AreaEffect::CreateCylinderShapeZ(const Vector3& HalfExtents)
-    {
-        Shape = new btCylinderShapeZ(HalfExtents.GetBulletVector3());
-        Ghost->setCollisionShape(Shape);
-        ShapeType = AE_CylinderZ;
-    }
-
-    void AreaEffect::CreateBoxShape(const Vector3& HalfExtents)
-    {
-        Shape = new btBoxShape(HalfExtents.GetBulletVector3());
-        Ghost->setCollisionShape(Shape);
-        ShapeType = AE_Box;
-    }
-
-    void AreaEffect::CreateShapeFromMesh(const String& Filename, const String& Group, bool MakeVisible)
-    {
-        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
-        PreGraphicsMeshCreate();
-        if(Shape)
-        {
-            delete Shape;
-            Shape = NULL;
-        }
-
-        GraphicsObject = OgreManager->createEntity(Name, Filename, Group);
-        Ogre::MeshPtr myMesh = GraphicsObject->getMesh();
-        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-        Ogre::IndexData*  indexData = subMesh->indexData;
-        Ogre::VertexData* vertexData = subMesh->vertexData;
-
-        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
-        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
-        Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
-
-        unsigned int triCount = indexData->indexCount/3;
-        Ogre::Vector3* vertices = new Ogre::Vector3[vertexData->vertexCount];
-        unsigned int* indices = new unsigned int[indexData->indexCount];
-        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        float* pReal = NULL;
-        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
-        {
-            posElem->baseVertexPointerToElement(vertex, &pReal);
-            vertices[j].x = *pReal++;
-            vertices[j].y = *pReal++;
-            vertices[j].z = *pReal++;
-        }
-        vBuffer->unlock();
-        size_t index_offset = 0;
-        bool use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
-
-        unsigned long* pLong = static_cast<unsigned long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        unsigned short* pShort = reinterpret_cast<unsigned short*>(pLong);
-
-        if (use32bitindexes)
-        {
-            for (size_t k = 0; k < triCount*3; ++k)
-            {
-                indices[index_offset++] = pLong[k];
-            }
-        }
-        else
-        {
-            for (size_t k = 0; k < triCount*3; ++k)
-            {
-                indices[index_offset++] = static_cast<unsigned long>(pShort[k]);
-            }
-        }
-        iBuffer->unlock();
-
-        btTriangleMesh* trimesh = new btTriangleMesh(use32bitindexes);
-        btVector3 vert0, vert1, vert2;
-        int i=0;
-        for (unsigned int y=0; y<triCount; y++)
-        {
-            vert0.setValue(vertices[indices[i]].x, vertices[indices[i]].y, vertices[indices[i]].z);
-            vert1.setValue(vertices[indices[i+1]].x, vertices[indices[i+1]].y, vertices[indices[i+1]].z);
-            vert2.setValue(vertices[indices[i+2]].x, vertices[indices[i+2]].y, vertices[indices[i+2]].z);
-            trimesh->addTriangle(vert0, vert1, vert2);
-            i+=3;
-        }
-        delete[] vertices;
-        delete[] indices;
-
-        if(MakeVisible)
-        {
-            GraphicsNode = OgreManager->createSceneNode();
-            OgreManager->getRootSceneNode()->addChild(GraphicsNode);
-            GraphicsNode->attachObject(GraphicsObject);
-        }else{
-            OgreManager->destroyEntity(GraphicsObject);
-            GraphicsObject = NULL;
-        }
-
-        Shape = new btGImpactMeshShape(trimesh);
-        Ghost->setCollisionShape(Shape);
-        ShapeType = AE_Custom;
+        return FieldShape;
     }
 
     void AreaEffect::ScaleFieldShape(const Vector3& Scale)
@@ -521,11 +386,6 @@ namespace phys{
         return Name;
     }
 
-    AreaEffect::AEShapeType AreaEffect::GetShapeType() const
-    {
-        return ShapeType;
-    }
-
     bool AreaEffect::IsInWorld() const
     {
         return 0 != Ghost->getBroadphaseHandle();
@@ -550,96 +410,31 @@ namespace phys{
         return Ghost->getCollisionFlags() & btCollisionObject::CF_STATIC_OBJECT;
     }
 
-    void AreaEffect::CreateGraphicsSphere(const ColourValue& Colour, const Whole Rings, const Whole Segments)
+    void AreaEffect::SetFieldMesh(Mesh* FieldMesh)
     {
-        if(AreaEffect::AE_Sphere != ShapeType)
-        {
-            TheWorld->Log("Attempting to create sphere graphics shape when AreaEffect isn't a sphere is not supported.  Exiting Function.");
-            return;
-        }
-        String MatName = (CreateColouredMaterial(Colour))->getName();
-        CreateGraphicsSphere(MatName,Rings,Segments);
-    }
-
-    void AreaEffect::CreateGraphicsSphere(const String& MaterialName, const Whole Rings, const Whole Segments)
-    {
-        if(AreaEffect::AE_Sphere != ShapeType)
-        {
-            TheWorld->Log("Attempting to create sphere graphics shape when AreaEffect isn't a sphere is not supported.  Exiting Function.");
-            return;
-        }
         PreGraphicsMeshCreate();
-        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
-        String GroupName = TheMaterial->getGroup();
-        Real Radius = (static_cast<btSphereShape*>(Shape))->getRadius();
-        MeshGenerator::CreateSphereMesh(Name + "Mesh",MaterialName,Radius,Rings,Segments);
-        PostGraphicsMeshCreate(GroupName);
+        this->FieldMesh = FieldMesh;
+
+        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        GraphicsObject = OgreManager->createEntity(Name,FieldMesh->GetName(),FieldMesh->GetGroup());
+        GraphicsNode = OgreManager->createSceneNode();
+        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
+        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
+        GraphicsNode->attachObject(GraphicsObject);
+        ObjectReference* AERef = (ObjectReference*)Ghost->getUserPointer();
+        Ogre::Any OgreRef(AERef);
+        GraphicsObject->setUserAny(OgreRef);
     }
 
-    void AreaEffect::CreateGraphicsCylinder(const ColourValue& Colour)
+    void AreaEffect::SetFieldMesh(const String& MeshName, const String& Group)
     {
-        if(AreaEffect::AE_CylinderX != ShapeType && AreaEffect::AE_CylinderY != ShapeType && AreaEffect::AE_CylinderZ != ShapeType)
-        {
-            TheWorld->Log("Attempting to create cylinder graphics shape when AreaEffect isn't a cylinder is not supported.  Exiting Function.");
-            return;
-        }
-        String MatName = (CreateColouredMaterial(Colour))->getName();
-        CreateGraphicsCylinder(MatName);
+        Mesh* TheMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        this->SetFieldMesh(TheMesh);
     }
 
-    void AreaEffect::CreateGraphicsCylinder(const String& MaterialName)
+    Mesh* AreaEffect::GetFieldMesh() const
     {
-        if(AreaEffect::AE_CylinderX != ShapeType && AreaEffect::AE_CylinderY != ShapeType && AreaEffect::AE_CylinderZ != ShapeType)
-        {
-            TheWorld->Log("Attempting to create cylinder graphics shape when AreaEffect isn't a cylinder is not supported.  Exiting Function.");
-            return;
-        }
-        PreGraphicsMeshCreate();
-        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
-        String GroupName = TheMaterial->getGroup();
-        Vector3 Half((static_cast<btCylinderShape*>(Shape))->getHalfExtentsWithoutMargin());
-        switch(ShapeType)
-        {
-            case AreaEffect::AE_CylinderX:
-                MeshGenerator::CreateCylinderMesh(Name + "Mesh",MaterialName,Half,Vector3(1,0,0));
-                break;
-            case AreaEffect::AE_CylinderY:
-                MeshGenerator::CreateCylinderMesh(Name + "Mesh",MaterialName,Half,Vector3(0,1,0));
-                break;
-            case AreaEffect::AE_CylinderZ:
-                MeshGenerator::CreateCylinderMesh(Name + "Mesh",MaterialName,Half,Vector3(0,0,1));
-                break;
-            default:
-                return;
-        }
-        PostGraphicsMeshCreate(GroupName);
-    }
-
-    void AreaEffect::CreateGraphicsBox(const ColourValue& Colour)
-    {
-        if(AreaEffect::AE_Box != ShapeType)
-        {
-            TheWorld->Log("Attempting to create box graphics shape when AreaEffect isn't a box is not supported.  Exiting Function.");
-            return;
-        }
-        String MatName = (CreateColouredMaterial(Colour))->getName();
-        CreateGraphicsBox(MatName);
-    }
-
-    void AreaEffect::CreateGraphicsBox(const String& MaterialName)
-    {
-        if(AreaEffect::AE_Box != ShapeType)
-        {
-            TheWorld->Log("Attempting to create box graphics shape when AreaEffect isn't a box is not supported.  Exiting Function.");
-            return;
-        }
-        PreGraphicsMeshCreate();
-        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
-        String GroupName = TheMaterial->getGroup();
-        /// @todo The HalfExtents returned here includes scaling, should account for that so weird scaling sync issues don't occur.
-        Vector3 Half((static_cast<btBoxShape*>(Shape))->getHalfExtentsWithoutMargin());
-        MeshGenerator::CreateBoxMesh(Name + "Mesh",MaterialName,Half);
-        PostGraphicsMeshCreate(GroupName);
+        return FieldMesh;
     }
 
     std::list<ActorBase*>& AreaEffect::GetOverlappingActors()

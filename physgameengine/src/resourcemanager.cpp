@@ -82,30 +82,6 @@ namespace phys {
         ResourceGroups.push_back(Name);
     }
 
-    void ResourceManager::ApplyShapeToActor(ActorBase* Actor, btCollisionShape* ColShape)
-    {
-        if(ActorBase::Actorrigid == Actor->GetType())
-        {
-            btRigidBody* Rigid = static_cast < btRigidBody* > (Actor->CollisionObject);
-            btScalar mass = Rigid->getInvMass();
-            if(0 != mass)
-                mass=1/mass;
-            btVector3 inertia(0,0,0);
-            ColShape->calculateLocalInertia(mass, inertia);
-            Rigid->setMassProps(mass,inertia);
-            Rigid->updateInertiaTensor();
-        }
-        if(ActorBase::Actorcharacter == Actor->GetType())
-        {
-        }
-        if(!Actor->ShapeIsSaved)
-        {
-            delete Actor->Shape;
-        }
-        Actor->CollisionObject->setCollisionShape(ColShape);
-        Actor->Shape = ColShape;
-    }
-
     void ResourceManager::AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive)
     {
         this->OgreResource->addResourceLocation(Location, Type, Group, recursive);

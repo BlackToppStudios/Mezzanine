@@ -70,9 +70,6 @@ namespace phys
             /// @brief Encapsulates the functionality of the ogre resource group manager.
             Ogre::ResourceGroupManager* OgreResource;
 
-            /// @brief Applies a saved shape to an Actor.
-            void ApplyShapeToActor(ActorBase* Actor, btCollisionShape* ColShape);
-
             /// A list of Pointers to streams created to delete periodically.
             std::vector<ResourceInputStream*> DeleteList;
 

@@ -41,10 +41,10 @@
 #define _collisionshapemanager_cpp
 
 #include "collisionshapemanager.h"
-#include "world.h"
-
 #include "collisionshape.h"
+#include "world.h"
 #include "mesh.h"
+#include "meshmanager.h"
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
@@ -251,7 +251,8 @@ namespace phys
     {
         for( std::map<String,CollisionShape*>::iterator CS = CollisionShapes.begin() ; CS != CollisionShapes.end() ; CS++ )
         {
-            delete (*CS).second;
+            CollisionShape* CurrShape = (*CS).second;
+            delete CurrShape;
         }
         CollisionShapes.clear();
     }
@@ -273,16 +274,34 @@ namespace phys
         return new ConvexHullCollisionShape(Name,convexShape);
     }
 
-    DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMeshShape(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
+    ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
+    {
+        Mesh* ObjectMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        return this->GenerateConvexHull(Name,ObjectMesh,UseAllSubmeshes);
+    }
+
+    DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
     {
         btGImpactMeshShape* gimpact = new btGImpactMeshShape(this->CreateBulletTrimesh(ObjectMesh,UseAllSubmeshes));
         return new DynamicMeshCollisionShape(Name,gimpact);
     }
 
-    StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMeshShape(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
+    DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
+    {
+        Mesh* ObjectMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        return this->GenerateDynamicTriMesh(Name,ObjectMesh,UseAllSubmeshes);
+    }
+
+    StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
     {
         btBvhTriangleMeshShape* tmpshape = new btBvhTriangleMeshShape(this->CreateBulletTrimesh(ObjectMesh,UseAllSubmeshes),true);
         return new StaticMeshCollisionShape(Name,tmpshape);
+    }
+
+    StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
+    {
+        Mesh* ObjectMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        return this->GenerateStaticTriMesh(Name,ObjectMesh,UseAllSubmeshes);
     }
 
     CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
@@ -463,19 +482,26 @@ namespace phys
         return compound;
     }
 
+    CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
+    {
+        Mesh* ObjectMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        return this->PerformConvexDecomposition(Name,ObjectMesh,Depth,CPercent,PPercent,UseAllSubmeshes);
+    }
+
     void CollisionShapeManager::LoadAllShapesFromFile(const String& FileName, const String& Group)
     {
         btBulletWorldImporter* Importer = new btBulletWorldImporter();
-        Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(FileName, Group);
-        size_t StreamSize = Stream->size();
-        assert(sizeof(char)==1);
-        char* buffer = new char[StreamSize];
-        Stream->read((void*)buffer, StreamSize);
-        if(!Importer->loadFileFromMemory(buffer, StreamSize))
+        Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(FileName,Group);
+        //size_t StreamSize = Stream->size();
+        //assert(sizeof(char)==1);
+        char* buffer = new char[Stream->size()];
+        Stream->read((void*)buffer, Stream->size());
+        if(!Importer->loadFileFromMemory(buffer, Stream->size()))
         {
             std::stringstream logstream;
             logstream << "Failed to load file: " << FileName << " , in CollisionShapeManager::LoadAllShapesFromFile";
             World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+            return;
         }
         for( Whole X = 0 ; X < Importer->getNumCollisionShapes() ; X++ )
         {
@@ -603,9 +629,11 @@ namespace phys
                 default:
                 {
                     World::GetWorldPointer()->LogAndThrow(Exception("Attempting to load an unsupported/unwrapped Collision Shape in CompoundShapeManager::LoadAllShapesFromFile."));
-                }
-            }
-        }
+                }//default
+            }//switch
+        }//for
+        delete buffer;
+        delete Importer;
     }
 
     void CollisionShapeManager::SaveAllStoredShapesToFile(const String& FileName)

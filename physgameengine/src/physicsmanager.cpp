@@ -308,7 +308,7 @@ namespace phys
     {
         DestroyAllConstraints();
         DestroyAllAreaEffects();
-        DestroyAllPhysicsShapes();
+        DestroyAllWorldTriggers();
         //Destroy the physical world that we loved and cherished
         delete BulletDynamicsWorld;
         delete BulletDispatcher;
@@ -371,6 +371,8 @@ namespace phys
                                                         BulletCollisionConfiguration);
         }// */
         this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
+        this->SetGravity(Info.Gravity);
+        this->SetSoftGravity(Info.Gravity);
         this->WorldConstructionInfo = Info;
     }
 
@@ -476,47 +478,6 @@ namespace phys
             delete (*Con);
         }
         Constraints.clear();
-    }
-
-    void PhysicsManager::StorePhysicsShape(ActorBase* Actor, const String& ShapeName)
-    {
-        this->PhysicsShapes[ShapeName] = Actor->Shape;
-        Actor->ShapeIsSaved = true;
-    }
-
-    void PhysicsManager::ApplyPhysicsShape(ActorBase* Actor, const String& ShapeName)
-    {
-        int Type = Actor->GetType();
-        switch(Type)
-        {
-            case ActorBase::Actorrigid:
-            case ActorBase::Actorterrain:
-            {
-                btVector3 Inertia(0,0,0);
-                btRigidBody* ActorObject = btRigidBody::upcast(Actor->CollisionObject);
-                btCollisionShape* ActorShape = this->PhysicsShapes[ShapeName];
-                btScalar Mass = ActorObject->getInvMass();
-                if(0 != Mass)
-                    Mass=1/Mass;
-                ActorShape->calculateLocalInertia(Mass,Inertia);
-                ActorObject->setCollisionShape(ActorShape);
-                Actor->Shape = ActorShape;
-                ActorObject->setMassProps(Mass,Inertia);
-                ActorObject->updateInertiaTensor();
-                Actor->ShapeIsSaved = true;
-                return;
-            }
-            case ActorBase::Actorsoft:
-            default:
-                return;
-        }
-    }
-
-    void PhysicsManager::DestroyAllPhysicsShapes()
-    {
-        for( std::map<String,btCollisionShape*>::iterator PS = PhysicsShapes.begin() ; PS != PhysicsShapes.end() ; PS++ )
-            delete (*PS).second;
-        PhysicsShapes.clear();
     }
 
     void PhysicsManager::AddAreaEffect(AreaEffect* AE)

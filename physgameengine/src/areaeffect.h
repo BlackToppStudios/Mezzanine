@@ -62,6 +62,8 @@ namespace Ogre
 namespace phys{
     class ActorBase;
     class World;
+    class CollisionShape;
+    class Mesh;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class AreaEffect
     /// @headerfile areaeffect.h
@@ -75,23 +77,12 @@ namespace phys{
     {
         friend class PhysicsManager;
         protected:
-            /// @brief The kinds of shapes and AreaEffect can take.
-            enum AEShapeType
-            {
-                AE_Sphere,      ///< Description Required
-                AE_CylinderX,   ///< Description Required
-                AE_CylinderY,   ///< Description Required
-                AE_CylinderZ,   ///< Description Required
-                AE_Box,         ///< Description Required
-                AE_Custom,      ///< Description Required
-                AE_Unassigned   ///< Description Required
-            };
             /// @brief The name of the Area Effect.
             String Name;
-            /// @brief The type of physics shape in use by this AE field.
-            AEShapeType ShapeType;
             /// @brief Stores the shape of the AE field.
-            btCollisionShape* Shape;
+            CollisionShape* FieldShape;
+            /// @brief Stores the mesh of the AR field.
+            Mesh* FieldMesh;
             /// @brief The object representing the AE field itself.
             btPairCachingGhostObject* Ghost;
             /// @brief Ogre node required to adding a graohical representation to the scene graph.
@@ -109,12 +100,8 @@ namespace phys{
             /// @brief Constructor Function.
             /// @param Location The location of the AE field.
             virtual void CreateGhostObject(const Vector3& Location);
-            /// @brief Creates a basic material in code using the provided colour.
-            virtual Ogre::MaterialPtr CreateColouredMaterial(const ColourValue& Colour);
             /// @brief Convenience function for the common starting steps in making a graphics object.
             virtual void PreGraphicsMeshCreate();
-            /// @brief Convenience function for the common final steps in making a graphics object.
-            virtual void PostGraphicsMeshCreate(const String& GroupName);
             /// @brief Helper function for adding actors to relevant lists.
             virtual void AddActorToList(ActorBase* Actor);
             /// @brief Helper function for adding actors to relevant lists.
@@ -136,34 +123,12 @@ namespace phys{
             /// @details This function is automatically called once every simulation step.  This shouldn't
             /// be called manually unless your usage of this class requires more then one update per step.
             virtual void UpdateActorList();
-            /// @brief Creates a Sphere shape for the field.
-            /// @param Radius The radius of the sphere you want to create.
-            virtual void CreateSphereShape(const Real& Radius);
-            /// @brief Creates a Cylinder shape for the field that is alligned on the X axis.
-            /// @details When making the vector to be passed in, remember the layout should be as such: (width*0.5, radius, radius),
-            /// with the second radius perpendicular to the first.
-            /// @param HalfExtents The vector representing the size of the shape.
-            virtual void CreateCylinderShapeX(const Vector3& HalfExtents);
-            /// @brief Creates a Cylinder shape for the field that is alligned on the Y axis.
-            /// @details When making the vector to be passed in, remember the layout should be as such: (radius, height*0.5, radius),
-            /// with the second radius perpendicular to the first.
-            /// @param HalfExtents The vector representing the size of the shape.
-            virtual void CreateCylinderShapeY(const Vector3& HalfExtents);
-            /// @brief Creates a Cylinder shape for the field that is alligned on the Z axis.
-            /// @details When making the vector to be passed in, remember the layout should be as such: (radius, radius, length*0.5),
-            /// with the second radius perpendicular to the first.
-            /// @param HalfExtents The vector representing the size of the shape.
-            virtual void CreateCylinderShapeZ(const Vector3& HalfExtents);
-            /// @brief Creates a Box shape for the field.
-            /// @details When making the vector to be passed in, remember to pass in only half values of what you want the actual
-            /// size to be.
-            /// @param HalfExtents The vector representing the size of the shape.
-            virtual void CreateBoxShape(const Vector3& HalfExtents);
-            /// @brief Creates a shape from a .mesh model for the field.
-            /// @param Filename The name of the .mesh file to be used.
-            /// @param Group The resource group where the mesh can be found.
-            /// @param MakeVisible If true, this function will create a visual representation from the same mesh provided.
-            virtual void CreateShapeFromMesh(const String& Filename, const String& Group, bool MakeVisible);
+            /// @brief Sets the shape of this AreaEffect.
+            /// @param FieldShape The shape to be applied to this field.
+            virtual void SetFieldShape(CollisionShape* FieldShape);
+            /// @brief Gets the current shape of the AreaEffect.
+            /// @return Returns a pointer to the shape currently being used by this AreaEffect.
+            virtual CollisionShape* GetFieldShape() const;
             /// @brief Sets the scale of the shape of the field.
             /// @details The default scale is 1.0.
             /// @param Scale The vector3 representing the scale you wish to apply to each axis of the field shape.
@@ -189,9 +154,6 @@ namespace phys{
             /// @brief Gets the Area Effects name.
             /// @return Returns the name of the Area Effect.
             virtual ConstString& GetName() const;
-            /// @brief Gets the current shape type in use by this class.
-            /// @return Returns an enum value representing the type of shape being used by this class.
-            virtual AreaEffect::AEShapeType GetShapeType() const;
             /// @brief Checks to see if the ghost object is currently in the world.
             /// @return Returns a bool indication whether or not this object is currently in the world.
             virtual bool IsInWorld() const;
@@ -202,35 +164,18 @@ namespace phys{
             /// @brief Gets whether or not this AR is static.
             /// @return Returns a bool indicating if this object is static.
             virtual bool IsStatic() const;
-            /// @brief Creates a sphere mesh based on the physics shape for this area effect.
-            /// @details This function will create a material script on the fly for you to use with your AR field.
-            /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
-            /// @param Rings The number of horizontal rings the sphere is to be comprised of.
-            /// This along with the segments parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
-            /// @param Segments The number of vertical rings the sphere is to be comprised of.
-            /// This along with the rings parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
-            virtual void CreateGraphicsSphere(const ColourValue& Colour, const Whole Rings = 16, const Whole Segments = 16);
-            /// @brief Creates a sphere mesh based on the physics shape for this area effect.
-            /// @param MaterialName The name of the material script to be applied to the graphics object that is created.  Must be valid.
-            /// @param Rings The number of horizontal rings the sphere is to be comprised of.
-            /// This along with the segments parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
-            /// @param Segments The number of vertical rings the sphere is to be comprised of.
-            /// This along with the rings parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
-            virtual void CreateGraphicsSphere(const String& MaterialName, const Whole Rings = 16, const Whole Segments = 16);
-            /// @brief Creates a cylinder mesh based on the physics shape for this area effect.
-            /// @details This function will create a material script on the fly for you to use with your AR field.
-            /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
-            virtual void CreateGraphicsCylinder(const ColourValue& Colour);
-            /// @brief Creates a cylinder mesh based on the physics shape for this area effect.
-            /// @param MaterialName The name of the material script to be applied to the graphics object that is created.  Must be valid.
-            virtual void CreateGraphicsCylinder(const String& MaterialName);
-            /// @brief Creates a box mesh based on the physics shape for this area effect.
-            /// @details This function will create a material script on the fly for you to use with your AR field.
-            /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
-            virtual void CreateGraphicsBox(const ColourValue& Colour);
-            /// @brief Creates a box mesh based on the physics shape for this area effect.
-            /// @param MaterialName The name of the material script to be applied to the graphics object that is created.  Must be valid.
-            virtual void CreateGraphicsBox(const String& MaterialName);
+            /// @brief Sets the mesh to be used along with this AreaEffect.
+            /// @note By default, there is no mesh used by an AreaEffect, as it doesn't require one for it's operation.
+            /// @param Mesh The mesh to apply to this AreaEffect.
+            virtual void SetFieldMesh(Mesh* FieldMesh);
+            /// @brief Sets the mesh to be used along with this AreaEffect.
+            /// @note By default, there is no mesh used by an AreaEffect, as it doesn't require one for it's operation.
+            /// @param MeshName The name of the mesh to apply to this AreaEffect.
+            /// @param Group The resource group to which the mesh belongs.
+            virtual void SetFieldMesh(const String& MeshName, const String& Group);
+            /// @brief Gets the mesh being used by this AreaEffect.
+            /// @return Returns a pointer to the mesh being used by this AreaEffect, or NULL if none.
+            virtual Mesh* GetFieldMesh() const;
             /// @brief Gets the list of actors within this field.
             /// @return Returns the list of actors contained within this field.
             virtual std::list<ActorBase*>& GetOverlappingActors();

@@ -244,6 +244,7 @@ namespace phys
     {
         for( Whole X = 0 ; X < ChildShapes.size() ; X++ )
         {
+            CompoundShape->removeChildShapeByIndex(X);
             delete ChildShapes[X];
         }
         ChildShapes.clear();

@@ -114,24 +114,52 @@ namespace phys
             /// @param ObjectMesh The mesh to base this shape off of.
             /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
             virtual ConvexHullCollisionShape* GenerateConvexHull(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+            /// @brief Generates a Convex Hull from a provided mesh.
+            /// @return Returns a pointer to the created shape.
+            /// @param Name The name to give the created shape.
+            /// @param MeshName The name of the mesh to base this shape off of.
+            /// @param Group The resource group where the mesh can be found.
+            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+            virtual ConvexHullCollisionShape* GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
             /// @brief Generates a mesh shape for dynamic objects.
             /// @return Returns a pointer to the created shape.
             /// @param Name The name to give the created shape.
             /// @param ObjectMesh The mesh to base this shape off of.
             /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual DynamicMeshCollisionShape* GenerateDynamicTriMeshShape(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+            virtual DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+            /// @brief Generates a mesh shape for dynamic objects.
+            /// @return Returns a pointer to the created shape.
+            /// @param Name The name to give the created shape.
+            /// @param MeshName The name of the mesh to base this shape off of.
+            /// @param Group The resource group where the mesh can be found.
+            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+            virtual DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
             /// @brief Generates a mesh shape for static objects.
             /// @return Returns a pointer to the created shape.
             /// @param Name The name to give the created shape.
             /// @param ObjectMesh The mesh to base this shape off of.
             /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual StaticMeshCollisionShape* GenerateStaticTriMeshShape(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+            virtual StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+            /// @brief Generates a mesh shape for static objects.
+            /// @return Returns a pointer to the created shape.
+            /// @param Name The name to give the created shape.
+            /// @param MeshName The name of the mesh to base this shape off of.
+            /// @param Group The resource group where the mesh can be found.
+            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+            virtual StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
             /// @brief Generates a compound shape of Convex Hulls from a provided mesh.
             /// @return Returns a pointer to the created shape.
             /// @param Name The name to give the created shape.
             /// @param ObjectMesh The mesh to base this shape off of.
             /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
             virtual CompoundCollisionShape* PerformConvexDecomposition(const String& Name, Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes = false);
+            /// @brief Generates a compound shape of Convex Hulls from a provided mesh.
+            /// @return Returns a pointer to the created shape.
+            /// @param Name The name to give the created shape.
+            /// @param MeshName The name of the mesh to base this shape off of.
+            /// @param Group The resource group where the mesh can be found.
+            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+            virtual CompoundCollisionShape* PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes = false);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Shape Saving/Loading Utilities

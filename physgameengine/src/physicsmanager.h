@@ -137,7 +137,6 @@ namespace phys
             unsigned short int CollisionAge;
             Real Impulse;
             bool SimulationPaused;
-            std::map< String, btCollisionShape* > PhysicsShapes;
             std::vector< TypedConstraint* > Constraints;
             std::vector< AreaEffect* > AreaEffects;
             std::vector< WorldTrigger* > Triggers;
@@ -235,22 +234,6 @@ namespace phys
             /// @brief Destroys all constraints currently in the manager.
             /// @details In practice it is cleaner to remove constraints from the world before removing any constrained actors.
             void DestroyAllConstraints();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Physics Shape Management
-
-            /// @brief Stores an already generated physics shape.
-            /// @details This function will take an actors physics shape and store it for re-use in other actors, in case a shape is able to be re-used by other actors.
-            /// @param Actor The actor from which to store the shape.
-            /// @param ShapeName The name you wish to assign to the shape being stored.
-            void StorePhysicsShape(ActorBase* Actor, const String& ShapeName);
-            /// @brief Applies a previously stored shape.
-            /// @details This function will take a stored shape and apply it to the actor provided.
-            /// @param Actor The actor to which you want to apply the shape.
-            /// @param ShapeName The name of the shape you wish to have applied to the actor.
-            void ApplyPhysicsShape(ActorBase* Actor, const String& ShapeName);
-            /// @brief Destroys all physics shapes currently in the manager.
-            void DestroyAllPhysicsShapes();
 
             ///////////////////////////////////////////////////////////////////////////////
             // AreaEffect Management

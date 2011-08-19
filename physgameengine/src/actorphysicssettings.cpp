@@ -60,6 +60,7 @@ namespace phys
 {
     ActorBasePhysicsSettings::ActorBasePhysicsSettings(ActorBase* Actor, btCollisionObject* PhysicsObject)
         : Parent(Actor),
+          ActorShape(NULL),
           ActorCO(PhysicsObject),
           CollisionGroup(0),
           CollisionMask(0)
@@ -262,9 +263,11 @@ namespace phys
             btVector3 inertia(0,0,0);
             Shape->GetBulletShape()->calculateLocalInertia(mass, inertia);
             this->ActorRB->setMassProps(mass,inertia);
+            this->ActorRB->setCollisionShape(Shape->GetBulletShape());
             this->ActorRB->updateInertiaTensor();
+        }else{
+            this->ActorRB->setCollisionShape(Shape->GetBulletShape());
         }
-        this->ActorRB->setCollisionShape(Shape->GetBulletShape());
         World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Shape);
     }
 
