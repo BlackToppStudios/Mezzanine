@@ -62,7 +62,9 @@ public:
 	btVector3	m_pivotInB;
 
 	public: //Made public by BTS with PublicizeBullet.sh
+	public: //Made public by BTS with PublicizeBullet.sh
 	int			m_flags;
+	private:
 	private:
 	btScalar	m_erp;
 	btScalar	m_cfm;

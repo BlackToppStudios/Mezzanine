@@ -315,7 +315,9 @@ protected:
 	bool	m_useOffsetForConstraintFrame;
 
 	public: //Made public by BTS with PublicizeBullet.sh
+	public: //Made public by BTS with PublicizeBullet.sh
 	int			m_flags;
+	private:
 	private:
 
     //!@}

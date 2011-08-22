@@ -418,32 +418,39 @@ namespace phys
     /////////////////////////////////////////
     // Hinge Constraint Functions
 
-    HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceA)
+    HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceFrameA)
     {
         SetBodies(ActorA,ActorB);
 
         btVector3 tempA(AxisInA.GetBulletVector3());
         btVector3 tempB(AxisInB.GetBulletVector3());
-        Hinge = new btHingeConstraint(*BodyA, *BodyB, PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, bool(UseReferenceA));
+        Hinge = new btHingeConstraint(*BodyA, *BodyB, PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, bool(UseReferenceFrameA));
         ConstraintBase = Hinge;
     }
 
-    HingeConstraint::HingeConstraint(ActorRigid* ActorA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceA)
+    HingeConstraint::HingeConstraint(ActorRigid* ActorA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceFrameA)
     {
         SetBodies(ActorA);
 
         btVector3 tempA(AxisInA.GetBulletVector3());
-        Hinge = new btHingeConstraint(*BodyA, PivotInA.GetBulletVector3(), tempA, bool(UseReferenceA));
+        Hinge = new btHingeConstraint(*BodyA, PivotInA.GetBulletVector3(), tempA, bool(UseReferenceFrameA));
         ConstraintBase = Hinge;
     }
 
-    HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceA)
+    HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceFrameA)
     {
         SetBodies(ActorA,ActorB);
 
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-        Hinge = new btHingeConstraint(*BodyA, *BodyB, transa, transb, UseReferenceA);
+        Hinge = new btHingeConstraint(*BodyA, *BodyB, transa, transb, UseReferenceFrameA);
+        ConstraintBase = Hinge;
+    }
+
+    HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseReferenceFrameA)
+    {
+        SetBodies(ActorA,ActorB);
+        Hinge = new btHingeConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseReferenceFrameA);
         ConstraintBase = Hinge;
     }
 
@@ -453,50 +460,62 @@ namespace phys
             delete Hinge;
     }
 
+    bool HingeConstraint::GetUseReferenceFrameA() const
+        { return this->Hinge->m_useReferenceFrameA; }
+
+    void HingeConstraint::SetUseReferenceFrameA(bool UseReferenceFrameA)
+        { this->Hinge->m_useReferenceFrameA = UseReferenceFrameA; }
+
     void HingeConstraint::SetAPivotLocation(const Vector3& Location)
-    {
-        this->Hinge->getAFrame().setOrigin(Location.GetBulletVector3());
-    }
+        { this->Hinge->getAFrame().setOrigin(Location.GetBulletVector3()); }
 
     void HingeConstraint::SetBPivotLocation(const Vector3& Location)
-    {
-        this->Hinge->getBFrame().setOrigin(Location.GetBulletVector3());
-    }
-
-    void HingeConstraint::SetAngularOnly(bool AngularOnly)
-    {
-        this->Hinge->setAngularOnly(AngularOnly);
-    }
+        { this->Hinge->getBFrame().setOrigin(Location.GetBulletVector3()); }
 
     void HingeConstraint::EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
-    {
-        this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse);
-    }
+        { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
 
     void HingeConstraint::EnableMotor(bool EnableMotor)
-    {
-        this->Hinge->enableMotor(EnableMotor);
-    }
+        { this->Hinge->enableMotor(EnableMotor); }
 
     void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
-    {
-        this->Hinge->setMaxMotorImpulse(MaxMotorImpulse);
-    }
+        { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); }
+
+    Real HingeConstraint::GetMaxMotorImpulse() const
+        { return this->Hinge->getMaxMotorImpulse(); }
 
     void HingeConstraint::SetMotorTarget(const Quaternion& QuatAInB, Real Dt)
-    {
-        this->Hinge->setMotorTarget(QuatAInB.GetBulletQuaternion(), Dt);
-    }
+        { this->Hinge->setMotorTarget(QuatAInB.GetBulletQuaternion(), Dt); }
 
     void HingeConstraint::SetMotorTarget(Real TargetAngle, Real Dt)
-    {
-        this->Hinge->setMotorTarget(TargetAngle, Dt);
-    }
+        { this->Hinge->setMotorTarget(TargetAngle, Dt); }
+
+    void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
+        { return this->SetMotorTargetVelocity(TargetVelocity); }
+
+    Real HingeConstraint::GetMotorTargetVelocity() const
+        { return this->Hinge->getMotorTargetVelosity(); }
+
+    bool HingeConstraint::GetMotorEnabled() const
+        { return this->Hinge->getEnableAngularMotor(); }
 
     void HingeConstraint::SetLimit(Real Low, Real High, Real Softness, Real BiasFactor, Real RelaxationFactor)
-    {
-        this->Hinge->setLimit(Low, High, Softness, BiasFactor, RelaxationFactor);
-    }
+        { this->Hinge->setLimit(Low, High, Softness, BiasFactor, RelaxationFactor); }
+
+    Real HingeConstraint::GetLimitLow() const
+        { return this->Hinge->getLowerLimit(); }
+
+    Real HingeConstraint::GetLimitHigh() const
+        { return this->Hinge->getUpperLimit(); }
+
+    Real HingeConstraint::GetLimitSoftness() const
+        { return this->Hinge->m_limitSoftness; }
+
+    Real HingeConstraint::GetLimitBiasFactor() const
+        { return this->Hinge->m_biasFactor; }
+
+    Real HingeConstraint::GetLimitRelaxationFactor() const
+        { return this->Hinge->m_relaxationFactor; }
 
     void HingeConstraint::SetAxis(const Vector3& AxisInA)
     {
@@ -504,11 +523,23 @@ namespace phys
         this->Hinge->setAxis(temp);
     }
 
-    void HingeConstraint::SetUseFrameOffset(bool FrameOffset)
-    {
-        this->Hinge->setUseFrameOffset(FrameOffset);
-    }
+    bool HingeConstraint::getUseFrameOffset() const
+        { return this->Hinge->getUseFrameOffset(); }
 
+    void HingeConstraint::SetUseFrameOffset(bool FrameOffset)
+        { this->Hinge->setUseFrameOffset(FrameOffset); }
+
+    void HingeConstraint::SetTransformA(const Transform& TranA)
+        { this->Hinge->getAFrame() << TranA; }
+
+    void HingeConstraint::SetTransformB(const Transform& TranB)
+        { this->Hinge->getBFrame() << TranB; }
+
+    Transform HingeConstraint::GetTransformA() const
+        { return Transform(this->Hinge->getAFrame()); }
+
+    Transform HingeConstraint::GetTransformB() const
+        { return Transform(this->Hinge->getBFrame()); }
 
     TypedConstraint::ParamList HingeConstraint::ValidParamOnAxis(int Axis) const
     {
@@ -549,61 +580,76 @@ namespace phys
 #ifdef PHYSXML
     void HingeConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        xml::Node HingeNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        xml::Node HingeNode = CurrentRoot.AppendChild(SerializableName());          // The base node all the base constraint stuff will go in
         if (!HingeNode)
             { SerializeError("Create HingeNode", SerializableName()); }
 
-
-        // ActorA/B
-            // Name
-            // Pivot
-            // Axis
-
-        // Limit
-            // LowLimit
-            // HighLimit
-            // Softness
-            // BiasFactor
-            // RelaxationFactor
-
-
-/*
-        xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
-        xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
-        xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
-
-        //xml::Attribute FltAttr = P2PNode.AppendAttribute("FLT_MAX"); FltAttr.SetValue(FLT_MAX);
-        //xml::Attribute InfAttr = P2PNode.AppendAttribute("SIMD_INFINITY"); InfAttr.SetValue(SIMD_INFINITY);
-        //xml::Attribute InpAttr = P2PNode.AppendAttribute("IN_PARALLELL_SOLVER"); InpAttr.SetValue(IN_PARALLELL_SOLVER);
-
-        if( VerAttr && TauAttr && ClaAttr )
+        xml::Attribute VerAttr = HingeNode.AppendAttribute("Version");              // Base Attributes
+        xml::Attribute RefA = HingeNode.AppendAttribute("ReferenceInA");
+        xml::Attribute FrameOff = HingeNode.AppendAttribute("UseFrameOffset");
+        if( VerAttr && RefA && FrameOff )
         {
             VerAttr.SetValue(1);
-            TauAttr.SetValue(this->GetTAU());
-            ClaAttr.SetValue(this->GetImpulseClamping());
+            RefA.SetValue(this->GetUseReferenceFrameA());
+            FrameOff.SetValue(this->getUseFrameOffset());
         }else{
-            SerializeError("Create P2PNode Attributes", SerializableName());
+            SerializeError("Create HingeNode Attributes", SerializableName());
         }
 
-        xml::Node ActorANode = P2PNode.AppendChild("ActorA");
+        xml::Node ActorANode = HingeNode.AppendChild("ActorA");                     // Get everything we need about ActorA
         if (!ActorANode)
             { SerializeError("Create ActorANode", SerializableName()); }
-        this->GetPivotA().ProtoSerialize(ActorANode);
+        xml::Attribute ActorAName = ActorANode.AppendAttribute("Name");
+        if (!ActorAName)
+            { SerializeError("Create ActorAName Attribute", SerializableName()); }
+        ActorAName.SetValue(this->ActA->GetName());
+        this->GetTransformA().ProtoSerialize(ActorANode);
 
-        xml::Node ActorBNode = P2PNode.AppendChild("ActorB");
+        xml::Node ActorBNode = HingeNode.AppendChild("ActorB");                     // Get everything we need about ActorB
         if (!ActorBNode)
             { SerializeError("Create ActorBNode", SerializableName()); }
-        this->GetPivotB().ProtoSerialize(ActorBNode);
+        xml::Attribute ActorBName = ActorBNode.AppendAttribute("Name");
+        if (!ActorBName)
+            { SerializeError("Create ActorBName Attribute", SerializableName()); }
+        ActorBName.SetValue(this->ActB->GetName());
+        this->GetTransformB().ProtoSerialize(ActorBNode);
 
-        xml::Attribute NameAAttr = ActorANode.AppendAttribute("Name");
-        xml::Attribute NameBAttr = ActorBNode.AppendAttribute("Name");
+        xml::Node MotorNode = HingeNode.AppendChild("Motor");                       // Motor Node
+        if (!MotorNode)
+            { SerializeError("Create MotorNode", SerializableName()); }
 
-        if( NameAAttr && NameBAttr)
+        xml::Attribute MotEnabled = HingeNode.AppendAttribute("Enabled");           // Motor Attributes
+        xml::Attribute MotImpulse = HingeNode.AppendAttribute("MaxImpulse");
+        xml::Attribute MotTarget = HingeNode.AppendAttribute("TargetVelocity");
+        if( MotEnabled && MotImpulse && MotTarget )
         {
-            NameAAttr.SetValue(this->GetActorA()->GetName());
-            NameBAttr.SetValue(this->GetActorB()->GetName());
+            MotEnabled.SetValue(this->GetMotorEnabled());
+            MotImpulse.SetValue(this->GetMaxMotorImpulse());
+            MotTarget.SetValue(this->GetMotorTargetVelocity());
+        }else{
+            SerializeError("Create MotorNode Attributes", SerializableName());
         }
-*/
+
+        xml::Node LimitNode = HingeNode.AppendChild("Limits");                      // Limits Node
+        if (!LimitNode)
+            { SerializeError("Create LimitNode", SerializableName()); }
+
+        xml::Attribute LimLow = HingeNode.AppendAttribute("Low");                   // Limits Attributes
+        xml::Attribute LimHigh = HingeNode.AppendAttribute("High");
+        xml::Attribute LimSoft = HingeNode.AppendAttribute("Softness");
+        xml::Attribute LimBias = HingeNode.AppendAttribute("BiasFactor");
+        xml::Attribute LimRelax = HingeNode.AppendAttribute("RelaxationFactor");
+        if( LimLow && LimHigh && LimSoft && LimBias && LimRelax )
+        {
+            LimLow.SetValue(this->GetLimitLow());
+            LimHigh.SetValue(this->GetLimitHigh());
+            LimSoft.SetValue(this->GetLimitSoftness());
+            LimBias.SetValue(this->GetLimitBiasFactor());
+            LimRelax.SetValue(this->GetLimitRelaxationFactor());
+        }else{
+            SerializeError("Create MotorNode Attributes", SerializableName());
+        }
+
         this->TypedConstraint::ProtoSerialize(HingeNode);
     }
 
