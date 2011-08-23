@@ -62,6 +62,7 @@ class btBvhTriangleMeshShape;
 
 namespace phys
 {
+    class CollisionShapeManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CollisionShape
     /// @headerfile collisionshape.h
@@ -94,6 +95,7 @@ namespace phys
                 ST_TriMesh
             };
         protected:
+            friend class CollisionShapeManager;
             btCollisionShape* ShapeBase;
             String Name;
         public:
@@ -207,6 +209,9 @@ namespace phys
             /// @param Child The shape to be added to this shape.
             /// @param ChildLocation The location this child is to have in local space.
             virtual void AddChildShape(CollisionShape* Child, const Vector3& ChildLocation);
+            /// @brief Gets the number of children belonging to this compound shape.
+            /// @return Returns the number of children belonging to this shape.
+            virtual Whole GetNumChildren();
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
     };//compoundcollisionshape
