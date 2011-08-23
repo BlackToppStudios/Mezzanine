@@ -42,8 +42,10 @@
 
 #include "datatypes.h"
 #include "managerbase.h"
+#include <set>
 
 class btTriangleMesh;
+class btCollisionShape;
 
 namespace phys
 {
@@ -68,9 +70,12 @@ namespace phys
             /// @brief This Stores the names and collision Shapes
             std::map<String,CollisionShape*> CollisionShapes;
 
+            std::set<CollisionShape*> UnnamedShapes;
+
             /// @brief Creates a TriMesh to be used in TriMesh based collision shapes.
             btTriangleMesh* CreateBulletTrimesh(Mesh* ObjectMesh, bool UseAllSubmeshes);
-
+            /// @brief Creates a wrapper for an internal bullet shape.
+            CollisionShape* WrapShape(const String& Name, btCollisionShape* InternalShape);
         public:
             /// @brief Class constructor.
             CollisionShapeManager();
@@ -198,6 +203,23 @@ namespace phys
             /// @param FileName The name of the file to save the shapes to.
             /// @param ShapesToSave A vector of collisions shapes that will be saved.
             virtual void SaveShapesToFile(const String& FileName, std::vector<CollisionShape*>& ShapesToSave);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Unnamed Shape Management
+
+            /// @brief Returns a vector of unnamed shapes stored in this manager.
+            /// @return Returns a reference to a vector storing all the unnamed shapes loaded from files.
+            /// @details Shapes created in code require a name to be constructed.  However, sometimes when loading a file
+            /// a shape may not have a name, since one isn't required by the .bullet file format in order for a shape
+            /// to be serialized.  When that happens those shapes go here, and from there can be handled by the game
+            /// programmer however they see fit.
+            std::set<CollisionShape*>& GetUnnamedShapes();
+            /// @brief Assigns a name to an unnamed shape.
+            /// @param NewName The new name to be assigned to a shape.
+            /// @param Shape The shape to be given the new name.  This shape must be a valid shape currently stored in the
+            /// set of unnamed shapes.  Calling this fucntion will not remove it from that set, but will move it into
+            /// the named collision shape map.  If you want the shape removed from the Unnamed set, you must do it yourself.
+            void SetNameForUnnamedShape(const String& NewName, CollisionShape* Shape);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase

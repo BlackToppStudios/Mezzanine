@@ -244,7 +244,7 @@ namespace phys
     {
         for( Whole X = 0 ; X < ChildShapes.size() ; X++ )
         {
-            CompoundShape->removeChildShapeByIndex(X);
+            //CompoundShape->removeChildShapeByIndex(X);
             delete ChildShapes[X];
         }
         ChildShapes.clear();
@@ -265,6 +265,11 @@ namespace phys
         ChildTrans.setOrigin(ChildLocation.GetBulletVector3());
         CompoundShape->addChildShape(ChildTrans,Child->GetBulletShape());
         ChildShapes.push_back(Child);
+    }
+
+    Whole CompoundCollisionShape::GetNumChildren()
+    {
+        return ChildShapes.size();
     }
 
     CollisionShape::ShapeType CompoundCollisionShape::GetType() const

@@ -74,7 +74,7 @@ namespace phys
     void ActorBasePhysicsSettings::AssignShape(CollisionShape* Shape)
     {
         this->ActorShape = Shape;
-        Parent->Shape = Shape->GetBulletShape(); // I got second crash here
+        Parent->Shape = Shape->GetBulletShape();
     }
 
     void ActorBasePhysicsSettings::SetCollisionShape(CollisionShape* Shape)

@@ -201,6 +201,95 @@ namespace phys
         return trimesh;
     }
 
+    CollisionShape* CollisionShapeManager::WrapShape(const String& Name, btCollisionShape* InternalShape)
+    {
+        switch(InternalShape->getShapeType())
+        {
+            case BOX_SHAPE_PROXYTYPE:
+            {
+                BoxCollisionShape* BoxShape = new BoxCollisionShape(Name,(btBoxShape*)InternalShape);
+                return BoxShape;
+                break;
+            }
+            case CAPSULE_SHAPE_PROXYTYPE:
+            {
+                CapsuleCollisionShape* CapsuleShape = new CapsuleCollisionShape(Name,(btCapsuleShape*)InternalShape);
+                return CapsuleShape;
+                break;
+            }
+            case CONE_SHAPE_PROXYTYPE:
+            {
+                ConeCollisionShape* ConeShape = new ConeCollisionShape(Name,(btConeShape*)InternalShape);
+                return ConeShape;
+                break;
+            }
+            case CONVEX_HULL_SHAPE_PROXYTYPE:
+            {
+                ConvexHullCollisionShape* ConvexHullShape = new ConvexHullCollisionShape(Name,(btConvexHullShape*)InternalShape);
+                return ConvexHullShape;
+                break;
+            }
+            case CYLINDER_SHAPE_PROXYTYPE:
+            {
+                CylinderCollisionShape* CylinderShape = new CylinderCollisionShape(Name,(btCylinderShape*)InternalShape);
+                return CylinderShape;
+                break;
+            }
+            case MULTI_SPHERE_SHAPE_PROXYTYPE:
+            {
+                MultiSphereCollisionShape* MultiSphereShape = new MultiSphereCollisionShape(Name,(btMultiSphereShape*)InternalShape);
+                return MultiSphereShape;
+                break;
+            }
+            case SPHERE_SHAPE_PROXYTYPE:
+            {
+                SphereCollisionShape* SphereShape = new SphereCollisionShape(Name,(btSphereShape*)InternalShape);
+                return SphereShape;
+                break;
+            }
+            case GIMPACT_SHAPE_PROXYTYPE:
+            {
+                DynamicMeshCollisionShape* GImpactShape = new DynamicMeshCollisionShape(Name,(btGImpactMeshShape*)InternalShape);
+                return GImpactShape;
+                break;
+            }
+            case TERRAIN_SHAPE_PROXYTYPE:
+            {
+                HeightfieldCollisionShape* HeightFieldShape = new HeightfieldCollisionShape(Name,(btHeightfieldTerrainShape*)InternalShape);
+                return HeightFieldShape;
+                break;
+            }
+            case STATIC_PLANE_PROXYTYPE:
+            {
+                PlaneCollisionShape* PlaneShape = new PlaneCollisionShape(Name,(btStaticPlaneShape*)InternalShape);
+                return PlaneShape;
+                break;
+            }
+            case SOFTBODY_SHAPE_PROXYTYPE:
+            {
+                ActorSoftCollisionShape* SoftBodyShape = new ActorSoftCollisionShape(Name,(btSoftBodyCollisionShape*)InternalShape);
+                return SoftBodyShape;
+                break;
+            }
+            case TRIANGLE_MESH_SHAPE_PROXYTYPE:
+            {
+                StaticMeshCollisionShape* BvhShape = new StaticMeshCollisionShape(Name,(btBvhTriangleMeshShape*)InternalShape);
+                return BvhShape;
+                break;
+            }
+            case COMPOUND_SHAPE_PROXYTYPE:
+            {
+                CompoundCollisionShape* Compound = new CompoundCollisionShape(Name,(btCompoundShape*)InternalShape);
+                return Compound;
+                break;
+            }
+            default:
+            {
+                World::GetWorldPointer()->LogAndThrow(Exception("Attempting to load an unsupported/unwrapped Collision Shape in CompoundShapeManager::LoadAllShapesFromFile."));
+            }//default
+        }
+    }
+
     void CollisionShapeManager::StoreShape(CollisionShape* Shape)
     {
         std::map<String,CollisionShape*>::iterator CS = CollisionShapes.find(Shape->GetName());
@@ -500,17 +589,15 @@ namespace phys
         return this->PerformConvexDecomposition(Name,ObjectMesh,Depth,CPercent,PPercent,UseAllSubmeshes);
     }
 
-
-#include <iostream>
     void CollisionShapeManager::LoadAllShapesFromFile(const String& FileName, const String& Group)
     {
-        btBulletWorldImporter* Importer = new btBulletWorldImporter();
+        btBulletWorldImporter Importer;
         Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(FileName,Group);
         //size_t StreamSize = Stream->size();
         //assert(sizeof(char)==1); // the c++ guarantees this assert will always be true, caution is good though
         char* buffer = new char[Stream->size()];
         Stream->read((void*)buffer, Stream->size());
-        if(!Importer->loadFileFromMemory(buffer, Stream->size()))  // I stepped signifcantly far into bullet loading/parsing, and it appeared to load a name. :(
+        if(!Importer.loadFileFromMemory(buffer, Stream->size()))
         {
             std::stringstream logstream;
             logstream << "Failed to load file: " << FileName << " , in CollisionShapeManager::LoadAllShapesFromFile";
@@ -518,145 +605,27 @@ namespace phys
             return;
         }
         delete[] buffer;
-        for( Whole X = 0 ; X < Importer->getNumCollisionShapes() ; ++X ) //Switched to prefix increment, it is never slower but might be faster, only use postifx, if you need the return value Pre-increment
+        for( Whole X = 0 ; X < Importer.getNumCollisionShapes() ; ++X ) //Switched to prefix increment, it is never slower but might be faster, only use postifx, if you need the return value Pre-increment
         {
-            btCollisionShape* Shape = Importer->getCollisionShapeByIndex(X); // I Stepped through this and it seemed to create valid shapes.
-            const char* MaybeAName = Importer->getNameForPointer((void*)Shape); // This function was returning a void pointer for some reason,  this makes me want to check the loading/parsing
+            btCollisionShape* Shape = Importer.getCollisionShapeByIndex(X);
+            const char* MaybeAName = Importer.getNameForPointer((void*)Shape); // This function was returning a void pointer for some reason,  this makes me want to check the loading/parsing
             String Name;
             if(MaybeAName)
-                { Name = String(MaybeAName); }
-            else
             {
-                static Whole NameCount = 0; // Maybe this part should throw an exception  instead of silently fail to get name
-                Name = StringCat("GenericShape",ToString(NameCount++)); //Using pre-increment return value so shape anems begin at 0, like "GenericShape0","GenericShape1", ...
+                Name = String(MaybeAName);
+                CollisionShapeManager::iterator it = CollisionShapes.find(Name);
+                if(it != CollisionShapes.end())
+                {
+                    CollisionShape* NewShape = WrapShape(Name,Shape);
+                    CollisionShapes[Name] = NewShape;
+                }
+            }else{
+                static Whole NameCount = 0;
+                Name = String("Unnamed")+=ToString(NameCount++);
+                CollisionShape* NewShape = WrapShape(Name,Shape);
+                UnnamedShapes.insert(NewShape);
             }
-            switch(Shape->getShapeType())
-            {
-                case BOX_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    BoxCollisionShape* BoxShape = new BoxCollisionShape(Name,(btBoxShape*)Shape); // If each of these collision shapes accepted CollisionShape* and would cast itself or throw an error, then this switch could be abstracted away.
-                    CollisionShapes[Name] = BoxShape;
-                    break;
-                }
-                case CAPSULE_SHAPE_PROXYTYPE:
-                {
-                   CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    CapsuleCollisionShape* CapsuleShape = new CapsuleCollisionShape(Name,(btCapsuleShape*)Shape);
-                    CollisionShapes[Name] = CapsuleShape;
-                    break;
-                }
-                case CONE_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    ConeCollisionShape* ConeShape = new ConeCollisionShape(Name,(btConeShape*)Shape);
-                    CollisionShapes[Name] = ConeShape;
-                    break;
-                }
-                case CONVEX_HULL_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    ConvexHullCollisionShape* ConvexHullShape = new ConvexHullCollisionShape(Name,(btConvexHullShape*)Shape);
-                    CollisionShapes[Name] = ConvexHullShape;
-                    break;
-                }
-                case CYLINDER_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    CylinderCollisionShape* CylinderShape = new CylinderCollisionShape(Name,(btCylinderShape*)Shape);
-                    CollisionShapes[Name] = CylinderShape;
-                    break;
-                }
-                case MULTI_SPHERE_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    MultiSphereCollisionShape* MultiSphereShape = new MultiSphereCollisionShape(Name,(btMultiSphereShape*)Shape);
-                    CollisionShapes[Name] = MultiSphereShape;
-                    break;
-                }
-                case SPHERE_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    SphereCollisionShape* SphereShape = new SphereCollisionShape(Name,(btSphereShape*)Shape);
-                    CollisionShapes[Name] = SphereShape;
-                    break;
-                }
-                case GIMPACT_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    DynamicMeshCollisionShape* GImpactShape = new DynamicMeshCollisionShape(Name,(btGImpactMeshShape*)Shape);
-                    CollisionShapes[Name] = GImpactShape;
-                    break;
-                }
-                case TERRAIN_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    HeightfieldCollisionShape* HeightFieldShape = new HeightfieldCollisionShape(Name,(btHeightfieldTerrainShape*)Shape);
-                    CollisionShapes[Name] = HeightFieldShape;
-                    break;
-                }
-                case STATIC_PLANE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    PlaneCollisionShape* PlaneShape = new PlaneCollisionShape(Name,(btStaticPlaneShape*)Shape);
-                    CollisionShapes[Name] = PlaneShape;
-                    break;
-                }
-                case SOFTBODY_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    ActorSoftCollisionShape* SoftBodyShape = new ActorSoftCollisionShape(Name,(btSoftBodyCollisionShape*)Shape);
-                    CollisionShapes[Name] = SoftBodyShape;
-                    break;
-                }
-                case TRIANGLE_MESH_SHAPE_PROXYTYPE:
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    StaticMeshCollisionShape* BvhShape = new StaticMeshCollisionShape(Name,(btBvhTriangleMeshShape*)Shape);
-                    CollisionShapes[Name] = BvhShape;
-                    break;
-                }
-                case COMPOUND_SHAPE_PROXYTYPE: // holy recursive batman
-                {
-                    CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                    if(it != CollisionShapes.end())
-                        break;
-                    CompoundCollisionShape* Compound = new CompoundCollisionShape(Name,(btCompoundShape*)Shape);
-                    CollisionShapes[Name] = Compound;
-                    break;
-                }
-                default:
-                {
-                    World::GetWorldPointer()->LogAndThrow(Exception("Attempting to load an unsupported/unwrapped Collision Shape in CompoundShapeManager::LoadAllShapesFromFile."));
-                }//default
-            }//switch
-        }//for
-        //delete buffer; // why not delete[] this looks like it should technically cause undefined behavior, most likely a leak
-        delete Importer;
+        }
     }
 
     void CollisionShapeManager::SaveAllStoredShapesToFile(const String& FileName)
@@ -666,6 +635,12 @@ namespace phys
         for( std::map<String,CollisionShape*>::iterator it = CollisionShapes.begin() ; it != CollisionShapes.end() ; it++ )
         {
             CollisionShape* Shape = (*it).second;
+
+            std::stringstream logstream;
+            logstream << "Serializing Shape: " << Shape->GetName();
+            World::GetWorldPointer()->Log(logstream.str());
+            World::GetWorldPointer()->DoMainLoopLogging();
+
             BulletSerializer->registerNameForPointer((void*)Shape->GetBulletShape(),(*it).first.c_str());
             int len = Shape->GetBulletShape()->calculateSerializeBufferSize();
             btChunk* chunk = BulletSerializer->allocate(len,1);
@@ -695,6 +670,23 @@ namespace phys
         FILE* f2 = fopen(FileName.c_str(),"wb");
         fwrite(BulletSerializer->getBufferPointer(),BulletSerializer->getCurrentBufferSize(),1,f2);
         fclose(f2);
+    }
+
+    std::set<CollisionShape*>& CollisionShapeManager::GetUnnamedShapes()
+    {
+        return UnnamedShapes;
+    }
+
+    void CollisionShapeManager::SetNameForUnnamedShape(const String& NewName, CollisionShape* Shape)
+    {
+        std::set<CollisionShape*>::iterator UnIt = UnnamedShapes.find(Shape);
+        if(UnIt == UnnamedShapes.end())
+            return;
+        CollisionShapeManager::iterator NaIt = CollisionShapes.find(NewName);
+        if(NaIt != CollisionShapes.end())
+            World::GetWorldPointer()->LogAndThrow(Exception("Attempting to assign non-unique name to an unnamed Collision Shape."));
+        Shape->Name = NewName;
+        CollisionShapes[NewName] = Shape;
     }
 
     void CollisionShapeManager::Initialize()
