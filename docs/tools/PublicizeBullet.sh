@@ -8,7 +8,7 @@ echo "Updating btPoint2PointConstraint.h"
 sed -i -e 's|	int			m_flags;|	public: //Made public by BTS with PublicizeBullet.sh\n	int			m_flags;\n	private:|' ../../physgameengine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h
 
 echo "Updating btHingeConstraint.h"
-sed -i -e 's|	int			m_flags;|	public: //Made public by BTS with PublicizeBullet.sh\n	int			m_flags;\n	private:|' ../../physgameengine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletDynamics/ConstraintSolver/btHingeConstraint.h
+sed -i -e 's|	btScalar	m_motorTargetVelocity;|	public: //Made public by BTS with PublicizeBullet.sh\n	btScalar	m_motorTargetVelocity;|' ../../physgameengine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletDynamics/ConstraintSolver/btHingeConstraint.h
 
 echo "Updating btConeTwistConstraint.h"
 sed -i -e 's|	int			m_flags;|	public: //Made public by BTS with PublicizeBullet.sh\n	int			m_flags;\n	private:|' ../../physgameengine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletDynamics/ConstraintSolver/btConeTwistConstraint.h

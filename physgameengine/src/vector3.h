@@ -365,7 +365,7 @@ namespace phys
         /// @details This function will copy the values stored in an existing Bullet vector3
         /// and set the values of this class to be the same.
         /// @param temp The vector3 to be extracted.
-        void ExtractBulletVector3(btVector3 temp);
+        void ExtractBulletVector3(const btVector3& temp);
 
         /// @brief Gets a Ogre vector3.
         /// @details Creates a Ogre vector3 with values equal to this class and returns it.
@@ -375,7 +375,7 @@ namespace phys
         /// @details This function will copy the values stored in an existing Ogre vector3
         /// and set the values of this class to be the same.
         /// @param temp The vector3 to be extracted.
-        void ExtractOgreVector3(Ogre::Vector3 temp);
+        void ExtractOgreVector3(const Ogre::Vector3& temp);
 
         /// @brief Gets a cAudio vector3.
         /// @details Creates a cAudio vector3 with values equal to this class and returns it.
@@ -385,7 +385,7 @@ namespace phys
         /// @details This function will copy the values stored in an existing cAudio vector3
         /// and set the values of this class to be the same.
         /// @param temp The vector3 to be extracted.
-        void ExtractcAudioVector3(cAudio::cVector3 temp);
+        void ExtractcAudioVector3(const cAudio::cVector3& temp);
 
         /// @brief This return the distance between this point and another
         /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between

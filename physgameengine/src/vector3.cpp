@@ -313,7 +313,7 @@ namespace phys
         return Theirs;
     }
 
-    void Vector3::ExtractBulletVector3(btVector3 Ours)
+    void Vector3::ExtractBulletVector3(const btVector3& Ours)
     {
         this->X=Ours.getX();
         this->Y=Ours.getY();
@@ -329,7 +329,7 @@ namespace phys
         return Theirs;
     }
 
-    void Vector3::ExtractOgreVector3(Ogre::Vector3 Ours)
+    void Vector3::ExtractOgreVector3(const Ogre::Vector3& Ours)
     {
         this->X=Ours.x;
         this->Y=Ours.y;
@@ -345,7 +345,7 @@ namespace phys
         return Theirs;
     }
 
-    void Vector3::ExtractcAudioVector3(cAudio::cVector3 Ours)
+    void Vector3::ExtractcAudioVector3(const cAudio::cVector3& Ours)
     {
         this->X=Ours.x;
         this->Y=Ours.y;

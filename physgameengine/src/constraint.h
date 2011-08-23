@@ -43,6 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "quaternion.h"
+#include "transform.h"
 #include "vector3.h"
 
 #include <algorithm>
@@ -170,7 +171,7 @@ namespace phys
             {
                 AxisList Ang = this->ValidAngularAxis();
                 AxisList Lin = this->ValidLinearAxis();
-                Lin.insert(Lin.end()-1,Ang.begin(),Ang.end());              // just kinda stuck the two together and return that, no checking is performed for uniqueness.
+                Lin.insert(Lin.end()-1,Ang.begin(),Ang.end());              // just kinda stick the two together and return that, no checking is performed for uniqueness.
                 sort(Lin.begin(),Lin.end());                                // Usually the Linear axis are 0,1,2 and the angular are 3,4,5 so hopefully, this will hardly ever need to do work.
                 return Lin;
             }
@@ -184,7 +185,7 @@ namespace phys
             virtual bool IsParamValidOnAxis(ConstraintParam Param, int Axis) const
             {
                 ParamList Supported = ValidParamOnAxis(Axis);
-                if(ConstraintParamCount == Supported.size())                           // no need to check deeper if everything is supported
+                if(ConstraintParamCount == Supported.size())                           // no need to check deeper, because everything is supported
                 {
                     return true;
                 }else{
@@ -380,32 +381,51 @@ namespace phys
             /// @param PivotB The location in ActorB's local space to apply the constraint to.
             /// @param AxisInA The axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param AxisInB The axis(for ActorB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
-            /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
+            /// @param UseReferenceFrameA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
             /// This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceA=false);
+            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceFrameA=false);
             /// @brief Creates a Hinge constraint that will attach an actor to a point in world space.
             /// @param ActorA The actor to apply this constraint to.
             /// @param PivotInA The point in the object's(ActorA) local space where the constraint is to be attached to world space.
             /// @param AxisInA The axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
-            /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
+            /// @param UseReferenceFrameA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
             /// This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceA=false);
-            /// @brief
+            HingeConstraint(ActorRigid* ActorA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceFrameA=false);
+            /// @brief Create a Hinge with components of a tranform
             /// @param ActorA The first actor to apply this constraint to.
             /// @param ActorB The second actor to apply this constraint to.
-            /// @param VectorA
-            /// @param VectorB
-            /// @param QuaternionA
-            /// @param QuaternionB
-            /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
+            /// @param VectorA The location component of Transform A
+            /// @param VectorB The location component of Transform B
+            /// @param QuaternionA The rotation component of Transform A
+            /// @param QuaternionB The rotation component of Transform B
+            /// @param UseReferenceFrameA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
             /// This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceA=false);
+            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceFrameA=false);
+            /// @brief Create a Hinge with components of a tranform
+            /// @param ActorA The first actor to apply this constraint to.
+            /// @param ActorB The second actor to apply this constraint to.
+            /// @param TransformA The location component of Transform A
+            /// @param TransformB The location component of Transform B
+            /// @param UseReferenceFrameA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
+            /// This simply controls whether or not it should use ActorA's local space instead.
+            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseReferenceFrameA=false);
+            /// @brief Is this Using Reference Frame A
+            /// @return A the value UseReferenceFrameA is set to internally.
+            virtual bool GetUseReferenceFrameA() const;
+            /// @brief Change whether this is Using Reference Frame A or not
+            /// @param UseReferenceFrameA Whether certain math be performed from the perspective of Actor A or Actor B (we think this is the case, but we have not test thoroughly)
+            virtual void SetUseReferenceFrameA(bool UseReferenceFrameA=false);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~HingeConstraint();
+            /// @brief Set The relative location of the hinge pivot from ActorA's Center of gravity.
+            /// @param Location The New value for PivotA
+            /// @details Ultimately this information winds up being stored in the ATransform
             virtual void SetAPivotLocation(const Vector3& Location);
+            /// @brief Set The relative location of the hinge pivot from ActorB's Center of gravity.
+            /// @param Location The New value for PivotB
+            /// @details Ultimately this information winds up being stored in the BTransform
             virtual void SetBPivotLocation(const Vector3& Location);
-            virtual void SetAngularOnly(bool AngularOnly);
             /// @brief Enables(or Disables) the motor on the hinge and sets it's parameters.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
             /// @param TargetVelocity The desired velocity of rotation the motor will have.  This may or may not be achieved based on obstructions in the simulation.
@@ -417,8 +437,27 @@ namespace phys
             /// @brief Sets the maximum amount of force the motor is to apply.
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
             virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
+            /// @brief Retrieve the maximimum value that the acceleration of the motor can be increased.
+            /// @return A real containing the maximum impulse.
+            virtual Real GetMaxMotorImpulse() const;
+            /// @brief Sets a Target Velocity, indirectly using the angle stored in a quaternion.
+            /// @details Is implemented in terms of SetMotorTarget(Real, Real);
+            /// @param QuatAInB The angle a quaternion relative to the two objects in the constraint.
+            /// @param Dt The Desired Time steps that the target rotational velocity should be reached in.
             virtual void SetMotorTarget(const Quaternion& QuatAInB, Real Dt);
+            /// @brief Set the Rotational velocity in a more direct fashion
+            /// @param TargetAngle The desired angle in radians.
+            /// @param Dt The Desired Time steps that the target rotational velocity should be reached in.
             virtual void SetMotorTarget(Real TargetAngle, Real Dt);
+            /// @brief Desired angular velocity of the motor
+            /// @param TargetVelocity The Desired velocity
+            virtual void SetMotorTargetVelocity(Real TargetVelocity);
+            /// @brief Get the Target Velocity.
+            /// @return the target valocity as a real.
+            virtual Real GetMotorTargetVelocity() const;
+            /// @brief Is this motor on this hinge enabled?
+            /// @return True if it is, false otherwise.
+            virtual bool GetMotorEnabled() const;
             /// @brief Sets the angle limits of the constraint in radians.
             /// @param Low The minimum angle limit for the constraint in radians.
             /// @param High The maximum angle limit for the constraint in radians.
@@ -426,10 +465,42 @@ namespace phys
             /// @param BiasFactor Multiplier for the constraint error, constraint appears more "soft" when closer to zero.
             /// @param RelaxationFactor The amount of bounce to apply when the constraint reaches it's limit.  Range: 0.0-1.0.
             virtual void SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
+            /// @brief Return the Lower Limit of the hinge
+            /// @return A real containing the Lower Limit
+            virtual Real GetLimitLow() const;
+            /// @brief Return the Upper Limit of the hinge
+            /// @return A real containing the Higher Limit
+            virtual Real GetLimitHigh() const;
+            /// @brief Return the Softness of the hinge
+            /// @return A real containing the Softness
+            virtual Real GetLimitSoftness() const;
+            /// @brief Return the bias factor of the hinge (Not entirely certain hat this on is)
+            /// @return A real containing the bias Factor
+            virtual Real GetLimitBiasFactor() const;
+            /// @brief Return the Relaxation Factor of the hinge
+            /// @return A real containing the Relaxation Factor
+            virtual Real GetLimitRelaxationFactor() const;
             /// @brief Sets the axis on which this constraint acts.
             /// @param AxisInA A vector3 representing the axis to be used with this constraint.
             virtual void SetAxis(const Vector3& AxisInA);
+            /// @brief Retrieve the stored value from the physics subsystem(bullet)
+            /// @return a True or false.
+            virtual bool getUseFrameOffset() const;
+            /// @brief Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet)
+            /// @param FrameOffset The new desired value.
             virtual void SetUseFrameOffset(bool FrameOffset);
+            /// @brief Set the Position and Rotation using a Transform
+            /// @param TranA The new Position and rotation
+            void SetTransformA(const Transform& TranA);
+            /// @brief Set the Position and Rotation using a Transform
+            /// @param TranB The new Position and rotation
+            void SetTransformB(const Transform& TranB);
+            /// @brief Get the current Rotation and Location of Actor A
+            /// @return This returns a phys::Transform
+            Transform GetTransformA() const;
+            /// @brief Get the current Rotation and Location of Actor B
+            /// @return This returns a phys::Transform
+            Transform GetTransformB() const;
 
             /// @copydoc TypedConstraint::ValidParamOnAxis(int) const
             virtual TypedConstraint::ParamList ValidParamOnAxis(int Axis) const;
