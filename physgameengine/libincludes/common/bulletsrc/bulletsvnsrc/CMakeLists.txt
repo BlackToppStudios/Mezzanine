@@ -5,7 +5,7 @@ set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
 SET(MSVC_INCREMENTAL_DEFAULT ON)
 
 PROJECT(BULLET_PHYSICS)
-SET(BULLET_VERSION 2.77)
+SET(BULLET_VERSION 2.78)
 
 #Added by BTS to make compiler flags the same across the board
 add_definitions( ${CommonBuildFlags} )

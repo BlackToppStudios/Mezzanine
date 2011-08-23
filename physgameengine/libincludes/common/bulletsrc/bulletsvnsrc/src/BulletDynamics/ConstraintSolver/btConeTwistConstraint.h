@@ -33,8 +33,8 @@ and swing 1 and 2 are along the z and y axes respectively.
 
 
 
-#ifndef CONETWISTCONSTRAINT_H
-#define CONETWISTCONSTRAINT_H
+#ifndef BT_CONETWISTCONSTRAINT_H
+#define BT_CONETWISTCONSTRAINT_H
 
 #include "LinearMath/btVector3.h"
 #include "btJacobianEntry.h"
@@ -146,15 +146,6 @@ public:
 
 	void	updateRHS(btScalar	timeStep);
 
-	const btTransform & getFrameOffsetA() const
-	{
-		return m_rbAFrame;
-	}
-
-	const btTransform & getFrameOffsetB() const
-	{
-		return m_rbBFrame;
-	}
 
 	const btRigidBody& getRigidBodyA() const
 	{
@@ -256,8 +247,6 @@ public:
 	}
 	bool isPastSwingLimit() { return m_solveSwingLimit; }
 
-	void setFrames(const btTransform & frameA, const btTransform & frameB);
-
 	void setDamping(btScalar damping) { m_damping = damping; }
 
 	void enableMotor(bool b) { m_bMotorEnabled = b; }
@@ -281,6 +270,20 @@ public:
 	///override the default global value of a parameter (such as ERP or CFM), optionally provide the axis (0..5). 
 	///If no axis is provided, it uses the default axis for this constraint.
 	virtual	void setParam(int num, btScalar value, int axis = -1);
+
+	virtual void setFrames(const btTransform& frameA, const btTransform& frameB);
+
+	const btTransform& getFrameOffsetA() const
+	{
+		return m_rbAFrame;
+	}
+
+	const btTransform& getFrameOffsetB() const
+	{
+		return m_rbBFrame;
+	}
+
+
 	///return the local value of parameter
 	virtual	btScalar getParam(int num, int axis = -1) const;
 
@@ -342,4 +345,4 @@ SIMD_FORCE_INLINE const char*	btConeTwistConstraint::serialize(void* dataBuffer,
 }
 
 
-#endif //CONETWISTCONSTRAINT_H
+#endif //BT_CONETWISTCONSTRAINT_H

@@ -13,8 +13,8 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef RIGIDBODY_H
-#define RIGIDBODY_H
+#ifndef BT_RIGIDBODY_H
+#define BT_RIGIDBODY_H
 
 #include "LinearMath/btAlignedObjectArray.h"
 #include "LinearMath/btTransform.h"
@@ -89,7 +89,7 @@ class btRigidBody  : public btCollisionObject
 	int				m_rigidbodyFlags;
 	
 	int				m_debugBodyId;
-
+	
 
 protected:
 
@@ -617,6 +617,7 @@ public:
 
 
 	void	internalWritebackVelocity(btScalar timeStep);
+
 	
 
 	///////////////////////////////////////////////
@@ -686,5 +687,5 @@ struct	btRigidBodyDoubleData
 
 
 
-#endif
+#endif //BT_RIGIDBODY_H
 

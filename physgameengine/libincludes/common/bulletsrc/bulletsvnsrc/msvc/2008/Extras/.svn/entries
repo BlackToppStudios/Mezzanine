@@ -1,43 +1,0 @@
-10
-
-dir
-2237
-http://bullet.googlecode.com/svn/trunk/msvc/2008/Extras
-http://bullet.googlecode.com/svn
-
-
-
-2010-07-21T21:26:58.683876Z
-2134
-erwin.coumans
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-08e121b0-ae19-0410-a57b-3be3395fd4fd
-
-ConvexDecomposition
-dir
-
-glui
-dir
-
-GIMPACTUtils
-dir
-
-Serialize
-dir
-
-LibXML
-dir
-

@@ -66,11 +66,30 @@ void LevelLoader::LoadFerris()
     // Setup and Create the shapes that will be used.
     CShapeMan->LoadAllShapesFromFile("Ferris.bullet",FerrisGroup);
 
+    //----------
+    std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
+    for( std::set<CollisionShape*>::iterator CSit = Unnamed.begin() ; CSit != Unnamed.end() ; CSit++ )
+    {
+        CollisionShape* ToChange = (*CSit);
+        if(CollisionShape::ST_Compound==ToChange->GetType())
+        {
+            if(10 > ((CompoundCollisionShape*)ToChange)->GetNumChildren())
+            {
+                CShapeMan->SetNameForUnnamedShape("Tray",ToChange);
+            }else{
+                CShapeMan->SetNameForUnnamedShape("Wheel",ToChange);
+            }
+        }
+    }
+    Unnamed.clear();
+    CShapeMan->SaveAllStoredShapesToFile("Ferris2.bullet");
+    //----------
+
     // Create the Wheel
     ActorRigid* FerrisWheel = new ActorRigid(100.0,"FerrisWheel","wheel.mesh",FerrisGroup);
     FerrisWheel->SetLocation(100,0,0);
     FerrisWheel->GetPhysicsSettings()->SetDamping(0,0.1);
-    FerrisWheel->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("wheel")); // The names aren't being loaded as we expected
+    FerrisWheel->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Wheel")); // The names aren't being loaded as we expected
     ActMan->AddActor(FerrisWheel);
 
     // Create the trayz
@@ -78,42 +97,42 @@ void LevelLoader::LoadFerris()
     ActorRigid* Tray1 = new ActorRigid(TrayMass,"Tray1","tray.mesh",FerrisGroup);
     Tray1->SetLocation(30.4,14.3,0);
     Tray1->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray1->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("tray"));
+    Tray1->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray1);
     ActorRigid* Tray2 = new ActorRigid(TrayMass,"Tray2","tray.mesh",FerrisGroup);
     Tray2->SetLocation(169.6,14.3,0);
     Tray2->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray2->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("tray"));
+    Tray2->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray2);
     ActorRigid* Tray3 = new ActorRigid(TrayMass,"Tray3","tray.mesh",FerrisGroup);
     Tray3->SetLocation(30.4,-42.7,0);
     Tray3->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray3->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("tray"));
+    Tray3->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray3);
     ActorRigid* Tray4 = new ActorRigid(TrayMass,"Tray4","tray.mesh",FerrisGroup);
     Tray4->SetLocation(169.6,-42.7,0);
     Tray4->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray4->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("tray"));
+    Tray4->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray4);
     ActorRigid* Tray5 = new ActorRigid(TrayMass,"Tray5","tray.mesh",FerrisGroup);
     Tray5->SetLocation(71.5,55.4,0);
     Tray5->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray5->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("tray"));
+    Tray5->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray5);
     ActorRigid* Tray6 = new ActorRigid(TrayMass,"Tray6","tray.mesh",FerrisGroup);
     Tray6->SetLocation(128.5,55.4,0);
     Tray6->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray6->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("tray"));
+    Tray6->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray6);
     ActorRigid* Tray7 = new ActorRigid(TrayMass,"Tray7","tray.mesh",FerrisGroup);
     Tray7->SetLocation(71.5,-83.8,0);
     Tray7->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray7->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("tray"));
+    Tray7->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray7);
     ActorRigid* Tray8 = new ActorRigid(TrayMass,"Tray8","tray.mesh",FerrisGroup);
     Tray8->SetLocation(128.5,-83.8,0);
     Tray8->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray8->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("tray"));
+    Tray8->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray8);// */
 
     // Create world anchor for the wheel, which will allow it to spin.
