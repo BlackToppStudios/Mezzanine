@@ -20,10 +20,10 @@ bool BNS_Fan::ConditionsAreMet()
 {
     if(-107.5 > Button->GetLocation().Y)// -123 to -107, due to the 15 units of spring
     {
-        Motor->EnableAngularMotor(true,1500.0,4500.0);
+        Motor->EnableMotor(true,1500.0,4500.0);
         return true;
     }else{
-        Motor->EnableAngularMotor(false,0.0,0.0);
+        Motor->EnableMotor(false,0.0,0.0);
         Wind->SetFieldStrength(0);
         return false;
     }

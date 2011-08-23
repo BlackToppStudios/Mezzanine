@@ -233,7 +233,7 @@ class ConstraintTests : public UnitTestGroup
                                 Transform(Vector3(1.0, 2.0, 3.0), Quaternion(0.0, 1.0, 0.0, 0.4)),
                                 Transform(Vector3(5.0, 6.0, 7.0), Quaternion(1.0, 0.0, 0.0, 0.8))
                             );
-                HingeTestee.EnableAngularMotor(true, 0.05, .01);
+                HingeTestee.EnableMotor(true, 0.05, .01);
                 std::stringstream SerializeTestHinge1, SerializeTestHinge2, SerializeTestHinge3;
 
                 SerializeTestHinge1 << HingeTestee;                             // Hinge test empty

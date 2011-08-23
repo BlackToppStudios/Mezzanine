@@ -259,10 +259,16 @@ namespace phys
                                                   const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
     {
         SetBodies(ActorA,ActorB);
+        Transform TransformA(VectorA, QuaternionA);
+        Transform TransformB(VectorB, QuaternionB);
+        Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+        ConstraintBase = Generic6dof;
+    }
 
-        btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
-        btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-        Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
+    Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+    {
+        SetBodies(ActorA,ActorB);
+        Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
         ConstraintBase = Generic6dof;
     }
 
@@ -486,9 +492,12 @@ namespace phys
         this->Generic6dofSpring->enableSpring(Index, Enable);
     }
 
-    /////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
     // Hinge Constraint Functions
+    /////////////////////////////////////////
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Construction and Destruction
     HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceFrameA)
     {
         SetBodies(ActorA,ActorB);
@@ -531,23 +540,54 @@ namespace phys
             delete Hinge;
     }
 
-    bool HingeConstraint::GetUseReferenceFrameA() const
-        { return this->Hinge->m_useReferenceFrameA; }
-
-    void HingeConstraint::SetUseReferenceFrameA(bool UseReferenceFrameA)
-        { this->Hinge->m_useReferenceFrameA = UseReferenceFrameA; }
-
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Position and Orientation
     void HingeConstraint::SetAPivotLocation(const Vector3& Location)
         { this->Hinge->getAFrame().setOrigin(Location.GetBulletVector3()); }
 
     void HingeConstraint::SetBPivotLocation(const Vector3& Location)
         { this->Hinge->getBFrame().setOrigin(Location.GetBulletVector3()); }
 
-    void HingeConstraint::EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
+    Vector3 HingeConstraint::GetAPivotLocation() const
+        { return Vector3(this->Hinge->getAFrame().getOrigin()); }
+
+    Vector3 HingeConstraint::GetBPivotLocation() const
+        { return Vector3(this->Hinge->getBFrame().getOrigin()); }
+
+    void HingeConstraint::SetARotation(const Quaternion& Rotation)
+        { this->Hinge->getBFrame().setRotation(Rotation.GetBulletQuaternion()); }
+
+    void HingeConstraint::SetBRotation(const Quaternion& Rotation)
+        { this->Hinge->getBFrame().setRotation(Rotation.GetBulletQuaternion()); }
+
+    Quaternion HingeConstraint::GetARotation() const
+        { return Quaternion(this->Hinge->getAFrame().getRotation()); }
+
+    Quaternion HingeConstraint::GetBRotation() const
+        { return Quaternion(this->Hinge->getBFrame().getRotation()); }
+
+    void HingeConstraint::SetTransformA(const Transform& TranA)
+        { this->Hinge->getAFrame() << TranA; }
+
+    void HingeConstraint::SetTransformB(const Transform& TranB)
+        { this->Hinge->getBFrame() << TranB; }
+
+    Transform HingeConstraint::GetTransformA() const
+        { return Transform(this->Hinge->getAFrame()); }
+
+    Transform HingeConstraint::GetTransformB() const
+        { return Transform(this->Hinge->getBFrame()); }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Angular Motor
+    void HingeConstraint::EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
         { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
 
     void HingeConstraint::EnableMotor(bool EnableMotor)
         { this->Hinge->enableMotor(EnableMotor); }
+
+    bool HingeConstraint::GetMotorEnabled() const
+        { return this->Hinge->getEnableAngularMotor(); }
 
     void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
         { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); }
@@ -567,9 +607,8 @@ namespace phys
     Real HingeConstraint::GetMotorTargetVelocity() const
         { return this->Hinge->getMotorTargetVelosity(); }
 
-    bool HingeConstraint::GetMotorEnabled() const
-        { return this->Hinge->getEnableAngularMotor(); }
-
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Limits
     void HingeConstraint::SetLimit(Real Low, Real High, Real Softness, Real BiasFactor, Real RelaxationFactor)
         { this->Hinge->setLimit(Low, High, Softness, BiasFactor, RelaxationFactor); }
 
@@ -588,29 +627,13 @@ namespace phys
     Real HingeConstraint::GetLimitRelaxationFactor() const
         { return this->Hinge->m_relaxationFactor; }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Details
     void HingeConstraint::SetAxis(const Vector3& AxisInA)
     {
         btVector3 temp(AxisInA.GetBulletVector3());
         this->Hinge->setAxis(temp);
     }
-
-    bool HingeConstraint::getUseFrameOffset() const
-        { return this->Hinge->getUseFrameOffset(); }
-
-    void HingeConstraint::SetUseFrameOffset(bool FrameOffset)
-        { this->Hinge->setUseFrameOffset(FrameOffset); }
-
-    void HingeConstraint::SetTransformA(const Transform& TranA)
-        { this->Hinge->getAFrame() << TranA; }
-
-    void HingeConstraint::SetTransformB(const Transform& TranB)
-        { this->Hinge->getBFrame() << TranB; }
-
-    Transform HingeConstraint::GetTransformA() const
-        { return Transform(this->Hinge->getAFrame()); }
-
-    Transform HingeConstraint::GetTransformB() const
-        { return Transform(this->Hinge->getBFrame()); }
 
     TypedConstraint::ParamList HingeConstraint::ValidParamOnAxis(int Axis) const
     {
@@ -648,7 +671,22 @@ namespace phys
                 ( Con_CFM==Param      && this->Hinge->m_flags & BT_HINGE_FLAGS_CFM_NORM )   ;   //if we are checking the cfm AND the cfm bit is set
     }
 
+    bool HingeConstraint::GetUseReferenceFrameA() const
+        { return this->Hinge->m_useReferenceFrameA; }
+
+    void HingeConstraint::SetUseReferenceFrameA(bool UseReferenceFrameA)
+        { this->Hinge->m_useReferenceFrameA = UseReferenceFrameA; }
+
+    bool HingeConstraint::GetUseFrameOffset() const
+        { return this->Hinge->getUseFrameOffset(); }
+
+    void HingeConstraint::SetUseFrameOffset(bool FrameOffset)
+        { this->Hinge->setUseFrameOffset(FrameOffset); }
+
+
 #ifdef PHYSXML
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Serialization
     void HingeConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
         xml::Node HingeNode = CurrentRoot.AppendChild(SerializableName());          // The base node all the base constraint stuff will go in
@@ -662,7 +700,7 @@ namespace phys
         {
             VerAttr.SetValue(1);
             RefA.SetValue(this->GetUseReferenceFrameA());
-            FrameOff.SetValue(this->getUseFrameOffset());
+            FrameOff.SetValue(this->GetUseFrameOffset());
         }else{
             SerializeError("Create HingeNode Attributes", SerializableName());
         }
@@ -728,7 +766,6 @@ namespace phys
 
     /////////////////////////////////////////
     // Hinge2 Constraint Functions
-
     Hinge2Constraint::Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
     {
         SetBodies(ActorA,ActorB);
@@ -871,10 +908,6 @@ namespace phys
         xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
         xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
         xml::Attribute DamAttr = P2PNode.AppendAttribute("Damping");
-
-        //xml::Attribute FltAttr = P2PNode.AppendAttribute("FLT_MAX"); FltAttr.SetValue(FLT_MAX);
-        //xml::Attribute InfAttr = P2PNode.AppendAttribute("SIMD_INFINITY"); InfAttr.SetValue(SIMD_INFINITY);
-        //xml::Attribute InpAttr = P2PNode.AppendAttribute("IN_PARALLELL_SOLVER"); InpAttr.SetValue(IN_PARALLELL_SOLVER);
 
         if( VerAttr && TauAttr && ClaAttr && DamAttr )
         {
