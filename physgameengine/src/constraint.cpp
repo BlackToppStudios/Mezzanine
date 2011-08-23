@@ -366,6 +366,77 @@ namespace phys
                 ( Con_CFM==Param      && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_CFM_NORM << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ;   //if we are checking the cfm AND the cfm bit is set
     }
 
+#ifdef PHYSXML
+    void Generic6DofConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+
+        xml::Node G6dofNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        if (!G6dofNode)
+            { SerializeError("Create G6dofNode", SerializableName()); }
+
+        // ActorA/B
+            // Transform
+
+        // Linear
+            // Upper limit
+            // Lower Limit
+
+        // Angular
+            // Upper limit
+            // Lower Limit
+
+        // Linear and angular Motors
+            // The whole Motor Class for each
+
+        //Typedconstraint
+
+
+
+
+
+        // Spring x6
+            // Enabled
+            // Stiffness
+            // Damping
+
+/*
+        xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
+        xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
+        xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
+        xml::Attribute DamAttr = P2PNode.AppendAttribute("Damping");
+
+        if( VerAttr && TauAttr && ClaAttr && DamAttr )
+        {
+            VerAttr.SetValue(1);
+            TauAttr.SetValue(this->GetTAU());
+            ClaAttr.SetValue(this->GetImpulseClamping());
+            DamAttr.SetValue(this->GetDamping());
+        }else{
+            SerializeError("Create P2PNode Attributes", SerializableName());
+        }
+
+        xml::Node ActorANode = P2PNode.AppendChild("ActorA");
+        if (!ActorANode)
+            { SerializeError("Create ActorANode", SerializableName()); }
+        this->GetPivotA().ProtoSerialize(ActorANode);
+
+        xml::Node ActorBNode = P2PNode.AppendChild("ActorB");
+        if (!ActorBNode)
+            { SerializeError("Create ActorBNode", SerializableName()); }
+        this->GetPivotB().ProtoSerialize(ActorBNode);
+
+        this->TypedConstraint::ProtoSerialize(P2PNode);*/
+    }
+
+    void Generic6DofConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+
+    }
+
+    String Generic6DofConstraint::SerializableName() const
+        { return String("Generic6DofConstraint"); }
+#endif // /PHYSXML
+
     /////////////////////////////////////////
     // Generic6Dof Spring Constraint Functions
 
@@ -599,28 +670,20 @@ namespace phys
         xml::Node ActorANode = HingeNode.AppendChild("ActorA");                     // Get everything we need about ActorA
         if (!ActorANode)
             { SerializeError("Create ActorANode", SerializableName()); }
-        xml::Attribute ActorAName = ActorANode.AppendAttribute("Name");
-        if (!ActorAName)
-            { SerializeError("Create ActorAName Attribute", SerializableName()); }
-        ActorAName.SetValue(this->ActA->GetName());
         this->GetTransformA().ProtoSerialize(ActorANode);
 
         xml::Node ActorBNode = HingeNode.AppendChild("ActorB");                     // Get everything we need about ActorB
         if (!ActorBNode)
             { SerializeError("Create ActorBNode", SerializableName()); }
-        xml::Attribute ActorBName = ActorBNode.AppendAttribute("Name");
-        if (!ActorBName)
-            { SerializeError("Create ActorBName Attribute", SerializableName()); }
-        ActorBName.SetValue(this->ActB->GetName());
         this->GetTransformB().ProtoSerialize(ActorBNode);
 
         xml::Node MotorNode = HingeNode.AppendChild("Motor");                       // Motor Node
         if (!MotorNode)
             { SerializeError("Create MotorNode", SerializableName()); }
 
-        xml::Attribute MotEnabled = HingeNode.AppendAttribute("Enabled");           // Motor Attributes
-        xml::Attribute MotImpulse = HingeNode.AppendAttribute("MaxImpulse");
-        xml::Attribute MotTarget = HingeNode.AppendAttribute("TargetVelocity");
+        xml::Attribute MotEnabled = MotorNode.AppendAttribute("Enabled");           // Motor Attributes
+        xml::Attribute MotImpulse = MotorNode.AppendAttribute("MaxImpulse");
+        xml::Attribute MotTarget = MotorNode.AppendAttribute("TargetVelocity");
         if( MotEnabled && MotImpulse && MotTarget )
         {
             MotEnabled.SetValue(this->GetMotorEnabled());
@@ -634,11 +697,11 @@ namespace phys
         if (!LimitNode)
             { SerializeError("Create LimitNode", SerializableName()); }
 
-        xml::Attribute LimLow = HingeNode.AppendAttribute("Low");                   // Limits Attributes
-        xml::Attribute LimHigh = HingeNode.AppendAttribute("High");
-        xml::Attribute LimSoft = HingeNode.AppendAttribute("Softness");
-        xml::Attribute LimBias = HingeNode.AppendAttribute("BiasFactor");
-        xml::Attribute LimRelax = HingeNode.AppendAttribute("RelaxationFactor");
+        xml::Attribute LimLow = LimitNode.AppendAttribute("Low");                   // Limits Attributes
+        xml::Attribute LimHigh = LimitNode.AppendAttribute("High");
+        xml::Attribute LimSoft = LimitNode.AppendAttribute("Softness");
+        xml::Attribute LimBias = LimitNode.AppendAttribute("BiasFactor");
+        xml::Attribute LimRelax = LimitNode.AppendAttribute("RelaxationFactor");
         if( LimLow && LimHigh && LimSoft && LimBias && LimRelax )
         {
             LimLow.SetValue(this->GetLimitLow());
@@ -745,6 +808,12 @@ namespace phys
     Real Point2PointConstraint::GetImpulseClamping() const
         { return this->Point2Point->m_setting.m_impulseClamp; }
 
+    void Point2PointConstraint::SetDamping(Real Damping)
+        { this->Point2Point->m_setting.m_damping = Damping; }
+
+    Real Point2PointConstraint::GetDamping() const
+        { return this->Point2Point->m_setting.m_damping; }
+
 
     void Point2PointConstraint::SetTAU(Real TAU)
     {
@@ -801,16 +870,18 @@ namespace phys
         xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
         xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
         xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
+        xml::Attribute DamAttr = P2PNode.AppendAttribute("Damping");
 
         //xml::Attribute FltAttr = P2PNode.AppendAttribute("FLT_MAX"); FltAttr.SetValue(FLT_MAX);
         //xml::Attribute InfAttr = P2PNode.AppendAttribute("SIMD_INFINITY"); InfAttr.SetValue(SIMD_INFINITY);
         //xml::Attribute InpAttr = P2PNode.AppendAttribute("IN_PARALLELL_SOLVER"); InpAttr.SetValue(IN_PARALLELL_SOLVER);
 
-        if( VerAttr && TauAttr && ClaAttr )
+        if( VerAttr && TauAttr && ClaAttr && DamAttr )
         {
             VerAttr.SetValue(1);
             TauAttr.SetValue(this->GetTAU());
             ClaAttr.SetValue(this->GetImpulseClamping());
+            DamAttr.SetValue(this->GetDamping());
         }else{
             SerializeError("Create P2PNode Attributes", SerializableName());
         }
@@ -824,15 +895,6 @@ namespace phys
         if (!ActorBNode)
             { SerializeError("Create ActorBNode", SerializableName()); }
         this->GetPivotB().ProtoSerialize(ActorBNode);
-
-        xml::Attribute NameAAttr = ActorANode.AppendAttribute("Name");
-        xml::Attribute NameBAttr = ActorBNode.AppendAttribute("Name");
-
-        if( NameAAttr && NameBAttr)
-        {
-            NameAAttr.SetValue(this->GetActorA()->GetName());
-            NameBAttr.SetValue(this->GetActorB()->GetName());
-        }
 
         this->TypedConstraint::ProtoSerialize(P2PNode);
     }

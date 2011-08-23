@@ -361,7 +361,7 @@ namespace phys
             phys::xml::Attribute XAttr = VecNode.AppendAttribute("X");
             phys::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
             phys::xml::Attribute ZAttr = VecNode.AppendAttribute("Z");
-            phys::xml::Attribute WAttr = VecNode.AppendAttribute("Z");
+            phys::xml::Attribute WAttr = VecNode.AppendAttribute("W");
             if( VersionAttr && XAttr && YAttr && ZAttr && WAttr)
             {
                 if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z) && WAttr.SetValue(this->W))

@@ -329,6 +329,25 @@ namespace phys
             virtual TypedConstraint::AxisList ValidAngularAxis() const;
             /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const
             virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+#ifdef PHYSXML
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Generic6DofConstraint"
+            String SerializableName() const;
+#endif // /PHYSXML
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -592,6 +611,9 @@ namespace phys
 
             virtual void SetImpulseClamping(Real Clamping);
             virtual Real GetImpulseClamping() const;
+
+            virtual void SetDamping(Real Damping);
+            virtual Real GetDamping() const;
 
             /// @todo Research this more carefully
             /// @brief This may be a scalar for how strongly Angular momentum affects linear momemtum
