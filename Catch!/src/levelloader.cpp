@@ -52,10 +52,6 @@ void LevelLoader::LoadFerris()
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
 
-    //Configure the wireframe Drawer
-    //PhysMan->SetDebugPhysicsWireCount(2);
-    //PhysMan->SetDebugPhysicsRendering(1);
-
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
 
@@ -67,7 +63,7 @@ void LevelLoader::LoadFerris()
     CShapeMan->LoadAllShapesFromFile("Ferris.bullet",FerrisGroup);
 
     //----------
-    std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
+    /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
     for( std::set<CollisionShape*>::iterator CSit = Unnamed.begin() ; CSit != Unnamed.end() ; CSit++ )
     {
         CollisionShape* ToChange = (*CSit);
@@ -82,7 +78,7 @@ void LevelLoader::LoadFerris()
         }
     }
     Unnamed.clear();
-    CShapeMan->SaveAllStoredShapesToFile("Ferris2.bullet");
+    CShapeMan->SaveAllStoredShapesToFile("Ferris2.bullet");// */
     //----------
 
     // Create the Wheel
@@ -263,10 +259,6 @@ void LevelLoader::LoadBigCurve()
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
 
-    //Configure the wireframe Drawer
-    //PhysMan->SetDebugPhysicsWireCount(2);
-    //PhysMan->SetDebugPhysicsRendering(1);
-
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
 
@@ -376,10 +368,6 @@ void LevelLoader::LoadBlowsNotSucks()
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
 
-    //Configure the wireframe Drawer
-    //PhysMan->SetDebugPhysicsWireCount(2);
-    //PhysMan->SetDebugPhysicsRendering(1);
-
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
 
@@ -390,6 +378,20 @@ void LevelLoader::LoadBlowsNotSucks()
     // Setup and Create the shapes that will be used.
     CShapeMan->LoadAllShapesFromFile("BlowsNotSucks.bullet",BlowsNotSucksGroup);
 
+    //----------
+    /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
+    for( std::set<CollisionShape*>::iterator CSit = Unnamed.begin() ; CSit != Unnamed.end() ; CSit++ )
+    {
+        CollisionShape* ToChange = (*CSit);
+        if(CollisionShape::ST_Compound==ToChange->GetType())
+        {
+            CShapeMan->SetNameForUnnamedShape("Fan",ToChange);
+        }
+    }
+    Unnamed.clear();
+    CShapeMan->SaveAllStoredShapesToFile("BlowsNotSucks.bullet");// */
+    //----------
+
     // Create the fan
     ActorRigid* Fan = new ActorRigid(25,"Fan","fan.mesh",BlowsNotSucksGroup);
     Fan->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Fan"));
@@ -399,7 +401,7 @@ void LevelLoader::LoadBlowsNotSucks()
     ActMan->AddActor(Fan);
 
     ActorRigid* FanBody = new ActorRigid(0,"FanBody","body.mesh",BlowsNotSucksGroup);
-    FanBody->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("FanBody","body.mesh",BlowsNotSucksGroup));
+    FanBody->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("Body","body.mesh",BlowsNotSucksGroup));
     FanBody->SetLocation(Vector3(132.5,-70,25));
     ActMan->AddActor(FanBody);
 
@@ -544,10 +546,6 @@ void LevelLoader::LoadJustice()
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
 
-    //Configure the wireframe Drawer
-    //PhysMan->SetDebugPhysicsWireCount(2);
-    //PhysMan->SetDebugPhysicsRendering(1);
-
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
 
@@ -557,6 +555,25 @@ void LevelLoader::LoadJustice()
 
     // Setup and Create the shapes that will be used.
     CShapeMan->LoadAllShapesFromFile("Justice.bullet",JusticeGroup);
+
+    //----------
+    /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
+    for( std::set<CollisionShape*>::iterator CSit = Unnamed.begin() ; CSit != Unnamed.end() ; CSit++ )
+    {
+        CollisionShape* ToChange = (*CSit);
+        if(CollisionShape::ST_Compound==ToChange->GetType())
+        {
+            if(1 == ((CompoundCollisionShape*)ToChange)->GetNumChildren())
+                CShapeMan->SetNameForUnnamedShape("Union",ToChange);
+            else if(8 == ((CompoundCollisionShape*)ToChange)->GetNumChildren())
+                CShapeMan->SetNameForUnnamedShape("Scale",ToChange);
+            else if(9 == ((CompoundCollisionShape*)ToChange)->GetNumChildren())
+                CShapeMan->SetNameForUnnamedShape("Tray",ToChange);
+        }
+    }
+    Unnamed.clear();
+    CShapeMan->SaveAllStoredShapesToFile("Justice.bullet");// */
+    //----------
 
     // Create Lady Justice
     ActorRigid* LadyJustice = new ActorRigid(0,"LadyJustice","lady.mesh",JusticeGroup);
@@ -725,10 +742,6 @@ void LevelLoader::LoadRollers()
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
-
-    //Configure the wireframe Drawer
-    //PhysMan->SetDebugPhysicsWireCount(2);
-    //PhysMan->SetDebugPhysicsRendering(1);
 
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.

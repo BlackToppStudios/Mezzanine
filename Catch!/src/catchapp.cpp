@@ -573,6 +573,18 @@ bool CatchApp::PostInput()
     if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
+    if( MetaCode::BUTTON_PRESSING == InputQueryTool::GetKeyboardButtonState(MetaCode::KEY_C) )
+    {
+        if(TheWorld->GetPhysicsManager()->GetDebugPhysicsRendering())
+        {
+            TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(0);
+            TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
+        }else{
+            TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
+            TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(1);
+        }
+    }
+
     return true;
 }
 

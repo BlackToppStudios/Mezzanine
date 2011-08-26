@@ -593,8 +593,6 @@ namespace phys
     {
         btBulletWorldImporter Importer;
         Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(FileName,Group);
-        //size_t StreamSize = Stream->size();
-        //assert(sizeof(char)==1); // the c++ guarantees this assert will always be true, caution is good though
         char* buffer = new char[Stream->size()];
         Stream->read((void*)buffer, Stream->size());
         if(!Importer.loadFileFromMemory(buffer, Stream->size()))
@@ -605,19 +603,19 @@ namespace phys
             return;
         }
         delete[] buffer;
-        for( Whole X = 0 ; X < Importer.getNumCollisionShapes() ; ++X ) //Switched to prefix increment, it is never slower but might be faster, only use postifx, if you need the return value Pre-increment
+        for( Whole X = 0 ; X < Importer.getNumCollisionShapes() ; ++X )
         {
             btCollisionShape* Shape = Importer.getCollisionShapeByIndex(X);
-            const char* MaybeAName = Importer.getNameForPointer((void*)Shape); // This function was returning a void pointer for some reason,  this makes me want to check the loading/parsing
+            const char* MaybeAName = Importer.getNameForPointer((void*)Shape);
             String Name;
             if(MaybeAName)
             {
                 Name = String(MaybeAName);
                 CollisionShapeManager::iterator it = CollisionShapes.find(Name);
-                if(it != CollisionShapes.end())
+                if(it == CollisionShapes.end())
                 {
                     CollisionShape* NewShape = WrapShape(Name,Shape);
-                    CollisionShapes[Name] = NewShape;
+                    CollisionShapes.insert(std::pair<String,CollisionShape*>(Name,NewShape));
                 }
             }else{
                 static Whole NameCount = 0;
