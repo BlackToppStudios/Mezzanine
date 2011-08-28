@@ -443,7 +443,7 @@ namespace phys
 
     void PhysicsManager::AddConstraint(TypedConstraint* Constraint, bool DisableCollisions)
     {
-        this->BulletDynamicsWorld->addConstraint(Constraint->ConstraintBase, DisableCollisions);
+        this->BulletDynamicsWorld->addConstraint(Constraint->GetConstraintBase(), DisableCollisions);
         Constraints.push_back(Constraint);
     }
 
@@ -459,7 +459,7 @@ namespace phys
 
     void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
     {
-        this->BulletDynamicsWorld->removeConstraint(Constraint->ConstraintBase);
+        this->BulletDynamicsWorld->removeConstraint(Constraint->GetConstraintBase());
         for( std::vector<TypedConstraint*>::iterator Con = Constraints.begin() ; Con < Constraints.end() ; Con++ )
         {
             if( (*Con) == Constraint )
@@ -474,7 +474,7 @@ namespace phys
     {
         for( std::vector<TypedConstraint*>::iterator Con = Constraints.begin() ; Con != Constraints.end() ; Con++ )
         {
-            this->BulletDynamicsWorld->removeConstraint((*Con)->ConstraintBase);
+            this->BulletDynamicsWorld->removeConstraint((*Con)->GetConstraintBase());
             delete (*Con);
         }
         Constraints.clear();

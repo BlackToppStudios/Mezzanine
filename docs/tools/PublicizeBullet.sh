@@ -8,8 +8,10 @@ echo "Updating btPoint2PointConstraint.h"
 sed -i -e 's|	int			m_flags;|	public: //Made public by BTS with PublicizeBullet.sh\n	int			m_flags;\n	private:|' ../../physgameengine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h
 
 # Make m_motorTargetVelocity and everything until the next access specifier public
+# Remark out the #define _BT_USE_CENTER_LIMIT_ 1
 echo "Updating btHingeConstraint.h"
 sed -i -e 's|	btScalar	m_motorTargetVelocity;|	public: //Made public by BTS with PublicizeBullet.sh\n	btScalar	m_motorTargetVelocity;|' ../../physgameengine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletDynamics/ConstraintSolver/btHingeConstraint.h
+sed -i -e 's|#define _BT_USE_CENTER_LIMIT_ 1|//#define _BT_USE_CENTER_LIMIT_ 1|' ../../physgameengine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletDynamics/ConstraintSolver/btHingeConstraint.h
 
 # Make m_flags public
 echo "Updating btConeTwistConstraint.h"

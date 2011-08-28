@@ -237,6 +237,7 @@ class ConstraintTests : public UnitTestGroup
                 std::stringstream SerializeTestHinge1, SerializeTestHinge2, SerializeTestHinge3;
 
                 SerializeTestHinge1 << HingeTestee;                             // Hinge test empty
+                //cout <<endl <<endl << HingeTestee <<endl <<endl;
 
                 HingeTestee.SetParam(Con_CFM,0.1,-1);
                 SerializeTestHinge2 << HingeTestee;                             // Hinge test 1 param
@@ -249,8 +250,7 @@ class ConstraintTests : public UnitTestGroup
                 SerializeTestHinge3 << HingeTestee;                             // Hinge test All Params
 
 
-
-                String HingeTest1("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></HingeConstraint>");
+                String HingeTest1("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></HingeConstraint>");
                 if ( HingeTest1 == SerializeTestHinge1.str())
                 {
                     AddTestResult("HingeConstraint::operator<< (Params-Empty)", Success, UnitTestGroup::OverWrite);
@@ -258,7 +258,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("HingeConstraint::operator<< (Params-Empty)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String HingeTest2("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis-1 Con_CFM=\"0.1\" /><Axis5 Con_CFM=\"0.1\" /></TypedConstraint></HingeConstraint>");
+                String HingeTest2("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis-1 Con_CFM=\"0.1\" /><Axis5 Con_CFM=\"0.1\" /></TypedConstraint></DualTransformConstraint></HingeConstraint>");
                 if ( HingeTest2 == SerializeTestHinge2.str())
                 {
                     AddTestResult("HingeConstraint::operator<< (Params-1Param)", Success, UnitTestGroup::OverWrite);
@@ -266,7 +266,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("HingeConstraint::operator<< (Params-1Param)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String HingeTest3("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis-1 Con_Stop_ERP=\"0.4\" Con_CFM=\"0.2\" Con_Stop_CFM=\"0.6\" /><Axis5 Con_Stop_ERP=\"0.4\" Con_CFM=\"0.2\" Con_Stop_CFM=\"0.6\" /></TypedConstraint></HingeConstraint>");
+                String HingeTest3("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis-1 Con_Stop_ERP=\"0.4\" Con_CFM=\"0.2\" Con_Stop_CFM=\"0.6\" /><Axis5 Con_Stop_ERP=\"0.4\" Con_CFM=\"0.2\" Con_Stop_CFM=\"0.6\" /></TypedConstraint></DualTransformConstraint></HingeConstraint>");
                 if ( HingeTest3 == SerializeTestHinge3.str())
                 {
                     AddTestResult("HingeConstraint::operator<< (Params-WithParams)", Success, UnitTestGroup::OverWrite);

@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -93,13 +93,35 @@ namespace phys
     /// @brief This is the base class for all constraints supported.
     /// @details This class provides the basis for all the other constraints.  This is
     /// also a virtual class and provides no constraint properties of it's own, thus
-    /// shouldn't/can't be called on manually.
+    /// shouldn't/can't be called on manually. \n \n
+    /// Any class implementing a this must implement at least these functions to
+    /// create a minimally functiontal constraint: \n
+    ///     - GetConstraintBase() const - Return A pointer to the bullet constraint they use
+    ///     - SetPivotALocation(const Vector3&) - Set Location of pivot Relative to A
+    ///     - SetPivotALocation(const Vector3&) - Set Location of pivot Relative to B
+    ///     - GetPivotALocation() const - Get Location of pivot Relative to A
+    ///     - GetPivotBLocation() const - Get Location of pivot Relative to B
+    ///     - ValidParamOnAxis(int Axis) const - What parameters can be changed on the given Axis
+    ///     - ValidLinearAxis() const - Which Axis Suppport Translation
+    ///     - ValidAngularAxis() const - Which axis support Rotation
+    ///     - HasParamBeenSet(ConstraintParam Param, int Axis) const - Has a the given param on the given axis been set
+    ///
+    /// It is advisable to re-implement a few more functions as well, these all have implementation writtens in terms of
+    /// of the function that must be implemented, but the genericity of them may impede performance.
+    ///     - ValidAxis() const - Full List of all valid Axis. Combines the lists from ValidLinearAxis() const and ValidAngularAxis() const.
+    ///     - IsParamValidOnAxis(ConstraintParam, int) const - Uses the other function to check Axis and then check if the param is valid there
+    ///     - ValidParams() const - A list of Parameters every Axis on this constraint implements
+    ///
+    ///
     ///////////////////////////////////////////////////////////////////////////////
     class PHYS_LIB TypedConstraint
     {
         protected:
             friend class World;
             friend class PhysicsManager;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // TypedConstraint Data Members
             /// @brief First rigid body the constraint applies to.
             btRigidBody* BodyA;
             /// @brief Second rigid body the constraint applies to(if applicable).
@@ -108,8 +130,12 @@ namespace phys
             ActorRigid* ActA;
             /// @brief Second Actor the constraint applies to.
             ActorRigid* ActB;
-            /// @brief Bullet constraint that this class encapsulates.
-            btTypedConstraint* ConstraintBase;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // TypedConstraint Protected Methods
+            /// @brief Get the Bullet constraint that this class encapsulates.
+            /// @return A pointer to the btTypedConstraint that stores the underlying constraint.
+            virtual btTypedConstraint* GetConstraintBase() const = 0;
             /// @brief Sets the Internal actor pointers.
             void SetBodies(ActorRigid* Act1, ActorRigid* Act2);
             /// @brief Sets the Internal actor pointers.
@@ -118,9 +144,12 @@ namespace phys
             /// @details This is protected to prevent creating an instance of this directly.
             TypedConstraint();
         public:
+            ////////////////////////////////////////////////////////////////////////////////
+            // TypedConstraint Core Functionality
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~TypedConstraint();
+
             /// @brief Gets the first actor this constraint applies to.
             /// @return Returns a pointer to the first actor this constraint applies to.
             virtual ActorRigid* GetActorA() const;
@@ -128,12 +157,27 @@ namespace phys
             /// @return Returns a pointer to the second actor this constraint applies to.
             virtual ActorRigid* GetActorB() const;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Constraint
+            ////////////////////////////////////////////////////////////////////////////////
+            // TypedConstraint Position and Orientation
+            /// @brief Set offset of the first actor.
+            /// @param PivotA The offset as a Vector3 relative to the center of mass of ActorA.
+            virtual void SetPivotALocation(const Vector3& PivotA) = 0;
+            /// @brief Set offset of the second actor.
+            /// @param PivotB The offset as a Vector3 relative to the center of mass of ActorB.
+            virtual void SetPivotBLocation(const Vector3& PivotA) = 0;
+            /// @brief Get offset of the first actor.
+            /// @return The offset as a Vector3 relative to the center of mass of ActorA.
+            virtual Vector3 GetPivotALocation() const = 0;
+            /// @brief Get offset of the second actor.
+            /// @return The offset as a Vector3 relative to the center of mass of ActorB.
+            virtual Vector3 GetPivotBLocation() const = 0;
+            /// @brief Set the current impulse clamping on the constraint
+            /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // TypedConstraint Parameters
             /// @brief Used to Store lists of param for return types
             typedef std::vector<ConstraintParam> ParamList;
-
             /// @brief Used to Store lists of Int Axis for return types
             /// @details In general Axis will come in groups of three, such as 0,1,2, or 0,1,2,3,4,5 which could represent X,Y, and Z or multiple grousp of X,Y, and Z. These Axis
             /// can represent Linear/Translation or Angular/Rotation information. Some Constraints support values that affect all constraints, this is usually represented a -1.
@@ -145,24 +189,20 @@ namespace phys
             /// @param Axis the Axis to check.
             /// @return A Paramlist with all the valid parameters for this axis.
             virtual ParamList ValidParamOnAxis(int Axis) const = 0;
-
             /// @brief Get a sorted (low to high) list of all axis that operate linearly (that lock sliding/translation)
             /// @warning Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other
             /// @return An Axislist with the Axis this constraint linearly supports.
             virtual AxisList ValidLinearAxis() const = 0;
-
             /// @brief Get A list sorted (low to high) of all axis that operate Angularly (that lock sliding/translation)
             /// @warning Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other
             /// @return An Axislist with the Axis this constraint Angularly supports.
             virtual AxisList ValidAngularAxis() const = 0;
-
             /// @brief Has the given Param on the Given Axis been set yet.
             /// @param Param The parameter to Check
             /// @param Axis The Axis on which to check the param
             /// @details This will probably have to implement the same logic aas what is in the respective get/setparam function of each constraint http://bulletphysics.com/Bullet/BulletFull/classbtTypedConstraint.html#a11f44dd743b59bc05e25d500456e2559
             /// @return True if it has been set, false if it has.
             virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const = 0;
-
             /// @brief Get a sorted (low to high) list of All Valid Axis
             /// @details This is implemented using ValidLinearAxis and ValidAngularAxis, Derived versions of this class may wish to make a more specialized
             /// implementation of this method that doesn't have the overhead of passing around 3 vectors by value.
@@ -175,7 +215,6 @@ namespace phys
                 sort(Lin.begin(),Lin.end());                                // Usually the Linear axis are 0,1,2 and the angular are 3,4,5 so hopefully, this will hardly ever need to do work.
                 return Lin;
             }
-
             /// @brief Is a certain Parameter valid on a certain axis
             /// @param Param The Parameter to Check
             /// @param Axis The Axis to Check
@@ -197,7 +236,6 @@ namespace phys
                     }
                 }
             }
-
             /// @brief Get A sorted (low to high) list of Parameters that are valid on all Axis
             /// @details This is implemented using ValidAxis and ValidParamOnAxis, Derived versions of this class may wish to make a more specialized
             /// implementation of this method that doesn't have the overhead of passing around many vectors by value and executing slow loops. Most
@@ -234,7 +272,6 @@ namespace phys
             /// @param Value The new value for the parameter.
             /// @param Axis Optional axis.
             virtual void SetParam(ConstraintParam Param, Real Value, int Axis=-1);
-
             /// @brief Gets value of constraint parameters.
             /// @details See SetParam() for clarification.  Gets information on constraint parameters.
             /// @param Para, The parameter to get information for.
@@ -243,11 +280,14 @@ namespace phys
             virtual Real GetParam(ConstraintParam Param, int Axis=-1) const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Serialization
+            // TypedConstraint Serialization
 #ifdef PHYSXML
             // Serializable
             /// @brief Convert this class to an xml::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            /// @details This stores each Actor's name and every constraint parameter on each if it has been set.
+            /// This should allow for looking up the required actors in the Actor Manager. This should also prevent
+            /// any interference with different values and minimize the size of the serialized version
             virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
 
             // DeSerializable
@@ -262,6 +302,92 @@ namespace phys
     };
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// @brief All constraints that track rotation and location of the Pivot relative to each Actor inherit from this.
+    /// @details Since not all contraints provide tracking for the Actor Transform (location/rotation of the pivot)
+    /// we subdivided the constraints to unify the interface of those that could be unified. This stores nothing, but
+    /// provides uniform access to the transform and rotation functions. \n \n
+    /// Any deriving class must implement every thing from TypedConstraint and the four set/get Transform function. It
+    /// is expected that more derived classes will implement the Set/Get Pivot/Rotation Functino in a more efficient
+    /// Manner if a more efficient way exists. The non-transform get/set function are implmented in terms of the
+    /// get/set transform function extra copies of values and extra reading/writing may occur if the compiler weakly
+    /// optimizes. Of course, implementing more functions could slow down the software if it no longer fits in CPU
+    /// caches. As always benchmark if this is something that may be critically slowing you down.
+    ///////////////////////////////////////////////////////////////////////////////
+    class PHYS_LIB DualTransformConstraint : public TypedConstraint
+    {
+        public:
+        /// @brief Set the Position and Rotation using a Transform
+        /// @param TranA The new Position and rotation
+        virtual void SetPivotATransform(const Transform& TranA) = 0;
+        /// @brief Set the Position and Rotation using a Transform
+        /// @param TranB The new Position and rotation
+        virtual void SetPivotBTransform(const Transform& TranB) = 0;
+        /// @brief Get the current Rotation and Location of Actor A
+        /// @return This returns a phys::Transform
+        virtual Transform GetPivotATransform() const = 0;
+        /// @brief Get the current Rotation and Location of Actor B
+        /// @return This returns a phys::Transform
+        virtual Transform GetPivotBTransform() const = 0;
+
+        /// @brief Set The relative location of the hinge pivot from ActorA's Center of gravity.
+        /// @param Location The New value for PivotA
+        /// @details Ultimately this information winds up being stored in the TransformA.
+        virtual void SetPivotALocation(const Vector3& Location)
+            { SetPivotATransform( Transform(Location, GetPivotARotation()) ); }
+        /// @brief Set The relative location of the hinge pivot from ActorB's Center of gravity.
+        /// @param Location The New value for PivotB
+        /// @details Ultimately this information winds up being stored in the TransformB
+        virtual void SetPivotBLocation(const Vector3& Location)
+            { SetPivotBTransform( Transform(Location, GetPivotBRotation()) ); }
+        /// @brief Get the location of the hinge pivot relative to ActorA's Center of gravity
+        /// @return A Vector3 with the pivot location.
+        virtual Vector3 GetPivotALocation() const
+            { return GetPivotATransform().Location; }
+        /// @brief Get the location of the hinge pivot relative to ActorB's Center of gravity
+        /// @return A Vector3 with the pivot location.
+        virtual Vector3 GetPivotBLocation() const
+            { return GetPivotBTransform().Location; }
+
+        /// @brief Set The relative rotation of ActorA
+        /// @param Rotation The new rotation amount for A
+        /// @details Ultimately this information winds up being stored in the TransformA
+        virtual void SetPivotARotation(const Quaternion& Rotation)
+            { SetPivotATransform( Transform(GetPivotALocation(), Rotation) ); }
+        /// @brief Set The relative rotation of ActorB
+        /// @param otation The new rotation amount for B
+        /// @details Ultimately this information winds up being stored in the TransformB
+        virtual void SetPivotBRotation(const Quaternion& Rotation)
+            { SetPivotBTransform( Transform(GetPivotBLocation(), Rotation) ); }
+        /// @brief Get the relative rotation for ActorA
+        /// @return A Quaternion that has the rotation
+        virtual Quaternion GetPivotARotation() const
+            { return GetPivotATransform().Rotation; }
+        /// @brief Get the relative rotation for ActorB
+        /// @return A Quaternion that has the rotation
+        virtual Quaternion GetPivotBRotation() const
+            { return GetPivotBTransform().Rotation; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // DualTransformConstraint Serialization
+#ifdef PHYSXML
+        // Serializable
+        /// @brief Convert this class to an xml::Node ready for serialization
+        /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+        /// @details This stores each Actor's Transform
+        virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+        // DeSerializable
+        /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+        /// @param OneNode and xml::Node containing the data.
+        virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+        /// @return A string containing "DualTransformConstraint"
+        String SerializableName() const;
+#endif
+    };
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// @class ConeTwistConstraint
     /// @headerfile constraint.h
     /// @brief
@@ -272,12 +398,15 @@ namespace phys
         protected:
             /// @brief Bullet constraint that this class encapsulates.
             btConeTwistConstraint* ConeTwist;
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
         public:
             ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& Vectorb, const Quaternion& QuaternionA, const Quaternion& QuaternionB);
             ConeTwistConstraint(ActorRigid* ActorA, const Vector3& VectorA, const Quaternion& QuaternionA);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~ConeTwistConstraint();
+
             virtual void SetAngularOnly(bool AngularOnly);
             virtual void SetLimit(int LimitIndex, Real LimitValue);
             virtual void SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
@@ -292,21 +421,42 @@ namespace phys
     };
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Generic6DofConstraint
-    /// @headerfile constraint.h
-    /// @brief
-    /// @details
+    /// @brief Create simple but specific limits on any axis of movement or rotation
+    /// @details Provides optional limits on the x, y, and z for rotation and
+    /// translation. You can get the ID of the axis with ValidLinearAxis() or
+    /// ValidAngularAxis()  for this particular constraint at the time of this
+    /// writing the constraint axis looked liked this:
+    ///     - 0: Translation X
+    ///     - 1: Translation Y
+    ///     - 2: Translation Z
+    ///     - 3: Rotation X
+    ///     - 4: Rotation Y
+    ///     - 5: Rotation Z
+    ///
+    /// This has to perform a larger amount of calculations and should be used only
+    /// when other simpler constraints have been ruled out.
+    /// @n @n
+    /// As with all limits when the upper and lower limits match the two actors will
+    /// be locked on that axis and relative translation or rotation will not be
+    /// permitted (within the bounds or error correction). If the Lower limit is
+    /// lower than the Upper limit a range of translation or rotation will be
+    /// allowed. If the Lower limit is higher than the Upper limit this will cause
+    /// the system to realized that no position can satisfy the constraint and
+    /// no restriction will be enforced.
     ///////////////////////////////////////
-    class PHYS_LIB Generic6DofConstraint : public TypedConstraint
+    class PHYS_LIB Generic6DofConstraint : public DualTransformConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
             btGeneric6DofConstraint* Generic6dof;
-
             /// @brief Inheritance Constructor.
             /// @details This is only called by derived classes, and shouldn't be called manually.
             Generic6DofConstraint();
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
         public:
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofConstraint Construction and Destruction
             /// @brief Two body Verbose constructor
             /// @param ActorA The First body to be bound
             /// @param ActorB  The Second body to be bound
@@ -323,24 +473,159 @@ namespace phys
             /// @param TransformB The offset and rotation from ActorB's center of gravity.
             /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
             Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
-
-
-            Generic6DofConstraint(ActorRigid* ActorB, const Vector3& Vectorb, const Quaternion& QuaternionB, bool UseLinearReferenceB);
+            /// @brief Body and World Verbose constructor
+            /// @param ActorA The body to be bound to the world
+            /// @param VectorB The offset for the ActorB pivot/hinge/joint
+            /// @param QuaternionB The rotation
+            /// @param UseLinearReferenceB Perform Linear math from ActorB's perspective, default to true.
+            /// @details This Joins an object to the world.
+            Generic6DofConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceB = true);
+            /// @brief Body and World Terse constructor
+            /// @param ActorA The body to be bound to the world
+            /// @param TransformB The offset and rotation for the ActorB pivot/hinge/joint
+            /// @param UseLinearReferenceB Perform Linear math from ActorB's perspective, default to true.
+            /// @details This Joins an object to the world.
+            Generic6DofConstraint(ActorRigid* ActorB, const Transform& TransformB, bool UseLinearReferenceB = true);
             /// @brief Class destructor.
-            /// @details The class destructor.
             virtual ~Generic6DofConstraint();
-            virtual void SetOffsetALocation(const Vector3& Location);
-            virtual void SetOffsetBLocation(const Vector3& Location);
-            //should get rotation functions
-            // should get transform functions
-            virtual void SetLinearUpperLimit(const Vector3& Limit);
-            virtual void SetLinearLowerLimit(const Vector3& Limit);
-            virtual void SetAngularUpperLimit(const Vector3& Limit);
-            virtual void SetAngularLowerLimit(const Vector3& Limit);
-            virtual void SetUseFrameOffset(bool UseOffset);
-            virtual void SetLimit(int Axis, Real Low, Real High);
-            virtual void CalculateTransforms();
 
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofConstraint Location and Rotation
+            /// @copydoc DualTransformConstraint::SetPivotATransform(const Transform&)
+            virtual void SetPivotATransform(const Transform& TranA);
+            /// @copydoc DualTransformConstraint::SetPivotBTransform(const Transform&)
+            virtual void SetPivotBTransform(const Transform& TranB);
+            /// @copydoc DualTransformConstraint::GetPivotATransform()
+            virtual Transform GetPivotATransform() const;
+            /// @copydoc DualTransformConstraint::GetPivotBTransform()
+            virtual Transform GetPivotBTransform() const;
+
+            /// @copydoc DualTransformConstraint::SetPivotALocation(const Vector3&)
+            virtual void SetPivotALocation(const Vector3& Location);
+            /// @copydoc DualTransformConstraint::SetPivotBLocation(const Vector3&)
+            virtual void SetPivotBLocation(const Vector3& Location);
+            /// @copydoc DualTransformConstraint::GetPivotALocation()
+            virtual Vector3 GetPivotALocation() const;
+            /// @copydoc DualTransformConstraint::GetPivotBLocation()
+            virtual Vector3 GetPivotBLocation() const;
+
+            /// @copydoc DualTransformConstraint::SetPivotARotation(const Quaternion&)
+            virtual void SetPivotARotation(const Quaternion& Rotation);
+            /// @copydoc DualTransformConstraint::SetPivotBRotation(const Quaternion&)
+            virtual void SetPivotBRotation(const Quaternion& Rotation);
+            /// @copydoc DualTransformConstraint::GetPivotARotation()
+            virtual Quaternion GetPivotARotation() const;
+            /// @copydoc DualTransformConstraint::GetPivotBRotation()
+            virtual Quaternion GetPivotBRotation() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofConstraint Basic Limit Accessors
+            /// @brief Set the lower limits on translation
+            /// @param Limit A Vector3 that stores the lower limit x, y and z that cannot be exceeded
+            virtual void SetLinearUpperLimit(const Vector3& Limit);
+            /// @brief Set the Upper limits on translation
+            /// @return A Vector3 that stores the upper limit x, y and z that cannot be exceeded
+            virtual void SetLinearLowerLimit(const Vector3& Limit);
+            /// @brief Get the lower limits on translation
+            /// @param Limit A Vector3 that stores the lower limit x, y and z that cannot be exceeded
+            virtual Vector3 GetLinearUpperLimit() const;
+            /// @brief Get the Upper limits on translation
+            /// @return A Vector3 that stores the upper limit x, y and z that cannot be exceeded
+            virtual Vector3 GetLinearLowerLimit() const;
+
+            /// @brief Set the Upper limits on rotation
+            /// @param Limit A Vector3 that store the lower limit x, y and z rotation in radians
+            virtual void SetAngularUpperLimit(const Vector3& Limit);
+            /// @brief Set the Lower limits on rotation
+            /// @param Limit A Vector3 that store the upper limit x, y and z rotation in radians
+            virtual void SetAngularLowerLimit(const Vector3& Limit);
+            /// @brief Get the Power limits on rotation
+            /// @param Limit A Vector3 that stores the lower limit x, y and z rotation in radians
+            virtual Vector3 GetAngularUpperLimit() const;
+            /// @brief Get the Upper limits on rotation
+            /// @param Limit A Vector3 that stores the upper limit x, y and z rotation in radians
+            virtual Vector3 GetAngularLowerLimit() const;
+
+            /// @brief Get a specific lower rotational limit
+            /// @param RotationalAxis The Axis to work with.
+            Real GetAngularLowerLimitOnAxis(int RotationalAxis) const;
+            /// @brief Get a specific upper rotational limit
+            /// @param RotationalAxis The Axis to work with.
+            /// @details This  selects axis with
+            /// @return A real containing the specified upper limit
+            Real GetAngularUpperLimitOnAxis(int RotationalAxis) const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofConstraint Detailed Limits and Motors
+            /// @brief Convert to internal Axis IDs from external or internal axis IDs
+            /// @param Axis the Axis ID to be converted
+            /// @return A number that correlates toe corresponding internal Axis. For example Axis 4 is the Rotation Y. This would return the corresponding ID for the internal Rotation Y axis
+            /// @details Due to the way this is stored internally, All the axis are listed from from
+            /// 0 to 2. So rather than throw an exception(or have undefined behavior) if the Axis
+            /// selected one of those, this select the axis like this:
+            ///     - 0, 3: Rotation X
+            ///     - 1, 4: Rotation Y
+            ///     - 2, 5: Rotation Z
+            /// @return A real containing the specified lower limit
+            inline virtual int AxisToRotAxis(int Axis) const
+                { return (Axis%3); }
+
+            virtual void SetAngularMotorTargetVelocity(const Vector3& Velocities);
+            virtual void SetAngularMotorTargetVelocityOnAxis(Real Velocity, int Axis);
+            virtual Vector3 GetAngularMotorTargetVelocity() const;
+            virtual Real GetAngularMotorTargetVelocityOnAxis(int Axis) const;
+
+            virtual void SetAngularMotorMaxMotorForce(const Vector3& Forces);
+            virtual void SetAngularMotorMaxMotorForceOnAxis(Real Force, int Axis);
+            virtual Vector3 GetAngularMotorMaxMotorForce() const;
+            virtual Real GetAngularMotorMaxMotorForceOnAxis(int Axis) const;
+
+            virtual void SetAngularMotorDamping(const Vector3& Dampings);
+            virtual void SetAngularMotorDampingOnAxis(Real Damping, int Axis);
+            virtual Vector3 GetAngularMotorDamping() const;
+            virtual Real GetAngularMotorDampingOnAxis(int Axis) const;
+
+            virtual void SetAngularMotorRestitution(const Vector3& Restistutions);
+            virtual void SetAngularMotorRestitutionOnAxis(Real Restistution, int Axis);
+            virtual Vector3 GetAngularMotorRestitution() const;
+            virtual Real GetAngularMotorRestitutionOnAxis(int Axis) const;
+
+            virtual void SetAngularMotorEnabled(const Vector3& Enableds);
+            virtual void SetAngularMotorEnabledOnAxis(bool Enabled, int Axis);
+            virtual Vector3 GetAngularMotorEnabled() const;
+            virtual bool GetAngularMotorEnabledOnAxis(int Axis) const;
+
+
+            // Angular 2xGet/2xSet  vector
+                // TargetVelocity
+                // MaxMotorForce
+                // Damping
+                // Bounce
+                // Enabled
+
+            // Linear get/set
+                // Enable(3);
+                // target velocity
+                // softness
+                // damping
+                // bounce/restitution
+
+
+            /// @brief Change the upper and lower limit for one axis of translation or rotation limit
+            /// @param Axis The axis to change
+            /// @param Lower The new lower limit
+            /// @param UpperThe new Higher limit
+            virtual void SetLimit(int Axis, Real Lower, Real Upper);
+
+            //virtual void CalculateTransforms();
+
+
+            // rotational motor
+            // translational moter
+
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofConstraint Axis, Params and other Details
             /// @copydoc TypedConstraint::ValidParamOnAxis(int) const
             virtual TypedConstraint::ParamList ValidParamOnAxis(int Axis) const;
             /// @copydoc TypedConstraint::ValidLinearAxis() const
@@ -349,6 +634,13 @@ namespace phys
             virtual TypedConstraint::AxisList ValidAngularAxis() const;
             /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const
             virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
+
+            /// @brief Retrieve the stored value from the physics subsystem(bullet)
+            /// @return a True or false.
+            virtual bool GetUseFrameOffset() const;
+            /// @brief Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet)
+            /// @param FrameOffset The new desired value.
+            virtual void SetUseFrameOffset(bool FrameOffset);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -375,12 +667,12 @@ namespace phys
     /// @headerfile constraint.h
     /// @brief Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion.
     /// @details When using functions of this class that require you to specify the index, the springs are arranged like so: @n
-    /// 0: Translation X @n
-    /// 1: Translation Y @n
-    /// 2: Translation Z @n
-    /// 3: Rotation X @n
-    /// 4: Rotation Y @n
-    /// 5: Rotation Z
+    ///     - 0: Translation X
+    ///     - 1: Translation Y
+    ///     - 2: Translation Z
+    ///     - 3: Rotation X
+    ///     - 4: Rotation Y
+    ///     - 5: Rotation Z
     ///////////////////////////////////////
     class PHYS_LIB Generic6DofSpringConstraint : public Generic6DofConstraint
     {
@@ -407,11 +699,14 @@ namespace phys
     /// @brief This is a constraint to be used to restrict the movement between two objects to angular rotation on a single axis.
     /// @details As the name suggests, this constraint essentially works like a door Hinge.
     ///////////////////////////////////////
-    class PHYS_LIB HingeConstraint : public TypedConstraint
+    class PHYS_LIB HingeConstraint : public DualTransformConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
             btHingeConstraint* Hinge;
+
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
         public:
             ////////////////////////////////////////////////////////////////////////////////
             // HingeConstraint Construction and Destruction
@@ -454,46 +749,50 @@ namespace phys
             // HingeConstraint Position and Orientation
             /// @brief Set The relative location of the hinge pivot from ActorA's Center of gravity.
             /// @param Location The New value for PivotA
-            /// @details Ultimately this information winds up being stored in the TransformA
-            virtual void SetAPivotLocation(const Vector3& Location);
+            /// @details Ultimately this information winds up being stored in the TransformA. This implements
+            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual void SetPivotALocation(const Vector3& Location);
             /// @brief Set The relative location of the hinge pivot from ActorB's Center of gravity.
             /// @param Location The New value for PivotB
-            /// @details Ultimately this information winds up being stored in the TransformB
-            virtual void SetBPivotLocation(const Vector3& Location);
+            /// @details Ultimately this information winds up being stored in the TransformB. This implements
+            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual void SetPivotBLocation(const Vector3& Location);
             /// @brief Get the location of the hinge pivot relative to ActorA's Center of gravity
             /// @return A Vector3 with the pivot location.
-            virtual Vector3 GetAPivotLocation() const;
+            /// @details This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual Vector3 GetPivotALocation() const;
             /// @brief Get the location of the hinge pivot relative to ActorB's Center of gravity
             /// @return A Vector3 with the pivot location.
-            virtual Vector3 GetBPivotLocation() const;
+            /// @details This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual Vector3 GetPivotBLocation() const;
 
             /// @brief Set The relative rotation of ActorA
             /// @param Rotation The new rotation amount for A
-            /// @details Ultimately this information winds up being stored in the TransformA
-            virtual void SetARotation(const Quaternion& Rotation);
+            /// @details Ultimately this information winds up being stored in the TransformA. This implements
+            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual void SetAPivotRotation(const Quaternion& Rotation);
             /// @brief Set The relative rotation of ActorB
             /// @param otation The new rotation amount for B
-            /// @details Ultimately this information winds up being stored in the TransformB
-            virtual void SetBRotation(const Quaternion& Rotation);
+            /// @details Ultimately this information winds up being stored in the TransformB. This implements
+            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual void SetBPivotRotation(const Quaternion& Rotation);
             /// @brief Get the relative rotation for ActorA
             /// @return A Quaternion that has the rotation
-            virtual Quaternion GetARotation() const;
+            /// @details This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual Quaternion GetAPivotRotation() const;
             /// @brief Get the relative rotation for ActorB
             /// @return A Quaternion that has the rotation
-            virtual Quaternion GetBRotation() const;
+            /// @details This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual Quaternion GetBPivotRotation() const;
 
-            /// @brief Set the Position and Rotation using a Transform
-            /// @param TranA The new Position and rotation
-            virtual void SetTransformA(const Transform& TranA);
-            /// @brief Set the Position and Rotation using a Transform
-            /// @param TranB The new Position and rotation
-            virtual void SetTransformB(const Transform& TranB);
-            /// @brief Get the current Rotation and Location of Actor A
-            /// @return This returns a phys::Transform
-            virtual Transform GetTransformA() const;
-            /// @brief Get the current Rotation and Location of Actor B
-            /// @return This returns a phys::Transform
-            virtual Transform GetTransformB() const;
+            /// @copydoc DualTransformConstraint::SetTransformA
+            virtual void SetPivotATransform(const Transform& TranA);
+            /// @copydoc DualTransformConstraint::SetTransformB
+            virtual void SetPivotBTransform(const Transform& TranB);
+            /// @copydoc DualTransformConstraint::GetTransformA
+            virtual Transform GetPivotATransform() const;
+            /// @copydoc DualTransformConstraint::GetTransformB
+            virtual Transform GetPivotBTransform() const;
 
             ////////////////////////////////////////////////////////////////////////////////
             // HingeConstraint Angular Motor
@@ -632,6 +931,8 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btPoint2PointConstraint* Point2Point;
         public:
+            ////////////////////////////////////////////////////////////////////////////////
+            // Point2PointConstraint Construction and Destruction
             /// @brief Double body constructor.  Binds the two bodies.
             /// @param ActorA The first actor to apply this constraint to.
             /// @param ActorB The second actor to apply this constraint to.
@@ -645,20 +946,28 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Point2PointConstraint();
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Point2PointConstraint Position and Orientation
             /// @brief Set offset of the first actor.
             /// @param PivotA The offset as a Vector3 relative to the center of mass of ActorA.
-            virtual void SetPivotA(const Vector3& PivotA);
+            virtual void SetPivotALocation(const Vector3& PivotA);
             /// @brief Set offset of the second actor.
             /// @param PivotB The offset as a Vector3 relative to the center of mass of ActorB.
-            virtual void SetPivotB(const Vector3& PivotB);
+            virtual void SetPivotBLocation(const Vector3& PivotB);
             /// @brief Get offset of the first actor.
             /// @return The offset as a Vector3 relative to the center of mass of ActorA.
-            virtual Vector3 GetPivotA() const;
+            virtual Vector3 GetPivotALocation() const;
             /// @brief Get offset of the second actor.
             /// @return The offset as a Vector3 relative to the center of mass of ActorB.
-            virtual Vector3 GetPivotB() const;
+            virtual Vector3 GetPivotBLocation() const;
             /// @brief Set the current impulse clamping on the constraint
             /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Point2PointConstraint Specific Physics Settings
             virtual void SetImpulseClamping(Real Clamping);
             /// @brief get the current impulse clamping value
             /// @return A real with the Clamping
@@ -669,7 +978,6 @@ namespace phys
             /// @brief Get the current Damping
             /// @return A Real with the Damping value.
             virtual Real GetDamping() const;
-
             /// @brief This may be a scalar for how strongly Angular momentum affects linear momemtum
             /// @todo Research this more carefully
             /// @details This function is a tightly wrapped bullet 3d function. No real documentation for it exists, from its responsibility/location in Bullet3d and
@@ -688,9 +996,10 @@ namespace phys
             /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const
             virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
 
+
+#ifdef PHYSXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
-#ifdef PHYSXML
             // Serializable
             /// @brief Convert this class to an xml::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
@@ -725,6 +1034,8 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~SliderConstraint();
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
             virtual void SetFrameOffsetALocation(const Vector3& Location);
             virtual void SetFrameOffsetBLocation(const Vector3& Location);
             virtual void SetUpperLinLimit(Real UpperLimit);
