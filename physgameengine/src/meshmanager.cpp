@@ -68,6 +68,12 @@ namespace phys
         return NULL;
     }
 
+    void MeshManager::DestroyAllMeshes()
+    {
+        DestroyAllGeneratedMeshes();
+        UnloadAllLoadedMeshes();
+    }
+
     Mesh* MeshManager::LoadMesh(const String& MeshName, const String& Group)
     {
         std::map<String,Mesh*>::iterator it = LoadedMeshes.find(MeshName);
@@ -91,6 +97,16 @@ namespace phys
     Whole MeshManager::GetNumLoadedMeshes()
     {
         return LoadedMeshes.size();
+    }
+
+    void MeshManager::UnloadAllLoadedMeshes()
+    {
+        for( std::map<String,Mesh*>::iterator it = LoadedMeshes.begin() ; it != LoadedMeshes.end() ; it++ )
+        {
+            delete (*it).second;
+        }
+        LoadedMeshes.clear();
+        Ogre::MeshManager::getSingleton().unloadAll();
     }
 
     Whole MeshManager::GetNumGeneratedMeshes()

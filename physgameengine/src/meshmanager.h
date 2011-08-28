@@ -72,6 +72,8 @@ namespace phys
             /// @return Returns a pointer to the requested mesh.
             /// @param MeshName The name of the mesh to retrieve.
             Mesh* GetMesh(const String& MeshName);
+            /// @brief Clears this manager of all meshes, both loaded and generated.
+            void DestroyAllMeshes();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Non-Generated Mesh Management
@@ -87,6 +89,8 @@ namespace phys
             /// @brief Gets the number of currently loaded mesh files.
             /// @return Returns a whole representing the number of mesh files currently loaded.
             virtual Whole GetNumLoadedMeshes();
+            /// @brief Unloads every mesh that is currently loaded.
+            virtual void UnloadAllLoadedMeshes();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Generated Mesh Management

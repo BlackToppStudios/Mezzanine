@@ -48,6 +48,7 @@
 #include <btBulletDynamicsCommon.h>
 
 #include "resourcemanager.h"
+#include "meshmanager.h"
 #include "actorbase.h"
 #include "internalogredatastreambuf.h.cpp"
 #include "internalbulletfilemanager.h.cpp"
@@ -90,7 +91,6 @@ namespace phys {
 
     void ResourceManager::DestroyResourceGroup(const String& GroupName)
     {
-        this->OgreResource->destroyResourceGroup(GroupName);
         for( std::vector<String>::iterator it = ResourceGroups.begin() ; it != ResourceGroups.end() ; it++ )
         {
             if(GroupName == (*it))
@@ -99,6 +99,15 @@ namespace phys {
                 return;
             }
         }
+        Ogre::StringVectorPtr ResourceNames = this->OgreResource->listResourceNames(GroupName,false);
+        for( Whole X = 0 ; X < ResourceNames->size() ; ++X )
+        {
+            if(ResourceNames->at(X).find(".mesh"))
+            {
+                World::GetWorldPointer()->GetMeshManager()->UnloadMesh(ResourceNames->at(X));
+            }
+        }
+        this->OgreResource->destroyResourceGroup(GroupName);
     }
 
     void ResourceManager::DeclareResource(const String& Name, const String& Type, const String& Group)
