@@ -590,7 +590,7 @@ namespace phys
     bool Generic6DofConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
     {
         // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btGeneric6DofConstraint_8cpp_source.html#l00964
-        if(0<=Axis && 5>=Axis)
+        if(0>Axis || 5<Axis)
             { return false; }
         return  ( Con_Stop_ERP==Param && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_ERP_STOP << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ||  //if we are checking the stop_erp AND the stop_erp bit is set for the correct axis
                 ( Con_Stop_CFM==Param && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_CFM_STOP << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ||  //if we are checking the stop_cfm AND the stop_cfm bit is set
@@ -679,6 +679,11 @@ namespace phys
         if (!LinearMotorEnabled)
             { SerializeError("Create LinearMotorEnabled", SerializableName()); }
         this->GetLinearMotorEnabled().ProtoSerialize(LinearMotorEnabled);
+
+        phys::xml::Attribute Version = G6dofNode.AppendAttribute("Version");                            // Version
+        if (!Version)
+            { SerializeError("Create Version", SerializableName()); }
+        Version.SetValue(1);
 
         phys::xml::Attribute LinearLimitSoftness = G6dofNode.AppendAttribute("LinearLimitSoftness");    // Linear Attributes.
         if (!LinearLimitSoftness)

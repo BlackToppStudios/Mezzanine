@@ -80,7 +80,6 @@ class ConstraintTests : public UnitTestGroup
                 AddTestResult("Point2PointConstraint::operator<< (Params-Empty)", Unknown);
                 AddTestResult("Point2PointConstraint::operator<< (Params-1Param)", Unknown);
                 AddTestResult("Point2PointConstraint::operator<< (Params-WithParams)", Unknown);
-
                 AddTestResult("Point2PointConstraint::operator>> (Params-Empty)", Unknown);
                 AddTestResult("Point2PointConstraint::operator>> (Params-1Param)", Unknown);
                 AddTestResult("Point2PointConstraint::operator>> (Params-WithParams)", Unknown);
@@ -88,10 +87,16 @@ class ConstraintTests : public UnitTestGroup
                 AddTestResult("HingeConstraint::operator<< (Params-Empty)", Unknown);
                 AddTestResult("HingeConstraint::operator<< (Params-1Param)", Unknown);
                 AddTestResult("HingeConstraint::operator<< (Params-WithParams)", Unknown);
-
                 AddTestResult("HingeConstraint::operator>> (Params-Empty)", Unknown);
                 AddTestResult("HingeConstraint::operator>> (Params-1Param)", Unknown);
                 AddTestResult("HingeConstraint::operator>> (Params-WithParams)", Unknown);
+
+                AddTestResult("Generic6DofConstraint::operator<< (Empty)", Unknown);
+                AddTestResult("Generic6DofConstraint::operator<< (Values)", Unknown);
+                AddTestResult("Generic6DofConstraint::operator<< (ParamsAndValues)", Unknown);
+                AddTestResult("Generic6DofConstraint::operator>> (Empty)", Unknown);
+                AddTestResult("Generic6DofConstraint::operator>> (Values)", Unknown);
+                AddTestResult("Generic6DofConstraint::operator>> (ParamsAndValues)", Unknown);
 
                 AddTestResult("Point2PointConstraint::HasParamBeenSet-UnsetCFM", Unknown);
                 AddTestResult("Point2PointConstraint::HasParamBeenSet-SetCFM", Unknown);
@@ -280,14 +285,82 @@ class ConstraintTests : public UnitTestGroup
 
 
 
-                Generic6DofConstraint G6dofTestee( ActorA, ActorB,                    // Prepare for the hinge test.
+
+                stringstream SerializeTestG6dof1, SerializeTestG6dof2, SerializeTestG6dof3; // Prepare for the G6dof test.
+
+                Generic6DofConstraint G6dofTestee( ActorA, ActorB,
                                 Transform(Vector3(1.0, 2.0, 3.0), Quaternion(0.0, 1.0, 0.0, 0.4)),
                                 Transform(Vector3(5.0, 6.0, 7.0), Quaternion(1.0, 0.0, 0.0, 0.8))
                             );
 
+                SerializeTestG6dof1 << G6dofTestee;                                         // 6dof test1
+
+                G6dofTestee.SetLinearLimitUpper(Vector3(10.0, 11.0, 12.0));                 // 6dof test2
+                G6dofTestee.SetLinearLimitLower(Vector3(-10.0, -11.0, -12.0));
+                G6dofTestee.SetAngularLimitUpper(Vector3(0.1, 0.2, 0.3));
+                G6dofTestee.SetAngularLimitLower(Vector3(-0.1, -0.2, -0.3));
+
+                G6dofTestee.SetAngularLimitMaxForce(Vector3(13.0, 14.0, 15.0));
+                G6dofTestee.SetAngularMotorTargetVelocity(Vector3(16.0, 17.0, 18.0));
+                G6dofTestee.SetAngularMotorMaxForce(Vector3(19.0, 20.0, 21.0));
+                G6dofTestee.SetAngularMotorDamping(Vector3(22.0, 23.0, 24.0));
+                G6dofTestee.SetAngularMotorRestitution(Vector3(0.01, 0.02, 0.03));
+                G6dofTestee.SetAngularMotorEnabled(Vector3(1, 0, 1));
+
+                G6dofTestee.SetLinearLimitSoftness(0.8);
+                G6dofTestee.SetLinearLimitDamping(25);
+                G6dofTestee.SetLinearLimitRestitution(0.9);
+                G6dofTestee.SetLinearMotorMaxForce(Vector3(26.0, 27.0, 28.0));
+                G6dofTestee.SetLinearMotorTargetVelocity(Vector3(29.0, 30.0, 31.0));
+                G6dofTestee.SetLinearMotorEnabled(Vector3(0, 1, 0));
+
+                SerializeTestG6dof2 << G6dofTestee;
+
+                G6dofTestee.SetParam(Con_Stop_ERP,0.01,0);                                        // 6dof Test3
+                G6dofTestee.SetParam(Con_CFM,0.02,0);
+                G6dofTestee.SetParam(Con_Stop_CFM,0.03,0);
+                G6dofTestee.SetParam(Con_Stop_ERP,0.04,1);
+                G6dofTestee.SetParam(Con_CFM,0.05,1);
+                G6dofTestee.SetParam(Con_Stop_CFM,0.06,1);
+                G6dofTestee.SetParam(Con_Stop_ERP,0.07,2);
+                G6dofTestee.SetParam(Con_CFM,0.08,2);
+                G6dofTestee.SetParam(Con_Stop_CFM,0.09,2);
+                G6dofTestee.SetParam(Con_Stop_ERP,0.10,3);
+                G6dofTestee.SetParam(Con_CFM,0.11,3);
+                G6dofTestee.SetParam(Con_Stop_CFM,0.12,3);
+                G6dofTestee.SetParam(Con_Stop_ERP,0.13,4);
+                G6dofTestee.SetParam(Con_CFM,0.14,4);
+                G6dofTestee.SetParam(Con_Stop_CFM,0.15,4);
+                G6dofTestee.SetParam(Con_Stop_ERP,0.16,5);
+                G6dofTestee.SetParam(Con_CFM,0.17,5);
+                G6dofTestee.SetParam(Con_Stop_CFM,0.18,5);
+                SerializeTestG6dof3 << G6dofTestee;
 
                 cout << endl << endl << G6dofTestee << endl << endl;
 
+                String G6dofTest1("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.7\" LinearLimitDamping=\"1\" LinearLimitRestitution=\"0.5\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"-1\" Y=\"-1\" Z=\"-1\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"300\" Y=\"300\" Z=\"300\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.1\" Z=\"0.1\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint>");
+                if ( G6dofTest1 == SerializeTestG6dof1.str())
+                {
+                    AddTestResult("Generic6DofConstraint::operator<< (Empty)", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("Generic6DofConstraint::operator<< (Empty)", Failed, UnitTestGroup::OverWrite);
+                }
+
+                String G6dofTest2("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.8\" LinearLimitDamping=\"25\" LinearLimitRestitution=\"0.9\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"10\" Y=\"11\" Z=\"12\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"-10\" Y=\"-11\" Z=\"-12\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.2\" Z=\"0.3\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"-0.1\" Y=\"-0.2\" Z=\"-0.3\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"13\" Y=\"14\" Z=\"15\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"16\" Y=\"17\" Z=\"18\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"19\" Y=\"20\" Z=\"21\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"22\" Y=\"23\" Z=\"24\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0.01\" Y=\"0.02\" Z=\"0.03\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"1\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"26\" Y=\"27\" Z=\"28\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"29\" Y=\"30\" Z=\"31\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint>");
+                if ( G6dofTest2 == SerializeTestG6dof2.str())
+                {
+                    AddTestResult("Generic6DofConstraint::operator<< (Values)", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("Generic6DofConstraint::operator<< (Values)", Failed, UnitTestGroup::OverWrite);
+                }
+
+                String G6dofTest3("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.8\" LinearLimitDamping=\"25\" LinearLimitRestitution=\"0.9\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"10\" Y=\"11\" Z=\"12\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"-10\" Y=\"-11\" Z=\"-12\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.2\" Z=\"0.3\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"-0.1\" Y=\"-0.2\" Z=\"-0.3\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"13\" Y=\"14\" Z=\"15\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"16\" Y=\"17\" Z=\"18\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"19\" Y=\"20\" Z=\"21\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"22\" Y=\"23\" Z=\"24\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0.01\" Y=\"0.02\" Z=\"0.03\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"1\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"26\" Y=\"27\" Z=\"28\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"29\" Y=\"30\" Z=\"31\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis0 Con_Stop_ERP=\"0.01\" Con_CFM=\"0.02\" Con_Stop_CFM=\"0.03\" /><Axis1 Con_Stop_ERP=\"0.04\" Con_CFM=\"0.05\" Con_Stop_CFM=\"0.06\" /><Axis2 Con_Stop_ERP=\"0.07\" Con_CFM=\"0.08\" Con_Stop_CFM=\"0.09\" /><Axis3 Con_Stop_ERP=\"0.1\" Con_CFM=\"0.11\" Con_Stop_CFM=\"0.12\" /><Axis4 Con_Stop_ERP=\"0.13\" Con_CFM=\"0.14\" Con_Stop_CFM=\"0.15\" /><Axis5 Con_Stop_ERP=\"0.16\" Con_CFM=\"0.17\" Con_Stop_CFM=\"0.18\" /></TypedConstraint></DualTransformConstraint></Generic6DofConstraint>");
+                if ( G6dofTest3 == SerializeTestG6dof3.str())
+                {
+                    AddTestResult("Generic6DofConstraint::operator<< (ParamsAndValues)", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("Generic6DofConstraint::operator<< (ParamsAndValues)", Failed, UnitTestGroup::OverWrite);
+                }
 
                 StopEngine();
 
@@ -314,6 +387,14 @@ class ConstraintTests : public UnitTestGroup
                 AddTestResult("Point2PointConstraint::HasParamBeenSet-SetStopCFM", Skipped);
                 AddTestResult("Point2PointConstraint::HasParamBeenSet-UnsetStopERP", Skipped);
                 AddTestResult("Point2PointConstraint::HasParamBeenSet-SetStopERP", Skipped);
+
+                AddTestResult("Generic6DofConstraint::operator<< (Empty)", Skipped);
+                AddTestResult("Generic6DofConstraint::operator<< (Values)", Skipped);
+                AddTestResult("Generic6DofConstraint::operator<< (ParamsAndValues)", Skipped);
+                AddTestResult("Generic6DofConstraint::operator>> (Empty)", Skipped);
+                AddTestResult("Generic6DofConstraint::operator>> (Values)", Skipped);
+                AddTestResult("Generic6DofConstraint::operator>> (ParamsAndValues)", Skipped);
+
             }
 
 
