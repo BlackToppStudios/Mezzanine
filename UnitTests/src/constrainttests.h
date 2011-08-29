@@ -229,6 +229,10 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Point2PointConstraint::HasParamBeenSet-SetStopERP", Failed, UnitTestGroup::OverWrite);
                 }
 
+
+
+
+
                 HingeConstraint HingeTestee( ActorA, ActorB,                    // Prepare for the hinge test.
                                 Transform(Vector3(1.0, 2.0, 3.0), Quaternion(0.0, 1.0, 0.0, 0.4)),
                                 Transform(Vector3(5.0, 6.0, 7.0), Quaternion(1.0, 0.0, 0.0, 0.8))
@@ -273,6 +277,17 @@ class ConstraintTests : public UnitTestGroup
                 }else{
                     AddTestResult("HingeConstraint::operator<< (Params-WithParams)", Failed, UnitTestGroup::OverWrite);
                 }
+
+
+
+                Generic6DofConstraint G6dofTestee( ActorA, ActorB,                    // Prepare for the hinge test.
+                                Transform(Vector3(1.0, 2.0, 3.0), Quaternion(0.0, 1.0, 0.0, 0.4)),
+                                Transform(Vector3(5.0, 6.0, 7.0), Quaternion(1.0, 0.0, 0.0, 0.8))
+                            );
+
+
+                cout << endl << endl << G6dofTestee << endl << endl;
+
 
                 StopEngine();
 

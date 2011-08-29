@@ -383,105 +383,175 @@ namespace phys
 
     ////////////////////////////////////////////////////////////////////////////////
     // Generic6DofConstraint Basic Limit Accessors
-    void Generic6DofConstraint::SetLinearUpperLimit(const Vector3& Limit)
-        { this->Generic6dof->setLinearUpperLimit(Limit.GetBulletVector3()); }
-
-    void Generic6DofConstraint::SetLinearLowerLimit(const Vector3& Limit)
-        { this->Generic6dof->setLinearLowerLimit(Limit.GetBulletVector3()); }
-
-    Vector3 Generic6DofConstraint::GetLinearUpperLimit() const
-        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_upperLimit); }
-
-    Vector3 Generic6DofConstraint::GetLinearLowerLimit() const
-        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_lowerLimit); }
-
-    void Generic6DofConstraint::SetAngularUpperLimit(const Vector3& Limit)
-        { this->Generic6dof->setAngularUpperLimit(Limit.GetBulletVector3()); }
-
-    void Generic6DofConstraint::SetAngularLowerLimit(const Vector3& Limit)
-        { this->Generic6dof->setAngularLowerLimit(Limit.GetBulletVector3()); }
-
-    Vector3 Generic6DofConstraint::GetAngularUpperLimit() const
-        { return Vector3(GetAngularUpperLimitOnAxis(0),GetAngularUpperLimitOnAxis(1),GetAngularUpperLimitOnAxis(2)); }
-
-    Vector3 Generic6DofConstraint::GetAngularLowerLimit() const
-        { return Vector3(GetAngularLowerLimitOnAxis(0),GetAngularLowerLimitOnAxis(1),GetAngularLowerLimitOnAxis(2)); }
-
-    Real Generic6DofConstraint::GetAngularLowerLimitOnAxis(int RotationalAxis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(RotationalAxis))->m_loLimit; }
-
-    Real Generic6DofConstraint::GetAngularUpperLimitOnAxis(int RotationalAxis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(RotationalAxis))->m_hiLimit; }
-
-    ////////////////////////////////////////////////////////////////////////////////
-    // Generic6DofConstraint Detailed Limits and Motors
     void Generic6DofConstraint::SetLimit(int Axis, Real Lower, Real Upper)
         { this->Generic6dof->setLimit(Axis, Lower, Upper); }
 
+    void Generic6DofConstraint::SetLinearLimitUpper(const Vector3& Limit)
+        { this->Generic6dof->setLinearUpperLimit(Limit.GetBulletVector3()); }
+
+    void Generic6DofConstraint::SetLinearLimitLower(const Vector3& Limit)
+        { this->Generic6dof->setLinearLowerLimit(Limit.GetBulletVector3()); }
+
+    Vector3 Generic6DofConstraint::GetLinearLimitUpper() const
+        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_upperLimit); }
+
+    Vector3 Generic6DofConstraint::GetLinearLimitLower() const
+        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_lowerLimit); }
+
+    void Generic6DofConstraint::SetAngularLimitUpper(const Vector3& Limit)
+        { this->Generic6dof->setAngularUpperLimit(Limit.GetBulletVector3()); }
+
+    void Generic6DofConstraint::SetAngularLimitLower(const Vector3& Limit)
+        { this->Generic6dof->setAngularLowerLimit(Limit.GetBulletVector3()); }
+
+    Vector3 Generic6DofConstraint::GetAngularLimitUpper() const
+        { return Vector3(GetAngularLimitUpperOnAxis(0),GetAngularLimitUpperOnAxis(1),GetAngularLimitUpperOnAxis(2)); }
+
+    Vector3 Generic6DofConstraint::GetAngularLimitLower() const
+        { return Vector3(GetAngularLimitLowerOnAxis(0),GetAngularLimitLowerOnAxis(1),GetAngularLimitLowerOnAxis(2)); }
+
+    Real Generic6DofConstraint::GetAngularLimitLowerOnAxis(int RotationalAxis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(RotationalAxis))->m_loLimit; }
+
+    Real Generic6DofConstraint::GetAngularLimitUpperOnAxis(int RotationalAxis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(RotationalAxis))->m_hiLimit; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Angular Limit and Motor Details
+    void Generic6DofConstraint::SetAngularLimitMaxForce(const Vector3& MaxLimitForces)
+        { SetAngularLimitMaxForceOnAxis(MaxLimitForces.X,AngularXAsRotationalAxis);  SetAngularLimitMaxForceOnAxis(MaxLimitForces.Y,AngularYAsRotationalAxis);  SetAngularLimitMaxForceOnAxis(MaxLimitForces.Z,AngularZAsRotationalAxis); }
+
+    void Generic6DofConstraint::SetAngularLimitMaxForceOnAxis(Real MaxLimitForce, int Axis)
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxLimitForce = MaxLimitForce; }
+
+    Vector3 Generic6DofConstraint::GetAngularLimitMaxForce() const
+        { return Vector3(GetAngularLimitMaxForceOnAxis(AngularXAsRotationalAxis), GetAngularLimitMaxForceOnAxis(AngularYAsRotationalAxis), GetAngularLimitMaxForceOnAxis(AngularZAsRotationalAxis)); }
+
+    Real Generic6DofConstraint::GetAngularLimitMaxForceOnAxis(int Axis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxLimitForce; }
+
+
     void Generic6DofConstraint::SetAngularMotorTargetVelocity(const Vector3& Velocities)
-        { SetAngularMotorTargetVelocityOnAxis(Velocities.X,0);  SetAngularMotorTargetVelocityOnAxis(Velocities.Y,1);  SetAngularMotorTargetVelocityOnAxis(Velocities.Z,2);}
+        { SetAngularMotorTargetVelocityOnAxis(Velocities.X,AngularXAsRotationalAxis);  SetAngularMotorTargetVelocityOnAxis(Velocities.Y,AngularYAsRotationalAxis);  SetAngularMotorTargetVelocityOnAxis(Velocities.Z,AngularZAsRotationalAxis); }
 
     void Generic6DofConstraint::SetAngularMotorTargetVelocityOnAxis(Real Velocity, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_targetVelocity = Velocity; }
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_targetVelocity = Velocity; }
 
     Vector3 Generic6DofConstraint::GetAngularMotorTargetVelocity() const
-        { return Vector3(GetAngularMotorTargetVelocityOnAxis(0), GetAngularMotorTargetVelocityOnAxis(1), GetAngularMotorTargetVelocityOnAxis(2));}
+        { return Vector3(GetAngularMotorTargetVelocityOnAxis(AngularXAsRotationalAxis), GetAngularMotorTargetVelocityOnAxis(AngularYAsRotationalAxis), GetAngularMotorTargetVelocityOnAxis(AngularZAsRotationalAxis)); }
 
     Real Generic6DofConstraint::GetAngularMotorTargetVelocityOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_targetVelocity; }
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_targetVelocity; }
 
 
-    void Generic6DofConstraint::SetAngularMotorMaxMotorForce(const Vector3& Forces)
-        { SetAngularMotorMaxMotorForceOnAxis(Forces.X,0);  SetAngularMotorMaxMotorForceOnAxis(Forces.Y,1);  SetAngularMotorMaxMotorForceOnAxis(Forces.Z,2);}
+    void Generic6DofConstraint::SetAngularMotorMaxForce(const Vector3& Forces)
+        { SetAngularMotorMaxForceOnAxis(Forces.X,AngularXAsRotationalAxis);  SetAngularMotorMaxForceOnAxis(Forces.Y,AngularYAsRotationalAxis);  SetAngularMotorMaxForceOnAxis(Forces.Z,AngularZAsRotationalAxis); }
 
-    void Generic6DofConstraint::SetAngularMotorMaxMotorForceOnAxis(Real Force, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_maxMotorForce = Force; }
+    void Generic6DofConstraint::SetAngularMotorMaxForceOnAxis(Real Force, int Axis)
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxMotorForce = Force; }
 
-    Vector3 Generic6DofConstraint::GetAngularMotorMaxMotorForce() const
-        { return Vector3(GetAngularMotorMaxMotorForceOnAxis(0), GetAngularMotorMaxMotorForceOnAxis(1), GetAngularMotorMaxMotorForceOnAxis(2));}
+    Vector3 Generic6DofConstraint::GetAngularMotorMaxForce() const
+        { return Vector3(GetAngularMotorMaxForceOnAxis(AngularXAsRotationalAxis), GetAngularMotorMaxForceOnAxis(AngularYAsRotationalAxis), GetAngularMotorMaxForceOnAxis(AngularZAsRotationalAxis)); }
 
-    Real Generic6DofConstraint::GetAngularMotorMaxMotorForceOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_maxMotorForce; }
+    Real Generic6DofConstraint::GetAngularMotorMaxForceOnAxis(int Axis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxMotorForce; }
 
 
     void Generic6DofConstraint::SetAngularMotorDamping(const Vector3& Dampings)
-        { SetAngularMotorDampingOnAxis(Dampings.X,0);  SetAngularMotorDampingOnAxis(Dampings.Y,1);  SetAngularMotorDampingOnAxis(Dampings.Z,2);}
+        { SetAngularMotorDampingOnAxis(Dampings.X,AngularXAsRotationalAxis);  SetAngularMotorDampingOnAxis(Dampings.Y,AngularYAsRotationalAxis);  SetAngularMotorDampingOnAxis(Dampings.Z,AngularZAsRotationalAxis); }
 
     void Generic6DofConstraint::SetAngularMotorDampingOnAxis(Real Damping, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_damping = Damping; }
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_damping = Damping; }
 
     Vector3 Generic6DofConstraint::GetAngularMotorDamping() const
-        { return Vector3(GetAngularMotorDampingOnAxis(0), GetAngularMotorDampingOnAxis(1), GetAngularMotorDampingOnAxis(2));}
+        { return Vector3(GetAngularMotorDampingOnAxis(AngularXAsRotationalAxis), GetAngularMotorDampingOnAxis(AngularYAsRotationalAxis), GetAngularMotorDampingOnAxis(AngularZAsRotationalAxis)); }
 
     Real Generic6DofConstraint::GetAngularMotorDampingOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_damping; }
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_damping; }
 
 
     void Generic6DofConstraint::SetAngularMotorRestitution(const Vector3& Restistutions)
-        { SetAngularMotorRestitutionOnAxis(Restistutions.X,0);  SetAngularMotorRestitutionOnAxis(Restistutions.Y,1);  SetAngularMotorRestitutionOnAxis(Restistutions.Z,2);}
+        { SetAngularMotorRestitutionOnAxis(Restistutions.X,AngularXAsRotationalAxis);  SetAngularMotorRestitutionOnAxis(Restistutions.Y,AngularYAsRotationalAxis);  SetAngularMotorRestitutionOnAxis(Restistutions.Z,AngularZAsRotationalAxis); }
 
     void Generic6DofConstraint::SetAngularMotorRestitutionOnAxis(Real Restistution, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_bounce = Restistution; }
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_bounce = Restistution; }
 
     Vector3 Generic6DofConstraint::GetAngularMotorRestitution() const
-        { return Vector3(GetAngularMotorRestitutionOnAxis(0), GetAngularMotorRestitutionOnAxis(1), GetAngularMotorRestitutionOnAxis(2));}
+        { return Vector3(GetAngularMotorRestitutionOnAxis(AngularXAsRotationalAxis), GetAngularMotorRestitutionOnAxis(AngularYAsRotationalAxis), GetAngularMotorRestitutionOnAxis(AngularZAsRotationalAxis)); }
 
     Real Generic6DofConstraint::GetAngularMotorRestitutionOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_bounce; }
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_bounce; }
 
 
     void Generic6DofConstraint::SetAngularMotorEnabled(const Vector3& Enableds)
-        { SetAngularMotorEnabledOnAxis(Enableds.X,0);  SetAngularMotorEnabledOnAxis(Enableds.Y,1);  SetAngularMotorEnabledOnAxis(Enableds.Z,2);}
+        { SetAngularMotorEnabledOnAxis(Enableds.X,AngularXAsRotationalAxis);  SetAngularMotorEnabledOnAxis(Enableds.Y,AngularYAsRotationalAxis);  SetAngularMotorEnabledOnAxis(Enableds.Z,AngularZAsRotationalAxis); }
 
     void Generic6DofConstraint::SetAngularMotorEnabledOnAxis(bool Enabled, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_enableMotor = (Enabled!=0); }
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_enableMotor = Enabled; }
 
     Vector3 Generic6DofConstraint::GetAngularMotorEnabled() const
-        { return Vector3(GetAngularMotorEnabledOnAxis(0), GetAngularMotorEnabledOnAxis(1), GetAngularMotorEnabledOnAxis(2));}
+        { return Vector3(GetAngularMotorEnabledOnAxis(AngularXAsRotationalAxis), GetAngularMotorEnabledOnAxis(AngularYAsRotationalAxis), GetAngularMotorEnabledOnAxis(AngularZAsRotationalAxis)); }
 
     bool Generic6DofConstraint::GetAngularMotorEnabledOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_enableMotor; }
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_enableMotor; }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Linear Limit and Motor Details
+    void Generic6DofConstraint::SetLinearLimitSoftness(Real Softness)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_limitSoftness = Softness; }
+
+    Real Generic6DofConstraint::GetLinearLimitSoftness() const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_limitSoftness; }
+
+    void Generic6DofConstraint::SetLinearLimitDamping(Real Damping)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_damping = Damping; }
+
+    Real Generic6DofConstraint::GetLinearLimitDamping() const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_damping; }
+
+    void Generic6DofConstraint::SetLinearLimitRestitution(Real Restitution)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_restitution = Restitution; }
+
+    Real Generic6DofConstraint::GetLinearLimitRestitution() const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_restitution; }
+
+
+    void Generic6DofConstraint::SetLinearMotorMaxForce(const Vector3& Forces)
+        { SetLinearMotorMaxForceOnAxis(Forces.X,LinearX);  SetLinearMotorMaxForceOnAxis(Forces.Y,LinearY);  SetLinearMotorMaxForceOnAxis(Forces.Z,LinearZ); }
+
+    void Generic6DofConstraint::SetLinearMotorMaxForceOnAxis(Real Force, int Axis)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_maxMotorForce[Axis] = Force; }
+
+    Vector3 Generic6DofConstraint::GetLinearMotorMaxForce() const
+        { return Vector3(GetLinearMotorMaxForceOnAxis(LinearX), GetLinearMotorMaxForceOnAxis(LinearY), GetLinearMotorMaxForceOnAxis(LinearZ)); }
+
+    Real Generic6DofConstraint::GetLinearMotorMaxForceOnAxis(int Axis) const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_maxMotorForce[Axis]; }
+
+    void Generic6DofConstraint::SetLinearMotorTargetVelocity(const Vector3& Velocities)
+        { SetLinearMotorTargetVelocityOnAxis(Velocities.X,LinearX);  SetLinearMotorTargetVelocityOnAxis(Velocities.Y,LinearY);  SetLinearMotorTargetVelocityOnAxis(Velocities.Z,LinearZ); }
+
+    void Generic6DofConstraint::SetLinearMotorTargetVelocityOnAxis(Real Velocity, int Axis)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_targetVelocity[Axis] = Velocity; }
+
+    Vector3 Generic6DofConstraint::GetLinearMotorTargetVelocity() const
+        { return Vector3(GetLinearMotorTargetVelocityOnAxis(LinearX), GetLinearMotorTargetVelocityOnAxis(LinearY), GetLinearMotorTargetVelocityOnAxis(LinearZ)); }
+
+    Real Generic6DofConstraint::GetLinearMotorTargetVelocityOnAxis(int Axis) const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_targetVelocity[Axis]; }
+
+
+    void Generic6DofConstraint::SetLinearMotorEnabled(const Vector3& Enableds)
+        { SetLinearMotorEnabledOnAxis(Enableds.X,LinearX);  SetLinearMotorEnabledOnAxis(Enableds.Y,LinearY);  SetLinearMotorEnabledOnAxis(Enableds.Z,LinearZ); }
+
+    void Generic6DofConstraint::SetLinearMotorEnabledOnAxis(bool Enabled, int Axis)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_enableMotor[Axis] = Enabled; }
+
+    Vector3 Generic6DofConstraint::GetLinearMotorEnabled() const
+        { return Vector3(GetLinearMotorEnabledOnAxis(LinearX), GetLinearMotorEnabledOnAxis(LinearY), GetLinearMotorEnabledOnAxis(LinearZ)); }
+
+    bool Generic6DofConstraint::GetLinearMotorEnabledOnAxis(int Axis) const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_enableMotor[Axis]; }
 
 
 
@@ -542,50 +612,88 @@ namespace phys
         if (!G6dofNode)
             { SerializeError("Create G6dofNode", SerializableName()); }
 
-        // Linear
-            // Upper limit
-            // Lower Limit
 
-        // Angular
-            // Upper limit
-            // Lower Limit
+        xml::Node LinLimUpp = G6dofNode.AppendChild("LinearLimitUpper");                    // Basic Limit Stuff
+        if (!LinLimUpp)
+            { SerializeError("Create LinLimUpp", SerializableName()); }
+        this->GetLinearLimitUpper().ProtoSerialize(LinLimUpp);
 
-        // Linear and angular Motors
-            // The whole Motor Class for each
+        xml::Node LinLimLow = G6dofNode.AppendChild("LinearLimitLower");
+        if (!LinLimLow)
+            { SerializeError("Create LinLimLow", SerializableName()); }
+        this->GetLinearLimitLower().ProtoSerialize(LinLimLow);
+
+        xml::Node AngLimUpp = G6dofNode.AppendChild("AngularLimitUpper");
+        if (!AngLimUpp)
+            { SerializeError("Create AngLimUpp", SerializableName()); }
+        this->GetAngularLimitUpper().ProtoSerialize(AngLimUpp);
+
+        xml::Node AngLimLow = G6dofNode.AppendChild("AngularLimitLower");
+        if (!AngLimLow)
+            { SerializeError("Create AngLimLow", SerializableName()); }
+        this->GetAngularLimitLower().ProtoSerialize(AngLimLow);
 
 
+        xml::Node AngularLimitMaxForce = G6dofNode.AppendChild("AngularLimitMaxForce");                   // Angular Limit and Motor Details
+        if (!AngularLimitMaxForce)
+            { SerializeError("Create AngularLimitMaxForce", SerializableName()); }
+        this->GetAngularLimitMaxForce().ProtoSerialize(AngularLimitMaxForce);
+
+        xml::Node AngularMotorTargetVelocity = G6dofNode.AppendChild("AngularMotorTargetVelocity");
+        if (!AngularMotorTargetVelocity)
+            { SerializeError("Create AngularMotorTargetVelocity", SerializableName()); }
+        this->GetAngularMotorTargetVelocity().ProtoSerialize(AngularMotorTargetVelocity);
+
+        xml::Node AngularMotorMaxForce = G6dofNode.AppendChild("AngularMotorMaxForce");
+        if (!AngularMotorMaxForce)
+            { SerializeError("Create AngularMotorMaxForce", SerializableName()); }
+        this->GetAngularMotorMaxForce().ProtoSerialize(AngularMotorMaxForce);
+
+        xml::Node AngularMotorDamping = G6dofNode.AppendChild("AngularMotorDamping");
+        if (!AngularMotorDamping)
+            { SerializeError("Create AngularMotorDamping", SerializableName()); }
+        this->GetAngularMotorDamping().ProtoSerialize(AngularMotorDamping);
+
+        xml::Node AngularMotorRestitution = G6dofNode.AppendChild("AngularMotorRestitution");
+        if (!AngularMotorRestitution)
+            { SerializeError("Create AngularMotorRestitution", SerializableName()); }
+        this->GetAngularMotorRestitution().ProtoSerialize(AngularMotorRestitution);
+
+        xml::Node AngularMotorEnabled = G6dofNode.AppendChild("AngularMotorEnabled");
+        if (!AngularMotorEnabled)
+            { SerializeError("Create AngularMotorEnabled", SerializableName()); }
+        this->GetAngularMotorEnabled().ProtoSerialize(AngularMotorEnabled);
 
 
-        // Spring x6
-            // Enabled
-            // Stiffness
-            // Damping
+        xml::Node LinearMotorMaxForce = G6dofNode.AppendChild("LinearMotorMaxForce");                   // Linear limit and motor details
+        if (!LinearMotorMaxForce)
+            { SerializeError("Create LinearMotorMaxForce", SerializableName()); }
+        this->GetLinearMotorMaxForce().ProtoSerialize(LinearMotorMaxForce);
 
-/*
-        xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
-        xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
-        xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
-        xml::Attribute DamAttr = P2PNode.AppendAttribute("Damping");
+        xml::Node LinearMotorTargetVelocity = G6dofNode.AppendChild("LinearMotorTargetVelocity");
+        if (!LinearMotorTargetVelocity)
+            { SerializeError("Create LinearMotorTargetVelocity", SerializableName()); }
+        this->GetLinearMotorTargetVelocity().ProtoSerialize(LinearMotorTargetVelocity);
 
-        if( VerAttr && TauAttr && ClaAttr && DamAttr )
-        {
-            VerAttr.SetValue(1);
-            TauAttr.SetValue(this->GetTAU());
-            ClaAttr.SetValue(this->GetImpulseClamping());
-            DamAttr.SetValue(this->GetDamping());
-        }else{
-            SerializeError("Create P2PNode Attributes", SerializableName());
-        }
+        xml::Node LinearMotorEnabled = G6dofNode.AppendChild("LinearMotorEnabled");
+        if (!LinearMotorEnabled)
+            { SerializeError("Create LinearMotorEnabled", SerializableName()); }
+        this->GetLinearMotorEnabled().ProtoSerialize(LinearMotorEnabled);
 
-        xml::Node ActorANode = P2PNode.AppendChild("ActorA");
-        if (!ActorANode)
-            { SerializeError("Create ActorANode", SerializableName()); }
-        this->GetPivotA().ProtoSerialize(ActorANode);
+        phys::xml::Attribute LinearLimitSoftness = G6dofNode.AppendAttribute("LinearLimitSoftness");    // Linear Attributes.
+        if (!LinearLimitSoftness)
+            { SerializeError("Create LinearLimitSoftness", SerializableName()); }
+        LinearLimitSoftness.SetValue(this->GetLinearLimitSoftness());
 
-        xml::Node ActorBNode = P2PNode.AppendChild("ActorB");
-        if (!ActorBNode)
-            { SerializeError("Create ActorBNode", SerializableName()); }
-        this->GetPivotB().ProtoSerialize(ActorBNode);*/
+        phys::xml::Attribute LinearLimitDamping = G6dofNode.AppendAttribute("LinearLimitDamping");
+        if (!LinearLimitDamping)
+            { SerializeError("Create LinearLimitDamping", SerializableName()); }
+        LinearLimitDamping.SetValue(this->GetLinearLimitDamping());
+
+        phys::xml::Attribute LinearLimitRestitution = G6dofNode.AppendAttribute("LinearLimitRestitution");
+        if (!LinearLimitRestitution)
+            { SerializeError("Create LinearLimitRestitution", SerializableName()); }
+        LinearLimitRestitution.SetValue(this->GetLinearLimitRestitution());
 
         this->DualTransformConstraint::ProtoSerialize(G6dofNode);
     }
@@ -646,6 +754,12 @@ namespace phys
     {
         this->Generic6dofSpring->enableSpring(Index, Enable);
     }
+
+        // Spring x6 serialization
+            // Enabled
+            // Stiffness
+            // Damping
+
 
     ////////////////////////////////////////////////////////////////////////////////
     // Hinge Constraint Functions
