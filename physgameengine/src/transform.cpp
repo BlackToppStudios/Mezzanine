@@ -92,6 +92,7 @@ namespace phys
         return *this;
     }
 
+#ifdef PHYSXML
     void Transform::ProtoSerialize(xml::Node& CurrentRoot) const
     {
         xml::Node TransformNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
@@ -120,7 +121,7 @@ namespace phys
 
     String Transform::SerializableName() const
         { return String("Transform"); }
-
+#endif // /PHYSXML
 }
 
 btTransform& operator<< (btTransform& lhs, const phys::Transform& rhs)

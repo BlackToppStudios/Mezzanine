@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -71,14 +71,10 @@ namespace phys
     /////////////////////////////////////////
     // TypedConstraint Functions
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // TypedConstraint Protected Methods
     TypedConstraint::TypedConstraint()
-        : ConstraintBase(NULL)
-    {
-    }
-
-    TypedConstraint::~TypedConstraint()
-    {
-    }
+        { }
 
     void TypedConstraint::SetBodies(ActorRigid* Act1, ActorRigid* Act2)
     {
@@ -96,18 +92,28 @@ namespace phys
         BodyB = NULL;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // TypedConstraint Core Functionality
+    TypedConstraint::~TypedConstraint()
+        { }
+
     ActorRigid* TypedConstraint::GetActorA() const
         { return ActA; }
 
     ActorRigid* TypedConstraint::GetActorB() const
         { return ActB; }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // TypedConstraint Parameters
     void TypedConstraint::SetParam(ConstraintParam Param, Real Value, int Axis)
-        { this->ConstraintBase->setParam(Param, Value, Axis); }
+        { this->GetConstraintBase()->setParam(Param, Value, Axis); }
 
     Real TypedConstraint::GetParam(ConstraintParam Param, int Axis) const
-        { return this->ConstraintBase->getParam(Param, Axis); }
+        { return this->GetConstraintBase()->getParam(Param, Axis); }
 
+#ifdef PHYSXML
+    ///////////////////////////////////////////////////////////////////////////////
+    // TypedConstraint Serialization
     // Serializable
     void TypedConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
@@ -163,6 +169,46 @@ namespace phys
 
     String TypedConstraint::SerializableName() const
         { return String("TypedConstraint"); }
+#endif // /PHYSXML
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DualTransformConstraint Serialization
+
+    // Serializable
+    void DualTransformConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node DualTransformConstraintNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        if (!DualTransformConstraintNode)
+            { SerializeError("Create DualTransformConstraintNode", SerializableName()); }
+
+        xml::Attribute Version = DualTransformConstraintNode.AppendAttribute("Version");
+        if (Version)
+        {
+            Version.SetValue(1);
+        }else{
+            SerializeError("Create Attributes on DualTransformConstraintNode", SerializableName());
+        }
+
+        xml::Node ActorANode = DualTransformConstraintNode.AppendChild("ActorA");                     // Get everything we need about ActorA
+        if (!ActorANode)
+            { SerializeError("Create ActorANode", SerializableName()); }
+        this->GetPivotATransform().ProtoSerialize(ActorANode);
+
+        xml::Node ActorBNode = DualTransformConstraintNode.AppendChild("ActorB");                     // Get everything we need about ActorB
+        if (!ActorBNode)
+            { SerializeError("Create ActorBNode", SerializableName()); }
+        this->GetPivotBTransform().ProtoSerialize(ActorBNode);
+
+        this->TypedConstraint::ProtoSerialize(DualTransformConstraintNode);
+    }
+
+    // DeSerializable
+    void DualTransformConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+    }
+
+    String DualTransformConstraint::SerializableName() const
+        { return String("DualTransformConstraint"); }
 
     /////////////////////////////////////////
     // ConeTwist Constraint Functions
@@ -175,7 +221,6 @@ namespace phys
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         ConeTwist = new btConeTwistConstraint (*BodyA, *BodyB, transa, transb);
-        ConstraintBase = ConeTwist;
     }
 
     ConeTwistConstraint::ConeTwistConstraint(ActorRigid* ActorA, const Vector3& VectorA, const Quaternion& QuaternionA)
@@ -184,13 +229,15 @@ namespace phys
 
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         ConeTwist = new btConeTwistConstraint (*BodyA, transa);
-        ConstraintBase = ConeTwist;
     }
 
     ConeTwistConstraint::~ConeTwistConstraint()
     {
         delete ConeTwist;
     }
+
+    btTypedConstraint* ConeTwistConstraint::GetConstraintBase() const
+                { return this->ConeTwist; }
 
     void ConeTwistConstraint::SetAngularOnly(bool AngularOnly)
     {
@@ -248,22 +295,29 @@ namespace phys
         return this->ConeTwist->isPastSwingLimit();
     }
 
-    /////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
     // Generic6Dof Constraint Functions
-
     Generic6DofConstraint::Generic6DofConstraint()
-    {
-    }
+        { }
 
+    btTypedConstraint* Generic6DofConstraint::GetConstraintBase() const
+        { return this->Generic6dof; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Construction and Destruction
     Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA,
                                                   const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
     {
         SetBodies(ActorA,ActorB);
+        Transform TransformA(VectorA, QuaternionA);
+        Transform TransformB(VectorB, QuaternionB);
+        Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+    }
 
-        btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
-        btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-        Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
-        ConstraintBase = Generic6dof;
+    Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+    {
+        SetBodies(ActorA,ActorB);
+        Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
     }
 
     Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceB)
@@ -272,7 +326,13 @@ namespace phys
 
         btTransform transa(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Generic6dof = new btGeneric6DofConstraint(*BodyA, transa, UseLinearReferenceB);
-        ConstraintBase = Generic6dof;
+    }
+
+    Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorB, const Transform& TransformB, bool UseLinearReferenceB)
+    {
+        SetBodies(ActorB);
+
+        Generic6dof = new btGeneric6DofConstraint(*BodyA, TransformB.GetBulletTransform(), UseLinearReferenceB);
     }
 
     Generic6DofConstraint::~Generic6DofConstraint()
@@ -281,51 +341,152 @@ namespace phys
             delete Generic6dof;
     }
 
-    void Generic6DofConstraint::SetOffsetALocation(const Vector3& Location)
-    {
-        this->Generic6dof->getFrameOffsetA().setOrigin(Location.GetBulletVector3());
-    }
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Location and Rotation
+    void Generic6DofConstraint::SetPivotATransform(const Transform& TranA)
+        { this->Generic6dof->getFrameOffsetA() = TranA.GetBulletTransform(); }
 
-    void Generic6DofConstraint::SetOffsetBLocation(const Vector3& Location)
-    {
-        this->Generic6dof->getFrameOffsetB().setOrigin(Location.GetBulletVector3());
-    }
+    void Generic6DofConstraint::SetPivotBTransform(const Transform& TranB)
+        { this->Generic6dof->getFrameOffsetB() = TranB.GetBulletTransform(); }
 
+    Transform Generic6DofConstraint::GetPivotATransform() const
+        { return this->Generic6dof->getFrameOffsetA(); }
+
+    Transform Generic6DofConstraint::GetPivotBTransform() const
+        { return this->Generic6dof->getFrameOffsetB(); }
+
+
+    void Generic6DofConstraint::SetPivotALocation(const Vector3& Location)
+        { this->Generic6dof->getFrameOffsetA().setOrigin(Location.GetBulletVector3()); }
+
+    void Generic6DofConstraint::SetPivotBLocation(const Vector3& Location)
+        { this->Generic6dof->getFrameOffsetB().setOrigin(Location.GetBulletVector3()); }
+
+    Vector3 Generic6DofConstraint::GetPivotALocation() const
+        { return Vector3(this->Generic6dof->getFrameOffsetA().getOrigin()); }
+
+    Vector3 Generic6DofConstraint::GetPivotBLocation() const
+        { return Vector3(this->Generic6dof->getFrameOffsetB().getOrigin()); }
+
+
+    void Generic6DofConstraint::SetPivotARotation(const Quaternion& Rotation)
+        { this->Generic6dof->getFrameOffsetA().setRotation(Rotation.GetBulletQuaternion()); }
+
+    void Generic6DofConstraint::SetPivotBRotation(const Quaternion& Rotation)
+        { this->Generic6dof->getFrameOffsetA().setRotation(Rotation.GetBulletQuaternion()); }
+
+    Quaternion Generic6DofConstraint::GetPivotARotation() const
+        { return Quaternion(this->Generic6dof->getFrameOffsetA().getRotation()); }
+
+    Quaternion Generic6DofConstraint::GetPivotBRotation() const
+        { return Quaternion(this->Generic6dof->getFrameOffsetB().getRotation()); }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Basic Limit Accessors
     void Generic6DofConstraint::SetLinearUpperLimit(const Vector3& Limit)
-    {
-        this->Generic6dof->setLinearUpperLimit(Limit.GetBulletVector3());
-    }
+        { this->Generic6dof->setLinearUpperLimit(Limit.GetBulletVector3()); }
 
     void Generic6DofConstraint::SetLinearLowerLimit(const Vector3& Limit)
-    {
-        this->Generic6dof->setLinearLowerLimit(Limit.GetBulletVector3());
-    }
+        { this->Generic6dof->setLinearLowerLimit(Limit.GetBulletVector3()); }
+
+    Vector3 Generic6DofConstraint::GetLinearUpperLimit() const
+        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_upperLimit); }
+
+    Vector3 Generic6DofConstraint::GetLinearLowerLimit() const
+        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_lowerLimit); }
 
     void Generic6DofConstraint::SetAngularUpperLimit(const Vector3& Limit)
-    {
-        this->Generic6dof->setAngularUpperLimit(Limit.GetBulletVector3());
-    }
+        { this->Generic6dof->setAngularUpperLimit(Limit.GetBulletVector3()); }
 
     void Generic6DofConstraint::SetAngularLowerLimit(const Vector3& Limit)
-    {
-        this->Generic6dof->setAngularLowerLimit(Limit.GetBulletVector3());
-    }
+        { this->Generic6dof->setAngularLowerLimit(Limit.GetBulletVector3()); }
 
-    void Generic6DofConstraint::SetUseFrameOffset(bool UseOffset)
-    {
-        this->Generic6dof->setUseFrameOffset(UseOffset);
-    }
+    Vector3 Generic6DofConstraint::GetAngularUpperLimit() const
+        { return Vector3(GetAngularUpperLimitOnAxis(0),GetAngularUpperLimitOnAxis(1),GetAngularUpperLimitOnAxis(2)); }
 
-    void Generic6DofConstraint::SetLimit(int Axis, Real Low, Real High)
-    {
-        this->Generic6dof->setLimit(Axis, Low, High);
-    }
+    Vector3 Generic6DofConstraint::GetAngularLowerLimit() const
+        { return Vector3(GetAngularLowerLimitOnAxis(0),GetAngularLowerLimitOnAxis(1),GetAngularLowerLimitOnAxis(2)); }
 
-    void Generic6DofConstraint::CalculateTransforms()
-    {
-        this->Generic6dof->calculateTransforms();
-    }
+    Real Generic6DofConstraint::GetAngularLowerLimitOnAxis(int RotationalAxis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(RotationalAxis))->m_loLimit; }
 
+    Real Generic6DofConstraint::GetAngularUpperLimitOnAxis(int RotationalAxis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(RotationalAxis))->m_hiLimit; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Detailed Limits and Motors
+    void Generic6DofConstraint::SetLimit(int Axis, Real Lower, Real Upper)
+        { this->Generic6dof->setLimit(Axis, Lower, Upper); }
+
+    void Generic6DofConstraint::SetAngularMotorTargetVelocity(const Vector3& Velocities)
+        { SetAngularMotorTargetVelocityOnAxis(Velocities.X,0);  SetAngularMotorTargetVelocityOnAxis(Velocities.Y,1);  SetAngularMotorTargetVelocityOnAxis(Velocities.Z,2);}
+
+    void Generic6DofConstraint::SetAngularMotorTargetVelocityOnAxis(Real Velocity, int Axis)
+        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_targetVelocity = Velocity; }
+
+    Vector3 Generic6DofConstraint::GetAngularMotorTargetVelocity() const
+        { return Vector3(GetAngularMotorTargetVelocityOnAxis(0), GetAngularMotorTargetVelocityOnAxis(1), GetAngularMotorTargetVelocityOnAxis(2));}
+
+    Real Generic6DofConstraint::GetAngularMotorTargetVelocityOnAxis(int Axis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_targetVelocity; }
+
+
+    void Generic6DofConstraint::SetAngularMotorMaxMotorForce(const Vector3& Forces)
+        { SetAngularMotorMaxMotorForceOnAxis(Forces.X,0);  SetAngularMotorMaxMotorForceOnAxis(Forces.Y,1);  SetAngularMotorMaxMotorForceOnAxis(Forces.Z,2);}
+
+    void Generic6DofConstraint::SetAngularMotorMaxMotorForceOnAxis(Real Force, int Axis)
+        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_maxMotorForce = Force; }
+
+    Vector3 Generic6DofConstraint::GetAngularMotorMaxMotorForce() const
+        { return Vector3(GetAngularMotorMaxMotorForceOnAxis(0), GetAngularMotorMaxMotorForceOnAxis(1), GetAngularMotorMaxMotorForceOnAxis(2));}
+
+    Real Generic6DofConstraint::GetAngularMotorMaxMotorForceOnAxis(int Axis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_maxMotorForce; }
+
+
+    void Generic6DofConstraint::SetAngularMotorDamping(const Vector3& Dampings)
+        { SetAngularMotorDampingOnAxis(Dampings.X,0);  SetAngularMotorDampingOnAxis(Dampings.Y,1);  SetAngularMotorDampingOnAxis(Dampings.Z,2);}
+
+    void Generic6DofConstraint::SetAngularMotorDampingOnAxis(Real Damping, int Axis)
+        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_damping = Damping; }
+
+    Vector3 Generic6DofConstraint::GetAngularMotorDamping() const
+        { return Vector3(GetAngularMotorDampingOnAxis(0), GetAngularMotorDampingOnAxis(1), GetAngularMotorDampingOnAxis(2));}
+
+    Real Generic6DofConstraint::GetAngularMotorDampingOnAxis(int Axis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_damping; }
+
+
+    void Generic6DofConstraint::SetAngularMotorRestitution(const Vector3& Restistutions)
+        { SetAngularMotorRestitutionOnAxis(Restistutions.X,0);  SetAngularMotorRestitutionOnAxis(Restistutions.Y,1);  SetAngularMotorRestitutionOnAxis(Restistutions.Z,2);}
+
+    void Generic6DofConstraint::SetAngularMotorRestitutionOnAxis(Real Restistution, int Axis)
+        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_bounce = Restistution; }
+
+    Vector3 Generic6DofConstraint::GetAngularMotorRestitution() const
+        { return Vector3(GetAngularMotorRestitutionOnAxis(0), GetAngularMotorRestitutionOnAxis(1), GetAngularMotorRestitutionOnAxis(2));}
+
+    Real Generic6DofConstraint::GetAngularMotorRestitutionOnAxis(int Axis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_bounce; }
+
+
+    void Generic6DofConstraint::SetAngularMotorEnabled(const Vector3& Enableds)
+        { SetAngularMotorEnabledOnAxis(Enableds.X,0);  SetAngularMotorEnabledOnAxis(Enableds.Y,1);  SetAngularMotorEnabledOnAxis(Enableds.Z,2);}
+
+    void Generic6DofConstraint::SetAngularMotorEnabledOnAxis(bool Enabled, int Axis)
+        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_enableMotor = (Enabled!=0); }
+
+    Vector3 Generic6DofConstraint::GetAngularMotorEnabled() const
+        { return Vector3(GetAngularMotorEnabledOnAxis(0), GetAngularMotorEnabledOnAxis(1), GetAngularMotorEnabledOnAxis(2));}
+
+    bool Generic6DofConstraint::GetAngularMotorEnabledOnAxis(int Axis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_enableMotor; }
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Axis, Params and other Details
     TypedConstraint::ParamList Generic6DofConstraint::ValidParamOnAxis(int Axis) const
     {
         TypedConstraint::ParamList Results;
@@ -366,6 +527,78 @@ namespace phys
                 ( Con_CFM==Param      && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_CFM_NORM << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ;   //if we are checking the cfm AND the cfm bit is set
     }
 
+    bool Generic6DofConstraint::GetUseFrameOffset() const
+        { this->Generic6dof->getUseFrameOffset(); }
+    void Generic6DofConstraint::SetUseFrameOffset(bool FrameOffset)
+        { this->Generic6dof->setUseFrameOffset(FrameOffset); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+#ifdef PHYSXML
+    void Generic6DofConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+
+        xml::Node G6dofNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        if (!G6dofNode)
+            { SerializeError("Create G6dofNode", SerializableName()); }
+
+        // Linear
+            // Upper limit
+            // Lower Limit
+
+        // Angular
+            // Upper limit
+            // Lower Limit
+
+        // Linear and angular Motors
+            // The whole Motor Class for each
+
+
+
+
+        // Spring x6
+            // Enabled
+            // Stiffness
+            // Damping
+
+/*
+        xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
+        xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
+        xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
+        xml::Attribute DamAttr = P2PNode.AppendAttribute("Damping");
+
+        if( VerAttr && TauAttr && ClaAttr && DamAttr )
+        {
+            VerAttr.SetValue(1);
+            TauAttr.SetValue(this->GetTAU());
+            ClaAttr.SetValue(this->GetImpulseClamping());
+            DamAttr.SetValue(this->GetDamping());
+        }else{
+            SerializeError("Create P2PNode Attributes", SerializableName());
+        }
+
+        xml::Node ActorANode = P2PNode.AppendChild("ActorA");
+        if (!ActorANode)
+            { SerializeError("Create ActorANode", SerializableName()); }
+        this->GetPivotA().ProtoSerialize(ActorANode);
+
+        xml::Node ActorBNode = P2PNode.AppendChild("ActorB");
+        if (!ActorBNode)
+            { SerializeError("Create ActorBNode", SerializableName()); }
+        this->GetPivotB().ProtoSerialize(ActorBNode);*/
+
+        this->DualTransformConstraint::ProtoSerialize(G6dofNode);
+    }
+
+    void Generic6DofConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+
+    }
+
+    String Generic6DofConstraint::SerializableName() const
+        { return String("Generic6DofConstraint"); }
+#endif // /PHYSXML
+
     /////////////////////////////////////////
     // Generic6Dof Spring Constraint Functions
 
@@ -382,7 +615,6 @@ namespace phys
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Generic6dofSpring = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
         Generic6dof = Generic6dofSpring;
-        ConstraintBase = Generic6dofSpring;
     }
 
     Generic6DofSpringConstraint::~Generic6DofSpringConstraint()
@@ -415,9 +647,14 @@ namespace phys
         this->Generic6dofSpring->enableSpring(Index, Enable);
     }
 
-    /////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
     // Hinge Constraint Functions
+    /////////////////////////////////////////
+    btTypedConstraint* HingeConstraint::GetConstraintBase() const
+        { return this->Hinge; }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Construction and Destruction
     HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceFrameA)
     {
         SetBodies(ActorA,ActorB);
@@ -425,7 +662,6 @@ namespace phys
         btVector3 tempA(AxisInA.GetBulletVector3());
         btVector3 tempB(AxisInB.GetBulletVector3());
         Hinge = new btHingeConstraint(*BodyA, *BodyB, PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, bool(UseReferenceFrameA));
-        ConstraintBase = Hinge;
     }
 
     HingeConstraint::HingeConstraint(ActorRigid* ActorA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceFrameA)
@@ -434,7 +670,6 @@ namespace phys
 
         btVector3 tempA(AxisInA.GetBulletVector3());
         Hinge = new btHingeConstraint(*BodyA, PivotInA.GetBulletVector3(), tempA, bool(UseReferenceFrameA));
-        ConstraintBase = Hinge;
     }
 
     HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceFrameA)
@@ -444,15 +679,14 @@ namespace phys
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Hinge = new btHingeConstraint(*BodyA, *BodyB, transa, transb, UseReferenceFrameA);
-        ConstraintBase = Hinge;
     }
 
     HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseReferenceFrameA)
     {
         SetBodies(ActorA,ActorB);
         Hinge = new btHingeConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseReferenceFrameA);
-        ConstraintBase = Hinge;
     }
+
 
     HingeConstraint::~HingeConstraint()
     {
@@ -460,23 +694,54 @@ namespace phys
             delete Hinge;
     }
 
-    bool HingeConstraint::GetUseReferenceFrameA() const
-        { return this->Hinge->m_useReferenceFrameA; }
-
-    void HingeConstraint::SetUseReferenceFrameA(bool UseReferenceFrameA)
-        { this->Hinge->m_useReferenceFrameA = UseReferenceFrameA; }
-
-    void HingeConstraint::SetAPivotLocation(const Vector3& Location)
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Position and Orientation
+    void HingeConstraint::SetPivotALocation(const Vector3& Location)
         { this->Hinge->getAFrame().setOrigin(Location.GetBulletVector3()); }
 
-    void HingeConstraint::SetBPivotLocation(const Vector3& Location)
+    void HingeConstraint::SetPivotBLocation(const Vector3& Location)
         { this->Hinge->getBFrame().setOrigin(Location.GetBulletVector3()); }
 
-    void HingeConstraint::EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
+    Vector3 HingeConstraint::GetPivotALocation() const
+        { return Vector3(this->Hinge->getAFrame().getOrigin()); }
+
+    Vector3 HingeConstraint::GetPivotBLocation() const
+        { return Vector3(this->Hinge->getBFrame().getOrigin()); }
+
+    void HingeConstraint::SetAPivotRotation(const Quaternion& Rotation)
+        { this->Hinge->getBFrame().setRotation(Rotation.GetBulletQuaternion()); }
+
+    void HingeConstraint::SetBPivotRotation(const Quaternion& Rotation)
+        { this->Hinge->getBFrame().setRotation(Rotation.GetBulletQuaternion()); }
+
+    Quaternion HingeConstraint::GetAPivotRotation() const
+        { return Quaternion(this->Hinge->getAFrame().getRotation()); }
+
+    Quaternion HingeConstraint::GetBPivotRotation() const
+        { return Quaternion(this->Hinge->getBFrame().getRotation()); }
+
+    void HingeConstraint::SetPivotATransform(const Transform& TranA)
+        { this->Hinge->getAFrame() << TranA; }
+
+    void HingeConstraint::SetPivotBTransform(const Transform& TranB)
+        { this->Hinge->getBFrame() << TranB; }
+
+    Transform HingeConstraint::GetPivotATransform() const
+        { return Transform(this->Hinge->getAFrame()); }
+
+    Transform HingeConstraint::GetPivotBTransform() const
+        { return Transform(this->Hinge->getBFrame()); }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Angular Motor
+    void HingeConstraint::EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
         { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
 
     void HingeConstraint::EnableMotor(bool EnableMotor)
         { this->Hinge->enableMotor(EnableMotor); }
+
+    bool HingeConstraint::GetMotorEnabled() const
+        { return this->Hinge->getEnableAngularMotor(); }
 
     void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
         { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); }
@@ -496,9 +761,8 @@ namespace phys
     Real HingeConstraint::GetMotorTargetVelocity() const
         { return this->Hinge->getMotorTargetVelosity(); }
 
-    bool HingeConstraint::GetMotorEnabled() const
-        { return this->Hinge->getEnableAngularMotor(); }
-
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Limits
     void HingeConstraint::SetLimit(Real Low, Real High, Real Softness, Real BiasFactor, Real RelaxationFactor)
         { this->Hinge->setLimit(Low, High, Softness, BiasFactor, RelaxationFactor); }
 
@@ -517,29 +781,13 @@ namespace phys
     Real HingeConstraint::GetLimitRelaxationFactor() const
         { return this->Hinge->m_relaxationFactor; }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Details
     void HingeConstraint::SetAxis(const Vector3& AxisInA)
     {
         btVector3 temp(AxisInA.GetBulletVector3());
         this->Hinge->setAxis(temp);
     }
-
-    bool HingeConstraint::getUseFrameOffset() const
-        { return this->Hinge->getUseFrameOffset(); }
-
-    void HingeConstraint::SetUseFrameOffset(bool FrameOffset)
-        { this->Hinge->setUseFrameOffset(FrameOffset); }
-
-    void HingeConstraint::SetTransformA(const Transform& TranA)
-        { this->Hinge->getAFrame() << TranA; }
-
-    void HingeConstraint::SetTransformB(const Transform& TranB)
-        { this->Hinge->getBFrame() << TranB; }
-
-    Transform HingeConstraint::GetTransformA() const
-        { return Transform(this->Hinge->getAFrame()); }
-
-    Transform HingeConstraint::GetTransformB() const
-        { return Transform(this->Hinge->getBFrame()); }
 
     TypedConstraint::ParamList HingeConstraint::ValidParamOnAxis(int Axis) const
     {
@@ -577,7 +825,22 @@ namespace phys
                 ( Con_CFM==Param      && this->Hinge->m_flags & BT_HINGE_FLAGS_CFM_NORM )   ;   //if we are checking the cfm AND the cfm bit is set
     }
 
+    bool HingeConstraint::GetUseReferenceFrameA() const
+        { return this->Hinge->m_useReferenceFrameA; }
+
+    void HingeConstraint::SetUseReferenceFrameA(bool UseReferenceFrameA)
+        { this->Hinge->m_useReferenceFrameA = UseReferenceFrameA; }
+
+    bool HingeConstraint::GetUseFrameOffset() const
+        { return this->Hinge->getUseFrameOffset(); }
+
+    void HingeConstraint::SetUseFrameOffset(bool FrameOffset)
+        { this->Hinge->setUseFrameOffset(FrameOffset); }
+
+
 #ifdef PHYSXML
+    ////////////////////////////////////////////////////////////////////////////////
+    // HingeConstraint Serialization
     void HingeConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
         xml::Node HingeNode = CurrentRoot.AppendChild(SerializableName());          // The base node all the base constraint stuff will go in
@@ -591,36 +854,18 @@ namespace phys
         {
             VerAttr.SetValue(1);
             RefA.SetValue(this->GetUseReferenceFrameA());
-            FrameOff.SetValue(this->getUseFrameOffset());
+            FrameOff.SetValue(this->GetUseFrameOffset());
         }else{
             SerializeError("Create HingeNode Attributes", SerializableName());
         }
-
-        xml::Node ActorANode = HingeNode.AppendChild("ActorA");                     // Get everything we need about ActorA
-        if (!ActorANode)
-            { SerializeError("Create ActorANode", SerializableName()); }
-        xml::Attribute ActorAName = ActorANode.AppendAttribute("Name");
-        if (!ActorAName)
-            { SerializeError("Create ActorAName Attribute", SerializableName()); }
-        ActorAName.SetValue(this->ActA->GetName());
-        this->GetTransformA().ProtoSerialize(ActorANode);
-
-        xml::Node ActorBNode = HingeNode.AppendChild("ActorB");                     // Get everything we need about ActorB
-        if (!ActorBNode)
-            { SerializeError("Create ActorBNode", SerializableName()); }
-        xml::Attribute ActorBName = ActorBNode.AppendAttribute("Name");
-        if (!ActorBName)
-            { SerializeError("Create ActorBName Attribute", SerializableName()); }
-        ActorBName.SetValue(this->ActB->GetName());
-        this->GetTransformB().ProtoSerialize(ActorBNode);
 
         xml::Node MotorNode = HingeNode.AppendChild("Motor");                       // Motor Node
         if (!MotorNode)
             { SerializeError("Create MotorNode", SerializableName()); }
 
-        xml::Attribute MotEnabled = HingeNode.AppendAttribute("Enabled");           // Motor Attributes
-        xml::Attribute MotImpulse = HingeNode.AppendAttribute("MaxImpulse");
-        xml::Attribute MotTarget = HingeNode.AppendAttribute("TargetVelocity");
+        xml::Attribute MotEnabled = MotorNode.AppendAttribute("Enabled");           // Motor Attributes
+        xml::Attribute MotImpulse = MotorNode.AppendAttribute("MaxImpulse");
+        xml::Attribute MotTarget = MotorNode.AppendAttribute("TargetVelocity");
         if( MotEnabled && MotImpulse && MotTarget )
         {
             MotEnabled.SetValue(this->GetMotorEnabled());
@@ -634,11 +879,11 @@ namespace phys
         if (!LimitNode)
             { SerializeError("Create LimitNode", SerializableName()); }
 
-        xml::Attribute LimLow = HingeNode.AppendAttribute("Low");                   // Limits Attributes
-        xml::Attribute LimHigh = HingeNode.AppendAttribute("High");
-        xml::Attribute LimSoft = HingeNode.AppendAttribute("Softness");
-        xml::Attribute LimBias = HingeNode.AppendAttribute("BiasFactor");
-        xml::Attribute LimRelax = HingeNode.AppendAttribute("RelaxationFactor");
+        xml::Attribute LimLow = LimitNode.AppendAttribute("Low");                   // Limits Attributes
+        xml::Attribute LimHigh = LimitNode.AppendAttribute("High");
+        xml::Attribute LimSoft = LimitNode.AppendAttribute("Softness");
+        xml::Attribute LimBias = LimitNode.AppendAttribute("BiasFactor");
+        xml::Attribute LimRelax = LimitNode.AppendAttribute("RelaxationFactor");
         if( LimLow && LimHigh && LimSoft && LimBias && LimRelax )
         {
             LimLow.SetValue(this->GetLimitLow());
@@ -650,7 +895,7 @@ namespace phys
             SerializeError("Create MotorNode Attributes", SerializableName());
         }
 
-        this->TypedConstraint::ProtoSerialize(HingeNode);
+        DualTransformConstraint::ProtoSerialize(HingeNode);
     }
 
     void HingeConstraint::ProtoDeSerialize(const xml::Node& OneNode)
@@ -665,7 +910,6 @@ namespace phys
 
     /////////////////////////////////////////
     // Hinge2 Constraint Functions
-
     Hinge2Constraint::Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
     {
         SetBodies(ActorA,ActorB);
@@ -676,7 +920,6 @@ namespace phys
         Hinge2 = new btHinge2Constraint(*BodyA, *BodyB, temp1, temp2, temp3);
         Generic6dofSpring = Hinge2;
         Generic6dof = Hinge2;
-        ConstraintBase = Hinge2;
     }
 
     Hinge2Constraint::~Hinge2Constraint()
@@ -697,15 +940,13 @@ namespace phys
         this->Hinge2->setLowerLimit(Ang1Min);
     }
 
-    /////////////////////////////////////////
-    // Point2Point Constraint Functions
-
+    ////////////////////////////////////////////////////////////////////////////////
+    // Point2PointConstraint Position and Orientation
     Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotA, const Vector3& PivotB)
     {
         SetBodies(ActorA,ActorB);
 
         Point2Point = new btPoint2PointConstraint(*BodyA, *BodyB, PivotA.GetBulletVector3(), PivotB.GetBulletVector3());
-        ConstraintBase = Point2Point;
     }
 
     Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, const Vector3& PivotA)
@@ -713,48 +954,46 @@ namespace phys
         SetBodies(ActorA);
 
         Point2Point = new btPoint2PointConstraint(*BodyA, PivotA.GetBulletVector3());
-        ConstraintBase = Point2Point;
     }
 
     Point2PointConstraint::~Point2PointConstraint()
-    {
-        delete Point2Point;
-    }
+        { delete Point2Point; }
 
-    void Point2PointConstraint::SetPivotA(const Vector3& PivotA)
-    {
-        this->Point2Point->setPivotA(PivotA.GetBulletVector3());
-    }
+    btTypedConstraint* Point2PointConstraint::GetConstraintBase() const
+        { return this->Point2Point; }
+    ////////////////////////////////////////////////////////////////////////////////
+    // Point2PointConstraint Position and Orientation
+    void Point2PointConstraint::SetPivotALocation(const Vector3& PivotA)
+        { this->Point2Point->setPivotA(PivotA.GetBulletVector3()); }
 
-    void Point2PointConstraint::SetPivotB(const Vector3& PivotB)
-    {
-        this->Point2Point->setPivotB(PivotB.GetBulletVector3());
-    }
+    void Point2PointConstraint::SetPivotBLocation(const Vector3& PivotB)
+        { this->Point2Point->setPivotB(PivotB.GetBulletVector3()); }
 
-    Vector3 Point2PointConstraint::GetPivotA() const
-    {
-        return Vector3(this->Point2Point->getPivotInA());
-    }
+    Vector3 Point2PointConstraint::GetPivotALocation() const
+        { return Vector3(this->Point2Point->getPivotInA()); }
 
-    Vector3 Point2PointConstraint::GetPivotB() const
+    Vector3 Point2PointConstraint::GetPivotBLocation() const
         { return Vector3(this->Point2Point->getPivotInB()); }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // Point2PointConstraint Specific Physics Settings
     void Point2PointConstraint::SetImpulseClamping(Real Clamping)
         { this->Point2Point->m_setting.m_impulseClamp = Clamping; }
 
     Real Point2PointConstraint::GetImpulseClamping() const
         { return this->Point2Point->m_setting.m_impulseClamp; }
 
+    void Point2PointConstraint::SetDamping(Real Damping)
+        { this->Point2Point->m_setting.m_damping = Damping; }
+
+    Real Point2PointConstraint::GetDamping() const
+        { return this->Point2Point->m_setting.m_damping; }
 
     void Point2PointConstraint::SetTAU(Real TAU)
-    {
-        this->Point2Point->m_setting.m_tau = TAU;
-    }
+        { this->Point2Point->m_setting.m_tau = TAU; }
 
     Real Point2PointConstraint::GetTAU() const
-    {
-        return this->Point2Point->m_setting.m_tau;
-    }
+        { return this->Point2Point->m_setting.m_tau; }
 
     TypedConstraint::ParamList Point2PointConstraint::ValidParamOnAxis(int Axis) const
     {
@@ -784,6 +1023,7 @@ namespace phys
 
     bool Point2PointConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
     {
+        //return this->Point2Point->hasParamBeenSet(Param,Axis);
         // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btPoint2PointConstraint_8cpp_source.html#l00202
         if (-1!=Axis)
             { return false; }
@@ -801,16 +1041,14 @@ namespace phys
         xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
         xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
         xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
+        xml::Attribute DamAttr = P2PNode.AppendAttribute("Damping");
 
-        //xml::Attribute FltAttr = P2PNode.AppendAttribute("FLT_MAX"); FltAttr.SetValue(FLT_MAX);
-        //xml::Attribute InfAttr = P2PNode.AppendAttribute("SIMD_INFINITY"); InfAttr.SetValue(SIMD_INFINITY);
-        //xml::Attribute InpAttr = P2PNode.AppendAttribute("IN_PARALLELL_SOLVER"); InpAttr.SetValue(IN_PARALLELL_SOLVER);
-
-        if( VerAttr && TauAttr && ClaAttr )
+        if( VerAttr && TauAttr && ClaAttr && DamAttr )
         {
             VerAttr.SetValue(1);
             TauAttr.SetValue(this->GetTAU());
             ClaAttr.SetValue(this->GetImpulseClamping());
+            DamAttr.SetValue(this->GetDamping());
         }else{
             SerializeError("Create P2PNode Attributes", SerializableName());
         }
@@ -818,21 +1056,12 @@ namespace phys
         xml::Node ActorANode = P2PNode.AppendChild("ActorA");
         if (!ActorANode)
             { SerializeError("Create ActorANode", SerializableName()); }
-        this->GetPivotA().ProtoSerialize(ActorANode);
+        this->GetPivotALocation().ProtoSerialize(ActorANode);
 
         xml::Node ActorBNode = P2PNode.AppendChild("ActorB");
         if (!ActorBNode)
             { SerializeError("Create ActorBNode", SerializableName()); }
-        this->GetPivotB().ProtoSerialize(ActorBNode);
-
-        xml::Attribute NameAAttr = ActorANode.AppendAttribute("Name");
-        xml::Attribute NameBAttr = ActorBNode.AppendAttribute("Name");
-
-        if( NameAAttr && NameBAttr)
-        {
-            NameAAttr.SetValue(this->GetActorA()->GetName());
-            NameBAttr.SetValue(this->GetActorB()->GetName());
-        }
+        this->GetPivotBLocation().ProtoSerialize(ActorBNode);
 
         this->TypedConstraint::ProtoSerialize(P2PNode);
     }
@@ -856,7 +1085,6 @@ namespace phys
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Slider = new btSliderConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
-        ConstraintBase = Slider;
     }
 
     SliderConstraint::SliderConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA)
@@ -865,13 +1093,15 @@ namespace phys
 
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Slider = new btSliderConstraint(*BodyA, transb, UseLinearReferenceA);
-        ConstraintBase = Slider;
     }
 
     SliderConstraint::~SliderConstraint()
     {
         delete Slider;
     }
+
+    btTypedConstraint* SliderConstraint::GetConstraintBase() const
+        { return this->Slider; }
 
     void SliderConstraint::SetFrameOffsetALocation(const Vector3& Location)
     {
@@ -1040,7 +1270,6 @@ namespace phys
         btVector3 temp3(Axis2.GetBulletVector3());
         Universal = new btUniversalConstraint(*BodyA, *BodyB, temp1, temp2, temp3);
         Generic6dof = Universal;
-        ConstraintBase = Universal;
     }
 
     UniversalConstraint::~UniversalConstraint()

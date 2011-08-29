@@ -61,20 +61,19 @@ namespace phys
     /// @details This is used to store information about rotation in 3d space. The
     /// X, Y and Z are used to identify a ray from the origin (0,0,0), about which
     /// W represents an amount of rotation.
-    /// @warning The Documentation for this class needs to be revised. It describes 2 mutually exclusive means of storing
     class PHYS_LIB Quaternion
     {
         public:
             ///////////////////////////////////////////////////////////////////////////////
             //  Data Members
 
-            /// @brief Rotation on the X Axis.
+            /// @brief The X component of the Axis.
             Real X;
-            /// @brief Rotation on the Y Axis.
+            /// @brief The Y component of the Axis.
             Real Y;
-            /// @brief Rotation on the Z Axis.
+            /// @brief The Z component of the Axis.
             Real Z;
-            /// @brief Rotation on the W Axis.
+            /// @brief Rotation on the Axis X, Y and Z defined.
             Real W;
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -86,10 +85,10 @@ namespace phys
 
             /// @brief Constructor.
             /// @details Constructor that sets all four axis' of rotation.
-            /// @param x Rotation on the X Axis.
-            /// @param y Rotation on the Y Axis.
-            /// @param z Rotation on the Z Axis.
-            /// @param w Rotation on the W Axis.
+            /// @param x The X component of the Axis.
+            /// @param y The Y component of the Axis.
+            /// @param z The Z component of the Axis.
+            /// @param w Rotation on the Axis X, Y and Z defined.
             Quaternion(const Real &x, const Real &y, const Real &z, const Real &w);
 
             /// @brief Axis and Rotation Constructor.
@@ -227,7 +226,7 @@ namespace phys
             ///////////////////////////////////////////////////////////////////////////////
             // Vector Rotation Operators
 
-            /// @brief Rotates a vector by the provided vector.
+            /// @brief Rotates a vector by the provided quaternion.
             /// @param Other The vector to rotate.
             /// @return Returns a rotated version of the provided vector.
             Vector3 operator* (const Vector3& Other) const;

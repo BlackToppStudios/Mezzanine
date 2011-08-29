@@ -697,7 +697,7 @@ bool CatchApp::PostUI()
                     TheWorld->Log("Dragged To");
                     TheWorld->Log(*DragTo);
                     #endif
-                    Dragger->SetPivotB(*DragTo);
+                    Dragger->SetPivotBLocation(*DragTo);
                 }
             }
 
