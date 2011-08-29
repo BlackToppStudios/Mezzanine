@@ -19,4 +19,18 @@ class BNS_Fan : public WorldTrigger
         virtual void ApplyTrigger();
 };
 
+class Roll_Roll : public WorldTrigger
+{
+    protected:
+        HingeConstraint* RollerMotor1;
+        HingeConstraint* RollerMotor2;
+        HingeConstraint* RollerMotor3;
+        virtual void Rotate(HingeConstraint* RollerMotor);
+    public:
+        Roll_Roll(const String& name, HingeConstraint* RollerMotor1, HingeConstraint* RollerMotor2, HingeConstraint* RollerMotor3);
+        virtual ~Roll_Roll();
+        virtual bool ConditionsAreMet();
+        virtual void ApplyTrigger();
+};
+
 #endif

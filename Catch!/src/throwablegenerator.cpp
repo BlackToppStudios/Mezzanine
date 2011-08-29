@@ -106,7 +106,7 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     WoodData->Mass = 4.5;//
     WoodData->Friction = 0.3;// 0.25 - 0.5
     WoodData->Restitution = 0.05;
-    Throwables.push_back(UraniumData);
+    Throwables.push_back(WoodData);
 }
 
 ThrowableData* ThrowableGenerator::GetThrowableData(const String& Throwable)
@@ -132,6 +132,13 @@ ActorRigid* ThrowableGenerator::CreateThrowable(const String& Throwable)
     Created->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Created->GetPhysicsSettings()->SetFriction(ToBeCreated->Friction);
     Created->GetPhysicsSettings()->SetRestitution(ToBeCreated->Restitution);
+    /*if("Rubber"==Throwable)
+    {
+        //generate sphere shape
+    }else{
+        //generate convex hull
+        //probably make more if's for cylinders and such
+    }// */
     return Created;
 }
 
