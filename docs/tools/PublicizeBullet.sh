@@ -26,5 +26,5 @@ sed -i -e 's|int			m_flags;|public: //Made public by BTS with PublicizeBullet.sh
 echo "Updating btSliderConstraint.h"
 sed -i -e 's|	int m_flags;|	public: //Made public by BTS with PublicizeBullet.sh\n	int			m_flags;\n	private:|' ../../physgameengine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletDynamics/ConstraintSolver/btSliderConstraint.h
 
-
-
+#Make all the protected members public
+sed -i -e 's|protected|public|' ../../physgameengine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h
