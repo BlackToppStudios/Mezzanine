@@ -41,6 +41,7 @@
 #define _constraint_cpp
 
 #include "constraint.h"
+#include "actormanager.h"
 #include "actorrigid.h"
 #include "serialization.h"
 #include "world.h"
@@ -65,6 +66,46 @@ namespace phys
             case Con_CFM:           return String("Con_CFM");
             case Con_Stop_CFM:      return String("Con_Stop_CFM");
             default: throw(phys::Exception("Attempted to convert invalid Constraint Paramater to a String."));
+        }
+    }
+
+    ConstraintParam StringAsConstraintParam(String Param)
+    {
+        if(5>Param.size())
+            { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Too Short")); }
+
+        switch(Param.at(4))
+        {
+            case 'E':
+                if(ConstraintParamAsString(Con_ERP)==Param)
+                    { return Con_ERP; }
+                else
+                    { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_ERP but isn't")); }
+            case 'C':
+                if(ConstraintParamAsString(Con_CFM)==Param)
+                    { return Con_CFM; }
+                else
+                    { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_CFM but isn't")); }
+            case 'S':
+                switch(Param.at(9))
+                {
+                    case 'E':
+                        if(ConstraintParamAsString(Con_Stop_ERP)==Param)
+                            { return Con_Stop_ERP; }
+                        else
+                            { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_Stop_ERP but isn't")); }
+                    case 'C':
+                        if(ConstraintParamAsString(Con_Stop_CFM)==Param)
+                            { return Con_Stop_CFM; }
+                        else
+                            { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_Stop_CFM but isn't")); }
+                    case 'S':
+
+                    default:
+                        throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appeared to be Con_Stop_Something, but wasn't"));
+                }
+            default:
+                throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Invalid Name"));
         }
     }
 
@@ -159,12 +200,72 @@ namespace phys
                 }
             }
         }
-
     }
 
     // DeSerializable
     void TypedConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->TypedConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                String ActorNameA(OneNode.GetAttribute("ActorNameA").AsString());                                                           // get Actors from the XML
+                String ActorNameB(OneNode.GetAttribute("ActorNameB").AsString());
+                if (""!=ActorNameA)                                                                                                         //Figure out if the actors are fine
+                {
+                    ActorRigid* FutureA = dynamic_cast<ActorRigid*>(World::GetWorldPointer()->GetActorManager()->GetActor(ActorNameA));     // get ActorA from the Actormanager
+                    if (0==FutureA)
+                        { DeSerializeError("find an ActorRigid named "+ActorNameA+" in the ActorManager", SerializableName()); }
+
+                    if (""!=ActorNameB)
+                    {
+                        ActorRigid* FutureB = dynamic_cast<ActorRigid*>(World::GetWorldPointer()->GetActorManager()->GetActor(ActorNameB)); // get ActorB from the Actormanager
+                        if (0==FutureB)
+                            { DeSerializeError("find an ActorRigid named "+ActorNameB+" in the ActorManager", SerializableName()); }
+                        this->SetBodies(FutureA,FutureB);
+                    }else{
+                        this->SetBodies(FutureA);
+                    }
+                }else{
+                    DeSerializeError("retrieve ActorNameA",SerializableName());
+                }
+
+                xml::Node TheAxis = OneNode.GetFirstChild();
+                while(TheAxis)
+                {
+                    String EnemyName(TheAxis.Name());                            //WWII country are we dealing with.
+                    if(4>EnemyName.size())                                       //No country on the axis side WWII had fewer than 4 letters in its name. if USA somehow lands on this list it is an error
+                        { DeSerializeError("find valid axis name, name is too short",SerializableName()); }
+                    int AxisValue;
+
+                    switch(EnemyName[4])
+                    {
+                        case '-': AxisValue=-1;         break;
+                        case '0': AxisValue=0;          break;
+                        case '1': AxisValue=1;          break;
+                        case '2': AxisValue=2;          break;
+                        case '3': AxisValue=3;          break;
+                        case '4': AxisValue=4;          break;
+                        case '5': AxisValue=5;          break;
+                        default: { DeSerializeError("find valid axis name, name indicates invalid axis",SerializableName()); }
+                    }
+
+                    xml::Attribute AxisAttribute = TheAxis.GetFirstAttribute();
+                    while(AxisAttribute)
+                    {
+                        this->SetParam(StringAsConstraintParam(AxisAttribute.Name()),AxisAttribute.AsReal(),AxisValue);
+                        AxisAttribute = AxisAttribute.GetNextAttribute();
+                    }
+
+                    TheAxis = TheAxis.GetNextSibling();
+                }// /While(TheAxis)
+
+            }else{
+                DeSerializeError("Incompatible XML Version for "+SerializableName(),SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
     String TypedConstraint::SerializableName() const
@@ -603,7 +704,7 @@ namespace phys
         { this->Generic6dof->setUseFrameOffset(FrameOffset); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Serialization
+    // Generic6DofConstraint Serialization
 #ifdef PHYSXML
     void Generic6DofConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
@@ -719,6 +820,11 @@ namespace phys
     {
     }
 
+    btGeneric6DofSpringConstraint* Generic6DofSpringConstraint::Generic6dofSpring() const
+    {
+        return static_cast<btGeneric6DofSpringConstraint*>(Generic6dof);
+    }
+
     Generic6DofSpringConstraint::Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA,
                                                               const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
     {
@@ -726,44 +832,160 @@ namespace phys
 
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-        Generic6dofSpring = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
-        Generic6dof = Generic6dofSpring;
+        Generic6dof = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
     }
+
+    Generic6DofSpringConstraint::Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+    {
+        SetBodies(ActorA,ActorB);
+
+        Generic6dof = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+    }
+
 
     Generic6DofSpringConstraint::~Generic6DofSpringConstraint()
     {
-        if(Generic6dofSpring)
+        if(Generic6dof)
         {
-            delete Generic6dofSpring;
-            Generic6dofSpring = NULL;
+            delete Generic6dof;
             Generic6dof = NULL;
         }
     }
 
-    void Generic6DofSpringConstraint::SetStiffness(int Index, Real Stiffness)
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Linear Spring Settings
+    void Generic6DofSpringConstraint::SetSpringLinearStiffness(const Vector3& Stiffies)
+        { SetSpringStiffness(LinearX, Stiffies.X); SetSpringStiffness(LinearY, Stiffies.Y); SetSpringStiffness(LinearZ, Stiffies.Z); }
+
+    void Generic6DofSpringConstraint::SetSpringLinearDamping(const Vector3& Damps)
+        { SetSpringDamping(LinearX, Damps.X); SetSpringDamping(LinearY, Damps.Y); SetSpringDamping(LinearZ, Damps.Z); }
+
+    void Generic6DofSpringConstraint::SetSpringLinearEnabled(const Vector3& Enableness)
+        { SetSpringEnabled(LinearX, Enableness.X); SetSpringEnabled(LinearY, Enableness.Y); SetSpringEnabled(LinearZ, Enableness.Z); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringLinearStiffness() const
+        { return Vector3(GetSpringStiffness(LinearX),GetSpringStiffness(LinearY),GetSpringStiffness(LinearZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringLinearDamping() const
+        { return Vector3(GetSpringDamping(LinearX),GetSpringDamping(LinearY),GetSpringDamping(LinearZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringLinearEnabled() const
+        { return Vector3(GetSpringEnabled(LinearX),GetSpringEnabled(LinearY),GetSpringEnabled(LinearZ)); }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Angular Spring Settings
+    void Generic6DofSpringConstraint::SetSpringAngularStiffness(const Vector3& Stiffies)
+        { SetSpringStiffness(AngularX, Stiffies.X); SetSpringStiffness(AngularY, Stiffies.Y); SetSpringStiffness(AngularZ, Stiffies.Z); }
+
+    void Generic6DofSpringConstraint::SetSpringAngularDamping(const Vector3& Damps)
+        { SetSpringDamping(AngularX, Damps.X); SetSpringDamping(AngularY, Damps.Y); SetSpringDamping(AngularZ, Damps.Z); }
+
+    void Generic6DofSpringConstraint::SetSpringAngularEnabled(const Vector3& Enableness)
+        { SetSpringEnabled(AngularX, Enableness.X); SetSpringEnabled(AngularY, Enableness.Y); SetSpringEnabled(AngularZ, Enableness.Z); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringAngularStiffness() const
+        { return Vector3(GetSpringStiffness(AngularX),GetSpringStiffness(AngularY),GetSpringStiffness(AngularZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringAngularDamping() const
+        { return Vector3(GetSpringDamping(AngularX),GetSpringDamping(AngularY),GetSpringDamping(AngularZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringAngularEnabled() const
+        { return Vector3(GetSpringEnabled(AngularX),GetSpringEnabled(AngularY),GetSpringEnabled(AngularZ)); }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Per Axis Spring Settings
+    void Generic6DofSpringConstraint::SetSpringStiffness(int Index, Real Stiffness)
+        { this->Generic6dofSpring()->setStiffness(Index, Stiffness); }
+
+    void Generic6DofSpringConstraint::SetSpringDamping(int Index, Real Damping)
+        { this->Generic6dofSpring()->setDamping(Index, Damping); }
+
+    void Generic6DofSpringConstraint::SetSpringEnabled(int Index, bool Enable)
+        { this->Generic6dofSpring()->enableSpring(Index, Enable); }
+
+    Real Generic6DofSpringConstraint::GetSpringStiffness(int Index) const
+        { return this->Generic6dofSpring()->m_springStiffness[Index]; }
+
+    Real Generic6DofSpringConstraint::GetSpringDamping(int Index) const
+        { return this->Generic6dofSpring()->m_springDamping[Index]; }
+
+    bool Generic6DofSpringConstraint::GetSpringEnabled(int Index) const
+        { return this->Generic6dofSpring()->m_springEnabled[Index]; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Calculated Items
+    void Generic6DofSpringConstraint::CalculateSpringEquilibriumPoint()
+        { this->Generic6dofSpring()->setEquilibriumPoint(); }
+
+    void Generic6DofSpringConstraint::CalculateSpringEquilibriumPoint(int Index)
+        { this->Generic6dofSpring()->setEquilibriumPoint(Index); }
+
+    Vector3 Generic6DofSpringConstraint::GetCurrentSpringAngularEquilibriumPoints() const
+        { return Vector3(GetCurrentSpringEquilibriumPoint(AngularX),GetCurrentSpringEquilibriumPoint(AngularY),GetCurrentSpringEquilibriumPoint(AngularZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetCurrentSpringLinearEquilibriumPoints() const
+        { return Vector3(GetCurrentSpringEquilibriumPoint(LinearX),GetCurrentSpringEquilibriumPoint(LinearY),GetCurrentSpringEquilibriumPoint(LinearZ)); }
+
+    Real Generic6DofSpringConstraint::GetCurrentSpringEquilibriumPoint(int Index) const
+        { return this->Generic6dofSpring()->m_equilibriumPoint[Index]; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Serialization
+#ifdef PHYSXML
+    void Generic6DofSpringConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        this->Generic6dofSpring->setStiffness(Index, Stiffness);
+        xml::Node G6dofSpringNode = CurrentRoot.AppendChild(SerializableName());                        // The base node all the base constraint stuff will go in
+        if (!G6dofSpringNode)
+            { SerializeError("Create G6dofSpringNode", SerializableName()); }
+
+        phys::xml::Attribute Version = G6dofSpringNode.AppendAttribute("Version");                      // Version
+        if (!Version)
+            { SerializeError("Create Version", SerializableName()); }
+        Version.SetValue(1);
+
+        this->Generic6DofConstraint::ProtoSerialize(G6dofSpringNode);                                   // Serialize the 6dof, dualtransform and the typedconstraint
+
+        xml::Node SpringStiffness = G6dofSpringNode.AppendChild("SpringStiffness");
+        if (!SpringStiffness)
+            { SerializeError("Create SpringStiffness", SerializableName()); }
+        xml::Node SpringDamping = G6dofSpringNode.AppendChild("SpringDamping");
+        if (!SpringDamping)
+            { SerializeError("Create SpringDamping", SerializableName()); }
+        xml::Node SpringEnabled = G6dofSpringNode.AppendChild("SpringEnabled");
+        if (!SpringEnabled)
+            { SerializeError("Create SpringEnabled", SerializableName()); }
+
+
+        for (int c=0; c<6; ++c)                                                                         // Each of the spring attributes
+        {
+            String AttrName("Axis"+ToString(c));
+
+            phys::xml::Attribute AxisStiffness = SpringStiffness.AppendAttribute(AttrName);
+            if (!AxisStiffness)
+                { SerializeError("Create AxisStiffness-"+AttrName, SerializableName()); }
+            AxisStiffness.SetValue(this->GetSpringStiffness(c));
+
+            phys::xml::Attribute AxisDamping = SpringDamping.AppendAttribute(AttrName);
+            if (!AxisDamping)
+                { SerializeError("Create AxisDamping-"+AttrName, SerializableName()); }
+            AxisDamping.SetValue(this->GetSpringDamping(c));
+
+            phys::xml::Attribute AxisEnabled = SpringEnabled.AppendAttribute(AttrName);
+            if (!AxisEnabled)
+                { SerializeError("Create AxisEnabled-"+AttrName, SerializableName()); }
+            AxisEnabled.SetValue(this->GetSpringEnabled(c));
+        }
     }
 
-    void Generic6DofSpringConstraint::SetDamping(int Index, Real Damping)
+    void Generic6DofSpringConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
-        this->Generic6dofSpring->setDamping(Index, Damping);
+
     }
 
-    void Generic6DofSpringConstraint::SetEquilibriumPoint(int Index)
-    {
-        this->Generic6dofSpring->setEquilibriumPoint(Index);
-    }
+    String Generic6DofSpringConstraint::SerializableName() const
+        { return String("Generic6DofSpringConstraint"); }
+#endif // /PHYSXML
 
-    void Generic6DofSpringConstraint::EnableSpring(int Index, bool Enable)
-    {
-        this->Generic6dofSpring->enableSpring(Index, Enable);
-    }
-
-        // Spring x6 serialization
-            // Enabled
-            // Stiffness
-            // Damping
 
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -1037,7 +1259,6 @@ namespace phys
         btVector3 temp2(Axis1.GetBulletVector3());
         btVector3 temp3(Axis2.GetBulletVector3());
         Hinge2 = new btHinge2Constraint(*BodyA, *BodyB, temp1, temp2, temp3);
-        Generic6dofSpring = Hinge2;
         Generic6dof = Hinge2;
     }
 
@@ -1045,7 +1266,6 @@ namespace phys
     {
         delete Hinge2;
         Hinge2 = NULL;
-        Generic6dofSpring = NULL;
         Generic6dof = NULL;
     }
 
@@ -1187,7 +1407,36 @@ namespace phys
 
     void Point2PointConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->Point2PointConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                this->TypedConstraint::ProtoDeSerialize(OneNode.GetChild("TypedConstraint"));
 
+                this->SetTAU(OneNode.GetAttribute("Tau").AsReal());
+                this->SetImpulseClamping(OneNode.GetAttribute("ImpulseClamping").AsReal());
+                this->SetDamping(OneNode.GetAttribute("Damping").AsReal());
+
+                xml::Node ActorANode = OneNode.GetChild("ActorA");
+                if(!ActorANode)
+                    { DeSerializeError("Could not find ActorA position",SerializableName()); }
+
+                xml::Node ActorBNode = OneNode.GetChild("ActorB");
+                if(!ActorBNode)
+                    { DeSerializeError("Could not find ActorB position",SerializableName()); }
+
+                Vector3 temp;
+                temp.ProtoDeSerialize(ActorANode.GetFirstChild());
+                SetPivotALocation(temp);
+                temp.ProtoDeSerialize(ActorBNode.GetFirstChild());
+                SetPivotBLocation(temp);
+
+            }else{
+                DeSerializeError("find usable serialization version ",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
     String Point2PointConstraint::SerializableName() const
@@ -1423,6 +1672,76 @@ namespace phys
         { return DeSerialize(stream, x); }
 
     void operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::DualTransformConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::DualTransformConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::DualTransformConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::Generic6DofConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofSpringConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::Generic6DofSpringConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofSpringConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::HingeConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::HingeConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::HingeConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::Point2PointConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::Point2PointConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::Point2PointConstraint& x)
         { x.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 

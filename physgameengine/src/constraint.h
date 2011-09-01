@@ -78,10 +78,16 @@ namespace phys
         Con_Stop_CFM    = 4
     };
 
-    /// @brief Get a Constraint Parameter as a String
-    /// @param Param The Parameter to get as a String
-    /// @return A String That contains the name of a ConstraintParam
+    /// @brief Get a Constraint Parameter as a String.
+    /// @param Param The Parameter to get as a String.
+    /// @return A String That contains the name of a ConstraintParam.
     String ConstraintParamAsString(ConstraintParam Param);
+
+    /// @brief Convert A string that might be ConstraintParam to one.
+    /// @param Param A String that should be storing, a constraint param name.
+    /// @return if the name matches on of the constraintParams exactly, return that one.
+    /// @throw If the Param does not match a type exactly, then this will throw an exception.
+    ConstraintParam StringAsConstraintParam(String Param);
 
     /// @brief How many ConstraintParam Exist.
     /// @details Used in some algorithms and we didn't want it to look like a magic so we defined it here.
@@ -293,6 +299,8 @@ namespace phys
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
             /// @param OneNode and xml::Node containing the data.
+            /// @details This should only be run once all the actors have finishes being deserialized. This will fail
+            /// if the actors it expects are not present.
             virtual void ProtoDeSerialize(const xml::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
@@ -391,7 +399,7 @@ namespace phys
     /// @class ConeTwistConstraint
     /// @headerfile constraint.h
     /// @brief
-    /// @details
+    /// @details This class is currently incomplete
     ///////////////////////////////////////
     class PHYS_LIB ConeTwistConstraint : public TypedConstraint
     {
@@ -772,7 +780,7 @@ namespace phys
             virtual void SetUseFrameOffset(bool FrameOffset);
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Serialization
+            // Generic6DofConstraint Serialization
 #ifdef PHYSXML
             // Serializable
             /// @brief Convert this class to an xml::Node ready for serialization
@@ -806,20 +814,148 @@ namespace phys
     class PHYS_LIB Generic6DofSpringConstraint : public Generic6DofConstraint
     {
         protected:
-            /// @brief Bullet constraint that this class encapsulates.
-            btGeneric6DofSpringConstraint* Generic6dofSpring;
-        public:
             /// @brief Inheritance Constructor.
             /// @details This is only called by derived classes, and shouldn't be called manually.
             Generic6DofSpringConstraint();
-            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA);
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btGeneric6DofSpringConstraint* Generic6dofSpring() const;
+        public:
+            /// @brief Identify the Axis a bit easier when iterating over them is less convienent than typing an Identifier
+            enum UsableAxis{
+                LinearX         = 0,    ///< Translation on the X axis
+                LinearY         = 1,    ///< Translation on the Y axis
+                LinearZ         = 2,    ///< Translation on the Z axis
+                AngularX        = 3,    ///< Rotation on the X axis
+                AngularY        = 4,    ///< Rotation on the Y axis
+                AngularZ        = 5,    ///< Rotation on the Z axis
+            };
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Construction and Destruction
+            /// @brief Two body Verbose constructor
+            /// @param ActorA The First body to be bound
+            /// @param ActorB  The Second body to be bound
+            /// @param VectorA The offset from ActorA's center of gravity to get to match an offset from ActorB
+            /// @param VectorB The offset from ActorB's center of gravity.
+            /// @param QuaternionA Relative rotation from ActorA
+            /// @param QuaternionB Relative rotation from ActorB
+            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
+            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA = false);
+            /// @brief Two body Terse constructor
+            /// @param ActorA The First body to be bound
+            /// @param ActorB  The Second body to be bound
+            /// @param TransformA The offset and rotation from ActorA's center of gravity to get to match an offset from ActorB
+            /// @param TransformB The offset and rotation from ActorB's center of gravity.
+            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
+            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Generic6DofSpringConstraint();
-            virtual void SetStiffness(int Index, Real Stiffness);
-            virtual void SetDamping(int Index, Real Damping);
-            virtual void SetEquilibriumPoint(int Index);
-            virtual void EnableSpring(int Index, bool Enable);
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Linear Spring Settings
+            /// @brief Set the Stiffness of the springs on each Linear Axis.
+            /// @param Stiffies A Vector3 containing the X, Y and Z stiffnesses.
+            virtual void SetSpringLinearStiffness(const Vector3& Stiffies);
+            /// @brief Set the Damping of the springs on each Linear Axis.
+            /// @param Damps A Vector3 containing the X, Y and Z desired damping.
+            virtual void SetSpringLinearDamping(const Vector3& Damps);
+            /// @brief Set the Stiffness of the springs on each Linear Axis.
+            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
+            virtual void SetSpringLinearEnabled(const Vector3& Enableness);
+
+            /// @brief Get the Stiffness for all Linear Axis
+            /// @return A Vector3 with the Stiffness on the X, Y and Z Linear Axis.
+            virtual Vector3 GetSpringLinearStiffness() const;
+            /// @brief Get the Damping for all Linear Axis
+            /// @return A Vector3 with the Damping on the X, Y and Z Linear Axis.
+            virtual Vector3 GetSpringLinearDamping() const;
+            /// @brief Get the Enabled Status for all Linear Axis
+            /// @return A Vector3 with the Enabled Status on the X, Y and Z Linear Axis.
+            virtual Vector3 GetSpringLinearEnabled() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Angular Spring Settings
+            /// @brief Set the Stiffness of the springs on each Angular Axis.
+            /// @param Stiffies A Vector3 containing the X, Y and Z stiffnesses.
+            virtual void SetSpringAngularStiffness(const Vector3& Stiffies);
+            /// @brief Set the Damping of the springs on each Angular Axis.
+            /// @param Damps A Vector3 containing the X, Y and Z desired damping.
+            virtual void SetSpringAngularDamping(const Vector3& Damps);
+            /// @brief Set the Stiffness of the springs on each Angular Axis.
+            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
+            virtual void SetSpringAngularEnabled(const Vector3& Enableness);
+
+            /// @brief Get the Stiffness for all Angular Axis
+            /// @return A Vector3 with the Stiffness on the X, Y and Z Angular Axis.
+            virtual Vector3 GetSpringAngularStiffness() const;
+            /// @brief Get the Damping for all Angular Axis
+            /// @return A Vector3 with the Damping on the X, Y and Z Angular Axis.
+            virtual Vector3 GetSpringAngularDamping() const;
+            /// @brief Get the Enabled Status for all Angular Axis
+            /// @return A Vector3 with the Enabled Status on the X, Y and Z Angular Axis.
+            virtual Vector3 GetSpringAngularEnabled() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Per Axis Spring Settings
+            /// @brief Set the spring stiffness on a given axis
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @param Stiffness A real with the new desired stiffness.
+            virtual void SetSpringStiffness(int Index, Real Stiffness);
+            /// @brief Set the spring Damping on a given axis.
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @param Damping A real with the new desired Damping.
+            virtual void SetSpringDamping(int Index, Real Damping);
+            /// @brief Set the spring's enabled status on a given axis.
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @param Enable A bool with the spring's enabled status.
+            virtual void SetSpringEnabled(int Index, bool Enable);
+
+            /// @brief Retrieve the Stiffness of the spring on the given axis
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @return A real with the requested value;
+            virtual Real GetSpringStiffness(int Index) const;
+            /// @brief Retrieve the Damping of the spring on the given axis
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @return A real with the requested value.
+            virtual Real GetSpringDamping(int Index) const;
+            /// @brief Retrieve the EnabledStatus of the spring on the given axis
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @return A bool with the requested value.
+            virtual bool GetSpringEnabled(int Index) const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Calculated Items
+            /// @internal
+            virtual void CalculateSpringEquilibriumPoint();
+            /// @internal
+            virtual void CalculateSpringEquilibriumPoint(int Index);
+
+            /// @internal
+            virtual Vector3 GetCurrentSpringAngularEquilibriumPoints() const;
+            /// @internal
+            virtual Vector3 GetCurrentSpringLinearEquilibriumPoints() const;
+            /// @internal
+            virtual Real GetCurrentSpringEquilibriumPoint(int Index) const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Serialization
+#ifdef PHYSXML
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Generic6DofConstraint"
+            String SerializableName() const;
+#endif // /PHYSXML
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -1032,7 +1168,7 @@ namespace phys
     /// @class Hinge2Constraint
     /// @headerfile constraint.h
     /// @brief
-    /// @details
+    /// @details This class is incomplete
     ///////////////////////////////////////
     class PHYS_LIB Hinge2Constraint : public Generic6DofSpringConstraint
     {
@@ -1150,7 +1286,7 @@ namespace phys
     /// @class SliderConstraint
     /// @headerfile constraint.h
     /// @brief
-    /// @details
+    /// @details This class is incomplete
     ///////////////////////////////////////
     class PHYS_LIB SliderConstraint : public TypedConstraint
     {
@@ -1223,22 +1359,57 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     // Class External << Operators for streaming or assignment
 
-    /// @brief Convert a constraint to XML and send it down a stream
-    /// @param stream The stream to send it down
-    /// @param x The constraint to send down
+    /// @brief Convert a constraint to XML and send it down a stream.
+    /// @param stream The stream to send it down.
+    /// @param x The constraint to send down.
     /// @return This returns the output stream to allow operator chaining.
     std::ostream& operator << (std::ostream& stream, const phys::TypedConstraint& x);
-
-    /// @brief Get a constraint from an XML stream
-    /// @param stream The stream to get it out of
-    /// @param x The it you will get out of the stream
+    /// @brief Get a constraint from an XML stream.
+    /// @param stream The stream to get it out of.
+    /// @param x The it you will get out of the stream.
     /// @return This returns the input stream to allow operator chaining.
     std::istream& operator >> (std::istream& stream, phys::TypedConstraint& x);
-
     /// @brief Converts an XML Node into a functional in memory construct.
     /// @param OneNode The xml node that contains the deserialize class instance.
     /// @param x The class instance to overwrite witht the proto serialized version in the node.
     void operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::DualTransformConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::DualTransformConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::DualTransformConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::Generic6DofConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofSpringConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::Generic6DofSpringConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofSpringConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::HingeConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::HingeConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::HingeConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::Point2PointConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::Point2PointConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::Point2PointConstraint& x);
+
+
 #endif // \PHYSXML
 
 
