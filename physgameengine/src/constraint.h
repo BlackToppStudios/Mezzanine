@@ -337,21 +337,21 @@ namespace phys
         /// @return This returns a phys::Transform
         virtual Transform GetPivotBTransform() const = 0;
 
-        /// @brief Set The relative location of the hinge pivot from ActorA's Center of gravity.
+        /// @brief Set The relative location of the  pivot from ActorA's Center of gravity.
         /// @param Location The New value for PivotA
         /// @details Ultimately this information winds up being stored in the TransformA.
         virtual void SetPivotALocation(const Vector3& Location)
             { SetPivotATransform( Transform(Location, GetPivotARotation()) ); }
-        /// @brief Set The relative location of the hinge pivot from ActorB's Center of gravity.
+        /// @brief Set The relative location of the  pivot from ActorB's Center of gravity.
         /// @param Location The New value for PivotB
         /// @details Ultimately this information winds up being stored in the TransformB
         virtual void SetPivotBLocation(const Vector3& Location)
             { SetPivotBTransform( Transform(Location, GetPivotBRotation()) ); }
-        /// @brief Get the location of the hinge pivot relative to ActorA's Center of gravity
+        /// @brief Get the location of the pivot relative to ActorA's Center of gravity
         /// @return A Vector3 with the pivot location.
         virtual Vector3 GetPivotALocation() const
             { return GetPivotATransform().Location; }
-        /// @brief Get the location of the hinge pivot relative to ActorB's Center of gravity
+        /// @brief Get the location of the pivot relative to ActorB's Center of gravity
         /// @return A Vector3 with the pivot location.
         virtual Vector3 GetPivotBLocation() const
             { return GetPivotBTransform().Location; }
@@ -1068,15 +1068,15 @@ namespace phys
             virtual void EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
             /// @brief Enables(or Disables) the motor on the hinge.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
-            virtual void EnableMotor(bool EnableMotor);
+            /* virtual void EnableMotor(bool EnableMotor);
             /// @brief Is this motor on this hinge enabled?
-            /// @return True if it is, false otherwise.
+            /// @return True if it is, false otherwise. */
             virtual bool GetMotorEnabled() const;
             /// @brief Sets the maximum amount of force the motor is to apply.
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
-            virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
+            /* virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
             /// @brief Retrieve the maximimum value that the acceleration of the motor can be increased.
-            /// @return A real containing the maximum impulse.
+            /// @return A real containing the maximum impulse. */
             virtual Real GetMaxMotorImpulse() const;
             /// @brief Sets a Target Velocity, indirectly using the angle stored in a quaternion.
             /// @details Is implemented in terms of SetMotorTarget(Real, Real);
@@ -1089,9 +1089,10 @@ namespace phys
             virtual void SetMotorTarget(Real TargetAngle, Real Dt);
             /// @brief Desired angular velocity of the motor
             /// @param TargetVelocity The Desired velocity
-            virtual void SetMotorTargetVelocity(Real TargetVelocity);
+            /// @warning Causes segfaults in some tests.
+            /* virtual void SetMotorTargetVelocity(Real TargetVelocity);
             /// @brief Get the Target Velocity.
-            /// @return the target valocity as a real.
+            /// @return the target valocity as a real. */
             virtual Real GetMotorTargetVelocity() const;
 
             ////////////////////////////////////////////////////////////////////////////////
@@ -1338,18 +1339,18 @@ namespace phys
     /// @class UniversalConstraint
     /// @headerfile constraint.h
     /// @brief
-    /// @details
+    /// @details This class is currently incomplete
     ///////////////////////////////////////
-    class PHYS_LIB UniversalConstraint : public Generic6DofConstraint
+    class PHYS_LIB UniversalJointConstraint : public Generic6DofConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
             btUniversalConstraint* Universal;
         public:
-            UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            UniversalJointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
             /// @brief Class destructor.
             /// @details The class destructor.
-            virtual ~UniversalConstraint();
+            virtual ~UniversalJointConstraint();
             virtual void SetUpperLimit(Real Ang1Max, Real Ang2Max);
             virtual void SetLowerLimit(Real Ang1Min, Real Ang2Min);
     };

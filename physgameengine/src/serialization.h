@@ -44,6 +44,7 @@
 #include "xml.h"
 #include "xmldoc.h"
 
+#include <ostream>
 #include <memory>
 
 #ifdef PHYSXML
@@ -205,19 +206,22 @@ namespace phys
     /// @details This just calls SerializeError() with the third parameter false. This exists solely to make code
     /// A little more readable.
     void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD = false);
-}
+
+} // /Namespace phys
 
 /*
 /// @brief This will call convert an xml::Node into Text in a stream
 /// @param Stream The std::ostream that the serializable will be stuffed into.
 /// @param OneNode The xml to be converted
 /// @return This returns Stream that is passed in, with the additional data of the serialized object.
-std::ostream& PHYS_LIB operator << (std::ostream& Stream, const phys::xml::Node& OneNode)
+//template <>
+std::ostream& PHYS_LIB operator<< <phys::xml::Node> (std::ostream& Stream, const phys::xml::Node& OneNode)
 {
     OneNode.Print(Stream);
-    return Stream;11
+    return Stream;
 }
 */
+
 
 #endif // \PHYSXML
 

@@ -202,6 +202,27 @@ namespace phys
         }
     }
 
+    namespace{
+        /// @internal
+        /// @brief used to help convert string to the axis they indicate
+        /// @param it it is the character that is passed in to indicate what the axis is. This should be the [4] character or the 5 character of the string.
+        /// @return this returns an int that indicates the Axis for the string.
+        int char4ToAxis(char it)
+        {
+            switch(it)
+            {
+                case '-': return -1;         break;
+                case '0': return 0;          break;
+                case '1': return 1;          break;
+                case '2': return 2;          break;
+                case '3': return 3;          break;
+                case '4': return 4;          break;
+                case '5': return 5;          break;
+                default: { throw Exception("Cannot convert invalid axis name"); }
+            }
+        }
+    }
+
     // DeSerializable
     void TypedConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
@@ -238,17 +259,7 @@ namespace phys
                         { DeSerializeError("find valid axis name, name is too short",SerializableName()); }
                     int AxisValue;
 
-                    switch(EnemyName[4])
-                    {
-                        case '-': AxisValue=-1;         break;
-                        case '0': AxisValue=0;          break;
-                        case '1': AxisValue=1;          break;
-                        case '2': AxisValue=2;          break;
-                        case '3': AxisValue=3;          break;
-                        case '4': AxisValue=4;          break;
-                        case '5': AxisValue=5;          break;
-                        default: { DeSerializeError("find valid axis name, name indicates invalid axis",SerializableName()); }
-                    }
+                    AxisValue=char4ToAxis(EnemyName[4]);
 
                     xml::Attribute AxisAttribute = TheAxis.GetFirstAttribute();
                     while(AxisAttribute)
@@ -264,7 +275,7 @@ namespace phys
                 DeSerializeError("Incompatible XML Version for "+SerializableName(),SerializableName());
             }
         }else{
-            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name()+",",SerializableName());
         }
     }
 
@@ -306,6 +317,33 @@ namespace phys
     // DeSerializable
     void DualTransformConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->DualTransformConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node TypedConstraintNode = OneNode.GetChild("TypedConstraint");
+                if(!TypedConstraintNode)
+                    { DeSerializeError("locate TypedConstraint node",SerializableName()); }
+                this->TypedConstraint::ProtoDeSerialize(TypedConstraintNode);
+
+                xml::Node TransformA = OneNode.GetChild("ActorA").GetFirstChild();
+                if (!TransformA)
+                    { DeSerializeError("locate transform for ActorA",SerializableName()); }
+                Transform temp;
+                temp.ProtoDeSerialize(TransformA);
+                this->SetPivotATransform(temp);
+
+                xml::Node TransformB = OneNode.GetChild("ActorB").GetFirstChild();
+                if (!TransformB)
+                    { DeSerializeError("locate transform for ActorB",SerializableName()); }
+                temp.ProtoDeSerialize(TransformB);
+                this->SetPivotBTransform(temp);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
     String DualTransformConstraint::SerializableName() const
@@ -806,7 +844,104 @@ namespace phys
 
     void Generic6DofConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->Generic6DofConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
+                if(!DualTranny)
+                    { DeSerializeError("locate DualTransforn node",SerializableName()); }
+                this->DualTransformConstraint::ProtoDeSerialize(DualTranny);
 
+                this->SetLinearLimitSoftness(OneNode.GetAttribute("LinearLimitSoftness").AsReal());
+                this->SetLinearLimitDamping(OneNode.GetAttribute("LinearLimitDamping").AsReal());
+                this->SetLinearLimitRestitution(OneNode.GetAttribute("LinearLimitRestitution").AsReal());
+
+                Vector3 vec;
+
+                xml::Node LinearLimitUpper = OneNode.GetChild("LinearLimitUpper");
+                if(!LinearLimitUpper || !LinearLimitUpper.GetFirstChild())
+                    { DeSerializeError("locate LinearLimitUpper node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearLimitUpper.GetFirstChild());
+                this->SetLinearLimitUpper(vec);
+
+                xml::Node LinearLimitLower = OneNode.GetChild("LinearLimitLower");
+                if(!LinearLimitLower || !LinearLimitLower.GetFirstChild())
+                    { DeSerializeError("locate LinearLimitLower node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearLimitLower.GetFirstChild());
+                this->SetLinearLimitLower(vec);
+
+                xml::Node AngularLimitUpper = OneNode.GetChild("AngularLimitUpper");
+                if(!AngularLimitUpper || !AngularLimitUpper.GetFirstChild())
+                    { DeSerializeError("locate AngularLimitUpper node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularLimitUpper.GetFirstChild());
+                this->SetAngularLimitUpper(vec);
+
+                xml::Node AngularLimitLower = OneNode.GetChild("AngularLimitLower");
+                if(!AngularLimitLower || !AngularLimitLower.GetFirstChild())
+                    { DeSerializeError("locate AngularLimitLower node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularLimitLower.GetFirstChild());
+                this->SetAngularLimitLower(vec);
+
+                xml::Node AngularLimitMaxForce = OneNode.GetChild("AngularLimitMaxForce");
+                if(!AngularLimitMaxForce || !AngularLimitMaxForce.GetFirstChild())
+                    { DeSerializeError("locate AngularLimitMaxForce node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularLimitMaxForce.GetFirstChild());
+                this->SetAngularLimitMaxForce(vec);
+
+                xml::Node AngularMotorTargetVelocity = OneNode.GetChild("AngularMotorTargetVelocity");
+                if(!AngularMotorTargetVelocity || !AngularMotorTargetVelocity.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorTargetVelocity node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorTargetVelocity.GetFirstChild());
+                this->SetAngularMotorTargetVelocity(vec);
+
+                xml::Node AngularMotorMaxForce = OneNode.GetChild("AngularMotorMaxForce");
+                if(!AngularMotorMaxForce || !AngularMotorMaxForce.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorMaxForce node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorMaxForce.GetFirstChild());
+                this->SetAngularMotorMaxForce(vec);
+
+                xml::Node AngularMotorDamping = OneNode.GetChild("AngularMotorDamping");
+                if(!AngularMotorDamping || !AngularMotorDamping.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorDamping node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorDamping.GetFirstChild());
+                this->SetAngularMotorDamping(vec);
+
+                xml::Node AngularMotorRestitution = OneNode.GetChild("AngularMotorRestitution");
+                if(!AngularMotorRestitution || !AngularMotorRestitution.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorRestitution node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorRestitution.GetFirstChild());
+                this->SetAngularMotorRestitution(vec);
+
+                xml::Node AngularMotorEnabled = OneNode.GetChild("AngularMotorEnabled");
+                if(!AngularMotorEnabled || !AngularMotorEnabled.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorEnabled node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorEnabled.GetFirstChild());
+                this->SetAngularMotorEnabled(vec);
+
+                xml::Node LinearMotorMaxForce = OneNode.GetChild("LinearMotorMaxForce");
+                if(!LinearMotorMaxForce || !LinearMotorMaxForce.GetFirstChild())
+                    { DeSerializeError("locate LinearMotorMaxForce node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearMotorMaxForce.GetFirstChild());
+                this->SetLinearMotorMaxForce(vec);
+
+                xml::Node LinearMotorTargetVelocity = OneNode.GetChild("LinearMotorTargetVelocity");
+                if(!LinearMotorTargetVelocity || !LinearMotorTargetVelocity.GetFirstChild())
+                    { DeSerializeError("locate LinearMotorTargetVelocity node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearMotorTargetVelocity.GetFirstChild());
+                this->SetLinearMotorTargetVelocity(vec);
+
+                xml::Node LinearMotorEnabled = OneNode.GetChild("LinearMotorEnabled");
+                if(!LinearMotorEnabled || !LinearMotorEnabled.GetFirstChild())
+                    { DeSerializeError("locate LinearMotorEnabled node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearMotorEnabled.GetFirstChild());
+                this->SetLinearMotorEnabled(vec);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
     String Generic6DofConstraint::SerializableName() const
@@ -979,7 +1114,60 @@ namespace phys
 
     void Generic6DofSpringConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->Generic6DofSpringConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node g6dof = OneNode.GetChild("Generic6DofConstraint");
+                if(!g6dof)
+                    { DeSerializeError("locate Generic6DofConstraint node",SerializableName()); }
+                this->Generic6DofConstraint::ProtoDeSerialize(g6dof);
 
+                xml::Node SpringStiffness = OneNode.GetChild("SpringStiffness");
+                if (!SpringStiffness)
+                    { DeSerializeError("Find SpringStiffness Node", SerializableName()); }
+                xml::Node SpringDamping = OneNode.GetChild("SpringDamping");
+                if (!SpringDamping)
+                    { DeSerializeError("Find SpringDamping Node", SerializableName()); }
+                xml::Node SpringEnabled = OneNode.GetChild("SpringEnabled");
+                if (!SpringEnabled)
+                    { DeSerializeError("Find SpringEnabled Node", SerializableName()); }
+
+                xml::Attribute SpringStiffnessAttr = SpringStiffness.GetFirstAttribute();
+                while(SpringStiffnessAttr)
+                {
+                    String CurrentName(SpringStiffnessAttr.Name());
+                    if (4>CurrentName.size())
+                        { DeSerializeError("Invalid axis attribute", SerializableName()); }
+                    this->SetSpringStiffness(char4ToAxis(CurrentName[4]),SpringStiffnessAttr.AsReal());
+                    SpringStiffnessAttr = SpringStiffnessAttr.GetNextAttribute();
+                }
+
+                xml::Attribute SpringDampingAttr = SpringDamping.GetFirstAttribute();
+                while(SpringDampingAttr)
+                {
+                    String CurrentName(SpringDampingAttr.Name());
+                    if (4>CurrentName.size())
+                        { DeSerializeError("Invalid axis attribute", SerializableName()); }
+                    this->SetSpringDamping(char4ToAxis(CurrentName[4]),SpringDampingAttr.AsReal());
+                    SpringDampingAttr = SpringDampingAttr.GetNextAttribute();
+                }
+
+                xml::Attribute SpringEnabledAttr = SpringEnabled.GetFirstAttribute();
+                while(SpringEnabledAttr)
+                {
+                    String CurrentName(SpringEnabledAttr.Name());
+                    if (4>CurrentName.size())
+                        { DeSerializeError("Invalid axis attribute", SerializableName()); }
+                    this->SetSpringEnabled(char4ToAxis(CurrentName[4]),SpringEnabledAttr.AsBool());
+                    SpringEnabledAttr = SpringEnabledAttr.GetNextAttribute();
+                }
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
     String Generic6DofSpringConstraint::SerializableName() const
@@ -1078,14 +1266,14 @@ namespace phys
     void HingeConstraint::EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
         { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
 
-    void HingeConstraint::EnableMotor(bool EnableMotor)
-        { this->Hinge->enableMotor(EnableMotor); }
+    /* void HingeConstraint::EnableMotor(bool EnableMotor)
+        { this->Hinge->enableMotor(EnableMotor); } */
 
     bool HingeConstraint::GetMotorEnabled() const
         { return this->Hinge->getEnableAngularMotor(); }
 
-    void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
-        { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); }
+    /* void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
+        { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); } */
 
     Real HingeConstraint::GetMaxMotorImpulse() const
         { return this->Hinge->getMaxMotorImpulse(); }
@@ -1096,8 +1284,8 @@ namespace phys
     void HingeConstraint::SetMotorTarget(Real TargetAngle, Real Dt)
         { this->Hinge->setMotorTarget(TargetAngle, Dt); }
 
-    void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
-        { return this->SetMotorTargetVelocity(TargetVelocity); }
+    /* void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
+        { return this->SetMotorTargetVelocity(TargetVelocity); } */
 
     Real HingeConstraint::GetMotorTargetVelocity() const
         { return this->Hinge->getMotorTargetVelosity(); }
@@ -1216,7 +1404,7 @@ namespace phys
             SerializeError("Create MotorNode Attributes", SerializableName());
         }
 
-        xml::Node LimitNode = HingeNode.AppendChild("Limits");                      // Limits Node
+        xml::Node LimitNode =  HingeNode.AppendChild("Limits");                      // Limits Node
         if (!LimitNode)
             { SerializeError("Create LimitNode", SerializableName()); }
 
@@ -1241,7 +1429,43 @@ namespace phys
 
     void HingeConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->HingeConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
+                if(!DualTranny)
+                    { DeSerializeError("locate DualTransforn node",SerializableName()); }
+                this->DualTransformConstraint::ProtoDeSerialize(DualTranny);
 
+                xml::Node MotorNode = OneNode.GetChild("Motor");
+                if(!MotorNode)
+                    { DeSerializeError("locate Motor node",SerializableName()); }
+
+                xml::Node LimitNode = OneNode.GetChild("Limits");
+                if(!LimitNode)
+                    { DeSerializeError("locate Limits node",SerializableName()); }
+
+                this->SetUseReferenceFrameA(OneNode.GetAttribute("ReferenceInA").AsBool());
+                this->SetUseFrameOffset(OneNode.GetAttribute("UseFrameOffset").AsBool());
+
+                this->EnableMotor(
+                    MotorNode.GetAttribute("Enabled").AsBool(),
+                    MotorNode.GetAttribute("TargetVelocity").AsReal(),
+                    MotorNode.GetAttribute("MaxImpulse").AsReal() );
+
+                this->SetLimit(
+                    LimitNode.GetAttribute("Low").AsReal(),
+                    LimitNode.GetAttribute("High").AsReal(),
+                    LimitNode.GetAttribute("Softness").AsReal(),
+                    LimitNode.GetAttribute("BiasFactor").AsReal(),
+                    LimitNode.GetAttribute("RelaxationFactor").AsReal() );
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
     String HingeConstraint::SerializableName() const
@@ -1432,7 +1656,7 @@ namespace phys
                 SetPivotBLocation(temp);
 
             }else{
-                DeSerializeError("find usable serialization version ",SerializableName());
+                DeSerializeError("find usable serialization version",SerializableName());
             }
         }else{
             DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
@@ -1627,9 +1851,9 @@ namespace phys
     }
 
     /////////////////////////////////////////
-    // Universal Constraint Functions
+    // UniversalJointConstraint Constraint Functions
 
-    UniversalConstraint::UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+    UniversalJointConstraint::UniversalJointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
     {
         SetBodies(ActorA,ActorB);
 
@@ -1640,19 +1864,19 @@ namespace phys
         Generic6dof = Universal;
     }
 
-    UniversalConstraint::~UniversalConstraint()
+    UniversalJointConstraint::~UniversalJointConstraint()
     {
         delete Universal;
         Universal = NULL;
         Generic6dof = NULL;
     }
 
-    void UniversalConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)
+    void UniversalJointConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)
     {
         this->Universal->setUpperLimit(Ang1Max, Ang2Max);
     }
 
-    void UniversalConstraint::SetLowerLimit(Real Ang1Min, Real Ang2Min)
+    void UniversalJointConstraint::SetLowerLimit(Real Ang1Min, Real Ang2Min)
     {
         this->Universal->setLowerLimit(Ang1Min, Ang2Min);
     }
@@ -1699,8 +1923,6 @@ namespace phys
 
     void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofConstraint& x)
         { x.ProtoDeSerialize(OneNode); }
-
-
 
 
     std::ostream& operator << (std::ostream& stream, const phys::Generic6DofSpringConstraint& x)

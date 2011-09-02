@@ -145,7 +145,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestP2PEmpty >> TesteeRS;
                     SerializeTestP2PEmptyRS <<TesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
 
                 UnsetCFM = Testee.HasParamBeenSet(Con_CFM,-1);          // P2P All of the Unset test
                 UnsetStopCFM = Testee.HasParamBeenSet(Con_Stop_CFM,-1);
@@ -158,14 +158,14 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestP2PWithOneParam >> TesteeRS;
                     SerializeTestP2PWithOneParamRS << TesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
 
                 Testee.SetParam(Con_ERP,0.2,-1);                        // P2P Serialize Test3
                 SerializeTestP2PWithAllParams << Testee;
                 try{
                     SerializeTestP2PWithAllParams >> TesteeRS;
-                    SerializeTestP2PWithAllParams << TesteeRS;
-                }catch (Exception e){}
+                    SerializeTestP2PWithAllParamsRS << TesteeRS;
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
 
                 SetCFM = Testee.HasParamBeenSet(Con_CFM,-1);            // All of the Set tests for P2P
                 SetStopCFM = Testee.HasParamBeenSet(Con_Stop_CFM,-1);
@@ -197,7 +197,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Point2PointConstraint::operator<< (Params-WithParams)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                cout <<endl <<endl << "Expected: \t"<< Test1 <<endl << endl << "Recieved: \t"<< SerializeTestP2PEmptyRS.str() <<endl <<endl;
+
                 if ( Test1 == SerializeTestP2PEmptyRS.str())
                 {
                     AddTestResult("Point2PointConstraint::operator>> (Params-Empty)", Success, UnitTestGroup::OverWrite);
@@ -211,7 +211,7 @@ class ConstraintTests : public UnitTestGroup
                 }else{
                     AddTestResult("Point2PointConstraint::operator>> (Params-1Param)", Failed, UnitTestGroup::OverWrite);
                 }
-
+                //cout <<endl <<endl << "Expected: \t"<< Test3 <<endl << endl << "Recieved: \t"<< SerializeTestP2PWithAllParamsRS.str() <<endl <<endl;
                 if (Test3 == SerializeTestP2PWithAllParamsRS.str())
                 {
                     AddTestResult("Point2PointConstraint::operator>> (Params-WithParams)", Success, UnitTestGroup::OverWrite);
@@ -296,7 +296,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestHinge1 >> HingeTesteeRS;
                     SerializeTestHinge1RS << HingeTesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
                 //cout <<endl <<endl << HingeTestee <<endl <<endl;
 
                 HingeTestee.SetParam(Con_CFM,0.1,-1);
@@ -304,7 +304,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestHinge2 >> HingeTesteeRS;
                     SerializeTestHinge2RS << HingeTesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
 
                 HingeTestee.SetParam(Con_CFM,0.2,5);
                 HingeTestee.SetParam(Con_Stop_ERP,0.3,-1);
@@ -315,10 +315,10 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestHinge3 >> HingeTesteeRS;
                     SerializeTestHinge3RS << HingeTesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
 
 
-                String HingeTest1("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></HingeConstraint>");
+                String HingeTest1("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></HingeConstraint>");
                 if ( HingeTest1 == SerializeTestHinge1.str())
                 {
                     AddTestResult("HingeConstraint::operator<< (Params-Empty)", Success, UnitTestGroup::OverWrite);
@@ -326,7 +326,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("HingeConstraint::operator<< (Params-Empty)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String HingeTest2("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis-1 Con_CFM=\"0.1\" /><Axis5 Con_CFM=\"0.1\" /></TypedConstraint></DualTransformConstraint></HingeConstraint>");
+                String HingeTest2("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis-1 Con_CFM=\"0.1\" /><Axis5 Con_CFM=\"0.1\" /></TypedConstraint></DualTransformConstraint></HingeConstraint>");
                 if ( HingeTest2 == SerializeTestHinge2.str())
                 {
                     AddTestResult("HingeConstraint::operator<< (Params-1Param)", Success, UnitTestGroup::OverWrite);
@@ -334,7 +334,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("HingeConstraint::operator<< (Params-1Param)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String HingeTest3("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis-1 Con_Stop_ERP=\"0.4\" Con_CFM=\"0.2\" Con_Stop_CFM=\"0.6\" /><Axis5 Con_Stop_ERP=\"0.4\" Con_CFM=\"0.2\" Con_Stop_CFM=\"0.6\" /></TypedConstraint></DualTransformConstraint></HingeConstraint>");
+                String HingeTest3("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis-1 Con_Stop_ERP=\"0.4\" Con_CFM=\"0.2\" Con_Stop_CFM=\"0.6\" /><Axis5 Con_Stop_ERP=\"0.4\" Con_CFM=\"0.2\" Con_Stop_CFM=\"0.6\" /></TypedConstraint></DualTransformConstraint></HingeConstraint>");
                 if ( HingeTest3 == SerializeTestHinge3.str())
                 {
                     AddTestResult("HingeConstraint::operator<< (Params-WithParams)", Success, UnitTestGroup::OverWrite);
@@ -342,6 +342,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("HingeConstraint::operator<< (Params-WithParams)", Failed, UnitTestGroup::OverWrite);
                 }
 
+                //cout <<endl <<endl << "Expected: \t"<< HingeTest1 <<endl << endl << "Recieved: \t"<< SerializeTestHinge1RS.str() <<endl <<endl;
                 if ( HingeTest1 == SerializeTestHinge1RS.str())
                 {
                     AddTestResult("HingeConstraint::operator>> (Params-Empty)", Success, UnitTestGroup::OverWrite);
@@ -380,7 +381,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dof1 >> G6dofTesteeRS;
                     SerializeTestG6dof1RS << G6dofTesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
 
                 G6dofTestee.SetLinearLimitUpper(Vector3(10.0, 11.0, 12.0));                 // 6dof test2
                 G6dofTestee.SetLinearLimitLower(Vector3(-10.0, -11.0, -12.0));
@@ -405,7 +406,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dof2 >> G6dofTesteeRS;
                     SerializeTestG6dof2RS << G6dofTesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
 
                 G6dofTestee.SetParam(Con_Stop_ERP,0.01,0);                                        // 6dof Test3
                 G6dofTestee.SetParam(Con_CFM,0.02,0);
@@ -429,11 +430,11 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dof3 >> G6dofTesteeRS;
                     SerializeTestG6dof3RS << G6dofTesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
 
                 //cout << endl << endl << G6dofTestee << endl << endl;
 
-                String G6dofTest1("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.7\" LinearLimitDamping=\"1\" LinearLimitRestitution=\"0.5\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"-1\" Y=\"-1\" Z=\"-1\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"300\" Y=\"300\" Z=\"300\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.1\" Z=\"0.1\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint>");
+                String G6dofTest1("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.7\" LinearLimitDamping=\"1\" LinearLimitRestitution=\"0.5\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"-1\" Y=\"-1\" Z=\"-1\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"300\" Y=\"300\" Z=\"300\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.1\" Z=\"0.1\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint>");
                 if ( G6dofTest1 == SerializeTestG6dof1.str())
                 {
                     AddTestResult("Generic6DofConstraint::operator<< (Empty)", Success, UnitTestGroup::OverWrite);
@@ -441,7 +442,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Generic6DofConstraint::operator<< (Empty)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String G6dofTest2("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.8\" LinearLimitDamping=\"25\" LinearLimitRestitution=\"0.9\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"10\" Y=\"11\" Z=\"12\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"-10\" Y=\"-11\" Z=\"-12\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.2\" Z=\"0.3\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"-0.1\" Y=\"-0.2\" Z=\"-0.3\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"13\" Y=\"14\" Z=\"15\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"16\" Y=\"17\" Z=\"18\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"19\" Y=\"20\" Z=\"21\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"22\" Y=\"23\" Z=\"24\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0.01\" Y=\"0.02\" Z=\"0.03\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"1\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"26\" Y=\"27\" Z=\"28\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"29\" Y=\"30\" Z=\"31\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint>");
+                String G6dofTest2("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.8\" LinearLimitDamping=\"25\" LinearLimitRestitution=\"0.9\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"10\" Y=\"11\" Z=\"12\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"-10\" Y=\"-11\" Z=\"-12\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.2\" Z=\"0.3\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"-0.1\" Y=\"-0.2\" Z=\"-0.3\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"13\" Y=\"14\" Z=\"15\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"16\" Y=\"17\" Z=\"18\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"19\" Y=\"20\" Z=\"21\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"22\" Y=\"23\" Z=\"24\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0.01\" Y=\"0.02\" Z=\"0.03\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"1\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"26\" Y=\"27\" Z=\"28\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"29\" Y=\"30\" Z=\"31\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint>");
                 if ( G6dofTest2 == SerializeTestG6dof2.str())
                 {
                     AddTestResult("Generic6DofConstraint::operator<< (Values)", Success, UnitTestGroup::OverWrite);
@@ -449,7 +450,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Generic6DofConstraint::operator<< (Values)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String G6dofTest3("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.8\" LinearLimitDamping=\"25\" LinearLimitRestitution=\"0.9\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"10\" Y=\"11\" Z=\"12\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"-10\" Y=\"-11\" Z=\"-12\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.2\" Z=\"0.3\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"-0.1\" Y=\"-0.2\" Z=\"-0.3\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"13\" Y=\"14\" Z=\"15\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"16\" Y=\"17\" Z=\"18\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"19\" Y=\"20\" Z=\"21\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"22\" Y=\"23\" Z=\"24\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0.01\" Y=\"0.02\" Z=\"0.03\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"1\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"26\" Y=\"27\" Z=\"28\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"29\" Y=\"30\" Z=\"31\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis0 Con_Stop_ERP=\"0.01\" Con_CFM=\"0.02\" Con_Stop_CFM=\"0.03\" /><Axis1 Con_Stop_ERP=\"0.04\" Con_CFM=\"0.05\" Con_Stop_CFM=\"0.06\" /><Axis2 Con_Stop_ERP=\"0.07\" Con_CFM=\"0.08\" Con_Stop_CFM=\"0.09\" /><Axis3 Con_Stop_ERP=\"0.1\" Con_CFM=\"0.11\" Con_Stop_CFM=\"0.12\" /><Axis4 Con_Stop_ERP=\"0.13\" Con_CFM=\"0.14\" Con_Stop_CFM=\"0.15\" /><Axis5 Con_Stop_ERP=\"0.16\" Con_CFM=\"0.17\" Con_Stop_CFM=\"0.18\" /></TypedConstraint></DualTransformConstraint></Generic6DofConstraint>");
+                String G6dofTest3("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.8\" LinearLimitDamping=\"25\" LinearLimitRestitution=\"0.9\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"10\" Y=\"11\" Z=\"12\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"-10\" Y=\"-11\" Z=\"-12\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.2\" Z=\"0.3\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"-0.1\" Y=\"-0.2\" Z=\"-0.3\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"13\" Y=\"14\" Z=\"15\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"16\" Y=\"17\" Z=\"18\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"19\" Y=\"20\" Z=\"21\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"22\" Y=\"23\" Z=\"24\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0.01\" Y=\"0.02\" Z=\"0.03\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"1\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"26\" Y=\"27\" Z=\"28\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"29\" Y=\"30\" Z=\"31\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis0 Con_Stop_ERP=\"0.01\" Con_CFM=\"0.02\" Con_Stop_CFM=\"0.03\" /><Axis1 Con_Stop_ERP=\"0.04\" Con_CFM=\"0.05\" Con_Stop_CFM=\"0.06\" /><Axis2 Con_Stop_ERP=\"0.07\" Con_CFM=\"0.08\" Con_Stop_CFM=\"0.09\" /><Axis3 Con_Stop_ERP=\"0.1\" Con_CFM=\"0.11\" Con_Stop_CFM=\"0.12\" /><Axis4 Con_Stop_ERP=\"0.13\" Con_CFM=\"0.14\" Con_Stop_CFM=\"0.15\" /><Axis5 Con_Stop_ERP=\"0.16\" Con_CFM=\"0.17\" Con_Stop_CFM=\"0.18\" /></TypedConstraint></DualTransformConstraint></Generic6DofConstraint>");
                 if ( G6dofTest3 == SerializeTestG6dof3.str())
                 {
                     AddTestResult("Generic6DofConstraint::operator<< (ParamsAndValues)", Success, UnitTestGroup::OverWrite);
@@ -457,6 +458,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Generic6DofConstraint::operator<< (ParamsAndValues)", Failed, UnitTestGroup::OverWrite);
                 }
 
+                //cout <<endl <<endl << "Expected: \t"<< G6dofTest2 <<endl << endl << "Recieved: \t"<< SerializeTestG6dof2RS.str() <<endl <<endl;
                 if ( G6dofTest1 == SerializeTestG6dof1RS.str())
                 {
                     AddTestResult("Generic6DofConstraint::operator>> (Empty)", Success, UnitTestGroup::OverWrite);
@@ -493,7 +495,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dofSpring1 >> G6dofSpringTesteeRS;
                     SerializeTestG6dofSpring1RS << G6dofSpringTesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
 
                 G6dofSpringTestee.SetLinearLimitUpper(Vector3(10.0, 11.0, 12.0));                                       // 6dof spring test2
                 G6dofSpringTestee.SetLinearLimitLower(Vector3(-10.0, -11.0, -12.0));
@@ -552,10 +554,10 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dofSpring2 >> G6dofSpringTesteeRS;
                     SerializeTestG6dofSpring2RS << G6dofSpringTesteeRS;
-                }catch (Exception e){}
+                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
                 //cout << endl << endl << G6dofSpringTestee << endl << endl;
 
-                String G6dofSpringTest1("<Generic6DofSpringConstraint Version=\"1\"><Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.7\" LinearLimitDamping=\"1\" LinearLimitRestitution=\"0.5\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"-1\" Y=\"-1\" Z=\"-1\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"300\" Y=\"300\" Z=\"300\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.1\" Z=\"0.1\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint><SpringStiffness Axis0=\"0\" Axis1=\"0\" Axis2=\"0\" Axis3=\"0\" Axis4=\"0\" Axis5=\"0\" /><SpringDamping Axis0=\"1\" Axis1=\"1\" Axis2=\"1\" Axis3=\"1\" Axis4=\"1\" Axis5=\"1\" /><SpringEnabled Axis0=\"false\" Axis1=\"false\" Axis2=\"false\" Axis3=\"false\" Axis4=\"false\" Axis5=\"false\" /></Generic6DofSpringConstraint>");
+                String G6dofSpringTest1("<Generic6DofSpringConstraint Version=\"1\"><Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.7\" LinearLimitDamping=\"1\" LinearLimitRestitution=\"0.5\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"-1\" Y=\"-1\" Z=\"-1\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"300\" Y=\"300\" Z=\"300\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.1\" Z=\"0.1\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint><SpringStiffness Axis0=\"0\" Axis1=\"0\" Axis2=\"0\" Axis3=\"0\" Axis4=\"0\" Axis5=\"0\" /><SpringDamping Axis0=\"1\" Axis1=\"1\" Axis2=\"1\" Axis3=\"1\" Axis4=\"1\" Axis5=\"1\" /><SpringEnabled Axis0=\"false\" Axis1=\"false\" Axis2=\"false\" Axis3=\"false\" Axis4=\"false\" Axis5=\"false\" /></Generic6DofSpringConstraint>");
                 if ( G6dofSpringTest1 == SerializeTestG6dofSpring1.str())
                 {
                     AddTestResult("Generic6DofSpringConstraint::operator<< (Empty)", Success, UnitTestGroup::OverWrite);
@@ -563,7 +565,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Generic6DofSpringConstraint::operator<< (Empty)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                String G6dofSpringTest2("<Generic6DofSpringConstraint Version=\"1\"><Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.8\" LinearLimitDamping=\"25\" LinearLimitRestitution=\"0.9\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"10\" Y=\"11\" Z=\"12\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"-10\" Y=\"-11\" Z=\"-12\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.2\" Z=\"0.3\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"-0.1\" Y=\"-0.2\" Z=\"-0.3\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"13\" Y=\"14\" Z=\"15\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"16\" Y=\"17\" Z=\"18\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"19\" Y=\"20\" Z=\"21\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"22\" Y=\"23\" Z=\"24\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0.01\" Y=\"0.02\" Z=\"0.03\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"26\" Y=\"27\" Z=\"28\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"29\" Y=\"30\" Z=\"31\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis0 Con_Stop_ERP=\"0.01\" Con_CFM=\"0.02\" Con_Stop_CFM=\"0.03\" /><Axis1 Con_Stop_ERP=\"0.04\" Con_CFM=\"0.05\" Con_Stop_CFM=\"0.06\" /><Axis2 Con_Stop_ERP=\"0.07\" Con_CFM=\"0.08\" Con_Stop_CFM=\"0.09\" /><Axis3 Con_Stop_ERP=\"0.1\" Con_CFM=\"0.11\" Con_Stop_CFM=\"0.12\" /><Axis4 Con_Stop_ERP=\"0.13\" Con_CFM=\"0.14\" Con_Stop_CFM=\"0.15\" /><Axis5 Con_Stop_ERP=\"0.16\" Con_CFM=\"0.17\" Con_Stop_CFM=\"0.18\" /></TypedConstraint></DualTransformConstraint></Generic6DofConstraint><SpringStiffness Axis0=\"0.51\" Axis1=\"0.52\" Axis2=\"0.53\" Axis3=\"0.54\" Axis4=\"0.55\" Axis5=\"0.56\" /><SpringDamping Axis0=\"0.61\" Axis1=\"0.62\" Axis2=\"0.63\" Axis3=\"0.64\" Axis4=\"0.65\" Axis5=\"0.66\" /><SpringEnabled Axis0=\"true\" Axis1=\"true\" Axis2=\"false\" Axis3=\"false\" Axis4=\"true\" Axis5=\"false\" /></Generic6DofSpringConstraint>");
+                String G6dofSpringTest2("<Generic6DofSpringConstraint Version=\"1\"><Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.8\" LinearLimitDamping=\"25\" LinearLimitRestitution=\"0.9\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"10\" Y=\"11\" Z=\"12\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"-10\" Y=\"-11\" Z=\"-12\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.2\" Z=\"0.3\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"-0.1\" Y=\"-0.2\" Z=\"-0.3\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"13\" Y=\"14\" Z=\"15\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"16\" Y=\"17\" Z=\"18\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"19\" Y=\"20\" Z=\"21\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"22\" Y=\"23\" Z=\"24\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0.01\" Y=\"0.02\" Z=\"0.03\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"26\" Y=\"27\" Z=\"28\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"29\" Y=\"30\" Z=\"31\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\"><Axis0 Con_Stop_ERP=\"0.01\" Con_CFM=\"0.02\" Con_Stop_CFM=\"0.03\" /><Axis1 Con_Stop_ERP=\"0.04\" Con_CFM=\"0.05\" Con_Stop_CFM=\"0.06\" /><Axis2 Con_Stop_ERP=\"0.07\" Con_CFM=\"0.08\" Con_Stop_CFM=\"0.09\" /><Axis3 Con_Stop_ERP=\"0.1\" Con_CFM=\"0.11\" Con_Stop_CFM=\"0.12\" /><Axis4 Con_Stop_ERP=\"0.13\" Con_CFM=\"0.14\" Con_Stop_CFM=\"0.15\" /><Axis5 Con_Stop_ERP=\"0.16\" Con_CFM=\"0.17\" Con_Stop_CFM=\"0.18\" /></TypedConstraint></DualTransformConstraint></Generic6DofConstraint><SpringStiffness Axis0=\"0.51\" Axis1=\"0.52\" Axis2=\"0.53\" Axis3=\"0.54\" Axis4=\"0.55\" Axis5=\"0.56\" /><SpringDamping Axis0=\"0.61\" Axis1=\"0.62\" Axis2=\"0.63\" Axis3=\"0.64\" Axis4=\"0.65\" Axis5=\"0.66\" /><SpringEnabled Axis0=\"true\" Axis1=\"true\" Axis2=\"false\" Axis3=\"false\" Axis4=\"true\" Axis5=\"false\" /></Generic6DofSpringConstraint>");
                 if ( G6dofSpringTest2 == SerializeTestG6dofSpring2.str())
                 {
                     AddTestResult("Generic6DofSpringConstraint::operator<< (Values)", Success, UnitTestGroup::OverWrite);
@@ -571,6 +573,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Generic6DofSpringConstraint::operator<< (Values)", Failed, UnitTestGroup::OverWrite);
                 }
 
+                //cout <<endl <<endl << "Expected: \t"<< G6dofSpringTest2 << endl << endl << "Recieved: \t"<< SerializeTestG6dofSpring2RS.str() <<endl <<endl;
                 if ( G6dofSpringTest1 == SerializeTestG6dofSpring1RS.str())
                 {
                     AddTestResult("Generic6DofSpringConstraint::operator>> (Empty)", Success, UnitTestGroup::OverWrite);
