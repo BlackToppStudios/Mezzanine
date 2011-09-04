@@ -1,0 +1,98 @@
+\hypertarget{transform_8h}{
+\subsection{transform.h File Reference}
+\label{transform_8h}\index{transform.h@{transform.h}}
+}
+
+
+The defintion of the transform is stored in this file.  
+
+
+{\ttfamily \#include \char`\"{}vector3.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}quaternion.h\char`\"{}}\par
+\subsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classphys_1_1Transform}{phys::Transform}
+\begin{DoxyCompactList}\small\item\em Stores information about relative location and rotation in 3d space. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespacephys}{phys}
+
+
+\begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+btTransform \& \hyperlink{transform_8h_afe7f8a382cac81a489436b1f37301af0}{operator$<$$<$} (btTransform \&lhs, const \hyperlink{classphys_1_1Transform}{phys::Transform} \&rhs)
+\begin{DoxyCompactList}\small\item\em Overwrite the data in a btTransform with the data in a \hyperlink{classphys_1_1Transform}{phys::Transform} using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Transform}{phys::Transform} \& \hyperlink{transform_8h_a956a6518871f8f91c9006a2861cbf56e}{operator$<$$<$} (\hyperlink{classphys_1_1Transform}{phys::Transform} \&lhs, const btTransform \&rhs)
+\begin{DoxyCompactList}\small\item\em Overwrite the data in a \hyperlink{classphys_1_1Transform}{phys::Transform} with the data in a btTransform using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+The defintion of the transform is stored in this file. 
+
+Definition in file \hyperlink{transform_8h_source}{transform.h}.
+
+
+
+\subsubsection{Function Documentation}
+\hypertarget{transform_8h_afe7f8a382cac81a489436b1f37301af0}{
+\index{transform.h@{transform.h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!transform.h@{transform.h}}
+\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}btTransform\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{btTransform \&}]{lhs, }
+\item[{const {\bf phys::Transform} \&}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{transform_8h_afe7f8a382cac81a489436b1f37301af0}
+
+
+Overwrite the data in a btTransform with the data in a \hyperlink{classphys_1_1Transform}{phys::Transform} using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The item on the Left Hand of the Sign, the item to be assigned to. \\
+\hline
+{\em rhs} & The item on the Right Hand of the Sign, the item that has the values to be copied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns the original btTransform reference(with the new values) so furhter work can continue to be performed if required 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file transform.cpp.
+
+\hypertarget{transform_8h_a956a6518871f8f91c9006a2861cbf56e}{
+\index{transform.h@{transform.h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!transform.h@{transform.h}}
+\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::Transform}\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{{\bf phys::Transform} \&}]{lhs, }
+\item[{const btTransform \&}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{transform_8h_a956a6518871f8f91c9006a2861cbf56e}
+
+
+Overwrite the data in a \hyperlink{classphys_1_1Transform}{phys::Transform} with the data in a btTransform using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The item on the Left Hand of the Sign, the item to be assigned to. \\
+\hline
+{\em rhs} & The item on the Right Hand of the Sign, the item that has the values to be copied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns the original \hyperlink{classphys_1_1Transform}{phys::Transform} reference(with the new values) so furhter work can continue to be performed if required. 
+\end{DoxyReturn}
+
+
+Definition at line 139 of file transform.cpp.
+

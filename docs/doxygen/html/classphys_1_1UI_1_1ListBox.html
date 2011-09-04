@@ -129,8 +129,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this List Box to hide. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ListBox.html#a638f19eb6e5a0bd3291fab1ebaccc84f">IsVisible</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility of this List Box.  <a href="#a638f19eb6e5a0bd3291fab1ebaccc84f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ListBox.html#a01fe1d84b537fac03244a023406a839e">ListBox</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;name, const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;ScrollbarWidth, const UI::ScrollbarStyle &amp;ScrollStyle, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a01fe1d84b537fac03244a023406a839e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ListBox.html#a2c61aa8ff40ff66eb45388a4e6cca5b2">ListBox</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;name, const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, const UI::ScrollbarStyle &amp;ScrollStyle, <a class="el" href="classphys_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a2c61aa8ff40ff66eb45388a4e6cca5b2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ListBox.html#a4bf1911c639429c783915ba8a543fec3">SetActualPosition</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel position of this List Box.  <a href="#a4bf1911c639429c783915ba8a543fec3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1UI_1_1ListBox.html#a742810da75f2b3889794498f05af8860">SetActualSize</a> (const <a class="el" href="classphys_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
@@ -207,7 +207,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Definition at line <a class="el" href="uilistbox_8h_source.html#l00061">61</a> of file <a class="el" href="uilistbox_8h_source.html">uilistbox.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a01fe1d84b537fac03244a023406a839e"></a><!-- doxytag: member="phys::UI::ListBox::ListBox" ref="a01fe1d84b537fac03244a023406a839e" args="(ConstString &amp;name, const RenderableRect &amp;Rect, const Real &amp;ScrollbarWidth, const UI::ScrollbarStyle &amp;ScrollStyle, Layer *PLayer)" -->
+<a class="anchor" id="a2c61aa8ff40ff66eb45388a4e6cca5b2"></a><!-- doxytag: member="phys::UI::ListBox::ListBox" ref="a2c61aa8ff40ff66eb45388a4e6cca5b2" args="(ConstString &amp;name, const RenderableRect &amp;Rect, const UI::ScrollbarStyle &amp;ScrollStyle, Layer *PLayer)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -222,12 +222,6 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
           <td></td>
           <td class="paramtype">const <a class="el" href="structphys_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;&#160;</td>
           <td class="paramname"><em>Rect</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;&#160;</td>
-          <td class="paramname"><em>ScrollbarWidth</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -254,16 +248,15 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the List Box. </td></tr>
-    <tr><td class="paramname">Rect</td><td>The Rect representing the position and size of the List Box. </td></tr>
-    <tr><td class="paramname">ScrollbarWidth</td><td>The width of the vertical scrollbar. If the Rect passed in is relative, this will expect Scrollwidth to be relative as well. If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look). </td></tr>
+    <tr><td class="paramname">Rect</td><td>The Rect representing the position and size of the List Box. The size portion of this rect would be in reference to the size of a single selection. The actual size of this widget will be a result of how many selections are currently being displayed. </td></tr>
     <tr><td class="paramname">ScrollStyle</td><td>The style of the scrollbar you want for this List Box. See <a class="el" href="classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">Scrollbar</a> class for more information. </td></tr>
     <tr><td class="paramname"><a class="el" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a></td><td>The parent layer this List Box belongs to. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000030">Todo:</a></b></dt><dd>Fourth instance of needing to include the namespace in the declaration seemingly needlessly. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000028">Todo:</a></b></dt><dd>Fourth instance of needing to include the namespace in the declaration seemingly needlessly. </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00060">60</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
@@ -313,7 +306,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00350">350</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00352">352</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -336,7 +329,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a613df6dbb42efe139d185043a00259dc">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00266">266</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00268">268</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,7 +356,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00385">385</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00387">387</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -390,7 +383,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00399">399</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00401">401</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -413,7 +406,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a0a29fecff7f56d7909f65fd63b0990e7">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00448">448</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00450">450</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -436,7 +429,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#af3a685621ed220748c0940ea38c96ed2">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00482">482</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00484">484</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,7 +450,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 <p>Gets the background of this List Box. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the background of this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00492">492</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00494">494</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -481,7 +474,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a3e464b028b0d1b5755923b8790260c33">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00434">434</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00436">436</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -502,7 +495,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 <p>Gets the currently selected caption. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the currently selected caption, or NULL if none are selected. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00487">487</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00489">489</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -530,7 +523,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the named caption. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00372">372</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00374">374</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -554,7 +547,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a07039c19e57de314147ce066417da0a2">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00465">465</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00467">467</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -575,7 +568,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 <p>Gets the struct containing all the current template parameters used when creating a new selections. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a const reference to the structure containing all the template parameters. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00345">345</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00347">347</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -596,7 +589,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 <p>Gets the scrollbar used within this List Box. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the scrollbar of this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00497">497</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00499">499</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -619,7 +612,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#aaf1a1bd31b8e626467ce9cdb69bdf7ac">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00241">241</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00243">243</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -648,7 +641,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a77727351d98b10f1f4eb45048cb882e3">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00439">439</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00441">441</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -677,7 +670,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#acda63a62fa158d5fe00c86f50e5c120d">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00470">470</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00472">472</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -704,7 +697,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00418">418</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00420">420</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -731,7 +724,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00413">413</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00415">415</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -761,7 +754,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a3ef894be2c0868105b2bf495ae944d00">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00425">425</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00427">427</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -791,7 +784,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#a00f73c12583d25a75c089f944075b24d">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00453">453</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00455">455</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -820,7 +813,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00327">327</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00329">329</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -849,7 +842,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00321">321</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00323">323</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -878,7 +871,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00303">303</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00305">305</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -907,7 +900,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00333">333</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00335">335</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -937,7 +930,6 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 <div class="memdoc">
 
 <p>Sets the size to be applied to all created Selections. </p>
-<p>This needs to be called prior to the creation of any selections(captions). This defaults to 0,0, so if it is not called, you won't see anything. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">Size</td><td>The size of the caption to make. Applied to all captions created by this class. </td></tr>
@@ -947,7 +939,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00296">296</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00298">298</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -976,7 +968,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00309">309</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00311">311</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -1005,7 +997,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00315">315</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00317">317</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -1034,7 +1026,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00339">339</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00341">341</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -1063,7 +1055,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 
 <p>Implements <a class="el" href="classphys_1_1UI_1_1Widget.html#ab049233d8d5522a6ab42654b8924a3e0">phys::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00231">231</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00233">233</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -1078,7 +1070,7 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
       </table>
 </div>
 <div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>Third instance of needing to include the namespace in the declaration seemingly needlessly. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>Third instance of needing to include the namespace in the declaration seemingly needlessly. </dd></dl>
 
 <p>Definition at line <a class="el" href="uilistbox_8h_source.html#l00078">78</a> of file <a class="el" href="uilistbox_8h_source.html">uilistbox.h</a>.</p>
 
@@ -1104,6 +1096,6 @@ std::vector&lt; <a class="el" href="classphys_1_1UI_1_1Caption.html">Caption</a>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:36 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:35 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

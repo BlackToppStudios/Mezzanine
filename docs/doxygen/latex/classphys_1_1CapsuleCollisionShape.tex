@@ -1,0 +1,204 @@
+\hypertarget{classphys_1_1CapsuleCollisionShape}{
+\subsection{phys::CapsuleCollisionShape Class Reference}
+\label{classphys_1_1CapsuleCollisionShape}\index{phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}}
+}
+
+
+A capsule physics shape.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for phys::CapsuleCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classphys_1_1CapsuleCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1CapsuleCollisionShape_a60d128751f3d7302f4e56a5f400d1cff}{CapsuleCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radius, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height, const \hyperlink{classphys_1_1Vector3}{Vector3} \&UpAxis)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1CapsuleCollisionShape_a663f5d5c64d5ed62181ac3519ed504bd}{CapsuleCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, btCapsuleShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1CapsuleCollisionShape_a59739833dc1ce78233e38becad43d620}{GetHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the height of the capsule. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1CapsuleCollisionShape_a0c87a9a94dae9006c71547a5c30ab87c}{GetRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the capsule. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CollisionShape_af3ba4fd8af5b9557f912d2f5ff35a588}{CollisionShape::ShapeType} \hyperlink{classphys_1_1CapsuleCollisionShape_a032a77623d5cf40537b7830ee2d2bb7c}{GetType} () const 
+\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1CapsuleCollisionShape_acde6b2a8631eecf06d1eff38e88fb734}{GetUpAxis} () const 
+\begin{DoxyCompactList}\small\item\em Gets which axis this capsule is oriented along. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CapsuleCollisionShape_ab621241d99ff8037fc5b81f275823d01}{
+virtual \hyperlink{classphys_1_1CapsuleCollisionShape_ab621241d99ff8037fc5b81f275823d01}{$\sim$CapsuleCollisionShape} ()}
+\label{classphys_1_1CapsuleCollisionShape_ab621241d99ff8037fc5b81f275823d01}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CapsuleCollisionShape_a16d71b1df42bd3ed59673c68ffd56fb7}{
+btCapsuleShape $\ast$ {\bfseries CapsuleShape}}
+\label{classphys_1_1CapsuleCollisionShape_a16d71b1df42bd3ed59673c68ffd56fb7}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A capsule physics shape. This shape is commonly used for characters. Keep in mind the total height of any capsule is height+2$\ast$radius, since the height provided only applies to the cylinder portion of the capsule. Like Cones and Cylinders, Capsules can be aligned to any of the 3 linear axes(X, Y, or Z). 
+
+Definition at line 267 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1CapsuleCollisionShape_a60d128751f3d7302f4e56a5f400d1cff}{
+\index{phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}!CapsuleCollisionShape@{CapsuleCollisionShape}}
+\index{CapsuleCollisionShape@{CapsuleCollisionShape}!phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}}
+\paragraph[{CapsuleCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::CapsuleCollisionShape::CapsuleCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{const {\bf Vector3} \&}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CapsuleCollisionShape_a60d128751f3d7302f4e56a5f400d1cff}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the capsule. \\
+\hline
+{\em Height} & The height of the cylindrical portion of the capsule. Total height would be Height+2$\ast$radius. \\
+\hline
+{\em UpAxis} & Which axis the Capsule is to be oriented along. Typical usage is for a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 327 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CapsuleCollisionShape_a663f5d5c64d5ed62181ac3519ed504bd}{
+\index{phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}!CapsuleCollisionShape@{CapsuleCollisionShape}}
+\index{CapsuleCollisionShape@{CapsuleCollisionShape}!phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}}
+\paragraph[{CapsuleCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::CapsuleCollisionShape::CapsuleCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btCapsuleShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CapsuleCollisionShape_a663f5d5c64d5ed62181ac3519ed504bd}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 337 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1CapsuleCollisionShape_a59739833dc1ce78233e38becad43d620}{
+\index{phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}!GetHeight@{GetHeight}}
+\index{GetHeight@{GetHeight}!phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}}
+\paragraph[{GetHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::CapsuleCollisionShape::GetHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CapsuleCollisionShape_a59739833dc1ce78233e38becad43d620}
+
+
+Gets the height of the capsule. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the length of the cylindrical portion of the capsule. 
+\end{DoxyReturn}
+
+
+Definition at line 354 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CapsuleCollisionShape_a0c87a9a94dae9006c71547a5c30ab87c}{
+\index{phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}!GetRadius@{GetRadius}}
+\index{GetRadius@{GetRadius}!phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}}
+\paragraph[{GetRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::CapsuleCollisionShape::GetRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CapsuleCollisionShape_a0c87a9a94dae9006c71547a5c30ab87c}
+
+
+Gets the radius of the capsule. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the radius of the capsule. 
+\end{DoxyReturn}
+
+
+Definition at line 349 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CapsuleCollisionShape_a032a77623d5cf40537b7830ee2d2bb7c}{
+\index{phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} phys::CapsuleCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CapsuleCollisionShape_a032a77623d5cf40537b7830ee2d2bb7c}
+Gets the type of Collision shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1PrimitiveCollisionShape_a16a167ec75ac95aa101b6a9b116e837d}{phys::PrimitiveCollisionShape}.
+
+
+
+Definition at line 369 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CapsuleCollisionShape_acde6b2a8631eecf06d1eff38e88fb734}{
+\index{phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}!GetUpAxis@{GetUpAxis}}
+\index{GetUpAxis@{GetUpAxis}!phys::CapsuleCollisionShape@{phys::CapsuleCollisionShape}}
+\paragraph[{GetUpAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::CapsuleCollisionShape::GetUpAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CapsuleCollisionShape_acde6b2a8631eecf06d1eff38e88fb734}
+
+
+Gets which axis this capsule is oriented along. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing which local axis is oriented along the world up axis. 
+\end{DoxyReturn}
+
+
+Definition at line 359 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

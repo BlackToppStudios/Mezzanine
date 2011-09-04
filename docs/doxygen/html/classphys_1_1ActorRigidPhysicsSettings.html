@@ -113,6 +113,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Torque/Rotation.  <a href="#a0e72a68536fa4e48b489bd069f5fba82"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigidPhysicsSettings.html#a222c6ea9a61937cf7cb053c194981e41">SetAngularVelocity</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;AngVel)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Angular Velocity of this object.  <a href="#a222c6ea9a61937cf7cb053c194981e41"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigidPhysicsSettings.html#a97f3fcda5a669847138c6c3665192d92">SetCollisionShape</a> (<a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *Shape)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collision shape to be used.  <a href="#a97f3fcda5a669847138c6c3665192d92"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigidPhysicsSettings.html#abcb4e6a9ec828ac7f70075e5e70b529b">SetDamping</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;LinDamping, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;AngDamping)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Damping for this object.  <a href="#abcb4e6a9ec828ac7f70075e5e70b529b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigidPhysicsSettings.html#af595556bb71a257785038b6c2da379a9">SetIndividualGravity</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Gravity)</td></tr>
@@ -135,7 +137,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="textblock"><p>This is a helper class for configuring physics settings of an <a class="el" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>. </p>
 <p>This class contains functions for the configuring of physics specific settings of an <a class="el" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>. This class can only configure the ActorRigids physics. For configuring actor graphics, see <a class="el" href="classphys_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00190">190</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00204">204</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a002e4932e1d8192a7aa45c1e4c159774"></a><!-- doxytag: member="phys::ActorRigidPhysicsSettings::ActorRigidPhysicsSettings" ref="a002e4932e1d8192a7aa45c1e4c159774" args="(ActorRigid *Actor, btRigidBody *PhysicsObject)" -->
 <div class="memitem">
@@ -171,7 +173,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00222">222</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00243">243</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -199,7 +201,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00283">283</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00323">323</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -226,7 +228,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00286">286</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00326">326</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -247,7 +249,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Get the Angular damping. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Real that has the Angular damping. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00242">242</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00282">282</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -268,7 +270,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the Angular Velocity of this object. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the currently set Angular Velocity of this object. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00260">260</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00300">300</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -289,7 +291,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Get the total Force/Movement on the actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the force of the entire Actor </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00277">277</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00317">317</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -311,7 +313,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>This is the gravity applied to this object, which may or may not be the same as the world gravity. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the gravity currently being applied to this object. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00271">271</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00311">311</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +334,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Get the linear damping. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Real that has the Linear damping. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00239">239</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00279">279</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -353,7 +355,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the Linear Velocity of this object. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the currently set Linear Velocity of this object. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00249">249</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00289">289</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -374,7 +376,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Get the Torque/Rotation. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the Torque </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00280">280</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00320">320</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -401,7 +403,36 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00255">255</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00295">295</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a97f3fcda5a669847138c6c3665192d92"></a><!-- doxytag: member="phys::ActorRigidPhysicsSettings::SetCollisionShape" ref="a97f3fcda5a669847138c6c3665192d92" args="(CollisionShape *Shape)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ActorRigidPhysicsSettings::SetCollisionShape </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *&#160;</td>
+          <td class="paramname"><em>Shape</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the collision shape to be used. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Shape</td><td>The shape to be applied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a1509c654724bcb6499ec1e5058ab5185">phys::ActorBasePhysicsSettings</a>.</p>
+
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00257">257</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -440,7 +471,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00236">236</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00276">276</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -468,7 +499,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00266">266</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00306">306</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -495,7 +526,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00245">245</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00285">285</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -519,6 +550,6 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:29 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:22 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

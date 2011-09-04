@@ -1,0 +1,831 @@
+\hypertarget{classphys_1_1CollisionShapeManager}{
+\subsection{phys::CollisionShapeManager Class Reference}
+\label{classphys_1_1CollisionShapeManager}\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+}
+
+
+This manager is for the storage of all shapes and creation of mesh shapes.  
+
+
+
+
+{\ttfamily \#include $<$collisionshapemanager.h$>$}
+
+Inheritance diagram for phys::CollisionShapeManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classphys_1_1CollisionShapeManager}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CollisionShapeManager_adaff1c411c3aebf4f8de48bc85ff5a82}{
+typedef std::map$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}, \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ $>$::\hyperlink{classphys_1_1CollisionShapeManager_adaff1c411c3aebf4f8de48bc85ff5a82}{const\_\-iterator} \hyperlink{classphys_1_1CollisionShapeManager_adaff1c411c3aebf4f8de48bc85ff5a82}{const\_\-iterator}}
+\label{classphys_1_1CollisionShapeManager_adaff1c411c3aebf4f8de48bc85ff5a82}
+
+\begin{DoxyCompactList}\small\item\em An const\_\-iterator that should be compatible with most iterator algorithms. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CollisionShapeManager_a2ed1747351ac8bc8d66a433d6f0d9a90}{
+typedef std::map$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}, \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ $>$::\hyperlink{classphys_1_1CollisionShapeManager_a2ed1747351ac8bc8d66a433d6f0d9a90}{iterator} \hyperlink{classphys_1_1CollisionShapeManager_a2ed1747351ac8bc8d66a433d6f0d9a90}{iterator}}
+\label{classphys_1_1CollisionShapeManager_a2ed1747351ac8bc8d66a433d6f0d9a90}
+
+\begin{DoxyCompactList}\small\item\em An iterator that should be compatible with most iterator algorithms. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1CollisionShapeManager_a2ed1747351ac8bc8d66a433d6f0d9a90}{iterator} \hyperlink{classphys_1_1CollisionShapeManager_a67f5f640e2d292b1ce61a7ba954ebc00}{begin} ()
+\begin{DoxyCompactList}\small\item\em Get an Iterator pointing to the first item in the container. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1CollisionShapeManager_adaff1c411c3aebf4f8de48bc85ff5a82}{const\_\-iterator} \hyperlink{classphys_1_1CollisionShapeManager_a3902743914d6d1383d7e58367249e601}{begin} () const 
+\begin{DoxyCompactList}\small\item\em Get a const Iterator pointing at the first item in the container. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CollisionShapeManager_acb0e37dbc12bd01b7b1389391303634f}{
+\hyperlink{classphys_1_1CollisionShapeManager_acb0e37dbc12bd01b7b1389391303634f}{CollisionShapeManager} ()}
+\label{classphys_1_1CollisionShapeManager_acb0e37dbc12bd01b7b1389391303634f}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CollisionShapeManager_a42a3ff6e9956c2c436e60284820d84b9}{
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_a42a3ff6e9956c2c436e60284820d84b9}{DestroyAllShapes} ()}
+\label{classphys_1_1CollisionShapeManager_a42a3ff6e9956c2c436e60284820d84b9}
+
+\begin{DoxyCompactList}\small\item\em Removes all shapes from the manager and then deletes them. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_afb29c685d75584731def62c889cc8136}{DestroyShape} (\hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Removes a shape from this manager and deletes it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_ad3378ae9511d8c520957c4bb3af6164c}{DestroyShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Removes a shape from this manager and deletes it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_af0a99382118672a90e324b7c7585e23f}{DoMainLoopItems} ()
+\item 
+\hyperlink{classphys_1_1CollisionShapeManager_a2ed1747351ac8bc8d66a433d6f0d9a90}{iterator} \hyperlink{classphys_1_1CollisionShapeManager_a06f4b873fbc0fc148776d3ef5234774b}{end} ()
+\begin{DoxyCompactList}\small\item\em Get an Iterator pointing to one past the last item in the container. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1CollisionShapeManager_adaff1c411c3aebf4f8de48bc85ff5a82}{const\_\-iterator} \hyperlink{classphys_1_1CollisionShapeManager_aa7ec448d0af8d8387a3854257d6a57fa}{end} () const 
+\begin{DoxyCompactList}\small\item\em Get an const Iterator pointing to one past the last item in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ConvexHullCollisionShape}{ConvexHullCollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_a2adc84d63da66705dcce1c58bafb5ccc}{GenerateConvexHull} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ObjectMesh, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Generates a Convex Hull from a provided mesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ConvexHullCollisionShape}{ConvexHullCollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_a3f2c32e311f8b88ebd57b5ae88ff072b}{GenerateConvexHull} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Generates a Convex Hull from a provided mesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1DynamicMeshCollisionShape}{DynamicMeshCollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_a2a1312694646ef42affbdded229033a7}{GenerateDynamicTriMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ObjectMesh, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Generates a mesh shape for dynamic objects. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1DynamicMeshCollisionShape}{DynamicMeshCollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_a23d878a6b9d1ff161574a4efab089c3b}{GenerateDynamicTriMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Generates a mesh shape for dynamic objects. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1StaticMeshCollisionShape}{StaticMeshCollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_a8335ab3bd75383516586c8ea35bb8264}{GenerateStaticTriMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ObjectMesh, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Generates a mesh shape for static objects. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1StaticMeshCollisionShape}{StaticMeshCollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_afb683cd65e6d43940c5ac24742625a1d}{GenerateStaticTriMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Generates a mesh shape for static objects. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1CollisionShapeManager_a97231768ed68d3741f81f57eb4944897}{GetNumStoredShapes} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of stored shapes in this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_af80bc65c703520a3a3c2d5345cca50e3}{GetShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets a shape already stored in this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \hyperlink{classphys_1_1CollisionShapeManager_a046c14461ef78c2764ba7b149ba58e67}{GetType} () const 
+\item 
+std::set$<$ \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ $>$ \& \hyperlink{classphys_1_1CollisionShapeManager_a5bf8986d80af540a3769639425ef9891}{GetUnnamedShapes} ()
+\begin{DoxyCompactList}\small\item\em Returns a vector of unnamed shapes stored in this manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_a349f08d5cfb39d39360e41c6d416984f}{Initialize} ()
+\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_aa87f54973f867f28060eae3451a8e7fd}{LoadAllShapesFromFile} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group)
+\begin{DoxyCompactList}\small\item\em Loads all shapes saved in an existing .bullet file, and stores them in this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CompoundCollisionShape}{CompoundCollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_a37bee998b0e56cc4d9ecbaa5a2908d1c}{PerformConvexDecomposition} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Depth, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} CPercent, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} PPercent, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Generates a compound shape of Convex Hulls from a provided mesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CompoundCollisionShape}{CompoundCollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_a7369cb000ec5e06a5164d400e80a3e13}{PerformConvexDecomposition} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ObjectMesh, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Depth, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} CPercent, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} PPercent, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Generates a compound shape of Convex Hulls from a provided mesh. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CollisionShapeManager_a5d127342831f8154b47898fe0ddf8a00}{
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_a5d127342831f8154b47898fe0ddf8a00}{RemoveAllShapes} ()}
+\label{classphys_1_1CollisionShapeManager_a5d127342831f8154b47898fe0ddf8a00}
+
+\begin{DoxyCompactList}\small\item\em Removes all shapes from the manager without deleting them. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_a71dc6252239eaa132e25a667cd785497}{RemoveShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Removes a shape from this manager without deleting it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_a34e1e4c2c0c2000db2f6846a71ec2ad4}{RemoveShape} (\hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Removes a shape from this manager without deleting it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_a12ead3de459bf95cbb45dc90104fbf5d}{SaveAllStoredShapesToFile} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName)
+\begin{DoxyCompactList}\small\item\em Takes all the shapes currently stored this manager and saves them to a .bullet file. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_ab69fb14def70c6207f11f3176eda58a4}{SaveShapesToFile} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName, std::vector$<$ \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ $>$ \&ShapesToSave)
+\begin{DoxyCompactList}\small\item\em Saves all shapes contained in a vector and saves them to a .bullet file. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CollisionShapeManager_abdf39e87665139e946a9263e7130554f}{SetNameForUnnamedShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&NewName, \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Assigns a name to an unnamed shape. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CollisionShapeManager_a37a9606fe80beb9d7c2c03137f449b4f}{StoreShape} (\hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Stores a pre-\/made shape in this manager. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CollisionShapeManager_a745e1110d70be3983b89e5ba034fa616}{
+virtual \hyperlink{classphys_1_1CollisionShapeManager_a745e1110d70be3983b89e5ba034fa616}{$\sim$CollisionShapeManager} ()}
+\label{classphys_1_1CollisionShapeManager_a745e1110d70be3983b89e5ba034fa616}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CollisionShapeManager_a2dc4063a427740881255a030315b06c2}{
+btTriangleMesh $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_a2dc4063a427740881255a030315b06c2}{CreateBulletTrimesh} (\hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ObjectMesh, bool UseAllSubmeshes)}
+\label{classphys_1_1CollisionShapeManager_a2dc4063a427740881255a030315b06c2}
+
+\begin{DoxyCompactList}\small\item\em Creates a TriMesh to be used in TriMesh based collision shapes. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CollisionShapeManager_a989d6eebe7e6bf2be6a33cfdb635b7c7}{
+\hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classphys_1_1CollisionShapeManager_a989d6eebe7e6bf2be6a33cfdb635b7c7}{WrapShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, btCollisionShape $\ast$InternalShape)}
+\label{classphys_1_1CollisionShapeManager_a989d6eebe7e6bf2be6a33cfdb635b7c7}
+
+\begin{DoxyCompactList}\small\item\em Creates a wrapper for an internal bullet shape. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CollisionShapeManager_a4f3ac5e89c83dc344edc98db7f24db00}{
+std::map$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}, \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ $>$ \hyperlink{classphys_1_1CollisionShapeManager_a4f3ac5e89c83dc344edc98db7f24db00}{CollisionShapes}}
+\label{classphys_1_1CollisionShapeManager_a4f3ac5e89c83dc344edc98db7f24db00}
+
+\begin{DoxyCompactList}\small\item\em This Stores the names and collision Shapes. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CollisionShapeManager_a28e56317f5e54a83443606f4ef1500d6}{
+std::set$<$ \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ $>$ {\bfseries UnnamedShapes}}
+\label{classphys_1_1CollisionShapeManager_a28e56317f5e54a83443606f4ef1500d6}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This manager is for the storage of all shapes and creation of mesh shapes. Collision shapes do not need to be stored in this manager, but can be re-\/used across multiple \hyperlink{classphys_1_1World}{World} objects with physics representations. For performance reasons, it is recommended to store and re-\/use a collision shape anytime you need it in multiple objects, rather then re-\/creating the same shape again and again. 
+
+Definition at line 67 of file collisionshapemanager.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1CollisionShapeManager_a67f5f640e2d292b1ce61a7ba954ebc00}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!begin@{begin}}
+\index{begin@{begin}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{begin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShapeManager::iterator} phys::CollisionShapeManager::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CollisionShapeManager_a67f5f640e2d292b1ce61a7ba954ebc00}
+
+
+Get an Iterator pointing to the first item in the container. 
+
+\begin{DoxyReturn}{Returns}
+An iterator that is compatible with most std algorithms and points to the first collisionshape entry. 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a3902743914d6d1383d7e58367249e601}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!begin@{begin}}
+\index{begin@{begin}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{begin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShapeManager::const\_\-iterator} phys::CollisionShapeManager::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1CollisionShapeManager_a3902743914d6d1383d7e58367249e601}
+
+
+Get a const Iterator pointing at the first item in the container. 
+
+\begin{DoxyReturn}{Returns}
+A const iterator that is compatible with most std algorithms and points to the first collisionshape entry. 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_afb29c685d75584731def62c889cc8136}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!DestroyShape@{DestroyShape}}
+\index{DestroyShape@{DestroyShape}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{DestroyShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::DestroyShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_afb29c685d75584731def62c889cc8136}
+
+
+Removes a shape from this manager and deletes it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shape} & Pointer to the shape to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 338 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_ad3378ae9511d8c520957c4bb3af6164c}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!DestroyShape@{DestroyShape}}
+\index{DestroyShape@{DestroyShape}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{DestroyShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::DestroyShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_ad3378ae9511d8c520957c4bb3af6164c}
+
+
+Removes a shape from this manager and deletes it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the shape to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 343 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_af0a99382118672a90e324b7c7585e23f}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_af0a99382118672a90e324b7c7585e23f}
+The main loop calls this once per frame. 
+
+This is where each manager is expected to put anything that needs to be run each iteration of the main loop  
+
+Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
+
+
+
+Definition at line 694 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a06f4b873fbc0fc148776d3ef5234774b}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!end@{end}}
+\index{end@{end}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShapeManager::iterator} phys::CollisionShapeManager::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CollisionShapeManager_a06f4b873fbc0fc148776d3ef5234774b}
+
+
+Get an Iterator pointing to one past the last item in the container. 
+
+\begin{DoxyReturn}{Returns}
+An iterator that is compatible with most std algorithms and points to one past the last valid collision shape entry. 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_aa7ec448d0af8d8387a3854257d6a57fa}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!end@{end}}
+\index{end@{end}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShapeManager::const\_\-iterator} phys::CollisionShapeManager::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1CollisionShapeManager_aa7ec448d0af8d8387a3854257d6a57fa}
+
+
+Get an const Iterator pointing to one past the last item in the container. 
+
+\begin{DoxyReturn}{Returns}
+An const iterator that is compatible with most std algorithms and points to one past the last valid collision shape entry. 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a2adc84d63da66705dcce1c58bafb5ccc}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GenerateConvexHull@{GenerateConvexHull}}
+\index{GenerateConvexHull@{GenerateConvexHull}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GenerateConvexHull}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConvexHullCollisionShape} $\ast$ phys::CollisionShapeManager::GenerateConvexHull (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{{\bf Mesh} $\ast$}]{ObjectMesh, }
+\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a2adc84d63da66705dcce1c58bafb5ccc}
+
+
+Generates a Convex Hull from a provided mesh. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to give the created shape. \\
+\hline
+{\em ObjectMesh} & The mesh to base this shape off of. \\
+\hline
+{\em UseAllSubMeshes} & Whether or not you want to use all submesh information when generating this shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 362 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a3f2c32e311f8b88ebd57b5ae88ff072b}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GenerateConvexHull@{GenerateConvexHull}}
+\index{GenerateConvexHull@{GenerateConvexHull}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GenerateConvexHull}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConvexHullCollisionShape} $\ast$ phys::CollisionShapeManager::GenerateConvexHull (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{Group, }
+\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a3f2c32e311f8b88ebd57b5ae88ff072b}
+
+
+Generates a Convex Hull from a provided mesh. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to give the created shape. \\
+\hline
+{\em MeshName} & The name of the mesh to base this shape off of. \\
+\hline
+{\em Group} & The resource group where the mesh can be found. \\
+\hline
+{\em UseAllSubMeshes} & Whether or not you want to use all submesh information when generating this shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 379 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a2a1312694646ef42affbdded229033a7}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GenerateDynamicTriMesh@{GenerateDynamicTriMesh}}
+\index{GenerateDynamicTriMesh@{GenerateDynamicTriMesh}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GenerateDynamicTriMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf DynamicMeshCollisionShape} $\ast$ phys::CollisionShapeManager::GenerateDynamicTriMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{{\bf Mesh} $\ast$}]{ObjectMesh, }
+\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a2a1312694646ef42affbdded229033a7}
+
+
+Generates a mesh shape for dynamic objects. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to give the created shape. \\
+\hline
+{\em ObjectMesh} & The mesh to base this shape off of. \\
+\hline
+{\em UseAllSubMeshes} & Whether or not you want to use all submesh information when generating this shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 385 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a23d878a6b9d1ff161574a4efab089c3b}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GenerateDynamicTriMesh@{GenerateDynamicTriMesh}}
+\index{GenerateDynamicTriMesh@{GenerateDynamicTriMesh}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GenerateDynamicTriMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf DynamicMeshCollisionShape} $\ast$ phys::CollisionShapeManager::GenerateDynamicTriMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{Group, }
+\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a23d878a6b9d1ff161574a4efab089c3b}
+
+
+Generates a mesh shape for dynamic objects. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to give the created shape. \\
+\hline
+{\em MeshName} & The name of the mesh to base this shape off of. \\
+\hline
+{\em Group} & The resource group where the mesh can be found. \\
+\hline
+{\em UseAllSubMeshes} & Whether or not you want to use all submesh information when generating this shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 391 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a8335ab3bd75383516586c8ea35bb8264}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GenerateStaticTriMesh@{GenerateStaticTriMesh}}
+\index{GenerateStaticTriMesh@{GenerateStaticTriMesh}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GenerateStaticTriMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StaticMeshCollisionShape} $\ast$ phys::CollisionShapeManager::GenerateStaticTriMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{{\bf Mesh} $\ast$}]{ObjectMesh, }
+\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a8335ab3bd75383516586c8ea35bb8264}
+
+
+Generates a mesh shape for static objects. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to give the created shape. \\
+\hline
+{\em ObjectMesh} & The mesh to base this shape off of. \\
+\hline
+{\em UseAllSubMeshes} & Whether or not you want to use all submesh information when generating this shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 397 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_afb683cd65e6d43940c5ac24742625a1d}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GenerateStaticTriMesh@{GenerateStaticTriMesh}}
+\index{GenerateStaticTriMesh@{GenerateStaticTriMesh}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GenerateStaticTriMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StaticMeshCollisionShape} $\ast$ phys::CollisionShapeManager::GenerateStaticTriMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{Group, }
+\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_afb683cd65e6d43940c5ac24742625a1d}
+
+
+Generates a mesh shape for static objects. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to give the created shape. \\
+\hline
+{\em MeshName} & The name of the mesh to base this shape off of. \\
+\hline
+{\em Group} & The resource group where the mesh can be found. \\
+\hline
+{\em UseAllSubMeshes} & Whether or not you want to use all submesh information when generating this shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 403 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a97231768ed68d3741f81f57eb4944897}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GetNumStoredShapes@{GetNumStoredShapes}}
+\index{GetNumStoredShapes@{GetNumStoredShapes}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GetNumStoredShapes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::CollisionShapeManager::GetNumStoredShapes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a97231768ed68d3741f81f57eb4944897}
+
+
+Gets the number of stored shapes in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing how many shapes this manager is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 315 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_af80bc65c703520a3a3c2d5345cca50e3}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GetShape@{GetShape}}
+\index{GetShape@{GetShape}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GetShape}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape} $\ast$ phys::CollisionShapeManager::GetShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_af80bc65c703520a3a3c2d5345cca50e3}
+
+
+Gets a shape already stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the desired shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & the name of the desired shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 308 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a046c14461ef78c2764ba7b149ba58e67}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::CollisionShapeManager::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a046c14461ef78c2764ba7b149ba58e67}
+This returns the type of this manager. 
+
+This is intended to make using and casting from Manager base easier. With this is is possible to cast from \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to the correct Manager Type. \begin{DoxyReturn}{Returns}
+This returns a ManagerTypeName to identify what this can be safely cast to. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 697 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a5bf8986d80af540a3769639425ef9891}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!GetUnnamedShapes@{GetUnnamedShapes}}
+\index{GetUnnamedShapes@{GetUnnamedShapes}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{GetUnnamedShapes}]{\setlength{\rightskip}{0pt plus 5cm}std::set$<$ {\bf CollisionShape} $\ast$ $>$ \& phys::CollisionShapeManager::GetUnnamedShapes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CollisionShapeManager_a5bf8986d80af540a3769639425ef9891}
+
+
+Returns a vector of unnamed shapes stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to a vector storing all the unnamed shapes loaded from files.
+\end{DoxyReturn}
+Shapes created in code require a name to be constructed. However, sometimes when loading a file a shape may not have a name, since one isn't required by the .bullet file format in order for a shape to be serialized. When that happens those shapes go here, and from there can be handled by the game programmer however they see fit. 
+
+Definition at line 674 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a349f08d5cfb39d39360e41c6d416984f}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a349f08d5cfb39d39360e41c6d416984f}
+Configure Items requiring other Managers. 
+
+If you are using the \hyperlink{classphys_1_1World}{phys::World} this is called when \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{phys::World::GameInit()} is called. It is expected that by the time this is called either ManagerBase::ManagerBase(World$\ast$) or \hyperlink{classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}{ManagerBase::SetGameWorld(World$\ast$)} will have been called. This is where all configuration that requires atleast one other manager on the \hyperlink{classphys_1_1World}{phys::World} to exist.\par
+\par
+ Yes we know it is spelled wrong, but are Zs cooler anyway.  
+
+Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
+
+
+
+Definition at line 691 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_aa87f54973f867f28060eae3451a8e7fd}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!LoadAllShapesFromFile@{LoadAllShapesFromFile}}
+\index{LoadAllShapesFromFile@{LoadAllShapesFromFile}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{LoadAllShapesFromFile}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::LoadAllShapesFromFile (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{FileName, }
+\item[{const {\bf String} \&}]{Group}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_aa87f54973f867f28060eae3451a8e7fd}
+
+
+Loads all shapes saved in an existing .bullet file, and stores them in this manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FileName} & The name of the file to load shapes from. \\
+\hline
+{\em Group} & The resource group the .bullet file is located in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 593 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a37bee998b0e56cc4d9ecbaa5a2908d1c}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!PerformConvexDecomposition@{PerformConvexDecomposition}}
+\index{PerformConvexDecomposition@{PerformConvexDecomposition}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{PerformConvexDecomposition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CompoundCollisionShape} $\ast$ phys::CollisionShapeManager::PerformConvexDecomposition (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{Group, }
+\item[{{\bf Whole}}]{Depth, }
+\item[{{\bf Real}}]{CPercent, }
+\item[{{\bf Real}}]{PPercent, }
+\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a37bee998b0e56cc4d9ecbaa5a2908d1c}
+
+
+Generates a compound shape of Convex Hulls from a provided mesh. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to give the created shape. \\
+\hline
+{\em MeshName} & The name of the mesh to base this shape off of. \\
+\hline
+{\em Group} & The resource group where the mesh can be found. \\
+\hline
+{\em UseAllSubMeshes} & Whether or not you want to use all submesh information when generating this shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 587 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a7369cb000ec5e06a5164d400e80a3e13}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!PerformConvexDecomposition@{PerformConvexDecomposition}}
+\index{PerformConvexDecomposition@{PerformConvexDecomposition}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{PerformConvexDecomposition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CompoundCollisionShape} $\ast$ phys::CollisionShapeManager::PerformConvexDecomposition (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{{\bf Mesh} $\ast$}]{ObjectMesh, }
+\item[{{\bf Whole}}]{Depth, }
+\item[{{\bf Real}}]{CPercent, }
+\item[{{\bf Real}}]{PPercent, }
+\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a7369cb000ec5e06a5164d400e80a3e13}
+
+
+Generates a compound shape of Convex Hulls from a provided mesh. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to give the created shape. \\
+\hline
+{\em ObjectMesh} & The mesh to base this shape off of. \\
+\hline
+{\em UseAllSubMeshes} & Whether or not you want to use all submesh information when generating this shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 409 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a71dc6252239eaa132e25a667cd785497}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!RemoveShape@{RemoveShape}}
+\index{RemoveShape@{RemoveShape}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{RemoveShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::RemoveShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a71dc6252239eaa132e25a667cd785497}
+
+
+Removes a shape from this manager without deleting it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the shape to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 325 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a34e1e4c2c0c2000db2f6846a71ec2ad4}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!RemoveShape@{RemoveShape}}
+\index{RemoveShape@{RemoveShape}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{RemoveShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::RemoveShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a34e1e4c2c0c2000db2f6846a71ec2ad4}
+
+
+Removes a shape from this manager without deleting it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shape} & Pointer to the shape to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 320 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a12ead3de459bf95cbb45dc90104fbf5d}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!SaveAllStoredShapesToFile@{SaveAllStoredShapesToFile}}
+\index{SaveAllStoredShapesToFile@{SaveAllStoredShapesToFile}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{SaveAllStoredShapesToFile}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::SaveAllStoredShapesToFile (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{FileName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a12ead3de459bf95cbb45dc90104fbf5d}
+
+
+Takes all the shapes currently stored this manager and saves them to a .bullet file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FileName} & The name of the file to save the shapes to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 630 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_ab69fb14def70c6207f11f3176eda58a4}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!SaveShapesToFile@{SaveShapesToFile}}
+\index{SaveShapesToFile@{SaveShapesToFile}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{SaveShapesToFile}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::SaveShapesToFile (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{FileName, }
+\item[{std::vector$<$ {\bf CollisionShape} $\ast$ $>$ \&}]{ShapesToSave}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_ab69fb14def70c6207f11f3176eda58a4}
+
+
+Saves all shapes contained in a vector and saves them to a .bullet file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FileName} & The name of the file to save the shapes to. \\
+\hline
+{\em ShapesToSave} & A vector of collisions shapes that will be saved. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 655 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_abdf39e87665139e946a9263e7130554f}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!SetNameForUnnamedShape@{SetNameForUnnamedShape}}
+\index{SetNameForUnnamedShape@{SetNameForUnnamedShape}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{SetNameForUnnamedShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::SetNameForUnnamedShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{NewName, }
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CollisionShapeManager_abdf39e87665139e946a9263e7130554f}
+
+
+Assigns a name to an unnamed shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em NewName} & The new name to be assigned to a shape. \\
+\hline
+{\em Shape} & The shape to be given the new name. This shape must be a valid shape currently stored in the set of unnamed shapes. Calling this fucntion will not remove it from that set, but will move it into the named collision shape map. If you want the shape removed from the Unnamed set, you must do it yourself. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 679 of file collisionshapemanager.cpp.
+
+\hypertarget{classphys_1_1CollisionShapeManager_a37a9606fe80beb9d7c2c03137f449b4f}{
+\index{phys::CollisionShapeManager@{phys::CollisionShapeManager}!StoreShape@{StoreShape}}
+\index{StoreShape@{StoreShape}!phys::CollisionShapeManager@{phys::CollisionShapeManager}}
+\paragraph[{StoreShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CollisionShapeManager::StoreShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CollisionShapeManager_a37a9606fe80beb9d7c2c03137f449b4f}
+
+
+Stores a pre-\/made shape in this manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shape} & The shape to be stored. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 294 of file collisionshapemanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshapemanager.h\item 
+collisionshapemanager.cpp\end{DoxyCompactItemize}

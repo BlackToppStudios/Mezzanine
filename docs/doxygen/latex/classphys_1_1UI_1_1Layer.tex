@@ -35,7 +35,7 @@ virtual \hyperlink{classphys_1_1UI_1_1LineList}{LineList} $\ast$ \hyperlink{clas
 \label{classphys_1_1UI_1_1Layer_a16c50950bb79c8b06a046f2820329728}
 
 \begin{DoxyCompactList}\small\item\em Creates a line list within this layer. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a9bb957261e17e11ed7a320d8ba10f9c6}{CreateListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollbarStyle)
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a5cdc95615455382a1b55d9e2b5ae6d09}{CreateListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const UI::ScrollbarStyle \&ScrollbarStyle)
 \begin{DoxyCompactList}\small\item\em Creates a List Box within this layer. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Layer_a62338ca48dce418a53c4d9d027152a4c}{CreateMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a markup text within this layer. \item\end{DoxyCompactList}\item 
@@ -455,18 +455,17 @@ Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBo
 
 Definition at line 433 of file uilayer.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Layer_a9bb957261e17e11ed7a320d8ba10f9c6}{
+\hypertarget{classphys_1_1UI_1_1Layer_a5cdc95615455382a1b55d9e2b5ae6d09}{
 \index{phys::UI::Layer@{phys::UI::Layer}!CreateListBox@{CreateListBox}}
 \index{CreateListBox@{CreateListBox}!phys::UI::Layer@{phys::UI::Layer}}
 \paragraph[{CreateListBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} $\ast$ phys::UI::Layer::CreateListBox (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
 \item[{const {\bf RenderableRect} \&}]{Rect, }
-\item[{const {\bf Real} \&}]{ScrollbarWidth, }
 \item[{const UI::ScrollbarStyle \&}]{ScrollbarStyle}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1UI_1_1Layer_a9bb957261e17e11ed7a320d8ba10f9c6}
+\label{classphys_1_1UI_1_1Layer_a5cdc95615455382a1b55d9e2b5ae6d09}
 
 
 Creates a List Box within this layer. 
@@ -479,8 +478,6 @@ Returns a pointer to the created List Box.
 {\em Name} & The name of the List Box. \\
 \hline
 {\em Rect} & The Rect representing the position and size of the List Box. \\
-\hline
-{\em ScrollbarWidth} & The relative width of the scrollbar thats created with this widget. \\
 \hline
 {\em ScrollbarStyle} & The style of scrollbar you want to create, see \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \\
 \hline

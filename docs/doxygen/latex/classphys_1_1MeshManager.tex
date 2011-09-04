@@ -1,0 +1,597 @@
+\hypertarget{classphys_1_1MeshManager}{
+\subsection{phys::MeshManager Class Reference}
+\label{classphys_1_1MeshManager}\index{phys::MeshManager@{phys::MeshManager}}
+}
+
+
+This manager handles the storage, generation, and query of of Graphics Meshes.  
+
+
+
+
+{\ttfamily \#include $<$meshmanager.h$>$}
+
+Inheritance diagram for phys::MeshManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classphys_1_1MeshManager}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1MeshManager_a8b79ca0341670d0f2b2139e4028d1f44}{CreateBoxMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents)
+\begin{DoxyCompactList}\small\item\em Creates a box graphical mesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1MeshManager_aedf28abe1205fd18288815e12814abbe}{CreateBoxMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour, const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents)
+\begin{DoxyCompactList}\small\item\em Creates a box graphical mesh which can be used for actors. \item\end{DoxyCompactList}\item 
+virtual const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1MeshManager_a84becb455df5ca733e1e1c5ce0b2322b}{CreateColouredMaterial} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MatName, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Creates a basic material in code using the provided colour. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1MeshManager_a54baf240a29b9f9e5d83ae1e8ffdcff4}{CreateCylinderMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents, const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisOrientation, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&CircleRes=16, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Segments=1)
+\begin{DoxyCompactList}\small\item\em Creates a cylinder graphical mesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1MeshManager_a3e690963dc53e430dabe4ac9915ef170}{CreateCylinderMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour, const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents, const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisOrientation, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&CircleRes=16, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Segments=1)
+\begin{DoxyCompactList}\small\item\em Creates a cylinder graphical mesh and simple material. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1MeshManager_a103d2b3cbead1341c3a45f138a68db45}{CreateMeshFromShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Generates a mesh based on a collision shape. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1MeshManager_a5b010c8cce3d31c0ddc1094f5afb851f}{CreateSphereMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radius, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Rings=16, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Segments=16)
+\begin{DoxyCompactList}\small\item\em Creates a sphere graphical mesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1MeshManager_a2b899a10f14fccc4a330194bb7534c52}{CreateSphereMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radius, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Rings=16, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Segments=16)
+\begin{DoxyCompactList}\small\item\em Creates a sphere graphical mesh and simple material. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1MeshManager_a4fab054dcafc05aed8c68eef8017596a}{
+virtual void \hyperlink{classphys_1_1MeshManager_a4fab054dcafc05aed8c68eef8017596a}{DestroyAllGeneratedMeshes} ()}
+\label{classphys_1_1MeshManager_a4fab054dcafc05aed8c68eef8017596a}
+
+\begin{DoxyCompactList}\small\item\em Destroys all the meshes generated by this generator. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1MeshManager_a33fe49526cdaf0628305322150394b37}{
+void \hyperlink{classphys_1_1MeshManager_a33fe49526cdaf0628305322150394b37}{DestroyAllMeshes} ()}
+\label{classphys_1_1MeshManager_a33fe49526cdaf0628305322150394b37}
+
+\begin{DoxyCompactList}\small\item\em Clears this manager of all meshes, both loaded and generated. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1MeshManager_adabf5507428942f2391b4b96baa4437d}{DestroyGeneratedMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName)
+\begin{DoxyCompactList}\small\item\em Destroys a named \hyperlink{classphys_1_1Mesh}{Mesh}, freeing it's resources. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1MeshManager_a8c13d3eaa1717c1892012715c46b0818}{DoMainLoopItems} ()
+\item 
+\hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1MeshManager_a04f86b99041edd368fa3ff2d2b84f8d6}{GetMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName)
+\begin{DoxyCompactList}\small\item\em Gets a mesh stored in this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1MeshManager_a45a3fe08d53a70a02d4c1c0e2bbdfde5}{GetNumGeneratedMeshes} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of meshes this generator has created and are in use. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1MeshManager_abf24b84f0cc9eac6b707d83436c245c3}{GetNumLoadedMeshes} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of currently loaded mesh files. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \hyperlink{classphys_1_1MeshManager_ab8d0a416cf9d20940c546adf5b6ebea4}{GetType} () const 
+\item 
+virtual void \hyperlink{classphys_1_1MeshManager_a95103f27f689a644c3501383e03ee731}{Initialize} ()
+\item 
+virtual \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1MeshManager_aa35e2953c88b103c6fb3c39c2813f7ef}{LoadMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group)
+\begin{DoxyCompactList}\small\item\em Loads a mesh file from disk and prepares it for use. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1MeshManager_ae576564292a49d2298e420585ea2436a}{
+\hyperlink{classphys_1_1MeshManager_ae576564292a49d2298e420585ea2436a}{MeshManager} ()}
+\label{classphys_1_1MeshManager_ae576564292a49d2298e420585ea2436a}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1MeshManager_adf4f9c6ec5a6121d96fd62d782bd99ad}{
+virtual void \hyperlink{classphys_1_1MeshManager_adf4f9c6ec5a6121d96fd62d782bd99ad}{UnloadAllLoadedMeshes} ()}
+\label{classphys_1_1MeshManager_adf4f9c6ec5a6121d96fd62d782bd99ad}
+
+\begin{DoxyCompactList}\small\item\em Unloads every mesh that is currently loaded. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1MeshManager_a3e9177d980445a7e8038d401c5914af3}{UnloadMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName)
+\begin{DoxyCompactList}\small\item\em Unloads a mesh file. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1MeshManager_a546e8686c6f0a38dcde66fb8c0dbf050}{
+virtual \hyperlink{classphys_1_1MeshManager_a546e8686c6f0a38dcde66fb8c0dbf050}{$\sim$MeshManager} ()}
+\label{classphys_1_1MeshManager_a546e8686c6f0a38dcde66fb8c0dbf050}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1MeshManager_afab17c2ff0126fcc9530e54bf0ee1063}{
+std::map$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}, \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ $>$ {\bfseries GeneratedMeshes}}
+\label{classphys_1_1MeshManager_afab17c2ff0126fcc9530e54bf0ee1063}
+
+\item 
+\hypertarget{classphys_1_1MeshManager_a933dd33b8d533878277504afb8801824}{
+std::map$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}, \hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ $>$ {\bfseries LoadedMeshes}}
+\label{classphys_1_1MeshManager_a933dd33b8d533878277504afb8801824}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This manager handles the storage, generation, and query of of Graphics Meshes. 
+
+Definition at line 57 of file meshmanager.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1MeshManager_a8b79ca0341670d0f2b2139e4028d1f44}{
+\index{phys::MeshManager@{phys::MeshManager}!CreateBoxMesh@{CreateBoxMesh}}
+\index{CreateBoxMesh@{CreateBoxMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{CreateBoxMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ phys::MeshManager::CreateBoxMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{MaterialName, }
+\item[{const {\bf Vector3} \&}]{HalfExtents}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a8b79ca0341670d0f2b2139e4028d1f44}
+
+
+Creates a box graphical mesh. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classphys_1_1Mesh}{Mesh}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \\
+\hline
+{\em MaterialName} & The name of the material script which will be applied to this mesh. \\
+\hline
+{\em HalfExtents} & Half of the full dimentions of the final object in world units. This allows the objects origin to be it's center. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 138 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_aedf28abe1205fd18288815e12814abbe}{
+\index{phys::MeshManager@{phys::MeshManager}!CreateBoxMesh@{CreateBoxMesh}}
+\index{CreateBoxMesh@{CreateBoxMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{CreateBoxMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ phys::MeshManager::CreateBoxMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf ColourValue} \&}]{Colour, }
+\item[{const {\bf Vector3} \&}]{HalfExtents}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_aedf28abe1205fd18288815e12814abbe}
+
+
+Creates a box graphical mesh which can be used for actors. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classphys_1_1Mesh}{Mesh}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \\
+\hline
+{\em Colour} & The colour to generate the material with that will be applied to the mesh. The created material's name will be autogenerated to \char`\"{}\mbox{[}Meshname\mbox{]}+Mat\char`\"{}. \\
+\hline
+{\em HalfExtents} & Half of the full dimentions of the final object in world units. This allows the objects origin to be it's center. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 196 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a84becb455df5ca733e1e1c5ce0b2322b}{
+\index{phys::MeshManager@{phys::MeshManager}!CreateColouredMaterial@{CreateColouredMaterial}}
+\index{CreateColouredMaterial@{CreateColouredMaterial}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{CreateColouredMaterial}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf String} \& phys::MeshManager::CreateColouredMaterial (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MatName, }
+\item[{const {\bf ColourValue} \&}]{Colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a84becb455df5ca733e1e1c5ce0b2322b}
+
+
+Creates a basic material in code using the provided colour. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of the created Material. This is actually the same string as whats passed in as the MatName, just here as convenience when calling the function as an argument in other functions. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MatName} & The name to assign to the created material. \\
+\hline
+{\em Colour} & The colour to assign to the created material. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 384 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a54baf240a29b9f9e5d83ae1e8ffdcff4}{
+\index{phys::MeshManager@{phys::MeshManager}!CreateCylinderMesh@{CreateCylinderMesh}}
+\index{CreateCylinderMesh@{CreateCylinderMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{CreateCylinderMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ phys::MeshManager::CreateCylinderMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{MaterialName, }
+\item[{const {\bf Vector3} \&}]{HalfExtents, }
+\item[{const {\bf Vector3} \&}]{AxisOrientation, }
+\item[{const {\bf Whole} \&}]{CircleRes = {\ttfamily 16}, }
+\item[{const {\bf Whole} \&}]{Segments = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a54baf240a29b9f9e5d83ae1e8ffdcff4}
+
+
+Creates a cylinder graphical mesh. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classphys_1_1Mesh}{Mesh}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \\
+\hline
+{\em MaterialName} & The name of the material script which will be applied to this mesh. \\
+\hline
+{\em HalfExtents} & Half of the full dimentions of the final object in world units. This allows the objects origin to be it's center. \\
+\hline
+{\em AxisOrientation} & \hyperlink{classphys_1_1Vector3}{Vector3} representing which axis the cylinder should be aligned on. Should be one of the three: (1,0,0), (0,1,0), (0,0,1). \\
+\hline
+{\em CircleRes} & The number of segments the circle should be comprised of. Determines the \char`\"{}resolution\char`\"{} of the cylinder. \\
+\hline
+{\em Segments} & Optional parameter to specify the number of segments the cylinder should be comprised of. Mostly just useful if a special material is made for his. \\
+\hline
+\end{DoxyParams}
+
+
+Start of MIT(Ogre Proceadural) License ///
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000015}{Todo}]These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed. \end{Desc}
+
+
+End of MIT(Ogre Proceadural) License /// 
+
+
+
+Definition at line 203 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a3e690963dc53e430dabe4ac9915ef170}{
+\index{phys::MeshManager@{phys::MeshManager}!CreateCylinderMesh@{CreateCylinderMesh}}
+\index{CreateCylinderMesh@{CreateCylinderMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{CreateCylinderMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ phys::MeshManager::CreateCylinderMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf ColourValue} \&}]{Colour, }
+\item[{const {\bf Vector3} \&}]{HalfExtents, }
+\item[{const {\bf Vector3} \&}]{AxisOrientation, }
+\item[{const {\bf Whole} \&}]{CircleRes = {\ttfamily 16}, }
+\item[{const {\bf Whole} \&}]{Segments = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a3e690963dc53e430dabe4ac9915ef170}
+
+
+Creates a cylinder graphical mesh and simple material. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classphys_1_1Mesh}{Mesh}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \\
+\hline
+{\em Colour} & The colour to generate the material with that will be applied to the mesh. The created material's name will be autogenerated to \char`\"{}\mbox{[}Meshname\mbox{]}+Mat\char`\"{}. \\
+\hline
+{\em HalfExtents} & Half of the full dimentions of the final object in world units. This allows the objects origin to be it's center. \\
+\hline
+{\em AxisOrientation} & \hyperlink{classphys_1_1Vector3}{Vector3} representing which axis the cylinder should be aligned on. Should be one of the three: (1,0,0), (0,1,0), (0,0,1). \\
+\hline
+{\em CircleRes} & The number of segments the circle should be comprised of. Determines the \char`\"{}resolution\char`\"{} of the cylinder. \\
+\hline
+{\em Segments} & Optional parameter to specify the number of segments the cylinder should be comprised of. Mostly just useful if a special material is made for his. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 316 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a103d2b3cbead1341c3a45f138a68db45}{
+\index{phys::MeshManager@{phys::MeshManager}!CreateMeshFromShape@{CreateMeshFromShape}}
+\index{CreateMeshFromShape@{CreateMeshFromShape}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{CreateMeshFromShape}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ phys::MeshManager::CreateMeshFromShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{MaterialName, }
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a103d2b3cbead1341c3a45f138a68db45}
+
+
+Generates a mesh based on a collision shape. 
+
+\begin{DoxyRemark}{Remarks}
+This is just a convenience function. You can fetch the information and build the mesh yourself with greater flexability then what this function has to offer. This function only supports building the shapes this manager can generate, and it will only use default options when deciding the parameters to use(if it's a parameter it can't get from the shape). 
+\end{DoxyRemark}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created mesh. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name that will be given to the generated mesh. \\
+\hline
+{\em MaterialName} & The name of the material to use with this mesh. \\
+\hline
+{\em Shape} & The shape to base the mesh on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 379 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a5b010c8cce3d31c0ddc1094f5afb851f}{
+\index{phys::MeshManager@{phys::MeshManager}!CreateSphereMesh@{CreateSphereMesh}}
+\index{CreateSphereMesh@{CreateSphereMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{CreateSphereMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ phys::MeshManager::CreateSphereMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{MaterialName, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Rings = {\ttfamily 16}, }
+\item[{const {\bf Real} \&}]{Segments = {\ttfamily 16}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a5b010c8cce3d31c0ddc1094f5afb851f}
+
+
+Creates a sphere graphical mesh. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classphys_1_1Mesh}{Mesh}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \\
+\hline
+{\em MaterialName} & The name of the material script which will be applied to this mesh. \\
+\hline
+{\em Radius} & The radius to generate the sphere with in world units. \\
+\hline
+{\em Rings} & The number of horizontal rings the sphere is to be comprised of. This along with the segments parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \\
+\hline
+{\em Segments} & The number of vertical rings the sphere is to be comprised of. This along with the rings parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 323 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a2b899a10f14fccc4a330194bb7534c52}{
+\index{phys::MeshManager@{phys::MeshManager}!CreateSphereMesh@{CreateSphereMesh}}
+\index{CreateSphereMesh@{CreateSphereMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{CreateSphereMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ phys::MeshManager::CreateSphereMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf ColourValue} \&}]{Colour, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Rings = {\ttfamily 16}, }
+\item[{const {\bf Real} \&}]{Segments = {\ttfamily 16}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a2b899a10f14fccc4a330194bb7534c52}
+
+
+Creates a sphere graphical mesh and simple material. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classphys_1_1Mesh}{Mesh}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \\
+\hline
+{\em Colour} & The colour to generate the material with that will be applied to the mesh. The created material's name will be autogenerated to \char`\"{}\mbox{[}Meshname\mbox{]}+Mat\char`\"{}. \\
+\hline
+{\em Radius} & The radius to generate the sphere with in world units. \\
+\hline
+{\em Rings} & The number of horizontal rings the sphere is to be comprised of. This along with the segments parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \\
+\hline
+{\em Segments} & The number of vertical rings the sphere is to be comprised of. This along with the rings parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 372 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_adabf5507428942f2391b4b96baa4437d}{
+\index{phys::MeshManager@{phys::MeshManager}!DestroyGeneratedMesh@{DestroyGeneratedMesh}}
+\index{DestroyGeneratedMesh@{DestroyGeneratedMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{DestroyGeneratedMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MeshManager::DestroyGeneratedMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_adabf5507428942f2391b4b96baa4437d}
+
+
+Destroys a named \hyperlink{classphys_1_1Mesh}{Mesh}, freeing it's resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name of the mesh to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 117 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a8c13d3eaa1717c1892012715c46b0818}{
+\index{phys::MeshManager@{phys::MeshManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MeshManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a8c13d3eaa1717c1892012715c46b0818}
+The main loop calls this once per frame. 
+
+This is where each manager is expected to put anything that needs to be run each iteration of the main loop  
+
+Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
+
+
+
+Definition at line 404 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a04f86b99041edd368fa3ff2d2b84f8d6}{
+\index{phys::MeshManager@{phys::MeshManager}!GetMesh@{GetMesh}}
+\index{GetMesh@{GetMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{GetMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ phys::MeshManager::GetMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1MeshManager_a04f86b99041edd368fa3ff2d2b84f8d6}
+
+
+Gets a mesh stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the requested mesh. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name of the mesh to retrieve. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 60 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a45a3fe08d53a70a02d4c1c0e2bbdfde5}{
+\index{phys::MeshManager@{phys::MeshManager}!GetNumGeneratedMeshes@{GetNumGeneratedMeshes}}
+\index{GetNumGeneratedMeshes@{GetNumGeneratedMeshes}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{GetNumGeneratedMeshes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::MeshManager::GetNumGeneratedMeshes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a45a3fe08d53a70a02d4c1c0e2bbdfde5}
+
+
+Gets the number of meshes this generator has created and are in use. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the number of meshes created by this generator. 
+\end{DoxyReturn}
+
+
+Definition at line 112 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_abf24b84f0cc9eac6b707d83436c245c3}{
+\index{phys::MeshManager@{phys::MeshManager}!GetNumLoadedMeshes@{GetNumLoadedMeshes}}
+\index{GetNumLoadedMeshes@{GetNumLoadedMeshes}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{GetNumLoadedMeshes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::MeshManager::GetNumLoadedMeshes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_abf24b84f0cc9eac6b707d83436c245c3}
+
+
+Gets the number of currently loaded mesh files. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the number of mesh files currently loaded. 
+\end{DoxyReturn}
+
+
+Definition at line 97 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_ab8d0a416cf9d20940c546adf5b6ebea4}{
+\index{phys::MeshManager@{phys::MeshManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::MeshManager::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_ab8d0a416cf9d20940c546adf5b6ebea4}
+This returns the type of this manager. 
+
+This is intended to make using and casting from Manager base easier. With this is is possible to cast from \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to the correct Manager Type. \begin{DoxyReturn}{Returns}
+This returns a ManagerTypeName to identify what this can be safely cast to. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 407 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a95103f27f689a644c3501383e03ee731}{
+\index{phys::MeshManager@{phys::MeshManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MeshManager::Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a95103f27f689a644c3501383e03ee731}
+Configure Items requiring other Managers. 
+
+If you are using the \hyperlink{classphys_1_1World}{phys::World} this is called when \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{phys::World::GameInit()} is called. It is expected that by the time this is called either ManagerBase::ManagerBase(World$\ast$) or \hyperlink{classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}{ManagerBase::SetGameWorld(World$\ast$)} will have been called. This is where all configuration that requires atleast one other manager on the \hyperlink{classphys_1_1World}{phys::World} to exist.\par
+\par
+ Yes we know it is spelled wrong, but are Zs cooler anyway.  
+
+Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
+
+
+
+Definition at line 401 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_aa35e2953c88b103c6fb3c39c2813f7ef}{
+\index{phys::MeshManager@{phys::MeshManager}!LoadMesh@{LoadMesh}}
+\index{LoadMesh@{LoadMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{LoadMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ phys::MeshManager::LoadMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{Group}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_aa35e2953c88b103c6fb3c39c2813f7ef}
+
+
+Loads a mesh file from disk and prepares it for use. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the loaded mesh. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name of the mesh file to be loaded. \\
+\hline
+{\em Group} & The resource group from which the mesh file should be loaded. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 77 of file meshmanager.cpp.
+
+\hypertarget{classphys_1_1MeshManager_a3e9177d980445a7e8038d401c5914af3}{
+\index{phys::MeshManager@{phys::MeshManager}!UnloadMesh@{UnloadMesh}}
+\index{UnloadMesh@{UnloadMesh}!phys::MeshManager@{phys::MeshManager}}
+\paragraph[{UnloadMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MeshManager::UnloadMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshManager_a3e9177d980445a7e8038d401c5914af3}
+
+
+Unloads a mesh file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name of the mesh to be unloaded. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 87 of file meshmanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+meshmanager.h\item 
+meshmanager.cpp\end{DoxyCompactItemize}

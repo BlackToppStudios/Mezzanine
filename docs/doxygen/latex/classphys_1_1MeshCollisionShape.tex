@@ -1,0 +1,88 @@
+\hypertarget{classphys_1_1MeshCollisionShape}{
+\subsection{phys::MeshCollisionShape Class Reference}
+\label{classphys_1_1MeshCollisionShape}\index{phys::MeshCollisionShape@{phys::MeshCollisionShape}}
+}
+
+
+This is the base class for all \hyperlink{classphys_1_1Mesh}{Mesh} shapes.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for phys::MeshCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.548387cm]{classphys_1_1MeshCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classphys_1_1CollisionShape_af3ba4fd8af5b9557f912d2f5ff35a588}{CollisionShape::ShapeType} \hyperlink{classphys_1_1MeshCollisionShape_abc9d3f06df71eadb59ba93eadf6ab82f}{GetType} () const =0
+\item 
+\hypertarget{classphys_1_1MeshCollisionShape_aa5c09ce9f67166594ee43374485734c3}{
+\hyperlink{classphys_1_1MeshCollisionShape_aa5c09ce9f67166594ee43374485734c3}{MeshCollisionShape} ()}
+\label{classphys_1_1MeshCollisionShape_aa5c09ce9f67166594ee43374485734c3}
+
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1MeshCollisionShape_af9eff2a316fcf981954913708bf69231}{
+virtual \hyperlink{classphys_1_1MeshCollisionShape_af9eff2a316fcf981954913708bf69231}{$\sim$MeshCollisionShape} ()}
+\label{classphys_1_1MeshCollisionShape_af9eff2a316fcf981954913708bf69231}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1MeshCollisionShape_a889f7ca8a894243ec3e361c27d4c3d8a}{
+void \hyperlink{classphys_1_1MeshCollisionShape_a889f7ca8a894243ec3e361c27d4c3d8a}{SetPointers} (btConcaveShape $\ast$Shape)}
+\label{classphys_1_1MeshCollisionShape_a889f7ca8a894243ec3e361c27d4c3d8a}
+
+\begin{DoxyCompactList}\small\item\em Sets the internal pointers on the base classes. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1MeshCollisionShape_a534e45627f93eb47ac14cdff9ba30278}{
+btConcaveShape $\ast$ {\bfseries MeshShapeBase}}
+\label{classphys_1_1MeshCollisionShape_a534e45627f93eb47ac14cdff9ba30278}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is the base class for all \hyperlink{classphys_1_1Mesh}{Mesh} shapes. A \hyperlink{classphys_1_1Mesh}{Mesh} shape is any shape that uses a series of triangles to determine it's bounds. As a rule all \hyperlink{classphys_1_1Mesh}{Mesh} Shapes are considered Concave(even though the triangles don't need to form a concave shape, there is no way to assure the physics engine of that). \hyperlink{classphys_1_1Mesh}{Mesh} shapes are not very performant, and should only be used with static objects, such as terrain. 
+
+Definition at line 163 of file collisionshape.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1MeshCollisionShape_abc9d3f06df71eadb59ba93eadf6ab82f}{
+\index{phys::MeshCollisionShape@{phys::MeshCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::MeshCollisionShape@{phys::MeshCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf CollisionShape::ShapeType} phys::MeshCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MeshCollisionShape_abc9d3f06df71eadb59ba93eadf6ab82f}
+Gets the type of Collision shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1CollisionShape_aa4911840c6e877cfecf201b7f43a57e3}{phys::CollisionShape}.
+
+
+
+Implemented in \hyperlink{classphys_1_1DynamicMeshCollisionShape_a0d2d30bd1c4c0b29d276bd325a13d7ac}{phys::DynamicMeshCollisionShape}, \hyperlink{classphys_1_1HeightfieldCollisionShape_a16790a33eadb743b71480f65a7bb8dd8}{phys::HeightfieldCollisionShape}, \hyperlink{classphys_1_1PlaneCollisionShape_ab166ba6b39e36986912f61cc7a89b666}{phys::PlaneCollisionShape}, \hyperlink{classphys_1_1ActorSoftCollisionShape_af7b284a89286ac1e0f90262f222faf09}{phys::ActorSoftCollisionShape}, and \hyperlink{classphys_1_1StaticMeshCollisionShape_ae89718d0c982ad83050971d2965ce3ce}{phys::StaticMeshCollisionShape}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

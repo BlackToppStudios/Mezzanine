@@ -95,6 +95,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the material name of the specified submesh.  <a href="#aa1d57793e97d280acac5a8c8fe8b4cc3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1ColourValue.html">ColourValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorGraphicsSettings.html#a2598d7db0dd899417aa3e4d017b8c6ab">GetMaterialSpecular</a> (<a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> Submesh=0) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Specular colour value of the material belonging to the specified submesh.  <a href="#a2598d7db0dd899417aa3e4d017b8c6ab"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Mesh.html">Mesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorGraphicsSettings.html#a0da0604290e4c0f351cc8df0f0d99633">GetMesh</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mesh being used by this actor.  <a href="#a0da0604290e4c0f351cc8df0f0d99633"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorGraphicsSettings.html#a550bd94bc063ce629e4c9aa511dbfb79">GetNumSubmeshes</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of submeshes in the mesh of the graphics ohject.  <a href="#a550bd94bc063ce629e4c9aa511dbfb79"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorGraphicsSettings.html#a7b1948300461014e30e8a295917ae886">HasMaterialSet</a> (<a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> Submesh=0)</td></tr>
@@ -117,15 +119,21 @@ Ogre::MaterialPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Material/textures for the actor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a430d5a0b171409125491dcb66ee4580b"></a><!-- doxytag: member="phys::ActorGraphicsSettings::ActorMesh" ref="a430d5a0b171409125491dcb66ee4580b" args="" -->
+<a class="el" href="classphys_1_1Mesh.html">Mesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorGraphicsSettings.html#a430d5a0b171409125491dcb66ee4580b">ActorMesh</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The mesh being used by the Actor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc038a8da65483f028f799fb80f62848"></a><!-- doxytag: member="phys::ActorGraphicsSettings::IAGS" ref="afc038a8da65483f028f799fb80f62848" args="" -->
 <a class="el" href="classphys_1_1internal_1_1InternalActorGraphicsSettings.html">internal::InternalActorGraphicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorGraphicsSettings.html#afc038a8da65483f028f799fb80f62848">IAGS</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores all the data to go with the. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52f1d57929101944767bf23b003f0975"></a><!-- doxytag: member="phys::ActorGraphicsSettings::Parent" ref="a52f1d57929101944767bf23b003f0975" args="" -->
+<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorGraphicsSettings.html#a52f1d57929101944767bf23b003f0975">Parent</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Actor this belongs to. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is a helper class for configuring graphics settings of an actor. </p>
 <p>This class contains functions for the configuring of graphics specific settings of an actor. This class can only configure the actors graphics. For configuring actor physics, see <a class="el" href="classphys_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>. </p>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8h_source.html#l00069">69</a> of file <a class="el" href="actorgraphicssettings_8h_source.html">actorgraphicssettings.h</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8h_source.html#l00070">70</a> of file <a class="el" href="actorgraphicssettings_8h_source.html">actorgraphicssettings.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a33472d07ddaaf630e4e7b8c94190df0a"></a><!-- doxytag: member="phys::ActorGraphicsSettings::ActorGraphicsSettings" ref="a33472d07ddaaf630e4e7b8c94190df0a" args="(ActorBase *Actor, Ogre::Entity *GraphicsObject)" -->
 <div class="memitem">
@@ -189,7 +197,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00118">118</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00120">120</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -218,7 +226,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The colour that was as the material Ambient colour, OR a default colourvalue. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00159">159</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00161">161</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -247,7 +255,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The colour that was as the material Diffuse colour, OR a default colourvalue. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00165">165</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00167">167</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -276,7 +284,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a String containing the name of the material script in use. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00123">123</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00125">125</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,7 +313,26 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The colour that was as the material Specular colour, OR a default colourvalue. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00162">162</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00164">164</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0da0604290e4c0f351cc8df0f0d99633"></a><!-- doxytag: member="phys::ActorGraphicsSettings::GetMesh" ref="a0da0604290e4c0f351cc8df0f0d99633" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classphys_1_1Mesh.html">Mesh</a>* phys::ActorGraphicsSettings::GetMesh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the mesh being used by this actor. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the mesh being used by this actor. </dd></dl>
 
 </div>
 </div>
@@ -326,7 +353,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the number of submeshes in the mesh of the graphics ohject. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a whole representing the number of submeshes in this objects mesh. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00133">133</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00135">135</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -354,7 +381,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether there is a material assigned to the specified submesh. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00128">128</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00130">130</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -393,7 +420,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00113">113</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00115">115</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -432,7 +459,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00141">141</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00143">143</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -471,7 +498,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00153">153</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00155">155</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -510,7 +537,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00147">147</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorgraphicssettings_8cpp_source.html#l00149">149</a> of file <a class="el" href="actorgraphicssettings_8cpp_source.html">actorgraphicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -534,6 +561,6 @@ Protected Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:28 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:21 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

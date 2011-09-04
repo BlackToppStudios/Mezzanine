@@ -26,6 +26,8 @@ void \hyperlink{classphys_1_1ActorGraphicsSettings_a82baed53d2390cba593b30d6da06
 \begin{DoxyCompactList}\small\item\em Gets the material name of the specified submesh. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_1ActorGraphicsSettings_a2598d7db0dd899417aa3e4d017b8c6ab}{GetMaterialSpecular} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Submesh=0) const 
 \begin{DoxyCompactList}\small\item\em Gets the Specular colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1ActorGraphicsSettings_a0da0604290e4c0f351cc8df0f0d99633}{GetMesh} () const 
+\begin{DoxyCompactList}\small\item\em Gets the mesh being used by this actor. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorGraphicsSettings_a550bd94bc063ce629e4c9aa511dbfb79}{GetNumSubmeshes} () const 
 \begin{DoxyCompactList}\small\item\em Gets the number of submeshes in the mesh of the graphics ohject. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1ActorGraphicsSettings_a7b1948300461014e30e8a295917ae886}{HasMaterialSet} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Submesh=0)
@@ -54,17 +56,27 @@ Ogre::MaterialPtr \hyperlink{classphys_1_1ActorGraphicsSettings_ade1b760cc01187e
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classphys_1_1ActorGraphicsSettings_a430d5a0b171409125491dcb66ee4580b}{
+\hyperlink{classphys_1_1Mesh}{Mesh} $\ast$ \hyperlink{classphys_1_1ActorGraphicsSettings_a430d5a0b171409125491dcb66ee4580b}{ActorMesh}}
+\label{classphys_1_1ActorGraphicsSettings_a430d5a0b171409125491dcb66ee4580b}
+
+\begin{DoxyCompactList}\small\item\em The mesh being used by the Actor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorGraphicsSettings_afc038a8da65483f028f799fb80f62848}{
 \hyperlink{classphys_1_1internal_1_1InternalActorGraphicsSettings}{internal::InternalActorGraphicsSettings} $\ast$ \hyperlink{classphys_1_1ActorGraphicsSettings_afc038a8da65483f028f799fb80f62848}{IAGS}}
 \label{classphys_1_1ActorGraphicsSettings_afc038a8da65483f028f799fb80f62848}
 
-\begin{DoxyCompactList}\small\item\em Stores all the data to go with the. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Stores all the data to go with the. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorGraphicsSettings_a52f1d57929101944767bf23b003f0975}{
+\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorGraphicsSettings_a52f1d57929101944767bf23b003f0975}{Parent}}
+\label{classphys_1_1ActorGraphicsSettings_a52f1d57929101944767bf23b003f0975}
+
+\begin{DoxyCompactList}\small\item\em The Actor this belongs to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
 This is a helper class for configuring graphics settings of an actor. This class contains functions for the configuring of graphics specific settings of an actor. This class can only configure the actors graphics. For configuring actor physics, see \hyperlink{classphys_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. 
 
-Definition at line 69 of file actorgraphicssettings.h.
+Definition at line 70 of file actorgraphicssettings.h.
 
 
 
@@ -117,7 +129,7 @@ Creates a copy of the material script of the graphics object and places it in th
 \end{DoxyParams}
 
 
-Definition at line 118 of file actorgraphicssettings.cpp.
+Definition at line 120 of file actorgraphicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorGraphicsSettings_a7cebcdcf70ffedf15ece92c1326a95c3}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!GetMaterialAmbient@{GetMaterialAmbient}}
@@ -142,7 +154,7 @@ The colour that was as the material Ambient colour, OR a default colourvalue.
 \end{DoxyReturn}
 
 
-Definition at line 159 of file actorgraphicssettings.cpp.
+Definition at line 161 of file actorgraphicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorGraphicsSettings_ab4b2a4938c6fb0c400882fb929bc7133}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!GetMaterialDiffuse@{GetMaterialDiffuse}}
@@ -167,7 +179,7 @@ The colour that was as the material Diffuse colour, OR a default colourvalue.
 \end{DoxyReturn}
 
 
-Definition at line 165 of file actorgraphicssettings.cpp.
+Definition at line 167 of file actorgraphicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorGraphicsSettings_aa1d57793e97d280acac5a8c8fe8b4cc3}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!GetMaterialName@{GetMaterialName}}
@@ -192,7 +204,7 @@ Returns a String containing the name of the material script in use.
 \end{DoxyReturn}
 
 
-Definition at line 123 of file actorgraphicssettings.cpp.
+Definition at line 125 of file actorgraphicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorGraphicsSettings_a2598d7db0dd899417aa3e4d017b8c6ab}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!GetMaterialSpecular@{GetMaterialSpecular}}
@@ -217,8 +229,24 @@ The colour that was as the material Specular colour, OR a default colourvalue.
 \end{DoxyReturn}
 
 
-Definition at line 162 of file actorgraphicssettings.cpp.
+Definition at line 164 of file actorgraphicssettings.cpp.
 
+\hypertarget{classphys_1_1ActorGraphicsSettings_a0da0604290e4c0f351cc8df0f0d99633}{
+\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!GetMesh@{GetMesh}}
+\index{GetMesh@{GetMesh}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+\paragraph[{GetMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh}$\ast$ phys::ActorGraphicsSettings::GetMesh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1ActorGraphicsSettings_a0da0604290e4c0f351cc8df0f0d99633}
+
+
+Gets the mesh being used by this actor. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the mesh being used by this actor. 
+\end{DoxyReturn}
 \hypertarget{classphys_1_1ActorGraphicsSettings_a550bd94bc063ce629e4c9aa511dbfb79}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!GetNumSubmeshes@{GetNumSubmeshes}}
 \index{GetNumSubmeshes@{GetNumSubmeshes}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
@@ -237,7 +265,7 @@ Returns a whole representing the number of submeshes in this objects mesh.
 \end{DoxyReturn}
 
 
-Definition at line 133 of file actorgraphicssettings.cpp.
+Definition at line 135 of file actorgraphicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorGraphicsSettings_a7b1948300461014e30e8a295917ae886}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!HasMaterialSet@{HasMaterialSet}}
@@ -262,7 +290,7 @@ Returns a bool indicating whether there is a material assigned to the specified 
 \end{DoxyReturn}
 
 
-Definition at line 128 of file actorgraphicssettings.cpp.
+Definition at line 130 of file actorgraphicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorGraphicsSettings_a8954153fe516ddf4e0107348c3af5abc}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!SetMaterial@{SetMaterial}}
@@ -287,7 +315,7 @@ The name of the material isn't the same as the name of the .material file. As a 
 \end{DoxyParams}
 
 
-Definition at line 113 of file actorgraphicssettings.cpp.
+Definition at line 115 of file actorgraphicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorGraphicsSettings_a93d1c9b229b51b98702b29b8bb5ec4d0}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!SetMaterialAmbient@{SetMaterialAmbient}}
@@ -312,7 +340,7 @@ The set value is applied to every technique of every pass in the material.
 \end{DoxyParams}
 
 
-Definition at line 141 of file actorgraphicssettings.cpp.
+Definition at line 143 of file actorgraphicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorGraphicsSettings_a135bebcafc6a2386aaec61bce7a5e548}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!SetMaterialDiffuse@{SetMaterialDiffuse}}
@@ -337,7 +365,7 @@ The set value is applied to every technique of every pass in the material.
 \end{DoxyParams}
 
 
-Definition at line 153 of file actorgraphicssettings.cpp.
+Definition at line 155 of file actorgraphicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorGraphicsSettings_a51bfae72380679093595c1805b1d940b}{
 \index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!SetMaterialSpecular@{SetMaterialSpecular}}
@@ -362,7 +390,7 @@ The set value is applied to every technique of every pass in the material.
 \end{DoxyParams}
 
 
-Definition at line 147 of file actorgraphicssettings.cpp.
+Definition at line 149 of file actorgraphicssettings.cpp.
 
 
 

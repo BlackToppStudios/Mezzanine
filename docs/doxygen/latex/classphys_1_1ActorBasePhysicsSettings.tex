@@ -14,13 +14,13 @@ This is a base helper class for configuring physics settings of an actor.
 Inheritance diagram for phys::ActorBasePhysicsSettings:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{classphys_1_1ActorBasePhysicsSettings}
+\includegraphics[height=1.752739cm]{classphys_1_1ActorBasePhysicsSettings}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1ActorBasePhysicsSettings_af9f4413b1cb7c84c3c546db6de3ac662}{ActorBasePhysicsSettings} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, btCollisionObject $\ast$PhysicsObject)
+\hyperlink{classphys_1_1ActorBasePhysicsSettings_ab0dda8f406cd125fc18b813d89d29685}{ActorBasePhysicsSettings} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, btCollisionObject $\ast$PhysicsObject)
 \begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a89e61d914542bb6e16e22e7f39ba26c1}{DisableCollisionResponse} ()
 \begin{DoxyCompactList}\small\item\em Sets the actor to be unable to collide with other objects in the world. \item\end{DoxyCompactList}\item 
@@ -36,6 +36,8 @@ virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hype
 \begin{DoxyCompactList}\small\item\em Gets the actors collision mask. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1ActorBasePhysicsSettings_aa131aa28b9e5c7a53c65c4e229f13ed1}{GetCollisionResponse} () const 
 \begin{DoxyCompactList}\small\item\em Will this respond to 3d collisions. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_ae436b1edd205b48225590dab21eb3551}{GetCollisionShape} () const 
+\begin{DoxyCompactList}\small\item\em Gets the collision shape currently in use by this actor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ActorBasePhysicsSettings_ad38f4ccdbc0ecf997bb9745c23961f6d}{GetFriction} () const 
 \begin{DoxyCompactList}\small\item\em Gets the Actors' friction coefficient. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a937e66bb0293c4162fae48d9e37196f4}{GetRestitution} () const 
@@ -52,6 +54,8 @@ virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_ab0b1760f3730e8547
 \begin{DoxyCompactList}\small\item\em Sets the activation state of the actor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a992771e73cd1f98628618cf75938a5ef}{SetCollisionGroupAndMask} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Group, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Mask)
 \begin{DoxyCompactList}\small\item\em Set the collision group and mask for the actor to determine what it should collide with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a1509c654724bcb6499ec1e5058ab5185}{SetCollisionShape} (\hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Sets the collision shape to be used. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_ad76ddc51fb8514c1cffa9d5f222b580c}{SetFriction} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Friction)
 \begin{DoxyCompactList}\small\item\em Sets the Actors' friction coefficient. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a3e2a58dbbe32fd193f80821e8dd6e7f5}{SetKinematic} ()
@@ -65,6 +69,14 @@ virtual \hyperlink{classphys_1_1ActorBasePhysicsSettings_a6e10308c8888c67a196982
 \label{classphys_1_1ActorBasePhysicsSettings_a6e10308c8888c67a196982bc6cbdebbf}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_ad6d8c9507caab541c7e5034b9488d36e}{
+void {\bfseries AssignShape} (\hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$Shape)}
+\label{classphys_1_1ActorBasePhysicsSettings_ad6d8c9507caab541c7e5034b9488d36e}
+
+\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -73,6 +85,11 @@ btCollisionObject $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_a259d4
 \label{classphys_1_1ActorBasePhysicsSettings_a259d4d10541b28d389ffa287f07ec916}
 
 \begin{DoxyCompactList}\small\item\em Physics Object of the actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_ac95d58db5957ab4f160a8cb5cc6c2f1b}{
+\hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_ac95d58db5957ab4f160a8cb5cc6c2f1b}{ActorShape}}
+\label{classphys_1_1ActorBasePhysicsSettings_ac95d58db5957ab4f160a8cb5cc6c2f1b}
+
+\begin{DoxyCompactList}\small\item\em The physics shape of the actor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a6a95b9dceba9a60f87b2ae0f3109b638}{
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a6a95b9dceba9a60f87b2ae0f3109b638}{CollisionGroup}}
 \label{classphys_1_1ActorBasePhysicsSettings_a6a95b9dceba9a60f87b2ae0f3109b638}
@@ -93,21 +110,21 @@ btCollisionObject $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_a259d4
 \subsubsection{Detailed Description}
 This is a base helper class for configuring physics settings of an actor. This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see \hyperlink{classphys_1_1ActorGraphicsSettings}{ActorGraphicsSettings}. 
 
-Definition at line 68 of file actorphysicssettings.h.
+Definition at line 70 of file actorphysicssettings.h.
 
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1ActorBasePhysicsSettings_af9f4413b1cb7c84c3c546db6de3ac662}{
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_ab0dda8f406cd125fc18b813d89d29685}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!ActorBasePhysicsSettings@{ActorBasePhysicsSettings}}
 \index{ActorBasePhysicsSettings@{ActorBasePhysicsSettings}!phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}}
-\paragraph[{ActorBasePhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorBasePhysicsSettings::ActorBasePhysicsSettings (
+\paragraph[{ActorBasePhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame physgameengine src actorphysicssettings cpp home sqeaky physgame physgameengine src actorphysicssettings cpp phys::ActorBasePhysicsSettings::ActorBasePhysicsSettings (
 \begin{DoxyParamCaption}
 \item[{{\bf ActorBase} $\ast$}]{Actor, }
 \item[{btCollisionObject $\ast$}]{PhysicsObject}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1ActorBasePhysicsSettings_af9f4413b1cb7c84c3c546db6de3ac662}
+\label{classphys_1_1ActorBasePhysicsSettings_ab0dda8f406cd125fc18b813d89d29685}
 
 
 Standard Constructor. 
@@ -121,7 +138,7 @@ Standard Constructor.
 \end{DoxyParams}
 
 
-Definition at line 58 of file actorphysicssettings.cpp.
+Definition at line 63 of file actorphysicssettings.cpp.
 
 
 
@@ -141,7 +158,7 @@ Sets the actor to be unable to collide with other objects in the world.
 
 By default collision response is enabled. Be sure to reactivate collision response if you want your objects to collide again. 
 
-Definition at line 161 of file actorphysicssettings.cpp.
+Definition at line 182 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_aeb1dafd6d1e4875bf89be4de93208c03}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!EnableCollisionResponse@{EnableCollisionResponse}}
@@ -158,7 +175,7 @@ Sets the actor to be able to collide with other objects in the world.
 
 By default collision response is enabled. Only call this function if you have disabled collision response. 
 
-Definition at line 132 of file actorphysicssettings.cpp.
+Definition at line 153 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_ad7d02ace01a30cb3ae9ab187d2449f38}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetActivationState@{GetActivationState}}
@@ -178,7 +195,7 @@ A \hyperlink{namespacephys_a7d434b1a52cf5290a9ecc972b87a6a40}{phys::ActorActivat
 \end{DoxyReturn}
 
 
-Definition at line 218 of file actorphysicssettings.cpp.
+Definition at line 239 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a375c4b19c81e87021266c90e7327888b}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetBasePointer@{GetBasePointer}}
@@ -198,7 +215,7 @@ A pointer \hyperlink{classphys_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSett
 \end{DoxyReturn}
 
 
-Definition at line 214 of file actorphysicssettings.cpp.
+Definition at line 235 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a6090c93f35beea7c82550076a17aef24}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetCollisionGroup@{GetCollisionGroup}}
@@ -218,7 +235,7 @@ Returns a Whole representing the collision group this actor is set to.
 \end{DoxyReturn}
 
 
-Definition at line 81 of file actorphysicssettings.cpp.
+Definition at line 102 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a8a3a7ca225dd9697495bcc7d51b0942a}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetCollisionMask@{GetCollisionMask}}
@@ -238,7 +255,7 @@ Returns a Whole representing what other collision groups this actor should colli
 \end{DoxyReturn}
 
 
-Definition at line 86 of file actorphysicssettings.cpp.
+Definition at line 107 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_aa131aa28b9e5c7a53c65c4e229f13ed1}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetCollisionResponse@{GetCollisionResponse}}
@@ -258,7 +275,27 @@ False is it does not respond to collisions, True if it will
 \end{DoxyReturn}
 
 
-Definition at line 190 of file actorphysicssettings.cpp.
+Definition at line 211 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_ae436b1edd205b48225590dab21eb3551}{
+\index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetCollisionShape@{GetCollisionShape}}
+\index{GetCollisionShape@{GetCollisionShape}!phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}}
+\paragraph[{GetCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape} $\ast$ phys::ActorBasePhysicsSettings::GetCollisionShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorBasePhysicsSettings_ae436b1edd205b48225590dab21eb3551}
+
+
+Gets the collision shape currently in use by this actor. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the collision shape being used. 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_ad38f4ccdbc0ecf997bb9745c23961f6d}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetFriction@{GetFriction}}
@@ -278,7 +315,7 @@ Returns a Real representing the actors' friction coefficient.
 \end{DoxyReturn}
 
 
-Definition at line 96 of file actorphysicssettings.cpp.
+Definition at line 117 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a937e66bb0293c4162fae48d9e37196f4}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetRestitution@{GetRestitution}}
@@ -298,7 +335,7 @@ Returns a Real representing the actors' restitution coefficient.
 \end{DoxyReturn}
 
 
-Definition at line 104 of file actorphysicssettings.cpp.
+Definition at line 125 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_aeb966cf55b9b626897731f42b5a2fc64}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!IsActive@{IsActive}}
@@ -318,7 +355,7 @@ Returns true if the object is active, false if it's deactivated(at rest).
 \end{DoxyReturn}
 
 
-Definition at line 195 of file actorphysicssettings.cpp.
+Definition at line 216 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a8128bcfc407909a57026eb38812b1d1d}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!IsKinematic@{IsKinematic}}
@@ -338,7 +375,7 @@ True if the actor is kinematic false if it is not.
 \end{DoxyReturn}
 
 
-Definition at line 112 of file actorphysicssettings.cpp.
+Definition at line 133 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a68c32cbe7329e138c5ea11c5b098483f}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!IsStatic@{IsStatic}}
@@ -358,7 +395,7 @@ True if the actor is Static false if it is not.
 \end{DoxyReturn}
 
 
-Definition at line 122 of file actorphysicssettings.cpp.
+Definition at line 143 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a5fe007187584b836ada963f8a23eb377}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!IsStaticOrKinematic@{IsStaticOrKinematic}}
@@ -378,7 +415,7 @@ Returns true if the actor is static or kinematic.
 \end{DoxyReturn}
 
 
-Definition at line 127 of file actorphysicssettings.cpp.
+Definition at line 148 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_ab0b1760f3730e85470097d44985a5b56}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetActivationState@{SetActivationState}}
@@ -403,7 +440,7 @@ Sets the activation state of the actor.
 \end{DoxyParams}
 
 
-Definition at line 206 of file actorphysicssettings.cpp.
+Definition at line 227 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a992771e73cd1f98628618cf75938a5ef}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetCollisionGroupAndMask@{SetCollisionGroupAndMask}}
@@ -428,7 +465,33 @@ These values are automatically calculated for you with some sane default values.
 \end{DoxyParams}
 
 
-Definition at line 70 of file actorphysicssettings.cpp.
+Definition at line 91 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_a1509c654724bcb6499ec1e5058ab5185}{
+\index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetCollisionShape@{SetCollisionShape}}
+\index{SetCollisionShape@{SetCollisionShape}!phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}}
+\paragraph[{SetCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBasePhysicsSettings::SetCollisionShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorBasePhysicsSettings_a1509c654724bcb6499ec1e5058ab5185}
+
+
+Sets the collision shape to be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shape} & The shape to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a97f3fcda5a669847138c6c3665192d92}{phys::ActorRigidPhysicsSettings}, \hyperlink{classphys_1_1ActorSoftPhysicsSettings_a76c3dfd03a822463d577f76fc9095a89}{phys::ActorSoftPhysicsSettings}, and \hyperlink{classphys_1_1ActorTerrainPhysicsSettings_a3f74f9b872b3c21364c1e489a6d39fbb}{phys::ActorTerrainPhysicsSettings}.
+
+
+
+Definition at line 82 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_ad76ddc51fb8514c1cffa9d5f222b580c}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetFriction@{SetFriction}}
@@ -451,7 +514,7 @@ Higher values will resist sliding across surfaces. This number is the coefficien
 \end{DoxyParams}
 
 
-Definition at line 91 of file actorphysicssettings.cpp.
+Definition at line 112 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a3e2a58dbbe32fd193f80821e8dd6e7f5}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetKinematic@{SetKinematic}}
@@ -469,7 +532,7 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 107 of file actorphysicssettings.cpp.
+Definition at line 128 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_ab379008b313aeeecfe82f641ce8b6305}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetRestitution@{SetRestitution}}
@@ -492,7 +555,7 @@ Restitution determines how much energy is left after a collision with an object.
 \end{DoxyParams}
 
 
-Definition at line 101 of file actorphysicssettings.cpp.
+Definition at line 122 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a20addfbc6cdfdc7d6f7847a8695f1172}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetStatic@{SetStatic}}
@@ -510,7 +573,7 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 117 of file actorphysicssettings.cpp.
+Definition at line 138 of file actorphysicssettings.cpp.
 
 
 

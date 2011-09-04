@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <h1>phys::ActorBasePhysicsSettings Class Reference</h1>  </div>
@@ -83,8 +84,9 @@ Inheritance diagram for phys::ActorBasePhysicsSettings:</div>
  <div class="center">
   <img src="classphys_1_1ActorBasePhysicsSettings.png" usemap="#phys::ActorBasePhysicsSettings_map" alt=""/>
   <map id="phys::ActorBasePhysicsSettings_map" name="phys::ActorBasePhysicsSettings_map">
-<area href="classphys_1_1ActorRigidPhysicsSettings.html" alt="phys::ActorRigidPhysicsSettings" shape="rect" coords="0,56,192,80"/>
-<area href="classphys_1_1ActorSoftPhysicsSettings.html" alt="phys::ActorSoftPhysicsSettings" shape="rect" coords="202,56,394,80"/>
+<area href="classphys_1_1ActorRigidPhysicsSettings.html" alt="phys::ActorRigidPhysicsSettings" shape="rect" coords="0,56,205,80"/>
+<area href="classphys_1_1ActorSoftPhysicsSettings.html" alt="phys::ActorSoftPhysicsSettings" shape="rect" coords="215,56,420,80"/>
+<area href="classphys_1_1ActorTerrainPhysicsSettings.html" alt="phys::ActorTerrainPhysicsSettings" shape="rect" coords="430,56,635,80"/>
 </map>
  </div></div>
 
@@ -92,8 +94,8 @@ Inheritance diagram for phys::ActorBasePhysicsSettings:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#af9f4413b1cb7c84c3c546db6de3ac662">ActorBasePhysicsSettings</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, btCollisionObject *PhysicsObject)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#af9f4413b1cb7c84c3c546db6de3ac662"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#ab0dda8f406cd125fc18b813d89d29685">ActorBasePhysicsSettings</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, btCollisionObject *PhysicsObject)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#ab0dda8f406cd125fc18b813d89d29685"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a89e61d914542bb6e16e22e7f39ba26c1">DisableCollisionResponse</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the actor to be unable to collide with other objects in the world.  <a href="#a89e61d914542bb6e16e22e7f39ba26c1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#aeb1dafd6d1e4875bf89be4de93208c03">EnableCollisionResponse</a> ()</td></tr>
@@ -108,6 +110,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the actors collision mask.  <a href="#a8a3a7ca225dd9697495bcc7d51b0942a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#aa131aa28b9e5c7a53c65c4e229f13ed1">GetCollisionResponse</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will this respond to 3d collisions.  <a href="#aa131aa28b9e5c7a53c65c4e229f13ed1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#ae436b1edd205b48225590dab21eb3551">GetCollisionShape</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the collision shape currently in use by this actor.  <a href="#ae436b1edd205b48225590dab21eb3551"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#ad38f4ccdbc0ecf997bb9745c23961f6d">GetFriction</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Actors' friction coefficient.  <a href="#ad38f4ccdbc0ecf997bb9745c23961f6d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a937e66bb0293c4162fae48d9e37196f4">GetRestitution</a> () const </td></tr>
@@ -124,6 +128,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the activation state of the actor.  <a href="#ab0b1760f3730e85470097d44985a5b56"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a992771e73cd1f98628618cf75938a5ef">SetCollisionGroupAndMask</a> (const <a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;Group, const <a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;Mask)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the collision group and mask for the actor to determine what it should collide with.  <a href="#a992771e73cd1f98628618cf75938a5ef"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a1509c654724bcb6499ec1e5058ab5185">SetCollisionShape</a> (<a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *Shape)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collision shape to be used.  <a href="#a1509c654724bcb6499ec1e5058ab5185"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#ad76ddc51fb8514c1cffa9d5f222b580c">SetFriction</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Friction)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Actors' friction coefficient.  <a href="#ad76ddc51fb8514c1cffa9d5f222b580c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a3e2a58dbbe32fd193f80821e8dd6e7f5">SetKinematic</a> ()</td></tr>
@@ -135,11 +141,18 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e10308c8888c67a196982bc6cbdebbf"></a><!-- doxytag: member="phys::ActorBasePhysicsSettings::~ActorBasePhysicsSettings" ref="a6e10308c8888c67a196982bc6cbdebbf" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a6e10308c8888c67a196982bc6cbdebbf">~ActorBasePhysicsSettings</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6d8c9507caab541c7e5034b9488d36e"></a><!-- doxytag: member="phys::ActorBasePhysicsSettings::AssignShape" ref="ad6d8c9507caab541c7e5034b9488d36e" args="(CollisionShape *Shape)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AssignShape</b> (<a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *Shape)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a259d4d10541b28d389ffa287f07ec916"></a><!-- doxytag: member="phys::ActorBasePhysicsSettings::ActorCO" ref="a259d4d10541b28d389ffa287f07ec916" args="" -->
 btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a259d4d10541b28d389ffa287f07ec916">ActorCO</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Physics Object of the actor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac95d58db5957ab4f160a8cb5cc6c2f1b"></a><!-- doxytag: member="phys::ActorBasePhysicsSettings::ActorShape" ref="ac95d58db5957ab4f160a8cb5cc6c2f1b" args="" -->
+<a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#ac95d58db5957ab4f160a8cb5cc6c2f1b">ActorShape</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The physics shape of the actor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a95b9dceba9a60f87b2ae0f3109b638"></a><!-- doxytag: member="phys::ActorBasePhysicsSettings::CollisionGroup" ref="a6a95b9dceba9a60f87b2ae0f3109b638" args="" -->
 <a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a6a95b9dceba9a60f87b2ae0f3109b638">CollisionGroup</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A number of actors will use this in conjuction with the physics system. <br/></td></tr>
@@ -154,14 +167,14 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <div class="textblock"><p>This is a base helper class for configuring physics settings of an actor. </p>
 <p>This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see <a class="el" href="classphys_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00068">68</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00070">70</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="af9f4413b1cb7c84c3c546db6de3ac662"></a><!-- doxytag: member="phys::ActorBasePhysicsSettings::ActorBasePhysicsSettings" ref="af9f4413b1cb7c84c3c546db6de3ac662" args="(ActorBase *Actor, btCollisionObject *PhysicsObject)" -->
+<a class="anchor" id="ab0dda8f406cd125fc18b813d89d29685"></a><!-- doxytag: member="phys::ActorBasePhysicsSettings::ActorBasePhysicsSettings" ref="ab0dda8f406cd125fc18b813d89d29685" args="(ActorBase *Actor, btCollisionObject *PhysicsObject)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">phys::ActorBasePhysicsSettings::ActorBasePhysicsSettings </td>
+          <td class="memname">home sqeaky physgame physgameengine src actorphysicssettings cpp home sqeaky physgame physgameengine src actorphysicssettings cpp phys::ActorBasePhysicsSettings::ActorBasePhysicsSettings </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *&#160;</td>
           <td class="paramname"><em>Actor</em>, </td>
@@ -190,7 +203,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00058">58</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00063">63</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -212,7 +225,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Sets the actor to be unable to collide with other objects in the world. </p>
 <p>By default collision response is enabled. Be sure to reactivate collision response if you want your objects to collide again. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00161">161</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00182">182</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -233,7 +246,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Sets the actor to be able to collide with other objects in the world. </p>
 <p>By default collision response is enabled. Only call this function if you have disabled collision response. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00132">132</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00153">153</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +267,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>How activated or deactivated is the object. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="namespacephys.html#a7d434b1a52cf5290a9ecc972b87a6a40" title="This is used by all the actors to monitor and set their physics activation.">phys::ActorActivationState</a> that describes whether the actor is part of the calculated simulation or not. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00218">218</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00239">239</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -275,7 +288,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Get a pointer to this class of type <a class="el" href="classphys_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer <a class="el" href="classphys_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00214">214</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00235">235</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -296,7 +309,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Gets the actors collision group. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Whole representing the collision group this actor is set to. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00081">81</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00102">102</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -317,7 +330,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Gets the actors collision mask. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Whole representing what other collision groups this actor should collide with. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00086">86</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00107">107</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -338,7 +351,28 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Will this respond to 3d collisions. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>False is it does not respond to collisions, True if it will </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00190">190</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00211">211</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae436b1edd205b48225590dab21eb3551"></a><!-- doxytag: member="phys::ActorBasePhysicsSettings::GetCollisionShape" ref="ae436b1edd205b48225590dab21eb3551" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> * phys::ActorBasePhysicsSettings::GetCollisionShape </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the collision shape currently in use by this actor. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the collision shape being used. </dd></dl>
+
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00086">86</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -359,7 +393,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Gets the Actors' friction coefficient. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the actors' friction coefficient. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00096">96</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00117">117</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -380,7 +414,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Gets the Actors' restitution coefficient. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the actors' restitution coefficient. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00104">104</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00125">125</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -401,7 +435,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Checks if the object is active in the simulation. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the object is active, false if it's deactivated(at rest). </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00195">195</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00216">216</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -422,7 +456,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Is the actir kinematic. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if the actor is kinematic false if it is not. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00112">112</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00133">133</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -443,7 +477,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Is the actor static. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if the actor is Static false if it is not. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00122">122</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00143">143</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -465,7 +499,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Checks of the actor is static or kinematic, returns true if it is either. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the actor is static or kinematic. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00127">127</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00148">148</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -503,7 +537,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00206">206</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00227">227</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -542,7 +576,36 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00070">70</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00091">91</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1509c654724bcb6499ec1e5058ab5185"></a><!-- doxytag: member="phys::ActorBasePhysicsSettings::SetCollisionShape" ref="a1509c654724bcb6499ec1e5058ab5185" args="(CollisionShape *Shape)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ActorBasePhysicsSettings::SetCollisionShape </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *&#160;</td>
+          <td class="paramname"><em>Shape</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the collision shape to be used. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Shape</td><td>The shape to be applied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classphys_1_1ActorRigidPhysicsSettings.html#a97f3fcda5a669847138c6c3665192d92">phys::ActorRigidPhysicsSettings</a>, <a class="el" href="classphys_1_1ActorSoftPhysicsSettings.html#a76c3dfd03a822463d577f76fc9095a89">phys::ActorSoftPhysicsSettings</a>, and <a class="el" href="classphys_1_1ActorTerrainPhysicsSettings.html#a3f74f9b872b3c21364c1e489a6d39fbb">phys::ActorTerrainPhysicsSettings</a>.</p>
+
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00082">82</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -571,7 +634,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00091">91</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00112">112</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -593,7 +656,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>This function will set the object to a Kinematic Object. <br/>
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00107">107</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00128">128</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -622,7 +685,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00101">101</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00122">122</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -644,7 +707,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>This function will set the object to a Static Object. <br/>
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00117">117</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00138">138</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -668,6 +731,6 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:28 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:21 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

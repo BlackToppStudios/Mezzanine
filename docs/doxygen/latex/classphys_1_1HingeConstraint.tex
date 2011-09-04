@@ -1,0 +1,964 @@
+\hypertarget{classphys_1_1HingeConstraint}{
+\subsection{phys::HingeConstraint Class Reference}
+\label{classphys_1_1HingeConstraint}\index{phys::HingeConstraint@{phys::HingeConstraint}}
+}
+
+
+This is a constraint to be used to restrict the movement between two objects to angular rotation on a single axis.  
+
+
+
+
+{\ttfamily \#include $<$constraint.h$>$}
+
+Inheritance diagram for phys::HingeConstraint:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classphys_1_1HingeConstraint}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a90baa9ae0a582d42dc7757d14fd56299}{EnableMotor} (bool EnableMotor, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} TargetVelocity, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxMotorImpulse)
+\begin{DoxyCompactList}\small\item\em Enables(or Disables) the motor on the hinge and sets it's parameters. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1HingeConstraint_acc2a3459cfbfef7dc7a211e3e7569358}{GetAPivotRotation} () const 
+\begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorA. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1HingeConstraint_a4039ca63ae04464b6d29193348f1e1ee}{GetBPivotRotation} () const 
+\begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorB. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a2c3b1f4f5242b35ddb9b9e9d00f76812}{GetLimitBiasFactor} () const 
+\begin{DoxyCompactList}\small\item\em Return the bias factor of the hinge (Not entirely certain hat this on is) \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_ae633b31c347af338042e87738d7694ff}{GetLimitHigh} () const 
+\begin{DoxyCompactList}\small\item\em Return the Upper Limit of the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a2e467d00131cbfd61070c10749403546}{GetLimitLow} () const 
+\begin{DoxyCompactList}\small\item\em Return the Lower Limit of the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a65bfeef0326cd74fd3209940f5a14bbc}{GetLimitRelaxationFactor} () const 
+\begin{DoxyCompactList}\small\item\em Return the Relaxation Factor of the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a9c87c6f21dd7959cfb5c3c7a63014171}{GetLimitSoftness} () const 
+\begin{DoxyCompactList}\small\item\em Return the Softness of the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a954621d35173f9de5d7f44760559040e}{GetMaxMotorImpulse} () const 
+\begin{DoxyCompactList}\small\item\em Sets the maximum amount of force the motor is to apply. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1HingeConstraint_abc2a2e5046276f3cdab285d87f969c8a}{GetMotorEnabled} () const 
+\begin{DoxyCompactList}\small\item\em Enables(or Disables) the motor on the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_aeb1844f6bffeb72995e95b9ea25be3b7}{GetMotorTargetVelocity} () const 
+\begin{DoxyCompactList}\small\item\em Desired angular velocity of the motor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1HingeConstraint_a099fec821a9194cd3c8268d764ec8ea8}{GetPivotALocation} () const 
+\begin{DoxyCompactList}\small\item\em Get the location of the hinge pivot relative to ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Transform}{Transform} \hyperlink{classphys_1_1HingeConstraint_ac210cfa2fe2d4d6b2bf9e626441546b7}{GetPivotATransform} () const 
+\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1HingeConstraint_a7b0ed683e55a1500e4c8cc6c04e8e140}{GetPivotBLocation} () const 
+\begin{DoxyCompactList}\small\item\em Get the location of the hinge pivot relative to ActorB's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Transform}{Transform} \hyperlink{classphys_1_1HingeConstraint_ac328b988f24c490084fdb4567cd5df06}{GetPivotBTransform} () const 
+\item 
+virtual bool \hyperlink{classphys_1_1HingeConstraint_a411bf09ec4aade190de13eb5a7f46b8a}{GetUseFrameOffset} () const 
+\begin{DoxyCompactList}\small\item\em Retrieve the stored value from the physics subsystem(bullet) \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1HingeConstraint_ab90932d63a43ba7a55afadbe396a0951}{GetUseReferenceFrameA} () const 
+\begin{DoxyCompactList}\small\item\em Is this Using Reference Frame A. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1HingeConstraint_ad8d648a1c484966a828e7af71286e8b4}{HasParamBeenSet} (\hyperlink{namespacephys_aa1e7cf2d7efcaeaeac304f711e7564e8}{ConstraintParam} Param, int Axis) const 
+\item 
+\hyperlink{classphys_1_1HingeConstraint_a725b932ea223d2218f0b7a03b61e1650}{HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classphys_1_1Transform}{Transform} \&TransformA, const \hyperlink{classphys_1_1Transform}{Transform} \&TransformB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1HingeConstraint_aa4e74519af2c4773de038fb1ae2776eb}{HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classphys_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&PivotInB, const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisInA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisInB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will connect two actors together by their offsets. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1HingeConstraint_af21f5ee3889f1bd9e70063c04db32af0}{HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1HingeConstraint_ab112696e53f61f57f4ca53b299e9ef87}{HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisInA, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will attach an actor to a point in world space. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a63ca807d27fd21a24b4bcaa642febc77}{ProtoDeSerialize} (const \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a04fac5312ddf891adcfff67e98f75861}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1HingeConstraint_a64804b6c98ed930f9acb05414defcdcc}{SerializableName} () const 
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a7f597ee71540986b446a2771f25b791c}{SetAPivotRotation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorA. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a4eb0343f43b86fabef1fbe43857f9df8}{SetAxis} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisInA)
+\begin{DoxyCompactList}\small\item\em Sets the axis on which this constraint acts. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_ae7c0db15c76fa1f7d78ca60d3c7368cd}{SetBPivotRotation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorB. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a2267ee2b124aae7a35d70f48831548bc}{SetLimit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Low, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} High, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Softness=0.9, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} BiasFactor=0.3, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} RelaxationFactor=1.0)
+\begin{DoxyCompactList}\small\item\em Sets the angle limits of the constraint in radians. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_ae3038cabdde1b676c0e6b9665807c917}{SetMotorTarget} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuatAInB, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Dt)
+\begin{DoxyCompactList}\small\item\em Sets a Target Velocity, indirectly using the angle stored in a quaternion. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_ac9eb6207043906b972c8ad897ead15df}{SetMotorTarget} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} TargetAngle, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Dt)
+\begin{DoxyCompactList}\small\item\em Set the Rotational velocity in a more direct fashion. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a6baadfc607e0d7c2167c9201bd4f8bdf}{SetPivotALocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Set The relative location of the hinge pivot from ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_af6fd3ac147683eecb2c98c60c58f386c}{SetPivotATransform} (const \hyperlink{classphys_1_1Transform}{Transform} \&TranA)
+\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_abaf055b50289aae35e7ea9f796677b18}{SetPivotBLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Set The relative location of the hinge pivot from ActorB's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a79ef3dc47fa94a7a9f98f7934e786a6b}{SetPivotBTransform} (const \hyperlink{classphys_1_1Transform}{Transform} \&TranB)
+\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a3452b2c810cc0fb814f1158306e2b155}{SetUseFrameOffset} (bool FrameOffset)
+\begin{DoxyCompactList}\small\item\em Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet) \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_ac1771e0f44124fc84b2f847fde10cb15}{SetUseReferenceFrameA} (bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Change whether this is Using Reference Frame A or not. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1TypedConstraint_a26261a4055e84e104c58d84eea5667c2}{TypedConstraint::AxisList} \hyperlink{classphys_1_1HingeConstraint_aceb0c3739cbde8692e4aad5695de9306}{ValidAngularAxis} () const 
+\item 
+virtual \hyperlink{classphys_1_1TypedConstraint_a26261a4055e84e104c58d84eea5667c2}{TypedConstraint::AxisList} \hyperlink{classphys_1_1HingeConstraint_ab3316794eec67ca2a9c1b11925e64e23}{ValidLinearAxis} () const 
+\item 
+virtual \hyperlink{classphys_1_1TypedConstraint_a4c2dcea3fbb764e454840329126d034e}{TypedConstraint::ParamList} \hyperlink{classphys_1_1HingeConstraint_a7fd949b157deabe3b955fd618134b1de}{ValidParamOnAxis} (int Axis) const 
+\item 
+virtual \hyperlink{classphys_1_1HingeConstraint_a242cdfc8ab59d608bfbd9290119d81d9}{$\sim$HingeConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual btTypedConstraint $\ast$ \hyperlink{classphys_1_1HingeConstraint_afd52bcc691313cc175d0a409d5594df2}{GetConstraintBase} () const 
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1HingeConstraint_afa4e4f1595d6420f21449d5e3b730f49}{
+btHingeConstraint $\ast$ \hyperlink{classphys_1_1HingeConstraint_afa4e4f1595d6420f21449d5e3b730f49}{Hinge}}
+\label{classphys_1_1HingeConstraint_afa4e4f1595d6420f21449d5e3b730f49}
+
+\begin{DoxyCompactList}\small\item\em Bullet constraint that this class encapsulates. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a constraint to be used to restrict the movement between two objects to angular rotation on a single axis. As the name suggests, this constraint essentially works like a door Hinge. 
+
+Definition at line 967 of file constraint.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1HingeConstraint_aa4e74519af2c4773de038fb1ae2776eb}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!HingeConstraint@{HingeConstraint}}
+\index{HingeConstraint@{HingeConstraint}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::HingeConstraint::HingeConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{{\bf ActorRigid} $\ast$}]{ActorB, }
+\item[{const {\bf Vector3} \&}]{PivotInA, }
+\item[{const {\bf Vector3} \&}]{PivotInB, }
+\item[{const {\bf Vector3} \&}]{AxisInA, }
+\item[{const {\bf Vector3} \&}]{AxisInB, }
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1HingeConstraint_aa4e74519af2c4773de038fb1ae2776eb}
+
+
+Creates a Hinge constraint that will connect two actors together by their offsets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The first actor to apply this constraint to. \\
+\hline
+{\em ActorB} & The second actor to apply this constraint to. \\
+\hline
+{\em PivotA} & The location in ActorA's local space to apply the constraint to. \\
+\hline
+{\em PivotB} & The location in ActorB's local space to apply the constraint to. \\
+\hline
+{\em AxisInA} & The axis(for ActorA) on which the hinge is to act. For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis. \\
+\hline
+{\em AxisInB} & The axis(for ActorB) on which the hinge is to act. For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis. \\
+\hline
+{\em UseReferenceFrameA} & By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_ab112696e53f61f57f4ca53b299e9ef87}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!HingeConstraint@{HingeConstraint}}
+\index{HingeConstraint@{HingeConstraint}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::HingeConstraint::HingeConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{const {\bf Vector3} \&}]{PivotInA, }
+\item[{const {\bf Vector3} \&}]{AxisInA, }
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1HingeConstraint_ab112696e53f61f57f4ca53b299e9ef87}
+
+
+Creates a Hinge constraint that will attach an actor to a point in world space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The actor to apply this constraint to. \\
+\hline
+{\em PivotInA} & The point in the object's(ActorA) local space where the constraint is to be attached to world space. \\
+\hline
+{\em AxisInA} & The axis(for ActorA) on which the hinge is to act. For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis. \\
+\hline
+{\em UseReferenceFrameA} & By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_af21f5ee3889f1bd9e70063c04db32af0}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!HingeConstraint@{HingeConstraint}}
+\index{HingeConstraint@{HingeConstraint}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::HingeConstraint::HingeConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{{\bf ActorRigid} $\ast$}]{ActorB, }
+\item[{const {\bf Vector3} \&}]{VectorA, }
+\item[{const {\bf Vector3} \&}]{VectorB, }
+\item[{const {\bf Quaternion} \&}]{QuaternionA, }
+\item[{const {\bf Quaternion} \&}]{QuaternionB, }
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1HingeConstraint_af21f5ee3889f1bd9e70063c04db32af0}
+
+
+Create a Hinge with components of a tranform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The first actor to apply this constraint to. \\
+\hline
+{\em ActorB} & The second actor to apply this constraint to. \\
+\hline
+{\em VectorA} & The location component of \hyperlink{classphys_1_1Transform}{Transform} A \\
+\hline
+{\em VectorB} & The location component of \hyperlink{classphys_1_1Transform}{Transform} B \\
+\hline
+{\em QuaternionA} & The rotation component of \hyperlink{classphys_1_1Transform}{Transform} A \\
+\hline
+{\em QuaternionB} & The rotation component of \hyperlink{classphys_1_1Transform}{Transform} B \\
+\hline
+{\em UseReferenceFrameA} & By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_a725b932ea223d2218f0b7a03b61e1650}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!HingeConstraint@{HingeConstraint}}
+\index{HingeConstraint@{HingeConstraint}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::HingeConstraint::HingeConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{{\bf ActorRigid} $\ast$}]{ActorB, }
+\item[{const {\bf Transform} \&}]{TransformA, }
+\item[{const {\bf Transform} \&}]{TransformB, }
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1HingeConstraint_a725b932ea223d2218f0b7a03b61e1650}
+
+
+Create a Hinge with components of a tranform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The first actor to apply this constraint to. \\
+\hline
+{\em ActorB} & The second actor to apply this constraint to. \\
+\hline
+{\em TransformA} & The location component of \hyperlink{classphys_1_1Transform}{Transform} A \\
+\hline
+{\em TransformB} & The location component of \hyperlink{classphys_1_1Transform}{Transform} B \\
+\hline
+{\em UseReferenceFrameA} & By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_a242cdfc8ab59d608bfbd9290119d81d9}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!$\sim$HingeConstraint@{$\sim$HingeConstraint}}
+\index{$\sim$HingeConstraint@{$\sim$HingeConstraint}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{$\sim$HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}virtual phys::HingeConstraint::$\sim$HingeConstraint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a242cdfc8ab59d608bfbd9290119d81d9}
+
+
+Class destructor. 
+
+The class destructor. 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1HingeConstraint_a90baa9ae0a582d42dc7757d14fd56299}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!EnableMotor@{EnableMotor}}
+\index{EnableMotor@{EnableMotor}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{EnableMotor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::EnableMotor (
+\begin{DoxyParamCaption}
+\item[{bool}]{EnableMotor, }
+\item[{{\bf Real}}]{TargetVelocity, }
+\item[{{\bf Real}}]{MaxMotorImpulse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a90baa9ae0a582d42dc7757d14fd56299}
+
+
+Enables(or Disables) the motor on the hinge and sets it's parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em EnableMotor} & Sets whether or not the motor on this constraint is enabled. \\
+\hline
+{\em TargetVelocity} & The desired velocity of rotation the motor will have. This may or may not be achieved based on obstructions in the simulation. \\
+\hline
+{\em MaxMotorImpulse} & The maximum amount of force the motor is to apply to try and reach it's target velocity. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_acc2a3459cfbfef7dc7a211e3e7569358}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetAPivotRotation@{GetAPivotRotation}}
+\index{GetAPivotRotation@{GetAPivotRotation}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetAPivotRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} phys::HingeConstraint::GetAPivotRotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_acc2a3459cfbfef7dc7a211e3e7569358}
+
+
+Get the relative rotation for ActorA. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{Quaternion} that has the rotation
+\end{DoxyReturn}
+This implements a more Hinge specific version of the logic than \hyperlink{classphys_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. \hypertarget{classphys_1_1HingeConstraint_a4039ca63ae04464b6d29193348f1e1ee}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetBPivotRotation@{GetBPivotRotation}}
+\index{GetBPivotRotation@{GetBPivotRotation}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetBPivotRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} phys::HingeConstraint::GetBPivotRotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a4039ca63ae04464b6d29193348f1e1ee}
+
+
+Get the relative rotation for ActorB. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{Quaternion} that has the rotation
+\end{DoxyReturn}
+This implements a more Hinge specific version of the logic than \hyperlink{classphys_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. \hypertarget{classphys_1_1HingeConstraint_afd52bcc691313cc175d0a409d5594df2}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetConstraintBase@{GetConstraintBase}}
+\index{GetConstraintBase@{GetConstraintBase}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetConstraintBase}]{\setlength{\rightskip}{0pt plus 5cm}virtual btTypedConstraint$\ast$ phys::HingeConstraint::GetConstraintBase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_afd52bcc691313cc175d0a409d5594df2}
+Get the Bullet constraint that this class encapsulates. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the btTypedConstraint that stores the underlying constraint. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1TypedConstraint_ab3bd2baa58d3f0d812401cbf59159a8b}{phys::TypedConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a2c3b1f4f5242b35ddb9b9e9d00f76812}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetLimitBiasFactor@{GetLimitBiasFactor}}
+\index{GetLimitBiasFactor@{GetLimitBiasFactor}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetLimitBiasFactor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::HingeConstraint::GetLimitBiasFactor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a2c3b1f4f5242b35ddb9b9e9d00f76812}
+
+
+Return the bias factor of the hinge (Not entirely certain hat this on is) 
+
+\begin{DoxyReturn}{Returns}
+A real containing the bias Factor 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1HingeConstraint_ae633b31c347af338042e87738d7694ff}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetLimitHigh@{GetLimitHigh}}
+\index{GetLimitHigh@{GetLimitHigh}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetLimitHigh}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::HingeConstraint::GetLimitHigh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ae633b31c347af338042e87738d7694ff}
+
+
+Return the Upper Limit of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+A real containing the Higher Limit 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1HingeConstraint_a2e467d00131cbfd61070c10749403546}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetLimitLow@{GetLimitLow}}
+\index{GetLimitLow@{GetLimitLow}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetLimitLow}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::HingeConstraint::GetLimitLow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a2e467d00131cbfd61070c10749403546}
+
+
+Return the Lower Limit of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+A real containing the Lower Limit 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1HingeConstraint_a65bfeef0326cd74fd3209940f5a14bbc}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetLimitRelaxationFactor@{GetLimitRelaxationFactor}}
+\index{GetLimitRelaxationFactor@{GetLimitRelaxationFactor}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetLimitRelaxationFactor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::HingeConstraint::GetLimitRelaxationFactor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a65bfeef0326cd74fd3209940f5a14bbc}
+
+
+Return the Relaxation Factor of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+A real containing the Relaxation Factor 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1HingeConstraint_a9c87c6f21dd7959cfb5c3c7a63014171}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetLimitSoftness@{GetLimitSoftness}}
+\index{GetLimitSoftness@{GetLimitSoftness}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetLimitSoftness}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::HingeConstraint::GetLimitSoftness (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a9c87c6f21dd7959cfb5c3c7a63014171}
+
+
+Return the Softness of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+A real containing the Softness 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1HingeConstraint_a954621d35173f9de5d7f44760559040e}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetMaxMotorImpulse@{GetMaxMotorImpulse}}
+\index{GetMaxMotorImpulse@{GetMaxMotorImpulse}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetMaxMotorImpulse}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::HingeConstraint::GetMaxMotorImpulse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a954621d35173f9de5d7f44760559040e}
+
+
+Sets the maximum amount of force the motor is to apply. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MaxMotorImpulse} & The maximum amount of force the motor is to apply to try and reach it's target velocity. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_abc2a2e5046276f3cdab285d87f969c8a}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetMotorEnabled@{GetMotorEnabled}}
+\index{GetMotorEnabled@{GetMotorEnabled}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetMotorEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool phys::HingeConstraint::GetMotorEnabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_abc2a2e5046276f3cdab285d87f969c8a}
+
+
+Enables(or Disables) the motor on the hinge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em EnableMotor} & Sets whether or not the motor on this constraint is enabled. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_aeb1844f6bffeb72995e95b9ea25be3b7}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetMotorTargetVelocity@{GetMotorTargetVelocity}}
+\index{GetMotorTargetVelocity@{GetMotorTargetVelocity}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetMotorTargetVelocity}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::HingeConstraint::GetMotorTargetVelocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_aeb1844f6bffeb72995e95b9ea25be3b7}
+
+
+Desired angular velocity of the motor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TargetVelocity} & The Desired velocity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Causes segfaults in some tests. 
+\end{DoxyWarning}
+\hypertarget{classphys_1_1HingeConstraint_a099fec821a9194cd3c8268d764ec8ea8}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetPivotALocation@{GetPivotALocation}}
+\index{GetPivotALocation@{GetPivotALocation}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetPivotALocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::HingeConstraint::GetPivotALocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a099fec821a9194cd3c8268d764ec8ea8}
+
+
+Get the location of the hinge pivot relative to ActorA's Center of gravity. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the pivot location.
+\end{DoxyReturn}
+This implements a more Hinge specific version of the logic than \hyperlink{classphys_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. 
+
+Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_a0458c4b3d9bad6aa8b725a35e922ca05}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_ac210cfa2fe2d4d6b2bf9e626441546b7}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetPivotATransform@{GetPivotATransform}}
+\index{GetPivotATransform@{GetPivotATransform}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetPivotATransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Transform} phys::HingeConstraint::GetPivotATransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ac210cfa2fe2d4d6b2bf9e626441546b7}
+ 
+
+Implements \hyperlink{classphys_1_1DualTransformConstraint_a2c6e75dca5399af5ff59a9a11f22b50b}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a7b0ed683e55a1500e4c8cc6c04e8e140}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetPivotBLocation@{GetPivotBLocation}}
+\index{GetPivotBLocation@{GetPivotBLocation}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetPivotBLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::HingeConstraint::GetPivotBLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a7b0ed683e55a1500e4c8cc6c04e8e140}
+
+
+Get the location of the hinge pivot relative to ActorB's Center of gravity. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the pivot location.
+\end{DoxyReturn}
+This implements a more Hinge specific version of the logic than \hyperlink{classphys_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. 
+
+Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_a7a51a331dea27522f6d596bf3aff5de4}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_ac328b988f24c490084fdb4567cd5df06}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetPivotBTransform@{GetPivotBTransform}}
+\index{GetPivotBTransform@{GetPivotBTransform}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetPivotBTransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Transform} phys::HingeConstraint::GetPivotBTransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ac328b988f24c490084fdb4567cd5df06}
+ 
+
+Implements \hyperlink{classphys_1_1DualTransformConstraint_a7ef9820bbfa2f0d70019743e16cb2618}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a411bf09ec4aade190de13eb5a7f46b8a}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetUseFrameOffset@{GetUseFrameOffset}}
+\index{GetUseFrameOffset@{GetUseFrameOffset}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetUseFrameOffset}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool phys::HingeConstraint::GetUseFrameOffset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a411bf09ec4aade190de13eb5a7f46b8a}
+
+
+Retrieve the stored value from the physics subsystem(bullet) 
+
+\begin{DoxyReturn}{Returns}
+a True or false. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1HingeConstraint_ab90932d63a43ba7a55afadbe396a0951}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetUseReferenceFrameA@{GetUseReferenceFrameA}}
+\index{GetUseReferenceFrameA@{GetUseReferenceFrameA}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetUseReferenceFrameA}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool phys::HingeConstraint::GetUseReferenceFrameA (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ab90932d63a43ba7a55afadbe396a0951}
+
+
+Is this Using Reference Frame A. 
+
+\begin{DoxyReturn}{Returns}
+A the value UseReferenceFrameA is set to internally. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1HingeConstraint_ad8d648a1c484966a828e7af71286e8b4}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!HasParamBeenSet@{HasParamBeenSet}}
+\index{HasParamBeenSet@{HasParamBeenSet}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{HasParamBeenSet}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool phys::HingeConstraint::HasParamBeenSet (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstraintParam}}]{Param, }
+\item[{int}]{Axis}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ad8d648a1c484966a828e7af71286e8b4}
+ 
+
+Implements \hyperlink{classphys_1_1TypedConstraint_a849e7b91306f444cb8c73d52707a9521}{phys::TypedConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a63ca807d27fd21a24b4bcaa642febc77}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a63ca807d27fd21a24b4bcaa642febc77}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_a72bb3a5f35dffc4b6b9b860eb232b7a3}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a04fac5312ddf891adcfff67e98f75861}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a04fac5312ddf891adcfff67e98f75861}
+
+
+Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_aa1e3919874eceedb6ba708af4d540b9b}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a64804b6c98ed930f9acb05414defcdcc}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::HingeConstraint::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1HingeConstraint_a64804b6c98ed930f9acb05414defcdcc}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}HingeConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_ad810321a7395cbd5cc0ba8cac0d3b136}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a7f597ee71540986b446a2771f25b791c}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetAPivotRotation@{SetAPivotRotation}}
+\index{SetAPivotRotation@{SetAPivotRotation}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetAPivotRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetAPivotRotation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a7f597ee71540986b446a2771f25b791c}
+
+
+Set The relative rotation of ActorA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The new rotation amount for A\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformA. This implements a more Hinge specific version of the logic than \hyperlink{classphys_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. \hypertarget{classphys_1_1HingeConstraint_a4eb0343f43b86fabef1fbe43857f9df8}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetAxis@{SetAxis}}
+\index{SetAxis@{SetAxis}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetAxis}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetAxis (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{AxisInA}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a4eb0343f43b86fabef1fbe43857f9df8}
+
+
+Sets the axis on which this constraint acts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em AxisInA} & A vector3 representing the axis to be used with this constraint. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_ae7c0db15c76fa1f7d78ca60d3c7368cd}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetBPivotRotation@{SetBPivotRotation}}
+\index{SetBPivotRotation@{SetBPivotRotation}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetBPivotRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetBPivotRotation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ae7c0db15c76fa1f7d78ca60d3c7368cd}
+
+
+Set The relative rotation of ActorB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otation} & The new rotation amount for B\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformB. This implements a more Hinge specific version of the logic than \hyperlink{classphys_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. \hypertarget{classphys_1_1HingeConstraint_a2267ee2b124aae7a35d70f48831548bc}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetLimit@{SetLimit}}
+\index{SetLimit@{SetLimit}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetLimit}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetLimit (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Low, }
+\item[{{\bf Real}}]{High, }
+\item[{{\bf Real}}]{Softness = {\ttfamily 0.9}, }
+\item[{{\bf Real}}]{BiasFactor = {\ttfamily 0.3}, }
+\item[{{\bf Real}}]{RelaxationFactor = {\ttfamily 1.0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a2267ee2b124aae7a35d70f48831548bc}
+
+
+Sets the angle limits of the constraint in radians. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Low} & The minimum angle limit for the constraint in radians. \\
+\hline
+{\em High} & The maximum angle limit for the constraint in radians. \\
+\hline
+{\em Softness} & Not currently used internally. \\
+\hline
+{\em BiasFactor} & Multiplier for the constraint error, constraint appears more \char`\"{}soft\char`\"{} when closer to zero. \\
+\hline
+{\em RelaxationFactor} & The amount of bounce to apply when the constraint reaches it's limit. Range: 0.0-\/1.0. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_ac9eb6207043906b972c8ad897ead15df}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetMotorTarget@{SetMotorTarget}}
+\index{SetMotorTarget@{SetMotorTarget}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetMotorTarget}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetMotorTarget (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{TargetAngle, }
+\item[{{\bf Real}}]{Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ac9eb6207043906b972c8ad897ead15df}
+
+
+Set the Rotational velocity in a more direct fashion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TargetAngle} & The desired angle in radians. \\
+\hline
+{\em Dt} & The Desired \hyperlink{structphys_1_1Time}{Time} steps that the target rotational velocity should be reached in. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_ae3038cabdde1b676c0e6b9665807c917}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetMotorTarget@{SetMotorTarget}}
+\index{SetMotorTarget@{SetMotorTarget}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetMotorTarget}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetMotorTarget (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{QuatAInB, }
+\item[{{\bf Real}}]{Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ae3038cabdde1b676c0e6b9665807c917}
+
+
+Sets a Target Velocity, indirectly using the angle stored in a quaternion. 
+
+Is implemented in terms of \hyperlink{classphys_1_1HingeConstraint_ac9eb6207043906b972c8ad897ead15df}{SetMotorTarget(Real, Real)}; 
+\begin{DoxyParams}{Parameters}
+{\em QuatAInB} & The angle a quaternion relative to the two objects in the constraint. \\
+\hline
+{\em Dt} & The Desired \hyperlink{structphys_1_1Time}{Time} steps that the target rotational velocity should be reached in. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_a6baadfc607e0d7c2167c9201bd4f8bdf}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetPivotALocation@{SetPivotALocation}}
+\index{SetPivotALocation@{SetPivotALocation}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetPivotALocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetPivotALocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a6baadfc607e0d7c2167c9201bd4f8bdf}
+
+
+Set The relative location of the hinge pivot from ActorA's Center of gravity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The New value for PivotA\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformA. This implements a more Hinge specific version of the logic than \hyperlink{classphys_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. 
+
+Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_a0e074a05eeb464ebda332ac2f09c9412}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_af6fd3ac147683eecb2c98c60c58f386c}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetPivotATransform@{SetPivotATransform}}
+\index{SetPivotATransform@{SetPivotATransform}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetPivotATransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetPivotATransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{TranA}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_af6fd3ac147683eecb2c98c60c58f386c}
+ 
+
+Implements \hyperlink{classphys_1_1DualTransformConstraint_af2ff2bca0d94f113ef47a8dfddeadb3a}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_abaf055b50289aae35e7ea9f796677b18}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetPivotBLocation@{SetPivotBLocation}}
+\index{SetPivotBLocation@{SetPivotBLocation}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetPivotBLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetPivotBLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_abaf055b50289aae35e7ea9f796677b18}
+
+
+Set The relative location of the hinge pivot from ActorB's Center of gravity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The New value for PivotB\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformB. This implements a more Hinge specific version of the logic than \hyperlink{classphys_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. 
+
+Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_aa9e0ebd04572d18f344b701637270248}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a79ef3dc47fa94a7a9f98f7934e786a6b}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetPivotBTransform@{SetPivotBTransform}}
+\index{SetPivotBTransform@{SetPivotBTransform}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetPivotBTransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetPivotBTransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{TranB}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a79ef3dc47fa94a7a9f98f7934e786a6b}
+ 
+
+Implements \hyperlink{classphys_1_1DualTransformConstraint_acda6a28b585c52fd7da1e79d85f4cf53}{phys::DualTransformConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a3452b2c810cc0fb814f1158306e2b155}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetUseFrameOffset@{SetUseFrameOffset}}
+\index{SetUseFrameOffset@{SetUseFrameOffset}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetUseFrameOffset}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetUseFrameOffset (
+\begin{DoxyParamCaption}
+\item[{bool}]{FrameOffset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a3452b2c810cc0fb814f1158306e2b155}
+
+
+Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FrameOffset} & The new desired value. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_ac1771e0f44124fc84b2f847fde10cb15}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetUseReferenceFrameA@{SetUseReferenceFrameA}}
+\index{SetUseReferenceFrameA@{SetUseReferenceFrameA}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetUseReferenceFrameA}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetUseReferenceFrameA (
+\begin{DoxyParamCaption}
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ac1771e0f44124fc84b2f847fde10cb15}
+
+
+Change whether this is Using Reference Frame A or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em UseReferenceFrameA} & Whether certain math be performed from the perspective of Actor A or Actor B (we think this is the case, but we have not test thoroughly) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_aceb0c3739cbde8692e4aad5695de9306}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!ValidAngularAxis@{ValidAngularAxis}}
+\index{ValidAngularAxis@{ValidAngularAxis}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{ValidAngularAxis}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf TypedConstraint::AxisList} phys::HingeConstraint::ValidAngularAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_aceb0c3739cbde8692e4aad5695de9306}
+Get A list sorted (low to high) of all axis that operate Angularly (that lock sliding/translation) 
+
+\begin{DoxyWarning}{Warning}
+Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+An Axislist with the Axis this constraint Angularly supports. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1TypedConstraint_afd67483ff73a4b8ffef17c149b8a6cfa}{phys::TypedConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_ab3316794eec67ca2a9c1b11925e64e23}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!ValidLinearAxis@{ValidLinearAxis}}
+\index{ValidLinearAxis@{ValidLinearAxis}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{ValidLinearAxis}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf TypedConstraint::AxisList} phys::HingeConstraint::ValidLinearAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ab3316794eec67ca2a9c1b11925e64e23}
+Get a sorted (low to high) list of all axis that operate linearly (that lock sliding/translation) 
+
+\begin{DoxyWarning}{Warning}
+Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+An Axislist with the Axis this constraint linearly supports. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1TypedConstraint_af9d5a6630d5f384825388a1e73c88b3a}{phys::TypedConstraint}.
+
+\hypertarget{classphys_1_1HingeConstraint_a7fd949b157deabe3b955fd618134b1de}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!ValidParamOnAxis@{ValidParamOnAxis}}
+\index{ValidParamOnAxis@{ValidParamOnAxis}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{ValidParamOnAxis}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf TypedConstraint::ParamList} phys::HingeConstraint::ValidParamOnAxis (
+\begin{DoxyParamCaption}
+\item[{int}]{Axis}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a7fd949b157deabe3b955fd618134b1de}
+Get a sorted (low to high) list of Parameters that are valid on this Axis. 
+
+Parameters returned from this will work on the given axis even if they are not valid on any other axis. There is no guarantee that the Parameters will be uniquely stored per an axis. There is no guarantee that changing one parameter will not change another. 
+\begin{DoxyParams}{Parameters}
+{\em Axis} & the Axis to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Paramlist with all the valid parameters for this axis. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1TypedConstraint_af9f4c03dbba0d55e60dce341dbdc1105}{phys::TypedConstraint}.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+constraint.h\end{DoxyCompactItemize}

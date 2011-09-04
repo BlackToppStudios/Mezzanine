@@ -1,0 +1,695 @@
+\hypertarget{classphys_1_1Generic6DofSpringConstraint}{
+\subsection{phys::Generic6DofSpringConstraint Class Reference}
+\label{classphys_1_1Generic6DofSpringConstraint}\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+}
+
+
+Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion.  
+
+
+
+
+{\ttfamily \#include $<$constraint.h$>$}
+
+Inheritance diagram for phys::Generic6DofSpringConstraint:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classphys_1_1Generic6DofSpringConstraint}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60}{UsableAxis} \{ \par
+\hyperlink{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60afec9af16b6403edd5b6a335edbe9bffa}{LinearX} =  0, 
+\hyperlink{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a243508b551645b17b8e5c42a1cf9fb72}{LinearY} =  1, 
+\hyperlink{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a9d809c690118d2a37481e7aa83422492}{LinearZ} =  2, 
+\hyperlink{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a52103c17e319667035ba2194f951a7d0}{AngularX} =  3, 
+\par
+\hyperlink{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a009951290fedb86fc9278868f7638593}{AngularY} =  4, 
+\hyperlink{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a2e8e892005c4f63f43f2b42fa73c743b}{AngularZ} =  5
+ \}
+\begin{DoxyCompactList}\small\item\em Identify the Axis a bit easier when iterating over them is less convienent than typing an Identifier. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_aaec332a131a3e17c19c96a8ce29c9fae}{
+virtual void {\bfseries CalculateSpringEquilibriumPoint} ()}
+\label{classphys_1_1Generic6DofSpringConstraint_aaec332a131a3e17c19c96a8ce29c9fae}
+
+\item 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_ad1bab377a08cc0d42dd3135779611f4a}{
+virtual void {\bfseries CalculateSpringEquilibriumPoint} (int Index)}
+\label{classphys_1_1Generic6DofSpringConstraint_ad1bab377a08cc0d42dd3135779611f4a}
+
+\item 
+\hyperlink{classphys_1_1Generic6DofSpringConstraint_a826580505965216b75ea41f26e2ad92f}{Generic6DofSpringConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseLinearReferenceA=false)
+\begin{DoxyCompactList}\small\item\em Two body Verbose constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Generic6DofSpringConstraint_adb6c637cc1b18344c3c3e6cfe10dbd49}{Generic6DofSpringConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classphys_1_1Transform}{Transform} \&TransformA, const \hyperlink{classphys_1_1Transform}{Transform} \&TransformB, bool UseLinearReferenceA=false)
+\begin{DoxyCompactList}\small\item\em Two body Terse constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a87c90750b655ae7f9f1616a660062cf1}{
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} {\bfseries GetCurrentSpringAngularEquilibriumPoints} () const }
+\label{classphys_1_1Generic6DofSpringConstraint_a87c90750b655ae7f9f1616a660062cf1}
+
+\item 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_ad33276f69fc1768d430cd10c1b08b575}{
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries GetCurrentSpringEquilibriumPoint} (int Index) const }
+\label{classphys_1_1Generic6DofSpringConstraint_ad33276f69fc1768d430cd10c1b08b575}
+
+\item 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_af4e520edbe0c5f40fac000adc5a8ad54}{
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} {\bfseries GetCurrentSpringLinearEquilibriumPoints} () const }
+\label{classphys_1_1Generic6DofSpringConstraint_af4e520edbe0c5f40fac000adc5a8ad54}
+
+\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Generic6DofSpringConstraint_a7b8a8733b7a8d25c0d84684a69624334}{GetSpringAngularDamping} () const 
+\begin{DoxyCompactList}\small\item\em Get the Damping for all Angular Axis. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Generic6DofSpringConstraint_a3aac6b13a8127ba82354f436c624c879}{GetSpringAngularEnabled} () const 
+\begin{DoxyCompactList}\small\item\em Get the Enabled Status for all Angular Axis. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Generic6DofSpringConstraint_a8e51c0141b190a4c34365abc9dc11a98}{GetSpringAngularStiffness} () const 
+\begin{DoxyCompactList}\small\item\em Get the Stiffness for all Angular Axis. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Generic6DofSpringConstraint_a662d116e3467851e9d6bba6b01d3382a}{GetSpringDamping} (int Index) const 
+\begin{DoxyCompactList}\small\item\em Retrieve the Damping of the spring on the given axis. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1Generic6DofSpringConstraint_a921afe66b38b967e666c53a8448d4a00}{GetSpringEnabled} (int Index) const 
+\begin{DoxyCompactList}\small\item\em Retrieve the EnabledStatus of the spring on the given axis. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Generic6DofSpringConstraint_ab58b5111016f4f29343b0097848de2d2}{GetSpringLinearDamping} () const 
+\begin{DoxyCompactList}\small\item\em Get the Damping for all Linear Axis. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Generic6DofSpringConstraint_abc9670d0ca5631994b0e260428ee1110}{GetSpringLinearEnabled} () const 
+\begin{DoxyCompactList}\small\item\em Get the Enabled Status for all Linear Axis. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Generic6DofSpringConstraint_a2ef04c27d4340bb41233129e387b1145}{GetSpringLinearStiffness} () const 
+\begin{DoxyCompactList}\small\item\em Get the Stiffness for all Linear Axis. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Generic6DofSpringConstraint_a06d43edcb68aa820060a60b49387f9e6}{GetSpringStiffness} (int Index) const 
+\begin{DoxyCompactList}\small\item\em Retrieve the Stiffness of the spring on the given axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_aa92969027509290efc128334b01db500}{ProtoDeSerialize} (const \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_aeffb182d5faa82175e96a259fc19f9ff}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Generic6DofSpringConstraint_ad0a2d0c49fb622095f18d48b1e52f904}{SerializableName} () const 
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a65dbf1070a4277dd0d27e48db2b45c89}{SetSpringAngularDamping} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Damps)
+\begin{DoxyCompactList}\small\item\em Set the Damping of the springs on each Angular Axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a1f861c64cc9d4918bd3dbe606894422e}{SetSpringAngularEnabled} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Enableness)
+\begin{DoxyCompactList}\small\item\em Set the Stiffness of the springs on each Angular Axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_ab1d57e737c3471acd9a9481abb9ac612}{SetSpringAngularStiffness} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Stiffies)
+\begin{DoxyCompactList}\small\item\em Set the Stiffness of the springs on each Angular Axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a5e39d3b9601b1d8ec6e3197b1cc999a7}{SetSpringDamping} (int Index, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Damping)
+\begin{DoxyCompactList}\small\item\em Set the spring Damping on a given axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a49ab6cbd0859e455391b1b676b1309b7}{SetSpringEnabled} (int Index, bool Enable)
+\begin{DoxyCompactList}\small\item\em Set the spring's enabled status on a given axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a86776512ae4f20d4143aa4c8901ab355}{SetSpringLinearDamping} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Damps)
+\begin{DoxyCompactList}\small\item\em Set the Damping of the springs on each Linear Axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a561603d0470dc20eb74ee79cc1131c52}{SetSpringLinearEnabled} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Enableness)
+\begin{DoxyCompactList}\small\item\em Set the Stiffness of the springs on each Linear Axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a3cb5c0a8cfacc634728828eb85b2b025}{SetSpringLinearStiffness} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Stiffies)
+\begin{DoxyCompactList}\small\item\em Set the Stiffness of the springs on each Linear Axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a7a73106f73e23320cc84593aade54301}{SetSpringStiffness} (int Index, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Stiffness)
+\begin{DoxyCompactList}\small\item\em Set the spring stiffness on a given axis. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Generic6DofSpringConstraint_a66a886a64c86a24ed34eacf4c8465f10}{$\sim$Generic6DofSpringConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual btGeneric6DofSpringConstraint $\ast$ \hyperlink{classphys_1_1Generic6DofSpringConstraint_a9b8621e2f9cd34fe183de6e664959027}{Generic6dofSpring} () const 
+\item 
+\hyperlink{classphys_1_1Generic6DofSpringConstraint_aeca02121a3d7d2416a611c2f7274c1a6}{Generic6DofSpringConstraint} ()
+\begin{DoxyCompactList}\small\item\em Inheritance Constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion. When using functions of this class that require you to specify the index, the springs are arranged like so: \par
+
+\begin{DoxyItemize}
+\item 0: Translation X
+\item 1: Translation Y
+\item 2: Translation Z
+\item 3: Rotation X
+\item 4: Rotation Y
+\item 5: Rotation Z 
+\end{DoxyItemize}
+
+Definition at line 814 of file constraint.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!UsableAxis@{UsableAxis}}
+\index{UsableAxis@{UsableAxis}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{UsableAxis}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::Generic6DofSpringConstraint::UsableAxis}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60}
+
+
+Identify the Axis a bit easier when iterating over them is less convienent than typing an Identifier. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{LinearX@{LinearX}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!LinearX@{LinearX}}\item[{\em 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60afec9af16b6403edd5b6a335edbe9bffa}{
+LinearX}
+\label{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60afec9af16b6403edd5b6a335edbe9bffa}
+}]Translation on the X axis. \index{LinearY@{LinearY}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!LinearY@{LinearY}}\item[{\em 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a243508b551645b17b8e5c42a1cf9fb72}{
+LinearY}
+\label{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a243508b551645b17b8e5c42a1cf9fb72}
+}]Translation on the Y axis. \index{LinearZ@{LinearZ}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!LinearZ@{LinearZ}}\item[{\em 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a9d809c690118d2a37481e7aa83422492}{
+LinearZ}
+\label{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a9d809c690118d2a37481e7aa83422492}
+}]Translation on the Z axis. \index{AngularX@{AngularX}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!AngularX@{AngularX}}\item[{\em 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a52103c17e319667035ba2194f951a7d0}{
+AngularX}
+\label{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a52103c17e319667035ba2194f951a7d0}
+}]Rotation on the X axis. \index{AngularY@{AngularY}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!AngularY@{AngularY}}\item[{\em 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a009951290fedb86fc9278868f7638593}{
+AngularY}
+\label{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a009951290fedb86fc9278868f7638593}
+}]Rotation on the Y axis. \index{AngularZ@{AngularZ}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!AngularZ@{AngularZ}}\item[{\em 
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a2e8e892005c4f63f43f2b42fa73c743b}{
+AngularZ}
+\label{classphys_1_1Generic6DofSpringConstraint_a525a9ce88c6160c44be748fe45833f60a2e8e892005c4f63f43f2b42fa73c743b}
+}]Rotation on the Z axis. \end{description}
+\end{Desc}
+
+
+
+Reimplemented from \hyperlink{classphys_1_1Generic6DofConstraint_a70c7ba15366ae33deaf8e042b32f8e02}{phys::Generic6DofConstraint}.
+
+
+
+Definition at line 824 of file constraint.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_aeca02121a3d7d2416a611c2f7274c1a6}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!Generic6DofSpringConstraint@{Generic6DofSpringConstraint}}
+\index{Generic6DofSpringConstraint@{Generic6DofSpringConstraint}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{Generic6DofSpringConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::Generic6DofSpringConstraint::Generic6DofSpringConstraint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_aeca02121a3d7d2416a611c2f7274c1a6}
+
+
+Inheritance Constructor. 
+
+This is only called by derived classes, and shouldn't be called manually. \hypertarget{classphys_1_1Generic6DofSpringConstraint_a826580505965216b75ea41f26e2ad92f}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!Generic6DofSpringConstraint@{Generic6DofSpringConstraint}}
+\index{Generic6DofSpringConstraint@{Generic6DofSpringConstraint}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{Generic6DofSpringConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::Generic6DofSpringConstraint::Generic6DofSpringConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{{\bf ActorRigid} $\ast$}]{ActorB, }
+\item[{const {\bf Vector3} \&}]{VectorA, }
+\item[{const {\bf Vector3} \&}]{VectorB, }
+\item[{const {\bf Quaternion} \&}]{QuaternionA, }
+\item[{const {\bf Quaternion} \&}]{QuaternionB, }
+\item[{bool}]{UseLinearReferenceA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a826580505965216b75ea41f26e2ad92f}
+
+
+Two body Verbose constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The First body to be bound \\
+\hline
+{\em ActorB} & The Second body to be bound \\
+\hline
+{\em VectorA} & The offset from ActorA's center of gravity to get to match an offset from ActorB \\
+\hline
+{\em VectorB} & The offset from ActorB's center of gravity. \\
+\hline
+{\em QuaternionA} & Relative rotation from ActorA \\
+\hline
+{\em QuaternionB} & Relative rotation from ActorB \\
+\hline
+{\em UseLinearReferenceA} & Perform Linear math from ActorA's perspective, default to false. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_adb6c637cc1b18344c3c3e6cfe10dbd49}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!Generic6DofSpringConstraint@{Generic6DofSpringConstraint}}
+\index{Generic6DofSpringConstraint@{Generic6DofSpringConstraint}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{Generic6DofSpringConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::Generic6DofSpringConstraint::Generic6DofSpringConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{{\bf ActorRigid} $\ast$}]{ActorB, }
+\item[{const {\bf Transform} \&}]{TransformA, }
+\item[{const {\bf Transform} \&}]{TransformB, }
+\item[{bool}]{UseLinearReferenceA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_adb6c637cc1b18344c3c3e6cfe10dbd49}
+
+
+Two body Terse constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The First body to be bound \\
+\hline
+{\em ActorB} & The Second body to be bound \\
+\hline
+{\em TransformA} & The offset and rotation from ActorA's center of gravity to get to match an offset from ActorB \\
+\hline
+{\em TransformB} & The offset and rotation from ActorB's center of gravity. \\
+\hline
+{\em UseLinearReferenceA} & Perform Linear math from ActorA's perspective, default to false. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a66a886a64c86a24ed34eacf4c8465f10}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!$\sim$Generic6DofSpringConstraint@{$\sim$Generic6DofSpringConstraint}}
+\index{$\sim$Generic6DofSpringConstraint@{$\sim$Generic6DofSpringConstraint}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{$\sim$Generic6DofSpringConstraint}]{\setlength{\rightskip}{0pt plus 5cm}virtual phys::Generic6DofSpringConstraint::$\sim$Generic6DofSpringConstraint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a66a886a64c86a24ed34eacf4c8465f10}
+
+
+Class destructor. 
+
+The class destructor. 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a9b8621e2f9cd34fe183de6e664959027}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!Generic6dofSpring@{Generic6dofSpring}}
+\index{Generic6dofSpring@{Generic6dofSpring}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{Generic6dofSpring}]{\setlength{\rightskip}{0pt plus 5cm}virtual btGeneric6DofSpringConstraint$\ast$ phys::Generic6DofSpringConstraint::Generic6dofSpring (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a9b8621e2f9cd34fe183de6e664959027}
+Get the Bullet constraint that this class encapsulates. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the btTypedConstraint that stores the underlying constraint. 
+\end{DoxyReturn}
+ \hypertarget{classphys_1_1Generic6DofSpringConstraint_a7b8a8733b7a8d25c0d84684a69624334}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!GetSpringAngularDamping@{GetSpringAngularDamping}}
+\index{GetSpringAngularDamping@{GetSpringAngularDamping}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{GetSpringAngularDamping}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::Generic6DofSpringConstraint::GetSpringAngularDamping (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a7b8a8733b7a8d25c0d84684a69624334}
+
+
+Get the Damping for all Angular Axis. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the Damping on the X, Y and Z Angular Axis. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a3aac6b13a8127ba82354f436c624c879}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!GetSpringAngularEnabled@{GetSpringAngularEnabled}}
+\index{GetSpringAngularEnabled@{GetSpringAngularEnabled}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{GetSpringAngularEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::Generic6DofSpringConstraint::GetSpringAngularEnabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a3aac6b13a8127ba82354f436c624c879}
+
+
+Get the Enabled Status for all Angular Axis. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the Enabled Status on the X, Y and Z Angular Axis. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a8e51c0141b190a4c34365abc9dc11a98}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!GetSpringAngularStiffness@{GetSpringAngularStiffness}}
+\index{GetSpringAngularStiffness@{GetSpringAngularStiffness}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{GetSpringAngularStiffness}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::Generic6DofSpringConstraint::GetSpringAngularStiffness (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a8e51c0141b190a4c34365abc9dc11a98}
+
+
+Get the Stiffness for all Angular Axis. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the Stiffness on the X, Y and Z Angular Axis. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a662d116e3467851e9d6bba6b01d3382a}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!GetSpringDamping@{GetSpringDamping}}
+\index{GetSpringDamping@{GetSpringDamping}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{GetSpringDamping}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::Generic6DofSpringConstraint::GetSpringDamping (
+\begin{DoxyParamCaption}
+\item[{int}]{Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a662d116e3467851e9d6bba6b01d3382a}
+
+
+Retrieve the Damping of the spring on the given axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A real with the requested value. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a921afe66b38b967e666c53a8448d4a00}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!GetSpringEnabled@{GetSpringEnabled}}
+\index{GetSpringEnabled@{GetSpringEnabled}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{GetSpringEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool phys::Generic6DofSpringConstraint::GetSpringEnabled (
+\begin{DoxyParamCaption}
+\item[{int}]{Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a921afe66b38b967e666c53a8448d4a00}
+
+
+Retrieve the EnabledStatus of the spring on the given axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A bool with the requested value. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_ab58b5111016f4f29343b0097848de2d2}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!GetSpringLinearDamping@{GetSpringLinearDamping}}
+\index{GetSpringLinearDamping@{GetSpringLinearDamping}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{GetSpringLinearDamping}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::Generic6DofSpringConstraint::GetSpringLinearDamping (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_ab58b5111016f4f29343b0097848de2d2}
+
+
+Get the Damping for all Linear Axis. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the Damping on the X, Y and Z Linear Axis. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_abc9670d0ca5631994b0e260428ee1110}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!GetSpringLinearEnabled@{GetSpringLinearEnabled}}
+\index{GetSpringLinearEnabled@{GetSpringLinearEnabled}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{GetSpringLinearEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::Generic6DofSpringConstraint::GetSpringLinearEnabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_abc9670d0ca5631994b0e260428ee1110}
+
+
+Get the Enabled Status for all Linear Axis. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the Enabled Status on the X, Y and Z Linear Axis. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a2ef04c27d4340bb41233129e387b1145}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!GetSpringLinearStiffness@{GetSpringLinearStiffness}}
+\index{GetSpringLinearStiffness@{GetSpringLinearStiffness}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{GetSpringLinearStiffness}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::Generic6DofSpringConstraint::GetSpringLinearStiffness (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a2ef04c27d4340bb41233129e387b1145}
+
+
+Get the Stiffness for all Linear Axis. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the Stiffness on the X, Y and Z Linear Axis. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a06d43edcb68aa820060a60b49387f9e6}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!GetSpringStiffness@{GetSpringStiffness}}
+\index{GetSpringStiffness@{GetSpringStiffness}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{GetSpringStiffness}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::Generic6DofSpringConstraint::GetSpringStiffness (
+\begin{DoxyParamCaption}
+\item[{int}]{Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a06d43edcb68aa820060a60b49387f9e6}
+
+
+Retrieve the Stiffness of the spring on the given axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A real with the requested value; 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_aa92969027509290efc128334b01db500}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_aa92969027509290efc128334b01db500}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented from \hyperlink{classphys_1_1Generic6DofConstraint_a5a065b9a671f5f48b5ee8bb6886be0e2}{phys::Generic6DofConstraint}.
+
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_aeffb182d5faa82175e96a259fc19f9ff}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_aeffb182d5faa82175e96a259fc19f9ff}
+
+
+Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classphys_1_1Generic6DofConstraint_a9cf4eb82a625d06116542f6d224cdd69}{phys::Generic6DofConstraint}.
+
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_ad0a2d0c49fb622095f18d48b1e52f904}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::Generic6DofSpringConstraint::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_ad0a2d0c49fb622095f18d48b1e52f904}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}Generic6DofConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classphys_1_1Generic6DofConstraint_aa015e640a680f54edd0906b6ec684a99}{phys::Generic6DofConstraint}.
+
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a65dbf1070a4277dd0d27e48db2b45c89}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringAngularDamping@{SetSpringAngularDamping}}
+\index{SetSpringAngularDamping@{SetSpringAngularDamping}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SetSpringAngularDamping}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::SetSpringAngularDamping (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Damps}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a65dbf1070a4277dd0d27e48db2b45c89}
+
+
+Set the Damping of the springs on each Angular Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Damps} & A \hyperlink{classphys_1_1Vector3}{Vector3} containing the X, Y and Z desired damping. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a1f861c64cc9d4918bd3dbe606894422e}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringAngularEnabled@{SetSpringAngularEnabled}}
+\index{SetSpringAngularEnabled@{SetSpringAngularEnabled}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SetSpringAngularEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::SetSpringAngularEnabled (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Enableness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a1f861c64cc9d4918bd3dbe606894422e}
+
+
+Set the Stiffness of the springs on each Angular Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stiffies} & A \hyperlink{classphys_1_1Vector3}{Vector3} containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_ab1d57e737c3471acd9a9481abb9ac612}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringAngularStiffness@{SetSpringAngularStiffness}}
+\index{SetSpringAngularStiffness@{SetSpringAngularStiffness}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SetSpringAngularStiffness}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::SetSpringAngularStiffness (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Stiffies}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_ab1d57e737c3471acd9a9481abb9ac612}
+
+
+Set the Stiffness of the springs on each Angular Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stiffies} & A \hyperlink{classphys_1_1Vector3}{Vector3} containing the X, Y and Z stiffnesses. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a5e39d3b9601b1d8ec6e3197b1cc999a7}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringDamping@{SetSpringDamping}}
+\index{SetSpringDamping@{SetSpringDamping}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SetSpringDamping}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::SetSpringDamping (
+\begin{DoxyParamCaption}
+\item[{int}]{Index, }
+\item[{{\bf Real}}]{Damping}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a5e39d3b9601b1d8ec6e3197b1cc999a7}
+
+
+Set the spring Damping on a given axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum; \\
+\hline
+{\em Damping} & A real with the new desired Damping. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a49ab6cbd0859e455391b1b676b1309b7}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringEnabled@{SetSpringEnabled}}
+\index{SetSpringEnabled@{SetSpringEnabled}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SetSpringEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::SetSpringEnabled (
+\begin{DoxyParamCaption}
+\item[{int}]{Index, }
+\item[{bool}]{Enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a49ab6cbd0859e455391b1b676b1309b7}
+
+
+Set the spring's enabled status on a given axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum; \\
+\hline
+{\em Enable} & A bool with the spring's enabled status. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a86776512ae4f20d4143aa4c8901ab355}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringLinearDamping@{SetSpringLinearDamping}}
+\index{SetSpringLinearDamping@{SetSpringLinearDamping}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SetSpringLinearDamping}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::SetSpringLinearDamping (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Damps}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a86776512ae4f20d4143aa4c8901ab355}
+
+
+Set the Damping of the springs on each Linear Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Damps} & A \hyperlink{classphys_1_1Vector3}{Vector3} containing the X, Y and Z desired damping. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a561603d0470dc20eb74ee79cc1131c52}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringLinearEnabled@{SetSpringLinearEnabled}}
+\index{SetSpringLinearEnabled@{SetSpringLinearEnabled}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SetSpringLinearEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::SetSpringLinearEnabled (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Enableness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a561603d0470dc20eb74ee79cc1131c52}
+
+
+Set the Stiffness of the springs on each Linear Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stiffies} & A \hyperlink{classphys_1_1Vector3}{Vector3} containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a3cb5c0a8cfacc634728828eb85b2b025}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringLinearStiffness@{SetSpringLinearStiffness}}
+\index{SetSpringLinearStiffness@{SetSpringLinearStiffness}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SetSpringLinearStiffness}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::SetSpringLinearStiffness (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Stiffies}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a3cb5c0a8cfacc634728828eb85b2b025}
+
+
+Set the Stiffness of the springs on each Linear Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stiffies} & A \hyperlink{classphys_1_1Vector3}{Vector3} containing the X, Y and Z stiffnesses. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a7a73106f73e23320cc84593aade54301}{
+\index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringStiffness@{SetSpringStiffness}}
+\index{SetSpringStiffness@{SetSpringStiffness}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
+\paragraph[{SetSpringStiffness}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Generic6DofSpringConstraint::SetSpringStiffness (
+\begin{DoxyParamCaption}
+\item[{int}]{Index, }
+\item[{{\bf Real}}]{Stiffness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a7a73106f73e23320cc84593aade54301}
+
+
+Set the spring stiffness on a given axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum; \\
+\hline
+{\em Stiffness} & A real with the new desired stiffness. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+constraint.h\end{DoxyCompactItemize}
