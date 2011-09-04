@@ -394,7 +394,7 @@ namespace phys
             }
         }
 
-        String Quaternion::SerializableName() const
+        String Quaternion::SerializableName()
             { return String("Quaternion"); }
 #endif
 

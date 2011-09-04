@@ -92,7 +92,7 @@ namespace phys
             /// @return An xml::Node
             void ProtoDeSerialize(const xml::Node&);
 
-            String SerializableName() const;
+            static String SerializableName();
 
     };
     //typedef std::vector< Sound* > SoundSet;

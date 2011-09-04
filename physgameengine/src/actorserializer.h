@@ -44,9 +44,13 @@
 #include "datatypes.h"
 #include "xmldoc.h"
 
+/// @file
+
+
 namespace phys
 {
 
+    /// @brief
     class ActorSerializer
     {
         private:
@@ -59,6 +63,9 @@ namespace phys
             explicit ActorSerializer(ActorManager* DeSerializeTarget)
                     : Target(DeSerializeTarget)
             {}
+
+
+
 
     };
 }

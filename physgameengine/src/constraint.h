@@ -305,7 +305,7 @@ namespace phys
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "TypedConstraint"
-            String SerializableName() const;
+            static String SerializableName();
 #endif
     };
 
@@ -391,7 +391,7 @@ namespace phys
 
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "DualTransformConstraint"
-        String SerializableName() const;
+        static String SerializableName();
 #endif
     };
 
@@ -795,7 +795,7 @@ namespace phys
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Generic6DofConstraint"
-            String SerializableName() const;
+            static String SerializableName();
 #endif // /PHYSXML
     };
 
@@ -954,7 +954,7 @@ namespace phys
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Generic6DofConstraint"
-            String SerializableName() const;
+            static String SerializableName();
 #endif // /PHYSXML
     };
 
@@ -1160,7 +1160,7 @@ namespace phys
             virtual void ProtoDeSerialize(const xml::Node& OneNode);
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "HingeConstraint"
-            String SerializableName() const;
+            static String SerializableName();
 #endif // /PHYSXML
 
     };
@@ -1279,7 +1279,7 @@ namespace phys
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Point2PointConstraint"
-            String SerializableName() const;
+            static String SerializableName();
 #endif
     };
 
@@ -1336,11 +1336,11 @@ namespace phys
     };
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class UniversalConstraint
+    /// @internal
+    /// @class UniversalJointConstraint
     /// @headerfile constraint.h
     /// @brief
-    /// @details This class is currently incomplete
-    ///////////////////////////////////////
+    /// @details This class is currently incomplete and is marked as internal until its completion
     class PHYS_LIB UniversalJointConstraint : public Generic6DofConstraint
     {
         protected:

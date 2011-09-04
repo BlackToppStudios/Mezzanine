@@ -124,7 +124,7 @@ namespace phys
         }
     }
 
-    String Transform::SerializableName() const
+    String Transform::SerializableName()
         { return String("Transform"); }
 #endif // /PHYSXML
 }

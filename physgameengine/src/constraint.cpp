@@ -279,7 +279,7 @@ namespace phys
         }
     }
 
-    String TypedConstraint::SerializableName() const
+    String TypedConstraint::SerializableName()
         { return String("TypedConstraint"); }
 #endif // /PHYSXML
 
@@ -346,7 +346,7 @@ namespace phys
         }
     }
 
-    String DualTransformConstraint::SerializableName() const
+    String DualTransformConstraint::SerializableName()
         { return String("DualTransformConstraint"); }
 
     /////////////////////////////////////////
@@ -944,7 +944,7 @@ namespace phys
         }
     }
 
-    String Generic6DofConstraint::SerializableName() const
+    String Generic6DofConstraint::SerializableName()
         { return String("Generic6DofConstraint"); }
 #endif // /PHYSXML
 
@@ -1170,7 +1170,7 @@ namespace phys
         }
     }
 
-    String Generic6DofSpringConstraint::SerializableName() const
+    String Generic6DofSpringConstraint::SerializableName()
         { return String("Generic6DofSpringConstraint"); }
 #endif // /PHYSXML
 
@@ -1468,7 +1468,7 @@ namespace phys
         }
     }
 
-    String HingeConstraint::SerializableName() const
+    String HingeConstraint::SerializableName()
         { return String("HingeConstraint"); }
 #endif // /PHYSXML
 
@@ -1663,7 +1663,7 @@ namespace phys
         }
     }
 
-    String Point2PointConstraint::SerializableName() const
+    String Point2PointConstraint::SerializableName()
         { return String("Point2PointConstraint"); }
 #endif // /PHYSXML
 

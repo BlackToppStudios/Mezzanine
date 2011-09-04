@@ -220,7 +220,7 @@ namespace phys
         }
     }
 
-    String Vector2::SerializableName() const
+    String Vector2::SerializableName()
         { return String("Vector2"); }
 
 #endif

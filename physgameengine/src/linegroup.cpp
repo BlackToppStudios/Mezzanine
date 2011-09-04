@@ -86,6 +86,7 @@ namespace phys
 
                 /// @internal
                 /// @brief Access a specific point by index
+                /// @param index The index.
                 /// @details This really does just access the underlying vector.
                 /// @return This Returns the specific Vector3 requested.
                 const Vector3 &getPoint(Whole index) const;
@@ -118,6 +119,7 @@ namespace phys
                 /// @brief Not Used
                 /// @details Not Used
                 /// @param cam Not Used
+                /// @return This returns a Real.
                 Real getSquaredViewDepth(const Ogre::Camera *cam) const;
 
                 /// @internal
