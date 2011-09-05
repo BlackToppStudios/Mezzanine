@@ -60,13 +60,24 @@ namespace phys
     /// and can be done with a variety of factors in mind. The xml text can be sent down any stream, put in any file, compressed,
     /// queried. For information abou the xml itself you should see the @ref XMLManual .
     /// \n \n
-    /// Any class that implements the Serializable functions can be serialized. Likewise, any
-    /// ver
-    /// The following function(s) are expected to be implemented on every Serializable: and deserializable: \n
-    /// void ProtoSerialize(xml::Node& CurrentRoot) const; \n
-    /// The following function(s) are expected to be implemented on every DeSerializable: and deserializable: \n
-    /// void ProtoDeSerialize(const xml::Node&); \n
-    /// static String SerializableName() const; \n
+    /// Any class that implements the Serializable functions can be serialized. Likewise, any class that implements the
+    /// DeSerializable functions can be deserialized. In some cases, there are some pieces of information that cannot be supplied or
+    /// entered by the class itself. This data must be provided by another class or upon creation of the class. This other class
+    /// can implement the Serializer, the DeSerializer, or both to make working with large amounts of serialization code easier.
+    /// \n \n
+    /// For example actors can only accept a mesh upon construction. So overwriting an existing actor is impossible to do completely.
+    /// It expected to be partially implemented, to the extent possible, in the class members. But if you have the need to create
+    /// Actors on the fly from data stored in files it makes sense to have a dedicate class or interface than can create these.
+    /// \n \n
+    /// The following function(s) are expected to be implemented on every Serializable and DeSerializable:
+    /// @code
+    /// void ProtoSerialize(xml::Node& CurrentRoot) const;
+    /// @endcode
+    /// The following function(s) are expected to be implemented on every DeSerializable and DeSerializable:
+    /// @code
+    /// void ProtoDeSerialize(const xml::Node&);
+    /// static String SerializableName();
+    /// @endcode
     /// Implementing these will allow them to work with the Serialize and Deserialize templates defined in
     /// serialization.h.
 
@@ -74,21 +85,31 @@ namespace phys
     /// @brief A tool for serializing classes with specific issues serializing.
     /// @details Some classes have private members and it is impractical to change the class to expose this data. In this case a
     /// serializer could be made that to work around this limitation.
+    /// \n \n
+    /// This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be
+    /// no reason why something could not inherit from this and phys::DeSerializer. The type of this template is expected to match what this is serializing.
     ///////////////////////////////////////
+    template <class Serializable>
     class Serializer
     {
         #ifdef PHYSXML
+        public:
         /// @brief Get all of the data from the serializable class instance
         /// @details This is to be implemented in individual serializer with logic
-        /// specific to the required tasks. It is expected to produced an xml::Node
+        /// specific to the required tasks. It is expected to produce an xml::Node
         /// containing the entirety of the data required to reconstitute the serialized
-        /// class.
-        /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+        /// class. \n \n
+        /// This is expected to gets it's knowledge about what to serialize some other than
+        /// being passed as an argument. It could query a manager or be passed a series pointers
+        /// that is needs to work with.
+        /// \n \n
+        /// This is not implemented by default.
+        /// @param CurrentRoot The point in the XML hierarchy that all the items deserialized should be appended to.
         virtual void ProtoSerializeAll(xml::Node& CurrentRoot) const = 0;
-        /// @brief Output to a stream the complete serialized data.
+        /// @brief Output the complete serialized data to a stream.
         /// @param Stream The std::ostream to send the data into.
         /// @details By default this is implemented in using ProtoSerializeAll().
-        /// @return the modified ostream.
+        /// @return The populated ostream.
         virtual std::ostream& SerializeAll(std::ostream& Stream) const
         {
             phys::xml::Document Doc;
@@ -98,21 +119,21 @@ namespace phys
             return Stream;
         }
 
-        /// @brief Get all the one data about one Submember in an xml::Node
-        /// @param Name The name of the Serialize item to serialize
+        /// @brief Get all the serialized data about one class instance in an xml::Node
+        /// @param Target A reference to class instance to be deserialized.
         /// @details This is not implemented by default.
         /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
-        virtual void ProtoSerialize(const String& Name, xml::Node& CurrentRoot) = 0;
+        virtual void ProtoSerialize(const Serializable& Target, xml::Node& CurrentRoot) = 0;
         /// @brief Output the specified member to a stream
-        /// @param Name The name of the Serialize item to serialize
+        /// @param Target A reference to class instance to be deserialized.
         /// @param Stream The std::ostream to send the data into.
         /// @details The default implementation of this uses ProtoSerialize(const String&)
         /// @return The std::ostream that was passed in.
-        virtual std::ostream& Serialize(std::ostream& Stream, const String& Name)
+        virtual std::ostream& Serialize(std::ostream& Stream, const Serializable& Target)
         {
             phys::xml::Document Doc;
             Doc.Load("");
-            ProtoSerialize(Name,Doc);
+            ProtoSerialize(Target,Doc);
             Doc.Print(Stream);
             return Stream;
         }
@@ -124,20 +145,27 @@ namespace phys
     /// @brief A tool for deserializing classes with specific issues deserializing them
     /// @details Some classes Must have certain values available at the time of construction. This make deserializing them by overwriting an existing
     /// class instance impractical. \n \n
-    /// This is expected to work with classes That have implemented the required DeSerializable functions. Specifically This make
-
+    /// This is expected to work with classes that have implemented the required DeSerializable functions. Specifically This makes use of
+    /// "static String SerializableName()", and it is expected that functions that must be implemented would call on "void ProtoDeSerialize(const xml::Node&)".
+    /// The type of this template is expected to match what this is deserializing.
+    /// \n \n
+    /// This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be
+    /// no reason why something could not inherit from this and phys::Serializer.
     ///////////////////////////////////////
     template <class DeSerializable>
     class DeSerializer
     {
         #ifdef PHYSXML
-        /// @brief Convert An XML Node into a complete live data structure
-        /// @param OneNode A pointer to the XML node to reconstitute into multiple Live classes.
-        /// @details This is expected to put the deserialized items somewhere they can be accessed by the calling, but provides no facility for working them itself. Not implemented in default serializer.
-        virtual void ProtoDeSerializeAll(xml::Node& OneNode) = 0;
-        /// @brief Send the serialized version of all the live data into the stream.
+        public:
+        /// @brief Convert An XML Node into a complete series of live class instances
+        /// @param OneNode A reference to the XML node to reconstitute into multiple Live classes.
+        /// @details This is expected to put the deserialized items somewhere they can be accessed by the calling,
+        /// but provides no facility for working them itself. \n \n
+        /// Not implemented in default DeSerializer.
+        virtual void ProtoDeSerializeAll(const xml::Node& OneNode) = 0;
+        /// @brief Get One node that has several of the appropriate kinds of nodes as children and deserialize all of them
         /// @param Stream The std::istream to get the data from.
-        /// @details The default implementation of this uses ProtoDeSerializeAll(xml::Node*) to accept
+        /// @details The default implementation of this uses ProtoDeSerializeAll(xml::Node&) to accept11
         /// The complete XML to serialise and assemble it in memory.
         /// @return This returns the input stream after the xml document has been extracted from it.
         virtual std::istream& DeSerializeAll(std::istream& Stream)
@@ -149,15 +177,22 @@ namespace phys
         }
 
         /// @brief Convert An XML Node into a complete live data structure
-        /// @param OneNode A pointer to the XML node to reconstitute into a live class instance.
-        /// @details This accepts a pointer to a node because not all nodes are copy constructable. Not implemented in default serializer.
-        virtual void ProtoDeSerialize(xml::Node* OneNode, const String& Name) = 0;
+        /// @param OneNode A reference to the XML node to reconstitute into a live class instance.
+        /// @details Not implemented in default serializer.
+        /// @return A pointer to the freshly deserialized class instance.
+        virtual DeSerializable* ProtoDeSerialize(const xml::Node& OneNode) = 0;
         /// @brief Send the serialized version of all the live data into the stream.
         /// @param Stream The std::istream to get the data from.
         /// @details The default implementation of this uses ProtoDeSerializeAll(xml::Node*) to accept
         /// The complete XML to serialise and assemble it in memory.
         /// @return This returns the input stream after the xml document has been extracted from it.
-        virtual std::istream& DeSerialize(std::istream& Stream, const String& Name) = 0;
+        virtual std::istream& DeSerialize(std::istream& Stream)
+        {
+            phys::String OneTag( phys::xml::GetOneTag(Stream) );
+            std::auto_ptr<phys::xml::Document> Doc(phys::xml::PreParseClassFromSingleTag(DeSerializable::SerializableName(), OneTag) );
+            ProtoDeSerialize(*Doc);
+            return Stream;
+        }
         #endif
     };
 

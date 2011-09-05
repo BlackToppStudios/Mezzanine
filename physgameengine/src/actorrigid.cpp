@@ -150,7 +150,7 @@ namespace phys{
 ///////////////////////////////////////
 #ifdef PHYSXML
     void ActorRigid::ThrowSerialError(const String& Fail) const
-        { SerializeError(Fail, "ActorRigid"); }
+        { SerializeError(Fail, SerializableName()); }
 
     void ActorRigid::ProtoSerialize(xml::Node& CurrentRoot) const
     {
@@ -169,6 +169,13 @@ namespace phys{
         ActorBase::ProtoSerialize(ActorNode);
     }
 
+    void ActorRigid::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+
+    }
+
+    String ActorRigid::SerializableName()
+        {   return String("ActorRigid"); }
 #endif  // \physxml
 
 }
@@ -179,6 +186,14 @@ std::ostream& operator << (std::ostream& stream, const phys::ActorRigid& ActorTo
     Serialize(stream, ActorToSerialize);
     return stream;
 }
+
+std::istream& operator >> (std::istream& stream, phys::ActorRigid& x)
+    { return DeSerialize(stream, x); }
+
+void operator >> (const phys::xml::Node& OneNode, phys::ActorRigid& x)
+    { x.ProtoDeSerialize(OneNode); }
+
+
 #endif  // \physxml
 
 #endif

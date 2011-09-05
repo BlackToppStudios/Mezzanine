@@ -40,14 +40,21 @@
 #ifndef _actorserializer_cpp
 #define _actorserializer_cpp
 
-#include "serialization.h"
+#include "actorserializer.h"
 
 
 
 namespace phys
 {
+    ActorRigid* ActorRigidDeSerializer::ProtoDeSerialize(const xml::Node& OneNode)
+    {
 
+    }
 
+    void ActorRigidDeSerializer::ProtoDeSerializeAll(const xml::Node& OneNode)
+    {
+
+    }
 }
 
 #endif
