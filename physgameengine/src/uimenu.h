@@ -80,9 +80,6 @@ namespace phys
                 /// @brief Sets the visibility of this menu.
                 /// @param visible Bool determining whether or not this menu should be visible.
                 virtual void SetVisible(bool visible);
-                /// @brief Gets the visibility of this menu.
-                /// @return Returns a bool representing the visibility of this menu.
-                virtual bool IsVisible();
                 /// @brief Forces this menu to be shown.
                 virtual void Show();
                 /// @brief Forces this menu to hide.

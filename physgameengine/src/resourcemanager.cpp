@@ -96,9 +96,10 @@ namespace phys {
             if(GroupName == (*it))
             {
                 ResourceGroups.erase(it);
-                return;
+                break;
             }
         }
+        /// @todo This is a bit of a hack, but needs to be here until we can upgrade our resource system.
         Ogre::StringVectorPtr ResourceNames = this->OgreResource->listResourceNames(GroupName,false);
         for( Whole X = 0 ; X < ResourceNames->size() ; ++X )
         {
@@ -107,6 +108,7 @@ namespace phys {
                 World::GetWorldPointer()->GetMeshManager()->UnloadMesh(ResourceNames->at(X));
             }
         }
+        ///
         this->OgreResource->destroyResourceGroup(GroupName);
     }
 

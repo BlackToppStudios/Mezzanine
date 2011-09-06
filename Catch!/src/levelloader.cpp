@@ -160,46 +160,34 @@ void LevelLoader::LoadFerris()
     CollisionShape* ClayCS = CShapeMan->GenerateConvexHull("ClayCS",ClayData->MeshName,CommonGroup);
     CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LeadCS",LeadData->MeshName,CommonGroup);
     CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
-    ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
+    ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium1->SetLocation(-145,40,0);
-    Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Uranium1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
-    ActorRigid* Uranium2 = new ActorRigid(UraniumData->Mass,"Uranium2",UraniumData->MeshName,CommonGroup);
+    ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium2->SetLocation(-195,40,0);
-    Uranium2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Uranium2->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Uranium2);
     GameApp->AddThrowable(Uranium2);// */
-    ActorRigid* Lead1 = new ActorRigid(LeadData->Mass,"Lead1",LeadData->MeshName,CommonGroup);
+    ActorRigid* Lead1 = ThrowableGenerator::CreateThrowable("Lead");
     Lead1->GetPhysicsSettings()->SetCollisionShape(LeadCS);
     Lead1->SetLocation(-145,0,0);
-    Lead1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Lead1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Lead1);
     GameApp->AddThrowable(Lead1);
-    ActorRigid* Lead2 = new ActorRigid(LeadData->Mass,"Lead2",LeadData->MeshName,CommonGroup);
+    ActorRigid* Lead2 = ThrowableGenerator::CreateThrowable("Lead");
     Lead2->GetPhysicsSettings()->SetCollisionShape(LeadCS);
     Lead2->SetLocation(-195,0,0);
-    Lead2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Lead2->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Lead2);
     GameApp->AddThrowable(Lead2);// */
-    ActorRigid* Clay1 = new ActorRigid(ClayData->Mass,"Clay1",ClayData->MeshName,CommonGroup);
+    ActorRigid* Clay1 = ThrowableGenerator::CreateThrowable("Clay");
     Clay1->GetPhysicsSettings()->SetCollisionShape(ClayCS);
     Clay1->SetLocation(-145,-40,0);
-    Clay1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Clay1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Clay1);
     GameApp->AddThrowable(Clay1);
-    ActorRigid* Clay2 = new ActorRigid(ClayData->Mass,"Clay2",ClayData->MeshName,CommonGroup);
+    ActorRigid* Clay2 = ThrowableGenerator::CreateThrowable("Clay");
     Clay2->GetPhysicsSettings()->SetCollisionShape(ClayCS);
     Clay2->SetLocation(-195,-40,0);
-    Clay2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Clay2->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Clay2);
     GameApp->AddThrowable(Clay2);// */
 
@@ -283,32 +271,24 @@ void LevelLoader::LoadBigCurve()
     CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
     CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
     //CollisionShape* RubberCS = CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
-    ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
+    ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium1->SetLocation(-155,-20,0);
-    Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Uranium1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
-    ActorRigid* Uranium2 = new ActorRigid(UraniumData->Mass,"Uranium2",UraniumData->MeshName,CommonGroup);
+    ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium2->SetLocation(-205,-20,0);
-    Uranium2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Uranium2->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Uranium2);
     GameApp->AddThrowable(Uranium2);// */
-    ActorRigid* Pyrite1 = new ActorRigid(PyriteData->Mass,"Pyrite1",PyriteData->MeshName,CommonGroup);
+    ActorRigid* Pyrite1 = ThrowableGenerator::CreateThrowable("Pyrite");
     Pyrite1->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
     Pyrite1->SetLocation(-155,-60,0);
-    Pyrite1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Pyrite1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Pyrite1);
     GameApp->AddThrowable(Pyrite1);
-    ActorRigid* Pyrite2 = new ActorRigid(PyriteData->Mass,"Pyrite2",PyriteData->MeshName,CommonGroup);
+    ActorRigid* Pyrite2 = ThrowableGenerator::CreateThrowable("Pyrite");
     Pyrite2->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
     Pyrite2->SetLocation(-205,-60,0);
-    Pyrite2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Pyrite2->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Pyrite2);
     GameApp->AddThrowable(Pyrite2);// */
 
@@ -453,32 +433,24 @@ void LevelLoader::LoadBlowsNotSucks()
     ThrowableData* StyrofoamData = ThrowableGenerator::GetThrowableData("Styrofoam");
     CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
     CollisionShape* StyrofoamCS = CShapeMan->GenerateConvexHull("StyrofoamCS",StyrofoamData->MeshName,CommonGroup);
-    ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
+    ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium1->SetLocation(-155,-20,0);
-    Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Uranium1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
-    ActorRigid* Uranium2 = new ActorRigid(UraniumData->Mass,"Uranium2",UraniumData->MeshName,CommonGroup);
+    ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium2->SetLocation(-185,-20,0);
-    Uranium2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Uranium2->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Uranium2);
     GameApp->AddThrowable(Uranium2);// */
-    ActorRigid* Styrofoam1 = new ActorRigid(StyrofoamData->Mass,"Styrofoam1",StyrofoamData->MeshName,CommonGroup);
+    ActorRigid* Styrofoam1 = ThrowableGenerator::CreateThrowable("Styrofoam");
     Styrofoam1->GetPhysicsSettings()->SetCollisionShape(StyrofoamCS);
     Styrofoam1->SetLocation(-155,-60,0);
-    Styrofoam1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Styrofoam1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Styrofoam1);
     GameApp->AddThrowable(Styrofoam1);
-    ActorRigid* Styrofoam2 = new ActorRigid(StyrofoamData->Mass,"Styrofoam2",StyrofoamData->MeshName,CommonGroup);
+    ActorRigid* Styrofoam2 = ThrowableGenerator::CreateThrowable("Styrofoam");
     Styrofoam2->GetPhysicsSettings()->SetCollisionShape(StyrofoamCS);
     Styrofoam2->SetLocation(-185,-60,0);
-    Styrofoam2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Styrofoam2->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Styrofoam2);
     GameApp->AddThrowable(Styrofoam2);// */
 
@@ -496,17 +468,19 @@ void LevelLoader::LoadBlowsNotSucks()
     GameApp->RegisterStartArea(StartZone);// */
 
     Vector3 Score1Size(25,21,25);
-    CollisionShape* ScoreAreaShape = new BoxCollisionShape("ScoreAreaShape",Score1Size);
-    Mesh* ScoreAreaMesh = MeshMan->CreateBoxMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.2),Score1Size);
+    CollisionShape* ScoreArea1Shape = new BoxCollisionShape("ScoreArea1Shape",Score1Size);
+    Mesh* ScoreArea1Mesh = MeshMan->CreateBoxMesh("ScoreArea1Mesh",ColourValue(0.2,0.2,0.8,0.2),Score1Size);
     ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-10.5,-100.0,0.0));
-    ScoreZone1->SetFieldShape(ScoreAreaShape);
-    ScoreZone1->SetFieldMesh(ScoreAreaMesh);
+    ScoreZone1->SetFieldShape(ScoreArea1Shape);
+    ScoreZone1->SetFieldMesh(ScoreArea1Mesh);
     PhysMan->AddAreaEffect(ScoreZone1);
     GameApp->RegisterScoreArea(ScoreZone1);
     Vector3 Score2Size(55,48,15);
+    CollisionShape* ScoreArea2Shape = new BoxCollisionShape("ScoreArea2Shape",Score2Size);
+    Mesh* ScoreArea2Mesh = MeshMan->CreateBoxMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.2),Score2Size);
     ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(-170,100,0));
-    ScoreZone2->SetFieldShape(ScoreAreaShape);
-    ScoreZone2->SetFieldMesh(ScoreAreaMesh);
+    ScoreZone2->SetFieldShape(ScoreArea2Shape);
+    ScoreZone2->SetFieldMesh(ScoreArea2Mesh);
     PhysMan->AddAreaEffect(ScoreZone2);
     GameApp->RegisterScoreArea(ScoreZone2);// */
 }
@@ -658,18 +632,14 @@ void LevelLoader::LoadJustice()
     //CollisionShape* ClayCS = CShapeMan->GenerateConvexHull("ClayCS",ClayData->MeshName,CommonGroup);
     //CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LeadCS",LeadData->MeshName,CommonGroup);
     CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
-    ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
+    ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium1->SetLocation(-155,110,0);
-    Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Uranium1->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
-    ActorRigid* Uranium2 = new ActorRigid(UraniumData->Mass,"Uranium2",UraniumData->MeshName,CommonGroup);
+    ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium2->SetLocation(-185,110,0);
-    Uranium2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Uranium2->SetLinearMovementFactor(Vector3(1,1,0));
     ActMan->AddActor(Uranium2);
     GameApp->AddThrowable(Uranium2);
 
@@ -755,21 +725,211 @@ void LevelLoader::LoadRollers()
     // Create the basic terrain that will be used
     ActorRigid* RollersFrame = new ActorRigid(0,"RollersFrame","frame.mesh",RollersGroup);
     RollersFrame->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("FrameShape","frame.mesh",RollersGroup));
+    RollersFrame->GetPhysicsSettings()->SetFriction(1.0);
     RollersFrame->SetLocation(Vector3(0,-25,0));
     ActMan->AddActor(RollersFrame);
 
-    // Create the individual Rollers
-    ActorRigid* Roller1 = new ActorRigid(10,"Roller1","rubberroller.mesh",RollersGroup);
+    // Create the individual Rollers and their constraints
+    std::vector<HingeConstraint*> TheRollers;
+    Real XStride = 14.5;
+    CollisionShape* RollerShape = new CylinderCollisionShape("RollerShape",6.51,3.36,Vector3::Unit_Z());
+    for( Whole X = 0 ; X < 7 ; ++X )
+    {
+        Vector3 Location(112.4+(XStride*X),-20,0);
+        std::stringstream Namestream;
+        Namestream << "Roller" << (X+1);
+        ActorRigid* Roller = new ActorRigid(10,Namestream.str(),"rubberroller.mesh",RollersGroup);
+        Roller->GetPhysicsSettings()->SetCollisionShape(RollerShape);
+        Roller->GetPhysicsSettings()->SetFriction(1.0);
+        Roller->SetLocation(Location);
+        ActMan->AddActor(Roller);
 
-    ActorRigid* Roller2 = new ActorRigid(10,"Roller2","rubberroller.mesh",RollersGroup);
+        HingeConstraint* RollerAnchor = new HingeConstraint(Roller,Vector3(0,0,0),Vector3(0,0,1),true);
+        RollerAnchor->SetLimit(1.0,-1.0);
+        RollerAnchor->SetMaxMotorImpulse(1500.0);
+        RollerAnchor->EnableMotor(true);
+        PhysMan->AddConstraint(RollerAnchor,false);
 
-    ActorRigid* Roller3 = new ActorRigid(10,"Roller3","rubberroller.mesh",RollersGroup);
+        TheRollers.push_back(RollerAnchor);
+    }
 
-    // Create the constraints to place the Rollers
+    Roll_Roll* RollerTrigger = new Roll_Roll("RollerTrigger",TheRollers);
+    PhysMan->AddWorldTrigger(RollerTrigger);
 
     // Create some throwable objects
+    ThrowableData* PyriteData = ThrowableGenerator::GetThrowableData("Pyrite");
+    CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
+    ActorRigid* Pyrite1 = ThrowableGenerator::CreateThrowable("Pyrite");
+    Pyrite1->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
+    Pyrite1->GetPhysicsSettings()->SetDamping(0.1,0.2);
+    Pyrite1->GetPhysicsSettings()->SetCCDParams(1.0);
+    Pyrite1->SetLocation(-160,70,0);
+    ActMan->AddActor(Pyrite1);
+    GameApp->AddThrowable(Pyrite1);
+    ActorRigid* Pyrite2 = ThrowableGenerator::CreateThrowable("Pyrite");
+    Pyrite2->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
+    Pyrite2->GetPhysicsSettings()->SetDamping(0.1,0.1);
+    Pyrite2->GetPhysicsSettings()->SetCCDParams(1.0);
+    Pyrite2->SetLocation(-120,70,0);
+    ActMan->AddActor(Pyrite2);
+    GameApp->AddThrowable(Pyrite2);// */
 
     // Create the zones
+    AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
+    PhysMan->AddAreaEffect(PlayZone);
+    GameApp->SetPlayArea(PlayZone);// */
+
+    Vector3 StartSize(50,50,15);
+    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-140,60,0));
+    StartZone->SetFieldShape(new BoxCollisionShape("StartAreaShape",StartSize));
+    StartZone->SetFieldMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
+    PhysMan->AddAreaEffect(StartZone);
+    GameApp->RegisterStartArea(StartZone);// */
+
+    Vector3 ScoreSize(70,40,20);
+    ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(140,20,0));
+    ScoreZone->SetFieldShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
+    ScoreZone->SetFieldMesh(MeshMan->CreateBoxMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.2),ScoreSize));
+    PhysMan->AddAreaEffect(ScoreZone);
+    GameApp->RegisterScoreArea(ScoreZone);// */
+}
+
+void LevelLoader::LoadJustBounce()
+{
+    // Get managers
+    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
+    SceneManager* SceneMan = TheWorld->GetSceneManager();
+    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
+    ActorManager* ActMan = TheWorld->GetActorManager();
+    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
+    MeshManager* MeshMan = TheWorld->GetMeshManager();
+
+    String CommonGroup("Common");
+    String JustBounceGroup("JustBounce");
+    String datadir = "Levels/";
+    ResourceMan->AddResourceLocation(datadir+"JustBounce.lvl", "Zip", JustBounceGroup, false);
+    ResourceMan->InitResourceGroup(JustBounceGroup);
+
+    // Camera Setup
+	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	DefCamera->SetLocation(Vector3(0,0,425));
+	DefCamera->LookAt(Vector3(0,0,0));
+
+	// Lights Setup
+    //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    Light* DLight = SceneMan->CreateLight("SceneLight");
+    DLight->SetType(Light::Directional);
+    Vector3 Loc(-150,100,200);
+    DLight->SetLocation(Loc);
+    Loc.Normalize();
+    DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
+    DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+
+    // Physics Setup
+    PhysMan->SetGravity(Vector3(0,-1000,0));
+
+    // Assuming all mass amounts are in metric kg.
+    // Assuming all distances are in metric cm.
+
+    // Create the background
+    Plane SkyPlane(Vector3(-15,-10,120),Vector3(15,-10,120),Vector3(0,10,120));
+    SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
+
+    // Setup and Create the shapes that will be used.
+    CShapeMan->LoadAllShapesFromFile("JustBounce.bullet",JustBounceGroup);
+
+    //----------
+    /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
+    for( std::set<CollisionShape*>::iterator CSit = Unnamed.begin() ; CSit != Unnamed.end() ; CSit++ )
+    {
+        CollisionShape* ToChange = (*CSit);
+        if(CollisionShape::ST_Compound==ToChange->GetType())
+        {
+            if(7 == ((CompoundCollisionShape*)ToChange)->GetNumChildren())
+                CShapeMan->SetNameForUnnamedShape("Basket",ToChange);
+            else if(2 == ((CompoundCollisionShape*)ToChange)->GetNumChildren())
+                CShapeMan->SetNameForUnnamedShape("ElasticBed",ToChange);
+        }
+    }
+    Unnamed.clear();
+    CShapeMan->SaveAllStoredShapesToFile("JustBounce.bullet");// */
+    //----------
+
+    // Create the basic terrain that will be used
+    ActorRigid* TopWall = new ActorRigid(0,"TopWall","wall.mesh",JustBounceGroup);
+    TopWall->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("WallShape","wall.mesh",JustBounceGroup));
+    TopWall->SetLocation(Vector3(0,85,0));
+    ActMan->AddActor(TopWall);
+
+    ActorRigid* Basket = new ActorRigid(0,"Basket","basket.mesh",JustBounceGroup);
+    Basket->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Basket"));
+    Basket->SetLocation(Vector3(165,-25,0));
+    ActMan->AddActor(Basket);
+
+    ActorRigid* ElasticFloor = new ActorRigid(0,"ElasticFloor","elastic_bed.mesh",JustBounceGroup);
+    ElasticFloor->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("ElasticBed"));//CShapeMan->GenerateStaticTriMesh("ElasticShape","elastic_bed.mesh",JustBounceGroup));
+    ElasticFloor->GetPhysicsSettings()->SetRestitution(1.0);
+    //ElasticFloor->GetPhysicsSettings()->SetFriction(0.4);
+    ElasticFloor->SetLocation(Vector3(-20,-70,0));
+    ActMan->AddActor(ElasticFloor);
+
+    ActorRigid* ElasticCase = new ActorRigid(0,"ElasticCase","case.mesh",JustBounceGroup);
+    ElasticCase->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("CaseShape","case.mesh",JustBounceGroup));
+    ElasticCase->SetLocation(Vector3(-20,-71,0));
+    ActMan->AddActor(ElasticCase);
+
+    // Create some throwable objects
+    ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
+    ThrowableData* WoodData = ThrowableGenerator::GetThrowableData("Wood");
+    CollisionShape* RubberCS = new SphereCollisionShape("RubberCS",11.4);//CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
+    CollisionShape* WoodCS = CShapeMan->GenerateConvexHull("WoodCS",WoodData->MeshName,CommonGroup);// */
+    ActorRigid* Rubber1 = ThrowableGenerator::CreateThrowable("Rubber");
+    Rubber1->GetPhysicsSettings()->SetCollisionShape(RubberCS);
+    Rubber1->GetPhysicsSettings()->SetCCDParams(0.01);
+    Rubber1->SetLocation(-185,110,0);
+    ActMan->AddActor(Rubber1);
+    GameApp->AddThrowable(Rubber1);
+    ActorRigid* Rubber2 = ThrowableGenerator::CreateThrowable("Rubber");
+    Rubber2->GetPhysicsSettings()->SetCollisionShape(RubberCS);
+    Rubber2->GetPhysicsSettings()->SetCCDParams(0.01);
+    Rubber2->SetLocation(-155,110,0);
+    ActMan->AddActor(Rubber2);
+    GameApp->AddThrowable(Rubber2);// */
+    ActorRigid* Wood1 = ThrowableGenerator::CreateThrowable("Wood");
+    Wood1->GetPhysicsSettings()->SetCollisionShape(WoodCS);
+    Wood1->GetPhysicsSettings()->SetCCDParams(0.01);
+    Wood1->SetLocation(-185,70,0);
+    ActMan->AddActor(Wood1);
+    GameApp->AddThrowable(Wood1);
+    ActorRigid* Wood2 = ThrowableGenerator::CreateThrowable("Wood");
+    Wood2->GetPhysicsSettings()->SetCollisionShape(WoodCS);
+    Wood2->GetPhysicsSettings()->SetCCDParams(0.01);
+    Wood2->SetLocation(-155,70,0);
+    ActMan->AddActor(Wood2);
+    GameApp->AddThrowable(Wood2);// */
+
+
+    // Create the zones
+    AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
+    PhysMan->AddAreaEffect(PlayZone);
+    GameApp->SetPlayArea(PlayZone);// */
+
+    Vector3 StartSize(50,50,15);
+    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,90,0));
+    StartZone->SetFieldShape(new BoxCollisionShape("StartAreaShape",StartSize));
+    StartZone->SetFieldMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
+    PhysMan->AddAreaEffect(StartZone);
+    GameApp->RegisterStartArea(StartZone);// */
+
+    Vector3 ScoreSize(42,50,35);
+    ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(158,-25,0));
+    ScoreZone->SetFieldShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
+    ScoreZone->SetFieldMesh(MeshMan->CreateBoxMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.2),ScoreSize));
+    PhysMan->AddAreaEffect(ScoreZone);
+    GameApp->RegisterScoreArea(ScoreZone);// */
 }
 
 bool LevelLoader::HasALevelToLoad()
@@ -805,6 +965,8 @@ void LevelLoader::LoadLevel()
         LoadJustice();
     else if("Rollers" == LevelToLoad)
         LoadRollers();
+    else if("JustBounce" == LevelToLoad)
+        LoadJustBounce();
 
     CurrentLevel = LevelToLoad;
     LevelToLoad = "";

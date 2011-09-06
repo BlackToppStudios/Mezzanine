@@ -334,11 +334,6 @@ namespace phys
             Visible = visible;
         }
 
-        bool CellGrid::IsVisible()
-        {
-            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
-        }
-
         void CellGrid::Show()
         {
             GridBack->Show();

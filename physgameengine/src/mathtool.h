@@ -85,6 +85,17 @@ namespace phys
             /// @return Returns the result of the rounding.
             static Real Floor(const Real& Val);
 
+            /// @brief Raises a Real to a power.
+            /// @param Val The base number to be raised.
+            /// @param Power The power (or exponent) to raise the Real by.
+            /// @return Returns the Raised Eeal.
+            static Real Pow(const Real& Val, const Real& Power);
+
+            /// @brief Gets the square root of a Real.
+            /// @param Val The number to be calculated.
+            /// @return Returns the calculated square root.
+            static Real Sqrt(const Real& Val);
+
             /// @brief Gets the absolute value of a Real.
             /// @param Val The value to get the absolute value of.
             /// @return Returns the absolute value of the Real.

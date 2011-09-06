@@ -85,9 +85,6 @@ namespace phys
                 /// @brief Sets the visibility of this checkbox.
                 /// @param visible Bool determining whether or not this checkbox should be visible.
                 virtual void SetVisible(bool visible);
-                /// @brief Gets the visibility of this checkbox.
-                /// @return Returns a bool representing the visibility of this checkbox.
-                virtual bool IsVisible();
                 /// @brief Forces this checkbox to be shown.
                 virtual void Show();
                 /// @brief Forces this checkbox to hide.

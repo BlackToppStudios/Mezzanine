@@ -19,4 +19,16 @@ class BNS_Fan : public WorldTrigger
         virtual void ApplyTrigger();
 };
 
+class Roll_Roll : public WorldTrigger
+{
+    protected:
+        std::vector<HingeConstraint*> Rollers;
+        virtual void Rotate(HingeConstraint* RollerMotor);
+    public:
+        Roll_Roll(const String& name, std::vector<HingeConstraint*>& TheRollers);
+        virtual ~Roll_Roll();
+        virtual bool ConditionsAreMet();
+        virtual void ApplyTrigger();
+};
+
 #endif

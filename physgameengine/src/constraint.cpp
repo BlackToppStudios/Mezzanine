@@ -1318,6 +1318,11 @@ namespace phys
         this->Hinge->setAxis(temp);
     }
 
+    Real HingeConstraint::GetHingeAngle()
+    {
+        return this->Hinge->getHingeAngle();
+    }
+
     TypedConstraint::ParamList HingeConstraint::ValidParamOnAxis(int Axis) const
     {
         TypedConstraint::ParamList Results;

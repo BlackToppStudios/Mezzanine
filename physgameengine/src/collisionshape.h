@@ -212,6 +212,12 @@ namespace phys
             /// @brief Gets the number of children belonging to this compound shape.
             /// @return Returns the number of children belonging to this shape.
             virtual Whole GetNumChildren();
+            /// @brief Removes a Child shape from this compound shape.
+            /// @param Child The child shape to be removed.
+            virtual void RemoveChildShape(CollisionShape* Child);
+            /// @brief Removed a Child shape from this compound shape by index.
+            /// @param ChildIndex The index of the child shape to be removed.
+            virtual void RemoveChildShape(const Whole& ChildIndex);
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
     };//compoundcollisionshape

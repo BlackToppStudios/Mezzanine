@@ -140,9 +140,6 @@ namespace phys
                 /// @brief Sets the visibility of this scrollbar.
                 /// @param visible Bool determining whether or not this scrollbar should be visible.
                 virtual void SetVisible(bool visible);
-                /// @brief Gets the visibility of this scrollbar.
-                /// @return Returns a bool representing the visibility of this scrollbar.
-                virtual bool IsVisible();
                 /// @brief Forces this scrollbar to be shown.
                 virtual void Show();
                 /// @brief Forces this scrollbar to hide.

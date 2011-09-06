@@ -47,6 +47,7 @@
 #include "uilayer.h"
 #include "uiscreen.h"
 #include "uimanager.h"
+#include "inputquerytool.h"
 
 namespace phys
 {
@@ -89,11 +90,11 @@ namespace phys
             Type = Widget::DropDownList;
             RenderableRect SelectionRect, ListToggleRect, SelectionListRect;
             Real ScrollbarWidth;
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
                 RelSize = Rect.Size;
-                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
 
                 SelectionRect.Position = Rect.Position;
                 SelectionRect.Size.X = Rect.Size.X - ((Rect.Size.Y * WinDim.Y) / WinDim.X);
@@ -108,8 +109,8 @@ namespace phys
 
                 ScrollbarWidth = (Rect.Size.Y * WinDim.Y) / WinDim.X;
             }else{
-                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
-                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+                RelPosition = Rect.Position / WinDim;
+                RelSize = Rect.Size / WinDim;
 
                 SelectionRect.Position = Rect.Position;
                 SelectionRect.Size.X = Rect.Size.X - Rect.Size.Y;
@@ -126,20 +127,54 @@ namespace phys
             }
             SelectionListRect.Position.X = Rect.Position.X;
             SelectionListRect.Position.Y = Rect.Position.Y + SelectionRect.Size.Y;
-            SelectionListRect.Size.X = Rect.Size.X;
-            SelectionListRect.Size.Y = Rect.Size.Y * 2;
+            SelectionListRect.Size = SelectionRect.Size;
             SelectionListRect.Relative = Rect.Relative;
 
             Selection = new Caption(Name+"Select",SelectionRect,Glyph,"",Parent);
             ListToggle = new Button(Name+"Toggle",ListToggleRect,Parent);
             SelectionList = new UI::ListBox(Name+"List",SelectionListRect,ScrollStyle,Parent);
 
-            SelectionList->SetTemplateSize(Selection->GetSize(),true).SetTemplateGlyphIndex(Glyph);
+            SelectionList->SetTemplateGlyphIndex(Glyph);
         }
 
         void DropDownList::Update(bool Force)
         {
-
+            if(!Force)
+                SubWidgetUpdate();
+            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
+            if(HoveredButton == ListToggle)
+            {
+                if(MetaCode::BUTTON_PRESSING == State)
+                {
+                    if(!ToggleActivated)
+                    {
+                        SelectionList->Show();
+                        ToggleActivated = true;
+                    }else{
+                        SelectionList->Hide();
+                        ToggleActivated = false;
+                    }
+                }
+            }
+            else if(HoveredSubWidget)
+            {
+                if(MetaCode::BUTTON_PRESSING == State)
+                {
+                    SubWidgetFocus = HoveredSubWidget;
+                }
+            }
+            if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
+            {
+                SubWidgetFocusUpdate(true);
+            }
+            else if(MetaCode::BUTTON_DOWN == State && Force)
+            {
+                SubWidgetFocusUpdate(Force);
+            }
+            if(MetaCode::BUTTON_LIFTING == State)
+            {
+                SubWidgetFocus = NULL;
+            }
         }
 
         void DropDownList::SetVisible(bool visible)
@@ -150,11 +185,6 @@ namespace phys
             if(ToggleActivated)
                 SelectionList->SetVisible(visible);
             Visible = visible;
-        }
-
-        bool DropDownList::IsVisible()
-        {
-            return Visible;
         }
 
         void DropDownList::Show()
@@ -179,7 +209,29 @@ namespace phys
 
         bool DropDownList::CheckMouseHover()
         {
-
+            if(!IsVisible())
+                return false;
+            if(Selection->CheckMouseHover())
+            {
+                HoveredSubWidget = NULL;
+                HoveredButton = NULL;
+                return true;
+            }
+            else if(ListToggle->CheckMouseHover())
+            {
+                HoveredSubWidget = NULL;
+                HoveredButton = ListToggle;
+                return true;
+            }
+            else if(SelectionList->CheckMouseHover())
+            {
+                HoveredSubWidget = SelectionList;
+                HoveredButton = NULL;
+                return true;
+            }
+            HoveredSubWidget = NULL;
+            HoveredButton = NULL;
+            return false;
         }
 
         void DropDownList::SetPosition(const Vector2& Position)
@@ -187,8 +239,8 @@ namespace phys
             RelPosition = Position;
             const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
             Selection->SetPosition(Position);
-            ListToggle->SetActualPosition(Position + Vector2(RelSize.X - ((RelSize.Y * WinDim.Y) / WinDim.X),0));
-            SelectionList->SetActualPosition(Position + Vector2(0,RelSize.Y));
+            ListToggle->SetPosition(Position + Vector2(RelSize.X - ((RelSize.Y * WinDim.Y) / WinDim.X),0));
+            SelectionList->SetPosition(Position + Vector2(0,RelSize.Y));
         }
 
         Vector2 DropDownList::GetPosition()
@@ -212,7 +264,12 @@ namespace phys
 
         void DropDownList::SetSize(const Vector2& Size)
         {
-
+            RelSize = Size;
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            Selection->SetSize(Vector2(Size.X - ((Size.Y * WinDim.Y) / WinDim.X),Size.Y));
+            ListToggle->SetSize(Vector2((Size.Y * WinDim.Y) / WinDim.X,Size.Y));
+            SelectionList->SetTemplateSize(Size);
+            SetPosition(RelPosition);
         }
 
         Vector2 DropDownList::GetSize()
@@ -223,21 +280,15 @@ namespace phys
         void DropDownList::SetActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();
-            Selection->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
-            ListToggle->SetActualSize(Vector2(Size.Y,Size.Y));
-
-            const ListBox::TemplateParams& ListInfo = SelectionList->GetTemplateInfo();
-            SelectionList->SetActualSize(Vector2(Size.X,SelectionList->GetActualSize().Y));
+            Selection->SetSize(Vector2(Size.X - Size.Y,Size.Y));
+            ListToggle->SetSize(Vector2(Size.Y,Size.Y));
+            SelectionList->SetTemplateSize(Size,false);
+            SetActualPosition(GetActualPosition());
         }
 
         Vector2 DropDownList::GetActualSize()
         {
             return RelSize / Parent->GetParent()->GetViewportDimensions();
-        }
-
-        void DropDownList::UpdateDimensions(const Vector2& OldViewportSize)
-        {
-
         }
 
         Caption* DropDownList::GetSelection()

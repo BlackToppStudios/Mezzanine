@@ -96,7 +96,7 @@ namespace phys
                         CreateHorizontalSpinner(APos,ASize,GlyphHeight);
                     }else{
                         CalculateOffsets(Rect.Size);
-                        CreateBoxSpinner(Rect.Position,Rect.Size,GlyphHeight);
+                        CreateHorizontalSpinner(Rect.Position,Rect.Size,GlyphHeight);
                     }
                 }
                 else if(Rect.Size.Y > Rect.Size.X * 2)
@@ -110,7 +110,7 @@ namespace phys
                         CreateVerticalSpinner(APos,ASize,GlyphHeight);
                     }else{
                         CalculateOffsets(Rect.Size);
-                        CreateBoxSpinner(Rect.Position,Rect.Size,GlyphHeight);
+                        CreateVerticalSpinner(Rect.Position,Rect.Size,GlyphHeight);
                     }
                 }
                 else
@@ -156,9 +156,9 @@ namespace phys
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = new Button(Name+"Inc",RenderableRect(IncPos / WinDim,Vector2(Size.Y,Size.Y) / WinDim,false),Parent);
-            Decrement = new Button(Name+"Dec",RenderableRect(DecPos / WinDim,Vector2(Size.Y,Size.Y) / WinDim,false),Parent);
-            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos / WinDim,Vector2(Size.X - (Size.Y * 2),Size.Y) / WinDim,false),GlyphInfo.first,GetValueAsText(),Parent);
+            Increment = new Button(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y,Size.Y),false),Parent);
+            Decrement = new Button(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y,Size.Y),false),Parent);
+            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 2),Size.Y),false),GlyphInfo.first,GetValueAsText(),Parent);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
@@ -171,9 +171,9 @@ namespace phys
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = new Button(Name+"Inc",RenderableRect(IncPos / WinDim,Vector2(Size.X,Size.X) / WinDim,false),Parent);
-            Decrement = new Button(Name+"Dec",RenderableRect(DecPos / WinDim,Vector2(Size.X,Size.X) / WinDim,false),Parent);
-            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos / WinDim,Vector2(Size.X,Size.Y - (Size.X * 2)) / WinDim,false),GlyphInfo.first,GetValueAsText(),Parent);
+            Increment = new Button(Name+"Inc",RenderableRect(IncPos,Vector2(Size.X,Size.X),false),Parent);
+            Decrement = new Button(Name+"Dec",RenderableRect(DecPos,Vector2(Size.X,Size.X),false),Parent);
+            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X,Size.Y - (Size.X * 2)),false),GlyphInfo.first,GetValueAsText(),Parent);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
@@ -186,9 +186,9 @@ namespace phys
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = new Button(Name+"Inc",RenderableRect(IncPos / WinDim,Vector2(Size.Y * 0.5,Size.Y * 0.5) / WinDim,false),Parent);
-            Decrement = new Button(Name+"Dec",RenderableRect(DecPos / WinDim,Vector2(Size.Y * 0.5,Size.Y * 0.5) / WinDim,false),Parent);
-            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos / WinDim,Vector2(Size.X - (Size.Y * 0.5),Size.Y) / WinDim,false),GlyphInfo.first,GetValueAsText(),Parent);
+            Increment = new Button(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false),Parent);
+            Decrement = new Button(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false),Parent);
+            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 0.5),Size.Y),false),GlyphInfo.first,GetValueAsText(),Parent);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
@@ -363,11 +363,6 @@ namespace phys
             Decrement->SetVisible(visible);
             ValueDisplay->SetVisible(visible);
             Visible = visible;
-        }
-
-        bool Spinner::IsVisible()
-        {
-            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
 
         void Spinner::Show()

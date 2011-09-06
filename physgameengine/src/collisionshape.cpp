@@ -272,6 +272,25 @@ namespace phys
         return ChildShapes.size();
     }
 
+    void CompoundCollisionShape::RemoveChildShape(CollisionShape* Child)
+    {
+        for( std::vector<CollisionShape*>::iterator CSit = ChildShapes.begin() ; CSit != ChildShapes.end() ; CSit++ )
+        {
+            if(Child == (*CSit))
+            {
+                ChildShapes.erase(CSit);
+                CompoundShape->removeChildShape(Child->GetBulletShape());
+            }
+        }
+    }
+
+    void CompoundCollisionShape::RemoveChildShape(const Whole& ChildIndex)
+    {
+        std::vector<CollisionShape*>::iterator CSit = ChildShapes.begin() + ChildIndex;
+        ChildShapes.erase(CSit);
+        CompoundShape->removeChildShapeByIndex(ChildIndex);
+    }
+
     CollisionShape::ShapeType CompoundCollisionShape::GetType() const
     {
         return CollisionShape::ST_Compound;
@@ -486,8 +505,8 @@ namespace phys
     {
         this->Name = Name;
         if(Vector3::Unit_Y() == UpAxis) CylinderShape = new btCylinderShape(btVector3(Radius,Height,Radius));
-        else if(Vector3::Unit_X() == UpAxis) CylinderShape = new btCylinderShapeX(btVector3(Radius,Height,Radius));
-        else if(Vector3::Unit_Z() == UpAxis) CylinderShape = new btCylinderShapeZ(btVector3(Radius,Height,Radius));
+        else if(Vector3::Unit_X() == UpAxis) CylinderShape = new btCylinderShapeX(btVector3(Height,Radius,Radius));
+        else if(Vector3::Unit_Z() == UpAxis) CylinderShape = new btCylinderShapeZ(btVector3(Radius,Radius,Height));
         else World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up Axis passed into CylinderCollisionShape constructor."));
         SetPointers(CylinderShape);
     }

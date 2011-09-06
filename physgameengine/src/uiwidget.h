@@ -147,7 +147,7 @@ namespace phys
                 virtual void SetVisible(bool visible) = 0;
                 /// @brief Gets the visibility of this widget.
                 /// @return Returns a bool representing the visibility of this widget.
-                virtual bool IsVisible() = 0;
+                virtual bool IsVisible();
                 /// @brief Forces this widget to be shown.
                 virtual void Show() = 0;
                 /// @brief Forces this widget to hide.

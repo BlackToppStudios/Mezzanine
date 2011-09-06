@@ -83,6 +83,16 @@ namespace phys
         return floor(Val);
     }
 
+    Real MathTool::Pow(const Real& Val, const Real& Power)
+    {
+        return pow(Val,Power);
+    }
+
+    Real MathTool::Sqrt(const Real& Val)
+    {
+        return sqrt(Val);
+    }
+
     Real MathTool::Fabs(const Real& Val)
     {
         return fabs(Val);

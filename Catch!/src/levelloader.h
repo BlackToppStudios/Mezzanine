@@ -21,6 +21,7 @@ class LevelLoader
         void LoadBlowsNotSucks();
         void LoadJustice();
         void LoadRollers();
+        void LoadJustBounce();
     public:
         LevelLoader();
         ~LevelLoader();
