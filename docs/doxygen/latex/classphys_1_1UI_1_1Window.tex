@@ -32,7 +32,7 @@ virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classp
 \begin{DoxyCompactList}\small\item\em Creates a caption within this layer. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1CheckBox}{UI::CheckBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_aa1bab1d930293e01ca8af34dc6e3d2e4}{CreateCheckBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&LabelText)
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox} within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1UI_1_1ListBox}{UI::ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a417bb319e32e627bd2aa7680c8f2d868}{CreateListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollbarStyle)
+virtual \hyperlink{classphys_1_1UI_1_1ListBox}{UI::ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_ade0d2d18173849e4836badbf216343fc}{CreateListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const UI::ScrollbarStyle \&ScrollbarStyle)
 \begin{DoxyCompactList}\small\item\em Creates a List Box within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a048621c7d504f9bf75d68e62a7384849}{CreateMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Glyph, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a markup text within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
@@ -471,18 +471,17 @@ Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBo
 
 Definition at line 921 of file uiwindow.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Window_a417bb319e32e627bd2aa7680c8f2d868}{
+\hypertarget{classphys_1_1UI_1_1Window_ade0d2d18173849e4836badbf216343fc}{
 \index{phys::UI::Window@{phys::UI::Window}!CreateListBox@{CreateListBox}}
 \index{CreateListBox@{CreateListBox}!phys::UI::Window@{phys::UI::Window}}
 \paragraph[{CreateListBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::ListBox} $\ast$ phys::UI::Window::CreateListBox (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{Name, }
 \item[{const {\bf RenderableRect} \&}]{Rect, }
-\item[{const {\bf Real} \&}]{ScrollbarWidth, }
 \item[{const UI::ScrollbarStyle \&}]{ScrollbarStyle}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1UI_1_1Window_a417bb319e32e627bd2aa7680c8f2d868}
+\label{classphys_1_1UI_1_1Window_ade0d2d18173849e4836badbf216343fc}
 
 
 Creates a List Box within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
@@ -495,8 +494,6 @@ Returns a pointer to the created List Box.
 {\em Name} & The name of the List Box. \\
 \hline
 {\em Rect} & The Rect representing the position and size of the widget. \\
-\hline
-{\em ScrollbarWidth} & The relative width of the scrollbar thats created with this widget. \\
 \hline
 {\em ScrollbarStyle} & The style of scrollbar you want to create, see \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \\
 \hline

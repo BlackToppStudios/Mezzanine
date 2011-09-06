@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 696.202532
+%%BoundingBox: 0 0 500 691.489362
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 0.718182 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 0.723077 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 11 def
+/rows 13 def
 /cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -176,8 +176,10 @@ boxfont setfont
 (phys::ManagerBase) cw
 (phys::ActorManager) cw
 (phys::CameraManager) cw
+(phys::CollisionShapeManager) cw
 (phys::EventManager) cw
 (phys::GraphicsManager) cw
+(phys::MeshManager) cw
 (phys::PhysicsManager) cw
 (phys::ResourceManager) cw
 (phys::SceneManager) cw
@@ -195,11 +197,13 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (phys::ManagerBase) 0.000000 10.000000 box
- (phys::ActorManager) 1.000000 9.000000 box
- (phys::CameraManager) 1.000000 8.000000 box
- (phys::EventManager) 1.000000 7.000000 box
- (phys::GraphicsManager) 1.000000 6.000000 box
+ (phys::ManagerBase) 0.000000 12.000000 box
+ (phys::ActorManager) 1.000000 11.000000 box
+ (phys::CameraManager) 1.000000 10.000000 box
+ (phys::CollisionShapeManager) 1.000000 9.000000 box
+ (phys::EventManager) 1.000000 8.000000 box
+ (phys::GraphicsManager) 1.000000 7.000000 box
+ (phys::MeshManager) 1.000000 6.000000 box
  (phys::PhysicsManager) 1.000000 5.000000 box
  (phys::ResourceManager) 1.000000 4.000000 box
  (phys::SceneManager) 1.000000 3.000000 box
@@ -210,7 +214,11 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-1 0.000000 9.250000 out
+1 0.000000 11.250000 out
+solid
+0 0.000000 11.500000 hedge
+solid
+0 0.000000 10.500000 hedge
 solid
 0 0.000000 9.500000 hedge
 solid
@@ -232,4 +240,4 @@ solid
 solid
 0 0.000000 0.500000 hedge
 solid
-0.000000 10.000000 0.500000 vedge
+0.000000 12.000000 0.500000 vedge

@@ -40,15 +40,23 @@
 #ifndef _actorserializer_h
 #define _actorserializer_h
 
+#include "actorrigid.h"
 #include "actormanager.h"
 #include "datatypes.h"
+#include "serialization.h"
 #include "xmldoc.h"
+
+/// @file This is where the declarations of any Serializers or DeSerializers for actors will go.
+
 
 namespace phys
 {
 
-    class ActorSerializer
+    /// @brief This creates Rigid body actors and inserts them into a given ActorManager.
+    class ActorRigidDeSerializer : public DeSerializer <ActorRigid>
     {
+        #ifdef PHYSXML
+
         private:
             ActorManager* Target;
 
@@ -56,16 +64,19 @@ namespace phys
 
             /// @brief Constructor
             /// @param DeSerializeTarget A pointer to the actor manager that will be populated with deserialized actors.
-            explicit ActorSerializer(ActorManager* DeSerializeTarget)
+            explicit ActorRigidDeSerializer(ActorManager* DeSerializeTarget = 0)
                     : Target(DeSerializeTarget)
             {}
 
+            virtual ActorRigid* ProtoDeSerialize(const xml::Node& OneNode);
+
+            virtual void ProtoDeSerializeAll(const xml::Node& OneNode);
+
+        #endif // \PHYSXML
     };
 }
 
-#ifdef PHYSXML
 
-#endif // \PHYSXML
 
 
 

@@ -135,13 +135,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00071"></a>00071     }
 <a name="l00072"></a>00072 
 <a name="l00073"></a><a class="code" href="classphys_1_1Vector3.html#ac08281de8f4929593b6f4469646691da">00073</a>     <a class="code" href="classphys_1_1Vector3.html#af328c400a03fdb8d2a99fd58382d61cb" title="Default Constructor.">Vector3::Vector3</a>(<span class="keyword">const</span> Ogre::Vector3&amp; Vec)
-<a name="l00074"></a>00074         { this-&gt;<a class="code" href="classphys_1_1Vector3.html#a09a31cb8fe491f61e0cc10d21705a0df" title="Copies an existing Ogre vector3.">ExtractOgreVector3</a>(Vec); }
+<a name="l00074"></a>00074         { this-&gt;<a class="code" href="classphys_1_1Vector3.html#ac4a2cee593f8f64b1c4dde24a2511ad8" title="Copies an existing Ogre vector3.">ExtractOgreVector3</a>(Vec); }
 <a name="l00075"></a>00075 
 <a name="l00076"></a><a class="code" href="classphys_1_1Vector3.html#ac13a263c5e2f84578884183cee890570">00076</a>     <a class="code" href="classphys_1_1Vector3.html#af328c400a03fdb8d2a99fd58382d61cb" title="Default Constructor.">Vector3::Vector3</a>(<span class="keyword">const</span> btVector3&amp; Vec)
-<a name="l00077"></a>00077         { this-&gt;<a class="code" href="classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(Vec); }
+<a name="l00077"></a>00077         { this-&gt;<a class="code" href="classphys_1_1Vector3.html#a6095aa79d2c288527fc4d7d7b69abf88" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(Vec); }
 <a name="l00078"></a>00078 
 <a name="l00079"></a><a class="code" href="classphys_1_1Vector3.html#a9f0f452baf92e0c10e6eb0944dc2b3d3">00079</a>     <a class="code" href="classphys_1_1Vector3.html#af328c400a03fdb8d2a99fd58382d61cb" title="Default Constructor.">Vector3::Vector3</a>(<span class="keyword">const</span> cAudio::cVector3&amp; Vec)
-<a name="l00080"></a>00080         { this-&gt;<a class="code" href="classphys_1_1Vector3.html#aa12021e9cdc092c8628ced1c5910c04c" title="Copies an existing cAudio vector3.">ExtractcAudioVector3</a>(Vec); }
+<a name="l00080"></a>00080         { this-&gt;<a class="code" href="classphys_1_1Vector3.html#ab71c1de00db3a6ae36f4bb383c061e87" title="Copies an existing cAudio vector3.">ExtractcAudioVector3</a>(Vec); }
 <a name="l00081"></a>00081 
 <a name="l00082"></a><a class="code" href="classphys_1_1Vector3.html#ac22e136942a20df0129ef166f6fafb87">00082</a>     <a class="code" href="classphys_1_1Vector3.html#af328c400a03fdb8d2a99fd58382d61cb" title="Default Constructor.">Vector3::Vector3</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; Vec)
 <a name="l00083"></a>00083         { *<span class="keyword">this</span> = Vec; }
@@ -377,7 +377,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00313"></a>00313         <span class="keywordflow">return</span> Theirs;
 <a name="l00314"></a>00314     }
 <a name="l00315"></a>00315 
-<a name="l00316"></a><a class="code" href="classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313">00316</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313" title="Copies an existing Bullet vector3.">Vector3::ExtractBulletVector3</a>(btVector3 Ours)
+<a name="l00316"></a><a class="code" href="classphys_1_1Vector3.html#a6095aa79d2c288527fc4d7d7b69abf88">00316</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector3.html#a6095aa79d2c288527fc4d7d7b69abf88" title="Copies an existing Bullet vector3.">Vector3::ExtractBulletVector3</a>(<span class="keyword">const</span> btVector3&amp; Ours)
 <a name="l00317"></a>00317     {
 <a name="l00318"></a>00318         this-&gt;<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=Ours.getX();
 <a name="l00319"></a>00319         this-&gt;<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=Ours.getY();
@@ -393,7 +393,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00329"></a>00329         <span class="keywordflow">return</span> Theirs;
 <a name="l00330"></a>00330     }
 <a name="l00331"></a>00331 
-<a name="l00332"></a><a class="code" href="classphys_1_1Vector3.html#a09a31cb8fe491f61e0cc10d21705a0df">00332</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector3.html#a09a31cb8fe491f61e0cc10d21705a0df" title="Copies an existing Ogre vector3.">Vector3::ExtractOgreVector3</a>(Ogre::Vector3 Ours)
+<a name="l00332"></a><a class="code" href="classphys_1_1Vector3.html#ac4a2cee593f8f64b1c4dde24a2511ad8">00332</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector3.html#ac4a2cee593f8f64b1c4dde24a2511ad8" title="Copies an existing Ogre vector3.">Vector3::ExtractOgreVector3</a>(<span class="keyword">const</span> Ogre::Vector3&amp; Ours)
 <a name="l00333"></a>00333     {
 <a name="l00334"></a>00334         this-&gt;<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=Ours.x;
 <a name="l00335"></a>00335         this-&gt;<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=Ours.y;
@@ -409,7 +409,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00345"></a>00345         <span class="keywordflow">return</span> Theirs;
 <a name="l00346"></a>00346     }
 <a name="l00347"></a>00347 
-<a name="l00348"></a><a class="code" href="classphys_1_1Vector3.html#aa12021e9cdc092c8628ced1c5910c04c">00348</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector3.html#aa12021e9cdc092c8628ced1c5910c04c" title="Copies an existing cAudio vector3.">Vector3::ExtractcAudioVector3</a>(cAudio::cVector3 Ours)
+<a name="l00348"></a><a class="code" href="classphys_1_1Vector3.html#ab71c1de00db3a6ae36f4bb383c061e87">00348</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector3.html#ab71c1de00db3a6ae36f4bb383c061e87" title="Copies an existing cAudio vector3.">Vector3::ExtractcAudioVector3</a>(<span class="keyword">const</span> cAudio::cVector3&amp; Ours)
 <a name="l00349"></a>00349     {
 <a name="l00350"></a>00350         this-&gt;<a class="code" href="classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=Ours.x;
 <a name="l00351"></a>00351         this-&gt;<a class="code" href="classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=Ours.y;
@@ -624,6 +624,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:27 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:20 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -51,18 +51,19 @@
                                         // The remarks in Column 41 are use to help with serializing and deserializing
 
 // We put headers in our headers so we can include while we include
-#include "actorbase.h"                  //Target
-#include "actorcharacter.h"             //Pending completion
-#include "actorcontainerbase.h"         //Target2
-#include "actorcontainervector.h"       //Target2
-#include "actorgraphicssettings.h"      //Target
+#include "actorbase.h"                  // serializes
+#include "actorcharacter.h"
+#include "actorcontainerbase.h"
+#include "actorcontainervector.h"
+#include "actorgraphicssettings.h"      // done
 #include "actormanager.h"
-#include "actorphysicssettings.h"       //Target
-#include "actorrigid.h"                 //Target
-#include "actorsoft.h"                  //Pending completion
+#include "actorphysicssettings.h"       // done
+#include "actorrigid.h"                 // Serializes
+#include "actorserializer.h"            // nothing to do
+#include "actorsoft.h"
 #include "actorterrain.h"
 #include "areaeffect.h"
-#include "attachable.h"                 // Target3 for output only
+#include "attachable.h"                 // Target for output only
 #include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"
 #include "cameramanager.h"
@@ -74,7 +75,7 @@
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
 #include "enumerations.h"               // nothing to do
-#include "eventbase.h"                  // Done output only
+#include "eventbase.h"                  // done/serializes
 #include "eventcollision.h"             // done
 #include "eventgamewindow.h"            // done
 #include "eventmanager.h"               // done
@@ -94,6 +95,7 @@
 #include "mesh.h"
 #include "meshmanager.h"
 #include "metacode.h"                   // done
+#include "objectreference.h"
 #include "particleeffect.h"             // done
 #include "physicsmanager.h"
 #include "plane.h"                      // done
@@ -103,13 +105,16 @@
 #include "resourceinputstream.h"
 #include "resourcemanager.h"
 #include "scenemanager.h"               // Done
+#include "serialization.h"              // nothing to do
 #include "simpletimer.h"
+#include "singleton.h"                  // nothing to do
 #include "sound.h"
 #include "soundlistener.h"
 #include "soundmanager.h"
 #include "stringtool.h"
 #include "timer.h"
 #include "timermanager.h"
+#include "transform.h"                  // done
 #include "uibasicrenderable.h"
 #include "uibutton.h"
 #include "uibuttonlistbox.h"

@@ -123,20 +123,30 @@ namespace phys
             /// @return Currently this returns a pointer to a btRigidBody.
             virtual btRigidBody* GetBulletObject();
 
-///////////////////////////////////////////////////////////////////////////////
-// Serialization
-///////////////////////////////////////
 #ifdef PHYSXML
-        private:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+        protected:
             /// @internal
             /// @brief a Helper function that assembles strings and throws an exception
             /// @param Fail The item that failed.
             virtual void ThrowSerialError(const String& Fail) const;
 
         public:
-            /// @brief Get all the this in an xml::Node.
-            /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
             virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "ActorRigid"
+            static String SerializableName();
 #endif
 
     };
@@ -148,6 +158,17 @@ namespace phys
 /// @param stream the std::ostream to send the actors xml to.
 /// @return The ostream after the new data has been inserted.
 std::ostream& operator << (std::ostream& stream, const phys::ActorRigid& ActorToSerialize);
+
+/// @brief Get an actor from an XML stream.
+/// @param stream The stream to get it out of.
+/// @param x The it you will get out of the stream.
+/// @return This returns the input stream to allow operator chaining.
+std::istream& operator >> (std::istream& stream, phys::ActorRigid& x);
+
+/// @brief Converts an XML Node into a functional in memory construct.
+/// @param OneNode The xml node that contains the deserialize class instance.
+/// @param x The class instance to overwrite witht the proto serialized version in the node.
+void operator >> (const phys::xml::Node& OneNode, phys::ActorRigid& x);
 #endif  // \physxml
 
 #endif

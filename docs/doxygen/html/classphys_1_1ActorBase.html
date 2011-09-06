@@ -116,8 +116,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#a3d28e4c4a33f50210101695cb33ded3b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#aeab3b1111780577a9dc59893ff880fbf">AdvanceAnimation</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;<a class="el" href="structphys_1_1Time.html">Time</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the animation, making it animate.  <a href="#aeab3b1111780577a9dc59893ff880fbf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a85a06be4c1f069c45215dc9574e2fb23">CreateShapeFromMeshDynamic</a> (short unsigned int Accuracy, bool UseAllSubmeshes=false)=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a collision shape from mesh file.  <a href="#a85a06be4c1f069c45215dc9574e2fb23"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a72203a9c7befd1ab606ff69af4183849">EnableAnimation</a> (bool Enable)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the animation if one is set.  <a href="#a72203a9c7befd1ab606ff69af4183849"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1WorldNode.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a1718f316f4e20eb97654a2d77581588a">GetActorNode</a> () const </td></tr>
@@ -138,8 +136,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the orientation of the actor.  <a href="#ad5e1df2fd1fcd6b795e499c6e39bd336"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1ActorBasePhysicsSettings.html">ActorBasePhysicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#ab320de95c769822766207e20ac2cd16d">GetPhysicsSettings</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the physics settings class associated with this actor.  <a href="#ab320de95c769822766207e20ac2cd16d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a7252ef851b23b83b4e402ccb0dee8a32">GetShapeIsSaved</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this actors current shape has been saved or not.  <a href="#a7252ef851b23b83b4e402ccb0dee8a32"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#ac631b0572fbcac6ac6dee3b0a8704c8e">GetType</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of actor this class is.  <a href="#ac631b0572fbcac6ac6dee3b0a8704c8e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a111d95076bf455fd3d4c68d27c8b0db4">IsAnimated</a> () const </td></tr>
@@ -158,14 +154,14 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the scale of the actor.  <a href="#ac788ec31a3f70183b72b0246136bd557"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a1c84866a23fdf7598462839dddae3240">SetAnimation</a> (<a class="el" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;AnimationName, bool Loop)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the animation for this object.  <a href="#a1c84866a23fdf7598462839dddae3240"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#aa5b6dca6b4ac7bb7ae96ca0ce359ff38">SetLocation</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Place)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually sets the location of the actor.  <a href="#aa5b6dca6b4ac7bb7ae96ca0ce359ff38"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#ac24dc61c6b6247305df070066f28e8d7">SetLocation</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;x, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;y, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;z)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually sets the location of the actor.  <a href="#ac24dc61c6b6247305df070066f28e8d7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a70c912b72a90d055aea450f18dbac3de">SetOrientation</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;x, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;y, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;z, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;w)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the orientation of the actor.  <a href="#a70c912b72a90d055aea450f18dbac3de"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#aa5b6dca6b4ac7bb7ae96ca0ce359ff38">SetLocation</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Place)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually sets the location of the actor.  <a href="#aa5b6dca6b4ac7bb7ae96ca0ce359ff38"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a17db5c39d6edd56fd062d9e50af2d9b0">SetOrientation</a> (const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the orientation of the actor.  <a href="#a17db5c39d6edd56fd062d9e50af2d9b0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a70c912b72a90d055aea450f18dbac3de">SetOrientation</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;x, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;y, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;z, const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;w)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the orientation of the actor.  <a href="#a70c912b72a90d055aea450f18dbac3de"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a5e5d4b50c83c6851e554b5e7ad65403f">~ActorBase</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a5e5d4b50c83c6851e554b5e7ad65403f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
@@ -227,13 +223,14 @@ internal::PhysMotionState *&#160;</td><td class="memItemRight" valign="bottom"><
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a643613ce7abb4b6d4352bab036b7cf69"></a><!-- doxytag: member="phys::ActorBase::Shape" ref="a643613ce7abb4b6d4352bab036b7cf69" args="" -->
 btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69">Shape</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates the functionality of the btCollisionShape using this. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22c0ab01bdc3e1e5c656fb0f201f6929"></a><!-- doxytag: member="phys::ActorBase::ShapeIsSaved" ref="a22c0ab01bdc3e1e5c656fb0f201f6929" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorBase.html#a22c0ab01bdc3e1e5c656fb0f201f6929">ShapeIsSaved</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether or not the current physics shape has been saved in the manager. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad56afa2bffce8b552583041f21297874"></a><!-- doxytag: member="phys::ActorBase::ActorBasePhysicsSettings" ref="ad56afa2bffce8b552583041f21297874" args="" -->
+class&#160;</td><td class="memItemRight" valign="bottom"><b>ActorBasePhysicsSettings</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54042fcfa7ab444a50ec79cbe3395356"></a><!-- doxytag: member="phys::ActorBase::ActorContainerBase" ref="a54042fcfa7ab444a50ec79cbe3395356" args="" -->
 class&#160;</td><td class="memItemRight" valign="bottom"><b>ActorContainerBase</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01f5bcaf4807085e756d9c03b3eb8d9d"></a><!-- doxytag: member="phys::ActorBase::ActorGraphicsSettings" ref="a01f5bcaf4807085e756d9c03b3eb8d9d" args="" -->
+class&#160;</td><td class="memItemRight" valign="bottom"><b>ActorGraphicsSettings</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a139cf05ac01161b7071c8a037c841683"></a><!-- doxytag: member="phys::ActorBase::PhysicsManager" ref="a139cf05ac01161b7071c8a037c841683" args="" -->
 class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54c1252abc87a78a301e6b6984470408"></a><!-- doxytag: member="phys::ActorBase::ResourceManager" ref="a54c1252abc87a78a301e6b6984470408" args="" -->
@@ -263,7 +260,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>A listing of Actor TypeNames. </p>
 <p>These will be returned by <a class="el" href="classphys_1_1ActorBase.html#ac631b0572fbcac6ac6dee3b0a8704c8e" title="Gets the type of actor this class is.">ActorBase::GetType()</a>, and will allow code using this to determine what type of Actor class they are working with and use this information to more safely cast to the correct Actor if needed. </p>
 
-<p>Definition at line <a class="el" href="actorbase_8h_source.html#l00102">102</a> of file <a class="el" href="actorbase_8h_source.html">actorbase.h</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8h_source.html#l00104">104</a> of file <a class="el" href="actorbase_8h_source.html">actorbase.h</a>.</p>
 
 </div>
 </div>
@@ -306,7 +303,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00090">90</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00089">89</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -364,7 +361,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 </dl>
 <p>You need to call this every frame while the actor is to be animated, otherwise even with the animation enabled you will see no change in the animation. </p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00269">269</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00259">259</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -388,46 +385,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 
 <p>Reimplemented in <a class="el" href="classphys_1_1ActorSoft.html#a37b3bf631e8f73b3f19c3bb043d011c3">phys::ActorSoft</a>.</p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00162">162</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a85a06be4c1f069c45215dc9574e2fb23"></a><!-- doxytag: member="phys::ActorBase::CreateShapeFromMeshDynamic" ref="a85a06be4c1f069c45215dc9574e2fb23" args="(short unsigned int Accuracy, bool UseAllSubmeshes=false)=0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void phys::ActorBase::CreateShapeFromMeshDynamic </td>
-          <td>(</td>
-          <td class="paramtype">short unsigned int&#160;</td>
-          <td class="paramname"><em>Accuracy</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>UseAllSubmeshes</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Creates a collision shape from mesh file. </p>
-<p>This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Accuracy</td><td>A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent. </td></tr>
-    <tr><td class="paramname">UseAllSubmeshes</td><td>If true, this will use the geometry of all submeshes of the model to make the shape. Otherwise it'll only use the first submesh. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="classphys_1_1ActorRigid.html#a78f2f2dfc8b35f13e9a7680189bbdd48">phys::ActorRigid</a>, <a class="el" href="classphys_1_1ActorSoft.html#a65e5590d1fe4c11e2214d5e6a3d1fc96">phys::ActorSoft</a>, and <a class="el" href="classphys_1_1ActorTerrain.html#a9fed38501411c0cf7a1e9f4f36af6ac7">phys::ActorTerrain</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00157">157</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -451,7 +409,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 
 <p>Reimplemented in <a class="el" href="classphys_1_1ActorSoft.html#a568b070c746775b73a3aa8ab33d6cc58">phys::ActorSoft</a>.</p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00171">171</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00166">166</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -479,7 +437,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00251">251</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00241">241</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -501,7 +459,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>The <a class="el" href="classphys_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a> returned by this function is not stored in the scene manasger. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classphys_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a> pointer pointing to this actor's world node. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00221">221</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00216">216</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -522,7 +480,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the current scaling being applied to the actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the scaling being applied on all axes of this actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00292">292</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00282">282</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -543,7 +501,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the internal physics object this actor is based on. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the internal Bullet object. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00311">311</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00301">301</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -567,7 +525,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 
 <p>Reimplemented in <a class="el" href="classphys_1_1ActorSoft.html#a2b30f96cb01df382a774dfae5200fed0">phys::ActorSoft</a>.</p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00142">142</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00137">137</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -588,7 +546,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the orientation of the graphical body. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the rotation of the actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00153">153</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00148">148</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -609,7 +567,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the graphics settings class associated with this actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the graphics settings class in use by this actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00298">298</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00288">288</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -633,7 +591,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 
 <p>Reimplemented in <a class="el" href="classphys_1_1ActorSoft.html#afdbd6ae49e3838190e5481796e650ce8">phys::ActorSoft</a>.</p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00191">191</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00186">186</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -677,7 +635,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>This function will retrieve the location of the object within the graphical world. This should always match the physics world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a> with the location of the graphics. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00115">115</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00110">110</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -698,7 +656,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the internal graphics object this actor is based on. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the internal graphics object. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00316">316</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00306">306</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -719,7 +677,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the orientation of the graphical body. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the rotation of the actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00126">126</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00121">121</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -740,7 +698,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the orientation of the actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the rotation of the actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00208">208</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00203">203</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -761,29 +719,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the physics settings class associated with this actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the physics settings class in use by this actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00303">303</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7252ef851b23b83b4e402ccb0dee8a32"></a><!-- doxytag: member="phys::ActorBase::GetShapeIsSaved" ref="a7252ef851b23b83b4e402ccb0dee8a32" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const bool phys::ActorBase::GetShapeIsSaved </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets whether this actors current shape has been saved or not. </p>
-<p>This function will tell you if it's current physics shape has been saved for later use or not. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns whether or not the shape of this actor has been saved. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00226">226</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00293">293</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -805,7 +741,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>This function will get the type of class that you are working with for checking and casting. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>ActorTypeName The type of actor that this is. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00216">216</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00211">211</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -827,7 +763,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>This function will return true if the actor has an animation set and it is enabled. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if an animation is set and enabled. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00259">259</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00249">249</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -848,7 +784,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets whether or not this object is currently in the world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating if this object has been added to the world. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00231">231</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00221">221</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -870,7 +806,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Checks of the actor is static or kinematic, returns true if it is either. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the actor is static or kinematic. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00236">236</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00226">226</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -899,7 +835,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 
 <p>Reimplemented in <a class="el" href="classphys_1_1ActorRigid.html#add4e731eb3a5481d05e2d0f543745fcd">phys::ActorRigid</a>.</p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00328">328</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00318">318</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -949,7 +885,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Unloads a loaded animation. </p>
 <p>This function will remove the existing set animation. </p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00277">277</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00267">267</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -977,7 +913,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00286">286</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00276">276</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1016,7 +952,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00241">241</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00231">231</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1045,7 +981,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00135">135</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00130">130</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1074,36 +1010,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00148">148</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa5b6dca6b4ac7bb7ae96ca0ce359ff38"></a><!-- doxytag: member="phys::ActorBase::SetLocation" ref="aa5b6dca6b4ac7bb7ae96ca0ce359ff38" args="(const Vector3 &amp;Place)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::ActorBase::SetLocation </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
-          <td class="paramname"><em>Place</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Manually sets the location of the actor. </p>
-<p>Calling this function prior to adding it to the <a class="el" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> will have no effect. <br/>
- In most situations you won't want to use this function, and instead produce movement through physics functions. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Place</td><td>The <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the location. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00185">185</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00143">143</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1150,7 +1057,36 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00179">179</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00174">174</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa5b6dca6b4ac7bb7ae96ca0ce359ff38"></a><!-- doxytag: member="phys::ActorBase::SetLocation" ref="aa5b6dca6b4ac7bb7ae96ca0ce359ff38" args="(const Vector3 &amp;Place)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ActorBase::SetLocation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Place</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Manually sets the location of the actor. </p>
+<p>Calling this function prior to adding it to the <a class="el" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> will have no effect. <br/>
+ In most situations you won't want to use this function, and instead produce movement through physics functions. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Place</td><td>The <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the location. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00180">180</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1179,7 +1115,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00110">110</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00105">105</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1208,7 +1144,35 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00121">121</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00116">116</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a17db5c39d6edd56fd062d9e50af2d9b0"></a><!-- doxytag: member="phys::ActorBase::SetOrientation" ref="a17db5c39d6edd56fd062d9e50af2d9b0" args="(const Quaternion &amp;Rotation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ActorBase::SetOrientation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rotation</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the orientation of the actor. </p>
+<p>Sets the orientation of the actor via a <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Rotation</td><td>The <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> representing the Rotation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00197">197</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1261,35 +1225,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00196">196</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a17db5c39d6edd56fd062d9e50af2d9b0"></a><!-- doxytag: member="phys::ActorBase::SetOrientation" ref="a17db5c39d6edd56fd062d9e50af2d9b0" args="(const Quaternion &amp;Rotation)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::ActorBase::SetOrientation </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td>
-          <td class="paramname"><em>Rotation</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the orientation of the actor. </p>
-<p>Sets the orientation of the actor via a <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Rotation</td><td>The <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> representing the Rotation. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00202">202</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00191">191</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1313,6 +1249,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:28 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:21 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

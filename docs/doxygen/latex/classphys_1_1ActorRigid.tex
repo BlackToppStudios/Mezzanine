@@ -24,12 +24,6 @@ Inheritance diagram for phys::ActorRigid:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_acaf29ca7058b39185dd09a5059200e91}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorRigid_a78f2f2dfc8b35f13e9a7680189bbdd48}{CreateShapeFromMeshDynamic} (short unsigned int Accuracy=1, bool UseAllSubmeshes=false)
-\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorRigid_a5adfa6199955f9c0de4e0af54aeb96f6}{CreateShapeFromMeshStatic} (bool UseAllSubmeshes=false)
-\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}{CreateSphereShapeFromMesh} ()
-\begin{DoxyCompactList}\small\item\em Creates a sphere collision shape. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigid_a0d29535332ac613f9a14ea32e843d612}{GetAngularMovementFactor} ()
 \begin{DoxyCompactList}\small\item\em Gets the current angular factors being applied to this actor. \item\end{DoxyCompactList}\item 
 virtual btRigidBody $\ast$ \hyperlink{classphys_1_1ActorRigid_a9c8f1f4b99f41ab97050f5b15c802f14}{GetBulletObject} ()
@@ -58,16 +52,6 @@ virtual void \hyperlink{classphys_1_1ActorRigid_a3d50613a6992e7de6a09d3e710d83b6
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1ActorRigid_a8719d076cf8790e3523af7c8a7666478}{
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorRigid_a8719d076cf8790e3523af7c8a7666478}{ModelFile}}
-\label{classphys_1_1ActorRigid_a8719d076cf8790e3523af7c8a7666478}
-
-\begin{DoxyCompactList}\small\item\em The File that will store the main 3d model this works with. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ActorRigid_a7c72e4c7c89964be93dc5c6c0ed64578}{
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorRigid_a7c72e4c7c89964be93dc5c6c0ed64578}{ModelGroup}}
-\label{classphys_1_1ActorRigid_a7c72e4c7c89964be93dc5c6c0ed64578}
-
-\begin{DoxyCompactList}\small\item\em The resource group associated with the 3d model this Actor uses. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorRigid_af86eb5347cb6bb31a561404efc3d8245}{
 \hyperlink{classphys_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorRigid_af86eb5347cb6bb31a561404efc3d8245}{PhysicsSettings}}
 \label{classphys_1_1ActorRigid_af86eb5347cb6bb31a561404efc3d8245}
@@ -126,7 +110,7 @@ This constructor contains the basic information needed to make a Rigid Object. \
 \end{DoxyParams}
 
 
-Definition at line 63 of file actorrigid.cpp.
+Definition at line 62 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{
 \index{phys::ActorRigid@{phys::ActorRigid}!$\sim$ActorRigid@{$\sim$ActorRigid}}
@@ -143,7 +127,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 76 of file actorrigid.cpp.
+Definition at line 77 of file actorrigid.cpp.
 
 
 
@@ -173,7 +157,7 @@ Implements \hyperlink{classphys_1_1ActorBase_a3d28e4c4a33f50210101695cb33ded3b}{
 
 
 
-Definition at line 279 of file actorrigid.cpp.
+Definition at line 132 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a3d50613a6992e7de6a09d3e710d83b60}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
@@ -196,93 +180,7 @@ Creates a rigid object to be placed in the physics world later. \par
 \end{DoxyParams}
 
 
-Definition at line 82 of file actorrigid.cpp.
-
-\hypertarget{classphys_1_1ActorRigid_a78f2f2dfc8b35f13e9a7680189bbdd48}{
-\index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}}
-\index{CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}!phys::ActorRigid@{phys::ActorRigid}}
-\paragraph[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshDynamic (
-\begin{DoxyParamCaption}
-\item[{short unsigned int}]{Accuracy = {\ttfamily 1}, }
-\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1ActorRigid_a78f2f2dfc8b35f13e9a7680189bbdd48}
-
-
-Creates a collision shape from mesh file. 
-
-This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. 
-\begin{DoxyParams}{Parameters}
-{\em Accuracy} & A value from 1 to 4. The higher the more accurate, but the more resource intensive \\
-\hline
-{\em UseAllSubmeshes} & Should Child meshes, if any, be used when approximating physics shapes \\
-\hline
-\end{DoxyParams}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000001}{Todo}]
-\begin{DoxyItemize}
-\item Check for thread safety 
-\end{DoxyItemize}\end{Desc}
-
-
-
-
-Implements \hyperlink{classphys_1_1ActorBase_a85a06be4c1f069c45215dc9574e2fb23}{phys::ActorBase}.
-
-
-
-Definition at line 104 of file actorrigid.cpp.
-
-\hypertarget{classphys_1_1ActorRigid_a5adfa6199955f9c0de4e0af54aeb96f6}{
-\index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}}
-\index{CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}!phys::ActorRigid@{phys::ActorRigid}}
-\paragraph[{CreateShapeFromMeshStatic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshStatic (
-\begin{DoxyParamCaption}
-\item[{bool}]{UseAllSubmeshes = {\ttfamily false}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1ActorRigid_a5adfa6199955f9c0de4e0af54aeb96f6}
-
-
-Creates a collision shape from mesh file. 
-
-This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Static objects. 
-\begin{DoxyParams}{Parameters}
-{\em UseAllSubmeshes} & If true, this will use the geometry of all submeshes of the model to make the shape. Otherwise it'll only use the first submesh. \\
-\hline
-\end{DoxyParams}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000002}{Todo}]
-\begin{DoxyItemize}
-\item Check for thread safety 
-\end{DoxyItemize}\end{Desc}
-
-
-
-
-Definition at line 237 of file actorrigid.cpp.
-
-\hypertarget{classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}{
-\index{phys::ActorRigid@{phys::ActorRigid}!CreateSphereShapeFromMesh@{CreateSphereShapeFromMesh}}
-\index{CreateSphereShapeFromMesh@{CreateSphereShapeFromMesh}!phys::ActorRigid@{phys::ActorRigid}}
-\paragraph[{CreateSphereShapeFromMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateSphereShapeFromMesh (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}
-
-
-Creates a sphere collision shape. 
-
-Will dynamically create a sphere collision shape from the loaded mesh file. 
-
-Definition at line 207 of file actorrigid.cpp.
+Definition at line 83 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a0d29535332ac613f9a14ea32e843d612}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetAngularMovementFactor@{GetAngularMovementFactor}}
@@ -302,7 +200,7 @@ Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing the factors on 
 \end{DoxyReturn}
 
 
-Definition at line 273 of file actorrigid.cpp.
+Definition at line 126 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a9c8f1f4b99f41ab97050f5b15c802f14}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetBulletObject@{GetBulletObject}}
@@ -322,7 +220,7 @@ Currently this returns a pointer to a btRigidBody.
 \end{DoxyReturn}
 
 
-Definition at line 292 of file actorrigid.cpp.
+Definition at line 145 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_ae29ab60e2c0e4762d2698c60b8df1d23}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetLinearMovementFactor@{GetLinearMovementFactor}}
@@ -342,7 +240,7 @@ Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing the factors on 
 \end{DoxyReturn}
 
 
-Definition at line 262 of file actorrigid.cpp.
+Definition at line 115 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84b43}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetName@{GetName}}
@@ -366,7 +264,7 @@ Implements \hyperlink{classphys_1_1ActorBase_a1a7a7bc80bf30f142e92f4d29842d274}{
 
 
 
-Definition at line 99 of file actorrigid.cpp.
+Definition at line 100 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_ac531871f990894cf64d0ece918eb18d0}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetPhysicsSettings@{GetPhysicsSettings}}
@@ -386,7 +284,7 @@ Returns a pointer to the physics settings class in use by this actor.
 \end{DoxyReturn}
 
 
-Definition at line 252 of file actorrigid.cpp.
+Definition at line 105 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_add4e731eb3a5481d05e2d0f543745fcd}{
 \index{phys::ActorRigid@{phys::ActorRigid}!ProtoSerialize@{ProtoSerialize}}
@@ -412,7 +310,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a402b408b6ebb5ce82181a75dff
 
 
 
-Definition at line 304 of file actorrigid.cpp.
+Definition at line 157 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}{
 \index{phys::ActorRigid@{phys::ActorRigid}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
@@ -439,7 +337,7 @@ Implements \hyperlink{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{
 
 
 
-Definition at line 285 of file actorrigid.cpp.
+Definition at line 138 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a574fc272f603b879643872dbced36cc2}{
 \index{phys::ActorRigid@{phys::ActorRigid}!SetAngularMovementFactor@{SetAngularMovementFactor}}
@@ -461,7 +359,7 @@ This function can lock or limit any and all axes you define. 0.0 means no angula
 \end{DoxyParams}
 
 
-Definition at line 268 of file actorrigid.cpp.
+Definition at line 121 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a2a6aca8c598716ee24558878f869f163}{
 \index{phys::ActorRigid@{phys::ActorRigid}!SetLinearMovementFactor@{SetLinearMovementFactor}}
@@ -483,7 +381,7 @@ This function can lock or limit any and all axes you define. 0.0 means no linear
 \end{DoxyParams}
 
 
-Definition at line 257 of file actorrigid.cpp.
+Definition at line 110 of file actorrigid.cpp.
 
 
 

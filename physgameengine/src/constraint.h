@@ -78,10 +78,16 @@ namespace phys
         Con_Stop_CFM    = 4
     };
 
-    /// @brief Get a Constraint Parameter as a String
-    /// @param Param The Parameter to get as a String
-    /// @return A String That contains the name of a ConstraintParam
+    /// @brief Get a Constraint Parameter as a String.
+    /// @param Param The Parameter to get as a String.
+    /// @return A String That contains the name of a ConstraintParam.
     String ConstraintParamAsString(ConstraintParam Param);
+
+    /// @brief Convert A string that might be ConstraintParam to one.
+    /// @param Param A String that should be storing, a constraint param name.
+    /// @return if the name matches on of the constraintParams exactly, return that one.
+    /// @throw If the Param does not match a type exactly, then this will throw an exception.
+    ConstraintParam StringAsConstraintParam(String Param);
 
     /// @brief How many ConstraintParam Exist.
     /// @details Used in some algorithms and we didn't want it to look like a magic so we defined it here.
@@ -293,11 +299,13 @@ namespace phys
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
             /// @param OneNode and xml::Node containing the data.
+            /// @details This should only be run once all the actors have finishes being deserialized. This will fail
+            /// if the actors it expects are not present.
             virtual void ProtoDeSerialize(const xml::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "TypedConstraint"
-            String SerializableName() const;
+            static String SerializableName();
 #endif
     };
 
@@ -329,21 +337,21 @@ namespace phys
         /// @return This returns a phys::Transform
         virtual Transform GetPivotBTransform() const = 0;
 
-        /// @brief Set The relative location of the hinge pivot from ActorA's Center of gravity.
+        /// @brief Set The relative location of the  pivot from ActorA's Center of gravity.
         /// @param Location The New value for PivotA
         /// @details Ultimately this information winds up being stored in the TransformA.
         virtual void SetPivotALocation(const Vector3& Location)
             { SetPivotATransform( Transform(Location, GetPivotARotation()) ); }
-        /// @brief Set The relative location of the hinge pivot from ActorB's Center of gravity.
+        /// @brief Set The relative location of the  pivot from ActorB's Center of gravity.
         /// @param Location The New value for PivotB
         /// @details Ultimately this information winds up being stored in the TransformB
         virtual void SetPivotBLocation(const Vector3& Location)
             { SetPivotBTransform( Transform(Location, GetPivotBRotation()) ); }
-        /// @brief Get the location of the hinge pivot relative to ActorA's Center of gravity
+        /// @brief Get the location of the pivot relative to ActorA's Center of gravity
         /// @return A Vector3 with the pivot location.
         virtual Vector3 GetPivotALocation() const
             { return GetPivotATransform().Location; }
-        /// @brief Get the location of the hinge pivot relative to ActorB's Center of gravity
+        /// @brief Get the location of the pivot relative to ActorB's Center of gravity
         /// @return A Vector3 with the pivot location.
         virtual Vector3 GetPivotBLocation() const
             { return GetPivotBTransform().Location; }
@@ -383,7 +391,7 @@ namespace phys
 
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "DualTransformConstraint"
-        String SerializableName() const;
+        static String SerializableName();
 #endif
     };
 
@@ -391,7 +399,7 @@ namespace phys
     /// @class ConeTwistConstraint
     /// @headerfile constraint.h
     /// @brief
-    /// @details
+    /// @details This class is currently incomplete
     ///////////////////////////////////////
     class PHYS_LIB ConeTwistConstraint : public TypedConstraint
     {
@@ -443,6 +451,10 @@ namespace phys
     /// allowed. If the Lower limit is higher than the Upper limit this will cause
     /// the system to realized that no position can satisfy the constraint and
     /// no restriction will be enforced.
+    /// @n @n
+    /// Each of the Axis also has a motor that can be enabled to cause a specified
+    /// amount of translation or rotation. To aid in selection of specific Axis,
+    /// you should use the UsableAxis enum
     ///////////////////////////////////////
     class PHYS_LIB Generic6DofConstraint : public DualTransformConstraint
     {
@@ -455,6 +467,21 @@ namespace phys
             /// @copydoc TypedConstraint::GetConstraintBase() const
             virtual btTypedConstraint* GetConstraintBase() const;
         public:
+
+            /// @brief Identify the Axis a bit easier when iterating over them is less convienent than typing an Identifier
+            enum UsableAxis{
+                LinearX         = 0,    ///< Translation on the X axis
+                LinearY         = 1,    ///< Translation on the Y axis
+                LinearZ         = 2,    ///< Translation on the Z axis
+                AngularX        = 3,    ///< Rotation on the X axis
+                AngularY        = 4,    ///< Rotation on the Y axis
+                AngularZ        = 5,    ///< Rotation on the Z axis
+
+                AngularXAsRotationalAxis        = 0,    ///< Rotation on the X axis, when working with only rotational Axis
+                AngularYAsRotationalAxis        = 1,    ///< Rotation on the Y axis, when working with only rotational Axis
+                AngularZAsRotationalAxis        = 2,    ///< Rotation on the Z axis, when working with only rotational Axis
+            };
+
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofConstraint Construction and Destruction
             /// @brief Two body Verbose constructor
@@ -520,43 +547,49 @@ namespace phys
 
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofConstraint Basic Limit Accessors
+            /// @brief Change the upper and lower limit for one axis of translation or rotation limit
+            /// @param Axis The axis to change
+            /// @param Lower The new lower limit
+            /// @param UpperThe new Higher limit
+            virtual void SetLimit(int Axis, Real Lower, Real Upper);
+
             /// @brief Set the lower limits on translation
             /// @param Limit A Vector3 that stores the lower limit x, y and z that cannot be exceeded
-            virtual void SetLinearUpperLimit(const Vector3& Limit);
+            virtual void SetLinearLimitUpper(const Vector3& Limit);
             /// @brief Set the Upper limits on translation
             /// @return A Vector3 that stores the upper limit x, y and z that cannot be exceeded
-            virtual void SetLinearLowerLimit(const Vector3& Limit);
+            virtual void SetLinearLimitLower(const Vector3& Limit);
             /// @brief Get the lower limits on translation
             /// @param Limit A Vector3 that stores the lower limit x, y and z that cannot be exceeded
-            virtual Vector3 GetLinearUpperLimit() const;
+            virtual Vector3 GetLinearLimitUpper() const;
             /// @brief Get the Upper limits on translation
             /// @return A Vector3 that stores the upper limit x, y and z that cannot be exceeded
-            virtual Vector3 GetLinearLowerLimit() const;
+            virtual Vector3 GetLinearLimitLower() const;
 
             /// @brief Set the Upper limits on rotation
             /// @param Limit A Vector3 that store the lower limit x, y and z rotation in radians
-            virtual void SetAngularUpperLimit(const Vector3& Limit);
+            virtual void SetAngularLimitUpper(const Vector3& Limit);
             /// @brief Set the Lower limits on rotation
             /// @param Limit A Vector3 that store the upper limit x, y and z rotation in radians
-            virtual void SetAngularLowerLimit(const Vector3& Limit);
+            virtual void SetAngularLimitLower(const Vector3& Limit);
             /// @brief Get the Power limits on rotation
-            /// @param Limit A Vector3 that stores the lower limit x, y and z rotation in radians
-            virtual Vector3 GetAngularUpperLimit() const;
+            /// @return Limit A Vector3 that stores the lower limit x, y and z rotation in radians
+            virtual Vector3 GetAngularLimitUpper() const;
             /// @brief Get the Upper limits on rotation
-            /// @param Limit A Vector3 that stores the upper limit x, y and z rotation in radians
-            virtual Vector3 GetAngularLowerLimit() const;
+            /// @return Limit A Vector3 that stores the upper limit x, y and z rotation in radians
+            virtual Vector3 GetAngularLimitLower() const;
 
             /// @brief Get a specific lower rotational limit
             /// @param RotationalAxis The Axis to work with.
-            Real GetAngularLowerLimitOnAxis(int RotationalAxis) const;
+            Real GetAngularLimitLowerOnAxis(int RotationalAxis) const;
             /// @brief Get a specific upper rotational limit
             /// @param RotationalAxis The Axis to work with.
             /// @details This  selects axis with
             /// @return A real containing the specified upper limit
-            Real GetAngularUpperLimitOnAxis(int RotationalAxis) const;
+            Real GetAngularLimitUpperOnAxis(int RotationalAxis) const;
 
             ////////////////////////////////////////////////////////////////////////////////
-            // Generic6DofConstraint Detailed Limits and Motors
+            // Generic6DofConstraint Angular Limit and Motor Details
             /// @brief Convert to internal Axis IDs from external or internal axis IDs
             /// @param Axis the Axis ID to be converted
             /// @return A number that correlates toe corresponding internal Axis. For example Axis 4 is the Rotation Y. This would return the corresponding ID for the internal Rotation Y axis
@@ -567,62 +600,166 @@ namespace phys
             ///     - 1, 4: Rotation Y
             ///     - 2, 5: Rotation Z
             /// @return A real containing the specified lower limit
-            inline virtual int AxisToRotAxis(int Axis) const
+            inline virtual int AxisToAngularAxis(int Axis) const
                 { return (Axis%3); }
 
+            /// @brief Set the Maximimum amount of force applied to ensure limits are not surpassed.
+            /// @param MaxLimitForces A Vector3 containing the X, Y and Z Maximium forces.
+            virtual void SetAngularLimitMaxForce(const Vector3& MaxLimitForces);
+            /// @brief Set the Maximimum amount of force applied to ensure a limit on one axis is not surpassed.
+            /// @param MaxLimitForce The new maximum force.
+            /// @param Axis The Angular Axis to be set, as per AxisToAngularAxis(int).
+            virtual void SetAngularLimitMaxForceOnAxis(Real MaxLimitForce, int Axis);
+            /// @brief Get the Maximimum amount of force applied to ensure limits are not surpassed.
+            /// @return A Vector3 with the forces on the X, Y and Z angular Axis.
+            virtual Vector3 GetAngularLimitMaxForce() const;
+            /// @brief Get the Maximimum amount of force applied to ensure a limit one axis is not surpassed.
+            /// @param Axis The Angular Axis to get, as per AxisToAngularAxis(int).
+            /// @return A Real with the force for the Given Axis.
+            virtual Real GetAngularLimitMaxForceOnAxis(int Axis) const;
+
+            /// @brief Set the Target velocity of the motor on each anuglar axis.
+            /// @param Velocities A Vector3 containing the X, Y and Z Target Velocites.
             virtual void SetAngularMotorTargetVelocity(const Vector3& Velocities);
+            /// @brief For one Axis, set the target velocity of the angular motor.
+            /// @param Velocity The new Target Velovity.
+            /// @param Axis The Angular Axis to be set, as per AxisToAngularAxis(int).
             virtual void SetAngularMotorTargetVelocityOnAxis(Real Velocity, int Axis);
+            /// @brief Get the target velocity for all angular Axis
+            /// @return A Vector3 with the TAger Velocities on the X, Y and Z angular Axis.
             virtual Vector3 GetAngularMotorTargetVelocity() const;
+            /// @brief Get the Target Velocity for one axis.
+            /// @param Axis The Angular Axis to get, as per AxisToAngularAxis(int).
+            /// @return A Real with the force for the Given Axis.
             virtual Real GetAngularMotorTargetVelocityOnAxis(int Axis) const;
 
-            virtual void SetAngularMotorMaxMotorForce(const Vector3& Forces);
-            virtual void SetAngularMotorMaxMotorForceOnAxis(Real Force, int Axis);
-            virtual Vector3 GetAngularMotorMaxMotorForce() const;
-            virtual Real GetAngularMotorMaxMotorForceOnAxis(int Axis) const;
+            /// @brief Set the Angular Motor Maximum force on all 3 rotational axis
+            /// @param Forces A Vector3 with the Max Motor Force for each axis.
+            virtual void SetAngularMotorMaxForce(const Vector3& Forces);
+            /// @brief For one Axis, set the Maximimum Motor Force.
+            /// @param Force The new Max motor force.
+            /// @param Axis The Angular Axis to be set, as per AxisToAngularAxis(int).
+            virtual void SetAngularMotorMaxForceOnAxis(Real Force, int Axis);
+            /// @brief Get the Max Motor Force for each Axis
+            /// @return A Vector3 with the max force on the X, Y and Z angular Axis.
+            virtual Vector3 GetAngularMotorMaxForce() const;
+            /// @brief Get the Max motor Force on a certain Axis.
+            /// @param Axis The Angular Axis to get, as per AxisToAngularAxis(int).
+            /// @return A Real with the Max Motor Force for the Given Axis.
+            virtual Real GetAngularMotorMaxForceOnAxis(int Axis) const;
 
+            /// @brief Set the Angular Motor Damping for each Angular Axis.
+            /// @param Dampings A Vector3 with Damping value for the X, Y and Z axis.
             virtual void SetAngularMotorDamping(const Vector3& Dampings);
+            /// @brief For one Axis, set the Damping.
+            /// @param Damping The new amount to Damp rotation on the given Axis.
+            /// @param Axis The Angular Axis to be set, as per AxisToAngularAxis(int).
             virtual void SetAngularMotorDampingOnAxis(Real Damping, int Axis);
+            /// @brief Get the Damping for all Angular Axis.
+            /// @return A Vector3 with the forces on the X, Y and Z angular Axis.
             virtual Vector3 GetAngularMotorDamping() const;
+            /// @brief Get the Damping for one given Axis.
+            /// @param Axis The Angular Axis to get, as per AxisToAngularAxis(int).
+            /// @return A Real with the XXX for the Given Axis.
             virtual Real GetAngularMotorDampingOnAxis(int Axis) const;
 
+            /// @brief Set the Bounciness/Restition for rotation on all three Axis
+            /// @param Restistutions A Vector3 containing all the New Bounciness values
             virtual void SetAngularMotorRestitution(const Vector3& Restistutions);
+            /// @brief For one Axis, set the Restistution/Bounciness/
+            /// @param Restistution The new value for the given Axis.
+            /// @param Axis The Angular Axis to be set, as per AxisToAngularAxis(int).
             virtual void SetAngularMotorRestitutionOnAxis(Real Restistution, int Axis);
+            /// @brief Get the Restistution values for all three axis
+            /// @return A Vector3 with the forces on the X, Y and Z angular Axis.
             virtual Vector3 GetAngularMotorRestitution() const;
+            /// @brief Get the Restistution/Bounciness for a single Axis
+            /// @param Axis The Angular Axis to get, as per AxisToAngularAxis(int).
+            /// @return A Real with the Restistution for the Given Axis.
             virtual Real GetAngularMotorRestitutionOnAxis(int Axis) const;
 
+            /// @brief Set whether or not the motor is enabled for all Axis Simultaneously.
+            /// @param Enableds A Vector3 that will be interpretted as 3 true/false values where 0 is false and any other value it true.
             virtual void SetAngularMotorEnabled(const Vector3& Enableds);
+            /// @brief For one Axis, set whether or not the motor is enabled
+            /// @param Enabled Is the motor enabled? TRue for yes, false for no.
+            /// @param Axis The Angular Axis to be set, as per AxisToAngularAxis(int).
             virtual void SetAngularMotorEnabledOnAxis(bool Enabled, int Axis);
+            /// @brief Get a Vector3 with 3 zero or nonzero values that store whether or not a given rotational motor is enable.
+            /// @return A Vector3 with the forces on the X, Y and Z angular Axis.
             virtual Vector3 GetAngularMotorEnabled() const;
+            /// @brief Is a specific rotational motor enabled.
+            /// @param Axis The Angular Axis to get, as per AxisToAngularAxis(int).
+            /// @return A bool that is true if the given Axis is enabled.
             virtual bool GetAngularMotorEnabledOnAxis(int Axis) const;
 
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofConstraint Linear Limit and Motor Details
+            /// @brief Set the Softness of the linear Limits
+            /// @param Softness How spongy, how much give does the constraint have.
+            virtual void SetLinearLimitSoftness(Real Softness);
+            /// @brief Get the Softness of the linear Limits
+            /// @return The Softness as a real.
+            virtual Real GetLinearLimitSoftness() const;
 
-            // Angular 2xGet/2xSet  vector
-                // TargetVelocity
-                // MaxMotorForce
-                // Damping
-                // Bounce
-                // Enabled
+            /// @brief Set the Damping of the linear Limits
+            /// @param Damping The new damping value placed on forces the limits impose
+            virtual void SetLinearLimitDamping(Real Damping);
+            /// @brief Get the Damping of the linear Limits
+            /// @return The Damping as a real.
+            virtual Real GetLinearLimitDamping() const;
 
-            // Linear get/set
-                // Enable(3);
-                // target velocity
-                // softness
-                // damping
-                // bounce/restitution
+            /// @brief Set the Restitution of the linear Limits.
+            /// @param Restitution How bouncy are the limits.
+            virtual void SetLinearLimitRestitution(Real Restitution);
+            /// @brief Get the Restitution of the linear Limits.
+            /// @return The Restitution as a real.
+            virtual Real GetLinearLimitRestitution() const;
 
+            /// @brief Set the Linear Motor Maximum force on all 3 translation axis
+            /// @param Forces A Vector3 with the Max Motor Force for each axis.
+            virtual void SetLinearMotorMaxForce(const Vector3& Forces);
+            /// @brief For one Axis, set the Maximimum Motor Force.
+            /// @param Force The new Max motor force.
+            /// @param Axis The Linear Axis to be set.
+            virtual void SetLinearMotorMaxForceOnAxis(Real Force, int Axis);
+            /// @brief Get the Max Motor Force for each Axis
+            /// @return A Vector3 with the max force on the X, Y and Z Linear Axis.
+            virtual Vector3 GetLinearMotorMaxForce() const;
+            /// @brief Get the Max motor Force on a certain Axis.
+            /// @param Axis The Linear Axis to get.
+            /// @return A Real with the Max Motor Force for the Given Axis.
+            virtual Real GetLinearMotorMaxForceOnAxis(int Axis) const;
 
-            /// @brief Change the upper and lower limit for one axis of translation or rotation limit
-            /// @param Axis The axis to change
-            /// @param Lower The new lower limit
-            /// @param UpperThe new Higher limit
-            virtual void SetLimit(int Axis, Real Lower, Real Upper);
+            /// @brief Set the Target velocity of the motor on each anuglar axis.
+            /// @param Velocities A Vector3 containing the X, Y and Z Target Velocites.
+            virtual void SetLinearMotorTargetVelocity(const Vector3& Velocities);
+            /// @brief For one Axis, set the target velocity of the Linear motor.
+            /// @param Velocity The new Target Velovity.
+            /// @param Axis The Linear Axis to be set.
+            virtual void SetLinearMotorTargetVelocityOnAxis(Real Velocity, int Axis);
+            /// @brief Get the target velocity for all Linear Axis
+            /// @return A Vector3 with the Target Velocities on the X, Y and Z Linear Axis.
+            virtual Vector3 GetLinearMotorTargetVelocity() const;
+            /// @brief Get the Target Velocity for one axis.
+            /// @param Axis The Linear Axis to get.
+            /// @return A Real with the force for the Given Axis.
+            virtual Real GetLinearMotorTargetVelocityOnAxis(int Axis) const;
 
-            //virtual void CalculateTransforms();
-
-
-            // rotational motor
-            // translational moter
-
+            /// @brief Set whether or not the motor is enabled for all Linear Axis Simultaneously.
+            /// @param Enableds A Vector3 that will be interpretted as 3 true/false values where 0 is false and any other value it true.
+            virtual void SetLinearMotorEnabled(const Vector3& Enableds);
+            /// @brief For one Axis, set whether or not the motor is enabled
+            /// @param Enabled Is the motor enabled? True for yes, false for no.
+            /// @param Axis The Linear Axis to be set.
+            virtual void SetLinearMotorEnabledOnAxis(bool Enabled, int Axis);
+            /// @brief Get a Vector3 with 3 zero or nonzero values that store whether or not a given rotational motor is enable.
+            /// @return A Vector3 with the forces on the X, Y and Z Linear Axis.
+            virtual Vector3 GetLinearMotorEnabled() const;
+            /// @brief Is a specific Linear motor enabled.
+            /// @param Axis The Linear Axis to get.
+            /// @return A bool that is true if the given Axis is enabled.
+            virtual bool GetLinearMotorEnabledOnAxis(int Axis) const;
 
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofConstraint Axis, Params and other Details
@@ -643,7 +780,7 @@ namespace phys
             virtual void SetUseFrameOffset(bool FrameOffset);
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Serialization
+            // Generic6DofConstraint Serialization
 #ifdef PHYSXML
             // Serializable
             /// @brief Convert this class to an xml::Node ready for serialization
@@ -658,7 +795,7 @@ namespace phys
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Generic6DofConstraint"
-            String SerializableName() const;
+            static String SerializableName();
 #endif // /PHYSXML
     };
 
@@ -677,20 +814,148 @@ namespace phys
     class PHYS_LIB Generic6DofSpringConstraint : public Generic6DofConstraint
     {
         protected:
-            /// @brief Bullet constraint that this class encapsulates.
-            btGeneric6DofSpringConstraint* Generic6dofSpring;
-        public:
             /// @brief Inheritance Constructor.
             /// @details This is only called by derived classes, and shouldn't be called manually.
             Generic6DofSpringConstraint();
-            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA);
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btGeneric6DofSpringConstraint* Generic6dofSpring() const;
+        public:
+            /// @brief Identify the Axis a bit easier when iterating over them is less convienent than typing an Identifier
+            enum UsableAxis{
+                LinearX         = 0,    ///< Translation on the X axis
+                LinearY         = 1,    ///< Translation on the Y axis
+                LinearZ         = 2,    ///< Translation on the Z axis
+                AngularX        = 3,    ///< Rotation on the X axis
+                AngularY        = 4,    ///< Rotation on the Y axis
+                AngularZ        = 5,    ///< Rotation on the Z axis
+            };
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Construction and Destruction
+            /// @brief Two body Verbose constructor
+            /// @param ActorA The First body to be bound
+            /// @param ActorB  The Second body to be bound
+            /// @param VectorA The offset from ActorA's center of gravity to get to match an offset from ActorB
+            /// @param VectorB The offset from ActorB's center of gravity.
+            /// @param QuaternionA Relative rotation from ActorA
+            /// @param QuaternionB Relative rotation from ActorB
+            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
+            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA = false);
+            /// @brief Two body Terse constructor
+            /// @param ActorA The First body to be bound
+            /// @param ActorB  The Second body to be bound
+            /// @param TransformA The offset and rotation from ActorA's center of gravity to get to match an offset from ActorB
+            /// @param TransformB The offset and rotation from ActorB's center of gravity.
+            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
+            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Generic6DofSpringConstraint();
-            virtual void SetStiffness(int Index, Real Stiffness);
-            virtual void SetDamping(int Index, Real Damping);
-            virtual void SetEquilibriumPoint(int Index);
-            virtual void EnableSpring(int Index, bool Enable);
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Linear Spring Settings
+            /// @brief Set the Stiffness of the springs on each Linear Axis.
+            /// @param Stiffies A Vector3 containing the X, Y and Z stiffnesses.
+            virtual void SetSpringLinearStiffness(const Vector3& Stiffies);
+            /// @brief Set the Damping of the springs on each Linear Axis.
+            /// @param Damps A Vector3 containing the X, Y and Z desired damping.
+            virtual void SetSpringLinearDamping(const Vector3& Damps);
+            /// @brief Set the Stiffness of the springs on each Linear Axis.
+            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
+            virtual void SetSpringLinearEnabled(const Vector3& Enableness);
+
+            /// @brief Get the Stiffness for all Linear Axis
+            /// @return A Vector3 with the Stiffness on the X, Y and Z Linear Axis.
+            virtual Vector3 GetSpringLinearStiffness() const;
+            /// @brief Get the Damping for all Linear Axis
+            /// @return A Vector3 with the Damping on the X, Y and Z Linear Axis.
+            virtual Vector3 GetSpringLinearDamping() const;
+            /// @brief Get the Enabled Status for all Linear Axis
+            /// @return A Vector3 with the Enabled Status on the X, Y and Z Linear Axis.
+            virtual Vector3 GetSpringLinearEnabled() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Angular Spring Settings
+            /// @brief Set the Stiffness of the springs on each Angular Axis.
+            /// @param Stiffies A Vector3 containing the X, Y and Z stiffnesses.
+            virtual void SetSpringAngularStiffness(const Vector3& Stiffies);
+            /// @brief Set the Damping of the springs on each Angular Axis.
+            /// @param Damps A Vector3 containing the X, Y and Z desired damping.
+            virtual void SetSpringAngularDamping(const Vector3& Damps);
+            /// @brief Set the Stiffness of the springs on each Angular Axis.
+            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
+            virtual void SetSpringAngularEnabled(const Vector3& Enableness);
+
+            /// @brief Get the Stiffness for all Angular Axis
+            /// @return A Vector3 with the Stiffness on the X, Y and Z Angular Axis.
+            virtual Vector3 GetSpringAngularStiffness() const;
+            /// @brief Get the Damping for all Angular Axis
+            /// @return A Vector3 with the Damping on the X, Y and Z Angular Axis.
+            virtual Vector3 GetSpringAngularDamping() const;
+            /// @brief Get the Enabled Status for all Angular Axis
+            /// @return A Vector3 with the Enabled Status on the X, Y and Z Angular Axis.
+            virtual Vector3 GetSpringAngularEnabled() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Per Axis Spring Settings
+            /// @brief Set the spring stiffness on a given axis
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @param Stiffness A real with the new desired stiffness.
+            virtual void SetSpringStiffness(int Index, Real Stiffness);
+            /// @brief Set the spring Damping on a given axis.
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @param Damping A real with the new desired Damping.
+            virtual void SetSpringDamping(int Index, Real Damping);
+            /// @brief Set the spring's enabled status on a given axis.
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @param Enable A bool with the spring's enabled status.
+            virtual void SetSpringEnabled(int Index, bool Enable);
+
+            /// @brief Retrieve the Stiffness of the spring on the given axis
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @return A real with the requested value;
+            virtual Real GetSpringStiffness(int Index) const;
+            /// @brief Retrieve the Damping of the spring on the given axis
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @return A real with the requested value.
+            virtual Real GetSpringDamping(int Index) const;
+            /// @brief Retrieve the EnabledStatus of the spring on the given axis
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @return A bool with the requested value.
+            virtual bool GetSpringEnabled(int Index) const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Calculated Items
+            /// @internal
+            virtual void CalculateSpringEquilibriumPoint();
+            /// @internal
+            virtual void CalculateSpringEquilibriumPoint(int Index);
+
+            /// @internal
+            virtual Vector3 GetCurrentSpringAngularEquilibriumPoints() const;
+            /// @internal
+            virtual Vector3 GetCurrentSpringLinearEquilibriumPoints() const;
+            /// @internal
+            virtual Real GetCurrentSpringEquilibriumPoint(int Index) const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Generic6DofSpringConstraint Serialization
+#ifdef PHYSXML
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Generic6DofConstraint"
+            static String SerializableName();
+#endif // /PHYSXML
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -803,15 +1068,15 @@ namespace phys
             virtual void EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
             /// @brief Enables(or Disables) the motor on the hinge.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
-            virtual void EnableMotor(bool EnableMotor);
+            /* virtual void EnableMotor(bool EnableMotor);
             /// @brief Is this motor on this hinge enabled?
-            /// @return True if it is, false otherwise.
+            /// @return True if it is, false otherwise. */
             virtual bool GetMotorEnabled() const;
             /// @brief Sets the maximum amount of force the motor is to apply.
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
-            virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
+            /* virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
             /// @brief Retrieve the maximimum value that the acceleration of the motor can be increased.
-            /// @return A real containing the maximum impulse.
+            /// @return A real containing the maximum impulse. */
             virtual Real GetMaxMotorImpulse() const;
             /// @brief Sets a Target Velocity, indirectly using the angle stored in a quaternion.
             /// @details Is implemented in terms of SetMotorTarget(Real, Real);
@@ -824,9 +1089,10 @@ namespace phys
             virtual void SetMotorTarget(Real TargetAngle, Real Dt);
             /// @brief Desired angular velocity of the motor
             /// @param TargetVelocity The Desired velocity
-            virtual void SetMotorTargetVelocity(Real TargetVelocity);
+            /// @warning Causes segfaults in some tests.
+            /* virtual void SetMotorTargetVelocity(Real TargetVelocity);
             /// @brief Get the Target Velocity.
-            /// @return the target valocity as a real.
+            /// @return the target valocity as a real. */
             virtual Real GetMotorTargetVelocity() const;
 
             ////////////////////////////////////////////////////////////////////////////////
@@ -897,7 +1163,7 @@ namespace phys
             virtual void ProtoDeSerialize(const xml::Node& OneNode);
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "HingeConstraint"
-            String SerializableName() const;
+            static String SerializableName();
 #endif // /PHYSXML
 
     };
@@ -906,7 +1172,7 @@ namespace phys
     /// @class Hinge2Constraint
     /// @headerfile constraint.h
     /// @brief
-    /// @details
+    /// @details This class is incomplete
     ///////////////////////////////////////
     class PHYS_LIB Hinge2Constraint : public Generic6DofSpringConstraint
     {
@@ -1016,7 +1282,7 @@ namespace phys
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Point2PointConstraint"
-            String SerializableName() const;
+            static String SerializableName();
 #endif
     };
 
@@ -1024,7 +1290,7 @@ namespace phys
     /// @class SliderConstraint
     /// @headerfile constraint.h
     /// @brief
-    /// @details
+    /// @details This class is incomplete
     ///////////////////////////////////////
     class PHYS_LIB SliderConstraint : public TypedConstraint
     {
@@ -1073,21 +1339,21 @@ namespace phys
     };
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class UniversalConstraint
+    /// @internal
+    /// @class UniversalJointConstraint
     /// @headerfile constraint.h
     /// @brief
-    /// @details
-    ///////////////////////////////////////
-    class PHYS_LIB UniversalConstraint : public Generic6DofConstraint
+    /// @details This class is currently incomplete and is marked as internal until its completion
+    class PHYS_LIB UniversalJointConstraint : public Generic6DofConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
             btUniversalConstraint* Universal;
         public:
-            UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            UniversalJointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
             /// @brief Class destructor.
             /// @details The class destructor.
-            virtual ~UniversalConstraint();
+            virtual ~UniversalJointConstraint();
             virtual void SetUpperLimit(Real Ang1Max, Real Ang2Max);
             virtual void SetLowerLimit(Real Ang1Min, Real Ang2Min);
     };
@@ -1097,22 +1363,57 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     // Class External << Operators for streaming or assignment
 
-    /// @brief Convert a constraint to XML and send it down a stream
-    /// @param stream The stream to send it down
-    /// @param x The constraint to send down
+    /// @brief Convert a constraint to XML and send it down a stream.
+    /// @param stream The stream to send it down.
+    /// @param x The constraint to send down.
     /// @return This returns the output stream to allow operator chaining.
     std::ostream& operator << (std::ostream& stream, const phys::TypedConstraint& x);
-
-    /// @brief Get a constraint from an XML stream
-    /// @param stream The stream to get it out of
-    /// @param x The it you will get out of the stream
+    /// @brief Get a constraint from an XML stream.
+    /// @param stream The stream to get it out of.
+    /// @param x The it you will get out of the stream.
     /// @return This returns the input stream to allow operator chaining.
     std::istream& operator >> (std::istream& stream, phys::TypedConstraint& x);
-
     /// @brief Converts an XML Node into a functional in memory construct.
     /// @param OneNode The xml node that contains the deserialize class instance.
     /// @param x The class instance to overwrite witht the proto serialized version in the node.
     void operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::DualTransformConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::DualTransformConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::DualTransformConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::Generic6DofConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofSpringConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::Generic6DofSpringConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofSpringConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::HingeConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::HingeConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::HingeConstraint& x);
+
+    /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
+    std::ostream& operator << (std::ostream& stream, const phys::Point2PointConstraint& x);
+    /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
+    std::istream& operator >> (std::istream& stream, phys::Point2PointConstraint& x);
+    /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+    void operator >> (const phys::xml::Node& OneNode, phys::Point2PointConstraint& x);
+
+
 #endif // \PHYSXML
 
 

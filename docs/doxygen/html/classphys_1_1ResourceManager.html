@@ -100,14 +100,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a resource group, unloading all of it's resources.  <a href="#afa5d686ad3b4c863580050994169cb6b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a2114714999441c095bc28d3673c2490e">DoMainLoopItems</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty MainLoopItems.  <a href="#a2114714999441c095bc28d3673c2490e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a9511ec29e5c732602b1495173abf56ef">ExportShapeData</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports an actors shape data to a file.  <a href="#a9511ec29e5c732602b1495173abf56ef"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1ResourceInputStream.html">ResourceInputStream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a13f0aef080b9a353fe6c910c2781de50">GetResourceStream</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a stream to read from the specified file.  <a href="#a13f0aef080b9a353fe6c910c2781de50"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerBase::ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a9e5468e5428f5c108c7b3c01e94eba46">GetType</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the type of this manager.  <a href="#a9e5468e5428f5c108c7b3c01e94eba46"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a6fb3434f5d7be221e7a474765c625ad9">ImportShapeData</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Imports serialized shape data from the disk to be used in an Actor.  <a href="#a6fb3434f5d7be221e7a474765c625ad9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a9be3250f1f1153c9e079f82736eb00a8">Initialize</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty Initializor.  <a href="#a9be3250f1f1153c9e079f82736eb00a8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#aa2f44129dfc3dc0b0ee332a2bba6078d">InitResourceGroup</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Name)</td></tr>
@@ -122,9 +118,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c84034fc45e64fc3a07f736230afd38"></a><!-- doxytag: member="phys::ResourceManager::AddResourceGroupName" ref="a7c84034fc45e64fc3a07f736230afd38" args="(String Name)" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><b>AddResourceGroupName</b> (<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> Name)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1823d2d08fc3b6052ed893896eef6291"></a><!-- doxytag: member="phys::ResourceManager::ApplyShapeToActor" ref="a1823d2d08fc3b6052ed893896eef6291" args="(ActorBase *Actor, btCollisionShape *ColShape)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ResourceManager.html#a1823d2d08fc3b6052ed893896eef6291">ApplyShapeToActor</a> (<a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *Actor, btCollisionShape *ColShape)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a saved shape to an Actor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03a283e02f3639f5c1f2de915ed798ae"></a><!-- doxytag: member="phys::ResourceManager::DeleteList" ref="a03a283e02f3639f5c1f2de915ed798ae" args="" -->
@@ -160,7 +153,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
 <p>Class constructor. </p>
 <p>Standard manager constructor. </p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00061">61</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00062">62</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -179,7 +172,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
 <div class="memdoc">
 <p>Class Destructor. </p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00069">69</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00070">70</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -234,7 +227,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00171">171</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00086">86</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -275,13 +268,13 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
   <table class="params">
     <tr><td class="paramname">Name</td><td>Name of the file/resource to be 'prepared'. </td></tr>
     <tr><td class="paramname">Type</td><td>The type of resource that the file is. <br/>
- Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture. </td></tr>
+ Options are: Font, GpuProgram, HighLevelGpuProgram, Material, <a class="el" href="classphys_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Mesh</a>, Skeleton, Texture. </td></tr>
     <tr><td class="paramname">Group</td><td>Name of the group the resource belongs to. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00190">190</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00113">113</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -308,7 +301,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00177">177</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00092">92</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -331,45 +324,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
 
 <p>Implements <a class="el" href="classphys_1_1ManagerBase.html#aa9e13a3f7c398b708f0f242610b5abf7">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00231">231</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9511ec29e5c732602b1495173abf56ef"></a><!-- doxytag: member="phys::ResourceManager::ExportShapeData" ref="a9511ec29e5c732602b1495173abf56ef" args="(ActorBase *Actor, const String &amp;FileName)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool phys::ResourceManager::ExportShapeData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *&#160;</td>
-          <td class="paramname"><em>Actor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>FileName</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Exports an actors shape data to a file. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">FileName</td><td>The Filename to save the data too. Remember to include a ".bullet" extension to the filename when serializing. </td></tr>
-    <tr><td class="paramname">Actor</td><td>The Actor's Shape to save </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00109">109</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00154">154</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -398,7 +353,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
 <dl class="return"><dt><b>Returns:</b></dt><dd>An derivative of std::istream a <a class="el" href="classphys_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> that will pull it's data from the desired resource</dd></dl>
 <p>The returned <a class="el" href="classphys_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> is the Caller's responsibility to deal with. If it is not deleted it is a memory leak. </p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00213">213</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00136">136</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -421,45 +376,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
 
 <p>Implements <a class="el" href="classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00235">235</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6fb3434f5d7be221e7a474765c625ad9"></a><!-- doxytag: member="phys::ResourceManager::ImportShapeData" ref="a6fb3434f5d7be221e7a474765c625ad9" args="(ActorBase *Actor, const String &amp;FileName)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool phys::ResourceManager::ImportShapeData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classphys_1_1ActorBase.html">ActorBase</a> *&#160;</td>
-          <td class="paramname"><em>Actor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>FileName</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Imports serialized shape data from the disk to be used in an Actor. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">FileName</td><td>The Filename to load the data from. Remember to include a ".bullet" extension to the filename when serializing. </td></tr>
-    <tr><td class="paramname">Actor</td><td>The Actor's Shape to restore from file </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00129">129</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00158">158</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -483,7 +400,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
 
 <p>Implements <a class="el" href="classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00227">227</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00150">150</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -511,7 +428,7 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00195">195</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00118">118</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -535,6 +452,6 @@ std::vector&lt; <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:33 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:31 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

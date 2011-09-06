@@ -43,7 +43,7 @@ Ogre::Quaternion \hyperlink{classphys_1_1Quaternion_aa22645e2e2972007bcf61cd2f8e
 \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Quaternion_abafe5f21ebfac271310905b29da13373}{operator$\ast$} (const btQuaternion \&Other) const 
 \begin{DoxyCompactList}\small\item\em Multiplication operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and btQuaternion. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Quaternion_a4e3107c95f94d2b4ddae8c86be9fe28e}{operator$\ast$} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Other) const 
-\begin{DoxyCompactList}\small\item\em Rotates a vector by the provided vector. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Rotates a vector by the provided quaternion. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Quaternion_af3f9a9b5835400dc5b83ba06bf9845b0}{operator+} (const \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} \&Other) const 
 \begin{DoxyCompactList}\small\item\em Addition operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Quaternion_a71fcb37dae7602349e856b202ca00e89}{operator+} (const Ogre::Quaternion \&Other) const 
@@ -107,31 +107,28 @@ virtual void \hyperlink{classphys_1_1Quaternion_ab71a780a5103681126d04fec42cdcb2
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Quaternion_af509194048d0cd8fb03d45f150afaa0c}{W}}
 \label{classphys_1_1Quaternion_af509194048d0cd8fb03d45f150afaa0c}
 
-\begin{DoxyCompactList}\small\item\em Rotation on the W Axis. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Rotation on the Axis X, Y and Z defined. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Quaternion_a29c08e725c7bbb389547cbe03f40f5bd}{
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Quaternion_a29c08e725c7bbb389547cbe03f40f5bd}{X}}
 \label{classphys_1_1Quaternion_a29c08e725c7bbb389547cbe03f40f5bd}
 
-\begin{DoxyCompactList}\small\item\em Rotation on the X Axis. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The X component of the Axis. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Quaternion_a756165050c3c241fd8b8de6ed21bb268}{
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Quaternion_a756165050c3c241fd8b8de6ed21bb268}{Y}}
 \label{classphys_1_1Quaternion_a756165050c3c241fd8b8de6ed21bb268}
 
-\begin{DoxyCompactList}\small\item\em Rotation on the Y Axis. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The Y component of the Axis. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Quaternion_a708ae111e0cf387b94f33dc7d5b3c59a}{
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Quaternion_a708ae111e0cf387b94f33dc7d5b3c59a}{Z}}
 \label{classphys_1_1Quaternion_a708ae111e0cf387b94f33dc7d5b3c59a}
 
-\begin{DoxyCompactList}\small\item\em Rotation on the Z Axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The Z component of the Axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
-This is used to store information about rotation in 3d space. This is used to store information about rotation in 3d space. The X, Y and Z are used to identify a ray from the origin (0,0,0), about which W represents an amount of rotation. \begin{DoxyWarning}{Warning}
-The Documentation for this class needs to be revised. It describes 2 mutually exclusive means of storing 
-\end{DoxyWarning}
+This is used to store information about rotation in 3d space. This is used to store information about rotation in 3d space. The X, Y and Z are used to identify a ray from the origin (0,0,0), about which W represents an amount of rotation. 
 
-
-Definition at line 65 of file quaternion.h.
+Definition at line 64 of file quaternion.h.
 
 
 
@@ -171,13 +168,13 @@ Constructor.
 
 Constructor that sets all four axis' of rotation. 
 \begin{DoxyParams}{Parameters}
-{\em x} & Rotation on the X Axis. \\
+{\em x} & The X component of the Axis. \\
 \hline
-{\em y} & Rotation on the Y Axis. \\
+{\em y} & The Y component of the Axis. \\
 \hline
-{\em z} & Rotation on the Z Axis. \\
+{\em z} & The Z component of the Axis. \\
 \hline
-{\em w} & Rotation on the W Axis. \\
+{\em w} & Rotation on the Axis X, Y and Z defined. \\
 \hline
 \end{DoxyParams}
 
@@ -208,7 +205,7 @@ This assembles a quaternion based on an axis and a rotation in radians.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000019}{Todo}]Need to find a clean way to wrap sin and cos functions. Also may want to make a radian class/datatype. \end{Desc}
+\item[\hyperlink{todo__todo000017}{Todo}]Need to find a clean way to wrap sin and cos functions. Also may want to make a radian class/datatype. \end{Desc}
 
 
 
@@ -611,7 +608,7 @@ Definition at line 182 of file quaternion.cpp.
 \label{classphys_1_1Quaternion_a4e3107c95f94d2b4ddae8c86be9fe28e}
 
 
-Rotates a vector by the provided vector. 
+Rotates a vector by the provided quaternion. 
 
 
 \begin{DoxyParams}{Parameters}

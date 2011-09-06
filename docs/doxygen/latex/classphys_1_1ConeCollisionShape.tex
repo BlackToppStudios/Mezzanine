@@ -1,0 +1,204 @@
+\hypertarget{classphys_1_1ConeCollisionShape}{
+\subsection{phys::ConeCollisionShape Class Reference}
+\label{classphys_1_1ConeCollisionShape}\index{phys::ConeCollisionShape@{phys::ConeCollisionShape}}
+}
+
+
+A cone physics shape.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for phys::ConeCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classphys_1_1ConeCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ConeCollisionShape_a542f28c210cc27cc488c0fc0f3ccfee6}{ConeCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radius, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height, const \hyperlink{classphys_1_1Vector3}{Vector3} \&UpAxis)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ConeCollisionShape_a4a02fb6a7be0617f26e92a331896fad6}{ConeCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, btConeShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ConeCollisionShape_a9c8243745e912a79b1146b828bb8a8df}{GetHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the height of the cone. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ConeCollisionShape_a602322d3869873c6d30df5706da6a329}{GetRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the cone. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CollisionShape_af3ba4fd8af5b9557f912d2f5ff35a588}{CollisionShape::ShapeType} \hyperlink{classphys_1_1ConeCollisionShape_a18a76d3f11c94c80188e9560af32e899}{GetType} () const 
+\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ConeCollisionShape_a1d391d17d1a7ba4e156fe24717175898}{GetUpAxis} () const 
+\begin{DoxyCompactList}\small\item\em Gets which axis this cone is oriented along. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ConeCollisionShape_ae0516f6da6334790c2052ae926a7739b}{
+virtual \hyperlink{classphys_1_1ConeCollisionShape_ae0516f6da6334790c2052ae926a7739b}{$\sim$ConeCollisionShape} ()}
+\label{classphys_1_1ConeCollisionShape_ae0516f6da6334790c2052ae926a7739b}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ConeCollisionShape_aa1c4ebb55fee225796012e51425d06ef}{
+btConeShape $\ast$ {\bfseries ConeShape}}
+\label{classphys_1_1ConeCollisionShape_aa1c4ebb55fee225796012e51425d06ef}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A cone physics shape. Keep in mind when building a cone shape, the provided radius is for the base of the cone, but the pivot point of the shape is still at it's center and not it's base. Like Capsules and Cylinders, Cones can be aligned to any of the 3 linear axes(X, Y, or Z). 
+
+Definition at line 307 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ConeCollisionShape_a542f28c210cc27cc488c0fc0f3ccfee6}{
+\index{phys::ConeCollisionShape@{phys::ConeCollisionShape}!ConeCollisionShape@{ConeCollisionShape}}
+\index{ConeCollisionShape@{ConeCollisionShape}!phys::ConeCollisionShape@{phys::ConeCollisionShape}}
+\paragraph[{ConeCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::ConeCollisionShape::ConeCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{const {\bf Vector3} \&}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1ConeCollisionShape_a542f28c210cc27cc488c0fc0f3ccfee6}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the base of the Cone. \\
+\hline
+{\em Height} & The height of the Cone. \\
+\hline
+{\em UpAxis} & Which axis the Cone is to be oriented along. Typical usage is for a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 377 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1ConeCollisionShape_a4a02fb6a7be0617f26e92a331896fad6}{
+\index{phys::ConeCollisionShape@{phys::ConeCollisionShape}!ConeCollisionShape@{ConeCollisionShape}}
+\index{ConeCollisionShape@{ConeCollisionShape}!phys::ConeCollisionShape@{phys::ConeCollisionShape}}
+\paragraph[{ConeCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::ConeCollisionShape::ConeCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btConeShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1ConeCollisionShape_a4a02fb6a7be0617f26e92a331896fad6}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 387 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1ConeCollisionShape_a9c8243745e912a79b1146b828bb8a8df}{
+\index{phys::ConeCollisionShape@{phys::ConeCollisionShape}!GetHeight@{GetHeight}}
+\index{GetHeight@{GetHeight}!phys::ConeCollisionShape@{phys::ConeCollisionShape}}
+\paragraph[{GetHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::ConeCollisionShape::GetHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConeCollisionShape_a9c8243745e912a79b1146b828bb8a8df}
+
+
+Gets the height of the cone. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing height of the cone. 
+\end{DoxyReturn}
+
+
+Definition at line 404 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1ConeCollisionShape_a602322d3869873c6d30df5706da6a329}{
+\index{phys::ConeCollisionShape@{phys::ConeCollisionShape}!GetRadius@{GetRadius}}
+\index{GetRadius@{GetRadius}!phys::ConeCollisionShape@{phys::ConeCollisionShape}}
+\paragraph[{GetRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::ConeCollisionShape::GetRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConeCollisionShape_a602322d3869873c6d30df5706da6a329}
+
+
+Gets the radius of the cone. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the radius at the base of the cone. 
+\end{DoxyReturn}
+
+
+Definition at line 399 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1ConeCollisionShape_a18a76d3f11c94c80188e9560af32e899}{
+\index{phys::ConeCollisionShape@{phys::ConeCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::ConeCollisionShape@{phys::ConeCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} phys::ConeCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConeCollisionShape_a18a76d3f11c94c80188e9560af32e899}
+Gets the type of Collision shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1PrimitiveCollisionShape_a16a167ec75ac95aa101b6a9b116e837d}{phys::PrimitiveCollisionShape}.
+
+
+
+Definition at line 419 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1ConeCollisionShape_a1d391d17d1a7ba4e156fe24717175898}{
+\index{phys::ConeCollisionShape@{phys::ConeCollisionShape}!GetUpAxis@{GetUpAxis}}
+\index{GetUpAxis@{GetUpAxis}!phys::ConeCollisionShape@{phys::ConeCollisionShape}}
+\paragraph[{GetUpAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ConeCollisionShape::GetUpAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConeCollisionShape_a1d391d17d1a7ba4e156fe24717175898}
+
+
+Gets which axis this cone is oriented along. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing which local axis is oriented along the world up axis. 
+\end{DoxyReturn}
+
+
+Definition at line 409 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

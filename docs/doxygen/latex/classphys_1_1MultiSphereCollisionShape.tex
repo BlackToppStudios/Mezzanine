@@ -1,0 +1,207 @@
+\hypertarget{classphys_1_1MultiSphereCollisionShape}{
+\subsection{phys::MultiSphereCollisionShape Class Reference}
+\label{classphys_1_1MultiSphereCollisionShape}\index{phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}}
+}
+
+
+A physics shape comprised of multiple sphere's placed in local space.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for phys::MultiSphereCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classphys_1_1MultiSphereCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1MultiSphereCollisionShape_a9ee3a0486e1da5fb712674ac2c5cefed}{GetNumSpheres} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of spheres contained within this shape. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1MultiSphereCollisionShape_aa0c7348084888d2dc7d89f57341fb5bf}{GetSphereLocation} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets the location(in local space) of the sphere at the specified index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1MultiSphereCollisionShape_a231501da6e60f37b2795595599130dca}{GetSphereRadius} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the sphere at the specified index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CollisionShape_af3ba4fd8af5b9557f912d2f5ff35a588}{CollisionShape::ShapeType} \hyperlink{classphys_1_1MultiSphereCollisionShape_aa0822886f961c6b8ace312c90a3e4d99}{GetType} () const 
+\item 
+\hyperlink{classphys_1_1MultiSphereCollisionShape_a60a28ddcd77ee2a5647da6aa08b7fda4}{MultiSphereCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, btMultiSphereShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1MultiSphereCollisionShape_aa677ef7e41f2293dc744011cce539c33}{MultiSphereCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const std::vector$<$ \hyperlink{classphys_1_1Vector3}{Vector3} $>$ \&Locations, const std::vector$<$ \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} $>$ \&Radii)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1MultiSphereCollisionShape_a8f28813f184d4e3cff9f9027ca304ce8}{
+virtual \hyperlink{classphys_1_1MultiSphereCollisionShape_a8f28813f184d4e3cff9f9027ca304ce8}{$\sim$MultiSphereCollisionShape} ()}
+\label{classphys_1_1MultiSphereCollisionShape_a8f28813f184d4e3cff9f9027ca304ce8}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1MultiSphereCollisionShape_aade2b9d7d83fd77e858df6dca00a33ff}{
+btMultiSphereShape $\ast$ {\bfseries MultiSphereShape}}
+\label{classphys_1_1MultiSphereCollisionShape_aade2b9d7d83fd77e858df6dca00a33ff}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A physics shape comprised of multiple sphere's placed in local space. It's important to note that this shape isn't just a bunch of placed sphere's, but a convex hull comprised of all the provided sphere's. You can make a capsule shape with two sphere's, one above the other(internally this is how it works). 
+
+Definition at line 436 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1MultiSphereCollisionShape_aa677ef7e41f2293dc744011cce539c33}{
+\index{phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}!MultiSphereCollisionShape@{MultiSphereCollisionShape}}
+\index{MultiSphereCollisionShape@{MultiSphereCollisionShape}!phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}}
+\paragraph[{MultiSphereCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::MultiSphereCollisionShape::MultiSphereCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const std::vector$<$ {\bf Vector3} $>$ \&}]{Locations, }
+\item[{const std::vector$<$ {\bf Real} $>$ \&}]{Radii}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1MultiSphereCollisionShape_aa677ef7e41f2293dc744011cce539c33}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 542 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1MultiSphereCollisionShape_a60a28ddcd77ee2a5647da6aa08b7fda4}{
+\index{phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}!MultiSphereCollisionShape@{MultiSphereCollisionShape}}
+\index{MultiSphereCollisionShape@{MultiSphereCollisionShape}!phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}}
+\paragraph[{MultiSphereCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::MultiSphereCollisionShape::MultiSphereCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btMultiSphereShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1MultiSphereCollisionShape_a60a28ddcd77ee2a5647da6aa08b7fda4}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 561 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1MultiSphereCollisionShape_a9ee3a0486e1da5fb712674ac2c5cefed}{
+\index{phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}!GetNumSpheres@{GetNumSpheres}}
+\index{GetNumSpheres@{GetNumSpheres}!phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}}
+\paragraph[{GetNumSpheres}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::MultiSphereCollisionShape::GetNumSpheres (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MultiSphereCollisionShape_a9ee3a0486e1da5fb712674ac2c5cefed}
+
+
+Gets the number of spheres contained within this shape. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the number of spheres in this shape. 
+\end{DoxyReturn}
+
+
+Definition at line 584 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1MultiSphereCollisionShape_aa0c7348084888d2dc7d89f57341fb5bf}{
+\index{phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}!GetSphereLocation@{GetSphereLocation}}
+\index{GetSphereLocation@{GetSphereLocation}!phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}}
+\paragraph[{GetSphereLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::MultiSphereCollisionShape::GetSphereLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MultiSphereCollisionShape_aa0c7348084888d2dc7d89f57341fb5bf}
+
+
+Gets the location(in local space) of the sphere at the specified index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 representing the location of the specified sphere. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the desired sphere. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 573 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1MultiSphereCollisionShape_a231501da6e60f37b2795595599130dca}{
+\index{phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}!GetSphereRadius@{GetSphereRadius}}
+\index{GetSphereRadius@{GetSphereRadius}!phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}}
+\paragraph[{GetSphereRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::MultiSphereCollisionShape::GetSphereRadius (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MultiSphereCollisionShape_a231501da6e60f37b2795595599130dca}
+
+
+Gets the radius of the sphere at the specified index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the radius of the specified sphere. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the desired sphere. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 579 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1MultiSphereCollisionShape_aa0822886f961c6b8ace312c90a3e4d99}{
+\index{phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::MultiSphereCollisionShape@{phys::MultiSphereCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} phys::MultiSphereCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1MultiSphereCollisionShape_aa0822886f961c6b8ace312c90a3e4d99}
+Gets the type of Collision shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1PrimitiveCollisionShape_a16a167ec75ac95aa101b6a9b116e837d}{phys::PrimitiveCollisionShape}.
+
+
+
+Definition at line 589 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

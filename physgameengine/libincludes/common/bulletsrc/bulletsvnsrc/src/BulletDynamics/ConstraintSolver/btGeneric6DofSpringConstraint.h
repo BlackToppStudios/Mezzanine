@@ -34,7 +34,7 @@ subject to the following restrictions:
 
 class btGeneric6DofSpringConstraint : public btGeneric6DofConstraint
 {
-protected:
+public:
 	bool		m_springEnabled[6];
 	btScalar	m_equilibriumPoint[6];
 	btScalar	m_springStiffness[6];

@@ -111,7 +111,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Quaternion.html#abafe5f21ebfac271310905b29da13373">operator*</a> (const btQuaternion &amp;Other) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplication operator with <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">phys::Quaternion</a> and btQuaternion.  <a href="#abafe5f21ebfac271310905b29da13373"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Quaternion.html#a4e3107c95f94d2b4ddae8c86be9fe28e">operator*</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Other) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates a vector by the provided vector.  <a href="#a4e3107c95f94d2b4ddae8c86be9fe28e"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates a vector by the provided quaternion.  <a href="#a4e3107c95f94d2b4ddae8c86be9fe28e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Quaternion.html#af3f9a9b5835400dc5b83ba06bf9845b0">operator+</a> (const <a class="el" href="classphys_1_1Quaternion.html">phys::Quaternion</a> &amp;Other) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Addition operator with <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">phys::Quaternion</a> and <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">phys::Quaternion</a>.  <a href="#af3f9a9b5835400dc5b83ba06bf9845b0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Quaternion.html#a71fcb37dae7602349e856b202ca00e89">operator+</a> (const Ogre::Quaternion &amp;Other) const </td></tr>
@@ -172,23 +172,22 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af509194048d0cd8fb03d45f150afaa0c"></a><!-- doxytag: member="phys::Quaternion::W" ref="af509194048d0cd8fb03d45f150afaa0c" args="" -->
 <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Quaternion.html#af509194048d0cd8fb03d45f150afaa0c">W</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotation on the W Axis. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotation on the Axis X, Y and Z defined. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29c08e725c7bbb389547cbe03f40f5bd"></a><!-- doxytag: member="phys::Quaternion::X" ref="a29c08e725c7bbb389547cbe03f40f5bd" args="" -->
 <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Quaternion.html#a29c08e725c7bbb389547cbe03f40f5bd">X</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotation on the X Axis. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The X component of the Axis. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a756165050c3c241fd8b8de6ed21bb268"></a><!-- doxytag: member="phys::Quaternion::Y" ref="a756165050c3c241fd8b8de6ed21bb268" args="" -->
 <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Quaternion.html#a756165050c3c241fd8b8de6ed21bb268">Y</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotation on the Y Axis. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Y component of the Axis. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a708ae111e0cf387b94f33dc7d5b3c59a"></a><!-- doxytag: member="phys::Quaternion::Z" ref="a708ae111e0cf387b94f33dc7d5b3c59a" args="" -->
 <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Quaternion.html#a708ae111e0cf387b94f33dc7d5b3c59a">Z</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotation on the Z Axis. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Z component of the Axis. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is used to store information about rotation in 3d space. </p>
 <p>This is used to store information about rotation in 3d space. The X, Y and Z are used to identify a ray from the origin (0,0,0), about which W represents an amount of rotation. </p>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>The Documentation for this class needs to be revised. It describes 2 mutually exclusive means of storing </dd></dl>
 
-<p>Definition at line <a class="el" href="quaternion_8h_source.html#l00065">65</a> of file <a class="el" href="quaternion_8h_source.html">quaternion.h</a>.</p>
+<p>Definition at line <a class="el" href="quaternion_8h_source.html#l00064">64</a> of file <a class="el" href="quaternion_8h_source.html">quaternion.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aca4ee6fd6d3967f06cc4a32361fa5a62"></a><!-- doxytag: member="phys::Quaternion::Quaternion" ref="aca4ee6fd6d3967f06cc4a32361fa5a62" args="()" -->
 <div class="memitem">
@@ -252,10 +251,10 @@ Public Attributes</h2></td></tr>
 <p>Constructor that sets all four axis' of rotation. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>Rotation on the X Axis. </td></tr>
-    <tr><td class="paramname">y</td><td>Rotation on the Y Axis. </td></tr>
-    <tr><td class="paramname">z</td><td>Rotation on the Z Axis. </td></tr>
-    <tr><td class="paramname">w</td><td>Rotation on the W Axis. </td></tr>
+    <tr><td class="paramname">x</td><td>The X component of the Axis. </td></tr>
+    <tr><td class="paramname">y</td><td>The Y component of the Axis. </td></tr>
+    <tr><td class="paramname">z</td><td>The Z component of the Axis. </td></tr>
+    <tr><td class="paramname">w</td><td>Rotation on the Axis X, Y and Z defined. </td></tr>
   </table>
   </dd>
 </dl>
@@ -299,7 +298,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>Need to find a clean way to wrap sin and cos functions. Also may want to make a radian class/datatype. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Need to find a clean way to wrap sin and cos functions. Also may want to make a radian class/datatype. </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="quaternion_8cpp_source.html#l00074">74</a> of file <a class="el" href="quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
@@ -763,7 +762,7 @@ Public Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Rotates a vector by the provided vector. </p>
+<p>Rotates a vector by the provided quaternion. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">Other</td><td>The vector to rotate. </td></tr>
@@ -1403,6 +1402,6 @@ Public Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:33 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:31 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

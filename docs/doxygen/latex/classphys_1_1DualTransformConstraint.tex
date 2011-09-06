@@ -1,0 +1,445 @@
+\hypertarget{classphys_1_1DualTransformConstraint}{
+\subsection{phys::DualTransformConstraint Class Reference}
+\label{classphys_1_1DualTransformConstraint}\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+}
+
+
+All constraints that track rotation and location of the Pivot relative to each Actor inherit from this.  
+
+
+
+
+{\ttfamily \#include $<$constraint.h$>$}
+
+Inheritance diagram for phys::DualTransformConstraint:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.261796cm]{classphys_1_1DualTransformConstraint}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1DualTransformConstraint_a0458c4b3d9bad6aa8b725a35e922ca05}{GetPivotALocation} () const 
+\begin{DoxyCompactList}\small\item\em Get the location of the pivot relative to ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1DualTransformConstraint_a9b432b31d4628a07c369bb644e126796}{GetPivotARotation} () const 
+\begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorA. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Transform}{Transform} \hyperlink{classphys_1_1DualTransformConstraint_a2c6e75dca5399af5ff59a9a11f22b50b}{GetPivotATransform} () const =0
+\begin{DoxyCompactList}\small\item\em Get the current Rotation and Location of Actor A. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1DualTransformConstraint_a7a51a331dea27522f6d596bf3aff5de4}{GetPivotBLocation} () const 
+\begin{DoxyCompactList}\small\item\em Get the location of the pivot relative to ActorB's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1DualTransformConstraint_a2d2ba7c3ecf5519c435dd9e0cb103fd0}{GetPivotBRotation} () const 
+\begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorB. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Transform}{Transform} \hyperlink{classphys_1_1DualTransformConstraint_a7ef9820bbfa2f0d70019743e16cb2618}{GetPivotBTransform} () const =0
+\begin{DoxyCompactList}\small\item\em Get the current Rotation and Location of Actor B. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1DualTransformConstraint_a72bb3a5f35dffc4b6b9b860eb232b7a3}{ProtoDeSerialize} (const \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1DualTransformConstraint_aa1e3919874eceedb6ba708af4d540b9b}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1DualTransformConstraint_ad810321a7395cbd5cc0ba8cac0d3b136}{SerializableName} () const 
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1DualTransformConstraint_a0e074a05eeb464ebda332ac2f09c9412}{SetPivotALocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Set The relative location of the pivot from ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1DualTransformConstraint_ab602e9a72e490dcb34bb6ad2042a2341}{SetPivotARotation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorA. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1DualTransformConstraint_af2ff2bca0d94f113ef47a8dfddeadb3a}{SetPivotATransform} (const \hyperlink{classphys_1_1Transform}{Transform} \&TranA)=0
+\begin{DoxyCompactList}\small\item\em Set the Position and Rotation using a \hyperlink{classphys_1_1Transform}{Transform}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1DualTransformConstraint_aa9e0ebd04572d18f344b701637270248}{SetPivotBLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Set The relative location of the pivot from ActorB's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1DualTransformConstraint_a6eb22ee671ccc51c16f04c65e1a05a9e}{SetPivotBRotation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorB. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1DualTransformConstraint_acda6a28b585c52fd7da1e79d85f4cf53}{SetPivotBTransform} (const \hyperlink{classphys_1_1Transform}{Transform} \&TranB)=0
+\begin{DoxyCompactList}\small\item\em Set the Position and Rotation using a \hyperlink{classphys_1_1Transform}{Transform}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+All constraints that track rotation and location of the Pivot relative to each Actor inherit from this. Since not all contraints provide tracking for the Actor \hyperlink{classphys_1_1Transform}{Transform} (location/rotation of the pivot) we subdivided the constraints to unify the interface of those that could be unified. This stores nothing, but provides uniform access to the transform and rotation functions. \par
+ \par
+ Any deriving class must implement every thing from \hyperlink{classphys_1_1TypedConstraint}{TypedConstraint} and the four set/get \hyperlink{classphys_1_1Transform}{Transform} function. It is expected that more derived classes will implement the Set/Get Pivot/Rotation Functino in a more efficient Manner if a more efficient way exists. The non-\/transform get/set function are implmented in terms of the get/set transform function extra copies of values and extra reading/writing may occur if the compiler weakly optimizes. Of course, implementing more functions could slow down the software if it no longer fits in CPU caches. As always benchmark if this is something that may be critically slowing you down. 
+
+Definition at line 324 of file constraint.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1DualTransformConstraint_a0458c4b3d9bad6aa8b725a35e922ca05}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!GetPivotALocation@{GetPivotALocation}}
+\index{GetPivotALocation@{GetPivotALocation}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{GetPivotALocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::DualTransformConstraint::GetPivotALocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_a0458c4b3d9bad6aa8b725a35e922ca05}
+
+
+Get the location of the pivot relative to ActorA's Center of gravity. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the pivot location. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_af9827f1d4c7bcfb201d43d3dcf03cdfd}{phys::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_a7df9aca750e4a96d60e398ff7ac386d0}{phys::Generic6DofConstraint}, and \hyperlink{classphys_1_1HingeConstraint_a099fec821a9194cd3c8268d764ec8ea8}{phys::HingeConstraint}.
+
+
+
+Definition at line 352 of file constraint.h.
+
+\hypertarget{classphys_1_1DualTransformConstraint_a9b432b31d4628a07c369bb644e126796}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!GetPivotARotation@{GetPivotARotation}}
+\index{GetPivotARotation@{GetPivotARotation}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{GetPivotARotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} phys::DualTransformConstraint::GetPivotARotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_a9b432b31d4628a07c369bb644e126796}
+
+
+Get the relative rotation for ActorA. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{Quaternion} that has the rotation 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_a9e72b08fbfb91f4c7f8bec8a004b9fa4}{phys::Generic6DofConstraint}.
+
+
+
+Definition at line 371 of file constraint.h.
+
+\hypertarget{classphys_1_1DualTransformConstraint_a2c6e75dca5399af5ff59a9a11f22b50b}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!GetPivotATransform@{GetPivotATransform}}
+\index{GetPivotATransform@{GetPivotATransform}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{GetPivotATransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Transform} phys::DualTransformConstraint::GetPivotATransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_a2c6e75dca5399af5ff59a9a11f22b50b}
+
+
+Get the current Rotation and Location of Actor A. 
+
+\begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Transform}{phys::Transform} 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1Generic6DofConstraint_ade5465779dff307416a34a1a6e5271c3}{phys::Generic6DofConstraint}, and \hyperlink{classphys_1_1HingeConstraint_ac210cfa2fe2d4d6b2bf9e626441546b7}{phys::HingeConstraint}.
+
+\hypertarget{classphys_1_1DualTransformConstraint_a7a51a331dea27522f6d596bf3aff5de4}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!GetPivotBLocation@{GetPivotBLocation}}
+\index{GetPivotBLocation@{GetPivotBLocation}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{GetPivotBLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} phys::DualTransformConstraint::GetPivotBLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_a7a51a331dea27522f6d596bf3aff5de4}
+
+
+Get the location of the pivot relative to ActorB's Center of gravity. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the pivot location. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_ad1d8e9e2ab17579bd6c13ee8c4acf20b}{phys::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_acdb2044cf69e520e5f55f9f9979535ef}{phys::Generic6DofConstraint}, and \hyperlink{classphys_1_1HingeConstraint_a7b0ed683e55a1500e4c8cc6c04e8e140}{phys::HingeConstraint}.
+
+
+
+Definition at line 356 of file constraint.h.
+
+\hypertarget{classphys_1_1DualTransformConstraint_a2d2ba7c3ecf5519c435dd9e0cb103fd0}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!GetPivotBRotation@{GetPivotBRotation}}
+\index{GetPivotBRotation@{GetPivotBRotation}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{GetPivotBRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} phys::DualTransformConstraint::GetPivotBRotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_a2d2ba7c3ecf5519c435dd9e0cb103fd0}
+
+
+Get the relative rotation for ActorB. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{Quaternion} that has the rotation 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_a9f83234b19b56a3195d5694cbe178fff}{phys::Generic6DofConstraint}.
+
+
+
+Definition at line 375 of file constraint.h.
+
+\hypertarget{classphys_1_1DualTransformConstraint_a7ef9820bbfa2f0d70019743e16cb2618}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!GetPivotBTransform@{GetPivotBTransform}}
+\index{GetPivotBTransform@{GetPivotBTransform}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{GetPivotBTransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Transform} phys::DualTransformConstraint::GetPivotBTransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_a7ef9820bbfa2f0d70019743e16cb2618}
+
+
+Get the current Rotation and Location of Actor B. 
+
+\begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Transform}{phys::Transform} 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1Generic6DofConstraint_abfada588a450a202891b86624a302b02}{phys::Generic6DofConstraint}, and \hyperlink{classphys_1_1HingeConstraint_ac328b988f24c490084fdb4567cd5df06}{phys::HingeConstraint}.
+
+\hypertarget{classphys_1_1DualTransformConstraint_a72bb3a5f35dffc4b6b9b860eb232b7a3}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::DualTransformConstraint::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_a72bb3a5f35dffc4b6b9b860eb232b7a3}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classphys_1_1TypedConstraint_aeafb306788de02bfb164806054a1c346}{phys::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_a5a065b9a671f5f48b5ee8bb6886be0e2}{phys::Generic6DofConstraint}, \hyperlink{classphys_1_1Generic6DofSpringConstraint_aa92969027509290efc128334b01db500}{phys::Generic6DofSpringConstraint}, and \hyperlink{classphys_1_1HingeConstraint_a63ca807d27fd21a24b4bcaa642febc77}{phys::HingeConstraint}.
+
+\hypertarget{classphys_1_1DualTransformConstraint_aa1e3919874eceedb6ba708af4d540b9b}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::DualTransformConstraint::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_aa1e3919874eceedb6ba708af4d540b9b}
+
+
+Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to.\\
+\hline
+\end{DoxyParams}
+This stores each Actor's \hyperlink{classphys_1_1Transform}{Transform} 
+
+Reimplemented from \hyperlink{classphys_1_1TypedConstraint_a9cf48a2a1afb939cbd03e54ee9be3e0b}{phys::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_a9cf4eb82a625d06116542f6d224cdd69}{phys::Generic6DofConstraint}, \hyperlink{classphys_1_1Generic6DofSpringConstraint_aeffb182d5faa82175e96a259fc19f9ff}{phys::Generic6DofSpringConstraint}, and \hyperlink{classphys_1_1HingeConstraint_a04fac5312ddf891adcfff67e98f75861}{phys::HingeConstraint}.
+
+\hypertarget{classphys_1_1DualTransformConstraint_ad810321a7395cbd5cc0ba8cac0d3b136}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::DualTransformConstraint::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1DualTransformConstraint_ad810321a7395cbd5cc0ba8cac0d3b136}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}DualTransformConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classphys_1_1TypedConstraint_ad604b85a13e3e3b1c01d1c40f678b751}{phys::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_aa015e640a680f54edd0906b6ec684a99}{phys::Generic6DofConstraint}, \hyperlink{classphys_1_1Generic6DofSpringConstraint_ad0a2d0c49fb622095f18d48b1e52f904}{phys::Generic6DofSpringConstraint}, and \hyperlink{classphys_1_1HingeConstraint_a64804b6c98ed930f9acb05414defcdcc}{phys::HingeConstraint}.
+
+\hypertarget{classphys_1_1DualTransformConstraint_a0e074a05eeb464ebda332ac2f09c9412}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!SetPivotALocation@{SetPivotALocation}}
+\index{SetPivotALocation@{SetPivotALocation}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{SetPivotALocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::DualTransformConstraint::SetPivotALocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_a0e074a05eeb464ebda332ac2f09c9412}
+
+
+Set The relative location of the pivot from ActorA's Center of gravity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The New value for PivotA\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformA. 
+
+Implements \hyperlink{classphys_1_1TypedConstraint_aaa301fee77aa6e20ab202f604f0e9518}{phys::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_a488cc8ca89d73ddeac7e9928354ca53d}{phys::Generic6DofConstraint}, and \hyperlink{classphys_1_1HingeConstraint_a6baadfc607e0d7c2167c9201bd4f8bdf}{phys::HingeConstraint}.
+
+
+
+Definition at line 343 of file constraint.h.
+
+\hypertarget{classphys_1_1DualTransformConstraint_ab602e9a72e490dcb34bb6ad2042a2341}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!SetPivotARotation@{SetPivotARotation}}
+\index{SetPivotARotation@{SetPivotARotation}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{SetPivotARotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::DualTransformConstraint::SetPivotARotation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_ab602e9a72e490dcb34bb6ad2042a2341}
+
+
+Set The relative rotation of ActorA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The new rotation amount for A\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformA 
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_af02e9aa94cf2bafbbd533372d9b69285}{phys::Generic6DofConstraint}.
+
+
+
+Definition at line 362 of file constraint.h.
+
+\hypertarget{classphys_1_1DualTransformConstraint_af2ff2bca0d94f113ef47a8dfddeadb3a}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!SetPivotATransform@{SetPivotATransform}}
+\index{SetPivotATransform@{SetPivotATransform}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{SetPivotATransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::DualTransformConstraint::SetPivotATransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{TranA}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_af2ff2bca0d94f113ef47a8dfddeadb3a}
+
+
+Set the Position and Rotation using a \hyperlink{classphys_1_1Transform}{Transform}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TranA} & The new Position and rotation \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classphys_1_1Generic6DofConstraint_a6d6a3e092a98c4e689f001abb28bd3e6}{phys::Generic6DofConstraint}, and \hyperlink{classphys_1_1HingeConstraint_af6fd3ac147683eecb2c98c60c58f386c}{phys::HingeConstraint}.
+
+\hypertarget{classphys_1_1DualTransformConstraint_aa9e0ebd04572d18f344b701637270248}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!SetPivotBLocation@{SetPivotBLocation}}
+\index{SetPivotBLocation@{SetPivotBLocation}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{SetPivotBLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::DualTransformConstraint::SetPivotBLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_aa9e0ebd04572d18f344b701637270248}
+
+
+Set The relative location of the pivot from ActorB's Center of gravity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The New value for PivotB\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformB 
+
+Implements \hyperlink{classphys_1_1TypedConstraint_a518b3a40e517e21da8049e645a69fc96}{phys::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_ac5ea8b4e757db0a622df37a334df9ee4}{phys::Generic6DofConstraint}, and \hyperlink{classphys_1_1HingeConstraint_abaf055b50289aae35e7ea9f796677b18}{phys::HingeConstraint}.
+
+
+
+Definition at line 348 of file constraint.h.
+
+\hypertarget{classphys_1_1DualTransformConstraint_a6eb22ee671ccc51c16f04c65e1a05a9e}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!SetPivotBRotation@{SetPivotBRotation}}
+\index{SetPivotBRotation@{SetPivotBRotation}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{SetPivotBRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::DualTransformConstraint::SetPivotBRotation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_a6eb22ee671ccc51c16f04c65e1a05a9e}
+
+
+Set The relative rotation of ActorB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otation} & The new rotation amount for B\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformB 
+
+Reimplemented in \hyperlink{classphys_1_1Generic6DofConstraint_a3e5fe94b3035c21ad2a1b55c7f1becb6}{phys::Generic6DofConstraint}.
+
+
+
+Definition at line 367 of file constraint.h.
+
+\hypertarget{classphys_1_1DualTransformConstraint_acda6a28b585c52fd7da1e79d85f4cf53}{
+\index{phys::DualTransformConstraint@{phys::DualTransformConstraint}!SetPivotBTransform@{SetPivotBTransform}}
+\index{SetPivotBTransform@{SetPivotBTransform}!phys::DualTransformConstraint@{phys::DualTransformConstraint}}
+\paragraph[{SetPivotBTransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::DualTransformConstraint::SetPivotBTransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{TranB}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classphys_1_1DualTransformConstraint_acda6a28b585c52fd7da1e79d85f4cf53}
+
+
+Set the Position and Rotation using a \hyperlink{classphys_1_1Transform}{Transform}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TranB} & The new Position and rotation \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classphys_1_1Generic6DofConstraint_a5216ec1b5d67dd12971d58c5aa03a52f}{phys::Generic6DofConstraint}, and \hyperlink{classphys_1_1HingeConstraint_a79ef3dc47fa94a7a9f98f7934e786a6b}{phys::HingeConstraint}.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+constraint.h\end{DoxyCompactItemize}

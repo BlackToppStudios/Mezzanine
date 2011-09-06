@@ -10,21 +10,20 @@ Stores internal data for the SCeneManager to keep it from cluttering the Header 
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1internal_1_1SceneManagerData_a40d62405f637531b7fd19b6c176c5a50}{
-void {\bfseries DisableSky} (\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ScenePTR)}
-\label{classphys_1_1internal_1_1SceneManagerData_a40d62405f637531b7fd19b6c176c5a50}
-
-\item 
-\hypertarget{classphys_1_1internal_1_1SceneManagerData_aedd570da5bdb027ec976e3c29137474c}{
-{\bfseries SceneManagerData} (\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$\_\-SM)}
-\label{classphys_1_1internal_1_1SceneManagerData_aedd570da5bdb027ec976e3c29137474c}
-
-\item 
+void \hyperlink{classphys_1_1internal_1_1SceneManagerData_a40d62405f637531b7fd19b6c176c5a50}{DisableSky} (\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ScenePTR)
+\begin{DoxyCompactList}\small\item\em Disable the sky ina given scenemanager. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1internal_1_1SceneManagerData_aedd570da5bdb027ec976e3c29137474c}{SceneManagerData} (\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$\_\-SM)
+\begin{DoxyCompactList}\small\item\em Create One of these, the data every scenemanager needs. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1internal_1_1SceneManagerData_a0e4db14de622e028e5bea383d37099ed}{
 void \hyperlink{classphys_1_1internal_1_1SceneManagerData_a0e4db14de622e028e5bea383d37099ed}{UpdateSkyCache} (\hyperlink{classphys_1_1SceneManager_a91dd086aabaab926d070c65fc14828d6}{SceneManager::SkyMethod} FreshSkyMethod=SceneManager::SkyNone, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} FreshSkyMaterialName=\char`\"{}\char`\"{}, \hyperlink{classphys_1_1Quaternion}{Quaternion} FreshSkyOrientation=\hyperlink{classphys_1_1Quaternion}{Quaternion}(0, 0, 0, 0), \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} FreshSkyMaterialGroupName=\char`\"{}\char`\"{}, bool FreshSkyDrawnFirst=false, \hyperlink{classphys_1_1Plane}{Plane} FreshSkyThePlane=\hyperlink{classphys_1_1Plane}{Plane}(\hyperlink{classphys_1_1Vector3}{Vector3}(0, 0, 0), 0))}
 \label{classphys_1_1internal_1_1SceneManagerData_a0e4db14de622e028e5bea383d37099ed}
 
-\begin{DoxyCompactList}\small\item\em update \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em update the information that is cached about the sky \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_ae6beb4cb09d964ec3e02d8a3e28c13a7}{
+\hyperlink{classphys_1_1internal_1_1SceneManagerData_ae6beb4cb09d964ec3e02d8a3e28c13a7}{$\sim$SceneManagerData} ()}
+\label{classphys_1_1internal_1_1SceneManagerData_ae6beb4cb09d964ec3e02d8a3e28c13a7}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -79,6 +78,56 @@ bool \hyperlink{classphys_1_1internal_1_1SceneManagerData_a26e836bd8dd96a85ff9a9
 Stores internal data for the SCeneManager to keep it from cluttering the Header file. 
 
 Definition at line 62 of file scenemanager.cpp.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_aedd570da5bdb027ec976e3c29137474c}{
+\index{phys::internal::SceneManagerData@{phys::internal::SceneManagerData}!SceneManagerData@{SceneManagerData}}
+\index{SceneManagerData@{SceneManagerData}!phys::internal::SceneManagerData@{phys::internal::SceneManagerData}}
+\paragraph[{SceneManagerData}]{\setlength{\rightskip}{0pt plus 5cm}phys::internal::SceneManagerData::SceneManagerData (
+\begin{DoxyParamCaption}
+\item[{{\bf SceneManager} $\ast$}]{\_\-SM}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classphys_1_1internal_1_1SceneManagerData_aedd570da5bdb027ec976e3c29137474c}
+
+
+Create One of these, the data every scenemanager needs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \_\-SM} & A pointer to the scenemanager this with work with in general \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 142 of file scenemanager.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_a40d62405f637531b7fd19b6c176c5a50}{
+\index{phys::internal::SceneManagerData@{phys::internal::SceneManagerData}!DisableSky@{DisableSky}}
+\index{DisableSky@{DisableSky}!phys::internal::SceneManagerData@{phys::internal::SceneManagerData}}
+\paragraph[{DisableSky}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::SceneManagerData::DisableSky (
+\begin{DoxyParamCaption}
+\item[{{\bf SceneManager} $\ast$}]{ScenePTR}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classphys_1_1internal_1_1SceneManagerData_a40d62405f637531b7fd19b6c176c5a50}
+
+
+Disable the sky ina given scenemanager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ScenePTR} & A pointer to the scenmanager. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 101 of file scenemanager.cpp.
 
 
 

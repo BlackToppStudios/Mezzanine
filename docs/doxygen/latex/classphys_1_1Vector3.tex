@@ -20,11 +20,11 @@ This is used to represent a point in space, or a vector through space.
 \begin{DoxyCompactList}\small\item\em This return the distance between this point and another. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a1f5f1ad3c7e67a1e88b461d2b2ea5a8d}{DotProduct} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec) const 
 \begin{DoxyCompactList}\small\item\em This is used to calculate the dotproduct of this and another vector. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}{ExtractBulletVector3} (btVector3 temp)
+void \hyperlink{classphys_1_1Vector3_a6095aa79d2c288527fc4d7d7b69abf88}{ExtractBulletVector3} (const btVector3 \&temp)
 \begin{DoxyCompactList}\small\item\em Copies an existing Bullet vector3. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Vector3_aa12021e9cdc092c8628ced1c5910c04c}{ExtractcAudioVector3} (cAudio::cVector3 temp)
+void \hyperlink{classphys_1_1Vector3_ab71c1de00db3a6ae36f4bb383c061e87}{ExtractcAudioVector3} (const cAudio::cVector3 \&temp)
 \begin{DoxyCompactList}\small\item\em Copies an existing cAudio vector3. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}{ExtractOgreVector3} (Ogre::Vector3 temp)
+void \hyperlink{classphys_1_1Vector3_ac4a2cee593f8f64b1c4dde24a2511ad8}{ExtractOgreVector3} (const Ogre::Vector3 \&temp)
 \begin{DoxyCompactList}\small\item\em Copies an existing Ogre vector3. \item\end{DoxyCompactList}\item 
 btVector3 \hyperlink{classphys_1_1Vector3_adf4129007ee41f5a03e97502f2df9c41}{GetBulletVector3} () const 
 \begin{DoxyCompactList}\small\item\em Gets a Bullet vector3. \item\end{DoxyCompactList}\item 
@@ -380,15 +380,15 @@ This is the dotproduct of this vector and vec
 
 Definition at line 259 of file vector3.cpp.
 
-\hypertarget{classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}{
+\hypertarget{classphys_1_1Vector3_a6095aa79d2c288527fc4d7d7b69abf88}{
 \index{phys::Vector3@{phys::Vector3}!ExtractBulletVector3@{ExtractBulletVector3}}
 \index{ExtractBulletVector3@{ExtractBulletVector3}!phys::Vector3@{phys::Vector3}}
 \paragraph[{ExtractBulletVector3}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::ExtractBulletVector3 (
 \begin{DoxyParamCaption}
-\item[{btVector3}]{temp}
+\item[{const btVector3 \&}]{temp}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}
+\label{classphys_1_1Vector3_a6095aa79d2c288527fc4d7d7b69abf88}
 
 
 Copies an existing Bullet vector3. 
@@ -402,15 +402,15 @@ This function will copy the values stored in an existing Bullet vector3 and set 
 
 Definition at line 316 of file vector3.cpp.
 
-\hypertarget{classphys_1_1Vector3_aa12021e9cdc092c8628ced1c5910c04c}{
+\hypertarget{classphys_1_1Vector3_ab71c1de00db3a6ae36f4bb383c061e87}{
 \index{phys::Vector3@{phys::Vector3}!ExtractcAudioVector3@{ExtractcAudioVector3}}
 \index{ExtractcAudioVector3@{ExtractcAudioVector3}!phys::Vector3@{phys::Vector3}}
 \paragraph[{ExtractcAudioVector3}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::ExtractcAudioVector3 (
 \begin{DoxyParamCaption}
-\item[{cAudio::cVector3}]{temp}
+\item[{const cAudio::cVector3 \&}]{temp}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1Vector3_aa12021e9cdc092c8628ced1c5910c04c}
+\label{classphys_1_1Vector3_ab71c1de00db3a6ae36f4bb383c061e87}
 
 
 Copies an existing cAudio vector3. 
@@ -424,15 +424,15 @@ This function will copy the values stored in an existing cAudio vector3 and set 
 
 Definition at line 348 of file vector3.cpp.
 
-\hypertarget{classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}{
+\hypertarget{classphys_1_1Vector3_ac4a2cee593f8f64b1c4dde24a2511ad8}{
 \index{phys::Vector3@{phys::Vector3}!ExtractOgreVector3@{ExtractOgreVector3}}
 \index{ExtractOgreVector3@{ExtractOgreVector3}!phys::Vector3@{phys::Vector3}}
 \paragraph[{ExtractOgreVector3}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::ExtractOgreVector3 (
 \begin{DoxyParamCaption}
-\item[{Ogre::Vector3}]{temp}
+\item[{const Ogre::Vector3 \&}]{temp}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}
+\label{classphys_1_1Vector3_ac4a2cee593f8f64b1c4dde24a2511ad8}
 
 
 Copies an existing Ogre vector3. 

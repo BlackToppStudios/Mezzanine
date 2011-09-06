@@ -1,138 +1,117 @@
-\label{todo__todo000034}
-\hypertarget{todo__todo000034}{}
+\label{todo__todo000032}
+\hypertarget{todo__todo000032}{}
  
 \begin{DoxyDescription}
 \item[Page \hyperlink{mainloop1}{Main Loop Structure and Flow} ]create a lighting manager and put this in there 
-\end{DoxyDescription}
-
-\label{todo__todo000001}
-\hypertarget{todo__todo000001}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1ActorRigid_a78f2f2dfc8b35f13e9a7680189bbdd48}{phys::ActorRigid::CreateShapeFromMeshDynamic}(short unsigned int Accuracy=1, bool UseAllSubmeshes=false) ]-\/ Check for thread safety 
 \end{DoxyDescription}
 
 \label{todo__todo000002}
 \hypertarget{todo__todo000002}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1ActorRigid_a5adfa6199955f9c0de4e0af54aeb96f6}{phys::ActorRigid::CreateShapeFromMeshStatic}(bool UseAllSubmeshes=false) ]-\/ Check for thread safety 
-\end{DoxyDescription}
-
-\label{todo__todo000003}
-\hypertarget{todo__todo000003}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1ActorTerrain_aaed245d7af66230aaabb02a84e891bb0}{phys::ActorTerrain::CreateShapeFromMeshStatic}(bool UseAllSubmeshes=false) ]-\/ Check for thread safety 
-\end{DoxyDescription}
-
-\label{todo__todo000004}
-\hypertarget{todo__todo000004}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1AreaEffect_a169a8cba1c9aec84573788dff001fb31}{phys::AreaEffect::CreateGraphicsBox}(const String \&MaterialName) ]The HalfExtents returned here includes scaling, should account for that so weird scaling sync issues don't occur. 
-\end{DoxyDescription}
-
-\label{todo__todo000006}
-\hypertarget{todo__todo000006}{}
- 
-\begin{DoxyDescription}
 \item[Class \hyperlink{classphys_1_1Camera}{phys::Camera} ]Fix all the extra occurences of the word Camera in Function names on the camera. 
+\end{DoxyDescription}
+
+\label{todo__todo000005}
+\hypertarget{todo__todo000005}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{namespacephys_1_1crossplatform_a7c0ef3957423db484714c3356603c09d}{phys::crossplatform::RenderPhysWorld}() ]TODO: RenderPhysWorld needs the context on non-\/windows builds 
 \end{DoxyDescription}
 
 \label{todo__todo000007}
 \hypertarget{todo__todo000007}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{namespacephys_1_1crossplatform_a7c0ef3957423db484714c3356603c09d}{phys::crossplatform::RenderPhysWorld}() ]TODO: RenderPhysWorld needs the context on non-\/windows builds 
+\item[Member \hyperlink{classphys_1_1EventManager_a018b36588bf2a2e90536e64be060d6fc}{phys::EventManager::EventManager}() ]TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock 
 \end{DoxyDescription}
 
-\label{todo__todo000009}
-\hypertarget{todo__todo000009}{}
+\label{todo__todo000008}
+\hypertarget{todo__todo000008}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1EventManager_a018b36588bf2a2e90536e64be060d6fc}{phys::EventManager::EventManager}() ]TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock 
+\item[Member \hyperlink{classphys_1_1GameWindow_a92e705ba782ff87dacd9ce487141fcab}{phys::GameWindow::setRenderHeight}(const Whole \&Height) ]TODO: Need to attempt to update resolution here 
 \end{DoxyDescription}
 
 \label{todo__todo000010}
 \hypertarget{todo__todo000010}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1GameWindow_a92e705ba782ff87dacd9ce487141fcab}{phys::GameWindow::setRenderHeight}(const Whole \&Height) ]TODO: Need to attempt to update resolution here 
+\item[Member \hyperlink{classphys_1_1GameWindow_a35ecbf1cb77037d33671e0f879f46a30}{phys::GameWindow::setRenderResolution}(const Whole \&Width, const Whole \&Height) ]TODO: Need to attempt to update resolution here 
 \end{DoxyDescription}
 
-\label{todo__todo000012}
-\hypertarget{todo__todo000012}{}
+\label{todo__todo000009}
+\hypertarget{todo__todo000009}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1GameWindow_a35ecbf1cb77037d33671e0f879f46a30}{phys::GameWindow::setRenderResolution}(const Whole \&Width, const Whole \&Height) ]TODO: Need to attempt to update resolution here 
+\item[Member \hyperlink{classphys_1_1GameWindow_a4a6087112f5a958d153fc74bc03897ba}{phys::GameWindow::setRenderWidth}(const Whole \&Width) ]TODO: Need to attempt to update resolution here 
 \end{DoxyDescription}
 
 \label{todo__todo000011}
 \hypertarget{todo__todo000011}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1GameWindow_a4a6087112f5a958d153fc74bc03897ba}{phys::GameWindow::setRenderWidth}(const Whole \&Width) ]TODO: Need to attempt to update resolution here 
+\item[Member \hyperlink{classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}{phys::internal::Line3D::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen 
 \end{DoxyDescription}
 
 \label{todo__todo000013}
 \hypertarget{todo__todo000013}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}{phys::internal::Line3D::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen 
-\end{DoxyDescription}
-
-\label{todo__todo000015}
-\hypertarget{todo__todo000015}{}
- 
-\begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1LineGroup_a141db62ea17d94b9bce421e5df5a8d89}{phys::LineGroup::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: In the future we will add a break in the line segment chain when this is called. 
-\end{DoxyDescription}
-
-\label{todo__todo000016}
-\hypertarget{todo__todo000016}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{phys::LineGroup::drawLines}(void) ]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. 
 \end{DoxyDescription}
 
 \label{todo__todo000014}
 \hypertarget{todo__todo000014}{}
  
 \begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{phys::LineGroup::drawLines}(void) ]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. 
+\end{DoxyDescription}
+
+\label{todo__todo000012}
+\hypertarget{todo__todo000012}{}
+ 
+\begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1LineGroup_a676039a6beec56d24c631e9da5fd7e76}{phys::LineGroup::LineGroup}(World $\ast$Parent\_\-) ]TODO: This class really should support rotation, the underlying implementation does. 
+\end{DoxyDescription}
+
+\label{todo__todo000015}
+\hypertarget{todo__todo000015}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1MeshManager_a54baf240a29b9f9e5d83ae1e8ffdcff4}{phys::MeshManager::CreateCylinderMesh}(const String \&MeshName, const String \&MaterialName, const Vector3 \&HalfExtents, const Vector3 \&AxisOrientation, const Whole \&CircleRes=16, const Whole \&Segments=1) ]These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed. 
+\end{DoxyDescription}
+
+\label{todo__todo000016}
+\hypertarget{todo__todo000016}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{phys::PhysicsManager::DoMainLoopItems}(const Real \&TimeElapsed) ]This chunk of code won't take the upcoming terrain system into account, and should be modified accordingly 
+\end{DoxyDescription}
+
+\label{todo__todo000004}
+\hypertarget{todo__todo000004}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1Point2PointConstraint_a556c4610b62c075efaa9d246cf3d2dc2}{phys::Point2PointConstraint::SetTAU}(Real TAU) ]Research this more carefully 
 \end{DoxyDescription}
 
 \label{todo__todo000017}
 \hypertarget{todo__todo000017}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1MeshGenerator_a7d7372e91e3d039c656f78be3cb5b951}{phys::MeshGenerator::CreateCylinderMesh}(const String \&MeshName, const String \&MaterialName, const Vector3 \&HalfExtents, const Vector3 \&AxisOrientation, const Whole \&CircleRes=16, const Whole \&Segments=1) ]These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed. 
+\item[Member \hyperlink{classphys_1_1Quaternion_a9246247b7b28f19839148415a7ddeb96}{phys::Quaternion::Quaternion}(const Real \&Angle, const Vector3 \&Axis) ]Need to find a clean way to wrap sin and cos functions. Also may want to make a radian class/datatype. 
 \end{DoxyDescription}
 
 \label{todo__todo000018}
 \hypertarget{todo__todo000018}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{phys::PhysicsManager::DoMainLoopItems}(const Real \&TimeElapsed) ]This chunk of code won't take the upcoming terrain system into account, and should be modified accordingly 
+\item[Member \hyperlink{classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}{phys::Ray::GetNormal}() const  ]discuss the merits throwing an error here. 
 \end{DoxyDescription}
 
 \label{todo__todo000019}
 \hypertarget{todo__todo000019}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1Quaternion_a9246247b7b28f19839148415a7ddeb96}{phys::Quaternion::Quaternion}(const Real \&Angle, const Vector3 \&Axis) ]Need to find a clean way to wrap sin and cos functions. Also may want to make a radian class/datatype. 
-\end{DoxyDescription}
-
-\label{todo__todo000020}
-\hypertarget{todo__todo000020}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}{phys::Ray::GetNormal}() const  ]discuss the merits throwing an error here. 
-\end{DoxyDescription}
-
-\label{todo__todo000021}
-\hypertarget{todo__todo000021}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1RayQueryTool_af4bba2ed8f201d4b0e9a05728d8bd1b6}{phys::RayQueryTool::GetFirstActorOnRayByAABB}(Ray ActorRay, Whole ObjectFlags) ]TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. 
@@ -142,108 +121,131 @@ TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested 
 TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account 
 \end{DoxyDescription}
 
+\label{todo__todo000022}
+\hypertarget{todo__todo000022}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1SceneManager_a5a2d68ab38308f9c6ac4b659cae36dee}{phys::SceneManager::DestroyNode}(WorldNode $\ast$node) ]TODO: create SceneManager::GetNumFreeNodes 
+\end{DoxyDescription}
+
+\label{todo__todo000003}
+\hypertarget{todo__todo000003}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1StaticMeshCollisionShape_a1de8ba7849a90368dd601d10917c1a0c}{phys::StaticMeshCollisionShape::StaticMeshCollisionShape}(const String \&Name, btBvhTriangleMeshShape $\ast$BulletShape) ]May need to create a btScaledBvhTriangleMeshShape for scaling this shape appropriately. 
+\end{DoxyDescription}
+
+\label{todo__todo000023}
+\hypertarget{todo__todo000023}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1UI_1_1Button_a3b51fa981fdf869240bff082bafb56a9}{phys::UI::Button::BindActivationKeyOrButton}(const MetaCode::InputCode \&Code) ]Throw an error? 
+\end{DoxyDescription}
+
 \label{todo__todo000024}
 \hypertarget{todo__todo000024}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1SceneManager_a5a2d68ab38308f9c6ac4b659cae36dee}{phys::SceneManager::DestroyNode}(WorldNode $\ast$node) ]TODO: create SceneManager::GetNumFreeNodes 
+\item[Member \hyperlink{classphys_1_1UI_1_1ButtonListBox_a43ac98232280969a8ce2641d36658808}{phys::UI::ButtonListBox::ButtonListBox}(ConstString \&name, const RenderableRect \&Rect, const Real \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollStyle, Layer $\ast$PLayer) ]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. 
 \end{DoxyDescription}
 
 \label{todo__todo000025}
 \hypertarget{todo__todo000025}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1UI_1_1Button_a3b51fa981fdf869240bff082bafb56a9}{phys::UI::Button::BindActivationKeyOrButton}(const MetaCode::InputCode \&Code) ]Throw an error? 
+\item[Member \hyperlink{classphys_1_1UI_1_1ButtonListBox_aa47d94d75c58e3408a97766eace2c20e}{phys::UI::ButtonListBox::VertScroll} ]Third instance of needing to include the namespace in the declaration seemingly needlessly. 
 \end{DoxyDescription}
 
 \label{todo__todo000026}
 \hypertarget{todo__todo000026}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1UI_1_1ButtonListBox_a43ac98232280969a8ce2641d36658808}{phys::UI::ButtonListBox::ButtonListBox}(ConstString \&name, const RenderableRect \&Rect, const Real \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollStyle, Layer $\ast$PLayer) ]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. 
+\item[Member \hyperlink{classphys_1_1UI_1_1CheckBox_a7b670d93f119193283ec78b94f842429}{phys::UI::CheckBox::UncheckedSet} ]Fix the issue with all strings being const, so we can resume use of typedefs here. 
 \end{DoxyDescription}
 
 \label{todo__todo000027}
 \hypertarget{todo__todo000027}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1UI_1_1ButtonListBox_aa47d94d75c58e3408a97766eace2c20e}{phys::UI::ButtonListBox::VertScroll} ]Third instance of needing to include the namespace in the declaration seemingly needlessly. 
-\end{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1UI_1_1ListBox_a2c61aa8ff40ff66eb45388a4e6cca5b2}{phys::UI::ListBox::ListBox}(ConstString \&name, const RenderableRect \&Rect, const UI::ScrollbarStyle \&ScrollStyle, Layer $\ast$PLayer) ]Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. 
 
-\label{todo__todo000028}
-\hypertarget{todo__todo000028}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1UI_1_1CheckBox_a7b670d93f119193283ec78b94f842429}{phys::UI::CheckBox::UncheckedSet} ]Fix the issue with all strings being const, so we can resume use of typedefs here. 
+Fourth instance of needing to include the namespace in the declaration seemingly needlessly. 
 \end{DoxyDescription}
 
 \label{todo__todo000029}
 \hypertarget{todo__todo000029}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1UI_1_1ListBox_a01fe1d84b537fac03244a023406a839e}{phys::UI::ListBox::ListBox}(ConstString \&name, const RenderableRect \&Rect, const Real \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollStyle, Layer $\ast$PLayer) ]Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. 
+\item[Member \hyperlink{classphys_1_1UI_1_1ListBox_ab2b012b345ff4bb1a5b228fef88d895c}{phys::UI::ListBox::VertScroll} ]Third instance of needing to include the namespace in the declaration seemingly needlessly. 
+\end{DoxyDescription}
 
-Fourth instance of needing to include the namespace in the declaration seemingly needlessly. 
+\label{todo__todo000030}
+\hypertarget{todo__todo000030}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1UI_1_1Screen_ad3b73f039f840fd2b2dc20219c428e9d}{phys::UI::Screen::CreateLayer}(const String \&Name, Whole Zorder) ]add an exception here or maybe log entry, some notification it failed. 
 \end{DoxyDescription}
 
 \label{todo__todo000031}
 \hypertarget{todo__todo000031}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1UI_1_1ListBox_ab2b012b345ff4bb1a5b228fef88d895c}{phys::UI::ListBox::VertScroll} ]Third instance of needing to include the namespace in the declaration seemingly needlessly. 
-\end{DoxyDescription}
-
-\label{todo__todo000032}
-\hypertarget{todo__todo000032}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1UI_1_1Screen_ad3b73f039f840fd2b2dc20219c428e9d}{phys::UI::Screen::CreateLayer}(const String \&Name, Whole Zorder) ]add an exception here or maybe log entry, some notification it failed. 
+\item[Member \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_af75c87ada3a1bac3dda208485ebc5f94}{phys::UI::ScrolledCellGrid::Show}() ]Currently this and SetVisible disregard auto-\/hides. Something should be implemented to account for that. 
 \end{DoxyDescription}
 
 \label{todo__todo000033}
 \hypertarget{todo__todo000033}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_af75c87ada3a1bac3dda208485ebc5f94}{phys::UI::ScrolledCellGrid::Show}() ]Currently this and SetVisible disregard auto-\/hides. Something should be implemented to account for that. 
-\end{DoxyDescription}
-
-\label{todo__todo000035}
-\hypertarget{todo__todo000035}{}
- 
-\begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1WorldNode_a3c8447cd6de0af06a6004cdd968671f0}{phys::WorldNode::SetAutoTracking}(WorldNode $\ast$node, Vector3 Offset=Vector3()) ]TODO: The WorldNode Does not Correctly Serialize AutoTracking. 
-\end{DoxyDescription}
-
-\label{todo__todo000046}
-\hypertarget{todo__todo000046}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}{phys::xml::Attribute::AsDouble}() const  ]Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
-\end{DoxyDescription}
-
-\label{todo__todo000047}
-\hypertarget{todo__todo000047}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}{phys::xml::Attribute::AsFloat}() const  ]Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
 \end{DoxyDescription}
 
 \label{todo__todo000044}
 \hypertarget{todo__todo000044}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}{phys::xml::Attribute::AsInt}() const  ]Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
+\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}{phys::xml::Attribute::AsDouble}() const  ]Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
 \end{DoxyDescription}
 
 \label{todo__todo000045}
 \hypertarget{todo__todo000045}{}
  
 \begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}{phys::xml::Attribute::AsFloat}() const  ]Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
+\end{DoxyDescription}
+
+\label{todo__todo000042}
+\hypertarget{todo__todo000042}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}{phys::xml::Attribute::AsInt}() const  ]Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
+\end{DoxyDescription}
+
+\label{todo__todo000043}
+\hypertarget{todo__todo000043}{}
+ 
+\begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1xml_1_1Attribute_ad00ec5857fc4afcda892a0057419a9a0}{phys::xml::Attribute::AsUint}() const  ]Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
+\end{DoxyDescription}
+
+\label{todo__todo000039}
+\hypertarget{todo__todo000039}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_af9b12723a227b833d7f8986a524b0e48}{phys::xml::Attribute::SetValue}(T rhs) ]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. 
 \end{DoxyDescription}
 
 \label{todo__todo000036}
 \hypertarget{todo__todo000036}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a289ac36b218f3912224fd904ccade1ed}{phys::xml::Attribute::SetValue}(unsigned int rhs) ]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. 
+\end{DoxyDescription}
+
+\label{todo__todo000034}
+\hypertarget{todo__todo000034}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{phys::xml::Attribute::SetValue}(const char\_\-t $\ast$rhs) ]update this to make the error return code redundant and use an exception instead. 
@@ -255,25 +257,16 @@ Review for possiblity of buffer overflow.
 \hypertarget{todo__todo000037}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a693f7bd8015866c3c4979101c343ce50}{phys::xml::Attribute::SetValue}(int rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
-\label{todo__todo000039}
-\hypertarget{todo__todo000039}{}
- 
-\begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}{phys::xml::Attribute::SetValue}(double rhs) ]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. 
 \end{DoxyDescription}
 
-\label{todo__todo000040}
-\hypertarget{todo__todo000040}{}
+\label{todo__todo000035}
+\hypertarget{todo__todo000035}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}{phys::xml::Attribute::SetValue}(bool rhs) ]update this to make the error return code redundant and use an exception instead. 
+\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a693f7bd8015866c3c4979101c343ce50}{phys::xml::Attribute::SetValue}(int rhs) ]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. 
 \end{DoxyDescription}
@@ -282,27 +275,20 @@ Review for possiblity of buffer overflow.
 \hypertarget{todo__todo000038}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a289ac36b218f3912224fd904ccade1ed}{phys::xml::Attribute::SetValue}(unsigned int rhs) ]update this to make the error return code redundant and use an exception instead. 
+\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}{phys::xml::Attribute::SetValue}(bool rhs) ]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. 
 \end{DoxyDescription}
 
-\label{todo__todo000041}
-\hypertarget{todo__todo000041}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_af9b12723a227b833d7f8986a524b0e48}{phys::xml::Attribute::SetValue}(T rhs) ]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. 
-\end{DoxyDescription}
-
-\label{todo__todo000050}
-\hypertarget{todo__todo000050}{}
+\label{todo__todo000048}
+\hypertarget{todo__todo000048}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1xml_1_1Node_af2a9ac5c4e3252dca0e17720de093a9a}{phys::xml::Node::FirstElementByPath}(const char\_\-t $\ast$Path, char\_\-t delimiter= '/') const  ]Investigate this more deeply. 
 \end{DoxyDescription}
 
-\label{todo__todo000048}
-\hypertarget{todo__todo000048}{}
+\label{todo__todo000046}
+\hypertarget{todo__todo000046}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1xml_1_1Node_affc4d9cc0ea7c89bac58d91a432af2ef}{phys::xml::Node::InsertChildAfter}(NodeType Type, const Node \&node) ]Not all nodes can be added to other nodes, we need to figure it out and put it here. 
@@ -310,15 +296,15 @@ Review for possiblity of buffer overflow.
 Not all nodes can be added to other nodes, we need to figure it out and put it here. 
 \end{DoxyDescription}
 
-\label{todo__todo000043}
-\hypertarget{todo__todo000043}{}
+\label{todo__todo000041}
+\hypertarget{todo__todo000041}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1xml_1_1Node_a691684896ab5d29a634415e745aaec7a}{phys::xml::Node::InsertChildBefore}(NodeType Type, const Node \&node) ]Not all nodes can be added to other nodes, we need to figure it out and put it here. 
 \end{DoxyDescription}
 
-\label{todo__todo000042}
-\hypertarget{todo__todo000042}{}
+\label{todo__todo000040}
+\hypertarget{todo__todo000040}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}{phys::xml::Node::SetValue}(const char\_\-t $\ast$rhs) ]update this to make the error return code redundant and use an exception instead. 

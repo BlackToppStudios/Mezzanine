@@ -93,6 +93,8 @@ Inheritance diagram for phys::ActorSoftPhysicsSettings:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorSoftPhysicsSettings.html#a4b5f0d9f1f4c36b3d429528cfbacf35c">ActorSoftPhysicsSettings</a> (<a class="el" href="classphys_1_1ActorSoft.html">ActorSoft</a> *Actor, btSoftBody *PhysicsObject)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a4b5f0d9f1f4c36b3d429528cfbacf35c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorSoftPhysicsSettings.html#a76c3dfd03a822463d577f76fc9095a89">SetCollisionShape</a> (<a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *Shape)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collision shape to be used.  <a href="#a76c3dfd03a822463d577f76fc9095a89"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9728c78b1bd9a7c1bc2c35619bc01a4a"></a><!-- doxytag: member="phys::ActorSoftPhysicsSettings::~ActorSoftPhysicsSettings" ref="a9728c78b1bd9a7c1bc2c35619bc01a4a" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorSoftPhysicsSettings.html#a9728c78b1bd9a7c1bc2c35619bc01a4a">~ActorSoftPhysicsSettings</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
@@ -109,7 +111,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <div class="textblock"><p>This is a helper class for configuring physics settings of an <a class="el" href="classphys_1_1ActorSoft.html" title="This is the actor class for Soft Objects.">ActorSoft</a>. </p>
 <p>This class contains functions for the configuring of physics specific settings of an <a class="el" href="classphys_1_1ActorSoft.html" title="This is the actor class for Soft Objects.">ActorSoft</a>. This class can only configure the ActorSofts physics. For configuring actor graphics, see <a class="el" href="classphys_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00273">273</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00291">291</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4b5f0d9f1f4c36b3d429528cfbacf35c"></a><!-- doxytag: member="phys::ActorSoftPhysicsSettings::ActorSoftPhysicsSettings" ref="a4b5f0d9f1f4c36b3d429528cfbacf35c" args="(ActorSoft *Actor, btSoftBody *PhysicsObject)" -->
 <div class="memitem">
@@ -145,7 +147,37 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00292">292</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00332">332</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a76c3dfd03a822463d577f76fc9095a89"></a><!-- doxytag: member="phys::ActorSoftPhysicsSettings::SetCollisionShape" ref="a76c3dfd03a822463d577f76fc9095a89" args="(CollisionShape *Shape)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ActorSoftPhysicsSettings::SetCollisionShape </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *&#160;</td>
+          <td class="paramname"><em>Shape</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the collision shape to be used. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Shape</td><td>The shape to be applied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classphys_1_1ActorBasePhysicsSettings.html#a1509c654724bcb6499ec1e5058ab5185">phys::ActorBasePhysicsSettings</a>.</p>
+
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00345">345</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -169,6 +201,6 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:29 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:22 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

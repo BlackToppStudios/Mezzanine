@@ -597,7 +597,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00533"></a>00533     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1EventManager.html#a9556b702c4b84bc8e49f1491104b688f" title="Removes the First Collision Event From the que without looking at it.">EventManager::RemoveNextCollisionEvent</a>()
 <a name="l00534"></a>00534         { this-&gt;<a class="code" href="classphys_1_1EventManager.html#a486c1173a2c1a64885bfdbe7ca267611" title="Returns a pointer to the Next kind event of the Specified type, and removes it from the Que...">RemoveNextSpecificEvent</a>(<a class="code" href="classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5">EventBase::Collision</a>); }
 <a name="l00535"></a><a class="code" href="classphys_1_1EventManager.html#a9556b702c4b84bc8e49f1491104b688f">00535</a> 
-<a name="l00536"></a>00536     std::list&lt;EventCollision*&gt;* <a class="code" href="classphys_1_1EventManager.html#a1881421e075a5965d6d5a0678f93ad9a" title="This returns a complete list of all the Render Time events.">EventManager::GetAllCollisionEvents</a>()
+<a name="l00536"></a>00536     std::list&lt;EventCollision*&gt;* <a class="code" href="classphys_1_1EventManager.html#a1881421e075a5965d6d5a0678f93ad9a" title="This returns a complete list of all the Collision Events.">EventManager::GetAllCollisionEvents</a>()
 <a name="l00537"></a>00537         { <span class="keywordflow">return</span> (std::list&lt;EventCollision*&gt;*)this-&gt;<a class="code" href="classphys_1_1EventManager.html#a300e537d27cd53ac8276438d4c91a3f6" title="This returns a complete list of all the specified events.">GetAllSpecificEvents</a>(<a class="code" href="classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5">EventBase::Collision</a>); }
 <a name="l00538"></a><a class="code" href="classphys_1_1EventManager.html#a1881421e075a5965d6d5a0678f93ad9a">00538</a> 
 <a name="l00539"></a>00539 <span class="comment"></span>
@@ -829,6 +829,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:19 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -95,6 +95,9 @@ namespace phys
             /// @brief Pointer for the Ogre Scenemanager, where this manager gets it's functionality.
             Ogre::SceneManager* OgreManager;
 
+            /// @internal
+            /// @brief Disable the sky ina given scenemanager
+            /// @param ScenePTR A pointer to the scenmanager.
             void DisableSky(SceneManager* ScenePTR)
             {
                 switch(ActiveSky)
@@ -115,7 +118,7 @@ namespace phys
             }
 
             /// @internal
-            /// @brief update
+            /// @brief update the information that is cached about the sky
             void UpdateSkyCache(
                             SceneManager::SkyMethod FreshSkyMethod = SceneManager::SkyNone,
                             String FreshSkyMaterialName = "",
@@ -133,6 +136,9 @@ namespace phys
                 SkyThePlane=FreshSkyThePlane;
             }
 
+            /// @internal
+            /// @brief Create One of these, the data every scenemanager needs.
+            /// @param _SM A pointer to the scenemanager this with work with in general
             SceneManagerData(SceneManager* _SM):
                 SM(_SM),
                 ActiveSky(SceneManager::SkyNone),
@@ -147,6 +153,9 @@ namespace phys
 
             }
 
+
+            /// @internal
+            /// @brief Destructor
             ~SceneManagerData()
             {
                 Whole Counter = 0;

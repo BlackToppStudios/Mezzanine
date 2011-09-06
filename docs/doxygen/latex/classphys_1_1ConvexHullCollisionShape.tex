@@ -1,0 +1,237 @@
+\hypertarget{classphys_1_1ConvexHullCollisionShape}{
+\subsection{phys::ConvexHullCollisionShape Class Reference}
+\label{classphys_1_1ConvexHullCollisionShape}\index{phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}}
+}
+
+
+A simple convex shape built from a low number of points in local space.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for phys::ConvexHullCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classphys_1_1ConvexHullCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classphys_1_1ConvexHullCollisionShape_a8e47c0d697b143ecc978b368ffff2ec2}{AddPoint} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Point)
+\begin{DoxyCompactList}\small\item\em Adds a point to this shape. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ConvexHullCollisionShape_ae97e0336957d89ecb035c119c8f7629e}{ConvexHullCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const std::vector$<$ \hyperlink{classphys_1_1Vector3}{Vector3} $>$ \&Points)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ConvexHullCollisionShape_a2f33e11e85cfdd4fb6c848a472930522}{ConvexHullCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, btConvexHullShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ConvexHullCollisionShape_ac280ab9b121b379211a29569bb501ae3}{GetNumPoints} () const 
+\begin{DoxyCompactList}\small\item\em Gets the total number of points being stored in this shape. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ConvexHullCollisionShape_a42babaa53585ce146b12223d199f39b5}{GetPoint} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets a stored point in this ConvexHull. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CollisionShape_af3ba4fd8af5b9557f912d2f5ff35a588}{CollisionShape::ShapeType} \hyperlink{classphys_1_1ConvexHullCollisionShape_abba00848b751665f1c1b817ec7f5d8df}{GetType} () const 
+\item 
+virtual bool \hyperlink{classphys_1_1ConvexHullCollisionShape_a3c801a1deb1710b73d3f83380f33187e}{IsInside} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Tolorance) const 
+\begin{DoxyCompactList}\small\item\em Checks to see if a point in local space is inside this shape. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ConvexHullCollisionShape_a8977e6ec5c013bedd83c00f76e607820}{
+virtual \hyperlink{classphys_1_1ConvexHullCollisionShape_a8977e6ec5c013bedd83c00f76e607820}{$\sim$ConvexHullCollisionShape} ()}
+\label{classphys_1_1ConvexHullCollisionShape_a8977e6ec5c013bedd83c00f76e607820}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ConvexHullCollisionShape_a9ff411d77b4ba341f3bb130b3af6c0dc}{
+btConvexHullShape $\ast$ {\bfseries ConvexHullShape}}
+\label{classphys_1_1ConvexHullCollisionShape_a9ff411d77b4ba341f3bb130b3af6c0dc}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A simple convex shape built from a low number of points in local space. A convex hull is commonly used to generate a simple approximation of another, and more complicated, shape. Usually the number of points in a convex hull doesn't exceed 32. \par
+ \par
+ When a convex hull is generated automatically from an algorithm, the best way to think of the resulting shape in relation to the original shape is if you were to wrap a rubber band around it on one plane. Then do this for all planes and all surfaces. The resulting shape looks and behaves similar to that. 
+
+Definition at line 350 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ConvexHullCollisionShape_ae97e0336957d89ecb035c119c8f7629e}{
+\index{phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}!ConvexHullCollisionShape@{ConvexHullCollisionShape}}
+\index{ConvexHullCollisionShape@{ConvexHullCollisionShape}!phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}}
+\paragraph[{ConvexHullCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::ConvexHullCollisionShape::ConvexHullCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const std::vector$<$ {\bf Vector3} $>$ \&}]{Points}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1ConvexHullCollisionShape_ae97e0336957d89ecb035c119c8f7629e}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Points} & A vector of vector3's containing all the points in local space to construct this shape from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 427 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1ConvexHullCollisionShape_a2f33e11e85cfdd4fb6c848a472930522}{
+\index{phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}!ConvexHullCollisionShape@{ConvexHullCollisionShape}}
+\index{ConvexHullCollisionShape@{ConvexHullCollisionShape}!phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}}
+\paragraph[{ConvexHullCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::ConvexHullCollisionShape::ConvexHullCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btConvexHullShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1ConvexHullCollisionShape_a2f33e11e85cfdd4fb6c848a472930522}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 444 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1ConvexHullCollisionShape_a8e47c0d697b143ecc978b368ffff2ec2}{
+\index{phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}!AddPoint@{AddPoint}}
+\index{AddPoint@{AddPoint}!phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}}
+\paragraph[{AddPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ConvexHullCollisionShape::AddPoint (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConvexHullCollisionShape_a8e47c0d697b143ecc978b368ffff2ec2}
+
+
+Adds a point to this shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Point} & The location in local space to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 456 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1ConvexHullCollisionShape_ac280ab9b121b379211a29569bb501ae3}{
+\index{phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}!GetNumPoints@{GetNumPoints}}
+\index{GetNumPoints@{GetNumPoints}!phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}}
+\paragraph[{GetNumPoints}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::ConvexHullCollisionShape::GetNumPoints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConvexHullCollisionShape_ac280ab9b121b379211a29569bb501ae3}
+
+
+Gets the total number of points being stored in this shape. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the current number of points in this shape. 
+\end{DoxyReturn}
+
+
+Definition at line 467 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1ConvexHullCollisionShape_a42babaa53585ce146b12223d199f39b5}{
+\index{phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}!GetPoint@{GetPoint}}
+\index{GetPoint@{GetPoint}!phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}}
+\paragraph[{GetPoint}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ConvexHullCollisionShape::GetPoint (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConvexHullCollisionShape_a42babaa53585ce146b12223d199f39b5}
+
+
+Gets a stored point in this ConvexHull. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing the location in local space of the specified point. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the point desired. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 461 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1ConvexHullCollisionShape_abba00848b751665f1c1b817ec7f5d8df}{
+\index{phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} phys::ConvexHullCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConvexHullCollisionShape_abba00848b751665f1c1b817ec7f5d8df}
+Gets the type of Collision shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1PrimitiveCollisionShape_a16a167ec75ac95aa101b6a9b116e837d}{phys::PrimitiveCollisionShape}.
+
+
+
+Definition at line 477 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1ConvexHullCollisionShape_a3c801a1deb1710b73d3f83380f33187e}{
+\index{phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}!IsInside@{IsInside}}
+\index{IsInside@{IsInside}!phys::ConvexHullCollisionShape@{phys::ConvexHullCollisionShape}}
+\paragraph[{IsInside}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ConvexHullCollisionShape::IsInside (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location, }
+\item[{const {\bf Real} \&}]{Tolorance}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConvexHullCollisionShape_a3c801a1deb1710b73d3f83380f33187e}
+
+
+Checks to see if a point in local space is inside this shape. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not the specified point is inside the shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The specified point to perform the check. \\
+\hline
+{\em Tolorance} & The amount of leeway to give in the check. If the distance from the specified point is equal or less then the Tolorance provided then this will return true. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 472 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

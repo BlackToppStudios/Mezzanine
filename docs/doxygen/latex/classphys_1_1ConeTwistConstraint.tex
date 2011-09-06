@@ -1,0 +1,146 @@
+\hypertarget{classphys_1_1ConeTwistConstraint}{
+\subsection{phys::ConeTwistConstraint Class Reference}
+\label{classphys_1_1ConeTwistConstraint}\index{phys::ConeTwistConstraint@{phys::ConeTwistConstraint}}
+}
+
+
+{\ttfamily \#include $<$constraint.h$>$}
+
+Inheritance diagram for phys::ConeTwistConstraint:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classphys_1_1ConeTwistConstraint}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_af37bd328d20c466f3e004f2fd94d2f29}{
+{\bfseries ConeTwistConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vectorb, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionB)}
+\label{classphys_1_1ConeTwistConstraint_af37bd328d20c466f3e004f2fd94d2f29}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_ae50c1b840288356b0a1282d4de13d9ef}{
+{\bfseries ConeTwistConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionA)}
+\label{classphys_1_1ConeTwistConstraint_ae50c1b840288356b0a1282d4de13d9ef}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a892dfbedb388b833cc351e613ee0c3bb}{
+virtual void {\bfseries EnableMotor} (bool Enable)}
+\label{classphys_1_1ConeTwistConstraint_a892dfbedb388b833cc351e613ee0c3bb}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_af203041cf8e52374987b2e775bd1b4de}{
+virtual bool {\bfseries IsPassedSwingLimit} ()}
+\label{classphys_1_1ConeTwistConstraint_af203041cf8e52374987b2e775bd1b4de}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a44d9404a7a373da7015cbf2dc1084791}{
+virtual void {\bfseries SetAngularOnly} (bool AngularOnly)}
+\label{classphys_1_1ConeTwistConstraint_a44d9404a7a373da7015cbf2dc1084791}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a6cfac8d25468b5349be54982290f49a2}{
+virtual void {\bfseries SetDamping} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Damping)}
+\label{classphys_1_1ConeTwistConstraint_a6cfac8d25468b5349be54982290f49a2}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a96873cfeabf7e99f823ca63bb7173419}{
+virtual void {\bfseries SetFixThresh} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} FixThresh)}
+\label{classphys_1_1ConeTwistConstraint_a96873cfeabf7e99f823ca63bb7173419}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a8e12f2dc8335a4a89e5804b231b6e4a5}{
+virtual void {\bfseries SetLimit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} SwingSpan1, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} SwingSpan2, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Twistspan, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Softness=1.0, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} BiasFactor=0.3, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} RelaxationFactor=1.0)}
+\label{classphys_1_1ConeTwistConstraint_a8e12f2dc8335a4a89e5804b231b6e4a5}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a5c6febddfb033952e6eebc33aad4a583}{
+virtual void {\bfseries SetLimit} (int LimitIndex, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} LimitValue)}
+\label{classphys_1_1ConeTwistConstraint_a5c6febddfb033952e6eebc33aad4a583}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_aa2fe54dc8196b35fe118f35045dc0262}{
+virtual void {\bfseries SetMaxMotorImpulse} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxMotorImpulse)}
+\label{classphys_1_1ConeTwistConstraint_aa2fe54dc8196b35fe118f35045dc0262}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a9f4b67ef69ba8fe8ba8e587a7423487a}{
+virtual void {\bfseries SetMaxMotorImpulseNormalized} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxMotorImpulse)}
+\label{classphys_1_1ConeTwistConstraint_a9f4b67ef69ba8fe8ba8e587a7423487a}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a593a5660113c6d5f4bff19fb7ea1c5ec}{
+virtual void {\bfseries SetMotorTarget} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Quat)}
+\label{classphys_1_1ConeTwistConstraint_a593a5660113c6d5f4bff19fb7ea1c5ec}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a93de5088b8ce6ce997f202d627cf9314}{
+virtual void {\bfseries SetMotorTargetInConstraintSpace} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Quat)}
+\label{classphys_1_1ConeTwistConstraint_a93de5088b8ce6ce997f202d627cf9314}
+
+\item 
+virtual \hyperlink{classphys_1_1ConeTwistConstraint_a5909ff2028cbed6c13fd51dbd2b8d63d}{$\sim$ConeTwistConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual btTypedConstraint $\ast$ \hyperlink{classphys_1_1ConeTwistConstraint_a564246e0fabe2b0edb72c7080d7020ff}{GetConstraintBase} () const 
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a6bb25f6554b09cc9ce3afb7e1c46f074}{
+btConeTwistConstraint $\ast$ \hyperlink{classphys_1_1ConeTwistConstraint_a6bb25f6554b09cc9ce3afb7e1c46f074}{ConeTwist}}
+\label{classphys_1_1ConeTwistConstraint_a6bb25f6554b09cc9ce3afb7e1c46f074}
+
+\begin{DoxyCompactList}\small\item\em Bullet constraint that this class encapsulates. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is currently incomplete 
+
+Definition at line 404 of file constraint.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ConeTwistConstraint_a5909ff2028cbed6c13fd51dbd2b8d63d}{
+\index{phys::ConeTwistConstraint@{phys::ConeTwistConstraint}!$\sim$ConeTwistConstraint@{$\sim$ConeTwistConstraint}}
+\index{$\sim$ConeTwistConstraint@{$\sim$ConeTwistConstraint}!phys::ConeTwistConstraint@{phys::ConeTwistConstraint}}
+\paragraph[{$\sim$ConeTwistConstraint}]{\setlength{\rightskip}{0pt plus 5cm}virtual phys::ConeTwistConstraint::$\sim$ConeTwistConstraint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConeTwistConstraint_a5909ff2028cbed6c13fd51dbd2b8d63d}
+
+
+Class destructor. 
+
+The class destructor. 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1ConeTwistConstraint_a564246e0fabe2b0edb72c7080d7020ff}{
+\index{phys::ConeTwistConstraint@{phys::ConeTwistConstraint}!GetConstraintBase@{GetConstraintBase}}
+\index{GetConstraintBase@{GetConstraintBase}!phys::ConeTwistConstraint@{phys::ConeTwistConstraint}}
+\paragraph[{GetConstraintBase}]{\setlength{\rightskip}{0pt plus 5cm}virtual btTypedConstraint$\ast$ phys::ConeTwistConstraint::GetConstraintBase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ConeTwistConstraint_a564246e0fabe2b0edb72c7080d7020ff}
+Get the Bullet constraint that this class encapsulates. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the btTypedConstraint that stores the underlying constraint. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1TypedConstraint_ab3bd2baa58d3f0d812401cbf59159a8b}{phys::TypedConstraint}.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+constraint.h\end{DoxyCompactItemize}

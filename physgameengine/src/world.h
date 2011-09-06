@@ -45,7 +45,7 @@
  The Physgame Engine isn't really an engine. It is glue holding other code and libraries together. It is a series of other open source libraries (sometimes
  less user friendly, and almost always more sophistciated) that are held together in a single, hopefully, unchanging API. Others have attempted
  to do things like this before. Usually simple mistakes are made along the way that have huge negative impacts later in the design. A common mistake
- code is copy and pasted from open source projects with no plans for maintainability. This means that those projects get all the features and bugs
+ code is to copy and paste from open source projects with no plans for maintainability. This means that those projects get all the features and bugs
  from when they copied, without updates, new features and bugfixes since they started integrating the code. We too have copy and pasted, however we are
  keeping it up to date, and have a plan for upgrading each component we have brought in.
 
@@ -69,7 +69,7 @@
  To get the latest news on development checkout: http://gitorious.org/physgame
  Or check the webpage http://www.blacktoppstudios.com
 
- Here we will detail the engine structure and different classes and datatypes, but this needs an update.
+ Here we will detail the engine structure and different classes and datatypes, but some of these need an update.
 
  @section Engine Structure
   @subpage mainloop1 "Main Loop Flow"
@@ -81,25 +81,41 @@
   @subpage actorcontainer1 "Actor Container - Keeping track of our in game objects"
 
  @section Types Data Types
-  @ref phys::ColourValue
 
-  @ref phys::MetaCode "MetaCode - A unit of user input"
+  @subsection CompoundTypes Compound Data Type
 
-  @ref phys::Plane
+   @ref phys::ColourValue
 
-  @ref phys::Quaternion
+   @ref phys::MetaCode "MetaCode - A unit of user input"
 
-  @ref phys::Ray
+   @ref phys::Plane
 
-  @ref phys::Real
+   @ref phys::Quaternion
 
-  @ref phys::Vector2
+   @ref phys::Ray
 
-  @ref phys::Vector3
+   @ref phys::Transform
 
-  @ref phys::Vector3WActor
+   @ref phys::Vector2
 
-  @ref phys::Whole
+   @ref phys::Vector3
+
+   @ref phys::Vector3WActor
+
+  @subsection SimpleDataTypes Simple Data Types
+
+   @ref phys::Character
+
+   @ref phys::Integer
+
+   @ref phys::Real
+
+   @ref phys::String
+
+   @ref phys::Whole
+
+   @par There are also a variety of enumerations. Aspect Ratio...
+   @todo Fill out the Simple Data Types with all the enumerations.
 
  @section Sophisticated Sophisticated Systems
 
@@ -110,6 +126,8 @@
   @ref phys::GraphicsManager
 
   @ref XMLManual "phys::XML Manual"
+
+  @ref Serialization
 
  @section Licensing Licensing Information
 

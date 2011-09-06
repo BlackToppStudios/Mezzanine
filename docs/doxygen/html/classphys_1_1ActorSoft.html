@@ -96,9 +96,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#af766f6898fb80de4ab98012372a5e6f8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorSoft.html#a5f97915d1cda0d048853718714a26d93">AddObjectToWorld</a> (<a class="el" href="classphys_1_1World.html">World</a> *TargetWorld)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#a5f97915d1cda0d048853718714a26d93"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65e5590d1fe4c11e2214d5e6a3d1fc96"></a><!-- doxytag: member="phys::ActorSoft::CreateShapeFromMeshDynamic" ref="a65e5590d1fe4c11e2214d5e6a3d1fc96" args="(short unsigned int Accuracy, bool UseAllSubmeshes=false)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorSoft.html#a65e5590d1fe4c11e2214d5e6a3d1fc96">CreateShapeFromMeshDynamic</a> (short unsigned int Accuracy, bool UseAllSubmeshes=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited from Actorbase. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorSoft.html#a33b3fa2d6fcbb4e742e53fbde22f21a9">GetBulletObject</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Physics data raw from the physic subsystem.  <a href="#a33b3fa2d6fcbb4e742e53fbde22f21a9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorSoft.html#afdbd6ae49e3838190e5481796e650ce8">GetLocation</a> () const </td></tr>
@@ -201,13 +198,13 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <table class="params">
     <tr><td class="paramname">mass</td><td>The mass of the soft body. </td></tr>
     <tr><td class="paramname">name</td><td>Name of the object </td></tr>
-    <tr><td class="paramname">file</td><td>Mesh the soft body is stored in </td></tr>
+    <tr><td class="paramname">file</td><td><a class="el" href="classphys_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Mesh</a> the soft body is stored in </td></tr>
     <tr><td class="paramname">group</td><td>The Resource group the mesh can be found in. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00060">60</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00061">61</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -228,7 +225,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00070">70</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00071">71</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -260,7 +257,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Implements <a class="el" href="classphys_1_1ActorBase.html#a3d28e4c4a33f50210101695cb33ded3b">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00260">260</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00257">257</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -284,7 +281,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1ActorBase.html#a45f190cb9b647bb3385d1298f9dab589">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00129">129</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00130">130</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -312,7 +309,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00106">106</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00107">107</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -341,7 +338,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00075">75</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00076">76</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -365,7 +362,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00142">142</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00143">143</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -389,7 +386,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1ActorBase.html#a9b32df1efdc346f5d6c0920b959c09a3">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00153">153</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00154">154</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -410,7 +407,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Get the Physics data raw from the physic subsystem. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Currently this returns a pointer to a btSoftBody. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00272">272</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00269">269</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -434,7 +431,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Reimplemented from <a class="el" href="classphys_1_1ActorBase.html#a777b4ea4d6881af76c646b1ba9324d96">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00239">239</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00240">240</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,7 +454,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Implements <a class="el" href="classphys_1_1ActorBase.html#a1a7a7bc80bf30f142e92f4d29842d274">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00196">196</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00197">197</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -478,7 +475,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Gets the physics settings class associated with this actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the physics settings class in use by this actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00201">201</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00202">202</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -509,7 +506,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Implements <a class="el" href="classphys_1_1ActorBase.html#aaa787de7ec5d7d1d8428ea78f37bcb40">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00266">266</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00263">263</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -537,7 +534,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00206">206</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00207">207</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -566,7 +563,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00147">147</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00148">148</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -595,7 +592,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00160">160</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00161">161</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -624,7 +621,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00212">212</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00213">213</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -653,7 +650,36 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00221">221</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00222">222</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a35020af183a31e288ff226a34fd1a0ab"></a><!-- doxytag: member="phys::ActorSoft::SetLocation" ref="a35020af183a31e288ff226a34fd1a0ab" args="(Vector3 Place)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ActorSoft::SetLocation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classphys_1_1Vector3.html">Vector3</a>&#160;</td>
+          <td class="paramname"><em>Place</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Manually sets the location of the actor. </p>
+<p>Calling this function prior to adding it to the <a class="el" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> will have no effect. <br/>
+ In most situations you won't want to use this function, and instead produce movement through physics functions. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Place</td><td>The <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the location. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00234">234</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -700,36 +726,35 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00227">227</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00228">228</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a35020af183a31e288ff226a34fd1a0ab"></a><!-- doxytag: member="phys::ActorSoft::SetLocation" ref="a35020af183a31e288ff226a34fd1a0ab" args="(Vector3 Place)" -->
+<a class="anchor" id="ad57b502da0658de31a4b3a9bb9be7900"></a><!-- doxytag: member="phys::ActorSoft::SetOrientation" ref="ad57b502da0658de31a4b3a9bb9be7900" args="(Quaternion Rotation)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void phys::ActorSoft::SetLocation </td>
+          <td class="memname">void phys::ActorSoft::SetOrientation </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classphys_1_1Vector3.html">Vector3</a>&#160;</td>
-          <td class="paramname"><em>Place</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classphys_1_1Quaternion.html">Quaternion</a>&#160;</td>
+          <td class="paramname"><em>Rotation</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Manually sets the location of the actor. </p>
-<p>Calling this function prior to adding it to the <a class="el" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> will have no effect. <br/>
- In most situations you won't want to use this function, and instead produce movement through physics functions. </p>
+<p>Sets the orientation of the actor. </p>
+<p>Sets the orientation of the actor via a <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Place</td><td>The <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the location. </td></tr>
+    <tr><td class="paramname">Rotation</td><td>The <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> representing the Rotation. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00233">233</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00251">251</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -782,35 +807,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00244">244</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad57b502da0658de31a4b3a9bb9be7900"></a><!-- doxytag: member="phys::ActorSoft::SetOrientation" ref="ad57b502da0658de31a4b3a9bb9be7900" args="(Quaternion Rotation)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::ActorSoft::SetOrientation </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classphys_1_1Quaternion.html">Quaternion</a>&#160;</td>
-          <td class="paramname"><em>Rotation</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the orientation of the actor. </p>
-<p>Sets the orientation of the actor via a <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Rotation</td><td>The <a class="el" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> representing the Rotation. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00250">250</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00245">245</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -831,7 +828,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Updates the rendering info with physics info. </p>
 <p>This function needs to be called every frame, otherwise your soft bodies won't appear to move. </p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00169">169</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00170">170</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -855,6 +852,6 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:29 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:22 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

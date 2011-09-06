@@ -1,0 +1,226 @@
+\hypertarget{classphys_1_1CylinderCollisionShape}{
+\subsection{phys::CylinderCollisionShape Class Reference}
+\label{classphys_1_1CylinderCollisionShape}\index{phys::CylinderCollisionShape@{phys::CylinderCollisionShape}}
+}
+
+
+A cylinder physics shape.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for phys::CylinderCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classphys_1_1CylinderCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1CylinderCollisionShape_af9ba4a0e9969355d8a985a042f1c7620}{CylinderCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radius, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height, const \hyperlink{classphys_1_1Vector3}{Vector3} \&UpAxis)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1CylinderCollisionShape_af398bf897443717f5b7377bf5427a24e}{CylinderCollisionShape} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, btCylinderShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1CylinderCollisionShape_ae6cdcfc5b490a91c137f421171e339f4}{GetHalfExtents} () const 
+\begin{DoxyCompactList}\small\item\em Gets the half extents used to construct this cylinder. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1CylinderCollisionShape_adc42df0293302ff55f35a6018aacfbae}{GetHalfExtentsWithMargin} () const 
+\begin{DoxyCompactList}\small\item\em Gets the half extents with padding. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1CylinderCollisionShape_ac33ddce4c5e1d728675790ac522c42c0}{GetRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the cylinder. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CollisionShape_af3ba4fd8af5b9557f912d2f5ff35a588}{CollisionShape::ShapeType} \hyperlink{classphys_1_1CylinderCollisionShape_ae1cb7d5ad4611e86fb0d2f2bb1d8b4c4}{GetType} () const 
+\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1CylinderCollisionShape_ab92f7f763c501f02c377ed43f42d62cd}{GetUpAxis} () const 
+\begin{DoxyCompactList}\small\item\em Gets which axis this cylinder is oriented along. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CylinderCollisionShape_adc169486e49aa49ed1849c6ddc7deab1}{
+virtual \hyperlink{classphys_1_1CylinderCollisionShape_adc169486e49aa49ed1849c6ddc7deab1}{$\sim$CylinderCollisionShape} ()}
+\label{classphys_1_1CylinderCollisionShape_adc169486e49aa49ed1849c6ddc7deab1}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CylinderCollisionShape_a6230dab0af08f8a540ef0925a00e5962}{
+btCylinderShape $\ast$ {\bfseries CylinderShape}}
+\label{classphys_1_1CylinderCollisionShape_a6230dab0af08f8a540ef0925a00e5962}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A cylinder physics shape. A primitive cylinder shape. Like Capsules and Cones Cylinders can be aligned to any of the 3 linear axes(X, Y, or Z). 
+
+Definition at line 393 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1CylinderCollisionShape_af9ba4a0e9969355d8a985a042f1c7620}{
+\index{phys::CylinderCollisionShape@{phys::CylinderCollisionShape}!CylinderCollisionShape@{CylinderCollisionShape}}
+\index{CylinderCollisionShape@{CylinderCollisionShape}!phys::CylinderCollisionShape@{phys::CylinderCollisionShape}}
+\paragraph[{CylinderCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::CylinderCollisionShape::CylinderCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{const {\bf Vector3} \&}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CylinderCollisionShape_af9ba4a0e9969355d8a985a042f1c7620}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the Cylinder. \\
+\hline
+{\em Height} & The height of the Cylinder. \\
+\hline
+{\em UpAxis} & Which axis the cylinder is to be oriented along. Typical usage is for a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 485 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CylinderCollisionShape_af398bf897443717f5b7377bf5427a24e}{
+\index{phys::CylinderCollisionShape@{phys::CylinderCollisionShape}!CylinderCollisionShape@{CylinderCollisionShape}}
+\index{CylinderCollisionShape@{CylinderCollisionShape}!phys::CylinderCollisionShape@{phys::CylinderCollisionShape}}
+\paragraph[{CylinderCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}phys::CylinderCollisionShape::CylinderCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btCylinderShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CylinderCollisionShape_af398bf897443717f5b7377bf5427a24e}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 495 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1CylinderCollisionShape_ae6cdcfc5b490a91c137f421171e339f4}{
+\index{phys::CylinderCollisionShape@{phys::CylinderCollisionShape}!GetHalfExtents@{GetHalfExtents}}
+\index{GetHalfExtents@{GetHalfExtents}!phys::CylinderCollisionShape@{phys::CylinderCollisionShape}}
+\paragraph[{GetHalfExtents}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::CylinderCollisionShape::GetHalfExtents (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CylinderCollisionShape_ae6cdcfc5b490a91c137f421171e339f4}
+
+
+Gets the half extents used to construct this cylinder. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 containing the half extents of this cylinder. 
+\end{DoxyReturn}
+
+
+Definition at line 507 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CylinderCollisionShape_adc42df0293302ff55f35a6018aacfbae}{
+\index{phys::CylinderCollisionShape@{phys::CylinderCollisionShape}!GetHalfExtentsWithMargin@{GetHalfExtentsWithMargin}}
+\index{GetHalfExtentsWithMargin@{GetHalfExtentsWithMargin}!phys::CylinderCollisionShape@{phys::CylinderCollisionShape}}
+\paragraph[{GetHalfExtentsWithMargin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::CylinderCollisionShape::GetHalfExtentsWithMargin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CylinderCollisionShape_adc42df0293302ff55f35a6018aacfbae}
+
+
+Gets the half extents with padding. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 containing the half extents with the margin added to each axis. 
+\end{DoxyReturn}
+
+
+Definition at line 513 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CylinderCollisionShape_ac33ddce4c5e1d728675790ac522c42c0}{
+\index{phys::CylinderCollisionShape@{phys::CylinderCollisionShape}!GetRadius@{GetRadius}}
+\index{GetRadius@{GetRadius}!phys::CylinderCollisionShape@{phys::CylinderCollisionShape}}
+\paragraph[{GetRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::CylinderCollisionShape::GetRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CylinderCollisionShape_ac33ddce4c5e1d728675790ac522c42c0}
+
+
+Gets the radius of the cylinder. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the radius at the base of the cylinder. 
+\end{DoxyReturn}
+
+
+Definition at line 519 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CylinderCollisionShape_ae1cb7d5ad4611e86fb0d2f2bb1d8b4c4}{
+\index{phys::CylinderCollisionShape@{phys::CylinderCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::CylinderCollisionShape@{phys::CylinderCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} phys::CylinderCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CylinderCollisionShape_ae1cb7d5ad4611e86fb0d2f2bb1d8b4c4}
+Gets the type of Collision shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classphys_1_1PrimitiveCollisionShape_a16a167ec75ac95aa101b6a9b116e837d}{phys::PrimitiveCollisionShape}.
+
+
+
+Definition at line 534 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CylinderCollisionShape_ab92f7f763c501f02c377ed43f42d62cd}{
+\index{phys::CylinderCollisionShape@{phys::CylinderCollisionShape}!GetUpAxis@{GetUpAxis}}
+\index{GetUpAxis@{GetUpAxis}!phys::CylinderCollisionShape@{phys::CylinderCollisionShape}}
+\paragraph[{GetUpAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::CylinderCollisionShape::GetUpAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CylinderCollisionShape_ab92f7f763c501f02c377ed43f42d62cd}
+
+
+Gets which axis this cylinder is oriented along. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing which local axis is oriented along the world up axis. 
+\end{DoxyReturn}
+
+
+Definition at line 524 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

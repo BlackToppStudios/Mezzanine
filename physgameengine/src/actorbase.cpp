@@ -58,6 +58,8 @@
 #include "internalmotionstate.h.cpp"
 #include "internalmeshtools.h.cpp"
 
+/// @file Code used by all actors is implemented here.
+
 namespace phys{
     ///////////////////////////////////
     // ActorBase class fuctions
@@ -303,7 +305,7 @@ namespace phys{
 ///////////////////////////////////////
 #ifdef PHYSXML
     void ActorBase::ThrowSerialError(const String& Fail) const
-        { SerializeError(Fail, "ActorBase"); }
+        { SerializeError(Fail, SerializableName()); }
 
     void ActorBase::ProtoSerialize(xml::Node& CurrentRoot) const
     {
@@ -352,6 +354,14 @@ namespace phys{
             SloppyProtoSerialize( *(this->ActorWorldNode),ActorNode);
         }
     }
+
+    void ActorBase::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+
+    }
+
+    String ActorBase::SerializableName()
+        {   return String("ActorBase"); }
 
 #endif  // \physxml
 }// /phys

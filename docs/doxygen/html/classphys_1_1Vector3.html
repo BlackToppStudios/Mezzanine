@@ -89,12 +89,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This return the distance between this point and another.  <a href="#af59a586331fe9497056b7e0f207658a3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Vector3.html#a1f5f1ad3c7e67a1e88b461d2b2ea5a8d">DotProduct</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Vec) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used to calculate the dotproduct of this and another vector.  <a href="#a1f5f1ad3c7e67a1e88b461d2b2ea5a8d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313">ExtractBulletVector3</a> (btVector3 temp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies an existing Bullet vector3.  <a href="#a24ae86b068340be6727877f8c6c1a313"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Vector3.html#aa12021e9cdc092c8628ced1c5910c04c">ExtractcAudioVector3</a> (cAudio::cVector3 temp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies an existing cAudio vector3.  <a href="#aa12021e9cdc092c8628ced1c5910c04c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Vector3.html#a09a31cb8fe491f61e0cc10d21705a0df">ExtractOgreVector3</a> (Ogre::Vector3 temp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies an existing Ogre vector3.  <a href="#a09a31cb8fe491f61e0cc10d21705a0df"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Vector3.html#a6095aa79d2c288527fc4d7d7b69abf88">ExtractBulletVector3</a> (const btVector3 &amp;temp)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies an existing Bullet vector3.  <a href="#a6095aa79d2c288527fc4d7d7b69abf88"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Vector3.html#ab71c1de00db3a6ae36f4bb383c061e87">ExtractcAudioVector3</a> (const cAudio::cVector3 &amp;temp)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies an existing cAudio vector3.  <a href="#ab71c1de00db3a6ae36f4bb383c061e87"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Vector3.html#ac4a2cee593f8f64b1c4dde24a2511ad8">ExtractOgreVector3</a> (const Ogre::Vector3 &amp;temp)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies an existing Ogre vector3.  <a href="#ac4a2cee593f8f64b1c4dde24a2511ad8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">btVector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41">GetBulletVector3</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a Bullet vector3.  <a href="#adf4129007ee41f5a03e97502f2df9c41"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">cAudio::cVector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Vector3.html#a58b1ac39dfee4c360c16944a7e7f657d">GetcAudioVector3</a> () const </td></tr>
@@ -493,14 +493,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a24ae86b068340be6727877f8c6c1a313"></a><!-- doxytag: member="phys::Vector3::ExtractBulletVector3" ref="a24ae86b068340be6727877f8c6c1a313" args="(btVector3 temp)" -->
+<a class="anchor" id="a6095aa79d2c288527fc4d7d7b69abf88"></a><!-- doxytag: member="phys::Vector3::ExtractBulletVector3" ref="a6095aa79d2c288527fc4d7d7b69abf88" args="(const btVector3 &amp;temp)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void phys::Vector3::ExtractBulletVector3 </td>
           <td>(</td>
-          <td class="paramtype">btVector3&#160;</td>
+          <td class="paramtype">const btVector3 &amp;&#160;</td>
           <td class="paramname"><em>temp</em></td><td>)</td>
           <td></td>
         </tr>
@@ -521,14 +521,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa12021e9cdc092c8628ced1c5910c04c"></a><!-- doxytag: member="phys::Vector3::ExtractcAudioVector3" ref="aa12021e9cdc092c8628ced1c5910c04c" args="(cAudio::cVector3 temp)" -->
+<a class="anchor" id="ab71c1de00db3a6ae36f4bb383c061e87"></a><!-- doxytag: member="phys::Vector3::ExtractcAudioVector3" ref="ab71c1de00db3a6ae36f4bb383c061e87" args="(const cAudio::cVector3 &amp;temp)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void phys::Vector3::ExtractcAudioVector3 </td>
           <td>(</td>
-          <td class="paramtype">cAudio::cVector3&#160;</td>
+          <td class="paramtype">const cAudio::cVector3 &amp;&#160;</td>
           <td class="paramname"><em>temp</em></td><td>)</td>
           <td></td>
         </tr>
@@ -549,14 +549,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a09a31cb8fe491f61e0cc10d21705a0df"></a><!-- doxytag: member="phys::Vector3::ExtractOgreVector3" ref="a09a31cb8fe491f61e0cc10d21705a0df" args="(Ogre::Vector3 temp)" -->
+<a class="anchor" id="ac4a2cee593f8f64b1c4dde24a2511ad8"></a><!-- doxytag: member="phys::Vector3::ExtractOgreVector3" ref="ac4a2cee593f8f64b1c4dde24a2511ad8" args="(const Ogre::Vector3 &amp;temp)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void phys::Vector3::ExtractOgreVector3 </td>
           <td>(</td>
-          <td class="paramtype">Ogre::Vector3&#160;</td>
+          <td class="paramtype">const Ogre::Vector3 &amp;&#160;</td>
           <td class="paramname"><em>temp</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1845,6 +1845,6 @@ Public Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:34 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:34 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

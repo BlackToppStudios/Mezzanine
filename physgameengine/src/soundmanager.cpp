@@ -58,7 +58,7 @@ namespace phys
 
     }
 
-    String SoundSet::SerializableName() const
+    String SoundSet::SerializableName()
         { return String("SoundSet"); }
 
     SoundManager::SoundManager(bool DefaultSettings)

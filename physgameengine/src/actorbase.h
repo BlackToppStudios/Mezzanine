@@ -43,6 +43,9 @@
 #include "crossplatformexport.h"
 #include "worldnode.h"
 
+/// @file The base class for all Actors is defined here
+
+
 ///////////////////////////////////
 // Forward Declares
 class btRigidBody;
@@ -365,16 +368,27 @@ namespace phys
 // Serialization
 ///////////////////////////////////////
 #ifdef PHYSXML
-        private:
+        protected:
             /// @internal
             /// @brief a Helper function that assembles strings and throws an exception
             /// @param Fail The item that failed.
             virtual void ThrowSerialError(const String& Fail) const;
 
         public:
-            /// @brief Get all the this in an xml::Node.
-            /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
             virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Point2PointConstraint"
+            static String SerializableName();
 #endif
     };
 

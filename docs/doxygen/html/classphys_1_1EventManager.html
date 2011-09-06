@@ -102,7 +102,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1EventManager.html#a018b36588bf2a2e90536e64be060d6fc">EventManager</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a018b36588bf2a2e90536e64be060d6fc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classphys_1_1EventCollision.html">EventCollision</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1EventManager.html#a1881421e075a5965d6d5a0678f93ad9a">GetAllCollisionEvents</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns a complete list of all the Render <a class="el" href="structphys_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a> events.  <a href="#a1881421e075a5965d6d5a0678f93ad9a"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns a complete list of all the Collision Events.  <a href="#a1881421e075a5965d6d5a0678f93ad9a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classphys_1_1EventGameWindow.html">EventGameWindow</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1EventManager.html#aacdd185f6334f1258d0d7022bae3932d">GetAllGameWindowEvents</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns a complete list of all the Render <a class="el" href="structphys_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a> events.  <a href="#aacdd185f6334f1258d0d7022bae3932d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classphys_1_1EventQuit.html">EventQuit</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1EventManager.html#afefd52a9693bc5541592997abbf3c53f">GetAllQuitEvents</a> ()</td></tr>
@@ -205,7 +205,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 <p>Default constructor. </p>
 <p>This creates an empty PhysEventManger</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
 
 <p>Definition at line <a class="el" href="eventmanager_8cpp_source.html#l00251">251</a> of file <a class="el" href="eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
@@ -353,8 +353,8 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 </div>
 <div class="memdoc">
 
-<p>This returns a complete list of all the Render <a class="el" href="structphys_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a> events. </p>
-<p>This finds all the <a class="el" href="classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. </p>
+<p>This returns a complete list of all the Collision Events. </p>
+<p>This finds all the Collision Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a list&lt;EventCollision*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. This list pointer must be deleted, but not the events in it. </dd></dl>
 
 <p>Definition at line <a class="el" href="eventmanager_8cpp_source.html#l00538">538</a> of file <a class="el" href="eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
@@ -1166,6 +1166,6 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:30 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

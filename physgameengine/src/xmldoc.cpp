@@ -125,7 +125,7 @@ namespace phys
                 }
             }else{
                 delete Doc;
-                World::GetWorldPointer()->LogAndThrow(Exception(StringCat("No valid XML tag in stream, when attempting to deserialize", NameSpace, ClassName)));
+                World::GetWorldPointer()->LogAndThrow(Exception(StringCat("No valid XML element in stream, when attempting to deserialize ", NameSpace, ClassName)));
             }
         }
 

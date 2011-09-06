@@ -84,16 +84,18 @@ Inheritance diagram for phys::ManagerBase:</div>
  <div class="center">
   <img src="classphys_1_1ManagerBase.png" usemap="#phys::ManagerBase_map" alt=""/>
   <map id="phys::ManagerBase_map" name="phys::ManagerBase_map">
-<area href="classphys_1_1ActorManager.html" alt="phys::ActorManager" shape="rect" coords="160,56,310,80"/>
-<area href="classphys_1_1CameraManager.html" alt="phys::CameraManager" shape="rect" coords="160,112,310,136"/>
-<area href="classphys_1_1EventManager.html" alt="phys::EventManager" shape="rect" coords="160,168,310,192"/>
-<area href="classphys_1_1GraphicsManager.html" alt="phys::GraphicsManager" shape="rect" coords="160,224,310,248"/>
-<area href="classphys_1_1PhysicsManager.html" alt="phys::PhysicsManager" shape="rect" coords="160,280,310,304"/>
-<area href="classphys_1_1ResourceManager.html" alt="phys::ResourceManager" shape="rect" coords="160,336,310,360"/>
-<area href="classphys_1_1SceneManager.html" alt="phys::SceneManager" shape="rect" coords="160,392,310,416"/>
-<area href="classphys_1_1SoundManager.html" alt="phys::SoundManager" shape="rect" coords="160,448,310,472"/>
-<area href="classphys_1_1TimerManager.html" alt="phys::TimerManager" shape="rect" coords="160,504,310,528"/>
-<area href="classphys_1_1UIManager.html" alt="phys::UIManager" shape="rect" coords="160,560,310,584"/>
+<area href="classphys_1_1ActorManager.html" alt="phys::ActorManager" shape="rect" coords="190,56,370,80"/>
+<area href="classphys_1_1CameraManager.html" alt="phys::CameraManager" shape="rect" coords="190,112,370,136"/>
+<area href="classphys_1_1CollisionShapeManager.html" alt="phys::CollisionShapeManager" shape="rect" coords="190,168,370,192"/>
+<area href="classphys_1_1EventManager.html" alt="phys::EventManager" shape="rect" coords="190,224,370,248"/>
+<area href="classphys_1_1GraphicsManager.html" alt="phys::GraphicsManager" shape="rect" coords="190,280,370,304"/>
+<area href="classphys_1_1MeshManager.html" alt="phys::MeshManager" shape="rect" coords="190,336,370,360"/>
+<area href="classphys_1_1PhysicsManager.html" alt="phys::PhysicsManager" shape="rect" coords="190,392,370,416"/>
+<area href="classphys_1_1ResourceManager.html" alt="phys::ResourceManager" shape="rect" coords="190,448,370,472"/>
+<area href="classphys_1_1SceneManager.html" alt="phys::SceneManager" shape="rect" coords="190,504,370,528"/>
+<area href="classphys_1_1SoundManager.html" alt="phys::SoundManager" shape="rect" coords="190,560,370,584"/>
+<area href="classphys_1_1TimerManager.html" alt="phys::TimerManager" shape="rect" coords="190,616,370,640"/>
+<area href="classphys_1_1UIManager.html" alt="phys::UIManager" shape="rect" coords="190,672,370,696"/>
 </map>
  </div></div>
 
@@ -107,18 +109,22 @@ typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a> { <br/>
 &#160;&#160;<b>ActorManager</b>, 
 <b>CameraManager</b>, 
+<b>CollisionShapeManager</b>, 
 <b>EventManager</b>, 
-<b>GraphicsManager</b>, 
 <br/>
-&#160;&#160;<b>PhysicsManager</b>, 
+&#160;&#160;<b>GraphicsManager</b>, 
+<b>MeshManager</b>, 
+<b>PhysicsManager</b>, 
 <b>ResourceManager</b>, 
-<b>SceneManager</b>, 
-<b>SoundManager</b>, 
 <br/>
-&#160;&#160;<b>TerrainManager</b>, 
+&#160;&#160;<b>SceneManager</b>, 
+<b>SoundManager</b>, 
+<b>TerrainManager</b>, 
 <b>TimerManager</b>, 
-<b>UIManager</b>, 
-<a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c">UserCreated</a>
+<br/>
+&#160;&#160;<b>UIManager</b>, 
+<b>UserCreated</b>, 
+<a class="el" href="classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5a48bad0a776b008c5ca2b17b2f7611a23">WorldObjectGeometryManager</a>
 <br/>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>A listing of Manager TypeNames. </p>
@@ -198,7 +204,7 @@ Protected Attributes</h2></td></tr>
 <p>A listing of Manager TypeNames. </p>
 <p>These will be returned by <a class="el" href="classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3" title="This returns the type of this manager.">ManagerBase::GetType()</a>, and will allow code using this to determine what type of Manager class they are working with and use this information to more safely cast to the correct manager if needed. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c"></a><!-- doxytag: member="UserCreated" ref="aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c" args="" -->UserCreated</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="aaa6ccddf23892eaccb898529414f80a5a48bad0a776b008c5ca2b17b2f7611a23"></a><!-- doxytag: member="WorldObjectGeometryManager" ref="aaa6ccddf23892eaccb898529414f80a5a48bad0a776b008c5ca2b17b2f7611a23" args="" -->WorldObjectGeometryManager</em>&nbsp;</td><td>
 <p>This is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals. </p>
 </td></tr>
 </table>
@@ -249,7 +255,7 @@ Protected Attributes</h2></td></tr>
 <p>The main loop calls this once per frame. </p>
 <p>This is where each manager is expected to put anything that needs to be run each iteration of the main loop </p>
 
-<p>Implemented in <a class="el" href="classphys_1_1ActorManager.html#abafe749a5ef6f750c6f3bbf2804c186e">phys::ActorManager</a>, <a class="el" href="classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">phys::CameraManager</a>, <a class="el" href="classphys_1_1EventManager.html#aca8fb3d285484dcdb943824bf11f3596">phys::EventManager</a>, <a class="el" href="classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">phys::GraphicsManager</a>, <a class="el" href="classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c">phys::PhysicsManager</a>, <a class="el" href="classphys_1_1ResourceManager.html#a2114714999441c095bc28d3673c2490e">phys::ResourceManager</a>, <a class="el" href="classphys_1_1SceneManager.html#a27a3f6b21e15f628642b1cad524f1a18">phys::SceneManager</a>, <a class="el" href="classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">phys::SoundManager</a>, <a class="el" href="classphys_1_1TimerManager.html#a98b7e74fe1e3eff7aee506477abe2a9c">phys::TimerManager</a>, and <a class="el" href="classphys_1_1UIManager.html#a972abedcd4343dc5966580f2f82494a8">phys::UIManager</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1ActorManager.html#abafe749a5ef6f750c6f3bbf2804c186e">phys::ActorManager</a>, <a class="el" href="classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">phys::CameraManager</a>, <a class="el" href="classphys_1_1CollisionShapeManager.html#af0a99382118672a90e324b7c7585e23f">phys::CollisionShapeManager</a>, <a class="el" href="classphys_1_1EventManager.html#aca8fb3d285484dcdb943824bf11f3596">phys::EventManager</a>, <a class="el" href="classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">phys::GraphicsManager</a>, <a class="el" href="classphys_1_1MeshManager.html#a8c13d3eaa1717c1892012715c46b0818">phys::MeshManager</a>, <a class="el" href="classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c">phys::PhysicsManager</a>, <a class="el" href="classphys_1_1ResourceManager.html#a2114714999441c095bc28d3673c2490e">phys::ResourceManager</a>, <a class="el" href="classphys_1_1SceneManager.html#a27a3f6b21e15f628642b1cad524f1a18">phys::SceneManager</a>, <a class="el" href="classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">phys::SoundManager</a>, <a class="el" href="classphys_1_1TimerManager.html#a98b7e74fe1e3eff7aee506477abe2a9c">phys::TimerManager</a>, and <a class="el" href="classphys_1_1UIManager.html#a972abedcd4343dc5966580f2f82494a8">phys::UIManager</a>.</p>
 
 </div>
 </div>
@@ -356,7 +362,7 @@ Protected Attributes</h2></td></tr>
 <p>This is intended to make using and casting from Manager base easier. With this is is possible to cast from <a class="el" href="classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a> to the correct Manager Type. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a ManagerTypeName to identify what this can be safely cast to. </dd></dl>
 
-<p>Implemented in <a class="el" href="classphys_1_1ActorManager.html#a7f529913ac6d7c74adfade5c383eeb25">phys::ActorManager</a>, <a class="el" href="classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">phys::CameraManager</a>, <a class="el" href="classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696">phys::EventManager</a>, <a class="el" href="classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">phys::GraphicsManager</a>, <a class="el" href="classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6">phys::PhysicsManager</a>, <a class="el" href="classphys_1_1ResourceManager.html#a9e5468e5428f5c108c7b3c01e94eba46">phys::ResourceManager</a>, <a class="el" href="classphys_1_1SceneManager.html#af2b4f6bc50d40ffe06f6172c3d1dd02d">phys::SceneManager</a>, <a class="el" href="classphys_1_1SoundManager.html#a6815f78a6170b119e2d1d24e862ffbf8">phys::SoundManager</a>, <a class="el" href="classphys_1_1TimerManager.html#a716811f51cb9e97ed6e9db310f34e9dc">phys::TimerManager</a>, and <a class="el" href="classphys_1_1UIManager.html#ab8fe74564ca5dc09cbe4b1cc2c007e79">phys::UIManager</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1ActorManager.html#a7f529913ac6d7c74adfade5c383eeb25">phys::ActorManager</a>, <a class="el" href="classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">phys::CameraManager</a>, <a class="el" href="classphys_1_1CollisionShapeManager.html#a046c14461ef78c2764ba7b149ba58e67">phys::CollisionShapeManager</a>, <a class="el" href="classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696">phys::EventManager</a>, <a class="el" href="classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">phys::GraphicsManager</a>, <a class="el" href="classphys_1_1MeshManager.html#ab8d0a416cf9d20940c546adf5b6ebea4">phys::MeshManager</a>, <a class="el" href="classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6">phys::PhysicsManager</a>, <a class="el" href="classphys_1_1ResourceManager.html#a9e5468e5428f5c108c7b3c01e94eba46">phys::ResourceManager</a>, <a class="el" href="classphys_1_1SceneManager.html#af2b4f6bc50d40ffe06f6172c3d1dd02d">phys::SceneManager</a>, <a class="el" href="classphys_1_1SoundManager.html#a6815f78a6170b119e2d1d24e862ffbf8">phys::SoundManager</a>, <a class="el" href="classphys_1_1TimerManager.html#a716811f51cb9e97ed6e9db310f34e9dc">phys::TimerManager</a>, and <a class="el" href="classphys_1_1UIManager.html#ab8fe74564ca5dc09cbe4b1cc2c007e79">phys::UIManager</a>.</p>
 
 </div>
 </div>
@@ -400,7 +406,7 @@ Protected Attributes</h2></td></tr>
 <br/>
  Yes we know it is spelled wrong, but are Zs cooler anyway. </p>
 
-<p>Implemented in <a class="el" href="classphys_1_1ActorManager.html#a231586ede5669da350ced7f5dcd0bee2">phys::ActorManager</a>, <a class="el" href="classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488">phys::CameraManager</a>, <a class="el" href="classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0">phys::EventManager</a>, <a class="el" href="classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">phys::GraphicsManager</a>, <a class="el" href="classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388">phys::PhysicsManager</a>, <a class="el" href="classphys_1_1ResourceManager.html#a9be3250f1f1153c9e079f82736eb00a8">phys::ResourceManager</a>, <a class="el" href="classphys_1_1SceneManager.html#aa13b380a4e38f706a1977237fc4b165e">phys::SceneManager</a>, <a class="el" href="classphys_1_1SoundManager.html#ae6d3957f965b54e06ec540e903cec68d">phys::SoundManager</a>, <a class="el" href="classphys_1_1TimerManager.html#ab6ee47352a406682178b4496544bcf6f">phys::TimerManager</a>, and <a class="el" href="classphys_1_1UIManager.html#af04e60c4f09c114ec3bf32babdb64ab7">phys::UIManager</a>.</p>
+<p>Implemented in <a class="el" href="classphys_1_1ActorManager.html#a231586ede5669da350ced7f5dcd0bee2">phys::ActorManager</a>, <a class="el" href="classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488">phys::CameraManager</a>, <a class="el" href="classphys_1_1CollisionShapeManager.html#a349f08d5cfb39d39360e41c6d416984f">phys::CollisionShapeManager</a>, <a class="el" href="classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0">phys::EventManager</a>, <a class="el" href="classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">phys::GraphicsManager</a>, <a class="el" href="classphys_1_1MeshManager.html#a95103f27f689a644c3501383e03ee731">phys::MeshManager</a>, <a class="el" href="classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388">phys::PhysicsManager</a>, <a class="el" href="classphys_1_1ResourceManager.html#a9be3250f1f1153c9e079f82736eb00a8">phys::ResourceManager</a>, <a class="el" href="classphys_1_1SceneManager.html#aa13b380a4e38f706a1977237fc4b165e">phys::SceneManager</a>, <a class="el" href="classphys_1_1SoundManager.html#ae6d3957f965b54e06ec540e903cec68d">phys::SoundManager</a>, <a class="el" href="classphys_1_1TimerManager.html#ab6ee47352a406682178b4496544bcf6f">phys::TimerManager</a>, and <a class="el" href="classphys_1_1UIManager.html#af04e60c4f09c114ec3bf32babdb64ab7">phys::UIManager</a>.</p>
 
 </div>
 </div>
@@ -568,7 +574,7 @@ Protected Attributes</h2></td></tr>
 <p>This is a weighting used by the main loop to decide what order the managers should be called in. </p>
 <p>A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at priority 0. </p>
 
-<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00206">206</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00209">209</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -592,6 +598,6 @@ Protected Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:32 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:29 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -99,6 +99,11 @@ namespace phys
         if (!TransformNode)
             { SerializeError("Create TransformNode", SerializableName()); }
 
+        phys::xml::Attribute Version = TransformNode.AppendAttribute("Version");                            // Version
+        if (!Version)
+            { SerializeError("Create Version", SerializableName()); }
+        Version.SetValue(1);
+
         this->Location.ProtoSerialize(TransformNode);
         this->Rotation.ProtoSerialize(TransformNode);
     }
@@ -119,7 +124,7 @@ namespace phys
         }
     }
 
-    String Transform::SerializableName() const
+    String Transform::SerializableName()
         { return String("Transform"); }
 #endif // /PHYSXML
 }

@@ -97,12 +97,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive constructor.  <a href="#a3005e81009d9b5b5bfb9a6f5068917d3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#acaf29ca7058b39185dd09a5059200e91">AddObjectToWorld</a> (<a class="el" href="classphys_1_1World.html">World</a> *TargetWorld)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#acaf29ca7058b39185dd09a5059200e91"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#a78f2f2dfc8b35f13e9a7680189bbdd48">CreateShapeFromMeshDynamic</a> (short unsigned int Accuracy=1, bool UseAllSubmeshes=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a collision shape from mesh file.  <a href="#a78f2f2dfc8b35f13e9a7680189bbdd48"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#a5adfa6199955f9c0de4e0af54aeb96f6">CreateShapeFromMeshStatic</a> (bool UseAllSubmeshes=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a collision shape from mesh file.  <a href="#a5adfa6199955f9c0de4e0af54aeb96f6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#ae401c116a07ee4ed3fc677e83308fba5">CreateSphereShapeFromMesh</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a sphere collision shape.  <a href="#ae401c116a07ee4ed3fc677e83308fba5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#a0d29535332ac613f9a14ea32e843d612">GetAngularMovementFactor</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current angular factors being applied to this actor.  <a href="#a0d29535332ac613f9a14ea32e843d612"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#a9c8f1f4b99f41ab97050f5b15c802f14">GetBulletObject</a> ()</td></tr>
@@ -129,12 +123,6 @@ Protected Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a rigid object for the actor.  <a href="#a3d50613a6992e7de6a09d3e710d83b60"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8719d076cf8790e3523af7c8a7666478"></a><!-- doxytag: member="phys::ActorRigid::ModelFile" ref="a8719d076cf8790e3523af7c8a7666478" args="" -->
-<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#a8719d076cf8790e3523af7c8a7666478">ModelFile</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The File that will store the main 3d model this works with. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c72e4c7c89964be93dc5c6c0ed64578"></a><!-- doxytag: member="phys::ActorRigid::ModelGroup" ref="a7c72e4c7c89964be93dc5c6c0ed64578" args="" -->
-<a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#a7c72e4c7c89964be93dc5c6c0ed64578">ModelGroup</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The resource group associated with the 3d model this Actor uses. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af86eb5347cb6bb31a561404efc3d8245"></a><!-- doxytag: member="phys::ActorRigid::PhysicsSettings" ref="af86eb5347cb6bb31a561404efc3d8245" args="" -->
 <a class="el" href="classphys_1_1ActorRigidPhysicsSettings.html">ActorRigidPhysicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#af86eb5347cb6bb31a561404efc3d8245">PhysicsSettings</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates physics specific configuration for this actor. <br/></td></tr>
@@ -202,7 +190,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00063">63</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00062">62</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -223,7 +211,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00076">76</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00077">77</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -255,7 +243,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 
 <p>Implements <a class="el" href="classphys_1_1ActorBase.html#a3d28e4c4a33f50210101695cb33ded3b">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00279">279</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00132">132</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -284,109 +272,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00082">82</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a78f2f2dfc8b35f13e9a7680189bbdd48"></a><!-- doxytag: member="phys::ActorRigid::CreateShapeFromMeshDynamic" ref="a78f2f2dfc8b35f13e9a7680189bbdd48" args="(short unsigned int Accuracy=1, bool UseAllSubmeshes=false)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::ActorRigid::CreateShapeFromMeshDynamic </td>
-          <td>(</td>
-          <td class="paramtype">short unsigned int&#160;</td>
-          <td class="paramname"><em>Accuracy</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>UseAllSubmeshes</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Creates a collision shape from mesh file. </p>
-<p>This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Accuracy</td><td>A value from 1 to 4. The higher the more accurate, but the more resource intensive </td></tr>
-    <tr><td class="paramname">UseAllSubmeshes</td><td>Should Child meshes, if any, be used when approximating physics shapes </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd><ul>
-<li>Check for thread safety </li>
-</ul>
-</dd></dl>
-</p>
-
-<p>Implements <a class="el" href="classphys_1_1ActorBase.html#a85a06be4c1f069c45215dc9574e2fb23">phys::ActorBase</a>.</p>
-
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00104">104</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5adfa6199955f9c0de4e0af54aeb96f6"></a><!-- doxytag: member="phys::ActorRigid::CreateShapeFromMeshStatic" ref="a5adfa6199955f9c0de4e0af54aeb96f6" args="(bool UseAllSubmeshes=false)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::ActorRigid::CreateShapeFromMeshStatic </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>UseAllSubmeshes</em> = <code>false</code></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Creates a collision shape from mesh file. </p>
-<p>This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Static objects. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">UseAllSubmeshes</td><td>If true, this will use the geometry of all submeshes of the model to make the shape. Otherwise it'll only use the first submesh. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd><ul>
-<li>Check for thread safety </li>
-</ul>
-</dd></dl>
-</p>
-
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00237">237</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae401c116a07ee4ed3fc677e83308fba5"></a><!-- doxytag: member="phys::ActorRigid::CreateSphereShapeFromMesh" ref="ae401c116a07ee4ed3fc677e83308fba5" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::ActorRigid::CreateSphereShapeFromMesh </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Creates a sphere collision shape. </p>
-<p>Will dynamically create a sphere collision shape from the loaded mesh file. </p>
-
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00207">207</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00083">83</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -407,7 +293,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Gets the current angular factors being applied to this actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the factors on the 3 angular axes. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00273">273</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00126">126</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -428,7 +314,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Get the Physics data raw from the physic subsystem. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Currently this returns a pointer to a btRigidBody. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00292">292</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00145">145</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -449,7 +335,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Gets the current linear factors being applied to this actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the factors on the 3 linear axes. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00262">262</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00115">115</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -472,7 +358,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 
 <p>Implements <a class="el" href="classphys_1_1ActorBase.html#a1a7a7bc80bf30f142e92f4d29842d274">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00099">99</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00100">100</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -493,7 +379,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Gets the physics settings class associated with this actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the physics settings class in use by this actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00252">252</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00105">105</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -522,7 +408,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 
 <p>Reimplemented from <a class="el" href="classphys_1_1ActorBase.html#a402b408b6ebb5ce82181a75dff14887f">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00304">304</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00157">157</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -553,7 +439,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 
 <p>Implements <a class="el" href="classphys_1_1ActorBase.html#aaa787de7ec5d7d1d8428ea78f37bcb40">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00285">285</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00138">138</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -581,7 +467,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00268">268</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00121">121</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -609,7 +495,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00257">257</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00110">110</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -633,6 +519,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 11 2011 13:06:28 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Sep 2 2011 21:58:22 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

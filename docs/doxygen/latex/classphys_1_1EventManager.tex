@@ -31,7 +31,7 @@ virtual void \hyperlink{classphys_1_1EventManager_aca8fb3d285484dcdb943824bf11f3
 \hyperlink{classphys_1_1EventManager_a018b36588bf2a2e90536e64be060d6fc}{EventManager} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 std::list$<$ \hyperlink{classphys_1_1EventCollision}{EventCollision} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a1881421e075a5965d6d5a0678f93ad9a}{GetAllCollisionEvents} ()
-\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Collision Events. \item\end{DoxyCompactList}\item 
 std::list$<$ \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aacdd185f6334f1258d0d7022bae3932d}{GetAllGameWindowEvents} ()
 \begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. \item\end{DoxyCompactList}\item 
 std::list$<$ \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_afefd52a9693bc5541592997abbf3c53f}{GetAllQuitEvents} ()
@@ -149,7 +149,7 @@ Default constructor.
 This creates an empty PhysEventManger
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000009}{Todo}]TODO: Make the \hyperlink{classphys_1_1EventManager}{EventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
+\item[\hyperlink{todo__todo000007}{Todo}]TODO: Make the \hyperlink{classphys_1_1EventManager}{EventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
 
 
 Definition at line 251 of file eventmanager.cpp.
@@ -272,9 +272,9 @@ Definition at line 644 of file eventmanager.cpp.
 \label{classphys_1_1EventManager_a1881421e075a5965d6d5a0678f93ad9a}
 
 
-This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. 
+This returns a complete list of all the Collision Events. 
 
-This finds all the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. \begin{DoxyReturn}{Returns}
+This finds all the Collision Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. \begin{DoxyReturn}{Returns}
 This returns a list$<$EventCollision$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. This list pointer must be deleted, but not the events in it. 
 \end{DoxyReturn}
 

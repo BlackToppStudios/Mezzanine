@@ -41,6 +41,7 @@
 #define _constraint_cpp
 
 #include "constraint.h"
+#include "actormanager.h"
 #include "actorrigid.h"
 #include "serialization.h"
 #include "world.h"
@@ -65,6 +66,46 @@ namespace phys
             case Con_CFM:           return String("Con_CFM");
             case Con_Stop_CFM:      return String("Con_Stop_CFM");
             default: throw(phys::Exception("Attempted to convert invalid Constraint Paramater to a String."));
+        }
+    }
+
+    ConstraintParam StringAsConstraintParam(String Param)
+    {
+        if(5>Param.size())
+            { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Too Short")); }
+
+        switch(Param.at(4))
+        {
+            case 'E':
+                if(ConstraintParamAsString(Con_ERP)==Param)
+                    { return Con_ERP; }
+                else
+                    { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_ERP but isn't")); }
+            case 'C':
+                if(ConstraintParamAsString(Con_CFM)==Param)
+                    { return Con_CFM; }
+                else
+                    { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_CFM but isn't")); }
+            case 'S':
+                switch(Param.at(9))
+                {
+                    case 'E':
+                        if(ConstraintParamAsString(Con_Stop_ERP)==Param)
+                            { return Con_Stop_ERP; }
+                        else
+                            { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_Stop_ERP but isn't")); }
+                    case 'C':
+                        if(ConstraintParamAsString(Con_Stop_CFM)==Param)
+                            { return Con_Stop_CFM; }
+                        else
+                            { throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_Stop_CFM but isn't")); }
+                    case 'S':
+
+                    default:
+                        throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Appeared to be Con_Stop_Something, but wasn't"));
+                }
+            default:
+                throw(phys::Exception("Attempted to convert invalid String to Constraint Paramater: Invalid Name"));
         }
     }
 
@@ -159,15 +200,86 @@ namespace phys
                 }
             }
         }
+    }
 
+    namespace{
+        /// @internal
+        /// @brief used to help convert string to the axis they indicate
+        /// @param it it is the character that is passed in to indicate what the axis is. This should be the [4] character or the 5 character of the string.
+        /// @return this returns an int that indicates the Axis for the string.
+        int char4ToAxis(char it)
+        {
+            switch(it)
+            {
+                case '-': return -1;         break;
+                case '0': return 0;          break;
+                case '1': return 1;          break;
+                case '2': return 2;          break;
+                case '3': return 3;          break;
+                case '4': return 4;          break;
+                case '5': return 5;          break;
+                default: { throw Exception("Cannot convert invalid axis name"); }
+            }
+        }
     }
 
     // DeSerializable
     void TypedConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->TypedConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                String ActorNameA(OneNode.GetAttribute("ActorNameA").AsString());                                                           // get Actors from the XML
+                String ActorNameB(OneNode.GetAttribute("ActorNameB").AsString());
+                if (""!=ActorNameA)                                                                                                         //Figure out if the actors are fine
+                {
+                    ActorRigid* FutureA = dynamic_cast<ActorRigid*>(World::GetWorldPointer()->GetActorManager()->GetActor(ActorNameA));     // get ActorA from the Actormanager
+                    if (0==FutureA)
+                        { DeSerializeError("find an ActorRigid named "+ActorNameA+" in the ActorManager", SerializableName()); }
+
+                    if (""!=ActorNameB)
+                    {
+                        ActorRigid* FutureB = dynamic_cast<ActorRigid*>(World::GetWorldPointer()->GetActorManager()->GetActor(ActorNameB)); // get ActorB from the Actormanager
+                        if (0==FutureB)
+                            { DeSerializeError("find an ActorRigid named "+ActorNameB+" in the ActorManager", SerializableName()); }
+                        this->SetBodies(FutureA,FutureB);
+                    }else{
+                        this->SetBodies(FutureA);
+                    }
+                }else{
+                    DeSerializeError("retrieve ActorNameA",SerializableName());
+                }
+
+                xml::Node TheAxis = OneNode.GetFirstChild();
+                while(TheAxis)
+                {
+                    String EnemyName(TheAxis.Name());                            //WWII country are we dealing with.
+                    if(4>EnemyName.size())                                       //No country on the axis side WWII had fewer than 4 letters in its name. if USA somehow lands on this list it is an error
+                        { DeSerializeError("find valid axis name, name is too short",SerializableName()); }
+                    int AxisValue;
+
+                    AxisValue=char4ToAxis(EnemyName[4]);
+
+                    xml::Attribute AxisAttribute = TheAxis.GetFirstAttribute();
+                    while(AxisAttribute)
+                    {
+                        this->SetParam(StringAsConstraintParam(AxisAttribute.Name()),AxisAttribute.AsReal(),AxisValue);
+                        AxisAttribute = AxisAttribute.GetNextAttribute();
+                    }
+
+                    TheAxis = TheAxis.GetNextSibling();
+                }// /While(TheAxis)
+
+            }else{
+                DeSerializeError("Incompatible XML Version for "+SerializableName(),SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name()+",",SerializableName());
+        }
     }
 
-    String TypedConstraint::SerializableName() const
+    String TypedConstraint::SerializableName()
         { return String("TypedConstraint"); }
 #endif // /PHYSXML
 
@@ -205,9 +317,36 @@ namespace phys
     // DeSerializable
     void DualTransformConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->DualTransformConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node TypedConstraintNode = OneNode.GetChild("TypedConstraint");
+                if(!TypedConstraintNode)
+                    { DeSerializeError("locate TypedConstraint node",SerializableName()); }
+                this->TypedConstraint::ProtoDeSerialize(TypedConstraintNode);
+
+                xml::Node TransformA = OneNode.GetChild("ActorA").GetFirstChild();
+                if (!TransformA)
+                    { DeSerializeError("locate transform for ActorA",SerializableName()); }
+                Transform temp;
+                temp.ProtoDeSerialize(TransformA);
+                this->SetPivotATransform(temp);
+
+                xml::Node TransformB = OneNode.GetChild("ActorB").GetFirstChild();
+                if (!TransformB)
+                    { DeSerializeError("locate transform for ActorB",SerializableName()); }
+                temp.ProtoDeSerialize(TransformB);
+                this->SetPivotBTransform(temp);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
-    String DualTransformConstraint::SerializableName() const
+    String DualTransformConstraint::SerializableName()
         { return String("DualTransformConstraint"); }
 
     /////////////////////////////////////////
@@ -383,105 +522,175 @@ namespace phys
 
     ////////////////////////////////////////////////////////////////////////////////
     // Generic6DofConstraint Basic Limit Accessors
-    void Generic6DofConstraint::SetLinearUpperLimit(const Vector3& Limit)
-        { this->Generic6dof->setLinearUpperLimit(Limit.GetBulletVector3()); }
-
-    void Generic6DofConstraint::SetLinearLowerLimit(const Vector3& Limit)
-        { this->Generic6dof->setLinearLowerLimit(Limit.GetBulletVector3()); }
-
-    Vector3 Generic6DofConstraint::GetLinearUpperLimit() const
-        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_upperLimit); }
-
-    Vector3 Generic6DofConstraint::GetLinearLowerLimit() const
-        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_lowerLimit); }
-
-    void Generic6DofConstraint::SetAngularUpperLimit(const Vector3& Limit)
-        { this->Generic6dof->setAngularUpperLimit(Limit.GetBulletVector3()); }
-
-    void Generic6DofConstraint::SetAngularLowerLimit(const Vector3& Limit)
-        { this->Generic6dof->setAngularLowerLimit(Limit.GetBulletVector3()); }
-
-    Vector3 Generic6DofConstraint::GetAngularUpperLimit() const
-        { return Vector3(GetAngularUpperLimitOnAxis(0),GetAngularUpperLimitOnAxis(1),GetAngularUpperLimitOnAxis(2)); }
-
-    Vector3 Generic6DofConstraint::GetAngularLowerLimit() const
-        { return Vector3(GetAngularLowerLimitOnAxis(0),GetAngularLowerLimitOnAxis(1),GetAngularLowerLimitOnAxis(2)); }
-
-    Real Generic6DofConstraint::GetAngularLowerLimitOnAxis(int RotationalAxis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(RotationalAxis))->m_loLimit; }
-
-    Real Generic6DofConstraint::GetAngularUpperLimitOnAxis(int RotationalAxis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(RotationalAxis))->m_hiLimit; }
-
-    ////////////////////////////////////////////////////////////////////////////////
-    // Generic6DofConstraint Detailed Limits and Motors
     void Generic6DofConstraint::SetLimit(int Axis, Real Lower, Real Upper)
         { this->Generic6dof->setLimit(Axis, Lower, Upper); }
 
+    void Generic6DofConstraint::SetLinearLimitUpper(const Vector3& Limit)
+        { this->Generic6dof->setLinearUpperLimit(Limit.GetBulletVector3()); }
+
+    void Generic6DofConstraint::SetLinearLimitLower(const Vector3& Limit)
+        { this->Generic6dof->setLinearLowerLimit(Limit.GetBulletVector3()); }
+
+    Vector3 Generic6DofConstraint::GetLinearLimitUpper() const
+        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_upperLimit); }
+
+    Vector3 Generic6DofConstraint::GetLinearLimitLower() const
+        { return Vector3(this->Generic6dof->getTranslationalLimitMotor()->m_lowerLimit); }
+
+    void Generic6DofConstraint::SetAngularLimitUpper(const Vector3& Limit)
+        { this->Generic6dof->setAngularUpperLimit(Limit.GetBulletVector3()); }
+
+    void Generic6DofConstraint::SetAngularLimitLower(const Vector3& Limit)
+        { this->Generic6dof->setAngularLowerLimit(Limit.GetBulletVector3()); }
+
+    Vector3 Generic6DofConstraint::GetAngularLimitUpper() const
+        { return Vector3(GetAngularLimitUpperOnAxis(0),GetAngularLimitUpperOnAxis(1),GetAngularLimitUpperOnAxis(2)); }
+
+    Vector3 Generic6DofConstraint::GetAngularLimitLower() const
+        { return Vector3(GetAngularLimitLowerOnAxis(0),GetAngularLimitLowerOnAxis(1),GetAngularLimitLowerOnAxis(2)); }
+
+    Real Generic6DofConstraint::GetAngularLimitLowerOnAxis(int RotationalAxis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(RotationalAxis))->m_loLimit; }
+
+    Real Generic6DofConstraint::GetAngularLimitUpperOnAxis(int RotationalAxis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(RotationalAxis))->m_hiLimit; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Angular Limit and Motor Details
+    void Generic6DofConstraint::SetAngularLimitMaxForce(const Vector3& MaxLimitForces)
+        { SetAngularLimitMaxForceOnAxis(MaxLimitForces.X,AngularXAsRotationalAxis);  SetAngularLimitMaxForceOnAxis(MaxLimitForces.Y,AngularYAsRotationalAxis);  SetAngularLimitMaxForceOnAxis(MaxLimitForces.Z,AngularZAsRotationalAxis); }
+
+    void Generic6DofConstraint::SetAngularLimitMaxForceOnAxis(Real MaxLimitForce, int Axis)
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxLimitForce = MaxLimitForce; }
+
+    Vector3 Generic6DofConstraint::GetAngularLimitMaxForce() const
+        { return Vector3(GetAngularLimitMaxForceOnAxis(AngularXAsRotationalAxis), GetAngularLimitMaxForceOnAxis(AngularYAsRotationalAxis), GetAngularLimitMaxForceOnAxis(AngularZAsRotationalAxis)); }
+
+    Real Generic6DofConstraint::GetAngularLimitMaxForceOnAxis(int Axis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxLimitForce; }
+
+
     void Generic6DofConstraint::SetAngularMotorTargetVelocity(const Vector3& Velocities)
-        { SetAngularMotorTargetVelocityOnAxis(Velocities.X,0);  SetAngularMotorTargetVelocityOnAxis(Velocities.Y,1);  SetAngularMotorTargetVelocityOnAxis(Velocities.Z,2);}
+        { SetAngularMotorTargetVelocityOnAxis(Velocities.X,AngularXAsRotationalAxis);  SetAngularMotorTargetVelocityOnAxis(Velocities.Y,AngularYAsRotationalAxis);  SetAngularMotorTargetVelocityOnAxis(Velocities.Z,AngularZAsRotationalAxis); }
 
     void Generic6DofConstraint::SetAngularMotorTargetVelocityOnAxis(Real Velocity, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_targetVelocity = Velocity; }
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_targetVelocity = Velocity; }
 
     Vector3 Generic6DofConstraint::GetAngularMotorTargetVelocity() const
-        { return Vector3(GetAngularMotorTargetVelocityOnAxis(0), GetAngularMotorTargetVelocityOnAxis(1), GetAngularMotorTargetVelocityOnAxis(2));}
+        { return Vector3(GetAngularMotorTargetVelocityOnAxis(AngularXAsRotationalAxis), GetAngularMotorTargetVelocityOnAxis(AngularYAsRotationalAxis), GetAngularMotorTargetVelocityOnAxis(AngularZAsRotationalAxis)); }
 
     Real Generic6DofConstraint::GetAngularMotorTargetVelocityOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_targetVelocity; }
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_targetVelocity; }
 
 
-    void Generic6DofConstraint::SetAngularMotorMaxMotorForce(const Vector3& Forces)
-        { SetAngularMotorMaxMotorForceOnAxis(Forces.X,0);  SetAngularMotorMaxMotorForceOnAxis(Forces.Y,1);  SetAngularMotorMaxMotorForceOnAxis(Forces.Z,2);}
+    void Generic6DofConstraint::SetAngularMotorMaxForce(const Vector3& Forces)
+        { SetAngularMotorMaxForceOnAxis(Forces.X,AngularXAsRotationalAxis);  SetAngularMotorMaxForceOnAxis(Forces.Y,AngularYAsRotationalAxis);  SetAngularMotorMaxForceOnAxis(Forces.Z,AngularZAsRotationalAxis); }
 
-    void Generic6DofConstraint::SetAngularMotorMaxMotorForceOnAxis(Real Force, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_maxMotorForce = Force; }
+    void Generic6DofConstraint::SetAngularMotorMaxForceOnAxis(Real Force, int Axis)
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxMotorForce = Force; }
 
-    Vector3 Generic6DofConstraint::GetAngularMotorMaxMotorForce() const
-        { return Vector3(GetAngularMotorMaxMotorForceOnAxis(0), GetAngularMotorMaxMotorForceOnAxis(1), GetAngularMotorMaxMotorForceOnAxis(2));}
+    Vector3 Generic6DofConstraint::GetAngularMotorMaxForce() const
+        { return Vector3(GetAngularMotorMaxForceOnAxis(AngularXAsRotationalAxis), GetAngularMotorMaxForceOnAxis(AngularYAsRotationalAxis), GetAngularMotorMaxForceOnAxis(AngularZAsRotationalAxis)); }
 
-    Real Generic6DofConstraint::GetAngularMotorMaxMotorForceOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_maxMotorForce; }
+    Real Generic6DofConstraint::GetAngularMotorMaxForceOnAxis(int Axis) const
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxMotorForce; }
 
 
     void Generic6DofConstraint::SetAngularMotorDamping(const Vector3& Dampings)
-        { SetAngularMotorDampingOnAxis(Dampings.X,0);  SetAngularMotorDampingOnAxis(Dampings.Y,1);  SetAngularMotorDampingOnAxis(Dampings.Z,2);}
+        { SetAngularMotorDampingOnAxis(Dampings.X,AngularXAsRotationalAxis);  SetAngularMotorDampingOnAxis(Dampings.Y,AngularYAsRotationalAxis);  SetAngularMotorDampingOnAxis(Dampings.Z,AngularZAsRotationalAxis); }
 
     void Generic6DofConstraint::SetAngularMotorDampingOnAxis(Real Damping, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_damping = Damping; }
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_damping = Damping; }
 
     Vector3 Generic6DofConstraint::GetAngularMotorDamping() const
-        { return Vector3(GetAngularMotorDampingOnAxis(0), GetAngularMotorDampingOnAxis(1), GetAngularMotorDampingOnAxis(2));}
+        { return Vector3(GetAngularMotorDampingOnAxis(AngularXAsRotationalAxis), GetAngularMotorDampingOnAxis(AngularYAsRotationalAxis), GetAngularMotorDampingOnAxis(AngularZAsRotationalAxis)); }
 
     Real Generic6DofConstraint::GetAngularMotorDampingOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_damping; }
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_damping; }
 
 
     void Generic6DofConstraint::SetAngularMotorRestitution(const Vector3& Restistutions)
-        { SetAngularMotorRestitutionOnAxis(Restistutions.X,0);  SetAngularMotorRestitutionOnAxis(Restistutions.Y,1);  SetAngularMotorRestitutionOnAxis(Restistutions.Z,2);}
+        { SetAngularMotorRestitutionOnAxis(Restistutions.X,AngularXAsRotationalAxis);  SetAngularMotorRestitutionOnAxis(Restistutions.Y,AngularYAsRotationalAxis);  SetAngularMotorRestitutionOnAxis(Restistutions.Z,AngularZAsRotationalAxis); }
 
     void Generic6DofConstraint::SetAngularMotorRestitutionOnAxis(Real Restistution, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_bounce = Restistution; }
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_bounce = Restistution; }
 
     Vector3 Generic6DofConstraint::GetAngularMotorRestitution() const
-        { return Vector3(GetAngularMotorRestitutionOnAxis(0), GetAngularMotorRestitutionOnAxis(1), GetAngularMotorRestitutionOnAxis(2));}
+        { return Vector3(GetAngularMotorRestitutionOnAxis(AngularXAsRotationalAxis), GetAngularMotorRestitutionOnAxis(AngularYAsRotationalAxis), GetAngularMotorRestitutionOnAxis(AngularZAsRotationalAxis)); }
 
     Real Generic6DofConstraint::GetAngularMotorRestitutionOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_bounce; }
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_bounce; }
 
 
     void Generic6DofConstraint::SetAngularMotorEnabled(const Vector3& Enableds)
-        { SetAngularMotorEnabledOnAxis(Enableds.X,0);  SetAngularMotorEnabledOnAxis(Enableds.Y,1);  SetAngularMotorEnabledOnAxis(Enableds.Z,2);}
+        { SetAngularMotorEnabledOnAxis(Enableds.X,AngularXAsRotationalAxis);  SetAngularMotorEnabledOnAxis(Enableds.Y,AngularYAsRotationalAxis);  SetAngularMotorEnabledOnAxis(Enableds.Z,AngularZAsRotationalAxis); }
 
     void Generic6DofConstraint::SetAngularMotorEnabledOnAxis(bool Enabled, int Axis)
-        { this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_enableMotor = (Enabled!=0); }
+        { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_enableMotor = Enabled; }
 
     Vector3 Generic6DofConstraint::GetAngularMotorEnabled() const
-        { return Vector3(GetAngularMotorEnabledOnAxis(0), GetAngularMotorEnabledOnAxis(1), GetAngularMotorEnabledOnAxis(2));}
+        { return Vector3(GetAngularMotorEnabledOnAxis(AngularXAsRotationalAxis), GetAngularMotorEnabledOnAxis(AngularYAsRotationalAxis), GetAngularMotorEnabledOnAxis(AngularZAsRotationalAxis)); }
 
     bool Generic6DofConstraint::GetAngularMotorEnabledOnAxis(int Axis) const
-        { return this->Generic6dof->getRotationalLimitMotor(AxisToRotAxis(Axis))->m_enableMotor; }
+        { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_enableMotor; }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Linear Limit and Motor Details
+    void Generic6DofConstraint::SetLinearLimitSoftness(Real Softness)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_limitSoftness = Softness; }
+
+    Real Generic6DofConstraint::GetLinearLimitSoftness() const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_limitSoftness; }
+
+    void Generic6DofConstraint::SetLinearLimitDamping(Real Damping)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_damping = Damping; }
+
+    Real Generic6DofConstraint::GetLinearLimitDamping() const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_damping; }
+
+    void Generic6DofConstraint::SetLinearLimitRestitution(Real Restitution)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_restitution = Restitution; }
+
+    Real Generic6DofConstraint::GetLinearLimitRestitution() const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_restitution; }
+
+
+    void Generic6DofConstraint::SetLinearMotorMaxForce(const Vector3& Forces)
+        { SetLinearMotorMaxForceOnAxis(Forces.X,LinearX);  SetLinearMotorMaxForceOnAxis(Forces.Y,LinearY);  SetLinearMotorMaxForceOnAxis(Forces.Z,LinearZ); }
+
+    void Generic6DofConstraint::SetLinearMotorMaxForceOnAxis(Real Force, int Axis)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_maxMotorForce[Axis] = Force; }
+
+    Vector3 Generic6DofConstraint::GetLinearMotorMaxForce() const
+        { return Vector3(GetLinearMotorMaxForceOnAxis(LinearX), GetLinearMotorMaxForceOnAxis(LinearY), GetLinearMotorMaxForceOnAxis(LinearZ)); }
+
+    Real Generic6DofConstraint::GetLinearMotorMaxForceOnAxis(int Axis) const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_maxMotorForce[Axis]; }
+
+    void Generic6DofConstraint::SetLinearMotorTargetVelocity(const Vector3& Velocities)
+        { SetLinearMotorTargetVelocityOnAxis(Velocities.X,LinearX);  SetLinearMotorTargetVelocityOnAxis(Velocities.Y,LinearY);  SetLinearMotorTargetVelocityOnAxis(Velocities.Z,LinearZ); }
+
+    void Generic6DofConstraint::SetLinearMotorTargetVelocityOnAxis(Real Velocity, int Axis)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_targetVelocity[Axis] = Velocity; }
+
+    Vector3 Generic6DofConstraint::GetLinearMotorTargetVelocity() const
+        { return Vector3(GetLinearMotorTargetVelocityOnAxis(LinearX), GetLinearMotorTargetVelocityOnAxis(LinearY), GetLinearMotorTargetVelocityOnAxis(LinearZ)); }
+
+    Real Generic6DofConstraint::GetLinearMotorTargetVelocityOnAxis(int Axis) const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_targetVelocity[Axis]; }
+
+
+    void Generic6DofConstraint::SetLinearMotorEnabled(const Vector3& Enableds)
+        { SetLinearMotorEnabledOnAxis(Enableds.X,LinearX);  SetLinearMotorEnabledOnAxis(Enableds.Y,LinearY);  SetLinearMotorEnabledOnAxis(Enableds.Z,LinearZ); }
+
+    void Generic6DofConstraint::SetLinearMotorEnabledOnAxis(bool Enabled, int Axis)
+        { this->Generic6dof->getTranslationalLimitMotor()->m_enableMotor[Axis] = Enabled; }
+
+    Vector3 Generic6DofConstraint::GetLinearMotorEnabled() const
+        { return Vector3(GetLinearMotorEnabledOnAxis(LinearX), GetLinearMotorEnabledOnAxis(LinearY), GetLinearMotorEnabledOnAxis(LinearZ)); }
+
+    bool Generic6DofConstraint::GetLinearMotorEnabledOnAxis(int Axis) const
+        { return this->Generic6dof->getTranslationalLimitMotor()->m_enableMotor[Axis]; }
 
 
 
@@ -520,7 +729,7 @@ namespace phys
     bool Generic6DofConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
     {
         // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btGeneric6DofConstraint_8cpp_source.html#l00964
-        if(0<=Axis && 5>=Axis)
+        if(0>Axis || 5<Axis)
             { return false; }
         return  ( Con_Stop_ERP==Param && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_ERP_STOP << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ||  //if we are checking the stop_erp AND the stop_erp bit is set for the correct axis
                 ( Con_Stop_CFM==Param && this->Generic6dof->m_flags & (BT_6DOF_FLAGS_CFM_STOP << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ||  //if we are checking the stop_cfm AND the stop_cfm bit is set
@@ -533,7 +742,7 @@ namespace phys
         { this->Generic6dof->setUseFrameOffset(FrameOffset); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Serialization
+    // Generic6DofConstraint Serialization
 #ifdef PHYSXML
     void Generic6DofConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
@@ -542,60 +751,200 @@ namespace phys
         if (!G6dofNode)
             { SerializeError("Create G6dofNode", SerializableName()); }
 
-        // Linear
-            // Upper limit
-            // Lower Limit
 
-        // Angular
-            // Upper limit
-            // Lower Limit
+        xml::Node LinLimUpp = G6dofNode.AppendChild("LinearLimitUpper");                    // Basic Limit Stuff
+        if (!LinLimUpp)
+            { SerializeError("Create LinLimUpp", SerializableName()); }
+        this->GetLinearLimitUpper().ProtoSerialize(LinLimUpp);
 
-        // Linear and angular Motors
-            // The whole Motor Class for each
+        xml::Node LinLimLow = G6dofNode.AppendChild("LinearLimitLower");
+        if (!LinLimLow)
+            { SerializeError("Create LinLimLow", SerializableName()); }
+        this->GetLinearLimitLower().ProtoSerialize(LinLimLow);
+
+        xml::Node AngLimUpp = G6dofNode.AppendChild("AngularLimitUpper");
+        if (!AngLimUpp)
+            { SerializeError("Create AngLimUpp", SerializableName()); }
+        this->GetAngularLimitUpper().ProtoSerialize(AngLimUpp);
+
+        xml::Node AngLimLow = G6dofNode.AppendChild("AngularLimitLower");
+        if (!AngLimLow)
+            { SerializeError("Create AngLimLow", SerializableName()); }
+        this->GetAngularLimitLower().ProtoSerialize(AngLimLow);
 
 
+        xml::Node AngularLimitMaxForce = G6dofNode.AppendChild("AngularLimitMaxForce");                   // Angular Limit and Motor Details
+        if (!AngularLimitMaxForce)
+            { SerializeError("Create AngularLimitMaxForce", SerializableName()); }
+        this->GetAngularLimitMaxForce().ProtoSerialize(AngularLimitMaxForce);
+
+        xml::Node AngularMotorTargetVelocity = G6dofNode.AppendChild("AngularMotorTargetVelocity");
+        if (!AngularMotorTargetVelocity)
+            { SerializeError("Create AngularMotorTargetVelocity", SerializableName()); }
+        this->GetAngularMotorTargetVelocity().ProtoSerialize(AngularMotorTargetVelocity);
+
+        xml::Node AngularMotorMaxForce = G6dofNode.AppendChild("AngularMotorMaxForce");
+        if (!AngularMotorMaxForce)
+            { SerializeError("Create AngularMotorMaxForce", SerializableName()); }
+        this->GetAngularMotorMaxForce().ProtoSerialize(AngularMotorMaxForce);
+
+        xml::Node AngularMotorDamping = G6dofNode.AppendChild("AngularMotorDamping");
+        if (!AngularMotorDamping)
+            { SerializeError("Create AngularMotorDamping", SerializableName()); }
+        this->GetAngularMotorDamping().ProtoSerialize(AngularMotorDamping);
+
+        xml::Node AngularMotorRestitution = G6dofNode.AppendChild("AngularMotorRestitution");
+        if (!AngularMotorRestitution)
+            { SerializeError("Create AngularMotorRestitution", SerializableName()); }
+        this->GetAngularMotorRestitution().ProtoSerialize(AngularMotorRestitution);
+
+        xml::Node AngularMotorEnabled = G6dofNode.AppendChild("AngularMotorEnabled");
+        if (!AngularMotorEnabled)
+            { SerializeError("Create AngularMotorEnabled", SerializableName()); }
+        this->GetAngularMotorEnabled().ProtoSerialize(AngularMotorEnabled);
 
 
-        // Spring x6
-            // Enabled
-            // Stiffness
-            // Damping
+        xml::Node LinearMotorMaxForce = G6dofNode.AppendChild("LinearMotorMaxForce");                   // Linear limit and motor details
+        if (!LinearMotorMaxForce)
+            { SerializeError("Create LinearMotorMaxForce", SerializableName()); }
+        this->GetLinearMotorMaxForce().ProtoSerialize(LinearMotorMaxForce);
 
-/*
-        xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
-        xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
-        xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
-        xml::Attribute DamAttr = P2PNode.AppendAttribute("Damping");
+        xml::Node LinearMotorTargetVelocity = G6dofNode.AppendChild("LinearMotorTargetVelocity");
+        if (!LinearMotorTargetVelocity)
+            { SerializeError("Create LinearMotorTargetVelocity", SerializableName()); }
+        this->GetLinearMotorTargetVelocity().ProtoSerialize(LinearMotorTargetVelocity);
 
-        if( VerAttr && TauAttr && ClaAttr && DamAttr )
-        {
-            VerAttr.SetValue(1);
-            TauAttr.SetValue(this->GetTAU());
-            ClaAttr.SetValue(this->GetImpulseClamping());
-            DamAttr.SetValue(this->GetDamping());
-        }else{
-            SerializeError("Create P2PNode Attributes", SerializableName());
-        }
+        xml::Node LinearMotorEnabled = G6dofNode.AppendChild("LinearMotorEnabled");
+        if (!LinearMotorEnabled)
+            { SerializeError("Create LinearMotorEnabled", SerializableName()); }
+        this->GetLinearMotorEnabled().ProtoSerialize(LinearMotorEnabled);
 
-        xml::Node ActorANode = P2PNode.AppendChild("ActorA");
-        if (!ActorANode)
-            { SerializeError("Create ActorANode", SerializableName()); }
-        this->GetPivotA().ProtoSerialize(ActorANode);
+        phys::xml::Attribute Version = G6dofNode.AppendAttribute("Version");                            // Version
+        if (!Version)
+            { SerializeError("Create Version", SerializableName()); }
+        Version.SetValue(1);
 
-        xml::Node ActorBNode = P2PNode.AppendChild("ActorB");
-        if (!ActorBNode)
-            { SerializeError("Create ActorBNode", SerializableName()); }
-        this->GetPivotB().ProtoSerialize(ActorBNode);*/
+        phys::xml::Attribute LinearLimitSoftness = G6dofNode.AppendAttribute("LinearLimitSoftness");    // Linear Attributes.
+        if (!LinearLimitSoftness)
+            { SerializeError("Create LinearLimitSoftness", SerializableName()); }
+        LinearLimitSoftness.SetValue(this->GetLinearLimitSoftness());
+
+        phys::xml::Attribute LinearLimitDamping = G6dofNode.AppendAttribute("LinearLimitDamping");
+        if (!LinearLimitDamping)
+            { SerializeError("Create LinearLimitDamping", SerializableName()); }
+        LinearLimitDamping.SetValue(this->GetLinearLimitDamping());
+
+        phys::xml::Attribute LinearLimitRestitution = G6dofNode.AppendAttribute("LinearLimitRestitution");
+        if (!LinearLimitRestitution)
+            { SerializeError("Create LinearLimitRestitution", SerializableName()); }
+        LinearLimitRestitution.SetValue(this->GetLinearLimitRestitution());
 
         this->DualTransformConstraint::ProtoSerialize(G6dofNode);
     }
 
     void Generic6DofConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->Generic6DofConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
+                if(!DualTranny)
+                    { DeSerializeError("locate DualTransforn node",SerializableName()); }
+                this->DualTransformConstraint::ProtoDeSerialize(DualTranny);
 
+                this->SetLinearLimitSoftness(OneNode.GetAttribute("LinearLimitSoftness").AsReal());
+                this->SetLinearLimitDamping(OneNode.GetAttribute("LinearLimitDamping").AsReal());
+                this->SetLinearLimitRestitution(OneNode.GetAttribute("LinearLimitRestitution").AsReal());
+
+                Vector3 vec;
+
+                xml::Node LinearLimitUpper = OneNode.GetChild("LinearLimitUpper");
+                if(!LinearLimitUpper || !LinearLimitUpper.GetFirstChild())
+                    { DeSerializeError("locate LinearLimitUpper node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearLimitUpper.GetFirstChild());
+                this->SetLinearLimitUpper(vec);
+
+                xml::Node LinearLimitLower = OneNode.GetChild("LinearLimitLower");
+                if(!LinearLimitLower || !LinearLimitLower.GetFirstChild())
+                    { DeSerializeError("locate LinearLimitLower node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearLimitLower.GetFirstChild());
+                this->SetLinearLimitLower(vec);
+
+                xml::Node AngularLimitUpper = OneNode.GetChild("AngularLimitUpper");
+                if(!AngularLimitUpper || !AngularLimitUpper.GetFirstChild())
+                    { DeSerializeError("locate AngularLimitUpper node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularLimitUpper.GetFirstChild());
+                this->SetAngularLimitUpper(vec);
+
+                xml::Node AngularLimitLower = OneNode.GetChild("AngularLimitLower");
+                if(!AngularLimitLower || !AngularLimitLower.GetFirstChild())
+                    { DeSerializeError("locate AngularLimitLower node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularLimitLower.GetFirstChild());
+                this->SetAngularLimitLower(vec);
+
+                xml::Node AngularLimitMaxForce = OneNode.GetChild("AngularLimitMaxForce");
+                if(!AngularLimitMaxForce || !AngularLimitMaxForce.GetFirstChild())
+                    { DeSerializeError("locate AngularLimitMaxForce node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularLimitMaxForce.GetFirstChild());
+                this->SetAngularLimitMaxForce(vec);
+
+                xml::Node AngularMotorTargetVelocity = OneNode.GetChild("AngularMotorTargetVelocity");
+                if(!AngularMotorTargetVelocity || !AngularMotorTargetVelocity.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorTargetVelocity node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorTargetVelocity.GetFirstChild());
+                this->SetAngularMotorTargetVelocity(vec);
+
+                xml::Node AngularMotorMaxForce = OneNode.GetChild("AngularMotorMaxForce");
+                if(!AngularMotorMaxForce || !AngularMotorMaxForce.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorMaxForce node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorMaxForce.GetFirstChild());
+                this->SetAngularMotorMaxForce(vec);
+
+                xml::Node AngularMotorDamping = OneNode.GetChild("AngularMotorDamping");
+                if(!AngularMotorDamping || !AngularMotorDamping.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorDamping node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorDamping.GetFirstChild());
+                this->SetAngularMotorDamping(vec);
+
+                xml::Node AngularMotorRestitution = OneNode.GetChild("AngularMotorRestitution");
+                if(!AngularMotorRestitution || !AngularMotorRestitution.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorRestitution node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorRestitution.GetFirstChild());
+                this->SetAngularMotorRestitution(vec);
+
+                xml::Node AngularMotorEnabled = OneNode.GetChild("AngularMotorEnabled");
+                if(!AngularMotorEnabled || !AngularMotorEnabled.GetFirstChild())
+                    { DeSerializeError("locate AngularMotorEnabled node",SerializableName()); }
+                vec.ProtoDeSerialize(AngularMotorEnabled.GetFirstChild());
+                this->SetAngularMotorEnabled(vec);
+
+                xml::Node LinearMotorMaxForce = OneNode.GetChild("LinearMotorMaxForce");
+                if(!LinearMotorMaxForce || !LinearMotorMaxForce.GetFirstChild())
+                    { DeSerializeError("locate LinearMotorMaxForce node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearMotorMaxForce.GetFirstChild());
+                this->SetLinearMotorMaxForce(vec);
+
+                xml::Node LinearMotorTargetVelocity = OneNode.GetChild("LinearMotorTargetVelocity");
+                if(!LinearMotorTargetVelocity || !LinearMotorTargetVelocity.GetFirstChild())
+                    { DeSerializeError("locate LinearMotorTargetVelocity node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearMotorTargetVelocity.GetFirstChild());
+                this->SetLinearMotorTargetVelocity(vec);
+
+                xml::Node LinearMotorEnabled = OneNode.GetChild("LinearMotorEnabled");
+                if(!LinearMotorEnabled || !LinearMotorEnabled.GetFirstChild())
+                    { DeSerializeError("locate LinearMotorEnabled node",SerializableName()); }
+                vec.ProtoDeSerialize(LinearMotorEnabled.GetFirstChild());
+                this->SetLinearMotorEnabled(vec);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
-    String Generic6DofConstraint::SerializableName() const
+    String Generic6DofConstraint::SerializableName()
         { return String("Generic6DofConstraint"); }
 #endif // /PHYSXML
 
@@ -606,6 +955,11 @@ namespace phys
     {
     }
 
+    btGeneric6DofSpringConstraint* Generic6DofSpringConstraint::Generic6dofSpring() const
+    {
+        return static_cast<btGeneric6DofSpringConstraint*>(Generic6dof);
+    }
+
     Generic6DofSpringConstraint::Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA,
                                                               const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
     {
@@ -613,39 +967,214 @@ namespace phys
 
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-        Generic6dofSpring = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
-        Generic6dof = Generic6dofSpring;
+        Generic6dof = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
     }
+
+    Generic6DofSpringConstraint::Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+    {
+        SetBodies(ActorA,ActorB);
+
+        Generic6dof = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+    }
+
 
     Generic6DofSpringConstraint::~Generic6DofSpringConstraint()
     {
-        if(Generic6dofSpring)
+        if(Generic6dof)
         {
-            delete Generic6dofSpring;
-            Generic6dofSpring = NULL;
+            delete Generic6dof;
             Generic6dof = NULL;
         }
     }
 
-    void Generic6DofSpringConstraint::SetStiffness(int Index, Real Stiffness)
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Linear Spring Settings
+    void Generic6DofSpringConstraint::SetSpringLinearStiffness(const Vector3& Stiffies)
+        { SetSpringStiffness(LinearX, Stiffies.X); SetSpringStiffness(LinearY, Stiffies.Y); SetSpringStiffness(LinearZ, Stiffies.Z); }
+
+    void Generic6DofSpringConstraint::SetSpringLinearDamping(const Vector3& Damps)
+        { SetSpringDamping(LinearX, Damps.X); SetSpringDamping(LinearY, Damps.Y); SetSpringDamping(LinearZ, Damps.Z); }
+
+    void Generic6DofSpringConstraint::SetSpringLinearEnabled(const Vector3& Enableness)
+        { SetSpringEnabled(LinearX, Enableness.X); SetSpringEnabled(LinearY, Enableness.Y); SetSpringEnabled(LinearZ, Enableness.Z); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringLinearStiffness() const
+        { return Vector3(GetSpringStiffness(LinearX),GetSpringStiffness(LinearY),GetSpringStiffness(LinearZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringLinearDamping() const
+        { return Vector3(GetSpringDamping(LinearX),GetSpringDamping(LinearY),GetSpringDamping(LinearZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringLinearEnabled() const
+        { return Vector3(GetSpringEnabled(LinearX),GetSpringEnabled(LinearY),GetSpringEnabled(LinearZ)); }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Angular Spring Settings
+    void Generic6DofSpringConstraint::SetSpringAngularStiffness(const Vector3& Stiffies)
+        { SetSpringStiffness(AngularX, Stiffies.X); SetSpringStiffness(AngularY, Stiffies.Y); SetSpringStiffness(AngularZ, Stiffies.Z); }
+
+    void Generic6DofSpringConstraint::SetSpringAngularDamping(const Vector3& Damps)
+        { SetSpringDamping(AngularX, Damps.X); SetSpringDamping(AngularY, Damps.Y); SetSpringDamping(AngularZ, Damps.Z); }
+
+    void Generic6DofSpringConstraint::SetSpringAngularEnabled(const Vector3& Enableness)
+        { SetSpringEnabled(AngularX, Enableness.X); SetSpringEnabled(AngularY, Enableness.Y); SetSpringEnabled(AngularZ, Enableness.Z); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringAngularStiffness() const
+        { return Vector3(GetSpringStiffness(AngularX),GetSpringStiffness(AngularY),GetSpringStiffness(AngularZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringAngularDamping() const
+        { return Vector3(GetSpringDamping(AngularX),GetSpringDamping(AngularY),GetSpringDamping(AngularZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetSpringAngularEnabled() const
+        { return Vector3(GetSpringEnabled(AngularX),GetSpringEnabled(AngularY),GetSpringEnabled(AngularZ)); }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Per Axis Spring Settings
+    void Generic6DofSpringConstraint::SetSpringStiffness(int Index, Real Stiffness)
+        { this->Generic6dofSpring()->setStiffness(Index, Stiffness); }
+
+    void Generic6DofSpringConstraint::SetSpringDamping(int Index, Real Damping)
+        { this->Generic6dofSpring()->setDamping(Index, Damping); }
+
+    void Generic6DofSpringConstraint::SetSpringEnabled(int Index, bool Enable)
+        { this->Generic6dofSpring()->enableSpring(Index, Enable); }
+
+    Real Generic6DofSpringConstraint::GetSpringStiffness(int Index) const
+        { return this->Generic6dofSpring()->m_springStiffness[Index]; }
+
+    Real Generic6DofSpringConstraint::GetSpringDamping(int Index) const
+        { return this->Generic6dofSpring()->m_springDamping[Index]; }
+
+    bool Generic6DofSpringConstraint::GetSpringEnabled(int Index) const
+        { return this->Generic6dofSpring()->m_springEnabled[Index]; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Calculated Items
+    void Generic6DofSpringConstraint::CalculateSpringEquilibriumPoint()
+        { this->Generic6dofSpring()->setEquilibriumPoint(); }
+
+    void Generic6DofSpringConstraint::CalculateSpringEquilibriumPoint(int Index)
+        { this->Generic6dofSpring()->setEquilibriumPoint(Index); }
+
+    Vector3 Generic6DofSpringConstraint::GetCurrentSpringAngularEquilibriumPoints() const
+        { return Vector3(GetCurrentSpringEquilibriumPoint(AngularX),GetCurrentSpringEquilibriumPoint(AngularY),GetCurrentSpringEquilibriumPoint(AngularZ)); }
+
+    Vector3 Generic6DofSpringConstraint::GetCurrentSpringLinearEquilibriumPoints() const
+        { return Vector3(GetCurrentSpringEquilibriumPoint(LinearX),GetCurrentSpringEquilibriumPoint(LinearY),GetCurrentSpringEquilibriumPoint(LinearZ)); }
+
+    Real Generic6DofSpringConstraint::GetCurrentSpringEquilibriumPoint(int Index) const
+        { return this->Generic6dofSpring()->m_equilibriumPoint[Index]; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofSpringConstraint Serialization
+#ifdef PHYSXML
+    void Generic6DofSpringConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        this->Generic6dofSpring->setStiffness(Index, Stiffness);
+        xml::Node G6dofSpringNode = CurrentRoot.AppendChild(SerializableName());                        // The base node all the base constraint stuff will go in
+        if (!G6dofSpringNode)
+            { SerializeError("Create G6dofSpringNode", SerializableName()); }
+
+        phys::xml::Attribute Version = G6dofSpringNode.AppendAttribute("Version");                      // Version
+        if (!Version)
+            { SerializeError("Create Version", SerializableName()); }
+        Version.SetValue(1);
+
+        this->Generic6DofConstraint::ProtoSerialize(G6dofSpringNode);                                   // Serialize the 6dof, dualtransform and the typedconstraint
+
+        xml::Node SpringStiffness = G6dofSpringNode.AppendChild("SpringStiffness");
+        if (!SpringStiffness)
+            { SerializeError("Create SpringStiffness", SerializableName()); }
+        xml::Node SpringDamping = G6dofSpringNode.AppendChild("SpringDamping");
+        if (!SpringDamping)
+            { SerializeError("Create SpringDamping", SerializableName()); }
+        xml::Node SpringEnabled = G6dofSpringNode.AppendChild("SpringEnabled");
+        if (!SpringEnabled)
+            { SerializeError("Create SpringEnabled", SerializableName()); }
+
+
+        for (int c=0; c<6; ++c)                                                                         // Each of the spring attributes
+        {
+            String AttrName("Axis"+ToString(c));
+
+            phys::xml::Attribute AxisStiffness = SpringStiffness.AppendAttribute(AttrName);
+            if (!AxisStiffness)
+                { SerializeError("Create AxisStiffness-"+AttrName, SerializableName()); }
+            AxisStiffness.SetValue(this->GetSpringStiffness(c));
+
+            phys::xml::Attribute AxisDamping = SpringDamping.AppendAttribute(AttrName);
+            if (!AxisDamping)
+                { SerializeError("Create AxisDamping-"+AttrName, SerializableName()); }
+            AxisDamping.SetValue(this->GetSpringDamping(c));
+
+            phys::xml::Attribute AxisEnabled = SpringEnabled.AppendAttribute(AttrName);
+            if (!AxisEnabled)
+                { SerializeError("Create AxisEnabled-"+AttrName, SerializableName()); }
+            AxisEnabled.SetValue(this->GetSpringEnabled(c));
+        }
     }
 
-    void Generic6DofSpringConstraint::SetDamping(int Index, Real Damping)
+    void Generic6DofSpringConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
-        this->Generic6dofSpring->setDamping(Index, Damping);
+        if ( phys::String(OneNode.Name())==this->Generic6DofSpringConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node g6dof = OneNode.GetChild("Generic6DofConstraint");
+                if(!g6dof)
+                    { DeSerializeError("locate Generic6DofConstraint node",SerializableName()); }
+                this->Generic6DofConstraint::ProtoDeSerialize(g6dof);
+
+                xml::Node SpringStiffness = OneNode.GetChild("SpringStiffness");
+                if (!SpringStiffness)
+                    { DeSerializeError("Find SpringStiffness Node", SerializableName()); }
+                xml::Node SpringDamping = OneNode.GetChild("SpringDamping");
+                if (!SpringDamping)
+                    { DeSerializeError("Find SpringDamping Node", SerializableName()); }
+                xml::Node SpringEnabled = OneNode.GetChild("SpringEnabled");
+                if (!SpringEnabled)
+                    { DeSerializeError("Find SpringEnabled Node", SerializableName()); }
+
+                xml::Attribute SpringStiffnessAttr = SpringStiffness.GetFirstAttribute();
+                while(SpringStiffnessAttr)
+                {
+                    String CurrentName(SpringStiffnessAttr.Name());
+                    if (4>CurrentName.size())
+                        { DeSerializeError("Invalid axis attribute", SerializableName()); }
+                    this->SetSpringStiffness(char4ToAxis(CurrentName[4]),SpringStiffnessAttr.AsReal());
+                    SpringStiffnessAttr = SpringStiffnessAttr.GetNextAttribute();
+                }
+
+                xml::Attribute SpringDampingAttr = SpringDamping.GetFirstAttribute();
+                while(SpringDampingAttr)
+                {
+                    String CurrentName(SpringDampingAttr.Name());
+                    if (4>CurrentName.size())
+                        { DeSerializeError("Invalid axis attribute", SerializableName()); }
+                    this->SetSpringDamping(char4ToAxis(CurrentName[4]),SpringDampingAttr.AsReal());
+                    SpringDampingAttr = SpringDampingAttr.GetNextAttribute();
+                }
+
+                xml::Attribute SpringEnabledAttr = SpringEnabled.GetFirstAttribute();
+                while(SpringEnabledAttr)
+                {
+                    String CurrentName(SpringEnabledAttr.Name());
+                    if (4>CurrentName.size())
+                        { DeSerializeError("Invalid axis attribute", SerializableName()); }
+                    this->SetSpringEnabled(char4ToAxis(CurrentName[4]),SpringEnabledAttr.AsBool());
+                    SpringEnabledAttr = SpringEnabledAttr.GetNextAttribute();
+                }
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
-    void Generic6DofSpringConstraint::SetEquilibriumPoint(int Index)
-    {
-        this->Generic6dofSpring->setEquilibriumPoint(Index);
-    }
+    String Generic6DofSpringConstraint::SerializableName()
+        { return String("Generic6DofSpringConstraint"); }
+#endif // /PHYSXML
 
-    void Generic6DofSpringConstraint::EnableSpring(int Index, bool Enable)
-    {
-        this->Generic6dofSpring->enableSpring(Index, Enable);
-    }
+
 
     ////////////////////////////////////////////////////////////////////////////////
     // Hinge Constraint Functions
@@ -737,14 +1266,14 @@ namespace phys
     void HingeConstraint::EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
         { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
 
-    void HingeConstraint::EnableMotor(bool EnableMotor)
-        { this->Hinge->enableMotor(EnableMotor); }
+    /* void HingeConstraint::EnableMotor(bool EnableMotor)
+        { this->Hinge->enableMotor(EnableMotor); } */
 
     bool HingeConstraint::GetMotorEnabled() const
         { return this->Hinge->getEnableAngularMotor(); }
 
-    void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
-        { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); }
+    /* void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
+        { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); } */
 
     Real HingeConstraint::GetMaxMotorImpulse() const
         { return this->Hinge->getMaxMotorImpulse(); }
@@ -755,8 +1284,8 @@ namespace phys
     void HingeConstraint::SetMotorTarget(Real TargetAngle, Real Dt)
         { this->Hinge->setMotorTarget(TargetAngle, Dt); }
 
-    void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
-        { return this->SetMotorTargetVelocity(TargetVelocity); }
+    /* void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
+        { return this->SetMotorTargetVelocity(TargetVelocity); } */
 
     Real HingeConstraint::GetMotorTargetVelocity() const
         { return this->Hinge->getMotorTargetVelosity(); }
@@ -880,7 +1409,7 @@ namespace phys
             SerializeError("Create MotorNode Attributes", SerializableName());
         }
 
-        xml::Node LimitNode = HingeNode.AppendChild("Limits");                      // Limits Node
+        xml::Node LimitNode =  HingeNode.AppendChild("Limits");                      // Limits Node
         if (!LimitNode)
             { SerializeError("Create LimitNode", SerializableName()); }
 
@@ -905,10 +1434,46 @@ namespace phys
 
     void HingeConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->HingeConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
+                if(!DualTranny)
+                    { DeSerializeError("locate DualTransforn node",SerializableName()); }
+                this->DualTransformConstraint::ProtoDeSerialize(DualTranny);
 
+                xml::Node MotorNode = OneNode.GetChild("Motor");
+                if(!MotorNode)
+                    { DeSerializeError("locate Motor node",SerializableName()); }
+
+                xml::Node LimitNode = OneNode.GetChild("Limits");
+                if(!LimitNode)
+                    { DeSerializeError("locate Limits node",SerializableName()); }
+
+                this->SetUseReferenceFrameA(OneNode.GetAttribute("ReferenceInA").AsBool());
+                this->SetUseFrameOffset(OneNode.GetAttribute("UseFrameOffset").AsBool());
+
+                this->EnableMotor(
+                    MotorNode.GetAttribute("Enabled").AsBool(),
+                    MotorNode.GetAttribute("TargetVelocity").AsReal(),
+                    MotorNode.GetAttribute("MaxImpulse").AsReal() );
+
+                this->SetLimit(
+                    LimitNode.GetAttribute("Low").AsReal(),
+                    LimitNode.GetAttribute("High").AsReal(),
+                    LimitNode.GetAttribute("Softness").AsReal(),
+                    LimitNode.GetAttribute("BiasFactor").AsReal(),
+                    LimitNode.GetAttribute("RelaxationFactor").AsReal() );
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
-    String HingeConstraint::SerializableName() const
+    String HingeConstraint::SerializableName()
         { return String("HingeConstraint"); }
 #endif // /PHYSXML
 
@@ -923,7 +1488,6 @@ namespace phys
         btVector3 temp2(Axis1.GetBulletVector3());
         btVector3 temp3(Axis2.GetBulletVector3());
         Hinge2 = new btHinge2Constraint(*BodyA, *BodyB, temp1, temp2, temp3);
-        Generic6dofSpring = Hinge2;
         Generic6dof = Hinge2;
     }
 
@@ -931,7 +1495,6 @@ namespace phys
     {
         delete Hinge2;
         Hinge2 = NULL;
-        Generic6dofSpring = NULL;
         Generic6dof = NULL;
     }
 
@@ -1073,10 +1636,39 @@ namespace phys
 
     void Point2PointConstraint::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->Point2PointConstraint::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                this->TypedConstraint::ProtoDeSerialize(OneNode.GetChild("TypedConstraint"));
 
+                this->SetTAU(OneNode.GetAttribute("Tau").AsReal());
+                this->SetImpulseClamping(OneNode.GetAttribute("ImpulseClamping").AsReal());
+                this->SetDamping(OneNode.GetAttribute("Damping").AsReal());
+
+                xml::Node ActorANode = OneNode.GetChild("ActorA");
+                if(!ActorANode)
+                    { DeSerializeError("Could not find ActorA position",SerializableName()); }
+
+                xml::Node ActorBNode = OneNode.GetChild("ActorB");
+                if(!ActorBNode)
+                    { DeSerializeError("Could not find ActorB position",SerializableName()); }
+
+                Vector3 temp;
+                temp.ProtoDeSerialize(ActorANode.GetFirstChild());
+                SetPivotALocation(temp);
+                temp.ProtoDeSerialize(ActorBNode.GetFirstChild());
+                SetPivotBLocation(temp);
+
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
-    String Point2PointConstraint::SerializableName() const
+    String Point2PointConstraint::SerializableName()
         { return String("Point2PointConstraint"); }
 #endif // /PHYSXML
 
@@ -1264,9 +1856,9 @@ namespace phys
     }
 
     /////////////////////////////////////////
-    // Universal Constraint Functions
+    // UniversalJointConstraint Constraint Functions
 
-    UniversalConstraint::UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+    UniversalJointConstraint::UniversalJointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
     {
         SetBodies(ActorA,ActorB);
 
@@ -1277,19 +1869,19 @@ namespace phys
         Generic6dof = Universal;
     }
 
-    UniversalConstraint::~UniversalConstraint()
+    UniversalJointConstraint::~UniversalJointConstraint()
     {
         delete Universal;
         Universal = NULL;
         Generic6dof = NULL;
     }
 
-    void UniversalConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)
+    void UniversalJointConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)
     {
         this->Universal->setUpperLimit(Ang1Max, Ang2Max);
     }
 
-    void UniversalConstraint::SetLowerLimit(Real Ang1Min, Real Ang2Min)
+    void UniversalJointConstraint::SetLowerLimit(Real Ang1Min, Real Ang2Min)
     {
         this->Universal->setLowerLimit(Ang1Min, Ang2Min);
     }
@@ -1309,6 +1901,74 @@ namespace phys
         { return DeSerialize(stream, x); }
 
     void operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::DualTransformConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::DualTransformConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::DualTransformConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::Generic6DofConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofSpringConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::Generic6DofSpringConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofSpringConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::HingeConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::HingeConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::HingeConstraint& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+
+
+
+    std::ostream& operator << (std::ostream& stream, const phys::Point2PointConstraint& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
+
+    std::istream& operator >> (std::istream& stream, phys::Point2PointConstraint& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::Point2PointConstraint& x)
         { x.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 
