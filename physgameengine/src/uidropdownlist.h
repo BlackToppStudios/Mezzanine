@@ -91,9 +91,6 @@ namespace phys
                 /// @brief Sets the visibility of this widget.
                 /// @param visible Bool determining whether or not this widget should be visible.
                 virtual void SetVisible(bool visible);
-                /// @brief Gets the visibility of this widget.
-                /// @return Returns a bool representing the visibility of this widget.
-                virtual bool IsVisible();
                 /// @brief Forces this widget to be shown.
                 virtual void Show();
                 /// @brief Forces this widget to hide.
@@ -129,10 +126,6 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize();
-                /// @brief Updates the dimensions of this widget to match those of the new screen size.
-                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                /// @param OldViewportSize The old size of the viewport.
-                virtual void UpdateDimensions(const Vector2& OldViewportSize);
                 /// @brief Gets the caption showing the current selection in this widget.
                 /// @return Returns a pointer to the caption showing the current selection.
                 virtual Caption* GetSelection();

@@ -140,6 +140,21 @@ namespace phys
             /// @return Returns a Real representing the actors' restitution coefficient.
             virtual Real GetRestitution() const;
 
+            /// @brief Sets the parameters used for Continuous Collision Detection.
+            /// @details If a Swept Sphere Radius is not provided, this function will attempt to find one for you using the currently set Collision Shape.
+            /// If this fails for any reason or a shape is not set, it will set the radius to 1.
+            /// @param MotionThreshold The speed at which the object has to be moving in order to enable CCD for the object.  If set to zero CCD will be disabled.
+            /// @param SweptSphereRadius The radius of the sphere to be used for CCD sweep tests.  Essentially this should be the largest radius in which a sphere can fully fit inside your object.
+            virtual void SetCCDParams(const Real& MotionThreshold, const Real& SweptSphereRadius = 0);
+
+            /// @brief Gets the amount of motion needed to enable CCD for this object.
+            /// @return Returns a Real representing the required amount of motion to enable CCD, or zero if CCD is disabled.
+            virtual Real GetCCDMotionThreshold() const;
+
+            /// @brief Gets the radius of the embedded sphere used for CCD.
+            /// @return Returns a Real representing the radius of the sphere embedded into the objects collision shape used for CCD.
+            virtual Real GetCCDSphereRadius() const;
+
             /// @brief Sets the state of the object to Kinematic.
             /// @details This function will set the object to a Kinematic Object. @n
             /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.

@@ -371,6 +371,9 @@ namespace phys
                                                         BulletCollisionConfiguration);
         }// */
         this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
+        this->BulletDynamicsWorld->getDispatchInfo().m_useContinuous = true;
+        //this->BulletDynamicsWorld->getSolverInfo().m_splitImpulse = true;
+        this->BulletDynamicsWorld->getSolverInfo().m_numIterations = 20;
         this->SetGravity(Info.Gravity);
         this->SetSoftGravity(Info.Gravity);
         this->WorldConstructionInfo = Info;

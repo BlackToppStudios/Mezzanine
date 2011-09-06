@@ -158,11 +158,6 @@ namespace phys
             Visible = visible;
         }
 
-        bool Menu::IsVisible()
-        {
-            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
-        }
-
         void Menu::Show()
         {
             for( std::vector<UI::MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )

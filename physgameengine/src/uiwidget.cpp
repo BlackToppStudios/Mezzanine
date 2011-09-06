@@ -127,6 +127,11 @@ namespace phys
         {
         }
 
+        bool Widget::IsVisible()
+        {
+            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
+        }
+
         Widget::WidgetType Widget::GetType() const
         {
             return Type;

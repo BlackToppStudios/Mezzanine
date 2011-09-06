@@ -359,11 +359,6 @@ namespace phys
             Visible = visible;
         }
 
-        bool Window::IsVisible()
-        {
-            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
-        }
-
         void Window::Show()
         {
             if(Visible)

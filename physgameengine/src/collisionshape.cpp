@@ -272,6 +272,25 @@ namespace phys
         return ChildShapes.size();
     }
 
+    void CompoundCollisionShape::RemoveChildShape(CollisionShape* Child)
+    {
+        for( std::vector<CollisionShape*>::iterator CSit = ChildShapes.begin() ; CSit != ChildShapes.end() ; CSit++ )
+        {
+            if(Child == (*CSit))
+            {
+                ChildShapes.erase(CSit);
+                CompoundShape->removeChildShape(Child->GetBulletShape());
+            }
+        }
+    }
+
+    void CompoundCollisionShape::RemoveChildShape(const Whole& ChildIndex)
+    {
+        std::vector<CollisionShape*>::iterator CSit = ChildShapes.begin() + ChildIndex;
+        ChildShapes.erase(CSit);
+        CompoundShape->removeChildShapeByIndex(ChildIndex);
+    }
+
     CollisionShape::ShapeType CompoundCollisionShape::GetType() const
     {
         return CollisionShape::ST_Compound;

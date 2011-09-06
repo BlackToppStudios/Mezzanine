@@ -859,6 +859,9 @@ namespace phys
             /// @brief Sets the axis on which this constraint acts.
             /// @param AxisInA A vector3 representing the axis to be used with this constraint.
             virtual void SetAxis(const Vector3& AxisInA);
+            /// @brief Gets the current angle of the hinge.
+            /// @return Gets the amount of rotation this hinge is off from it's origin in radians.
+            virtual Real GetHingeAngle();
             /// @copydoc TypedConstraint::ValidParamOnAxis(int) const
             virtual TypedConstraint::ParamList ValidParamOnAxis(int Axis) const;
             /// @copydoc TypedConstraint::ValidLinearAxis() const

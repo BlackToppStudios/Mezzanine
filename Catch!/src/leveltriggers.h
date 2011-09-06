@@ -22,12 +22,10 @@ class BNS_Fan : public WorldTrigger
 class Roll_Roll : public WorldTrigger
 {
     protected:
-        HingeConstraint* RollerMotor1;
-        HingeConstraint* RollerMotor2;
-        HingeConstraint* RollerMotor3;
+        std::vector<HingeConstraint*> Rollers;
         virtual void Rotate(HingeConstraint* RollerMotor);
     public:
-        Roll_Roll(const String& name, HingeConstraint* RollerMotor1, HingeConstraint* RollerMotor2, HingeConstraint* RollerMotor3);
+        Roll_Roll(const String& name, std::vector<HingeConstraint*>& TheRollers);
         virtual ~Roll_Roll();
         virtual bool ConditionsAreMet();
         virtual void ApplyTrigger();

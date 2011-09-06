@@ -123,9 +123,6 @@ namespace phys
                 /// @brief Sets the visibility of this window.
                 /// @param visible Bool determining whether or not this window should be visible.
                 virtual void SetVisible(bool visible);
-                /// @brief Gets the visibility of this window.
-                /// @return Returns a bool representing the visibility of this window.
-                virtual bool IsVisible();
                 /// @brief Forces this window to be shown.
                 virtual void Show();
                 /// @brief Forces this window to hide.

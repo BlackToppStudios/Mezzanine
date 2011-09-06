@@ -123,6 +123,43 @@ namespace phys
     Real ActorBasePhysicsSettings::GetRestitution() const
         { return ActorCO->getRestitution(); }
 
+    void ActorBasePhysicsSettings::SetCCDParams(const Real& MotionThreshold, const Real& SweptSphereRadius)
+    {
+        if(0==MotionThreshold)
+        {
+            ActorCO->setCcdMotionThreshold(MotionThreshold);
+            ActorCO->setCcdSweptSphereRadius(MotionThreshold);
+        }else{
+            ActorCO->setCcdMotionThreshold(MotionThreshold);
+            if(0==SweptSphereRadius)
+            {
+                if(ActorShape)
+                {
+                    btTransform Trans;
+                    btVector3 AABBmin, AABBmax, AABBsize;
+                    ActorShape->GetBulletShape()->getAabb(Trans,AABBmin,AABBmax);
+                    AABBsize = AABBmax - AABBmin;
+                    Real ResultRadius = AABBsize.getX() < AABBsize.getY() ? (AABBsize.getX() < AABBsize.getZ() ? AABBsize.getX() : AABBsize.getZ()) : (AABBsize.getY() < AABBsize.getZ() ? AABBsize.getY() : AABBsize.getZ());
+                    ActorCO->setCcdSweptSphereRadius(ResultRadius*0.2);
+                }else{
+                    ActorCO->setCcdSweptSphereRadius(1);
+                }
+            }else{
+                ActorCO->setCcdSweptSphereRadius(SweptSphereRadius);
+            }
+        }
+    }
+
+    Real ActorBasePhysicsSettings::GetCCDMotionThreshold() const
+    {
+        return ActorCO->getCcdMotionThreshold();
+    }
+
+    Real ActorBasePhysicsSettings::GetCCDSphereRadius() const
+    {
+        return ActorCO->getCcdSweptSphereRadius();
+    }
+
     void ActorBasePhysicsSettings::SetKinematic()
     {
         ActorCO->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
@@ -388,7 +425,9 @@ std::ostream& operator<< (std::ostream& stream, const phys::ActorBasePhysicsSett
                 << "CollisionResponse=\"" << Ev.GetCollisionResponse() << "\" "
                 << "CollisionGroup=\"" << Ev.GetCollisionGroup() << "\" "
                 << "CollisionMask=\"" << Ev.GetCollisionMask() << "\" "
-                << "ActivationState=\"" << Ev.GetActivationState() << "\" />";
+                << "ActivationState=\"" << Ev.GetActivationState() << "\" />"
+                << "CCDMotionThreshold=\"" << Ev.GetCCDMotionThreshold() << "\" />"
+                << "CCDSphereRadius=\"" << Ev.GetCCDSphereRadius() << "\" />";
     return stream;
 }
 
@@ -418,7 +457,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhy
                 { Ev.SetStatic(); }
             Ev.SetCollisionGroupAndMask(OneNode.GetAttribute("CollisionGroup").AsWhole(),OneNode.GetAttribute("CollisionMask").AsWhole());
             Ev.SetActivationState((phys::ActorActivationState)OneNode.GetAttribute("ActivationState").AsInt());
-
+            Ev.SetCCDParams(OneNode.GetAttribute("CCDMotionThreshold").AsReal(),OneNode.GetAttribute("CCDSphereRadius").AsReal());
         }else{
             throw( phys::Exception("Incompatible XML Version for ActorBasePhysicsSettings: Not Version 1"));
         }

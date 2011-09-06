@@ -20,10 +20,10 @@ bool BNS_Fan::ConditionsAreMet()
 {
     if(-107.5 > Button->GetLocation().Y)// -123 to -107, due to the 15 units of spring
     {
-        Motor->EnableAngularMotor(true,20.0,9000.0);
+        Motor->EnableMotor(true,20.0,9000.0);
         return true;
     }else{
-        Motor->EnableAngularMotor(false,0.0,0.0);
+        Motor->EnableMotor(false,0.0,0.0);
         Wind->SetFieldStrength(0);
         return false;
     }
@@ -44,12 +44,12 @@ void BNS_Fan::ApplyTrigger()
     World::GetWorldPointer()->DoMainLoopLogging();// */
 }
 
-Roll_Roll::Roll_Roll(const String& name, HingeConstraint* RollerMotor1, HingeConstraint* RollerMotor2, HingeConstraint* RollerMotor3)
+Roll_Roll::Roll_Roll(const String& name, std::vector<HingeConstraint*>& TheRollers)
     : WorldTrigger(name)
 {
-    this->RollerMotor1 = RollerMotor1;
-    this->RollerMotor2 = RollerMotor2;
-    this->RollerMotor3 = RollerMotor3;
+    Rollers.swap(TheRollers);
+    for( Whole X = 0 ; X < Rollers.size() ; ++X )
+        Rollers[X]->GetActorA()->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
 }
 
 Roll_Roll::~Roll_Roll()
@@ -59,8 +59,10 @@ Roll_Roll::~Roll_Roll()
 void Roll_Roll::Rotate(HingeConstraint* RollerMotor)
 {
     Real DeltaTime = World::GetWorldPointer()->GetFrameTime();
-    // 0.0008 because we want 1 full rotation every 2.5 seconds, and 360 degrees is 2 radians.  2/2500 = 0.0008.
-    Real DeltaAngle = 0.0008 * DeltaTime;
+    Real DeltaAngle = 1.25 * DeltaTime;
+    Real CurrentAngle = RollerMotor->GetHingeAngle();
+    Real ActualAngle = DeltaAngle + ( CurrentAngle>0 ? CurrentAngle : -CurrentAngle );
+    RollerMotor->SetMotorTarget(-ActualAngle,DeltaTime);
 }
 
 bool Roll_Roll::ConditionsAreMet()
@@ -70,9 +72,8 @@ bool Roll_Roll::ConditionsAreMet()
 
 void Roll_Roll::ApplyTrigger()
 {
-    Rotate(RollerMotor1);
-    Rotate(RollerMotor2);
-    Rotate(RollerMotor3);
+    for( Whole X = 0 ; X < Rollers.size() ; ++X )
+        Rotate(Rollers[X]);
 }
 
 #endif

@@ -83,10 +83,13 @@ namespace phys
                 bool AutoHideScroll;
                 Real LastScrollValue;
                 Whole MaxDisplay;
-                Whole NumVisible;
                 TemplateParams SelectionTemplate;
-                /// @brief Determines how many items can be displayed in the box at once.
-                virtual void CalculateVisibleSelections();
+                /// @brief Checks to see if the scrollbar should be hidden or not.
+                virtual void ScrollHideCheck();
+                /// @brief Checks to see if the current size of the selection needs adjusting.
+                virtual void SelectionSizeCheck(UI::Caption* Selection);
+                /// @brief Internal utility to set the size of this widget.
+                virtual void SetArea(const Vector2& Area);
                 /// @brief Updates the list of Visible buttons and hides the rest.
                 virtual void DrawList();
                 /// @brief For use with widget update/automation.
@@ -106,9 +109,6 @@ namespace phys
                 /// @brief Sets the visibility of this List Box.
                 /// @param visible Bool determining whether or not this List Box should be visible.
                 virtual void SetVisible(bool visible);
-                /// @brief Gets the visibility of this List Box.
-                /// @return Returns a bool representing the visibility of this List Box.
-                virtual bool IsVisible();
                 /// @brief Forces this List Box to be shown.
                 virtual void Show();
                 /// @brief Forces this List Box to hide.
