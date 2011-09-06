@@ -50,7 +50,6 @@
 #ifdef PHYSXML
 namespace phys
 {
-
     /// @page Serialization
     /// Serialization is the process of converting a class instance into a serial sequence of bits. DeSerialization is taking those
     /// bits and reconstructing without losing anything of value (in practice the only things not saved are cached values or
@@ -59,7 +58,7 @@ namespace phys
     /// used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do,
     /// and can be done with a variety of factors in mind. The xml text can be sent down any stream, put in any file, compressed,
     /// queried. For information abou the xml itself you should see the @ref XMLManual .
-    /// \n \n
+    /// @section serializationintegration Integrate Serialization into Your Code
     /// Any class that implements the Serializable functions can be serialized. Likewise, any class that implements the
     /// DeSerializable functions can be deserialized. In some cases, there are some pieces of information that cannot be supplied or
     /// entered by the class itself. This data must be provided by another class or upon creation of the class. This other class
@@ -80,6 +79,13 @@ namespace phys
     /// @endcode
     /// Implementing these will allow them to work with the Serialize and Deserialize templates defined in
     /// serialization.h.
+    /// \n \n
+    /// @section serializationxml Serialization and XML
+    /// The process of serializing doesn't just convert from class instance to text. It needs to have a structured way to convert
+    /// from class instance to text. Since our end goal is to convert live objects to XML it only make sense to closely integrate
+    /// with the phys::xml. The central object that will carry information during this process is the phys::xml::Node.
+    /// \n \n
+    /// C++ and most object oriented languages heavily imply that class inheritance should be structured as hiearchies. Addit
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A tool for serializing classes with specific issues serializing.
