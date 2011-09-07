@@ -1266,14 +1266,14 @@ namespace phys
     void HingeConstraint::EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
         { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
 
-    /* void HingeConstraint::EnableMotor(bool EnableMotor)
-        { this->Hinge->enableMotor(EnableMotor); } */
+    void HingeConstraint::EnableMotor(bool EnableMotor)
+        { this->Hinge->enableMotor(EnableMotor); }
 
     bool HingeConstraint::GetMotorEnabled() const
         { return this->Hinge->getEnableAngularMotor(); }
 
-    /* void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
-        { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); } */
+    void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
+        { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); }
 
     Real HingeConstraint::GetMaxMotorImpulse() const
         { return this->Hinge->getMaxMotorImpulse(); }
@@ -1284,8 +1284,8 @@ namespace phys
     void HingeConstraint::SetMotorTarget(Real TargetAngle, Real Dt)
         { this->Hinge->setMotorTarget(TargetAngle, Dt); }
 
-    /* void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
-        { return this->SetMotorTargetVelocity(TargetVelocity); } */
+    void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
+        { return this->SetMotorTargetVelocity(TargetVelocity); }
 
     Real HingeConstraint::GetMotorTargetVelocity() const
         { return this->Hinge->getMotorTargetVelosity(); }

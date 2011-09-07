@@ -41,7 +41,7 @@
 #define _metacodetests_h
 
 #include "main.h"
-
+#include <sstream>
 
 class MetaCodeTests : public UnitTestGroup
 {
@@ -50,10 +50,91 @@ class MetaCodeTests : public UnitTestGroup
         {
             if (RunAutomaticTests)
             {
+                AddTestResult("metacode::operator<< (Empty)", Unknown);         //say what tests will be performed, in case of a crash, this might help tell us were it left off.
+                AddTestResult("metacode::operator<< (Filled1)", Unknown);
+                AddTestResult("metacode::operator<< (Filled2)", Unknown);
 
+                AddTestResult("metacode::operator>> (Empty)", Unknown);
+                AddTestResult("metacode::operator>> (Filled1)", Unknown);
+                AddTestResult("metacode::operator>> (Filled2)", Unknown);
+
+
+                stringstream EmptyTest, Filled1Test, Filled2Test;               // create Stringstreams for serialization test
+                stringstream EmptyTestRS, Filled1TestRS, Filled2TestRS;         // create Stringstreams for deserialization test
+
+                MetaCode Mempty;                                                // create three metacodes for testing
+                MetaCode MFilled1(MetaCode::BUTTON_LIFTING,MetaCode::KEY_W);    // The W key being released
+                MetaCode MFilled2(-249,(MetaCode::InputCode)491);               // joystick axis 11 being moved down 249 units from center
+                MetaCode MemptyRS, MFilled1RS, MFilled2RS;                      // Three empty metacodes for Deserialization;
+
+                // cout << "\n\n" << Mempty << "\n\n" ;
+                EmptyTest << Mempty;                                            //Perform the actual Serialization tests
+                Filled1Test << MFilled1;
+                Filled2Test << MFilled2;
+
+
+                String EmptyTestResults("<MetaCode Version=\"1\" MetaValue=\"0\" Code=\"0\" />");               // this is what the serialized metacodes should look like
+                String Filled1TestResults("<MetaCode Version=\"1\" MetaValue=\"-1\" Code=\"26\" />");
+                String Filled2TestResults("<MetaCode Version=\"1\" MetaValue=\"-249\" Code=\"491\" />");
+
+                if (EmptyTestResults == EmptyTest.str())                                                        // test the results of the serialization
+                {
+                    AddTestResult("metacode::operator<< (Empty)", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("metacode::operator<< (Empty)", Failed, UnitTestGroup::OverWrite);
+                }
+
+                if (Filled1TestResults == Filled1Test.str())
+                {
+                    AddTestResult("metacode::operator<< (Filled1)", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("metacode::operator<< (Filled1)", Failed, UnitTestGroup::OverWrite);
+                }
+
+                if (Filled2TestResults == Filled2Test.str())
+                {
+                    AddTestResult("metacode::operator<< (Filled2)", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("metacode::operator<< (Filled2)", Failed, UnitTestGroup::OverWrite);
+                }
+
+                EmptyTest >> MemptyRS;                                            // The  DeSerialization tests
+                Filled1Test >> MFilled1RS;
+                Filled2Test >> MFilled2RS;
+
+                EmptyTestRS << MemptyRS;                                            // ReSerialization so we can see if it deserialized correctly
+                Filled1TestRS << MFilled1RS;
+                Filled2TestRS << MFilled2RS;
+
+                if (EmptyTestResults == EmptyTestRS.str())
+                {
+                    AddTestResult("metacode::operator>> (Empty)", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("metacode::operator>> (Empty)", Failed, UnitTestGroup::OverWrite);
+                }
+
+                if (Filled1TestResults == Filled1TestRS.str())
+                {
+                    AddTestResult("metacode::operator>> (Filled1)", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("metacode::operator>> (Filled1)", Failed, UnitTestGroup::OverWrite);
+                }
+
+                if (Filled2TestResults == Filled2TestRS.str())
+                {
+                    AddTestResult("metacode::operator>> (Filled2)", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("metacode::operator>> (Filled2)", Failed, UnitTestGroup::OverWrite);
+                }
 
             }else{
+                AddTestResult("metacode::operator<< (Empty)", Skipped);         // Say what tests were skipped
+                AddTestResult("metacode::operator<< (Filled1)", Skipped);
+                AddTestResult("metacode::operator<< (Filled2)", Skipped);
 
+                AddTestResult("metacode::operator>> (Empty)", Skipped);
+                AddTestResult("metacode::operator>> (Filled1)", Skipped);
+                AddTestResult("metacode::operator>> (Filled2)", Skipped);
             }
 
         }

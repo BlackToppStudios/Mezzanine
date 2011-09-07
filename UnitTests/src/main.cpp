@@ -44,8 +44,10 @@
 #include "compilerflagtests.h"
 #include "constrainttests.h"
 #include "eventmanagertests.h"
+#include "metacodetests.h"
 #include "particleeffecttests.h"
 #include "scenemanagertests.h"
+#include "transformtests.h"
 #include "vector2tests.h"
 #include "vector3tests.h"
 #include "worldnodetests.h"
@@ -106,8 +108,10 @@ int main (int argc, char** argv)
     TestGroups["compilerflag"] = new CompilerFlagTests;
     TestGroups["constraint"] = new ConstraintTests;
     TestGroups["eventmanager"] = new EventManagerTests;
+    TestGroups["metacode"] = new MetaCodeTests;
     TestGroups["particleeffect"] = new ParticleEffectTests;
     TestGroups["scenemanager"] = new SceneManagerTests;
+    TestGroups["transform"] = new TransformTests;
     TestGroups["vector2"] = new Vector2Tests;
     TestGroups["vector3"] = new Vector3Tests;
     TestGroups["worldnode"] = new WorldNodeTests;

@@ -43,8 +43,6 @@
 #include "main.h"
 
 
-// A simple test to see if the compiler flag are set correctly
-// mostly this is a sample of a very simple, but useful unit test (it fixed 2 bugs when we wrote it.)
 class TransformTests : public UnitTestGroup
 {
     public:

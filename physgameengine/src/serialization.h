@@ -52,15 +52,101 @@ namespace phys
 {
     /// @page Serialization
     /// Serialization is the process of converting a class instance into a serial sequence of bits. DeSerialization is taking those
-    /// bits and reconstructing without losing anything of value (in practice the only things not saved are cached values or
-    /// values calulated as they are needed).These bits could be just about anything, because of its ubiquity we chose to serialize
-    /// to xml (or something so similar as to be indistinguishable from standard xml). This allows a wide variety of tools to be
-    /// used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do,
-    /// and can be done with a variety of factors in mind. The xml text can be sent down any stream, put in any file, compressed,
-    /// queried. For information abou the xml itself you should see the @ref XMLManual .
+    /// bits and reconstructing th e original object without losing anything of value (in practice the only things not saved are cached
+    /// values or values calulated as they are needed). These bits could be just about anything, because of its ubiquity we chose
+    /// to serialize to xml (or something so similar as to be indistinguishable from standard xml). This allows a wide variety of tools
+    /// to be used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do,
+    /// and can be done with a variety of other factors in mind. The xml text can be sent down any stream, put in any file, compressed,
+    /// queried. You should see @ref XMLManual for information about the xml system itself.
+    /// @section serializationxml Serialization and XML
+    /// The process of serializing doesn't just convert from class instance to text. Since our end goal is to convert live objects to
+    /// XML it only make sense to closely integrate with the phys::xml portion of the engine. If you plan on writing serialization
+    /// and deserialization code you should read the following parts of the @ref XMLManual at a minimum:
+    ///     - @ref XMLDOM
+    ///     - @ref XMLAccessingBasics
+    ///     - @ref XMLModifyingNodeData
+    ///     - @ref XMLModifyingAttributeData
+    ///
+    /// The central object that will carry information during this process is the phys::xml::Node. The phys::xml::Node is an excellent
+    /// tool for converting and storing data in a single unified heirarchy.
+    /// \n \n
+    /// C++ and most object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally
+    /// Hierarchies are implied when complex class have other complex class or datatypes as members. Both of these structures map
+    /// cleanly onto the kind of hierarchies that a well formed xml documents provide.
+    /// \n \n
+    /// There are some relationships in video game objects that cross normal hierarchical boundaries. For example, A constraint
+    /// references two actors, and defines a relationship between them. When serialized the constraint simply stores the name of
+    /// the actor and looks it up in the actor manager during deserialization. This implies that the actors exist already, or that
+    /// there is some mechanism to create the constraint and fill in the actor later. Several mechanisms were discussed to
+    /// accomplish this, some include: two passes of processing were constraintw would be done in the second pass, a work queue that
+    /// would store objects that couldn't be deserialized yet, a prefetcher that would dig through the xml to find the required
+    /// object.
+    /// \n \n
+    /// Those methods all likely could have been made to work. However, they are not optimal for a variety of reasons. All of them
+    /// have a set of preconditions and require more computing resources and could potentially delay loading or transmission times.
+    /// Some of them heavily imply that all of the items to deserialize must be stored in the same xml source. Some demand access to
+    /// xml that may not have been transmitted yet.
+    /// \n \n
+    /// The simplest, most performant way to work around the issues that cross-hierarchical relationships presented was to ignore
+    /// them. More specifically, throw an exception if an object reference during deserialization is not present. Then we ask that
+    /// programmers who write could that must store, transmit and reconstruct class instances be aware of the following preconditions
+    /// So can produce their own solutions:
+    ///     - Actors must come before constraints.
+    ///     - Currently WorldNodes try to find the objects that are attached to them, and the attached tries to find the world node. (if one does not exist, this silently fails)
+    ///     - WorldNodes should come before Actors, Light and particle effects. (this is still work in progress).
+    ///
+    /// The easyiest way to meet these conditions and not consume an inordinate amount of computing resources, is to pay attention
+    /// to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything  else
+    /// it will have relatively little trouble making it work.
     /// @section serializationintegration Integrate Serialization into Your Code
-    /// Any class that implements the Serializable functions can be serialized. Likewise, any class that implements the
-    /// DeSerializable functions can be deserialized. In some cases, there are some pieces of information that cannot be supplied or
+    /// There several ways to interact with the current serialization system. One might have to create a class that can be
+    /// serialized or deserialized. There may be situations where another system is emitting xml and it must be intergrated into
+    /// an existing game. It may be desired to create a 'factory' that produces objects from and xml source or create a sink to put
+    /// objects into so they can be serialized. Here we will discuss some of the ways that the serialization system can be extended
+    /// and what kind of assumptions it makes, so that anyone can write software that interacts with it cleanly.
+    /// @subsection serializationmaking Make a Serializable or a DeSerializable
+    /// Creating a class that be serialized is easy. There is just one function that it must implement. If a class implements this,
+    /// it is said to be Serializable:
+    /// @code
+    /// void SerializableClass::ProtoSerialize(xml::Node&) const;
+    /// @endcode
+    /// The member ProtoSerialize(xml::Node&) is expected to accept a phys::xml::Node and attach exactly one Node to it. This new Serialized
+    /// node should contain all the data stored in the current state of the object being serialized. Storing data outside of this
+    /// one node could cause undefined behavior.
+    /// \n \n
+    /// The exact layout of the data in the Serialized Node is not pre-determined. The creator of that function need only
+    /// take into account any difficulties DeSerializing when creating this. Because of this concern it is advisable name the Serialized
+    /// node something unique and appropriate and to include a 'Version' attribute on it. If the class
+    /// changes, the DeSerialization function will only need to check the 'Version' attribute to know if and how it can handle it.
+    /// \n \n
+    /// Integrating with the DeSerialization code is pretty easy too. There are two functions you are expected to implement to
+    /// the ProtoSerialize(xml::Node&) function listed above. It is advisable but not required to verify the name matches and that
+    /// the 'Version' is something this code can handle. It is also advisable that every piece of data pulled out is verified the
+    /// best it can be. If exceptions are thrown for every discrepency, then programmers using this will create xml and code that
+    /// produce no discrepencies.
+    /// \n \n
+    ///
+    /// create a DeSerializable:
+    /// @code
+    /// void DeSerializableClass::ProtoDeSerialize(const xml::Node&);
+    /// static String DeSerializableClass::SerializableName();
+    /// @endcode
+    /// The SerializableName() is expected to simply return the name of the xml elements this class will DeSerialize. For example
+    /// A phys::Vector3 returns "Vector3", and a phys::ActorRigid return "ActorRigid". If a class is both DeSerializable and
+    /// serializable it makes sense to call this function when assigning the name to the Serialized Node it creates.
+    /// \n \n
+    /// The ProtoDeSerialize(const xml::Node&) accepts an xml::Node that should correspond to the node created by the
+    /// @code
+    /// template <class T> std::ostream& Serialize(std::ostream& Stream, const T& Converted, const String& Indent = String("") );
+    /// template <class T> std::istream& DeSerialize(std::istream& Stream, T& Converted);
+    /// @endcode
+
+
+
+    /// Implementing these will allow them to work with the Serialize and Deserialize templates defined in
+    /// serialization.h.
+    /// \n \n
+    /// In some cases, there are some pieces of information that cannot be supplied or
     /// entered by the class itself. This data must be provided by another class or upon creation of the class. This other class
     /// can implement the Serializer, the DeSerializer, or both to make working with large amounts of serialization code easier.
     /// \n \n
@@ -68,25 +154,32 @@ namespace phys
     /// It expected to be partially implemented, to the extent possible, in the class members. But if you have the need to create
     /// Actors on the fly from data stored in files it makes sense to have a dedicate class or interface than can create these.
     /// \n \n
-    /// The following function(s) are expected to be implemented on every Serializable and DeSerializable:
-    /// @code
-    /// void ProtoSerialize(xml::Node& CurrentRoot) const;
-    /// @endcode
-    /// The following function(s) are expected to be implemented on every DeSerializable and DeSerializable:
-    /// @code
-    /// void ProtoDeSerialize(const xml::Node&);
-    /// static String SerializableName();
-    /// @endcode
-    /// Implementing these will allow them to work with the Serialize and Deserialize templates defined in
-    /// serialization.h.
-    /// \n \n
-    /// @section serializationxml Serialization and XML
-    /// The process of serializing doesn't just convert from class instance to text. It needs to have a structured way to convert
-    /// from class instance to text. Since our end goal is to convert live objects to XML it only make sense to closely integrate
-    /// with the phys::xml. The central object that will carry information during this process is the phys::xml::Node.
-    /// \n \n
-    /// C++ and most object oriented languages heavily imply that class inheritance should be structured as hiearchies. Addit
 
+
+    /* template <class Serializable> class Serializer;
+        virtual void Serializer::ProtoSerializeAll(xml::Node& CurrentRoot) const = 0;
+        virtual std::ostream& Serializer::SerializeAll(std::ostream& Stream) const;
+        virtual void Serializer::ProtoSerialize(const Serializable& Target, xml::Node& CurrentRoot) = 0;
+        virtual std::ostream& Serializer::Serialize(std::ostream& Stream, const Serializable& Target)
+    */
+    /* template <class DeSerializable> class DeSerializer
+        virtual void DeSerializer::ProtoDeSerializeAll(const xml::Node& OneNode) = 0;
+        virtual std::istream& DeSerializer::DeSerializeAll(std::istream& Stream)
+        virtual DeSerializable* DeSerializer::ProtoDeSerialize(const xml::Node& OneNode) = 0;
+        virtual std::istream& DeSerializer::DeSerialize(std::istream& Stream)
+    */
+    /*
+        template <class T> std::ostream& Serialize(std::ostream& Stream, const T& Converted, const String& Indent = String("") )
+        template <class T> std::istream& DeSerialize(std::istream& Stream, T& Converted)
+        template <class T> void SloppyProtoSerialize(const T& Converted, xml::Node& CurrentRoot)
+        void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD = true);
+        void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD = false);
+    */
+    /*
+        std::ostream& operator << (std::ostream& stream, const phys::ActorRigid& ActorToSerialize);
+        std::istream& operator >> (std::istream& stream, phys::ActorRigid& x);
+        void operator >> (const phys::xml::Node& OneNode, phys::ActorRigid& x);
+    */
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A tool for serializing classes with specific issues serializing.
     /// @details Some classes have private members and it is impractical to change the class to expose this data. In this case a

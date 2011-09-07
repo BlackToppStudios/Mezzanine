@@ -310,7 +310,7 @@ int Usage(phys::String ThisName)
     phys::Whole c = 0;
     for(map<phys::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
     {
-        cout << "\t" << Iter->first << " ";
+        cout <<"\t" << Iter->first << (Iter->first.size()<7?"\t":"") << " ";
         ++c;        //enforce 4 names per line
         if (4==c)
             { cout<<endl; c=0; }

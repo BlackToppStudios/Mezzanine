@@ -1068,15 +1068,15 @@ namespace phys
             virtual void EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
             /// @brief Enables(or Disables) the motor on the hinge.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
-            /* virtual void EnableMotor(bool EnableMotor);
+            virtual void EnableMotor(bool EnableMotor);
             /// @brief Is this motor on this hinge enabled?
-            /// @return True if it is, false otherwise. */
+            /// @return True if it is, false otherwise.
             virtual bool GetMotorEnabled() const;
             /// @brief Sets the maximum amount of force the motor is to apply.
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
-            /* virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
+            virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
             /// @brief Retrieve the maximimum value that the acceleration of the motor can be increased.
-            /// @return A real containing the maximum impulse. */
+            /// @return A real containing the maximum impulse.
             virtual Real GetMaxMotorImpulse() const;
             /// @brief Sets a Target Velocity, indirectly using the angle stored in a quaternion.
             /// @details Is implemented in terms of SetMotorTarget(Real, Real);
@@ -1090,9 +1090,9 @@ namespace phys
             /// @brief Desired angular velocity of the motor
             /// @param TargetVelocity The Desired velocity
             /// @warning Causes segfaults in some tests.
-            /* virtual void SetMotorTargetVelocity(Real TargetVelocity);
+            virtual void SetMotorTargetVelocity(Real TargetVelocity);
             /// @brief Get the Target Velocity.
-            /// @return the target valocity as a real. */
+            /// @return the target valocity as a real.
             virtual Real GetMotorTargetVelocity() const;
 
             ////////////////////////////////////////////////////////////////////////////////
