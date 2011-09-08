@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -147,48 +147,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00083"></a>00083         <span class="keywordflow">return</span> floor(Val);
 <a name="l00084"></a>00084     }
 <a name="l00085"></a>00085 
-<a name="l00086"></a><a class="code" href="classphys_1_1MathTool.html#a8304f680a03ec49a284564ad4a1d21f8">00086</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a8304f680a03ec49a284564ad4a1d21f8" title="Gets the absolute value of a Real.">MathTool::Fabs</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
+<a name="l00086"></a><a class="code" href="classphys_1_1MathTool.html#af2fff52ae7bc8b3607aa6a92e190a7a6">00086</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#af2fff52ae7bc8b3607aa6a92e190a7a6" title="Raises a Real to a power.">MathTool::Pow</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Power)
 <a name="l00087"></a>00087     {
-<a name="l00088"></a>00088         <span class="keywordflow">return</span> fabs(Val);
+<a name="l00088"></a>00088         <span class="keywordflow">return</span> pow(Val,Power);
 <a name="l00089"></a>00089     }
 <a name="l00090"></a>00090 
-<a name="l00091"></a><a class="code" href="classphys_1_1MathTool.html#ad1d294ffae4b40b13b745f65e27372c1">00091</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#ad1d294ffae4b40b13b745f65e27372c1" title="Modulo, for Reals. Returns the remainder of the division between two Reals.">MathTool::Fmod</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Numerator, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Denominator)
+<a name="l00091"></a><a class="code" href="classphys_1_1MathTool.html#af0b6902a0bf308c41213596ce95854df">00091</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#af0b6902a0bf308c41213596ce95854df" title="Gets the square root of a Real.">MathTool::Sqrt</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
 <a name="l00092"></a>00092     {
-<a name="l00093"></a>00093         <span class="keywordflow">return</span> fmod(Numerator,Denominator);
+<a name="l00093"></a>00093         <span class="keywordflow">return</span> sqrt(Val);
 <a name="l00094"></a>00094     }
 <a name="l00095"></a>00095 
-<a name="l00096"></a><a class="code" href="classphys_1_1MathTool.html#ac6f9436baacafe1894f71728f11e2f58">00096</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#ac6f9436baacafe1894f71728f11e2f58" title="Calculates the Cosine of an angle.">MathTool::Cos</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
+<a name="l00096"></a><a class="code" href="classphys_1_1MathTool.html#a8304f680a03ec49a284564ad4a1d21f8">00096</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a8304f680a03ec49a284564ad4a1d21f8" title="Gets the absolute value of a Real.">MathTool::Fabs</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
 <a name="l00097"></a>00097     {
-<a name="l00098"></a>00098         <span class="keywordflow">return</span> cos(Radians);
+<a name="l00098"></a>00098         <span class="keywordflow">return</span> fabs(Val);
 <a name="l00099"></a>00099     }
 <a name="l00100"></a>00100 
-<a name="l00101"></a><a class="code" href="classphys_1_1MathTool.html#a91b41510f0788d9304ddd112236356f9">00101</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a91b41510f0788d9304ddd112236356f9" title="Calculates the Sine of an angle.">MathTool::Sin</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
+<a name="l00101"></a><a class="code" href="classphys_1_1MathTool.html#ad1d294ffae4b40b13b745f65e27372c1">00101</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#ad1d294ffae4b40b13b745f65e27372c1" title="Modulo, for Reals. Returns the remainder of the division between two Reals.">MathTool::Fmod</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Numerator, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Denominator)
 <a name="l00102"></a>00102     {
-<a name="l00103"></a>00103         <span class="keywordflow">return</span> sin(Radians);
+<a name="l00103"></a>00103         <span class="keywordflow">return</span> fmod(Numerator,Denominator);
 <a name="l00104"></a>00104     }
 <a name="l00105"></a>00105 
-<a name="l00106"></a><a class="code" href="classphys_1_1MathTool.html#a8d5e4afe0e8e014f61bfefba2ffc0ede">00106</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a8d5e4afe0e8e014f61bfefba2ffc0ede" title="Calculates the Tangent of an angle.">MathTool::Tan</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
+<a name="l00106"></a><a class="code" href="classphys_1_1MathTool.html#ac6f9436baacafe1894f71728f11e2f58">00106</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#ac6f9436baacafe1894f71728f11e2f58" title="Calculates the Cosine of an angle.">MathTool::Cos</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
 <a name="l00107"></a>00107     {
-<a name="l00108"></a>00108         <span class="keywordflow">return</span> tan(Radians);
+<a name="l00108"></a>00108         <span class="keywordflow">return</span> cos(Radians);
 <a name="l00109"></a>00109     }
 <a name="l00110"></a>00110 
-<a name="l00111"></a><a class="code" href="classphys_1_1MathTool.html#a42fe1e0bd7b1472567b126da4b512a5d">00111</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a42fe1e0bd7b1472567b126da4b512a5d" title="Calculates the principal value of the arc Cosine of an angle.">MathTool::ACos</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
+<a name="l00111"></a><a class="code" href="classphys_1_1MathTool.html#a91b41510f0788d9304ddd112236356f9">00111</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a91b41510f0788d9304ddd112236356f9" title="Calculates the Sine of an angle.">MathTool::Sin</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
 <a name="l00112"></a>00112     {
-<a name="l00113"></a>00113         <span class="keywordflow">return</span> acos(Interval);
+<a name="l00113"></a>00113         <span class="keywordflow">return</span> sin(Radians);
 <a name="l00114"></a>00114     }
 <a name="l00115"></a>00115 
-<a name="l00116"></a><a class="code" href="classphys_1_1MathTool.html#a89e9613eea236a9729a08500c47283d3">00116</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a89e9613eea236a9729a08500c47283d3" title="Calculates the principal value of the arc Sine of an angle.">MathTool::ASin</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
+<a name="l00116"></a><a class="code" href="classphys_1_1MathTool.html#a8d5e4afe0e8e014f61bfefba2ffc0ede">00116</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a8d5e4afe0e8e014f61bfefba2ffc0ede" title="Calculates the Tangent of an angle.">MathTool::Tan</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
 <a name="l00117"></a>00117     {
-<a name="l00118"></a>00118         <span class="keywordflow">return</span> asin(Interval);
+<a name="l00118"></a>00118         <span class="keywordflow">return</span> tan(Radians);
 <a name="l00119"></a>00119     }
 <a name="l00120"></a>00120 
-<a name="l00121"></a><a class="code" href="classphys_1_1MathTool.html#ac421007a0a5c5e0b29b832f841327cb0">00121</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#ac421007a0a5c5e0b29b832f841327cb0" title="Calculates the principal value of the arc Tangent of an angle.">MathTool::ATan</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
+<a name="l00121"></a><a class="code" href="classphys_1_1MathTool.html#a42fe1e0bd7b1472567b126da4b512a5d">00121</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a42fe1e0bd7b1472567b126da4b512a5d" title="Calculates the principal value of the arc Cosine of an angle.">MathTool::ACos</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
 <a name="l00122"></a>00122     {
-<a name="l00123"></a>00123         <span class="keywordflow">return</span> atan(Interval);
+<a name="l00123"></a>00123         <span class="keywordflow">return</span> acos(Interval);
 <a name="l00124"></a>00124     }
-<a name="l00125"></a>00125 }<span class="comment">//phys</span>
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 <span class="preprocessor">#endif</span>
+<a name="l00125"></a>00125 
+<a name="l00126"></a><a class="code" href="classphys_1_1MathTool.html#a89e9613eea236a9729a08500c47283d3">00126</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#a89e9613eea236a9729a08500c47283d3" title="Calculates the principal value of the arc Sine of an angle.">MathTool::ASin</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
+<a name="l00127"></a>00127     {
+<a name="l00128"></a>00128         <span class="keywordflow">return</span> asin(Interval);
+<a name="l00129"></a>00129     }
+<a name="l00130"></a>00130 
+<a name="l00131"></a><a class="code" href="classphys_1_1MathTool.html#ac421007a0a5c5e0b29b832f841327cb0">00131</a>     <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1MathTool.html#ac421007a0a5c5e0b29b832f841327cb0" title="Calculates the principal value of the arc Tangent of an angle.">MathTool::ATan</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
+<a name="l00132"></a>00132     {
+<a name="l00133"></a>00133         <span class="keywordflow">return</span> atan(Interval);
+<a name="l00134"></a>00134     }
+<a name="l00135"></a>00135 }<span class="comment">//phys</span>
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -206,6 +216,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:19 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

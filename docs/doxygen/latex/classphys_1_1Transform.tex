@@ -26,14 +26,17 @@ virtual void \hyperlink{classphys_1_1Transform_a230f5731f07400998d5eed6c6b60f7a6
 \begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Transform_a6a054d1eeb12a12451b8134acd8cb78a}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
 \begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Transform_ab2748257efa01648ff56b5d8e9eb0007}{SerializableName} () const 
-\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Transform_aaf6c6fc02fbd2a1aaad0000757bc20f6}{Transform} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec=\hyperlink{classphys_1_1Vector3}{Vector3}(), const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Quat=\hyperlink{classphys_1_1Quaternion}{Quaternion}())
-\begin{DoxyCompactList}\small\item\em The multipurpose constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Transform_abd1b1ae62d8efd807a162a0a1ac35baa}{Transform} (const \hyperlink{classphys_1_1Transform}{Transform} \&TheOther)
+\begin{DoxyCompactList}\small\item\em The copy constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Transform_a5b6867700fd10297a10208d389055a05}{Transform} (const btTransform \&Btt)
 \begin{DoxyCompactList}\small\item\em The Conversion Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Transform_abd1b1ae62d8efd807a162a0a1ac35baa}{Transform} (const \hyperlink{classphys_1_1Transform}{Transform} \&TheOther)
-\begin{DoxyCompactList}\small\item\em The copy constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classphys_1_1Transform_aaf6c6fc02fbd2a1aaad0000757bc20f6}{Transform} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec=\hyperlink{classphys_1_1Vector3}{Vector3}(), const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Quat=\hyperlink{classphys_1_1Quaternion}{Quaternion}())
+\begin{DoxyCompactList}\small\item\em The multipurpose constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Transform_a96928e50ee68c30a3e4afa6b2b199c9e}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -265,15 +268,15 @@ Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready f
 
 Definition at line 96 of file transform.cpp.
 
-\hypertarget{classphys_1_1Transform_ab2748257efa01648ff56b5d8e9eb0007}{
+\hypertarget{classphys_1_1Transform_a96928e50ee68c30a3e4afa6b2b199c9e}{
 \index{phys::Transform@{phys::Transform}!SerializableName@{SerializableName}}
 \index{SerializableName@{SerializableName}!phys::Transform@{phys::Transform}}
 \paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::Transform::SerializableName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
-\label{classphys_1_1Transform_ab2748257efa01648ff56b5d8e9eb0007}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1Transform_a96928e50ee68c30a3e4afa6b2b199c9e}
 
 
 Get the name of the the XML tag this class will leave behind as its instances are serialized. 

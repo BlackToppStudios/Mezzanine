@@ -30,6 +30,10 @@ virtual \hyperlink{namespacephys_a7d434b1a52cf5290a9ecc972b87a6a40}{ActorActivat
 \begin{DoxyCompactList}\small\item\em How activated or deactivated is the object. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorBasePhysicsSettings_a375c4b19c81e87021266c90e7327888b}{GetBasePointer} ()
 \begin{DoxyCompactList}\small\item\em Get a pointer to this class of type \hyperlink{classphys_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a6a18543f51468142b44d3c72fc9d75a0}{GetCCDMotionThreshold} () const 
+\begin{DoxyCompactList}\small\item\em Gets the amount of motion needed to enable CCD for this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a523e95116bc3dd5d7a114c96639fe483}{GetCCDSphereRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the embedded sphere used for CCD. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a6090c93f35beea7c82550076a17aef24}{GetCollisionGroup} () const 
 \begin{DoxyCompactList}\small\item\em Gets the actors collision group. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorBasePhysicsSettings_a8a3a7ca225dd9697495bcc7d51b0942a}{GetCollisionMask} () const 
@@ -52,6 +56,8 @@ virtual bool \hyperlink{classphys_1_1ActorBasePhysicsSettings_a5fe007187584b836a
 \begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_ab0b1760f3730e85470097d44985a5b56}{SetActivationState} (\hyperlink{namespacephys_a7d434b1a52cf5290a9ecc972b87a6a40}{ActorActivationState} State, bool Force=false)
 \begin{DoxyCompactList}\small\item\em Sets the activation state of the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a1ad9104e006156c21a8f304eb371d0e0}{SetCCDParams} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&MotionThreshold, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&SweptSphereRadius=0)
+\begin{DoxyCompactList}\small\item\em Sets the parameters used for Continuous Collision Detection. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a992771e73cd1f98628618cf75938a5ef}{SetCollisionGroupAndMask} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Group, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Mask)
 \begin{DoxyCompactList}\small\item\em Set the collision group and mask for the actor to determine what it should collide with. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBasePhysicsSettings_a1509c654724bcb6499ec1e5058ab5185}{SetCollisionShape} (\hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$Shape)
@@ -158,7 +164,7 @@ Sets the actor to be unable to collide with other objects in the world.
 
 By default collision response is enabled. Be sure to reactivate collision response if you want your objects to collide again. 
 
-Definition at line 182 of file actorphysicssettings.cpp.
+Definition at line 219 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_aeb1dafd6d1e4875bf89be4de93208c03}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!EnableCollisionResponse@{EnableCollisionResponse}}
@@ -175,7 +181,7 @@ Sets the actor to be able to collide with other objects in the world.
 
 By default collision response is enabled. Only call this function if you have disabled collision response. 
 
-Definition at line 153 of file actorphysicssettings.cpp.
+Definition at line 190 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_ad7d02ace01a30cb3ae9ab187d2449f38}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetActivationState@{GetActivationState}}
@@ -195,7 +201,7 @@ A \hyperlink{namespacephys_a7d434b1a52cf5290a9ecc972b87a6a40}{phys::ActorActivat
 \end{DoxyReturn}
 
 
-Definition at line 239 of file actorphysicssettings.cpp.
+Definition at line 276 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a375c4b19c81e87021266c90e7327888b}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetBasePointer@{GetBasePointer}}
@@ -215,7 +221,47 @@ A pointer \hyperlink{classphys_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSett
 \end{DoxyReturn}
 
 
-Definition at line 235 of file actorphysicssettings.cpp.
+Definition at line 272 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_a6a18543f51468142b44d3c72fc9d75a0}{
+\index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetCCDMotionThreshold@{GetCCDMotionThreshold}}
+\index{GetCCDMotionThreshold@{GetCCDMotionThreshold}!phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}}
+\paragraph[{GetCCDMotionThreshold}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::ActorBasePhysicsSettings::GetCCDMotionThreshold (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorBasePhysicsSettings_a6a18543f51468142b44d3c72fc9d75a0}
+
+
+Gets the amount of motion needed to enable CCD for this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the required amount of motion to enable CCD, or zero if CCD is disabled. 
+\end{DoxyReturn}
+
+
+Definition at line 155 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_a523e95116bc3dd5d7a114c96639fe483}{
+\index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetCCDSphereRadius@{GetCCDSphereRadius}}
+\index{GetCCDSphereRadius@{GetCCDSphereRadius}!phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}}
+\paragraph[{GetCCDSphereRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::ActorBasePhysicsSettings::GetCCDSphereRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorBasePhysicsSettings_a523e95116bc3dd5d7a114c96639fe483}
+
+
+Gets the radius of the embedded sphere used for CCD. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the radius of the sphere embedded into the objects collision shape used for CCD. 
+\end{DoxyReturn}
+
+
+Definition at line 160 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a6090c93f35beea7c82550076a17aef24}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetCollisionGroup@{GetCollisionGroup}}
@@ -275,7 +321,7 @@ False is it does not respond to collisions, True if it will
 \end{DoxyReturn}
 
 
-Definition at line 211 of file actorphysicssettings.cpp.
+Definition at line 248 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_ae436b1edd205b48225590dab21eb3551}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!GetCollisionShape@{GetCollisionShape}}
@@ -355,7 +401,7 @@ Returns true if the object is active, false if it's deactivated(at rest).
 \end{DoxyReturn}
 
 
-Definition at line 216 of file actorphysicssettings.cpp.
+Definition at line 253 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a8128bcfc407909a57026eb38812b1d1d}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!IsKinematic@{IsKinematic}}
@@ -375,7 +421,7 @@ True if the actor is kinematic false if it is not.
 \end{DoxyReturn}
 
 
-Definition at line 133 of file actorphysicssettings.cpp.
+Definition at line 170 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a68c32cbe7329e138c5ea11c5b098483f}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!IsStatic@{IsStatic}}
@@ -395,7 +441,7 @@ True if the actor is Static false if it is not.
 \end{DoxyReturn}
 
 
-Definition at line 143 of file actorphysicssettings.cpp.
+Definition at line 180 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a5fe007187584b836ada963f8a23eb377}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!IsStaticOrKinematic@{IsStaticOrKinematic}}
@@ -415,7 +461,7 @@ Returns true if the actor is static or kinematic.
 \end{DoxyReturn}
 
 
-Definition at line 148 of file actorphysicssettings.cpp.
+Definition at line 185 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_ab0b1760f3730e85470097d44985a5b56}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetActivationState@{SetActivationState}}
@@ -440,7 +486,32 @@ Sets the activation state of the actor.
 \end{DoxyParams}
 
 
-Definition at line 227 of file actorphysicssettings.cpp.
+Definition at line 264 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorBasePhysicsSettings_a1ad9104e006156c21a8f304eb371d0e0}{
+\index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetCCDParams@{SetCCDParams}}
+\index{SetCCDParams@{SetCCDParams}!phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}}
+\paragraph[{SetCCDParams}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBasePhysicsSettings::SetCCDParams (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{MotionThreshold, }
+\item[{const {\bf Real} \&}]{SweptSphereRadius = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorBasePhysicsSettings_a1ad9104e006156c21a8f304eb371d0e0}
+
+
+Sets the parameters used for Continuous Collision Detection. 
+
+If a Swept Sphere Radius is not provided, this function will attempt to find one for you using the currently set Collision Shape. If this fails for any reason or a shape is not set, it will set the radius to 1. 
+\begin{DoxyParams}{Parameters}
+{\em MotionThreshold} & The speed at which the object has to be moving in order to enable CCD for the object. If set to zero CCD will be disabled. \\
+\hline
+{\em SweptSphereRadius} & The radius of the sphere to be used for CCD sweep tests. Essentially this should be the largest radius in which a sphere can fully fit inside your object. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 128 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_a992771e73cd1f98628618cf75938a5ef}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetCollisionGroupAndMask@{SetCollisionGroupAndMask}}
@@ -532,7 +603,7 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 128 of file actorphysicssettings.cpp.
+Definition at line 165 of file actorphysicssettings.cpp.
 
 \hypertarget{classphys_1_1ActorBasePhysicsSettings_ab379008b313aeeecfe82f641ce8b6305}{
 \index{phys::ActorBasePhysicsSettings@{phys::ActorBasePhysicsSettings}!SetRestitution@{SetRestitution}}
@@ -573,7 +644,7 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 138 of file actorphysicssettings.cpp.
+Definition at line 175 of file actorphysicssettings.cpp.
 
 
 

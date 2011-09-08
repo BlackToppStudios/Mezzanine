@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <h1>phys::Point2PointConstraint Class Reference</h1>  </div>
@@ -111,8 +112,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a1ba1bd6cc8d16c69579633f0a5b28b6d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Point2PointConstraint.html#ace2e182da3c1495084eea1a5fcc97cfd">ProtoSerialize</a> (<a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#ace2e182da3c1495084eea1a5fcc97cfd"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Point2PointConstraint.html#ae658c1f5c370b8a4cf94fcf276696dbf">SerializableName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#ae658c1f5c370b8a4cf94fcf276696dbf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Point2PointConstraint.html#a4699d58e8ec97e5eafa12508e89fa878">SetDamping</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Damping)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance.  <a href="#a4699d58e8ec97e5eafa12508e89fa878"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Point2PointConstraint.html#afd2be426f4a13b9512d964903a035551">SetImpulseClamping</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Clamping)</td></tr>
@@ -128,6 +127,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1TypedConstraint.html#a4c2dcea3fbb764e454840329126d034e">TypedConstraint::ParamList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Point2PointConstraint.html#a5ab3a1dac5cabe07f6abfe576090634f">ValidParamOnAxis</a> (int Axis) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Point2PointConstraint.html#a6e0bdac8c6ee7612c07b441c7556dc14">~Point2PointConstraint</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a6e0bdac8c6ee7612c07b441c7556dc14"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Point2PointConstraint.html#adb43f9fc1ac3ade862f23ecff3dedf27">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#adb43f9fc1ac3ade862f23ecff3dedf27"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa58b7fd9fe368c72d5bc5e1990bdf593"></a><!-- doxytag: member="phys::Point2PointConstraint::Point2Point" ref="aa58b7fd9fe368c72d5bc5e1990bdf593" args="" -->
@@ -138,7 +141,7 @@ btPoint2PointConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a 
 <div class="textblock"><p>Tries to make a point relative to each of two actors match in 3d space, without regard to rotation. </p>
 <p>This will translate (push around) the actors to attempt to get the offsets to match up in 3d space. The actors can freely rotate about their relative offsets. </p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l01194">1194</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l01197">1197</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a890c02b69d2b477e5e7c638c36a8c84d"></a><!-- doxytag: member="phys::Point2PointConstraint::Point2PointConstraint" ref="a890c02b69d2b477e5e7c638c36a8c84d" args="(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &amp;PivotA, const Vector3 &amp;PivotB)" -->
 <div class="memitem">
@@ -449,15 +452,15 @@ btPoint2PointConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
-<a class="anchor" id="ae658c1f5c370b8a4cf94fcf276696dbf"></a><!-- doxytag: member="phys::Point2PointConstraint::SerializableName" ref="ae658c1f5c370b8a4cf94fcf276696dbf" args="() const " -->
+<a class="anchor" id="adb43f9fc1ac3ade862f23ecff3dedf27"></a><!-- doxytag: member="phys::Point2PointConstraint::SerializableName" ref="adb43f9fc1ac3ade862f23ecff3dedf27" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::Point2PointConstraint::SerializableName </td>
+          <td class="memname">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::Point2PointConstraint::SerializableName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -466,7 +469,7 @@ btPoint2PointConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a 
 <p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "Point2PointConstraint" </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classphys_1_1TypedConstraint.html#ad604b85a13e3e3b1c01d1c40f678b751">phys::TypedConstraint</a>.</p>
+<p>Reimplemented from <a class="el" href="classphys_1_1TypedConstraint.html#adf4ccf2fcfc20634acde9d07508ff03e">phys::TypedConstraint</a>.</p>
 
 </div>
 </div>
@@ -684,6 +687,6 @@ btPoint2PointConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a 
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:31 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:37 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

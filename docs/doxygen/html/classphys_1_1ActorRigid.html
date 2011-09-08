@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a>  </div>
@@ -107,8 +108,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the name of the object.  <a href="#a63952e0b7ab7176ae60d96756dd84b43"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1ActorRigidPhysicsSettings.html">ActorRigidPhysicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#ac531871f990894cf64d0ece918eb18d0">GetPhysicsSettings</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the physics settings class associated with this actor.  <a href="#ac531871f990894cf64d0ece918eb18d0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#abf14ffa79e652f0d798a2fce99496259">ProtoDeSerialize</a> (const <a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#abf14ffa79e652f0d798a2fce99496259"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#add4e731eb3a5481d05e2d0f543745fcd">ProtoSerialize</a> (<a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the this in an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>.  <a href="#add4e731eb3a5481d05e2d0f543745fcd"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#add4e731eb3a5481d05e2d0f543745fcd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#a7101df2a149e0ccb3678b7c2c00998f8">RemoveObjectFromWorld</a> (<a class="el" href="classphys_1_1World.html">World</a> *TargetWorld)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the actor from the physics world.  <a href="#a7101df2a149e0ccb3678b7c2c00998f8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#a574fc272f603b879643872dbced36cc2">SetAngularMovementFactor</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Factor)</td></tr>
@@ -117,10 +120,16 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Restricts movement on the axis or axies of your choice.  <a href="#a2a6aca8c598716ee24558878f869f163"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#ab317b5a2578157e54655a1aea8f4d058">~ActorRigid</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#ab317b5a2578157e54655a1aea8f4d058"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#ad4fcecfacedb0c043b768555046dc650">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#ad4fcecfacedb0c043b768555046dc650"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#a3d50613a6992e7de6a09d3e710d83b60">CreateRigidObject</a> (const <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;pmass)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a rigid object for the actor.  <a href="#a3d50613a6992e7de6a09d3e710d83b60"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorRigid.html#ac252b319fefc3f7470feb73e3866661b">ThrowSerialError</a> (const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Fail) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">a Helper function that assembles strings and throws an exception  <a href="#ac252b319fefc3f7470feb73e3866661b"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af86eb5347cb6bb31a561404efc3d8245"></a><!-- doxytag: member="phys::ActorRigid::PhysicsSettings" ref="af86eb5347cb6bb31a561404efc3d8245" args="" -->
@@ -383,6 +392,36 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 
 </div>
 </div>
+<a class="anchor" id="abf14ffa79e652f0d798a2fce99496259"></a><!-- doxytag: member="phys::ActorRigid::ProtoDeSerialize" ref="abf14ffa79e652f0d798a2fce99496259" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ActorRigid::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>A precondition of using this is that all of the actors intended for use must already be Deserialized. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classphys_1_1ActorBase.html#a2355425bc7a6a883ca4df139d56e084e">phys::ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00174">174</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="add4e731eb3a5481d05e2d0f543745fcd"></a><!-- doxytag: member="phys::ActorRigid::ProtoSerialize" ref="add4e731eb3a5481d05e2d0f543745fcd" args="(xml::Node &amp;CurrentRoot) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -398,10 +437,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 </div>
 <div class="memdoc">
 
-<p>Get all the this in an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>. </p>
+<p>Convert this class to an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vector3 should be appended to. </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vectorw should be appended to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -440,6 +479,29 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Implements <a class="el" href="classphys_1_1ActorBase.html#aaa787de7ec5d7d1d8428ea78f37bcb40">phys::ActorBase</a>.</p>
 
 <p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00138">138</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad4fcecfacedb0c043b768555046dc650"></a><!-- doxytag: member="phys::ActorRigid::SerializableName" ref="ad4fcecfacedb0c043b768555046dc650" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::ActorRigid::SerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "ActorRigid" </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classphys_1_1ActorBase.html#a1ae5da850a9156247a0ab82693ee6e4d">phys::ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00179">179</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -499,6 +561,35 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 
 </div>
 </div>
+<a class="anchor" id="ac252b319fefc3f7470feb73e3866661b"></a><!-- doxytag: member="phys::ActorRigid::ThrowSerialError" ref="ac252b319fefc3f7470feb73e3866661b" args="(const String &amp;Fail) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ActorRigid::ThrowSerialError </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>Fail</em></td><td>)</td>
+          <td> const<code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>a Helper function that assembles strings and throws an exception </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Fail</td><td>The item that failed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classphys_1_1ActorBase.html#a3cd786f38a4840e770f20e5c72b09563">phys::ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00154">154</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="actorrigid_8h_source.html">actorrigid.h</a></li>
 <li><a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a></li>
@@ -519,6 +610,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:22 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:28 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

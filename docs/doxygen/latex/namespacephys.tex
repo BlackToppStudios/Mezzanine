@@ -57,10 +57,10 @@ class \hyperlink{classphys_1_1ActorManager}{ActorManager}
 \begin{DoxyCompactList}\small\item\em A manager responsible for the storage and management of all actors in use. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ActorRigid}{ActorRigid}
 \begin{DoxyCompactList}\small\item\em This is the actor class for Rigid Objects. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1ActorRigidDeSerializer}{ActorRigidDeSerializer}
+\begin{DoxyCompactList}\small\item\em This creates Rigid body actors and inserts them into a given \hyperlink{classphys_1_1ActorManager}{ActorManager}. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings}
 \begin{DoxyCompactList}\small\item\em This is a helper class for configuring physics settings of an \hyperlink{classphys_1_1ActorRigid}{ActorRigid}. \item\end{DoxyCompactList}\item 
-class \hyperlink{classphys_1_1ActorSerializer}{ActorSerializer}
-\item 
 class \hyperlink{classphys_1_1ActorSoft}{ActorSoft}
 \begin{DoxyCompactList}\small\item\em This is the actor class for Soft Objects. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ActorSoftCollisionShape}{ActorSoftCollisionShape}
@@ -101,6 +101,8 @@ class \hyperlink{classphys_1_1ConvexHullCollisionShape}{ConvexHullCollisionShape
 \begin{DoxyCompactList}\small\item\em A simple convex shape built from a low number of points in local space. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1CylinderCollisionShape}{CylinderCollisionShape}
 \begin{DoxyCompactList}\small\item\em A cylinder physics shape. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1DeSerializer}{DeSerializer}
+\begin{DoxyCompactList}\small\item\em A tool for deserializing classes with specific issues deserializing them. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1DualTransformConstraint}{DualTransformConstraint}
 \begin{DoxyCompactList}\small\item\em All constraints that track rotation and location of the Pivot relative to each Actor inherit from this. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1DynamicMeshCollisionShape}{DynamicMeshCollisionShape}
@@ -198,7 +200,7 @@ class \hyperlink{classphys_1_1ResourceManager}{ResourceManager}
 class \hyperlink{classphys_1_1SceneManager}{SceneManager}
 \begin{DoxyCompactList}\small\item\em This class contains utilities and functions to allow the manipulation of the Graphical scene, rather then the physics inside, or the object inside. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1Serializer}{Serializer}
-\begin{DoxyCompactList}\small\item\em A tool for serializing classes with specific issues serializing or deserializing them. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A tool for serializing classes with specific issues serializing. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1SimpleTimer}{SimpleTimer}
 \begin{DoxyCompactList}\small\item\em A basic timer class that can be used to track short intervals of time. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1Singleton}{Singleton}
@@ -663,7 +665,7 @@ A String That contains the name of a ConstraintParam.
 
 Deserialize the next xml tag in the stream into a specific in memory class instance. 
 
-\char`\"{}void ProtoDeSerialize(const xml::Node\&)\char`\"{} and \char`\"{}String SerializableName() const\char`\"{} must be implemented on the the class instance that is passed in for this to work 
+\char`\"{}void ProtoDeSerialize(const xml::Node\&)\char`\"{} and \char`\"{}static String SerializableName() const\char`\"{} must be implemented on the class instance that is passed in for this to work 
 \begin{DoxyParams}{Parameters}
 {\em Stream} & The istream to extract the required data from \\
 \hline
@@ -675,7 +677,7 @@ This returns the istream that provided the serialized data.
 \end{DoxyReturn}
 
 
-Definition at line 167 of file serialization.h.
+Definition at line 416 of file serialization.h.
 
 \hypertarget{namespacephys_aecaa80117c517257e0af9ebd687ed667}{
 \index{phys@{phys}!DeSerializeError@{DeSerializeError}}
@@ -739,7 +741,7 @@ A the stream that was passed and now contains the serialized object.
 \end{DoxyReturn}
 
 
-Definition at line 151 of file serialization.h.
+Definition at line 400 of file serialization.h.
 
 \hypertarget{namespacephys_a3d75403c50afb8ed658bb9f22a70939f}{
 \index{phys@{phys}!SerializeError@{SerializeError}}
@@ -767,7 +769,7 @@ Simply does some string concatenation, then throws an \hyperlink{classphys_1_1Ex
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em A} & \hyperlink{classphys_1_1Exception}{phys::Exception} with the message \char`\"{}Could not \{FailedTo\} during \{ClassName\} \mbox{[}De\mbox{]}Serialization.\char`\"{} \\
+{\em A} & \hyperlink{classphys_1_1Exception}{phys::Exception} with the message \char`\"{}Could not \{FailedTo\} during \{ClassName\} \mbox{[}De\mbox{]}Serialization.\char`\"{}\char`\"{}Could not \{FailedTo\} during \{ClassName\} \mbox{[}De\mbox{]}Serialization.\char`\"{} \\
 \hline
 \end{DoxyExceptions}
 
@@ -797,7 +799,7 @@ The older serialization was implemented entirely in streaming operators. This us
 \end{DoxyParams}
 
 
-Definition at line 184 of file serialization.h.
+Definition at line 433 of file serialization.h.
 
 \hypertarget{namespacephys_ac50a6d941d823b8832a4098b078ab11c}{
 \index{phys@{phys}!StringAsConstraintParam@{StringAsConstraintParam}}

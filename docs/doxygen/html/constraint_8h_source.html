@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -369,7 +369,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00305"></a>00305 <span class="comment"></span>
 <a name="l00306"></a>00306 <span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
 <a name="l00307"></a>00307 <span class="comment">            /// @return A string containing &quot;TypedConstraint&quot;</span>
-<a name="l00308"></a>00308 <span class="comment"></span>            <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName() <span class="keyword">const</span>;
+<a name="l00308"></a>00308 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName();
 <a name="l00309"></a>00309 <span class="preprocessor">#endif</span>
 <a name="l00310"></a>00310 <span class="preprocessor"></span>    };
 <a name="l00311"></a>00311 <span class="comment"></span>
@@ -455,7 +455,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00391"></a>00391 <span class="comment"></span>
 <a name="l00392"></a>00392 <span class="comment">        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
 <a name="l00393"></a>00393 <span class="comment">        /// @return A string containing &quot;DualTransformConstraint&quot;</span>
-<a name="l00394"></a>00394 <span class="comment"></span>        <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName() <span class="keyword">const</span>;
+<a name="l00394"></a>00394 <span class="comment"></span>        <span class="keyword">static</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName();
 <a name="l00395"></a>00395 <span class="preprocessor">#endif</span>
 <a name="l00396"></a>00396 <span class="preprocessor"></span>    };
 <a name="l00397"></a>00397 <span class="comment"></span>
@@ -859,7 +859,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00795"></a>00795 <span class="comment"></span>
 <a name="l00796"></a>00796 <span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
 <a name="l00797"></a>00797 <span class="comment">            /// @return A string containing &quot;Generic6DofConstraint&quot;</span>
-<a name="l00798"></a>00798 <span class="comment"></span>            <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName() <span class="keyword">const</span>;
+<a name="l00798"></a>00798 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName();
 <a name="l00799"></a>00799 <span class="preprocessor">#endif // /PHYSXML</span>
 <a name="l00800"></a>00800 <span class="preprocessor"></span>    };
 <a name="l00801"></a>00801 <span class="comment"></span>
@@ -1018,7 +1018,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00954"></a>00954 <span class="comment"></span>
 <a name="l00955"></a>00955 <span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
 <a name="l00956"></a>00956 <span class="comment">            /// @return A string containing &quot;Generic6DofConstraint&quot;</span>
-<a name="l00957"></a>00957 <span class="comment"></span>            <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName() <span class="keyword">const</span>;
+<a name="l00957"></a>00957 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName();
 <a name="l00958"></a>00958 <span class="preprocessor">#endif // /PHYSXML</span>
 <a name="l00959"></a>00959 <span class="preprocessor"></span>    };
 <a name="l00960"></a>00960 <span class="comment"></span>
@@ -1132,355 +1132,358 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01068"></a>01068 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> EnableMotor(<span class="keywordtype">bool</span> EnableMotor, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TargetVelocity, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> MaxMotorImpulse);<span class="comment"></span>
 <a name="l01069"></a>01069 <span class="comment">            /// @brief Enables(or Disables) the motor on the hinge.</span>
 <a name="l01070"></a>01070 <span class="comment">            /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.</span>
-<a name="l01071"></a>01071 <span class="comment"></span>            <span class="comment">/* virtual void EnableMotor(bool EnableMotor);</span><span class="comment"></span>
+<a name="l01071"></a>01071 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> EnableMotor(<span class="keywordtype">bool</span> EnableMotor);<span class="comment"></span>
 <a name="l01072"></a>01072 <span class="comment">            /// @brief Is this motor on this hinge enabled?</span>
-<a name="l01073"></a>01073 <span class="comment">            /// @return True if it is, false otherwise. */</span>
-<a name="l01074"></a>01074 <span class="comment"></span>            virtual bool GetMotorEnabled() const;<span class="comment"></span>
+<a name="l01073"></a>01073 <span class="comment">            /// @return True if it is, false otherwise.</span>
+<a name="l01074"></a>01074 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> GetMotorEnabled() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l01075"></a>01075 <span class="comment">            /// @brief Sets the maximum amount of force the motor is to apply.</span>
 <a name="l01076"></a>01076 <span class="comment">            /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it&#39;s target velocity.</span>
-<a name="l01077"></a>01077 <span class="comment"></span>            /* virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);<span class="comment"></span>
+<a name="l01077"></a>01077 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMaxMotorImpulse(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> MaxMotorImpulse);<span class="comment"></span>
 <a name="l01078"></a>01078 <span class="comment">            /// @brief Retrieve the maximimum value that the acceleration of the motor can be increased.</span>
-<a name="l01079"></a>01079 <span class="comment">            /// @return A real containing the maximum impulse. */</span>
-<a name="l01080"></a>01080 <span class="comment"></span>            virtual Real GetMaxMotorImpulse() const;<span class="comment"></span>
+<a name="l01079"></a>01079 <span class="comment">            /// @return A real containing the maximum impulse.</span>
+<a name="l01080"></a>01080 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetMaxMotorImpulse() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l01081"></a>01081 <span class="comment">            /// @brief Sets a Target Velocity, indirectly using the angle stored in a quaternion.</span>
 <a name="l01082"></a>01082 <span class="comment">            /// @details Is implemented in terms of SetMotorTarget(Real, Real);</span>
 <a name="l01083"></a>01083 <span class="comment">            /// @param QuatAInB The angle a quaternion relative to the two objects in the constraint.</span>
 <a name="l01084"></a>01084 <span class="comment">            /// @param Dt The Desired Time steps that the target rotational velocity should be reached in.</span>
-<a name="l01085"></a>01085 <span class="comment"></span>            virtual void SetMotorTarget(const Quaternion&amp; QuatAInB, Real Dt);<span class="comment"></span>
+<a name="l01085"></a>01085 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMotorTarget(<span class="keyword">const</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; QuatAInB, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Dt);<span class="comment"></span>
 <a name="l01086"></a>01086 <span class="comment">            /// @brief Set the Rotational velocity in a more direct fashion</span>
 <a name="l01087"></a>01087 <span class="comment">            /// @param TargetAngle The desired angle in radians.</span>
 <a name="l01088"></a>01088 <span class="comment">            /// @param Dt The Desired Time steps that the target rotational velocity should be reached in.</span>
-<a name="l01089"></a>01089 <span class="comment"></span>            virtual void SetMotorTarget(Real TargetAngle, Real Dt);<span class="comment"></span>
+<a name="l01089"></a>01089 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMotorTarget(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TargetAngle, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Dt);<span class="comment"></span>
 <a name="l01090"></a>01090 <span class="comment">            /// @brief Desired angular velocity of the motor</span>
 <a name="l01091"></a>01091 <span class="comment">            /// @param TargetVelocity The Desired velocity</span>
 <a name="l01092"></a>01092 <span class="comment">            /// @warning Causes segfaults in some tests.</span>
-<a name="l01093"></a>01093 <span class="comment"></span>            /* virtual void SetMotorTargetVelocity(Real TargetVelocity);<span class="comment"></span>
+<a name="l01093"></a>01093 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMotorTargetVelocity(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TargetVelocity);<span class="comment"></span>
 <a name="l01094"></a>01094 <span class="comment">            /// @brief Get the Target Velocity.</span>
-<a name="l01095"></a>01095 <span class="comment">            /// @return the target valocity as a real. */</span>
-<a name="l01096"></a>01096 <span class="comment"></span>            virtual Real GetMotorTargetVelocity() const;
+<a name="l01095"></a>01095 <span class="comment">            /// @return the target valocity as a real.</span>
+<a name="l01096"></a>01096 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetMotorTargetVelocity() <span class="keyword">const</span>;
 <a name="l01097"></a>01097 <span class="comment"></span>
 <a name="l01098"></a>01098 <span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01099"></a>01099 <span class="comment"></span>            // HingeConstraint Limits<span class="comment"></span>
+<a name="l01099"></a>01099 <span class="comment"></span>            <span class="comment">// HingeConstraint Limits</span><span class="comment"></span>
 <a name="l01100"></a>01100 <span class="comment">            /// @brief Sets the angle limits of the constraint in radians.</span>
 <a name="l01101"></a>01101 <span class="comment">            /// @param Low The minimum angle limit for the constraint in radians.</span>
 <a name="l01102"></a>01102 <span class="comment">            /// @param High The maximum angle limit for the constraint in radians.</span>
 <a name="l01103"></a>01103 <span class="comment">            /// @param Softness Not currently used internally.</span>
 <a name="l01104"></a>01104 <span class="comment">            /// @param BiasFactor Multiplier for the constraint error, constraint appears more &quot;soft&quot; when closer to zero.</span>
 <a name="l01105"></a>01105 <span class="comment">            /// @param RelaxationFactor The amount of bounce to apply when the constraint reaches it&#39;s limit.  Range: 0.0-1.0.</span>
-<a name="l01106"></a>01106 <span class="comment"></span>            virtual void SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0);<span class="comment"></span>
+<a name="l01106"></a>01106 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLimit(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Low, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> High, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Softness=0.9, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> BiasFactor=0.3, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RelaxationFactor=1.0);<span class="comment"></span>
 <a name="l01107"></a>01107 <span class="comment">            /// @brief Return the Lower Limit of the hinge</span>
 <a name="l01108"></a>01108 <span class="comment">            /// @return A real containing the Lower Limit</span>
-<a name="l01109"></a>01109 <span class="comment"></span>            virtual Real GetLimitLow() const;<span class="comment"></span>
+<a name="l01109"></a>01109 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetLimitLow() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l01110"></a>01110 <span class="comment">            /// @brief Return the Upper Limit of the hinge</span>
 <a name="l01111"></a>01111 <span class="comment">            /// @return A real containing the Higher Limit</span>
-<a name="l01112"></a>01112 <span class="comment"></span>            virtual Real GetLimitHigh() const;<span class="comment"></span>
+<a name="l01112"></a>01112 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetLimitHigh() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l01113"></a>01113 <span class="comment">            /// @brief Return the Softness of the hinge</span>
 <a name="l01114"></a>01114 <span class="comment">            /// @return A real containing the Softness</span>
-<a name="l01115"></a>01115 <span class="comment"></span>            virtual Real GetLimitSoftness() const;<span class="comment"></span>
+<a name="l01115"></a>01115 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetLimitSoftness() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l01116"></a>01116 <span class="comment">            /// @brief Return the bias factor of the hinge (Not entirely certain hat this on is)</span>
 <a name="l01117"></a>01117 <span class="comment">            /// @return A real containing the bias Factor</span>
-<a name="l01118"></a>01118 <span class="comment"></span>            virtual Real GetLimitBiasFactor() const;<span class="comment"></span>
+<a name="l01118"></a>01118 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetLimitBiasFactor() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l01119"></a>01119 <span class="comment">            /// @brief Return the Relaxation Factor of the hinge</span>
 <a name="l01120"></a>01120 <span class="comment">            /// @return A real containing the Relaxation Factor</span>
-<a name="l01121"></a>01121 <span class="comment"></span>            virtual Real GetLimitRelaxationFactor() const;
+<a name="l01121"></a>01121 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetLimitRelaxationFactor() <span class="keyword">const</span>;
 <a name="l01122"></a>01122 <span class="comment"></span>
 <a name="l01123"></a>01123 <span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01124"></a>01124 <span class="comment"></span>            // HingeConstraint Details<span class="comment"></span>
+<a name="l01124"></a>01124 <span class="comment"></span>            <span class="comment">// HingeConstraint Details</span><span class="comment"></span>
 <a name="l01125"></a>01125 <span class="comment">            /// @brief Sets the axis on which this constraint acts.</span>
 <a name="l01126"></a>01126 <span class="comment">            /// @param AxisInA A vector3 representing the axis to be used with this constraint.</span>
-<a name="l01127"></a>01127 <span class="comment"></span>            virtual void SetAxis(const Vector3&amp; AxisInA);<span class="comment"></span>
-<a name="l01128"></a>01128 <span class="comment">            /// @copydoc TypedConstraint::ValidParamOnAxis(int) const</span>
-<a name="l01129"></a>01129 <span class="comment"></span>            virtual TypedConstraint::ParamList ValidParamOnAxis(int Axis) const;<span class="comment"></span>
-<a name="l01130"></a>01130 <span class="comment">            /// @copydoc TypedConstraint::ValidLinearAxis() const</span>
-<a name="l01131"></a>01131 <span class="comment"></span>            virtual TypedConstraint::AxisList ValidLinearAxis() const;<span class="comment"></span>
-<a name="l01132"></a>01132 <span class="comment">            /// @copydoc TypedConstraint::ValidAngularAxis() const</span>
-<a name="l01133"></a>01133 <span class="comment"></span>            virtual TypedConstraint::AxisList ValidAngularAxis() const;<span class="comment"></span>
-<a name="l01134"></a>01134 <span class="comment">            /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const</span>
-<a name="l01135"></a>01135 <span class="comment"></span>            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;<span class="comment"></span>
-<a name="l01136"></a>01136 <span class="comment">            /// @brief Retrieve the stored value from the physics subsystem(bullet)</span>
-<a name="l01137"></a>01137 <span class="comment">            /// @return a True or false.</span>
-<a name="l01138"></a>01138 <span class="comment"></span>            virtual bool GetUseFrameOffset() const;<span class="comment"></span>
-<a name="l01139"></a>01139 <span class="comment">            /// @brief Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet)</span>
-<a name="l01140"></a>01140 <span class="comment">            /// @param FrameOffset The new desired value.</span>
-<a name="l01141"></a>01141 <span class="comment"></span>            virtual void SetUseFrameOffset(bool FrameOffset);<span class="comment"></span>
-<a name="l01142"></a>01142 <span class="comment">            /// @brief Is this Using Reference Frame A</span>
-<a name="l01143"></a>01143 <span class="comment">            /// @return A the value UseReferenceFrameA is set to internally.</span>
-<a name="l01144"></a>01144 <span class="comment"></span>            virtual bool GetUseReferenceFrameA() const;<span class="comment"></span>
-<a name="l01145"></a>01145 <span class="comment">            /// @brief Change whether this is Using Reference Frame A or not</span>
-<a name="l01146"></a>01146 <span class="comment">            /// @param UseReferenceFrameA Whether certain math be performed from the perspective of Actor A or Actor B (we think this is the case, but we have not test thoroughly)</span>
-<a name="l01147"></a>01147 <span class="comment"></span>            virtual void SetUseReferenceFrameA(bool UseReferenceFrameA=false);
-<a name="l01148"></a>01148 
-<a name="l01149"></a>01149 #ifdef PHYSXML<span class="comment"></span>
-<a name="l01150"></a>01150 <span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01151"></a>01151 <span class="comment"></span>            // HingeConstraint Serialization
-<a name="l01152"></a>01152             // Serializable<span class="comment"></span>
-<a name="l01153"></a>01153 <span class="comment">            /// @brief Convert this class to an xml::Node ready for serialization</span>
-<a name="l01154"></a>01154 <span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.</span>
-<a name="l01155"></a>01155 <span class="comment"></span>            virtual void ProtoSerialize(xml::Node&amp; CurrentRoot) const;
-<a name="l01156"></a>01156             // DeSerializable<span class="comment"></span>
-<a name="l01157"></a>01157 <span class="comment">            /// @brief Take the data stored in an XML and overwrite this instance of this object with it</span>
-<a name="l01158"></a>01158 <span class="comment">            /// @param OneNode and xml::Node containing the data.</span>
-<a name="l01159"></a>01159 <span class="comment">            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.</span>
-<a name="l01160"></a>01160 <span class="comment"></span>            virtual void ProtoDeSerialize(const xml::Node&amp; OneNode);<span class="comment"></span>
-<a name="l01161"></a>01161 <span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
-<a name="l01162"></a>01162 <span class="comment">            /// @return A string containing &quot;HingeConstraint&quot;</span>
-<a name="l01163"></a>01163 <span class="comment"></span>            String SerializableName() const;
-<a name="l01164"></a>01164 #endif // /PHYSXML
-<a name="l01165"></a>01165 
-<a name="l01166"></a>01166     };
-<a name="l01167"></a>01167 <span class="comment"></span>
-<a name="l01168"></a>01168 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01169"></a>01169 <span class="comment">    /// @class Hinge2Constraint</span>
-<a name="l01170"></a>01170 <span class="comment">    /// @headerfile constraint.h</span>
-<a name="l01171"></a>01171 <span class="comment">    /// @brief</span>
-<a name="l01172"></a>01172 <span class="comment">    /// @details This class is incomplete</span>
-<a name="l01173"></a>01173 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l01174"></a><a class="code" href="classphys_1_1Hinge2Constraint.html">01174</a> <span class="comment"></span>    class PHYS_LIB Hinge2Constraint : public Generic6DofSpringConstraint
-<a name="l01175"></a>01175     {
-<a name="l01176"></a>01176         protected:<span class="comment"></span>
-<a name="l01177"></a>01177 <span class="comment">            /// @brief Bullet constraint that this class encapsulates.</span>
-<a name="l01178"></a><a class="code" href="classphys_1_1Hinge2Constraint.html#aa32c384f4c51895001e4378342d8f45e">01178</a> <span class="comment"></span>            btHinge2Constraint* Hinge2;
-<a name="l01179"></a>01179         public:
-<a name="l01180"></a>01180             Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3&amp; Anchor, const Vector3&amp; Axis1, const Vector3&amp; Axis2);<span class="comment"></span>
-<a name="l01181"></a>01181 <span class="comment">            /// @brief Class destructor.</span>
-<a name="l01182"></a>01182 <span class="comment">            /// @details The class destructor.</span>
-<a name="l01183"></a>01183 <span class="comment"></span>            virtual ~Hinge2Constraint();
-<a name="l01184"></a>01184             virtual void SetUpperLimit(Real Ang1Max);
-<a name="l01185"></a>01185             virtual void SetLowerLimit(Real Ang1Min);
-<a name="l01186"></a>01186     };
-<a name="l01187"></a>01187 <span class="comment"></span>
-<a name="l01188"></a>01188 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01189"></a>01189 <span class="comment">    /// @class Point2PointConstraint</span>
-<a name="l01190"></a>01190 <span class="comment">    /// @brief Tries to make a point relative to each of two actors match in 3d space, without regard to rotation.</span>
-<a name="l01191"></a>01191 <span class="comment">    /// @details This will translate (push around) the actors to attempt to get the offsets to match up in 3d space.</span>
-<a name="l01192"></a>01192 <span class="comment">    /// The actors can freely rotate about their relative offsets.</span>
-<a name="l01193"></a>01193 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l01194"></a><a class="code" href="classphys_1_1Point2PointConstraint.html">01194</a> <span class="comment"></span>    class PHYS_LIB Point2PointConstraint : public TypedConstraint
-<a name="l01195"></a>01195     {
-<a name="l01196"></a>01196         protected:<span class="comment"></span>
-<a name="l01197"></a>01197 <span class="comment">            /// @brief Bullet constraint that this class encapsulates.</span>
-<a name="l01198"></a><a class="code" href="classphys_1_1Point2PointConstraint.html#aa58b7fd9fe368c72d5bc5e1990bdf593">01198</a> <span class="comment"></span>            btPoint2PointConstraint* Point2Point;
-<a name="l01199"></a>01199         public:<span class="comment"></span>
-<a name="l01200"></a>01200 <span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01201"></a>01201 <span class="comment"></span>            // Point2PointConstraint Construction and Destruction<span class="comment"></span>
-<a name="l01202"></a>01202 <span class="comment">            /// @brief Double body constructor.  Binds the two bodies.</span>
-<a name="l01203"></a>01203 <span class="comment">            /// @param ActorA The first actor to apply this constraint to.</span>
-<a name="l01204"></a>01204 <span class="comment">            /// @param ActorB The second actor to apply this constraint to.</span>
-<a name="l01205"></a>01205 <span class="comment">            /// @param PivotA The location in ActorA&#39;s local space to apply the constraint to.</span>
-<a name="l01206"></a>01206 <span class="comment">            /// @param PivotB The location in ActorB&#39;s local space to apply the constraint to.</span>
-<a name="l01207"></a>01207 <span class="comment"></span>            Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3&amp; PivotA, const Vector3&amp; PivotB);<span class="comment"></span>
-<a name="l01208"></a>01208 <span class="comment">            /// @brief Single body constructor.  Binds the body to world space.</span>
-<a name="l01209"></a>01209 <span class="comment">            /// @param ActorA The actor to apply this constraint to.</span>
-<a name="l01210"></a>01210 <span class="comment">            /// @param PivotA The position relative to ActorA&#39;s center of gravity to &quot;Pin&quot; to the world.</span>
-<a name="l01211"></a>01211 <span class="comment"></span>            Point2PointConstraint(ActorRigid* ActorA, const Vector3&amp; PivotA);<span class="comment"></span>
-<a name="l01212"></a>01212 <span class="comment">            /// @brief Class destructor.</span>
-<a name="l01213"></a>01213 <span class="comment">            /// @details The class destructor.</span>
-<a name="l01214"></a>01214 <span class="comment"></span>            virtual ~Point2PointConstraint();<span class="comment"></span>
-<a name="l01215"></a>01215 <span class="comment">            /// @copydoc TypedConstraint::GetConstraintBase() const</span>
-<a name="l01216"></a>01216 <span class="comment"></span>            virtual btTypedConstraint* GetConstraintBase() const;
-<a name="l01217"></a>01217 <span class="comment"></span>
-<a name="l01218"></a>01218 <span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01219"></a>01219 <span class="comment"></span>            // Point2PointConstraint Position and Orientation<span class="comment"></span>
-<a name="l01220"></a>01220 <span class="comment">            /// @brief Set offset of the first actor.</span>
-<a name="l01221"></a>01221 <span class="comment">            /// @param PivotA The offset as a Vector3 relative to the center of mass of ActorA.</span>
-<a name="l01222"></a>01222 <span class="comment"></span>            virtual void SetPivotALocation(const Vector3&amp; PivotA);<span class="comment"></span>
-<a name="l01223"></a>01223 <span class="comment">            /// @brief Set offset of the second actor.</span>
-<a name="l01224"></a>01224 <span class="comment">            /// @param PivotB The offset as a Vector3 relative to the center of mass of ActorB.</span>
-<a name="l01225"></a>01225 <span class="comment"></span>            virtual void SetPivotBLocation(const Vector3&amp; PivotB);<span class="comment"></span>
-<a name="l01226"></a>01226 <span class="comment">            /// @brief Get offset of the first actor.</span>
-<a name="l01227"></a>01227 <span class="comment">            /// @return The offset as a Vector3 relative to the center of mass of ActorA.</span>
-<a name="l01228"></a>01228 <span class="comment"></span>            virtual Vector3 GetPivotALocation() const;<span class="comment"></span>
-<a name="l01229"></a>01229 <span class="comment">            /// @brief Get offset of the second actor.</span>
-<a name="l01230"></a>01230 <span class="comment">            /// @return The offset as a Vector3 relative to the center of mass of ActorB.</span>
-<a name="l01231"></a>01231 <span class="comment"></span>            virtual Vector3 GetPivotBLocation() const;<span class="comment"></span>
-<a name="l01232"></a>01232 <span class="comment">            /// @brief Set the current impulse clamping on the constraint</span>
-<a name="l01233"></a>01233 <span class="comment">            /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.</span>
-<a name="l01234"></a>01234 <span class="comment"></span><span class="comment"></span>
-<a name="l01235"></a>01235 <span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01236"></a>01236 <span class="comment"></span>            // Point2PointConstraint Specific Physics Settings
-<a name="l01237"></a>01237             virtual void SetImpulseClamping(Real Clamping);<span class="comment"></span>
-<a name="l01238"></a>01238 <span class="comment">            /// @brief get the current impulse clamping value</span>
-<a name="l01239"></a>01239 <span class="comment">            /// @return A real with the Clamping</span>
-<a name="l01240"></a>01240 <span class="comment"></span>            virtual Real GetImpulseClamping() const;<span class="comment"></span>
-<a name="l01241"></a>01241 <span class="comment">            /// @brief Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance</span>
-<a name="l01242"></a>01242 <span class="comment">            /// @param Damping A real with the desired values</span>
-<a name="l01243"></a>01243 <span class="comment"></span>            virtual void SetDamping(Real Damping);<span class="comment"></span>
-<a name="l01244"></a>01244 <span class="comment">            /// @brief Get the current Damping</span>
-<a name="l01245"></a>01245 <span class="comment">            /// @return A Real with the Damping value.</span>
-<a name="l01246"></a>01246 <span class="comment"></span>            virtual Real GetDamping() const;<span class="comment"></span>
-<a name="l01247"></a>01247 <span class="comment">            /// @brief This may be a scalar for how strongly Angular momentum affects linear momemtum</span>
-<a name="l01248"></a>01248 <span class="comment">            /// @todo Research this more carefully</span>
-<a name="l01249"></a>01249 <span class="comment">            /// @details This function is a tightly wrapped bullet 3d function. No real documentation for it exists, from its responsibility/location in Bullet3d and</span>
-<a name="l01250"></a>01250 <span class="comment">            /// a basic understanding of torque ( see http://en.wikipedia.org/wiki/Torque ) It is highly likely that it is a value to adjust how torque affects momentum.</span>
-<a name="l01251"></a>01251 <span class="comment"></span>            virtual void SetTAU(Real TAU);<span class="comment"></span>
-<a name="l01252"></a>01252 <span class="comment">            /// @brief Retrieve the Tau Setting</span>
-<a name="l01253"></a>01253 <span class="comment">            /// @return The Tau value as a Real</span>
-<a name="l01254"></a>01254 <span class="comment"></span>            virtual Real GetTAU() const;
-<a name="l01255"></a>01255 <span class="comment"></span>
-<a name="l01256"></a>01256 <span class="comment">            /// @copydoc TypedConstraint::ValidParamOnAxis(int) const</span>
-<a name="l01257"></a>01257 <span class="comment"></span>            virtual TypedConstraint::ParamList ValidParamOnAxis(int Axis) const;<span class="comment"></span>
-<a name="l01258"></a>01258 <span class="comment">            /// @copydoc TypedConstraint::ValidLinearAxis() const</span>
-<a name="l01259"></a>01259 <span class="comment"></span>            virtual TypedConstraint::AxisList ValidLinearAxis() const;<span class="comment"></span>
-<a name="l01260"></a>01260 <span class="comment">            /// @copydoc TypedConstraint::ValidAngularAxis() const</span>
-<a name="l01261"></a>01261 <span class="comment"></span>            virtual TypedConstraint::AxisList ValidAngularAxis() const;<span class="comment"></span>
-<a name="l01262"></a>01262 <span class="comment">            /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const</span>
-<a name="l01263"></a>01263 <span class="comment"></span>            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
-<a name="l01264"></a>01264 
-<a name="l01265"></a>01265 
-<a name="l01266"></a>01266 #ifdef PHYSXML<span class="comment"></span>
-<a name="l01267"></a>01267 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01268"></a>01268 <span class="comment"></span>            // Serialization
-<a name="l01269"></a>01269             // Serializable<span class="comment"></span>
-<a name="l01270"></a>01270 <span class="comment">            /// @brief Convert this class to an xml::Node ready for serialization</span>
-<a name="l01271"></a>01271 <span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.</span>
-<a name="l01272"></a>01272 <span class="comment"></span>            virtual void ProtoSerialize(xml::Node&amp; CurrentRoot) const;
-<a name="l01273"></a>01273 
-<a name="l01274"></a>01274             // DeSerializable<span class="comment"></span>
-<a name="l01275"></a>01275 <span class="comment">            /// @brief Take the data stored in an XML and overwrite this instance of this object with it</span>
-<a name="l01276"></a>01276 <span class="comment">            /// @param OneNode and xml::Node containing the data.</span>
-<a name="l01277"></a>01277 <span class="comment">            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.</span>
-<a name="l01278"></a>01278 <span class="comment"></span>            virtual void ProtoDeSerialize(const xml::Node&amp; OneNode);
-<a name="l01279"></a>01279 <span class="comment"></span>
-<a name="l01280"></a>01280 <span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
-<a name="l01281"></a>01281 <span class="comment">            /// @return A string containing &quot;Point2PointConstraint&quot;</span>
-<a name="l01282"></a>01282 <span class="comment"></span>            String SerializableName() const;
-<a name="l01283"></a>01283 #endif
-<a name="l01284"></a>01284     };
-<a name="l01285"></a>01285 <span class="comment"></span>
-<a name="l01286"></a>01286 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01287"></a>01287 <span class="comment">    /// @class SliderConstraint</span>
-<a name="l01288"></a>01288 <span class="comment">    /// @headerfile constraint.h</span>
-<a name="l01289"></a>01289 <span class="comment">    /// @brief</span>
-<a name="l01290"></a>01290 <span class="comment">    /// @details This class is incomplete</span>
-<a name="l01291"></a>01291 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l01292"></a><a class="code" href="classphys_1_1SliderConstraint.html">01292</a> <span class="comment"></span>    class PHYS_LIB SliderConstraint : public TypedConstraint
-<a name="l01293"></a>01293     {
-<a name="l01294"></a>01294         protected:<span class="comment"></span>
-<a name="l01295"></a>01295 <span class="comment">            /// @brief Bullet constraint that this class encapsulates.</span>
-<a name="l01296"></a><a class="code" href="classphys_1_1SliderConstraint.html#ae99629f3e87f72d3271ff82137fa81e2">01296</a> <span class="comment"></span>            btSliderConstraint* Slider;
-<a name="l01297"></a>01297         public:
-<a name="l01298"></a>01298             SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3&amp; VectorA, const Vector3&amp; VectorB, const Quaternion&amp; QuaternionA, const Quaternion&amp; QuaternionB, bool UseLinearReferenceA);
-<a name="l01299"></a>01299             SliderConstraint(ActorRigid* ActorB, const Vector3&amp; VectorB, const Quaternion&amp; QuaternionB, bool UseLinearReferenceA);<span class="comment"></span>
-<a name="l01300"></a>01300 <span class="comment">            /// @brief Class destructor.</span>
-<a name="l01301"></a>01301 <span class="comment">            /// @details The class destructor.</span>
-<a name="l01302"></a>01302 <span class="comment"></span>            virtual ~SliderConstraint();<span class="comment"></span>
-<a name="l01303"></a>01303 <span class="comment">            /// @copydoc TypedConstraint::GetConstraintBase() const</span>
-<a name="l01304"></a>01304 <span class="comment"></span>            virtual btTypedConstraint* GetConstraintBase() const;
-<a name="l01305"></a>01305             virtual void SetFrameOffsetALocation(const Vector3&amp; Location);
-<a name="l01306"></a>01306             virtual void SetFrameOffsetBLocation(const Vector3&amp; Location);
-<a name="l01307"></a>01307             virtual void SetUpperLinLimit(Real UpperLimit);
-<a name="l01308"></a>01308             virtual void SetUpperAngLimit(Real UpperLimit);
-<a name="l01309"></a>01309             virtual void SetLowerLinLimit(Real LowerLimit);
-<a name="l01310"></a>01310             virtual void SetLowerAngLimit(Real LowerLimit);
-<a name="l01311"></a>01311             virtual void SetPoweredLinMotor(bool OnOff);
-<a name="l01312"></a>01312             virtual void SetTargetLinMotorVelocity(Real TargetLinMotorVelocity);
-<a name="l01313"></a>01313             virtual void SetMaxLinMotorForce(Real MaxLinMotorForce);
-<a name="l01314"></a>01314             virtual void SetPoweredAngMotor(bool OnOff);
-<a name="l01315"></a>01315             virtual void SetTargetAngMotorVelocity(Real TargetAngMotorVelocity);
-<a name="l01316"></a>01316             virtual void SetMaxAngMotorForce(Real MaxAngMotorForce);
-<a name="l01317"></a>01317             virtual void SetUseFrameOffset(bool FrameOffset);
-<a name="l01318"></a>01318             virtual void SetSoftnessDirLin(Real SoftnessDirLin);
-<a name="l01319"></a>01319             virtual void SetRestitutionDirLin(Real RestitutionDirLin);
-<a name="l01320"></a>01320             virtual void SetDampingDirLin(Real DampingDirLin);
-<a name="l01321"></a>01321             virtual void SetSoftnessDirAng(Real SoftnessDirAng);
-<a name="l01322"></a>01322             virtual void SetRestitutionDirAng(Real RestitutionDirAng);
-<a name="l01323"></a>01323             virtual void SetDampingDirAng(Real DampingDirAng);
-<a name="l01324"></a>01324             virtual void SetSoftnessLimLin(Real SoftnessLimLin);
-<a name="l01325"></a>01325             virtual void SetRestitutionLimLin(Real RestitutionLimLin);
-<a name="l01326"></a>01326             virtual void SetDampingLimLin(Real DampingLimLin);
-<a name="l01327"></a>01327             virtual void SetSoftnessLimAng(Real SoftnessLimAng);
-<a name="l01328"></a>01328             virtual void SetRestitutionLimAng(Real RestitutionLimAng);
-<a name="l01329"></a>01329             virtual void SetDampingLimAng(Real DampingLimAng);
-<a name="l01330"></a>01330             virtual void SetSoftnessOrthoLin(Real SoftnessOrthoLin);
-<a name="l01331"></a>01331             virtual void SetRestitutionOrthoLin(Real RestitutionOrthoLin);
-<a name="l01332"></a>01332             virtual void SetDampingOrthoLin(Real DampingOrthoLin);
-<a name="l01333"></a>01333             virtual void SetSoftnessOrthoAng(Real SoftnessOrthoAng);
-<a name="l01334"></a>01334             virtual void SetRestitutionOrthoAng(Real RestitutionOrthoAng);
-<a name="l01335"></a>01335             virtual void SetDampingOrthoAng(Real DampingOrthoAng);
-<a name="l01336"></a>01336     };
-<a name="l01337"></a>01337 <span class="comment"></span>
-<a name="l01338"></a>01338 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01339"></a>01339 <span class="comment">    /// @internal</span>
-<a name="l01340"></a>01340 <span class="comment">    /// @class UniversalJointConstraint</span>
-<a name="l01341"></a>01341 <span class="comment">    /// @headerfile constraint.h</span>
-<a name="l01342"></a>01342 <span class="comment">    /// @brief</span>
-<a name="l01343"></a>01343 <span class="comment">    /// @details This class is currently incomplete and is marked as internal until its completion</span>
-<a name="l01344"></a><a class="code" href="classphys_1_1UniversalJointConstraint.html">01344</a> <span class="comment"></span>    class PHYS_LIB UniversalJointConstraint : public Generic6DofConstraint
-<a name="l01345"></a>01345     {
-<a name="l01346"></a>01346         protected:<span class="comment"></span>
-<a name="l01347"></a>01347 <span class="comment">            /// @brief Bullet constraint that this class encapsulates.</span>
-<a name="l01348"></a><a class="code" href="classphys_1_1UniversalJointConstraint.html#ab951b4d17ee706f81b8d63a4c60241ab">01348</a> <span class="comment"></span>            btUniversalConstraint* Universal;
-<a name="l01349"></a>01349         public:
-<a name="l01350"></a>01350             UniversalJointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3&amp; Anchor, const Vector3&amp; Axis1, const Vector3&amp; Axis2);<span class="comment"></span>
-<a name="l01351"></a>01351 <span class="comment">            /// @brief Class destructor.</span>
-<a name="l01352"></a>01352 <span class="comment">            /// @details The class destructor.</span>
-<a name="l01353"></a>01353 <span class="comment"></span>            virtual ~UniversalJointConstraint();
-<a name="l01354"></a>01354             virtual void SetUpperLimit(Real Ang1Max, Real Ang2Max);
-<a name="l01355"></a>01355             virtual void SetLowerLimit(Real Ang1Min, Real Ang2Min);
-<a name="l01356"></a>01356     };
-<a name="l01357"></a>01357 }//phys
-<a name="l01358"></a>01358 
-<a name="l01359"></a>01359 #ifdef PHYSXML<span class="comment"></span>
-<a name="l01360"></a>01360 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01361"></a>01361 <span class="comment"></span>    // Class External &lt;&lt; Operators for streaming or assignment
-<a name="l01362"></a>01362 <span class="comment"></span>
-<a name="l01363"></a>01363 <span class="comment">    /// @brief Convert a constraint to XML and send it down a stream.</span>
-<a name="l01364"></a>01364 <span class="comment">    /// @param stream The stream to send it down.</span>
-<a name="l01365"></a>01365 <span class="comment">    /// @param x The constraint to send down.</span>
-<a name="l01366"></a>01366 <span class="comment">    /// @return This returns the output stream to allow operator chaining.</span>
-<a name="l01367"></a>01367 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x);<span class="comment"></span>
-<a name="l01368"></a>01368 <span class="comment">    /// @brief Get a constraint from an XML stream.</span>
-<a name="l01369"></a>01369 <span class="comment">    /// @param stream The stream to get it out of.</span>
-<a name="l01370"></a>01370 <span class="comment">    /// @param x The it you will get out of the stream.</span>
-<a name="l01371"></a>01371 <span class="comment">    /// @return This returns the input stream to allow operator chaining.</span>
-<a name="l01372"></a>01372 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x);<span class="comment"></span>
-<a name="l01373"></a>01373 <span class="comment">    /// @brief Converts an XML Node into a functional in memory construct.</span>
-<a name="l01374"></a>01374 <span class="comment">    /// @param OneNode The xml node that contains the deserialize class instance.</span>
-<a name="l01375"></a>01375 <span class="comment">    /// @param x The class instance to overwrite witht the proto serialized version in the node.</span>
-<a name="l01376"></a>01376 <span class="comment"></span>    void operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x);
-<a name="l01377"></a>01377 <span class="comment"></span>
-<a name="l01378"></a>01378 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
-<a name="l01379"></a>01379 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::DualTransformConstraint&amp; x);<span class="comment"></span>
-<a name="l01380"></a>01380 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
-<a name="l01381"></a>01381 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, phys::DualTransformConstraint&amp; x);<span class="comment"></span>
-<a name="l01382"></a>01382 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
-<a name="l01383"></a>01383 <span class="comment"></span>    void operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::DualTransformConstraint&amp; x);
-<a name="l01384"></a>01384 <span class="comment"></span>
-<a name="l01385"></a>01385 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
-<a name="l01386"></a>01386 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::Generic6DofConstraint&amp; x);<span class="comment"></span>
-<a name="l01387"></a>01387 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
-<a name="l01388"></a>01388 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, phys::Generic6DofConstraint&amp; x);<span class="comment"></span>
-<a name="l01389"></a>01389 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
-<a name="l01390"></a>01390 <span class="comment"></span>    void operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::Generic6DofConstraint&amp; x);
-<a name="l01391"></a>01391 <span class="comment"></span>
-<a name="l01392"></a>01392 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
-<a name="l01393"></a>01393 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::Generic6DofSpringConstraint&amp; x);<span class="comment"></span>
-<a name="l01394"></a>01394 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
-<a name="l01395"></a>01395 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, phys::Generic6DofSpringConstraint&amp; x);<span class="comment"></span>
-<a name="l01396"></a>01396 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
-<a name="l01397"></a>01397 <span class="comment"></span>    void operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::Generic6DofSpringConstraint&amp; x);
-<a name="l01398"></a>01398 <span class="comment"></span>
-<a name="l01399"></a>01399 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
-<a name="l01400"></a>01400 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::HingeConstraint&amp; x);<span class="comment"></span>
-<a name="l01401"></a>01401 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
-<a name="l01402"></a>01402 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, phys::HingeConstraint&amp; x);<span class="comment"></span>
-<a name="l01403"></a>01403 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
-<a name="l01404"></a>01404 <span class="comment"></span>    void operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::HingeConstraint&amp; x);
-<a name="l01405"></a>01405 <span class="comment"></span>
-<a name="l01406"></a>01406 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
-<a name="l01407"></a>01407 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::Point2PointConstraint&amp; x);<span class="comment"></span>
-<a name="l01408"></a>01408 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
-<a name="l01409"></a>01409 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, phys::Point2PointConstraint&amp; x);<span class="comment"></span>
-<a name="l01410"></a>01410 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
-<a name="l01411"></a>01411 <span class="comment"></span>    void operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::Point2PointConstraint&amp; x);
-<a name="l01412"></a>01412 
-<a name="l01413"></a>01413 
-<a name="l01414"></a>01414 #endif // \PHYSXML
+<a name="l01127"></a>01127 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetAxis(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; AxisInA);<span class="comment"></span>
+<a name="l01128"></a>01128 <span class="comment">            /// @brief Gets the current angle of the hinge.</span>
+<a name="l01129"></a>01129 <span class="comment">            /// @return Gets the amount of rotation this hinge is off from it&#39;s origin in radians.</span>
+<a name="l01130"></a>01130 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetHingeAngle();<span class="comment"></span>
+<a name="l01131"></a>01131 <span class="comment">            /// @copydoc TypedConstraint::ValidParamOnAxis(int) const</span>
+<a name="l01132"></a>01132 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1TypedConstraint.html#a4c2dcea3fbb764e454840329126d034e" title="Set the current impulse clamping on the constraint.">TypedConstraint::ParamList</a> ValidParamOnAxis(<span class="keywordtype">int</span> Axis) <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01133"></a>01133 <span class="comment">            /// @copydoc TypedConstraint::ValidLinearAxis() const</span>
+<a name="l01134"></a>01134 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1TypedConstraint.html#a26261a4055e84e104c58d84eea5667c2" title="Used to Store lists of Int Axis for return types.">TypedConstraint::AxisList</a> ValidLinearAxis() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01135"></a>01135 <span class="comment">            /// @copydoc TypedConstraint::ValidAngularAxis() const</span>
+<a name="l01136"></a>01136 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1TypedConstraint.html#a26261a4055e84e104c58d84eea5667c2" title="Used to Store lists of Int Axis for return types.">TypedConstraint::AxisList</a> ValidAngularAxis() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01137"></a>01137 <span class="comment">            /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const</span>
+<a name="l01138"></a>01138 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> HasParamBeenSet(<a class="code" href="namespacephys.html#aa1e7cf2d7efcaeaeac304f711e7564e8" title="Used by constraints for setting some parameters.">ConstraintParam</a> Param, <span class="keywordtype">int</span> Axis) <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01139"></a>01139 <span class="comment">            /// @brief Retrieve the stored value from the physics subsystem(bullet)</span>
+<a name="l01140"></a>01140 <span class="comment">            /// @return a True or false.</span>
+<a name="l01141"></a>01141 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> GetUseFrameOffset() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01142"></a>01142 <span class="comment">            /// @brief Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet)</span>
+<a name="l01143"></a>01143 <span class="comment">            /// @param FrameOffset The new desired value.</span>
+<a name="l01144"></a>01144 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetUseFrameOffset(<span class="keywordtype">bool</span> FrameOffset);<span class="comment"></span>
+<a name="l01145"></a>01145 <span class="comment">            /// @brief Is this Using Reference Frame A</span>
+<a name="l01146"></a>01146 <span class="comment">            /// @return A the value UseReferenceFrameA is set to internally.</span>
+<a name="l01147"></a>01147 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> GetUseReferenceFrameA() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01148"></a>01148 <span class="comment">            /// @brief Change whether this is Using Reference Frame A or not</span>
+<a name="l01149"></a>01149 <span class="comment">            /// @param UseReferenceFrameA Whether certain math be performed from the perspective of Actor A or Actor B (we think this is the case, but we have not test thoroughly)</span>
+<a name="l01150"></a>01150 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetUseReferenceFrameA(<span class="keywordtype">bool</span> UseReferenceFrameA=<span class="keyword">false</span>);
+<a name="l01151"></a>01151 
+<a name="l01152"></a>01152 <span class="preprocessor">#ifdef PHYSXML</span>
+<a name="l01153"></a>01153 <span class="preprocessor"></span><span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01154"></a>01154 <span class="comment"></span>            <span class="comment">// HingeConstraint Serialization</span>
+<a name="l01155"></a>01155             <span class="comment">// Serializable</span><span class="comment"></span>
+<a name="l01156"></a>01156 <span class="comment">            /// @brief Convert this class to an xml::Node ready for serialization</span>
+<a name="l01157"></a>01157 <span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.</span>
+<a name="l01158"></a>01158 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(<a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; CurrentRoot) <span class="keyword">const</span>;
+<a name="l01159"></a>01159             <span class="comment">// DeSerializable</span><span class="comment"></span>
+<a name="l01160"></a>01160 <span class="comment">            /// @brief Take the data stored in an XML and overwrite this instance of this object with it</span>
+<a name="l01161"></a>01161 <span class="comment">            /// @param OneNode and xml::Node containing the data.</span>
+<a name="l01162"></a>01162 <span class="comment">            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.</span>
+<a name="l01163"></a>01163 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoDeSerialize(<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; OneNode);<span class="comment"></span>
+<a name="l01164"></a>01164 <span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
+<a name="l01165"></a>01165 <span class="comment">            /// @return A string containing &quot;HingeConstraint&quot;</span>
+<a name="l01166"></a>01166 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName();
+<a name="l01167"></a>01167 <span class="preprocessor">#endif // /PHYSXML</span>
+<a name="l01168"></a>01168 <span class="preprocessor"></span>
+<a name="l01169"></a>01169     };
+<a name="l01170"></a>01170 <span class="comment"></span>
+<a name="l01171"></a>01171 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01172"></a>01172 <span class="comment">    /// @class Hinge2Constraint</span>
+<a name="l01173"></a>01173 <span class="comment">    /// @headerfile constraint.h</span>
+<a name="l01174"></a>01174 <span class="comment">    /// @brief</span>
+<a name="l01175"></a>01175 <span class="comment">    /// @details This class is incomplete</span>
+<a name="l01176"></a>01176 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l01177"></a><a class="code" href="classphys_1_1Hinge2Constraint.html">01177</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="classphys_1_1Hinge2Constraint.html">Hinge2Constraint</a> : <span class="keyword">public</span> <a class="code" href="classphys_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">Generic6DofSpringConstraint</a>
+<a name="l01178"></a>01178     {
+<a name="l01179"></a>01179         <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l01180"></a>01180 <span class="comment">            /// @brief Bullet constraint that this class encapsulates.</span>
+<a name="l01181"></a><a class="code" href="classphys_1_1Hinge2Constraint.html#aa32c384f4c51895001e4378342d8f45e">01181</a> <span class="comment"></span>            btHinge2Constraint* <a class="code" href="classphys_1_1Hinge2Constraint.html#aa32c384f4c51895001e4378342d8f45e" title="Bullet constraint that this class encapsulates.">Hinge2</a>;
+<a name="l01182"></a>01182         <span class="keyword">public</span>:
+<a name="l01183"></a>01183             <a class="code" href="classphys_1_1Hinge2Constraint.html">Hinge2Constraint</a>(<a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorA, <a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorB, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Anchor, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Axis1, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Axis2);<span class="comment"></span>
+<a name="l01184"></a>01184 <span class="comment">            /// @brief Class destructor.</span>
+<a name="l01185"></a>01185 <span class="comment">            /// @details The class destructor.</span>
+<a name="l01186"></a>01186 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1Hinge2Constraint.html">Hinge2Constraint</a>();
+<a name="l01187"></a>01187             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetUpperLimit(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Max);
+<a name="l01188"></a>01188             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLowerLimit(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Min);
+<a name="l01189"></a>01189     };
+<a name="l01190"></a>01190 <span class="comment"></span>
+<a name="l01191"></a>01191 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01192"></a>01192 <span class="comment">    /// @class Point2PointConstraint</span>
+<a name="l01193"></a>01193 <span class="comment">    /// @brief Tries to make a point relative to each of two actors match in 3d space, without regard to rotation.</span>
+<a name="l01194"></a>01194 <span class="comment">    /// @details This will translate (push around) the actors to attempt to get the offsets to match up in 3d space.</span>
+<a name="l01195"></a>01195 <span class="comment">    /// The actors can freely rotate about their relative offsets.</span>
+<a name="l01196"></a>01196 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l01197"></a><a class="code" href="classphys_1_1Point2PointConstraint.html">01197</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="classphys_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Point2PointConstraint</a> : <span class="keyword">public</span> <a class="code" href="classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a>
+<a name="l01198"></a>01198     {
+<a name="l01199"></a>01199         <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l01200"></a>01200 <span class="comment">            /// @brief Bullet constraint that this class encapsulates.</span>
+<a name="l01201"></a><a class="code" href="classphys_1_1Point2PointConstraint.html#aa58b7fd9fe368c72d5bc5e1990bdf593">01201</a> <span class="comment"></span>            btPoint2PointConstraint* <a class="code" href="classphys_1_1Point2PointConstraint.html#aa58b7fd9fe368c72d5bc5e1990bdf593" title="Bullet constraint that this class encapsulates.">Point2Point</a>;
+<a name="l01202"></a>01202         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l01203"></a>01203 <span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01204"></a>01204 <span class="comment"></span>            <span class="comment">// Point2PointConstraint Construction and Destruction</span><span class="comment"></span>
+<a name="l01205"></a>01205 <span class="comment">            /// @brief Double body constructor.  Binds the two bodies.</span>
+<a name="l01206"></a>01206 <span class="comment">            /// @param ActorA The first actor to apply this constraint to.</span>
+<a name="l01207"></a>01207 <span class="comment">            /// @param ActorB The second actor to apply this constraint to.</span>
+<a name="l01208"></a>01208 <span class="comment">            /// @param PivotA The location in ActorA&#39;s local space to apply the constraint to.</span>
+<a name="l01209"></a>01209 <span class="comment">            /// @param PivotB The location in ActorB&#39;s local space to apply the constraint to.</span>
+<a name="l01210"></a>01210 <span class="comment"></span>            <a class="code" href="classphys_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Point2PointConstraint</a>(<a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorA, <a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorB, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; PivotA, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; PivotB);<span class="comment"></span>
+<a name="l01211"></a>01211 <span class="comment">            /// @brief Single body constructor.  Binds the body to world space.</span>
+<a name="l01212"></a>01212 <span class="comment">            /// @param ActorA The actor to apply this constraint to.</span>
+<a name="l01213"></a>01213 <span class="comment">            /// @param PivotA The position relative to ActorA&#39;s center of gravity to &quot;Pin&quot; to the world.</span>
+<a name="l01214"></a>01214 <span class="comment"></span>            <a class="code" href="classphys_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Point2PointConstraint</a>(<a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorA, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; PivotA);<span class="comment"></span>
+<a name="l01215"></a>01215 <span class="comment">            /// @brief Class destructor.</span>
+<a name="l01216"></a>01216 <span class="comment">            /// @details The class destructor.</span>
+<a name="l01217"></a>01217 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Point2PointConstraint</a>();<span class="comment"></span>
+<a name="l01218"></a>01218 <span class="comment">            /// @copydoc TypedConstraint::GetConstraintBase() const</span>
+<a name="l01219"></a>01219 <span class="comment"></span>            <span class="keyword">virtual</span> btTypedConstraint* GetConstraintBase() <span class="keyword">const</span>;
+<a name="l01220"></a>01220 <span class="comment"></span>
+<a name="l01221"></a>01221 <span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01222"></a>01222 <span class="comment"></span>            <span class="comment">// Point2PointConstraint Position and Orientation</span><span class="comment"></span>
+<a name="l01223"></a>01223 <span class="comment">            /// @brief Set offset of the first actor.</span>
+<a name="l01224"></a>01224 <span class="comment">            /// @param PivotA The offset as a Vector3 relative to the center of mass of ActorA.</span>
+<a name="l01225"></a>01225 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPivotALocation(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; PivotA);<span class="comment"></span>
+<a name="l01226"></a>01226 <span class="comment">            /// @brief Set offset of the second actor.</span>
+<a name="l01227"></a>01227 <span class="comment">            /// @param PivotB The offset as a Vector3 relative to the center of mass of ActorB.</span>
+<a name="l01228"></a>01228 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPivotBLocation(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; PivotB);<span class="comment"></span>
+<a name="l01229"></a>01229 <span class="comment">            /// @brief Get offset of the first actor.</span>
+<a name="l01230"></a>01230 <span class="comment">            /// @return The offset as a Vector3 relative to the center of mass of ActorA.</span>
+<a name="l01231"></a>01231 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetPivotALocation() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01232"></a>01232 <span class="comment">            /// @brief Get offset of the second actor.</span>
+<a name="l01233"></a>01233 <span class="comment">            /// @return The offset as a Vector3 relative to the center of mass of ActorB.</span>
+<a name="l01234"></a>01234 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetPivotBLocation() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01235"></a>01235 <span class="comment">            /// @brief Set the current impulse clamping on the constraint</span>
+<a name="l01236"></a>01236 <span class="comment">            /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.</span>
+<a name="l01237"></a>01237 <span class="comment"></span><span class="comment"></span>
+<a name="l01238"></a>01238 <span class="comment">            ////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01239"></a>01239 <span class="comment"></span>            <span class="comment">// Point2PointConstraint Specific Physics Settings</span>
+<a name="l01240"></a>01240             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetImpulseClamping(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Clamping);<span class="comment"></span>
+<a name="l01241"></a>01241 <span class="comment">            /// @brief get the current impulse clamping value</span>
+<a name="l01242"></a>01242 <span class="comment">            /// @return A real with the Clamping</span>
+<a name="l01243"></a>01243 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetImpulseClamping() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01244"></a>01244 <span class="comment">            /// @brief Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance</span>
+<a name="l01245"></a>01245 <span class="comment">            /// @param Damping A real with the desired values</span>
+<a name="l01246"></a>01246 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetDamping(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Damping);<span class="comment"></span>
+<a name="l01247"></a>01247 <span class="comment">            /// @brief Get the current Damping</span>
+<a name="l01248"></a>01248 <span class="comment">            /// @return A Real with the Damping value.</span>
+<a name="l01249"></a>01249 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetDamping() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01250"></a>01250 <span class="comment">            /// @brief This may be a scalar for how strongly Angular momentum affects linear momemtum</span>
+<a name="l01251"></a>01251 <span class="comment">            /// @todo Research this more carefully</span>
+<a name="l01252"></a>01252 <span class="comment">            /// @details This function is a tightly wrapped bullet 3d function. No real documentation for it exists, from its responsibility/location in Bullet3d and</span>
+<a name="l01253"></a>01253 <span class="comment">            /// a basic understanding of torque ( see http://en.wikipedia.org/wiki/Torque ) It is highly likely that it is a value to adjust how torque affects momentum.</span>
+<a name="l01254"></a>01254 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetTAU(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TAU);<span class="comment"></span>
+<a name="l01255"></a>01255 <span class="comment">            /// @brief Retrieve the Tau Setting</span>
+<a name="l01256"></a>01256 <span class="comment">            /// @return The Tau value as a Real</span>
+<a name="l01257"></a>01257 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetTAU() <span class="keyword">const</span>;
+<a name="l01258"></a>01258 <span class="comment"></span>
+<a name="l01259"></a>01259 <span class="comment">            /// @copydoc TypedConstraint::ValidParamOnAxis(int) const</span>
+<a name="l01260"></a>01260 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1TypedConstraint.html#a4c2dcea3fbb764e454840329126d034e" title="Set the current impulse clamping on the constraint.">TypedConstraint::ParamList</a> ValidParamOnAxis(<span class="keywordtype">int</span> Axis) <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01261"></a>01261 <span class="comment">            /// @copydoc TypedConstraint::ValidLinearAxis() const</span>
+<a name="l01262"></a>01262 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1TypedConstraint.html#a26261a4055e84e104c58d84eea5667c2" title="Used to Store lists of Int Axis for return types.">TypedConstraint::AxisList</a> ValidLinearAxis() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01263"></a>01263 <span class="comment">            /// @copydoc TypedConstraint::ValidAngularAxis() const</span>
+<a name="l01264"></a>01264 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1TypedConstraint.html#a26261a4055e84e104c58d84eea5667c2" title="Used to Store lists of Int Axis for return types.">TypedConstraint::AxisList</a> ValidAngularAxis() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l01265"></a>01265 <span class="comment">            /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const</span>
+<a name="l01266"></a>01266 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> HasParamBeenSet(<a class="code" href="namespacephys.html#aa1e7cf2d7efcaeaeac304f711e7564e8" title="Used by constraints for setting some parameters.">ConstraintParam</a> Param, <span class="keywordtype">int</span> Axis) <span class="keyword">const</span>;
+<a name="l01267"></a>01267 
+<a name="l01268"></a>01268 
+<a name="l01269"></a>01269 <span class="preprocessor">#ifdef PHYSXML</span>
+<a name="l01270"></a>01270 <span class="preprocessor"></span><span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01271"></a>01271 <span class="comment"></span>            <span class="comment">// Serialization</span>
+<a name="l01272"></a>01272             <span class="comment">// Serializable</span><span class="comment"></span>
+<a name="l01273"></a>01273 <span class="comment">            /// @brief Convert this class to an xml::Node ready for serialization</span>
+<a name="l01274"></a>01274 <span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.</span>
+<a name="l01275"></a>01275 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(<a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; CurrentRoot) <span class="keyword">const</span>;
+<a name="l01276"></a>01276 
+<a name="l01277"></a>01277             <span class="comment">// DeSerializable</span><span class="comment"></span>
+<a name="l01278"></a>01278 <span class="comment">            /// @brief Take the data stored in an XML and overwrite this instance of this object with it</span>
+<a name="l01279"></a>01279 <span class="comment">            /// @param OneNode and xml::Node containing the data.</span>
+<a name="l01280"></a>01280 <span class="comment">            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.</span>
+<a name="l01281"></a>01281 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoDeSerialize(<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; OneNode);
+<a name="l01282"></a>01282 <span class="comment"></span>
+<a name="l01283"></a>01283 <span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
+<a name="l01284"></a>01284 <span class="comment">            /// @return A string containing &quot;Point2PointConstraint&quot;</span>
+<a name="l01285"></a>01285 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName();
+<a name="l01286"></a>01286 <span class="preprocessor">#endif</span>
+<a name="l01287"></a>01287 <span class="preprocessor"></span>    };
+<a name="l01288"></a>01288 <span class="comment"></span>
+<a name="l01289"></a>01289 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01290"></a>01290 <span class="comment">    /// @class SliderConstraint</span>
+<a name="l01291"></a>01291 <span class="comment">    /// @headerfile constraint.h</span>
+<a name="l01292"></a>01292 <span class="comment">    /// @brief</span>
+<a name="l01293"></a>01293 <span class="comment">    /// @details This class is incomplete</span>
+<a name="l01294"></a>01294 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l01295"></a><a class="code" href="classphys_1_1SliderConstraint.html">01295</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="classphys_1_1SliderConstraint.html">SliderConstraint</a> : <span class="keyword">public</span> <a class="code" href="classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a>
+<a name="l01296"></a>01296     {
+<a name="l01297"></a>01297         <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l01298"></a>01298 <span class="comment">            /// @brief Bullet constraint that this class encapsulates.</span>
+<a name="l01299"></a><a class="code" href="classphys_1_1SliderConstraint.html#ae99629f3e87f72d3271ff82137fa81e2">01299</a> <span class="comment"></span>            btSliderConstraint* <a class="code" href="classphys_1_1SliderConstraint.html#ae99629f3e87f72d3271ff82137fa81e2" title="Bullet constraint that this class encapsulates.">Slider</a>;
+<a name="l01300"></a>01300         <span class="keyword">public</span>:
+<a name="l01301"></a>01301             <a class="code" href="classphys_1_1SliderConstraint.html">SliderConstraint</a>(<a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorA, <a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorB, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; VectorA, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; VectorB, <span class="keyword">const</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; QuaternionA, <span class="keyword">const</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; QuaternionB, <span class="keywordtype">bool</span> UseLinearReferenceA);
+<a name="l01302"></a>01302             <a class="code" href="classphys_1_1SliderConstraint.html">SliderConstraint</a>(<a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorB, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; VectorB, <span class="keyword">const</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; QuaternionB, <span class="keywordtype">bool</span> UseLinearReferenceA);<span class="comment"></span>
+<a name="l01303"></a>01303 <span class="comment">            /// @brief Class destructor.</span>
+<a name="l01304"></a>01304 <span class="comment">            /// @details The class destructor.</span>
+<a name="l01305"></a>01305 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1SliderConstraint.html">SliderConstraint</a>();<span class="comment"></span>
+<a name="l01306"></a>01306 <span class="comment">            /// @copydoc TypedConstraint::GetConstraintBase() const</span>
+<a name="l01307"></a>01307 <span class="comment"></span>            <span class="keyword">virtual</span> btTypedConstraint* GetConstraintBase() <span class="keyword">const</span>;
+<a name="l01308"></a>01308             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetFrameOffsetALocation(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location);
+<a name="l01309"></a>01309             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetFrameOffsetBLocation(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location);
+<a name="l01310"></a>01310             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetUpperLinLimit(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> UpperLimit);
+<a name="l01311"></a>01311             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetUpperAngLimit(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> UpperLimit);
+<a name="l01312"></a>01312             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLowerLinLimit(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> LowerLimit);
+<a name="l01313"></a>01313             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLowerAngLimit(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> LowerLimit);
+<a name="l01314"></a>01314             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPoweredLinMotor(<span class="keywordtype">bool</span> OnOff);
+<a name="l01315"></a>01315             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetTargetLinMotorVelocity(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TargetLinMotorVelocity);
+<a name="l01316"></a>01316             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMaxLinMotorForce(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> MaxLinMotorForce);
+<a name="l01317"></a>01317             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPoweredAngMotor(<span class="keywordtype">bool</span> OnOff);
+<a name="l01318"></a>01318             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetTargetAngMotorVelocity(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TargetAngMotorVelocity);
+<a name="l01319"></a>01319             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMaxAngMotorForce(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> MaxAngMotorForce);
+<a name="l01320"></a>01320             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetUseFrameOffset(<span class="keywordtype">bool</span> FrameOffset);
+<a name="l01321"></a>01321             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSoftnessDirLin(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessDirLin);
+<a name="l01322"></a>01322             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetRestitutionDirLin(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionDirLin);
+<a name="l01323"></a>01323             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetDampingDirLin(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> DampingDirLin);
+<a name="l01324"></a>01324             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSoftnessDirAng(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessDirAng);
+<a name="l01325"></a>01325             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetRestitutionDirAng(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionDirAng);
+<a name="l01326"></a>01326             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetDampingDirAng(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> DampingDirAng);
+<a name="l01327"></a>01327             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSoftnessLimLin(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessLimLin);
+<a name="l01328"></a>01328             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetRestitutionLimLin(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionLimLin);
+<a name="l01329"></a>01329             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetDampingLimLin(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> DampingLimLin);
+<a name="l01330"></a>01330             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSoftnessLimAng(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessLimAng);
+<a name="l01331"></a>01331             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetRestitutionLimAng(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionLimAng);
+<a name="l01332"></a>01332             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetDampingLimAng(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> DampingLimAng);
+<a name="l01333"></a>01333             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSoftnessOrthoLin(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessOrthoLin);
+<a name="l01334"></a>01334             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetRestitutionOrthoLin(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionOrthoLin);
+<a name="l01335"></a>01335             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetDampingOrthoLin(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> DampingOrthoLin);
+<a name="l01336"></a>01336             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSoftnessOrthoAng(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessOrthoAng);
+<a name="l01337"></a>01337             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetRestitutionOrthoAng(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionOrthoAng);
+<a name="l01338"></a>01338             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetDampingOrthoAng(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> DampingOrthoAng);
+<a name="l01339"></a>01339     };
+<a name="l01340"></a>01340 <span class="comment"></span>
+<a name="l01341"></a>01341 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01342"></a>01342 <span class="comment">    /// @internal</span>
+<a name="l01343"></a>01343 <span class="comment">    /// @class UniversalJointConstraint</span>
+<a name="l01344"></a>01344 <span class="comment">    /// @headerfile constraint.h</span>
+<a name="l01345"></a>01345 <span class="comment">    /// @brief</span>
+<a name="l01346"></a>01346 <span class="comment">    /// @details This class is currently incomplete and is marked as internal until its completion</span>
+<a name="l01347"></a><a class="code" href="classphys_1_1UniversalJointConstraint.html">01347</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="classphys_1_1UniversalJointConstraint.html">UniversalJointConstraint</a> : <span class="keyword">public</span> <a class="code" href="classphys_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">Generic6DofConstraint</a>
+<a name="l01348"></a>01348     {
+<a name="l01349"></a>01349         <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l01350"></a>01350 <span class="comment">            /// @brief Bullet constraint that this class encapsulates.</span>
+<a name="l01351"></a><a class="code" href="classphys_1_1UniversalJointConstraint.html#ab951b4d17ee706f81b8d63a4c60241ab">01351</a> <span class="comment"></span>            btUniversalConstraint* <a class="code" href="classphys_1_1UniversalJointConstraint.html#ab951b4d17ee706f81b8d63a4c60241ab" title="Bullet constraint that this class encapsulates.">Universal</a>;
+<a name="l01352"></a>01352         <span class="keyword">public</span>:
+<a name="l01353"></a>01353             <a class="code" href="classphys_1_1UniversalJointConstraint.html">UniversalJointConstraint</a>(<a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorA, <a class="code" href="classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorB, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Anchor, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Axis1, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Axis2);<span class="comment"></span>
+<a name="l01354"></a>01354 <span class="comment">            /// @brief Class destructor.</span>
+<a name="l01355"></a>01355 <span class="comment">            /// @details The class destructor.</span>
+<a name="l01356"></a>01356 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1UniversalJointConstraint.html">UniversalJointConstraint</a>();
+<a name="l01357"></a>01357             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetUpperLimit(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Max, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Ang2Max);
+<a name="l01358"></a>01358             <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLowerLimit(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Min, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Ang2Min);
+<a name="l01359"></a>01359     };
+<a name="l01360"></a>01360 }<span class="comment">//phys</span>
+<a name="l01361"></a>01361 
+<a name="l01362"></a>01362 <span class="preprocessor">#ifdef PHYSXML</span>
+<a name="l01363"></a>01363 <span class="preprocessor"></span><span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01364"></a>01364 <span class="comment"></span>    <span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
+<a name="l01365"></a>01365 <span class="comment"></span>
+<a name="l01366"></a>01366 <span class="comment">    /// @brief Convert a constraint to XML and send it down a stream.</span>
+<a name="l01367"></a>01367 <span class="comment">    /// @param stream The stream to send it down.</span>
+<a name="l01368"></a>01368 <span class="comment">    /// @param x The constraint to send down.</span>
+<a name="l01369"></a>01369 <span class="comment">    /// @return This returns the output stream to allow operator chaining.</span>
+<a name="l01370"></a>01370 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">phys::TypedConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01371"></a>01371 <span class="comment">    /// @brief Get a constraint from an XML stream.</span>
+<a name="l01372"></a>01372 <span class="comment">    /// @param stream The stream to get it out of.</span>
+<a name="l01373"></a>01373 <span class="comment">    /// @param x The it you will get out of the stream.</span>
+<a name="l01374"></a>01374 <span class="comment">    /// @return This returns the input stream to allow operator chaining.</span>
+<a name="l01375"></a>01375 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">phys::TypedConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01376"></a>01376 <span class="comment">    /// @brief Converts an XML Node into a functional in memory construct.</span>
+<a name="l01377"></a>01377 <span class="comment">    /// @param OneNode The xml node that contains the deserialize class instance.</span>
+<a name="l01378"></a>01378 <span class="comment">    /// @param x The class instance to overwrite witht the proto serialized version in the node.</span>
+<a name="l01379"></a>01379 <span class="comment"></span>    <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">phys::TypedConstraint</a>&amp; x);
+<a name="l01380"></a>01380 <span class="comment"></span>
+<a name="l01381"></a>01381 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
+<a name="l01382"></a>01382 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">phys::DualTransformConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01383"></a>01383 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
+<a name="l01384"></a>01384 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classphys_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">phys::DualTransformConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01385"></a>01385 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
+<a name="l01386"></a>01386 <span class="comment"></span>    <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="classphys_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">phys::DualTransformConstraint</a>&amp; x);
+<a name="l01387"></a>01387 <span class="comment"></span>
+<a name="l01388"></a>01388 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
+<a name="l01389"></a>01389 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">phys::Generic6DofConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01390"></a>01390 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
+<a name="l01391"></a>01391 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classphys_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">phys::Generic6DofConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01392"></a>01392 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
+<a name="l01393"></a>01393 <span class="comment"></span>    <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="classphys_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">phys::Generic6DofConstraint</a>&amp; x);
+<a name="l01394"></a>01394 <span class="comment"></span>
+<a name="l01395"></a>01395 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
+<a name="l01396"></a>01396 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">phys::Generic6DofSpringConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01397"></a>01397 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
+<a name="l01398"></a>01398 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classphys_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">phys::Generic6DofSpringConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01399"></a>01399 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
+<a name="l01400"></a>01400 <span class="comment"></span>    <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="classphys_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">phys::Generic6DofSpringConstraint</a>&amp; x);
+<a name="l01401"></a>01401 <span class="comment"></span>
+<a name="l01402"></a>01402 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
+<a name="l01403"></a>01403 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">phys::HingeConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01404"></a>01404 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
+<a name="l01405"></a>01405 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classphys_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">phys::HingeConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01406"></a>01406 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
+<a name="l01407"></a>01407 <span class="comment"></span>    <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="classphys_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">phys::HingeConstraint</a>&amp; x);
+<a name="l01408"></a>01408 <span class="comment"></span>
+<a name="l01409"></a>01409 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const phys::TypedConstraint&amp; x)</span>
+<a name="l01410"></a>01410 <span class="comment"></span>    std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">phys::Point2PointConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01411"></a>01411 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, phys::TypedConstraint&amp; x)</span>
+<a name="l01412"></a>01412 <span class="comment"></span>    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classphys_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">phys::Point2PointConstraint</a>&amp; x);<span class="comment"></span>
+<a name="l01413"></a>01413 <span class="comment">    /// @copydoc operator &gt;&gt; (const phys::xml::Node&amp; OneNode, phys::TypedConstraint&amp; x)</span>
+<a name="l01414"></a>01414 <span class="comment"></span>    <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="classphys_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">phys::Point2PointConstraint</a>&amp; x);
 <a name="l01415"></a>01415 
 <a name="l01416"></a>01416 
-<a name="l01417"></a>01417 
-<a name="l01418"></a>01418 #endif
+<a name="l01417"></a>01417 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l01418"></a>01418 <span class="preprocessor"></span>
 <a name="l01419"></a>01419 
+<a name="l01420"></a>01420 
+<a name="l01421"></a>01421 <span class="preprocessor">#endif</span>
+<a name="l01422"></a>01422 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -1498,6 +1501,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:19 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

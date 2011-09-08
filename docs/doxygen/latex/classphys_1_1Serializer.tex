@@ -1,29 +1,139 @@
 \hypertarget{classphys_1_1Serializer}{
-\subsection{phys::Serializer Class Reference}
+\subsection{phys::Serializer$<$ Serializable $>$ Class Template Reference}
 \label{classphys_1_1Serializer}\index{phys::Serializer@{phys::Serializer}}
 }
 
 
-A tool for serializing classes with specific issues serializing or deserializing them.  
+A tool for serializing classes with specific issues serializing.  
 
 
 
 
 {\ttfamily \#include $<$serialization.h$>$}
 
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classphys_1_1Serializer_a337a685f966e6d06bfb382905b29db5a}{ProtoSerialize} (const Serializable \&Target, \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot)=0
+\begin{DoxyCompactList}\small\item\em Get all the serialized data about one class instance in an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1Serializer_abb5e6f46de9edbf72a7b3e88e955bd69}{ProtoSerializeAll} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const =0
+\begin{DoxyCompactList}\small\item\em Get all of the data from the serializable class instance. \item\end{DoxyCompactList}\item 
+virtual std::ostream \& \hyperlink{classphys_1_1Serializer_a013ef8c6c9be4d9d3e85488e039b9772}{Serialize} (std::ostream \&Stream, const Serializable \&Target)
+\begin{DoxyCompactList}\small\item\em Output the specified member to a stream. \item\end{DoxyCompactList}\item 
+virtual std::ostream \& \hyperlink{classphys_1_1Serializer_a45fe456179603bb2f19a978d135439a1}{SerializeAll} (std::ostream \&Stream) const 
+\begin{DoxyCompactList}\small\item\em Output the complete serialized data to a stream. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
-A tool for serializing classes with specific issues serializing or deserializing them. \hypertarget{classphys_1_1Serializer_Serialization}{}\subsubsection{Serialization}\label{classphys_1_1Serializer_Serialization}
-The following functions are expected to be implemented on every serializable and deserializable:\par
- void ProtoSerialize(xml::Node\& CurrentRoot) const; \par
- void ProtoDeSerialize(const xml::Node\&); \par
- String SerializableName() const; \par
- Implementing these will allow them to work with the Serialize and Deserialize templates defined in \hyperlink{serialization_8h_source}{serialization.h}.
+\subsubsection*{template$<$class Serializable$>$ class phys::Serializer$<$ Serializable $>$}
 
-Some classes Must have certain values available at the time of construction. This make serializing them by overwriting an existing class instance impractical. Other classes have private members and it it impractical to change the class to expose this data. In this case a serializer could be made that is the friend of that class so it can do what is required. 
+A tool for serializing classes with specific issues serializing. Some classes have private members and it is impractical to change the class to expose this data. In this case a serializer could be made that to work around this limitation. \par
+ \par
+ This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be no reason why something could not inherit from this and \hyperlink{classphys_1_1DeSerializer}{phys::DeSerializer}. The type of this template is expected to match what this is serializing. 
 
-Definition at line 68 of file serialization.h.
+Definition at line 286 of file serialization.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1Serializer_a337a685f966e6d06bfb382905b29db5a}{
+\index{phys::Serializer@{phys::Serializer}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!phys::Serializer@{phys::Serializer}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Serializable $>$ virtual void {\bf phys::Serializer}$<$ Serializable $>$::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{const Serializable \&}]{Target, }
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Serializer_a337a685f966e6d06bfb382905b29db5a}
+
+
+Get all the serialized data about one class instance in an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Target} & A reference to class instance to be deserialized.\\
+\hline
+\end{DoxyParams}
+This is not implemented by default. 
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vector3 should be appended to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Serializer_abb5e6f46de9edbf72a7b3e88e955bd69}{
+\index{phys::Serializer@{phys::Serializer}!ProtoSerializeAll@{ProtoSerializeAll}}
+\index{ProtoSerializeAll@{ProtoSerializeAll}!phys::Serializer@{phys::Serializer}}
+\paragraph[{ProtoSerializeAll}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Serializable $>$ virtual void {\bf phys::Serializer}$<$ Serializable $>$::ProtoSerializeAll (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Serializer_abb5e6f46de9edbf72a7b3e88e955bd69}
+
+
+Get all of the data from the serializable class instance. 
+
+This is to be implemented in individual serializer with logic specific to the required tasks. It is expected to produce an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} containing the entirety of the data required to reconstitute the serialized class. \par
+ \par
+ This is expected to gets it's knowledge about what to serialize some other than being passed as an argument. It could query a manager or be passed a series pointers that is needs to work with. \par
+ \par
+ This is not implemented by default. 
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all the items deserialized should be appended to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1Serializer_a013ef8c6c9be4d9d3e85488e039b9772}{
+\index{phys::Serializer@{phys::Serializer}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!phys::Serializer@{phys::Serializer}}
+\paragraph[{Serialize}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Serializable $>$ virtual std::ostream\& {\bf phys::Serializer}$<$ Serializable $>$::Serialize (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{Stream, }
+\item[{const Serializable \&}]{Target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Serializer_a013ef8c6c9be4d9d3e85488e039b9772}
+
+
+Output the specified member to a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Target} & A reference to class instance to be deserialized. \\
+\hline
+{\em Stream} & The std::ostream to send the data into.\\
+\hline
+\end{DoxyParams}
+The default implementation of this uses ProtoSerialize(const String\&) \begin{DoxyReturn}{Returns}
+The std::ostream that was passed in. 
+\end{DoxyReturn}
+
+
+Definition at line 325 of file serialization.h.
+
+\hypertarget{classphys_1_1Serializer_a45fe456179603bb2f19a978d135439a1}{
+\index{phys::Serializer@{phys::Serializer}!SerializeAll@{SerializeAll}}
+\index{SerializeAll@{SerializeAll}!phys::Serializer@{phys::Serializer}}
+\paragraph[{SerializeAll}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Serializable $>$ virtual std::ostream\& {\bf phys::Serializer}$<$ Serializable $>$::SerializeAll (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{Stream}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1Serializer_a45fe456179603bb2f19a978d135439a1}
+
+
+Output the complete serialized data to a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stream} & The std::ostream to send the data into.\\
+\hline
+\end{DoxyParams}
+By default this is implemented in using \hyperlink{classphys_1_1Serializer_abb5e6f46de9edbf72a7b3e88e955bd69}{ProtoSerializeAll()}. \begin{DoxyReturn}{Returns}
+The populated ostream. 
+\end{DoxyReturn}
+
+
+Definition at line 306 of file serialization.h.
 
 
 

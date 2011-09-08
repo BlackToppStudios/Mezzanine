@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -68,6 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a>  </div>
@@ -127,8 +128,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#aeafb306788de02bfb164806054a1c346"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1TypedConstraint.html#a9cf48a2a1afb939cbd03e54ee9be3e0b">ProtoSerialize</a> (<a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#a9cf48a2a1afb939cbd03e54ee9be3e0b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1TypedConstraint.html#ad604b85a13e3e3b1c01d1c40f678b751">SerializableName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#ad604b85a13e3e3b1c01d1c40f678b751"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1TypedConstraint.html#adc1375a6adb954adb28615ff7c4cec4e">SetParam</a> (<a class="el" href="namespacephys.html#aa1e7cf2d7efcaeaeac304f711e7564e8">ConstraintParam</a> Param, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Value, int Axis=-1)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides override of constraint parameters.  <a href="#adc1375a6adb954adb28615ff7c4cec4e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1TypedConstraint.html#aaa301fee77aa6e20ab202f604f0e9518">SetPivotALocation</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;PivotA)=0</td></tr>
@@ -147,6 +146,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get A sorted (low to high) list of Parameters that are valid on all Axis.  <a href="#ad061a210a8d870bd9be0ff01a5509549"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1TypedConstraint.html#a7489628bcfb15e712c09dbdcf6b20bff">~TypedConstraint</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a7489628bcfb15e712c09dbdcf6b20bff"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1TypedConstraint.html#adf4ccf2fcfc20634acde9d07508ff03e">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#adf4ccf2fcfc20634acde9d07508ff03e"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual btTypedConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1TypedConstraint.html#ab3bd2baa58d3f0d812401cbf59159a8b">GetConstraintBase</a> () const =0</td></tr>
@@ -562,15 +565,15 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad604b85a13e3e3b1c01d1c40f678b751"></a><!-- doxytag: member="phys::TypedConstraint::SerializableName" ref="ad604b85a13e3e3b1c01d1c40f678b751" args="() const " -->
+<a class="anchor" id="adf4ccf2fcfc20634acde9d07508ff03e"></a><!-- doxytag: member="phys::TypedConstraint::SerializableName" ref="adf4ccf2fcfc20634acde9d07508ff03e" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::TypedConstraint::SerializableName </td>
+          <td class="memname">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::TypedConstraint::SerializableName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -579,7 +582,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "TypedConstraint" </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classphys_1_1DualTransformConstraint.html#ad810321a7395cbd5cc0ba8cac0d3b136">phys::DualTransformConstraint</a>, <a class="el" href="classphys_1_1Generic6DofConstraint.html#aa015e640a680f54edd0906b6ec684a99">phys::Generic6DofConstraint</a>, <a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#ad0a2d0c49fb622095f18d48b1e52f904">phys::Generic6DofSpringConstraint</a>, <a class="el" href="classphys_1_1HingeConstraint.html#a64804b6c98ed930f9acb05414defcdcc">phys::HingeConstraint</a>, and <a class="el" href="classphys_1_1Point2PointConstraint.html#ae658c1f5c370b8a4cf94fcf276696dbf">phys::Point2PointConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classphys_1_1DualTransformConstraint.html#aea7ce65c759df1f3fc86d3f4a42d31d6">phys::DualTransformConstraint</a>, <a class="el" href="classphys_1_1Generic6DofConstraint.html#a7cc944e9655af095b4c24340d92a2b3c">phys::Generic6DofConstraint</a>, <a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#a574901d1abc3163c23dc1a165c8fbdaa">phys::Generic6DofSpringConstraint</a>, <a class="el" href="classphys_1_1HingeConstraint.html#ae7007bcfb6b84b234264e35fd5d7ae91">phys::HingeConstraint</a>, and <a class="el" href="classphys_1_1Point2PointConstraint.html#adb43f9fc1ac3ade862f23ecff3dedf27">phys::Point2PointConstraint</a>.</p>
 
 </div>
 </div>
@@ -817,6 +820,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:33 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:40 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -66,7 +66,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
 <h1>phys::DualTransformConstraint Class Reference</h1>  </div>
 </div>
@@ -111,8 +112,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a72bb3a5f35dffc4b6b9b860eb232b7a3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1DualTransformConstraint.html#aa1e3919874eceedb6ba708af4d540b9b">ProtoSerialize</a> (<a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#aa1e3919874eceedb6ba708af4d540b9b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1DualTransformConstraint.html#ad810321a7395cbd5cc0ba8cac0d3b136">SerializableName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#ad810321a7395cbd5cc0ba8cac0d3b136"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1DualTransformConstraint.html#a0e074a05eeb464ebda332ac2f09c9412">SetPivotALocation</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set The relative location of the pivot from ActorA's Center of gravity.  <a href="#a0e074a05eeb464ebda332ac2f09c9412"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1DualTransformConstraint.html#ab602e9a72e490dcb34bb6ad2042a2341">SetPivotARotation</a> (const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
@@ -125,6 +124,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set The relative rotation of ActorB.  <a href="#a6eb22ee671ccc51c16f04c65e1a05a9e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1DualTransformConstraint.html#acda6a28b585c52fd7da1e79d85f4cf53">SetPivotBTransform</a> (const <a class="el" href="classphys_1_1Transform.html">Transform</a> &amp;TranB)=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Position and Rotation using a <a class="el" href="classphys_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>.  <a href="#acda6a28b585c52fd7da1e79d85f4cf53"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1DualTransformConstraint.html#aea7ce65c759df1f3fc86d3f4a42d31d6">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#aea7ce65c759df1f3fc86d3f4a42d31d6"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>All constraints that track rotation and location of the Pivot relative to each Actor inherit from this. </p>
@@ -331,15 +334,15 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad810321a7395cbd5cc0ba8cac0d3b136"></a><!-- doxytag: member="phys::DualTransformConstraint::SerializableName" ref="ad810321a7395cbd5cc0ba8cac0d3b136" args="() const " -->
+<a class="anchor" id="aea7ce65c759df1f3fc86d3f4a42d31d6"></a><!-- doxytag: member="phys::DualTransformConstraint::SerializableName" ref="aea7ce65c759df1f3fc86d3f4a42d31d6" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::DualTransformConstraint::SerializableName </td>
+          <td class="memname">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::DualTransformConstraint::SerializableName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -348,9 +351,9 @@ Public Member Functions</h2></td></tr>
 <p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "DualTransformConstraint" </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classphys_1_1TypedConstraint.html#ad604b85a13e3e3b1c01d1c40f678b751">phys::TypedConstraint</a>.</p>
+<p>Reimplemented from <a class="el" href="classphys_1_1TypedConstraint.html#adf4ccf2fcfc20634acde9d07508ff03e">phys::TypedConstraint</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classphys_1_1Generic6DofConstraint.html#aa015e640a680f54edd0906b6ec684a99">phys::Generic6DofConstraint</a>, <a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#ad0a2d0c49fb622095f18d48b1e52f904">phys::Generic6DofSpringConstraint</a>, and <a class="el" href="classphys_1_1HingeConstraint.html#a64804b6c98ed930f9acb05414defcdcc">phys::HingeConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classphys_1_1Generic6DofConstraint.html#a7cc944e9655af095b4c24340d92a2b3c">phys::Generic6DofConstraint</a>, <a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#a574901d1abc3163c23dc1a165c8fbdaa">phys::Generic6DofSpringConstraint</a>, and <a class="el" href="classphys_1_1HingeConstraint.html#ae7007bcfb6b84b234264e35fd5d7ae91">phys::HingeConstraint</a>.</p>
 
 </div>
 </div>
@@ -551,6 +554,6 @@ Public Member Functions</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:25 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:32 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

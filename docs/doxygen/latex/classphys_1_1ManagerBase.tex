@@ -42,8 +42,7 @@ enum \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{Mana
 {\bfseries TimerManager}, 
 \par
 {\bfseries UIManager}, 
-{\bfseries UserCreated}, 
-\hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5a48bad0a776b008c5ca2b17b2f7611a23}{WorldObjectGeometryManager}
+{\bfseries UserCreated}
  \}
 \begin{DoxyCompactList}\small\item\em A listing of Manager TypeNames. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Member Functions}
@@ -133,17 +132,7 @@ Definition at line 58 of file managerbase.h.
 
 A listing of Manager TypeNames. 
 
-These will be returned by \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{ManagerBase::GetType()}, and will allow code using this to determine what type of Manager class they are working with and use this information to more safely cast to the correct manager if needed. \begin{Desc}
-\item[Enumerator: ]\par
-\begin{description}
-\index{WorldObjectGeometryManager@{WorldObjectGeometryManager}!phys::ManagerBase@{phys::ManagerBase}}\index{phys::ManagerBase@{phys::ManagerBase}!WorldObjectGeometryManager@{WorldObjectGeometryManager}}\item[{\em 
-\hypertarget{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5a48bad0a776b008c5ca2b17b2f7611a23}{
-WorldObjectGeometryManager}
-\label{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5a48bad0a776b008c5ca2b17b2f7611a23}
-}]This is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals. \end{description}
-\end{Desc}
-
-
+These will be returned by \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{ManagerBase::GetType()}, and will allow code using this to determine what type of Manager class they are working with and use this information to more safely cast to the correct manager if needed. 
 
 Definition at line 66 of file managerbase.h.
 
@@ -469,7 +458,7 @@ This is a weighting used by the main loop to decide what order the managers shou
 
 A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at priority 0. 
 
-Definition at line 209 of file managerbase.h.
+Definition at line 208 of file managerbase.h.
 
 
 

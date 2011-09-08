@@ -32,6 +32,10 @@ virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hype
 \begin{DoxyCompactList}\small\item\em Gets the number of children belonging to this compound shape. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1CollisionShape_af3ba4fd8af5b9557f912d2f5ff35a588}{CollisionShape::ShapeType} \hyperlink{classphys_1_1CompoundCollisionShape_a10bbe1a6ce849dc40e2ca5dc2b68cbff}{GetType} () const 
 \item 
+virtual void \hyperlink{classphys_1_1CompoundCollisionShape_a1c913ad531dc96c8e49ee08f4c9f09c3}{RemoveChildShape} (\hyperlink{classphys_1_1CollisionShape}{CollisionShape} $\ast$Child)
+\begin{DoxyCompactList}\small\item\em Removes a Child shape from this compound shape. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CompoundCollisionShape_ab95753e9fe72dfb570a565bfd6644ad8}{RemoveChildShape} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&ChildIndex)
+\begin{DoxyCompactList}\small\item\em Removed a Child shape from this compound shape by index. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1CompoundCollisionShape_a6e97772fb1395554ca9e729c7fcc0a00}{
 virtual \hyperlink{classphys_1_1CompoundCollisionShape_a6e97772fb1395554ca9e729c7fcc0a00}{$\sim$CompoundCollisionShape} ()}
 \label{classphys_1_1CompoundCollisionShape_a6e97772fb1395554ca9e729c7fcc0a00}
@@ -203,6 +207,50 @@ Returns an enum value indicating the type of collision shape this is.
 
 Implements \hyperlink{classphys_1_1CollisionShape_aa4911840c6e877cfecf201b7f43a57e3}{phys::CollisionShape}.
 
+
+
+Definition at line 294 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CompoundCollisionShape_ab95753e9fe72dfb570a565bfd6644ad8}{
+\index{phys::CompoundCollisionShape@{phys::CompoundCollisionShape}!RemoveChildShape@{RemoveChildShape}}
+\index{RemoveChildShape@{RemoveChildShape}!phys::CompoundCollisionShape@{phys::CompoundCollisionShape}}
+\paragraph[{RemoveChildShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CompoundCollisionShape::RemoveChildShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{ChildIndex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CompoundCollisionShape_ab95753e9fe72dfb570a565bfd6644ad8}
+
+
+Removed a Child shape from this compound shape by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ChildIndex} & The index of the child shape to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 287 of file collisionshape.cpp.
+
+\hypertarget{classphys_1_1CompoundCollisionShape_a1c913ad531dc96c8e49ee08f4c9f09c3}{
+\index{phys::CompoundCollisionShape@{phys::CompoundCollisionShape}!RemoveChildShape@{RemoveChildShape}}
+\index{RemoveChildShape@{RemoveChildShape}!phys::CompoundCollisionShape@{phys::CompoundCollisionShape}}
+\paragraph[{RemoveChildShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CompoundCollisionShape::RemoveChildShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Child}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1CompoundCollisionShape_a1c913ad531dc96c8e49ee08f4c9f09c3}
+
+
+Removes a Child shape from this compound shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Child} & The child shape to be removed. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 275 of file collisionshape.cpp.

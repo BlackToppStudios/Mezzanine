@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: phys::ActorSerializer Class Reference</title>
+<title>PhysGameEngine: Member List</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -62,58 +62,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="namespacephys.html">phys</a>      </li>
-      <li class="navelem"><a class="el" href="classphys_1_1ActorSerializer.html">ActorSerializer</a>      </li>
+      <li class="navelem"><a class="el" href="classphys_1_1DeSerializer.html">DeSerializer</a>      </li>
 </div>
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
-<h1>phys::ActorSerializer Class Reference</h1>  </div>
+<h1>phys::DeSerializer&lt; DeSerializable &gt; Member List</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="phys::ActorSerializer" -->
-<p><a href="classphys_1_1ActorSerializer-members.html">List of all members.</a></p>
-<table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1ActorSerializer.html#a43865678e9a65bc41887d1b9c066ee0f">ActorSerializer</a> (<a class="el" href="classphys_1_1ActorManager.html">ActorManager</a> *DeSerializeTarget)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a43865678e9a65bc41887d1b9c066ee0f"></a><br/></td></tr>
-</table>
-<hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="actorserializer_8h_source.html#l00050">50</a> of file <a class="el" href="actorserializer_8h_source.html">actorserializer.h</a>.</p>
-</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a43865678e9a65bc41887d1b9c066ee0f"></a><!-- doxytag: member="phys::ActorSerializer::ActorSerializer" ref="a43865678e9a65bc41887d1b9c066ee0f" args="(ActorManager *DeSerializeTarget)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">phys::ActorSerializer::ActorSerializer </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classphys_1_1ActorManager.html">ActorManager</a> *&#160;</td>
-          <td class="paramname"><em>DeSerializeTarget</em></td><td>)</td>
-          <td><code> [inline, explicit]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Constructor. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">DeSerializeTarget</td><td>A pointer to the actor manager that will be populated with deserialized actors. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="actorserializer_8h_source.html#l00059">59</a> of file <a class="el" href="actorserializer_8h_source.html">actorserializer.h</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="actorserializer_8h_source.html">actorserializer.h</a></li>
-</ul>
-</div>
+This is the complete list of members for <a class="el" href="classphys_1_1DeSerializer.html">phys::DeSerializer&lt; DeSerializable &gt;</a>, including all inherited members.<table>
+  <tr class="memlist"><td><a class="el" href="classphys_1_1DeSerializer.html#a305c2b21d7637da1be75fbb669c85b1c">DeSerialize</a>(std::istream &amp;Stream)</td><td><a class="el" href="classphys_1_1DeSerializer.html">phys::DeSerializer&lt; DeSerializable &gt;</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classphys_1_1DeSerializer.html#ab0f45958eb28b72bac85d1c08f413753">DeSerializeAll</a>(std::istream &amp;Stream)</td><td><a class="el" href="classphys_1_1DeSerializer.html">phys::DeSerializer&lt; DeSerializable &gt;</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classphys_1_1DeSerializer.html#a27bd2326bf5b74a0587a6d5ee3a9d690">ProtoDeSerialize</a>(const xml::Node &amp;OneNode)=0</td><td><a class="el" href="classphys_1_1DeSerializer.html">phys::DeSerializer&lt; DeSerializable &gt;</a></td><td><code> [pure virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classphys_1_1DeSerializer.html#a22bf7e17185f735f36ddd4a93c2e5168">ProtoDeSerializeAll</a>(const xml::Node &amp;OneNode)=0</td><td><a class="el" href="classphys_1_1DeSerializer.html">phys::DeSerializer&lt; DeSerializable &gt;</a></td><td><code> [pure virtual]</code></td></tr>
+</table></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -129,6 +90,6 @@ Public Member Functions</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:22 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:32 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -22,10 +22,14 @@ Inheritance diagram for phys::HingeConstraint:\begin{figure}[H]
 \item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_a90baa9ae0a582d42dc7757d14fd56299}{EnableMotor} (bool EnableMotor, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} TargetVelocity, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxMotorImpulse)
 \begin{DoxyCompactList}\small\item\em Enables(or Disables) the motor on the hinge and sets it's parameters. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a0c6fdf316a60a34bf507b2de8960de49}{EnableMotor} (bool EnableMotor)
+\begin{DoxyCompactList}\small\item\em Enables(or Disables) the motor on the hinge. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1HingeConstraint_acc2a3459cfbfef7dc7a211e3e7569358}{GetAPivotRotation} () const 
 \begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorA. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1HingeConstraint_a4039ca63ae04464b6d29193348f1e1ee}{GetBPivotRotation} () const 
 \begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorB. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a272599bad7c7c6075efd53f2c63adc1f}{GetHingeAngle} ()
+\begin{DoxyCompactList}\small\item\em Gets the current angle of the hinge. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a2c3b1f4f5242b35ddb9b9e9d00f76812}{GetLimitBiasFactor} () const 
 \begin{DoxyCompactList}\small\item\em Return the bias factor of the hinge (Not entirely certain hat this on is) \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_ae633b31c347af338042e87738d7694ff}{GetLimitHigh} () const 
@@ -37,11 +41,11 @@ virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyper
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a9c87c6f21dd7959cfb5c3c7a63014171}{GetLimitSoftness} () const 
 \begin{DoxyCompactList}\small\item\em Return the Softness of the hinge. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a954621d35173f9de5d7f44760559040e}{GetMaxMotorImpulse} () const 
-\begin{DoxyCompactList}\small\item\em Sets the maximum amount of force the motor is to apply. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Retrieve the maximimum value that the acceleration of the motor can be increased. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1HingeConstraint_abc2a2e5046276f3cdab285d87f969c8a}{GetMotorEnabled} () const 
-\begin{DoxyCompactList}\small\item\em Enables(or Disables) the motor on the hinge. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Is this motor on this hinge enabled? \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_aeb1844f6bffeb72995e95b9ea25be3b7}{GetMotorTargetVelocity} () const 
-\begin{DoxyCompactList}\small\item\em Desired angular velocity of the motor. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get the Target Velocity. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1HingeConstraint_a099fec821a9194cd3c8268d764ec8ea8}{GetPivotALocation} () const 
 \begin{DoxyCompactList}\small\item\em Get the location of the hinge pivot relative to ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Transform}{Transform} \hyperlink{classphys_1_1HingeConstraint_ac210cfa2fe2d4d6b2bf9e626441546b7}{GetPivotATransform} () const 
@@ -60,16 +64,14 @@ virtual bool \hyperlink{classphys_1_1HingeConstraint_ad8d648a1c484966a828e7af712
 \begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1HingeConstraint_aa4e74519af2c4773de038fb1ae2776eb}{HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classphys_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&PivotInB, const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisInA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisInB, bool UseReferenceFrameA=false)
 \begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will connect two actors together by their offsets. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1HingeConstraint_af21f5ee3889f1bd9e70063c04db32af0}{HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseReferenceFrameA=false)
-\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1HingeConstraint_ab112696e53f61f57f4ca53b299e9ef87}{HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisInA, bool UseReferenceFrameA=false)
 \begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will attach an actor to a point in world space. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1HingeConstraint_af21f5ee3889f1bd9e70063c04db32af0}{HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classphys_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_a63ca807d27fd21a24b4bcaa642febc77}{ProtoDeSerialize} (const \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&OneNode)
 \begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_a04fac5312ddf891adcfff67e98f75861}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
 \begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1HingeConstraint_a64804b6c98ed930f9acb05414defcdcc}{SerializableName} () const 
-\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_a7f597ee71540986b446a2771f25b791c}{SetAPivotRotation} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&Rotation)
 \begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorA. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_a4eb0343f43b86fabef1fbe43857f9df8}{SetAxis} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisInA)
@@ -78,10 +80,14 @@ virtual void \hyperlink{classphys_1_1HingeConstraint_ae7c0db15c76fa1f7d78ca60d3c
 \begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorB. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_a2267ee2b124aae7a35d70f48831548bc}{SetLimit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Low, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} High, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Softness=0.9, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} BiasFactor=0.3, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} RelaxationFactor=1.0)
 \begin{DoxyCompactList}\small\item\em Sets the angle limits of the constraint in radians. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a3fa9ac9e2ea08df81fdd89711131deef}{SetMaxMotorImpulse} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxMotorImpulse)
+\begin{DoxyCompactList}\small\item\em Sets the maximum amount of force the motor is to apply. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_ae3038cabdde1b676c0e6b9665807c917}{SetMotorTarget} (const \hyperlink{classphys_1_1Quaternion}{Quaternion} \&QuatAInB, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Dt)
 \begin{DoxyCompactList}\small\item\em Sets a Target Velocity, indirectly using the angle stored in a quaternion. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_ac9eb6207043906b972c8ad897ead15df}{SetMotorTarget} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} TargetAngle, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Dt)
 \begin{DoxyCompactList}\small\item\em Set the Rotational velocity in a more direct fashion. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1HingeConstraint_a38600eba1bb9406561437ec1e5f30a9b}{SetMotorTargetVelocity} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} TargetVelocity)
+\begin{DoxyCompactList}\small\item\em Desired angular velocity of the motor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_a6baadfc607e0d7c2167c9201bd4f8bdf}{SetPivotALocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
 \begin{DoxyCompactList}\small\item\em Set The relative location of the hinge pivot from ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1HingeConstraint_af6fd3ac147683eecb2c98c60c58f386c}{SetPivotATransform} (const \hyperlink{classphys_1_1Transform}{Transform} \&TranA)
@@ -102,6 +108,11 @@ virtual \hyperlink{classphys_1_1TypedConstraint_a4c2dcea3fbb764e454840329126d034
 \item 
 virtual \hyperlink{classphys_1_1HingeConstraint_a242cdfc8ab59d608bfbd9290119d81d9}{$\sim$HingeConstraint} ()
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1HingeConstraint_ae7007bcfb6b84b234264e35fd5d7ae91}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -294,6 +305,24 @@ Enables(or Disables) the motor on the hinge and sets it's parameters.
 {\em MaxMotorImpulse} & The maximum amount of force the motor is to apply to try and reach it's target velocity. \\
 \hline
 \end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_a0c6fdf316a60a34bf507b2de8960de49}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!EnableMotor@{EnableMotor}}
+\index{EnableMotor@{EnableMotor}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{EnableMotor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::EnableMotor (
+\begin{DoxyParamCaption}
+\item[{bool}]{EnableMotor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a0c6fdf316a60a34bf507b2de8960de49}
+
+
+Enables(or Disables) the motor on the hinge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em EnableMotor} & Sets whether or not the motor on this constraint is enabled. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1HingeConstraint_acc2a3459cfbfef7dc7a211e3e7569358}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!GetAPivotRotation@{GetAPivotRotation}}
 \index{GetAPivotRotation@{GetAPivotRotation}!phys::HingeConstraint@{phys::HingeConstraint}}
@@ -344,6 +373,22 @@ A pointer to the btTypedConstraint that stores the underlying constraint.
 
 Implements \hyperlink{classphys_1_1TypedConstraint_ab3bd2baa58d3f0d812401cbf59159a8b}{phys::TypedConstraint}.
 
+\hypertarget{classphys_1_1HingeConstraint_a272599bad7c7c6075efd53f2c63adc1f}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetHingeAngle@{GetHingeAngle}}
+\index{GetHingeAngle@{GetHingeAngle}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{GetHingeAngle}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} phys::HingeConstraint::GetHingeAngle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a272599bad7c7c6075efd53f2c63adc1f}
+
+
+Gets the current angle of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+Gets the amount of rotation this hinge is off from it's origin in radians. 
+\end{DoxyReturn}
 \hypertarget{classphys_1_1HingeConstraint_a2c3b1f4f5242b35ddb9b9e9d00f76812}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!GetLimitBiasFactor@{GetLimitBiasFactor}}
 \index{GetLimitBiasFactor@{GetLimitBiasFactor}!phys::HingeConstraint@{phys::HingeConstraint}}
@@ -435,13 +480,11 @@ A real containing the Softness
 \label{classphys_1_1HingeConstraint_a954621d35173f9de5d7f44760559040e}
 
 
-Sets the maximum amount of force the motor is to apply. 
+Retrieve the maximimum value that the acceleration of the motor can be increased. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em MaxMotorImpulse} & The maximum amount of force the motor is to apply to try and reach it's target velocity. \\
-\hline
-\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A real containing the maximum impulse. 
+\end{DoxyReturn}
 \hypertarget{classphys_1_1HingeConstraint_abc2a2e5046276f3cdab285d87f969c8a}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!GetMotorEnabled@{GetMotorEnabled}}
 \index{GetMotorEnabled@{GetMotorEnabled}!phys::HingeConstraint@{phys::HingeConstraint}}
@@ -453,13 +496,11 @@ Sets the maximum amount of force the motor is to apply.
 \label{classphys_1_1HingeConstraint_abc2a2e5046276f3cdab285d87f969c8a}
 
 
-Enables(or Disables) the motor on the hinge. 
+Is this motor on this hinge enabled? 
 
-
-\begin{DoxyParams}{Parameters}
-{\em EnableMotor} & Sets whether or not the motor on this constraint is enabled. \\
-\hline
-\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if it is, false otherwise. 
+\end{DoxyReturn}
 \hypertarget{classphys_1_1HingeConstraint_aeb1844f6bffeb72995e95b9ea25be3b7}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!GetMotorTargetVelocity@{GetMotorTargetVelocity}}
 \index{GetMotorTargetVelocity@{GetMotorTargetVelocity}!phys::HingeConstraint@{phys::HingeConstraint}}
@@ -471,16 +512,11 @@ Enables(or Disables) the motor on the hinge.
 \label{classphys_1_1HingeConstraint_aeb1844f6bffeb72995e95b9ea25be3b7}
 
 
-Desired angular velocity of the motor. 
+Get the Target Velocity. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em TargetVelocity} & The Desired velocity \\
-\hline
-\end{DoxyParams}
-\begin{DoxyWarning}{Warning}
-Causes segfaults in some tests. 
-\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+the target valocity as a real. 
+\end{DoxyReturn}
 \hypertarget{classphys_1_1HingeConstraint_a099fec821a9194cd3c8268d764ec8ea8}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!GetPivotALocation@{GetPivotALocation}}
 \index{GetPivotALocation@{GetPivotALocation}!phys::HingeConstraint@{phys::HingeConstraint}}
@@ -640,15 +676,15 @@ Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready f
 
 Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_aa1e3919874eceedb6ba708af4d540b9b}{phys::DualTransformConstraint}.
 
-\hypertarget{classphys_1_1HingeConstraint_a64804b6c98ed930f9acb05414defcdcc}{
+\hypertarget{classphys_1_1HingeConstraint_ae7007bcfb6b84b234264e35fd5d7ae91}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!SerializableName@{SerializableName}}
 \index{SerializableName@{SerializableName}!phys::HingeConstraint@{phys::HingeConstraint}}
-\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::HingeConstraint::SerializableName (
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} phys::HingeConstraint::SerializableName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
-\label{classphys_1_1HingeConstraint_a64804b6c98ed930f9acb05414defcdcc}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_ae7007bcfb6b84b234264e35fd5d7ae91}
 
 
 Get the name of the the XML tag this class will leave behind as its instances are serialized. 
@@ -658,7 +694,7 @@ A string containing \char`\"{}HingeConstraint\char`\"{}
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_ad810321a7395cbd5cc0ba8cac0d3b136}{phys::DualTransformConstraint}.
+Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_aea7ce65c759df1f3fc86d3f4a42d31d6}{phys::DualTransformConstraint}.
 
 \hypertarget{classphys_1_1HingeConstraint_a7f597ee71540986b446a2771f25b791c}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!SetAPivotRotation@{SetAPivotRotation}}
@@ -744,6 +780,24 @@ Sets the angle limits of the constraint in radians.
 {\em RelaxationFactor} & The amount of bounce to apply when the constraint reaches it's limit. Range: 0.0-\/1.0. \\
 \hline
 \end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_a3fa9ac9e2ea08df81fdd89711131deef}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetMaxMotorImpulse@{SetMaxMotorImpulse}}
+\index{SetMaxMotorImpulse@{SetMaxMotorImpulse}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetMaxMotorImpulse}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetMaxMotorImpulse (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{MaxMotorImpulse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a3fa9ac9e2ea08df81fdd89711131deef}
+
+
+Sets the maximum amount of force the motor is to apply. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MaxMotorImpulse} & The maximum amount of force the motor is to apply to try and reach it's target velocity. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1HingeConstraint_ac9eb6207043906b972c8ad897ead15df}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!SetMotorTarget@{SetMotorTarget}}
 \index{SetMotorTarget@{SetMotorTarget}!phys::HingeConstraint@{phys::HingeConstraint}}
@@ -786,6 +840,27 @@ Is implemented in terms of \hyperlink{classphys_1_1HingeConstraint_ac9eb62070439
 {\em Dt} & The Desired \hyperlink{structphys_1_1Time}{Time} steps that the target rotational velocity should be reached in. \\
 \hline
 \end{DoxyParams}
+\hypertarget{classphys_1_1HingeConstraint_a38600eba1bb9406561437ec1e5f30a9b}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetMotorTargetVelocity@{SetMotorTargetVelocity}}
+\index{SetMotorTargetVelocity@{SetMotorTargetVelocity}!phys::HingeConstraint@{phys::HingeConstraint}}
+\paragraph[{SetMotorTargetVelocity}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::HingeConstraint::SetMotorTargetVelocity (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{TargetVelocity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1HingeConstraint_a38600eba1bb9406561437ec1e5f30a9b}
+
+
+Desired angular velocity of the motor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TargetVelocity} & The Desired velocity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Causes segfaults in some tests. 
+\end{DoxyWarning}
 \hypertarget{classphys_1_1HingeConstraint_a6baadfc607e0d7c2167c9201bd4f8bdf}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!SetPivotALocation@{SetPivotALocation}}
 \index{SetPivotALocation@{SetPivotALocation}!phys::HingeConstraint@{phys::HingeConstraint}}

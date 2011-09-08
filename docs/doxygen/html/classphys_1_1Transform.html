@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
 <h1>phys::Transform Class Reference</h1>  </div>
@@ -94,14 +95,16 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a230f5731f07400998d5eed6c6b60f7a6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Transform.html#a6a054d1eeb12a12451b8134acd8cb78a">ProtoSerialize</a> (<a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#a6a054d1eeb12a12451b8134acd8cb78a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Transform.html#ab2748257efa01648ff56b5d8e9eb0007">SerializableName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#ab2748257efa01648ff56b5d8e9eb0007"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Transform.html#aaf6c6fc02fbd2a1aaad0000757bc20f6">Transform</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Vec=<a class="el" href="classphys_1_1Vector3.html">Vector3</a>(), const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;Quat=<a class="el" href="classphys_1_1Quaternion.html">Quaternion</a>())</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The multipurpose constructor.  <a href="#aaf6c6fc02fbd2a1aaad0000757bc20f6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Transform.html#a5b6867700fd10297a10208d389055a05">Transform</a> (const btTransform &amp;Btt)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Conversion Constructor.  <a href="#a5b6867700fd10297a10208d389055a05"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Transform.html#abd1b1ae62d8efd807a162a0a1ac35baa">Transform</a> (const <a class="el" href="classphys_1_1Transform.html">Transform</a> &amp;TheOther)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The copy constructor.  <a href="#abd1b1ae62d8efd807a162a0a1ac35baa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Transform.html#a5b6867700fd10297a10208d389055a05">Transform</a> (const btTransform &amp;Btt)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Conversion Constructor.  <a href="#a5b6867700fd10297a10208d389055a05"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Transform.html#aaf6c6fc02fbd2a1aaad0000757bc20f6">Transform</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Vec=<a class="el" href="classphys_1_1Vector3.html">Vector3</a>(), const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;Quat=<a class="el" href="classphys_1_1Quaternion.html">Quaternion</a>())</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The multipurpose constructor.  <a href="#aaf6c6fc02fbd2a1aaad0000757bc20f6"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Transform.html#a96928e50ee68c30a3e4afa6b2b199c9e">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a96928e50ee68c30a3e4afa6b2b199c9e"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d3cb85313d0aaa3f243cfa07ae4d90c"></a><!-- doxytag: member="phys::Transform::Location" ref="a2d3cb85313d0aaa3f243cfa07ae4d90c" args="" -->
@@ -370,7 +373,7 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab2748257efa01648ff56b5d8e9eb0007"></a><!-- doxytag: member="phys::Transform::SerializableName" ref="ab2748257efa01648ff56b5d8e9eb0007" args="() const " -->
+<a class="anchor" id="a96928e50ee68c30a3e4afa6b2b199c9e"></a><!-- doxytag: member="phys::Transform::SerializableName" ref="a96928e50ee68c30a3e4afa6b2b199c9e" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -378,7 +381,7 @@ Public Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::Transform::SerializableName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -411,6 +414,6 @@ Public Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:33 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:39 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

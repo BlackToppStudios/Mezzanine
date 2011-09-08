@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -68,6 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a>  </div>
   <div class="headertitle">
 <h1>phys::Generic6DofSpringConstraint Class Reference</h1>  </div>
@@ -145,8 +146,6 @@ virtual <a class="el" href="classphys_1_1Vector3.html">Vector3</a>&#160;</td><td
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#aa92969027509290efc128334b01db500"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#aeffb182d5faa82175e96a259fc19f9ff">ProtoSerialize</a> (<a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#aeffb182d5faa82175e96a259fc19f9ff"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#ad0a2d0c49fb622095f18d48b1e52f904">SerializableName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#ad0a2d0c49fb622095f18d48b1e52f904"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#a65dbf1070a4277dd0d27e48db2b45c89">SetSpringAngularDamping</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Damps)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Damping of the springs on each Angular Axis.  <a href="#a65dbf1070a4277dd0d27e48db2b45c89"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#a1f861c64cc9d4918bd3dbe606894422e">SetSpringAngularEnabled</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Enableness)</td></tr>
@@ -167,6 +166,10 @@ virtual <a class="el" href="classphys_1_1Vector3.html">Vector3</a>&#160;</td><td
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the spring stiffness on a given axis.  <a href="#a7a73106f73e23320cc84593aade54301"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#a66a886a64c86a24ed34eacf4c8465f10">~Generic6DofSpringConstraint</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a66a886a64c86a24ed34eacf4c8465f10"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Generic6DofSpringConstraint.html#a574901d1abc3163c23dc1a165c8fbdaa">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a574901d1abc3163c23dc1a165c8fbdaa"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <br class="typebreak"/>
@@ -663,15 +666,15 @@ btGeneric6DofSpringConstraint *&#160;</td><td class="memItemRight" valign="botto
 
 </div>
 </div>
-<a class="anchor" id="ad0a2d0c49fb622095f18d48b1e52f904"></a><!-- doxytag: member="phys::Generic6DofSpringConstraint::SerializableName" ref="ad0a2d0c49fb622095f18d48b1e52f904" args="() const " -->
+<a class="anchor" id="a574901d1abc3163c23dc1a165c8fbdaa"></a><!-- doxytag: member="phys::Generic6DofSpringConstraint::SerializableName" ref="a574901d1abc3163c23dc1a165c8fbdaa" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::Generic6DofSpringConstraint::SerializableName </td>
+          <td class="memname">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::Generic6DofSpringConstraint::SerializableName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -680,7 +683,7 @@ btGeneric6DofSpringConstraint *&#160;</td><td class="memItemRight" valign="botto
 <p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "Generic6DofConstraint" </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classphys_1_1Generic6DofConstraint.html#aa015e640a680f54edd0906b6ec684a99">phys::Generic6DofConstraint</a>.</p>
+<p>Reimplemented from <a class="el" href="classphys_1_1Generic6DofConstraint.html#a7cc944e9655af095b4c24340d92a2b3c">phys::Generic6DofConstraint</a>.</p>
 
 </div>
 </div>
@@ -961,6 +964,6 @@ btGeneric6DofSpringConstraint *&#160;</td><td class="memItemRight" valign="botto
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:28 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:35 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>
