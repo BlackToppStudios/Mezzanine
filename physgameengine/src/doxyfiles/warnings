@@ -1,21 +1,19 @@
-Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:127: warning: Compound phys::internal::BulletFilePtr is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:65: warning: Compound phys::UI::ListBox::TemplateParams is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:555: warning: Compound phys::PlaneCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:561: warning: Compound phys::PlaneCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/physicsmanager.h:82: warning: Compound phys::PhysicsConstructionInfo is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:530: warning: Compound phys::HeightfieldCollisionShape is not documented.
-/home/sqeaky/physgame/physgameengine/src/actorserializer.h:51: warning: Compound phys::ActorSerializer is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:536: warning: Compound phys::HeightfieldCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfilemanager.cpp:49: warning: documented function `BulletFileManager * phys::internal::Ogre::Singleton::ms_Singleton' was not declared or defined.
 /home/sqeaky/physgame/physgameengine/src/xmldoc.h:1093: warning: explicit link request to 'wstream' could not be resolved
 /home/sqeaky/physgame/physgameengine/src/xmldoc.h:1087: warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/physgame/physgameengine/src/xmldoc.h:1087: warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/physgame/physgameengine/src/actorphysicssettings.h:89: warning: Member AssignShape(CollisionShape *Shape) (function) of class phys::ActorBasePhysicsSettings is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:589: warning: Member ActorSoftShape (variable) of class phys::ActorSoftCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:595: warning: Member ActorSoftShape (variable) of class phys::ActorSoftCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/actorterrain.h:86: warning: return type of member phys::ActorTerrain::GetName is not documented
 /home/sqeaky/physgame/physgameengine/src/areaeffect.h:167: warning: argument 'Mesh' of command @param is not found in the argument list of phys::AreaEffect::SetFieldMesh(Mesh *FieldMesh)
 /home/sqeaky/physgame/physgameengine/src/areaeffect.h:167: warning: The following parameters of phys::AreaEffect::SetFieldMesh(Mesh *FieldMesh) are not documented:
   parameter 'FieldMesh'
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:229: warning: Member BoxShape (variable) of class phys::BoxCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:235: warning: Member BoxShape (variable) of class phys::BoxCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/camera.h:142: warning: parameters of member phys::Camera::Camera are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/camera.h:145: warning: parameters of member phys::Camera::Camera are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/camera.h:279: warning: return type of member phys::Camera::GetCameraToViewportRay is not documented
@@ -43,7 +41,7 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/cameramanager.h:105: warning: return type of member phys::CameraManager::CreateCamera is not documented
 /home/sqeaky/physgame/physgameengine/src/cameramanager.h:109: warning: parameters of member phys::CameraManager::GetCamera are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/cameramanager.h:112: warning: parameters of member phys::CameraManager::GetCamera are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:270: warning: Member CapsuleShape (variable) of class phys::CapsuleCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:276: warning: Member CapsuleShape (variable) of class phys::CapsuleCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/collisionshape.h:100: warning: Member Name (variable) of class phys::CollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/collisionshape.h:99: warning: Member ShapeBase (variable) of class phys::CollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/collisionshapemanager.h:73: warning: Member UnnamedShapes (variable) of class phys::CollisionShapeManager is not documented.
@@ -79,7 +77,7 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
   parameter 'UseAllSubmeshes'
 /home/sqeaky/physgame/physgameengine/src/collisionshape.h:191: warning: Member ChildShapes (variable) of class phys::CompoundCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/collisionshape.h:190: warning: Member CompoundShape (variable) of class phys::CompoundCollisionShape is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:310: warning: Member ConeShape (variable) of class phys::ConeCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:316: warning: Member ConeShape (variable) of class phys::ConeCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/constraint.h:412: warning: Member ConeTwistConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &VectorA, const Vector3 &Vectorb, const Quaternion &QuaternionA, const Quaternion &QuaternionB) (function) of class phys::ConeTwistConstraint is not documented.
 /home/sqeaky/physgame/physgameengine/src/constraint.h:413: warning: Member ConeTwistConstraint(ActorRigid *ActorA, const Vector3 &VectorA, const Quaternion &QuaternionA) (function) of class phys::ConeTwistConstraint is not documented.
 /home/sqeaky/physgame/physgameengine/src/constraint.h:427: warning: Member EnableMotor(bool Enable) (function) of class phys::ConeTwistConstraint is not documented.
@@ -93,12 +91,12 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/constraint.h:423: warning: Member SetMaxMotorImpulseNormalized(Real MaxMotorImpulse) (function) of class phys::ConeTwistConstraint is not documented.
 /home/sqeaky/physgame/physgameengine/src/constraint.h:425: warning: Member SetMotorTarget(const Quaternion &Quat) (function) of class phys::ConeTwistConstraint is not documented.
 /home/sqeaky/physgame/physgameengine/src/constraint.h:426: warning: Member SetMotorTargetInConstraintSpace(const Quaternion &Quat) (function) of class phys::ConeTwistConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:353: warning: Member ConvexHullShape (variable) of class phys::ConvexHullCollisionShape is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:396: warning: Member CylinderShape (variable) of class phys::CylinderCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:359: warning: Member ConvexHullShape (variable) of class phys::ConvexHullCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:402: warning: Member CylinderShape (variable) of class phys::CylinderCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/constraint.h:364: warning: argument 'otation' of command @param is not found in the argument list of phys::DualTransformConstraint::SetPivotBRotation(const Quaternion &Rotation)
 /home/sqeaky/physgame/physgameengine/src/constraint.h:364: warning: The following parameters of phys::DualTransformConstraint::SetPivotBRotation(const Quaternion &Rotation) are not documented:
   parameter 'Rotation'
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:510: warning: Member GImpactShape (variable) of class phys::DynamicMeshCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:516: warning: Member GImpactShape (variable) of class phys::DynamicMeshCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/eventcollision.h:97: warning: return type of member phys::EventCollision::GetType is not documented
 /home/sqeaky/physgame/physgameengine/src/eventgamewindow.h:108: warning: return type of member phys::EventGameWindow::GetType is not documented
 /home/sqeaky/physgame/physgameengine/src/eventgamewindow.cpp:61: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class phys::EventGameWindowData is not documented.
@@ -183,28 +181,22 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/graphicsmanager.h:128: warning: parameters of member phys::GraphicsManager::GetGameWindow are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/graphicsmanager.h:160: warning: return type of member phys::GraphicsManager::ShowGraphicsSettingDialog is not documented
 /home/sqeaky/physgame/physgameengine/src/graphicssettings.h:70: warning: Member operator=(const GraphicsSettings &GS) (function) of class phys::GraphicsSettings is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:532: warning: Member HeightfieldShape (variable) of class phys::HeightfieldCollisionShape is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1180: warning: Member Hinge2Constraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &Anchor, const Vector3 &Axis1, const Vector3 &Axis2) (function) of class phys::Hinge2Constraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1185: warning: Member SetLowerLimit(Real Ang1Min) (function) of class phys::Hinge2Constraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1184: warning: Member SetUpperLimit(Real Ang1Max) (function) of class phys::Hinge2Constraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:538: warning: Member HeightfieldShape (variable) of class phys::HeightfieldCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1183: warning: Member Hinge2Constraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &Anchor, const Vector3 &Axis1, const Vector3 &Axis2) (function) of class phys::Hinge2Constraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1188: warning: Member SetLowerLimit(Real Ang1Min) (function) of class phys::Hinge2Constraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1187: warning: Member SetUpperLimit(Real Ang1Max) (function) of class phys::Hinge2Constraint is not documented.
 /home/sqeaky/physgame/physgameengine/src/constraint.h:978: warning: argument 'PivotA' of command @param is not found in the argument list of phys::HingeConstraint::HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &PivotInA, const Vector3 &PivotInB, const Vector3 &AxisInA, const Vector3 &AxisInB, bool UseReferenceFrameA=false)
 /home/sqeaky/physgame/physgameengine/src/constraint.h:978: warning: argument 'PivotB' of command @param is not found in the argument list of phys::HingeConstraint::HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &PivotInA, const Vector3 &PivotInB, const Vector3 &AxisInA, const Vector3 &AxisInB, bool UseReferenceFrameA=false)
 /home/sqeaky/physgame/physgameengine/src/constraint.h:978: warning: The following parameters of phys::HingeConstraint::HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &PivotInA, const Vector3 &PivotInB, const Vector3 &AxisInA, const Vector3 &AxisInB, bool UseReferenceFrameA=false) are not documented:
   parameter 'PivotInA'
   parameter 'PivotInB'
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1075: warning: argument 'MaxMotorImpulse' of command @param is not found in the argument list of phys::HingeConstraint::GetMaxMotorImpulse() const
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1075: warning: return type of member phys::HingeConstraint::GetMaxMotorImpulse is not documented
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1069: warning: argument 'EnableMotor' of command @param is not found in the argument list of phys::HingeConstraint::GetMotorEnabled() const
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1069: warning: return type of member phys::HingeConstraint::GetMotorEnabled is not documented
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1090: warning: argument 'TargetVelocity' of command @param is not found in the argument list of phys::HingeConstraint::GetMotorTargetVelocity() const
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1090: warning: return type of member phys::HingeConstraint::GetMotorTargetVelocity is not documented
 /home/sqeaky/physgame/physgameengine/src/constraint.h:1057: warning: target DualTransformConstraint::GetTransformA of \copydoc command not found
 /home/sqeaky/physgame/physgameengine/src/constraint.h:1057: warning: return type of member phys::HingeConstraint::GetPivotATransform is not documented
 /home/sqeaky/physgame/physgameengine/src/constraint.h:1059: warning: target DualTransformConstraint::GetTransformB of \copydoc command not found
 /home/sqeaky/physgame/physgameengine/src/constraint.h:1059: warning: return type of member phys::HingeConstraint::GetPivotBTransform is not documented
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1134: warning: target TypedConstraint::ValidAngularAxis(ConstraintParam,int) const  of \copydoc command not found
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1134: warning: parameters of member phys::HingeConstraint::HasParamBeenSet are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1134: warning: return type of member phys::HingeConstraint::HasParamBeenSet is not documented
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1137: warning: target TypedConstraint::ValidAngularAxis(ConstraintParam,int) const  of \copydoc command not found
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1137: warning: parameters of member phys::HingeConstraint::HasParamBeenSet are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1137: warning: return type of member phys::HingeConstraint::HasParamBeenSet is not documented
 /home/sqeaky/physgame/physgameengine/src/constraint.h:1039: warning: argument 'otation' of command @param is not found in the argument list of phys::HingeConstraint::SetBPivotRotation(const Quaternion &Rotation)
 /home/sqeaky/physgame/physgameengine/src/constraint.h:1039: warning: The following parameters of phys::HingeConstraint::SetBPivotRotation(const Quaternion &Rotation) are not documented:
   parameter 'Rotation'
@@ -221,8 +213,8 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
   parameter 'Green'
   parameter 'Blue'
 /home/sqeaky/physgame/physgameengine/src/linegroup.h:80: warning: return type of member phys::LineGroup::getPoint is not documented
-/home/sqeaky/physgame/physgameengine/src/managerbase.h:106: warning: parameters of member phys::ManagerBase::SetGameWorld are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/managerbase.h:183: warning: parameters of member phys::ManagerBase::SetPriority are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/managerbase.h:105: warning: parameters of member phys::ManagerBase::SetGameWorld are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/managerbase.h:182: warning: parameters of member phys::ManagerBase::SetPriority are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/mathtool.h:58: warning: Member HalfPi (variable) of class phys::MathTool is not documented.
 /home/sqeaky/physgame/physgameengine/src/mathtool.h:56: warning: Member Pi (variable) of class phys::MathTool is not documented.
 /home/sqeaky/physgame/physgameengine/src/mathtool.h:57: warning: Member TwoPi (variable) of class phys::MathTool is not documented.
@@ -239,8 +231,8 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
   parameter 'ButtonNumber'
 /home/sqeaky/physgame/physgameengine/src/metacode.h:713: warning: parameters of member phys::MetaCode::operator== are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/metacode.h:713: warning: return type of member phys::MetaCode::operator== is not documented
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:439: warning: Member MultiSphereShape (variable) of class phys::MultiSphereCollisionShape is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:441: warning: The following parameters of phys::MultiSphereCollisionShape::MultiSphereCollisionShape(const String &Name, const std::vector< Vector3 > &Locations, const std::vector< Real > &Radii) are not documented:
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:445: warning: Member MultiSphereShape (variable) of class phys::MultiSphereCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:447: warning: The following parameters of phys::MultiSphereCollisionShape::MultiSphereCollisionShape(const String &Name, const std::vector< Vector3 > &Locations, const std::vector< Real > &Radii) are not documented:
   parameter 'Locations'
   parameter 'Radii'
 /home/sqeaky/physgame/physgameengine/src/objectreference.h:57: warning: Member Object (variable) of class phys::ObjectReference is not documented.
@@ -248,11 +240,11 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/particleeffect.h:131: warning: argument 'vec' of command @param is not found in the argument list of phys::ParticleEffect::SetLocation(const Vector3 &Vec)
 /home/sqeaky/physgame/physgameengine/src/particleeffect.h:131: warning: The following parameters of phys::ParticleEffect::SetLocation(const Vector3 &Vec) are not documented:
   parameter 'Vec'
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:557: warning: Member PlaneShape (variable) of class phys::PlaneCollisionShape is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1262: warning: target TypedConstraint::ValidAngularAxis(ConstraintParam,int) const  of \copydoc command not found
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1262: warning: parameters of member phys::Point2PointConstraint::HasParamBeenSet are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1262: warning: return type of member phys::Point2PointConstraint::HasParamBeenSet is not documented
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1247: warning: parameters of member phys::Point2PointConstraint::SetTAU are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:563: warning: Member PlaneShape (variable) of class phys::PlaneCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1265: warning: target TypedConstraint::ValidAngularAxis(ConstraintParam,int) const  of \copydoc command not found
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1265: warning: parameters of member phys::Point2PointConstraint::HasParamBeenSet are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1265: warning: return type of member phys::Point2PointConstraint::HasParamBeenSet is not documented
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1250: warning: parameters of member phys::Point2PointConstraint::SetTAU are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/collisionshape.h:142: warning: Member PrimitiveShapeBase (variable) of class phys::PrimitiveCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/quaternion.h:154: warning: return type of member phys::Quaternion::GetOgreQuaternion is not documented
 /home/sqeaky/physgame/physgameengine/src/resourceinputstream.h:98: warning: Member operator>>(T &Data) (function) of class phys::ResourceInputStream is not documented.
@@ -294,39 +286,39 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/simpletimer.h:73: warning: parameters of member phys::SimpleTimer::SetAutoReset are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/singleton.h:69: warning: Member GetSingletonPtr() (function) of class phys::Singleton is not documented.
 /home/sqeaky/physgame/physgameengine/src/singleton.h:56: warning: Member SingletonPtr (variable) of class phys::Singleton is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1323: warning: Member SetDampingDirAng(Real DampingDirAng) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1320: warning: Member SetDampingDirLin(Real DampingDirLin) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1329: warning: Member SetDampingLimAng(Real DampingLimAng) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1326: warning: Member SetDampingLimLin(Real DampingLimLin) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1335: warning: Member SetDampingOrthoAng(Real DampingOrthoAng) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1332: warning: Member SetDampingOrthoLin(Real DampingOrthoLin) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1305: warning: Member SetFrameOffsetALocation(const Vector3 &Location) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1306: warning: Member SetFrameOffsetBLocation(const Vector3 &Location) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1310: warning: Member SetLowerAngLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1309: warning: Member SetLowerLinLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1316: warning: Member SetMaxAngMotorForce(Real MaxAngMotorForce) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1313: warning: Member SetMaxLinMotorForce(Real MaxLinMotorForce) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1314: warning: Member SetPoweredAngMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1311: warning: Member SetPoweredLinMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1322: warning: Member SetRestitutionDirAng(Real RestitutionDirAng) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1319: warning: Member SetRestitutionDirLin(Real RestitutionDirLin) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1328: warning: Member SetRestitutionLimAng(Real RestitutionLimAng) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1325: warning: Member SetRestitutionLimLin(Real RestitutionLimLin) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1334: warning: Member SetRestitutionOrthoAng(Real RestitutionOrthoAng) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1331: warning: Member SetRestitutionOrthoLin(Real RestitutionOrthoLin) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1321: warning: Member SetSoftnessDirAng(Real SoftnessDirAng) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1318: warning: Member SetSoftnessDirLin(Real SoftnessDirLin) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1327: warning: Member SetSoftnessLimAng(Real SoftnessLimAng) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1324: warning: Member SetSoftnessLimLin(Real SoftnessLimLin) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1333: warning: Member SetSoftnessOrthoAng(Real SoftnessOrthoAng) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1330: warning: Member SetSoftnessOrthoLin(Real SoftnessOrthoLin) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1315: warning: Member SetTargetAngMotorVelocity(Real TargetAngMotorVelocity) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1312: warning: Member SetTargetLinMotorVelocity(Real TargetLinMotorVelocity) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1308: warning: Member SetUpperAngLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1307: warning: Member SetUpperLinLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1317: warning: Member SetUseFrameOffset(bool FrameOffset) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1298: warning: Member SliderConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &VectorA, const Vector3 &VectorB, const Quaternion &QuaternionA, const Quaternion &QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1299: warning: Member SliderConstraint(ActorRigid *ActorB, const Vector3 &VectorB, const Quaternion &QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1326: warning: Member SetDampingDirAng(Real DampingDirAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1323: warning: Member SetDampingDirLin(Real DampingDirLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1332: warning: Member SetDampingLimAng(Real DampingLimAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1329: warning: Member SetDampingLimLin(Real DampingLimLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1338: warning: Member SetDampingOrthoAng(Real DampingOrthoAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1335: warning: Member SetDampingOrthoLin(Real DampingOrthoLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1308: warning: Member SetFrameOffsetALocation(const Vector3 &Location) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1309: warning: Member SetFrameOffsetBLocation(const Vector3 &Location) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1313: warning: Member SetLowerAngLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1312: warning: Member SetLowerLinLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1319: warning: Member SetMaxAngMotorForce(Real MaxAngMotorForce) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1316: warning: Member SetMaxLinMotorForce(Real MaxLinMotorForce) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1317: warning: Member SetPoweredAngMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1314: warning: Member SetPoweredLinMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1325: warning: Member SetRestitutionDirAng(Real RestitutionDirAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1322: warning: Member SetRestitutionDirLin(Real RestitutionDirLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1331: warning: Member SetRestitutionLimAng(Real RestitutionLimAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1328: warning: Member SetRestitutionLimLin(Real RestitutionLimLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1337: warning: Member SetRestitutionOrthoAng(Real RestitutionOrthoAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1334: warning: Member SetRestitutionOrthoLin(Real RestitutionOrthoLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1324: warning: Member SetSoftnessDirAng(Real SoftnessDirAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1321: warning: Member SetSoftnessDirLin(Real SoftnessDirLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1330: warning: Member SetSoftnessLimAng(Real SoftnessLimAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1327: warning: Member SetSoftnessLimLin(Real SoftnessLimLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1336: warning: Member SetSoftnessOrthoAng(Real SoftnessOrthoAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1333: warning: Member SetSoftnessOrthoLin(Real SoftnessOrthoLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1318: warning: Member SetTargetAngMotorVelocity(Real TargetAngMotorVelocity) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1315: warning: Member SetTargetLinMotorVelocity(Real TargetLinMotorVelocity) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1311: warning: Member SetUpperAngLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1310: warning: Member SetUpperLinLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1320: warning: Member SetUseFrameOffset(bool FrameOffset) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1301: warning: Member SliderConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &VectorA, const Vector3 &VectorB, const Quaternion &QuaternionA, const Quaternion &QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1302: warning: Member SliderConstraint(ActorRigid *ActorB, const Vector3 &VectorB, const Quaternion &QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
 /home/sqeaky/physgame/physgameengine/src/sound.h:67: warning: Member Manager (variable) of class phys::Sound is not documented.
 /home/sqeaky/physgame/physgameengine/src/sound.h:66: warning: Member SoundSource (variable) of class phys::Sound is not documented.
 /home/sqeaky/physgame/physgameengine/src/sound.h:72: warning: The following parameters of phys::Sound::Sound(cAudio::IAudioSource *Source, cAudio::IAudioManager *manager) are not documented:
@@ -340,9 +332,9 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
   parameter 'SoundSetName'
   parameter 'SoundInst'
 /home/sqeaky/physgame/physgameengine/src/soundmanager.h:175: warning: parameters of member phys::SoundManager::GetSoundByName are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/soundmanager.h:95: warning: Member SerializableName() const  (function) of class phys::SoundSet is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:475: warning: Member SphereShape (variable) of class phys::SphereCollisionShape is not documented.
-/home/sqeaky/physgame/physgameengine/src/collisionshape.h:614: warning: Member BvhShape (variable) of class phys::StaticMeshCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/soundmanager.h:95: warning: Member SerializableName() (function) of class phys::SoundSet is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:481: warning: Member SphereShape (variable) of class phys::SphereCollisionShape is not documented.
+/home/sqeaky/physgame/physgameengine/src/collisionshape.h:620: warning: Member BvhShape (variable) of class phys::StaticMeshCollisionShape is not documented.
 /home/sqeaky/physgame/physgameengine/src/stringtool.h:60: warning: Member ConvertInputCodeToString(const MetaCode::InputCode &Code, bool ShiftPressed) (function) of class phys::StringTool is not documented.
 /home/sqeaky/physgame/physgameengine/src/extendedtimer.h:59: warning: Member Days (variable) of class phys::Time is not documented.
 /home/sqeaky/physgame/physgameengine/src/extendedtimer.h:58: warning: Member Hours (variable) of class phys::Time is not documented.
@@ -394,9 +386,9 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uimanager.h:196: warning: parameters of member phys::UIManager::GetLayer are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uimanager.h:181: warning: parameters of member phys::UIManager::GetScreen are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uimanager.h:184: warning: parameters of member phys::UIManager::GetScreen are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1355: warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class phys::UniversalJointConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1354: warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class phys::UniversalJointConstraint is not documented.
-/home/sqeaky/physgame/physgameengine/src/constraint.h:1350: warning: Member UniversalJointConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &Anchor, const Vector3 &Axis1, const Vector3 &Axis2) (function) of class phys::UniversalJointConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1358: warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class phys::UniversalJointConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1357: warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class phys::UniversalJointConstraint is not documented.
+/home/sqeaky/physgame/physgameengine/src/constraint.h:1353: warning: Member UniversalJointConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &Anchor, const Vector3 &Axis1, const Vector3 &Axis2) (function) of class phys::UniversalJointConstraint is not documented.
 /home/sqeaky/physgame/physgameengine/src/vector2.h:81: warning: return type of member phys::Vector2::GetOgreVector2 is not documented
 /home/sqeaky/physgame/physgameengine/src/vector2.h:98: warning: return type of member phys::Vector2::operator!= is not documented
 /home/sqeaky/physgame/physgameengine/src/vector2.h:108: warning: return type of member phys::Vector2::operator!= is not documented
@@ -552,8 +544,8 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uicellgrid.h:87: warning: Member WorkAreaLimits (variable) of class phys::UI::CellGrid is not documented.
 <OrderingStyle>:1: warning: parameters of member phys::UI::CellGrid::OrderingStyle are not (all) documented
 <PageStyle>:1: warning: parameters of member phys::UI::CellGrid::PageStyle are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uicellgrid.h:159: warning: argument 'Area' of command @param is not found in the argument list of phys::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit)
-/home/sqeaky/physgame/physgameengine/src/uicellgrid.h:159: warning: The following parameters of phys::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uicellgrid.h:156: warning: argument 'Area' of command @param is not found in the argument list of phys::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit)
+/home/sqeaky/physgame/physgameengine/src/uicellgrid.h:156: warning: The following parameters of phys::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit) are not documented:
   parameter 'AreaLimit'
 /home/sqeaky/physgame/physgameengine/src/uicellgrid.cpp:67: warning: Member operator()(Cell *First, Cell *Second) (function) of class phys::UI::CellPrioritySorter is not documented.
 /home/sqeaky/physgame/physgameengine/src/uicheckbox.h:70: warning: Member SetSpriteSet(std::pair< std::string, std::string > &SpriteSet) (function) of class phys::UI::CheckBox is not documented.
@@ -566,11 +558,11 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uicheckbox.h:75: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::CheckBox::CheckBox(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, ConstString &LabelText, Layer *PLayer)
 /home/sqeaky/physgame/physgameengine/src/uicheckbox.h:75: warning: The following parameters of phys::UI::CheckBox::CheckBox(ConstString &name, const RenderableRect &Rect, const Whole &Glyph, ConstString &LabelText, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:118: warning: argument 'Unchecked' of command @param is not found in the argument list of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="")
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:118: warning: The following parameters of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="") are not documented:
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:115: warning: argument 'Unchecked' of command @param is not found in the argument list of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="")
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:115: warning: The following parameters of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="") are not documented:
   parameter 'Checked'
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:104: warning: argument 'Label' of command @param is not found in the argument list of phys::UI::CheckBox::SetLabelText(String &LabelText)
-/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:104: warning: The following parameters of phys::UI::CheckBox::SetLabelText(String &LabelText) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:101: warning: argument 'Label' of command @param is not found in the argument list of phys::UI::CheckBox::SetLabelText(String &LabelText)
+/home/sqeaky/physgame/physgameengine/src/uicheckbox.h:101: warning: The following parameters of phys::UI::CheckBox::SetLabelText(String &LabelText) are not documented:
   parameter 'LabelText'
 /home/sqeaky/physgame/physgameengine/src/uidropdownlist.h:64: warning: Member ListToggle (variable) of class phys::UI::DropDownList is not documented.
 /home/sqeaky/physgame/physgameengine/src/uidropdownlist.h:63: warning: Member Selection (variable) of class phys::UI::DropDownList is not documented.
@@ -612,13 +604,12 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:80: warning: Member HoveredCaption (variable) of class phys::UI::ListBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:84: warning: Member LastScrollValue (variable) of class phys::UI::ListBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:85: warning: Member MaxDisplay (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:86: warning: Member NumVisible (variable) of class phys::UI::ListBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:79: warning: Member Selected (variable) of class phys::UI::ListBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:81: warning: Member Selections (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:87: warning: Member SelectionTemplate (variable) of class phys::UI::ListBox is not documented.
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:86: warning: Member SelectionTemplate (variable) of class phys::UI::ListBox is not documented.
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:82: warning: Member VisibleSelections (variable) of class phys::UI::ListBox is not documented.
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:95: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::ListBox::ListBox(ConstString &name, const RenderableRect &Rect, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer)
-/home/sqeaky/physgame/physgameengine/src/uilistbox.h:95: warning: The following parameters of phys::UI::ListBox::ListBox(ConstString &name, const RenderableRect &Rect, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:98: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::ListBox::ListBox(ConstString &name, const RenderableRect &Rect, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer)
+/home/sqeaky/physgame/physgameengine/src/uilistbox.h:98: warning: The following parameters of phys::UI::ListBox::ListBox(ConstString &name, const RenderableRect &Rect, const UI::ScrollbarStyle &ScrollStyle, Layer *PLayer) are not documented:
   parameter 'PLayer'
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:163: warning: return type of member phys::UI::ListBox::AddSelection is not documented
 /home/sqeaky/physgame/physgameengine/src/uilistbox.h:73: warning: Member BackgroundColour (variable) of class phys::UI::ListBox::TemplateParams is not documented.
@@ -739,8 +730,8 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uispinner.h:74: warning: Member Value (variable) of class phys::UI::Spinner is not documented.
 /home/sqeaky/physgame/physgameengine/src/uispinner.h:69: warning: Member ValueDisplay (variable) of class phys::UI::Spinner is not documented.
 /home/sqeaky/physgame/physgameengine/src/uispinner.h:82: warning: Member ValueDisplayOffset (variable) of class phys::UI::Spinner is not documented.
-/home/sqeaky/physgame/physgameengine/src/uispinner.h:140: warning: argument 'DecimalPlaces' of command @param is not found in the argument list of phys::UI::Spinner::EnableDecimalDisplay(bool Enable, const Whole &Places=1)
-/home/sqeaky/physgame/physgameengine/src/uispinner.h:140: warning: The following parameters of phys::UI::Spinner::EnableDecimalDisplay(bool Enable, const Whole &Places=1) are not documented:
+/home/sqeaky/physgame/physgameengine/src/uispinner.h:137: warning: argument 'DecimalPlaces' of command @param is not found in the argument list of phys::UI::Spinner::EnableDecimalDisplay(bool Enable, const Whole &Places=1)
+/home/sqeaky/physgame/physgameengine/src/uispinner.h:137: warning: The following parameters of phys::UI::Spinner::EnableDecimalDisplay(bool Enable, const Whole &Places=1) are not documented:
   parameter 'Places'
 /home/sqeaky/physgame/physgameengine/src/uitextbutton.h:61: warning: Member AutoScaleText (variable) of class phys::UI::TextButton is not documented.
 /home/sqeaky/physgame/physgameengine/src/uitextbutton.h:63: warning: Member Glyphs (variable) of class phys::UI::TextButton is not documented.
@@ -777,21 +768,21 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:116: warning: argument 'Layer' of command @param is not found in the argument list of phys::UI::Window::Window(ConstString &name, const RenderableRect &Rect, Layer *PLayer)
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:116: warning: The following parameters of phys::UI::Window::Window(ConstString &name, const RenderableRect &Rect, Layer *PLayer) are not documented:
   parameter 'PLayer'
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:196: warning: parameters of member phys::UI::Window::GetButton are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:190: warning: parameters of member phys::UI::Window::GetButton are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:193: warning: parameters of member phys::UI::Window::GetButton are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:238: warning: parameters of member phys::UI::Window::GetCaption are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:241: warning: parameters of member phys::UI::Window::GetCaption are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:244: warning: parameters of member phys::UI::Window::GetCaption are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:272: warning: parameters of member phys::UI::Window::GetMarkupText are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:275: warning: parameters of member phys::UI::Window::GetMarkupText are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:278: warning: parameters of member phys::UI::Window::GetMarkupText are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:196: warning: parameters of member phys::UI::Window::GetOffsetButtonInfo are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:199: warning: parameters of member phys::UI::Window::GetOffsetButtonInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:202: warning: parameters of member phys::UI::Window::GetOffsetButtonInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:250: warning: parameters of member phys::UI::Window::GetOffsetCaptionInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:244: warning: parameters of member phys::UI::Window::GetOffsetCaptionInfo are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:247: warning: parameters of member phys::UI::Window::GetOffsetCaptionInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:278: warning: parameters of member phys::UI::Window::GetOffsetMarkupTextInfo are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:281: warning: parameters of member phys::UI::Window::GetOffsetMarkupTextInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:284: warning: parameters of member phys::UI::Window::GetOffsetMarkupTextInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:218: warning: parameters of member phys::UI::Window::GetOffsetRectangleInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:215: warning: parameters of member phys::UI::Window::GetOffsetRectangleInfo are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:299: warning: parameters of member phys::UI::Window::GetOffsetWidgetInfo are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:302: warning: parameters of member phys::UI::Window::GetOffsetWidgetInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:305: warning: parameters of member phys::UI::Window::GetOffsetWidgetInfo are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:215: warning: parameters of member phys::UI::Window::GetRectangle are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:299: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/uiwindow.h:295: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:212: warning: parameters of member phys::UI::Window::GetRectangle are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:292: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/uiwindow.h:296: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented

@@ -43,7 +43,8 @@
 #include "crossplatformexport.h"
 #include "worldnode.h"
 
-/// @file The base class for all Actors is defined here
+/// @file
+/// @brief The base class for all Actors is defined here
 
 
 ///////////////////////////////////

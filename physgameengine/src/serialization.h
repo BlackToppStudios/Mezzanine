@@ -51,6 +51,7 @@
 namespace phys
 {
     /// @page Serialization
+    /// @section SerializationMain
     /// Serialization is the process of converting a class instance into a serial sequence of bits. DeSerialization is taking those
     /// bits and reconstructing th e original object without losing anything of value (in practice the only things not saved are cached
     /// values or values calulated as they are needed). These bits could be just about anything, because of its ubiquity we chose
@@ -58,7 +59,16 @@ namespace phys
     /// to be used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do,
     /// and can be done with a variety of other factors in mind. The xml text can be sent down any stream, put in any file, compressed,
     /// queried. You should see @ref XMLManual for information about the xml system itself.
-    /// @section serializationxml Serialization and XML
+    /// \n \n
+    /// Topics:
+    ///     - @ref serializationxml
+    ///     - @ref serializationintegration
+    ///         - @ref serializationmaking
+    ///         - @ref serializationserializers
+    ///         - @ref serializationlegacy
+    ///     - @ref serializationoperators
+    ///     - @ref serializationmisc
+    /// @subsection serializationxml Serialization and XML
     /// The process of serializing doesn't just convert from class instance to text. Since our end goal is to convert live objects to
     /// XML it only make sense to closely integrate with the phys::xml portion of the engine. If you plan on writing serialization
     /// and deserialization code you should read the following parts of the @ref XMLManual at a minimum:
@@ -98,13 +108,13 @@ namespace phys
     /// The easyiest way to meet these conditions and not consume an inordinate amount of computing resources, is to pay attention
     /// to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything  else
     /// it will have relatively little trouble making it work.
-    /// @section serializationintegration Integrate Serialization into Your Code
+    /// @subsection serializationintegration Integrate Serialization into Your Code
     /// There several ways to interact with the current serialization system. One might have to create a class that can be
     /// serialized or deserialized. There may be situations where another system is emitting xml and it must be intergrated into
     /// an existing game. It may be desired to create a 'factory' that produces objects from and xml source or create a sink to put
     /// objects into so they can be serialized. Here we will discuss some of the ways that the serialization system can be extended
     /// and what kind of assumptions it makes, so that anyone can write software that interacts with it cleanly.
-    /// @subsection serializationmaking Make a Serializable or a DeSerializable
+    /// @subsubsection serializationmaking Make a Serializable or a DeSerializable
     /// Creating a class that be serialized is easy. There is just one function that it must implement. If a class implements this,
     /// it is said to be Serializable:
     /// @code
@@ -120,12 +130,6 @@ namespace phys
     /// changes, the DeSerialization function will only need to check the 'Version' attribute to know if and how it can handle it.
     /// \n \n
     /// Integrating with the DeSerialization code is pretty easy too. There are two functions you are expected to implement to
-    /// the ProtoSerialize(xml::Node&) function listed above. It is advisable but not required to verify the name matches and that
-    /// the 'Version' is something this code can handle. It is also advisable that every piece of data pulled out is verified the
-    /// best it can be. If exceptions are thrown for every discrepency, then programmers using this will create xml and code that
-    /// produce no discrepencies.
-    /// \n \n
-    ///
     /// create a DeSerializable:
     /// @code
     /// void DeSerializableClass::ProtoDeSerialize(const xml::Node&);
@@ -135,51 +139,141 @@ namespace phys
     /// A phys::Vector3 returns "Vector3", and a phys::ActorRigid return "ActorRigid". If a class is both DeSerializable and
     /// serializable it makes sense to call this function when assigning the name to the Serialized Node it creates.
     /// \n \n
-    /// The ProtoDeSerialize(const xml::Node&) accepts an xml::Node that should correspond to the node created by the
+    /// ProtoDeSerialize(const xml::Node&), accepts a phys::xml::Node. The Node passed to it would correspond to the Serialized
+    /// Node created by the ProtoSerialize(xml::Node&) function listed above. If xml is created by something then this is calling
+    /// code is expecting this function to be the correct deserialization function. It is advisable but not required to verify the
+    /// name of the xml node matches what is expected and that
+    /// the 'Version' is something this code can handle. It is also advisable that every piece of data pulled out is verified the
+    /// best it can be. If exceptions are thrown for every discrepency, then programmers using this will create xml and code that
+    /// produce no discrepencies.
+    /// \n \n
+    /// The following template make use of only the 3 functions described above to Serialize or DeSerialize class instances:
     /// @code
     /// template <class T> std::ostream& Serialize(std::ostream& Stream, const T& Converted, const String& Indent = String("") );
     /// template <class T> std::istream& DeSerialize(std::istream& Stream, T& Converted);
     /// @endcode
-
-
-
-    /// Implementing these will allow them to work with the Serialize and Deserialize templates defined in
-    /// serialization.h.
+    /// The functions make calls on the phys::xml system and expect a fairly basic set of conditions to be met before they are used.
+    /// Serialize accepts an output stream and the class instance to be Serialized. It will create an xml::Document and populate it
+    /// data from the class provided and then emit that into the stream. DeSerialize accepts an inputstream and the object to be
+    /// populated. It expects the next xml element in the stream to be a serialized version of the passed object and will then
+    /// overwrite as many of the values of the passed object as possible with the serialized values. For small items DeSerialize
+    /// is fine, where possible it is better to have the xml::Document open the file or stream itself as to prevent the second
+    /// pass through to find exactly one xml element.
     /// \n \n
+    /// @subsubsection serializationserializers Working with Serializers and Deserializers
     /// In some cases, there are some pieces of information that cannot be supplied or
     /// entered by the class itself. This data must be provided by another class or upon creation of the class. This other class
-    /// can implement the Serializer, the DeSerializer, or both to make working with large amounts of serialization code easier.
+    /// can implement the Serializer, DeSerializer, or both interfaces to make working with large amounts of serialization easier.
     /// \n \n
     /// For example actors can only accept a mesh upon construction. So overwriting an existing actor is impossible to do completely.
     /// It expected to be partially implemented, to the extent possible, in the class members. But if you have the need to create
-    /// Actors on the fly from data stored in files it makes sense to have a dedicate class or interface than can create these.
+    /// Actors on the fly from data stored in files it makes sense to have a dedicated class or interface than can create these.
+    /// Here is what goes into a Serializer:
+    /// @code
+    /// template <class Serializable> class Serializer
+    /// {
+    ///     virtual void Serializer::ProtoSerializeAll(xml::Node& CurrentRoot) const = 0;
+    ///     virtual std::ostream& Serializer::SerializeAll(std::ostream& Stream) const;
+    ///     virtual void Serializer::ProtoSerialize(const Serializable& Target, xml::Node& CurrentRoot) = 0;
+    ///     virtual std::ostream& Serializer::Serialize(std::ostream& Stream, const Serializable& Target)
+    /// };
+    /// @endcode
+    /// Serializer::ProtoSerialize() when implement should take the required steps to attach a Serialized Node to the
+    /// Passed xml::Node that represent the Serialization target. It is expected to get the extra information that the target
+    /// cannot provide from somewhere else. Ideally the the Serializer can be, or be associated with, a manager or container
+    /// of some kind. There is not default implementation of this.
     /// \n \n
+    /// Serializer::Serialize() Goes one step further than Serializer::ProtoSerialize() and also sends it down a stream. The
+    /// default implements use Serializer::ProtoSerialize().
+    /// \n \n
+    /// Serializer::ProtoSerializeAll() performs a similar role to Serializer::ProtoSerialize(), but again, it goes one step
+    /// further. Rather than accept a single Target to serialize it is expected that the Serializer go to the source of the
+    /// Targets and serialize all of them that are available. All of the target should be contained in one Node attached to
+    /// the Node the function accepts. This is not implemented by default, the logic is too specific to the items to be
+    /// serialized.
+    /// \n \n
+    /// Serializer::SerializeAll() uses Serializer::ProtoSerializeAll() to send all of the available Targets in Serialized
+    /// down a stream.
+    /// \n \n
+    /// The logic behind a DeSerializer is similar to a Serializer. The same types of methods, even similar implementations
+    /// if the function is implemented. Like the ProtoDeSerialize() individual DeSerializables implement, the functions on
+    /// a DeSerializer will be passed the nodes that would correspond to the those created by their counterparts on the
+    /// Serializer. Here is the contents of a Deserializer:
+    /// @code
+    /// template <class DeSerializable> class DeSerializer
+    /// {
+    ///     virtual void DeSerializer::ProtoDeSerializeAll(const xml::Node& OneNode) = 0;
+    ///     virtual std::istream& DeSerializer::DeSerializeAll(std::istream& Stream)
+    ///     virtual DeSerializable* DeSerializer::ProtoDeSerialize(const xml::Node& OneNode) = 0;
+    ///     virtual std::istream& DeSerializer::DeSerialize(std::istream& Stream)
+    /// };
+    /// @endcode
+    /// There is no technical reason why a class cannot be both a serializer and a deserializer, or even multiple kinds of
+    /// Serializers or DeSerializers. To keep things simple the Managers provided by the physgame engine will store a pointer
+    /// to the appropriate Serializer when one is required.
+    /// @subsubsection serializationlegacy Integrating with External XML Providers
+    /// Sometimes yu will be forced to work with a system that produces xml that is not structured in a similar way to this
+    /// system. Sometimes it may be too costly or not possible to modify the code to integrate it. For these the following
+    /// function exists:
+    /// @code
+    /// template <class T> void SloppyProtoSerialize(const T& Converted, xml::Node& CurrentRoot)
+    /// @endcode
+    /// This function will make a call on the the stream insertion operator of the class passed in. If one doesn't exist
+    /// it is easy to add one in your code without chaning the original source. If one does exist than you should probably
+    /// copy/paste the whole function and re-implement it calling the functions that emit the XML string or stream. If you
+    /// want to implement a stream insertion operator, the function prototype should be similar to the stream insertion
+    /// operator in the @ref serializationoperators section.
+    /// @subsection serializationoperators Serialization Operators
+    /// The stream insertion (<<) and stream extraction (>>) operators can be used for serializing and deserializing most items
+    /// in the physgame engine.
+    ///
+    /// Unfortunately due to conflict with the stream insertion operators provided with the iostreams library these couldn't be
+    /// made into a template. That doesn't mean that they are difficult to implemt. Here is a typical implemenation of stream
+    /// insertion operators for XML serialization:
+    /// @code
+    /// #ifdef PHYSXML
+    ///
+    /// std::ostream& operator << (std::ostream& stream, const phys::ActorRigid& ActorToSerialize)
+    /// {
+    ///     Serialize(stream, ActorToSerialize);
+    ///     return stream;
+    /// }
+    ///
+    /// std::istream& operator >> (std::istream& stream, phys::ActorRigid& x)
+    ///     { return DeSerialize(stream, x); }
+    ///
+    /// void operator >> (const phys::xml::Node& OneNode, phys::ActorRigid& x)
+    ///     { x.ProtoDeSerialize(OneNode); }
+    ///
+    /// #endif  // \physxml
+    /// @endcode
+    /// You will want to implement these functions with the appropriate type. The type phys::ActorRigid is used purely as example
+    /// Though this is actual working code and was in the engine at one point.
+    /// The "#ifdef PHYSXML" Tells the compiler to skip this chunk of code if PHYSXML is not enable. Since this is a configuration
+    /// option of the engine you may wish for you code to be aware of it. More sophisticate handling of this is possible, for example
+    /// The phys::Vector3 emits a string in the form of [X,Y,Z], if physxml is not enabled.
+    /// \n \n
+    /// The function operator<< simply calls Serialize and returns the stream, so it has all the pre and cost conditions of the Serialize
+    /// function listed in the @ref serializationmaking section.
+    /// \n \n
+    /// The stream extraction operators are a little bit more interesting. The operator>>(istream,YourType), by virtue of calling Deserialize
+    /// will wind up taking two passes over the XML. One looking for the ending tag that matches the first (it gets all the children of that tag too)
+    /// and one performing the actual parsing. The operator>>(istream,YourType) will work only with completely parsed objects in memory. With the
+    /// combination of these two all the heavy lifting of parsing is done up front, and the rest of the deserialization is just a bunch of pointer
+    /// and string manipulation. Another possibility with your stream extraction operator, if you new that it had exactly one parent xml node ,you
+    /// create without that first pass for improved performance.
+    /// @subsection serializationmisc Other little Things
+    /// To simplify and standardize errors thrown, the following functions exist:
+    /// @code
+    /// void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD = true);
+    /// void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD = false);
+    /// @endcode
+    /// Both of these functions throw a phys::Exception with the descriptive text of "Could not {FailedTo} during {ClassName} [De]Serialization."
+    /// If SOrD (Serialize Or Deserialize) is true the "De" is not printed.
 
 
-    /* template <class Serializable> class Serializer;
-        virtual void Serializer::ProtoSerializeAll(xml::Node& CurrentRoot) const = 0;
-        virtual std::ostream& Serializer::SerializeAll(std::ostream& Stream) const;
-        virtual void Serializer::ProtoSerialize(const Serializable& Target, xml::Node& CurrentRoot) = 0;
-        virtual std::ostream& Serializer::Serialize(std::ostream& Stream, const Serializable& Target)
-    */
-    /* template <class DeSerializable> class DeSerializer
-        virtual void DeSerializer::ProtoDeSerializeAll(const xml::Node& OneNode) = 0;
-        virtual std::istream& DeSerializer::DeSerializeAll(std::istream& Stream)
-        virtual DeSerializable* DeSerializer::ProtoDeSerialize(const xml::Node& OneNode) = 0;
-        virtual std::istream& DeSerializer::DeSerialize(std::istream& Stream)
-    */
-    /*
-        template <class T> std::ostream& Serialize(std::ostream& Stream, const T& Converted, const String& Indent = String("") )
-        template <class T> std::istream& DeSerialize(std::istream& Stream, T& Converted)
-        template <class T> void SloppyProtoSerialize(const T& Converted, xml::Node& CurrentRoot)
-        void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD = true);
-        void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD = false);
-    */
-    /*
-        std::ostream& operator << (std::ostream& stream, const phys::ActorRigid& ActorToSerialize);
-        std::istream& operator >> (std::istream& stream, phys::ActorRigid& x);
-        void operator >> (const phys::xml::Node& OneNode, phys::ActorRigid& x);
-    */
+
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A tool for serializing classes with specific issues serializing.
     /// @details Some classes have private members and it is impractical to change the class to expose this data. In this case a
@@ -350,7 +444,7 @@ namespace phys
     /// @param FailedTo What failed to happed for example "create testnode" or "acquire a mutex"
     /// @param ClassName The name of the class throw the exception
     /// @param SOrD Defaults to true, and if true uses the word "Serialization", otherwise uses the word "DeSerialization"
-    /// @throw A phys::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization."
+    /// @throw A phys::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization.""Could not {FailedTo} during {ClassName} [De]Serialization."
     void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD = true);
 
     /// @brief Simply does some string concatenation, then throws an Exception

@@ -37,6 +37,7 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+
 #ifndef _physactorbase_cpp
 #define _physactorbase_cpp
 
@@ -58,7 +59,8 @@
 #include "internalmotionstate.h.cpp"
 #include "internalmeshtools.h.cpp"
 
-/// @file Code used by all actors is implemented here.
+/// @file
+/// @brief Code used by all actors is implemented here.
 
 namespace phys{
     ///////////////////////////////////

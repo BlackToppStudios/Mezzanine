@@ -46,7 +46,8 @@
 #include "serialization.h"
 #include "xmldoc.h"
 
-/// @file This is where the declarations of any Serializers or DeSerializers for actors will go.
+/// @file
+/// @brief This is where the declarations of any Serializers or DeSerializers for actors will go.
 
 
 namespace phys
