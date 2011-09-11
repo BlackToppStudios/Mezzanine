@@ -2481,11 +2481,6 @@ namespace phys
         /// @brief Attempt to retrieve the root Node, or the most base Node containing this Node.
         /// @return A Node that represents the root of the XML document, or an empty Node on failure. If there are multiple roots this attempts to retrieve the appropriate one.
 
-        /// @fn Node::GetChild(const char_t* Name) const;
-        /// @brief Attempt to get a child Node with a given name.
-        /// @param Name The name of the desired child Node.
-        /// @return A Node that represents the first desired child, or an empty Node on failure.
-
         /// @fn Node::GetAttribute(const char_t* Name) const;
         /// @brief Attempt to get an Attribute on this Node with a given name.
         /// @param Name The name of the desired Attribute.

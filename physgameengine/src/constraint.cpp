@@ -747,7 +747,7 @@ namespace phys
     void Generic6DofConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
     {
 
-        xml::Node G6dofNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        xml::Node G6dofNode = CurrentRoot.AppendChild(this->Generic6DofConstraint::SerializableName());                     // The base node all the base constraint stuff will go in
         if (!G6dofNode)
             { SerializeError("Create G6dofNode", SerializableName()); }
 

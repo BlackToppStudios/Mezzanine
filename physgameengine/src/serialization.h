@@ -101,9 +101,11 @@ namespace phys
     /// them. More specifically, throw an exception if an object reference during deserialization is not present. Then we ask that
     /// programmers who write could that must store, transmit and reconstruct class instances be aware of the following preconditions
     /// So can produce their own solutions:
+    ///     - CollisionShapes must come before Actors and AreaEffects
+    ///     - WorldNodes must come before Actors, Light and ParticleEffects. (this is still work in progress).
+    ///         - Currently WorldNodes try to find the objects that are attached to them, and the attached tries to find the world node. (if one does not exist, this silently fails)
     ///     - Actors must come before constraints.
-    ///     - Currently WorldNodes try to find the objects that are attached to them, and the attached tries to find the world node. (if one does not exist, this silently fails)
-    ///     - WorldNodes should come before Actors, Light and particle effects. (this is still work in progress).
+    ///     - Actors may have a WorldNode inside them, if this is the case, then the actor must come before Lights and ParticleEffects Attached to it.
     ///
     /// The easyiest way to meet these conditions and not consume an inordinate amount of computing resources, is to pay attention
     /// to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything  else

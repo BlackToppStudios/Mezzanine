@@ -70,6 +70,7 @@ namespace phys
             {}
 
             virtual ActorRigid* ProtoDeSerialize(const xml::Node& OneNode);
+                // ActorBase Name
 
             virtual void ProtoDeSerializeAll(const xml::Node& OneNode);
 

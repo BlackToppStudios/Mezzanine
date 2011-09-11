@@ -157,6 +157,13 @@ namespace phys{
         xml::Node ActorNode = CurrentRoot.AppendChild("ActorRigid");
         if (!ActorNode) { ThrowSerialError("create ActorRigidNode");}
 
+        xml::Attribute Version = ActorNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create set Version on ActorRigid node", SerializableName()); }
+
+
         xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
             ActorName.SetValue(this->GetName());
         xml::Attribute ActorFile = ActorNode.AppendAttribute("File");
@@ -171,7 +178,18 @@ namespace phys{
 
     void ActorRigid::ProtoDeSerialize(const xml::Node& OneNode)
     {
-
+        if ( phys::String(OneNode.Name())==this->ActorRigid::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                this->ActorBase::ProtoDeSerialize(OneNode.GetChild(this->ActorBase::SerializableName()));
+                // This is incomplete
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
     String ActorRigid::SerializableName()

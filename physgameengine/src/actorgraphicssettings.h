@@ -164,6 +164,25 @@ namespace phys
             /// @param Submesh The submesh you want to alter the material of.
             /// @return The colour that was as the material Diffuse colour, OR a default colourvalue.
             ColourValue GetMaterialDiffuse(Whole Submesh = 0) const;
+
+#ifdef PHYSXML
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "ActorGraphicsSettings"
+            static String SerializableName();
+#endif
     };//actorgraphicssettings
 }//phys
 

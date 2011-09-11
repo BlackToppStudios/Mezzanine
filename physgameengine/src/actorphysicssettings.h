@@ -207,6 +207,26 @@ namespace phys
             /// @brief Get a pointer to this class of type ActorBasePhysicsSettings
             /// @return A pointer ActorBasePhysicsSettings
             ActorBasePhysicsSettings* GetBasePointer();
+
+#ifdef PHYSXML
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "ActorBasePhysicsSettings"
+            static String SerializableName();
+#endif
+
     };//actorbasephysicssettings
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -294,6 +314,25 @@ namespace phys
             /// @brief Spin/Apply Torque to an object.
             /// @param Torque The amount and direction of the torque in a Vector3
             virtual void ApplyTorque(const Vector3& Torque);
+
+#ifdef PHYSXML
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "ActorRigidPhysicsSettings"
+            static String SerializableName();
+#endif
     };//actorrigidphysicssettings
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -372,8 +411,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorBasePhysics
 /// @brief Set all values of a phys::ActorBasePhysicsSettings from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the phys::ActorBasePhysicsSettings.
 /// @param Ev the phys::ActorBasePhysicsSettings to be reset.
-/// @return This returns thexml::Node that was passed in.
-phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhysicsSettings& Ev);
+void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhysicsSettings& Ev);
 
 /// @brief Serializes the passed phys::ActorRigidPhysicsSettings to XML
 /// @param stream The ostream to send the xml to.
@@ -390,8 +428,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorRigidPhysic
 /// @brief Set all values of a phys::ActorRigidPhysicsSettings from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the phys::ActorRigidPhysicsSettings.
 /// @param Ev the phys::ActorRigidPhysicsSettings to be reset.
-/// @return This returns thexml::Node that was passed in.
-phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorRigidPhysicsSettings& Ev);
+void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorRigidPhysicsSettings& Ev);
 
 #endif // \PHYSXML
 

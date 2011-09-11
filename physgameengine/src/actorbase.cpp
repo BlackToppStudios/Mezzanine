@@ -359,7 +359,104 @@ namespace phys{
 
     void ActorBase::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==this->ActorBase::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                Vector3 TempVec;
+                xml::Node LocationNode = OneNode.GetChild("Location").GetFirstChild();
+                if(!LocationNode)
+                    { DeSerializeError("locate Location node",SerializableName()); }
+                TempVec.ProtoDeSerialize(LocationNode);
+                this->SetLocation(TempVec);
 
+                xml::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
+                if(!ScalingNode)
+                    { DeSerializeError("locate Scaling node",SerializableName()); }
+                TempVec.ProtoDeSerialize(ScalingNode);
+                this->SetActorScaling(TempVec);
+
+                Quaternion TempQuat;
+                xml::Node OrientationNode = OneNode.GetChild("Orientation").GetFirstChild();
+                if(!OrientationNode)
+                    { DeSerializeError("locate Orientation node",SerializableName()); }
+                TempQuat.ProtoDeSerialize(OrientationNode);
+                this->SetOrientation(TempQuat);
+
+                //DeSerialize();
+
+       /*
+
+
+        SloppyProtoSerialize( this->GetOrientation(), OrientationNode);
+        SloppyProtoSerialize( *(this->GetGraphicsSettings()), ActorNode );
+        SloppyProtoSerialize( *(this->GetPhysicsSettings()), ActorNode );
+
+        xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
+            ActorName.SetValue(this->GetName());
+        xml::Attribute ActorVersion = ActorNode.AppendAttribute("Version");
+            ActorVersion.SetValue(1);
+        xml::Attribute ActorIsInWorld = ActorNode.AppendAttribute("IsInWorld");
+            ActorIsInWorld.SetValue(this->IsInWorld());
+        if ( !(ActorName && ActorVersion && ActorIsInWorld) )
+            { ThrowSerialError("create ActorNode Attributes"); }
+
+        xml::Attribute ActorSoundSetName = ActorNode.AppendAttribute("SoundSet");
+        if(this->ActorSounds)
+        {
+            ActorSoundSetName.SetValue(this->ActorSounds->GetName());
+        }else{
+            ActorSoundSetName.SetValue("");
+        }
+
+        // if actor node is in scenemanager just save a name
+        if( World::GetWorldPointer()->GetSceneManager(0)->GetNode( this->ActorWorldNode->GetName() ) )
+        {
+            xml::Attribute ActorWorldNode = ActorNode.AppendAttribute("WorldNode");
+            if(!ActorWorldNode.SetValue(this->ActorWorldNode->GetName()))
+                {ThrowSerialError("store WorldNode Name");}
+        }else{
+            SloppyProtoSerialize( *(this->ActorWorldNode),ActorNode);
+        }
+    }
+     */
+
+
+
+               /* xml::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
+                if(!DualTranny)
+                    { DeSerializeError("locate DualTransforn node",SerializableName()); }
+                this->DualTransformConstraint::ProtoDeSerialize(DualTranny);
+
+                xml::Node MotorNode = OneNode.GetChild("Motor");
+                if(!MotorNode)
+                    { DeSerializeError("locate Motor node",SerializableName()); }
+
+                xml::Node LimitNode = OneNode.GetChild("Limits");
+                if(!LimitNode)
+                    { DeSerializeError("locate Limits node",SerializableName()); }
+
+                this->SetUseReferenceFrameA(OneNode.GetAttribute("ReferenceInA").AsBool());
+                this->SetUseFrameOffset(OneNode.GetAttribute("UseFrameOffset").AsBool());
+
+                this->EnableMotor(
+                    MotorNode.GetAttribute("Enabled").AsBool(),
+                    MotorNode.GetAttribute("TargetVelocity").AsReal(),
+                    MotorNode.GetAttribute("MaxImpulse").AsReal() );
+
+                this->SetLimit(
+                    LimitNode.GetAttribute("Low").AsReal(),
+                    LimitNode.GetAttribute("High").AsReal(),
+                    LimitNode.GetAttribute("Softness").AsReal(),
+                    LimitNode.GetAttribute("BiasFactor").AsReal(),
+                    LimitNode.GetAttribute("RelaxationFactor").AsReal() );
+                    */
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
     }
 
     String ActorBase::SerializableName()
