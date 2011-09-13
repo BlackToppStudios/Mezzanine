@@ -67,8 +67,7 @@ namespace phys{
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
-        this->PhysicsSettings = new ActorRigidPhysicsSettings(this,physrigidbody);
-        BasePhysicsSettings = PhysicsSettings;
+        BasePhysicsSettings = new ActorRigidPhysicsSettings(this,physrigidbody);
         ActorType=ActorBase::Actorrigid;
     }
 
@@ -95,55 +94,39 @@ namespace phys{
         }
     }
 
-    std::string ActorRigid::GetName() const
-    {
-        return this->GraphicsObject->getName();
-    }
+    String ActorRigid::GetName() const
+        { return String(this->GraphicsObject->getName()); }
 
-    ActorRigidPhysicsSettings* ActorRigid::GetPhysicsSettings()
-    {
-        return PhysicsSettings;
-    }
+    ActorRigidPhysicsSettings* ActorRigid::GetPhysicsSettings() const
+        { return static_cast<ActorRigidPhysicsSettings*>(this->BasePhysicsSettings); }
 
     void ActorRigid::SetLinearMovementFactor(const Vector3& Factor)
-    {
-        this->physrigidbody->setLinearFactor(Factor.GetBulletVector3());
-    }
+        { this->physrigidbody->setLinearFactor(Factor.GetBulletVector3()); }
 
-    Vector3 ActorRigid::GetLinearMovementFactor()
-    {
-        Vector3 LinFact(this->physrigidbody->getLinearFactor());
-        return LinFact;
-    }
+    Vector3 ActorRigid::GetLinearMovementFactor() const
+        { return Vector3(this->physrigidbody->getLinearFactor()); }
 
     void ActorRigid::SetAngularMovementFactor(const Vector3& Factor)
-    {
-        this->physrigidbody->setAngularFactor(Factor.GetBulletVector3());
-    }
+        { this->physrigidbody->setAngularFactor(Factor.GetBulletVector3()); }
 
-    Vector3 ActorRigid::GetAngularMovementFactor()
-    {
-        Vector3 AngFact(this->physrigidbody->getAngularFactor());
-        return AngFact;
-    }
+    Vector3 ActorRigid::GetAngularMovementFactor() const
+        { return Vector3(this->physrigidbody->getAngularFactor()); }
 
-    void ActorRigid::AddObjectToWorld(World *TargetWorld)
+    void ActorRigid::AddObjectToWorld()
     {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
+        World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
-    void ActorRigid::RemoveObjectFromWorld(World* TargetWorld)
+    void ActorRigid::RemoveObjectFromWorld()
     {
-        btSoftRigidDynamicsWorld* BWorld = TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer();
+        btSoftRigidDynamicsWorld* BWorld = World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer();
         BWorld->removeRigidBody(this->physrigidbody);
         this->DetachFromGraphics();
     }
 
     btRigidBody* ActorRigid::GetBulletObject()
-    {
-        return physrigidbody;
-    }
+        { return physrigidbody; }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Serialization
@@ -151,6 +134,12 @@ namespace phys{
 #ifdef PHYSXML
     void ActorRigid::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
+
+    String ActorRigid::GraphicsSettingsSerializableName() const
+        { return "ActorGraphicsSettings"; }
+
+    String ActorRigid::PhysicsSettingsSerializableName() const
+        { return "ActorRigidPhysicsSettings"; }
 
     void ActorRigid::ProtoSerialize(xml::Node& CurrentRoot) const
     {
@@ -163,7 +152,6 @@ namespace phys{
         else
             { SerializeError("Create set Version on ActorRigid node", SerializableName()); }
 
-
         xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
             ActorName.SetValue(this->GetName());
         xml::Attribute ActorFile = ActorNode.AppendAttribute("File");
@@ -172,6 +160,14 @@ namespace phys{
             ActorGroup.SetValue(this->GraphicsObject->getMesh()->getGroup());
         if( !(ActorName && ActorFile && ActorGroup) )
             { ThrowSerialError("creating ActorRigid Attributes");}
+
+        xml::Node LinearMovementFactor = ActorNode.AppendChild("LinearMovementFactor");
+        if (!LinearMovementFactor) { ThrowSerialError("create LinearMovementFactor Node"); }
+        this->GetLinearMovementFactor().ProtoSerialize(LinearMovementFactor);
+
+        xml::Node AngularMovementFactor = ActorNode.AppendChild("AngularMovementFactor");
+        if (!AngularMovementFactor) { ThrowSerialError("create AngularMovementFactor Node"); }
+        this->GetAngularMovementFactor().ProtoSerialize(AngularMovementFactor);
 
         ActorBase::ProtoSerialize(ActorNode);
     }
@@ -183,7 +179,20 @@ namespace phys{
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 this->ActorBase::ProtoDeSerialize(OneNode.GetChild(this->ActorBase::SerializableName()));
-                // This is incomplete
+
+                Vector3 TempVec;
+                xml::Node LinearMovementFactor = OneNode.GetChild("LinearMovementFactor").GetFirstChild();
+                if(!LinearMovementFactor)
+                    { DeSerializeError("locate LinearMovementFactor node",SerializableName()); }
+                TempVec.ProtoDeSerialize(LinearMovementFactor);
+                this->SetLinearMovementFactor(TempVec);
+
+                xml::Node AngularMovementFactor = OneNode.GetChild("AngularMovementFactor").GetFirstChild();
+                if(!AngularMovementFactor)
+                    { DeSerializeError("locate AngularMovementFactor node",SerializableName()); }
+                TempVec.ProtoDeSerialize(AngularMovementFactor);
+                this->SetAngularMovementFactor(TempVec);
+                // could not do Name, File, Group - done in ActorDeSerializer
             }else{
                 DeSerializeError("find usable serialization version",SerializableName());
             }

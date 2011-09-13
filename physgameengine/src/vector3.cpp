@@ -291,7 +291,7 @@ namespace phys
         return Dir;
     }
 
-    void Vector3::Inverse()
+    Vector3 Vector3::Inverse()
     {
         if (X!=0)
             X=1/X;
@@ -299,6 +299,7 @@ namespace phys
             Y=1/Y;
         if (Z!=0)
             Z=1/Z;
+        return *this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

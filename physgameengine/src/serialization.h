@@ -106,6 +106,8 @@ namespace phys
     ///         - Currently WorldNodes try to find the objects that are attached to them, and the attached tries to find the world node. (if one does not exist, this silently fails)
     ///     - Actors must come before constraints.
     ///     - Actors may have a WorldNode inside them, if this is the case, then the actor must come before Lights and ParticleEffects Attached to it.
+    ///     - Actors must be done before SoundSets
+    ///     - Sounds must be done before SoundSet (Still in progress)
     ///
     /// The easyiest way to meet these conditions and not consume an inordinate amount of computing resources, is to pay attention
     /// to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything  else
@@ -208,8 +210,13 @@ namespace phys
     ///     virtual std::istream& DeSerializer::DeSerializeAll(std::istream& Stream)
     ///     virtual DeSerializable* DeSerializer::ProtoDeSerialize(const xml::Node& OneNode) = 0;
     ///     virtual std::istream& DeSerializer::DeSerialize(std::istream& Stream)
+    ///     virtual String ContainerName() const = 0;
     /// };
     /// @endcode
+    /// The function ContainerName() should be used when creating and verifying the xml element that is parent to the items
+    /// DeSerialized by ProtoDeSerializeAll(). The Default implmentation of DeSerializeAll() will use ContainerName to
+    /// verify it has extracted the correct Node.
+    /// \n \n
     /// There is no technical reason why a class cannot be both a serializer and a deserializer, or even multiple kinds of
     /// Serializers or DeSerializers. To keep things simple the Managers provided by the physgame engine will store a pointer
     /// to the appropriate Serializer when one is required.
@@ -366,8 +373,8 @@ namespace phys
         virtual std::istream& DeSerializeAll(std::istream& Stream)
         {
             phys::String OneTag( phys::xml::GetOneTag(Stream) );
-            std::auto_ptr<phys::xml::Document> Doc(phys::xml::PreParseClassFromSingleTag(DeSerializable::SerializableName(), OneTag) );
-            ProtoDeSerializeAll(*Doc);
+            std::auto_ptr<phys::xml::Document> Doc(phys::xml::PreParseClassFromSingleTag(this->ContainerName(), OneTag) );
+            ProtoDeSerializeAll(Doc->GetFirstChild());
             return Stream;
         }
 
@@ -385,9 +392,13 @@ namespace phys
         {
             phys::String OneTag( phys::xml::GetOneTag(Stream) );
             std::auto_ptr<phys::xml::Document> Doc(phys::xml::PreParseClassFromSingleTag(DeSerializable::SerializableName(), OneTag) );
-            ProtoDeSerialize(*Doc);
+            ProtoDeSerialize(Doc->GetFirstChild());
             return Stream;
         }
+
+        /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized
+        /// @return A String that correctly indicates the name of an xml tag.
+        virtual String ContainerName() const = 0;
         #endif
     };
 

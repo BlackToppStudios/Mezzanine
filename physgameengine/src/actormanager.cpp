@@ -76,13 +76,13 @@ namespace phys
     void ActorManager::AddActor(ActorBase* Actor)
     {
         Actors->AddActor(Actor);
-        Actor->AddObjectToWorld(GameWorld);
+        Actor->AddObjectToWorld();
     }
 
     void ActorManager::RemoveActor(ActorBase* Actor)
     {
         Actors->RemoveActor(Actor);
-        Actor->RemoveObjectFromWorld(GameWorld);
+        Actor->RemoveObjectFromWorld();
     }
 
     void ActorManager::RemoveAllActors()
@@ -94,7 +94,7 @@ namespace phys
         for( Whole ActCur = 0 ; ActCur < Actors->GetActorCount() ; ActCur++ )
         {
             Act = Actors->GetAtCursor();
-            Act->RemoveObjectFromWorld(GameWorld);
+            Act->RemoveObjectFromWorld();
             Actors->CursorToNext();
         }
         Actors->RemoveAllActors();
@@ -118,7 +118,7 @@ namespace phys
         for( Whole ActCur = 0 ; ActCur < Actors->GetActorCount() ; ActCur++ )
         {
             Act = Actors->GetAtCursor();
-            Act->RemoveObjectFromWorld(GameWorld);
+            Act->RemoveObjectFromWorld();
             delete Act;
             Actors->CursorToNext();
         }

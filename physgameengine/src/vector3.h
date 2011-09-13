@@ -353,7 +353,8 @@ namespace phys
 
         /// @brief This will inverse the reals in the vector.
         /// @details This function will inverse all the reals in the vector.
-        void Inverse();
+        /// @returns A copy of of the current Vector3
+        Vector3 Inverse();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Manual Conversions

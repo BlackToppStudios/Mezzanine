@@ -86,11 +86,14 @@ namespace phys{
         delete MotionState;
         //delete GraphicsObject;
         World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
-        delete ActorWorldNode;
-        if(CollisionObject)
+        delete CollisionObject;
+
+        if (World::GetWorldPointer()->GetSceneManager())
         {
-            delete CollisionObject;
-        }
+            if (0!=this->ActorWorldNode && !World::GetWorldPointer()->GetSceneManager()->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+            { delete this->ActorWorldNode; }
+        } else
+            { delete this->ActorWorldNode; }
     }
 
     ///////////////////////////////////
@@ -325,9 +328,9 @@ namespace phys{
         xml::Node OrientationNode = ActorNode.AppendChild("Orientation");
         if(!OrientationNode)  { ThrowSerialError("create OrientationNode"); }
 
-        SloppyProtoSerialize( this->GetOrientation(), OrientationNode);
-        SloppyProtoSerialize( *(this->GetGraphicsSettings()), ActorNode );
-        SloppyProtoSerialize( *(this->GetPhysicsSettings()), ActorNode );
+        this->GetOrientation().ProtoSerialize(OrientationNode);
+        this->GetGraphicsSettings()->ProtoSerialize(ActorNode);
+        this->GetPhysicsSettings()->ProtoSerialize(ActorNode);
 
         xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
             ActorName.SetValue(this->GetName());
@@ -353,7 +356,7 @@ namespace phys{
             if(!ActorWorldNode.SetValue(this->ActorWorldNode->GetName()))
                 {ThrowSerialError("store WorldNode Name");}
         }else{
-            SloppyProtoSerialize( *(this->ActorWorldNode),ActorNode);
+            SloppyProtoSerialize( *(this->ActorWorldNode),ActorNode);                                   //Serialization performed in older style
         }
     }
 
@@ -370,6 +373,16 @@ namespace phys{
                 TempVec.ProtoDeSerialize(LocationNode);
                 this->SetLocation(TempVec);
 
+                xml::Node GraphicsSettingsNode = OneNode.GetChild(this->GraphicsSettingsSerializableName());
+                if(!GraphicsSettingsNode)
+                    { DeSerializeError("locate Graphics Settings node",SerializableName()); }
+                this->GetGraphicsSettings()->ProtoDeSerialize(GraphicsSettingsNode);
+
+                xml::Node PhysicsSettingsNode = OneNode.GetChild(this->PhysicsSettingsSerializableName());
+                if(!PhysicsSettingsNode)
+                    { DeSerializeError(String("locate Physics Settings node, ")+this->PhysicsSettingsSerializableName()+", ",SerializableName()); }
+                this->GetPhysicsSettings()->ProtoDeSerialize(PhysicsSettingsNode);
+
                 xml::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
                 if(!ScalingNode)
                     { DeSerializeError("locate Scaling node",SerializableName()); }
@@ -383,74 +396,39 @@ namespace phys{
                 TempQuat.ProtoDeSerialize(OrientationNode);
                 this->SetOrientation(TempQuat);
 
-                //DeSerialize();
+                if( this->IsInWorld() != OneNode.GetAttribute("IsInWorld").AsBool() )
+                {
+                    if(this->IsInWorld())
+                        { this->RemoveObjectFromWorld(); }
+                    else
+                        { this->AddObjectToWorld(); }
+                }
 
-       /*
+                if( 0!=OneNode.GetAttribute("SoundSet") && ""!=OneNode.GetAttribute("SoundSet").AsString())
+                    { this->ActorSounds = World::GetWorldPointer()->GetSoundManager()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
+                else
+                    { this->ActorSounds = 0; }
 
-
-        SloppyProtoSerialize( this->GetOrientation(), OrientationNode);
-        SloppyProtoSerialize( *(this->GetGraphicsSettings()), ActorNode );
-        SloppyProtoSerialize( *(this->GetPhysicsSettings()), ActorNode );
-
-        xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
-            ActorName.SetValue(this->GetName());
-        xml::Attribute ActorVersion = ActorNode.AppendAttribute("Version");
-            ActorVersion.SetValue(1);
-        xml::Attribute ActorIsInWorld = ActorNode.AppendAttribute("IsInWorld");
-            ActorIsInWorld.SetValue(this->IsInWorld());
-        if ( !(ActorName && ActorVersion && ActorIsInWorld) )
-            { ThrowSerialError("create ActorNode Attributes"); }
-
-        xml::Attribute ActorSoundSetName = ActorNode.AppendAttribute("SoundSet");
-        if(this->ActorSounds)
-        {
-            ActorSoundSetName.SetValue(this->ActorSounds->GetName());
-        }else{
-            ActorSoundSetName.SetValue("");
-        }
-
-        // if actor node is in scenemanager just save a name
-        if( World::GetWorldPointer()->GetSceneManager(0)->GetNode( this->ActorWorldNode->GetName() ) )
-        {
-            xml::Attribute ActorWorldNode = ActorNode.AppendAttribute("WorldNode");
-            if(!ActorWorldNode.SetValue(this->ActorWorldNode->GetName()))
-                {ThrowSerialError("store WorldNode Name");}
-        }else{
-            SloppyProtoSerialize( *(this->ActorWorldNode),ActorNode);
-        }
-    }
-     */
-
-
-
-               /* xml::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
-                if(!DualTranny)
-                    { DeSerializeError("locate DualTransforn node",SerializableName()); }
-                this->DualTransformConstraint::ProtoDeSerialize(DualTranny);
-
-                xml::Node MotorNode = OneNode.GetChild("Motor");
-                if(!MotorNode)
-                    { DeSerializeError("locate Motor node",SerializableName()); }
-
-                xml::Node LimitNode = OneNode.GetChild("Limits");
-                if(!LimitNode)
-                    { DeSerializeError("locate Limits node",SerializableName()); }
-
-                this->SetUseReferenceFrameA(OneNode.GetAttribute("ReferenceInA").AsBool());
-                this->SetUseFrameOffset(OneNode.GetAttribute("UseFrameOffset").AsBool());
-
-                this->EnableMotor(
-                    MotorNode.GetAttribute("Enabled").AsBool(),
-                    MotorNode.GetAttribute("TargetVelocity").AsReal(),
-                    MotorNode.GetAttribute("MaxImpulse").AsReal() );
-
-                this->SetLimit(
-                    LimitNode.GetAttribute("Low").AsReal(),
-                    LimitNode.GetAttribute("High").AsReal(),
-                    LimitNode.GetAttribute("Softness").AsReal(),
-                    LimitNode.GetAttribute("BiasFactor").AsReal(),
-                    LimitNode.GetAttribute("RelaxationFactor").AsReal() );
-                    */
+                if(0==OneNode.GetAttribute("WorldNode"))         // Are we dealing with a WorldNode Node or WorldNode Attribute.
+                {
+                    //Since the Attribute didn't exist we must have a node
+                    xml::Node ActorWorldNode = OneNode.GetChild("WorldNode");                               // Assumption made base on old style serialization
+                    if(!ActorWorldNode)
+                        { DeSerializeError("locate ActorWorldNode node",SerializableName()); }
+                    if (0!=this->ActorWorldNode && !World::GetWorldPointer()->GetSceneManager(0)->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+                        { delete this->ActorWorldNode; }
+                    this->ActorWorldNode = new WorldNode(ActorWorldNode.GetAttribute("Name").AsString(),0);
+                    ActorWorldNode >> *(this->ActorWorldNode);                                              // Deserialized with old style serialization
+                }else{
+                    WorldNode *TempWorldNode = World::GetWorldPointer()->GetSceneManager(0)->GetNode(OneNode.GetAttribute("WorldNode").AsString());
+                    if( TempWorldNode == this->ActorWorldNode )
+                        { return; }                                                                         //This already has the correct node we are done
+                    if (0!=this->ActorWorldNode && !World::GetWorldPointer()->GetSceneManager(0)->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+                        { delete this->ActorWorldNode; }
+                    this->ActorWorldNode = TempWorldNode;                                                   // The old node has bee cleaned up and the new node is in place
+                    if (0==this->ActorWorldNode)
+                        { DeSerializeError("locate ActorWorldNode attribute",SerializableName()); }
+                }
             }else{
                 DeSerializeError("find usable serialization version",SerializableName());
             }

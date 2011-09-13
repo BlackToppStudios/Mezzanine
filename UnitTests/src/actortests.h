@@ -108,7 +108,7 @@ class ActorTests : public UnitTestGroup
                     }else{
                         AddTestResult("Actor::operator<< (ActorGraphicsSetting-empty)", Failed, UnitTestGroup::OverWrite);
                     }
-                               //""
+
                     String Test2("<ActorGraphicsSettings Version=\"1\"><AmbientMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.1\" Green=\"0.2\" Blue=\"0.3\" Alpha=\"0.4\" /></AmbientMaterial><SpecularMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.2\" Green=\"0.3\" Blue=\"0.4\" Alpha=\"0.5\" /></SpecularMaterial><DiffuseMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.3\" Green=\"0.4\" Blue=\"0.5\" Alpha=\"0.6\" /></DiffuseMaterial></ActorGraphicsSettings>");
                     if (Test2 == SerializeTestA2.str())
                     {
@@ -117,7 +117,8 @@ class ActorTests : public UnitTestGroup
                         AddTestResult("Actor::operator<< (ActorGraphicsSetting-3colour)", Failed, UnitTestGroup::OverWrite);
                     }
 
-                    String Testp1("<ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0\" LinearDamping=\"0\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.5\" Restitution=\"0\" Kinematic=\"false\" Static=\"false\" CollisionResponse=\"true\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" CCDMotionThreshold=\"0\" CCDSphereRadius=\"0\" /></ActorRigidPhysicsSettings>");
+                    String Testp1("<ActorRigidPhysicsSettings Version=\"1\" Mass=\"20\" AngularDamping=\"0\" LinearDamping=\"0\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><LocalInertia><Vector3 Version=\"1\" X=\"19424.6\" Y=\"4784.22\" Z=\"17336.3\" /></LocalInertia><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.5\" Restitution=\"0\" Kinematic=\"false\" Static=\"false\" CollisionResponse=\"true\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" CCDMotionThreshold=\"0\" CCDSphereRadius=\"0\" /></ActorRigidPhysicsSettings>");
+
                     if ( Testp1 == SerializeTestP1.str())
                     {
                         AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-empty)", Success, UnitTestGroup::OverWrite);
@@ -125,7 +126,7 @@ class ActorTests : public UnitTestGroup
                         AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-empty)", Failed, UnitTestGroup::OverWrite);
                     }
 
-                    String Testp2("<ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0.01\" LinearDamping=\"0.9\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0.9\" Y=\"9.8\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.01\" Restitution=\"0\" Kinematic=\"false\" Static=\"false\" CollisionResponse=\"true\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" CCDMotionThreshold=\"0.02\" CCDSphereRadius=\"0.03\" /></ActorRigidPhysicsSettings>");
+                    String Testp2("<ActorRigidPhysicsSettings Version=\"1\" Mass=\"20\" AngularDamping=\"0.01\" LinearDamping=\"0.9\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0.9\" Y=\"9.8\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><LocalInertia><Vector3 Version=\"1\" X=\"19424.6\" Y=\"4784.22\" Z=\"17336.3\" /></LocalInertia><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.01\" Restitution=\"0\" Kinematic=\"false\" Static=\"false\" CollisionResponse=\"true\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" CCDMotionThreshold=\"0.02\" CCDSphereRadius=\"0.03\" /></ActorRigidPhysicsSettings>");
                     if (Testp2 == SerializeTestP2.str())
                     {
                         AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-populated)", Success, UnitTestGroup::OverWrite);
@@ -133,8 +134,7 @@ class ActorTests : public UnitTestGroup
                         AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-populated)", Failed, UnitTestGroup::OverWrite);
                     }
 
-                    //cout  << endl << endl << SerializeTestWhole1.str() << endl << endl;
-                    String TestWhole1("<ActorRigid Version=\"1\" Name=\"ABasicRobot\" File=\"robot.mesh\" Group=\"Group1\"><ActorBase Name=\"ABasicRobot\" Version=\"1\" IsInWorld=\"false\" SoundSet=\"\"><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><ActorGraphicsSettings Version=\"1\" /><ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0\" LinearDamping=\"0\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.5\" Restitution=\"0\" Kinematic=\"false\" Static=\"false\" CollisionResponse=\"true\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" CCDMotionThreshold=\"0\" CCDSphereRadius=\"0\" /></ActorRigidPhysicsSettings><WorldNode Version=\"1\" Name=\"Unnamed_1\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location></WorldNode></ActorBase></ActorRigid>");
+                    String TestWhole1("<ActorRigid Version=\"1\" Name=\"ABasicRobot\" File=\"robot.mesh\" Group=\"Group1\"><LinearMovementFactor><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></LinearMovementFactor><AngularMovementFactor><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMovementFactor><ActorBase Name=\"ABasicRobot\" Version=\"1\" IsInWorld=\"false\" SoundSet=\"\"><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><ActorGraphicsSettings Version=\"1\" /><ActorRigidPhysicsSettings Version=\"1\" Mass=\"20\" AngularDamping=\"0\" LinearDamping=\"0\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><LocalInertia><Vector3 Version=\"1\" X=\"19424.6\" Y=\"4784.22\" Z=\"17336.3\" /></LocalInertia><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.5\" Restitution=\"0\" Kinematic=\"false\" Static=\"false\" CollisionResponse=\"true\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" CCDMotionThreshold=\"0\" CCDSphereRadius=\"0\" /></ActorRigidPhysicsSettings><WorldNode Version=\"1\" Name=\"Unnamed_1\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location></WorldNode></ActorBase></ActorRigid>");
                     if ( TestWhole1 == SerializeTestWhole1.str())
                     {
                         AddTestResult("Actor::operator<< (ActorRigid-empty)", Success, UnitTestGroup::OverWrite);
@@ -142,9 +142,7 @@ class ActorTests : public UnitTestGroup
                         AddTestResult("Actor::operator<< (ActorRigid-empty)", Failed, UnitTestGroup::OverWrite);
                     }
 
-                    //cout  << endl << endl << SerializeTestWhole2.str() << endl << endl;
-                                    //"<ActorRigid Version=\"1\" Name=\"ABasicRobot\" File=\"robot.mesh\" Group=\"Group1\"><ActorBase Name=\"ABasicRobot\" Version=\"1\" IsInWorld=\"false\" SoundSet=\"\"><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><ActorGraphicsSettings Version=\"1\"><AmbientMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.1\" Green=\"0.2\" Blue=\"0.3\" Alpha=\"0.4\" /></AmbientMaterial><SpecularMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.2\" Green=\"0.3\" Blue=\"0.4\" Alpha=\"0.5\" /></SpecularMaterial><DiffuseMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.3\" Green=\"0.4\" Blue=\"0.5\" Alpha=\"0.6\" /></DiffuseMaterial></ActorGraphicsSettings><ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0.01\" LinearDamping=\"0.9\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0.9\" Y=\"9.8\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.01\" Restitution=\"0\" Kinematic=\"false\" Static=\"false\" CollisionResponse=\"true\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" CCDMotionThreshold=\"0.02\" CCDSphereRadius=\"0.03\" /></ActorRigidPhysicsSettings><WorldNode Version=\"1\" Name=\"Unnamed_1\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location></WorldNode></ActorBase></ActorRigid>"
-                    String TestWhole2("<ActorRigid Version=\"1\" Name=\"ABasicRobot\" File=\"robot.mesh\" Group=\"Group1\"><ActorBase Name=\"ABasicRobot\" Version=\"1\" IsInWorld=\"false\" SoundSet=\"\"><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><ActorGraphicsSettings Version=\"1\"><AmbientMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.1\" Green=\"0.2\" Blue=\"0.3\" Alpha=\"0.4\" /></AmbientMaterial><SpecularMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.2\" Green=\"0.3\" Blue=\"0.4\" Alpha=\"0.5\" /></SpecularMaterial><DiffuseMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.3\" Green=\"0.4\" Blue=\"0.5\" Alpha=\"0.6\" /></DiffuseMaterial></ActorGraphicsSettings><ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0.01\" LinearDamping=\"0.9\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0.9\" Y=\"9.8\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.01\" Restitution=\"0\" Kinematic=\"false\" Static=\"false\" CollisionResponse=\"true\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" CCDMotionThreshold=\"0.02\" CCDSphereRadius=\"0.03\" /></ActorRigidPhysicsSettings><WorldNode Version=\"1\" Name=\"Unnamed_1\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location></WorldNode></ActorBase></ActorRigid>");
+                    String TestWhole2("<ActorRigid Version=\"1\" Name=\"ABasicRobot\" File=\"robot.mesh\" Group=\"Group1\"><LinearMovementFactor><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></LinearMovementFactor><AngularMovementFactor><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMovementFactor><ActorBase Name=\"ABasicRobot\" Version=\"1\" IsInWorld=\"false\" SoundSet=\"\"><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><ActorGraphicsSettings Version=\"1\"><AmbientMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.1\" Green=\"0.2\" Blue=\"0.3\" Alpha=\"0.4\" /></AmbientMaterial><SpecularMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.2\" Green=\"0.3\" Blue=\"0.4\" Alpha=\"0.5\" /></SpecularMaterial><DiffuseMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.3\" Green=\"0.4\" Blue=\"0.5\" Alpha=\"0.6\" /></DiffuseMaterial></ActorGraphicsSettings><ActorRigidPhysicsSettings Version=\"1\" Mass=\"20\" AngularDamping=\"0.01\" LinearDamping=\"0.9\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0.9\" Y=\"9.8\" Z=\"0\" /></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></TotalForce><LocalInertia><Vector3 Version=\"1\" X=\"19424.6\" Y=\"4784.22\" Z=\"17336.3\" /></LocalInertia><ActorBasePhysicsSettings Version=\"1\" CollisionShape=\"ABasicRobotShape\" Friction=\"0.01\" Restitution=\"0\" Kinematic=\"false\" Static=\"false\" CollisionResponse=\"true\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" CCDMotionThreshold=\"0.02\" CCDSphereRadius=\"0.03\" /></ActorRigidPhysicsSettings><WorldNode Version=\"1\" Name=\"Unnamed_1\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.436852\" Y=\"0.436852\" Z=\"0\" W=\"0.786334\" /></Orientation><Location><Vector3 Version=\"1\" X=\"400\" Y=\"70\" Z=\"100\" /></Location></WorldNode></ActorBase></ActorRigid>");
                     if (TestWhole2 == SerializeTestWhole2.str())
                     {
                         AddTestResult("Actor::operator<< (ActorRigid-populated)", Success, UnitTestGroup::OverWrite);
@@ -159,6 +157,7 @@ class ActorTests : public UnitTestGroup
                     object1->GetPhysicsSettings()->SetIndividualGravity(phys::Vector3(0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetFriction(0.00);
                     object1->GetPhysicsSettings()->SetCCDParams(0.00,0.00);
+                    object1->GetActorNode()->SetLocation(Vector3(10.0,11.0,12.0));
 
                     SerializeTestA1 >> *(object1->GetGraphicsSettings());
                     std::stringstream DeSerializeTestA1;
@@ -168,7 +167,6 @@ class ActorTests : public UnitTestGroup
                     std::stringstream DeSerializeTestA2;
                     DeSerializeTestA2 << *(object1->GetGraphicsSettings());
 
-                    cout  << endl << endl << DeSerializeTestA1.str() << endl << endl;
                     if ( Test1 == DeSerializeTestA1.str() )
                     {
                         AddTestResult("Actor::operator>> (ActorGraphicsSetting-empty)", Success, UnitTestGroup::OverWrite);
@@ -191,6 +189,7 @@ class ActorTests : public UnitTestGroup
                     object1->GetPhysicsSettings()->SetIndividualGravity(phys::Vector3(0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetFriction(0.00);
                     object1->GetPhysicsSettings()->SetCCDParams(0.00,0.00);
+                    object1->GetActorNode()->SetLocation(Vector3(10.0,11.0,12.0));
 
                     SerializeTestP1 >> *(object1->GetPhysicsSettings());
                     std::stringstream DeSerializeTestP1;
@@ -226,13 +225,12 @@ class ActorTests : public UnitTestGroup
                     SerializeTestWhole1 >> *object1;
                     std::stringstream DeSerializeTestWhole1;
                     DeSerializeTestWhole1 << *object1;
-                    cout << endl << endl <<  *object1;
 
                     SerializeTestWhole2 >> *object1;
                     std::stringstream DeSerializeTestWhole2;
                     DeSerializeTestWhole2 << *object1;
-                    cout << endl << endl <<  *object1 << endl << endl ;
 
+//cout  << endl << endl << TestWhole1 << endl << " == " << endl << DeSerializeTestWhole1.str() << endl << endl;
                     if ( TestWhole1 == DeSerializeTestWhole1.str() )
                     {
                         AddTestResult("Actor::operator>> (ActorRigid-empty)", Success, UnitTestGroup::OverWrite);
@@ -240,6 +238,7 @@ class ActorTests : public UnitTestGroup
                         AddTestResult("Actor::operator>> (ActorRigid-empty)", Failed, UnitTestGroup::OverWrite);
                     }
 
+//cout  << endl << endl << TestWhole2 << endl << " == " << endl << DeSerializeTestWhole2.str() << endl << endl;
                     if ( TestWhole2 == DeSerializeTestWhole2.str() )
                     {
                         AddTestResult("Actor::operator>> (ActorRigid-populated)", Success, UnitTestGroup::OverWrite);
@@ -249,18 +248,20 @@ class ActorTests : public UnitTestGroup
 
                     std::stringstream DeSerializerTest1, DeSerializerTest2, DeSerializerTest1RS, DeSerializerTest2RS;
                     DeSerializerTest1 << TestWhole1 ;
-                    DeSerializerTest2 << "<Actors>" << TestWhole2 << TestWhole2 << "</Actors>";
+                    DeSerializerTest2 << "<RigidActors>" << TestWhole2 << "</RigidActors>";
 
                     ActorRigidDeSerializer ActorFactory(TheWorld->GetActorManager());
 
                     TheWorld->GetActorManager()->RemoveAllActors();
+                    delete object1;
                     ActorFactory.DeSerialize(DeSerializerTest1);
-                    DeSerializerTest1RS << TheWorld->GetActorManager()->GetActor(0);
+                    DeSerializerTest1RS << *(dynamic_cast<ActorRigid*>(TheWorld->GetActorManager()->GetActor("ABasicRobot")));
 
                     TheWorld->GetActorManager()->RemoveAllActors();
+                    delete object1;
                     ActorFactory.DeSerializeAll(DeSerializerTest2);
-                    DeSerializerTest2RS << "<Actors>" << TheWorld->GetActorManager()->GetActor(0) << TheWorld->GetActorManager()->GetActor(1) << "</Actors>";
-
+                    DeSerializerTest2RS << "<RigidActors>" << *( dynamic_cast<ActorRigid*>(TheWorld->GetActorManager()->GetActor("ABasicRobot")) ) << "</RigidActors>";
+cout  << endl << endl << TestWhole1 << endl << " == " << endl << DeSerializerTest1RS.str() << endl << endl;
                     if (TestWhole1 == DeSerializerTest1RS.str())
                     {
                         AddTestResult("ActorRigidDeSerializer::DeSerialize()", Success, UnitTestGroup::OverWrite);
@@ -268,6 +269,7 @@ class ActorTests : public UnitTestGroup
                         AddTestResult("ActorRigidDeSerializer::DeSerialize()", Failed, UnitTestGroup::OverWrite);
                     }
 
+cout  << endl << endl << DeSerializerTest2.str() << endl << " == " << endl << DeSerializerTest2RS.str() << endl << endl;
                     if (DeSerializerTest2.str() == DeSerializerTest2RS.str())
                     {
                         AddTestResult("ActorRigidDeSerializer::DeSerializeAll()", Success, UnitTestGroup::OverWrite);
