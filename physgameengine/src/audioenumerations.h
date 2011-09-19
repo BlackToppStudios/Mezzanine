@@ -37,90 +37,28 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uicell_cpp
-#define _uicell_cpp
-
-#include "uicell.h"
+#ifndef _audioenumerations_h
+#define _audioenumerations_h
+///////////////////////////////////////////////////////////////////////////////
+//Any global enumerations shared between multiple classes in the Audio namespace is to be declared here.
+///////////////////////////////////////
 
 namespace phys
 {
-    namespace UI
+    namespace Audio
     {
-        Cell::Cell(const String& name, Layer* parent)
-            : Widget(name,parent),
-              SortPriority(0),
-              Selected(false),
-              Callback(NULL)
+        /// @enum SoundType
+        /// @brief Used by the sound class to determine what type of sound it is.
+        /// @details Classifying what type of sound a sound instance is allows it to be affected by functions
+        /// that globally affect that pool.
+        enum SoundType
         {
-            Type = Widget::W_Cell;
-        }
-
-        Cell::~Cell()
-        {
-            if(Callback)
-                delete Callback;
-        }
-
-        void Cell::SetPriority(const Whole& Priority)
-        {
-            SortPriority = Priority;
-        }
-
-        Whole Cell::GetPriority()
-        {
-            return SortPriority;
-        }
-
-        void Cell::SetSelected(bool Select)
-        {
-            if(Select)
-            {
-                if(Callback)
-                    Callback->DoSelectedItems();
-            }else{
-                if(Callback)
-                    Callback->DoUnselectedItems();
-            }
-            Selected = Select;
-        }
-
-        bool Cell::IsSelected()
-        {
-            return Selected;
-        }
-
-        void Cell::SetCellCallback(CellCallback* CB)
-        {
-            if(Callback != CB && Callback)
-                delete Callback;
-            CB->SetCaller(this);
-            Callback = CB;
-        }
-
-        bool Cell::operator<(Cell* Other)
-        {
-            return SortPriority < Other->GetPriority();
-        }
-
-        bool Cell::operator>(Cell* Other)
-        {
-            return SortPriority > Other->GetPriority();
-        }
-
-        CellCallback::CellCallback()
-            : Caller(NULL)
-        {
-        }
-
-        CellCallback::~CellCallback()
-        {
-        }
-
-        void CellCallback::SetCaller(Cell* Caller)
-        {
-            this->Caller = Caller;
-        }
-    }//ui
+            ST_Ambient,  ///< Environmental sounds.  Bird's chirping, water washing against rocks, etc.
+            ST_Dialog,   ///< Character sounds and speech.
+            ST_Effect,   ///< Various effects such as objects colliding, explosions, guns firing, etc.
+            ST_Music     ///< Self explanitory.  The game SoundTrack.
+        };
+    }//audio
 }//phys
 
 #endif

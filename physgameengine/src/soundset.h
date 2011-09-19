@@ -37,52 +37,57 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uiresizinginfo_h
-#define _uiresizinginfo_h
+#ifndef _soundset_h
+#define _soundset_h
 
-#include "uienumerations.h"
-#include "vector2.h"
+#include "datatypes.h"
+#include "sound.h"
+#include <vector>
 
 namespace phys
 {
-    namespace UI
+    namespace Audio
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @struct ResizingInfo
-        /// @headerfile uiresizinginfo.h
-        /// @brief This is a helper struct for use in resizing UI containers.
-        /// @details This struct contains all the information necessary to define complete behavior of
-        /// repositioning and resizing child UI elements in a container.
-        ///////////////////////////////////////
-        template<class T> struct PHYS_LIB ResizingInfo
+        /// @brief This is a vector that stores sounds.
+        /// @details This is a vector and can be use to store sounds that can be grouped together
+        /// for similiar purposes or similiar content for easy tracking.
+        ///////////////////////////////////////////////////////////////////////////////
+        class PHYS_LIB SoundSet : public std::vector< Sound* >
         {
-            /// @brief The class this template applies to.
-            T Object;
-            /// @brief How the object's position is anchored to the container on a resize.
-            UI::ResizeableAnchor Anchor;
-            /// @brief How the object's size is tethered to the container on a resize.
-            UI::ResizeableTether Tether;
-            /// @brief The objects offset from the containers position.
-            Vector2 Offset;
+            private:
+                /// @brief The name of the sound
+                String Name;
+            public:
+                /// @brief a Simple counter to insure unique names of soundsets
+                static Whole UnnamedInstanceCount;
 
-            /// @brief Standard constructor.
-            /// @param TheObject The object to be stored and all the following info applies to.
-            /// @param RA The Resize Anchor, see enum for more info.
-            /// @param RT The Resize Tether, see enum for more info.
-            /// @param Off The objects offset from the container position.
-            ResizingInfo(T TheObject, UI::ResizeableAnchor RA, UI::ResizeableTether RT, const Vector2& Off)
-                : Object(TheObject),
-                  Anchor(RA),
-                  Tether(RT),
-                  Offset(Off)
-            {
-            }
-            /// @brief Class destructor.
-            ~ResizingInfo()
-            {
-            }
-        };
-    }//UI
+                /// @brief Default constructor
+                SoundSet()
+                    { Name = StringCat("SoundSet",ToString(UnnamedInstanceCount++)); } // Name the First "SoundSet0" then the next "SoundSet1" and then "SoundSet2"...
+
+                /// @brief Default constructor
+                explicit SoundSet(const String& _Name) : Name(_Name)
+                    { }
+
+                /// @brief Get the name of the SoundSet
+                /// @return The Name of this SoundSet
+                const String& GetName() const
+                    { return Name; }
+
+                /// @brief Create an xml::Node describing this
+                /// @return An xml::Node
+                xml::Node ProtoSerialize() const;
+
+                /// @brief Create an xml::Node describing this
+                /// @return An xml::Node
+                void ProtoDeSerialize(const xml::Node&);
+
+                static String SerializableName();
+
+        };//soundset
+        /// Todo de/serialize sound set
+    }//Audio
 }//phys
 
 #endif

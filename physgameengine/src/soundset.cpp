@@ -37,90 +37,30 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uicell_cpp
-#define _uicell_cpp
+#ifndef _soundset_cpp
+#define _soundset_cpp
 
-#include "uicell.h"
+#include "soundset.h"
 
 namespace phys
 {
-    namespace UI
+    namespace Audio
     {
-        Cell::Cell(const String& name, Layer* parent)
-            : Widget(name,parent),
-              SortPriority(0),
-              Selected(false),
-              Callback(NULL)
+        Whole SoundSet::UnnamedInstanceCount = 0;
+
+        xml::Node SoundSet::ProtoSerialize() const
         {
-            Type = Widget::W_Cell;
+
         }
 
-        Cell::~Cell()
+        void SoundSet::ProtoDeSerialize(const xml::Node&)
         {
-            if(Callback)
-                delete Callback;
+
         }
 
-        void Cell::SetPriority(const Whole& Priority)
-        {
-            SortPriority = Priority;
-        }
-
-        Whole Cell::GetPriority()
-        {
-            return SortPriority;
-        }
-
-        void Cell::SetSelected(bool Select)
-        {
-            if(Select)
-            {
-                if(Callback)
-                    Callback->DoSelectedItems();
-            }else{
-                if(Callback)
-                    Callback->DoUnselectedItems();
-            }
-            Selected = Select;
-        }
-
-        bool Cell::IsSelected()
-        {
-            return Selected;
-        }
-
-        void Cell::SetCellCallback(CellCallback* CB)
-        {
-            if(Callback != CB && Callback)
-                delete Callback;
-            CB->SetCaller(this);
-            Callback = CB;
-        }
-
-        bool Cell::operator<(Cell* Other)
-        {
-            return SortPriority < Other->GetPriority();
-        }
-
-        bool Cell::operator>(Cell* Other)
-        {
-            return SortPriority > Other->GetPriority();
-        }
-
-        CellCallback::CellCallback()
-            : Caller(NULL)
-        {
-        }
-
-        CellCallback::~CellCallback()
-        {
-        }
-
-        void CellCallback::SetCaller(Cell* Caller)
-        {
-            this->Caller = Caller;
-        }
-    }//ui
+        String SoundSet::SerializableName()
+            { return String("SoundSet"); }
+    }//Audio
 }//phys
 
 #endif

@@ -59,10 +59,6 @@ namespace phys
     // Datatypes
     ///////////////////////////////////////
 
-    /// @internal
-    /// @brief Forward declaration for use with soundset
-    class Sound;
-
     /// @typedef Real
     /// @brief A Datatype used to represent a real floating point number
     /// @details This Datatype is currently a typedef to a float, This is to match

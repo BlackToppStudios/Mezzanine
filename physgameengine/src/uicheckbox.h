@@ -48,7 +48,7 @@ namespace phys
     namespace UI
     {
         class Button;
-        class MarkupText;
+        class Caption;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class CheckBox
         /// @headerfile uicheckbox.h
@@ -60,44 +60,47 @@ namespace phys
             protected:
                 friend class UIManager;
                 Button* Box;
-                MarkupText* Label;
-                /// @todo Fix the issue with all strings being const, so we can resume use of typedefs here.
-                std::pair<std::string,std::string> UncheckedSet;
-                std::pair<std::string,std::string> CheckedSet;
+                Caption* Label;
+                std::pair<String,String> UncheckedSet;
+                std::pair<String,String> CheckedSet;
                 Whole GlyphIndex;
                 bool Checked;
                 bool CheckLock;
+                /// @brief Constructs a checkbox.
+                void ConstructCheckBox(const RenderableRect& Rect, ConstString& LabelText);
+                /// @brief Sets both the background and hovered sprites of a set.
                 void SetSpriteSet(std::pair<std::string,std::string>& SpriteSet);
                 //void SetUncheckedSprites();
                 //void SetCheckedSprites();
-                virtual void Update(bool Force = false);
+                /// @brief Child specific update method.
+                virtual void UpdateImpl(bool Force = false);
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible);
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl();
             public:
                 /// @brief Class constructor
-                /// @details The dimensions provided
+                /// @param name The name of the checkbox.
+                /// @param Rect The Rect representing the position and size of the checkbox and label.  The checkbox itself will always be as wide as it is tall, with remaining space going to the label.
+                /// @param LineHeight The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well.
+                /// @param LabelText The text to put into the label.
+                /// @param PLayer Pointer to the Layer that created this checkbox.
+                CheckBox(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, ConstString& LabelText, Layer* PLayer);
+                /// @brief Class constructor
                 /// @param name The name of the checkbox.
                 /// @param Rect The Rect representing the position and size of the checkbox.
                 /// @param Glyph The glyph index to use for the text in the label.
                 /// @param LabelText The text to put into the label.
-                /// @param Layer Pointer to the Layer that created this checkbox.
-                CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString &LabelText, Layer* PLayer);
+                /// @param PLayer Pointer to the Layer that created this checkbox.
+                CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~CheckBox();
-                /// @brief Sets the visibility of this checkbox.
-                /// @param visible Bool determining whether or not this checkbox should be visible.
-                virtual void SetVisible(bool visible);
-                /// @brief Forces this checkbox to be shown.
-                virtual void Show();
-                /// @brief Forces this checkbox to hide.
-                virtual void Hide();
                 /// @brief Gets whether this checkbox is checked or not.
                 /// @return Returns a bool representing whether or not this checkbox is checked.
                 virtual bool IsChecked();
                 /// @brief Manually check or uncheck this checkbox.
                 /// @param Check The value to set the status of this checkbox.
                 virtual void ManualCheck(bool Check);
-                /// @brief Checks to see if the current mouse position is over this checkbox.
-                /// @return Returns a bool value, true if the mouse is over this checkbox, false if it's not.
-                virtual bool CheckMouseHover();
                 /// @brief Sets the text label to be displayed with this checkbox.
                 /// @details If a label hasn't been set when this is called, this funtion will create a
                 /// new one and set it.
@@ -121,36 +124,22 @@ namespace phys
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this checkbox.
                 virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative position of this checkbox.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this checkbox.
-                virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this checkbox.
                 /// @param Position A vector2 representing the pixel position of this checkbox.
                 virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this checkbox.
-                /// @return Returns a vector2 representing the pixel position of this checkbox.
-                virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this checkbox.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this checkbox.
                 virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this checkbox.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this checkbox.
-                virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this checkbox.
                 /// @param Size A vector2 representing the pixel size of this checkbox.
                 virtual void SetActualSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this checkbox.
-                /// @return Returns a vector2 representing the pixel size of this checkbox.
-                virtual Vector2 GetActualSize();
                 /// @brief Gets the Button this checkbox is based on.
                 /// @return Returns a pointer to the button this checkbox is based on.
                 Button* GetCheckBoxButton();
                 /// @brief Gets the label for this checkbox.
                 /// @return Returns a pointer to the label for this checkbox.
-                MarkupText* GetCheckBoxLabel();
+                Caption* GetLabel();
         };//Checkbox
     }//UI
 }//phys

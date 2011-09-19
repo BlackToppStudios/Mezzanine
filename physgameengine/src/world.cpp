@@ -141,8 +141,8 @@ namespace phys
             { this->AddManager(new ActorManager()); }
         if(this->GetGraphicsManager()==0)
             { this->AddManager(new GraphicsManager()); }
-        if(this->GetSoundManager()==0)
-            { this->AddManager(new SoundManager()); }
+        if(this->GetAudioManager()==0)
+            { this->AddManager(new AudioManager()); }
         if(this->GetResourceManager()==0)
             { this->AddManager(new ResourceManager()); }
         if(this->GetEventManager()==0)
@@ -344,8 +344,8 @@ namespace phys
     void World::LogString(const String& Message)
     {
         // if it is in the Audiologs then it has already happened so it needs to be logged first
-        if (this->GetSoundManager()->GetLogs())
-            { this->LogStream << this->GetSoundManager()->GetLogs()->str(); }
+        if (this->GetAudioManager()->GetLogs())
+            { this->LogStream << this->GetAudioManager()->GetLogs()->str(); }
         if(Message.size()>0)
             { this->LogStream << endl << Message; }
     }
@@ -661,6 +661,11 @@ namespace phys
         return dynamic_cast<ActorManager*> (this->GetManager(ManagerBase::ActorManager, WhichOne));
     }
 
+    AudioManager* World::GetAudioManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<AudioManager*> (this->GetManager(ManagerBase::AudioManager, WhichOne));
+    }
+
     CameraManager* World::GetCameraManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<CameraManager*> (this->GetManager(ManagerBase::CameraManager, WhichOne));
@@ -694,11 +699,6 @@ namespace phys
     SceneManager* World::GetSceneManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<SceneManager*> (this->GetManager(ManagerBase::SceneManager, WhichOne));
-    }
-
-    SoundManager* World::GetSoundManager(const short unsigned int &WhichOne)
-    {
-        return dynamic_cast<SoundManager*> (this->GetManager(ManagerBase::SoundManager, WhichOne));
     }
 
     ResourceManager* World::GetResourceManager(const short unsigned int &WhichOne)

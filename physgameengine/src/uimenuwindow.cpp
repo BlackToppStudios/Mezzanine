@@ -57,7 +57,7 @@ namespace phys
               MasterMenu(TheMenu),
               AutoHideWindow(true)
         {
-            Type = Widget::MenuWindow;
+            Type = Widget::W_MenuWindow;
         }
 
         MenuWindow::~MenuWindow()

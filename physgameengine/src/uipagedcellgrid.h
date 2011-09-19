@@ -41,7 +41,7 @@
 #define _uipagedcellgrid_h
 
 #include "uicellgrid.h"
-#include "enumerations.h"
+#include "uienumerations.h"
 
 namespace phys
 {
@@ -72,6 +72,10 @@ namespace phys
                 virtual void DrawGrid(const Vector2& WinDim);
                 /// @brief Determines whether or not the grid needs to be redrawn.
                 virtual bool GridNeedsRedraw();
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible);
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl();
             public:
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
@@ -83,13 +87,6 @@ namespace phys
                 PagedCellGrid(const String& name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent);
                 /// @brief Class destructor.
                 virtual ~PagedCellGrid();
-                /// @brief Sets the visibility of this widget.
-                /// @param visible Bool determining whether or not this widget should be visible.
-                virtual void SetVisible(bool visible);
-                /// @brief Forces this widget to be shown.
-                virtual void Show();
-                /// @brief Forces this widget to hide.
-                virtual void Hide();
                 /// @brief Sets the fixed size cells in this grid are to have.
                 /// @param FixedSize The fixed size to apply to cells.
                 virtual void SetFixedCellSize(const Vector2& FixedSize);
@@ -105,9 +102,6 @@ namespace phys
                 /// @details Default 0.01,0.01.
                 /// @param Spacing The minimum amount of space (in relative units) from each cell a given cell should be.
                 virtual void SetCellSpacing(const Vector2& Spacing);
-                /// @brief Checks to see if the current mouse position is over this widget.
-                /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
-                virtual bool CheckMouseHover();
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 /// @param OldViewportSize The old size of the viewport.

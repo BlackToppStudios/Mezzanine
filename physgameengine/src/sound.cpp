@@ -41,274 +41,319 @@
 #define _sound_cpp
 
 #include "sound.h"
+#include "audiomanager.h"
+#include "world.h"
 #include <cAudio.h>
+#include <Ogre.h>
 
 namespace phys
 {
-    Sound::Sound(cAudio::IAudioSource* Source, cAudio::IAudioManager* manager)
+    namespace Audio
     {
-        SoundSource = Source;
-        Manager = manager;
-    }
+        Sound::Sound(cAudio::IAudioSource* Source)
+            : BaseVolume(1.0)
+        {
+            SoundSource = Source;
+            Manager = World::GetWorldPointer()->GetAudioManager();
+            UpdateVolume();
+        }
 
-    Sound::~Sound()
-    {
-        Manager->release(SoundSource);
-    }
+        Sound::Sound(ConstString& SoundName, ConstString& FileName, ConstString& Group, Audio::SoundType SType)
+            : Type(SType),
+              BaseVolume(1.0)
+        {
+            Manager = World::GetWorldPointer()->GetAudioManager();
+            String Extension = FileName.substr(FileName.find_last_of(".")+1);
+            Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(FileName,Group);
+            char* buffer = new char[Stream->size()];
+            Stream->read((void*)buffer, Stream->size());
 
-    void Sound::Play()
-    {
-        SoundSource->play();
-    }
+            SoundSource = Manager->GetcAudioManager()->createFromMemory(SoundName.c_str(),buffer,Stream->size(),Extension.c_str());
+            delete[] buffer;
+            UpdateVolume();
+        }
 
-    void Sound::Play2d(bool Loop)
-    {
-        SoundSource->play2d(Loop);
-    }
+        Sound::~Sound()
+        {
+            Manager->GetcAudioManager()->release(SoundSource);
+        }
 
-    void Sound::Play3d(Vector3 Position, Real SoundStrength, bool Loop)
-    {
-        SoundSource->play3d(Position.GetcAudioVector3(), SoundStrength, Loop);
-    }
+        Real Sound::GetTypeVolume() const
+        {
+            switch(Type)
+            {
+                case Audio::ST_Ambient: return Manager->GetAmbientVolume();
+                case Audio::ST_Dialog: return Manager->GetDialogVolume();
+                case Audio::ST_Effect: return Manager->GetEffectVolume();
+                case Audio::ST_Music: return Manager->GetMusicVolume();
+                default: return 0;
+            }
+        }
 
-    void Sound::Pause()
-    {
-        SoundSource->pause();
-    }
+        void Sound::Play()
+        {
+            SoundSource->play();
+        }
 
-    void Sound::Stop()
-    {
-        SoundSource->stop();
-    }
+        void Sound::Play2d(bool Loop)
+        {
+            SoundSource->play2d(Loop);
+        }
 
-    void Sound::Loop(bool ToLoop)
-    {
-        SoundSource->loop(ToLoop);
-    }
+        void Sound::Play3d(const Vector3& Position, Real SoundStrength, bool Loop)
+        {
+            SoundSource->play3d(Position.GetcAudioVector3(), SoundStrength, Loop);
+        }
 
-    void Sound::Seek(Real Seconds, bool Relative)
-    {
-        SoundSource->seek(Seconds, Relative);
-    }
+        void Sound::Pause()
+        {
+            SoundSource->pause();
+        }
 
-    Real Sound::GetTotalAudioTime()
-    {
-        return SoundSource->getTotalAudioTime();
-    }
+        void Sound::Stop()
+        {
+            SoundSource->stop();
+        }
 
-    int Sound::GetTotalAudioSize()
-    {
-        return SoundSource->getTotalAudioSize();
-    }
+        void Sound::Loop(bool ToLoop)
+        {
+            SoundSource->loop(ToLoop);
+        }
 
-    int Sound::GetCompressedAudioSize()
-    {
-        return SoundSource->getCompressedAudioSize();
-    }
+        void Sound::Seek(const Real& Seconds, bool Relative)
+        {
+            SoundSource->seek(Seconds, Relative);
+        }
 
-    Real Sound::GetCurrentAudioTime()
-    {
-        return SoundSource->getCurrentAudioTime();
-    }
+        bool Sound::IsPlaying() const
+        {
+            return SoundSource->isPlaying();
+        }
 
-    int Sound::GetCurrentAudioPosition()
-    {
-        return SoundSource->getCurrentAudioPosition();
-    }
+        bool Sound::IsPaused() const
+        {
+            return SoundSource->isPaused();
+        }
 
-    int Sound::GetCurrentCompressedAudioPosition()
-    {
-        return SoundSource->getCurrentCompressedAudioPosition();
-    }
+        bool Sound::IsStopped() const
+        {
+            return SoundSource->isStopped();
+        }
 
-    bool Sound::IsPlaying()
-    {
-        return SoundSource->isPlaying();
-    }
+        bool Sound::IsLooping() const
+        {
+            return SoundSource->isLooping();
+        }
 
-    bool Sound::IsPaused()
-    {
-        return SoundSource->isPaused();
-    }
+        void Sound::SetBaseVolume(const Real& Base)
+        {
+            BaseVolume = Base;
+        }
 
-    bool Sound::IsStopped()
-    {
-        return SoundSource->isStopped();
-    }
+        Real Sound::GetBaseVolume() const
+        {
+            return BaseVolume;
+        }
 
-    bool Sound::IsLooping()
-    {
-        return SoundSource->isLooping();
-    }
+        Real Sound::GetVolume() const
+        {
+            return BaseVolume * GetTypeVolume() * Manager->GetMasterVolume();
+        }
 
-    void Sound::SetPosition(Vector3 Position)
-    {
-        SoundSource->setPosition(Position.GetcAudioVector3());
-    }
+        void Sound::SetMinVolume(const Real& MinVolume)
+        {
+            SoundSource->setMinVolume(MinVolume);
+        }
 
-    void Sound::SetVelocity(Vector3 Velocity)
-    {
-        SoundSource->setVelocity(Velocity.GetcAudioVector3());
-    }
+        Real Sound::GetMinVolume() const
+        {
+            return SoundSource->getMinVolume();
+        }
 
-    void Sound::SetDirection(Vector3 Direction)
-    {
-        SoundSource->setDirection(Direction.GetcAudioVector3());
-    }
+        void Sound::SetMaxVolume(const Real& MaxVolume)
+        {
+            SoundSource->setMaxVolume(MaxVolume);
+        }
 
-    void Sound::SetRolloffFactor(Real Rolloff)
-    {
-        SoundSource->setRolloffFactor(Rolloff);
-    }
+        Real Sound::GetMaxVolume() const
+        {
+            return SoundSource->getMaxVolume();
+        }
 
-    void Sound::SetStrength(Real SoundStrength)
-    {
-        SoundSource->setStrength(SoundStrength);
-    }
+        void Sound::UpdateVolume()
+        {
+            SoundSource->setVolume(BaseVolume * GetTypeVolume() * Manager->GetMasterVolume());
+        }
 
-    void Sound::SetMinDistance(Real MinDistance)
-    {
-        SoundSource->setMinDistance(MinDistance);
-    }
+        Real Sound::GetTotalAudioTime() const
+        {
+            return SoundSource->getTotalAudioTime();
+        }
 
-    void Sound::SetMaxDistance(Real MaxDistance)
-    {
-        SoundSource->setMaxDistance(MaxDistance);
-    }
+        int Sound::GetTotalAudioSize() const
+        {
+            return SoundSource->getTotalAudioSize();
+        }
 
-    void Sound::SetPitch(Real Pitch)
-    {
-        SoundSource->setPitch(Pitch);
-    }
+        int Sound::GetCompressedAudioSize() const
+        {
+            return SoundSource->getCompressedAudioSize();
+        }
 
-    void Sound::SetVolume(Real Volume)
-    {
-        SoundSource->setVolume(Volume);
-    }
+        Real Sound::GetCurrentAudioTime() const
+        {
+            return SoundSource->getCurrentAudioTime();
+        }
 
-    void Sound::SetMinVolume(Real MinVolume)
-    {
-        SoundSource->setMinVolume(MinVolume);
-    }
+        int Sound::GetCurrentAudioPosition() const
+        {
+            return SoundSource->getCurrentAudioPosition();
+        }
 
-    void Sound::SetMaxVolume(Real MaxVolume)
-    {
-        SoundSource->setMaxVolume(MaxVolume);
-    }
+        int Sound::GetCurrentCompressedAudioPosition() const
+        {
+            return SoundSource->getCurrentCompressedAudioPosition();
+        }
 
-    void Sound::SetInnerConeAngle(Real InnerAngle)
-    {
-        SoundSource->setInnerConeAngle(InnerAngle);
-    }
+        void Sound::SetPitch(const Real& Pitch)
+        {
+            SoundSource->setPitch(Pitch);
+        }
 
-    void Sound::SetOuterConeAngle(Real OuterAngle)
-    {
-        SoundSource->setOuterConeAngle(OuterAngle);
-    }
+        Real Sound::GetPitch() const
+        {
+            return SoundSource->getPitch();
+        }
 
-    void Sound::SetOuterConeVolume(Real OuterVolume)
-    {
-        SoundSource->setOuterConeVolume(OuterVolume);
-    }
+        void Sound::Move(const Vector3& Position)
+        {
+            SoundSource->move(Position.GetcAudioVector3());
+        }
 
-    void Sound::SetDopplerStrength(Real DopStr)
-    {
-        SoundSource->setDopplerStrength(DopStr);
-    }
+        void Sound::SetPosition(const Vector3& Position)
+        {
+            SoundSource->setPosition(Position.GetcAudioVector3());
+        }
 
-    void Sound::SetDopplerVelocity(Vector3 Velocity)
-    {
-        SoundSource->setDopplerVelocity(Velocity.GetcAudioVector3());
-    }
+        Vector3 Sound::GetPosition() const
+        {
+            Vector3 Pos(SoundSource->getPosition());
+            return Pos;
+        }
 
-    void Sound::Move(Vector3 Position)
-    {
-        SoundSource->move(Position.GetcAudioVector3());
-    }
+        void Sound::SetVelocity(const Vector3& Velocity)
+        {
+            SoundSource->setVelocity(Velocity.GetcAudioVector3());
+        }
 
-    Vector3 Sound::GetPosition()
-    {
-        Vector3 Pos(SoundSource->getPosition());
-        return Pos;
-    }
+        Vector3 Sound::GetVelocity() const
+        {
+            Vector3 Vel(SoundSource->getVelocity());
+            return Vel;
+        }
 
-    Vector3 Sound::GetVelocity()
-    {
-        Vector3 Vel(SoundSource->getVelocity());
-        return Vel;
-    }
+        void Sound::SetDirection(const Vector3& Direction)
+        {
+            SoundSource->setDirection(Direction.GetcAudioVector3());
+        }
 
-    Vector3 Sound::GetDirection()
-    {
-        Vector3 Dir(SoundSource->getDirection());
-        return Dir;
-    }
+        Vector3 Sound::GetDirection() const
+        {
+            Vector3 Dir(SoundSource->getDirection());
+            return Dir;
+        }
 
-    Real Sound::GetRolloffFactor()
-    {
-        return SoundSource->getRolloffFactor();
-    }
+        void Sound::SetRolloffFactor(const Real& Rolloff)
+        {
+            SoundSource->setRolloffFactor(Rolloff);
+        }
 
-    Real Sound::GetStrength()
-    {
-        return SoundSource->getStrength();
-    }
+        Real Sound::GetRolloffFactor() const
+        {
+            return SoundSource->getRolloffFactor();
+        }
 
-    Real Sound::GetMinDistance()
-    {
-        return SoundSource->getMinDistance();
-    }
+        void Sound::SetStrength(const Real& SoundStrength)
+        {
+            SoundSource->setStrength(SoundStrength);
+        }
 
-    Real Sound::GetMaxDistance()
-    {
-        return SoundSource->getMaxDistance();
-    }
+        Real Sound::GetStrength() const
+        {
+            return SoundSource->getStrength();
+        }
 
-    Real Sound::GetPitch()
-    {
-        return SoundSource->getPitch();
-    }
+        void Sound::SetMinDistance(const Real& MinDistance)
+        {
+            SoundSource->setMinDistance(MinDistance);
+        }
 
-    Real Sound::GetVolume()
-    {
-        return SoundSource->getVolume();
-    }
+        Real Sound::GetMinDistance() const
+        {
+            return SoundSource->getMinDistance();
+        }
 
-    Real Sound::GetMinVolume()
-    {
-        return SoundSource->getMinVolume();
-    }
+        void Sound::SetMaxDistance(const Real& MaxDistance)
+        {
+            SoundSource->setMaxDistance(MaxDistance);
+        }
 
-    Real Sound::GetMaxVolume()
-    {
-        return SoundSource->getMaxVolume();
-    }
+        Real Sound::GetMaxDistance() const
+        {
+            return SoundSource->getMaxDistance();
+        }
 
-    Real Sound::GetInnerConeAngle()
-    {
-        return SoundSource->getInnerConeAngle();
-    }
+        void Sound::SetInnerConeAngle(const Real& InnerAngle)
+        {
+            SoundSource->setInnerConeAngle(InnerAngle);
+        }
 
-    Real Sound::GetOuterConeAngle()
-    {
-        return SoundSource->getOuterConeAngle();
-    }
+        Real Sound::GetInnerConeAngle() const
+        {
+            return SoundSource->getInnerConeAngle();
+        }
 
-    Real Sound::GetOuterConeVolume()
-    {
-        return SoundSource->getOuterConeVolume();
-    }
+        void Sound::SetOuterConeAngle(const Real& OuterAngle)
+        {
+            SoundSource->setOuterConeAngle(OuterAngle);
+        }
 
-    Real Sound::GetDopplerStrength()
-    {
-        return SoundSource->getDopplerStrength();
-    }
+        Real Sound::GetOuterConeAngle() const
+        {
+            return SoundSource->getOuterConeAngle();
+        }
 
-    Vector3 Sound::GetDopplerVelocity()
-    {
-        Vector3 DopVel(SoundSource->getDopplerVelocity());
-        return DopVel;
-    }
-}
+        void Sound::SetOuterConeVolume(const Real& OuterVolume)
+        {
+            SoundSource->setOuterConeVolume(OuterVolume);
+        }
+
+        Real Sound::GetOuterConeVolume() const
+        {
+            return SoundSource->getOuterConeVolume();
+        }
+
+        void Sound::SetDopplerStrength(const Real& DopStr)
+        {
+            SoundSource->setDopplerStrength(DopStr);
+        }
+
+        Real Sound::GetDopplerStrength() const
+        {
+            return SoundSource->getDopplerStrength();
+        }
+
+        void Sound::SetDopplerVelocity(const Vector3& Velocity)
+        {
+            SoundSource->setDopplerVelocity(Velocity.GetcAudioVector3());
+        }
+
+        Vector3 Sound::GetDopplerVelocity() const
+        {
+            Vector3 DopVel(SoundSource->getDopplerVelocity());
+            return DopVel;
+        }
+    }//Audio
+}//phys
 
 #endif

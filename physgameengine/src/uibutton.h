@@ -43,7 +43,7 @@
 #include "colourvalue.h"
 #include "crossplatformexport.h"
 #include "datatypes.h"
-#include "enumerations.h"
+#include "uienumerations.h"
 #include "metacode.h"
 #include "uirenderablerect.h"
 
@@ -260,9 +260,11 @@ namespace phys
             public:
                 /// @brief Class constructor.
                 /// @param CallerButton The button to which this callback belongs.
-                ButtonCallback(Button* CallerButton);
+                ButtonCallback();
                 /// @brief Class Destructor.
                 virtual ~ButtonCallback();
+                /// @brief Sets the button this callback belongs to.
+                virtual void SetCaller(Button* Caller);
                 /// @brief The hover function for this callback.  This will be called every time the
                 /// button is hovered over by the mouse.
                 virtual void DoHoverItems() = 0;

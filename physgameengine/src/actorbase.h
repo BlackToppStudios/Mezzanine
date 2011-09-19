@@ -70,7 +70,11 @@ namespace phys
     class World;
     class ActorGraphicsSettings;
     class ActorBasePhysicsSettings;
-    class SoundSet;
+
+    namespace Audio
+    {
+        class SoundSet;
+    }
 
     namespace internal
     {
@@ -269,7 +273,7 @@ namespace phys
 // Utility and Configuration
 ///////////////////////////////////////
             ///@brief This is a collection of sounds for use with this actor.
-            SoundSet* ActorSounds;
+            Audio::SoundSet* ActorSounds;
 
             /// @brief Gets the type of actor this class is.
             /// @details This function will get the type of class that you are working with for checking and casting.

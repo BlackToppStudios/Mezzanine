@@ -37,89 +37,30 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uicell_cpp
-#define _uicell_cpp
+#ifndef _uiradiobutton_h
+#define _uiradiobutton_h
 
-#include "uicell.h"
+#include "uiwidget.h"
 
 namespace phys
 {
     namespace UI
     {
-        Cell::Cell(const String& name, Layer* parent)
-            : Widget(name,parent),
-              SortPriority(0),
-              Selected(false),
-              Callback(NULL)
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class RadioButton
+        /// @headerfile uiradiobutton.h
+        /// @brief This is a simple widget where only one of it's selections can be selected at a time.
+        /// @details
+        ///////////////////////////////////////
+        class RadioButton : public Widget
         {
-            Type = Widget::W_Cell;
-        }
-
-        Cell::~Cell()
-        {
-            if(Callback)
-                delete Callback;
-        }
-
-        void Cell::SetPriority(const Whole& Priority)
-        {
-            SortPriority = Priority;
-        }
-
-        Whole Cell::GetPriority()
-        {
-            return SortPriority;
-        }
-
-        void Cell::SetSelected(bool Select)
-        {
-            if(Select)
-            {
-                if(Callback)
-                    Callback->DoSelectedItems();
-            }else{
-                if(Callback)
-                    Callback->DoUnselectedItems();
-            }
-            Selected = Select;
-        }
-
-        bool Cell::IsSelected()
-        {
-            return Selected;
-        }
-
-        void Cell::SetCellCallback(CellCallback* CB)
-        {
-            if(Callback != CB && Callback)
-                delete Callback;
-            CB->SetCaller(this);
-            Callback = CB;
-        }
-
-        bool Cell::operator<(Cell* Other)
-        {
-            return SortPriority < Other->GetPriority();
-        }
-
-        bool Cell::operator>(Cell* Other)
-        {
-            return SortPriority > Other->GetPriority();
-        }
-
-        CellCallback::CellCallback()
-            : Caller(NULL)
-        {
-        }
-
-        CellCallback::~CellCallback()
-        {
-        }
-
-        void CellCallback::SetCaller(Cell* Caller)
-        {
-            this->Caller = Caller;
-        }
+            protected:
+            public:
+                /// @brief Class constructor.
+                RadioButton();
+                /// @brief Class destructor.
+                virtual ~RadioButton();
+        };//radiobutton
     }//ui
 }//phys
 

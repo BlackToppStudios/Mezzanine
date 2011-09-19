@@ -65,6 +65,7 @@ void CatchApp::MakeGUI()
     MainMenuMenu->GetRootWindow()->SetAutoHide(false);
 
     Real MMTextLineHeight = 0.04;
+    Real MMSmallTextLineHeight = 0.03;
     //std::pair<Whole,Real> MainMenuText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
     UI::TextButton* LevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", UI::RenderableRect(Vector2(0.05, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Level Select" );
     LevelSelectAccess->SetBackgroundSprite("MMButton");
@@ -79,40 +80,89 @@ void CatchApp::MakeGUI()
     PopulateLevelList(LevelSelectGrid);
     LevelSelectGrid->GenerateGrid();
     UI::TextButton* LevelStart = LevelSelectWin->CreateTextButton("MS_LevelStart", UI::RenderableRect(Vector2(0.42,0.85), Vector2(0.16,0.07), true),Whole(18),"Start");
-    LevelStart->SetButtonCallback(new MSStart(LevelStart,LevelSelectGrid));
+    LevelStart->SetButtonCallback(new MSStart(LevelSelectGrid));
     LevelStart->SetBackgroundSprite("MMLevelStart");
     LevelStart->SetHoveredSprite("MMLevelStartHovered");
 
     UI::TextButton* OptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", UI::RenderableRect(Vector2(0.28, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Options" );
     OptionsAccess->SetBackgroundSprite("MMButton");
     OptionsAccess->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* OptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Options", UI::RenderableRect(Vector2(0.35, 0.27), Vector2(0.3, 0.45), true), OptionsAccess);
-    OptionsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsMenuBackground");
-    UI::TextButton* VideoOptsAccess = OptionsWin->CreateAccessorButton( "MS_VideoOptions", UI::RenderableRect(Vector2(0.39, 0.43), Vector2(0.22, 0.06), true), MMTextLineHeight, "Video Options" );
-    VideoOptsAccess->SetBackgroundSprite("MMButton");
-    VideoOptsAccess->SetHoveredSprite("MMHoveredButton");
-    UI::TextButton* SoundOptsAccess = OptionsWin->CreateAccessorButton( "MS_SoundOptions", UI::RenderableRect(Vector2(0.39, 0.51), Vector2(0.22, 0.06), true), MMTextLineHeight, "Sound Options" );
-    SoundOptsAccess->SetBackgroundSprite("MMButton");
-    SoundOptsAccess->SetHoveredSprite("MMHoveredButton");// */
-    /*UI::TextButton* VideoOptsAccess = OptionsWin->CreateAccessorButton( "MS_VideoOptions", UI::RenderableRect(Vector2(0.37, 0.43), Vector2(0.26, 0.05), true), MMTextLineHeight, "Video Options" );
-    VideoOptsAccess->SetBackgroundSprite("MMOptionsButton");
-    VideoOptsAccess->SetHoveredSprite("MMOptionsHoveredButton");
-    UI::TextButton* SoundOptsAccess = OptionsWin->CreateAccessorButton( "MS_SoundOptions", UI::RenderableRect(Vector2(0.37, 0.50), Vector2(0.26, 0.05), true), MMTextLineHeight, "Sound Options" );
-    SoundOptsAccess->SetBackgroundSprite("MMOptionsButton");
-    SoundOptsAccess->SetHoveredSprite("MMOptionsHoveredButton");// */
-    UI::MenuWindow* VideoOptsWin = OptionsWin->CreateChildMenuWindow("MS_VideoOptions", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), VideoOptsAccess);
-    VideoOptsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsBackground");
-    UI::TextButton* VideoOptsApply = VideoOptsWin->CreateTextButton("MM_VideoOptionsApply", UI::RenderableRect(Vector2(0.57, 0.69), Vector2(0.10, 0.05), true), MMTextLineHeight, "Apply");
-    VideoOptsApply->SetBackgroundSprite("MMOptionsApplyButton");
-    VideoOptsApply->SetHoveredSprite("MMOptionsApplyHoveredButton");
-    UI::TextButton* VideoOptsBack = VideoOptsWin->CreateBackButton(UI::RenderableRect(Vector2(0.68, 0.69), Vector2(0.10, 0.05), true), MMTextLineHeight, "Back");
-    VideoOptsBack->SetBackgroundSprite("MMOptionsApplyButton");
-    VideoOptsBack->SetHoveredSprite("MMOptionsApplyHoveredButton");
-    UI::MenuWindow* SoundOptsWin = OptionsWin->CreateChildMenuWindow("MS_SoundOptions", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), SoundOptsAccess);
-    SoundOptsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsBackground");
-    UI::TextButton* SoundOptsBack = SoundOptsWin->CreateBackButton(UI::RenderableRect(Vector2(0.68, 0.69), Vector2(0.10, 0.05), true), MMTextLineHeight, "Back");
-    SoundOptsBack->SetBackgroundSprite("MMOptionsApplyButton");
-    SoundOptsBack->SetHoveredSprite("MMOptionsApplyHoveredButton");
+    UI::MenuWindow* OptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Options", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), OptionsAccess);
+    OptionsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsBackground");
+    UI::TabSet* OptionsTabSet = OptionsWin->CreateTabSet("MS_OptionsTS", UI::RenderableRect(Vector2(0.20, 0.31), Vector2(0.60, 0.39), true));
+    //video options
+    UI::RenderableSetData* VideoSet = OptionsTabSet->CreateRenderableSet("VideoSet",UI::RenderableRect(Vector2(0.25, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Video Options");
+    VideoSet->Collection->GetWidgetBack()->SetBackgroundColour(ColourValue::Transparent());
+    VideoSet->Accessor->SetBackgroundSprite("MMButton");
+    VideoSet->Accessor->SetHoveredSprite("MMHoveredButton");
+    UI::Caption* ResolutionLabel = VideoSet->Collection->CreateCaption("ResolutionLabel",UI::RenderableRect(Vector2(0.28, 0.31),Vector2(0.24, 0.05),true),MMTextLineHeight,"Video Resolutions");
+    ResolutionLabel->SetBackgroundSprite("MMButton");
+    UI::DropDownList* ResolutionList = VideoSet->Collection->CreateDropDownList("ResolutionList",UI::RenderableRect(Vector2(0.25, 0.36),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
+    ResolutionList->GetSelection()->SetBackgroundSprite("MMListSelection");
+    ResolutionList->GetListToggle()->SetBackgroundSprite("MMListScrollDown");
+    ResolutionList->GetSelectionList()->GetBoxBack()->SetBackgroundSprite("MMListBackground");
+    ResolutionList->GetSelectionList()->GetVertScroll()->GetScrollBack()->SetBackgroundSprite("MMListScrollBackground");
+    ResolutionList->GetSelectionList()->GetVertScroll()->GetScroller()->SetBackgroundSprite("MMListScroller");
+    ResolutionList->GetSelectionList()->GetVertScroll()->GetScroller()->SetHoveredSprite("MMHoveredListScroller");
+    ResolutionList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->SetBackgroundSprite("MMListScrollDown");
+    ResolutionList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->SetHoveredSprite("MMHoveredListScrollDown");
+    ResolutionList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->SetBackgroundSprite("MMListScrollUp");
+    ResolutionList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->SetHoveredSprite("MMHoveredListScrollUp");
+    UI::CheckBox* FullscreenBox = VideoSet->Collection->CreateCheckBox("FullscreenBox",UI::RenderableRect(Vector2(0.59, 0.36),Vector2(0.16, 0.05),true),MMTextLineHeight,"Fullscreen");
+    FullscreenBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
+    FullscreenBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
+    FullscreenBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
+    //sound options
+    Real ScrollerSize = 0.09;
+    UI::RenderableSetData* AudioSet = OptionsTabSet->CreateRenderableSet("AudioSet",UI::RenderableRect(Vector2(0.53, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Sound Options");
+    AudioSet->Collection->GetWidgetBack()->SetBackgroundColour(ColourValue::Transparent());
+    AudioSet->Accessor->SetBackgroundSprite("MMButton");
+    AudioSet->Accessor->SetHoveredSprite("MMHoveredButton");
+    UI::Caption* MusicVolLabel = AudioSet->Collection->CreateCaption("MusicVolLabel",UI::RenderableRect(Vector2(0.38, 0.31),Vector2(0.24, 0.05),true),MMTextLineHeight,"Music Volume");
+    MusicVolLabel->SetBackgroundSprite("MMButton");
+    UI::Scrollbar* MusicVol = AudioSet->Collection->CreateScrollbar("MusicVolume",UI::RenderableRect(Vector2(0.30, 0.36),Vector2(0.40, 0.04),true),UI::SB_Separate);
+    MusicVol->SetScrollerSize(ScrollerSize);
+    MusicVol->SetIncrementDistance(ScrollerSize * 0.5);
+    MusicVol->GetScrollBack()->SetBackgroundSprite("MMScrollBackground");
+    MusicVol->GetScroller()->SetBackgroundSprite("MMScroller");
+    MusicVol->GetScroller()->SetHoveredSprite("MMHoveredScroller");
+    MusicVol->GetDownRightButton()->SetBackgroundSprite("MMScrollRight");
+    MusicVol->GetDownRightButton()->SetHoveredSprite("MMHoveredScrollRight");
+    MusicVol->GetUpLeftButton()->SetBackgroundSprite("MMScrollLeft");
+    MusicVol->GetUpLeftButton()->SetHoveredSprite("MMHoveredScrollLeft");
+    UI::Caption* EffectsVolLabel = AudioSet->Collection->CreateCaption("EffectsVolLabel",UI::RenderableRect(Vector2(0.38, 0.42),Vector2(0.24, 0.05),true),MMTextLineHeight,"Effects Volume");
+    EffectsVolLabel->SetBackgroundSprite("MMButton");
+    UI::Scrollbar* EffectsVol = AudioSet->Collection->CreateScrollbar("EffectsVolume",UI::RenderableRect(Vector2(0.30, 0.47),Vector2(0.40, 0.04),true),UI::SB_Separate);
+    EffectsVol->SetScrollerSize(ScrollerSize);
+    EffectsVol->SetIncrementDistance(ScrollerSize * 0.5);
+    EffectsVol->GetScrollBack()->SetBackgroundSprite("MMScrollBackground");
+    EffectsVol->GetScroller()->SetBackgroundSprite("MMScroller");
+    EffectsVol->GetScroller()->SetHoveredSprite("MMHoveredScroller");
+    EffectsVol->GetDownRightButton()->SetBackgroundSprite("MMScrollRight");
+    EffectsVol->GetDownRightButton()->SetHoveredSprite("MMHoveredScrollRight");
+    EffectsVol->GetUpLeftButton()->SetBackgroundSprite("MMScrollLeft");
+    EffectsVol->GetUpLeftButton()->SetHoveredSprite("MMHoveredScrollLeft");
+    UI::Caption* DeviceLabel = AudioSet->Collection->CreateCaption("DeviceLabel",UI::RenderableRect(Vector2(0.30, 0.55),Vector2(0.24, 0.05),true),MMTextLineHeight,"Audio Device");
+    DeviceLabel->SetBackgroundSprite("MMButton");
+    UI::DropDownList* DeviceList = AudioSet->Collection->CreateDropDownList("AudioDeviceList",UI::RenderableRect(Vector2(0.27, 0.60),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
+    DeviceList->GetSelection()->SetBackgroundSprite("MMListSelection");
+    DeviceList->GetListToggle()->SetBackgroundSprite("MMListScrollDown");
+    DeviceList->GetSelectionList()->GetBoxBack()->SetBackgroundSprite("MMListBackground");
+    DeviceList->GetSelectionList()->GetVertScroll()->GetScrollBack()->SetBackgroundSprite("MMListScrollBackground");
+    DeviceList->GetSelectionList()->GetVertScroll()->GetScroller()->SetBackgroundSprite("MMListScroller");
+    DeviceList->GetSelectionList()->GetVertScroll()->GetScroller()->SetHoveredSprite("MMHoveredListScroller");
+    DeviceList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->SetBackgroundSprite("MMListScrollDown");
+    DeviceList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->SetHoveredSprite("MMHoveredListScrollDown");
+    DeviceList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->SetBackgroundSprite("MMListScrollUp");
+    DeviceList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->SetHoveredSprite("MMHoveredListScrollUp");
+    UI::CheckBox* MuteBox = AudioSet->Collection->CreateCheckBox("MuteBox",UI::RenderableRect(Vector2(0.62, 0.60),Vector2(0.11, 0.05),true),MMTextLineHeight,"Mute");
+    MuteBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
+    MuteBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
+    MuteBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
+
+    UI::TextButton* OptsBack = OptionsWin->CreateBackButton(UI::RenderableRect(Vector2(0.68, 0.70), Vector2(0.10, 0.05), true), MMTextLineHeight, "Back");
+    OptsBack->SetBackgroundSprite("MMOptionsApplyButton");
+    OptsBack->SetHoveredSprite("MMOptionsApplyHoveredButton");
 
     UI::TextButton* CreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", UI::RenderableRect(Vector2(0.51, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Credits" );
     CreditsAccess->SetBackgroundSprite("MMButton");
@@ -128,7 +178,7 @@ void CatchApp::MakeGUI()
     UI::Caption* AppExitWarn = AppExitWin->CreateCaption("MS_AppExitWarn", UI::RenderableRect(Vector2(0.32, 0.35), Vector2(0.36, 0.07), true), AppExitText.first, "Are you sure you want to exit?");
     AppExitWarn->SetBackgroundSprite("MMAppExitText");
     UI::TextButton* AppExitConf = AppExitWin->CreateTextButton("MS_AppExitConf", UI::RenderableRect(Vector2(0.30, 0.47), Vector2(0.18, 0.06), true), AppExitText.first, "Yes");
-    AppExitConf->SetButtonCallback(new AllAppExit(AppExitConf));
+    AppExitConf->SetButtonCallback(new AllAppExit());
     AppExitConf->SetBackgroundSprite("MMAppExitButton");
     AppExitConf->SetHoveredSprite("MMAppExitHoveredButton");
     UI::TextButton* AppExitDeny = AppExitWin->CreateBackButton(/*"MS_AppExitDeny", */UI::RenderableRect(Vector2(0.52, 0.47), Vector2(0.18, 0.06), true), AppExitText.first, "No");
@@ -154,11 +204,11 @@ void CatchApp::MakeGUI()
     TIcon->SetBackgroundSprite("TimerLogo");
 
     UI::Button* MenuButton = HUD->CreateButton( "GS_Menu", UI::RenderableRect(Vector2(0.008, 0.922), Vector2(0.16, 0.065), true));
-    MenuButton->SetButtonCallback(new GSMenu(MenuButton));
+    MenuButton->SetButtonCallback(new GSMenu());
     MenuButton->SetBackgroundSprite("MenuButtonHiRes");
 
     UI::Button* StoreButton = HUD->CreateButton( "GS_Store", UI::RenderableRect(Vector2(0.922, 0.922), Vector2(0.06, 0.065), true));
-    StoreButton->SetButtonCallback(new GSStore(StoreButton));
+    StoreButton->SetButtonCallback(new GSStore());
     StoreButton->SetBackgroundSprite("StoreButtonHiRes");
 
     UI::Rectangle* StoreText = HUD->CreateRectangle( UI::RenderableRect(Vector2(0.767, 0.922), Vector2(0.14, 0.065), true));
@@ -175,10 +225,10 @@ void CatchApp::MakeGUI()
     UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", UI::RenderableRect(Vector2(0.25, 0.11), Vector2(0.5, 0.78125), true));
     ItemShopWindow->GetWindowBack()->SetBackgroundSprite("WindowVertBack");
 
-    UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",UI::RenderableRect(Vector2(0.28,0.54),Vector2(0.44,0.32), true),0.02,UI::SB_Separate);
+    /*UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",UI::RenderableRect(Vector2(0.28,0.54),Vector2(0.44,0.32), true),0.02,UI::SB_Separate);
     ItemShopList->SetAutoHideScroll(false);
     ItemShopList->GetBoxBack()->SetBackgroundColour(TransBlack);
-    ItemShopList->GetVertScroll()->GetScrollBack()->SetBackgroundColour(TransBlack);
+    ItemShopList->GetVertScroll()->GetScrollBack()->SetBackgroundColour(TransBlack);//*/
     ItemShop->Hide();
     //End of ItemShop Layer
 
@@ -186,10 +236,10 @@ void CatchApp::MakeGUI()
     UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", UI::RenderableRect(Vector2(0.35, 0.27), Vector2(0.3, 0.45), true));
     GameMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MenuBack");
     UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "GS_Return", UI::RenderableRect(Vector2(0.37, 0.56), Vector2(0.26, 0.05), true));
-    ReturnButton->SetButtonCallback(new GSReturn(ReturnButton));
+    ReturnButton->SetButtonCallback(new GSReturn());
     ReturnButton->SetBackgroundSprite("ReturnButton");
     UI::Button* GameExitButton = GameMenu->GetRootWindow()->CreateButton( "GS_GameExit", UI::RenderableRect(Vector2(0.37, 0.64), Vector2(0.26, 0.05), true));
-    GameExitButton->SetButtonCallback(new GSMMReturn(GameExitButton));
+    GameExitButton->SetButtonCallback(new GSMMReturn());
     GameExitButton->SetBackgroundSprite("ExitButton");
 
     UI::Button* VideoAccess = GameMenu->GetRootWindow()->CreateAccessorButton("GS_VideoSettingsButton", UI::RenderableRect(Vector2(0.37, 0.32), Vector2(0.26, 0.05), true));
@@ -235,7 +285,7 @@ void CatchApp::MakeGUI()
     UI::Caption* TempCapt = LevelReport->CreateCaption("GS_TempWarning", UI::RenderableRect(Vector2(0.25, 0.3), Vector2(0.5, 0.3), true), Whole(18), "Future spot of level reports.");
     TempCapt->SetBackgroundColour(Transparent);
     UI::TextButton* FinishButton = LevelReport->CreateTextButton("GS_Finish", UI::RenderableRect(Vector2(0.42, 0.66), Vector2(0.16, 0.08), true), Whole(14), "Finish");
-    FinishButton->SetButtonCallback(new GSMMReturn(FinishButton));
+    FinishButton->SetButtonCallback(new GSMMReturn());
     FinishButton->SetBackgroundColour(TransBlack);
     Report->Hide();
     //End of Report Layer
@@ -328,7 +378,7 @@ void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
             UIMan->LoadGorilla(LevelName);
             CurrCell->GetPreviewImage()->SetBackgroundSprite("LevelPreview",LevelName);
         }
-        CurrCell->SetCellCallback(new LevelSelectCB(CurrCell));
+        CurrCell->SetCellCallback(new LevelSelectCB());
         Grid->AddCell(CurrCell);
     }
 }
@@ -889,8 +939,8 @@ bool CatchApp::CheckForStuff()
 
         if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
         {
-            Sound* Welcome = NULL;
-            Welcome = TheWorld->GetSoundManager()->GetSoundByName("Welcome");
+            Audio::Sound* Welcome = NULL;
+            Welcome = TheWorld->GetAudioManager()->GetSoundByName("Welcome");
             if(Welcome)
             {
                 Welcome->Play2d(false);

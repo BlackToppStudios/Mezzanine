@@ -52,13 +52,14 @@ namespace phys
     {
         class Button;
         class Layer;
+        class WidgetCallback;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class InputCaptureData
         /// @headerfile uiwidget.h
         /// @brief This class contains all the utilities necessary for capturing input.
         /// @details This is commonly used for Text-based widgets, such as TextBox's, Spinners, and InputBox's.
         ///////////////////////////////////////
-        class InputCaptureData : public std::set<MetaCode::InputCode>
+        class PHYS_LIB InputCaptureData : public std::set<MetaCode::InputCode>
         {
             protected:
                 std::vector<MetaCode::InputCode> CapturedCodes;
@@ -99,20 +100,22 @@ namespace phys
             public:
                 enum WidgetType
                 {
-                    ButtonListBox,
-                    Cell,
-                    CellGrid,
-                    CheckBox,
-                    DropDownList,
-                    DropDownMenu,
-                    ListBox,
-                    Menu,
-                    MenuWindow,
-                    RadioButton,
-                    Scrollbar,
-                    Spinner,
-                    TextBox,
-                    Window
+                    W_ButtonListBox,
+                    W_Cell,
+                    W_CellGrid,
+                    W_CheckBox,
+                    W_DropDownList,
+                    W_DropDownMenu,
+                    W_GenericWidgetContainer,
+                    W_ListBox,
+                    W_Menu,
+                    W_MenuWindow,
+                    W_RadioButton,
+                    W_Scrollbar,
+                    W_Spinner,
+                    W_TabSet,
+                    W_TextBox,
+                    W_Window
                 };
             protected:
                 friend class phys::UIManager;
@@ -122,13 +125,21 @@ namespace phys
                 UI::Button* HoveredButton;
                 UI::Widget* HoveredSubWidget;
                 UI::Widget* SubWidgetFocus;
+                UI::WidgetCallback* Callback;
                 bool Visible;
+                bool Hovered;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 WidgetType Type;
                 String Name;
                 /// @brief For use with widget update/automation.
-                virtual void Update(bool Force = false) = 0;
+                virtual void Update(bool Force = false);
+                /// @brief Child specific update method.
+                virtual void UpdateImpl(bool Force = false) = 0;
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible) = 0;
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl() = 0;
                 /// @brief For use with sub-widget update/automation.
                 virtual void SubWidgetUpdate(bool Force = false);
                 /// @brief For use with sub-widget update/automation when the mouse isn't hovered.
@@ -144,33 +155,40 @@ namespace phys
                 virtual ~Widget();
                 /// @brief Sets the visibility of this widget.
                 /// @param visible Bool determining whether or not this widget should be visible.
-                virtual void SetVisible(bool visible) = 0;
+                virtual void SetVisible(bool visible);
                 /// @brief Gets the visibility of this widget.
                 /// @return Returns a bool representing the visibility of this widget.
-                virtual bool IsVisible();
+                virtual bool IsVisible() const;
                 /// @brief Forces this widget to be shown.
-                virtual void Show() = 0;
+                virtual void Show();
                 /// @brief Forces this widget to hide.
-                virtual void Hide() = 0;
+                virtual void Hide();
                 /// @brief Gets the type of widget this is.
                 /// @return Returns an enum value representing the type of widget this is.
                 virtual WidgetType GetType() const;
                 /// @brief Checks if this is an input capturing widget.
                 /// @return Returns a bool indicating whether or not this widget will capture input.
-                virtual bool IsInputCaptureWidget();
+                virtual bool IsInputCaptureWidget() const;
+                /// @brief Gets the result of the last mouse hover check.
+                /// @return Returns whether or not the mouse was hovering over this widget during the last check.
+                virtual bool IsHovered() const;
                 /// @brief Gets the name of this widget.
                 /// @return Returns a String containing the name of this widget.
-                virtual String& GetName();
+                virtual ConstString& GetName() const;
+                /// @brief Sets the callback to be used by this widget.
+                /// @remarks You can pass in a NULL pointer to clear the existing callback.
+                /// @param CB The callback to be set for this widget.
+                virtual void SetWidgetCallback(WidgetCallback* CB);
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
-                virtual bool CheckMouseHover() = 0;
+                virtual bool CheckMouseHover();
                 /// @brief Sets the Rect(Position and Size) of this Widget.
                 /// @param Rect The Rect to set.
                 virtual void SetRect(const RenderableRect& Rect);
                 /// @brief Gets this Widgets' Rect.
                 /// @param Relative Whether or not you want the Rect to be populated with Relative values.
                 /// @return Returns a Rect containing this Widgets' Position and Size.
-                virtual RenderableRect GetRect(bool Relative = true);
+                virtual RenderableRect GetRect(bool Relative = true) const;
                 /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.
@@ -178,13 +196,13 @@ namespace phys
                 /// @brief Gets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this widget.
-                virtual Vector2 GetPosition() = 0;
+                virtual Vector2 GetPosition() const;
                 /// @brief Sets the pixel position of this widget.
                 /// @param Position A vector2 representing the pixel position of this widget.
                 virtual void SetActualPosition(const Vector2& Position) = 0;
                 /// @brief Sets the pixel position of this widget.
                 /// @return Returns a vector2 representing the pixel position of this widget.
-                virtual Vector2 GetActualPosition() = 0;
+                virtual Vector2 GetActualPosition() const;
                 /// @brief Sets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
@@ -192,30 +210,55 @@ namespace phys
                 /// @brief Gets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this widget.
-                virtual Vector2 GetSize() = 0;
+                virtual Vector2 GetSize() const;
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
                 virtual void SetActualSize(const Vector2& Size) = 0;
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
-                virtual Vector2 GetActualSize() = 0;
+                virtual Vector2 GetActualSize() const;
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 /// @param OldViewportSize The new size of the viewport.
                 virtual void UpdateDimensions(const Vector2& OldViewportSize);
                 /// @brief Gets the hovered button within this widget, if any.
                 /// @return Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none.
-                virtual Button* GetHoveredButton();
+                virtual Button* GetHoveredButton() const;
                 /// @brief Gets the hovered sub-widget within this widget, if any.
                 /// @return Returns a pointer to the sub-widget within this widget the mouse is hovering over, or NULL if none.
-                virtual Widget* GetHoveredSubWidget();
+                virtual Widget* GetHoveredSubWidget() const;
                 /// @brief Gets the layer this widget belongs to.
                 /// @return Returns a pointer to the layer this eidget belongs to.
-                virtual Layer* GetLayer();
+                virtual Layer* GetLayer() const;
                 /// @brief Gets the data determining what input should be captured.
                 /// @return Returns a pointer to the InputCaptureData, or NULL if this widget doesn't capture data.
-                virtual InputCaptureData* GetInputCaptureData();
+                virtual InputCaptureData* GetInputCaptureData() const;
         };//widget
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class WidgetCallback
+        /// @headerfile uiwidget.h
+        /// @brief This is a callback class for widgets.
+        ///////////////////////////////////////
+        class PHYS_LIB WidgetCallback
+        {
+            protected:
+                Widget* Caller;
+            public:
+                /// @brief Class constructor.
+                WidgetCallback();
+                /// @brief Class destructor.
+                virtual ~WidgetCallback();
+                /// @brief Sets the Widget this callback belongs to.
+                virtual void SetCaller(Widget* Caller);
+                /// @brief Performs callback items immediately after hover checks complete.
+                virtual void DoHoverItems() = 0;
+                /// @brief Performs callback items just before widget updates start.
+                virtual void DoPreUpdateItems() = 0;
+                /// @brief Performs callback items immediately after updates complete.
+                virtual void DoPostUpdateItems() = 0;
+                /// @brief Performs callback items immediately after widget visibility changes.
+                virtual void DoVisibilityChangeItems() = 0;
+        };//WidgetCallback
     }//UI
 }//phys
 

@@ -45,83 +45,86 @@
 
 namespace phys
 {
-    SoundListener::SoundListener(cAudio::IListener* Listener)
+    namespace Audio
     {
-        AudioListener = Listener;
-    }
+        SoundListener::SoundListener(cAudio::IListener* Listener)
+        {
+            AudioListener = Listener;
+        }
 
-    SoundListener::~SoundListener()
-    {
-    }
+        SoundListener::~SoundListener()
+        {
+        }
 
-    void SoundListener::SetPosition(Vector3 Position)
-    {
-        AudioListener->setPosition(Position.GetcAudioVector3());
-    }
+        void SoundListener::SetPosition(Vector3 Position)
+        {
+            AudioListener->setPosition(Position.GetcAudioVector3());
+        }
 
-    void SoundListener::SetDirection(Vector3 Direction)
-    {
-        AudioListener->setDirection(Direction.GetcAudioVector3());
-    }
+        void SoundListener::SetDirection(Vector3 Direction)
+        {
+            AudioListener->setDirection(Direction.GetcAudioVector3());
+        }
 
-    void SoundListener::SetUpVector(Vector3 Up)
-    {
-        AudioListener->setUpVector(Up.GetcAudioVector3());
-    }
+        void SoundListener::SetUpVector(Vector3 Up)
+        {
+            AudioListener->setUpVector(Up.GetcAudioVector3());
+        }
 
-    void SoundListener::SetVelocity(Vector3 Velocity)
-    {
-        AudioListener->setVelocity(Velocity.GetcAudioVector3());
-    }
+        void SoundListener::SetVelocity(Vector3 Velocity)
+        {
+            AudioListener->setVelocity(Velocity.GetcAudioVector3());
+        }
 
-    void SoundListener::SetMasterVolume(Real Volume)
-    {
-        AudioListener->setMasterVolume(Volume);
-    }
+        void SoundListener::SetMasterVolume(Real Volume)
+        {
+            AudioListener->setMasterVolume(Volume);
+        }
 
-    void SoundListener::Move(Vector3 Position)
-    {
-        AudioListener->move(Position.GetcAudioVector3());
-    }
+        void SoundListener::Move(Vector3 Position)
+        {
+            AudioListener->move(Position.GetcAudioVector3());
+        }
 
-    Vector3 SoundListener::GetPosition()
-    {
-        Vector3 Position(AudioListener->getPosition());
-        return Position;
-    }
+        Vector3 SoundListener::GetPosition()
+        {
+            Vector3 Position(AudioListener->getPosition());
+            return Position;
+        }
 
-    Vector3 SoundListener::GetDirection()
-    {
-        Vector3 Direction(AudioListener->getDirection());
-        return Direction;
-    }
+        Vector3 SoundListener::GetDirection()
+        {
+            Vector3 Direction(AudioListener->getDirection());
+            return Direction;
+        }
 
-    Vector3 SoundListener::GetUpVector()
-    {
-        Vector3 Up(AudioListener->getUpVector());
-        return Up;
-    }
+        Vector3 SoundListener::GetUpVector()
+        {
+            Vector3 Up(AudioListener->getUpVector());
+            return Up;
+        }
 
-    Vector3 SoundListener::GetVelocity()
-    {
-        Vector3 Velocity(AudioListener->getVelocity());
-        return Velocity;
-    }
+        Vector3 SoundListener::GetVelocity()
+        {
+            Vector3 Velocity(AudioListener->getVelocity());
+            return Velocity;
+        }
 
-    Real SoundListener::GetMasterVolume()
-    {
-        return AudioListener->getMasterVolume();
-    }
+        Real SoundListener::GetMasterVolume()
+        {
+            return AudioListener->getMasterVolume();
+        }
 
-    void SoundListener::SetMetersPerUnit(Real Meters)
-    {
-        //AudioListener->setMetersPerUnit(Meters);
-    }
+        void SoundListener::SetMetersPerUnit(Real Meters)
+        {
+            //AudioListener->setMetersPerUnit(Meters);
+        }
 
-    Real SoundListener::GetMetersPerUnit()
-    {
-        return 0;//AudioListener->getMetersPerUnit();
-    }
-}
+        Real SoundListener::GetMetersPerUnit()
+        {
+            return 0;//AudioListener->getMetersPerUnit();
+        }
+    }//Audio
+}//phys
 
 #endif

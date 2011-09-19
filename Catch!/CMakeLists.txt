@@ -54,6 +54,8 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}startingarea.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}throwablegenerator.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}throwablegenerator.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}widgetcallbacks.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}widgetcallbacks.h"
 )
 
 ##############################################################################

@@ -37,90 +37,49 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uicell_cpp
-#define _uicell_cpp
-
-#include "uicell.h"
+#ifndef _ui_h
+#define _ui_h
 
 namespace phys
 {
+    /// @namespace phys::UI
+    /// @brief This namespace is for all the classes belonging to the Graphical User Interface Subsystem.
+    /// @details Our GUI subsystem is based on a heavily modified/forked version of Gorilla, and as such uses
+    /// a similiar structure of classes and even it's config files(e.g. .gorilla files).
     namespace UI
     {
-        Cell::Cell(const String& name, Layer* parent)
-            : Widget(name,parent),
-              SortPriority(0),
-              Selected(false),
-              Callback(NULL)
-        {
-            Type = Widget::W_Cell;
-        }
 
-        Cell::~Cell()
-        {
-            if(Callback)
-                delete Callback;
-        }
+    }
+}
 
-        void Cell::SetPriority(const Whole& Priority)
-        {
-            SortPriority = Priority;
-        }
+#include "uienumerations.h"
 
-        Whole Cell::GetPriority()
-        {
-            return SortPriority;
-        }
-
-        void Cell::SetSelected(bool Select)
-        {
-            if(Select)
-            {
-                if(Callback)
-                    Callback->DoSelectedItems();
-            }else{
-                if(Callback)
-                    Callback->DoUnselectedItems();
-            }
-            Selected = Select;
-        }
-
-        bool Cell::IsSelected()
-        {
-            return Selected;
-        }
-
-        void Cell::SetCellCallback(CellCallback* CB)
-        {
-            if(Callback != CB && Callback)
-                delete Callback;
-            CB->SetCaller(this);
-            Callback = CB;
-        }
-
-        bool Cell::operator<(Cell* Other)
-        {
-            return SortPriority < Other->GetPriority();
-        }
-
-        bool Cell::operator>(Cell* Other)
-        {
-            return SortPriority > Other->GetPriority();
-        }
-
-        CellCallback::CellCallback()
-            : Caller(NULL)
-        {
-        }
-
-        CellCallback::~CellCallback()
-        {
-        }
-
-        void CellCallback::SetCaller(Cell* Caller)
-        {
-            this->Caller = Caller;
-        }
-    }//ui
-}//phys
+#include "uibasicrenderable.h"
+#include "uibutton.h"
+#include "uicaption.h"
+#include "uicell.h"
+#include "uicellgrid.h"
+#include "uicheckbox.h"
+#include "uidropdownlist.h"
+#include "uilayer.h"
+#include "uilinelist.h"
+#include "uilistbox.h"
+#include "uimarkuptext.h"
+#include "uimenu.h"
+#include "uimenuwindow.h"
+#include "uipagedcellgrid.h"
+#include "uiradiobutton.h"
+#include "uirectangle.h"
+#include "uirenderablecontainerwidget.h"
+#include "uirenderablerect.h"
+#include "uiresizinginfo.h"
+#include "uiscreen.h"
+#include "uiscrollbar.h"
+#include "uiscrolledcellgrid.h"
+#include "uispinner.h"
+#include "uitabset.h"
+#include "uitextbutton.h"
+#include "uiwidget.h"
+#include "uiwindow.h"
 
 #endif

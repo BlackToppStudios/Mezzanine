@@ -186,8 +186,8 @@ bool PostRender()
     if (notplayed)
     {
         notplayed=false;
-        Sound* Welcome = NULL;
-        Welcome = TheWorld->GetSoundManager()->GetSoundByName("Welcome");
+        Audio::Sound* Welcome = NULL;
+        Welcome = TheWorld->GetAudioManager()->GetSoundByName("Welcome");
         if(Welcome)
         {
             Welcome->Play2d(false);
@@ -354,7 +354,7 @@ bool PostInput()
 
     if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_M) || InputQueryer->IsJoystickButtonPushed(1) )
     {
-        Sound* Theme = TheWorld->GetSoundManager()->GetSoundByName("Theme2");
+        Audio::Sound* Theme = TheWorld->GetAudioManager()->GetSoundByName("Theme2");
         if(!Theme->IsPlaying())
         {
             Theme->Play2d(false);
@@ -363,7 +363,7 @@ bool PostInput()
 
     if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_N) || InputQueryer->IsJoystickButtonPushed(2) )
     {
-        Sound* Theme = TheWorld->GetSoundManager()->GetSoundByName("Theme2");
+        Audio::Sound* Theme = TheWorld->GetAudioManager()->GetSoundByName("Theme2");
         if(Theme->IsPlaying())
         {
             Theme->Stop();
@@ -503,7 +503,7 @@ bool PostInput()
                     TheWorld->Log(*DragTo);
                     #endif
                     //Dragger->SetOffsetALocation(*DragTo);
-                    Dragger->SetPivotB(*DragTo);
+                    Dragger->SetPivotBLocation(*DragTo);
                 }
             }
 
@@ -602,8 +602,8 @@ bool CheckForStuff()
 
         if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
         {
-            Sound* Welcome = NULL;
-            Welcome = TheWorld->GetSoundManager()->GetSoundByName("Welcome");
+            Audio::Sound* Welcome = NULL;
+            Welcome = TheWorld->GetAudioManager()->GetSoundByName("Welcome");
             if(Welcome)
             {
                 Welcome->Play2d(false);
@@ -737,6 +737,8 @@ void LoadContent()
 
     Real mass=15.0;
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
+    TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory()+"/Music", "FileSystem", groupname, false);
+    TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory()+"/Sounds", "FileSystem", groupname, false);
     TheWorld->GetResourceManager()->AddResourceLocation(zipname.str(), "Zip", groupname, false);
     TheWorld->GetResourceManager()->AddResourceLocation("", "FileSystem", groupname, false);
 
@@ -995,6 +997,14 @@ void LoadContent()
         #endif
     }
 
+    CollisionShapeManager* CSMan = World::GetWorldPointer()->GetCollisionShapeManager();
+    CollisionShape* RobitCH = CSMan->GenerateConvexHull("RobitConvexHull",filerobot,groupname);
+    CollisionShape* RobitCD = CSMan->PerformConvexDecomposition("RobitConvexDecomp",filerobot,groupname,5.0,5.0,10.0);
+    CollisionShape* PlaneStatic = CSMan->GenerateStaticTriMesh("PlaneShape","Plane.mesh",groupname);
+    CollisionShape* WoodenSphere = new SphereCollisionShape("WoodSphere",250.0);
+    CollisionShape* MetalSphere = new SphereCollisionShape("MetalSphere",250.0);
+    CollisionShape* MetalSphere2 = new SphereCollisionShape("MetalSphere2",250.0);
+
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins
     ActorRigid* ActRig = NULL;
@@ -1003,7 +1013,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << c;
         ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
-        ActRig->CreateShapeFromMeshDynamic(2);
+        ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCD);
         //TheWorld->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
         ActRig->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
         TheWorld->GetActorManager()->AddActor( ActRig );
@@ -1014,7 +1024,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
         ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
-        ActRig->CreateShapeFromMeshDynamic(2);
+        ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCD);
         //TheWorld->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
         ActRig->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
         TheWorld->GetActorManager()->AddActor( ActRig );
@@ -1026,7 +1036,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
         ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
-        ActRig->CreateShapeFromMeshDynamic(1);
+        ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCH);
         ActRig->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
         TheWorld->GetActorManager()->AddActor( ActRig );
         if (c+7==7)
@@ -1038,9 +1048,9 @@ void LoadContent()
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
     ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
-    TheWorld->GetActorManager()->AddActor( ActRig );
-    ActRig->CreateShapeFromMeshDynamic(1);
+    ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCH);
     ActRig->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+    TheWorld->GetActorManager()->AddActor( ActRig );
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
     /*MeshGenerator::CreateSphereMesh("SoftTest","SphereWood",70);
@@ -1048,40 +1058,40 @@ void LoadContent()
     Act9->SetInitLocation(Vector3( -35, 100, -50));// */
 
     object5 = new ActorTerrain (Vector3(0.0,-100,-300.0),"Plane","Plane.mesh",groupname);
-    object5->CreateShapeFromMeshStatic();
+    object5->GetPhysicsSettings()->SetCollisionShape(PlaneStatic);
     //object5->SetInitLocation(Vector3(0.0,-100,-300.0));
 
     object6 = new ActorTerrain (Vector3(00.0,300.0,-1100.0),"Ramp","Plane.mesh",groupname);
-    object6->CreateShapeFromMeshStatic();
+    object6->GetPhysicsSettings()->SetCollisionShape(PlaneStatic);
     //object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
 
     object1 = new ActorRigid (mass,"RobotWayUpFrontRight",filerobot,groupname);
-    object1->CreateShapeFromMeshDynamic(1);
+    object1->GetPhysicsSettings()->SetCollisionShape(RobitCH);
     object1->SetLocation(Vector3(400,70,100));
     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object1->SetAnimation("Idle", true);
     object1->EnableAnimation(true);
 
     object2 = new ActorRigid (150.0f,"WoodSphere","Sphere_Wood.mesh",groupname);
-    object2->CreateSphereShapeFromMesh();
+    object2->GetPhysicsSettings()->SetCollisionShape(WoodenSphere);
     object2->SetActorScaling(Vector3(0.5,0.5,0.5));
     object2->SetLocation(Vector3(-140.0,2800.0,-1150.0));
 
     object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname);
-    object3->CreateSphereShapeFromMesh();
+    object3->GetPhysicsSettings()->SetCollisionShape(MetalSphere);
     object3->SetActorScaling(Vector3(0.7,0.7,0.7));
     object3->SetLocation(Vector3(150.0,1800.0,-1300.0));
 
     object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname);
-    object4->CreateShapeFromMeshDynamic(2);
+    object4->GetPhysicsSettings()->SetCollisionShape(RobitCD);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->SetAnimation("Idle", true);
     object4->EnableAnimation(true);
 
     object7 = new ActorRigid (800.0f,"MetalSphere2","Sphere_Metal.mesh",groupname);
-    object7->CreateSphereShapeFromMesh();
+    object7->GetPhysicsSettings()->SetCollisionShape(MetalSphere2);
     object7->SetActorScaling(Vector3(0.3,0.3,0.3));
     object7->SetLocation(Vector3(10.0,25000.0,-1300.0));
     object7->GetPhysicsSettings()->SetDamping(0.3,0.0);
@@ -1119,16 +1129,17 @@ void LoadContent()
     TestField->CreateGraphicsBox(ColourValue(0.5,0.9,0.6,0.15));
     TheWorld->GetPhysicsManager()->AddAreaEffect(TestField);// */
 
-    Sound *sound1, *music1, *music2;
-    TheWorld->GetSoundManager()->CreateSoundSet("Announcer");
-    sound1 = TheWorld->GetSoundManager()->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", true);
-    TheWorld->GetSoundManager()->AddSoundToSoundSet("Announcer", sound1);
+    Audio::Sound *sound1, *music1, *music2;
+    AudioManager* AudioMan = TheWorld->GetAudioManager();
+    AudioMan->CreateSoundSet("Announcer");
+    sound1 = AudioMan->CreateDialogSound("Welcome", "welcomefun-1.ogg", groupname);
+    AudioMan->AddSoundToSoundSet("Announcer", sound1);
 
-    TheWorld->GetSoundManager()->CreateSoundSet("SoundTrack");
-    music1 = TheWorld->GetSoundManager()->CreateSound("Theme1", "data/common/music/cAudioTheme1.ogg", true);
-    TheWorld->GetSoundManager()->AddSoundToSoundSet("SoundTrack", music1);
-    music2 = TheWorld->GetSoundManager()->CreateSound("Theme2", "data/common/music/cAudioTheme2.ogg", true);
-    TheWorld->GetSoundManager()->AddSoundToSoundSet("SoundTrack", music2);
+    AudioMan->CreateSoundSet("SoundTrack");
+    music1 = AudioMan->CreateMusicSound("Theme1", "cAudioTheme1.ogg", groupname);
+    AudioMan->AddSoundToSoundSet("SoundTrack", music1);
+    music2 = AudioMan->CreateMusicSound("Theme2", "cAudioTheme2.ogg", groupname);
+    AudioMan->AddSoundToSoundSet("SoundTrack", music2);
 
     TheWorld->Log("Actor Count");
     TheWorld->Log( TheWorld->GetActorManager()->GetNumActors() );
