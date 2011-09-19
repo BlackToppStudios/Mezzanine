@@ -63,7 +63,11 @@ namespace phys
     WorldNode::WorldNode(const String& Name, SceneManager* manager)
     {
         Manager = manager;
-        OgreNode = Manager->GetGraphicsWorldPointer()->createSceneNode(Name);
+        if (Manager)
+            { OgreNode = Manager->GetGraphicsWorldPointer()->createSceneNode(Name); }
+        else
+            { OgreNode = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode(Name); }
+
         Type = WorldNode::Free;
     }
 
@@ -75,14 +79,17 @@ namespace phys
     }
 
     WorldNode::~WorldNode()
-        { Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
+    {
+        if (Manager)
+            { Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
+        else
+            { World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     /// Navigation
     void WorldNode::SetLocation(const Vector3& Location)
-    {
-        OgreNode->setPosition(Location.GetOgreVector3());
-    }
+        { OgreNode->setPosition(Location.GetOgreVector3()); }
 
     Vector3 WorldNode::GetLocation() const
         { return Vector3(OgreNode->getPosition()); }

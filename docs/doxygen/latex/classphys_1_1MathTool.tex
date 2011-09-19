@@ -49,8 +49,12 @@ static \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperl
 \begin{DoxyCompactList}\small\item\em Gets Pi. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1MathTool_a7b3fef73ed82d585755d11a001290f65}{GetTwoPi} ()
 \begin{DoxyCompactList}\small\item\em Gets Pi $\ast$ 2. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1MathTool_af2fff52ae7bc8b3607aa6a92e190a7a6}{Pow} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Val, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Power)
+\begin{DoxyCompactList}\small\item\em Raises a Real to a power. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1MathTool_a91b41510f0788d9304ddd112236356f9}{Sin} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radians)
 \begin{DoxyCompactList}\small\item\em Calculates the Sine of an angle. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1MathTool_af0b6902a0bf308c41213596ce95854df}{Sqrt} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Val)
+\begin{DoxyCompactList}\small\item\em Gets the square root of a Real. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1MathTool_a8d5e4afe0e8e014f61bfefba2ffc0ede}{Tan} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radians)
 \begin{DoxyCompactList}\small\item\em Calculates the Tangent of an angle. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Protected Attributes}
@@ -104,7 +108,7 @@ Returns a Real representing the principal value of the arc Cosine of the angle p
 \end{DoxyReturn}
 
 
-Definition at line 111 of file mathtool.cpp.
+Definition at line 121 of file mathtool.cpp.
 
 \hypertarget{classphys_1_1MathTool_a89e9613eea236a9729a08500c47283d3}{
 \index{phys::MathTool@{phys::MathTool}!ASin@{ASin}}
@@ -129,7 +133,7 @@ Returns a Real representing the principal value of the arc Sine of the angle pro
 \end{DoxyReturn}
 
 
-Definition at line 116 of file mathtool.cpp.
+Definition at line 126 of file mathtool.cpp.
 
 \hypertarget{classphys_1_1MathTool_ac421007a0a5c5e0b29b832f841327cb0}{
 \index{phys::MathTool@{phys::MathTool}!ATan@{ATan}}
@@ -154,7 +158,7 @@ Returns a Real representing the principal value of the arc Tangent of the angle 
 \end{DoxyReturn}
 
 
-Definition at line 121 of file mathtool.cpp.
+Definition at line 131 of file mathtool.cpp.
 
 \hypertarget{classphys_1_1MathTool_adddaab80e2e5d5a76e123f3ce491d3e7}{
 \index{phys::MathTool@{phys::MathTool}!Ceil@{Ceil}}
@@ -204,7 +208,7 @@ Returns a Real representing the Cosine of the angle provided.
 \end{DoxyReturn}
 
 
-Definition at line 96 of file mathtool.cpp.
+Definition at line 106 of file mathtool.cpp.
 
 \hypertarget{classphys_1_1MathTool_a8304f680a03ec49a284564ad4a1d21f8}{
 \index{phys::MathTool@{phys::MathTool}!Fabs@{Fabs}}
@@ -229,7 +233,7 @@ Returns the absolute value of the Real.
 \end{DoxyReturn}
 
 
-Definition at line 86 of file mathtool.cpp.
+Definition at line 96 of file mathtool.cpp.
 
 \hypertarget{classphys_1_1MathTool_a551b68b7ff6934c450a1d15dc3c8a33c}{
 \index{phys::MathTool@{phys::MathTool}!Floor@{Floor}}
@@ -282,7 +286,7 @@ Returns the remainder of division between the two Reals passed in.
 \end{DoxyReturn}
 
 
-Definition at line 91 of file mathtool.cpp.
+Definition at line 101 of file mathtool.cpp.
 
 \hypertarget{classphys_1_1MathTool_a38e1c4e2ff8827e915ddfbd7fb8037cd}{
 \index{phys::MathTool@{phys::MathTool}!GetHalfPi@{GetHalfPi}}
@@ -344,6 +348,34 @@ Returns a real representing Pi $\ast$ 2.
 
 Definition at line 66 of file mathtool.cpp.
 
+\hypertarget{classphys_1_1MathTool_af2fff52ae7bc8b3607aa6a92e190a7a6}{
+\index{phys::MathTool@{phys::MathTool}!Pow@{Pow}}
+\index{Pow@{Pow}!phys::MathTool@{phys::MathTool}}
+\paragraph[{Pow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::MathTool::Pow (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Val, }
+\item[{const {\bf Real} \&}]{Power}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1MathTool_af2fff52ae7bc8b3607aa6a92e190a7a6}
+
+
+Raises a Real to a power. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Val} & The base number to be raised. \\
+\hline
+{\em Power} & The power (or exponent) to raise the Real by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the Raised Eeal. 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file mathtool.cpp.
+
 \hypertarget{classphys_1_1MathTool_a91b41510f0788d9304ddd112236356f9}{
 \index{phys::MathTool@{phys::MathTool}!Sin@{Sin}}
 \index{Sin@{Sin}!phys::MathTool@{phys::MathTool}}
@@ -367,7 +399,32 @@ Returns a Real representing the Sine of the angle provided.
 \end{DoxyReturn}
 
 
-Definition at line 101 of file mathtool.cpp.
+Definition at line 111 of file mathtool.cpp.
+
+\hypertarget{classphys_1_1MathTool_af0b6902a0bf308c41213596ce95854df}{
+\index{phys::MathTool@{phys::MathTool}!Sqrt@{Sqrt}}
+\index{Sqrt@{Sqrt}!phys::MathTool@{phys::MathTool}}
+\paragraph[{Sqrt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::MathTool::Sqrt (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1MathTool_af0b6902a0bf308c41213596ce95854df}
+
+
+Gets the square root of a Real. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Val} & The number to be calculated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the calculated square root. 
+\end{DoxyReturn}
+
+
+Definition at line 91 of file mathtool.cpp.
 
 \hypertarget{classphys_1_1MathTool_a8d5e4afe0e8e014f61bfefba2ffc0ede}{
 \index{phys::MathTool@{phys::MathTool}!Tan@{Tan}}
@@ -392,7 +449,7 @@ Returns a Real representing the Tangent of the angle provided.
 \end{DoxyReturn}
 
 
-Definition at line 106 of file mathtool.cpp.
+Definition at line 116 of file mathtool.cpp.
 
 
 

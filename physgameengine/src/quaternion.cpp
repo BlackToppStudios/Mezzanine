@@ -462,7 +462,8 @@ Ogre::Quaternion& operator<< ( Ogre::Quaternion& Other, const btQuaternion& Othe
 std::ostream& operator << (std::ostream& stream, const phys::Quaternion& x)
 {
     #ifdef PHYSXML
-        stream << Serialize(stream, x);// '"<Quaternion Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" W=\"" << x.W << "\" />";
+        Serialize(stream, x);
+        // '"<Quaternion Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" W=\"" << x.W << "\" />";
     #else
         stream << "[" << x.X << "," << x.Y << "," << x.Z << "," << x.W << "]";
     #endif // \PHYSXML

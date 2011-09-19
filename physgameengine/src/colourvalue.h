@@ -145,6 +145,26 @@ namespace phys
             /// @brief Creates a ColourValue representing the colour Magenta.
             /// @return Returns the created ColourValue.
             static ColourValue Magenta();
+
+#ifdef PHYSXML
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "ColourValue"
+            static String SerializableName();
+#endif
+
     };//colorvalue
 }//phys
 
@@ -167,8 +187,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ColourValue& Ev)
 /// @brief Set all values of a phys::ColourValue from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the phys::ColourValue.
 /// @param Ev the phys::ColourValue to be reset.
-/// @return This returns thexml::Node that was passed in.
-phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ColourValue& Ev);
+void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ColourValue& Ev);
 
 #endif // \PHYSXML
 

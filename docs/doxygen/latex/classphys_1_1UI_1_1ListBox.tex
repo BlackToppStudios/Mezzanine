@@ -56,8 +56,6 @@ virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a896220f2423ce6295ea3c8dc3a10
 \label{classphys_1_1UI_1_1ListBox_a896220f2423ce6295ea3c8dc3a10d4b8}
 
 \begin{DoxyCompactList}\small\item\em Forces this List Box to hide. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this List Box. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1ListBox_a2c61aa8ff40ff66eb45388a4e6cca5b2}{ListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{structphys_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a4bf1911c639429c783915ba8a543fec3}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
@@ -103,16 +101,26 @@ virtual \hyperlink{classphys_1_1UI_1_1ListBox_a582423223a2e310afc2a32c84d937502}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1UI_1_1ListBox_a8922aa7cdc3feb854a6c849b071fc8f6}{
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a8922aa7cdc3feb854a6c849b071fc8f6}{CalculateVisibleSelections} ()}
-\label{classphys_1_1UI_1_1ListBox_a8922aa7cdc3feb854a6c849b071fc8f6}
-
-\begin{DoxyCompactList}\small\item\em Determines how many items can be displayed in the box at once. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1ListBox_a4cc701e644aec861743ceff8bfc8793a}{
 virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a4cc701e644aec861743ceff8bfc8793a}{DrawList} ()}
 \label{classphys_1_1UI_1_1ListBox_a4cc701e644aec861743ceff8bfc8793a}
 
 \begin{DoxyCompactList}\small\item\em Updates the list of Visible buttons and hides the rest. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1ListBox_a67732b1ba61e299e2833b3b624a0fb43}{
+virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a67732b1ba61e299e2833b3b624a0fb43}{ScrollHideCheck} ()}
+\label{classphys_1_1UI_1_1ListBox_a67732b1ba61e299e2833b3b624a0fb43}
+
+\begin{DoxyCompactList}\small\item\em Checks to see if the scrollbar should be hidden or not. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1ListBox_ac97d5d2e730b9899b7d265ae62f603f4}{
+virtual void \hyperlink{classphys_1_1UI_1_1ListBox_ac97d5d2e730b9899b7d265ae62f603f4}{SelectionSizeCheck} (\hyperlink{classphys_1_1UI_1_1Caption}{UI::Caption} $\ast$Selection)}
+\label{classphys_1_1UI_1_1ListBox_ac97d5d2e730b9899b7d265ae62f603f4}
+
+\begin{DoxyCompactList}\small\item\em Checks to see if the current size of the selection needs adjusting. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1ListBox_a283784a49458dccbc0b94bb4e835e727}{
+virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a283784a49458dccbc0b94bb4e835e727}{SetArea} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Area)}
+\label{classphys_1_1UI_1_1ListBox_a283784a49458dccbc0b94bb4e835e727}
+
+\begin{DoxyCompactList}\small\item\em Internal utility to set the size of this widget. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1ListBox_ac278c07a77081774369f76a4c7b12760}{
 virtual void \hyperlink{classphys_1_1UI_1_1ListBox_ac278c07a77081774369f76a4c7b12760}{Update} (bool Force=false)}
 \label{classphys_1_1UI_1_1ListBox_ac278c07a77081774369f76a4c7b12760}
@@ -144,11 +152,6 @@ bool {\bfseries AutoHideScroll}}
 \hypertarget{classphys_1_1UI_1_1ListBox_a6a92bf3428daa9a02a7e6bf3dafd5886}{
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries MaxDisplay}}
 \label{classphys_1_1UI_1_1ListBox_a6a92bf3428daa9a02a7e6bf3dafd5886}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1ListBox_a8cab85b310d794830d381722458e1a64}{
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries NumVisible}}
-\label{classphys_1_1UI_1_1ListBox_a8cab85b310d794830d381722458e1a64}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1ListBox_a62d0841248552db1479b8be601c3a5c3}{
@@ -213,11 +216,11 @@ Standard initialization constructor.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000027}{Todo}]Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. \end{Desc}
+\item[\hyperlink{todo__todo000028}{Todo}]Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. \end{Desc}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000028}{Todo}]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
+\item[\hyperlink{todo__todo000029}{Todo}]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
 
 
 
@@ -253,7 +256,7 @@ If a colour other then white was set as the template and you try to set a backgr
 \end{DoxyParams}
 
 
-Definition at line 352 of file uilistbox.cpp.
+Definition at line 363 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a789faeb98d98bb4d4d89cae8c53d4bc0}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!CheckMouseHover@{CheckMouseHover}}
@@ -277,7 +280,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259d
 
 
 
-Definition at line 268 of file uilistbox.cpp.
+Definition at line 272 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a295acf830ed17c78a59e5ba871a5a234}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!DestroySelection@{DestroySelection}}
@@ -299,7 +302,7 @@ Destroys a selectable caption.
 \end{DoxyParams}
 
 
-Definition at line 387 of file uilistbox.cpp.
+Definition at line 397 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a3aa3bfaee473b7590692e8707dada68d}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!DestroySelection@{DestroySelection}}
@@ -321,7 +324,7 @@ Destroys a selectable caption.
 \end{DoxyParams}
 
 
-Definition at line 401 of file uilistbox.cpp.
+Definition at line 410 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a44046453283fb2c54e10dc868705352a}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetActualPosition@{GetActualPosition}}
@@ -345,7 +348,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e
 
 
 
-Definition at line 450 of file uilistbox.cpp.
+Definition at line 458 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a23133ed4a98994d838acee4c6a981e04}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetActualSize@{GetActualSize}}
@@ -369,7 +372,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed
 
 
 
-Definition at line 484 of file uilistbox.cpp.
+Definition at line 478 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a087fba492ebd70a58d2772fccbfec466}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetBoxBack@{GetBoxBack}}
@@ -389,7 +392,7 @@ Returns a pointer to the background of this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 494 of file uilistbox.cpp.
+Definition at line 488 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_af688db0628a5588865a890584f754b02}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetPosition@{GetPosition}}
@@ -413,7 +416,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c3
 
 
 
-Definition at line 436 of file uilistbox.cpp.
+Definition at line 444 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a729f4ef3e0bc10bf8e96f20a83767484}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetSelected@{GetSelected}}
@@ -433,7 +436,7 @@ Returns a pointer to the currently selected caption, or NULL if none are selecte
 \end{DoxyReturn}
 
 
-Definition at line 489 of file uilistbox.cpp.
+Definition at line 483 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a1a5f9c44430387cc96744411bea9e978}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetSelection@{GetSelection}}
@@ -458,7 +461,7 @@ Returns a pointer to the named caption.
 \end{DoxyReturn}
 
 
-Definition at line 374 of file uilistbox.cpp.
+Definition at line 384 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a7af2cced185d63be6a62d5122c700d81}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetSize@{GetSize}}
@@ -482,7 +485,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a
 
 
 
-Definition at line 467 of file uilistbox.cpp.
+Definition at line 468 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a138619898628207d48adfe2bb08536d8}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetTemplateInfo@{GetTemplateInfo}}
@@ -502,7 +505,7 @@ Returns a const reference to the structure containing all the template parameter
 \end{DoxyReturn}
 
 
-Definition at line 347 of file uilistbox.cpp.
+Definition at line 358 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a9f62475c3a81772407af38076363060e}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetVertScroll@{GetVertScroll}}
@@ -522,31 +525,7 @@ Returns a pointer to the scrollbar of this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 499 of file uilistbox.cpp.
-
-\hypertarget{classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}{
-\index{phys::UI::ListBox@{phys::UI::ListBox}!IsVisible@{IsVisible}}
-\index{IsVisible@{IsVisible}!phys::UI::ListBox@{phys::UI::ListBox}}
-\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::ListBox::IsVisible (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}
-
-
-Gets the visibility of this List Box. 
-
-\begin{DoxyReturn}{Returns}
-Returns a bool representing the visibility of this List Box. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}{phys::UI::Widget}.
-
-
-
-Definition at line 243 of file uilistbox.cpp.
+Definition at line 493 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a4bf1911c639429c783915ba8a543fec3}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetActualPosition@{SetActualPosition}}
@@ -572,7 +551,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e
 
 
 
-Definition at line 441 of file uilistbox.cpp.
+Definition at line 449 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a742810da75f2b3889794498f05af8860}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetActualSize@{SetActualSize}}
@@ -598,7 +577,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120
 
 
 
-Definition at line 472 of file uilistbox.cpp.
+Definition at line 473 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a60fc5c1907df6d83217b25c2c8f15f48}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetAutoHideScroll@{SetAutoHideScroll}}
@@ -620,7 +599,7 @@ Eanbles or disables the scrollbar autohide.
 \end{DoxyParams}
 
 
-Definition at line 420 of file uilistbox.cpp.
+Definition at line 429 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_acbc8e669d93665789453cb866996411b}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetMaxDisplayedSelections@{SetMaxDisplayedSelections}}
@@ -642,7 +621,7 @@ Sets the maximum number of selections to display at once before the scrollbar ap
 \end{DoxyParams}
 
 
-Definition at line 415 of file uilistbox.cpp.
+Definition at line 423 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a0c4c7141142caca342157ce4460b907d}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetPosition@{SetPosition}}
@@ -668,7 +647,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d0
 
 
 
-Definition at line 427 of file uilistbox.cpp.
+Definition at line 435 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a2e1f6514f83be768dad7e357beb6ac98}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetSize@{SetSize}}
@@ -694,7 +673,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24
 
 
 
-Definition at line 455 of file uilistbox.cpp.
+Definition at line 463 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a718421466aa6769b04b5e34b29e0e01b}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateBackgroundColour@{SetTemplateBackgroundColour}}
@@ -719,7 +698,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 329 of file uilistbox.cpp.
+Definition at line 340 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_af2a439b21e1b1a4af0cc684c25109d60}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateCursorOffset@{SetTemplateCursorOffset}}
@@ -744,7 +723,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 323 of file uilistbox.cpp.
+Definition at line 334 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a4bce62d1cee20950c41897e439fb3d79}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateGlyphIndex@{SetTemplateGlyphIndex}}
@@ -769,7 +748,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 305 of file uilistbox.cpp.
+Definition at line 316 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a00ccdbe0b3a8da306b7346dff04792e0}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateHorizontalAlign@{SetTemplateHorizontalAlign}}
@@ -794,7 +773,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 335 of file uilistbox.cpp.
+Definition at line 346 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_abe6281a6f885be920ba540b81df3cf59}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateSize@{SetTemplateSize}}
@@ -822,7 +801,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 298 of file uilistbox.cpp.
+Definition at line 302 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a0106fde625c9e950f27a3e2611444359}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateTextColour@{SetTemplateTextColour}}
@@ -847,7 +826,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 311 of file uilistbox.cpp.
+Definition at line 322 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_a160bc4d74c99f544a4339a3ba050868a}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateTextScale@{SetTemplateTextScale}}
@@ -872,7 +851,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 317 of file uilistbox.cpp.
+Definition at line 328 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_ab3b48e58a0049552c22aa17b7b8e8f1f}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetTemplateVerticalAlign@{SetTemplateVerticalAlign}}
@@ -897,7 +876,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 341 of file uilistbox.cpp.
+Definition at line 352 of file uilistbox.cpp.
 
 \hypertarget{classphys_1_1UI_1_1ListBox_abb3c87bf6669100296c1fa4f4913ea33}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetVisible@{SetVisible}}
@@ -923,7 +902,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e
 
 
 
-Definition at line 233 of file uilistbox.cpp.
+Definition at line 242 of file uilistbox.cpp.
 
 
 
@@ -934,7 +913,7 @@ Definition at line 233 of file uilistbox.cpp.
 \paragraph[{VertScroll}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar}$\ast$ {\bf phys::UI::ListBox::VertScroll}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
 \label{classphys_1_1UI_1_1ListBox_ab2b012b345ff4bb1a5b228fef88d895c}
 \begin{Desc}
-\item[\hyperlink{todo__todo000029}{Todo}]Third instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
+\item[\hyperlink{todo__todo000030}{Todo}]Third instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
 
 
 Definition at line 78 of file uilistbox.h.

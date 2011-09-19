@@ -42,19 +42,71 @@
 
 #include "actorserializer.h"
 
-
-
 namespace phys
 {
     ActorRigid* ActorRigidDeSerializer::ProtoDeSerialize(const xml::Node& OneNode)
     {
+        if ( phys::String(OneNode.Name())==ActorRigid::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                String Name(OneNode.GetAttribute("Name").AsString());
+                if (Name.empty())
+                    { DeSerializeError("find a Name Attribute",ActorRigid::SerializableName()); }
 
+                String File(OneNode.GetAttribute("File").AsString());
+                if (File.empty())
+                    { DeSerializeError("find a File Attribute",ActorRigid::SerializableName()); }
+
+                String Group(OneNode.GetAttribute("Group").AsString());
+                if (Group.empty())
+                    { DeSerializeError("find a Group Attribute",ActorRigid::SerializableName()); }
+
+                ActorRigid *Results = new ActorRigid(10,Name,File,Group);
+                Results->ProtoDeSerialize(OneNode);
+
+                if (0 != Target)
+                    { Target->AddActor(Results); }
+
+                if( Results->IsInWorld() != OneNode.GetChild(ActorBase::SerializableName()).GetAttribute("IsInWorld").AsBool() )
+                {
+                    if(Results->IsInWorld())
+                        { Results->RemoveObjectFromWorld(); }
+                    else
+                        { Results->AddObjectToWorld(); }
+                }
+
+                Vector3 tempvec;
+                xml::Node GravityNode = OneNode.GetChild(ActorBase::SerializableName()).GetChild("ActorRigidPhysicsSettings").GetChild("IndividualGravity").GetFirstChild();
+                if(!GravityNode)
+                    { DeSerializeError("find gravity node", "ActorRigidDeSerializer"); }
+                tempvec.ProtoDeSerialize(GravityNode);
+                Results->GetPhysicsSettings()->SetIndividualGravity(tempvec);
+
+                return Results;
+
+            }else{
+                DeSerializeError("find usable serialization version","ActorRigidDeSerializer");
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),"ActorRigidDeSerializer");
+        }
     }
 
     void ActorRigidDeSerializer::ProtoDeSerializeAll(const xml::Node& OneNode)
     {
-
+        // no checking of the name happens we could get
+        xml::Node OneActorNode = OneNode.GetFirstChild();
+        while(OneActorNode)
+        {
+            ProtoDeSerialize(OneActorNode);
+            OneActorNode = OneActorNode.GetNextSibling();
+        }
     }
+
+    String ActorRigidDeSerializer::ContainerName() const
+        { return String("RigidActors"); }
+
 }
 
 #endif

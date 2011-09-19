@@ -44,6 +44,7 @@
 #include "actorbase.h"
 #include "mesh.h"
 #include "datatypes.h"
+#include "serialization.h"
 #include "world.h"
 #include "meshmanager.h"
 
@@ -164,98 +165,148 @@ namespace phys
 
     ColourValue ActorGraphicsSettings::GetMaterialDiffuse(Whole Submesh) const
         { return this->IAGS->Diffuse[Submesh]; }
-}
+
 #ifdef PHYSXML
-std::ostream& operator << (std::ostream& stream, const phys::ActorGraphicsSettings& Ev)
-{
-    stream      << "<ActorGraphicsSettings Version=\"1\" >";
-        for(phys::Whole Counter = 0; Ev.GetNumSubmeshes()>Counter; ++Counter)
+        // Serializable
+        void ActorGraphicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
         {
-            if(Ev.GetMaterialAmbient(Counter)!=phys::ColourValue())
-                stream << "<AmbientMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialAmbient(Counter) << "</AmbientMaterial>";
+            xml::Node BaseNode = CurrentRoot.AppendChild(this->ActorGraphicsSettings::SerializableName());
+            if (!BaseNode)
+                { SerializeError("Create BaseNode", SerializableName()); }
 
-            if(Ev.GetMaterialSpecular(Counter)!=phys::ColourValue())
-                stream << "<SpecularMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialSpecular(Counter) << "</SpecularMaterial>";
+            phys::xml::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
+            if (!Version)
+                { SerializeError("Create Version Attribute", SerializableName()); }
+            Version.SetValue(1);
 
-            if(Ev.GetMaterialDiffuse(Counter)!=phys::ColourValue())
-                stream << "<DiffuseMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialDiffuse(Counter) << "</DiffuseMaterial>";
+            for(phys::Whole Counter = 0; this->GetNumSubmeshes()>Counter; ++Counter)
+            {
+                if(this->GetMaterialAmbient(Counter)!=phys::ColourValue())
+                {
+                    xml::Node AmbientMaterial = BaseNode.AppendChild("AmbientMaterial");
+                    if (!AmbientMaterial)
+                        { SerializeError("Create AmbientMaterial Node", SerializableName()); }
+                    this->GetMaterialAmbient(Counter).ProtoSerialize(AmbientMaterial);
+                    phys::xml::Attribute AmbientMaterialSubMesh = AmbientMaterial.AppendAttribute("Submesh");
+                    if (!AmbientMaterialSubMesh)
+                        { SerializeError("Create AmbientMaterialSubMesh Attribute", SerializableName()); }
+                    AmbientMaterialSubMesh.SetValue(Counter);
+                }
+
+                if(this->GetMaterialSpecular(Counter)!=phys::ColourValue())
+                {
+                    xml::Node SpecularMaterial = BaseNode.AppendChild("SpecularMaterial");
+                    if (!SpecularMaterial)
+                        { SerializeError("Create SpecularMaterial Node", SerializableName()); }
+                    this->GetMaterialSpecular(Counter).ProtoSerialize(SpecularMaterial);
+                    phys::xml::Attribute SpecularMaterialSubMesh = SpecularMaterial.AppendAttribute("Submesh");
+                    if (!SpecularMaterialSubMesh)
+                        { SerializeError("Create SpecularMaterialSubMesh Attribute", SerializableName()); }
+                    SpecularMaterialSubMesh.SetValue(Counter);
+                }
+
+                if(this->GetMaterialDiffuse(Counter)!=phys::ColourValue())
+                {
+                    xml::Node DiffuseMaterial = BaseNode.AppendChild("DiffuseMaterial");
+                    if (!DiffuseMaterial)
+                        { SerializeError("Create DiffuseMaterial Node", SerializableName()); }
+                    this->GetMaterialDiffuse(Counter).ProtoSerialize(DiffuseMaterial);
+                    phys::xml::Attribute DiffuseMaterialSubMesh = DiffuseMaterial.AppendAttribute("Submesh");
+                    if (!DiffuseMaterialSubMesh)
+                        { SerializeError("Create DiffuseMaterialSubMesh Attribute", SerializableName()); }
+                    DiffuseMaterialSubMesh.SetValue(Counter);
+                }
+/*
+                if(this->GetMaterialAmbient(Counter)!=phys::ColourValue())
+                    stream << "<AmbientMaterial Submesh=\"" << Counter << "\">" << this->GetMaterialAmbient(Counter) << "</AmbientMaterial>";
+
+                if(this->GetMaterialSpecular(Counter)!=phys::ColourValue())
+                    stream << "<SpecularMaterial Submesh=\"" << Counter << "\">" << this->GetMaterialAmbient(Counter) << "</SpecularMaterial>";
+
+                if(this->GetMaterialDiffuse(Counter)!=phys::ColourValue())
+                    stream << "<DiffuseMaterial Submesh=\"" << Counter << "\">" << this->GetMaterialDiffuse(Counter) << "</DiffuseMaterial>";
+*/
+            }
         }
 
-    stream      << "</ActorGraphicsSettings>";
-    return stream;
+        // DeSerializable
+        void ActorGraphicsSettings::ProtoDeSerialize(const xml::Node& OneNode)
+        {
+            if ( phys::String(OneNode.Name())==this->ActorGraphicsSettings::SerializableName() )
+            {
+                if(OneNode.GetAttribute("Version").AsInt() == 1)
+                {
+                    phys::ColourValue TempColour;
+
+                    for(phys::Whole Counter = 0; this->GetNumSubmeshes()>Counter; ++Counter)
+                    {
+                        this->SetMaterialAmbient(TempColour, Counter);
+                        this->SetMaterialSpecular(TempColour, Counter);
+                        this->SetMaterialDiffuse(TempColour, Counter);
+                    }
+
+                    for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+                    {
+                        phys::String Name(Child.Name());
+                        switch(Name[0])
+                        {
+                            case 'A':   //fDiffuseColour
+                                if(Name==phys::String("AmbientMaterial"))
+                                {
+                                    Child.GetFirstChild() >> TempColour;
+                                    this->SetMaterialAmbient(TempColour, Child.GetAttribute("Submesh").AsWhole());
+                                }else{
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element A-\"",Name,"\"")) );
+                                }
+                                break;
+                            case 'S':   //fDiffuseColour
+                                if(Name==phys::String("SpecularMaterial"))
+                                {
+                                    Child.GetFirstChild() >> TempColour;
+                                    this->SetMaterialSpecular(TempColour, Child.GetAttribute("Submesh").AsWhole());
+                                }else{
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element S-\"",Name,"\"")) );
+                                }
+                                break;
+                            case 'D':   //fDiffuseColour
+                                if(Name==phys::String("DiffuseMaterial"))
+                                {
+                                    Child.GetFirstChild() >> TempColour;
+                                    this->SetMaterialDiffuse(TempColour, Child.GetAttribute("Submesh").AsWhole());
+                                }else{
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element D-\"",Name,"\"")) );
+                                }
+                                break;
+                            default:
+                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element default-\"",Name,"\"")) );
+                                break;
+                        }
+                    }
+                }else{
+                    throw( phys::Exception(String("Incompatible XML Version for")+ this->ActorGraphicsSettings::SerializableName() + ": Not Version 1"));
+                }
+            }else{
+                throw( phys::Exception(phys::StringCat("Attempting to deserialize a ", this->ActorGraphicsSettings::SerializableName(),", found a ", OneNode.Name())));
+            }
+        }
+
+        String ActorGraphicsSettings::SerializableName()
+            { return String("ActorGraphicsSettings"); }
+#endif
 }
+
+
+#ifdef PHYSXML
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ActorGraphicsSettings& Ev)
+    { return Serialize(stream, Ev); }
 
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorGraphicsSettings& Ev)
-{
-    phys::String OneTag( phys::xml::GetOneTag(stream) );
-    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "ActorGraphicsSettings", OneTag) );
+    { return DeSerialize(stream,Ev); }
 
-    Doc->GetFirstChild() >> Ev;
-
-    return stream;
-}
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorGraphicsSettings& Ev)
+    { Ev.ProtoDeSerialize(OneNode); }
 
 
-phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorGraphicsSettings& Ev)
-{
-    if ( phys::String(OneNode.Name())==phys::String("ActorGraphicsSettings") )
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-            phys::ColourValue TempColour;
-
-            for(phys::Whole Counter = 0; Ev.GetNumSubmeshes()>Counter; ++Counter)
-            {
-                Ev.SetMaterialAmbient(TempColour, Counter);
-                Ev.SetMaterialSpecular(TempColour, Counter);
-                Ev.SetMaterialDiffuse(TempColour, Counter);
-            }
-
-            for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
-            {
-                phys::String Name(Child.Name());
-                switch(Name[0])
-                {
-                    case 'A':   //fDiffuseColour
-                        if(Name==phys::String("AmbientMaterial"))
-                        {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetMaterialAmbient(TempColour, Child.GetAttribute("Submesh").AsWhole());
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element A-\"",Name,"\"")) );
-                        }
-                        break;
-                    case 'S':   //fDiffuseColour
-                        if(Name==phys::String("SpecularMaterial"))
-                        {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetMaterialSpecular(TempColour, Child.GetAttribute("Submesh").AsWhole());
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element S-\"",Name,"\"")) );
-                        }
-                        break;
-                    case 'D':   //fDiffuseColour
-                        if(Name==phys::String("DiffuseMaterial"))
-                        {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetMaterialDiffuse(TempColour, Child.GetAttribute("Submesh").AsWhole());
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element D-\"",Name,"\"")) );
-                        }
-                        break;
-                    default:
-                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element default-\"",Name,"\"")) );
-                        break;
-                }
-            }
-
-        }else{
-            throw( phys::Exception("Incompatible XML Version for ActorGraphicsSettings: Not Version 1"));
-        }
-    }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a ActorGraphicsSettings, found a ", OneNode.Name())));
-    }
-}
 #endif // \PHYSXML
 
 

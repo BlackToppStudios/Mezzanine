@@ -45,8 +45,6 @@ virtual void \hyperlink{classphys_1_1TypedConstraint_aeafb306788de02bfb164806054
 \begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1TypedConstraint_a9cf48a2a1afb939cbd03e54ee9be3e0b}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
 \begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1TypedConstraint_ad604b85a13e3e3b1c01d1c40f678b751}{SerializableName} () const 
-\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1TypedConstraint_adc1375a6adb954adb28615ff7c4cec4e}{SetParam} (\hyperlink{namespacephys_aa1e7cf2d7efcaeaeac304f711e7564e8}{ConstraintParam} Param, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Value, int Axis=-\/1)
 \begin{DoxyCompactList}\small\item\em Provides override of constraint parameters. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1TypedConstraint_aaa301fee77aa6e20ab202f604f0e9518}{SetPivotALocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&PivotA)=0
@@ -65,6 +63,11 @@ virtual \hyperlink{classphys_1_1TypedConstraint_a4c2dcea3fbb764e454840329126d034
 \begin{DoxyCompactList}\small\item\em Get A sorted (low to high) list of Parameters that are valid on all Axis. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1TypedConstraint_a7489628bcfb15e712c09dbdcf6b20bff}{$\sim$TypedConstraint} ()
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1TypedConstraint_adf4ccf2fcfc20634acde9d07508ff03e}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -428,15 +431,15 @@ This stores each Actor's name and every constraint parameter on each if it has b
 
 Reimplemented in \hyperlink{classphys_1_1DualTransformConstraint_aa1e3919874eceedb6ba708af4d540b9b}{phys::DualTransformConstraint}, \hyperlink{classphys_1_1Generic6DofConstraint_a9cf4eb82a625d06116542f6d224cdd69}{phys::Generic6DofConstraint}, \hyperlink{classphys_1_1Generic6DofSpringConstraint_aeffb182d5faa82175e96a259fc19f9ff}{phys::Generic6DofSpringConstraint}, \hyperlink{classphys_1_1HingeConstraint_a04fac5312ddf891adcfff67e98f75861}{phys::HingeConstraint}, and \hyperlink{classphys_1_1Point2PointConstraint_ace2e182da3c1495084eea1a5fcc97cfd}{phys::Point2PointConstraint}.
 
-\hypertarget{classphys_1_1TypedConstraint_ad604b85a13e3e3b1c01d1c40f678b751}{
+\hypertarget{classphys_1_1TypedConstraint_adf4ccf2fcfc20634acde9d07508ff03e}{
 \index{phys::TypedConstraint@{phys::TypedConstraint}!SerializableName@{SerializableName}}
 \index{SerializableName@{SerializableName}!phys::TypedConstraint@{phys::TypedConstraint}}
-\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::TypedConstraint::SerializableName (
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} phys::TypedConstraint::SerializableName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
-\label{classphys_1_1TypedConstraint_ad604b85a13e3e3b1c01d1c40f678b751}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1TypedConstraint_adf4ccf2fcfc20634acde9d07508ff03e}
 
 
 Get the name of the the XML tag this class will leave behind as its instances are serialized. 
@@ -446,7 +449,7 @@ A string containing \char`\"{}TypedConstraint\char`\"{}
 \end{DoxyReturn}
 
 
-Reimplemented in \hyperlink{classphys_1_1DualTransformConstraint_ad810321a7395cbd5cc0ba8cac0d3b136}{phys::DualTransformConstraint}, \hyperlink{classphys_1_1Generic6DofConstraint_aa015e640a680f54edd0906b6ec684a99}{phys::Generic6DofConstraint}, \hyperlink{classphys_1_1Generic6DofSpringConstraint_ad0a2d0c49fb622095f18d48b1e52f904}{phys::Generic6DofSpringConstraint}, \hyperlink{classphys_1_1HingeConstraint_a64804b6c98ed930f9acb05414defcdcc}{phys::HingeConstraint}, and \hyperlink{classphys_1_1Point2PointConstraint_ae658c1f5c370b8a4cf94fcf276696dbf}{phys::Point2PointConstraint}.
+Reimplemented in \hyperlink{classphys_1_1DualTransformConstraint_aea7ce65c759df1f3fc86d3f4a42d31d6}{phys::DualTransformConstraint}, \hyperlink{classphys_1_1Generic6DofConstraint_a7cc944e9655af095b4c24340d92a2b3c}{phys::Generic6DofConstraint}, \hyperlink{classphys_1_1Generic6DofSpringConstraint_a574901d1abc3163c23dc1a165c8fbdaa}{phys::Generic6DofSpringConstraint}, \hyperlink{classphys_1_1HingeConstraint_ae7007bcfb6b84b234264e35fd5d7ae91}{phys::HingeConstraint}, and \hyperlink{classphys_1_1Point2PointConstraint_adb43f9fc1ac3ade862f23ecff3dedf27}{phys::Point2PointConstraint}.
 
 \hypertarget{classphys_1_1TypedConstraint_adc1375a6adb954adb28615ff7c4cec4e}{
 \index{phys::TypedConstraint@{phys::TypedConstraint}!SetParam@{SetParam}}

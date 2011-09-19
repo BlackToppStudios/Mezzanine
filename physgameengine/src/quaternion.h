@@ -300,9 +300,10 @@ namespace phys
             /// @return True if the Quaternions are semantically equal, false otherwise.
             bool operator== (const btQuaternion& Other) const;
 
+#ifdef PHYSXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
-#ifdef PHYSXML
+
             // Serializable
             /// @brief Convert this class to an xml::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.

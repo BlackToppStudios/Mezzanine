@@ -46,7 +46,8 @@
 #include "serialization.h"
 #include "xmldoc.h"
 
-/// @file This is where the declarations of any Serializers or DeSerializers for actors will go.
+/// @file
+/// @brief This is where the declarations of any Serializers or DeSerializers for actors will go.
 
 
 namespace phys
@@ -57,20 +58,33 @@ namespace phys
     {
         #ifdef PHYSXML
 
-        private:
+        protected:
+            /// This should point to a specific Actor Manager
             ActorManager* Target;
 
         public:
 
             /// @brief Constructor
             /// @param DeSerializeTarget A pointer to the actor manager that will be populated with deserialized actors.
-            explicit ActorRigidDeSerializer(ActorManager* DeSerializeTarget = 0)
+            explicit ActorRigidDeSerializer(ActorManager* DeSerializeTarget)
                     : Target(DeSerializeTarget)
             {}
 
+            /// @brief Accepts one xml::Node with an actor in it and create a new ActorRigid
+            /// @details In addition to returning the created actor it's pointer is also added to the Target ActorManager
+            /// @param OneNode The node that should have an ActorRigid in it
+            /// @return A pointer to the freshly created actor
             virtual ActorRigid* ProtoDeSerialize(const xml::Node& OneNode);
 
+            /// @brief Accepts an xml::Node with Multiple ActorRigid nodes as children, deserializes them and stores them in the Target ActorManager.
+            /// @warning If The ActorManager Passed in at construction is null, this will only return the pointer.
+            /// @param OneNode The node that should have some amount of ActorRigids as children.
             virtual void ProtoDeSerializeAll(const xml::Node& OneNode);
+
+            /// @brief Should indicate the Name of the node that ProtoDeSerializeAll all accepts (when deserializing raw xml text).
+            /// @warning If The ActorManager Passed in at construction is null, this will do very little other than eat cpu and memory bandwidth.
+            /// @return A String containing "RigidActors".
+            virtual String ContainerName() const;
 
         #endif // \PHYSXML
     };

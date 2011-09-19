@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -147,32 +147,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00083"></a>00083                 <span class="keywordtype">bool</span> AutoHideScroll;
 <a name="l00084"></a>00084                 <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> LastScrollValue;
 <a name="l00085"></a>00085                 <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> MaxDisplay;
-<a name="l00086"></a>00086                 <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> NumVisible;
-<a name="l00087"></a>00087                 <a class="code" href="structphys_1_1UI_1_1ListBox_1_1TemplateParams.html">TemplateParams</a> SelectionTemplate;<span class="comment"></span>
-<a name="l00088"></a>00088 <span class="comment">                /// @brief Determines how many items can be displayed in the box at once.</span>
-<a name="l00089"></a>00089 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> CalculateVisibleSelections();<span class="comment"></span>
-<a name="l00090"></a>00090 <span class="comment">                /// @brief Updates the list of Visible buttons and hides the rest.</span>
-<a name="l00091"></a>00091 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DrawList();<span class="comment"></span>
-<a name="l00092"></a>00092 <span class="comment">                /// @brief For use with widget update/automation.</span>
-<a name="l00093"></a>00093 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Update(<span class="keywordtype">bool</span> Force = <span class="keyword">false</span>);
-<a name="l00094"></a>00094             <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00095"></a>00095 <span class="comment">                /// @brief Standard initialization constructor.</span>
-<a name="l00096"></a>00096 <span class="comment">                /// @param name The name of the List Box.</span>
-<a name="l00097"></a>00097 <span class="comment">                /// @param Rect The Rect representing the position and size of the List Box.</span>
-<a name="l00098"></a>00098 <span class="comment">                /// The size portion of this rect would be in reference to the size of a single selection.</span>
-<a name="l00099"></a>00099 <span class="comment">                /// The actual size of this widget will be a result of how many selections are currently being displayed.</span>
-<a name="l00100"></a>00100 <span class="comment">                /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar</span>
-<a name="l00101"></a>00101 <span class="comment">                /// class for more information.</span>
-<a name="l00102"></a>00102 <span class="comment">                /// @param Layer The parent layer this List Box belongs to.</span>
-<a name="l00103"></a>00103 <span class="comment"></span>                <a class="code" href="classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> UI::ScrollbarStyle&amp; ScrollStyle, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer);<span class="comment"></span>
-<a name="l00104"></a>00104 <span class="comment">                /// @brief Standard destructor.</span>
-<a name="l00105"></a>00105 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>();<span class="comment"></span>
-<a name="l00106"></a>00106 <span class="comment">                /// @brief Sets the visibility of this List Box.</span>
-<a name="l00107"></a>00107 <span class="comment">                /// @param visible Bool determining whether or not this List Box should be visible.</span>
-<a name="l00108"></a>00108 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetVisible(<span class="keywordtype">bool</span> visible);<span class="comment"></span>
-<a name="l00109"></a>00109 <span class="comment">                /// @brief Gets the visibility of this List Box.</span>
-<a name="l00110"></a>00110 <span class="comment">                /// @return Returns a bool representing the visibility of this List Box.</span>
-<a name="l00111"></a>00111 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsVisible();<span class="comment"></span>
+<a name="l00086"></a>00086                 <a class="code" href="structphys_1_1UI_1_1ListBox_1_1TemplateParams.html">TemplateParams</a> SelectionTemplate;<span class="comment"></span>
+<a name="l00087"></a>00087 <span class="comment">                /// @brief Checks to see if the scrollbar should be hidden or not.</span>
+<a name="l00088"></a>00088 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> ScrollHideCheck();<span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">                /// @brief Checks to see if the current size of the selection needs adjusting.</span>
+<a name="l00090"></a>00090 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SelectionSizeCheck(<a class="code" href="classphys_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">UI::Caption</a>* Selection);<span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">                /// @brief Internal utility to set the size of this widget.</span>
+<a name="l00092"></a>00092 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetArea(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Area);<span class="comment"></span>
+<a name="l00093"></a>00093 <span class="comment">                /// @brief Updates the list of Visible buttons and hides the rest.</span>
+<a name="l00094"></a>00094 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DrawList();<span class="comment"></span>
+<a name="l00095"></a>00095 <span class="comment">                /// @brief For use with widget update/automation.</span>
+<a name="l00096"></a>00096 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Update(<span class="keywordtype">bool</span> Force = <span class="keyword">false</span>);
+<a name="l00097"></a>00097             <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00098"></a>00098 <span class="comment">                /// @brief Standard initialization constructor.</span>
+<a name="l00099"></a>00099 <span class="comment">                /// @param name The name of the List Box.</span>
+<a name="l00100"></a>00100 <span class="comment">                /// @param Rect The Rect representing the position and size of the List Box.</span>
+<a name="l00101"></a>00101 <span class="comment">                /// The size portion of this rect would be in reference to the size of a single selection.</span>
+<a name="l00102"></a>00102 <span class="comment">                /// The actual size of this widget will be a result of how many selections are currently being displayed.</span>
+<a name="l00103"></a>00103 <span class="comment">                /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar</span>
+<a name="l00104"></a>00104 <span class="comment">                /// class for more information.</span>
+<a name="l00105"></a>00105 <span class="comment">                /// @param Layer The parent layer this List Box belongs to.</span>
+<a name="l00106"></a>00106 <span class="comment"></span>                <a class="code" href="classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> UI::ScrollbarStyle&amp; ScrollStyle, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer);<span class="comment"></span>
+<a name="l00107"></a>00107 <span class="comment">                /// @brief Standard destructor.</span>
+<a name="l00108"></a>00108 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>();<span class="comment"></span>
+<a name="l00109"></a>00109 <span class="comment">                /// @brief Sets the visibility of this List Box.</span>
+<a name="l00110"></a>00110 <span class="comment">                /// @param visible Bool determining whether or not this List Box should be visible.</span>
+<a name="l00111"></a>00111 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetVisible(<span class="keywordtype">bool</span> visible);<span class="comment"></span>
 <a name="l00112"></a>00112 <span class="comment">                /// @brief Forces this List Box to be shown.</span>
 <a name="l00113"></a>00113 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Show();<span class="comment"></span>
 <a name="l00114"></a>00114 <span class="comment">                /// @brief Forces this List Box to hide.</span>
@@ -307,6 +307,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:19 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

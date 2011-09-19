@@ -41,6 +41,7 @@
 #define _colourvalue_cpp
 
 #include "colourvalue.h"
+#include "serialization.h"
 
 #include <Ogre.h>
 
@@ -94,20 +95,10 @@ namespace phys
     }
 
     bool ColourValue::operator== (const ColourValue &Colour)
-    {
-        return ( Colour.R == this->R && Colour.G == this->G && Colour.B == this->B && Colour.A == this->A );
-        /*if ( Colour.Red == this->Red && Colour.Green == this->Green && Colour.Blue == this->Blue && Colour.Alpha == this->Alpha )
-            { return true; }
-        return false;*/
-    }
+        { return ( Colour.R == this->R && Colour.G == this->G && Colour.B == this->B && Colour.A == this->A ); }
 
     bool ColourValue::operator!= (const ColourValue &Colour)
-    {
-        return ( Colour.R != this->R || Colour.G != this->G || Colour.B != this->B || Colour.A != this->A );
-        /*if ( Colour.Red != this->Red || Colour.Green != this->Green || Colour.Blue != this->Blue || Colour.Alpha != this->Alpha )
-            { return true; }
-        return false;*/
-    }
+        { return ( Colour.R != this->R || Colour.G != this->G || Colour.B != this->B || Colour.A != this->A ); }
 
     void ColourValue::operator= (const ColourValue &OtherColour)
     {
@@ -170,6 +161,56 @@ namespace phys
         ColourValue Colour(1.0,0.0,1.0,1.0);
         return Colour;
     }
+
+#ifdef PHYSXML
+    // Serializable
+    void ColourValue::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        phys::xml::Node VecNode = CurrentRoot.AppendChild(this->ColourValue::SerializableName());
+        VecNode.SetName(this->ColourValue::SerializableName());
+
+        phys::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+        phys::xml::Attribute RAttr = VecNode.AppendAttribute("Red");
+        phys::xml::Attribute GAttr = VecNode.AppendAttribute("Green");
+        phys::xml::Attribute BAttr = VecNode.AppendAttribute("Blue");
+        phys::xml::Attribute AAttr = VecNode.AppendAttribute("Alpha");
+        if( VersionAttr && RAttr && BAttr && GAttr && AAttr)
+        {
+            if( VersionAttr.SetValue("1") && RAttr.SetValue(this->R) && BAttr.SetValue(this->B) && GAttr.SetValue(this->G) && AAttr.SetValue(this->A))
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values", this->ColourValue::SerializableName(),true);
+            }
+        }else{
+            SerializeError("Create XML Attributes", this->ColourValue::SerializableName(),true);
+        }
+    }
+
+    // DeSerializable
+    void ColourValue::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->ColourValue::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                this->R=OneNode.GetAttribute("Red").AsReal();
+                this->G=OneNode.GetAttribute("Green").AsReal();
+                this->B=OneNode.GetAttribute("Blue").AsReal();
+                this->A=OneNode.GetAttribute("Alpha").AsReal();
+            }else{
+                throw( phys::Exception(StringCat("Incompatible XML Version for ",this->ColourValue::SerializableName(),": Not Version 1")) );
+            }
+        }else{
+            throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",this->ColourValue::SerializableName(),", found a ", OneNode.Name())));
+        }
+    }
+
+    String ColourValue::SerializableName()
+        { return String("ColourValue"); }
+#endif
+
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -177,37 +218,15 @@ namespace phys
 #ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::ColourValue& Ev)
 {
-    stream << "<ColourValue Version=\"1\" Red=\"" << Ev.R << "\" Green=\"" << Ev.G << "\" Blue=\"" << Ev.B << "\" Alpha=\"" << Ev.A << "\" />";
+    Serialize(stream,Ev);
     return stream;
 }
 
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ColourValue& Ev)
-{
-    phys::String OneTag( phys::xml::GetOneTag(stream) );
-    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "ColourValue", OneTag) );
+    { return DeSerialize(stream, Ev); }
 
-    Doc->GetFirstChild() >> Ev;
-
-    return stream;
-}
-
-phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ColourValue& Ev)
-{
-    if ( phys::String(OneNode.Name())==phys::String("ColourValue") )
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-            Ev.R    = OneNode.GetAttribute("Red").AsReal();
-            Ev.G    = OneNode.GetAttribute("Green").AsReal();
-            Ev.B    = OneNode.GetAttribute("Blue").AsReal();
-            Ev.A    = OneNode.GetAttribute("Alpha").AsReal();
-        }else{
-            throw( phys::Exception("Incompatible XML Version for ColourValue: Not Version 1"));
-        }
-    }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a ColourValue, found a ", OneNode.Name())));
-    }
-}
+void operator >> (const phys::xml::Node& OneNode, phys::ColourValue& Ev)
+    { Ev.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 
 

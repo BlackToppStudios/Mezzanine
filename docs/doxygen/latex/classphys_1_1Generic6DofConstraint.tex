@@ -121,8 +121,6 @@ virtual void \hyperlink{classphys_1_1Generic6DofConstraint_a5a065b9a671f5f48b5ee
 \begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Generic6DofConstraint_a9cf4eb82a625d06116542f6d224cdd69}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
 \begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Generic6DofConstraint_aa015e640a680f54edd0906b6ec684a99}{SerializableName} () const 
-\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Generic6DofConstraint_a625d093366185366a56a632a88955435}{SetAngularLimitLower} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Limit)
 \begin{DoxyCompactList}\small\item\em Set the Lower limits on rotation. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Generic6DofConstraint_a3d7be2f7db602ddce8e090a1f987be2e}{SetAngularLimitMaxForce} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&MaxLimitForces)
@@ -200,6 +198,11 @@ virtual \hyperlink{classphys_1_1Generic6DofConstraint_af5f9c4c27bdc4437ae49fc5e9
 \label{classphys_1_1Generic6DofConstraint_af5f9c4c27bdc4437ae49fc5e9c99ac3c}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Generic6DofConstraint_a7cc944e9655af095b4c24340d92a2b3c}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -1164,15 +1167,15 @@ Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_aa1e3919874ec
 
 Reimplemented in \hyperlink{classphys_1_1Generic6DofSpringConstraint_aeffb182d5faa82175e96a259fc19f9ff}{phys::Generic6DofSpringConstraint}.
 
-\hypertarget{classphys_1_1Generic6DofConstraint_aa015e640a680f54edd0906b6ec684a99}{
+\hypertarget{classphys_1_1Generic6DofConstraint_a7cc944e9655af095b4c24340d92a2b3c}{
 \index{phys::Generic6DofConstraint@{phys::Generic6DofConstraint}!SerializableName@{SerializableName}}
 \index{SerializableName@{SerializableName}!phys::Generic6DofConstraint@{phys::Generic6DofConstraint}}
-\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::Generic6DofConstraint::SerializableName (
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} phys::Generic6DofConstraint::SerializableName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
-\label{classphys_1_1Generic6DofConstraint_aa015e640a680f54edd0906b6ec684a99}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofConstraint_a7cc944e9655af095b4c24340d92a2b3c}
 
 
 Get the name of the the XML tag this class will leave behind as its instances are serialized. 
@@ -1182,11 +1185,11 @@ A string containing \char`\"{}Generic6DofConstraint\char`\"{}
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_ad810321a7395cbd5cc0ba8cac0d3b136}{phys::DualTransformConstraint}.
+Reimplemented from \hyperlink{classphys_1_1DualTransformConstraint_aea7ce65c759df1f3fc86d3f4a42d31d6}{phys::DualTransformConstraint}.
 
 
 
-Reimplemented in \hyperlink{classphys_1_1Generic6DofSpringConstraint_ad0a2d0c49fb622095f18d48b1e52f904}{phys::Generic6DofSpringConstraint}.
+Reimplemented in \hyperlink{classphys_1_1Generic6DofSpringConstraint_a574901d1abc3163c23dc1a165c8fbdaa}{phys::Generic6DofSpringConstraint}.
 
 \hypertarget{classphys_1_1Generic6DofConstraint_a625d093366185366a56a632a88955435}{
 \index{phys::Generic6DofConstraint@{phys::Generic6DofConstraint}!SetAngularLimitLower@{SetAngularLimitLower}}

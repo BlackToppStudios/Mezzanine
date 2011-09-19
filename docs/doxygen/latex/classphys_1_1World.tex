@@ -127,7 +127,7 @@ static \hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1Worl
 \subsubsection{Detailed Description}
 This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. 
 
-Definition at line 241 of file world.h.
+Definition at line 259 of file world.h.
 
 
 
@@ -165,7 +165,7 @@ LogOncePerXSeconds}
 
 
 
-Definition at line 332 of file world.h.
+Definition at line 350 of file world.h.
 
 
 
@@ -798,7 +798,7 @@ Runtime event and message logging.
 \end{DoxyParams}
 This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the Only ones to produce meaningul log messages. 
 
-Definition at line 364 of file world.h.
+Definition at line 382 of file world.h.
 
 \hypertarget{classphys_1_1World_a372ee96d395d735531f755fc0a72de4a}{
 \index{phys::World@{phys::World}!LogAndThrow@{LogAndThrow}}
@@ -820,7 +820,7 @@ This is the preferred way to throw an exception.
 \end{DoxyParams}
 
 
-Definition at line 379 of file world.h.
+Definition at line 397 of file world.h.
 
 \hypertarget{classphys_1_1World_a4bc9fb3942b6c1cf216bd356a1b6332b}{
 \index{phys::World@{phys::World}!LogAndThrow@{LogAndThrow}}
@@ -842,7 +842,7 @@ This will log the Message, and will throw an exception with the Message included
 \end{DoxyParams}
 
 
-Definition at line 390 of file world.h.
+Definition at line 408 of file world.h.
 
 \hypertarget{classphys_1_1World_abf6cb15d85be4e7dcb99db24f979319b}{
 \index{phys::World@{phys::World}!LogString@{LogString}}
@@ -1081,7 +1081,7 @@ This is another way to put data in the log.
 
 The contents of this will be commited to the log as per the logging frequency. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. 
 
-Definition at line 375 of file world.h.
+Definition at line 393 of file world.h.
 
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: phys::Serializer Class Reference</title>
+<title>PhysGameEngine: phys::Serializer&lt; Serializable &gt; Class Template Reference</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -65,32 +65,192 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="navelem"><a class="el" href="classphys_1_1Serializer.html">Serializer</a>      </li>
 </div>
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
-<h1>phys::Serializer Class Reference</h1>  </div>
+<h1>phys::Serializer&lt; Serializable &gt; Class Template Reference</h1>  </div>
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::Serializer" -->
-<p>A tool for serializing classes with specific issues serializing or deserializing them.  
+<p>A tool for serializing classes with specific issues serializing.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="serialization_8h_source.html">serialization.h</a>&gt;</code></p>
 
 <p><a href="classphys_1_1Serializer-members.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Serializer.html#a337a685f966e6d06bfb382905b29db5a">ProtoSerialize</a> (const Serializable &amp;Target, <a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot)=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the serialized data about one class instance in an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>.  <a href="#a337a685f966e6d06bfb382905b29db5a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Serializer.html#abb5e6f46de9edbf72a7b3e88e955bd69">ProtoSerializeAll</a> (<a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const =0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all of the data from the serializable class instance.  <a href="#abb5e6f46de9edbf72a7b3e88e955bd69"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Serializer.html#a013ef8c6c9be4d9d3e85488e039b9772">Serialize</a> (std::ostream &amp;Stream, const Serializable &amp;Target)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the specified member to a stream.  <a href="#a013ef8c6c9be4d9d3e85488e039b9772"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1Serializer.html#a45fe456179603bb2f19a978d135439a1">SerializeAll</a> (std::ostream &amp;Stream) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the complete serialized data to a stream.  <a href="#a45fe456179603bb2f19a978d135439a1"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>A tool for serializing classes with specific issues serializing or deserializing them. </p>
-<h2><a class="anchor" id="Serialization"></a>
-Serialization</h2>
-<p>The following functions are expected to be implemented on every serializable and deserializable:<br/>
- void ProtoSerialize(xml::Node&amp; CurrentRoot) const; <br/>
- void ProtoDeSerialize(const xml::Node&amp;); <br/>
- String SerializableName() const; <br/>
- Implementing these will allow them to work with the Serialize and Deserialize templates defined in <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
-<p>Some classes Must have certain values available at the time of construction. This make serializing them by overwriting an existing class instance impractical. Other classes have private members and it it impractical to change the class to expose this data. In this case a serializer could be made that is the friend of that class so it can do what is required. </p>
+<div class="textblock"><h3>template&lt;class Serializable&gt;<br/>
+ class phys::Serializer&lt; Serializable &gt;</h3>
 
-<p>Definition at line <a class="el" href="serialization_8h_source.html#l00068">68</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p>A tool for serializing classes with specific issues serializing. </p>
+<p>Some classes have private members and it is impractical to change the class to expose this data. In this case a serializer could be made that to work around this limitation. <br/>
+ <br/>
+ This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be no reason why something could not inherit from this and <a class="el" href="classphys_1_1DeSerializer.html" title="A tool for deserializing classes with specific issues deserializing them.">phys::DeSerializer</a>. The type of this template is expected to match what this is serializing. </p>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00286">286</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a337a685f966e6d06bfb382905b29db5a"></a><!-- doxytag: member="phys::Serializer::ProtoSerialize" ref="a337a685f966e6d06bfb382905b29db5a" args="(const Serializable &amp;Target, xml::Node &amp;CurrentRoot)=0" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Serializable &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classphys_1_1Serializer.html">phys::Serializer</a>&lt; Serializable &gt;::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const Serializable &amp;&#160;</td>
+          <td class="paramname"><em>Target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get all the serialized data about one class instance in an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Target</td><td>A reference to class instance to be deserialized.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This is not implemented by default. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vector3 should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abb5e6f46de9edbf72a7b3e88e955bd69"></a><!-- doxytag: member="phys::Serializer::ProtoSerializeAll" ref="abb5e6f46de9edbf72a7b3e88e955bd69" args="(xml::Node &amp;CurrentRoot) const =0" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Serializable &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classphys_1_1Serializer.html">phys::Serializer</a>&lt; Serializable &gt;::ProtoSerializeAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get all of the data from the serializable class instance. </p>
+<p>This is to be implemented in individual serializer with logic specific to the required tasks. It is expected to produce an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the entirety of the data required to reconstitute the serialized class. <br/>
+ <br/>
+ This is expected to gets it's knowledge about what to serialize some other than being passed as an argument. It could query a manager or be passed a series pointers that is needs to work with. <br/>
+ <br/>
+ This is not implemented by default. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all the items deserialized should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a013ef8c6c9be4d9d3e85488e039b9772"></a><!-- doxytag: member="phys::Serializer::Serialize" ref="a013ef8c6c9be4d9d3e85488e039b9772" args="(std::ostream &amp;Stream, const Serializable &amp;Target)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Serializable &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::ostream&amp; <a class="el" href="classphys_1_1Serializer.html">phys::Serializer</a>&lt; Serializable &gt;::Serialize </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Serializable &amp;&#160;</td>
+          <td class="paramname"><em>Target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Output the specified member to a stream. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Target</td><td>A reference to class instance to be deserialized. </td></tr>
+    <tr><td class="paramname">Stream</td><td>The std::ostream to send the data into.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The default implementation of this uses ProtoSerialize(const String&amp;) </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The std::ostream that was passed in. </dd></dl>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00325">325</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a45fe456179603bb2f19a978d135439a1"></a><!-- doxytag: member="phys::Serializer::SerializeAll" ref="a45fe456179603bb2f19a978d135439a1" args="(std::ostream &amp;Stream) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Serializable &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::ostream&amp; <a class="el" href="classphys_1_1Serializer.html">phys::Serializer</a>&lt; Serializable &gt;::SerializeAll </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em></td><td>)</td>
+          <td> const<code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Output the complete serialized data to a stream. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Stream</td><td>The std::ostream to send the data into.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>By default this is implemented in using <a class="el" href="classphys_1_1Serializer.html#abb5e6f46de9edbf72a7b3e88e955bd69" title="Get all of the data from the serializable class instance.">ProtoSerializeAll()</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The populated ostream. </dd></dl>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00306">306</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="serialization_8h_source.html">serialization.h</a></li>
 </ul>
 </div>
@@ -109,6 +269,6 @@ Serialization</h2>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:31 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:38 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

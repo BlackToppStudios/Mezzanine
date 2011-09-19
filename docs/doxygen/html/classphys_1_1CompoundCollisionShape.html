@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -102,6 +102,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CompoundCollisionShape.html#aeb9b309286459d510c4027d180804c0b">GetNumChildren</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of children belonging to this compound shape.  <a href="#aeb9b309286459d510c4027d180804c0b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1CollisionShape.html#af3ba4fd8af5b9557f912d2f5ff35a588">CollisionShape::ShapeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CompoundCollisionShape.html#a10bbe1a6ce849dc40e2ca5dc2b68cbff">GetType</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CompoundCollisionShape.html#a1c913ad531dc96c8e49ee08f4c9f09c3">RemoveChildShape</a> (<a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *Child)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a Child shape from this compound shape.  <a href="#a1c913ad531dc96c8e49ee08f4c9f09c3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CompoundCollisionShape.html#ab95753e9fe72dfb570a565bfd6644ad8">RemoveChildShape</a> (const <a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;ChildIndex)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removed a Child shape from this compound shape by index.  <a href="#ab95753e9fe72dfb570a565bfd6644ad8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e97772fb1395554ca9e729c7fcc0a00"></a><!-- doxytag: member="phys::CompoundCollisionShape::~CompoundCollisionShape" ref="a6e97772fb1395554ca9e729c7fcc0a00" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1CompoundCollisionShape.html#a6e97772fb1395554ca9e729c7fcc0a00">~CompoundCollisionShape</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br/></td></tr>
@@ -308,6 +312,60 @@ btCompoundShape *&#160;</td><td class="memItemRight" valign="bottom"><b>Compound
  
 <p>Implements <a class="el" href="classphys_1_1CollisionShape.html#aa4911840c6e877cfecf201b7f43a57e3">phys::CollisionShape</a>.</p>
 
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00294">294</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab95753e9fe72dfb570a565bfd6644ad8"></a><!-- doxytag: member="phys::CompoundCollisionShape::RemoveChildShape" ref="ab95753e9fe72dfb570a565bfd6644ad8" args="(const Whole &amp;ChildIndex)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::CompoundCollisionShape::RemoveChildShape </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;&#160;</td>
+          <td class="paramname"><em>ChildIndex</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removed a Child shape from this compound shape by index. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ChildIndex</td><td>The index of the child shape to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00287">287</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1c913ad531dc96c8e49ee08f4c9f09c3"></a><!-- doxytag: member="phys::CompoundCollisionShape::RemoveChildShape" ref="a1c913ad531dc96c8e49ee08f4c9f09c3" args="(CollisionShape *Child)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::CompoundCollisionShape::RemoveChildShape </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classphys_1_1CollisionShape.html">CollisionShape</a> *&#160;</td>
+          <td class="paramname"><em>Child</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes a Child shape from this compound shape. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Child</td><td>The child shape to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00275">275</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
 
 </div>
@@ -332,6 +390,6 @@ btCompoundShape *&#160;</td><td class="memItemRight" valign="bottom"><b>Compound
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:24 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:31 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

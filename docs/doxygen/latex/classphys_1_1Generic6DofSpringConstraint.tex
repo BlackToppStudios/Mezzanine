@@ -84,8 +84,6 @@ virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_aa9296902750929
 \begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_aeffb182d5faa82175e96a259fc19f9ff}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
 \begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Generic6DofSpringConstraint_ad0a2d0c49fb622095f18d48b1e52f904}{SerializableName} () const 
-\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a65dbf1070a4277dd0d27e48db2b45c89}{SetSpringAngularDamping} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Damps)
 \begin{DoxyCompactList}\small\item\em Set the Damping of the springs on each Angular Axis. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a1f861c64cc9d4918bd3dbe606894422e}{SetSpringAngularEnabled} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Enableness)
@@ -106,6 +104,11 @@ virtual void \hyperlink{classphys_1_1Generic6DofSpringConstraint_a7a73106f73e233
 \begin{DoxyCompactList}\small\item\em Set the spring stiffness on a given axis. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Generic6DofSpringConstraint_a66a886a64c86a24ed34eacf4c8465f10}{$\sim$Generic6DofSpringConstraint} ()
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Generic6DofSpringConstraint_a574901d1abc3163c23dc1a165c8fbdaa}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -497,15 +500,15 @@ Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready f
 
 Reimplemented from \hyperlink{classphys_1_1Generic6DofConstraint_a9cf4eb82a625d06116542f6d224cdd69}{phys::Generic6DofConstraint}.
 
-\hypertarget{classphys_1_1Generic6DofSpringConstraint_ad0a2d0c49fb622095f18d48b1e52f904}{
+\hypertarget{classphys_1_1Generic6DofSpringConstraint_a574901d1abc3163c23dc1a165c8fbdaa}{
 \index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SerializableName@{SerializableName}}
 \index{SerializableName@{SerializableName}!phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}}
-\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::Generic6DofSpringConstraint::SerializableName (
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} phys::Generic6DofSpringConstraint::SerializableName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
-\label{classphys_1_1Generic6DofSpringConstraint_ad0a2d0c49fb622095f18d48b1e52f904}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1Generic6DofSpringConstraint_a574901d1abc3163c23dc1a165c8fbdaa}
 
 
 Get the name of the the XML tag this class will leave behind as its instances are serialized. 
@@ -515,7 +518,7 @@ A string containing \char`\"{}Generic6DofConstraint\char`\"{}
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{classphys_1_1Generic6DofConstraint_aa015e640a680f54edd0906b6ec684a99}{phys::Generic6DofConstraint}.
+Reimplemented from \hyperlink{classphys_1_1Generic6DofConstraint_a7cc944e9655af095b4c24340d92a2b3c}{phys::Generic6DofConstraint}.
 
 \hypertarget{classphys_1_1Generic6DofSpringConstraint_a65dbf1070a4277dd0d27e48db2b45c89}{
 \index{phys::Generic6DofSpringConstraint@{phys::Generic6DofSpringConstraint}!SetSpringAngularDamping@{SetSpringAngularDamping}}

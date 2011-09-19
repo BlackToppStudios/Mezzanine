@@ -42,8 +42,6 @@ virtual void \hyperlink{classphys_1_1Point2PointConstraint_a1ba1bd6cc8d16c695796
 \begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Point2PointConstraint_ace2e182da3c1495084eea1a5fcc97cfd}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
 \begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Point2PointConstraint_ae658c1f5c370b8a4cf94fcf276696dbf}{SerializableName} () const 
-\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Point2PointConstraint_a4699d58e8ec97e5eafa12508e89fa878}{SetDamping} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Damping)
 \begin{DoxyCompactList}\small\item\em Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1Point2PointConstraint_afd2be426f4a13b9512d964903a035551}{SetImpulseClamping} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Clamping)
@@ -62,6 +60,11 @@ virtual \hyperlink{classphys_1_1TypedConstraint_a4c2dcea3fbb764e454840329126d034
 \item 
 virtual \hyperlink{classphys_1_1Point2PointConstraint_a6e0bdac8c6ee7612c07b441c7556dc14}{$\sim$Point2PointConstraint} ()
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Point2PointConstraint_adb43f9fc1ac3ade862f23ecff3dedf27}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -75,7 +78,7 @@ btPoint2PointConstraint $\ast$ \hyperlink{classphys_1_1Point2PointConstraint_aa5
 \subsubsection{Detailed Description}
 Tries to make a point relative to each of two actors match in 3d space, without regard to rotation. This will translate (push around) the actors to attempt to get the offsets to match up in 3d space. The actors can freely rotate about their relative offsets. 
 
-Definition at line 1194 of file constraint.h.
+Definition at line 1197 of file constraint.h.
 
 
 
@@ -311,15 +314,15 @@ Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready f
 
 Reimplemented from \hyperlink{classphys_1_1TypedConstraint_a9cf48a2a1afb939cbd03e54ee9be3e0b}{phys::TypedConstraint}.
 
-\hypertarget{classphys_1_1Point2PointConstraint_ae658c1f5c370b8a4cf94fcf276696dbf}{
+\hypertarget{classphys_1_1Point2PointConstraint_adb43f9fc1ac3ade862f23ecff3dedf27}{
 \index{phys::Point2PointConstraint@{phys::Point2PointConstraint}!SerializableName@{SerializableName}}
 \index{SerializableName@{SerializableName}!phys::Point2PointConstraint@{phys::Point2PointConstraint}}
-\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::Point2PointConstraint::SerializableName (
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} phys::Point2PointConstraint::SerializableName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
-\label{classphys_1_1Point2PointConstraint_ae658c1f5c370b8a4cf94fcf276696dbf}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1Point2PointConstraint_adb43f9fc1ac3ade862f23ecff3dedf27}
 
 
 Get the name of the the XML tag this class will leave behind as its instances are serialized. 
@@ -329,7 +332,7 @@ A string containing \char`\"{}Point2PointConstraint\char`\"{}
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{classphys_1_1TypedConstraint_ad604b85a13e3e3b1c01d1c40f678b751}{phys::TypedConstraint}.
+Reimplemented from \hyperlink{classphys_1_1TypedConstraint_adf4ccf2fcfc20634acde9d07508ff03e}{phys::TypedConstraint}.
 
 \hypertarget{classphys_1_1Point2PointConstraint_a4699d58e8ec97e5eafa12508e89fa878}{
 \index{phys::Point2PointConstraint@{phys::Point2PointConstraint}!SetDamping@{SetDamping}}

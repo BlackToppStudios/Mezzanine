@@ -66,7 +66,7 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     // Creation and Deletion Methods
     ///////////////////////////////////////
-    MetaCode::MetaCode()
+    MetaCode::MetaCode():MetaValue(0),Code(KEY_UNKNOWN)
     {}
 
     MetaCode::MetaCode(const int &MetaValue_, const MetaCode::InputCode &Code_)

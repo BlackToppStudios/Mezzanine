@@ -540,7 +540,16 @@ namespace phys
 		Node GetRoot() const; 
  
 		// Get GetChild, GetAttribute or next/previous sibling with the specified Name 
-		Node GetChild(const char_t* Name) const; 
+		/// @brief Attempt to get a child Node with a given name.
+		/// @param Name The name of the desired child Node.
+		/// @return A Node that represents the first desired child, or an empty Node on failure.
+		Node GetChild(const char_t* Name) const;
+		/// @brief Attempt to get a child Node with a given name.
+		/// @param Name The name of the desired child Node.
+		/// @return A Node that represents the first desired child, or an empty Node on failure.
+		Node GetChild(const String& Name) const
+			{ return GetChild(Name.c_str()); }
+ 
 		Attribute GetAttribute(const char_t* Name) const; 
 		/// @brief Attempt to retrieve the next sibling of this Node with a matching name.
 		/// @param Name A c-string that has the name of the node you to find.

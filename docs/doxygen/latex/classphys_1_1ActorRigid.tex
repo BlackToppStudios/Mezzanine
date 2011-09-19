@@ -34,8 +34,10 @@ virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyp
 \begin{DoxyCompactList}\small\item\em Retrieves the name of the object. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings} $\ast$ \hyperlink{classphys_1_1ActorRigid_ac531871f990894cf64d0ece918eb18d0}{GetPhysicsSettings} ()
 \begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigid_abf14ffa79e652f0d798a2fce99496259}{ProtoDeSerialize} (const \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_add4e731eb3a5481d05e2d0f543745fcd}{ProtoSerialize} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
-\begin{DoxyCompactList}\small\item\em Get all the this in an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
 \begin{DoxyCompactList}\small\item\em Removes the actor from the physics world. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_a574fc272f603b879643872dbced36cc2}{SetAngularMovementFactor} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Factor)
@@ -44,11 +46,18 @@ virtual void \hyperlink{classphys_1_1ActorRigid_a2a6aca8c598716ee24558878f869f16
 \begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{$\sim$ActorRigid} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorRigid_ad4fcecfacedb0c043b768555046dc650}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 virtual void \hyperlink{classphys_1_1ActorRigid_a3d50613a6992e7de6a09d3e710d83b60}{CreateRigidObject} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&pmass)
-\begin{DoxyCompactList}\small\item\em Creates a rigid object for the actor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a rigid object for the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigid_ac252b319fefc3f7470feb73e3866661b}{ThrowSerialError} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Fail) const 
+\begin{DoxyCompactList}\small\item\em a Helper function that assembles strings and throws an exception \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -286,6 +295,35 @@ Returns a pointer to the physics settings class in use by this actor.
 
 Definition at line 105 of file actorrigid.cpp.
 
+\hypertarget{classphys_1_1ActorRigid_abf14ffa79e652f0d798a2fce99496259}{
+\index{phys::ActorRigid@{phys::ActorRigid}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!phys::ActorRigid@{phys::ActorRigid}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorRigid_abf14ffa79e652f0d798a2fce99496259}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented from \hyperlink{classphys_1_1ActorBase_a2355425bc7a6a883ca4df139d56e084e}{phys::ActorBase}.
+
+
+
+Definition at line 174 of file actorrigid.cpp.
+
 \hypertarget{classphys_1_1ActorRigid_add4e731eb3a5481d05e2d0f543745fcd}{
 \index{phys::ActorRigid@{phys::ActorRigid}!ProtoSerialize@{ProtoSerialize}}
 \index{ProtoSerialize@{ProtoSerialize}!phys::ActorRigid@{phys::ActorRigid}}
@@ -297,11 +335,11 @@ Definition at line 105 of file actorrigid.cpp.
 \label{classphys_1_1ActorRigid_add4e731eb3a5481d05e2d0f543745fcd}
 
 
-Get all the this in an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}. 
+Convert this class to an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} ready for serialization. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em CurrentRoot} & The point in the XML hierarchy that all this vector3 should be appended to. \\
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
 \hline
 \end{DoxyParams}
 
@@ -338,6 +376,30 @@ Implements \hyperlink{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{
 
 
 Definition at line 138 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_ad4fcecfacedb0c043b768555046dc650}{
+\index{phys::ActorRigid@{phys::ActorRigid}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!phys::ActorRigid@{phys::ActorRigid}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::ActorRigid::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1ActorRigid_ad4fcecfacedb0c043b768555046dc650}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}ActorRigid\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classphys_1_1ActorBase_a1ae5da850a9156247a0ab82693ee6e4d}{phys::ActorBase}.
+
+
+
+Definition at line 179 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a574fc272f603b879643872dbced36cc2}{
 \index{phys::ActorRigid@{phys::ActorRigid}!SetAngularMovementFactor@{SetAngularMovementFactor}}
@@ -382,6 +444,32 @@ This function can lock or limit any and all axes you define. 0.0 means no linear
 
 
 Definition at line 110 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_ac252b319fefc3f7470feb73e3866661b}{
+\index{phys::ActorRigid@{phys::ActorRigid}!ThrowSerialError@{ThrowSerialError}}
+\index{ThrowSerialError@{ThrowSerialError}!phys::ActorRigid@{phys::ActorRigid}}
+\paragraph[{ThrowSerialError}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::ThrowSerialError (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Fail}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorRigid_ac252b319fefc3f7470feb73e3866661b}
+
+
+a Helper function that assembles strings and throws an exception 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Fail} & The item that failed. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classphys_1_1ActorBase_a3cd786f38a4840e770f20e5c72b09563}{phys::ActorBase}.
+
+
+
+Definition at line 154 of file actorrigid.cpp.
 
 
 

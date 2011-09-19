@@ -1,4 +1,4 @@
-The Physgame Engine isn't really an engine. It is glue holding other code and libraries together. It is a series of other open source libraries (sometimes less user friendly, and almost always more sophistciated) that are held together in a single, hopefully, unchanging API. Others have attempted to do things like this before. Usually simple mistakes are made along the way that have huge negative impacts later in the design. A common mistake code is copy and pasted from open source projects with no plans for maintainability. This means that those projects get all the features and bugs from when they copied, without updates, new features and bugfixes since they started integrating the code. We too have copy and pasted, however we are keeping it up to date, and have a plan for upgrading each component we have brought in.
+The Physgame Engine isn't really an engine. It is glue holding other code and libraries together. It is a series of other open source libraries (sometimes less user friendly, and almost always more sophistciated) that are held together in a single, hopefully, unchanging API. Others have attempted to do things like this before. Usually simple mistakes are made along the way that have huge negative impacts later in the design. A common mistake code is to copy and paste from open source projects with no plans for maintainability. This means that those projects get all the features and bugs from when they copied, without updates, new features and bugfixes since they started integrating the code. We too have copy and pasted, however we are keeping it up to date, and have a plan for upgrading each component we have brought in.
 
 This is no simple way to guarantee access to the most up to date libraries, this means there will meaningful work on integration. Many linux distributions try to keep the most up to date shared libraries around, but what about when they don't ship what you need, or ship a broken copy or an older library. What about Windows and Mac OS X which make no attempt to keep these kinds of software up to date. What if you do manage to get and stay up to date, then you still have to work on a confusing compiler and linker options, Code::Blocks or Visual Studio aren't going to set that up for you. The Physgame Engine project depends on a dozen or more libaries, so would your project if it had high performance 3d graphics, easy to use 3d physics integrated with the graphics and 3d positional audio ready to run on Windows, Linux and Mac OS X. We are figuring it out once, getting it right ( if we aren't, tell us and we will fix it ), so it doesn't need to be done again and again, for each game made.
 
@@ -8,7 +8,7 @@ If we do our jobs right this will save time and effort making, updating and port
 
 To get the latest news on development checkout: \href{http://gitorious.org/physgame}{\tt http://gitorious.org/physgame} Or check the webpage \href{http://www.blacktoppstudios.com}{\tt http://www.blacktoppstudios.com}
 
-Here we will detail the engine structure and different classes and datatypes, but this needs an update.\hypertarget{index_Engine}{}\subsection{Structure}\label{index_Engine}
+Here we will detail the engine structure and different classes and datatypes, but some of these need an update.\hypertarget{index_Engine}{}\subsection{Structure}\label{index_Engine}
 \hyperlink{mainloop1}{Main Loop Flow}
 
 \hyperlink{classphys_1_1World}{World -\/ It integrates everything}
@@ -16,6 +16,7 @@ Here we will detail the engine structure and different classes and datatypes, bu
 \hyperlink{classphys_1_1EventManager}{Events -\/ Handling messages, event and interupts from the outisde}
 
 \hyperlink{actorcontainer1}{Actor Container -\/ Keeping track of our in game objects}\hypertarget{index_Types}{}\subsection{Data Types}\label{index_Types}
+\hypertarget{index_CompoundTypes}{}\subsubsection{Compound Data Type}\label{index_CompoundTypes}
 \hyperlink{classphys_1_1ColourValue}{phys::ColourValue}
 
 \hyperlink{classphys_1_1MetaCode}{MetaCode -\/ A unit of user input}
@@ -26,22 +27,38 @@ Here we will detail the engine structure and different classes and datatypes, bu
 
 \hyperlink{classphys_1_1Ray}{phys::Ray}
 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{phys::Real}
+\hyperlink{classphys_1_1Transform}{phys::Transform}
 
 \hyperlink{classphys_1_1Vector2}{phys::Vector2}
 
 \hyperlink{classphys_1_1Vector3}{phys::Vector3}
 
-\hyperlink{classphys_1_1Vector3WActor}{phys::Vector3WActor}
+\hyperlink{classphys_1_1Vector3WActor}{phys::Vector3WActor}\hypertarget{index_SimpleDataTypes}{}\subsubsection{Simple Data Types}\label{index_SimpleDataTypes}
+\hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{phys::Character}
 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{phys::Whole}\hypertarget{index_Sophisticated}{}\subsection{Sophisticated Systems}\label{index_Sophisticated}
+\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{phys::Integer}
+
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{phys::Real}
+
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String}
+
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{phys::Whole}
+
+\begin{DoxyParagraph}{There are also a variety of enumerations. Aspect Ratio...}
+
+\end{DoxyParagraph}
+\begin{Desc}
+\item[\hyperlink{todo__todo000034}{Todo}]Fill out the Simple Data Types with all the enumerations.\end{Desc}
+\hypertarget{index_Sophisticated}{}\subsection{Sophisticated Systems}\label{index_Sophisticated}
 \hyperlink{classphys_1_1ActorBase}{Actors -\/ Items in the world}
 
 \hyperlink{classphys_1_1EventBase}{phys::EventBase}
 
 \hyperlink{classphys_1_1GraphicsManager}{phys::GraphicsManager}
 
-\hyperlink{XMLManual}{phys::XML Manual}\hypertarget{index_Licensing}{}\subsection{Licensing Information}\label{index_Licensing}
+\hyperlink{XMLManual}{phys::XML Manual}
+
+\hyperlink{Serialization}{Serialization}\hypertarget{index_Licensing}{}\subsection{Licensing Information}\label{index_Licensing}
 \hyperlink{GPLLicense}{Physgame GNU Public License 3}
 
 \hyperlink{OriginalpugixmlLicense}{XML MIT License} 

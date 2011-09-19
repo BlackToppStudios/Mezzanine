@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">August 7, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
@@ -95,10 +96,14 @@ Inheritance diagram for phys::HingeConstraint:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a90baa9ae0a582d42dc7757d14fd56299">EnableMotor</a> (bool EnableMotor, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> TargetVelocity, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> MaxMotorImpulse)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables(or Disables) the motor on the hinge and sets it's parameters.  <a href="#a90baa9ae0a582d42dc7757d14fd56299"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a0c6fdf316a60a34bf507b2de8960de49">EnableMotor</a> (bool EnableMotor)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables(or Disables) the motor on the hinge.  <a href="#a0c6fdf316a60a34bf507b2de8960de49"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#acc2a3459cfbfef7dc7a211e3e7569358">GetAPivotRotation</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the relative rotation for ActorA.  <a href="#acc2a3459cfbfef7dc7a211e3e7569358"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a4039ca63ae04464b6d29193348f1e1ee">GetBPivotRotation</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the relative rotation for ActorB.  <a href="#a4039ca63ae04464b6d29193348f1e1ee"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a272599bad7c7c6075efd53f2c63adc1f">GetHingeAngle</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current angle of the hinge.  <a href="#a272599bad7c7c6075efd53f2c63adc1f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a2c3b1f4f5242b35ddb9b9e9d00f76812">GetLimitBiasFactor</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the bias factor of the hinge (Not entirely certain hat this on is)  <a href="#a2c3b1f4f5242b35ddb9b9e9d00f76812"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#ae633b31c347af338042e87738d7694ff">GetLimitHigh</a> () const </td></tr>
@@ -110,11 +115,11 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a9c87c6f21dd7959cfb5c3c7a63014171">GetLimitSoftness</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the Softness of the hinge.  <a href="#a9c87c6f21dd7959cfb5c3c7a63014171"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a954621d35173f9de5d7f44760559040e">GetMaxMotorImpulse</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the maximum amount of force the motor is to apply.  <a href="#a954621d35173f9de5d7f44760559040e"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the maximimum value that the acceleration of the motor can be increased.  <a href="#a954621d35173f9de5d7f44760559040e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#abc2a2e5046276f3cdab285d87f969c8a">GetMotorEnabled</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables(or Disables) the motor on the hinge.  <a href="#abc2a2e5046276f3cdab285d87f969c8a"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this motor on this hinge enabled?  <a href="#abc2a2e5046276f3cdab285d87f969c8a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#aeb1844f6bffeb72995e95b9ea25be3b7">GetMotorTargetVelocity</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Desired angular velocity of the motor.  <a href="#aeb1844f6bffeb72995e95b9ea25be3b7"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Target Velocity.  <a href="#aeb1844f6bffeb72995e95b9ea25be3b7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a099fec821a9194cd3c8268d764ec8ea8">GetPivotALocation</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the location of the hinge pivot relative to ActorA's Center of gravity.  <a href="#a099fec821a9194cd3c8268d764ec8ea8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#ac210cfa2fe2d4d6b2bf9e626441546b7">GetPivotATransform</a> () const </td></tr>
@@ -130,16 +135,14 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Hinge with components of a tranform.  <a href="#a725b932ea223d2218f0b7a03b61e1650"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#aa4e74519af2c4773de038fb1ae2776eb">HingeConstraint</a> (<a class="el" href="classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classphys_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;PivotInA, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;PivotInB, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;AxisInA, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;AxisInB, bool UseReferenceFrameA=false)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Hinge constraint that will connect two actors together by their offsets.  <a href="#aa4e74519af2c4773de038fb1ae2776eb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#af21f5ee3889f1bd9e70063c04db32af0">HingeConstraint</a> (<a class="el" href="classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classphys_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;VectorA, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;VectorB, const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;QuaternionA, const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;QuaternionB, bool UseReferenceFrameA=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Hinge with components of a tranform.  <a href="#af21f5ee3889f1bd9e70063c04db32af0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#ab112696e53f61f57f4ca53b299e9ef87">HingeConstraint</a> (<a class="el" href="classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;PivotInA, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;AxisInA, bool UseReferenceFrameA=false)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Hinge constraint that will attach an actor to a point in world space.  <a href="#ab112696e53f61f57f4ca53b299e9ef87"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#af21f5ee3889f1bd9e70063c04db32af0">HingeConstraint</a> (<a class="el" href="classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classphys_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;VectorA, const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;VectorB, const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;QuaternionA, const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;QuaternionB, bool UseReferenceFrameA=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Hinge with components of a tranform.  <a href="#af21f5ee3889f1bd9e70063c04db32af0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a63ca807d27fd21a24b4bcaa642febc77">ProtoDeSerialize</a> (const <a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a63ca807d27fd21a24b4bcaa642febc77"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a04fac5312ddf891adcfff67e98f75861">ProtoSerialize</a> (<a class="el" href="classphys_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#a04fac5312ddf891adcfff67e98f75861"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a64804b6c98ed930f9acb05414defcdcc">SerializableName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a64804b6c98ed930f9acb05414defcdcc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a7f597ee71540986b446a2771f25b791c">SetAPivotRotation</a> (const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set The relative rotation of ActorA.  <a href="#a7f597ee71540986b446a2771f25b791c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a4eb0343f43b86fabef1fbe43857f9df8">SetAxis</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;AxisInA)</td></tr>
@@ -148,10 +151,14 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set The relative rotation of ActorB.  <a href="#ae7c0db15c76fa1f7d78ca60d3c7368cd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a2267ee2b124aae7a35d70f48831548bc">SetLimit</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Low, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> High, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Softness=0.9, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> BiasFactor=0.3, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> RelaxationFactor=1.0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the angle limits of the constraint in radians.  <a href="#a2267ee2b124aae7a35d70f48831548bc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a3fa9ac9e2ea08df81fdd89711131deef">SetMaxMotorImpulse</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> MaxMotorImpulse)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the maximum amount of force the motor is to apply.  <a href="#a3fa9ac9e2ea08df81fdd89711131deef"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#ae3038cabdde1b676c0e6b9665807c917">SetMotorTarget</a> (const <a class="el" href="classphys_1_1Quaternion.html">Quaternion</a> &amp;QuatAInB, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Dt)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a Target Velocity, indirectly using the angle stored in a quaternion.  <a href="#ae3038cabdde1b676c0e6b9665807c917"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#ac9eb6207043906b972c8ad897ead15df">SetMotorTarget</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> TargetAngle, <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Dt)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Rotational velocity in a more direct fashion.  <a href="#ac9eb6207043906b972c8ad897ead15df"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a38600eba1bb9406561437ec1e5f30a9b">SetMotorTargetVelocity</a> (<a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> TargetVelocity)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Desired angular velocity of the motor.  <a href="#a38600eba1bb9406561437ec1e5f30a9b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a6baadfc607e0d7c2167c9201bd4f8bdf">SetPivotALocation</a> (const <a class="el" href="classphys_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set The relative location of the hinge pivot from ActorA's Center of gravity.  <a href="#a6baadfc607e0d7c2167c9201bd4f8bdf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#af6fd3ac147683eecb2c98c60c58f386c">SetPivotATransform</a> (const <a class="el" href="classphys_1_1Transform.html">Transform</a> &amp;TranA)</td></tr>
@@ -167,6 +174,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classphys_1_1TypedConstraint.html#a4c2dcea3fbb764e454840329126d034e">TypedConstraint::ParamList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a7fd949b157deabe3b955fd618134b1de">ValidParamOnAxis</a> (int Axis) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#a242cdfc8ab59d608bfbd9290119d81d9">~HingeConstraint</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a242cdfc8ab59d608bfbd9290119d81d9"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#ae7007bcfb6b84b234264e35fd5d7ae91">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#ae7007bcfb6b84b234264e35fd5d7ae91"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual btTypedConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphys_1_1HingeConstraint.html#afd52bcc691313cc175d0a409d5594df2">GetConstraintBase</a> () const </td></tr>
@@ -494,6 +505,31 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 </div>
 </div>
+<a class="anchor" id="a0c6fdf316a60a34bf507b2de8960de49"></a><!-- doxytag: member="phys::HingeConstraint::EnableMotor" ref="a0c6fdf316a60a34bf507b2de8960de49" args="(bool EnableMotor)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void phys::HingeConstraint::EnableMotor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>EnableMotor</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Enables(or Disables) the motor on the hinge. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">EnableMotor</td><td>Sets whether or not the motor on this constraint is enabled. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="acc2a3459cfbfef7dc7a211e3e7569358"></a><!-- doxytag: member="phys::HingeConstraint::GetAPivotRotation" ref="acc2a3459cfbfef7dc7a211e3e7569358" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -551,6 +587,25 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to the btTypedConstraint that stores the underlying constraint. </dd></dl>
  
 <p>Implements <a class="el" href="classphys_1_1TypedConstraint.html#ab3bd2baa58d3f0d812401cbf59159a8b">phys::TypedConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a272599bad7c7c6075efd53f2c63adc1f"></a><!-- doxytag: member="phys::HingeConstraint::GetHingeAngle" ref="a272599bad7c7c6075efd53f2c63adc1f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> phys::HingeConstraint::GetHingeAngle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the current angle of the hinge. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Gets the amount of rotation this hinge is off from it's origin in radians. </dd></dl>
 
 </div>
 </div>
@@ -663,13 +718,8 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div>
 <div class="memdoc">
 
-<p>Sets the maximum amount of force the motor is to apply. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">MaxMotorImpulse</td><td>The maximum amount of force the motor is to apply to try and reach it's target velocity. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Retrieve the maximimum value that the acceleration of the motor can be increased. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A real containing the maximum impulse. </dd></dl>
 
 </div>
 </div>
@@ -687,13 +737,8 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div>
 <div class="memdoc">
 
-<p>Enables(or Disables) the motor on the hinge. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">EnableMotor</td><td>Sets whether or not the motor on this constraint is enabled. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Is this motor on this hinge enabled? </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if it is, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -711,14 +756,8 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div>
 <div class="memdoc">
 
-<p>Desired angular velocity of the motor. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">TargetVelocity</td><td>The Desired velocity </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>Causes segfaults in some tests. </dd></dl>
+<p>Get the Target Velocity. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the target valocity as a real. </dd></dl>
 
 </div>
 </div>
@@ -924,15 +963,15 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 </div>
 </div>
-<a class="anchor" id="a64804b6c98ed930f9acb05414defcdcc"></a><!-- doxytag: member="phys::HingeConstraint::SerializableName" ref="a64804b6c98ed930f9acb05414defcdcc" args="() const " -->
+<a class="anchor" id="ae7007bcfb6b84b234264e35fd5d7ae91"></a><!-- doxytag: member="phys::HingeConstraint::SerializableName" ref="ae7007bcfb6b84b234264e35fd5d7ae91" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::HingeConstraint::SerializableName </td>
+          <td class="memname">static <a class="el" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::HingeConstraint::SerializableName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -941,7 +980,7 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "HingeConstraint" </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classphys_1_1DualTransformConstraint.html#ad810321a7395cbd5cc0ba8cac0d3b136">phys::DualTransformConstraint</a>.</p>
+<p>Reimplemented from <a class="el" href="classphys_1_1DualTransformConstraint.html#aea7ce65c759df1f3fc86d3f4a42d31d6">phys::DualTransformConstraint</a>.</p>
 
 </div>
 </div>
@@ -1079,6 +1118,31 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 </div>
 </div>
+<a class="anchor" id="a3fa9ac9e2ea08df81fdd89711131deef"></a><!-- doxytag: member="phys::HingeConstraint::SetMaxMotorImpulse" ref="a3fa9ac9e2ea08df81fdd89711131deef" args="(Real MaxMotorImpulse)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void phys::HingeConstraint::SetMaxMotorImpulse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td>
+          <td class="paramname"><em>MaxMotorImpulse</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the maximum amount of force the motor is to apply. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">MaxMotorImpulse</td><td>The maximum amount of force the motor is to apply to try and reach it's target velocity. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ac9eb6207043906b972c8ad897ead15df"></a><!-- doxytag: member="phys::HingeConstraint::SetMotorTarget" ref="ac9eb6207043906b972c8ad897ead15df" args="(Real TargetAngle, Real Dt)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1149,6 +1213,32 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a38600eba1bb9406561437ec1e5f30a9b"></a><!-- doxytag: member="phys::HingeConstraint::SetMotorTargetVelocity" ref="a38600eba1bb9406561437ec1e5f30a9b" args="(Real TargetVelocity)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void phys::HingeConstraint::SetMotorTargetVelocity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&#160;</td>
+          <td class="paramname"><em>TargetVelocity</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Desired angular velocity of the motor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TargetVelocity</td><td>The Desired velocity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Causes segfaults in some tests. </dd></dl>
 
 </div>
 </div>
@@ -1385,6 +1475,6 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 21:58:29 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Thu Sep 8 2011 12:45:36 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

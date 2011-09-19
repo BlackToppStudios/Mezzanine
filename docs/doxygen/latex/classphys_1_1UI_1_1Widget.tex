@@ -74,7 +74,7 @@ virtual void \hyperlink{classphys_1_1UI_1_1Widget_abc8e3f88f780e3b36b38086c45311
 \begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1Widget_af8498cbe2d6cf37115cf8ade52e22557}{IsInputCaptureWidget} ()
 \begin{DoxyCompactList}\small\item\em Checks if this is an input capturing widget. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}{IsVisible} ()=0
+virtual bool \hyperlink{classphys_1_1UI_1_1Widget_ac9662d5cfef5b1861e85bff7b7ca90c4}{IsVisible} ()
 \begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)=0
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
@@ -307,7 +307,7 @@ Returns a pointer to the button within this widget the mouse is hovering over, o
 \end{DoxyReturn}
 
 
-Definition at line 170 of file uiwidget.cpp.
+Definition at line 175 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a38764b73bc6087e2611660735840ba3f}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetHoveredSubWidget@{GetHoveredSubWidget}}
@@ -327,7 +327,7 @@ Returns a pointer to the sub-\/widget within this widget the mouse is hovering o
 \end{DoxyReturn}
 
 
-Definition at line 175 of file uiwidget.cpp.
+Definition at line 180 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a900184fbe7af51581d6bddafb45d953a}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetInputCaptureData@{GetInputCaptureData}}
@@ -347,7 +347,7 @@ Returns a pointer to the \hyperlink{classphys_1_1UI_1_1InputCaptureData}{InputCa
 \end{DoxyReturn}
 
 
-Definition at line 185 of file uiwidget.cpp.
+Definition at line 190 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a33f97d7da0ac48a35006cb71676e6c2e}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetLayer@{GetLayer}}
@@ -367,7 +367,7 @@ Returns a pointer to the layer this eidget belongs to.
 \end{DoxyReturn}
 
 
-Definition at line 180 of file uiwidget.cpp.
+Definition at line 185 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a35d6e7ce60a9b295d8659345627cf7e0}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetName@{GetName}}
@@ -387,7 +387,7 @@ Returns a String containing the name of this widget.
 \end{DoxyReturn}
 
 
-Definition at line 140 of file uiwidget.cpp.
+Definition at line 145 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetPosition@{GetPosition}}
@@ -432,7 +432,7 @@ Returns a Rect containing this Widgets' Position and Size.
 \end{DoxyReturn}
 
 
-Definition at line 157 of file uiwidget.cpp.
+Definition at line 162 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{
 \index{phys::UI::Widget@{phys::UI::Widget}!GetSize@{GetSize}}
@@ -472,7 +472,7 @@ Returns an enum value representing the type of widget this is.
 \end{DoxyReturn}
 
 
-Definition at line 130 of file uiwidget.cpp.
+Definition at line 135 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_af8498cbe2d6cf37115cf8ade52e22557}{
 \index{phys::UI::Widget@{phys::UI::Widget}!IsInputCaptureWidget@{IsInputCaptureWidget}}
@@ -492,17 +492,17 @@ Returns a bool indicating whether or not this widget will capture input.
 \end{DoxyReturn}
 
 
-Definition at line 135 of file uiwidget.cpp.
+Definition at line 140 of file uiwidget.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}{
+\hypertarget{classphys_1_1UI_1_1Widget_ac9662d5cfef5b1861e85bff7b7ca90c4}{
 \index{phys::UI::Widget@{phys::UI::Widget}!IsVisible@{IsVisible}}
 \index{IsVisible@{IsVisible}!phys::UI::Widget@{phys::UI::Widget}}
-\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool phys::UI::Widget::IsVisible (
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Widget::IsVisible (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
-\label{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1Widget_ac9662d5cfef5b1861e85bff7b7ca90c4}
 
 
 Gets the visibility of this widget. 
@@ -512,7 +512,11 @@ Returns a bool representing the visibility of this widget.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a1282a1494079e47b48c8e3296b1a8bb0}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1Cell_a77625842ac8ad87bd5b5a7f6ed0590b8}{phys::UI::Cell}, \hyperlink{classphys_1_1UI_1_1CellGrid_af53601ab18e77237550c3eb97043e68c}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1CheckBox_a8a2be0cba227f0921071fb14de24f76d}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1DropDownList_ae4bd94c8f891dadf2423cef16c28e3f9}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_ae23321617d7e14448e2fab3b455c3dc7}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a213c946ccadd3b689f59e2761a1d1848}{phys::UI::Scrollbar}, \hyperlink{classphys_1_1UI_1_1Spinner_a3bb14ddd6426debf035e65b9885bc25b}{phys::UI::Spinner}, and \hyperlink{classphys_1_1UI_1_1Window_aa1d88c50c0965510b494b51f3e5a7bf0}{phys::UI::Window}.
+Reimplemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a1282a1494079e47b48c8e3296b1a8bb0}{phys::UI::ButtonListBox}, and \hyperlink{classphys_1_1UI_1_1Cell_a77625842ac8ad87bd5b5a7f6ed0590b8}{phys::UI::Cell}.
+
+
+
+Definition at line 130 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetActualPosition@{SetActualPosition}}
@@ -600,7 +604,7 @@ Sets the Rect(Position and Size) of this \hyperlink{classphys_1_1UI_1_1Widget}{W
 \end{DoxyParams}
 
 
-Definition at line 145 of file uiwidget.cpp.
+Definition at line 150 of file uiwidget.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24d}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetSize@{SetSize}}
@@ -666,11 +670,11 @@ This function is called automatically when a viewport changes in size, and shoul
 \end{DoxyParams}
 
 
-Reimplemented in \hyperlink{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf3ff787837e5}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1DropDownList_aa204411b17521b92acb78926d1d3f98e}{phys::UI::DropDownList}, \hyperlink{classphys_1_1UI_1_1Menu_a60a678cc2be8f3eebfe65b3628557928}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1MenuWindow_a9845f7bd61f5c3f06594c4bbcbd4e063}{phys::UI::MenuWindow}, \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a7d6ddd7126f86d2ea6592ac3f9a91037}{phys::UI::PagedCellGrid}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aed1f61cbdab04c555e26076ec933bbf2}{phys::UI::ScrolledCellGrid}, and \hyperlink{classphys_1_1UI_1_1Window_a0be6c93e5660757a5f94227f2e076ba9}{phys::UI::Window}.
+Reimplemented in \hyperlink{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf3ff787837e5}{phys::UI::CellGrid}, \hyperlink{classphys_1_1UI_1_1Menu_a60a678cc2be8f3eebfe65b3628557928}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1MenuWindow_a9845f7bd61f5c3f06594c4bbcbd4e063}{phys::UI::MenuWindow}, \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a7d6ddd7126f86d2ea6592ac3f9a91037}{phys::UI::PagedCellGrid}, \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aed1f61cbdab04c555e26076ec933bbf2}{phys::UI::ScrolledCellGrid}, and \hyperlink{classphys_1_1UI_1_1Window_a0be6c93e5660757a5f94227f2e076ba9}{phys::UI::Window}.
 
 
 
-Definition at line 163 of file uiwidget.cpp.
+Definition at line 168 of file uiwidget.cpp.
 
 
 
