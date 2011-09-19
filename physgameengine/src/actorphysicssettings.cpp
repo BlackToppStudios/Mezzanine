@@ -396,7 +396,7 @@ namespace phys
     void ActorRigidPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
     {
         AssignShape(Shape);
-        if(CollisionShape::ST_TriMesh != Shape->GetType())
+        if(CollisionShape::ST_StaticTriMesh != Shape->GetType())
         {
             btScalar mass = this->ActorRB->getInvMass();
             if(0 != mass)
@@ -659,7 +659,7 @@ namespace phys
     void ActorTerrainPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
     {
         AssignShape(Shape);
-        if(CollisionShape::ST_TriMesh != Shape->GetType())
+        if(CollisionShape::ST_StaticTriMesh != Shape->GetType())
         {
             btScalar mass = this->ActorRB->getInvMass();
             if(0 != mass)

@@ -41,6 +41,7 @@
 #include "main.h"
 
 #include "actortests.h"
+#include "collisionshapetests.h"
 #include "compilerflagtests.h"
 #include "constrainttests.h"
 #include "eventmanagertests.h"
@@ -105,6 +106,7 @@ int main (int argc, char** argv)
     atexit(&DeleteTests);
     // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here
     TestGroups["actor"] = new ActorTests;
+    TestGroups["collisionshape"] = new CollisionShapeTests;
     TestGroups["compilerflag"] = new CompilerFlagTests;
     TestGroups["constraint"] = new ConstraintTests;
     TestGroups["eventmanager"] = new EventManagerTests;

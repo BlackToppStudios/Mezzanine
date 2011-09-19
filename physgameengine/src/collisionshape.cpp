@@ -41,6 +41,7 @@
 #define _collisionshape_cpp
 
 #include "collisionshape.h"
+#include "serialization.h"
 #include "world.h"
 
 #include "btBulletDynamicsCommon.h"
@@ -62,7 +63,7 @@ namespace phys
     {
     }
 
-    const String& CollisionShape::GetName()
+    const String& CollisionShape::GetName() const
     {
         return Name;
     }
@@ -92,12 +93,65 @@ namespace phys
     {
         return ShapeBase;
     }
+#ifdef PHYSXML
+    void CollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node ColNode = CurrentRoot.AppendChild(this->CollisionShape::SerializableName());
+        if (!ColNode) { SerializeError("create ActorRigidNode",this->CollisionShape::SerializableName());}
+
+        xml::Attribute Version = ColNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        xml::Attribute NameAttr = ColNode.AppendAttribute("Name");
+        if(!NameAttr)
+            { SerializeError("Create Name Attribute", SerializableName()); }
+        NameAttr.SetValue(this->GetName());
+
+        xml::Attribute MarginAttr = ColNode.AppendAttribute("Margin");
+        if(!MarginAttr)
+            { SerializeError("Create Margin Attribute", SerializableName()); }
+        MarginAttr.SetValue(this->GetName());
+
+        xml::Node ScalingNode = ColNode.AppendChild("Scaling");
+        if (!ScalingNode) { SerializeError("Create Name Attribute", SerializableName()); }
+        this->GetScaling().ProtoSerialize(ScalingNode);
+    }
+
+    void CollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->CollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                if(OneNode.GetAttribute("Name"))
+                    { this->Name = OneNode.GetAttribute("Name").AsString(); }
+                this->SetMargin(OneNode.GetAttribute("Margin").AsReal());
+
+                Vector3 TempVec;
+                xml::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
+                if(!ScalingNode)
+                    { DeSerializeError("locate Scaling node",SerializableName()); }
+                TempVec.ProtoDeSerialize(ScalingNode);
+                this->SetScaling(TempVec);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String CollisionShape::SerializableName()
+        {   return String("CollisionShape"); }
+#endif
 
     /////////////////////////////////////////
     // PrimitiveCollisionShape Functions
 
     PrimitiveCollisionShape::PrimitiveCollisionShape()
-        : PrimitiveShapeBase(NULL)
     {
     }
 
@@ -106,16 +160,77 @@ namespace phys
     }
 
     void PrimitiveCollisionShape::SetPointers(btConvexShape* Shape)
+        { ShapeBase = Shape; }
+
+    btConvexShape* PrimitiveCollisionShape::GetBulletConvexShape() const
+        { return static_cast<btConvexShape*>(ShapeBase); }
+
+#ifdef PHYSXML
+    void PrimitiveCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        PrimitiveShapeBase = Shape;
-        ShapeBase = Shape;
+        xml::Node ColNode = CurrentRoot.AppendChild(this->PrimitiveCollisionShape::SerializableName());
+        if (!ColNode) { SerializeError("create ActorRigidNode",this->PrimitiveCollisionShape::SerializableName());}
+
+        xml::Attribute Version = ColNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        xml::Attribute NameAttr = ColNode.AppendAttribute("Name");
+        if(!NameAttr)
+            { SerializeError("Create Name Attribute", SerializableName()); }
+        NameAttr.SetValue(this->GetName());
+
+        xml::Attribute MarginAttr = ColNode.AppendAttribute("Margin");
+        if(!MarginAttr)
+            { SerializeError("Create Margin Attribute", SerializableName()); }
+        MarginAttr.SetValue(this->GetName());
+
+        xml::Node ScalingNode = ColNode.AppendChild("Scaling");
+        if (!ScalingNode) { SerializeError("Create Name Attribute", SerializableName()); }
+        this->GetScaling().ProtoSerialize(ScalingNode);
     }
+
+    void PrimitiveCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->PrimitiveCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String PrimitiveCollisionShape::SerializableName()
+        {   return String("PrimitiveCollisionShape"); }
+#endif
+
+    /////////////////////////////////////////
+    // FieldCollisionShape Functions
+    FieldCollisionShape::FieldCollisionShape()
+    {
+    }
+
+    FieldCollisionShape::~FieldCollisionShape()
+    {
+    }
+
+    void FieldCollisionShape::SetPointers(btConcaveShape* Shape)
+        { ShapeBase = Shape; }
+
+    btConcaveShape* FieldCollisionShape::GetBulletConcaveShape() const
+        { return static_cast<btConcaveShape*>(ShapeBase); }
 
     /////////////////////////////////////////
     // MeshCollisionShape Functions
 
     MeshCollisionShape::MeshCollisionShape()
-        : MeshShapeBase(NULL)
     {
     }
 
@@ -124,10 +239,10 @@ namespace phys
     }
 
     void MeshCollisionShape::SetPointers(btConcaveShape* Shape)
-    {
-        MeshShapeBase = Shape;
-        ShapeBase = Shape;
-    }
+        { ShapeBase = Shape; }
+
+    btConcaveShape* MeshCollisionShape::GetBulletConcaveShape() const
+        { return static_cast<btConcaveShape*>(ShapeBase); }
 
     /////////////////////////////////////////
     // CompoundCollisionShape Functions
@@ -330,9 +445,9 @@ namespace phys
         return HalfExtents;
     }
 
-    bool BoxCollisionShape::IsInside(const Vector3& Location, const Real& Tolorance) const
+    bool BoxCollisionShape::IsInside(const Vector3& Location, const Real& Tolerance) const
     {
-        return BoxShape->isInside(Location.GetBulletVector3(),Tolorance);
+        return BoxShape->isInside(Location.GetBulletVector3(),Tolerance);
     }
 
     CollisionShape::ShapeType BoxCollisionShape::GetType() const
@@ -659,7 +774,7 @@ namespace phys
 
     CollisionShape::ShapeType DynamicMeshCollisionShape::GetType() const
     {
-        return CollisionShape::ST_GImpact;
+        return CollisionShape::ST_DynamicTriMesh;
     }
 
     /////////////////////////////////////////
@@ -750,8 +865,183 @@ namespace phys
 
     CollisionShape::ShapeType StaticMeshCollisionShape::GetType() const
     {
-        return CollisionShape::ST_TriMesh;
+        return CollisionShape::ST_StaticTriMesh;
     }
 }
+
+#ifdef PHYSXML
+/*
+CollisionShape
+PrimitiveCollisionShape
+FieldCollisionShape
+MeshCollisionShape
+BoxCollisionShape
+CapsuleCollisionShape
+CompoundCollisionShape
+ConeCollisionShape
+ConvexHullCollisionShape
+CylinderCollisionShape
+MultiSphereCollisionShape
+SphereCollisionShape
+DynamicMeshCollisionShape
+HeightfieldCollisionShape
+PlaneCollisionShape
+ActorSoftCollisionShape
+StaticMeshCollisionShape
+ */
+    std::ostream& operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::CollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::PrimitiveCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::PrimitiveCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::PrimitiveCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::FieldCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::FieldCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::FieldCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::MeshCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::MeshCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::MeshCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::BoxCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::BoxCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::BoxCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::CapsuleCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::CapsuleCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::CapsuleCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::CompoundCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::CompoundCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::CompoundCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::ConeCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::ConeCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::ConeCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::ConvexHullCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::ConvexHullCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::ConvexHullCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::CylinderCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::CylinderCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::CylinderCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::MultiSphereCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::MultiSphereCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::MultiSphereCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::SphereCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::SphereCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::SphereCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+     std::ostream& operator << (std::ostream& stream, const phys::DynamicMeshCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::DynamicMeshCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::DynamicMeshCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::HeightfieldCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::HeightfieldCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::HeightfieldCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::PlaneCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::PlaneCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::PlaneCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::ActorSoftCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::ActorSoftCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::ActorSoftCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+    std::ostream& operator << (std::ostream& stream, const phys::StaticMeshCollisionShape& ShapeToSerialize)
+        { Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, phys::StaticMeshCollisionShape& x)
+        { return DeSerialize(stream, x); }
+
+    void operator >> (const phys::xml::Node& OneNode, phys::StaticMeshCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+
+#endif  // \physxml
+
 
 #endif
