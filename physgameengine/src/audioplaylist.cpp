@@ -37,56 +37,32 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _soundset_h
-#define _soundset_h
+#ifndef _audioplaylist_cpp
+#define _audioplsylist_cpp
 
-#include "datatypes.h"
-#include "sound.h"
+#include "audioplaylist.h"
+#include "audiosound.h"
 #include <vector>
+#include <algorithm>
 
 namespace phys
 {
     namespace Audio
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a vector that stores sounds.
-        /// @details This is a vector and can be use to store sounds that can be grouped together
-        /// for similiar purposes or similiar content for easy tracking.
-        ///////////////////////////////////////////////////////////////////////////////
-        class PHYS_LIB SoundSet : public std::vector< Sound* >
+        Playlist::Playlist()
         {
-            private:
-                /// @brief The name of the sound
-                String Name;
-            public:
-                /// @brief a Simple counter to insure unique names of soundsets
-                static Whole UnnamedInstanceCount;
+        }
 
-                /// @brief Default constructor
-                SoundSet()
-                    { Name = StringCat("SoundSet",ToString(UnnamedInstanceCount++)); } // Name the First "SoundSet0" then the next "SoundSet1" and then "SoundSet2"...
+        Playlist::~Playlist()
+        {
+        }
 
-                /// @brief Default constructor
-                explicit SoundSet(const String& _Name) : Name(_Name)
-                    { }
-
-                /// @brief Get the name of the SoundSet
-                /// @return The Name of this SoundSet
-                const String& GetName() const
-                    { return Name; }
-
-                /// @brief Create an xml::Node describing this
-                /// @return An xml::Node
-                xml::Node ProtoSerialize() const;
-
-                /// @brief Create an xml::Node describing this
-                /// @return An xml::Node
-                void ProtoDeSerialize(const xml::Node&);
-
-                static String SerializableName();
-
-        };//soundset
-        /// Todo de/serialize sound set
+        void Playlist::ShuffleList()
+        {
+            std::vector< Audio::Sound* > temp( this->begin(), this->end() );
+            std::random_shuffle( temp.begin(), temp.end() );
+            this->assign( temp.begin(), temp.end() );
+        }
     }//Audio
 }//phys
 

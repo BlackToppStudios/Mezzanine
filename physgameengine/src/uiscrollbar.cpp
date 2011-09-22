@@ -103,7 +103,7 @@ namespace phys
                 }
                 else
                 {
-                    World::GetWorldPointer()->LogAndThrow("Scrollbar dimensions incompatible with this widget.");
+                    World::GetWorldPointer()->LogAndThrow(Exception("Scrollbar dimensions incompatible with this widget."));
                 }
             }
         }
@@ -606,6 +606,32 @@ namespace phys
                 return true;
             }
             return false;
+        }
+
+        void Scrollbar::SetScrollerValue(const Real& Value)
+        {
+            Vector2 ScrollerPos = Scroller->GetActualPosition();
+            Vector2 NewPos;
+            if(Horizontal)
+            {
+                NewPos = Vector2(ScrollerLowerLimit + ((ScrollerUpperLimit - ScrollerLowerLimit) * Value),ScrollerPos.Y);
+                SetToWithinLimits(NewPos.X);
+            }else{
+                NewPos = Vector2(ScrollerPos.X,ScrollerLowerLimit + ((ScrollerUpperLimit - ScrollerLowerLimit) * Value));
+                SetToWithinLimits(NewPos.Y);
+            }
+            Scroller->SetActualPosition(NewPos);
+            CalculateScrollValue();
+
+            /*Vector2 ScrollbackSize = ScrollBack->GetActualSize();
+            Vector2 ScrollbackPos = ScrollBack->GetActualPosition();
+            Vector2 ScrollerSize = Scroller->GetActualSize();
+            Vector2 ScrollerPos = Scroller->GetActualPosition();
+            Vector2 NewPos;
+            if(Horizontal) NewPos = Vector2(ScrollbackPos.X+((ScrollbackSize.X - ScrollerSize.X) * Value),ScrollerPos.Y);
+            else NewPos = Vector2(ScrollerPos.X,ScrollbackPos.Y+((ScrollbackSize.Y - ScrollerSize.Y) * Value));
+            Scroller->SetActualPosition(NewPos);
+            ScrollerValue = Value;*/
         }
 
         Real Scrollbar::GetScrollerValue()

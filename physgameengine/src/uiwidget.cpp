@@ -163,8 +163,8 @@ namespace phys
         {
             if(this->Visible == visible)
                 return;
-            SetVisibleImpl(visible);
             this->Visible = visible;
+            SetVisibleImpl(visible);
             if(Callback)
                 Callback->DoVisibilityChangeItems();
         }

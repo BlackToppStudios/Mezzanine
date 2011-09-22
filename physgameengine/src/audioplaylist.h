@@ -37,29 +37,34 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _soundset_cpp
-#define _soundset_cpp
+#ifndef _audioplaylist_h
+#define _audioplsylist_h
 
-#include "soundset.h"
+#include "datatypes.h"
+#include <list>
 
 namespace phys
 {
     namespace Audio
     {
-        Whole SoundSet::UnnamedInstanceCount = 0;
-
-        xml::Node SoundSet::ProtoSerialize() const
+        class Sound;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Playlist
+        /// @headerfile audioplaylist.h
+        /// @brief This class is a list of sounds with common playlist features.
+        /// @details
+        ///////////////////////////////////////
+        class PHYS_LIB Playlist : public std::list< Audio::Sound* >
         {
-
-        }
-
-        void SoundSet::ProtoDeSerialize(const xml::Node&)
-        {
-
-        }
-
-        String SoundSet::SerializableName()
-            { return String("SoundSet"); }
+            protected:
+            public:
+                /// @brief Class constructor.
+                Playlist();
+                /// @brief Class destructor.
+                ~Playlist();
+                /// @brief Randomly shuffles the content in the Playlist.
+                void ShuffleList();
+        };//Playlist
     }//Audio
 }//phys
 

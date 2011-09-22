@@ -157,9 +157,9 @@ namespace phys
             }
             else if(HoveredSubWidget == SelectionList)
             {
-                if(MetaCode::BUTTON_PRESSING == State)
+                if(MetaCode::BUTTON_PRESSING == State && !SelectionList->GetHoveredSubWidget())
                 {
-                    Selection = SelectionList->GetSelected();
+                    Selection->SetText(SelectionList->GetSelected()->GetText());
                     SelectionList->Hide();
                     ToggleActivated = false;
                 }

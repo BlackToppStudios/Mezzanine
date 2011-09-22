@@ -41,9 +41,9 @@
 #define _audiomanager_cpp
 
 #include "audiomanager.h"
-#include "sound.h"
-#include "soundlistener.h"
-#include "soundset.h"
+#include "audiosound.h"
+#include "audiolistener.h"
+#include "audiosoundset.h"
 #include "world.h"
 #include <cAudio.h>
 
@@ -57,7 +57,7 @@ namespace phys
           MasterVolume(1.0)
     {
         cAudioManager = cAudio::createAudioManager(DefaultSettings);
-        Listener = new Audio::SoundListener(cAudioManager->getListener());
+        Listener = new Audio::Listener(cAudioManager->getListener());
         this->Priority = 10;
     }
 
@@ -247,7 +247,7 @@ namespace phys
         cAudioManager->initialize(DeviceName.c_str(), OutputFrequency, EAXEffectSlots);
     }
 
-    Audio::SoundListener* AudioManager::GetListener() const
+    Audio::Listener* AudioManager::GetListener() const
     {
         return Listener;
     }

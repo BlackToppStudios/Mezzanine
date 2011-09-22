@@ -143,6 +143,9 @@ namespace phys
                 Scrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style, Layer* parent);
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
+                /// @brief Sets the value of this scrollbar and warps the scroller to that respective position.
+                /// @param Value The value to be set for this scrollbar.  Range: 0.0 to 1.0.
+                virtual void SetScrollerValue(const Real& Value);
                 /// @brief Get the currnent scroll position represented by a value between 0 and 1.
                 /// @details For example, if the scroller is halfway down the limits it's allowed, this will return 0.5. @n
                 /// Like other values, the top and left represent origin(0) values.

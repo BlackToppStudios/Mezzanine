@@ -280,6 +280,8 @@ namespace phys
         {
             Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaRectangle->GetNameFile());
             HoveredSprite = GSprite;
+            if(MouseHover)
+                GorillaRectangle->background_image(HoveredSprite);
         }
 
         void Button::SetHoveredSprite(const String& Name, const String& Atlas)

@@ -6,6 +6,7 @@
 #include "buttoncallbacks.h"
 #include "levelselectcell.h"
 #include "throwablegenerator.h"
+#include "widgetcallbacks.h"
 #include <cassert>
 #include <set>
 
@@ -91,13 +92,13 @@ void CatchApp::MakeGUI()
     OptionsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsBackground");
     UI::TabSet* OptionsTabSet = OptionsWin->CreateTabSet("MS_OptionsTS", UI::RenderableRect(Vector2(0.20, 0.31), Vector2(0.60, 0.39), true));
     //video options
-    UI::RenderableSetData* VideoSet = OptionsTabSet->CreateRenderableSet("VideoSet",UI::RenderableRect(Vector2(0.25, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Video Options");
+    UI::RenderableSetData* VideoSet = OptionsTabSet->CreateRenderableSet("MS_VideoSet",UI::RenderableRect(Vector2(0.25, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Video Options");
     VideoSet->Collection->GetWidgetBack()->SetBackgroundColour(ColourValue::Transparent());
     VideoSet->Accessor->SetBackgroundSprite("MMButton");
     VideoSet->Accessor->SetHoveredSprite("MMHoveredButton");
-    UI::Caption* ResolutionLabel = VideoSet->Collection->CreateCaption("ResolutionLabel",UI::RenderableRect(Vector2(0.28, 0.31),Vector2(0.24, 0.05),true),MMTextLineHeight,"Video Resolutions");
+    UI::Caption* ResolutionLabel = VideoSet->Collection->CreateCaption("MS_ResolutionLabel",UI::RenderableRect(Vector2(0.28, 0.31),Vector2(0.24, 0.05),true),MMTextLineHeight,"Video Resolution");
     ResolutionLabel->SetBackgroundSprite("MMButton");
-    UI::DropDownList* ResolutionList = VideoSet->Collection->CreateDropDownList("ResolutionList",UI::RenderableRect(Vector2(0.25, 0.36),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
+    UI::DropDownList* ResolutionList = VideoSet->Collection->CreateDropDownList("MS_ResolutionList",UI::RenderableRect(Vector2(0.25, 0.36),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
     ResolutionList->GetSelection()->SetBackgroundSprite("MMListSelection");
     ResolutionList->GetListToggle()->SetBackgroundSprite("MMListScrollDown");
     ResolutionList->GetSelectionList()->GetBoxBack()->SetBackgroundSprite("MMListBackground");
@@ -108,19 +109,25 @@ void CatchApp::MakeGUI()
     ResolutionList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->SetHoveredSprite("MMHoveredListScrollDown");
     ResolutionList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->SetBackgroundSprite("MMListScrollUp");
     ResolutionList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->SetHoveredSprite("MMHoveredListScrollUp");
-    UI::CheckBox* FullscreenBox = VideoSet->Collection->CreateCheckBox("FullscreenBox",UI::RenderableRect(Vector2(0.59, 0.36),Vector2(0.16, 0.05),true),MMTextLineHeight,"Fullscreen");
+    ResolutionList->GetSelectionList()->GetVertScroll()->SetIncrementDistance(0.05);
+    ResolutionList->GetSelectionList()->SetTemplateBackgroundColour(ColourValue(1.0,1.0,1.0,0.2));
+    ResolutionList->GetSelectionList()->SetTemplateTextColour(ColourValue::White());
+    //ResolutionList->GetSelectionList()->Set
+    ResolutionList->GetSelectionList()->SetMaxDisplayedSelections(4);
+    ResolutionList->SetWidgetCallback(new OptsVideoRes());
+    UI::CheckBox* FullscreenBox = VideoSet->Collection->CreateCheckBox("MS_FullscreenBox",UI::RenderableRect(Vector2(0.59, 0.36),Vector2(0.16, 0.05),true),MMTextLineHeight,"Fullscreen");
     FullscreenBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
     FullscreenBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
     FullscreenBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
     //sound options
     Real ScrollerSize = 0.09;
-    UI::RenderableSetData* AudioSet = OptionsTabSet->CreateRenderableSet("AudioSet",UI::RenderableRect(Vector2(0.53, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Sound Options");
+    UI::RenderableSetData* AudioSet = OptionsTabSet->CreateRenderableSet("MS_AudioSet",UI::RenderableRect(Vector2(0.53, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Sound Options");
     AudioSet->Collection->GetWidgetBack()->SetBackgroundColour(ColourValue::Transparent());
     AudioSet->Accessor->SetBackgroundSprite("MMButton");
     AudioSet->Accessor->SetHoveredSprite("MMHoveredButton");
-    UI::Caption* MusicVolLabel = AudioSet->Collection->CreateCaption("MusicVolLabel",UI::RenderableRect(Vector2(0.38, 0.31),Vector2(0.24, 0.05),true),MMTextLineHeight,"Music Volume");
+    UI::Caption* MusicVolLabel = AudioSet->Collection->CreateCaption("MS_MusicVolLabel",UI::RenderableRect(Vector2(0.38, 0.31),Vector2(0.24, 0.05),true),MMTextLineHeight,"Music Volume");
     MusicVolLabel->SetBackgroundSprite("MMButton");
-    UI::Scrollbar* MusicVol = AudioSet->Collection->CreateScrollbar("MusicVolume",UI::RenderableRect(Vector2(0.30, 0.36),Vector2(0.40, 0.04),true),UI::SB_Separate);
+    UI::Scrollbar* MusicVol = AudioSet->Collection->CreateScrollbar("MS_MusicVolume",UI::RenderableRect(Vector2(0.30, 0.36),Vector2(0.40, 0.04),true),UI::SB_Separate);
     MusicVol->SetScrollerSize(ScrollerSize);
     MusicVol->SetIncrementDistance(ScrollerSize * 0.5);
     MusicVol->GetScrollBack()->SetBackgroundSprite("MMScrollBackground");
@@ -130,9 +137,10 @@ void CatchApp::MakeGUI()
     MusicVol->GetDownRightButton()->SetHoveredSprite("MMHoveredScrollRight");
     MusicVol->GetUpLeftButton()->SetBackgroundSprite("MMScrollLeft");
     MusicVol->GetUpLeftButton()->SetHoveredSprite("MMHoveredScrollLeft");
-    UI::Caption* EffectsVolLabel = AudioSet->Collection->CreateCaption("EffectsVolLabel",UI::RenderableRect(Vector2(0.38, 0.42),Vector2(0.24, 0.05),true),MMTextLineHeight,"Effects Volume");
+    MusicVol->SetWidgetCallback(new OptsMusicVol());
+    UI::Caption* EffectsVolLabel = AudioSet->Collection->CreateCaption("MS_EffectsVolLabel",UI::RenderableRect(Vector2(0.38, 0.42),Vector2(0.24, 0.05),true),MMTextLineHeight,"Effects Volume");
     EffectsVolLabel->SetBackgroundSprite("MMButton");
-    UI::Scrollbar* EffectsVol = AudioSet->Collection->CreateScrollbar("EffectsVolume",UI::RenderableRect(Vector2(0.30, 0.47),Vector2(0.40, 0.04),true),UI::SB_Separate);
+    UI::Scrollbar* EffectsVol = AudioSet->Collection->CreateScrollbar("MS_EffectsVolume",UI::RenderableRect(Vector2(0.30, 0.47),Vector2(0.40, 0.04),true),UI::SB_Separate);
     EffectsVol->SetScrollerSize(ScrollerSize);
     EffectsVol->SetIncrementDistance(ScrollerSize * 0.5);
     EffectsVol->GetScrollBack()->SetBackgroundSprite("MMScrollBackground");
@@ -142,9 +150,10 @@ void CatchApp::MakeGUI()
     EffectsVol->GetDownRightButton()->SetHoveredSprite("MMHoveredScrollRight");
     EffectsVol->GetUpLeftButton()->SetBackgroundSprite("MMScrollLeft");
     EffectsVol->GetUpLeftButton()->SetHoveredSprite("MMHoveredScrollLeft");
-    UI::Caption* DeviceLabel = AudioSet->Collection->CreateCaption("DeviceLabel",UI::RenderableRect(Vector2(0.30, 0.55),Vector2(0.24, 0.05),true),MMTextLineHeight,"Audio Device");
+    EffectsVol->SetWidgetCallback(new OptsEffectVol());
+    UI::Caption* DeviceLabel = AudioSet->Collection->CreateCaption("MS_DeviceLabel",UI::RenderableRect(Vector2(0.30, 0.55),Vector2(0.24, 0.05),true),MMTextLineHeight,"Audio Device");
     DeviceLabel->SetBackgroundSprite("MMButton");
-    UI::DropDownList* DeviceList = AudioSet->Collection->CreateDropDownList("AudioDeviceList",UI::RenderableRect(Vector2(0.27, 0.60),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
+    UI::DropDownList* DeviceList = AudioSet->Collection->CreateDropDownList("MS_AudioDeviceList",UI::RenderableRect(Vector2(0.27, 0.60),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
     DeviceList->GetSelection()->SetBackgroundSprite("MMListSelection");
     DeviceList->GetListToggle()->SetBackgroundSprite("MMListScrollDown");
     DeviceList->GetSelectionList()->GetBoxBack()->SetBackgroundSprite("MMListBackground");
@@ -155,7 +164,7 @@ void CatchApp::MakeGUI()
     DeviceList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->SetHoveredSprite("MMHoveredListScrollDown");
     DeviceList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->SetBackgroundSprite("MMListScrollUp");
     DeviceList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->SetHoveredSprite("MMHoveredListScrollUp");
-    UI::CheckBox* MuteBox = AudioSet->Collection->CreateCheckBox("MuteBox",UI::RenderableRect(Vector2(0.62, 0.60),Vector2(0.11, 0.05),true),MMTextLineHeight,"Mute");
+    UI::CheckBox* MuteBox = AudioSet->Collection->CreateCheckBox("MS_MuteBox",UI::RenderableRect(Vector2(0.62, 0.60),Vector2(0.11, 0.05),true),MMTextLineHeight,"Mute");
     MuteBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
     MuteBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
     MuteBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");

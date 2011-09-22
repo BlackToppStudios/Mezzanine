@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _sound_h
-#define _sound_h
+#ifndef _audiosound_h
+#define _audiosound_h
 
 #include "vector3.h"
 #include "audioenumerations.h"

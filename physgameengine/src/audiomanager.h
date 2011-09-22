@@ -60,7 +60,7 @@ namespace phys
     namespace Audio
     {
         class Sound;
-        class SoundListener;
+        class Listener;
         class SoundSet;
     }
     ///////////////////////////////////////////////////////////////////////////////
@@ -85,7 +85,7 @@ namespace phys
             Real EffectVolume;
             Real MusicVolume;
             Real MasterVolume;
-            Audio::SoundListener* Listener;
+            Audio::Listener* Listener;
         public:
             /// @brief Class Constructor
             /// @details This is the class constructor.  It gives you the option to start up the manager
@@ -230,7 +230,7 @@ namespace phys
             /// @brief Retrieve's the listener for this sound manager.
             /// @details This function will return the listener for this manager which can be used to help create 3D sound.
             /// @return Returns a pointer to the managers Sound Listener.
-            virtual Audio::SoundListener* GetListener() const;
+            virtual Audio::Listener* GetListener() const;
             /// @brief Gets the internal cAudioManager this manager is based on.
             /// @return Returns a pointer to the internal cAudio manager.
             virtual cAudio::IAudioManager* GetcAudioManager() const;

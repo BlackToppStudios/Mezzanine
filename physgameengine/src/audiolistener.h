@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _soundlistener_h
-#define _soundlistener_h
+#ifndef _audiolistener_h
+#define _audiolistener_h
 
 #include "crossplatformexport.h"
 #include "vector3.h"
@@ -59,18 +59,16 @@ namespace phys
         /// @brief This is the listener class used for 3D sound.
         /// @details This is the listener class used for determining how 3D sound is played.
         ///////////////////////////////////////////////////////////////////////////////
-        class PHYS_LIB SoundListener
+        class PHYS_LIB Listener
         {
             protected:
                 cAudio::IListener* AudioListener;
             public:
                 /// @brief Class constructor.  Internal use only.
-                /// @details The Class constructor.  This is an internal function and shouldn't be called manually.
                 /// @param Listener Pointer to the internal listener.
-                SoundListener(cAudio::IListener* Listener);
+                Listener(cAudio::IListener* Listener);
                 /// @brief Class destructor.
-                /// @details The class destructor.
-                ~SoundListener();
+                ~Listener();
                 /// @brief Sets the listener position.
                 /// @details Sets the listeners position.
                 /// @param Position The new position for the listener.

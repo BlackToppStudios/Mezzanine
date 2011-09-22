@@ -37,25 +37,57 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _audio_h
-#define _audio_h
+#ifndef _audiosoundset_h
+#define _audiosoundset_h
+
+#include "datatypes.h"
+#include "audiosound.h"
+#include <vector>
 
 namespace phys
 {
-    /// @namespace phys::Audio
-    /// @brief This namespace is for all the classes belonging to the Audio Subsystem.
-    /// @details Our Audio subsystem is based on a heavily modified/forked version of cAudio, and as such uses
-    /// a similiar structure of classes and interfaces.
     namespace Audio
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a vector that stores sounds.
+        /// @details This is a vector and can be use to store sounds that can be grouped together
+        /// for similiar purposes or similiar content for easy tracking.
+        ///////////////////////////////////////////////////////////////////////////////
+        class PHYS_LIB SoundSet : public std::vector< Sound* >
+        {
+            private:
+                /// @brief The name of the sound
+                String Name;
+            public:
+                /// @brief a Simple counter to insure unique names of soundsets
+                static Whole UnnamedInstanceCount;
 
-    }
-}
+                /// @brief Default constructor
+                SoundSet()
+                    { Name = StringCat("SoundSet",ToString(UnnamedInstanceCount++)); } // Name the First "SoundSet0" then the next "SoundSet1" and then "SoundSet2"...
 
-#include "audioenumerations.h"
+                /// @brief Default constructor
+                explicit SoundSet(const String& _Name) : Name(_Name)
+                    { }
 
-#include "audiosound.h"
-#include "audiolistener.h"
-#include "audiosoundset.h"
+                /// @brief Get the name of the SoundSet
+                /// @return The Name of this SoundSet
+                const String& GetName() const
+                    { return Name; }
+
+                /// @brief Create an xml::Node describing this
+                /// @return An xml::Node
+                xml::Node ProtoSerialize() const;
+
+                /// @brief Create an xml::Node describing this
+                /// @return An xml::Node
+                void ProtoDeSerialize(const xml::Node&);
+
+                static String SerializableName();
+
+        };//soundset
+        /// Todo de/serialize sound set
+    }//Audio
+}//phys
 
 #endif

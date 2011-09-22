@@ -37,25 +37,30 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _audio_h
-#define _audio_h
+#ifndef _audiosoundset_cpp
+#define _audiosoundset_cpp
+
+#include "audiosoundset.h"
 
 namespace phys
 {
-    /// @namespace phys::Audio
-    /// @brief This namespace is for all the classes belonging to the Audio Subsystem.
-    /// @details Our Audio subsystem is based on a heavily modified/forked version of cAudio, and as such uses
-    /// a similiar structure of classes and interfaces.
     namespace Audio
     {
+        Whole SoundSet::UnnamedInstanceCount = 0;
 
-    }
-}
+        xml::Node SoundSet::ProtoSerialize() const
+        {
 
-#include "audioenumerations.h"
+        }
 
-#include "audiosound.h"
-#include "audiolistener.h"
-#include "audiosoundset.h"
+        void SoundSet::ProtoDeSerialize(const xml::Node&)
+        {
+
+        }
+
+        String SoundSet::SerializableName()
+            { return String("SoundSet"); }
+    }//Audio
+}//phys
 
 #endif

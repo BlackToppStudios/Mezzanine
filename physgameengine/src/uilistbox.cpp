@@ -80,7 +80,7 @@ namespace phys
             SelectionTemplate.HorizontalAlign = UI::Txt_Middle;
             SelectionTemplate.VerticalAlign = UI::Txt_Center;
 
-            RenderableRect ScrollRect;
+            RenderableRect ScrollRect, BoxRect;
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -98,8 +98,12 @@ namespace phys
                 ScrollRect.Size = Vector2(Rect.Size.Y,Rect.Size.Y * MaxDisplay);
                 ScrollRect.Relative = Rect.Relative;
             }
+            BoxRect.Position = Rect.Position;
+            BoxRect.Size.X = Rect.Size.X;
+            BoxRect.Size.Y = Rect.Size.Y * MaxDisplay;
+            BoxRect.Relative = Rect.Relative;
 
-            BoxBack = new Rectangle(Rect,Parent);
+            BoxBack = new Rectangle(BoxRect,Parent);
             VertScroll = new Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,Parent);
             VertScroll->Hide();
         }
@@ -164,39 +168,36 @@ namespace phys
         {
             if(Selections.empty())
                 return;
-            if(!Visible)
-                return;
             ScrollHideCheck();
             VisibleSelections.clear();
             Whole FirstCaption = 0;
             if(MaxDisplay < Selections.size())
             {
-                Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)Selections.size();
-                Real Remainder = fmod(ToBeRounded,(Real)1.0);
-                FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (1.0 - Remainder) : ToBeRounded - Remainder);
+                Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)(Selections.size() - MaxDisplay);
+                FirstCaption = (Whole)(ToBeRounded + 0.5);
             }
             Vector2 SelectionPos = GetActualPosition();
             Real ActualInc = SelectionTemplate.Size.Y * Parent->GetParent()->GetViewportDimensions().Y;
 
-            for( Whole w = 0 ; w < FirstCaption ; w++ )
+            for( Whole w = 0 ; w < FirstCaption ; ++w )
             {
                 Selections[w]->SetPosition(GetPosition());
                 Selections[w]->Hide();
                 SelectionSizeCheck(Selections[w]);
             }
             Whole Displayed = FirstCaption+MaxDisplay > Selections.size() ? Selections.size() : FirstCaption+MaxDisplay;
-            for( Whole x = FirstCaption ; x < Displayed ; x++ )
+            for( Whole x = FirstCaption ; x < Displayed ; ++x )
             {
                 VisibleSelections.push_back(Selections[x]);
-                Selections[x]->Show();
+                Selections[x]->SetVisible(this->IsVisible());
             }
-            for( Whole y = FirstCaption+Displayed ; y < Selections.size() ; y++ )
+            for( Whole y = Displayed ; y < Selections.size() ; ++y )
             {
                 Selections[y]->SetPosition(GetPosition());
                 Selections[y]->Hide();
                 SelectionSizeCheck(Selections[y]);
             }
-            for( Whole z = 0 ; z < VisibleSelections.size() ; z++ )
+            for( Whole z = 0 ; z < VisibleSelections.size() ; ++z )
             {
                 VisibleSelections[z]->SetActualPosition(SelectionPos);
                 SelectionPos.Y+=ActualInc;
@@ -224,10 +225,12 @@ namespace phys
         void ListBox::SetVisibleImpl(bool visible)
         {
             BoxBack->SetVisible(visible);
-            if(!AutoHideScroll)
-                VertScroll->SetVisible(visible);
-            for(Whole x=0 ; x < VisibleSelections.size() ; x++)
-                VisibleSelections[x]->SetVisible(visible);
+            //if(!AutoHideScroll && !visible)
+            //    VertScroll->SetVisible(visible);
+            //for(Whole x=0 ; x < VisibleSelections.size() ; x++)
+            //    VisibleSelections[x]->SetVisible(visible);
+            //if(visible)
+                DrawList();
         }
 
         bool ListBox::CheckMouseHoverImpl()
@@ -386,7 +389,9 @@ namespace phys
         void ListBox::SetMaxDisplayedSelections(const Whole& MaxSelections)
         {
             MaxDisplay = MaxSelections;
-            SetArea((SelectionTemplate.Size * MaxDisplay) * Parent->GetParent()->GetViewportDimensions());
+            Vector2 NewBackSize = SelectionTemplate.Size;
+            NewBackSize.Y*=MaxDisplay;
+            SetArea(NewBackSize * Parent->GetParent()->GetViewportDimensions());
         }
 
         void ListBox::SetAutoHideScroll(bool AutoHide)

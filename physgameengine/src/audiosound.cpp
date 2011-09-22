@@ -37,10 +37,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _sound_cpp
-#define _sound_cpp
+#ifndef _audiosound_cpp
+#define _audiosound_cpp
 
-#include "sound.h"
+#include "audiosound.h"
 #include "audiomanager.h"
 #include "world.h"
 #include <cAudio.h>
