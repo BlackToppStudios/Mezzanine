@@ -3,10 +3,6 @@
 
 #include "widgetcallbacks.h"
 
-OptsVolume::OptsVolume()
-{
-}
-
 OptsVolume::~OptsVolume()
 {
 }
@@ -83,11 +79,6 @@ Real OptsMusicVol::GetVolume() const
     return World::GetWorldPointer()->GetAudioManager()->GetMusicVolume();
 }
 
-OptsAudioMute::OptsAudioMute()
-{
-
-}
-
 OptsAudioMute::~OptsAudioMute()
 {
 
@@ -116,10 +107,6 @@ void OptsAudioMute::DoPostUpdateItems()
 void OptsAudioMute::DoVisibilityChangeItems()
 {
 
-}
-
-OptsVideoRes::OptsVideoRes()
-{
 }
 
 OptsVideoRes::~OptsVideoRes()
@@ -172,39 +159,33 @@ void OptsVideoRes::DoVisibilityChangeItems()
     }
 }
 
-OptsVideoFullscreen::OptsVideoFullscreen()
-{
-
-}
-
 OptsVideoFullscreen::~OptsVideoFullscreen()
 {
-
 }
 
 void OptsVideoFullscreen::SetCaller(UI::Widget* Caller)
 {
-
+    UI::WidgetCallback::SetCaller(Caller);
 }
 
 void OptsVideoFullscreen::DoHoverItems()
 {
-
 }
 
 void OptsVideoFullscreen::DoPreUpdateItems()
 {
-
 }
 
 void OptsVideoFullscreen::DoPostUpdateItems()
 {
-
 }
 
 void OptsVideoFullscreen::DoVisibilityChangeItems()
 {
-
+    bool FullScreen = World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getFullscreen();
+    UI::CheckBox* FSCheck = static_cast<UI::CheckBox*>(this->Caller);
+    if(FullScreen != FSCheck->IsChecked())
+        FSCheck->ManualCheck(FullScreen);
 }
 
 

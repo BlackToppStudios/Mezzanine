@@ -61,4 +61,16 @@ class AllAppExit : public UI::ButtonCallback
         virtual void DoActivateItems();
 };
 
+class OptsVideoApply : public UI::ButtonCallback
+{
+    protected:
+        UI::DropDownList* ResolutionList;
+        UI::CheckBox* FullScreenBox;
+    public:
+        OptsVideoApply(UI::DropDownList* ResList, UI::CheckBox* FSBox);
+        virtual ~OptsVideoApply();
+        virtual void DoHoverItems();
+        virtual void DoActivateItems();
+};
+
 #endif

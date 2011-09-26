@@ -129,4 +129,41 @@ void AllAppExit::DoActivateItems()
     World::GetWorldPointer()->BreakMainLoop();
 }
 
+//--------------------------------------------------------------
+
+OptsVideoApply::OptsVideoApply(UI::DropDownList* ResList, UI::CheckBox* FSBox)
+    : ResolutionList(ResList),
+      FullScreenBox(FSBox)
+{
+}
+
+OptsVideoApply::~OptsVideoApply()
+{
+}
+
+void OptsVideoApply::DoHoverItems()
+{
+}
+
+void OptsVideoApply::DoActivateItems()
+{
+    Whole Width, Height;
+    String SelectedRes = ResolutionList->GetSelection()->GetText();
+    String StrWidth = SelectedRes.substr(0,SelectedRes.find_first_of(" "));
+    String StrHeight = SelectedRes.substr(SelectedRes.find_last_of(" ") + 1);
+    std::stringstream WidthStream;
+    std::stringstream HeightStream;
+    WidthStream << StrWidth;
+    HeightStream << StrHeight;
+    WidthStream >> Width;
+    HeightStream >> Height;
+
+    GraphicsSettings NewSettings;
+    NewSettings.Fullscreen = FullScreenBox->IsChecked();
+    NewSettings.RenderWidth = Width;
+    NewSettings.RenderHeight = Height;
+
+    World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderOptions(NewSettings);
+}
+
 #endif

@@ -11,7 +11,6 @@ class OptsVolume : public UI::WidgetCallback
         virtual void SetVolume(const Real& Volume) = 0;
         virtual Real GetVolume() const = 0;
     public:
-        OptsVolume();
         virtual ~OptsVolume();
         virtual void SetCaller(UI::Widget* Caller);
         virtual void DoHoverItems();
@@ -52,7 +51,6 @@ class OptsAudioMute : public UI::WidgetCallback
 {
     protected:
     public:
-        OptsAudioMute();
         virtual ~OptsAudioMute();
         virtual void SetCaller(UI::Widget* Caller);
         virtual void DoHoverItems();
@@ -65,7 +63,6 @@ class OptsVideoRes : public UI::WidgetCallback
 {
     protected:
     public:
-        OptsVideoRes();
         virtual ~OptsVideoRes();
         virtual void SetCaller(UI::Widget* Caller);
         virtual void DoHoverItems();
@@ -78,7 +75,6 @@ class OptsVideoFullscreen : public UI::WidgetCallback
 {
     protected:
     public:
-        OptsVideoFullscreen();
         virtual ~OptsVideoFullscreen();
         virtual void SetCaller(UI::Widget* Caller);
         virtual void DoHoverItems();

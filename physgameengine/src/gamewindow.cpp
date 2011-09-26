@@ -299,21 +299,24 @@ namespace phys
 
     void GameWindow::setRenderHeight(const Whole &Height)
     {
-        /// @todo TODO: Need to attempt to update resolution here
+        if(Settings.RenderHeight == Height)
+            return;
         setRenderResolution(Settings.RenderWidth,Height);
         Settings.RenderHeight = Height;
     }
 
     void GameWindow::setRenderWidth(const Whole &Width)
     {
-        /// @todo TODO: Need to attempt to update resolution here
+        if(Settings.RenderWidth == Width)
+            return;
         setRenderResolution(Width,Settings.RenderHeight);
         Settings.RenderWidth = Width;
     }
 
     void GameWindow::setRenderResolution(const Whole &Width, const Whole &Height)
     {
-        /// @todo TODO: Need to attempt to update resolution here
+        if(Settings.RenderWidth == Width && Settings.RenderHeight == Height)
+            return;
         if(Settings.Fullscreen)
         {
             SDL_DisplayMode CurrentDisplay;

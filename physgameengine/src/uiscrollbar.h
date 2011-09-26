@@ -79,6 +79,7 @@ namespace phys
                 Real ScrollerUpperLimit;
                 Real ScrollerLowerLimit;
                 Real ScrollerValue;
+                Real ScrollerRelSize;
                 Real IncrementDistance;
                 UI::ScrollbarStyle ScrollStyle;
                 bool Horizontal;
@@ -173,6 +174,10 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
                 virtual void SetActualSize(const Vector2& Size);
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param OldViewportSize The new size of the viewport.
+                virtual void UpdateDimensions(const Vector2& OldViewportSize);
                 /// @brief Gets the Scroller button within this widget.
                 /// @return Returns a pointer to the Scroller button within this widget.
                 virtual Button* GetScroller();

@@ -83,13 +83,14 @@ namespace phys
             {
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
-                    TextButton* ClickedAccessor = dynamic_cast<TextButton*>(HoveredButton);
                     RenderableSetData* ClickedSet = NULL;
                     for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
                     {
-                        if(ClickedAccessor == (*it)->Accessor)
+                        if(HoveredButton == (*it)->Accessor)
                             ClickedSet = (*it);
                     }
+                    if(!ClickedSet)
+                        return;
                     if(VisibleSet)
                         VisibleSet->Collection->Hide();
                     VisibleSet = ClickedSet;
@@ -120,7 +121,7 @@ namespace phys
             if(VisibleSet->Collection->CheckMouseHover())
             {
                 HoveredSubWidget = VisibleSet->Collection;
-                HoveredButton = NULL;
+                HoveredButton = HoveredSubWidget->GetHoveredButton();
                 return true;
             }
             return false;

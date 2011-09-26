@@ -58,6 +58,7 @@ namespace phys
               UpLeftButton(NULL),
               DownRightButton(NULL),
               ScrollerValue(0),
+              ScrollerRelSize(1.0),
               IncrementDistance(0.1),
               ScrollerLock(true),
               ScrollBackLock(true),
@@ -374,12 +375,9 @@ namespace phys
             ScrollBack->SetActualPosition(Position + ScrollBackOffset);
             CalculateScrollLimits();
             Vector2 ScrollVal(0,0);
-            if(Horizontal)
-            {
-                ScrollVal.X = (ScrollerUpperLimit - ScrollerLowerLimit) * ScrollerValue;
-            }else{
-                ScrollVal.Y = (ScrollerUpperLimit - ScrollerLowerLimit) * ScrollerValue;
-            }
+            Real SizeOffset = Horizontal ? Scroller->GetActualSize().X : Scroller->GetActualSize().Y;
+            if(Horizontal) ScrollVal.X = ((ScrollerUpperLimit - ScrollerLowerLimit) - SizeOffset) * ScrollerValue;
+            else ScrollVal.Y = ((ScrollerUpperLimit - ScrollerLowerLimit) - SizeOffset) * ScrollerValue;
             Scroller->SetActualPosition(Position + ScrollBackOffset + ScrollVal);
             if(UpLeftButton)
             {
@@ -395,7 +393,11 @@ namespace phys
         {
             if(Horizontal)
             {
-                ScrollBack->SetActualSize(Vector2(Size.X - (Size.Y * 2),Size.Y));
+                Vector2 ScrollBackSize(Size.X - (Size.Y * 2),Size.Y);
+
+                ScrollBack->SetActualSize(ScrollBackSize);
+                Scroller->SetActualSize(ScrollBackSize);
+                SetScrollerSize(ScrollerRelSize);
                 if(UpLeftButton)
                 {
                     UpLeftButton->SetActualSize(Vector2(Size.Y,Size.Y));
@@ -405,7 +407,11 @@ namespace phys
                     DownRightButton->SetActualSize(Vector2(Size.Y,Size.Y));
                 }
             }else{
-                ScrollBack->SetActualSize(Vector2(Size.X,Size.Y - (Size.X * 2)));
+                Vector2 ScrollBackSize(Size.X,Size.Y - (Size.X * 2));
+
+                ScrollBack->SetActualSize(ScrollBackSize);
+                Scroller->SetActualSize(ScrollBackSize);
+                SetScrollerSize(ScrollerRelSize);
                 if(UpLeftButton)
                 {
                     UpLeftButton->SetActualSize(Vector2(Size.X,Size.X));
@@ -648,6 +654,7 @@ namespace phys
         {
             if(Size > 1 || Size < 0)
                 return;
+            ScrollerRelSize = Size;
             Vector2 SB = ScrollBack->GetActualSize();
             Vector2 Sc = Scroller->GetActualSize();
             if(Horizontal)
@@ -706,6 +713,18 @@ namespace phys
                 SetArea(Size);
                 SetLocation(Loc);
             }
+        }
+
+        void Scrollbar::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+            ScrollBack->UpdateDimensions();
+            Scroller->UpdateDimensions();
+            if(UpLeftButton)
+                UpLeftButton->UpdateDimensions();
+            if(DownRightButton)
+                DownRightButton->UpdateDimensions();
+            CalculateOffsets(RelSize * Parent->GetParent()->GetViewportDimensions());
+            SetPosition(RelPosition);
         }
 
         Button* Scrollbar::GetScroller()

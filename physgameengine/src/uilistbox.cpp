@@ -122,6 +122,12 @@ namespace phys
             VisibleSelections.clear();
         }
 
+        void ListBox::ScrollerSizeCheck()
+        {
+            Real ScrollerSize = (Real)MaxDisplay / (Real)Selections.size();
+            VertScroll->SetScrollerSize(ScrollerSize);
+        }
+
         void ListBox::ScrollHideCheck()
         {
             if(!IsVisible())
@@ -142,15 +148,16 @@ namespace phys
 
         void ListBox::SelectionSizeCheck(UI::Caption* Selection)
         {
-            Vector2 CurrSize = Selection->GetSize();
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            Vector2 CurrSize = Selection->GetActualSize();
             Vector2 TargetSize;
             if(VertScroll->IsVisible())
-                TargetSize = Vector2(SelectionTemplate.Size.X - VertScroll->GetSize().X,SelectionTemplate.Size.Y);
+                TargetSize = Vector2((SelectionTemplate.Size.X * WinDim.X) - VertScroll->GetActualSize().X,SelectionTemplate.Size.Y * WinDim.Y);
             else
-                TargetSize = SelectionTemplate.Size;
+                TargetSize = SelectionTemplate.Size * WinDim;
             if(CurrSize != TargetSize)
             {
-                Selection->SetSize(TargetSize);
+                Selection->SetActualSize(TargetSize);
             }
         }
 
@@ -201,7 +208,7 @@ namespace phys
             {
                 VisibleSelections[z]->SetActualPosition(SelectionPos);
                 SelectionPos.Y+=ActualInc;
-                SelectionSizeCheck(Selections[z]);
+                SelectionSizeCheck(VisibleSelections[z]);
             }
         }
 
@@ -225,12 +232,7 @@ namespace phys
         void ListBox::SetVisibleImpl(bool visible)
         {
             BoxBack->SetVisible(visible);
-            //if(!AutoHideScroll && !visible)
-            //    VertScroll->SetVisible(visible);
-            //for(Whole x=0 ; x < VisibleSelections.size() ; x++)
-            //    VisibleSelections[x]->SetVisible(visible);
-            //if(visible)
-                DrawList();
+            DrawList();
         }
 
         bool ListBox::CheckMouseHoverImpl()
@@ -240,6 +242,7 @@ namespace phys
                 if((*it)->CheckMouseHover())
                 {
                     HoveredSubWidget = NULL;
+                    HoveredButton = NULL;
                     HoveredCaption = (*it);
                     return true;
                 }
@@ -247,15 +250,18 @@ namespace phys
             if(VertScroll->CheckMouseHover())
             {
                 HoveredSubWidget = VertScroll;
+                HoveredButton = VertScroll->GetHoveredButton();
                 HoveredCaption = NULL;
                 return true;
             }
             else if(BoxBack->CheckMouseHover())
             {
                 HoveredSubWidget = NULL;
+                HoveredButton = NULL;
                 HoveredCaption = NULL;
                 return true;
             }
+            HoveredCaption = NULL;
             return false;
         }
 
@@ -265,10 +271,12 @@ namespace phys
             if(Relative)
             {
                 this->SelectionTemplate.Size = Size;
-                SetArea((Size*MaxDisplay) * WinDim);
+                Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);
+                SetArea(NewSize * WinDim);
             }else{
                 this->SelectionTemplate.Size = Size / WinDim;
-                SetArea(Size*MaxDisplay);
+                Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);
+                SetArea(NewSize);
             }
             return *this;
         }
@@ -337,6 +345,7 @@ namespace phys
             Select->VerticallyAlign(SelectionTemplate.VerticalAlign);
             Select->Hide();
             Selections.push_back(Select);
+            ScrollerSizeCheck();
             DrawList();
             return Select;
         }
@@ -392,6 +401,7 @@ namespace phys
             Vector2 NewBackSize = SelectionTemplate.Size;
             NewBackSize.Y*=MaxDisplay;
             SetArea(NewBackSize * Parent->GetParent()->GetViewportDimensions());
+            ScrollerSizeCheck();
         }
 
         void ListBox::SetAutoHideScroll(bool AutoHide)
@@ -412,9 +422,9 @@ namespace phys
         void ListBox::SetActualPosition(const Vector2& Position)
         {
             RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
-            Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Parent->GetParent()->GetViewportDimensions();
+            Vector2 ScrollOffset = VertScroll->GetActualPosition() - (RelPosition * Parent->GetParent()->GetViewportDimensions());
             BoxBack->SetActualPosition(Position);
-            VertScroll->SetPosition(Position + ScrollOffset);
+            VertScroll->SetActualPosition(Position + ScrollOffset);
             DrawList();
         }
 
@@ -426,6 +436,17 @@ namespace phys
         void ListBox::SetActualSize(const Vector2& Size)
         {
             // Size is set implicitly
+        }
+
+        void ListBox::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+            /*const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            SetArea(RelSize * WinDim);
+            SetActualPosition(RelPosition * WinDim);*/
+
+            BoxBack->UpdateDimensions();
+            VertScroll->UpdateDimensions(OldViewportSize);
+            DrawList();
         }
 
         Caption* ListBox::GetSelected()

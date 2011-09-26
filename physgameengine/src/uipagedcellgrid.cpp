@@ -282,7 +282,7 @@ namespace phys
             if(PageSpinner->CheckMouseHover())
             {
                 HoveredSubWidget = PageSpinner;
-                HoveredButton = NULL;
+                HoveredButton = PageSpinner->GetHoveredButton();
                 return true;
             }
             if(CellGrid::CheckMouseHoverImpl())

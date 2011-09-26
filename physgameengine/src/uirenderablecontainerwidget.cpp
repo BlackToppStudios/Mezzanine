@@ -160,7 +160,10 @@ namespace phys
             if(HoveredSubWidget)
             {
                 if(HoveredSubWidget->CheckMouseHover())
+                {
+                    HoveredButton = HoveredSubWidget->GetHoveredButton();
                     return true;
+                }
             }
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
@@ -176,7 +179,7 @@ namespace phys
                 if((*it).Object->CheckMouseHover())
                 {
                     HoveredSubWidget = (*it).Object;
-                    HoveredButton = NULL;
+                    HoveredButton = HoveredSubWidget->GetHoveredButton();
                     return true;
                 }
             }

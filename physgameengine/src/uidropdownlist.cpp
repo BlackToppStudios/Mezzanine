@@ -191,7 +191,7 @@ namespace phys
             else if(SelectionList->CheckMouseHover())
             {
                 HoveredSubWidget = SelectionList;
-                HoveredButton = NULL;
+                HoveredButton = SelectionList->GetHoveredButton();
                 return true;
             }
             return false;
@@ -239,10 +239,18 @@ namespace phys
         void DropDownList::SetActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();
-            Selection->SetSize(Vector2(Size.X - Size.Y,Size.Y));
-            ListToggle->SetSize(Vector2(Size.Y,Size.Y));
+            Selection->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
+            ListToggle->SetActualSize(Vector2(Size.Y,Size.Y));
             SelectionList->SetTemplateSize(Size,false);
             SetActualPosition(GetActualPosition());
+        }
+
+        void DropDownList::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+            Selection->UpdateDimensions();
+            ListToggle->UpdateDimensions();
+            SelectionList->UpdateDimensions(OldViewportSize);
+            SetPosition(RelPosition);
         }
 
         Caption* DropDownList::GetSelection()

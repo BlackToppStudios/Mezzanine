@@ -258,13 +258,13 @@ namespace phys
             if(HorizontalScroll->CheckMouseHover())
             {
                 HoveredSubWidget = HorizontalScroll;
-                HoveredButton = NULL;
+                HoveredButton = HorizontalScroll->GetHoveredButton();
                 return true;
             }
             if(VerticalScroll->CheckMouseHover())
             {
                 HoveredSubWidget = VerticalScroll;
-                HoveredButton = NULL;
+                HoveredButton = VerticalScroll->GetHoveredButton();
                 return true;
             }
             return false;

@@ -83,6 +83,8 @@ namespace phys
                 Real LastScrollValue;
                 Whole MaxDisplay;
                 TemplateParams SelectionTemplate;
+                /// @brief Checks to make sure the Scroller is the appropriate size.
+                virtual void ScrollerSizeCheck();
                 /// @brief Checks to see if the scrollbar should be hidden or not.
                 virtual void ScrollHideCheck();
                 /// @brief Checks to see if the current size of the selection needs adjusting.
@@ -194,6 +196,10 @@ namespace phys
                 /// @brief Sets the pixel size of this List Box.
                 /// @param Size A vector2 representing the pixel size of this List Box.
                 virtual void SetActualSize(const Vector2& Size);
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param OldViewportSize The new size of the viewport.
+                virtual void UpdateDimensions(const Vector2& OldViewportSize);
                 /// @brief Gets the currently selected caption.
                 /// @return Returns a pointer to the currently selected caption, or NULL if none are selected.
                 virtual Caption* GetSelected();

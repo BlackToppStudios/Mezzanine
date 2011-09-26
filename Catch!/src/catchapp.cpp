@@ -112,13 +112,16 @@ void CatchApp::MakeGUI()
     ResolutionList->GetSelectionList()->GetVertScroll()->SetIncrementDistance(0.05);
     ResolutionList->GetSelectionList()->SetTemplateBackgroundColour(ColourValue(1.0,1.0,1.0,0.2));
     ResolutionList->GetSelectionList()->SetTemplateTextColour(ColourValue::White());
-    //ResolutionList->GetSelectionList()->Set
     ResolutionList->GetSelectionList()->SetMaxDisplayedSelections(4);
     ResolutionList->SetWidgetCallback(new OptsVideoRes());
     UI::CheckBox* FullscreenBox = VideoSet->Collection->CreateCheckBox("MS_FullscreenBox",UI::RenderableRect(Vector2(0.59, 0.36),Vector2(0.16, 0.05),true),MMTextLineHeight,"Fullscreen");
     FullscreenBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
     FullscreenBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
     FullscreenBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
+    UI::TextButton* VideoOptsApply = VideoSet->Collection->CreateTextButton("MS_VideoOptsApply",UI::RenderableRect(Vector2(0.68, 0.64), Vector2(0.10, 0.05), true), MMTextLineHeight, "Apply");
+    VideoOptsApply->SetBackgroundSprite("MMOptionsApplyButton");
+    VideoOptsApply->SetHoveredSprite("MMOptionsApplyHoveredButton");
+    VideoOptsApply->SetButtonCallback(new OptsVideoApply(ResolutionList,FullscreenBox));
     //sound options
     Real ScrollerSize = 0.09;
     UI::RenderableSetData* AudioSet = OptionsTabSet->CreateRenderableSet("MS_AudioSet",UI::RenderableRect(Vector2(0.53, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Sound Options");
@@ -662,16 +665,6 @@ bool CatchApp::PostUI()
     TheWorld->Log("Mouse location From WorldQueryTool X/Y");
     TheWorld->Log(InputQueryer->GetMouseX());
     TheWorld->Log(InputQueryer->GetMouseY());
-
-    //Resize the window
-    if ( InputQueryer->GetKeyboardButtonState(MetaCode::KEY_F) == MetaCode::BUTTON_LIFTING )
-        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(true);
-    else if ( InputQueryer->GetKeyboardButtonState(MetaCode::KEY_G) == MetaCode::BUTTON_LIFTING )
-        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(false);
-    else if ( InputQueryer->GetKeyboardButtonState(MetaCode::KEY_R) == MetaCode::BUTTON_LIFTING )
-        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(1024,768);
-    else if ( InputQueryer->GetKeyboardButtonState(MetaCode::KEY_T) == MetaCode::BUTTON_LIFTING )
-        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(800,600);
 
     static Point2PointConstraint* Dragger=NULL;
 

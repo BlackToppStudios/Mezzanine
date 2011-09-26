@@ -245,21 +245,18 @@ namespace phys
         void CheckBox::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            Box->SetSize(Size);
-
-            Vector2 Adjusted = Size;
-            Adjusted.X+=Box->GetPosition().X;
-            Label->SetPosition(Adjusted);
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            Box->SetSize(Vector2((Size.Y * WinDim.Y) / WinDim.X,Size.Y));
+            Label->SetSize(Vector2(Size.X - ((Size.Y * WinDim.Y) / WinDim.X),Size.Y));
+            this->SetPosition(GetPosition());
         }
 
         void CheckBox::SetActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();
-            Box->SetActualSize(Size);
-
-            Vector2 Adjusted = Size;
-            Adjusted.X+=Box->GetActualPosition().X;
-            Label->SetActualPosition(Adjusted);
+            Box->SetActualSize(Vector2(Size.Y,Size.Y));
+            Label->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
+            this->SetActualPosition(GetActualPosition());
         }
 
         Button* CheckBox::GetCheckBoxButton()
