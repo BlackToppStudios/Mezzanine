@@ -4,7 +4,7 @@
 #include "buttoncallbacks.h"
 #include "catchapp.h"
 
-GSStore::GSStore(UI::Button* caller) : UI::ButtonCallback(caller)
+GSStore::GSStore()
 {
 }
 
@@ -25,7 +25,7 @@ void GSStore::DoActivateItems()
 
 //--------------------------------------------------------------
 
-GSMenu::GSMenu(UI::Button* caller) : UI::ButtonCallback(caller)
+GSMenu::GSMenu()
 {
 }
 
@@ -46,7 +46,7 @@ void GSMenu::DoActivateItems()
 
 //--------------------------------------------------------------
 
-GSReturn::GSReturn(UI::Button* caller) : UI::ButtonCallback(caller)
+GSReturn::GSReturn()
 {
 }
 
@@ -67,7 +67,7 @@ void GSReturn::DoActivateItems()
 
 //--------------------------------------------------------------
 
-GSMMReturn::GSMMReturn(UI::Button* caller) : UI::ButtonCallback(caller)
+GSMMReturn::GSMMReturn()
 {
 }
 
@@ -87,7 +87,7 @@ void GSMMReturn::DoActivateItems()
 
 //--------------------------------------------------------------
 
-MSStart::MSStart(UI::Button* caller, UI::PagedCellGrid* LevelGrid) : UI::ButtonCallback(caller), TheGrid(LevelGrid)
+MSStart::MSStart(UI::PagedCellGrid* LevelGrid) : TheGrid(LevelGrid)
 {
 }
 
@@ -111,7 +111,7 @@ void MSStart::DoActivateItems()
 
 //--------------------------------------------------------------
 
-AllAppExit::AllAppExit(UI::Button* caller) : UI::ButtonCallback(caller)
+AllAppExit::AllAppExit()
 {
 }
 

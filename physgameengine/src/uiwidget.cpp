@@ -44,6 +44,7 @@
 #include "uibutton.h"
 #include "uilayer.h"
 #include "uiscreen.h"
+#include "inputquerytool.h"
 #include "world.h"
 
 namespace phys
@@ -99,7 +100,9 @@ namespace phys
               HoveredSubWidget(NULL),
               SubWidgetFocus(NULL),
               CaptureData(NULL),
+              Callback(NULL),
               Visible(true),
+              Hovered(false),
               RelPosition(Vector2(0,0)),
               RelSize(Vector2(0,0)),
               Name(name)
@@ -111,10 +114,39 @@ namespace phys
         {
         }
 
+        void Widget::Update(bool Force)
+        {
+            if(Callback)
+                Callback->DoPreUpdateItems();
+            SubWidgetUpdate(Force);
+            UpdateImpl(Force);
+            if(Callback)
+                Callback->DoPostUpdateItems();
+        }
+
         void Widget::SubWidgetUpdate(bool Force)
         {
+            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(HoveredSubWidget)
+            {
                 HoveredSubWidget->Update(Force);
+                if(MetaCode::BUTTON_PRESSING == State)
+                {
+                    SubWidgetFocus = HoveredSubWidget;
+                }
+            }
+            if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
+            {
+                SubWidgetFocusUpdate(true);
+            }
+            else if(MetaCode::BUTTON_DOWN == State && Force)
+            {
+                SubWidgetFocusUpdate(Force);
+            }
+            if(MetaCode::BUTTON_LIFTING == State)
+            {
+                SubWidgetFocus = NULL;
+            }
         }
 
         void Widget::SubWidgetFocusUpdate(bool Force)
@@ -127,9 +159,29 @@ namespace phys
         {
         }
 
-        bool Widget::IsVisible()
+        void Widget::SetVisible(bool visible)
+        {
+            if(this->Visible == visible)
+                return;
+            this->Visible = visible;
+            SetVisibleImpl(visible);
+            if(Callback)
+                Callback->DoVisibilityChangeItems();
+        }
+
+        bool Widget::IsVisible() const
         {
             return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
+        }
+
+        void Widget::Show()
+        {
+            SetVisible(true);
+        }
+
+        void Widget::Hide()
+        {
+            SetVisible(false);
         }
 
         Widget::WidgetType Widget::GetType() const
@@ -137,14 +189,50 @@ namespace phys
             return Type;
         }
 
-        bool Widget::IsInputCaptureWidget()
+        bool Widget::IsInputCaptureWidget() const
         {
             return NULL != CaptureData;
         }
 
-        String& Widget::GetName()
+        bool Widget::IsHovered() const
+        {
+            return Hovered;
+        }
+
+        ConstString& Widget::GetName() const
         {
             return Name;
+        }
+
+        void Widget::SetWidgetCallback(WidgetCallback* CB)
+        {
+            if(Callback != CB && Callback)
+                delete Callback;
+            CB->SetCaller(this);
+            Callback = CB;
+        }
+
+        bool Widget::CheckMouseHover()
+        {
+            if(!IsVisible())
+            {
+                HoveredSubWidget = NULL;
+                HoveredButton = NULL;
+                Hovered = false;
+            }
+            else if(CheckMouseHoverImpl())
+            {
+                Hovered = true;
+            }
+            else
+            {
+                HoveredSubWidget = NULL;
+                HoveredButton = NULL;
+                Hovered = false;
+            }
+            if(Callback)
+                Callback->DoHoverItems();
+            return Hovered;
         }
 
         void Widget::SetRect(const RenderableRect& Rect)
@@ -159,10 +247,30 @@ namespace phys
             }
         }
 
-        RenderableRect Widget::GetRect(bool Relative)
+        RenderableRect Widget::GetRect(bool Relative) const
         {
             if(Relative) return RenderableRect(GetPosition(),GetSize(),Relative);
             else return RenderableRect(GetActualPosition(),GetActualSize(),Relative);
+        }
+
+        Vector2 Widget::GetPosition() const
+        {
+            return RelPosition;
+        }
+
+        Vector2 Widget::GetActualPosition() const
+        {
+            return RelPosition * Parent->GetParent()->GetViewportDimensions();
+        }
+
+        Vector2 Widget::GetSize() const
+        {
+            return RelSize;
+        }
+
+        Vector2 Widget::GetActualSize() const
+        {
+            return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
         void Widget::UpdateDimensions(const Vector2& OldViewportSize)
@@ -172,24 +280,40 @@ namespace phys
             this->SetActualSize(RelSize * WinDim);
         }
 
-        Button* Widget::GetHoveredButton()
+        Button* Widget::GetHoveredButton() const
         {
             return HoveredButton;
         }
 
-        Widget* Widget::GetHoveredSubWidget()
+        Widget* Widget::GetHoveredSubWidget() const
         {
             return HoveredSubWidget;
         }
 
-        Layer* Widget::GetLayer()
+        Layer* Widget::GetLayer() const
         {
             return Parent;
         }
 
-        InputCaptureData* Widget::GetInputCaptureData()
+        InputCaptureData* Widget::GetInputCaptureData() const
         {
             return CaptureData;
+        }
+
+        //-----------------------------------------------------
+
+        WidgetCallback::WidgetCallback()
+            : Caller(NULL)
+        {
+        }
+
+        WidgetCallback::~WidgetCallback()
+        {
+        }
+
+        void WidgetCallback::SetCaller(Widget* Caller)
+        {
+            this->Caller = Caller;
         }
     }//UI
 }//phys

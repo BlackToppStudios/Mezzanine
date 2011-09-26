@@ -41,7 +41,7 @@
 #define _uilistbox_h
 
 #include "colourvalue.h"
-#include "enumerations.h"
+#include "uienumerations.h"
 #include "uiwidget.h"
 
 namespace phys
@@ -74,8 +74,7 @@ namespace phys
                 };
             protected:
                 Rectangle* BoxBack;
-                /// @todo Third instance of needing to include the namespace in the declaration seemingly needlessly.
-                UI::Scrollbar* VertScroll;
+                Scrollbar* VertScroll;
                 Caption* Selected;
                 Caption* HoveredCaption;
                 std::vector<Caption*> Selections;
@@ -92,8 +91,12 @@ namespace phys
                 virtual void SetArea(const Vector2& Area);
                 /// @brief Updates the list of Visible buttons and hides the rest.
                 virtual void DrawList();
-                /// @brief For use with widget update/automation.
-                virtual void Update(bool Force = false);
+                /// @brief Child specific update method.
+                virtual void UpdateImpl(bool Force = false);
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible);
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl();
             public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the List Box.
@@ -106,16 +109,6 @@ namespace phys
                 ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer);
                 /// @brief Standard destructor.
                 virtual ~ListBox();
-                /// @brief Sets the visibility of this List Box.
-                /// @param visible Bool determining whether or not this List Box should be visible.
-                virtual void SetVisible(bool visible);
-                /// @brief Forces this List Box to be shown.
-                virtual void Show();
-                /// @brief Forces this List Box to hide.
-                virtual void Hide();
-                /// @brief Checks to see if the current mouse position is over this List Box.
-                /// @return Returns a bool value, true if the mouse is over this List Box, false if it's not.
-                virtual bool CheckMouseHover();
                 /// @brief Sets the size to be applied to all created Selections.
                 /// @param Size The size of the caption to make.  Applied to all captions created by this class.
                 /// @param Relative Whether or not the size provided is in relative units(rather then pixels).
@@ -177,6 +170,9 @@ namespace phys
                 /// @brief Destroys a selectable caption.
                 /// @param ToBeDestroyed A string naming the caption you want destroyed and removed from this list.
                 virtual void DestroySelection(String& ToBeDestroyed);
+                /// @brief Sets the selection within this list to be "selected".
+                /// @param ToBeSelected A pointer to the caption to be set as "selected".
+                virtual void SetSelected(Caption* ToBeSelected);
                 /// @brief Sets the maximum number of selections to display at once before the scrollbar appears.
                 /// @param MaxSelections The maximum number of selections to display at once before requiring a scrollbar.
                 /// This indirectly controls the max size of this widget.
@@ -188,30 +184,16 @@ namespace phys
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this List Box.
                 virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative position of this List Box.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this List Box.
-                virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this List Box.
                 /// @param Position A vector2 representing the pixel position of this List Box.
                 virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this List Box.
-                /// @return Returns a vector2 representing the pixel position of this List Box.
-                virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this List Box.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this List Box.
                 virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this List Box.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this List Box.
-                virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this List Box.
                 /// @param Size A vector2 representing the pixel size of this List Box.
                 virtual void SetActualSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this List Box.
-                /// @return Returns a vector2 representing the pixel size of this List Box.
-                virtual Vector2 GetActualSize();
                 /// @brief Gets the currently selected caption.
                 /// @return Returns a pointer to the currently selected caption, or NULL if none are selected.
                 virtual Caption* GetSelected();

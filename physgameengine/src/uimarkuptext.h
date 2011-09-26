@@ -41,7 +41,7 @@
 #define _uimarkuptext_h
 
 #include "datatypes.h"
-#include "enumerations.h"
+#include "uienumerations.h"
 #include "colourvalue.h"
 #include "uirenderablerect.h"
 

@@ -45,50 +45,22 @@ LevelSelectCell::~LevelSelectCell()
     delete EarnedMaxScore;
 }
 
-void LevelSelectCell::Update(bool Force)
+void LevelSelectCell::UpdateImpl(bool Force)
 {
 
 }
 
-void LevelSelectCell::SetVisible(bool visible)
+void LevelSelectCell::SetVisibleImpl(bool visible)
 {
     CellBack->SetVisible(visible);
     PreviewImage->SetVisible(visible);
     PreviewBorder->SetVisible(visible);
     LevelTitle->SetVisible(visible);
     EarnedMaxScore->SetVisible(visible);
-    Visible = visible;
 }
 
-bool LevelSelectCell::IsVisible()
+bool LevelSelectCell::CheckMouseHoverImpl()
 {
-    return Visible;
-}
-
-void LevelSelectCell::Show()
-{
-    CellBack->Show();
-    PreviewImage->Show();
-    PreviewBorder->Show();
-    LevelTitle->Show();
-    EarnedMaxScore->Show();
-    Visible = true;
-}
-
-void LevelSelectCell::Hide()
-{
-    CellBack->Hide();
-    PreviewImage->Hide();
-    PreviewBorder->Hide();
-    LevelTitle->Hide();
-    EarnedMaxScore->Hide();
-    Visible = false;
-}
-
-bool LevelSelectCell::CheckMouseHover()
-{
-    if(!Visible)
-        return false;
     if(CellBack->CheckMouseHover()) return true;
     else if(PreviewImage->CheckMouseHover()) return true;
     else if(PreviewBorder->CheckMouseHover()) return true;
@@ -105,19 +77,9 @@ void LevelSelectCell::SetPosition(const Vector2& Position)
     EarnedMaxScore->SetPosition(Position + EarnedMaxScoreOffset);
 }
 
-Vector2 LevelSelectCell::GetPosition()
-{
-    return RelPosition;
-}
-
 void LevelSelectCell::SetActualPosition(const Vector2& Position)
 {
     SetPosition(Position / Parent->GetParent()->GetViewportDimensions());
-}
-
-Vector2 LevelSelectCell::GetActualPosition()
-{
-    return RelPosition * Parent->GetParent()->GetViewportDimensions();
 }
 
 void LevelSelectCell::SetSize(const Vector2& Size)
@@ -130,11 +92,6 @@ void LevelSelectCell::SetSize(const Vector2& Size)
     EarnedMaxScore->SetSize(Vector2(Size.X * 0.4,Size.Y * 0.36));
 
     SetPosition(RelPosition);
-}
-
-Vector2 LevelSelectCell::GetSize()
-{
-    return RelSize;
 }
 
 void LevelSelectCell::SetActualSize(const Vector2& Size)
@@ -150,14 +107,9 @@ void LevelSelectCell::SetActualSize(const Vector2& Size)
     SetPosition(RelPosition);
 }
 
-Vector2 LevelSelectCell::GetActualSize()
-{
-    return RelSize * Parent->GetParent()->GetViewportDimensions();
-}
-
 void LevelSelectCell::DoSelectedItems()
 {
-    /// @todo This or the cell grid class really needs to actually show what is selected somehow.
+
 }
 
 String LevelSelectCell::GetLevelName()
@@ -190,14 +142,19 @@ UI::Caption* LevelSelectCell::GetEarnedMaxScore()
     return EarnedMaxScore;
 }
 
-LevelSelectCB::LevelSelectCB(LevelSelectCell* CallerCell)
-    : UI::CellCallback(CallerCell),
-      LevelCell(CallerCell)
+LevelSelectCB::LevelSelectCB()
+    : LevelCell(NULL)
 {
 }
 
 LevelSelectCB::~LevelSelectCB()
 {
+}
+
+void LevelSelectCB::SetCaller(UI::Cell* Caller)
+{
+    this->Caller = Caller;
+    this->LevelCell = dynamic_cast<LevelSelectCell*>(Caller);
 }
 
 void LevelSelectCB::DoSelectedItems()

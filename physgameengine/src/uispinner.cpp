@@ -72,7 +72,7 @@ namespace phys
               Decrement(NULL),
               ValueDisplay(NULL)
         {
-            Type = Widget::Spinner;
+            Type = Widget::W_Spinner;
             SpinLayout = SStyle;
             if(Rect.Relative)
             {
@@ -292,10 +292,10 @@ namespace phys
             return AsText;
         }
 
-        void Spinner::Update(bool Force)
+        void Spinner::UpdateImpl(bool Force)
         {
             ProcessCapturedInputs();
-            if(HoveredButton || Force)
+            if(HoveredButton)
             {
                 MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
                 if(MetaCode::BUTTON_PRESSING == State)
@@ -323,6 +323,33 @@ namespace phys
                     }
                 }
             }
+        }
+
+        void Spinner::SetVisibleImpl(bool visible)
+        {
+            Increment->SetVisible(visible);
+            Decrement->SetVisible(visible);
+            ValueDisplay->SetVisible(visible);
+        }
+
+        bool Spinner::CheckMouseHoverImpl()
+        {
+            if(Increment->CheckMouseHover())
+            {
+                HoveredButton = Increment;
+                return true;
+            }
+            if(Decrement->CheckMouseHover())
+            {
+                HoveredButton = Decrement;
+                return true;
+            }
+            if(ValueDisplay->CheckMouseHover())
+            {
+                HoveredButton = NULL;
+                return true;
+            }
+            return false;
         }
 
         void Spinner::ProcessCapturedInputs()
@@ -355,30 +382,6 @@ namespace phys
                 ValueDisplay->SetText(GetValueAsText());
                 EditCache.clear();
             }
-        }
-
-        void Spinner::SetVisible(bool visible)
-        {
-            Increment->SetVisible(visible);
-            Decrement->SetVisible(visible);
-            ValueDisplay->SetVisible(visible);
-            Visible = visible;
-        }
-
-        void Spinner::Show()
-        {
-            Increment->Show();
-            Decrement->Show();
-            ValueDisplay->Show();
-            Visible = true;
-        }
-
-        void Spinner::Hide()
-        {
-            Increment->Hide();
-            Decrement->Hide();
-            ValueDisplay->Hide();
-            Visible = false;
         }
 
         void Spinner::SetSpinnerValue(const int& ValueToSet)
@@ -415,29 +418,6 @@ namespace phys
             DecimalPlaces = Places;
         }
 
-        bool Spinner::CheckMouseHover()
-        {
-            if(!IsVisible())
-                return false;
-            if(Increment->CheckMouseHover())
-            {
-                HoveredButton = Increment;
-                return true;
-            }
-            if(Decrement->CheckMouseHover())
-            {
-                HoveredButton = Decrement;
-                return true;
-            }
-            if(ValueDisplay->CheckMouseHover())
-            {
-                HoveredButton = NULL;
-                return true;
-            }
-            HoveredButton = NULL;
-            return false;
-        }
-
         void Spinner::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
@@ -445,20 +425,10 @@ namespace phys
             SetLocation(Adjusted);
         }
 
-        Vector2 Spinner::GetPosition()
-        {
-            return RelPosition;
-        }
-
         void Spinner::SetActualPosition(const Vector2& Position)
         {
             RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             SetLocation(Position);
-        }
-
-        Vector2 Spinner::GetActualPosition()
-        {
-            return RelPosition * Parent->GetParent()->GetViewportDimensions();
         }
 
         void Spinner::SetSize(const Vector2& Size)
@@ -470,22 +440,12 @@ namespace phys
             SetLocation(GetActualPosition());
         }
 
-        Vector2 Spinner::GetSize()
-        {
-            return RelSize;
-        }
-
         void Spinner::SetActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             CalculateOffsets(Size);
             SetArea(Size);
             SetLocation(GetActualPosition());
-        }
-
-        Vector2 Spinner::GetActualSize()
-        {
-            return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
         Button* Spinner::GetIncrement()

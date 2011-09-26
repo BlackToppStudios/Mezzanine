@@ -1067,6 +1067,7 @@ namespace phys
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
             virtual void EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
             /// @brief Enables(or Disables) the motor on the hinge.
+            /// @warning Be sure to set values for the Motor max impulse and/or velocity before enabling the motor, or else you may get a crash.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
             virtual void EnableMotor(bool EnableMotor);
             /// @brief Is this motor on this hinge enabled?
@@ -1232,11 +1233,11 @@ namespace phys
             /// @brief Get offset of the second actor.
             /// @return The offset as a Vector3 relative to the center of mass of ActorB.
             virtual Vector3 GetPivotBLocation() const;
-            /// @brief Set the current impulse clamping on the constraint
-            /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
 
             ////////////////////////////////////////////////////////////////////////////////
             // Point2PointConstraint Specific Physics Settings
+            /// @brief Set the current impulse clamping on the constraint
+            /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
             virtual void SetImpulseClamping(Real Clamping);
             /// @brief get the current impulse clamping value
             /// @return A real with the Clamping

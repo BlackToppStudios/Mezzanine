@@ -63,9 +63,6 @@ namespace phys
             /// @brief Used to simulate the behavior of a btRigidBody
             btRigidBody* physrigidbody;
 
-            /// @brief This class encapsulates physics specific configuration for this actor.
-            ActorRigidPhysicsSettings* PhysicsSettings;
-
             /// @brief Creates a rigid object for the actor.
             /// @details Creates a rigid object to be placed in the physics world later. @n
             /// This is automaticly called by the Constructor and shouldn't be called manually.
@@ -92,31 +89,31 @@ namespace phys
 
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.
-            virtual ActorRigidPhysicsSettings* GetPhysicsSettings();
+            virtual ActorRigidPhysicsSettings* GetPhysicsSettings() const;
 
             /// @brief Restricts movement on the axis or axies of your choice.
             /// @details This function can lock or limit any and all axes you define.
             /// 0.0 means no linear movement on that axis.  1.0 means normal movement.
             /// @param Factor Vector3 containing the Factors for the 3 linear axes.
             virtual void SetLinearMovementFactor(const Vector3& Factor);
-
             /// @brief Gets the current linear factors being applied to this actor.
             /// @return Returns a Vector3 representing the factors on the 3 linear axes.
-            virtual Vector3 GetLinearMovementFactor();
+            virtual Vector3 GetLinearMovementFactor() const;
 
             /// @brief Restricts movement on the axis or axies of your choice.
             /// @details This function can lock or limit any and all axes you define.
             /// 0.0 means no angular movement on that axis.  1.0 means normal movement.
             /// @param Factor Vector3 containing the Factors for the 3 angular axes.
             virtual void SetAngularMovementFactor(const Vector3& Factor);
-
             /// @brief Gets the current angular factors being applied to this actor.
             /// @return Returns a Vector3 representing the factors on the 3 angular axes.
-            virtual Vector3 GetAngularMovementFactor();
+            virtual Vector3 GetAngularMovementFactor() const;
+
+
 
             // Inherited from ActorBase
-            virtual void AddObjectToWorld (World *TargetWorld);
-            virtual void RemoveObjectFromWorld(World* TargetWorld);
+            virtual void AddObjectToWorld ();
+            virtual void RemoveObjectFromWorld();
 
             /// @internal
             /// @brief Get the Physics data raw from the physic subsystem
@@ -126,6 +123,7 @@ namespace phys
 #ifdef PHYSXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
+
         protected:
             /// @internal
             /// @brief a Helper function that assembles strings and throws an exception
@@ -133,6 +131,11 @@ namespace phys
             virtual void ThrowSerialError(const String& Fail) const;
 
         public:
+            /// @copy ActorBase::GraphicsSettingsSerializableName() const;
+            virtual String GraphicsSettingsSerializableName() const;
+            /// @copy ActorBase::PhysicsSettingsSerializableName() const;
+            virtual String PhysicsSettingsSerializableName() const;
+
             // Serializable
             /// @brief Convert this class to an xml::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
@@ -143,7 +146,6 @@ namespace phys
             /// @param OneNode and xml::Node containing the data.
             /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
             virtual void ProtoDeSerialize(const xml::Node& OneNode);
-
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorRigid"
             static String SerializableName();

@@ -256,7 +256,7 @@ namespace phys
 /// @param stream The ostream to send the xml to.
 /// @param Ev the phys::WorldNode to be serialized
 /// @return this returns the ostream, now with the serialized data
-/// @warning This does not the pointer to the WorldNode manager. When a WorldNode manager is serialized, this data is implicitly stored by the WorldNodes location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
+/// @warning This does not added to the WorldNode manager. When a WorldNode manager is serialized, this data is implicitly stored by the WorldNodes location in the xml hierarchy, this is used instead. The Name of the Node is stored for possible future use.
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::WorldNode& Ev);
 
 /// @brief Deserialize a phys::WorldNode

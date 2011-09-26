@@ -133,9 +133,12 @@ namespace phys
             return false;
         }
 
-        void Button::SetButtonCallback(ButtonCallback* Call)
+        void Button::SetButtonCallback(ButtonCallback* CB)
         {
-            Callback = Call;
+            if(Callback != CB && Callback)
+                delete Callback;
+            CB->SetCaller(this);
+            Callback = CB;
         }
 
         void Button::BindActivationKeyOrButton(const MetaCode::InputCode& Code)
@@ -277,6 +280,8 @@ namespace phys
         {
             Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaRectangle->GetNameFile());
             HoveredSprite = GSprite;
+            if(MouseHover)
+                GorillaRectangle->background_image(HoveredSprite);
         }
 
         void Button::SetHoveredSprite(const String& Name, const String& Atlas)
@@ -435,13 +440,18 @@ namespace phys
             this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
         }
 
-        ButtonCallback::ButtonCallback(Button* CallerButton)
-            : Caller(CallerButton)
+        ButtonCallback::ButtonCallback()
+            : Caller(NULL)
         {
         }
 
         ButtonCallback::~ButtonCallback()
         {
+        }
+
+        void ButtonCallback::SetCaller(Button* Caller)
+        {
+            this->Caller = Caller;
         }
     }//UI
 }//phys

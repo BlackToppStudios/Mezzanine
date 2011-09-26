@@ -71,7 +71,11 @@ namespace phys
     class World;
     class ActorGraphicsSettings;
     class ActorBasePhysicsSettings;
-    class SoundSet;
+
+    namespace Audio
+    {
+        class SoundSet;
+    }
 
     namespace internal
     {
@@ -270,7 +274,7 @@ namespace phys
 // Utility and Configuration
 ///////////////////////////////////////
             ///@brief This is a collection of sounds for use with this actor.
-            SoundSet* ActorSounds;
+            Audio::SoundSet* ActorSounds;
 
             /// @brief Gets the type of actor this class is.
             /// @details This function will get the type of class that you are working with for checking and casting.
@@ -341,16 +345,10 @@ namespace phys
 // Working with the World
 ///////////////////////////////////////
             /// @brief Adds the actor to the physics world.
-            /// @details Adds the actor to the physics world. @n
-            /// This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually.
-            /// @param TargetWorld Pointer to the World class.
-            virtual void AddObjectToWorld(World* TargetWorld) = 0;
+            virtual void AddObjectToWorld() = 0;
 
             /// @brief Removes the actor from the physics world.
-            /// @details Removes the actor from the physics world. @n
-            /// This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually.
-            /// @param TargetWorld Pointer to the World class.
-            virtual void RemoveObjectFromWorld(World* TargetWorld) = 0;
+            virtual void RemoveObjectFromWorld() = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Internal Object Access functions
@@ -376,6 +374,14 @@ namespace phys
             virtual void ThrowSerialError(const String& Fail) const;
 
         public:
+            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings.
+            /// @return A string containing name of the serialized graphics settings.
+            virtual String GraphicsSettingsSerializableName() const = 0;
+
+            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized s settings.
+            /// @return A string containing name of the serialized graphics settings.
+            virtual String PhysicsSettingsSerializableName() const = 0;
+
             // Serializable
             /// @brief Convert this class to an xml::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.

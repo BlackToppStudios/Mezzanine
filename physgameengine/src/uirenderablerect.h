@@ -52,7 +52,7 @@ namespace phys
         /// @brief This class contains all the utilities necessary for capturing input.
         /// @details This is commonly used for Text-based widgets, such as TextBox's, Spinners, and InputBox's.
         ///////////////////////////////////////
-        struct RenderableRect
+        struct PHYS_LIB RenderableRect
         {
             Vector2 Position;
             Vector2 Size;

@@ -114,6 +114,9 @@ namespace phys
             case ManagerBase::ActorManager:
                 return "ActorManager";
                 break;
+            case ManagerBase::AudioManager:
+                return "AudioManager";
+                break;
             case ManagerBase::CameraManager:
                 return "CameraManager";
                 break;
@@ -125,9 +128,6 @@ namespace phys
                 break;
             case ManagerBase::PhysicsManager:
                 return "PhysicsManager";
-                break;
-            case ManagerBase::SoundManager:
-                return "SoundManager";
                 break;
             case ManagerBase::ResourceManager:
                 return "ResourceManager";

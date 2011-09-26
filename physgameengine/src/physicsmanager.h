@@ -336,18 +336,18 @@ namespace phys
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
             btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
 
-            //Inherited from ManagerBase
-            /// @brief This configures the Physics Manager to work with the Graphic settings
-            /// @details This configures the Physics manager to work with the existing graphics settings. This must
-            /// be called before the physics manager is used, but after the graphics have been initialized
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited from Managerbase
+
+            /// @copydoc phys::ManagerBase::Initialize()
             virtual void Initialize();
-            /// @brief Physics stepping during the main loop
-            /// @details This increments the the physics world the required amount to keep it in sync with the Graphics/Timing.
+
+            /// @copydoc phys::ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
-            /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::PhysicsManager
-            virtual ManagerTypeName GetType() const;
-    };
-}
+
+            /// @copydoc phys::ManagerBase::GetType()
+            virtual ManagerBase::ManagerTypeName GetType() const;
+    };//physics manager
+}//phys
 
 #endif

@@ -57,7 +57,7 @@ namespace phys
         Menu::Menu(ConstString name, const RenderableRect& Rect, Layer* PLayer)
             : Widget(name,PLayer)
         {
-            Type = Widget::Menu;
+            Type = Widget::W_Menu;
             RelPosition = Vector2(0,0);
             RelSize = Vector2(0,0);
 
@@ -72,10 +72,8 @@ namespace phys
             MenuStack.clear();
         }
 
-        void Menu::Update(bool Force)
+        void Menu::UpdateImpl(bool Force)
         {
-            if(!Force)
-                SubWidgetUpdate();
             MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(HoveredSubWidget)
             {
@@ -106,23 +104,38 @@ namespace phys
                         return;
                     }
                 }
-                if(MetaCode::BUTTON_PRESSING == State)
+            }
+        }
+
+        void Menu::SetVisibleImpl(bool visible)
+        {
+            for( std::vector<UI::MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
+            {
+                if(visible)
                 {
-                    SubWidgetFocus = HoveredSubWidget;
+                    if(!(*it)->GetAutoHide())
+                        (*it)->SetVisible(visible);
+                }else{
+                    (*it)->SetVisible(visible);
                 }
             }
-            if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
+        }
+
+        bool Menu::CheckMouseHoverImpl()
+        {
+            for( std::vector<UI::MenuWindow*>::reverse_iterator it = MenuStack.rbegin() ; it != MenuStack.rend() ; it++ )
             {
-                SubWidgetFocusUpdate(true);
+                if((*it)->IsVisible())
+                {
+                    if((*it)->CheckMouseHover())
+                    {
+                        HoveredSubWidget = (*it);
+                        HoveredButton = HoveredSubWidget->GetHoveredButton();
+                        return true;
+                    }
+                }
             }
-            else if(MetaCode::BUTTON_DOWN == State && Force)
-            {
-                SubWidgetFocusUpdate(Force);
-            }
-            if(MetaCode::BUTTON_LIFTING == State)
-            {
-                SubWidgetFocus = NULL;
-            }
+            return false;
         }
 
         void Menu::RollMenuBackToWindow(UI::MenuWindow* Win)
@@ -141,61 +154,6 @@ namespace phys
                     break;
                 }
             }
-        }
-
-        void Menu::SetVisible(bool visible)
-        {
-            for( std::vector<UI::MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
-            {
-                if(visible)
-                {
-                    if(!(*it)->GetAutoHide())
-                        (*it)->SetVisible(visible);
-                }else{
-                    (*it)->SetVisible(visible);
-                }
-            }
-            Visible = visible;
-        }
-
-        void Menu::Show()
-        {
-            for( std::vector<UI::MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
-            {
-                if(!(*it)->GetAutoHide())
-                    (*it)->Show();
-            }
-            Visible = true;
-        }
-
-        void Menu::Hide()
-        {
-            for( std::vector<UI::MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
-            {
-                (*it)->Hide();
-            }
-            Visible = false;
-        }
-
-        bool Menu::CheckMouseHover()
-        {
-            if(!IsVisible())
-                return false;
-            for( std::vector<UI::MenuWindow*>::reverse_iterator it = MenuStack.rbegin() ; it != MenuStack.rend() ; it++ )
-            {
-                if((*it)->IsVisible())
-                {
-                    if((*it)->CheckMouseHover())
-                    {
-                        HoveredSubWidget = (*it);
-                        HoveredButton = HoveredSubWidget->GetHoveredButton();
-                        return true;
-                    }
-                }
-            }
-            HoveredSubWidget = NULL;
-            HoveredButton = NULL;
-            return false;
         }
 
         void Menu::SetPosition(const Vector2& Position)

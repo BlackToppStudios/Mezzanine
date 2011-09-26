@@ -40,40 +40,19 @@
 #ifndef _uiwindow_h
 #define _uiwindow_h
 
-#include "uiwidget.h"
-#include "uiresizinginfo.h"
+#include "uirenderablecontainerwidget.h"
 
 namespace phys
 {
     namespace UI
     {
-        //forward declares
-        class Button;
-        class TextButton;
-        class Rectangle;
-        class Caption;
-        class MarkupText;
-        class LineList;
-        class Scrollbar;
-        class CheckBox;
-        class ButtonListBox;
-        class ListBox;
-        class Spinner;
-        class ScrolledCellGrid;
-        class PagedCellGrid;
-        //typedefs
-        typedef ResizingInfo<Button*> OffsetButtonInfo;
-        typedef ResizingInfo<Rectangle*> OffsetRectangleInfo;
-        typedef ResizingInfo<Caption*> OffsetCaptionInfo;
-        typedef ResizingInfo<MarkupText*> OffsetMarkupTextInfo;
-        typedef ResizingInfo<Widget*> OffsetWidgetInfo;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Window
         /// @headerfile uiwindow.h
         /// @brief This is a container widget capable of holding any other widget.
         /// @details
         ///////////////////////////////////////
-        class PHYS_LIB Window : public Widget
+        class PHYS_LIB Window : public RenderableContainerWidget
         {
             protected:
                 /// @internal
@@ -95,273 +74,43 @@ namespace phys
                 //Caption* WindowTitle;
                 Whole BorderWidth;
                 ResizeMode CurrentRM;
-                std::vector<OffsetButtonInfo> Buttons;
-                std::vector<OffsetRectangleInfo> Rectangles;
-                std::vector<OffsetCaptionInfo> Captions;
-                std::vector<OffsetMarkupTextInfo> MarkupTexts;
-                std::vector<OffsetWidgetInfo> Widgets;
-                /// @brief For use with widget update/automation.
-                void Update(bool Force = false);
-                /// @brief Internal function for setting the location(position) of this widget.
-                void SetLocation(const Vector2& Position);
-                /// @brief Internal function for setting the area(size) of this widget.
-                void SetArea(const Vector2& Size);
                 /// @brief Checks to see if a point is within the border of this window.
                 void BorderAreaCheck(const Vector2& ScreenLoc);
-                /// @brief Calculates a new offset for an individual element.
-                Vector2 CalculateOffset(const Vector2 NewSize, const Vector2 OldSize, const Vector2 EleOffset, UI::ResizeableAnchor Anchor);
-                /// @brief Calculates a new size for an individual element.
-                Vector2 CalculateSize(const Vector2 NewSize, const Vector2 OldSize, const Vector2 EleSize, UI::ResizeableTether Tether);
+                /// @brief Child specific update method.
+                virtual void UpdateImpl(bool Force = false);
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible);
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl();
             public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the window.
                 /// @param Rect The Rect representing the position and size of the window.
-                /// @param Layer The parent layer this window belongs to.
+                /// @param PLayer The parent layer this window belongs to.
                 Window(ConstString& name, const RenderableRect& Rect, Layer* PLayer);
                 /// @brief Standard destructor.
                 virtual ~Window();
-                /// @brief Sets the visibility of this window.
-                /// @param visible Bool determining whether or not this window should be visible.
-                virtual void SetVisible(bool visible);
-                /// @brief Forces this window to be shown.
-                virtual void Show();
-                /// @brief Forces this window to hide.
-                virtual void Hide();
-                /// @brief Gets the background object of this window.
-                /// @return Returns a pointer to the rectangle that is the background for this window.
-                virtual Rectangle* GetWindowBack();
-                /// @brief Checks to see if the current mouse position is over this window.
-                /// @return Returns a bool value, true if the mouse is over this window, false if it's not.
-                virtual bool CheckMouseHover();
                 /// @brief Sets the relative position of this window.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this window.
                 virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative position of this window.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this window.
-                virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this window.
                 /// @param Position A vector2 representing the pixel position of this window.
                 virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this window.
-                /// @return Returns a vector2 representing the pixel position of this window.
-                virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this window.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this window.
                 virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this window.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this window.
-                virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this window.
                 /// @param Size A vector2 representing the pixel size of this window.
                 virtual void SetActualSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this window.
-                /// @return Returns a vector2 representing the pixel size of this window.
-                virtual Vector2 GetActualSize();
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 /// @param OldViewportSize The old size of the viewport.
                 virtual void UpdateDimensions(const Vector2& OldViewportSize);
-                ///////////////////////////////////////////////////////////////////////////////
-                // Creating and working with All Basic UI Elements
-                ///////////////////////////////////////
-                /// @brief Creates a button within this Window.
-                /// @return Returns a pointer to the created button.
-                /// @param Name The name of the button.
-                /// @param Rect The Rect representing the position and size of the button.
-                virtual Button* CreateButton(ConstString& Name, const RenderableRect& Rect);
-                /// @brief Creates a text button within this Window.
-                /// @return Returns a pointer to the created button.
-                /// @param Name The name of the button.
-                /// @param Rect The Rect representing the position and size of the button.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
-                /// @param Text Any text you want printed on the button.
-                virtual TextButton* CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text);
-                /// @brief Creates a text button within this layer.
-                /// @return Returns a pointer to the created button.
-                /// @param Name The name of the button.
-                /// @param Rect The Rect representing the position and size of the button.
-                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
-                /// @param Text Any text you want printed on the button.
-                virtual TextButton* CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, ConstString& Text);
-                /// @brief Gets an already created button by name.
-                /// @return Returns a pointer to the button of the specified name.
-                virtual Button* GetButton(ConstString& Name);
-                /// @brief Gets an already created button by index.
-                /// @return Returns a pointer to the button at the specified index.
-                virtual Button* GetButton(const Whole& Index);
-                /// @brief Gets the OffsetButtonInfo of an already created button by name.
-                /// @return Returns a reference to the button of the specified name.
-                virtual OffsetButtonInfo* GetOffsetButtonInfo(ConstString& Name);
-                /// @brief Gets the OffsetButtonInfo of an already created button by index.
-                /// @return Returns a reference to the button at the specified index.
-                virtual OffsetButtonInfo* GetOffsetButtonInfo(const Whole& Index);
-                /// @brief Gets the number of buttons created and stored in this class.
-                /// @return Returns the number of buttons this class is storing.
-                virtual Whole GetNumButtons();
-                /// @brief Destroys a button.
-                /// @param ToBeDestroyed Pointer to the button you want destroyed.
-                void DestroyButton(UI::Button* ToBeDestroyed);
-                /// @brief Creates a rectangle within this Window.
-                /// @return Returns a pointer to the created rectangle.
-                /// @param Rect The Rect representing the position and size of the rectangle.
-                virtual Rectangle* CreateRectangle(const RenderableRect& Rect);
-                /// @brief Gets an already created rectangle by index.
-                /// @return Returns a pointer to the rectangle at the specified index.
-                virtual Rectangle* GetRectangle(const Whole& Index);
-                /// @brief Gets the OffsetRectangleInfo of an already created rectangle by index.
-                /// @return Returns a reference to the rectangle at the specified index.
-                virtual OffsetRectangleInfo* GetOffsetRectangleInfo(const Whole& Index);
-                /// @brief Gets the number of rectangles created and stored in this class.
-                /// @return Returns the number of rectangles this class is storing.
-                virtual Whole GetNumRectangles();
-                /// @brief Destroys a rectangle.
-                /// @param ToBeDestroyed Pointer to the rectangle you want destroyed.
-                virtual void DestroyRectangle(UI::Rectangle* ToBeDestroyed);
-                /// @brief Creates a caption within this Window.
-                /// @return Returns a pointer to the created caption.
-                /// @param Name The name of this caption.
-                /// @param Rect The Rect representing the position and size of the caption.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
-                /// @param Text Any text you want printed on the caption.
-                virtual Caption* CreateCaption(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text);
-                /// @brief Creates a caption within this layer.
-                /// @return Returns a pointer to the created caption.
-                /// @param Name The name of this caption.
-                /// @param Rect The Rect representing the position and size of the caption.
-                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
-                /// @param Text Any text you want printed on the caption.
-                virtual Caption* CreateCaption(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text);
-                /// @brief Gets an already created caption by name.
-                /// @return Returns a pointer to the caption of the specified name.
-                virtual Caption* GetCaption(ConstString& Name);
-                /// @brief Gets an already created caption by index.
-                /// @return Returns a pointer to the caption at the specified index.
-                virtual Caption* GetCaption(const Whole& Index);
-                /// @brief Gets the OffsetCaptionInfo of an already created caption by name.
-                /// @return Returns a reference to the caption of the specified name.
-                virtual OffsetCaptionInfo* GetOffsetCaptionInfo(ConstString& Name);
-                /// @brief Gets the OffsetCaptionInfo of an already created caption by index.
-                /// @return Returns a reference to the caption at the specified index.
-                virtual OffsetCaptionInfo* GetOffsetCaptionInfo(const Whole& Index);
-                /// @brief Gets the number of captions created and stored in this class.
-                /// @return Returns the number of captions this class is storing.
-                virtual Whole GetNumCaptions();
-                /// @brief Destroys a caption.
-                /// @param ToBeDestroyed Pointer to the caption you want destroyed.
-                virtual void DestroyCaption(UI::Caption* ToBeDestroyed);
-                /// @brief Creates a markup text within this Window.
-                /// @details The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size.
-                /// @return Returns a pointer to the created markup text.
-                /// @param Name The name of this markup text.
-                /// @param Rect The Rect representing the position and size of the markup text.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
-                /// @param Text Any text you want printed on the markup text.
-                virtual MarkupText* CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text);
-                /// @brief Creates a markup text within this layer.
-                /// @details The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size.
-                /// @return Returns a pointer to the created markup text.
-                /// @param Name The name of this markup text.
-                /// @param Rect The Rect representing the position and size of the markup text.
-                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
-                /// @param Text Any text you want printed on the markup text.
-                virtual MarkupText* CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text);
-                /// @brief Gets an already created markup text by name.
-                /// @return Returns a pointer to the markup text of the specified name.
-                virtual MarkupText* GetMarkupText(ConstString& Name);
-                /// @brief Gets an already created markup text by index.
-                /// @return Returns a pointer to the markup text at the specified index.
-                virtual MarkupText* GetMarkupText(const Whole& Index);
-                /// @brief Gets the OffsetMarkupTextInfo of an already created markup text by name.
-                /// @return Returns a reference to the markup text of the specified name.
-                virtual OffsetMarkupTextInfo* GetOffsetMarkupTextInfo(ConstString& Name);
-                /// @brief Gets the OffsetMarkupTextInfo of an already created markup text by index.
-                /// @return Returns a reference to the markup text at the specified index.
-                virtual OffsetMarkupTextInfo* GetOffsetMarkupTextInfo(const Whole& Index);
-                /// @brief Gets the number of markup texts created and stored in this class.
-                /// @return Returns the number of markup texts this class is storing.
-                virtual Whole GetNumMarkupTexts();
-                /// @brief Destroys a markup text.
-                /// @param ToBeDestroyed Pointer to the markup text you want destroyed.
-                virtual void DestroyMarkupText(UI::MarkupText* ToBeDestroyed);
-                ///////////////////////////////////////////////////////////////////////////////
-                // Working with all Widgets
-                ///////////////////////////////////////
-                /// @brief Gets an already created widget by name.
-                /// @return Returns a pointer to the widget of the specified name.
-                virtual Widget* GetWidget(ConstString& Name);
-                /// @brief Gets an already created widget by index.
-                /// @return Returns a pointer to the widget at the specified index.
-                virtual Widget* GetWidget(const Whole& Index);
-                /// @brief Gets the OffsetWidgetInfo of an already created widget by name.
-                /// @return Returns a reference to the widget of the specified name.
-                virtual OffsetWidgetInfo* GetOffsetWidgetInfo(ConstString& Name);
-                /// @brief Gets the OffsetWidgetInfo of an already created widget by index.
-                /// @return Returns a reference to the widget at the specified index.
-                virtual OffsetWidgetInfo* GetOffsetWidgetInfo(const Whole& Index);
-                /// @brief Gets the number of widgets created and stored in this class.
-                /// @return Returns the number of widgets this class is storing.
-                virtual Whole GetNumWidgets();
-                /// @brief Destroys a widget.
-                /// @param ToBeDestroyed Pointer to the widget you want destroyed.
-                virtual void DestroyWidget(UI::Widget* ToBeDestroyed);
-                ///////////////////////////////////////////////////////////////////////////////
-                // Creating Widgets
-                ///////////////////////////////////////
-                /// @brief Creates a Scrollbar within this Window.
-                /// @return Returns a pointer to the created Scrollbar.
-                /// @param Name The name of the Scrollbar.
-                /// @param Rect The Rect representing the position and size of the widget.
-                /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                virtual UI::Scrollbar* CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style);
-                /// @brief Creates a CheckBox within this Window.
-                /// @return Returns a pointer to the created CheckBox.
-                /// @param Name The name of the CheckBox.
-                /// @param Rect The Rect representing the position and size of the widget.
-                /// @param Glyph The glyphs to use by default for use with the label.  Glyphs are defined in your .gorilla file.
-                /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
-                /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
-                /// create a label after construction.
-                virtual UI::CheckBox* CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String &LabelText);
-                /// @brief Creates a Button List Box within this Window.
-                /// @return Returns a pointer to the created Button List Box.
-                /// @param Name The name of the Button List Box.
-                /// @param Rect The Rect representing the position and size of the widget.
-                /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
-                /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                virtual UI::ButtonListBox* CreateButtonListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollbarStyle);
-                /// @brief Creates a List Box within this Window.
-                /// @return Returns a pointer to the created List Box.
-                /// @param Name The name of the List Box.
-                /// @param Rect The Rect representing the position and size of the widget.
-                /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                virtual UI::ListBox* CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollbarStyle);
-                /// @brief Creates a Spinner within this layer.
-                /// @return Returns a pointer to the created Spinner.
-                /// @param Name The Name for the Widget.
-                /// @param Rect The Rect representing the position and size of the widget.
-                /// @param SStyle The layout of buttons this widget will have.  See SpinnerStyle enum or class description for more details.
-                /// @param GlyphHeight The desired relative height of the text you want.
-                virtual UI::Spinner* CreateSpinner(ConstString& Name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
-                /// @brief Creates a scrolled cell grid within this layer.
-                /// @return Returns a pointer to the created ScrolledCellGrid.
-                /// @param Name The name of the widget.
-                /// @param Rect The Rect representing the position and size of the widget.
-                /// @param Thickness The width of the vertical scrollbar in relative units.  The same amount of actual pixels is used
-                /// to determine the height of the horizontal scrollbar.
-                /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
-                virtual UI::ScrolledCellGrid* CreateScrolledCellGrid(ConstString& Name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style);
-                /// @brief Creates a paged cell grid within this layer.
-                /// @return Returns a pointer to the created PagedCellGrid.
-                /// @param Name The name of the widget.
-                /// @param Rect The Rect representing the position and size of the CellGrid.
-                /// @param SpnRect The Rect representing the position and size of the Spinner.
-                /// @param SStyle The style of spinner to create.
-                /// @param GlyphHeight The desired lineheight of the glyphs to be used with the spinner.
-                virtual UI::PagedCellGrid* CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
+                /// @brief Gets the background object of this window.
+                /// @return Returns a pointer to the rectangle that is the background for this window.
+                virtual Rectangle* GetWindowBack();
         };//window
     }//UI
 }//phys

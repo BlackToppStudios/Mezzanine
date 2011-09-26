@@ -41,7 +41,7 @@
 #define _uiscrolledcellgrid_h
 
 #include "uicellgrid.h"
-#include "enumerations.h"
+#include "uienumerations.h"
 
 namespace phys
 {
@@ -72,6 +72,10 @@ namespace phys
                 virtual void DrawGrid(const Vector2& WinDim);
                 /// @brief Determines whether or not the grid needs to be redrawn.
                 virtual bool GridNeedsRedraw();
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible);
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl();
             public:
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
@@ -84,22 +88,12 @@ namespace phys
                 ScrolledCellGrid(const String& name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style, Layer* parent);
                 /// @brief Class destructor.
                 virtual ~ScrolledCellGrid();
-                /// @brief Sets the visibility of this widget.
-                /// @param visible Bool determining whether or not this widget should be visible.
-                virtual void SetVisible(bool visible);
-                /// @brief Forces this widget to be shown.
-                virtual void Show();
-                /// @brief Forces this widget to hide.
-                virtual void Hide();
                 /// @brief Sets whether or not the scrollbars should auto-hide, or always be visible.
                 /// @param Auto Whether or not the scrollbars should auto-hide.
                 virtual void SetAutoHide(bool Auto);
                 /// @brief Gets whether or not the scrollbars are auto-hiding.
                 /// @return Returns a bool indicating whether or not scrollbar auto-hide is enabled.
                 virtual bool GetAutoHide();
-                /// @brief Checks to see if the current mouse position is over this widget.
-                /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
-                virtual bool CheckMouseHover();
                 /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.

@@ -47,7 +47,6 @@
 #include "uicaption.h"
 #include "uiwidget.h"
 #include "uicheckbox.h"
-#include "uibuttonlistbox.h"
 #include "uimarkuptext.h"
 #include "uilistbox.h"
 #include "uiscreen.h"
@@ -58,6 +57,8 @@
 #include "uispinner.h"
 #include "uiscrolledcellgrid.h"
 #include "uipagedcellgrid.h"
+#include "uidropdownlist.h"
+#include "uitabset.h"
 
 #include "graphicsmanager.h"
 #include "world.h"
@@ -430,18 +431,11 @@ namespace phys
             return Scroll;
         }
 
-        CheckBox* Layer::CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String &LabelText)
+        CheckBox* Layer::CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String &LabelText)
         {
-            CheckBox* Check = new CheckBox(Name,Rect,Glyph,LabelText,this);
+            CheckBox* Check = new CheckBox(Name,Rect,LineHeight,LabelText,this);
             Widgets.push_back(Check);
             return Check;
-        }
-
-        ButtonListBox* Layer::CreateButtonListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
-        {
-            ButtonListBox* BLB = new ButtonListBox(Name,Rect,ScrollbarWidth,ScrollStyle,this);
-            Widgets.push_back(BLB);
-            return BLB;
         }
 
         ListBox* Layer::CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle)
@@ -484,6 +478,20 @@ namespace phys
             PagedCellGrid* PCG = new PagedCellGrid(Name,Rect,SpnRect,SStyle,GlyphHeight,this);
             Widgets.push_back(PCG);
             return PCG;
+        }
+
+        DropDownList* Layer::CreateDropDownList(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle)
+        {
+            DropDownList* DDL = new DropDownList(Name,Rect,LineHeight,ScrollStyle,this);
+            Widgets.push_back(DDL);
+            return DDL;
+        }
+
+        TabSet* Layer::CreateTabSet(ConstString& Name, const RenderableRect& SetRect)
+        {
+            TabSet* TS = new TabSet(Name,SetRect,this);
+            Widgets.push_back(TS);
+            return TS;
         }
 
         Button* Layer::CheckButtonMouseIsOver()

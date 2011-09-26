@@ -194,10 +194,10 @@ namespace phys
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                this->R=OneNode.GetAttribute("R").AsReal();
-                this->G=OneNode.GetAttribute("G").AsReal();
-                this->B=OneNode.GetAttribute("B").AsReal();
-                this->A=OneNode.GetAttribute("A").AsReal();
+                this->R=OneNode.GetAttribute("Red").AsReal();
+                this->G=OneNode.GetAttribute("Green").AsReal();
+                this->B=OneNode.GetAttribute("Blue").AsReal();
+                this->A=OneNode.GetAttribute("Alpha").AsReal();
             }else{
                 throw( phys::Exception(StringCat("Incompatible XML Version for ",this->ColourValue::SerializableName(),": Not Version 1")) );
             }

@@ -93,8 +93,8 @@ namespace phys
         CollisionMask = Mask;
         if(Parent->IsInWorld())
         {
-            Parent->RemoveObjectFromWorld(World::GetWorldPointer());
-            Parent->AddObjectToWorld(World::GetWorldPointer());
+            Parent->RemoveObjectFromWorld();
+            Parent->AddObjectToWorld();
         }
     }
 
@@ -351,7 +351,10 @@ namespace phys
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    this->SetCollisionShape( phys::World::GetWorldPointer()->GetCollisionShapeManager()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString()  ) );
+                    CollisionShape* Shapeptr = phys::World::GetWorldPointer()->GetCollisionShapeManager()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
+                    if(!Shapeptr)
+                        { DeSerializeError("Find the correct Collision Shape",this->ActorBasePhysicsSettings::SerializableName()); }
+                    this->SetCollisionShape( Shapeptr );
                     this->SetFriction(OneNode.GetAttribute("Friction").AsReal());
                     this->SetRestitution(OneNode.GetAttribute("Restitution").AsReal());
                     if (OneNode.GetAttribute("Kinematic").AsBool())
@@ -423,32 +426,19 @@ namespace phys
         ActorRB->setLinearVelocity(LinVel.GetBulletVector3()); }
 
     Vector3 ActorRigidPhysicsSettings::GetLinearVelocity() const
-    {
-        Vector3 LinVel(ActorRB->getLinearVelocity());
-        return LinVel;
-    }
+        { return Vector3(ActorRB->getLinearVelocity()); }
 
     void ActorRigidPhysicsSettings::SetAngularVelocity(const Vector3& AngVel)
-    {
-        ActorRB->setAngularVelocity(AngVel.GetBulletVector3());
-    }
+        { ActorRB->setAngularVelocity(AngVel.GetBulletVector3()); }
 
     Vector3 ActorRigidPhysicsSettings::GetAngularVelocity() const
-    {
-        Vector3 AngVel(ActorRB->getAngularVelocity());
-        return AngVel;
-    }
+        { return Vector3(ActorRB->getAngularVelocity()); }
 
     void ActorRigidPhysicsSettings::SetIndividualGravity(const Vector3& Gravity)
-    {
-        ActorRB->setGravity(Gravity.GetBulletVector3());
-    }
+        { ActorRB->setGravity(Gravity.GetBulletVector3()); }
 
     Vector3 ActorRigidPhysicsSettings::GetIndividualGravity() const
-    {
-        Vector3 Grav(ActorRB->getGravity());
-        return Grav;
-    }
+        { return Vector3(ActorRB->getGravity()); }
 
     Vector3 ActorRigidPhysicsSettings::GetForce() const
         { return Vector3(ActorRB->getTotalForce()); }
@@ -462,6 +452,18 @@ namespace phys
     void ActorRigidPhysicsSettings::ApplyTorque(const Vector3& Torque)
         { ActorRB->applyTorque(Torque.GetBulletVector3()); }
 
+    Real ActorRigidPhysicsSettings::GetMass() const
+        { return  ActorRB->getInvMass() ? 1/ActorRB->getInvMass() : 0; }
+
+    Vector3 ActorRigidPhysicsSettings::GetLocalInertia() const
+        { return  Vector3(ActorRB->getInvInertiaDiagLocal()).Inverse() ; }
+
+    void ActorRigidPhysicsSettings::SetMass(Real NewMass)
+        { ActorRB->setMassProps(NewMass, GetLocalInertia().GetBulletVector3()); }
+
+    void ActorRigidPhysicsSettings::SetMass(Real NewMass,const Vector3& NewInertia)
+        { ActorRB->setMassProps(NewMass, NewInertia.GetBulletVector3()); }
+
 #ifdef PHYSXML
         // Serializable
     void ActorRigidPhysicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
@@ -474,6 +476,11 @@ namespace phys
         if (!Version)
             { SerializeError("Create Version Attribute", SerializableName()); }
         Version.SetValue(1);
+
+        phys::xml::Attribute Mass = BaseNode.AppendAttribute("Mass");
+        if (!Mass)
+            { SerializeError("Create Mass Attribute", SerializableName()); }
+        Mass.SetValue(this->GetMass());
 
         phys::xml::Attribute AngularDamping = BaseNode.AppendAttribute("AngularDamping");
         if (!AngularDamping)
@@ -510,6 +517,11 @@ namespace phys
             { SerializeError("Create TotalForce Node", SerializableName()); }
         this->GetForce().ProtoSerialize(TotalForce);
 
+        xml::Node Inertia = BaseNode.AppendChild("LocalInertia");
+        if (!Inertia)
+            { SerializeError("Create Inertia Node", SerializableName()); }
+        this->GetLocalInertia().ProtoSerialize(Inertia);
+
         this->ActorBasePhysicsSettings::ProtoSerialize(BaseNode);
     }
 
@@ -532,7 +544,7 @@ namespace phys
                         case 'B':   //ActorBasePhysicsSettings
                             if(Name==phys::String("ActorBasePhysicsSettings"))
                             {
-                                Child >> *(this->GetBasePointer());
+                                this->ActorBasePhysicsSettings::ProtoDeSerialize(Child);
                             }else{
                                 throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element B-\"",Name,"\"")) );
                             }
@@ -580,6 +592,15 @@ namespace phys
                                 this->ApplyForce(TempVec);
                             }else{
                                 throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element F-\"",Name,"\"")) );
+                            }
+                            break;
+                        case 'I':   //Inertia
+                            if(Name==phys::String("LocalInertia"))
+                            {
+                                Child.GetFirstChild() >> TempVec;
+                                this->SetMass(OneNode.GetAttribute("Mass").AsReal(), TempVec);
+                            }else{
+                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element I-\"",Name,"\"")) );
                             }
                             break;
                         default:

@@ -202,12 +202,12 @@ namespace phys
     class ActorBase;
     class ActorManager;
     class ActorContainerBase;
+    class AudioManager;
     class EventManager;
     class CameraManager;
     class PhysicsManager;
     class GameWindow;
     class GraphicsManager;
-    class SoundManager;
     class ResourceManager;
     class TimerManager;
     class UIManager;
@@ -397,6 +397,7 @@ namespace phys
             void LogAndThrow(Exception Err)
             {
                 this->Log(Err.what());
+                CommitLog();
                 Err.SetLogged();
                 throw(Err);
             }
@@ -518,6 +519,11 @@ namespace phys
             /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
             ActorManager* GetActorManager(const short unsigned int &WhichOne=0);
 
+            /// @brief This gets the AudioManager from the manager list.
+            /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.
+            /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.
+            AudioManager* GetAudioManager(const short unsigned int &WhichOne=0);
+
             /// @brief This gets the CameraManager from the manager list.
             /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
             /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
@@ -552,11 +558,6 @@ namespace phys
             /// @param WhichOne If you have multiple SceneManagers this will choose which one to return.
             /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
             SceneManager* GetSceneManager(const short unsigned int &WhichOne=0);
-
-            /// @brief This gets the SoundManager from the manager list.
-            /// @param WhichOne If you have multiple SoundManagers this will choose which one to return.
-            /// @return This returns a pointer to a SoundManager, or a NULL pointer if no matching manager exists.
-            SoundManager* GetSoundManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.

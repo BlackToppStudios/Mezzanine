@@ -263,11 +263,9 @@ namespace phys
             /// @param LinDamping Real representing the amount of Linear Damping(Movement) to be applied.
             /// @param AngDamping Real representing the amount of Angular Damping(Rotation) to be applied.
             virtual void SetDamping(const Real& LinDamping, const Real& AngDamping);
-
             /// @brief Get the linear damping
             /// @return A Real that has the Linear damping.
             virtual Real GetLinearDamping() const;
-
             /// @brief Get the Angular damping
             /// @return A Real that has the Angular damping.
             virtual Real GetAngularDamping() const;
@@ -275,7 +273,6 @@ namespace phys
             /// @brief Sets the Linear Velocity of this object.
             /// @param LinVel Vector3 representing the Linear Velocity to be set.
             virtual void SetLinearVelocity(const Vector3& LinVel);
-
             /// @brief Gets the Linear Velocity of this object.
             /// @return Returns the currently set Linear Velocity of this object.
             virtual Vector3 GetLinearVelocity() const;
@@ -283,7 +280,6 @@ namespace phys
             /// @brief Sets the Angular Velocity of this object.
             /// @param AngVel Vector3 representing the Angular Velocity to be set.
             virtual void SetAngularVelocity(const Vector3& AngVel);
-
             /// @brief Gets the Angular Velocity of this object.
             /// @return Returns the currently set Angular Velocity of this object.
             virtual Vector3 GetAngularVelocity() const;
@@ -293,7 +289,6 @@ namespace phys
             /// When the object is added to the world the world gravity is applied to it.
             /// @param Gravity Vector3 representing the direction and strength of gravity to be applied.
             virtual void SetIndividualGravity(const Vector3& Gravity);
-
             /// @brief Gets the gravity being applied to this object.
             /// @details This is the gravity applied to this object, which may or may not be the same as the world gravity.
             /// @return Returns a Vector3 representing the gravity currently being applied to this object.
@@ -302,18 +297,29 @@ namespace phys
             /// @brief Get the total Force/Movement on the actor
             /// @return A Vector3 with the force of the entire Actor
             virtual Vector3 GetForce() const;
-
             /// @brief Get the Torque/Rotation
             /// @return A Vector3 with the Torque
             virtual Vector3 GetTorque() const;
-
             /// @brief Push/Apply force to an object.
             /// @param Force The amount and direction of the force in a Vector3
             virtual void ApplyForce(const Vector3& Force);
-
             /// @brief Spin/Apply Torque to an object.
             /// @param Torque The amount and direction of the torque in a Vector3
             virtual void ApplyTorque(const Vector3& Torque);
+
+            /// @brief Get the total Mass of the actor
+            /// @return A Real with the Mass of the Actor
+            virtual Real GetMass() const;
+            /// @brief Get the current intertia of the Actor
+            /// @return A Vector3 with the Inertia
+            virtual Vector3 GetLocalInertia() const;
+            /// @brief Change the mass of the object.
+            /// @param NewMass The amount of mass this should have.
+            virtual void SetMass(Real NewMass);
+            /// @brief Change the mass of the object.
+            /// @param NewMass The amount of mass this should have.
+            /// @param NewInertia The new inertia the object has.
+            virtual void SetMass(Real NewMass, const Vector3& NewInertia);
 
 #ifdef PHYSXML
             ///////////////////////////////////////////////////////////////////////////////

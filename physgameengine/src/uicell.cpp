@@ -52,7 +52,7 @@ namespace phys
               Selected(false),
               Callback(NULL)
         {
-            Type = Widget::Cell;
+            Type = Widget::W_Cell;
         }
 
         Cell::~Cell()
@@ -91,6 +91,9 @@ namespace phys
 
         void Cell::SetCellCallback(CellCallback* CB)
         {
+            if(Callback != CB && Callback)
+                delete Callback;
+            CB->SetCaller(this);
             Callback = CB;
         }
 
@@ -104,13 +107,18 @@ namespace phys
             return SortPriority > Other->GetPriority();
         }
 
-        CellCallback::CellCallback(Cell* CallerCell)
-            : Caller(CallerCell)
+        CellCallback::CellCallback()
+            : Caller(NULL)
         {
         }
 
         CellCallback::~CellCallback()
         {
+        }
+
+        void CellCallback::SetCaller(Cell* Caller)
+        {
+            this->Caller = Caller;
         }
     }//ui
 }//phys

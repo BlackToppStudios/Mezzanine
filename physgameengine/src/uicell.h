@@ -60,8 +60,12 @@ namespace phys
                 Whole SortPriority;
                 bool Selected;
                 CellCallback* Callback;
-                /// @brief For use with widget update/automation.
-                virtual void Update(bool Force = false) = 0;
+                /// @brief Child specific update method.
+                virtual void UpdateImpl(bool Force = false) = 0;
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible) = 0;
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl() = 0;
             public:
                 /// @brief Class constructor.
                 Cell(const String& name, Layer* parent);
@@ -83,47 +87,20 @@ namespace phys
                 /// @details You can pass in a null pointer to disable the callback of a Cell.
                 /// @param CB The callback to be attached to this Cell.
                 virtual void SetCellCallback(CellCallback* CB);
-                /// @brief Sets the visibility of this widget.
-                /// @param visible Bool determining whether or not this widget should be visible.
-                virtual void SetVisible(bool visible) = 0;
-                /// @brief Gets the visibility of this widget.
-                /// @return Returns a bool representing the visibility of this widget.
-                virtual bool IsVisible() = 0;
-                /// @brief Forces this widget to be shown.
-                virtual void Show() = 0;
-                /// @brief Forces this widget to hide.
-                virtual void Hide() = 0;
-                /// @brief Checks to see if the current mouse position is over this widget.
-                /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
-                virtual bool CheckMouseHover() = 0;
                 /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.
                 virtual void SetPosition(const Vector2& Position) = 0;
-                /// @brief Gets the relative position of this widget.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this widget.
-                virtual Vector2 GetPosition() = 0;
                 /// @brief Sets the pixel position of this widget.
                 /// @param Position A vector2 representing the pixel position of this widget.
                 virtual void SetActualPosition(const Vector2& Position) = 0;
-                /// @brief Sets the pixel position of this widget.
-                /// @return Returns a vector2 representing the pixel position of this widget.
-                virtual Vector2 GetActualPosition() = 0;
                 /// @brief Sets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
                 virtual void SetSize(const Vector2& Size) = 0;
-                /// @brief Gets the relative size of this widget.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this widget.
-                virtual Vector2 GetSize() = 0;
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
                 virtual void SetActualSize(const Vector2& Size) = 0;
-                /// @brief Sets the pixel size of this widget.
-                /// @return Returns a vector2 representing the pixel size of this widget.
-                virtual Vector2 GetActualSize() = 0;
                 /// @brief Overloaded Less-Than operator used for sorting on the grid.
                 /// @param Other The other Cell to be compared to this one.
                 virtual bool operator<(Cell* Other);
@@ -144,10 +121,11 @@ namespace phys
                 Cell* Caller;
             public:
                 /// @brief Class constructor.
-                /// @param CallerButton The Cell to which this callback belongs.
-                CellCallback(Cell* CallerCell);
+                CellCallback();
                 /// @brief Class Destructor.
-                ~CellCallback();
+                virtual ~CellCallback();
+                /// @brief Sets the cell this callback belongs to.
+                virtual void SetCaller(Cell* Caller);
                 /// @brief The hover function for this callback.  This will be called every time the
                 /// Cell is hovered over by the mouse.
                 virtual void DoSelectedItems() = 0;
