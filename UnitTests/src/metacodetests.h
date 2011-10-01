@@ -67,15 +67,17 @@ class MetaCodeTests : public UnitTestGroup
                 MetaCode MFilled2(-249,(MetaCode::InputCode)491);               // joystick axis 11 being moved down 249 units from center
                 MetaCode MemptyRS, MFilled1RS, MFilled2RS;                      // Three empty metacodes for Deserialization;
 
-                // cout << "\n\n" << Mempty << "\n\n" ;
                 EmptyTest << Mempty;                                            //Perform the actual Serialization tests
                 Filled1Test << MFilled1;
                 Filled2Test << MFilled2;
 
-
                 String EmptyTestResults("<MetaCode Version=\"1\" MetaValue=\"0\" Code=\"0\" />");               // this is what the serialized metacodes should look like
                 String Filled1TestResults("<MetaCode Version=\"1\" MetaValue=\"-1\" Code=\"26\" />");
                 String Filled2TestResults("<MetaCode Version=\"1\" MetaValue=\"-249\" Code=\"491\" />");
+
+                //cout << "\n\n Actual: " << Mempty << "\n" << "Desired: " << EmptyTestResults << "\n";
+                //cout << "\n\n Actual: " << MFilled1 << "\n" << "Desired: " << Filled1TestResults << "\n";
+                //cout << "\n\n Actual: " << MFilled2 << "\n" << "Desired: " << Filled2TestResults << "\n";
 
                 if (EmptyTestResults == EmptyTest.str())                                                        // test the results of the serialization
                 {
@@ -102,9 +104,17 @@ class MetaCodeTests : public UnitTestGroup
                 Filled1Test >> MFilled1RS;
                 Filled2Test >> MFilled2RS;
 
+                //cout << "\n\n Actual: " << EmptyTestRS.str() << "\n" << "Desired: " << MemptyRS << "\n";
+                //cout << "\n\n Actual: " << Filled1TestRS.str() << "\n" << "Desired: " << Filled1TestResults << "\n";
+                //cout << "\n\n Actual: " << Filled2TestRS.str() << "\n" << "Desired: " << Filled2TestResults << "\n";
+
                 EmptyTestRS << MemptyRS;                                            // ReSerialization so we can see if it deserialized correctly
                 Filled1TestRS << MFilled1RS;
                 Filled2TestRS << MFilled2RS;
+
+                //cout << "\n\n Actual: " << EmptyTestRS.str() << "\n" << "Desired: " << MemptyRS << "\n";
+                //cout << "\n\n Actual: " << Filled1TestRS.str() << "\n" << "Desired: " << /*MFilled1RS*/Filled1TestResults << "\n";
+                //cout << "\n\n Actual: " << Filled2TestRS.str() << "\n" << "Desire : " << /*MFilled2RS*/Filled2TestResults  << "\n";
 
                 if (EmptyTestResults == EmptyTestRS.str())
                 {

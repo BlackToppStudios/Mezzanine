@@ -59,7 +59,7 @@ namespace phys
     /// physics system. This also has a few helper functions to make it more
     /// useful than an std::pair<Vector3,Quaternion>.
     ///////////////////////////////////////
-    class Transform
+    class PHYS_LIB Transform
     {
         public:
             ///////////////////////////////////////////////////////////////////////////////
@@ -134,13 +134,13 @@ namespace phys
 /// @param lhs The item on the Left Hand of the Sign, the item to be assigned to.
 /// @param rhs The item on the Right Hand of the Sign, the item that has the values to be copied.
 /// @return This returns the original btTransform reference(with the new values) so furhter work can continue to be performed if required
-btTransform& operator<< (btTransform& lhs, const phys::Transform& rhs);
+btTransform& PHYS_LIB operator<< (btTransform& lhs, const phys::Transform& rhs);
 
 /// @brief Overwrite the data in a phys::Transform with the data in a btTransform using an intelligent assignment operator (in this case we really couldn't code the real assignment operator).
 /// @param lhs The item on the Left Hand of the Sign, the item to be assigned to.
 /// @param rhs The item on the Right Hand of the Sign, the item that has the values to be copied.
 /// @return This returns the original phys::Transform reference(with the new values) so furhter work can continue to be performed if required.
-phys::Transform& operator<< (phys::Transform& lhs, const btTransform& rhs);
+phys::Transform& PHYS_LIB operator<< (phys::Transform& lhs, const btTransform& rhs);
 
 
 

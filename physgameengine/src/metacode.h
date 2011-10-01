@@ -713,6 +713,23 @@ namespace phys
             /// @brief Compares two MetaCodes for equality
             /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.
             bool operator==(const MetaCode &other) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+#ifdef PHYSXML
+        // Serializable
+        /// @brief Convert this class to an xml::Node ready for serialization
+        /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+        virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+        // DeSerializable
+        /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+        /// @param OneNode and xml::Node containing the data.
+        virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+        /// @return A string containing "Vector3"
+        String SerializableName() const;
+#endif
     };
 }
 
