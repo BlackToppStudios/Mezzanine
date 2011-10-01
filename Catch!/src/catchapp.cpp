@@ -267,6 +267,10 @@ void CatchApp::MakeGUI()
     //Build the Menu Layer
     UI::Menu* GSGameMenu = Menu->CreateMenu( "GS_GameMenu", UI::RenderableRect(Vector2(0.35, 0.27), Vector2(0.3, 0.45), true));
     GSGameMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("GSOptionsMenuBackground");
+    UI::TextButton* GSRestartButton = GSGameMenu->GetRootWindow()->CreateTextButton( "GS_Restart", UI::RenderableRect(Vector2(0.38, 0.48), Vector2(0.24, 0.05), true), GSTextLineHeight, "Restart Level");
+    GSRestartButton->SetButtonCallback(new GSRestart());
+    GSRestartButton->SetBackgroundSprite("GSOptionsButton");
+    GSRestartButton->SetHoveredSprite("GSOptionsHoveredButton");
     UI::TextButton* GSReturnButton = GSGameMenu->GetRootWindow()->CreateTextButton( "GS_Return", UI::RenderableRect(Vector2(0.38, 0.56), Vector2(0.24, 0.05), true), GSTextLineHeight, "Return To Game");
     GSReturnButton->SetButtonCallback(new GSReturn());
     GSReturnButton->SetBackgroundSprite("GSOptionsButton");

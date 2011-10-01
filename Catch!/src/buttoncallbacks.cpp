@@ -87,6 +87,27 @@ void GSMMReturn::DoActivateItems()
 
 //--------------------------------------------------------------
 
+GSRestart::GSRestart()
+{
+}
+
+GSRestart::~GSRestart()
+{
+}
+
+void GSRestart::DoHoverItems()
+{
+}
+
+void GSRestart::DoActivateItems()
+{
+    LevelLoader* Loader = CatchApp::GetCatchAppPointer()->GetLevelLoader();
+    Loader->SetNextLevel(Loader->GetCurrentLevel());
+    World::GetWorldPointer()->BreakMainLoop();
+}
+
+//--------------------------------------------------------------
+
 MSStart::MSStart(UI::PagedCellGrid* LevelGrid) : TheGrid(LevelGrid)
 {
 }

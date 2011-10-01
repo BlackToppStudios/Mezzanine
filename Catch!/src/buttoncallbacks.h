@@ -41,6 +41,15 @@ class GSMMReturn : public UI::ButtonCallback
         virtual void DoActivateItems();
 };
 
+class GSRestart : public UI::ButtonCallback
+{
+    public:
+        GSRestart();
+        virtual ~GSRestart();
+        virtual void DoHoverItems();
+        virtual void DoActivateItems();
+};
+
 class MSStart : public UI::ButtonCallback
 {
     protected:
