@@ -42,6 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
+#include "enumerations.h"
 #include "xml.h"
 
 //Forward Declarations for wierd compatibility functions
@@ -78,6 +79,34 @@ namespace phys
         /// @brief Coordinate on the Z vector.
         Real Z;
 
+        /// @brief Get The value associate with a certain Axis.
+        /// @param Axis Which axis to retrieve.
+        /// @return Either X, Y or Z as indicated by the value passed in.
+        Real GetAxisValue(StandardAxis Axis) const;
+
+        /// @copydoc GetAxisValue(StandardAxis Axis) const
+        Real GetAxisValue(Integer Axis) const;
+
+        /// @brief Get The value associate with a certain Axis in such a way that it can readily be assigned in this Vector3.
+        /// @param Axis Which axis to retrieve.
+        /// @return Either X, Y or Z as indicated by the value passed in.
+        Real& GetAxisValue(StandardAxis Axis);
+
+        /// @copydoc GetAxisValue(StandardAxis Axis)
+        Real& GetAxisValue(Integer Axis);
+
+        /// @copydoc GetAxisValue(StandardAxis Axis) const
+        Real operator[] (StandardAxis Axis) const;
+
+        /// @copydoc GetAxisValue(StandardAxis Axis) const
+        Real operator[] (Integer Axis) const;
+
+        /// @copydoc GetAxisValue(StandardAxis Axis)
+        Real& operator[] (StandardAxis Axis);
+
+        /// @copydoc GetAxisValue(StandardAxis Axis)
+        Real& operator[] (Integer Axis);
+
         ///////////////////////////////////////////////////////////////////////////////
         // Constructors
 
@@ -111,6 +140,12 @@ namespace phys
         /// @param Vec The other phys::Vector3 to copy to make this one.
         Vector3(const phys::Vector3& Vec);
 
+#ifdef PHYSXML
+        /// @brief Deserializing constructor
+        /// @param Vec The other phys::Vector3 to copy to make this one.
+        explicit Vector3(xml::Node OneNode);
+#endif
+
         ///////////////////////////////////////////////////////////////////////////////
         // Prebuilt Vectors
 
@@ -132,6 +167,15 @@ namespace phys
         /// @brief Gets a vector representing the negative Z unit of a vector.
         /// @return A Vector3(0,0,-1).
         static Vector3 Neg_Unit_Z();
+
+        /// @brief Get a Unit Vector along the given Axis
+        /// @param Axis The StandardAxis correlating to the Unit Vector you are retrievinf
+        /// @return A vector one unit in length along the Axis specified.
+        static Vector3 UnitOnAxis(StandardAxis Axis);
+
+        /// @brief Get a Unit Vector along the given Axis
+        /// @return The Corresponding StandardAxis if a Vector equal to Unit_X, Unit_Y or Unit_Z is passed in.
+        StandardAxis IsStandardUnitAxis() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Assignment Operators

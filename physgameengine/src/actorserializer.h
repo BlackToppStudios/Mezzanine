@@ -76,11 +76,6 @@ namespace phys
             /// @return A pointer to the freshly created actor
             virtual ActorRigid* ProtoDeSerialize(const xml::Node& OneNode);
 
-            /// @brief Accepts an xml::Node with Multiple ActorRigid nodes as children, deserializes them and stores them in the Target ActorManager.
-            /// @warning If The ActorManager Passed in at construction is null, this will only return the pointer.
-            /// @param OneNode The node that should have some amount of ActorRigids as children.
-            virtual void ProtoDeSerializeAll(const xml::Node& OneNode);
-
             /// @brief Should indicate the Name of the node that ProtoDeSerializeAll all accepts (when deserializing raw xml text).
             /// @warning If The ActorManager Passed in at construction is null, this will do very little other than eat cpu and memory bandwidth.
             /// @return A String containing "RigidActors".

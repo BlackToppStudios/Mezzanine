@@ -58,7 +58,28 @@ class Vector3Tests : public UnitTestGroup
                 TestResult temp;
                 Vector3 Vec=Vector3();
 
-                if(Vec.X==0.0 && Vec.Y==0.0)
+                Vec[0]=1.0; //use the non-const
+                Vec[1]=2.0;
+                Vec[2]=3.0;
+                if(Vec[0]==1.0 && Vec[1]==2.0 && Vec[2]==3.0) // use the const
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("Vector3::GetAxisValue(Integer)", temp);
+
+                Vec=Vector3();
+                Vec[Axis_X]=1.0; //use the non-const
+                Vec[Axis_Y]=2.0;
+                Vec[Axis_Z]=3.0;
+                if(Vec[Axis_X]==1.0 && Vec[Axis_Y]==2.0 && Vec[Axis_Z]==3.0) // use the const
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("Vector3::GetAxisValue(StandardAxis)", temp);
+                // we are only calling 2 of these 8 functions
+
+                Vec=Vector3();
+                if(Vec.X==0.0 && Vec.Y==0.0 && Vec.Z==0.0)
                     { temp=Success; }
                 else
                     { temp=Failed; }
@@ -98,6 +119,9 @@ class Vector3Tests : public UnitTestGroup
                 else
                     { temp=Failed; }
                 AddTestResult("Vector3::Vector3(Vector3)", temp);                       //test
+#ifdef PHYSXML
+		//Vector3(xml::Node OneNode);
+#endif
 
                 if(Vector3::Unit_X().X==1.0 && Vector3::Unit_X().Y==0.0 && Vector3::Unit_X().Z==0.0)
                     { temp=Success; }
@@ -134,6 +158,9 @@ class Vector3Tests : public UnitTestGroup
                 else
                     { temp=Failed; }
                 AddTestResult("Vector3::Neg_Unit_Z()", temp);                               //test
+
+		//UnitOnAxis(StandardAxis Axis)
+		//IsStandardUnitAxis() const;
 
                 {
                     Vector3 Vec2(0.0,0.0,0.0);
@@ -874,6 +901,8 @@ class Vector3Tests : public UnitTestGroup
                 }
 
             }else{
+                AddTestResult("Vector3::GetAxisValue(Integer)", Skipped);
+                AddTestResult("Vector3::GetAxisValue(StandardAxis)", Skipped);
                 AddTestResult("Vector3::Vector3()", Skipped);
                 AddTestResult("Vector3::Vector3(Real,Real,Real)", Skipped);
                 AddTestResult("Vector3::Vector3(Ogre::Vector3)", Skipped);

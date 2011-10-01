@@ -93,17 +93,6 @@ namespace phys
         }
     }
 
-    void ActorRigidDeSerializer::ProtoDeSerializeAll(const xml::Node& OneNode)
-    {
-        // no checking of the name happens we could get
-        xml::Node OneActorNode = OneNode.GetFirstChild();
-        while(OneActorNode)
-        {
-            ProtoDeSerialize(OneActorNode);
-            OneActorNode = OneActorNode.GetNextSibling();
-        }
-    }
-
     String ActorRigidDeSerializer::ContainerName() const
         { return String("RigidActors"); }
 

@@ -85,15 +85,13 @@ namespace phys
                 if ( !InText && '/' == ReadOne )                        //If we are not In a quote then a / means the next > will end a tag
                     { HaveSlash=true; }
 
-                if ( '>' == ReadOne )                                   // if are at a > then the amount of nested tags we are in changes
+                if ( '>' == ReadOne )                                   // if are we at a > then the amount of nested tags we are in changes
                 {
                     if (HaveSlash)                                      // if have passed an unescaped slash then we  are ending a tage
                     {
                         --TagCount;
-                        if ( 0>=TagCount )                              // if we are ending the last tage then we are done
-                        {
-                            break;
-                        }
+                        if ( 0>=TagCount )                              // if we are ending the last tag then we are done
+                        { break; }
                     }else{
                         //++TagCount;                                     // if the tag does not have a slash then we are going one deeper
                     }
@@ -111,7 +109,10 @@ namespace phys
         {
             Document* Doc = new Document();
             if(!Doc->Load(OneTag.c_str()))
-                { World::GetWorldPointer()->LogAndThrow(Exception(StringCat("Could not Deserialize XML Stream which should contain:", ClassName, "\n XML looked Like: ", OneTag) )); }
+            {
+                delete Doc;
+                World::GetWorldPointer()->LogAndThrow(Exception(StringCat("Could not Deserialize XML Stream which should contain:", ClassName, "\n XML looked Like: ", OneTag) ));
+            }
 
             Node InputNode = Doc->GetFirstChild();
             if (InputNode)
@@ -121,7 +122,7 @@ namespace phys
                     return Doc;
                 }else{
                     delete Doc;
-                    World::GetWorldPointer()->LogAndThrow(Exception(StringCat(NameSpace, ClassName, " not next item in stream, failed to serialize.")));
+                    World::GetWorldPointer()->LogAndThrow(Exception(StringCat(NameSpace, ClassName, " not next item in stream, failed to deserialize.")));
                 }
             }else{
                 delete Doc;

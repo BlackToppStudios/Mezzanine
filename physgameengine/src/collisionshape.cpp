@@ -41,6 +41,7 @@
 #define _collisionshape_cpp
 
 #include "collisionshape.h"
+#include "collisionshapemanager.h"
 #include "serialization.h"
 #include "world.h"
 
@@ -85,37 +86,37 @@ namespace phys
 
     Vector3 CollisionShape::GetScaling() const
     {
-        Vector3 Scaling(ShapeBase->getLocalScaling());
-        return Scaling;
+        return Vector3(ShapeBase->getLocalScaling());
     }
 
     btCollisionShape* CollisionShape::GetBulletShape() const
     {
         return ShapeBase;
     }
+
 #ifdef PHYSXML
     void CollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        xml::Node ColNode = CurrentRoot.AppendChild(this->CollisionShape::SerializableName());
-        if (!ColNode) { SerializeError("create ActorRigidNode",this->CollisionShape::SerializableName());}
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->CollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->CollisionShape::SerializableName());}
 
-        xml::Attribute Version = ColNode.AppendAttribute("Version");
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
         if (Version)
             { Version.SetValue(1); }
         else
             { SerializeError("Create Version Attribute", SerializableName()); }
 
-        xml::Attribute NameAttr = ColNode.AppendAttribute("Name");
+        xml::Attribute NameAttr = CollisionNode.AppendAttribute("Name");
         if(!NameAttr)
             { SerializeError("Create Name Attribute", SerializableName()); }
         NameAttr.SetValue(this->GetName());
 
-        xml::Attribute MarginAttr = ColNode.AppendAttribute("Margin");
+        xml::Attribute MarginAttr = CollisionNode.AppendAttribute("Margin");
         if(!MarginAttr)
             { SerializeError("Create Margin Attribute", SerializableName()); }
-        MarginAttr.SetValue(this->GetName());
+        MarginAttr.SetValue(this->GetMargin());
 
-        xml::Node ScalingNode = ColNode.AppendChild("Scaling");
+        xml::Node ScalingNode = CollisionNode.AppendChild("Scaling");
         if (!ScalingNode) { SerializeError("Create Name Attribute", SerializableName()); }
         this->GetScaling().ProtoSerialize(ScalingNode);
     }
@@ -130,12 +131,10 @@ namespace phys
                     { this->Name = OneNode.GetAttribute("Name").AsString(); }
                 this->SetMargin(OneNode.GetAttribute("Margin").AsReal());
 
-                Vector3 TempVec;
                 xml::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
                 if(!ScalingNode)
                     { DeSerializeError("locate Scaling node",SerializableName()); }
-                TempVec.ProtoDeSerialize(ScalingNode);
-                this->SetScaling(TempVec);
+                this->SetScaling(Vector3(ScalingNode));
             }else{
                 DeSerializeError("find usable serialization version",SerializableName());
             }
@@ -159,37 +158,30 @@ namespace phys
     {
     }
 
-    void PrimitiveCollisionShape::SetPointers(btConvexShape* Shape)
+    void PrimitiveCollisionShape::SetPointers(btConvexInternalShape* Shape)
         { ShapeBase = Shape; }
 
-    btConvexShape* PrimitiveCollisionShape::GetBulletConvexShape() const
-        { return static_cast<btConvexShape*>(ShapeBase); }
+    btConvexInternalShape* PrimitiveCollisionShape::GetBulletConvexShape() const
+        { return static_cast<btConvexInternalShape*>(ShapeBase); }
 
 #ifdef PHYSXML
     void PrimitiveCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        xml::Node ColNode = CurrentRoot.AppendChild(this->PrimitiveCollisionShape::SerializableName());
-        if (!ColNode) { SerializeError("create ActorRigidNode",this->PrimitiveCollisionShape::SerializableName());}
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->PrimitiveCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->PrimitiveCollisionShape::SerializableName());}
 
-        xml::Attribute Version = ColNode.AppendAttribute("Version");
-        if (Version)
-            { Version.SetValue(1); }
-        else
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (!Version)
             { SerializeError("Create Version Attribute", SerializableName()); }
+        Version.SetValue(1);
 
-        xml::Attribute NameAttr = ColNode.AppendAttribute("Name");
-        if(!NameAttr)
-            { SerializeError("Create Name Attribute", SerializableName()); }
-        NameAttr.SetValue(this->GetName());
+        xml::Node ImplicitShape = CollisionNode.AppendChild("ImplicitShape");
+        if (!ImplicitShape)
+            { SerializeError("Create ImplicitShape Node", SerializableName()); }
+        Vector3(GetBulletConvexShape()->getImplicitShapeDimensions()).ProtoSerialize(ImplicitShape);
 
-        xml::Attribute MarginAttr = ColNode.AppendAttribute("Margin");
-        if(!MarginAttr)
-            { SerializeError("Create Margin Attribute", SerializableName()); }
-        MarginAttr.SetValue(this->GetName());
+        this->CollisionShape::ProtoSerialize(CollisionNode);
 
-        xml::Node ScalingNode = ColNode.AppendChild("Scaling");
-        if (!ScalingNode) { SerializeError("Create Name Attribute", SerializableName()); }
-        this->GetScaling().ProtoSerialize(ScalingNode);
     }
 
     void PrimitiveCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
@@ -198,7 +190,15 @@ namespace phys
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
+                xml::Node CollisionNode = OneNode.GetChild("CollisionShape");
+                if(!CollisionNode)
+                    { DeSerializeError("locate CollisionShape node",SerializableName()); }
+                this->CollisionShape::ProtoDeSerialize(CollisionNode);
 
+                xml::Node ImplicitShape = OneNode.GetChild("ImplicitShape").GetFirstChild();
+                if(!ImplicitShape)
+                    { DeSerializeError("locate ImplicitShape node",SerializableName()); }
+                GetBulletConvexShape()->setImplicitShapeDimensions(Vector3(ImplicitShape).GetBulletVector3());
             }else{
                 DeSerializeError("find usable serialization version",SerializableName());
             }
@@ -227,6 +227,44 @@ namespace phys
     btConcaveShape* FieldCollisionShape::GetBulletConcaveShape() const
         { return static_cast<btConcaveShape*>(ShapeBase); }
 
+#ifdef PHYSXML
+    void FieldCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->FieldCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->FieldCollisionShape::SerializableName());}
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        this->CollisionShape::ProtoSerialize(CollisionNode);
+
+    }
+
+    void FieldCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->FieldCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild("CollisionShape");
+                if(!CollisionNode)
+                    { DeSerializeError("locate CollisionShape node",SerializableName()); }
+                this->CollisionShape::ProtoDeSerialize(CollisionNode);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String FieldCollisionShape::SerializableName()
+        {   return String("FieldCollisionShape"); }
+#endif
+
     /////////////////////////////////////////
     // MeshCollisionShape Functions
 
@@ -244,133 +282,85 @@ namespace phys
     btConcaveShape* MeshCollisionShape::GetBulletConcaveShape() const
         { return static_cast<btConcaveShape*>(ShapeBase); }
 
+#ifdef PHYSXML
+    void MeshCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->MeshCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->MeshCollisionShape::SerializableName());}
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        this->CollisionShape::ProtoSerialize(CollisionNode);
+
+    }
+
+    void MeshCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->MeshCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild("CollisionShape");
+                if(!CollisionNode)
+                    { DeSerializeError("locate CollisionShape node",SerializableName()); }
+                this->CollisionShape::ProtoDeSerialize(CollisionNode);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String MeshCollisionShape::SerializableName()
+        {   return String("MeshCollisionShape"); }
+#endif
+
     /////////////////////////////////////////
     // CompoundCollisionShape Functions
 
     CompoundCollisionShape::CompoundCollisionShape(const String& Name)
     {
         this->Name = Name;
-        CompoundShape = new btCompoundShape(false);
-        ShapeBase = CompoundShape;
+        ShapeBase = new btCompoundShape(false);
     }
 
     CompoundCollisionShape::CompoundCollisionShape(const String& Name, btCompoundShape* BulletShape)
     {
         this->Name = Name;
-        CompoundShape = BulletShape;
-        ShapeBase = CompoundShape;
+        ShapeBase = BulletShape;
 
-        Whole NumChildren = CompoundShape->getNumChildShapes();
+        Whole NumChildren = GetBulletCompoundShape()->getNumChildShapes();
         for( Whole X = 0 ; X < NumChildren ; X++ )
         {
-            btCollisionShape* CurrChild = CompoundShape->getChildShape(X);
-            std::stringstream namestream;
-            namestream << this->Name << "Child" << X;
-            String ChildType(CurrChild->getName());
-            switch(CurrChild->getShapeType())
-            {
-                case BOX_SHAPE_PROXYTYPE:
-                {
-                    BoxCollisionShape* BoxShape = new BoxCollisionShape(namestream.str(),(btBoxShape*)CurrChild);
-                    ChildShapes.push_back(BoxShape);
-                    break;
-                }
-                case CAPSULE_SHAPE_PROXYTYPE:
-                {
-                    CapsuleCollisionShape* CapsuleShape = new CapsuleCollisionShape(namestream.str(),(btCapsuleShape*)CurrChild);
-                    ChildShapes.push_back(CapsuleShape);
-                    break;
-                }
-                case CONE_SHAPE_PROXYTYPE:
-                {
-                    ConeCollisionShape* ConeShape = new ConeCollisionShape(namestream.str(),(btConeShape*)CurrChild);
-                    ChildShapes.push_back(ConeShape);
-                    break;
-                }
-                case CONVEX_HULL_SHAPE_PROXYTYPE:
-                {
-                    ConvexHullCollisionShape* ConvexHullShape = new ConvexHullCollisionShape(namestream.str(),(btConvexHullShape*)CurrChild);
-                    ChildShapes.push_back(ConvexHullShape);
-                    break;
-                }
-                case CYLINDER_SHAPE_PROXYTYPE:
-                {
-                    CylinderCollisionShape* CylinderShape = new CylinderCollisionShape(namestream.str(),(btCylinderShape*)CurrChild);
-                    ChildShapes.push_back(CylinderShape);
-                    break;
-                }
-                case MULTI_SPHERE_SHAPE_PROXYTYPE:
-                {
-                    MultiSphereCollisionShape* MultiSphereShape = new MultiSphereCollisionShape(namestream.str(),(btMultiSphereShape*)CurrChild);
-                    ChildShapes.push_back(MultiSphereShape);
-                    break;
-                }
-                case SPHERE_SHAPE_PROXYTYPE:
-                {
-                    SphereCollisionShape* SphereShape = new SphereCollisionShape(namestream.str(),(btSphereShape*)CurrChild);
-                    ChildShapes.push_back(SphereShape);
-                    break;
-                }
-                case GIMPACT_SHAPE_PROXYTYPE:
-                {
-                    DynamicMeshCollisionShape* GImpactShape = new DynamicMeshCollisionShape(namestream.str(),(btGImpactMeshShape*)CurrChild);
-                    ChildShapes.push_back(GImpactShape);
-                    break;
-                }
-                case TERRAIN_SHAPE_PROXYTYPE:
-                {
-                    HeightfieldCollisionShape* HeightFieldShape = new HeightfieldCollisionShape(namestream.str(),(btHeightfieldTerrainShape*)CurrChild);
-                    ChildShapes.push_back(HeightFieldShape);
-                    break;
-                }
-                case STATIC_PLANE_PROXYTYPE:
-                {
-                    PlaneCollisionShape* PlaneShape = new PlaneCollisionShape(namestream.str(),(btStaticPlaneShape*)CurrChild);
-                    ChildShapes.push_back(PlaneShape);
-                    break;
-                }
-                case SOFTBODY_SHAPE_PROXYTYPE:
-                {
-                    ActorSoftCollisionShape* SoftBodyShape = new ActorSoftCollisionShape(namestream.str(),(btSoftBodyCollisionShape*)CurrChild);
-                    ChildShapes.push_back(SoftBodyShape);
-                    break;
-                }
-                case TRIANGLE_MESH_SHAPE_PROXYTYPE:
-                {
-                    StaticMeshCollisionShape* BvhShape = new StaticMeshCollisionShape(namestream.str(),(btBvhTriangleMeshShape*)CurrChild);
-                    ChildShapes.push_back(BvhShape);
-                    break;
-                }
-                case COMPOUND_SHAPE_PROXYTYPE: // holy recursive batman
-                {
-                    CompoundCollisionShape* Compound = new CompoundCollisionShape(namestream.str(),(btCompoundShape*)CurrChild);
-                    ChildShapes.push_back(Compound);
-                    break;
-                }
-                default:
-                {
-                    World::GetWorldPointer()->LogAndThrow(Exception("Attempting to add an unsupported/unwrapped Collision Shape in CompoundShape constructor."));
-                }
-            }
+            btCollisionShape* CurrChild = GetBulletCompoundShape()->getChildShape(X);
+            CollisionShape* CreatedShape = CreateShape(BulletSapeTypeToShapeType(CurrChild->getShapeType()), this->Name+"Child"+ToString(X), CurrChild);
+            ChildShapes.push_back(CreatedShape);
+            World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(CreatedShape);
         }
     }
 
     CompoundCollisionShape::~CompoundCollisionShape()
     {
-        for( Whole X = 0 ; X < ChildShapes.size() ; X++ )
+        /*for( Whole X = 0 ; X < ChildShapes.size() ; X++ )
         {
-            //CompoundShape->removeChildShapeByIndex(X);
+            //GetBulletCompoundShape()->removeChildShapeByIndex(X);
             delete ChildShapes[X];
         }
-        ChildShapes.clear();
-        delete CompoundShape;
+        ChildShapes.clear();*/
+        delete GetBulletCompoundShape();
     }
 
     void CompoundCollisionShape::AddChildShape(CollisionShape* Child, const Vector3& ChildLocation, const Quaternion& ChildRotation)
     {
         btTransform ChildTrans(ChildRotation.GetBulletQuaternion(),ChildLocation.GetBulletVector3());
-        CompoundShape->addChildShape(ChildTrans,Child->GetBulletShape());
+        GetBulletCompoundShape()->addChildShape(ChildTrans,Child->GetBulletShape());
         ChildShapes.push_back(Child);
+        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Child);
     }
 
     void CompoundCollisionShape::AddChildShape(CollisionShape* Child, const Vector3& ChildLocation)
@@ -378,13 +368,26 @@ namespace phys
         btTransform ChildTrans;
         ChildTrans.setIdentity();
         ChildTrans.setOrigin(ChildLocation.GetBulletVector3());
-        CompoundShape->addChildShape(ChildTrans,Child->GetBulletShape());
+        GetBulletCompoundShape()->addChildShape(ChildTrans,Child->GetBulletShape());
         ChildShapes.push_back(Child);
+        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Child);
     }
 
-    Whole CompoundCollisionShape::GetNumChildren()
+    void CompoundCollisionShape::AddChildShape(CollisionShape* Child, const Transform& ChildLocation)
+    {
+        GetBulletCompoundShape()->addChildShape(ChildLocation.GetBulletTransform(),Child->GetBulletShape());
+        ChildShapes.push_back(Child);
+        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Child);
+    }
+
+    Whole CompoundCollisionShape::GetNumChildren() const
     {
         return ChildShapes.size();
+    }
+
+    CollisionShape* CompoundCollisionShape::GetChild(Whole Index) const
+    {
+        return ChildShapes.at(Index);
     }
 
     void CompoundCollisionShape::RemoveChildShape(CollisionShape* Child)
@@ -394,7 +397,7 @@ namespace phys
             if(Child == (*CSit))
             {
                 ChildShapes.erase(CSit);
-                CompoundShape->removeChildShape(Child->GetBulletShape());
+                GetBulletCompoundShape()->removeChildShape(Child->GetBulletShape());
             }
         }
     }
@@ -403,7 +406,7 @@ namespace phys
     {
         std::vector<CollisionShape*>::iterator CSit = ChildShapes.begin() + ChildIndex;
         ChildShapes.erase(CSit);
-        CompoundShape->removeChildShapeByIndex(ChildIndex);
+        GetBulletCompoundShape()->removeChildShapeByIndex(ChildIndex);
     }
 
     CollisionShape::ShapeType CompoundCollisionShape::GetType() const
@@ -411,43 +414,145 @@ namespace phys
         return CollisionShape::ST_Compound;
     }
 
+    btCompoundShape* CompoundCollisionShape::GetBulletCompoundShape() const
+        { return static_cast<btCompoundShape*>(ShapeBase); }
+
+#ifdef PHYSXML
+    void CompoundCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->CompoundCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->CompoundCollisionShape::SerializableName());}
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        this->CollisionShape::ProtoSerialize(CollisionNode);
+
+        xml::Node ChildShapesNode = CollisionNode.AppendChild("Shapes");
+        if (!ChildShapesNode) { SerializeError("create ChildShapesNode",this->CompoundCollisionShape::SerializableName());}
+        for( Whole X = 0 ; X < ChildShapes.size() ; X++ )
+        {
+            //if() //the shape is in the manager
+            //{
+                xml::Node OneChildShapeNode = ChildShapesNode.AppendChild("ChildShapeFromManager");
+                if(!OneChildShapeNode) { SerializeError("create ChildShapeFromManager Node",this->CompoundCollisionShape::SerializableName());}
+                xml::Attribute OneName = OneChildShapeNode.AppendAttribute("Name");
+                if(!OneName) { SerializeError("create Name Attribute on OneChildShapeNode",this->CompoundCollisionShape::SerializableName());}
+                OneName.SetValue(ChildShapes[X]->GetName());
+            //}else{
+            //    ChildShapes[X].ProtoSerialize(ChildShapesNode);
+            //}
+        }
+
+    }
+
+    void CompoundCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->CompoundCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild("CollisionShape");
+                if(!CollisionNode)
+                    { DeSerializeError("locate CollisionShape node",SerializableName()); }
+                this->CollisionShape::ProtoDeSerialize(CollisionNode);
+
+                ChildShapes.clear(); // this will leak if any childshapes are not in the CollisionManager.
+                xml::Node ChildShapesNode = OneNode.GetChild("Shapes");
+                if(!ChildShapesNode) { DeSerializeError("Find Shapes Node",this->CompoundCollisionShape::SerializableName());}
+
+                xml::Node ChildNode = ChildShapesNode.GetFirstChild();
+                while(ChildNode)
+                {
+                    if(ChildNode.Name()=="ChildShapeFromManager")
+                    {
+                        xml::Attribute OneName = ChildNode.GetAttribute("Name");
+                        if(!OneName) { DeSerializeError("find Name Attribute on ChildShapeFromManager Node",this->CompoundCollisionShape::SerializableName()); }
+                        CollisionShape* CurrentShape = World::GetWorldPointer()->GetCollisionShapeManager()->GetShape(OneName.AsString());
+                        if(!CurrentShape) { DeSerializeError("find correct shape in CollisionShape Manager",this->CompoundCollisionShape::SerializableName()); }
+                        ChildShapes.push_back(CurrentShape);
+                    }else{
+                        CollisionShape* CurrentShape = CreateShape(ChildNode);
+                        ChildShapes.push_back(CurrentShape);
+                    }
+                    ChildNode=ChildNode.GetNextSibling();
+                }
+
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String CompoundCollisionShape::SerializableName()
+        {   return String("CompoundCollisionShape"); }
+#endif
+
     /////////////////////////////////////////
     // BoxCollisionShape Functions
 
     BoxCollisionShape::BoxCollisionShape(const String& Name, const Vector3& HalfExtents)
     {
         this->Name = Name;
-        BoxShape = new btBoxShape(HalfExtents.GetBulletVector3());
-        SetPointers(BoxShape);
+        SetPointers(new btBoxShape(HalfExtents.GetBulletVector3()));
     }
 
     BoxCollisionShape::BoxCollisionShape(const String& Name, btBoxShape* BulletShape)
     {
         this->Name = Name;
-        BoxShape = BulletShape;
-        SetPointers(BoxShape);
+        SetPointers(BulletShape);
     }
+
+#ifdef PHYSXML
+    BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            xml::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
+            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            this->Name=OneName.AsString();
+
+            /*xml::Node HalfExtentsNode = OneNode.GetChild("HalfExtents").GetFirstChild();
+            if (!HalfExtentsNode) { DeSerializeError("find HalfExtentsNode",BoxCollisionShape::SerializableName()); }
+            SetPointers(new btBoxShape(Vector3(HalfExtentsNode).GetBulletVector3()));
+            // */
+            SetPointers(new btBoxShape(Vector3().GetBulletVector3()));
+
+            this->ProtoDeSerialize(OneNode);
+        }else{
+            DeSerializeError("find usable serialization version",BoxCollisionShape::SerializableName());
+        }
+    }
+#endif // /PHYSXML
 
     BoxCollisionShape::~BoxCollisionShape()
     {
-        delete BoxShape;
+        delete GetBulletBoxShape();
+    }
+
+    Vector3 BoxCollisionShape::GetCleanHalfExtents() const
+    {
+        return (this->GetHalfExtentsWithMargin()/this->GetScaling());
     }
 
     Vector3 BoxCollisionShape::GetHalfExtents() const
     {
-        Vector3 HalfExtents(BoxShape->getHalfExtentsWithoutMargin());
-        return HalfExtents;
+        return Vector3(GetBulletBoxShape()->getHalfExtentsWithoutMargin());
     }
 
     Vector3 BoxCollisionShape::GetHalfExtentsWithMargin() const
     {
-        Vector3 HalfExtents(BoxShape->getHalfExtentsWithMargin());
-        return HalfExtents;
+        return Vector3(GetBulletBoxShape()->getHalfExtentsWithMargin());
     }
 
     bool BoxCollisionShape::IsInside(const Vector3& Location, const Real& Tolerance) const
     {
-        return BoxShape->isInside(Location.GetBulletVector3(),Tolerance);
+        return GetBulletBoxShape()->isInside(Location.GetBulletVector3(),Tolerance);
     }
 
     CollisionShape::ShapeType BoxCollisionShape::GetType() const
@@ -455,105 +560,379 @@ namespace phys
         return CollisionShape::ST_Box;
     }
 
+    btBoxShape* BoxCollisionShape::GetBulletBoxShape() const
+        { return static_cast<btBoxShape*>(ShapeBase); }
+#ifdef PHYSXML
+    void BoxCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->BoxCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->BoxCollisionShape::SerializableName());}
+
+        /*
+        xml::Node HalfExtentsNode = CollisionNode.AppendChild("HalfExtents");
+        if (!HalfExtentsNode) { SerializeError("create HalfExtentsNode",this->BoxCollisionShape::SerializableName());}
+        //this->GetHalfExtents().ProtoSerialize(HalfExtentsNode);
+        this->GetCleanHalfExtents().ProtoSerialize(HalfExtentsNode);
+        */
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
+    }
+
+    void BoxCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->BoxCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                if(!CollisionNode)
+                    { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String BoxCollisionShape::SerializableName()
+        {   return String("BoxCollisionShape"); }
+#endif // /PHYSXML
     /////////////////////////////////////////
     // CapsuleCollisionShape Functions
 
-    CapsuleCollisionShape::CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis)
+    void CapsuleCollisionShape::Construct(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis)
     {
         this->Name = Name;
-        if(Vector3::Unit_Y() == UpAxis) CapsuleShape = new btCapsuleShape(Radius,Height);
-        else if(Vector3::Unit_X() == UpAxis) CapsuleShape = new btCapsuleShapeX(Radius,Height);
-        else if(Vector3::Unit_Z() == UpAxis) CapsuleShape = new btCapsuleShapeZ(Radius,Height);
-        else World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up Axis passed into CapsuleCollisionShape constructor."));
+        btCapsuleShape* CapsuleShape = 0;
+        if(Axis_Y == UpAxis) CapsuleShape = new btCapsuleShape(Radius,Height);
+        else if(Axis_X == UpAxis) CapsuleShape = new btCapsuleShapeX(Radius,Height);
+        else if(Axis_Z == UpAxis) CapsuleShape = new btCapsuleShapeZ(Radius,Height);
+        else World::GetWorldPointer()->LogAndThrow("Non-supported up Axis passed into CapsuleCollisionShape constructor.");
         SetPointers(CapsuleShape);
     }
+
+    CapsuleCollisionShape::CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis)
+        { this->Construct(Name,Radius,Height,UpAxis.IsStandardUnitAxis()); }
+
+    CapsuleCollisionShape::CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis)
+        { this->Construct(Name,Radius,Height,UpAxis); }
+
+#ifdef PHYSXML
+    CapsuleCollisionShape::CapsuleCollisionShape(xml::Node OneNode)
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            xml::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
+            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            String Name_(OneName.AsString());
+
+            xml::Attribute Axis = OneNode.GetAttribute("Axis");
+            if (!Axis) { DeSerializeError("find Axis Attribute",CapsuleCollisionShape::SerializableName()); }
+            /*
+            xml::Attribute Radius = OneNode.GetAttribute("Radius");
+            if (!Radius) { DeSerializeError("find Radius Attribute",CapsuleCollisionShape::SerializableName()); }
+            xml::Attribute Height = OneNode.GetAttribute("Height");
+            if (!Height) { DeSerializeError("find Height Attribute",CapsuleCollisionShape::SerializableName()); }
+            //SetPointers(new CapsuleCollisionShape(Name_,Radius.AsReal(),Height.AsReal(), (StandardAxis)Axis.AsInteger());  // make and deserialize the shape
+            this->Construct(Name_,Radius.AsReal(),Height.AsReal(),(StandardAxis)Axis.AsInteger());
+            */
+            this->Construct(Name_,0,0,(StandardAxis)Axis.AsInteger());
+
+            this->ProtoDeSerialize(OneNode);
+
+        }else{
+            DeSerializeError("find usable serialization version",BoxCollisionShape::SerializableName());
+        }
+    }
+#endif // /PHYSXML
 
     CapsuleCollisionShape::CapsuleCollisionShape(const String& Name, btCapsuleShape* BulletShape)
     {
         this->Name = Name;
-        CapsuleShape = BulletShape;
-        SetPointers(CapsuleShape);
+        SetPointers(BulletShape);
     }
 
     CapsuleCollisionShape::~CapsuleCollisionShape()
     {
-        delete CapsuleShape;
+        delete GetBulletCapsuleShape();
     }
 
     Real CapsuleCollisionShape::GetRadius() const
-    {
-        return CapsuleShape->getRadius();
-    }
-
+        { return GetBulletCapsuleShape()->getRadius(); }
     Real CapsuleCollisionShape::GetHeight() const
-    {
-        return (CapsuleShape->getHalfHeight() * 2.0);
-    }
+        { return (GetBulletCapsuleShape()->getHalfHeight() * 2.0); }
+
+    Real CapsuleCollisionShape::GetCleanRadius() const
+        { return (this->GetRadius()+GetBulletCapsuleShape()->getMargin()) / GetScaling()[(StandardAxis)((this->GetUpStandardAxis()+2)%3)] - GetBulletCapsuleShape()->getMargin(); }
+        //{ return GetRadiusWithMargin() / GetScaling()[(StandardAxis)((this->GetUpStandardAxis()+2)%3)] - GetBulletCapsuleShape()->getMargin(); }
+    Real CapsuleCollisionShape::GetCleanHeight() const
+        //{ return 2.0* ((GetBulletCapsuleShape()->getHalfHeight()+GetBulletCapsuleShape()->getMargin()) / GetScaling()[this->GetUpStandardAxis()] - GetBulletCapsuleShape()->getMargin()); }
+        { return 2.0* ((GetBulletCapsuleShape()->getHalfHeight()) / GetScaling()[this->GetUpStandardAxis()]); }
+    /* Real CapsuleCollisionShape::GetRadiusWithMargin() const
+        { return this->GetRadius()+GetBulletCapsuleShape()->getMargin(); }*/
 
     Vector3 CapsuleCollisionShape::GetUpAxis() const
-    {
-        switch(CapsuleShape->getUpAxis())
-        {
-            case 0: return Vector3::Unit_X();
-            case 1: return Vector3::Unit_Y();
-            case 2: return Vector3::Unit_Z();
-        }
-    }
+        { return Vector3::UnitOnAxis( (StandardAxis)GetBulletCapsuleShape()->getUpAxis() ); }
+
+    StandardAxis CapsuleCollisionShape::GetUpStandardAxis() const
+        { return (StandardAxis)GetBulletCapsuleShape()->getUpAxis(); }
 
     CollisionShape::ShapeType CapsuleCollisionShape::GetType() const
     {
         return CollisionShape::ST_Capsule;
     }
 
+    btCapsuleShape* CapsuleCollisionShape::GetBulletCapsuleShape() const
+        { return static_cast<btCapsuleShape*>(ShapeBase); }
+
+#ifdef PHYSXML
+    void CapsuleCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->CapsuleCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->CapsuleCollisionShape::SerializableName());}
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+/*
+        xml::Attribute RadiusAttr = CollisionNode.AppendAttribute("Radius");
+        if (RadiusAttr)
+            { RadiusAttr.SetValue(this->GetCleanRadius()); }
+        else
+            { SerializeError("Create RadiusAttr Attribute", SerializableName()); }
+
+        xml::Attribute HeightAttr = CollisionNode.AppendAttribute("Height");
+        if (HeightAttr)
+            { HeightAttr.SetValue(this->GetCleanHeight()); }
+        else
+            { SerializeError("Create HeightAttr Attribute", SerializableName()); }
+*/
+        xml::Attribute AxisAttr = CollisionNode.AppendAttribute("Axis");
+        if (AxisAttr)
+            { AxisAttr.SetValue(this->GetUpStandardAxis()); }
+        else
+            { SerializeError("Create AxisAttr Attribute", SerializableName()); }
+
+        this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
+    }
+
+    void CapsuleCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->CapsuleCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                if(!CollisionNode)
+                    { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String CapsuleCollisionShape::SerializableName()
+        {   return String("CapsuleCollisionShape"); }
+#endif
+
     /////////////////////////////////////////
     // ConeCollisionShape Functions
 
-    ConeCollisionShape::ConeCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis)
+    void ConeCollisionShape::Construct(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis)
     {
         this->Name = Name;
-        if(Vector3::Unit_Y() == UpAxis) ConeShape = new btConeShape(Radius,Height);
-        else if(Vector3::Unit_X() == UpAxis) ConeShape = new btConeShapeX(Radius,Height);
-        else if(Vector3::Unit_Z() == UpAxis) ConeShape = new btConeShapeZ(Radius,Height);
-        else World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up Axis passed into ConeCollisionShape constructor."));
+        btConeShape* ConeShape;
+        if(Axis_Y == UpAxis) ConeShape = new btConeShape(Radius,Height);
+        else if(Axis_X == UpAxis) ConeShape = new btConeShapeX(Radius,Height);
+        else if(Axis_Z == UpAxis) ConeShape = new btConeShapeZ(Radius,Height);
+        else World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up StandardAxis passed into ConeCollisionShape constructor."));
         SetPointers(ConeShape);
+        this->GetBulletConeShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
     }
+
+    Vector3 ConeCollisionShape::GetAxisMathBS() const
+    {
+        Vector3 Results;
+        switch (GetUpStandardAxis())
+        {
+            case 0:
+                    Results[0] = 1;
+                    Results[1] = 0;
+                    Results[2] = 2;
+                break;
+            case 1:
+                    Results[0] = 0;
+                    Results[1] = 1;
+                    Results[2] = 2;
+                break;
+            case 2:
+                    Results[0] = 0;
+                    Results[1] = 2;
+                    Results[2] = 1;
+                break;
+            default:
+                World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up StandardAxis passed into ConeCollisionShape::GetAxisMathBS()."));
+        }
+
+        return Results;
+    }
+
+    ConeCollisionShape::ConeCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis)
+        { Construct(Name, Radius, Height, UpAxis.IsStandardUnitAxis()); }
+
+    ConeCollisionShape::ConeCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis)
+        { Construct(Name, Radius, Height, UpAxis); }
+
+#ifdef PHYSXML
+    ConeCollisionShape::ConeCollisionShape(xml::Node OneNode)
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            xml::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
+            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            String Name_(OneName.AsString());
+
+            xml::Attribute Radius = OneNode.GetAttribute("Radius");                                                                             // Find Attributes
+            if (!Radius) { DeSerializeError("find Radius Attribute",ConeCollisionShape::SerializableName()); }
+            xml::Attribute Axis = OneNode.GetAttribute("Axis");
+            if (!Axis) { DeSerializeError("find Axis Attribute",ConeCollisionShape::SerializableName()); }
+            xml::Attribute Height = OneNode.GetAttribute("Height");
+            if (!Height) { DeSerializeError("find Height Attribute",ConeCollisionShape::SerializableName()); }
+
+            this->Construct(Name_,Radius.AsReal(),Height.AsReal(), (StandardAxis)Axis.AsInteger());        // make and deserialize the shape
+            this->ProtoDeSerialize(OneNode);
+        }else{
+            DeSerializeError("find usable serialization version",BoxCollisionShape::SerializableName());
+        }
+    }
+#endif // /PHYSXML
 
     ConeCollisionShape::ConeCollisionShape(const String& Name, btConeShape* BulletShape)
     {
         this->Name = Name;
-        ConeShape = BulletShape;
-        SetPointers(ConeShape);
+        SetPointers(BulletShape);
+        this->GetBulletConeShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
     }
 
     ConeCollisionShape::~ConeCollisionShape()
     {
-        delete ConeShape;
+        delete GetBulletConeShape();
     }
 
     Real ConeCollisionShape::GetRadius() const
     {
-        return ConeShape->getRadius();
+        return GetBulletConeShape()->getRadius();
     }
 
     Real ConeCollisionShape::GetHeight() const
     {
-        return ConeShape->getHeight();
+        return GetBulletConeShape()->getHeight();
     }
 
-    Vector3 ConeCollisionShape::GetUpAxis() const
+    Real ConeCollisionShape::GetCleanRadius() const
     {
-        switch(ConeShape->getConeUpIndex())
-        {
-            case 0: return Vector3::Unit_X();
-            case 1: return Vector3::Unit_Y();
-            case 2: return Vector3::Unit_Z();
-        }
+        return (GetRadius()) / GetRadiusScaling();
     }
+
+    Real ConeCollisionShape::GetCleanHeight() const
+    {
+        return GetHeight() / GetHeightScaling();
+    }
+
+    Real ConeCollisionShape::GetRadiusScaling() const
+        { return (GetScaling()[GetAxisMathBS()[0]]+GetScaling()[GetAxisMathBS()[2]])/2.0; }
+
+    Real ConeCollisionShape::GetHeightScaling() const
+        { return GetScaling()[GetUpStandardAxis()]; }
+
+    Vector3 ConeCollisionShape::GetUpAxis() const
+        { return Vector3::UnitOnAxis( (StandardAxis)GetBulletConeShape()->getConeUpIndex() ); }
+
+    StandardAxis ConeCollisionShape::GetUpStandardAxis() const
+        { return (StandardAxis)GetBulletConeShape()->getConeUpIndex(); }
+
 
     CollisionShape::ShapeType ConeCollisionShape::GetType() const
     {
         return CollisionShape::ST_Cone;
     }
+
+    btConeShape* ConeCollisionShape::GetBulletConeShape() const
+        { return static_cast<btConeShape*>(ShapeBase); }
+
+#ifdef PHYSXML
+    void ConeCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->ConeCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->ConeCollisionShape::SerializableName());}
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        xml::Attribute RadiusAttr = CollisionNode.AppendAttribute("Radius");
+        if (RadiusAttr)
+            { RadiusAttr.SetValue(this->GetCleanRadius()); }
+        else
+            { SerializeError("Create RadiusAttr Attribute", SerializableName()); }
+
+        /*xml::Attribute DirtyRadius = CollisionNode.AppendAttribute("DirtyRadius");
+        if (DirtyRadius)
+            { DirtyRadius.SetValue(this->GetRadius()); }
+        else
+            { SerializeError("Create DirtyRadius Attribute", SerializableName()); }*/
+
+        xml::Attribute HeightAttr = CollisionNode.AppendAttribute("Height");
+        if (HeightAttr)
+            { HeightAttr.SetValue(this->GetCleanHeight()); }
+        else
+            { SerializeError("Create HeightAttr Attribute", SerializableName()); }
+
+        xml::Attribute AxisAttr = CollisionNode.AppendAttribute("Axis");
+        if (AxisAttr)
+            { AxisAttr.SetValue(this->GetUpStandardAxis()); }
+        else
+            { SerializeError("Create AxisAttr Attribute", SerializableName()); }
+
+        this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
+    }
+
+    void ConeCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->ConeCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                if(!CollisionNode)
+                    { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String ConeCollisionShape::SerializableName()
+        {   return String("ConeCollisionShape"); }
+#endif
 
     /////////////////////////////////////////
     // ConvexHullCollisionShape Functions
@@ -561,57 +940,141 @@ namespace phys
     ConvexHullCollisionShape::ConvexHullCollisionShape(const String& Name, const std::vector<Vector3>& Points)
     {
         btScalar* BulletPoints = new btScalar[Points.size() * 3];
-        for( Whole X = 0 ; X < Points.size() ; X+=3 )
+        for( Whole X = 0 ; X < Points.size() ; ++X )
         {
-            btVector3 Point = Points[X].GetBulletVector3();
-            BulletPoints[X] = Point.getX();
-            BulletPoints[X+1] = Point.getY();
-            BulletPoints[X+2] = Point.getZ();
+            BulletPoints[X*3]     = Points[X][0];
+            BulletPoints[X*3+1]   = Points[X][1];
+            BulletPoints[X*3+2]   = Points[X][2];
         }
 
         this->Name = Name;
-        ConvexHullShape = new btConvexHullShape(BulletPoints,Points.size());
-        SetPointers(ConvexHullShape);
-        delete BulletPoints;
+        SetPointers(new btConvexHullShape(BulletPoints,Points.size(),3*sizeof(btScalar)));
+        this->GetBulletHullShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
+        delete[] BulletPoints;
     }
 
     ConvexHullCollisionShape::ConvexHullCollisionShape(const String& Name, btConvexHullShape* BulletShape)
     {
         this->Name = Name;
-        ConvexHullShape = BulletShape;
-        SetPointers(ConvexHullShape);
+        SetPointers(BulletShape);
+        this->GetBulletHullShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
     }
+
+#ifdef PHYSXML
+    ConvexHullCollisionShape::ConvexHullCollisionShape(xml::Node OneNode)
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            xml::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
+            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+
+            this->Name = OneName.AsString();
+
+            SetPointers(new btConvexHullShape());
+
+            this->ProtoDeSerialize(OneNode);
+        }else{
+            DeSerializeError("find usable serialization version",BoxCollisionShape::SerializableName());
+        }
+    }
+#endif // /PHYSXML
 
     ConvexHullCollisionShape::~ConvexHullCollisionShape()
     {
-        delete ConvexHullShape;
+        delete GetBulletHullShape();
     }
 
     void ConvexHullCollisionShape::AddPoint(const Vector3& Point)
     {
-        ConvexHullShape->addPoint(Point.GetBulletVector3());
+        GetBulletHullShape()->addPoint(Point.GetBulletVector3());
+    }
+
+    Vector3 ConvexHullCollisionShape::GetUnscaledPoint(const Whole& Index) const
+    {
+
+        return Vector3 ( *(GetBulletHullShape()->getUnscaledPoints()+Index) );
     }
 
     Vector3 ConvexHullCollisionShape::GetPoint(const Whole& Index) const
     {
-        Vector3 Point(ConvexHullShape->getScaledPoint(Index));
-        return Point;
+        return Vector3(GetBulletHullShape()->getScaledPoint(Index));
     }
 
     Whole ConvexHullCollisionShape::GetNumPoints() const
     {
-        return ConvexHullShape->getNumPoints();
+        return GetBulletHullShape()->getNumPoints();
     }
 
-    bool ConvexHullCollisionShape::IsInside(const Vector3& Location, const Real& Tolorance) const
+    bool ConvexHullCollisionShape::IsInside(const Vector3& Location, const Real& Tolerance) const
     {
-        return ConvexHullShape->isInside(Location.GetBulletVector3(),Tolorance);
+        return GetBulletHullShape()->isInside(Location.GetBulletVector3(),Tolerance);
     }
 
     CollisionShape::ShapeType ConvexHullCollisionShape::GetType() const
     {
         return CollisionShape::ST_ConvexHull;
     }
+
+    btConvexHullShape* ConvexHullCollisionShape::GetBulletHullShape() const
+        { return static_cast<btConvexHullShape*>(ShapeBase); }
+
+#ifdef PHYSXML
+    void ConvexHullCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->ConvexHullCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->ConvexHullCollisionShape::SerializableName());}
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        xml::Node PointsNode = CollisionNode.AppendChild("UnscaledPoints");
+        if (!PointsNode) { SerializeError("create UnscaledPoints",this->ConvexHullCollisionShape::SerializableName());}
+
+        for(Whole c=0; c<this->GetNumPoints(); ++c)
+        {
+            this->GetUnscaledPoint(c).ProtoSerialize(PointsNode);
+        }
+
+        this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
+    }
+
+    void ConvexHullCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->ConvexHullCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                if(!CollisionNode)
+                    { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
+
+                xml::Node UnscaledPoints = OneNode.GetChild("UnscaledPoints");
+                if(!UnscaledPoints)
+                    { DeSerializeError("locate UnscaledPoints node",SerializableName()); }
+
+                xml::Node OnePoint = UnscaledPoints.GetFirstChild();
+                while (OnePoint)
+                {
+                    this->AddPoint(Vector3(OnePoint));
+                    OnePoint = OnePoint.GetNextSibling();
+                }
+
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String ConvexHullCollisionShape::SerializableName()
+        {   return String("ConvexHullCollisionShape"); }
+#endif
+
 
     /////////////////////////////////////////
     // CylinderCollisionShape Functions
@@ -867,6 +1330,242 @@ namespace phys
     {
         return CollisionShape::ST_StaticTriMesh;
     }
+
+    /////////////////////////////////////////
+    // Utility Functions
+    CollisionShape* CreateShape(CollisionShape::ShapeType ShapeToCreate, const String& Name_, btCollisionShape* ShapeToModel)
+    {
+        if (ShapeToModel)
+        {
+            switch(ShapeToCreate)
+            {
+                case CollisionShape::ST_Box:
+                    return new BoxCollisionShape(Name_,(btBoxShape*)ShapeToModel);
+                case CollisionShape::ST_Capsule:
+                    return new CapsuleCollisionShape(Name_,(btCapsuleShape*)ShapeToModel);
+                case CollisionShape::ST_Cone:
+                    return new ConeCollisionShape(Name_,(btConeShape*)ShapeToModel);
+                case CollisionShape::ST_ConvexHull:
+                    return new ConvexHullCollisionShape(Name_,(btConvexHullShape*)ShapeToModel);
+                case CollisionShape::ST_Cylinder:
+                    return new CylinderCollisionShape(Name_,(btCylinderShape*)ShapeToModel);
+                case CollisionShape::ST_MultiSphere:
+                    return new MultiSphereCollisionShape(Name_,(btMultiSphereShape*)ShapeToModel);
+                case CollisionShape::ST_Sphere:
+                    return new SphereCollisionShape(Name_,(btSphereShape*)ShapeToModel);
+                case CollisionShape::ST_DynamicTriMesh:
+                    return new DynamicMeshCollisionShape(Name_,(btGImpactMeshShape*)ShapeToModel);
+                case CollisionShape::ST_Heightfield:
+                    return new HeightfieldCollisionShape(Name_,(btHeightfieldTerrainShape*)ShapeToModel);
+                case CollisionShape::ST_Plane:
+                    return new PlaneCollisionShape(Name_,(btStaticPlaneShape*)ShapeToModel);
+                case CollisionShape::ST_ActorSoft:
+                    return new ActorSoftCollisionShape(Name_,(btSoftBodyCollisionShape*)ShapeToModel);
+                case CollisionShape::ST_StaticTriMesh:
+                    return new StaticMeshCollisionShape(Name_,(btBvhTriangleMeshShape*)ShapeToModel);
+                case CollisionShape::ST_Compound: // holy recursive batman
+                    return new CompoundCollisionShape(Name_,(btCompoundShape*)ShapeToModel);
+                default:
+                    World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance.");
+            }
+        }else{
+            World::GetWorldPointer()->LogAndThrow("Attempting to convert an empty Bullet Collision Shape type into a CollisionShape instance.");
+        }
+    }
+
+    CollisionShape* CreateShape(xml::Node OneNode)
+    {
+        CollisionShape::ShapeType ShapeToCreate = StringToShapeType(OneNode.Name());
+
+        String Name_("Defunct");
+
+        switch(ShapeToCreate)
+        {
+            case CollisionShape::ST_Box:
+                return new BoxCollisionShape(OneNode);
+            case CollisionShape::ST_Capsule:
+                return new CapsuleCollisionShape(OneNode);
+            case CollisionShape::ST_Cone:
+                return new ConeCollisionShape(OneNode);
+            case CollisionShape::ST_ConvexHull:
+                return new ConvexHullCollisionShape(OneNode);
+            case CollisionShape::ST_Cylinder:
+                return new CylinderCollisionShape(Name_,1,1,Vector3::Unit_Y());
+            case CollisionShape::ST_MultiSphere:
+            {
+                std::vector<Vector3> Points;
+                std::vector<Real> Radii;
+                Points.push_back(Vector3(0,0,0)); Points.push_back(Vector3(1,0,0));
+                Radii.push_back(1); Radii.push_back(1);
+                //return new MultiSphereCollisionShape(Name_,(btMultiSphereShape*)ShapeToModel);
+            }
+            case CollisionShape::ST_Sphere:
+                return new SphereCollisionShape(Name_,1);
+            case CollisionShape::ST_DynamicTriMesh:     /// @todo Complete CreateShape function once DynamicMeshCollisionShape can be deserialized
+                //return new DynamicMeshCollisionShape(Name_,(btGImpactMeshShape*)ShapeToModel);
+                World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a DynamicMeshCollisionShape.");
+            case CollisionShape::ST_Heightfield:
+                return new HeightfieldCollisionShape(Name_);
+            case CollisionShape::ST_Plane:
+                return new PlaneCollisionShape(Name_);
+            case CollisionShape::ST_ActorSoft:          /// @todo Complete CreateShape function once ActorSoftCollisionShape can be deserialized
+                //return new ActorSoftCollisionShape(Name_,(btSoftBodyCollisionShape*)ShapeToModel);
+                World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a ActorSoftCollisionShape.");
+            case CollisionShape::ST_StaticTriMesh:      /// @todo Complete CreateShape function once StaticMeshCollisionShape can be deserialized
+                //return new StaticMeshCollisionShape(Name_,(btBvhTriangleMeshShape*)ShapeToModel);
+                World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a ActorSoftCollisionShape.");
+            case CollisionShape::ST_Compound: // holy recursive batman
+                return new CompoundCollisionShape(Name_);
+            default:
+                World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance.");
+        }
+    }
+
+    CollisionShape::ShapeType BulletSapeTypeToShapeType(int BulletShapeType)
+    {
+        switch(BulletShapeType)
+        {
+            case BOX_SHAPE_PROXYTYPE:           return CollisionShape::ST_Box;
+            case CAPSULE_SHAPE_PROXYTYPE:       return CollisionShape::ST_Capsule;
+            case CONE_SHAPE_PROXYTYPE:          return CollisionShape::ST_Cone;
+            case CONVEX_HULL_SHAPE_PROXYTYPE:   return CollisionShape::ST_ConvexHull;
+            case CYLINDER_SHAPE_PROXYTYPE:      return CollisionShape::ST_Cylinder;
+            case MULTI_SPHERE_SHAPE_PROXYTYPE:  return CollisionShape::ST_MultiSphere;
+            case SPHERE_SHAPE_PROXYTYPE:        return CollisionShape::ST_Sphere;
+            case GIMPACT_SHAPE_PROXYTYPE:       return CollisionShape::ST_DynamicTriMesh;
+            case TERRAIN_SHAPE_PROXYTYPE:       return CollisionShape::ST_Heightfield;
+            case STATIC_PLANE_PROXYTYPE:        return CollisionShape::ST_Plane;
+            case SOFTBODY_SHAPE_PROXYTYPE:      return CollisionShape::ST_ActorSoft;
+            case TRIANGLE_MESH_SHAPE_PROXYTYPE: return CollisionShape::ST_StaticTriMesh;
+            case COMPOUND_SHAPE_PROXYTYPE:      return CollisionShape::ST_Compound;
+            default:
+                World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Bullet Collision Shape type into a phys::CollisionShapeShapeType.");
+        }
+    }
+
+    String ShapeTypeToString(CollisionShape::ShapeType ShapeToConvert)
+    {
+        switch(ShapeToConvert)
+        {
+            case CollisionShape::ST_Box:            return String("BoxCollisionShape");
+            case CollisionShape::ST_Capsule:        return String("CapsuleCollisionShape");
+            case CollisionShape::ST_Cone:           return String("ConeCollisionShape");
+            case CollisionShape::ST_ConvexHull:     return String("ConvexHullCollisionShape");
+            case CollisionShape::ST_Cylinder:       return String("CylinderCollisionShape");
+            case CollisionShape::ST_MultiSphere:    return String("MultiSphereCollisionShape");
+            case CollisionShape::ST_Sphere:         return String("SphereCollisionShape");
+            case CollisionShape::ST_DynamicTriMesh: return String("DynamicMeshCollisionShape");
+            case CollisionShape::ST_Heightfield:    return String("HeightfieldCollisionShapeString(");
+            case CollisionShape::ST_Plane:          return String("PlaneCollisionShape");
+            case CollisionShape::ST_ActorSoft:      return String("ActorSoftCollisionShape");
+            case CollisionShape::ST_StaticTriMesh:  return String("StaticMeshCollisionShape");
+            case CollisionShape::ST_Compound:       return String("CompoundCollisionShape");
+            default:
+                World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a String.");
+        }
+    }
+
+    CollisionShape::ShapeType StringToShapeType(const String& TypeName)
+    {
+        if(TypeName.size()<5)
+            { World::GetWorldPointer()->LogAndThrow("Attempting to convert a CollisionShape::ShapeType String into a CollisionShape::ShapeType which is too short to be valid."); }
+        switch(TypeName.at(3))
+        {
+            case 'C':
+                if (String("BoxCollisionShape")==TypeName)
+                    { return CollisionShape::ST_Box; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'C'."); }
+            case 's':
+                if (String("CapsuleCollisionShape")==TypeName)
+                    { return CollisionShape::ST_Capsule; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 's'."); }
+            case 'e':
+                if (String("SphereCollisionShape")==TypeName)
+                    { return CollisionShape::ST_Sphere; }
+                else if (String("ConeCollisionShape")==TypeName)
+                    { return CollisionShape::ST_Cone; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'e'."); }
+            case 'v':
+                if (String("ConvexHullCollisionShape")==TypeName)
+                    { return CollisionShape::ST_ConvexHull; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'v'."); }
+            case 'i':
+                if (String("CylinderCollisionShape")==TypeName)
+                    { return CollisionShape::ST_Cylinder; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'i'."); }
+            case 't':
+                if (String("StaticMeshCollisionShape")==TypeName)
+                    { return CollisionShape::ST_StaticTriMesh; }
+                else if (String("MultiSphereCollisionShape")==TypeName)
+                    { return CollisionShape::ST_MultiSphere; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 't'."); }
+            case 'a':
+                if (String("DynamicMeshCollisionShape")==TypeName)
+                    { return CollisionShape::ST_DynamicTriMesh; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'a'."); }
+            case 'g':
+                if (String("HeightfieldCollisionShapeString")==TypeName)
+                    { return CollisionShape::ST_Heightfield; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'g'."); }
+            case 'n':
+                if (String("PlaneCollisionShape")==TypeName)
+                    { return CollisionShape::ST_Plane; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'n'."); }
+            case 'o':
+                if (String("ActorSoftCollisionShape")==TypeName)
+                    { return CollisionShape::ST_ActorSoft; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'o'."); }
+            case 'p':
+                if (String("CompoundCollisionShape")==TypeName)
+                    { return CollisionShape::ST_Compound; }
+                else
+                    { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'p'."); }
+            default:
+                World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType.");
+        }
+    }
+
+    ///////////////////////////////////////
+    // CollisionShapeDeSerializer
+    CollisionShape* CollisionShapeDeSerializer::PerformDeSerialization(std::istream& Stream)
+    {
+        xml::Document* Doc = new xml::Document();
+        String OneTag( phys::xml::GetOneTag(Stream) );
+        if(!Doc->Load(OneTag.c_str()))
+        {
+            delete Doc;
+            World::GetWorldPointer()->LogAndThrow(StringCat("Could not Deserialize XML Stream which should contain a Collision Shape, XML looked Like: ", OneTag) );
+        }
+
+        CollisionShape* Results = ProtoDeSerialize(Doc->GetFirstChild());
+        delete Doc;
+        return Results;
+    }
+
+    CollisionShape* CollisionShapeDeSerializer::ProtoDeSerialize(const xml::Node& OneNode)
+        { return CreateShape(OneNode); }
+
+    std::istream& CollisionShapeDeSerializer::DeSerialize(std::istream& Stream)
+    {
+        PerformDeSerialization(Stream);
+        return Stream;
+    }
+
+    CollisionShape* CollisionShapeDeSerializer::DeSerializeAndRetrieve(std::istream& Stream)
+        { return PerformDeSerialization(Stream); }
+
+    String CollisionShapeDeSerializer::ContainerName() const
+        { return String("Shapes"); }
 }
 
 #ifdef PHYSXML

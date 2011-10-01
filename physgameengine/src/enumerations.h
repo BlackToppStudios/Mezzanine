@@ -131,6 +131,14 @@ namespace phys
         WOT_Camera = 2048
     };
 
+    /// @brief Used to identify different Axis in a 3d coordinate system.
+    /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.
+    enum StandardAxis {
+        Axis_X         = 0,    ///< X axis
+        Axis_Y         = 1,    ///< Y axis
+        Axis_Z         = 2,    ///< Z axis
+    };
+
     namespace UI
     {
         /// @enum ActivationCondition

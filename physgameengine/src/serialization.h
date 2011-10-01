@@ -364,7 +364,16 @@ namespace phys
         /// @details This is expected to put the deserialized items somewhere they can be accessed by the calling,
         /// but provides no facility for working them itself. \n \n
         /// Not implemented in default DeSerializer.
-        virtual void ProtoDeSerializeAll(const xml::Node& OneNode) = 0;
+        virtual void ProtoDeSerializeAll(const xml::Node& OneNode)
+        {
+            // no checking occurs here, because this should be DeSerializeAll(istream&)
+            xml::Node SingleItemNode = OneNode.GetFirstChild();
+            while(SingleItemNode)
+            {
+                ProtoDeSerialize(SingleItemNode);
+                SingleItemNode = SingleItemNode.GetNextSibling();
+            }
+        }
         /// @brief Get One node that has several of the appropriate kinds of nodes as children and deserialize all of them
         /// @param Stream The std::istream to get the data from.
         /// @details The default implementation of this uses ProtoDeSerializeAll(xml::Node&) to accept11
@@ -383,7 +392,7 @@ namespace phys
         /// @details Not implemented in default serializer.
         /// @return A pointer to the freshly deserialized class instance.
         virtual DeSerializable* ProtoDeSerialize(const xml::Node& OneNode) = 0;
-        /// @brief Send the serialized version of all the live data into the stream.
+        /// @brief Get the serialized version of all the live data from the stream.
         /// @param Stream The std::istream to get the data from.
         /// @details The default implementation of this uses ProtoDeSerializeAll(xml::Node*) to accept
         /// The complete XML to serialise and assemble it in memory.

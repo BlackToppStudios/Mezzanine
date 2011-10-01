@@ -40,6 +40,7 @@
 #ifndef _collisionshapemanager_h
 #define _collisionshapemanager_h
 
+#include "collisionshape.h"
 #include "datatypes.h"
 #include "managerbase.h"
 #include <set>
@@ -70,6 +71,7 @@ namespace phys
             /// @brief This Stores the names and collision Shapes
             std::map<String,CollisionShape*> CollisionShapes;
 
+            /// @brief Stores shapes that have notbe given a name.
             std::set<CollisionShape*> UnnamedShapes;
 
             /// @brief Creates a TriMesh to be used in TriMesh based collision shapes.
@@ -203,6 +205,9 @@ namespace phys
             /// @param FileName The name of the file to save the shapes to.
             /// @param ShapesToSave A vector of collisions shapes that will be saved.
             virtual void SaveShapesToFile(const String& FileName, std::vector<CollisionShape*>& ShapesToSave);
+            /// @brief Used to serialize and deserialize collisionshapes to xml
+            /// @details More Sophisticated shapes may reference a .bullet or a .mesh file.
+            CollisionShapeDeSerializer ShapeDeserializer;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Unnamed Shape Management

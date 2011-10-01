@@ -55,6 +55,48 @@
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
+    // The Essentials
+
+    Real Vector3::GetAxisValue(StandardAxis Axis) const
+    {
+        switch(Axis)
+        {
+            case 0: return this->X;
+            case 1: return this->Y;
+            case 2: return this->Z;
+            default: throw(Exception("Cannot retrieve invalid StandardAxis in Vector3::GetAxisValue"));
+        }
+    }
+
+    Real Vector3::GetAxisValue(Integer Axis) const
+        { return this->GetAxisValue((StandardAxis)Axis); }
+
+    Real& Vector3::GetAxisValue(StandardAxis Axis)
+    {
+        switch(Axis)
+        {
+            case 0: return this->X;
+            case 1: return this->Y;
+            case 2: return this->Z;
+            default: throw(Exception("Cannot retrieve invalid StandardAxis in Vector3::GetAxisValue"));
+        }
+    }
+
+    Real& Vector3::GetAxisValue(Integer Axis)
+        { return this->GetAxisValue((StandardAxis)Axis); }
+
+    Real Vector3::operator[] (StandardAxis Axis) const
+        { return this->GetAxisValue(Axis); }
+
+    Real Vector3::operator[] (Integer Axis) const
+        { return this->GetAxisValue((StandardAxis)Axis); }
+
+    Real& Vector3::operator[] (StandardAxis Axis)
+        { return this->GetAxisValue(Axis); }
+
+    Real& Vector3::operator[] (Integer Axis)
+        { return this->GetAxisValue((StandardAxis)Axis); }
+    ///////////////////////////////////////////////////////////////////////////////
     // Constructors
     Vector3::Vector3()
     {
@@ -82,6 +124,11 @@ namespace phys
     Vector3::Vector3(const phys::Vector3& Vec)
         { *this = Vec; }
 
+#ifdef PHYSXML
+    Vector3::Vector3(xml::Node OneNode)
+        { this->ProtoDeSerialize(OneNode); }
+#endif
+
     ///////////////////////////////////////////////////////////////////////////////
     // Prebuilt Vectors
 
@@ -102,6 +149,34 @@ namespace phys
 
     Vector3 Vector3::Neg_Unit_Z()
         { return Vector3(0,0,-1); }
+
+    Vector3 Vector3::UnitOnAxis(StandardAxis Axis)
+    {
+        switch(Axis)
+        {
+            case 0: return Vector3::Unit_X();
+            case 1: return Vector3::Unit_Y();
+            case 2: return Vector3::Unit_Z();
+            default: throw(Exception("Cannot convert invalid StandardAxis in Vector3::UnitOnAxis"));
+        }
+    }
+
+    StandardAxis Vector3::IsStandardUnitAxis() const
+    {
+        if (1.0==this->X && 0.0==this->Y && 0.0==this->Z)
+        {
+            return Axis_X;
+        } else if (0.0==this->X) {                                         // Not Unit_X
+            if (1.0==this->Y && 0.0==this->Z)
+            {
+                return Axis_Y;
+            } else if (0.0==this->Y && 1.0==this->Z) {                                     // Not Unit_Y so hopefully it is Z
+                return Axis_Y;
+            }
+        }
+        throw(Exception("Cannot convert Vector3 to StandardAxis in Vector3::IsStandardUnitAxis, Vector3 may not be Axis Aligned or may not be Unit Length."));
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Assignment Operators

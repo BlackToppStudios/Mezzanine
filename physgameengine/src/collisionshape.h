@@ -40,11 +40,15 @@
 #ifndef _collisionshape_h
 #define _collisionshape_h
 
-#include "vector3.h"
-#include "quaternion.h"
+#include <memory>
+
+#include "enumerations.h"
+#include "serialization.h"
+#include "transform.h"
 
 class btCollisionShape;
 class btConvexShape;
+class btConvexInternalShape;
 class btConcaveShape;
 class btCompoundShape;
 class btBoxShape;
@@ -123,6 +127,7 @@ namespace phys
             /// @brief Gets the current scaling being applied to the collision shape.
             /// @return Returns a vector3 representing the amount of scaling being applied to the shape.
             virtual Vector3 GetScaling() const;
+
             /// @brief Gets the type of Collision shape this is.
             /// @return Returns an enum value indicating the type of collision shape this is.
             virtual CollisionShape::ShapeType GetType() const = 0;
@@ -160,7 +165,7 @@ namespace phys
     {
         protected:
             /// @brief Sets the internal pointers on the base classes.
-            void SetPointers(btConvexShape* Shape);
+            void SetPointers(btConvexInternalShape* Shape);
         public:
             /// @brief Class Constructor.
             PrimitiveCollisionShape();
@@ -169,7 +174,7 @@ namespace phys
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const = 0;
             /// @copydoc CollisionShape::GetBulletShape
-            virtual btConvexShape* GetBulletConvexShape() const;
+            virtual btConvexInternalShape* GetBulletConvexShape() const;
 
 #ifdef PHYSXML
             // Serializable
@@ -208,6 +213,17 @@ namespace phys
             virtual CollisionShape::ShapeType GetType() const = 0;
             /// @copydoc CollisionShape::GetBulletShape
             virtual btConcaveShape* GetBulletConcaveShape() const;
+#ifdef PHYSXML
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            // DeSerializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "FieldCollisionShape"
+            static String SerializableName();
+#endif
     };//meshcollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -233,6 +249,17 @@ namespace phys
             virtual CollisionShape::ShapeType GetType() const = 0;
             /// @copydoc CollisionShape::GetBulletShape
             virtual btConcaveShape* GetBulletConcaveShape() const;
+#ifdef PHYSXML
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            // DeSerializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "MeshCollisionShape"
+            static String SerializableName();
+#endif
     };//meshcollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -247,7 +274,7 @@ namespace phys
     class PHYS_LIB CompoundCollisionShape : public CollisionShape
     {
         protected:
-            btCompoundShape* CompoundShape;
+            /// @brief Storage for Child shapes.
             std::vector<CollisionShape*> ChildShapes;
         public:
             /// @brief Class Constructor.
@@ -260,6 +287,7 @@ namespace phys
             CompoundCollisionShape(const String& Name, btCompoundShape* BulletShape);
             /// @brief Class Destructor.
             virtual ~CompoundCollisionShape();
+
             /// @brief Adds a shape to this compound shape.
             /// @param Child The shape to be added to this shape.
             /// @param ChildLocation The location this child is to have in local space.
@@ -269,17 +297,39 @@ namespace phys
             /// @param Child The shape to be added to this shape.
             /// @param ChildLocation The location this child is to have in local space.
             virtual void AddChildShape(CollisionShape* Child, const Vector3& ChildLocation);
+            /// @brief Adds a shape to this compound shape.
+            /// @param Child The shape to be added to this shape.
+            /// @param ChildLocation The location and Rotation this child is to have in local space.
+            virtual void AddChildShape(CollisionShape* Child, const Transform& ChildLocation);
             /// @brief Gets the number of children belonging to this compound shape.
             /// @return Returns the number of children belonging to this shape.
-            virtual Whole GetNumChildren();
+            virtual Whole GetNumChildren() const;
+            /// @brief Get a specific child
+            /// @param Index A number indicating which CollisionShape you want a pointer to.
+            /// @return A pointer to the Specified CollisionShape
+            virtual CollisionShape* GetChild(Whole Index) const;
             /// @brief Removes a Child shape from this compound shape.
             /// @param Child The child shape to be removed.
             virtual void RemoveChildShape(CollisionShape* Child);
             /// @brief Removed a Child shape from this compound shape by index.
             /// @param ChildIndex The index of the child shape to be removed.
             virtual void RemoveChildShape(const Whole& ChildIndex);
+
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btCompoundShape* GetBulletCompoundShape() const;
+#ifdef PHYSXML
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            // DeSerializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "CompoundCollisionShape"
+            static String SerializableName();
+#endif
     };//compoundcollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -287,12 +337,12 @@ namespace phys
     /// @headerfile collisionshape.h
     /// @brief A box physics shape.
     /// @details This is exactly what it sounds like.  A primitive shape of a box that is constructed
-    /// by it's half extents.  Half extents can't be negative, but otherwise can be any value.
+    /// by it's half extents.  Half extents can't be negative, but otherwise can be any value. The margin
+    /// value is subtracted from the total size rather than added for this shape.
+    /// @warning This does not fully implement ProtoDeSerialize, this must be deserialized with the Appropriate Deserializer.
     ///////////////////////////////////////
     class PHYS_LIB BoxCollisionShape : public PrimitiveCollisionShape
     {
-        protected:
-            btBoxShape* BoxShape;
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this shape.
@@ -303,13 +353,21 @@ namespace phys
             /// @param Name The name of this shape.
             /// @param BulletShape The internal shape this shape is based on.
             BoxCollisionShape(const String& Name, btBoxShape* BulletShape);
+#ifdef PHYSXML
+            /// @brief DeSerializing Constructor
+            /// @param OneNode The node to use for constructing this shape
+            BoxCollisionShape(xml::Node OneNode);
+#endif  // PHYSXML
             /// @brief Class Destructor.
             virtual ~BoxCollisionShape();
             /// @brief Gets the half extents used to construct this box.
-            /// @return Returns a vector3 containing the half extents of this box.
+            /// @return Returns a vector3 containing the half extents of this box, with no scaling or margin (Original value).
+            virtual Vector3 GetCleanHalfExtents() const;
+            /// @brief Gets the current half extents used in collision checking.
+            /// @return Returns a vector3 containing the half extents of this box, with scaling applied, minus the size of the margin(Original value * Scaling - margin).
             virtual Vector3 GetHalfExtents() const;
-            /// @brief Gets the half extents with padding.
-            /// @return Returns a vector3 containing the half extents with the margin added to each axis.
+            /// @brief Gets the half extents with padding, this is the size the shape will appear to be.
+            /// @return Returns a vector3 containing the half extents, with scaling applied, with the margin added to each axis (Original value * Scaling).
             virtual Vector3 GetHalfExtentsWithMargin() const;
             /// @brief Checks to see if a point in local space is inside this shape.
             /// @return Returns a bool indicating whether or not the specified point is inside the shape.
@@ -319,6 +377,18 @@ namespace phys
             virtual bool IsInside(const Vector3& Location, const Real& Tolerance) const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btBoxShape* GetBulletBoxShape() const;
+#ifdef PHYSXML
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "BoxCollisionShape"
+            static String SerializableName();
+#endif  // PHYSXML
     };//boxcollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -333,7 +403,14 @@ namespace phys
     class PHYS_LIB CapsuleCollisionShape : public PrimitiveCollisionShape
     {
         protected:
-            btCapsuleShape* CapsuleShape;
+            /// @internal
+            /// @brief Performed share contructor work.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the capsule.
+            /// @param Height The height of the cylindrical portion of the capsule.  Total height would be Height+2*radius.
+            /// @param UpAxis Which axis the Capsule is to be oriented along.  Typical usage is for
+            /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
+            void Construct(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -342,6 +419,18 @@ namespace phys
             /// @param UpAxis Which axis the Capsule is to be oriented along.  Typical usage is for
             /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
             CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis);
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the capsule.
+            /// @param Height The height of the cylindrical portion of the capsule.  Total height would be Height+2*radius.
+            /// @param UpAxis Which axis the Capsule is to be oriented along. Uses StandardAxis enum, Axis_Y to make a
+            /// vertical capsule
+            CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            CapsuleCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
+
             /// @internal
             /// @brief Internal Constructor.
             /// @param Name The name of this Shape.
@@ -349,17 +438,43 @@ namespace phys
             CapsuleCollisionShape(const String& Name, btCapsuleShape* BulletShape);
             /// @brief Class Destructor.
             virtual ~CapsuleCollisionShape();
-            /// @brief Gets the radius of the capsule.
+
+            /// @brief Gets the radius of the capsule, as used in collision checking, with scaling and margin subtracted.
             /// @return Returns a real representing the radius of the capsule.
             virtual Real GetRadius() const;
-            /// @brief Gets the height of the capsule.
+            /// @brief Gets the height of the capsule, as used in collision checking, with scaling and margin subtracted.
             /// @return Returns a real representing the length of the cylindrical portion of the capsule.
             virtual Real GetHeight() const;
+            /// @brief Gets the radius of the capsule, as the original value passed, without scaling and margin applied.
+            /// @return Returns a real representing the radius of the capsule.
+            virtual Real GetCleanRadius() const;
+            /// @brief Gets the height of the capsule, as the original value passed, without scaling and margin applied.
+            /// @return Returns a real representing the length of the cylindrical portion of the capsule.
+            virtual Real GetCleanHeight() const;
+            /* /// @brief Gets the radius of the capsule, with the region of padding used to aid collision Detection, with scaling applied and margin re-added.
+            /// @return Returns a real representing the radius of the capsule.
+            virtual Real GetRadiusWithMargin() const; */
+
             /// @brief Gets which axis this capsule is oriented along.
             /// @return Returns a Vector3 representing which local axis is oriented along the world up axis.
             virtual Vector3 GetUpAxis() const;
+            /// @brief Gets which axis this capsule is oriented along.
+            /// @return Returns a StandardAxis representing which local axis is oriented along the world up axis.
+            virtual StandardAxis GetUpStandardAxis() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btCapsuleShape* GetBulletCapsuleShape() const;
+#ifdef PHYSXML
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "CapsuleCollisionShape"
+            static String SerializableName();
+#endif
     };//capsulecollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -373,7 +488,18 @@ namespace phys
     class PHYS_LIB ConeCollisionShape : public PrimitiveCollisionShape
     {
         protected:
-            btConeShape* ConeShape;
+            /// @internal
+            /// @brief Performe shared contructor work.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the base of the Cone.
+            /// @param Height The height of the Cone.
+            /// @param UpAxis Which axis the Cone is to be oriented along. Uses StandardAxis enum, Axis_Y to make a
+            /// vertical capsule
+            void Construct(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
+            /// @internal
+            /// @brief Simulate some messed up the physics library does
+            /// @return A Vector3 containing some StandarAxis based on what needs to go where.
+            Vector3 GetAxisMathBS() const;
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -382,24 +508,64 @@ namespace phys
             /// @param UpAxis Which axis the Cone is to be oriented along.  Typical usage is for
             /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
             ConeCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis);
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the base of the Cone.
+            /// @param Height The height of the Cone.
+            /// @param UpAxis Which axis the Cone is to be oriented along. Uses StandardAxis enum, Axis_Y to make a
+            /// vertical capsule
+            ConeCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
             /// @internal
             /// @brief Internal Constructor.
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             ConeCollisionShape(const String& Name, btConeShape* BulletShape);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            ConeCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~ConeCollisionShape();
-            /// @brief Gets the radius of the cone.
+
+            /// @brief Gets the radius of the cone, as used for collision checking.
             /// @return Returns a real representing the radius at the base of the cone.
             virtual Real GetRadius() const;
-            /// @brief Gets the height of the cone.
+            /// @brief Gets the height of the cone, as used for collision checking.
             /// @return Returns a real representing height of the cone.
             virtual Real GetHeight() const;
+            /// @brief Gets the radius of the cone, as originally passed in.
+            /// @return Returns a real representing the radius at the base of the cone.
+            virtual Real GetCleanRadius() const;
+            /// @brief Gets the height of the cone, as originally passed in.
+            /// @return Returns a real representing height of the cone.
+            virtual Real GetCleanHeight() const;
+            /// @brief Which axis is up defines which 2 axis are used to scale the radius.
+            /// @return A value that represent the scaling that only the radius undergoes.
+            Real GetRadiusScaling() const;
+            /// @brief Which axis is up defines which axis is used to scale height.
+            /// @return A value that represent the scaling that only the height undergoes.
+            Real GetHeightScaling() const;
+
             /// @brief Gets which axis this cone is oriented along.
             /// @return Returns a Vector3 representing which local axis is oriented along the world up axis.
             virtual Vector3 GetUpAxis() const;
+            /// @brief Gets which axis this cone is oriented along.
+            /// @return Returns a StandardAxis representing which local axis is oriented along the world up axis.
+            virtual StandardAxis GetUpStandardAxis() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btConeShape* GetBulletConeShape() const;
+#ifdef PHYSXML
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "ConeCollisionShape"
+            static String SerializableName();
+#endif
     };//conecollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -416,7 +582,7 @@ namespace phys
     class PHYS_LIB ConvexHullCollisionShape : public PrimitiveCollisionShape
     {
         protected:
-            btConvexHullShape* ConvexHullShape;
+
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -427,13 +593,22 @@ namespace phys
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             ConvexHullCollisionShape(const String& Name, btConvexHullShape* BulletShape);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            ConvexHullCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~ConvexHullCollisionShape();
             /// @brief Adds a point to this shape.
             /// @param Point The location in local space to be added.
             virtual void AddPoint(const Vector3& Point);
-            /// @brief Gets a stored point in this ConvexHull.
-            /// @return Returns a Vector3 representing the location in local space of the specified point.
+
+            /// @brief Gets an unscaled stored point in this ConvexHull.
+            /// @return Returns a Vector3 representing the unscaled location in local space of the specified point.
+            /// @param Index The index of the point desired.
+            virtual Vector3 GetUnscaledPoint(const Whole& Index) const;
+            /// @brief Gets a stored point as it is scaled in this ConvexHull.
+            /// @return Returns a Vector3 representing the scaled location in local space of the specified point.
             /// @param Index The index of the point desired.
             virtual Vector3 GetPoint(const Whole& Index) const;
             /// @brief Gets the total number of points being stored in this shape.
@@ -442,11 +617,23 @@ namespace phys
             /// @brief Checks to see if a point in local space is inside this shape.
             /// @return Returns a bool indicating whether or not the specified point is inside the shape.
             /// @param Location The specified point to perform the check.
-            /// @param Tolorance The amount of leeway to give in the check.  If the distance from the
+            /// @param Tolerance The amount of leeway to give in the check.  If the distance from the
             /// specified point is equal or less then the Tolorance provided then this will return true.
-            virtual bool IsInside(const Vector3& Location, const Real& Tolorance) const;
+            virtual bool IsInside(const Vector3& Location, const Real& Tolerance) const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btConvexHullShape* GetBulletHullShape() const;
+#ifdef PHYSXML
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "ConeCollisionShape"
+            static String SerializableName();
+#endif
     };//convexhullcollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -592,7 +779,7 @@ namespace phys
     /// @brief
     /// @details
     ///////////////////////////////////////
-    class PHYS_LIB HeightfieldCollisionShape : public MeshCollisionShape
+    class PHYS_LIB HeightfieldCollisionShape : public FieldCollisionShape
     {
         protected:
             btHeightfieldTerrainShape* HeightfieldShape;
@@ -617,7 +804,7 @@ namespace phys
     /// @brief
     /// @details
     ///////////////////////////////////////
-    class PHYS_LIB PlaneCollisionShape : public MeshCollisionShape
+    class PHYS_LIB PlaneCollisionShape : public FieldCollisionShape
     {
         protected:
             btStaticPlaneShape* PlaneShape;
@@ -689,6 +876,76 @@ namespace phys
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
     };//trimeshcollisionshape
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility Functions
+    ///////////////////////////////////////
+    /// @internal
+    /// @brief Create A shape of a type and optionally model it after an example.
+    /// @param ShapeToCreate The Type of Shape to create.
+    /// @param Name the name of the new shape.
+    /// @param ShapeToModel An optional pointer to a bullet shape to include instead of creating one.
+    /// @return A new phys::CollisionShape with either default Values or the values of the bullet shape if one is provided.
+    /// @warning The only checking done on the bullet shape is to verify it is not a null pointer. If the Bullet shape fails to be of the appropriate kind correlating to ShapeToCreate then *undefined behavior* will occur.
+    CollisionShape* PHYS_LIB CreateShape(CollisionShape::ShapeType ShapeToCreate, const String& Name_, btCollisionShape* ShapeToModel);
+#ifdef PHYSXML
+    /// @brief Create a CollisionShape from a snippet of xml
+    /// @param OneNode A Node for any Collision Shape that can be instanstiated
+    /// @return A pointer to a CollisionShape of the Correct Type with the values stored in the XML.
+    CollisionShape* PHYS_LIB CreateShape(xml::Node OneNode);
+#endif  // \physxml
+    /// @internal
+    /// @brief Convert from a Bullet Collision Shape to a CollisionShape::ShapeType
+    /// @param BulletShapeType The ShapeType to Convert
+    /// @return The corresponding CollisionShape::ShapeType to the passed in bullet Shape Type if asuitable match exists
+    /// @throw The physgame engine only uses a subset of Bullets shapes, a Phys::Exception with be thrown in the event an unsupported one is passed in.
+    CollisionShape::ShapeType PHYS_LIB BulletSapeTypeToShapeType(int BulletShapeType);
+    /// @brief Get a string suitable for human eyes from a CollisionShape::ShapeType, may not be suitable for endusers.
+    /// @param ShapeToConvert The kind of shape you want a string for.
+    /// @return A String with human readable contents corresponding to the passed in type.
+    String PHYS_LIB ShapeTypeToString(CollisionShape::ShapeType ShapeToConvert);
+    /// @brief Convert a human readable string (as provided by ShapeTypeToString()) and convert it to a CollisionShape::ShapeType
+    /// @param TypeName A String that matches exactly what returns from ShapeTypeToString().
+    /// @return A valid CollisionShape::ShapeType if possible
+    /// @throw This throws a phys::Exception in the event of a gibberish name.
+    CollisionShape::ShapeType PHYS_LIB StringToShapeType(const String& TypeName);
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // CollisionShapeDeSerializer
+    ///////////////////////////////////////
+    class PHYS_LIB CollisionShapeDeSerializer : public DeSerializer <CollisionShape>
+    {
+#ifdef PHYSXML
+        protected:
+            /// @internal
+            /// @brief This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do
+            /// @param Stream the stream to deserialize from.
+            /// @return a pointer to the shape just created, this may or may not be added to the collision shape manager depending on implementation details
+            virtual CollisionShape* PerformDeSerialization(std::istream& Stream);
+        public:
+            /// @brief Convert An XML Node containing and one collision shape into a CollisionShape of the corresponding type
+            /// @param OneNode A reference to the XML node to reconstitute into a live class instance.
+            /// @details All items deserialized here will be added to the collision shape manager.
+            /// @return A pointer to the freshly deserialized and created class instance.
+            virtual CollisionShape* ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Create a collision shape from the serialized version in a stream.
+            /// @param Stream The std::istream to get the data from.
+            /// @details This performs less checking than the original to allow for DeSerialization of multiple kinds
+            /// of xml elements. Rather all the specific checking is done closer to the actual instantion of classes.
+            /// This add the DeSerialized shape to the collsion shape manager.
+            /// @return This returns the input stream after the xml document has been extracted from it.
+            virtual std::istream& DeSerialize(std::istream& Stream);
+            /// @brief Create a collision shape from the serialized version in a stream.
+            /// @param Stream The std::istream to get the data from.
+            /// @details This adds the DeSerialized shape to the collsion shape manager.
+            /// @return This returns a pointer to the freshly created collsion shape
+            virtual CollisionShape* DeSerializeAndRetrieve(std::istream& Stream);
+            /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized
+            /// @return A String containing "Shapes"
+            virtual String ContainerName() const;
+#endif // \physxml
+    };
+
 }//phys
 
 
@@ -731,10 +988,10 @@ namespace phys
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
     std::ostream& operator << (std::ostream& stream, const phys::BoxCollisionShape& ShapeToSerialize);
-    /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
+    /* /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
     std::istream& operator >> (std::istream& stream, phys::BoxCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::BoxCollisionShape& x);
+    void operator >> (const phys::xml::Node& OneNode, phys::BoxCollisionShape& x);*/
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
     std::ostream& operator << (std::ostream& stream, const phys::CapsuleCollisionShape& ShapeToSerialize);
@@ -820,6 +1077,7 @@ namespace phys
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
     void operator >> (const phys::xml::Node& OneNode, phys::StaticMeshCollisionShape& x);
 #endif  // \physxml
+
 
 
 

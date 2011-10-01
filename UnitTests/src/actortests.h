@@ -230,7 +230,7 @@ class ActorTests : public UnitTestGroup
                     std::stringstream DeSerializeTestWhole2;
                     DeSerializeTestWhole2 << *object1;
 
-//cout  << endl << endl << TestWhole1 << endl << " == " << endl << DeSerializeTestWhole1.str() << endl << endl;
+                    //cout  << endl << endl << TestWhole1 << endl << " == " << endl << DeSerializeTestWhole1.str() << endl << endl;
                     if ( TestWhole1 == DeSerializeTestWhole1.str() )
                     {
                         AddTestResult("Actor::operator>> (ActorRigid-empty)", Success, UnitTestGroup::OverWrite);
@@ -238,7 +238,7 @@ class ActorTests : public UnitTestGroup
                         AddTestResult("Actor::operator>> (ActorRigid-empty)", Failed, UnitTestGroup::OverWrite);
                     }
 
-//cout  << endl << endl << TestWhole2 << endl << " == " << endl << DeSerializeTestWhole2.str() << endl << endl;
+                    //cout  << endl << endl << TestWhole2 << endl << " == " << endl << DeSerializeTestWhole2.str() << endl << endl;
                     if ( TestWhole2 == DeSerializeTestWhole2.str() )
                     {
                         AddTestResult("Actor::operator>> (ActorRigid-populated)", Success, UnitTestGroup::OverWrite);
@@ -261,7 +261,7 @@ class ActorTests : public UnitTestGroup
                     delete object1;
                     ActorFactory.DeSerializeAll(DeSerializerTest2);
                     DeSerializerTest2RS << "<RigidActors>" << *( dynamic_cast<ActorRigid*>(TheWorld->GetActorManager()->GetActor("ABasicRobot")) ) << "</RigidActors>";
-cout  << endl << endl << TestWhole1 << endl << " == " << endl << DeSerializerTest1RS.str() << endl << endl;
+                    //cout  << endl << endl << TestWhole1 << endl << " == " << endl << DeSerializerTest1RS.str() << endl << endl;
                     if (TestWhole1 == DeSerializerTest1RS.str())
                     {
                         AddTestResult("ActorRigidDeSerializer::DeSerialize()", Success, UnitTestGroup::OverWrite);
@@ -269,7 +269,7 @@ cout  << endl << endl << TestWhole1 << endl << " == " << endl << DeSerializerTes
                         AddTestResult("ActorRigidDeSerializer::DeSerialize()", Failed, UnitTestGroup::OverWrite);
                     }
 
-cout  << endl << endl << DeSerializerTest2.str() << endl << " == " << endl << DeSerializerTest2RS.str() << endl << endl;
+                    //cout  << endl << endl << DeSerializerTest2.str() << endl << " == " << endl << DeSerializerTest2RS.str() << endl << endl;
                     if (DeSerializerTest2.str() == DeSerializerTest2RS.str())
                     {
                         AddTestResult("ActorRigidDeSerializer::DeSerializeAll()", Success, UnitTestGroup::OverWrite);
