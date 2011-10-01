@@ -44,7 +44,7 @@
 #include "datatypes.h"
 #include "vector2.h"
 #include "uiwidget.h"
-#include "enumerations.h"
+#include "uienumerations.h"
 
 namespace phys
 {
@@ -79,6 +79,7 @@ namespace phys
                 Real ScrollerUpperLimit;
                 Real ScrollerLowerLimit;
                 Real ScrollerValue;
+                Real ScrollerRelSize;
                 Real IncrementDistance;
                 UI::ScrollbarStyle ScrollStyle;
                 bool Horizontal;
@@ -126,8 +127,14 @@ namespace phys
                 /// @brief Scrolls the scroller either up/left or down/right.  For use with the scrollback.
                 virtual void ScrollBackScroll();
                 /// @internal
-                /// @brief Performs all the necessary update and automation processes for this widget.
-                virtual void Update(bool Force = false);
+                /// @brief Child specific update method.
+                virtual void UpdateImpl(bool Force = false);
+                /// @internal
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible);
+                /// @internal
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl();
             public:
                 /// @brief Standard initialization constructor.
                 /// @param Name The name of this scrollbar.
@@ -137,22 +144,16 @@ namespace phys
                 Scrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style, Layer* parent);
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
-                /// @brief Sets the visibility of this scrollbar.
-                /// @param visible Bool determining whether or not this scrollbar should be visible.
-                virtual void SetVisible(bool visible);
-                /// @brief Forces this scrollbar to be shown.
-                virtual void Show();
-                /// @brief Forces this scrollbar to hide.
-                virtual void Hide();
-                /// @brief Checks to see if the current mouse position is over this widget.
-                /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
-                virtual bool CheckMouseHover();
+                /// @brief Sets the value of this scrollbar and warps the scroller to that respective position.
+                /// @param Value The value to be set for this scrollbar.  Range: 0.0 to 1.0.
+                virtual void SetScrollerValue(const Real& Value);
                 /// @brief Get the currnent scroll position represented by a value between 0 and 1.
                 /// @details For example, if the scroller is halfway down the limits it's allowed, this will return 0.5. @n
                 /// Like other values, the top and left represent origin(0) values.
                 /// @return Returns the stored scroll position.
                 virtual Real GetScrollerValue();
                 /// @brief Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed.
+                /// @remarks Default: 0.1.
                 /// @param IncDist A real representing the amount to increment.  Can be negative.
                 virtual void SetIncrementDistance(const Real& IncDist);
                 /// @brief Sets the length(or height) of the scroller based on the relative size of it's background.
@@ -163,30 +164,20 @@ namespace phys
                 /// The top and the left are considered the origin, thus values of 0 represent one of these points.
                 /// @param Position A vector2 representing the relative position of this widget.
                 virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative position of this widget.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this widget.
-                virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this widget.
                 /// @param Position A vector2 representing the pixel position of this widget.
                 virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this widget.
-                /// @return Returns a vector2 representing the pixel position of this widget.
-                virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
                 virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this widget.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this widget.
-                virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
                 virtual void SetActualSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this widget.
-                /// @return Returns a vector2 representing the pixel size of this widget.
-                virtual Vector2 GetActualSize();
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param OldViewportSize The new size of the viewport.
+                virtual void UpdateDimensions(const Vector2& OldViewportSize);
                 /// @brief Gets the Scroller button within this widget.
                 /// @return Returns a pointer to the Scroller button within this widget.
                 virtual Button* GetScroller();

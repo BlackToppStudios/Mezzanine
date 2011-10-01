@@ -129,7 +129,7 @@ namespace phys
 
                     (*misc)["externalWindowHandle"] = Ogre::StringConverter::toString(winHandle);
                     (*misc)["externalGLContext"] = Ogre::StringConverter::toString(winGlContext);
-                    (*misc)["externalGLControl"] = Ogre::String("True");
+                    //(*misc)["externalGLControl"] = Ogre::String("True");
                 }else{
                     World::GetWorldPointer()->LogAndThrow("Failed to create SDL Binder.");
                 }
@@ -164,7 +164,8 @@ namespace phys
             #ifdef WINDOWS
                 Ogre::Root::getSingleton().renderOneFrame();
                 for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
-                    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
+                    //SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
+                    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
             #else
                 Ogre::Root::getSingleton()._fireFrameStarted();
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();

@@ -64,8 +64,12 @@ namespace phys
             protected:
                 UI::MenuWindow* RootWindow;
                 std::vector<UI::MenuWindow*> MenuStack;
-                /// @brief For use with widget update/automation.
-                virtual void Update(bool Force = false);
+                /// @brief Child specific update method.
+                virtual void UpdateImpl(bool Force = false);
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible);
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl();
             public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the window.
@@ -77,43 +81,33 @@ namespace phys
                 /// @brief Hides and removes from the stack all windows from the top until it reaches the specified window, or root window.
                 /// @param Win The window to roll back to.
                 virtual void RollMenuBackToWindow(UI::MenuWindow* Win);
-                /// @brief Sets the visibility of this menu.
-                /// @param visible Bool determining whether or not this menu should be visible.
-                virtual void SetVisible(bool visible);
-                /// @brief Forces this menu to be shown.
-                virtual void Show();
-                /// @brief Forces this menu to hide.
-                virtual void Hide();
-                /// @brief Checks to see if the current mouse position is over this menu.
-                /// @return Returns a bool value, true if the mouse is over this menu, false if it's not.
-                virtual bool CheckMouseHover();
                 /// @brief Sets the relative position of this menu.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this menu.
                 virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative position of this menu.
+                /// @brief Gets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this menu.
+                /// @return Returns a vector2 representing the relative position of this widget.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this menu.
                 /// @param Position A vector2 representing the pixel position of this menu.
                 virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this menu.
-                /// @return Returns a vector2 representing the pixel position of this menu.
+                /// @brief Sets the pixel position of this widget.
+                /// @return Returns a vector2 representing the pixel position of this widget.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this menu.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this menu.
                 virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this menu.
+                /// @brief Gets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this menu.
+                /// @return Returns a vector2 representing the relative size of this widget.
                 virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this menu.
                 /// @param Size A vector2 representing the pixel size of this menu.
                 virtual void SetActualSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this menu.
-                /// @return Returns a vector2 representing the pixel size of this menu.
+                /// @brief Sets the pixel size of this widget.
+                /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize();
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.

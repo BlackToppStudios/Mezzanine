@@ -287,6 +287,7 @@ namespace phys
 
         void Caption::SetActualPosition(const Vector2& Position)
         {
+            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             GorillaCaption->left(Position.X);
             GorillaCaption->top(Position.Y);
             GorillaRectangle->left(Position.X);
@@ -316,6 +317,7 @@ namespace phys
 
         void Caption::SetActualSize(const Vector2& Size)
         {
+            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             GorillaCaption->width(Size.X);
             GorillaCaption->height(Size.Y);
             GorillaRectangle->width(Size.X);
@@ -324,8 +326,8 @@ namespace phys
 
         Vector2 Caption::GetActualSize()
         {
-            Vector2 Pos(GorillaCaption->width(), GorillaCaption->height());
-            return Pos;
+            Vector2 Size(GorillaCaption->width(), GorillaCaption->height());
+            return Size;
         }
 
         void Caption::SetRenderPriority(const UI::RenderPriority& Priority)

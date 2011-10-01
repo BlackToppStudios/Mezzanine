@@ -50,6 +50,10 @@
 #include <SDL.h>
 #include <Ogre.h>
 
+#ifdef WINDOWS
+#include <windows.h>
+#endif
+
 #ifdef LINUX
 #include <X11/X.h>      //x11proto-core-dev
 #include <X11/Xlib.h>   //libx11-dev
@@ -83,7 +87,7 @@ namespace phys
         Manager = World::GetWorldPointer()->GetGraphicsManager();
         Settings.RenderWidth = Width;
         Settings.RenderHeight = Height;
-        RenderContext = 0;
+        //RenderContext = 0;
         int SDLFlags = 0;
         Ogre::NameValuePairList Opts;
         if(WF_Fullscreen & Flags)
@@ -132,7 +136,7 @@ namespace phys
             SDLFlags|=SDL_WINDOW_BORDERLESS;
             Opts["border"] = "none";
         }
-        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+        /*SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
         SDLFlags|=SDL_WINDOW_OPENGL;
@@ -147,18 +151,12 @@ namespace phys
 
         Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,(size_t)RenderContext);
         Opts.insert(Binder->begin(),Binder->end());// */
-        OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);
+        OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);//*/
 
-        /*#ifdef WINDOWS
-        size_t Data = 0;
+        #ifdef WINDOWS
+        HWND Data = 0;
         OgreWindow->getCustomAttribute("WINDOW",&Data);
-
-        std::stringstream stream;
-        stream << "Windows HWND: " << ((size_t)Data) << endl;
-        World::GetWorldPointer()->LogString(stream.str());
-        World::GetWorldPointer()->DoMainLoopLogging();
-
-        SDLWindow = SDL_CreateWindowFrom(&Data);
+        SDLWindow = SDL_CreateWindowFrom(Data);
         #endif
         #ifdef LINUX
         Window* Data = 0;
@@ -170,8 +168,8 @@ namespace phys
         OgreWindow->getCustomAttribute("WINDOW",Data);
         SDLWindow = SDL_CreateWindowFrom(Data);
         #endif// */
-        //SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
-        delete Binder;
+        SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
+        //delete Binder;
     }
 
     void GameWindow::CorrectViewportAndCamera(const Whole& Index)
@@ -299,21 +297,24 @@ namespace phys
 
     void GameWindow::setRenderHeight(const Whole &Height)
     {
-        /// @todo TODO: Need to attempt to update resolution here
+        if(Settings.RenderHeight == Height)
+            return;
         setRenderResolution(Settings.RenderWidth,Height);
         Settings.RenderHeight = Height;
     }
 
     void GameWindow::setRenderWidth(const Whole &Width)
     {
-        /// @todo TODO: Need to attempt to update resolution here
+        if(Settings.RenderWidth == Width)
+            return;
         setRenderResolution(Width,Settings.RenderHeight);
         Settings.RenderWidth = Width;
     }
 
     void GameWindow::setRenderResolution(const Whole &Width, const Whole &Height)
     {
-        /// @todo TODO: Need to attempt to update resolution here
+        if(Settings.RenderWidth == Width && Settings.RenderHeight == Height)
+            return;
         if(Settings.Fullscreen)
         {
             SDL_DisplayMode CurrentDisplay;
@@ -358,6 +359,11 @@ namespace phys
         setRenderResolution(NewSettings.RenderWidth,NewSettings.RenderHeight);
     }
 
+    Whole GameWindow::GetFSAALevel() const
+    {
+        return OgreWindow->getFSAA();
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     //Stats functions
     Real GameWindow::GetLastFPS()
@@ -392,7 +398,7 @@ namespace phys
 
     void* GameWindow::GetRenderContext()
     {
-        return (void*)RenderContext;
+        return 0;//(void*)RenderContext;
     }
 
     Ogre::RenderWindow* GameWindow::GetOgreWindowPointer()

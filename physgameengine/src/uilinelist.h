@@ -42,7 +42,7 @@
 
 #include "vector2.h"
 #include "colourvalue.h"
-#include "enumerations.h"
+#include "uienumerations.h"
 
 namespace Gorilla
 {

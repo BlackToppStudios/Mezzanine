@@ -55,6 +55,7 @@
 #include <memory>
 
 #include "SDL.h"
+#include "serialization.h"
 
 using namespace std;
 
@@ -269,27 +270,75 @@ namespace phys
             return false;
         }
     }
+    // Mike's portion of adding serializable to the metacode starts here
+    #ifdef PHYSXML
+    // Serializable
+    void MetaCode::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        phys::xml::Node MetaNode = CurrentRoot.AppendChild(SerializableName());
+        MetaNode.SetName(SerializableName());
+
+        phys::xml::Attribute VersionAttr = MetaNode.AppendAttribute("Version");
+        phys::xml::Attribute MetaValue_ = MetaNode.AppendAttribute("MetaValue");
+        phys::xml::Attribute Code_ = MetaNode.AppendAttribute("Code");
+
+        if( VersionAttr && MetaValue_ && Code_ )
+        {
+            if( VersionAttr.SetValue("1") && Code_.SetValue(Code) && MetaValue_.SetValue(MetaValue) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values", SerializableName(),true);
+            }
+        }else{
+            SerializeError("Create XML Attributes", SerializableName(),true);
+        }
+    }
+
+    // DeSerializable
+    void MetaCode::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==phys::String(SerializableName()) )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                SetCode(OneNode.GetAttribute("Code").AsInt());
+                MetaValue=OneNode.GetAttribute("MetaValue").AsInt();
+            }else{
+                throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+            }
+        }else{
+            throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+        }
+    }
+
+    String MetaCode::SerializableName() const
+        { return String("MetaCode"); }
+    #endif // end PHYSXML
+    // end of mike's serializable
 }
 
 std::ostream& operator << (std::ostream& stream, const phys::MetaCode& x)
 {
-    stream << "<MetaCode Version=\"1\" MetaValue=\"" << x.GetMetaValue() << "\"" << " Code=\"" << x.GetCode() <<  "\" />";
+    //stream << "<MetaCode Version=\"1\" MetaValue=\"" << x.GetMetaValue() << "\"" << " Code=\"" << x.GetCode() <<  "\" />";
+    Serialize(stream,x);
     return stream;
 }
 
 #ifdef PHYSXML
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::MetaCode& x)
-{
+/*{
     phys::String OneTag( phys::xml::GetOneTag(stream) );
     std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "MetaCode", OneTag) );
 
     Doc->GetFirstChild() >> x;
 
     return stream;
-}
+}*/
+{ return DeSerialize(stream, x); }
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::MetaCode& x)
-{
+/*{
     if ( phys::String(OneNode.Name())==phys::String("MetaCode") )
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
@@ -302,7 +351,8 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::MetaCode& x)
     }else{
         throw( phys::Exception(phys::StringCat("Attempting to deserialize a MetaCode, found a ", OneNode.Name())));
     }
-}
+}*/
+{x.ProtoDeSerialize(OneNode); }
 #endif // \PHYSXML
 
 #endif

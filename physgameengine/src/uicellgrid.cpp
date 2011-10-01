@@ -78,7 +78,7 @@ namespace phys
               GridDirty(false),
               Selected(NULL)
         {
-            Type = Widget::CellGrid;
+            Type = Widget::W_CellGrid;
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -283,20 +283,14 @@ namespace phys
             GridDirty = false;
         }
 
-        void CellGrid::Update(bool Force)
+        void CellGrid::UpdateImpl(bool Force)
         {
-            if(!Force)
-                SubWidgetUpdate();
             MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(HoveredSubWidget)
             {
-                if(MetaCode::BUTTON_PRESSING == State)
+                if(MetaCode::BUTTON_LIFTING == State)
                 {
-                    SubWidgetFocus = HoveredSubWidget;
-                }
-                else if(MetaCode::BUTTON_LIFTING == State)
-                {
-                    if(Widget::Cell == HoveredSubWidget->GetType() && HoveredSubWidget != Selected)
+                    if(Widget::W_Cell == HoveredSubWidget->GetType() && HoveredSubWidget != Selected)
                     {
                         if(Selected)
                         {
@@ -308,50 +302,40 @@ namespace phys
                     }
                 }
             }
-            if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
-            {
-                SubWidgetFocusUpdate(true);
-            }
-            else if(MetaCode::BUTTON_DOWN == State && Force)
-            {
-                SubWidgetFocusUpdate(Force);
-            }
-            if(MetaCode::BUTTON_LIFTING == State)
-            {
-                SubWidgetFocus = NULL;
-            }
             if(GridNeedsRedraw())
                 DrawGrid();
         }
 
-        void CellGrid::SetVisible(bool visible)
+        void CellGrid::SetVisibleImpl(bool visible)
         {
             GridBack->SetVisible(visible);
             for( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
             {
                 (*it)->SetVisible(visible);
             }
-            Visible = visible;
         }
 
-        void CellGrid::Show()
+        bool CellGrid::CheckMouseHoverImpl()
         {
-            GridBack->Show();
             for( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
             {
-                (*it)->Show();
+                if((*it)->IsVisible())
+                {
+                    if((*it)->CheckMouseHover())
+                    {
+                        HoveredSubWidget = (*it);
+                        HoveredButton = HoveredSubWidget->GetHoveredButton();
+                        return true;
+                    }
+                }
             }
-            Visible = true;
-        }
-
-        void CellGrid::Hide()
-        {
-            GridBack->Hide();
-            for( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
+            if(GridBack->CheckMouseHover())
             {
-                (*it)->Hide();
+                HoveredSubWidget = NULL;
+                HoveredButton = NULL;
+                return true;
             }
-            Visible = false;
+            return false;
         }
 
         void CellGrid::SetFixedCellSize(const Vector2& FixedSize)
@@ -474,43 +458,11 @@ namespace phys
             Selected = NULL;
         }
 
-        bool CellGrid::CheckMouseHover()
-        {
-            if(!IsVisible())
-                return false;
-            for( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
-            {
-                if((*it)->IsVisible())
-                {
-                    if((*it)->CheckMouseHover())
-                    {
-                        HoveredSubWidget = (*it);
-                        HoveredButton = HoveredSubWidget->GetHoveredButton();
-                        return true;
-                    }
-                }
-            }
-            if(GridBack->CheckMouseHover())
-            {
-                HoveredSubWidget = NULL;
-                HoveredButton = NULL;
-                return true;
-            }
-            HoveredSubWidget = NULL;
-            HoveredButton = NULL;
-            return false;
-        }
-
         void CellGrid::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             GridBack->SetPosition(Position);
             DrawGrid();
-        }
-
-        Vector2 CellGrid::GetPosition()
-        {
-            return RelPosition;
         }
 
         void CellGrid::SetActualPosition(const Vector2& Position)
@@ -520,11 +472,6 @@ namespace phys
             DrawGrid();
         }
 
-        Vector2 CellGrid::GetActualPosition()
-        {
-            return RelPosition * Parent->GetParent()->GetViewportDimensions();
-        }
-
         void CellGrid::SetSize(const Vector2& Size)
         {
             RelSize = Size;
@@ -532,21 +479,11 @@ namespace phys
             DrawGrid();
         }
 
-        Vector2 CellGrid::GetSize()
-        {
-            return RelSize;
-        }
-
         void CellGrid::SetActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             GridBack->SetActualSize(Size);
             DrawGrid();
-        }
-
-        Vector2 CellGrid::GetActualSize()
-        {
-            return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
         void CellGrid::UpdateDimensions(const Vector2& OldViewportSize)

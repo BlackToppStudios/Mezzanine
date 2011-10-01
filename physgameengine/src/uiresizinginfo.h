@@ -40,7 +40,7 @@
 #ifndef _uiresizinginfo_h
 #define _uiresizinginfo_h
 
-#include "enumerations.h"
+#include "uienumerations.h"
 #include "vector2.h"
 
 namespace phys

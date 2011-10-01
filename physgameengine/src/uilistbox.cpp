@@ -69,7 +69,7 @@ namespace phys
             /// objects around different layers and thus have more control over z-order.  When
             /// that happens we should add a rect to this class be be placed over the selections
             /// for use with a border or other kind of decoration.
-            Type = Widget::ListBox;
+            Type = Widget::W_ListBox;
 
             // Set some sane template defaults
             SelectionTemplate.Size = Rect.Size;
@@ -79,8 +79,9 @@ namespace phys
             SelectionTemplate.CursorOffset = 0.0;
             SelectionTemplate.HorizontalAlign = UI::Txt_Middle;
             SelectionTemplate.VerticalAlign = UI::Txt_Center;
+            SelectionTemplate.Priority = UI::RP_Medium;
 
-            RenderableRect ScrollRect;
+            RenderableRect ScrollRect, BoxRect;
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -98,10 +99,13 @@ namespace phys
                 ScrollRect.Size = Vector2(Rect.Size.Y,Rect.Size.Y * MaxDisplay);
                 ScrollRect.Relative = Rect.Relative;
             }
+            BoxRect.Position = Rect.Position;
+            BoxRect.Size.X = Rect.Size.X;
+            BoxRect.Size.Y = Rect.Size.Y * MaxDisplay;
+            BoxRect.Relative = Rect.Relative;
 
-            BoxBack = new Rectangle(Rect,Parent);
-            /// @todo Fourth instance of needing to include the namespace in the declaration seemingly needlessly.
-            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,Parent);
+            BoxBack = new Rectangle(BoxRect,Parent);
+            VertScroll = new Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,Parent);
             VertScroll->Hide();
         }
 
@@ -117,6 +121,12 @@ namespace phys
                 Selections.clear();
             }
             VisibleSelections.clear();
+        }
+
+        void ListBox::ScrollerSizeCheck()
+        {
+            Real ScrollerSize = (Real)MaxDisplay / (Real)Selections.size();
+            VertScroll->SetScrollerSize(ScrollerSize);
         }
 
         void ListBox::ScrollHideCheck()
@@ -139,15 +149,16 @@ namespace phys
 
         void ListBox::SelectionSizeCheck(UI::Caption* Selection)
         {
-            Vector2 CurrSize = Selection->GetSize();
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            Vector2 CurrSize = Selection->GetActualSize();
             Vector2 TargetSize;
             if(VertScroll->IsVisible())
-                TargetSize = Vector2(SelectionTemplate.Size.X - VertScroll->GetSize().X,SelectionTemplate.Size.Y);
+                TargetSize = Vector2((SelectionTemplate.Size.X * WinDim.X) - VertScroll->GetActualSize().X,SelectionTemplate.Size.Y * WinDim.Y);
             else
-                TargetSize = SelectionTemplate.Size;
+                TargetSize = SelectionTemplate.Size * WinDim;
             if(CurrSize != TargetSize)
             {
-                Selection->SetSize(TargetSize);
+                Selection->SetActualSize(TargetSize);
             }
         }
 
@@ -165,119 +176,74 @@ namespace phys
         {
             if(Selections.empty())
                 return;
-            if(!Visible)
-                return;
             ScrollHideCheck();
             VisibleSelections.clear();
-            Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)Selections.size();
-            Real Remainder = fmod(ToBeRounded,(Real)1.0);
-            Whole FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (1.0 - Remainder) : ToBeRounded - Remainder);
+            Whole FirstCaption = 0;
+            if(MaxDisplay < Selections.size())
+            {
+                Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)(Selections.size() - MaxDisplay);
+                FirstCaption = (Whole)(ToBeRounded + 0.5);
+            }
             Vector2 SelectionPos = GetActualPosition();
             Real ActualInc = SelectionTemplate.Size.Y * Parent->GetParent()->GetViewportDimensions().Y;
 
-            for( Whole w = 0 ; w < FirstCaption ; w++ )
+            for( Whole w = 0 ; w < FirstCaption ; ++w )
             {
                 Selections[w]->SetPosition(GetPosition());
                 Selections[w]->Hide();
                 SelectionSizeCheck(Selections[w]);
             }
             Whole Displayed = FirstCaption+MaxDisplay > Selections.size() ? Selections.size() : FirstCaption+MaxDisplay;
-            for( Whole x = FirstCaption ; x < Displayed ; x++ )
+            for( Whole x = FirstCaption ; x < Displayed ; ++x )
             {
                 VisibleSelections.push_back(Selections[x]);
-                Selections[x]->Show();
+                Selections[x]->SetVisible(this->IsVisible());
             }
-            for( Whole y = FirstCaption+MaxDisplay ; y < Selections.size() ; y++ )
+            for( Whole y = Displayed ; y < Selections.size() ; ++y )
             {
                 Selections[y]->SetPosition(GetPosition());
                 Selections[y]->Hide();
                 SelectionSizeCheck(Selections[y]);
             }
-            for( Whole z = 0 ; z < VisibleSelections.size() ; z++ )
+            for( Whole z = 0 ; z < VisibleSelections.size() ; ++z )
             {
                 VisibleSelections[z]->SetActualPosition(SelectionPos);
                 SelectionPos.Y+=ActualInc;
-                SelectionSizeCheck(Selections[z]);
+                SelectionSizeCheck(VisibleSelections[z]);
             }
         }
 
-        void ListBox::Update(bool Force)
+        void ListBox::UpdateImpl(bool Force)
         {
-            if(!Force)
-                SubWidgetUpdate();
             MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(HoveredCaption)
             {
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
-                    Selected = HoveredCaption;
+                    SetSelected(HoveredCaption);
                 }
-            }
-            else if(HoveredSubWidget)
-            {
-                if(MetaCode::BUTTON_PRESSING == State)
-                {
-                    SubWidgetFocus = HoveredSubWidget;
-                }
-            }
-            if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
-            {
-                SubWidgetFocusUpdate(true);
-            }
-            else if(MetaCode::BUTTON_DOWN == State && Force)
-            {
-                SubWidgetFocusUpdate(Force);
             }
             if(LastScrollValue != VertScroll->GetScrollerValue())
             {
                 DrawList();
                 LastScrollValue = VertScroll->GetScrollerValue();
             }
-            if(MetaCode::BUTTON_LIFTING == State)
-            {
-                SubWidgetFocus = NULL;
-            }
         }
 
-        void ListBox::SetVisible(bool visible)
+        void ListBox::SetVisibleImpl(bool visible)
         {
             BoxBack->SetVisible(visible);
-            if(!AutoHideScroll)
-                VertScroll->SetVisible(visible);
-            for(Whole x=0 ; x < VisibleSelections.size() ; x++)
-                VisibleSelections[x]->SetVisible(visible);
-            Visible = visible;
+            DrawList();
         }
 
-        void ListBox::Show()
+        bool ListBox::CheckMouseHoverImpl()
         {
-            BoxBack->Show();
-            if(!AutoHideScroll)
-                VertScroll->Show();
-            for(Whole x=0 ; x < VisibleSelections.size() ; x++)
-                VisibleSelections[x]->Show();
-            Visible = true;
-        }
-
-        void ListBox::Hide()
-        {
-            BoxBack->Hide();
-            if(!AutoHideScroll)
-                VertScroll->Hide();
-            for(Whole x=0 ; x < VisibleSelections.size() ; x++)
-                VisibleSelections[x]->Hide();
-            Visible = false;
-        }
-
-        bool ListBox::CheckMouseHover()
-        {
-            if(!IsVisible())
-                return false;
             for( std::vector<Caption*>::iterator it = VisibleSelections.begin() ; it != VisibleSelections.end() ; it++ )
             {
                 if((*it)->CheckMouseHover())
                 {
                     HoveredSubWidget = NULL;
+                    HoveredButton = NULL;
                     HoveredCaption = (*it);
                     return true;
                 }
@@ -285,16 +251,17 @@ namespace phys
             if(VertScroll->CheckMouseHover())
             {
                 HoveredSubWidget = VertScroll;
+                HoveredButton = VertScroll->GetHoveredButton();
                 HoveredCaption = NULL;
                 return true;
             }
             else if(BoxBack->CheckMouseHover())
             {
                 HoveredSubWidget = NULL;
+                HoveredButton = NULL;
                 HoveredCaption = NULL;
                 return true;
             }
-            HoveredSubWidget = NULL;
             HoveredCaption = NULL;
             return false;
         }
@@ -305,10 +272,12 @@ namespace phys
             if(Relative)
             {
                 this->SelectionTemplate.Size = Size;
-                SetArea((Size*MaxDisplay) * WinDim);
+                Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);
+                SetArea(NewSize * WinDim);
             }else{
                 this->SelectionTemplate.Size = Size / WinDim;
-                SetArea(Size*MaxDisplay);
+                Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);
+                SetArea(NewSize);
             }
             return *this;
         }
@@ -355,6 +324,12 @@ namespace phys
             return *this;
         }
 
+        ListBox& ListBox::SetTemplateRenderPriority(const UI::RenderPriority& Priority)
+        {
+            this->SelectionTemplate.Priority = Priority;
+            return *this;
+        }
+
         const ListBox::TemplateParams& ListBox::GetTemplateInfo()
         {
             return this->SelectionTemplate;
@@ -375,8 +350,10 @@ namespace phys
             Select->SetTextColour(SelectionTemplate.TextColour);
             Select->HorizontallyAlign(SelectionTemplate.HorizontalAlign);
             Select->VerticallyAlign(SelectionTemplate.VerticalAlign);
+            Select->SetRenderPriority(SelectionTemplate.Priority);
             Select->Hide();
             Selections.push_back(Select);
+            ScrollerSizeCheck();
             DrawList();
             return Select;
         }
@@ -420,10 +397,19 @@ namespace phys
             }
         }
 
+        void ListBox::SetSelected(Caption* ToBeSelected)
+        {
+            /// @todo Maybe add a checker to verify the caption belongs to this widget?
+            Selected = ToBeSelected;
+        }
+
         void ListBox::SetMaxDisplayedSelections(const Whole& MaxSelections)
         {
             MaxDisplay = MaxSelections;
-            SetArea((SelectionTemplate.Size * MaxDisplay) * Parent->GetParent()->GetViewportDimensions());
+            Vector2 NewBackSize = SelectionTemplate.Size;
+            NewBackSize.Y*=MaxDisplay;
+            SetArea(NewBackSize * Parent->GetParent()->GetViewportDimensions());
+            ScrollerSizeCheck();
         }
 
         void ListBox::SetAutoHideScroll(bool AutoHide)
@@ -441,23 +427,13 @@ namespace phys
             DrawList();
         }
 
-        Vector2 ListBox::GetPosition()
-        {
-            return RelPosition;
-        }
-
         void ListBox::SetActualPosition(const Vector2& Position)
         {
             RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
-            Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Parent->GetParent()->GetViewportDimensions();
+            Vector2 ScrollOffset = VertScroll->GetActualPosition() - (RelPosition * Parent->GetParent()->GetViewportDimensions());
             BoxBack->SetActualPosition(Position);
-            VertScroll->SetPosition(Position + ScrollOffset);
+            VertScroll->SetActualPosition(Position + ScrollOffset);
             DrawList();
-        }
-
-        Vector2 ListBox::GetActualPosition()
-        {
-            return RelPosition * Parent->GetParent()->GetViewportDimensions();
         }
 
         void ListBox::SetSize(const Vector2& Size)
@@ -465,19 +441,20 @@ namespace phys
             // Size is set implicitly
         }
 
-        Vector2 ListBox::GetSize()
-        {
-            return RelSize;
-        }
-
         void ListBox::SetActualSize(const Vector2& Size)
         {
             // Size is set implicitly
         }
 
-        Vector2 ListBox::GetActualSize()
+        void ListBox::UpdateDimensions(const Vector2& OldViewportSize)
         {
-            return RelSize * Parent->GetParent()->GetViewportDimensions();
+            /*const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            SetArea(RelSize * WinDim);
+            SetActualPosition(RelPosition * WinDim);*/
+
+            BoxBack->UpdateDimensions();
+            VertScroll->UpdateDimensions(OldViewportSize);
+            DrawList();
         }
 
         Caption* ListBox::GetSelected()

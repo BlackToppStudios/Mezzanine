@@ -43,7 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "uirenderablerect.h"
-#include "enumerations.h"
+#include "uienumerations.h"
 
 #include <map>
 
@@ -67,7 +67,6 @@ namespace phys
         class MarkupText;
         class Scrollbar;
         class CheckBox;
-        class ButtonListBox;
         class ListBox;
         class LineList;
         class Window;
@@ -75,6 +74,8 @@ namespace phys
         class Spinner;
         class ScrolledCellGrid;
         class PagedCellGrid;
+        class DropDownList;
+        class TabSet;
         class Screen;
         ///////////////////////////////////////////////////////////////////////////////
         /// @headerfile uilayer.h
@@ -114,9 +115,15 @@ namespace phys
                 /// @brief Sets the layers' visability.
                 /// @param Visable A bool representing the visability of the layer.
                 virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility setting of this layer.
+                /// @return Returns a bool that is the current visibility setting of this layer.
+                virtual bool GetVisible() const;
                 /// @brief Gets the layers' visability.
+                /// @details This function will check the visibility of all parent objects to see if it is being
+                /// drawn.  This will not tell you whether or not this layer has it's own visibility setting
+                /// enabled.  For that see: GetVisible().
                 /// @return Returns a bool representing the visability of the layer.
-                virtual bool IsVisible();
+                virtual bool IsVisible() const;
                 /// @brief Forces the layer to be shown.
                 virtual void Show();
                 /// @brief Forces the layer to hide.
@@ -262,21 +269,14 @@ namespace phys
                 /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
                 virtual Scrollbar* CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style);
                 /// @brief Creates a CheckBox within this layer.
+                /// @details The label uses the Markup Text class, and thus it's light markup text language.  You can also
+                /// pass in a blank string if you don't wish to have a label, you can create a label after construction.
                 /// @return Returns a pointer to the created CheckBox.
                 /// @param Name The name of the CheckBox.
                 /// @param Rect The Rect representing the position and size of the CheckBox.
-                /// @param Glyph The glyphs to use by default for use with the label.  Glyphs are defined in your .gorilla file.
-                /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
-                /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
-                /// create a label after construction.
-                virtual CheckBox* CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String &LabelText);
-                /// @brief Creates a Button List Box within this layer.
-                /// @return Returns a pointer to the created Button List Box.
-                /// @param Name The name of the Button List Box.
-                /// @param Rect The Rect representing the position and size of the Button List Box.
-                /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
-                /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                virtual ButtonListBox* CreateButtonListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollbarStyle);
+                /// @param LineHeight The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well.
+                /// @param LabelText The text to display with the label.
+                virtual CheckBox* CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String &LabelText);
                 /// @brief Creates a List Box within this layer.
                 /// @return Returns a pointer to the created List Box.
                 /// @param Name The name of the List Box.
@@ -316,6 +316,18 @@ namespace phys
                 /// @param SStyle The style of spinner to create.
                 /// @param GlyphHeight The desired lineheight of the glyphs to be used with the spinner.
                 virtual PagedCellGrid* CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
+                /// @brief Creates a drop down list within this layer.
+                /// @return Returns a pointer to the created DropDownList.
+                /// @param Name The Name for the Widget.
+                /// @param Rect The renderable rect representing the position and size of this widget.
+                /// @param LineHeight The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well.
+                /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar class for more information.
+                virtual DropDownList* CreateDropDownList(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle);
+                /// @brief Creates a tabset within this layer.
+                /// @return Returns a pointer to the created tabset.
+                /// @param Name The Name for the Widget.
+                /// @param SetRect The Rect representing the position and size of all the Renderable Sets generated by the tabset.
+                virtual TabSet* CreateTabSet(const String& Name, const RenderableRect& SetRect);
                 ///////////////////////////////////////////////////////////////////////////////
                 // UI Element and Widget Checks
                 ///////////////////////////////////////

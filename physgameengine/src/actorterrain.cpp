@@ -65,8 +65,8 @@ namespace phys
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->MotionState->SetPosition(InitPosition);
-        this->PhysicsSettings = new ActorTerrainPhysicsSettings(this,RigidBody);
         CreateCollisionTerrain();
+        this->PhysicsSettings = new ActorTerrainPhysicsSettings(this,RigidBody);
         ActorType = ActorBase::Actorterrain;
     }
 

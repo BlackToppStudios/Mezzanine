@@ -111,8 +111,12 @@ namespace phys
                 virtual void DrawGrid() = 0;
                 /// @brief Determines whether or not the grid needs to be redrawn.
                 virtual bool GridNeedsRedraw() = 0;
-                /// @brief For use with widget update/automation.
-                virtual void Update(bool Force = false);
+                /// @brief Child specific update method.
+                virtual void UpdateImpl(bool Force = false);
+                /// @brief Child specific visibility method.
+                virtual void SetVisibleImpl(bool visible);
+                /// @brief Child specific mouse hover method.
+                virtual bool CheckMouseHoverImpl();
             public:
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
@@ -121,13 +125,6 @@ namespace phys
                 CellGrid(const String& name, const RenderableRect& Rect, Layer* parent);
                 /// @brief Class destructor.
                 virtual ~CellGrid();
-                /// @brief Sets the visibility of this widget.
-                /// @param visible Bool determining whether or not this widget should be visible.
-                virtual void SetVisible(bool visible);
-                /// @brief Forces this widget to be shown.
-                virtual void Show();
-                /// @brief Forces this widget to hide.
-                virtual void Hide();
                 /// @brief Sets the fixed size cells in this grid are to have.
                 /// @param FixedSize The fixed size to apply to cells.
                 virtual void SetFixedCellSize(const Vector2& FixedSize);
@@ -181,37 +178,20 @@ namespace phys
                 virtual void SortGrid();
                 /// @brief Sets the selected pointer to NULL, so no cells are selected.
                 virtual void ClearSelected();
-                /// @brief Checks to see if the current mouse position is over this widget.
-                /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
-                virtual bool CheckMouseHover();
                 /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.
                 virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative position of this widget.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this widget.
-                virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this widget.
                 /// @param Position A vector2 representing the pixel position of this widget.
                 virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this widget.
-                /// @return Returns a vector2 representing the pixel position of this widget.
-                virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
                 virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this widget.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this widget.
-                virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
                 virtual void SetActualSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this widget.
-                /// @return Returns a vector2 representing the pixel size of this widget.
-                virtual Vector2 GetActualSize();
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 /// @param OldViewportSize The old size of the viewport.

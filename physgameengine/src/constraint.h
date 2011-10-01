@@ -1067,6 +1067,7 @@ namespace phys
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
             virtual void EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
             /// @brief Enables(or Disables) the motor on the hinge.
+            /// @warning Be sure to set values for the Motor max impulse and/or velocity before enabling the motor, or else you may get a crash.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
             virtual void EnableMotor(bool EnableMotor);
             /// @brief Is this motor on this hinge enabled?
@@ -1232,11 +1233,11 @@ namespace phys
             /// @brief Get offset of the second actor.
             /// @return The offset as a Vector3 relative to the center of mass of ActorB.
             virtual Vector3 GetPivotBLocation() const;
-            /// @brief Set the current impulse clamping on the constraint
-            /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
 
             ////////////////////////////////////////////////////////////////////////////////
             // Point2PointConstraint Specific Physics Settings
+            /// @brief Set the current impulse clamping on the constraint
+            /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
             virtual void SetImpulseClamping(Real Clamping);
             /// @brief get the current impulse clamping value
             /// @return A real with the Clamping
@@ -1367,49 +1368,49 @@ namespace phys
     /// @param stream The stream to send it down.
     /// @param x The constraint to send down.
     /// @return This returns the output stream to allow operator chaining.
-    std::ostream& operator << (std::ostream& stream, const phys::TypedConstraint& x);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::TypedConstraint& x);
     /// @brief Get a constraint from an XML stream.
     /// @param stream The stream to get it out of.
     /// @param x The it you will get out of the stream.
     /// @return This returns the input stream to allow operator chaining.
-    std::istream& operator >> (std::istream& stream, phys::TypedConstraint& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::TypedConstraint& x);
     /// @brief Converts an XML Node into a functional in memory construct.
     /// @param OneNode The xml node that contains the deserialize class instance.
     /// @param x The class instance to overwrite witht the proto serialized version in the node.
     void operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
-    std::ostream& operator << (std::ostream& stream, const phys::DualTransformConstraint& x);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::DualTransformConstraint& x);
     /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
-    std::istream& operator >> (std::istream& stream, phys::DualTransformConstraint& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::DualTransformConstraint& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
     void operator >> (const phys::xml::Node& OneNode, phys::DualTransformConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
-    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofConstraint& x);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Generic6DofConstraint& x);
     /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
-    std::istream& operator >> (std::istream& stream, phys::Generic6DofConstraint& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Generic6DofConstraint& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
     void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
-    std::ostream& operator << (std::ostream& stream, const phys::Generic6DofSpringConstraint& x);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Generic6DofSpringConstraint& x);
     /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
-    std::istream& operator >> (std::istream& stream, phys::Generic6DofSpringConstraint& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Generic6DofSpringConstraint& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
     void operator >> (const phys::xml::Node& OneNode, phys::Generic6DofSpringConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
-    std::ostream& operator << (std::ostream& stream, const phys::HingeConstraint& x);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::HingeConstraint& x);
     /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
-    std::istream& operator >> (std::istream& stream, phys::HingeConstraint& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::HingeConstraint& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
     void operator >> (const phys::xml::Node& OneNode, phys::HingeConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::TypedConstraint& x)
-    std::ostream& operator << (std::ostream& stream, const phys::Point2PointConstraint& x);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Point2PointConstraint& x);
     /// @copydoc operator >> (std::istream& stream, phys::TypedConstraint& x)
-    std::istream& operator >> (std::istream& stream, phys::Point2PointConstraint& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Point2PointConstraint& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::TypedConstraint& x)
     void operator >> (const phys::xml::Node& OneNode, phys::Point2PointConstraint& x);
 

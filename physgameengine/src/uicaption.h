@@ -43,7 +43,7 @@
 #include "crossplatformexport.h"
 #include "colourvalue.h"
 #include "datatypes.h"
-#include "enumerations.h"
+#include "uienumerations.h"
 #include "uirenderablerect.h"
 
 namespace Gorilla

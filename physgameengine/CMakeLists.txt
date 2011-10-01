@@ -45,6 +45,13 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorterrain.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/areaeffect.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/attachable.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audio.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audioenumerations.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audiolistener.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audiomanager.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audioplaylist.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audiosound.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audiosoundset.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/camera.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/cameracontroller.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/cameramanager.h"
@@ -97,21 +104,19 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/simpletimer.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/singleton.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/serialization.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/sound.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/soundlistener.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/soundmanager.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/stringtool.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/timer.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/timermanager.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/transform.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/ui.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uibasicrenderable.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uibutton.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uibuttonlistbox.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uicaption.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uicell.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uicellgrid.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uicheckbox.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uidropdownlist.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/uienumerations.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uilayer.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uilinelist.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uilistbox.h"
@@ -120,13 +125,16 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/uimenu.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uimenuwindow.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uipagedcellgrid.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/uiradiobutton.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uirectangle.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/uirenderablecontainerwidget.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uirenderablerect.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiresizinginfo.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscreen.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrollbar.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrolledcellgrid.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uispinner.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/uitabset.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uitextbutton.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiwidget.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiwindow.h"
@@ -157,6 +165,11 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorterrain.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/areaeffect.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/attachable.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audiolistener.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audiomanager.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audioplaylist.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audiosound.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/audiosoundset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/camera.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/cameracontroller.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/cameramanager.cpp"
@@ -201,17 +214,13 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/resourceinputstream.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/resourcemanager.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/simpletimer.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/sound.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/serialization.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/soundlistener.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/soundmanager.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/simpletimer.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/stringtool.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/timermanager.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/transform.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uibasicrenderable.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uibutton.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uibuttonlistbox.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uicaption.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uicell.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uicellgrid.cpp"
@@ -225,12 +234,15 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/uimenu.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uimenuwindow.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uipagedcellgrid.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/uiradiobutton.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uirectangle.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/uirenderablecontainerwidget.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiresizinginfo.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscreen.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrollbar.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrolledcellgrid.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uispinner.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/uitabset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uitextbutton.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiwidget.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiwindow.cpp"
@@ -298,9 +310,13 @@ if(${WIN32})
 	#required for cAudio
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
 
-	include_directories( "${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" )
+	include_directories( 
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" 
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
+	)
 
 	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
+	
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
@@ -327,6 +343,7 @@ if(${UNIX})
 		include_directories(
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
 		)
 		add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
@@ -368,6 +385,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 		"${OGRE_INCLUDE_DIR}"
 		${${PROJECT_NAME}_ROOT_DIR}/libincludes/macosx/ogresrc/boost_1_42
 		"${OGG_INCLUDE_DIR}"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
 	)
 
 	link_directories("${OGRE_LIB_DIR}")
@@ -381,12 +399,13 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 ###############################################################################
 #Common Library Configuration items
 include_directories( ${${PROJECT_NAME}_SOURCE_DIR}
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
+	#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
+	#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogre/OgreMain/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
 )
 
@@ -402,14 +421,17 @@ link_directories(
 ###############################################################################
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
+# remove lib prefix from DLL outputs
+set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
 #######################################
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
+#add_subdirectory (libincludes/common/ogresrc)
 #add_subdirectory (${BuildSpecificDirs})
 
-add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet )
+add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Ogre )
 
 #######################################
 # Library Link Dependencies

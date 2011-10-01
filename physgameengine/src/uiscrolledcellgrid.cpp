@@ -243,26 +243,31 @@ namespace phys
             return (HScrollVal != HorizontalScroll->GetScrollerValue() || VScrollVal != VerticalScroll->GetScrollerValue());
         }
 
-        void ScrolledCellGrid::SetVisible(bool visible)
+        void ScrolledCellGrid::SetVisibleImpl(bool visible)
         {
+            /// @todo Currently this disregards auto-hides.  Something should be implemented to account for that.
             HorizontalScroll->SetVisible(visible);
             VerticalScroll->SetVisible(visible);
-            CellGrid::SetVisible(visible);
+            CellGrid::SetVisibleImpl(visible);
         }
 
-        void ScrolledCellGrid::Show()
+        bool ScrolledCellGrid::CheckMouseHoverImpl()
         {
-            /// @todo Currently this and SetVisible disregard auto-hides.  Something should be implemented to account for that.
-            HorizontalScroll->Show();
-            VerticalScroll->Show();
-            CellGrid::Show();
-        }
-
-        void ScrolledCellGrid::Hide()
-        {
-            HorizontalScroll->Hide();
-            VerticalScroll->Hide();
-            CellGrid::Hide();
+            if(CellGrid::CheckMouseHoverImpl())
+                return true;
+            if(HorizontalScroll->CheckMouseHover())
+            {
+                HoveredSubWidget = HorizontalScroll;
+                HoveredButton = HorizontalScroll->GetHoveredButton();
+                return true;
+            }
+            if(VerticalScroll->CheckMouseHover())
+            {
+                HoveredSubWidget = VerticalScroll;
+                HoveredButton = VerticalScroll->GetHoveredButton();
+                return true;
+            }
+            return false;
         }
 
         void ScrolledCellGrid::SetAutoHide(bool Auto)
@@ -273,27 +278,6 @@ namespace phys
         bool ScrolledCellGrid::GetAutoHide()
         {
             return AutoHide;
-        }
-
-        bool ScrolledCellGrid::CheckMouseHover()
-        {
-            if(!IsVisible())
-                return false;
-            if(CellGrid::CheckMouseHover())
-                return true;
-            if(HorizontalScroll->CheckMouseHover())
-            {
-                HoveredSubWidget = HorizontalScroll;
-                HoveredButton = NULL;
-                return true;
-            }
-            if(VerticalScroll->CheckMouseHover())
-            {
-                HoveredSubWidget = VerticalScroll;
-                HoveredButton = NULL;
-                return true;
-            }
-            return false;
         }
 
         void ScrolledCellGrid::SetPosition(const Vector2& Position)

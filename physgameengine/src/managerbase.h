@@ -66,6 +66,7 @@ namespace phys
             enum ManagerTypeName
             {
                 ActorManager,
+                AudioManager,
                 CameraManager,
                 CollisionShapeManager,
                 EventManager,
@@ -74,7 +75,6 @@ namespace phys
                 PhysicsManager,
                 ResourceManager,
                 SceneManager,
-                SoundManager,
                 TerrainManager,
                 TimerManager,
                 UIManager,

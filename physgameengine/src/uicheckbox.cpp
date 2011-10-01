@@ -44,7 +44,7 @@
 #include "uimanager.h"
 #include "uilayer.h"
 #include "uiscreen.h"
-#include "uimarkuptext.h"
+#include "uicaption.h"
 #include "uibutton.h"
 #include "inputquerytool.h"
 #include "metacode.h"
@@ -54,30 +54,27 @@ namespace phys
 {
     namespace UI
     {
-        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString &LabelText, Layer* PLayer)
+        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, ConstString& LabelText, Layer* PLayer)
+            : Widget(name,PLayer),
+              Checked(false),
+              CheckLock(true)
+        {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            std::pair<Whole,Real> Result;
+            if(Rect.Relative) Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * WinDim.Y),Parent->GetParent()->GetPrimaryAtlas());
+            else Result = Manager->SuggestGlyphIndex((Whole)LineHeight,Parent->GetParent()->GetPrimaryAtlas());
+            GlyphIndex = Result.first;
+
+            ConstructCheckBox(Rect,LabelText);
+        }
+
+        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Layer* PLayer)
             : Widget(name,PLayer),
               GlyphIndex(Glyph),
               Checked(false),
               CheckLock(true)
         {
-            Type = Widget::CheckBox;
-            if(Rect.Relative)
-            {
-                RelPosition = Rect.Position;
-                RelSize = Rect.Size;
-            }else{
-                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
-                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
-            }
-
-            Box = new Button(Name+"CB",Rect,Parent);
-            if(LabelText.empty())
-            {
-                Label = NULL;
-            }else{
-                RenderableRect AdjustedRect = RenderableRect(Vector2(Rect.Position.X + Rect.Size.X,Rect.Position.Y),Vector2(),Rect.Relative);
-                Label = new MarkupText(Name+"CM",AdjustedRect,GlyphIndex,LabelText,Parent);
-            }
+            ConstructCheckBox(Rect,LabelText);
         }
 
         CheckBox::~CheckBox()
@@ -85,6 +82,39 @@ namespace phys
             delete Box;
             if(Label)
                 delete Label;
+        }
+
+        void CheckBox::ConstructCheckBox(const RenderableRect& Rect, ConstString& LabelText)
+        {
+            Type = Widget::W_CheckBox;
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            RenderableRect BoxRect, LabelRect;
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
+
+                BoxRect.Position = Rect.Position;
+                BoxRect.Size.X = (Rect.Size.Y * WinDim.Y) / WinDim.X;
+                BoxRect.Size.Y = Rect.Size.Y;
+                BoxRect.Relative = Rect.Relative;
+            }else{
+                RelPosition = Rect.Position / WinDim;
+                RelSize = Rect.Size / WinDim;
+
+                BoxRect.Position = Rect.Position;
+                BoxRect.Size.X = Rect.Size.Y;
+                BoxRect.Size.Y = Rect.Size.Y;
+                BoxRect.Relative = Rect.Relative;
+            }
+            LabelRect.Position.X = Rect.Position.X + BoxRect.Size.X;
+            LabelRect.Position.Y = Rect.Position.Y;
+            LabelRect.Size.X = Rect.Size.X - BoxRect.Size.X;
+            LabelRect.Size.Y = Rect.Size.Y;
+            LabelRect.Relative = Rect.Relative;
+
+            Box = new Button(Name+"CB",BoxRect,Parent);
+            Label = new Caption(Name+"CM",LabelRect,GlyphIndex,LabelText,Parent);
         }
 
         void CheckBox::SetSpriteSet(std::pair<std::string,std::string>& SpriteSet)
@@ -108,9 +138,9 @@ namespace phys
                 Box->SetHoveredSprite(CheckedHovered);
         }*/
 
-        void CheckBox::Update(bool Force)
+        void CheckBox::UpdateImpl(bool Force)
         {
-            if(HoveredButton || Force)
+            if(HoveredButton)
             {
                 MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
                 if(MetaCode::BUTTON_PRESSING == State)
@@ -131,28 +161,20 @@ namespace phys
             }
         }
 
-        void CheckBox::SetVisible(bool visible)
+        void CheckBox::SetVisibleImpl(bool visible)
         {
             Box->SetVisible(visible);
-            if(Label)
-                Label->SetVisible(visible);
-            Visible = visible;
+            Label->SetVisible(visible);
         }
 
-        void CheckBox::Show()
+        bool CheckBox::CheckMouseHoverImpl()
         {
-            Box->Show();
-            if(Label)
-                Label->Show();
-            Visible = true;
-        }
-
-        void CheckBox::Hide()
-        {
-            Box->Hide();
-            if(Label)
-                Label->Hide();
-            Visible = false;
+            if(Box->CheckMouseHover())
+            {
+                HoveredButton = Box;
+                return true;
+            }
+            return false;
         }
 
         bool CheckBox::IsChecked()
@@ -173,42 +195,14 @@ namespace phys
             }
         }
 
-        bool CheckBox::CheckMouseHover()
-        {
-            if(!IsVisible())
-                return false;
-            if(Box->CheckMouseHover())
-            {
-                HoveredButton = Box;
-                return true;
-            }
-            HoveredButton = NULL;
-            return false;
-        }
-
         void CheckBox::SetLabelText(String& LabelText)
         {
-            if(!Label)
-            {
-                Vector2 Position = Box->GetPosition();
-                Position.X+=Box->GetSize().X;
-                RenderableRect LabelRect(Position,Vector2(),true);
-                Label = new MarkupText(Name+"CM",LabelRect,GlyphIndex,LabelText,Parent);
-                Label->SetVisible(Box->IsVisible());
-            }else{
-                Label->SetText(LabelText);
-            }
+            Label->SetText(LabelText);
         }
 
         String CheckBox::GetLabelText()
         {
-            if(!Label)
-            {
-                String Text = "";
-                return Text;
-            }else{
-                return Label->GetText();
-            }
+            return Label->GetText();
         }
 
         void CheckBox::SetUncheckedSprite(ConstString& Unchecked, ConstString& Hovered)
@@ -217,6 +211,7 @@ namespace phys
             UncheckedSet.second = Hovered;
             //UncheckedNorm = Unchecked;
             //UncheckedHovered = Hovered;
+            SetSpriteSet(UncheckedSet);
         }
 
         void CheckBox::SetCheckedSprite(ConstString& Checked, ConstString& Hovered)
@@ -231,68 +226,37 @@ namespace phys
         {
             RelPosition = Position;
             Box->SetPosition(Position);
-            if(Label)
-            {
-                Vector2 Adjusted = Position;
-                Adjusted.X+=Box->GetSize().X;
-                Label->SetPosition(Adjusted);
-            }
-        }
 
-        Vector2 CheckBox::GetPosition()
-        {
-            return RelPosition;
+            Vector2 Adjusted = Position;
+            Adjusted.X+=Box->GetSize().X;
+            Label->SetPosition(Adjusted);
         }
 
         void CheckBox::SetActualPosition(const Vector2& Position)
         {
             RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             Box->SetActualPosition(Position);
-            if(Label)
-            {
-                Vector2 Adjusted = Position;
-                Adjusted.X+=Box->GetActualSize().X;
-                Label->SetActualPosition(Adjusted);
-            }
-        }
 
-        Vector2 CheckBox::GetActualPosition()
-        {
-            return RelPosition * Parent->GetParent()->GetViewportDimensions();
+            Vector2 Adjusted = Position;
+            Adjusted.X+=Box->GetActualSize().X;
+            Label->SetActualPosition(Adjusted);
         }
 
         void CheckBox::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            Box->SetSize(Size);
-            if(Label)
-            {
-                Vector2 Adjusted = Size;
-                Adjusted.X+=Box->GetPosition().X;
-                Label->SetPosition(Adjusted);
-            }
-        }
-
-        Vector2 CheckBox::GetSize()
-        {
-            return RelSize;
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            Box->SetSize(Vector2((Size.Y * WinDim.Y) / WinDim.X,Size.Y));
+            Label->SetSize(Vector2(Size.X - ((Size.Y * WinDim.Y) / WinDim.X),Size.Y));
+            this->SetPosition(GetPosition());
         }
 
         void CheckBox::SetActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();
-            Box->SetActualSize(Size);
-            if(Label)
-            {
-                Vector2 Adjusted = Size;
-                Adjusted.X+=Box->GetActualPosition().X;
-                Label->SetActualPosition(Adjusted);
-            }
-        }
-
-        Vector2 CheckBox::GetActualSize()
-        {
-            return RelSize * Parent->GetParent()->GetViewportDimensions();
+            Box->SetActualSize(Vector2(Size.Y,Size.Y));
+            Label->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
+            this->SetActualPosition(GetActualPosition());
         }
 
         Button* CheckBox::GetCheckBoxButton()
@@ -300,7 +264,7 @@ namespace phys
             return Box;
         }
 
-        MarkupText* CheckBox::GetCheckBoxLabel()
+        Caption* CheckBox::GetLabel()
         {
             return Label;
         }

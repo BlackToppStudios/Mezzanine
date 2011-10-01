@@ -138,7 +138,7 @@ namespace phys
         Axis_Y         = 1,    ///< Y axis
         Axis_Z         = 2,    ///< Z axis
     };
-
+/*
     namespace UI
     {
         /// @enum ActivationCondition
@@ -227,7 +227,7 @@ namespace phys
             Txt_Bottom,
             Txt_Center
         };
-    }
+    }*/
 }
 
 #endif

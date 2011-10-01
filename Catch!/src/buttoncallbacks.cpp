@@ -4,7 +4,7 @@
 #include "buttoncallbacks.h"
 #include "catchapp.h"
 
-GSStore::GSStore(UI::Button* caller) : UI::ButtonCallback(caller)
+GSStore::GSStore()
 {
 }
 
@@ -25,7 +25,7 @@ void GSStore::DoActivateItems()
 
 //--------------------------------------------------------------
 
-GSMenu::GSMenu(UI::Button* caller) : UI::ButtonCallback(caller)
+GSMenu::GSMenu()
 {
 }
 
@@ -46,7 +46,7 @@ void GSMenu::DoActivateItems()
 
 //--------------------------------------------------------------
 
-GSReturn::GSReturn(UI::Button* caller) : UI::ButtonCallback(caller)
+GSReturn::GSReturn()
 {
 }
 
@@ -67,7 +67,7 @@ void GSReturn::DoActivateItems()
 
 //--------------------------------------------------------------
 
-GSMMReturn::GSMMReturn(UI::Button* caller) : UI::ButtonCallback(caller)
+GSMMReturn::GSMMReturn()
 {
 }
 
@@ -87,7 +87,7 @@ void GSMMReturn::DoActivateItems()
 
 //--------------------------------------------------------------
 
-MSStart::MSStart(UI::Button* caller, UI::PagedCellGrid* LevelGrid) : UI::ButtonCallback(caller), TheGrid(LevelGrid)
+MSStart::MSStart(UI::PagedCellGrid* LevelGrid) : TheGrid(LevelGrid)
 {
 }
 
@@ -111,7 +111,7 @@ void MSStart::DoActivateItems()
 
 //--------------------------------------------------------------
 
-AllAppExit::AllAppExit(UI::Button* caller) : UI::ButtonCallback(caller)
+AllAppExit::AllAppExit()
 {
 }
 
@@ -127,6 +127,47 @@ void AllAppExit::DoActivateItems()
 {
     CatchApp::GetCatchAppPointer()->GetLevelLoader()->SetNextLevel("");
     World::GetWorldPointer()->BreakMainLoop();
+}
+
+//--------------------------------------------------------------
+
+OptsVideoApply::OptsVideoApply(UI::DropDownList* ResList, UI::CheckBox* FSBox, UI::CheckBox* StatsBox)
+    : ResolutionList(ResList),
+      FullScreenBox(FSBox),
+      FPSStatsBox(StatsBox)
+{
+}
+
+OptsVideoApply::~OptsVideoApply()
+{
+}
+
+void OptsVideoApply::DoHoverItems()
+{
+}
+
+void OptsVideoApply::DoActivateItems()
+{
+    // Get render resolution data
+    Whole Width, Height;
+    String SelectedRes = ResolutionList->GetSelection()->GetText();
+    String StrWidth = SelectedRes.substr(0,SelectedRes.find_first_of(" "));
+    String StrHeight = SelectedRes.substr(SelectedRes.find_last_of(" ") + 1);
+    std::stringstream WidthStream;
+    std::stringstream HeightStream;
+    WidthStream << StrWidth;
+    HeightStream << StrHeight;
+    WidthStream >> Width;
+    HeightStream >> Height;
+    // Create the settings
+    GraphicsSettings NewSettings;
+    NewSettings.Fullscreen = FullScreenBox->IsChecked();
+    NewSettings.RenderWidth = Width;
+    NewSettings.RenderHeight = Height;
+    // Apply the resolution and fullscreen settings
+    World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderOptions(NewSettings);
+    // Apply other settings
+    World::GetWorldPointer()->GetUIManager()->GetLayer("StatsLayer")->SetVisible(FPSStatsBox->IsChecked());
 }
 
 #endif

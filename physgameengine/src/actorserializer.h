@@ -54,7 +54,7 @@ namespace phys
 {
 
     /// @brief This creates Rigid body actors and inserts them into a given ActorManager.
-    class ActorRigidDeSerializer : public DeSerializer <ActorRigid>
+    class PHYS_LIB ActorRigidDeSerializer : public DeSerializer <ActorRigid>
     {
         #ifdef PHYSXML
 

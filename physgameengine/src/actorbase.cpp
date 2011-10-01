@@ -53,7 +53,8 @@
 #include "actorgraphicssettings.h"
 #include "actorphysicssettings.h"
 #include "serialization.h"
-#include "soundmanager.h"
+#include "audiomanager.h"
+#include "audiosoundset.h"
 #include "world.h"
 #include "xml.h"
 #include "internalmotionstate.h.cpp"
@@ -405,7 +406,7 @@ namespace phys{
                 }
 
                 if( 0!=OneNode.GetAttribute("SoundSet") && ""!=OneNode.GetAttribute("SoundSet").AsString())
-                    { this->ActorSounds = World::GetWorldPointer()->GetSoundManager()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
+                    { this->ActorSounds = World::GetWorldPointer()->GetAudioManager()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
                 else
                     { this->ActorSounds = 0; }
 

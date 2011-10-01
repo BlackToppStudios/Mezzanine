@@ -271,22 +271,23 @@ namespace phys
             return (int)CurrentPage != PageSpinner->GetSpinnerValue();
         }
 
-        void PagedCellGrid::SetVisible(bool visible)
+        void PagedCellGrid::SetVisibleImpl(bool visible)
         {
             PageSpinner->SetVisible(visible);
-            CellGrid::SetVisible(visible);
+            CellGrid::SetVisibleImpl(visible);
         }
 
-        void PagedCellGrid::Show()
+        bool PagedCellGrid::CheckMouseHoverImpl()
         {
-            PageSpinner->Show();
-            CellGrid::Show();
-        }
-
-        void PagedCellGrid::Hide()
-        {
-            PageSpinner->Hide();
-            CellGrid::Hide();
+            if(PageSpinner->CheckMouseHover())
+            {
+                HoveredSubWidget = PageSpinner;
+                HoveredButton = PageSpinner->GetHoveredButton();
+                return true;
+            }
+            if(CellGrid::CheckMouseHoverImpl())
+                return true;
+            return false;
         }
 
         void PagedCellGrid::SetFixedCellSize(const Vector2& FixedSize)
@@ -311,21 +312,6 @@ namespace phys
         {
             CellGrid::SetCellSpacing(Spacing);
             CalculateCellsPerPage();
-        }
-
-        bool PagedCellGrid::CheckMouseHover()
-        {
-            if(!IsVisible())
-                return false;
-            if(PageSpinner->CheckMouseHover())
-            {
-                HoveredSubWidget = PageSpinner;
-                HoveredButton = NULL;
-                return true;
-            }
-            if(CellGrid::CheckMouseHover())
-                return true;
-            return false;
         }
 
         void PagedCellGrid::UpdateDimensions(const Vector2& OldViewportSize)

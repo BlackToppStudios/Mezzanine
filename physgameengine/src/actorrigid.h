@@ -159,13 +159,13 @@ namespace phys
 /// @param ActorToSerialize The actor serialize
 /// @param stream the std::ostream to send the actors xml to.
 /// @return The ostream after the new data has been inserted.
-std::ostream& operator << (std::ostream& stream, const phys::ActorRigid& ActorToSerialize);
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ActorRigid& ActorToSerialize);
 
 /// @brief Get an actor from an XML stream.
 /// @param stream The stream to get it out of.
 /// @param x The it you will get out of the stream.
 /// @return This returns the input stream to allow operator chaining.
-std::istream& operator >> (std::istream& stream, phys::ActorRigid& x);
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorRigid& x);
 
 /// @brief Converts an XML Node into a functional in memory construct.
 /// @param OneNode The xml node that contains the deserialize class instance.
