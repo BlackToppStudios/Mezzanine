@@ -310,9 +310,13 @@ if(${WIN32})
 	#required for cAudio
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
 
-	include_directories( "${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" )
+	include_directories( 
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" 
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
+	)
 
 	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
+	
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
@@ -339,6 +343,7 @@ if(${UNIX})
 		include_directories(
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
 		)
 		add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
@@ -380,6 +385,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 		"${OGRE_INCLUDE_DIR}"
 		${${PROJECT_NAME}_ROOT_DIR}/libincludes/macosx/ogresrc/boost_1_42
 		"${OGG_INCLUDE_DIR}"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
 	)
 
 	link_directories("${OGRE_LIB_DIR}")
@@ -393,12 +399,13 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 ###############################################################################
 #Common Library Configuration items
 include_directories( ${${PROJECT_NAME}_SOURCE_DIR}
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
+	#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
+	#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogre/OgreMain/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
 )
 
@@ -414,14 +421,17 @@ link_directories(
 ###############################################################################
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
+# remove lib prefix from DLL outputs
+set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
 #######################################
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
+#add_subdirectory (libincludes/common/ogresrc)
 #add_subdirectory (${BuildSpecificDirs})
 
-add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet )
+add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Ogre )
 
 #######################################
 # Library Link Dependencies

@@ -156,7 +156,13 @@ namespace phys
                 /// @brief Sets the visibility of this widget.
                 /// @param visible Bool determining whether or not this widget should be visible.
                 virtual void SetVisible(bool visible);
-                /// @brief Gets the visibility of this widget.
+                /// @brief Gets the visibility setting of this widget.
+                /// @return Returns a bool that is the current visibility setting of this widget.
+                virtual bool GetVisible() const;
+                /// @brief Gets whether or not this widget is being drawn.
+                /// @details This function will check the visibility of all parent objects to see if it is being
+                /// drawn.  This will not tell you whether or not this widget has it's own visibility setting
+                /// enabled.  For that see: GetVisible().
                 /// @return Returns a bool representing the visibility of this widget.
                 virtual bool IsVisible() const;
                 /// @brief Forces this widget to be shown.

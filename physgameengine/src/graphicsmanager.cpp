@@ -93,9 +93,9 @@ namespace phys
 
     void GraphicsManager::Construct(const Whole &Width, const Whole &Height, const bool &FullScreen )
     {
-        PrimarySettings.Fullscreen = FullScreen;
-        PrimarySettings.RenderHeight = Height;
-        PrimarySettings.RenderWidth = Width;
+        DefaultSettings.Fullscreen = FullScreen;
+        DefaultSettings.RenderHeight = Height;
+        DefaultSettings.RenderWidth = Width;
         this->Priority = 0;
         this->FrameDelay = 0;
     }
@@ -116,16 +116,14 @@ namespace phys
     {
         if(!OgreBeenInitialized)
         {
-            try
+            if (!Ogre::Root::getSingleton().restoreConfig())
             {
-                /*NewWindows.OgreWindow = */Ogre::Root::getSingleton().initialise(false,"AppName");
-                #ifdef PHYSDEBUG
-                GameWorld->Log("Setup Ogre Window");
-                #endif
-            }catch (exception& e) {
-                GameWorld->Log("Failed to Setup Ogre Window");
-                GameWorld->LogAndThrow(e.what());
+                GameWorld->LogAndThrow(Exception("Failed to load Ogre settings during OgreInit in GraphicsManager::InitOgre()."));
             }
+            Ogre::Root::getSingleton().initialise(false,"AppName");
+            #ifdef PHYSDEBUG
+            GameWorld->Log("Setup Ogre Window");
+            #endif
             OgreBeenInitialized = true;
         }
     }
@@ -224,9 +222,14 @@ namespace phys
         return DesktopSettings;
     }
 
+    const GraphicsSettings& GraphicsManager::GetDefaultSettings()
+    {
+        return DefaultSettings;
+    }
+
     bool GraphicsManager::HasSDLBeenInitialized()
     {
-        return SDL_WasInit(0);
+        return SDL_WasInit(SDL_INIT_VIDEO);
     }
 
     bool GraphicsManager::HasOgreBeenInitialized()
@@ -276,7 +279,7 @@ namespace phys
     void GraphicsManager::Initialize()
     {
         if(GameWindows.empty())
-            CreateGameWindow("",PrimarySettings.RenderWidth,PrimarySettings.RenderHeight,PrimarySettings.Fullscreen?GameWindow::WF_Fullscreen:0);
+            CreateGameWindow("",DefaultSettings.RenderWidth,DefaultSettings.RenderHeight,DefaultSettings.Fullscreen?GameWindow::WF_Fullscreen:0);
         this->RenderTimer = new Ogre::Timer();
 
         Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
@@ -308,7 +311,7 @@ namespace phys
 
     void GraphicsManager::DoMainLoopItems()
     {
-        //Ogre::WindowEventUtilities::messagePump();
+        Ogre::WindowEventUtilities::messagePump();
         crossplatform::RenderPhysWorld();
 
         //Do Time Calculations to Determine Rendering Time

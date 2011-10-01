@@ -70,6 +70,7 @@ namespace phys
     {
         private:
             GraphicsSettings PrimarySettings;
+            GraphicsSettings DefaultSettings;
             GraphicsSettings DesktopSettings;
 
             std::vector< GameWindow* > GameWindows;
@@ -148,6 +149,10 @@ namespace phys
             /// @brief Gets the desktop display settings.
             /// @param Returns a GraphicsSettings struct with the desktop display settings.
             const GraphicsSettings& GetDesktopSettings();
+
+            /// @brief Gets the default settings for windows this manager initialized with.
+            /// @param Returns a GraphicsSettings struct with the default display settings.
+            const GraphicsSettings& GetDefaultSettings();
 
             /// @brief Gets whether or not SDL has been started.
             /// @return Returns a bool indicating whether or not SDL has been initialized yet.

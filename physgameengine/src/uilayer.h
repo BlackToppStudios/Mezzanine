@@ -115,9 +115,15 @@ namespace phys
                 /// @brief Sets the layers' visability.
                 /// @param Visable A bool representing the visability of the layer.
                 virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility setting of this layer.
+                /// @return Returns a bool that is the current visibility setting of this layer.
+                virtual bool GetVisible() const;
                 /// @brief Gets the layers' visability.
+                /// @details This function will check the visibility of all parent objects to see if it is being
+                /// drawn.  This will not tell you whether or not this layer has it's own visibility setting
+                /// enabled.  For that see: GetVisible().
                 /// @return Returns a bool representing the visability of the layer.
-                virtual bool IsVisible();
+                virtual bool IsVisible() const;
                 /// @brief Forces the layer to be shown.
                 virtual void Show();
                 /// @brief Forces the layer to hide.

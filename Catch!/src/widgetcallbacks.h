@@ -83,4 +83,28 @@ class OptsVideoFullscreen : public UI::WidgetCallback
         virtual void DoVisibilityChangeItems();
 };
 
+class OptsVideoFSAA : public UI::WidgetCallback
+{
+    protected:
+    public:
+        virtual ~OptsVideoFSAA();
+        virtual void SetCaller(UI::Widget* Caller);
+        virtual void DoHoverItems();
+        virtual void DoPreUpdateItems();
+        virtual void DoPostUpdateItems();
+        virtual void DoVisibilityChangeItems();
+};
+
+class OptsVideoStats : public UI::WidgetCallback
+{
+    protected:
+    public:
+        virtual ~OptsVideoStats();
+        virtual void SetCaller(UI::Widget* Caller);
+        virtual void DoHoverItems();
+        virtual void DoPreUpdateItems();
+        virtual void DoPostUpdateItems();
+        virtual void DoVisibilityChangeItems();
+};
+
 #endif

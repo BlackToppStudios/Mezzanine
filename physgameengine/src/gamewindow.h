@@ -100,7 +100,7 @@ namespace phys
 
             GraphicsManager* Manager;
 
-            void* RenderContext;
+            //void* RenderContext;
 
             void CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
             void CorrectViewportAndCamera(const Whole& Index);
@@ -181,6 +181,10 @@ namespace phys
             /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
             /// @details This should be useful in situations where it is not possible to update all of the options separately.
             void setRenderOptions(const GraphicsSettings& NewSettings);
+
+            /// @brief Gets the current level of Anti-Aliasing enabled on this Window.
+            /// @return Returns a Whole indicating which level of AA is enabled on this window, or 0 if AA is disabled.
+            Whole GetFSAALevel() const;
 
             /// @brief Gets the FPS based on the last frame rendered.
             /// @details This essentially determines how many frames could be rendered if all

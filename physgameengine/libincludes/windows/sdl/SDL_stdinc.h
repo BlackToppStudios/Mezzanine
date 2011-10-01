@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 
 /**
@@ -144,22 +143,14 @@ typedef int32_t Sint32;
  */
 typedef uint32_t Uint32;
 
-#ifdef SDL_HAS_64BIT_TYPE
 /**
  * \brief A signed 64-bit integer type.
- * \warning On platforms without any sort of 64-bit datatype, this is equivalent to Sint32!
  */
 typedef int64_t Sint64;
 /**
  * \brief An unsigned 64-bit integer type.
- * \warning On platforms without any sort of 64-bit datatype, this is equivalent to Uint32!
  */
 typedef uint64_t Uint64;
-#else
-/* This is really just a hack to prevent the compiler from complaining */
-typedef Sint32 Sint64;
-typedef Uint32 Uint64;
-#endif
 
 /*@}*//*Basic data types*/
 
@@ -174,13 +165,8 @@ SDL_COMPILE_TIME_ASSERT(uint16, sizeof(Uint16) == 2);
 SDL_COMPILE_TIME_ASSERT(sint16, sizeof(Sint16) == 2);
 SDL_COMPILE_TIME_ASSERT(uint32, sizeof(Uint32) == 4);
 SDL_COMPILE_TIME_ASSERT(sint32, sizeof(Sint32) == 4);
-#if !defined(__NINTENDODS__) && !defined(__ANDROID__)
-/* TODO: figure out why the following happens:
- include/SDL_stdinc.h:150: error: size of array 'SDL_dummy_uint64' is negative
- include/SDL_stdinc.h:151: error: size of array 'SDL_dummy_sint64' is negative */
 SDL_COMPILE_TIME_ASSERT(uint64, sizeof(Uint64) == 8);
 SDL_COMPILE_TIME_ASSERT(sint64, sizeof(Sint64) == 8);
-#endif
 #endif /* DOXYGEN_SHOULD_IGNORE_THIS */
 /** \endcond */
 
@@ -548,8 +534,6 @@ extern DECLSPEC unsigned long SDLCALL SDL_strtoul(const char *string,
                                                   char **endp, int base);
 #endif
 
-#ifdef SDL_HAS_64BIT_TYPE
-
 #ifdef HAVE__I64TOA
 #define SDL_lltoa       _i64toa
 #else
@@ -577,8 +561,6 @@ extern DECLSPEC Sint64 SDLCALL SDL_strtoll(const char *string, char **endp,
 extern DECLSPEC Uint64 SDLCALL SDL_strtoull(const char *string, char **endp,
                                             int base);
 #endif
-
-#endif /* SDL_HAS_64BIT_TYPE */
 
 #ifdef HAVE_STRTOD
 #define SDL_strtod      strtod

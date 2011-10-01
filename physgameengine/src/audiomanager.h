@@ -85,6 +85,8 @@ namespace phys
             Real EffectVolume;
             Real MusicVolume;
             Real MasterVolume;
+            Real MuteStandby;
+            bool Muted;
             Audio::Listener* Listener;
         public:
             /// @brief Class Constructor
@@ -184,6 +186,12 @@ namespace phys
             /// @brief Gets the currently set Master volume.
             /// @return Returns a Real representing the current Master volume.
             virtual Real GetMasterVolume() const;
+            /// @brief Sets whether or not to mute all Audio.
+            /// @param Enable Whether or not all sounds should be muted.
+            virtual void Mute(bool Enable);
+            /// @brief Gets whether or not the Audio subsystem is muted.
+            /// @return Returns a bool indicating whether or not the Audio subsystem is currently muted.
+            virtual bool IsMuted() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Audio Device

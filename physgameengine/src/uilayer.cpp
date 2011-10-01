@@ -133,7 +133,12 @@ namespace phys
             GorillaLayer->setVisible(Visable);
         }
 
-        bool Layer::IsVisible()
+        bool Layer::GetVisible() const
+        {
+            return GorillaLayer->isVisible();
+        }
+
+        bool Layer::IsVisible() const
         {
             return GorillaLayer->isVisible() && Parent->IsVisible();
         }

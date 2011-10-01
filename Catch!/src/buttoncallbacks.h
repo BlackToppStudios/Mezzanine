@@ -66,8 +66,9 @@ class OptsVideoApply : public UI::ButtonCallback
     protected:
         UI::DropDownList* ResolutionList;
         UI::CheckBox* FullScreenBox;
+        UI::CheckBox* FPSStatsBox;
     public:
-        OptsVideoApply(UI::DropDownList* ResList, UI::CheckBox* FSBox);
+        OptsVideoApply(UI::DropDownList* ResList, UI::CheckBox* FSBox, UI::CheckBox* StatsBox);
         virtual ~OptsVideoApply();
         virtual void DoHoverItems();
         virtual void DoActivateItems();

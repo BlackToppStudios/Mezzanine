@@ -264,9 +264,6 @@ namespace phys
             //Used to break the mainloop
             bool ManualLoopBreak;
 
-            //Try to retrieve ogre settinss
-            void LoadOgreSettings();
-
             //Used by the constructors
             /// @internal
             /// @brief This is called by all the constructors so that the is one unified place to have all the settings made.

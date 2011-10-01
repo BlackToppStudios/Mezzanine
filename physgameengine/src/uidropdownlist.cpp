@@ -44,6 +44,8 @@
 #include "uilistbox.h"
 #include "uicaption.h"
 #include "uibutton.h"
+#include "uirectangle.h"
+#include "uiscrollbar.h"
 #include "uilayer.h"
 #include "uiscreen.h"
 #include "uimanager.h"
@@ -135,7 +137,13 @@ namespace phys
             SelectionList = new UI::ListBox(Name+"List",SelectionListRect,ScrollStyle,Parent);
 
             SelectionList->SetTemplateGlyphIndex(Glyph);
+            SelectionList->SetTemplateRenderPriority(UI::RP_High);
             SelectionList->Hide();
+            SelectionList->GetBoxBack()->SetRenderPriority(UI::RP_High);
+            SelectionList->GetVertScroll()->GetScrollBack()->SetRenderPriority(UI::RP_High);
+            SelectionList->GetVertScroll()->GetScroller()->SetRenderPriority(UI::RP_High);
+            SelectionList->GetVertScroll()->GetUpLeftButton()->SetRenderPriority(UI::RP_High);
+            SelectionList->GetVertScroll()->GetDownRightButton()->SetRenderPriority(UI::RP_High);
         }
 
         void DropDownList::UpdateImpl(bool Force)

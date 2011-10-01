@@ -169,6 +169,11 @@ namespace phys
                 Callback->DoVisibilityChangeItems();
         }
 
+        bool Widget::GetVisible() const
+        {
+            return Visible;
+        }
+
         bool Widget::IsVisible() const
         {
             return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();

@@ -79,6 +79,7 @@ namespace phys
             SelectionTemplate.CursorOffset = 0.0;
             SelectionTemplate.HorizontalAlign = UI::Txt_Middle;
             SelectionTemplate.VerticalAlign = UI::Txt_Center;
+            SelectionTemplate.Priority = UI::RP_Medium;
 
             RenderableRect ScrollRect, BoxRect;
             if(Rect.Relative)
@@ -323,6 +324,12 @@ namespace phys
             return *this;
         }
 
+        ListBox& ListBox::SetTemplateRenderPriority(const UI::RenderPriority& Priority)
+        {
+            this->SelectionTemplate.Priority = Priority;
+            return *this;
+        }
+
         const ListBox::TemplateParams& ListBox::GetTemplateInfo()
         {
             return this->SelectionTemplate;
@@ -343,6 +350,7 @@ namespace phys
             Select->SetTextColour(SelectionTemplate.TextColour);
             Select->HorizontallyAlign(SelectionTemplate.HorizontalAlign);
             Select->VerticallyAlign(SelectionTemplate.VerticalAlign);
+            Select->SetRenderPriority(SelectionTemplate.Priority);
             Select->Hide();
             Selections.push_back(Select);
             ScrollerSizeCheck();

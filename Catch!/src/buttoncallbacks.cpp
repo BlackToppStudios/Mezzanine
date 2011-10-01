@@ -131,9 +131,10 @@ void AllAppExit::DoActivateItems()
 
 //--------------------------------------------------------------
 
-OptsVideoApply::OptsVideoApply(UI::DropDownList* ResList, UI::CheckBox* FSBox)
+OptsVideoApply::OptsVideoApply(UI::DropDownList* ResList, UI::CheckBox* FSBox, UI::CheckBox* StatsBox)
     : ResolutionList(ResList),
-      FullScreenBox(FSBox)
+      FullScreenBox(FSBox),
+      FPSStatsBox(StatsBox)
 {
 }
 
@@ -147,6 +148,7 @@ void OptsVideoApply::DoHoverItems()
 
 void OptsVideoApply::DoActivateItems()
 {
+    // Get render resolution data
     Whole Width, Height;
     String SelectedRes = ResolutionList->GetSelection()->GetText();
     String StrWidth = SelectedRes.substr(0,SelectedRes.find_first_of(" "));
@@ -157,13 +159,15 @@ void OptsVideoApply::DoActivateItems()
     HeightStream << StrHeight;
     WidthStream >> Width;
     HeightStream >> Height;
-
+    // Create the settings
     GraphicsSettings NewSettings;
     NewSettings.Fullscreen = FullScreenBox->IsChecked();
     NewSettings.RenderWidth = Width;
     NewSettings.RenderHeight = Height;
-
+    // Apply the resolution and fullscreen settings
     World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderOptions(NewSettings);
+    // Apply other settings
+    World::GetWorldPointer()->GetUIManager()->GetLayer("StatsLayer")->SetVisible(FPSStatsBox->IsChecked());
 }
 
 #endif

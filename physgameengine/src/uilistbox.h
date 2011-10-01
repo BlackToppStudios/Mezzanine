@@ -65,6 +65,7 @@ namespace phys
                 {
                     UI::TextHorizontalAlign HorizontalAlign;
                     UI::TextVerticalAlign VerticalAlign;
+                    UI::RenderPriority Priority;
                     Whole GlyphIndex;
                     Whole CursorOffset;
                     Real TextScale;
@@ -152,6 +153,11 @@ namespace phys
                 /// @param VertAlign The Vertical text alignment.  This defaults to UI::Center.
                 /// @return Returns a reference to this List Box.
                 virtual ListBox& SetTemplateVerticalAlign(const UI::TextVerticalAlign& VertAlign);
+                /// @brief Sets the render priority to be applied to all created Selections.
+                /// @details Optional parameter.
+                /// @param Priority The priority with which to render the image.  This defaults to UI::RP_Medium.
+                /// @return Returns a reference to this List Box.
+                virtual ListBox& SetTemplateRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the struct containing all the current template parameters used when creating a new selections.
                 /// @return Returns a const reference to the structure containing all the template parameters.
                 virtual const ListBox::TemplateParams& GetTemplateInfo();

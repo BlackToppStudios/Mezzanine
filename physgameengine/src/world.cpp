@@ -364,7 +364,6 @@ namespace phys
         this->Log("Entering GameInit()");
         #endif
 
-        this->LoadOgreSettings();
         #ifdef PHYSDEBUG
         this->Log("Loaded Graphics Settings");
         #endif
@@ -473,25 +472,6 @@ namespace phys
     void World::BreakMainLoop()
     {
         ManualLoopBreak = true;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Private Functions
-    ///////////////////////////////////////
-
-    ///////////////////////////////////////////////////////////////////////////////
-    //Loads the Ogre Configuration
-    void World::LoadOgreSettings()
-    {
-        //Try loading from the default location
-        if (!Ogre::Root::getSingleton().restoreConfig())
-        {
-            //if we can't do that then lets make new settings
-            if (!this->GetGraphicsManager()->ShowGraphicsSettingDialog())
-            {
-                this->LogAndThrow("Error: Could not setup Ogre.");
-            }
-        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

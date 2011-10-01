@@ -54,7 +54,8 @@ namespace phys
           DialogVolume(1.0),
           EffectVolume(1.0),
           MusicVolume(1.0),
-          MasterVolume(1.0)
+          MasterVolume(1.0),
+          MuteStandby(0.0)
     {
         cAudioManager = cAudio::createAudioManager(DefaultSettings);
         Listener = new Audio::Listener(cAudioManager->getListener());
@@ -211,6 +212,26 @@ namespace phys
     Real AudioManager::GetMasterVolume() const
     {
         return MasterVolume;
+    }
+
+    void AudioManager::Mute(bool Enable)
+    {
+        if(Enable == Muted)
+            return;
+        if(Enable)
+        {
+            MuteStandby = MasterVolume;
+            MasterVolume = 0;
+        }else{
+            MasterVolume = MuteStandby;
+            MuteStandby = 0;
+        }
+        Muted = Enable;
+    }
+
+    bool AudioManager::IsMuted() const
+    {
+        return Muted;
     }
 
     String AudioManager::GetAvailableDeviceNameByIndex(const Whole& Index) const
