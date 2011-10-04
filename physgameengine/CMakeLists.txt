@@ -505,6 +505,7 @@ if(${UNIX})
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.so data/${BuildPlatform}/ogre/Plugin_ParticleFX.so)
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_CgProgramManager.so data/${BuildPlatform}/ogre/Plugin_CgProgramManager.so)
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
+		CopyFilesDuringBuild( ${BuildPlatform}/GLX_icon.png data/${BuildPlatform}/GLX_icon.png )
 		CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
 
 		message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
