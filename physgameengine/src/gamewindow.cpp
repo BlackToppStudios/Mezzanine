@@ -159,22 +159,17 @@ namespace phys
 
         #ifdef WINDOWS
         HWND Data = 0;
-        OgreWindow->getCustomAttribute("WINDOW",&Data);
-        SDLWindow = SDL_CreateWindowFrom(Data);
         #endif
         #ifdef LINUX
-        Window Data=0;
-        World::GetWorldPointer()->CommitLog();
-        OgreWindow->getCustomAttribute("WINDOW",&Data);
-        SDLWindow = SDL_CreateWindowFrom((void*)Data); // o rly?!
+        Window Data = 0;
         #endif
         #ifdef MACOS
         NSWindow* Data = 0;
-        OgreWindow->getCustomAttribute("WINDOW",Data);
-        SDLWindow = SDL_CreateWindowFrom(Data);
-        #endif// */
+        #endif
+        OgreWindow->getCustomAttribute("WINDOW",&Data);
+        SDLWindow = SDL_CreateWindowFrom((void*)Data);
+
         SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
-        //delete Binder;
     }
 
     void GameWindow::CorrectViewportAndCamera(const Whole& Index)

@@ -102,13 +102,21 @@ namespace phys
 
     void GraphicsManager::InitSDL()
     {
+        #ifdef PHYSDEBUG
+        GameWorld->Log( String("Initializing SDL :")+SDL_GetError() );
+        #endif
+
         if(!SDL_WasInit(SDL_INIT_VIDEO))
         {
-            SDL_Init(SDL_INIT_VIDEO);
+            if( SDL_Init(SDL_INIT_VIDEO) == -1)
+            {
+                GameWorld->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error:")+SDL_GetError() );
+            }
             //atexit(SDL_Quit);
         }
+
         #ifdef PHYSDEBUG
-        GameWorld->Log("Initialized SDL");
+        GameWorld->Log( String("Initialized SDL :")+SDL_GetError() );
         #endif
     }
 
@@ -161,9 +169,9 @@ namespace phys
 
     GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
     {
-        if(!HasSDLBeenInitialized()) InitSDL();
+        if(!HasSDLBeenInitialized()) InitSDL();        //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
         if(!OgreBeenInitialized) InitOgre();
-        //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
+
         GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags);
 
         if(GameWindows.empty())
