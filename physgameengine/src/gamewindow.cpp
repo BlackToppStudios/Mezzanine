@@ -163,9 +163,10 @@ namespace phys
         SDLWindow = SDL_CreateWindowFrom(Data);
         #endif
         #ifdef LINUX
-        Window* Data = 0;
-        OgreWindow->getCustomAttribute("WINDOW",Data);
-        SDLWindow = SDL_CreateWindowFrom(Data);
+        Window Data=0;
+        World::GetWorldPointer()->CommitLog();
+        OgreWindow->getCustomAttribute("WINDOW",&Data);
+        SDLWindow = SDL_CreateWindowFrom((void*)Data); // o rly?!
         #endif
         #ifdef MACOS
         NSWindow* Data = 0;
