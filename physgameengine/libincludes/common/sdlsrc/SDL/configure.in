@@ -56,12 +56,7 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
-if test -z "$host_alias"; then
-    hostaliaswindres=
-else
-    hostaliaswindres="$host_alias-windres"
-fi
-AC_CHECK_PROGS(WINDRES, [windres $hostaliaswindres $host_os-windres])
+AC_CHECK_TOOL(WINDRES, [windres], [:])
 
 dnl Set up the compiler and linker flags
 INCLUDE="-I$srcdir/include"
@@ -281,25 +276,6 @@ if test x$enable_gcc_atomics = xyes; then
         fi
     fi
 fi
-
-# Check for pthread implementation
-AC_MSG_CHECKING(for pthread spinlock)
-have_pthread_spinlock=no
-
-AC_TRY_LINK([
-#include <pthread.h>
-],[
-pthread_spinlock_t a;
-pthread_spin_trylock(&a);
-pthread_spin_unlock(&a);
-],[
-have_pthread_spinlock=yes
-])
-AC_MSG_RESULT($have_pthread_spinlock)
-if test x$have_pthread_spinlock = xyes; then
-    AC_DEFINE(HAVE_PTHREAD_SPINLOCK, 1, [ ])
-fi
-
 
 # Standard C sources
 SOURCES="$SOURCES $srcdir/src/*.c"
@@ -682,7 +658,6 @@ AC_HELP_STRING([--enable-oss], [support the OSS audio API [[default=yes]]]),
         if test x$have_oss = xyes; then
             AC_DEFINE(SDL_AUDIO_DRIVER_OSS, 1, [ ])
             SOURCES="$SOURCES $srcdir/src/audio/dsp/*.c"
-            SOURCES="$SOURCES $srcdir/src/audio/dma/*.c"
             have_audio=yes
 
             # We may need to link with ossaudio emulation library
@@ -1658,6 +1633,39 @@ AC_HELP_STRING([--enable-pthread-sem], [use pthread semaphores [[default=yes]]])
                 AC_MSG_RESULT($have_pthread_sem)
             fi
 
+            AC_MSG_CHECKING(for pthread_spin_trylock)
+            AC_TRY_LINK_FUNC(pthread_spin_trylock, [
+              has_pthread_spin_trylock=yes
+              AC_DEFINE(HAVE_PTHREAD_SPINLOCK, 1, [ ])
+            ],[
+              has_pthread_spin_trylock=no
+            ])
+            AC_MSG_RESULT($has_pthread_spin_trylock)
+
+            AC_CHECK_HEADER(pthread_np.h, have_pthread_np_h=yes)
+            if test x$have_pthread_np_h = xyes; then
+                AC_DEFINE(HAVE_PTHREAD_NP_H, 1, [ ])
+            fi
+
+            # Check to see if pthread naming is available
+            AC_MSG_CHECKING(for pthread_setname_np)
+            AC_TRY_LINK_FUNC(pthread_setname_np, [
+              has_pthread_setname_np=yes
+              AC_DEFINE(HAVE_PTHREAD_SETNAME_NP, 1, [ ])
+            ],[
+              has_pthread_setname_np=no
+            ])
+            AC_MSG_RESULT($has_pthread_setname_np)
+
+            AC_MSG_CHECKING(for pthread_set_name_np)
+            AC_TRY_LINK_FUNC(pthread_set_name_np, [
+              has_pthread_set_name_np=yes
+              AC_DEFINE(HAVE_PTHREAD_SET_NAME_NP, 1, [ ])
+            ],[
+              has_pthread_set_name_np=no
+            ])
+            AC_MSG_RESULT($has_pthread_set_name_np)
+
             # Restore the compiler flags and libraries
             CFLAGS="$ac_save_cflags"; LIBS="$ac_save_libs"
 
@@ -1727,6 +1735,7 @@ AC_HELP_STRING([--enable-directx], [use DirectX for Windows audio/video [[defaul
         AC_CHECK_HEADER(ddraw.h, have_ddraw=yes)
         AC_CHECK_HEADER(dsound.h, have_dsound=yes)
         AC_CHECK_HEADER(dinput.h, have_dinput=yes)
+        AC_CHECK_HEADER(xaudio2.h, have_xaudio2=yes)
     fi
 }
 
@@ -2058,11 +2067,15 @@ AC_HELP_STRING([--enable-render-d3d], [enable the Direct3D render driver [[defau
         fi
         # Set up files for the audio library
         if test x$enable_audio = xyes; then
-            AC_DEFINE(SDL_AUDIO_DRIVER_WINWAVEOUT, 1, [ ])
-            SOURCES="$SOURCES $srcdir/src/audio/windib/*.c"
+            AC_DEFINE(SDL_AUDIO_DRIVER_WINMM, 1, [ ])
+            SOURCES="$SOURCES $srcdir/src/audio/winmm/*.c"
             if test x$have_dsound = xyes; then
                 AC_DEFINE(SDL_AUDIO_DRIVER_DSOUND, 1, [ ])
-                SOURCES="$SOURCES $srcdir/src/audio/windx5/*.c"
+                SOURCES="$SOURCES $srcdir/src/audio/directsound/*.c"
+            fi
+            if test x$have_xaudio2 = xyes; then
+                AC_DEFINE(SDL_AUDIO_DRIVER_XAUDIO2, 1, [ ])
+                SOURCES="$SOURCES $srcdir/src/audio/xaudio2/*.c"
             fi
             have_audio=yes
         fi
@@ -2145,11 +2158,15 @@ AC_HELP_STRING([--enable-render-d3d], [enable the Direct3D render driver [[defau
         fi
         # Set up files for the audio library
         if test x$enable_audio = xyes; then
-            AC_DEFINE(SDL_AUDIO_DRIVER_WINWAVEOUT, 1, [ ])
-            SOURCES="$SOURCES $srcdir/src/audio/windib/*.c"
+            AC_DEFINE(SDL_AUDIO_DRIVER_WINMM, 1, [ ])
+            SOURCES="$SOURCES $srcdir/src/audio/winmm/*.c"
             if test x$have_dsound = xyes; then
                 AC_DEFINE(SDL_AUDIO_DRIVER_DSOUND, 1, [ ])
-                SOURCES="$SOURCES $srcdir/src/audio/windx5/*.c"
+                SOURCES="$SOURCES $srcdir/src/audio/directsound/*.c"
+            fi
+            if test x$have_xaudio2 = xyes; then
+                AC_DEFINE(SDL_AUDIO_DRIVER_XAUDIO2, 1, [ ])
+                SOURCES="$SOURCES $srcdir/src/audio/xaudio2/*.c"
             fi
             have_audio=yes
         fi
@@ -2274,15 +2291,6 @@ AC_HELP_STRING([--enable-render-d3d], [enable the Direct3D render driver [[defau
         CheckDiskAudio
         CheckDummyAudio
         CheckDLOPEN
-
-        # Set up files for the shared object loading library
-        # (this needs to be done before the dynamic X11 check)
-        if test x$enable_loadso = xyes -a x$have_dlopen != xyes; then
-            AC_DEFINE(SDL_LOADSO_DLCOMPAT, 1, [ ])
-            SOURCES="$SOURCES $srcdir/src/loadso/macosx/*.c"
-            have_loadso=yes
-        fi
-
         CheckCOCOA
         CheckX11
         CheckMacGL
@@ -2298,7 +2306,7 @@ AC_HELP_STRING([--enable-render-d3d], [enable the Direct3D render driver [[defau
         # Set up files for the audio library
         if test x$enable_audio = xyes; then
             AC_DEFINE(SDL_AUDIO_DRIVER_COREAUDIO, 1, [ ])
-            SOURCES="$SOURCES $srcdir/src/audio/macosx/*.c"
+            SOURCES="$SOURCES $srcdir/src/audio/coreaudio/*.c"
             have_audio=yes
         fi
         # Set up files for the joystick library
