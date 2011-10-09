@@ -25,13 +25,14 @@
 #include "SDL_events.h"
 #include "SDL_sysjoystick.h"
 #include "SDL_joystick_c.h"
+#include "SDL_assert.h"
+
 #if !SDL_EVENTS_DISABLED
 #include "../events/SDL_events_c.h"
 #endif
 
 Uint8 SDL_numjoysticks = 0;
 SDL_Joystick **SDL_joysticks = NULL;
-static SDL_Joystick *default_joystick = NULL;
 
 int
 SDL_JoystickInit(void)
@@ -52,7 +53,6 @@ SDL_JoystickInit(void)
         }
         status = 0;
     }
-    default_joystick = NULL;
     return (status);
 }
 
@@ -192,9 +192,6 @@ SDL_PrivateJoystickValid(SDL_Joystick ** joystick)
 {
     int valid;
 
-    if (*joystick == NULL) {
-        *joystick = default_joystick;
-    }
     if (*joystick == NULL) {
         SDL_SetError("Joystick hasn't been opened yet");
         valid = 0;
@@ -370,9 +367,6 @@ SDL_JoystickClose(SDL_Joystick * joystick)
         return;
     }
 
-    if (joystick == default_joystick) {
-        default_joystick = NULL;
-    }
     SDL_SYS_JoystickClose(joystick);
 
     /* Remove joystick from list */
@@ -403,8 +397,21 @@ SDL_JoystickClose(SDL_Joystick * joystick)
 void
 SDL_JoystickQuit(void)
 {
+    const int numsticks = SDL_numjoysticks;
+    int i;
+
     /* Stop the event polling */
     SDL_numjoysticks = 0;
+
+    SDL_assert( (SDL_joysticks == NULL) == (numsticks == 0) );
+
+    for (i = 0; i < numsticks; i++) {
+        SDL_Joystick *stick = SDL_joysticks[i];
+        if (stick && (stick->ref_count >= 1)) {
+            stick->ref_count = 1;
+            SDL_JoystickClose(stick);
+        }
+    }
 
     /* Quit the joystick setup */
     SDL_SYS_JoystickQuit();

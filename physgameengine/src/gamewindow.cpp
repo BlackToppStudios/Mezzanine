@@ -151,25 +151,25 @@ namespace phys
 
         Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,(size_t)RenderContext);
         Opts.insert(Binder->begin(),Binder->end());// */
+
+        #ifdef LINUX
+        Ogre::ResourceGroupManager::getSingleton().addResourceLocation(crossplatform::GetDataDirectory(),"FileSystem");
+        #endif
         OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);//*/
 
         #ifdef WINDOWS
         HWND Data = 0;
-        OgreWindow->getCustomAttribute("WINDOW",&Data);
-        SDLWindow = SDL_CreateWindowFrom(Data);
         #endif
         #ifdef LINUX
-        Window* Data = 0;
-        OgreWindow->getCustomAttribute("WINDOW",Data);
-        SDLWindow = SDL_CreateWindowFrom(Data);
+        Window Data = 0;
         #endif
         #ifdef MACOS
         NSWindow* Data = 0;
-        OgreWindow->getCustomAttribute("WINDOW",Data);
-        SDLWindow = SDL_CreateWindowFrom(Data);
-        #endif// */
+        #endif
+        OgreWindow->getCustomAttribute("WINDOW",&Data);
+        SDLWindow = SDL_CreateWindowFrom((void*)Data);
+
         //SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
-        //delete Binder;
     }
 
     void GameWindow::CorrectViewportAndCamera(const Whole& Index)

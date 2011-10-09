@@ -629,6 +629,8 @@ data/Xcode/TemplatesForXcode/SDL OpenGL Application/main.c.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Application/English.lproj/InfoPlist.strings.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Application/Info.plist.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Application/SDLApp_Prefix.pch.i
+data/Xcode/TemplatesForXcodeLeopard/SDL Application/SDLMain.h.i
+data/Xcode/TemplatesForXcodeLeopard/SDL Application/SDLMain.m.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Application/___PROJECTNAMEASIDENTIFIER____Prefix.pch.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Application/___PROJECTNAME___.xcodeproj/TemplateIcon.icns.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Application/___PROJECTNAME___.xcodeproj/TemplateInfo.plist.i
@@ -640,6 +642,8 @@ data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/English.lproj/SDLMain.
 data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/English.lproj/SDLMain.nib/objects.nib.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/Info.plist.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/SDLApp_Prefix.pch.i
+data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/SDLMain.h.i
+data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/SDLMain.m.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/___PROJECTNAMEASIDENTIFIER____Prefix.pch.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/___PROJECTNAME___.xcodeproj/TemplateIcon.icns.i
 data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/___PROJECTNAME___.xcodeproj/TemplateInfo.plist.i
@@ -648,6 +652,8 @@ data/Xcode/TemplatesForXcodeLeopard/SDL Cocoa Application/main.c.i
 data/Xcode/TemplatesForXcodeLeopard/SDL OpenGL Application/English.lproj/InfoPlist.strings.i
 data/Xcode/TemplatesForXcodeLeopard/SDL OpenGL Application/Info.plist.i
 data/Xcode/TemplatesForXcodeLeopard/SDL OpenGL Application/SDLApp_Prefix.pch.i
+data/Xcode/TemplatesForXcodeLeopard/SDL OpenGL Application/SDLMain.h.i
+data/Xcode/TemplatesForXcodeLeopard/SDL OpenGL Application/SDLMain.m.i
 data/Xcode/TemplatesForXcodeLeopard/SDL OpenGL Application/___PROJECTNAMEASIDENTIFIER____Prefix.pch.i
 data/Xcode/TemplatesForXcodeLeopard/SDL OpenGL Application/___PROJECTNAME___.xcodeproj/TemplateIcon.icns.i
 data/Xcode/TemplatesForXcodeLeopard/SDL OpenGL Application/___PROJECTNAME___.xcodeproj/TemplateInfo.plist.i
@@ -662,6 +668,8 @@ data/Xcode/TemplatesForXcodeLeopard/SDL OpenGL Application/main.c.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Application/English.lproj/InfoPlist.strings.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Application/Info.plist.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Application/SDLApp_Prefix.pch.i
+data/Xcode/TemplatesForXcodeSnowLeopard/SDL Application/SDLMain.h.i
+data/Xcode/TemplatesForXcodeSnowLeopard/SDL Application/SDLMain.m.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Application/___PROJECTNAMEASIDENTIFIER____Prefix.pch.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Application/___PROJECTNAME___.xcodeproj/TemplateIcon.icns.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Application/___PROJECTNAME___.xcodeproj/TemplateInfo.plist.i
@@ -673,6 +681,8 @@ data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/English.lproj/SDLM
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/English.lproj/SDLMain.nib/objects.nib.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/Info.plist.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/SDLApp_Prefix.pch.i
+data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/SDLMain.h.i
+data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/SDLMain.m.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/___PROJECTNAMEASIDENTIFIER____Prefix.pch.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/___PROJECTNAME___.xcodeproj/TemplateIcon.icns.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/___PROJECTNAME___.xcodeproj/TemplateInfo.plist.i
@@ -681,6 +691,8 @@ data/Xcode/TemplatesForXcodeSnowLeopard/SDL Cocoa Application/main.c.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL OpenGL Application/English.lproj/InfoPlist.strings.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL OpenGL Application/Info.plist.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL OpenGL Application/SDLApp_Prefix.pch.i
+data/Xcode/TemplatesForXcodeSnowLeopard/SDL OpenGL Application/SDLMain.h.i
+data/Xcode/TemplatesForXcodeSnowLeopard/SDL OpenGL Application/SDLMain.m.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL OpenGL Application/___PROJECTNAMEASIDENTIFIER____Prefix.pch.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL OpenGL Application/___PROJECTNAME___.xcodeproj/TemplateIcon.icns.i
 data/Xcode/TemplatesForXcodeSnowLeopard/SDL OpenGL Application/___PROJECTNAME___.xcodeproj/TemplateInfo.plist.i
@@ -1377,6 +1389,8 @@ data/src/audio/baudio/SDL_beaudio.h.i
 data/src/audio/bsd/.cvsignore.i
 data/src/audio/bsd/SDL_bsdaudio.c.i
 data/src/audio/bsd/SDL_bsdaudio.h.i
+data/src/audio/coreaudio/SDL_coreaudio.c.i
+data/src/audio/coreaudio/SDL_coreaudio.h.i
 data/src/audio/dart/SDL_dart.c.i
 data/src/audio/dart/SDL_dart.h.i
 data/src/audio/dc/.cvsignore.i
@@ -1385,6 +1399,9 @@ data/src/audio/dc/SDL_dcaudio.c.i
 data/src/audio/dc/SDL_dcaudio.h.i
 data/src/audio/dc/aica.c.i
 data/src/audio/dc/aica.h.i
+data/src/audio/directsound/SDL_directsound.c.i
+data/src/audio/directsound/SDL_directsound.h.i
+data/src/audio/directsound/directx.h.i
 data/src/audio/disk/.cvsignore.i
 data/src/audio/disk/Makefile.am.i
 data/src/audio/disk/SDL_diskaudio.c.i
@@ -1494,6 +1511,10 @@ data/src/audio/windx5/Makefile.am.i
 data/src/audio/windx5/SDL_dx5audio.c.i
 data/src/audio/windx5/SDL_dx5audio.h.i
 data/src/audio/windx5/directx.h.i
+data/src/audio/winmm/SDL_winmm.c.i
+data/src/audio/winmm/SDL_winmm.h.i
+data/src/audio/xaudio2/SDL_xaudio2.c.i
+data/src/audio/xaudio2/SDL_xaudio2.h.i
 data/src/cdrom/.cvsignore.i
 data/src/cdrom/Makefile.am.i
 data/src/cdrom/Makefile.wat.i
@@ -1728,6 +1749,7 @@ data/src/main/.cvsignore.i
 data/src/main/Makefile.am.i
 data/src/main/android/SDL_android_main.cpp.i
 data/src/main/arch.c.i
+data/src/main/beos/SDL_BApp.h.i
 data/src/main/beos/SDL_BeApp.cc.i
 data/src/main/beos/SDL_BeApp.h.i
 data/src/main/beos/exports/Makefile.i
@@ -2130,6 +2152,27 @@ data/src/video/bwindow/.cvsignore.i
 data/src/video/bwindow/Makefile.am.i
 data/src/video/bwindow/SDL_BView.h.i
 data/src/video/bwindow/SDL_BWin.h.i
+data/src/video/bwindow/SDL_bclipboard.c.i
+data/src/video/bwindow/SDL_bclipboard.cc.i
+data/src/video/bwindow/SDL_bclipboard.h.i
+data/src/video/bwindow/SDL_bevents.cc.i
+data/src/video/bwindow/SDL_bevents.h.i
+data/src/video/bwindow/SDL_bframebuffer.cc.i
+data/src/video/bwindow/SDL_bframebuffer.h.i
+data/src/video/bwindow/SDL_bkeyboard.cc.i
+data/src/video/bwindow/SDL_bkeyboard.h.i
+data/src/video/bwindow/SDL_bmodes.c.i
+data/src/video/bwindow/SDL_bmodes.cc.i
+data/src/video/bwindow/SDL_bmodes.h.i
+data/src/video/bwindow/SDL_bopengl.c.i
+data/src/video/bwindow/SDL_bopengl.cc.i
+data/src/video/bwindow/SDL_bopengl.h.i
+data/src/video/bwindow/SDL_bvideo.c.i
+data/src/video/bwindow/SDL_bvideo.cc.i
+data/src/video/bwindow/SDL_bvideo.h.i
+data/src/video/bwindow/SDL_bwindow.c.i
+data/src/video/bwindow/SDL_bwindow.cc.i
+data/src/video/bwindow/SDL_bwindow.h.i
 data/src/video/bwindow/SDL_lowvideo.h.i
 data/src/video/bwindow/SDL_sysevents.cc.i
 data/src/video/bwindow/SDL_sysevents_c.h.i
@@ -2534,6 +2577,8 @@ data/src/video/uikit/SDL_uikitvideo.h.i
 data/src/video/uikit/SDL_uikitvideo.m.i
 data/src/video/uikit/SDL_uikitview.h.i
 data/src/video/uikit/SDL_uikitview.m.i
+data/src/video/uikit/SDL_uikitviewcontroller.h.i
+data/src/video/uikit/SDL_uikitviewcontroller.m.i
 data/src/video/uikit/SDL_uikitwindow.h.i
 data/src/video/uikit/SDL_uikitwindow.m.i
 data/src/video/uikit/jump.c.i
@@ -2943,6 +2988,183 @@ data/test/shapes/p16_shape8.bmp.i
 data/test/shapes/p16_shape8.png.i
 data/test/shapes/trollface_24.bmp.i
 data/test/shapes/trollface_32alpha.bmp.i
+data/test/test-automation/.hgignore.i
+data/test/test-automation/AUTHORS.i
+data/test/test-automation/COPYING.i
+data/test/test-automation/ChangeLog.i
+data/test/test-automation/DoxyFile.i
+data/test/test-automation/INSTALL.i
+data/test/test-automation/Makefile.am.i
+data/test/test-automation/Makefile.in.i
+data/test/test-automation/NEWS.i
+data/test/test-automation/README.i
+data/test/test-automation/SDL_test.c.i
+data/test/test-automation/SDL_test.h.i
+data/test/test-automation/TODO.i
+data/test/test-automation/acinclude/libtool.m4.i
+data/test/test-automation/acinclude/ltoptions.m4.i
+data/test/test-automation/acinclude/ltsugar.m4.i
+data/test/test-automation/acinclude/ltversion.m4.i
+data/test/test-automation/acinclude/lt~obsolete.m4.i
+data/test/test-automation/aclocal.m4.i
+data/test/test-automation/asserts.c.i
+data/test/test-automation/asserts.h.i
+data/test/test-automation/autogen.sh.i
+data/test/test-automation/build-scripts/compile.i
+data/test/test-automation/build-scripts/config.guess.i
+data/test/test-automation/build-scripts/config.sub.i
+data/test/test-automation/build-scripts/depcomp.i
+data/test/test-automation/build-scripts/distclean.sh.i
+data/test/test-automation/build-scripts/install-runner.sh.i
+data/test/test-automation/build-scripts/install-sh.i
+data/test/test-automation/build-scripts/install-tests.sh.i
+data/test/test-automation/build-scripts/ltmain.sh.i
+data/test/test-automation/build-scripts/missing.i
+data/test/test-automation/common/common.c.i
+data/test/test-automation/common/common.h.i
+data/test/test-automation/common/images.h.i
+data/test/test-automation/common/img_blit.c.i
+data/test/test-automation/common/img_blitblend.c.i
+data/test/test-automation/common/img_face.c.i
+data/test/test-automation/common/img_primitives.c.i
+data/test/test-automation/common/img_primitivesblend.c.i
+data/test/test-automation/config.h.in.i
+data/test/test-automation/configure.ac.i
+data/test/test-automation/data/images/icon.bmp.i
+data/test/test-automation/fuzzer/fuzzer.c.i
+data/test/test-automation/fuzzer/fuzzer.h.i
+data/test/test-automation/fuzzer/utl_crc32.c.i
+data/test/test-automation/fuzzer/utl_crc32.h.i
+data/test/test-automation/fuzzer/utl_md5.c.i
+data/test/test-automation/fuzzer/utl_md5.h.i
+data/test/test-automation/fuzzer/utl_random.c.i
+data/test/test-automation/fuzzer/utl_random.h.i
+data/test/test-automation/icon.bmp.i
+data/test/test-automation/include/SDL_test.h.i
+data/test/test-automation/install-tests.sh.i
+data/test/test-automation/logger.c.i
+data/test/test-automation/logger.h.i
+data/test/test-automation/logger_helpers.c.i
+data/test/test-automation/logger_helpers.h.i
+data/test/test-automation/plain_logger.c.i
+data/test/test-automation/plain_logger.h.i
+data/test/test-automation/runner.c.i
+data/test/test-automation/skeleton.xsl.i
+data/test/test-automation/src/libSDLtest/Makefile.am.i
+data/test/test-automation/src/libSDLtest/SDL_test.c.i
+data/test/test-automation/src/libSDLtest/common/common.c.i
+data/test/test-automation/src/libSDLtest/common/common.h.i
+data/test/test-automation/src/libSDLtest/common/images.h.i
+data/test/test-automation/src/libSDLtest/common/img_blit.c.i
+data/test/test-automation/src/libSDLtest/common/img_blitblend.c.i
+data/test/test-automation/src/libSDLtest/common/img_face.c.i
+data/test/test-automation/src/libSDLtest/common/img_primitives.c.i
+data/test/test-automation/src/libSDLtest/common/img_primitivesblend.c.i
+data/test/test-automation/src/libSDLtest/fuzzer/fuzzer.c.i
+data/test/test-automation/src/libSDLtest/fuzzer/fuzzer.h.i
+data/test/test-automation/src/libSDLtest/fuzzer/utl_crc32.c.i
+data/test/test-automation/src/libSDLtest/fuzzer/utl_crc32.h.i
+data/test/test-automation/src/libSDLtest/fuzzer/utl_md5.c.i
+data/test/test-automation/src/libSDLtest/fuzzer/utl_md5.h.i
+data/test/test-automation/src/libSDLtest/fuzzer/utl_random.c.i
+data/test/test-automation/src/libSDLtest/fuzzer/utl_random.h.i
+data/test/test-automation/src/libSDLtest/logger_helpers.c.i
+data/test/test-automation/src/libSDLtest/logger_helpers.h.i
+data/test/test-automation/src/libSDLtest/plain_logger.c.i
+data/test/test-automation/src/libSDLtest/plain_logger.h.i
+data/test/test-automation/src/libSDLtest/xml.c.i
+data/test/test-automation/src/libSDLtest/xml.h.i
+data/test/test-automation/src/libSDLtest/xml_logger.c.i
+data/test/test-automation/src/libSDLtest/xml_logger.h.i
+data/test/test-automation/src/libtest/Makefile.am.i
+data/test/test-automation/src/libtest/SDL_test.c.i
+data/test/test-automation/src/libtest/common/common.c.i
+data/test/test-automation/src/libtest/common/common.h.i
+data/test/test-automation/src/libtest/common/images.h.i
+data/test/test-automation/src/libtest/common/img_blit.c.i
+data/test/test-automation/src/libtest/common/img_blitblend.c.i
+data/test/test-automation/src/libtest/common/img_face.c.i
+data/test/test-automation/src/libtest/common/img_primitives.c.i
+data/test/test-automation/src/libtest/common/img_primitivesblend.c.i
+data/test/test-automation/src/libtest/fuzzer/fuzzer.c.i
+data/test/test-automation/src/libtest/fuzzer/fuzzer.h.i
+data/test/test-automation/src/libtest/fuzzer/utl_crc32.c.i
+data/test/test-automation/src/libtest/fuzzer/utl_crc32.h.i
+data/test/test-automation/src/libtest/fuzzer/utl_md5.c.i
+data/test/test-automation/src/libtest/fuzzer/utl_md5.h.i
+data/test/test-automation/src/libtest/fuzzer/utl_random.c.i
+data/test/test-automation/src/libtest/fuzzer/utl_random.h.i
+data/test/test-automation/src/libtest/logger_helpers.c.i
+data/test/test-automation/src/libtest/logger_helpers.h.i
+data/test/test-automation/src/libtest/plain_logger.c.i
+data/test/test-automation/src/libtest/plain_logger.h.i
+data/test/test-automation/src/libtest/xml.c.i
+data/test/test-automation/src/libtest/xml.h.i
+data/test/test-automation/src/libtest/xml_logger.c.i
+data/test/test-automation/src/libtest/xml_logger.h.i
+data/test/test-automation/src/runner/Makefile.am.i
+data/test/test-automation/src/runner/logger.h.i
+data/test/test-automation/src/runner/runner.c.i
+data/test/test-automation/src/runner/support.c.i
+data/test/test-automation/src/runner/support.h.i
+data/test/test-automation/style.xsl.i
+data/test/test-automation/support.c.i
+data/test/test-automation/support.h.i
+data/test/test-automation/test.c.i
+data/test/test-automation/test.h.i
+data/test/test-automation/testaudio/Makefile.am.i
+data/test/test-automation/testaudio/testaudio.c.i
+data/test/test-automation/testdummy/Makefile.am.i
+data/test/test-automation/testdummy/testdummy.c.i
+data/test/test-automation/testplatform/Makefile.am.i
+data/test/test-automation/testplatform/Makefile.in.i
+data/test/test-automation/testplatform/testplatform.c.i
+data/test/test-automation/testrect/Makefile.am.i
+data/test/test-automation/testrect/Makefile.in.i
+data/test/test-automation/testrect/testrect.c.i
+data/test/test-automation/testrender/Makefile.am.i
+data/test/test-automation/testrender/testrender.c.i
+data/test/test-automation/testrwops/Makefile.am.i
+data/test/test-automation/testrwops/testrwops.c.i
+data/test/test-automation/tests/Makefile.am.i
+data/test/test-automation/tests/SDL_test.c.i
+data/test/test-automation/tests/SDL_test.h.i
+data/test/test-automation/tests/asserts.c.i
+data/test/test-automation/tests/asserts.h.i
+data/test/test-automation/tests/test.c.i
+data/test/test-automation/tests/testaudio/Makefile.am.i
+data/test/test-automation/tests/testaudio/testaudio.c.i
+data/test/test-automation/tests/testclipboard/Makefile.am.i
+data/test/test-automation/tests/testclipboard/testclipboard.c.i
+data/test/test-automation/tests/testdummy/Makefile.am.i
+data/test/test-automation/tests/testdummy/testdummy.c.i
+data/test/test-automation/tests/testevents/Makefile.am.i
+data/test/test-automation/tests/testevents/testevents.c.i
+data/test/test-automation/tests/testkeyboard/Makefile.am.i
+data/test/test-automation/tests/testkeyboard/testkeyboard.c.i
+data/test/test-automation/tests/testplatform/Makefile.am.i
+data/test/test-automation/tests/testplatform/testplatform.c.i
+data/test/test-automation/tests/testrect/Makefile.am.i
+data/test/test-automation/tests/testrect/testrect.c.i
+data/test/test-automation/tests/testrender/Makefile.am.i
+data/test/test-automation/tests/testrender/testrender.c.i
+data/test/test-automation/tests/testrwops/Makefile.am.i
+data/test/test-automation/tests/testrwops/TestSupportRWops.h.i
+data/test/test-automation/tests/testrwops/TestSupportRWops_Generic.c.i
+data/test/test-automation/tests/testrwops/read.i
+data/test/test-automation/tests/testrwops/testrwops.c.i
+data/test/test-automation/tests/testsurface/Makefile.am.i
+data/test/test-automation/tests/testsurface/testsurface.c.i
+data/test/test-automation/tests/testsyswm/Makefile.am.i
+data/test/test-automation/tests/testsyswm/testsyswm.c.i
+data/test/test-automation/tests/testvideo/Makefile.am.i
+data/test/test-automation/tests/testvideo/testvideo.c.i
+data/test/test-automation/testsurface/Makefile.am.i
+data/test/test-automation/testsurface/testsurface.c.i
+data/test/test-automation/xml.c.i
+data/test/test-automation/xml.h.i
+data/test/test-automation/xml_logger.c.i
+data/test/test-automation/xml_logger.h.i
 data/test/testalpha.c.i
 data/test/testatomic.c.i
 data/test/testaudioinfo.c.i

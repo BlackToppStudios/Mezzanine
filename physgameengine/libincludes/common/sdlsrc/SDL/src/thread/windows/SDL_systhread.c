@@ -33,16 +33,13 @@
 #include <process.h>
 #endif
 
-#if __GNUC__
-typedef uintptr_t (__cdecl * pfnSDL_CurrentBeginThread) (void *, unsigned,
-                                                             unsigned
-                                                             (__stdcall *
-                                                              func) (void *),
-                                                             void *arg,
-                                                             unsigned,
-                                                             unsigned
-                                                             *threadID);
-typedef void (__cdecl * pfnSDL_CurrentEndThread) (unsigned code);
+/* Cygwin gcc-3 ... MingW64 (even with a i386 host) does this like MSVC. */
+#if (defined(__MINGW32__) && (__GNUC__ < 4))
+typedef unsigned long (__cdecl *pfnSDL_CurrentBeginThread) (void *, unsigned,
+        unsigned (__stdcall *func)(void *), void *arg, 
+        unsigned, unsigned *threadID);
+typedef void (__cdecl *pfnSDL_CurrentEndThread)(unsigned code);
+
 #elif defined(__WATCOMC__)
 /* This is for Watcom targets except OS2 */
 #if __WATCOMC__ < 1240
@@ -59,6 +56,7 @@ typedef unsigned long (__watcall * pfnSDL_CurrentBeginThread) (void *,
                                                                unsigned
                                                                *threadID);
 typedef void (__watcall * pfnSDL_CurrentEndThread) (unsigned code);
+
 #else
 typedef uintptr_t(__cdecl * pfnSDL_CurrentBeginThread) (void *, unsigned,
                                                         unsigned (__stdcall *
@@ -77,24 +75,29 @@ typedef struct ThreadStartParms
     pfnSDL_CurrentEndThread pfnCurrentEndThread;
 } tThreadStartParms, *pThreadStartParms;
 
-static DWORD __stdcall
+static DWORD
 RunThread(void *data)
 {
     pThreadStartParms pThreadParms = (pThreadStartParms) data;
-    pfnSDL_CurrentEndThread pfnCurrentEndThread = NULL;
-
-    // Call the thread function!
-    SDL_RunThread(pThreadParms->args);
-
-    // Get the current endthread we have to use!
-    if (pThreadParms) {
-        pfnCurrentEndThread = pThreadParms->pfnCurrentEndThread;
-        SDL_free(pThreadParms);
-    }
-    // Call endthread!
-    if (pfnCurrentEndThread)
-        (*pfnCurrentEndThread) (0);
+    pfnSDL_CurrentEndThread pfnEndThread = pThreadParms->pfnCurrentEndThread;
+    void *args = pThreadParms->args;
+    SDL_free(pThreadParms);
+    SDL_RunThread(args);
+    if (pfnEndThread != NULL)
+        pfnEndThread(0);
     return (0);
+}
+
+static DWORD WINAPI
+RunThreadViaCreateThread(LPVOID data)
+{
+  return RunThread(data);
+}
+
+static unsigned __stdcall
+RunThreadViaBeginThreadEx(void *data)
+{
+  return (unsigned) RunThread(data);
 }
 
 #ifdef SDL_PASSED_BEGINTHREAD_ENDTHREAD
@@ -115,7 +118,6 @@ SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
     pfnSDL_CurrentEndThread pfnEndThread = _endthreadex;
 #endif
 #endif /* SDL_PASSED_BEGINTHREAD_ENDTHREAD */
-    unsigned threadid;
     pThreadStartParms pThreadParms =
         (pThreadStartParms) SDL_malloc(sizeof(tThreadStartParms));
     if (!pThreadParms) {
@@ -128,12 +130,14 @@ SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
     pThreadParms->args = args;
 
     if (pfnBeginThread) {
-        thread->handle =
-            (SYS_ThreadHandle) pfnBeginThread(NULL, 0, RunThread,
-                                              pThreadParms, 0, &threadid);
+        unsigned threadid = 0;
+        thread->handle = (SYS_ThreadHandle)
+            ((size_t) pfnBeginThread(NULL, 0, RunThreadViaBeginThreadEx,
+                                     pThreadParms, 0, &threadid));
     } else {
-        thread->handle =
-            CreateThread(NULL, 0, RunThread, pThreadParms, 0, &threadid);
+        DWORD threadid = 0;
+        thread->handle = CreateThread(NULL, 0, RunThreadViaCreateThread,
+                                      pThreadParms, 0, &threadid);
     }
     if (thread->handle == NULL) {
         SDL_SetError("Not enough resources to create thread");
@@ -142,10 +146,40 @@ SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
     return (0);
 }
 
-void
-SDL_SYS_SetupThread(void)
+#ifdef _MSC_VER
+#pragma pack(push,8)
+typedef struct tagTHREADNAME_INFO
 {
-    return;
+    DWORD dwType; /* must be 0x1000 */
+    LPCSTR szName; /* pointer to name (in user addr space) */
+    DWORD dwThreadID; /* thread ID (-1=caller thread) */
+    DWORD dwFlags; /* reserved for future use, must be zero */
+} THREADNAME_INFO;
+#pragma pack(pop)
+#endif
+
+void
+SDL_SYS_SetupThread(const char *name)
+{
+#if 0  /* !!! FIXME: __except needs C runtime, which we don't link against. */
+#ifdef _MSC_VER  /* !!! FIXME: can we do SEH on other compilers yet? */
+    /* This magic tells the debugger to name a thread if it's listening. */
+    THREADNAME_INFO inf;
+    inf.dwType = 0x1000;
+    inf.szName = name;
+    inf.dwThreadID = (DWORD) -1;
+    inf.dwFlags = 0;
+
+    __try
+    {
+        RaiseException(0x406D1388, 0, sizeof(inf)/sizeof(DWORD), (DWORD*)&inf);
+    }
+    __except(EXCEPTION_CONTINUE_EXECUTION)
+    {
+        /* The program itself should ignore this bogus exception. */
+    }
+#endif
+#endif
 }
 
 SDL_threadID

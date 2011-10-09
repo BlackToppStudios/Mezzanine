@@ -1096,6 +1096,25 @@ namespace phys
         SetPointers(CylinderShape);
     }
 
+#ifdef PHYSXML
+    CylinderCollisionShape::CylinderCollisionShape(xml::Node OneNode)
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            xml::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
+            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+
+            this->Name = OneName.AsString();
+
+            SetPointers(new btCylinderShape(btVector3(0,0,0)));
+
+            this->ProtoDeSerialize(OneNode);
+        }else{
+            DeSerializeError("find usable serialization version",BoxCollisionShape::SerializableName());
+        }
+    }
+#endif // /PHYSXML
+
     CylinderCollisionShape::~CylinderCollisionShape()
     {
         delete CylinderShape;
@@ -1132,6 +1151,67 @@ namespace phys
     {
         return CollisionShape::ST_Cylinder;
     }
+
+    btCylinderShape* CylinderCollisionShape::GetBulletCylinderShape() const
+        { return static_cast<btCylinderShape*>(ShapeBase); }
+
+#ifdef PHYSXML
+    void CylinderCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->CylinderCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->CylinderCollisionShape::SerializableName());}
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+/*
+        xml::Node PointsNode = CollisionNode.AppendChild("UnscaledPoints");
+        if (!PointsNode) { SerializeError("create UnscaledPoints",this->CylinderCollisionShape::SerializableName());}
+
+        for(Whole c=0; c<this->GetNumPoints(); ++c)
+        {
+            this->GetUnscaledPoint(c).ProtoSerialize(PointsNode);
+        }
+        */
+
+        this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
+    }
+
+    void CylinderCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->CylinderCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                if(!CollisionNode)
+                    { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
+
+                /*xml::Node UnscaledPoints = OneNode.GetChild("UnscaledPoints");
+                if(!UnscaledPoints)
+                    { DeSerializeError("locate UnscaledPoints node",SerializableName()); }
+
+                xml::Node OnePoint = UnscaledPoints.GetFirstChild();
+                while (OnePoint)
+                {
+                    this->AddPoint(Vector3(OnePoint));
+                    OnePoint = OnePoint.GetNextSibling();
+                }*/
+
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String CylinderCollisionShape::SerializableName()
+        {   return String("CylinderCollisionShape"); }
+#endif
 
     /////////////////////////////////////////
     // MultiSphereCollisionShape Functions
@@ -1390,7 +1470,7 @@ namespace phys
             case CollisionShape::ST_ConvexHull:
                 return new ConvexHullCollisionShape(OneNode);
             case CollisionShape::ST_Cylinder:
-                return new CylinderCollisionShape(Name_,1,1,Vector3::Unit_Y());
+                return new CylinderCollisionShape(OneNode);
             case CollisionShape::ST_MultiSphere:
             {
                 std::vector<Vector3> Points;

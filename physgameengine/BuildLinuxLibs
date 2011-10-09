@@ -1,14 +1,46 @@
 #!/bin/bash
-#this will build ogre and SDL and make sure their files wind up were CMake Expects them to be
+# This will build ogre and SDL and make sure their files wind up were CMake Expects them to be
+# This will not copy files to the data directory. That is up to you or to cmake.
+
+ThreadCount=1
+DebugSymbols=""
+DebugCMake="-DCMAKE_BUILD_TYPE=Release"
+
+########################################################
+#Check arg1 for thread count
+if [ ! -n "$1" ]
+then
+	echo "Usage: `basename $0` [CompilationThreadCount] [\"Debug\"]"
+	echo "CompilationThreadCount is the number of threads to compile with. You usually want to enter you amount of CPU cores."
+	echo "\"Debug\" - If the word Debug appears after the CPU count, then The software will be compile with Debug Symbols"
+else
+	ThreadCount=$1
+	echo "All compilations will be run in $ThreadCount Threads."
+fi
+
+########################################################
+#check arg2 for the word "Debug"
+if [ "Debug" = "$2" ]
+then
+	DebugSymbols="-g"
+	DebugCMake="-DCMAKE_BUILD_TYPE=Debug"	
+	echo "Compiling for Debugging"	
+else
+	echo "Compiling for Release"	
+fi
+
+########################################################
+# Prepare Ogre Library
 cd libincludes/linux/ogresrc/ogre
-cmake -G"CodeBlocks - Unix Makefiles"
-make 
+cmake -G"CodeBlocks - Unix Makefiles" $DebugCMake
+make -j$ThreadCount
+
+
+########################################################
+#Now lets do SDL
 cd ../../../common/sdlsrc/SDL/
 ./autogen.sh
+./configure LDFLAGS=-fPIC CFLAGS="-O2 $DebugSymbols -fPIC"
+make -j$ThreadCount
 
-#this assumes that wish to compile with debug flags enabled.
-#./configure LDFLAGS=-fPIC CFLAGS=-O2
 
-#This is the optimized
-./configure CFLAGS="-O2 -fPIC"
-make

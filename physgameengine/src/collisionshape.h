@@ -660,6 +660,10 @@ namespace phys
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             CylinderCollisionShape(const String& Name, btCylinderShape* BulletShape);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            CylinderCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~CylinderCollisionShape();
             /// @brief Gets the half extents used to construct this cylinder.
@@ -676,6 +680,18 @@ namespace phys
             virtual Vector3 GetUpAxis() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btCylinderShape* GetBulletCylinderShape() const;
+#ifdef PHYSXML
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "CylinderCollisionShape"
+            static String SerializableName();
+#endif
     };//cylindercollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////

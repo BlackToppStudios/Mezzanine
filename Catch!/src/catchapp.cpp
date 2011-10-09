@@ -700,6 +700,7 @@ int CatchApp::GetCatchin()
     PopulateShopValues();
 
     //Set logging frequency
+    TheWorld->CommitLog();
     TheWorld->SetLoggingFrequency(World::LogNever);
 
 	// Set the Title

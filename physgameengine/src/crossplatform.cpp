@@ -161,12 +161,13 @@ namespace phys
             #ifdef PHYSDEBUG
             TheWorld->Log("Rendering the World.");
             #endif
-            #ifdef WINDOWS
+            //#ifdef WINDOWS
                 Ogre::Root::getSingleton().renderOneFrame();
                 //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
                 //    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
                 //    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
-            #else
+                }
+            /*#else
                 Ogre::Root::getSingleton()._fireFrameStarted();
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
                 for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
@@ -178,7 +179,8 @@ namespace phys
                 //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
                 //   Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
                 Ogre::Root::getSingleton()._fireFrameEnded();
-            #endif
+            #endif*/
+
             if( !Graphics->GetPrimaryGameWindow()->GetOgreWindowPointer()->isVisible() )
                     Ogre::Root::getSingleton().clearEventTimes();
 

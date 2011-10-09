@@ -67,7 +67,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
     [window setAcceptsMouseMovedEvents:YES];
 
     [view setNextResponder:self];
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1060
     [view setAcceptsTouchEvents:YES];
 #endif
 }
@@ -380,7 +380,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
 
 - (void)handleTouches:(cocoaTouchType)type withEvent:(NSEvent *)event
 {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1060
     NSSet *touches = 0;
     NSEnumerator *enumerator;
     NSTouch *touch;
@@ -401,7 +401,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
     enumerator = [touches objectEnumerator];
     touch = (NSTouch*)[enumerator nextObject];
     while (touch) {
-        SDL_TouchID touchId = (SDL_TouchID)[touch device];
+        const SDL_TouchID touchId = (SDL_TouchID) ((size_t) [touch device]);
         if (!SDL_GetTouch(touchId)) {
             SDL_Touch touch;
 
@@ -421,7 +421,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
             }
         } 
 
-        SDL_FingerID fingerId = (SDL_FingerID)[touch identity];
+        const SDL_FingerID fingerId = (SDL_FingerID) ((size_t) [touch identity]);
         float x = [touch normalizedPosition].x;
         float y = [touch normalizedPosition].y;
         /* Make the origin the upper left instead of the lower left */
@@ -442,7 +442,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
         
         touch = (NSTouch*)[enumerator nextObject];
     }
-#endif /* MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6 */
+#endif /* MAC_OS_X_VERSION_MAX_ALLOWED >= 1060 */
 }
 
 @end
