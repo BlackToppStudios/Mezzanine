@@ -96,6 +96,13 @@ namespace phys
         DefaultSettings.Fullscreen = FullScreen;
         DefaultSettings.RenderHeight = Height;
         DefaultSettings.RenderWidth = Width;
+
+        SDL_DisplayMode DeskMode;
+        SDL_GetDesktopDisplayMode(0,&DeskMode);
+        DesktopSettings.RenderWidth = DeskMode.w;
+        DesktopSettings.RenderHeight = DeskMode.h;
+        DesktopSettings.RefreshRate = DeskMode.refresh_rate;
+
         this->Priority = 0;
         this->FrameDelay = 0;
     }
@@ -299,12 +306,6 @@ namespace phys
                 continue;
             }
         }
-
-        SDL_DisplayMode DeskMode;
-        SDL_GetDesktopDisplayMode(0,&DeskMode);
-        DesktopSettings.RenderWidth = DeskMode.w;
-        DesktopSettings.RenderHeight = DeskMode.h;
-        DesktopSettings.RefreshRate = DeskMode.refresh_rate;
 
         GraphicsInitialized = true;
     }

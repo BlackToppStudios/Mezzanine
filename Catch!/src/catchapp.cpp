@@ -683,7 +683,7 @@ int CatchApp::GetCatchin()
     TheWorld->GetUIManager()->SetPostMainLoopItems(&CPostUI);
 
     const GraphicsSettings& DefSet = TheWorld->GetGraphicsManager()->GetDefaultSettings();
-    int WindowFlags = (DefSet.Fullscreen?GameWindow::WF_Fullscreen:0);// | GameWindow::WF_FSAA_4;
+    int WindowFlags = (DefSet.Fullscreen?GameWindow::WF_Fullscreen:0) | GameWindow::WF_FSAA_8;
     TheWorld->GetGraphicsManager()->CreateGameWindow("",DefSet.RenderWidth,DefSet.RenderHeight,WindowFlags);
 
     //Set the Make the RenderWindow and load system stuff

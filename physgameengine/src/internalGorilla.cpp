@@ -1,14 +1,14 @@
 /*
     Gorilla
     -------
-    
+
     Copyright (c) 2010 Robin Southern
 
     Additional contributions by:
 
     - Murat Sari
     - Nigel Atkinson
-                                                                                  
+
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
@@ -202,7 +202,9 @@ namespace Gorilla
     mTexture = Ogre::TextureManager::getSingletonPtr()->getByName(data, groupName);
 #endif
     if (mTexture.isNull())
-     mTexture = Ogre::TextureManager::getSingletonPtr()->load(textureName, groupName);
+    {
+     mTexture = Ogre::TextureManager::getSingletonPtr()->load(textureName, groupName, Ogre::TEX_TYPE_2D, 0);
+    }
 
     mInverseTextureSize.x = 1.0f / mTexture->getWidth();
     mInverseTextureSize.y = 1.0f / mTexture->getHeight();
@@ -373,42 +375,42 @@ namespace Gorilla
 
 
    glyphData->mGlyphs[right_glyph_id - glyphData->mRangeBegin]->kerning.push_back(Kerning(left_glyph_id, kerning));
-   
+
   }
-  
+
  }
 
  void  TextureAtlas::_loadVerticalOffsets(Ogre::ConfigFile::SettingsMultiMap* settings, GlyphData* glyphData)
  {
-  
+
   Ogre::String left_name, data;
   Ogre::ConfigFile::SettingsMultiMap::iterator i;
   Ogre::uint glyph_id;
   int verticalOffset;
-  
+
   for (i = settings->begin(); i != settings->end(); ++i)
   {
-   
+
    left_name = i->first;
    data = i->second;
    Ogre::StringUtil::toLowerCase(left_name);
-   
+
    if (left_name.substr(0,15) != "verticaloffset_")
     continue;
-   
+
    size_t comment = data.find_first_of('#');
    if (comment != std::string::npos)
     data = data.substr(0, comment);
-   
+
    left_name = left_name.substr(15); // chop of verticalOffset_
    glyph_id = Ogre::StringConverter::parseUnsignedInt(left_name);
-   
+
    verticalOffset = Ogre::StringConverter::parseInt(data);
-   
+
    glyphData->getGlyph(glyph_id)->verticalOffset = verticalOffset;
-   
+
   }
-  
+
  }
 
  void  TextureAtlas::_loadSprites(Ogre::ConfigFile::SettingsMultiMap* settings,const Ogre::String& gorillaFile)
@@ -482,7 +484,7 @@ namespace Gorilla
 
   Ogre::TextureUnitState* texUnit = pass->createTextureUnitState();
   texUnit->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
-  texUnit->setTextureFiltering(Ogre::FO_NONE, Ogre::FO_NONE, Ogre::FO_NONE);
+  texUnit->setTextureFiltering(Ogre::FO_POINT, Ogre::FO_POINT, Ogre::FO_NONE);
 
   return d2Material;
  }
@@ -1138,32 +1140,32 @@ namespace Gorilla
 
 
   _renderVertices(force);
-      size_t knownVertexCount = 0;
-knownVertexCount = mRenderOpPtr->vertexData->vertexCount;
- if (mRenderOp.vertexData->vertexCount)
- {
-if(VectorTextureByVertex.size() == 0)
-{
-    NameFileAndPosition MyObjet;
-       MyObjet.NameFile = "";
-       MyObjet.number = 0;
-    VectorTextureByVertex.push_back(MyObjet);
-}
-     	_prepareRenderSystem();
+  size_t knownVertexCount = 0;
+  knownVertexCount = mRenderOpPtr->vertexData->vertexCount;
+  if (mRenderOp.vertexData->vertexCount)
+  {
+   if(VectorTextureByVertex.size() == 0)
+   {
+    NameFileAndPosition MyObject;
+    MyObject.NameFile = "";
+    MyObject.number = 0;
+    VectorTextureByVertex.push_back(MyObject);
+   }
+   _prepareRenderSystem();
 
-
-for(int i = 0;i <VectorTextureByVertex.size();i++)
-{
-	    if(VectorTextureByVertex[i].NameFile != "")
-	    {
-           Ogre::TexturePtr TextureUse = Silverback::getSingleton().getatlas(VectorTextureByVertex[i].NameFile)->getTexture();
-            mRenderSystem->_setTexture(0,true,TextureUse);
-	    }
+   for(int i = 0;i <VectorTextureByVertex.size();i++)
+   {
+    if(VectorTextureByVertex[i].NameFile != "")
+    {
+     Ogre::TexturePtr TextureUse = Silverback::getSingleton().getatlas(VectorTextureByVertex[i].NameFile)->getTexture();
+     mRenderSystem->_setTexture(0,true,TextureUse);
+     mRenderSystem->_setTextureUnitFiltering(0,Ogre::FO_POINT,Ogre::FO_POINT,Ogre::FO_NONE);
+    }
     mRenderOpPtr->vertexData->vertexCount = VectorTextureByVertex[i].number2-VectorTextureByVertex[i].number;
     mRenderOpPtr->vertexData->vertexStart = VectorTextureByVertex[i].number;
     mRenderSystem->_render(mRenderOp);
-}
- }
+   }
+  }
  }
 
  void  Screen::_transform(buffer<Vertex>& vertices, size_t begin, size_t end)
@@ -2182,7 +2184,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    return;
 
   y += glyph->verticalOffset;
-  
+
   Quad q;
   q.mPosition[TopLeft].x = x;
   q.mPosition[TopLeft].y = y;
@@ -2227,7 +2229,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    return;
 
   y += glyph->verticalOffset;
-  
+
   Quad q;
   q.mPosition[TopLeft].x = x;
   q.mPosition[TopLeft].y = y;
@@ -2565,7 +2567,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   Glyph* glyph = 0;
 
   mMaxTextWidth = 0;
-  
+
   mCharacters.remove_all();
 
   bool markupMode = false;
@@ -2763,7 +2765,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   }
 
   mMaxTextWidth -= mLeft;
-  
+
   mTextDirty = false;
  }
 
