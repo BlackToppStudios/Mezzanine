@@ -777,7 +777,7 @@ namespace phys
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
             /// @copydoc CollisionShape::GetBulletShape
-            virtual btMultiSphereShape* GetMultiSphereShapeShape() const;
+            virtual btMultiSphereShape* GetMultiSphereShape() const;
 #ifdef PHYSXML
             /// @copydoc CollisionShape::GetBulletShape
             virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
@@ -797,8 +797,6 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB SphereCollisionShape : public PrimitiveCollisionShape
     {
-        protected:
-            btSphereShape* SphereShape;
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -809,6 +807,10 @@ namespace phys
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             SphereCollisionShape(const String& Name, btSphereShape* BulletShape);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            SphereCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~SphereCollisionShape();
             /// @brief Gets the radius of the sphere.
@@ -816,6 +818,17 @@ namespace phys
             virtual Real GetRadius() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btSphereShape* GetSphereShape() const;
+#ifdef PHYSXML
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "SphereCollisionShape"
+            static String SerializableName();
+#endif
     };//spherecollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
