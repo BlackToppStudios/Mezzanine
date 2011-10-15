@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -167,9 +167,14 @@ namespace phys
         NSWindow* Data = 0;
         #endif
         OgreWindow->getCustomAttribute("WINDOW",&Data);
-        SDLWindow = SDL_CreateWindowFrom((void*)Data);
 
-        SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
+        std::stringstream logstream;
+        logstream << "XWindow: " << Data << endl;
+        World::GetWorldPointer()->Log(logstream.str());
+        World::GetWorldPointer()->DoMainLoopLogging();
+
+        SDLWindow = SDL_CreateWindowFrom((void*)Data);
+        //SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
     }
 
     void GameWindow::CorrectViewportAndCamera(const Whole& Index)

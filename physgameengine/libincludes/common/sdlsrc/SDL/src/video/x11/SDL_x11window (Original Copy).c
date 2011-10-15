@@ -216,21 +216,6 @@ SetupWindowData(_THIS, SDL_Window * window, Window w, BOOL created)
         }
     }
 
-    {
-        Window FocalWindow;
-        int RevertTo=0;
-        XGetInputFocus(data->videodata->display, &FocalWindow, &RevertTo);
-        if (FocalWindow==w)
-        {
-            window->flags |= SDL_WINDOW_INPUT_FOCUS;
-            SDL_SetKeyboardFocus(data->window);
-        }
-
-        if (window->flags & SDL_WINDOW_INPUT_GRABBED) {
-            /* Tell x11 to clip mouse */
-        }
-    }
-
     /* FIXME: How can I tell?
        {
        DWORD style = GetWindowLong(hwnd, GWL_STYLE);
@@ -897,7 +882,7 @@ X11_MinimizeWindow(_THIS, SDL_Window * window)
     SDL_DisplayData *displaydata =
         (SDL_DisplayData *) SDL_GetDisplayForWindow(window)->driverdata;
     Display *display = data->videodata->display;
-
+ 
     XIconifyWindow(display, data->xwindow, displaydata->screen);
     XFlush(display);
 }

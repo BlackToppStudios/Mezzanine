@@ -230,14 +230,14 @@ namespace phys
             }
 
             /// @internal
-            /// @brief This will identify the main Joystick
-            SDL_Joystick *Joy0;
+            /// @brief This will identify the Joysticks
+            vector<SDL_Joystick*> Joysticks;
 
             /// @internal
             /// @brief Constructor, it only inits pointers to 0
             EventManagerInternalData()
             {
-                Joy0=0;
+
             }
 
         };
@@ -251,7 +251,6 @@ namespace phys
         this->Priority=-40;
         this->_Data = new internal::EventManagerInternalData;
 
-        SDL_InitSubSystem(SDL_INIT_JOYSTICK);
         this->DetectJoysticks();
 
         //Remove GameWorld Pointer From everything
@@ -262,8 +261,8 @@ namespace phys
     {
         //EndRelativeMouseMode();
 
-        if(SDL_JoystickOpened(0))
-            { SDL_JoystickClose(this->_Data->Joy0); }
+        for(Whole Count=0; Count<SDL_NumJoysticks(); ++Count)
+            { SDL_JoystickClose(this->_Data->Joysticks.at(Count)); }
 
         for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
             { delete *Iter; }
@@ -272,8 +271,17 @@ namespace phys
 
     void EventManager::DetectJoysticks()
     {
-        if( SDL_NumJoysticks()>0 )
-            { this->_Data->Joy0=SDL_JoystickOpen(0); }
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log( String("Checking for SDL Joysticks:")+SDL_GetError() );
+        #endif
+
+        SDL_InitSubSystem(SDL_INIT_JOYSTICK);
+        for(Whole Count=0; Count<SDL_NumJoysticks(); ++Count)
+            { this->_Data->Joysticks.push_back(SDL_JoystickOpen(Count)); }
+
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log( String("Found ") + ToString(SDL_NumJoysticks()) + " SDL Joysticks:" + SDL_GetError() );
+        #endif
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -307,6 +315,7 @@ namespace phys
 
     void EventManager::UpdateEvents()
     {
+        //SDL_PumpEvents();
         UpdateQuitEvents(); //quit events skips the preprocessing step and goes straight into the the main Queue, becuase of how we need to get them from sdl
 
         RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
@@ -416,6 +425,7 @@ namespace phys
                     World::GetWorldPointer()->Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
                     break;
             }
+            //free(FromSDLRaw); //Does this need to Happen?
         }
 
         if(ClearKeyPresses)

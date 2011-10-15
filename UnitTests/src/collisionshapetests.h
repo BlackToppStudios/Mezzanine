@@ -255,7 +255,6 @@ class CollisionShapeTests : public UnitTestGroup
                     cout << endl << endl << "Non-Phys Expection: " << e.what() << endl << endl;
                 }
 
-                ///Copy for A fresh Set of Tests \/
                 try
                 {
                     stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
@@ -282,7 +281,7 @@ class CollisionShapeTests : public UnitTestGroup
                         TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
                     CollisionShape* TestObject1RS = 0;
                     CollisionShape* TestObject2RS = 0;
-                    cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+                    //cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
                     String TestCase1Target("<ConvexHullCollisionShape Version=\"1\"><UnscaledPoints><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\" /><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\" /></UnscaledPoints><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"d4\" Margin=\"0.04\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></ConvexHullCollisionShape>");
@@ -313,6 +312,134 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("ConvexHullCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
                     else
                         { AddTestResult("ConvexHullCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
+                    //cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
+
+                }catch (phys::Exception e){
+                    cout << endl << endl << "Phys Expection: " << e.what() << endl << endl;
+                }catch (exception e){
+                    cout << endl << endl << "Non-Phys Expection: " << e.what() << endl << endl;
+                } //*/
+
+                try
+                {
+                    stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
+
+                    CylinderCollisionShape TestObject1("ATube",Vector3(1,2,3), Axis_Y);                                     //create two objects one initial and functionally empty data and one with many(every) change
+                    CylinderCollisionShape TestObject2("GeorgeWashington",Vector3(4,5,6), Axis_X);
+                        TestObject2.SetMargin(0.09); // CollisionShape
+                        TestObject2.SetScaling(Vector3(7.0,8.5,9.9)); // CollisionShape
+                    CollisionShape* TestObject1RS = 0;
+                    CollisionShape* TestObject2RS = 0;
+                    //cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+
+                    Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
+                    String TestCase1Target("<CylinderCollisionShape Version=\"1\" Axis=\"1\"><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"0.96\" Y=\"1.96\" Z=\"2.96\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"ATube\" Margin=\"0.04\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></CylinderCollisionShape>");
+                    if ( TestCase1Target == Case1Stream.str())
+                        { AddTestResult("CylinderCollisionShape::operator<< (Case1)", Success, UnitTestGroup::OverWrite); }
+                    else
+                        { AddTestResult("CylinderCollisionShape::operator<< (Case1)", Failed, UnitTestGroup::OverWrite); }
+
+                    Case2Stream << TestObject2;                                                                             //Streaming test 2
+                    String TestCase2Target("<CylinderCollisionShape Version=\"1\" Axis=\"0\"><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"27.91\" Y=\"42.41\" Z=\"59.31\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"GeorgeWashington\" Margin=\"0.09\"><Scaling><Vector3 Version=\"1\" X=\"7\" Y=\"8.5\" Z=\"9.9\" /></Scaling></CollisionShape></PrimitiveCollisionShape></CylinderCollisionShape>");
+                    if ( TestCase2Target == Case2Stream.str())
+                        { AddTestResult("CylinderCollisionShape::operator<< (Case2)", Success, UnitTestGroup::OverWrite); }
+                    else
+                        { AddTestResult("CylinderCollisionShape::operator<< (Case2)", Failed, UnitTestGroup::OverWrite); }
+
+                    TestObject1RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
+                    if (TestObject1RS)
+                        { Case1StreamRS << *TestObject1RS; }
+                    if ( TestCase1Target == Case1StreamRS.str())
+                        { AddTestResult("CylinderCollisionShape::operator>> (Case1)", Success, UnitTestGroup::OverWrite); }
+                    else
+                        { AddTestResult("CylinderCollisionShape::operator>> (Case1)", Failed, UnitTestGroup::OverWrite); }
+
+                    TestObject2RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
+                    if (TestObject2RS)
+                        { Case2StreamRS << *TestObject2RS; }
+                    if ( TestCase2Target == Case2StreamRS.str())
+                        { AddTestResult("CylinderCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
+                    else
+                        { AddTestResult("CylinderCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
+                    //cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
+
+                }catch (phys::Exception e){
+                    cout << endl << endl << "Phys Expection: " << e.what() << endl << endl;
+                }catch (exception e){
+                    cout << endl << endl << "Non-Phys Expection: " << e.what() << endl << endl;
+                } //*/
+
+                try
+                {
+                    stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
+
+                    std::vector<Vector3> SimplePoints;
+                    SimplePoints.push_back(Vector3(0,0,0));
+                    SimplePoints.push_back(Vector3(1,0,0));
+                    SimplePoints.push_back(Vector3(0,1,0));
+                    SimplePoints.push_back(Vector3(0,0,1));
+                    std::vector<Real> SimpleRadii;
+                    SimpleRadii.push_back(1.0);
+                    SimpleRadii.push_back(1.1);
+                    SimpleRadii.push_back(1.2);
+                    SimpleRadii.push_back(1.3);
+
+                    std::vector<Vector3> ManyPoints;
+                    ManyPoints.push_back(Vector3(0,0,0));   // will wind up completely inside
+                    ManyPoints.push_back(Vector3(1,0,0));
+                    ManyPoints.push_back(Vector3(0,1,0));
+                    ManyPoints.push_back(Vector3(0,0,1));
+                    ManyPoints.push_back(Vector3(-1,0,0));
+                    ManyPoints.push_back(Vector3(0,-1,0));
+                    ManyPoints.push_back(Vector3(0,0,-1));
+                    ManyPoints.push_back(Vector3(0.5,0,0)); //another point completely inside
+                    std::vector<Real> ManyRadii;
+                    ManyRadii.push_back(0.1);
+                    ManyRadii.push_back(0.1);
+                    ManyRadii.push_back(0.2);
+                    ManyRadii.push_back(0.3);
+                    ManyRadii.push_back(1.0);
+                    ManyRadii.push_back(1.4);
+                    ManyRadii.push_back(1.5);
+                    ManyRadii.push_back(5.0);               // Completely envelopes shape
+
+                    MultiSphereCollisionShape TestObject1("Jake",SimplePoints,SimpleRadii);                                 //create two objects one initial and functionally empty data and one with many(every) change
+                    MultiSphereCollisionShape TestObject2("ThatsNoMoon",ManyPoints,ManyRadii);
+                        TestObject2.SetMargin(0.09); // CollisionShape
+                        TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
+                    CollisionShape* TestObject1RS = 0;
+                    CollisionShape* TestObject2RS = 0;
+                    cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+
+                    Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
+                    String TestCase1Target("<MultiSphereCollisionShape Version=\"1\"><Spheres><Sphere Radius=\"1\"><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></Sphere><Sphere Radius=\"1.1\"><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\" /></Sphere><Sphere Radius=\"1.2\"><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></Sphere><Sphere Radius=\"1.3\"><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\" /></Sphere></Spheres><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"Jake\" Margin=\"0.04\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></MultiSphereCollisionShape>");
+                    if ( TestCase1Target == Case1Stream.str())
+                        { AddTestResult("MultiSphereCollisionShape::operator<< (Case1)", Success, UnitTestGroup::OverWrite); }
+                    else
+                        { AddTestResult("MultiSphereCollisionShape::operator<< (Case1)", Failed, UnitTestGroup::OverWrite); }
+
+                    Case2Stream << TestObject2;                                                                             //Streaming test 2
+                    String TestCase2Target("<MultiSphereCollisionShape Version=\"1\"><Spheres><Sphere Radius=\"0.1\"><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></Sphere><Sphere Radius=\"0.1\"><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\" /></Sphere><Sphere Radius=\"0.2\"><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></Sphere><Sphere Radius=\"0.3\"><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\" /></Sphere><Sphere Radius=\"1\"><Vector3 Version=\"1\" X=\"-1\" Y=\"0\" Z=\"0\" /></Sphere><Sphere Radius=\"1.4\"><Vector3 Version=\"1\" X=\"0\" Y=\"-1\" Z=\"0\" /></Sphere><Sphere Radius=\"1.5\"><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"-1\" /></Sphere><Sphere Radius=\"5\"><Vector3 Version=\"1\" X=\"0.5\" Y=\"0\" Z=\"0\" /></Sphere></Spheres><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"ThatsNoMoon\" Margin=\"0.09\"><Scaling><Vector3 Version=\"1\" X=\"7\" Y=\"8\" Z=\"9.9\" /></Scaling></CollisionShape></PrimitiveCollisionShape></MultiSphereCollisionShape>");
+                    if ( TestCase2Target == Case2Stream.str())
+                        { AddTestResult("MultiSphereCollisionShape::operator<< (Case2)", Success, UnitTestGroup::OverWrite); }
+                    else
+                        { AddTestResult("MultiSphereCollisionShape::operator<< (Case2)", Failed, UnitTestGroup::OverWrite); }
+
+                    TestObject1RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
+                    if (TestObject1RS)
+                        { Case1StreamRS << *TestObject1RS; }
+                    if ( TestCase1Target == Case1StreamRS.str())
+                        { AddTestResult("MultiSphereCollisionShape::operator>> (Case1)", Success, UnitTestGroup::OverWrite); }
+                    else
+                        { AddTestResult("MultiSphereCollisionShape::operator>> (Case1)", Failed, UnitTestGroup::OverWrite); }
+
+                    TestObject2RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
+                    if (TestObject2RS)
+                        { Case2StreamRS << *TestObject2RS; }
+                    if ( TestCase2Target == Case2StreamRS.str())
+                        { AddTestResult("MultiSphereCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
+                    else
+                        { AddTestResult("MultiSphereCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
                     cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
 
                 }catch (phys::Exception e){
@@ -320,7 +447,10 @@ class CollisionShapeTests : public UnitTestGroup
                 }catch (exception e){
                     cout << endl << endl << "Non-Phys Expection: " << e.what() << endl << endl;
                 } //*/
-                ///Copy for A fresh Set of Tests /\
+
+                ///The test in progress \/
+
+                ///The test in progress /\
 
                 StopEngine();
 
