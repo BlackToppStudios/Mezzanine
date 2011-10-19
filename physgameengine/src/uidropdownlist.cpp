@@ -49,6 +49,7 @@
 #include "uilayer.h"
 #include "uiscreen.h"
 #include "uimanager.h"
+#include "uiviewportupdatetool.h"
 #include "inputquerytool.h"
 
 namespace phys
@@ -253,11 +254,14 @@ namespace phys
             SetActualPosition(GetActualPosition());
         }
 
-        void DropDownList::UpdateDimensions(const Vector2& OldViewportSize)
+        void DropDownList::UpdateDimensions()
         {
+            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
+            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
+            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
             Selection->UpdateDimensions();
             ListToggle->UpdateDimensions();
-            SelectionList->UpdateDimensions(OldViewportSize);
+            SelectionList->UpdateDimensions();
             SetPosition(RelPosition);
         }
 

@@ -127,7 +127,8 @@ namespace phys
                 virtual ~CellGrid();
                 /// @brief Sets the fixed size cells in this grid are to have.
                 /// @param FixedSize The fixed size to apply to cells.
-                virtual void SetFixedCellSize(const Vector2& FixedSize);
+                /// @param Relative Whether or not the vector 2 being passed in is in relative units.
+                virtual void SetFixedCellSize(const Vector2& FixedSize, bool Relative = true);
                 /// @brief Gets the currently set fixed size applied to all cells in this widget.
                 /// @return Returns a Vector2 containing the size applied to all cells in this widget.
                 virtual Vector2 GetFixedCellSize();
@@ -153,23 +154,26 @@ namespace phys
                 /// @brief Sets the limits of the grid, to determine when and where objects need to be wrapped.
                 /// @details This does not alter the actual size of the widget, just the logical area the widget has to work with.
                 /// @param Area The new limits to the grid.
-                virtual void SetWorkAreaLimits(const Vector2& AreaLimit);
+                /// @param Relative Whether or not the vector 2 being passed in is in relative units.
+                virtual void SetWorkAreaLimits(const Vector2& AreaLimit, bool Relative = true);
                 /// @brief Gets the currently set logical limits for the grid.
                 /// @return Returns a Vector2 representing the logical limits of the grid.
                 virtual Vector2 GetWorkAreaLimits();
                 /// @brief Sets the spacing from the edge of the entire grid area that no cell should overlap.
                 /// @details Default: 0,0.
-                /// @param Spacing The minimum amount of space (in relative units) from the edge Cells should be.
-                virtual void SetEdgeSpacing(const Vector2& Spacing);
+                /// @param Spacing The minimum amount of space from the edge Cells should be.
+                /// @param Relative Whether or not the vector 2 being passed in is in relative units.
+                virtual void SetEdgeSpacing(const Vector2& Spacing, bool Relative = true);
                 /// @brief Gets the currently set edge spacing.
-                /// @return Returns a Real representing the spacing to be used on edges of this widget.
+                /// @return Returns a Vector2 representing the spacing to be used on edges of this widget.
                 virtual Vector2 GetEdgeSpacing();
                 /// @brief Sets the spacing from each cell around any given cell there should be.
-                /// @details Default 0.01,0.01.
-                /// @param Spacing The minimum amount of space (in relative units) from each cell a given cell should be.
-                virtual void SetCellSpacing(const Vector2& Spacing);
+                /// @details Default 10.0,10.0.
+                /// @param Spacing The minimum amount of space from each cell a given cell should be.
+                /// @param Relative Whether or not the vector 2 being passed in is in relative units.
+                virtual void SetCellSpacing(const Vector2& Spacing, bool Relative = true);
                 /// @brief Gets the currently set cell spacing.
-                /// @return Returns a Real representing the spacing to be used between Cells of this widget.
+                /// @return Returns a Vector2 representing the spacing to be used between Cells of this widget.
                 virtual Vector2 GetCellSpacing();
                 /// @brief Checks to see if there are any remaining cells that aren't on the grid due to a lack of space.
                 /// @return Returns a bool indicating whether or not this widgets work area needs to be increased.
@@ -194,8 +198,7 @@ namespace phys
                 virtual void SetActualSize(const Vector2& Size);
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                /// @param OldViewportSize The old size of the viewport.
-                virtual void UpdateDimensions(const Vector2& OldViewportSize);
+                virtual void UpdateDimensions();
                 /// @brief Gets the background to this Grid.
                 /// @return Returns a pointer to the background of this grid.
                 virtual Rectangle* GetGridBack();

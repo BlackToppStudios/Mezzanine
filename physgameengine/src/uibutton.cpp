@@ -44,6 +44,7 @@
 #include "uilayer.h"
 #include "uiscreen.h"
 #include "uimanager.h"
+#include "uiviewportupdatetool.h"
 #include "eventmanager.h"
 #include "inputquerytool.h"
 #include "world.h"
@@ -54,7 +55,7 @@ namespace phys
     namespace UI
     {
         Button::Button(ConstString& name, const RenderableRect& Rect, Layer* PLayer)
-            : Parent(PLayer),
+            : BasicRenderable(name,PLayer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
               UserSprite(NULL),
@@ -62,10 +63,8 @@ namespace phys
               MouseHover(false),
               Activated(false),
               MultipleActivations(false),
-              ActCond(UI::AC_OnLift),
-              Name(name)
+              ActCond(UI::AC_OnLift)
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -108,7 +107,7 @@ namespace phys
             GorillaRectangle->SetVisible(Visible);
         }
 
-        bool Button::IsVisible()
+        bool Button::IsVisible() const
         {
             return GorillaRectangle->IsVisible() && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
@@ -121,11 +120,6 @@ namespace phys
         void Button::Hide()
         {
             GorillaRectangle->Hide();
-        }
-
-        ConstString& Button::GetName()
-        {
-            return Name;
         }
 
         bool Button::IsTextButton()
@@ -330,7 +324,7 @@ namespace phys
             GorillaRectangle->top(WinDim.Y * RelPosition.Y);
         }
 
-        Vector2 Button::GetPosition()
+        Vector2 Button::GetPosition() const
         {
             return RelPosition;
         }
@@ -342,7 +336,7 @@ namespace phys
             GorillaRectangle->top(Position.Y);
         }
 
-        Vector2 Button::GetActualPosition()
+        Vector2 Button::GetActualPosition() const
         {
             Vector2 Pos(GorillaRectangle->left(), GorillaRectangle->top());
             return Pos;
@@ -356,7 +350,7 @@ namespace phys
             GorillaRectangle->height(WinDim.Y * RelSize.Y);
         }
 
-        Vector2 Button::GetSize()
+        Vector2 Button::GetSize() const
         {
             return RelSize;
         }
@@ -368,7 +362,7 @@ namespace phys
             GorillaRectangle->height(Size.Y);
         }
 
-        Vector2 Button::GetActualSize()
+        Vector2 Button::GetActualSize() const
         {
             Vector2 Pos(GorillaRectangle->width(), GorillaRectangle->height());
             return Pos;
@@ -394,7 +388,7 @@ namespace phys
             GorillaRectangle->RenderPriority(RP);
         }
 
-        UI::RenderPriority Button::GetRenderPriority()
+        UI::RenderPriority Button::GetRenderPriority() const
         {
             Gorilla::RenderPriority RP = this->GorillaRectangle->RenderPriority();
             switch(RP)
@@ -419,7 +413,7 @@ namespace phys
             GorillaRectangle->SetNameFile(Atlas);
         }
 
-        String Button::GetPrimaryAtlas()
+        String Button::GetPrimaryAtlas() const
         {
             return *GorillaRectangle->GetNameFile();
         }
@@ -436,8 +430,9 @@ namespace phys
 
         void Button::UpdateDimensions()
         {
-            this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
-            this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
+            ViewportUpdateTool::UpdateRenderable(this);
+            //this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
+            //this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
         }
 
         ButtonCallback::ButtonCallback()

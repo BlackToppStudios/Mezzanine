@@ -45,6 +45,7 @@
 #include "uimanager.h"
 #include "uilayer.h"
 #include "uiscreen.h"
+#include "uiviewportupdatetool.h"
 #include "world.h"
 #include "eventmanager.h"
 
@@ -55,10 +56,9 @@ namespace phys
     namespace UI
     {
         Rectangle::Rectangle(const RenderableRect& Rect, Layer* PLayer)
-            : Parent(PLayer),
+            : BasicRenderable("Rectangle",PLayer),
               MouseHover(false)
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -85,7 +85,7 @@ namespace phys
             GRectangle->SetVisible(Visible);
         }
 
-        bool Rectangle::IsVisible()
+        bool Rectangle::IsVisible() const
         {
             return GRectangle->IsVisible();
         }
@@ -153,7 +153,7 @@ namespace phys
             GRectangle->position((WinDim * RelPosition).GetOgreVector2());
         }
 
-        Vector2 Rectangle::GetPosition()
+        Vector2 Rectangle::GetPosition() const
         {
             return RelPosition;
         }
@@ -164,7 +164,7 @@ namespace phys
             GRectangle->position(Position.GetOgreVector2());
         }
 
-        Vector2 Rectangle::GetActualPosition()
+        Vector2 Rectangle::GetActualPosition() const
         {
             Vector2 Pos(GRectangle->left(), GRectangle->top());
             return Pos;
@@ -178,7 +178,7 @@ namespace phys
             GRectangle->height(WinDim.Y * RelSize.Y);
         }
 
-        Vector2 Rectangle::GetSize()
+        Vector2 Rectangle::GetSize() const
         {
             return RelSize;
         }
@@ -190,7 +190,7 @@ namespace phys
             GRectangle->height(Size.Y);
         }
 
-        Vector2 Rectangle::GetActualSize()
+        Vector2 Rectangle::GetActualSize() const
         {
             Vector2 Pos(GRectangle->width(), GRectangle->height());
             return Pos;
@@ -216,7 +216,7 @@ namespace phys
             GRectangle->RenderPriority(RP);
         }
 
-        UI::RenderPriority Rectangle::GetRenderPriority()
+        UI::RenderPriority Rectangle::GetRenderPriority() const
         {
             Gorilla::RenderPriority RP = this->GRectangle->RenderPriority();
             switch(RP)
@@ -241,15 +241,16 @@ namespace phys
             GRectangle->SetNameFile(Atlas);
         }
 
-        String Rectangle::GetPrimaryAtlas()
+        String Rectangle::GetPrimaryAtlas() const
         {
             return *GRectangle->GetNameFile();
         }
 
         void Rectangle::UpdateDimensions()
         {
-            this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
-            this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
+            //this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
+            //this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
+            ViewportUpdateTool::UpdateRenderable(this);
         }
     }//UI
 }//phys

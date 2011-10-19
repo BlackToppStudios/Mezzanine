@@ -860,6 +860,7 @@ void LevelLoader::LoadJustBounce()
     // Create the basic terrain that will be used
     ActorRigid* TopWall = new ActorRigid(0,"TopWall","wall.mesh",JustBounceGroup);
     TopWall->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("WallShape","wall.mesh",JustBounceGroup));
+    TopWall->GetPhysicsSettings()->SetRestitution(0.5);
     TopWall->SetLocation(Vector3(0,85,0));
     ActMan->AddActor(TopWall);
 

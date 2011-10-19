@@ -42,9 +42,9 @@
 
 #include "colourvalue.h"
 #include "crossplatformexport.h"
-#include "datatypes.h"
 #include "uienumerations.h"
 #include "uirenderablerect.h"
+#include "uibasicrenderable.h"
 
 namespace Gorilla
 {
@@ -65,14 +65,10 @@ namespace phys
         /// @details Unlike a button, this class cannot be interacted with by clicking.
         /// It is important to understand what you want your space to do when selecting the class to use.
         ///////////////////////////////////////
-        class PHYS_LIB Rectangle
+        class PHYS_LIB Rectangle : public BasicRenderable
         {
             protected:
                 Gorilla::Rectangle* GRectangle;
-                Layer* Parent;
-                UIManager* Manager;
-                Vector2 RelPosition;
-                Vector2 RelSize;
                 bool MouseHover;
             public:
                 /// @brief Class constructor.
@@ -86,7 +82,7 @@ namespace phys
                 virtual void SetVisible(bool Visible);
                 /// @brief Gets the visibility of this rectangle.
                 /// @return Returns a bool representing the visibility of this rectangle.
-                virtual bool IsVisible();
+                virtual bool IsVisible() const;
                 /// @brief Forces this rectangle to be shown.
                 virtual void Show();
                 /// @brief Forces this rectangle to hide.
@@ -118,38 +114,38 @@ namespace phys
                 virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative top left position of this rectangle.
                 /// @return Returns a Vector2 representing the location of this rectangle.
-                virtual Vector2 GetPosition();
+                virtual Vector2 GetPosition() const;
                 /// @brief Sets the top left position of this rectangle in pixels.
                 /// @param Position A Vector2 representing the location of this rectangle.
                 virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Gets the top left position of this rectangle in pixels.
                 /// @return Returns a Vector2 representing the location of this rectangle.
-                virtual Vector2 GetActualPosition();
+                virtual Vector2 GetActualPosition() const;
                 /// @brief Sets the relative size of this rectangle.
                 /// @param Size A vector2 representing the size of this rectangle.
                 virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this rectangle.
                 /// @return Returns a vector2 representing the size of this rectangle.
-                virtual Vector2 GetSize();
+                virtual Vector2 GetSize() const;
                 /// @brief Sets the size of this rectangle in pixels.
                 /// @param Size A vector2 representing the size of this rectangle.
                 virtual void SetActualSize(const Vector2& Size);
                 /// @brief Gets the size of this rectangle in pixels.
                 /// @return Returns a vector2 representing the size of this rectangle.
-                virtual Vector2 GetActualSize();
+                virtual Vector2 GetActualSize() const;
                 /// @brief Sets the priority this button should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this button.
                 virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
-                virtual UI::RenderPriority GetRenderPriority();
+                virtual UI::RenderPriority GetRenderPriority() const;
                 /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
                 /// @param Atlas The name of the atlas to be used.
                 virtual void SetPrimaryAtlas(const String& Atlas);
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set, or an empty string if none.
-                virtual String GetPrimaryAtlas();
+                virtual String GetPrimaryAtlas() const;
                 /// @brief Updates the dimensions of this rectangle to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 virtual void UpdateDimensions();

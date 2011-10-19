@@ -341,8 +341,7 @@ namespace phys
                 virtual Widget* CheckWidgetMouseIsOver();
                 /// @brief Updates UI elements positions and sizes after a change in the viewport size.
                 /// @details This function is called automatically, and shouldn't need to be called manually.
-                /// @param OldViewportSize The updated size of the viewport this layer belongs to.
-                virtual void ViewportUpdate(const Vector2& OldViewportSize);
+                virtual void ViewportUpdate();
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Functions
                 ///////////////////////////////////////

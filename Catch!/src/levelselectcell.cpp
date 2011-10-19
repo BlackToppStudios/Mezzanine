@@ -4,36 +4,58 @@
 #include "levelselectcell.h"
 
 LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& Rect, UI::Layer* parent)
-    : UI::Cell(name,parent),
-      PreviewImageOffset(Vector2(-0.005,-0.005)),
-      PreviewBorderOffset(Vector2(-0.01,-0.01)),
-      LevelTitleOffset(Vector2(0.115,0.01)),
-      EarnedMaxScoreOffset(Vector2(0.18,0.05))
+    : UI::Cell(name,parent)
+      //PreviewImageOffset(Vector2(-0.005,-0.005)),
+      //PreviewBorderOffset(Vector2(-0.01,-0.01)),
+      //LevelTitleOffset(Vector2(0.115,0.01)),
+      //EarnedMaxScoreOffset(Vector2(0.18,0.05))
 {
     const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-    std::pair<Whole,Real> Result;
+    UI::RenderableRect PIRect, PBRect, LTRect, EMSRect;
     if(Rect.Relative)
     {
         RelPosition = Rect.Position;
         RelSize = Rect.Size;
-        Result = World::GetWorldPointer()->GetUIManager()->SuggestGlyphIndex((Rect.Size.Y * 0.36) * WinDim.Y,Parent->GetParent()->GetPrimaryAtlas());
 
-        CellBack = new UI::Rectangle(Rect,Parent);
-        PreviewImage = new UI::Rectangle(UI::RenderableRect(Rect.Position+PreviewImageOffset,Vector2(Rect.Size.Y * 1.05,Rect.Size.Y * 1.05),true),Parent);
-        PreviewBorder = new UI::Rectangle(UI::RenderableRect(Rect.Position+PreviewBorderOffset,Vector2(Rect.Size.Y * 1.15,Rect.Size.Y * 1.15),true),Parent);
-        LevelTitle = new UI::Caption(Name+"LT",UI::RenderableRect(Rect.Position+LevelTitleOffset,Vector2(Rect.Size.X * 0.6,Rect.Size.Y * 0.36),true),Result.first,Name,Parent);
-        EarnedMaxScore = new UI::Caption(Name+"EMS",UI::RenderableRect(Rect.Position+EarnedMaxScoreOffset,Vector2(Rect.Size.X * 0.4,Rect.Size.Y * 0.36),true),Result.first,"0/0",Parent);
+        CalculateOffsets(Rect.Size * WinDim);
+
+        PIRect.Position = Rect.Position+(PreviewImageOffset / WinDim);
+        PIRect.Size = Vector2(Rect.Size.Y * 1.30,Rect.Size.Y * 1.05);
+        PIRect.Relative = Rect.Relative;
+        PBRect.Position = Rect.Position+(PreviewBorderOffset / WinDim);
+        PBRect.Size = Vector2(Rect.Size.Y * 1.40,Rect.Size.Y * 1.15);
+        PBRect.Relative = Rect.Relative;
+        LTRect.Position = Rect.Position+(LevelTitleOffset / WinDim);
+        LTRect.Size = Vector2(Rect.Size.X * 0.6,Rect.Size.Y * 0.36);
+        LTRect.Relative = Rect.Relative;
+        EMSRect.Position = Rect.Position+(EarnedMaxScoreOffset / WinDim);
+        EMSRect.Size = Vector2(Rect.Size.X * 0.4,Rect.Size.Y * 0.36);
+        EMSRect.Relative = Rect.Relative;
     }else{
         RelPosition = Rect.Position / WinDim;
         RelSize = Rect.Size / WinDim;
-        Result = World::GetWorldPointer()->GetUIManager()->SuggestGlyphIndex(Rect.Size.Y * 0.36,Parent->GetParent()->GetPrimaryAtlas());
+
+        CalculateOffsets(Rect.Size);
+
+        PIRect.Position = Rect.Position+PreviewImageOffset;
+        PIRect.Size = Vector2(Rect.Size.Y * 1.30,Rect.Size.Y * 1.05);
+        PIRect.Relative = Rect.Relative;
+        PBRect.Position = Rect.Position+PreviewBorderOffset;
+        PBRect.Size = Vector2(Rect.Size.Y * 1.40,Rect.Size.Y * 1.15);
+        PBRect.Relative = Rect.Relative;
+        LTRect.Position = Rect.Position+LevelTitleOffset;
+        LTRect.Size = Vector2(Rect.Size.X * 0.6,Rect.Size.Y * 0.36);
+        LTRect.Relative = Rect.Relative;
+        EMSRect.Position = Rect.Position+EarnedMaxScoreOffset;
+        EMSRect.Size = Vector2(Rect.Size.X * 0.4,Rect.Size.Y * 0.36);
+        EMSRect.Relative = Rect.Relative;
     }
 
-    if(1.f != Result.second)
-    {
-        //LevelTitle->SetTextScale(Result.second);
-        //EarnedMaxScore->SetTextScale(Result.second);
-    }
+    CellBack = new UI::Rectangle(Rect,Parent);
+    PreviewImage = new UI::Rectangle(PIRect,Parent);
+    PreviewBorder = new UI::Rectangle(PBRect,Parent);
+    LevelTitle = new UI::Caption(Name+"LT",LTRect,Real(Rect.Size.Y * 0.36),Name,Parent);
+    EarnedMaxScore = new UI::Caption(Name+"EMS",EMSRect,Real(Rect.Size.Y * 0.36),"0/0",Parent);
 }
 
 LevelSelectCell::~LevelSelectCell()
@@ -67,27 +89,35 @@ bool LevelSelectCell::CheckMouseHoverImpl()
     else return false;
 }
 
+void LevelSelectCell::CalculateOffsets(const Vector2& Size)
+{
+    PreviewImageOffset = Vector2(-(Size.Y*0.045),-(Size.Y*0.045));
+    PreviewBorderOffset = Vector2(-(Size.Y*0.09),-(Size.Y*0.09));
+    LevelTitleOffset = Vector2(Size.X*0.38,Size.Y*0.09);
+    EarnedMaxScoreOffset = Vector2(Size.X*0.60,Size.Y*0.51);
+}
+
 void LevelSelectCell::SetPosition(const Vector2& Position)
 {
-    RelPosition = Position;
-    CellBack->SetPosition(Position);
-    PreviewImage->SetPosition(Position + PreviewImageOffset);
-    PreviewBorder->SetPosition(Position + PreviewBorderOffset);
-    LevelTitle->SetPosition(Position + LevelTitleOffset);
-    EarnedMaxScore->SetPosition(Position + EarnedMaxScoreOffset);
+    SetActualPosition(Position * Parent->GetParent()->GetViewportDimensions());
 }
 
 void LevelSelectCell::SetActualPosition(const Vector2& Position)
 {
-    SetPosition(Position / Parent->GetParent()->GetViewportDimensions());
+    RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
+    CellBack->SetActualPosition(Position);
+    PreviewImage->SetActualPosition(Position + PreviewImageOffset);
+    PreviewBorder->SetActualPosition(Position + PreviewBorderOffset);
+    LevelTitle->SetActualPosition(Position + LevelTitleOffset);
+    EarnedMaxScore->SetActualPosition(Position + EarnedMaxScoreOffset);
 }
 
 void LevelSelectCell::SetSize(const Vector2& Size)
 {
     RelSize = Size;
     CellBack->SetSize(Size);
-    PreviewImage->SetSize(Vector2(Size.Y * 1.05,Size.Y * 1.05));
-    PreviewBorder->SetSize(Vector2(Size.Y * 1.15,Size.Y * 1.15));
+    PreviewImage->SetSize(Vector2(Size.Y * 1.30,Size.Y * 1.05));
+    PreviewBorder->SetSize(Vector2(Size.Y * 1.40,Size.Y * 1.15));
     LevelTitle->SetSize(Vector2(Size.X * 0.6,Size.Y * 0.36));
     EarnedMaxScore->SetSize(Vector2(Size.X * 0.4,Size.Y * 0.36));
 
@@ -99,17 +129,30 @@ void LevelSelectCell::SetActualSize(const Vector2& Size)
     const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
     RelSize = Size / WinDim;
     CellBack->SetActualSize(Size);
-    PreviewImage->SetActualSize(Vector2(Size.Y * 1.05,Size.Y * 1.05));
-    PreviewBorder->SetActualSize(Vector2(Size.Y * 1.15,Size.Y * 1.15));
+    PreviewImage->SetActualSize(Vector2(Size.Y * 1.30,Size.Y * 1.05));
+    PreviewBorder->SetActualSize(Vector2(Size.Y * 1.40,Size.Y * 1.15));
     LevelTitle->SetActualSize(Vector2(Size.X * 0.6,Size.Y * 0.36));
     EarnedMaxScore->SetActualSize(Vector2(Size.X * 0.4,Size.Y * 0.36));
-    //SetSize(Size / WinDim);
     SetPosition(RelPosition);
 }
 
 void LevelSelectCell::DoSelectedItems()
 {
 
+}
+
+void LevelSelectCell::UpdateDimensions()
+{
+    UI::WidgetResult Result = UI::ViewportUpdateTool::UpdateWidget(this);
+    RelPosition = Result.first / UI::ViewportUpdateTool::GetNewSize();
+    RelSize = Result.second / UI::ViewportUpdateTool::GetNewSize();
+    CellBack->UpdateDimensions();
+    PreviewImage->UpdateDimensions();
+    PreviewBorder->UpdateDimensions();
+    LevelTitle->UpdateDimensions();
+    EarnedMaxScore->UpdateDimensions();
+    CalculateOffsets(Result.second);
+    SetPosition(RelPosition);
 }
 
 String LevelSelectCell::GetLevelName()

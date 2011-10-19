@@ -46,6 +46,7 @@
 #include "uilayer.h"
 #include "uiscreen.h"
 #include "uiscrollbar.h"
+#include "uiviewportupdatetool.h"
 
 #include "metacode.h"
 #include "inputquerytool.h"
@@ -72,8 +73,8 @@ namespace phys
         CellGrid::CellGrid(const String& name, const RenderableRect& Rect, Layer* parent)
             : Widget(name,parent),
               EdgeSpacing(Vector2(0,0)),
-              CellSpacing(Vector2(0.01,0.01)),
-              FixedCellSize(Vector2(0.1,0.1)),
+              CellSpacing(Vector2(10.0,10.0)),
+              FixedCellSize(Vector2(100.0,100.0)),
               Ordering(CellGrid::CG_Horizontal_Vertical_Ascending),
               GridDirty(false),
               Selected(NULL)
@@ -192,18 +193,15 @@ namespace phys
                 return;
             ClearGrid();
             Vector2 ActPos = GridBack->GetActualPosition();
-            Vector2 ActEdge = EdgeSpacing * WinDim;
-            Vector2 ActCell = CellSpacing * WinDim;
-            Vector2 ActFixedSize = FixedCellSize * WinDim;
 
             Whole CurrentColumn = 0;
             Whole CurrentRow = 0;
-            Whole CurrentXposition = (Whole)ActPos.X + (Whole)(ActEdge.X);
-            Whole CurrentYposition = (Whole)ActPos.Y + (Whole)(ActEdge.Y);
+            Whole CurrentXposition = (Whole)ActPos.X + (Whole)(EdgeSpacing.X);
+            Whole CurrentYposition = (Whole)ActPos.Y + (Whole)(EdgeSpacing.Y);
             Whole StartXposition = CurrentXposition;
             Whole StartYposition = CurrentYposition;
-            Whole RowLimit = (Whole)((ActPos.X + WorkAreaLimits.X) - ActEdge.X * 2);
-            Whole ColumnLimit = (Whole)((ActPos.Y + WorkAreaLimits.Y) - ActEdge.Y * 2);
+            Whole RowLimit = (Whole)((ActPos.X + WorkAreaLimits.X) - EdgeSpacing.X * 2);
+            Whole ColumnLimit = (Whole)((ActPos.Y + WorkAreaLimits.Y) - EdgeSpacing.Y * 2);
 
             UI::Cell* CurrCell = NULL;
 
@@ -213,31 +211,31 @@ namespace phys
                 {
                     CurrCell = (*it);
                     Vector2 CellSize = CurrCell->GetActualSize();
-                    if(RowLimit >= CurrentXposition + (Whole)(CellSize.X + ActCell.X))
+                    if(RowLimit >= CurrentXposition + (Whole)(CellSize.X + CellSpacing.X))
                     {
                         TheGrid.at(CurrentRow)->push_back(CurrCell);
-                        CurrentXposition+=CellSize.X + ActCell.X;
+                        CurrentXposition+=CellSize.X + CellSpacing.X;
                         CurrentColumn++;
                     }
                     else if(RowLimit >= CurrentXposition + (Whole)CellSize.X)
                     {
                         TheGrid.at(CurrentRow)->push_back(CurrCell);
-                        CurrentXposition+=CellSize.X + ActCell.X;
+                        CurrentXposition+=CellSize.X + CellSpacing.X;
                         CurrentColumn++;
                     }
                     else
                     {
-                        if(ColumnLimit < CurrentYposition + (Whole)(CellSize.Y + ActCell.Y))
+                        if(ColumnLimit < CurrentYposition + (Whole)(CellSize.Y + CellSpacing.Y))
                             break;
                         CurrentXposition = StartXposition;
                         CurrentColumn = 0;
-                        CurrentYposition+=(Whole)(ActFixedSize.Y + ActCell.Y);
+                        CurrentYposition+=(Whole)(FixedCellSize.Y + CellSpacing.Y);
                         CurrentRow++;
                         if(CurrentRow >= TheGrid.size())
                             CreateOrDestroyRow(0);
 
                         TheGrid.at(CurrentRow)->push_back(CurrCell);
-                        CurrentXposition+=CellSize.X + ActCell.X;
+                        CurrentXposition+=CellSize.X + CellSpacing.X;
                         CurrentColumn++;
                     }
                 }
@@ -248,10 +246,10 @@ namespace phys
                 {
                     CurrCell = (*it);
                     Vector2 CellSize = CurrCell->GetActualSize();
-                    if(ColumnLimit >= CurrentYposition + (Whole)(CellSize.Y + ActCell.Y))
+                    if(ColumnLimit >= CurrentYposition + (Whole)(CellSize.Y + CellSpacing.Y))
                     {
                         TheGrid.at(CurrentRow)->push_back(CurrCell);
-                        CurrentYposition+=CellSize.Y + ActCell.Y;
+                        CurrentYposition+=CellSize.Y + CellSpacing.Y;
                         CurrentRow++;
                         if(CurrentRow >= TheGrid.size())
                             CreateOrDestroyRow(0);
@@ -259,18 +257,18 @@ namespace phys
                     else if(ColumnLimit >= CurrentYposition + (Whole)CellSize.Y)
                     {
                         TheGrid.at(CurrentRow)->push_back(CurrCell);
-                        CurrentYposition+=CellSize.Y + ActCell.Y;
+                        CurrentYposition+=CellSize.Y + CellSpacing.Y;
                         CurrentRow++;
                         if(CurrentRow >= TheGrid.size())
                             CreateOrDestroyRow(0);
                     }
                     else
                     {
-                        if(RowLimit < CurrentXposition + (Whole)(CellSize.X + ActCell.X))
+                        if(RowLimit < CurrentXposition + (Whole)(CellSize.X + CellSpacing.X))
                             break;
                         CurrentYposition = StartYposition;
                         CurrentRow = 0;
-                        CurrentXposition+=(Whole)(ActFixedSize.X + ActCell.X);
+                        CurrentXposition+=(Whole)(FixedCellSize.X + CellSpacing.X);
                         CurrentColumn++;
 
                         TheGrid.at(CurrentRow)->push_back(CurrCell);
@@ -338,9 +336,10 @@ namespace phys
             return false;
         }
 
-        void CellGrid::SetFixedCellSize(const Vector2& FixedSize)
+        void CellGrid::SetFixedCellSize(const Vector2& FixedSize, bool Relative)
         {
-            FixedCellSize = FixedSize;
+            if(Relative) FixedCellSize = FixedSize * Parent->GetParent()->GetViewportDimensions();
+            else FixedCellSize = FixedSize;
         }
 
         Vector2 CellGrid::GetFixedCellSize()
@@ -350,7 +349,7 @@ namespace phys
 
         void CellGrid::AddCell(UI::Cell* ToBeAdded)
         {
-            ToBeAdded->SetSize(FixedCellSize);
+            ToBeAdded->SetActualSize(FixedCellSize);
             ToBeAdded->Hide();
             Cells.push_back(ToBeAdded);
             GridDirty = true;
@@ -407,9 +406,10 @@ namespace phys
             DrawGrid();
         }
 
-        void CellGrid::SetWorkAreaLimits(const Vector2& AreaLimit)
+        void CellGrid::SetWorkAreaLimits(const Vector2& AreaLimit, bool Relative)
         {
-            WorkAreaLimits = AreaLimit;
+            if(Relative) WorkAreaLimits = AreaLimit * Parent->GetParent()->GetViewportDimensions();
+            else WorkAreaLimits = AreaLimit;
         }
 
         Vector2 CellGrid::GetWorkAreaLimits()
@@ -417,9 +417,10 @@ namespace phys
             return WorkAreaLimits;
         }
 
-        void CellGrid::SetEdgeSpacing(const Vector2& Spacing)
+        void CellGrid::SetEdgeSpacing(const Vector2& Spacing, bool Relative)
         {
-            EdgeSpacing = Spacing;
+            if(Relative) EdgeSpacing = Spacing * Parent->GetParent()->GetViewportDimensions();
+            else EdgeSpacing = Spacing;
         }
 
         Vector2 CellGrid::GetEdgeSpacing()
@@ -427,9 +428,10 @@ namespace phys
             return EdgeSpacing;
         }
 
-        void CellGrid::SetCellSpacing(const Vector2& Spacing)
+        void CellGrid::SetCellSpacing(const Vector2& Spacing, bool Relative)
         {
-            CellSpacing = Spacing;
+            if(Relative) CellSpacing = Spacing * Parent->GetParent()->GetViewportDimensions();
+            else CellSpacing = Spacing;
         }
 
         Vector2 CellGrid::GetCellSpacing()
@@ -486,13 +488,20 @@ namespace phys
             DrawGrid();
         }
 
-        void CellGrid::UpdateDimensions(const Vector2& OldViewportSize)
+        void CellGrid::UpdateDimensions()
         {
+            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
+            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
+            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
+            Real Scale = ViewportUpdateTool::GetNewSize().Y / ViewportUpdateTool::GetOldSize().Y;
             GridBack->UpdateDimensions();
-            WorkAreaLimits = (WorkAreaLimits / OldViewportSize) * Parent->GetParent()->GetViewportDimensions();
+            WorkAreaLimits*=Scale;
+            FixedCellSize*=Scale;
+            EdgeSpacing*=Scale;
+            CellSpacing*=Scale;
             for( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
             {
-                (*it)->UpdateDimensions(OldViewportSize);
+                (*it)->UpdateDimensions();
             }
         }
 

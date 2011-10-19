@@ -169,12 +169,12 @@ namespace phys
             SetArea(Size);
         }
 
-        void TabSet::UpdateDimensions(const Vector2& OldViewportSize)
+        void TabSet::UpdateDimensions()
         {
             for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
             {
                 (*it)->Accessor->UpdateDimensions();
-                (*it)->Collection->UpdateDimensions(OldViewportSize);
+                (*it)->Collection->UpdateDimensions();
             }
         }
 

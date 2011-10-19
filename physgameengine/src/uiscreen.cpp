@@ -44,6 +44,7 @@
 #include "uimanager.h"
 #include "uilayer.h"
 #include "uibutton.h"
+#include "uiviewportupdatetool.h"
 #include "viewport.h"
 #include "world.h"
 #include "internalGorilla.h.cpp"
@@ -214,11 +215,11 @@ namespace phys
             if(KnownViewportSize == CurrentSize)
                 return;
 
-            Vector2 OldViewportSize = KnownViewportSize;
+            ViewportUpdateTool::ConfigureSizes(KnownViewportSize,CurrentSize);
             KnownViewportSize = CurrentSize;
             for( std::map<Whole,Layer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
             {
-                (*it).second->ViewportUpdate(OldViewportSize);
+                (*it).second->ViewportUpdate();
             }
         }
 

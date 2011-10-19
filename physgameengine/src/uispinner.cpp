@@ -46,6 +46,7 @@
 #include "uilayer.h"
 #include "uiscreen.h"
 #include "uimanager.h"
+#include "uiviewportupdatetool.h"
 
 #include "inputquerytool.h"
 #include "stringtool.h"
@@ -446,6 +447,18 @@ namespace phys
             CalculateOffsets(Size);
             SetArea(Size);
             SetLocation(GetActualPosition());
+        }
+
+        void Spinner::UpdateDimensions()
+        {
+            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
+            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
+            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
+            Increment->UpdateDimensions();
+            Decrement->UpdateDimensions();
+            ValueDisplay->UpdateDimensions();
+            CalculateOffsets(Result.second);
+            SetPosition(RelPosition);
         }
 
         Button* Spinner::GetIncrement()

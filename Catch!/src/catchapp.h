@@ -73,6 +73,8 @@ class CatchApp
         void RegisterStartArea(StartingArea* Start);
         void AddThrowable(ActorBase* Throwable);
         LevelLoader* GetLevelLoader();
+        SimpleTimer* GetLevelTimer();
+        SimpleTimer* GetEndTimer();
 };
 
 #endif

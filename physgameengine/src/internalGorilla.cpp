@@ -290,14 +290,14 @@ namespace Gorilla
    }
    // kerning kerning
    // >  kerning -1
-   else if (name == "letterspacing")
+   else if(name == "letterspacing")
    {
     glyphData->mLetterSpacing = Ogre::StringConverter::parseReal(data);
    }
   }
 
 
-  for (Ogre::uint index = glyphData->mRangeBegin; index <= glyphData->mRangeEnd; index++)
+  for(Ogre::uint index = glyphData->mRangeBegin; index <= glyphData->mRangeEnd; index++)
   {
 
    Glyph* glyph = OGRE_NEW Glyph();
@@ -307,12 +307,12 @@ namespace Gorilla
    s << "glyph_" << index;
 
    i = settings->find(s.str());
-   if (i == settings->end())
+   if(i == settings->end())
     continue;
 
    str_values = Ogre::StringUtil::split((*i).second, " ", 5);
 
-   if (str_values.size() < 4)
+   if(str_values.size() < 4)
    {
     //std::cout << "[Gorilla] Glyph #" << (*i).second << " does not have enough properties.\n";
     continue;
@@ -325,12 +325,12 @@ namespace Gorilla
    glyph->uvRight   = glyph->uvLeft + glyph->uvWidth;
    glyph->uvBottom  = glyph->uvTop + glyph->uvHeight;
 
-   if (str_values.size() == 5)
-     glyph->glyphAdvance = Ogre::StringConverter::parseInt(  str_values[4]  );
+   if(str_values.size() == 5)
+    glyph->glyphAdvance = Ogre::StringConverter::parseInt(  str_values[4]  );
    else
     glyph->glyphAdvance = glyph->uvWidth;
 
-
+   glyph->glyphChar = (glyphData->mGlyphs.size() - 1) + glyphData->mRangeBegin;
   }
 
  }
@@ -484,7 +484,7 @@ namespace Gorilla
 
   Ogre::TextureUnitState* texUnit = pass->createTextureUnitState();
   texUnit->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
-  texUnit->setTextureFiltering(Ogre::FO_POINT, Ogre::FO_POINT, Ogre::FO_NONE);
+  texUnit->setTextureFiltering(Ogre::FO_NONE, Ogre::FO_NONE, Ogre::FO_NONE);
 
   return d2Material;
  }
@@ -1159,7 +1159,7 @@ namespace Gorilla
     {
      Ogre::TexturePtr TextureUse = Silverback::getSingleton().getatlas(VectorTextureByVertex[i].NameFile)->getTexture();
      mRenderSystem->_setTexture(0,true,TextureUse);
-     mRenderSystem->_setTextureUnitFiltering(0,Ogre::FO_POINT,Ogre::FO_POINT,Ogre::FO_NONE);
+     //mRenderSystem->_setTextureUnitFiltering(0,Ogre::FO_NONE,Ogre::FO_NONE,Ogre::FO_NONE);
     }
     mRenderOpPtr->vertexData->vertexCount = VectorTextureByVertex[i].number2-VectorTextureByVertex[i].number;
     mRenderOpPtr->vertexData->vertexStart = VectorTextureByVertex[i].number;
@@ -1426,9 +1426,9 @@ namespace Gorilla
   mQuadLists.clear();
  }
 
- Caption* Layer::createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text,const std::string& LeFileName)
+ Caption* Layer::createCaption(Ogre::uint glyphDataIndex, const Ogre::Vector2& pos, const Ogre::Vector2& size, const Ogre::String& text,const std::string& LeFileName)
  {
-  Caption* caption = OGRE_NEW Caption(glyphDataIndex,x, y, text, this,LeFileName);
+  Caption* caption = OGRE_NEW Caption(glyphDataIndex,pos, size, text, this,LeFileName);
   mCaptions.push_back(caption);
   return caption;
  }
@@ -1455,9 +1455,9 @@ namespace Gorilla
   mCaptions.clear();
  }
 
- MarkupText* Layer::createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text, const Ogre::String& NameFile)
+ MarkupText* Layer::createMarkupText(Ogre::uint defaultGlyphIndex, const Ogre::Vector2& pos, const Ogre::Vector2& size, const Ogre::String& text, const Ogre::String& NameFile)
  {
-  MarkupText* markuptext = OGRE_NEW MarkupText(defaultGlyphIndex, x, y, text, this,NameFile);
+  MarkupText* markuptext = OGRE_NEW MarkupText(defaultGlyphIndex, pos, size, text, this,NameFile);
   mMarkupTexts.push_back(markuptext);
   return markuptext;
  }
@@ -1663,8 +1663,8 @@ void Rectangle::setCustomRotCenter(bool setting)
   c.x = mLeft  + texelOffsetX; c.y = mBottom + texelOffsetY;
   d.x = mRight + texelOffsetX; d.y = mBottom + texelOffsetY;
 
-  //if (mRadAngle != 0)
-  //{
+  if (mRadAngle != 0)
+  {
 	if (!CustomRotCenter)
 	{
 
@@ -1708,7 +1708,7 @@ void Rectangle::setCustomRotCenter(bool setting)
 
 	d.x+=mRotCenter.x;
 	d.y+=mRotCenter.y;
-  //}
+  }
 
   // Border
   if (mBorderWidth != 0)
@@ -2287,7 +2287,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
  }
 
 
- Caption::Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& caption, Layer* layer,const std::string& TheNameFile)
+ Caption::Caption(Ogre::uint glyphDataIndex, const Ogre::Vector2& pos, const Ogre::Vector2& size, const Ogre::String& caption, Layer* layer,const std::string& TheNameFile)
  : mLayer(layer)
  {
      mNameFile = TheNameFile;
@@ -2304,18 +2304,19 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   mDirty        = true;
   mVisible      = true;
   mLayer->_markDirty();
-  mLeft           = left;
-  mTop            = top;
-  mWidth          = 0.0f;
-  mHeight         = 0.0f;
+  mLeft           = pos.x;
+  mTop            = pos.y;
+  mWidth          = size.x;
+  mHeight         = size.y;
   mText           = caption;
   mColour         = Ogre::ColourValue::White;
-  mBackground.a   = 0.0f;
   mAlignment      = TextAlign_Left;
   mVerticalAlign  = VerticalAlign_Top;
   mPriority       = Gorilla::RP_Medium;
   mCursorOffset   = 0.0f;
   mCharScaling    = 1.0f;
+  mBackground[0] = mBackground[1] = mBackground[2] = mBackground[3] = Ogre::ColourValue(1,1,1,1);
+  mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV("");
  }
 
  void Caption::_calculateDrawSize(Ogre::Vector2& retSize)
@@ -2369,8 +2370,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
   if (mDirty == false)
    return;
-	std::string* FILENAME = NULL;
-	FILENAME = &mNameFile;
+
   mVertices.remove_all();
 
   if(!mVisible)
@@ -2379,21 +2379,31 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
       return;
   }
 
-  Ogre::Vector2 uv = mLayer->_getSolidUV(mNameFile);
+  Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+  Ogre::Real Right = mLeft + mWidth;
+  Ogre::Real Bottom = mTop + mHeight;
+  Ogre::Vector2 a, b, c, d;
+  a.x = mLeft + texelOffsetX; a.y = mTop   + texelOffsetY;
+  b.x = Right + texelOffsetX; b.y = mTop   + texelOffsetY;
+  c.x = mLeft + texelOffsetX; c.y = Bottom + texelOffsetY;
+  d.x = Right + texelOffsetX; d.y = Bottom + texelOffsetY;
 
-  if (mBackground.a > 0)
+  Vertex temp;
+  // Fill
+  if (mBackground[0].a != 0)
   {
-   Ogre::Vector2  a, b, c, d;
-   a.x = mLeft;  a.y = mTop;
-   b.x = mLeft + mWidth; b.y = mTop;
-   c.x = mLeft;  c.y = mTop + mHeight;
-   d.x = mLeft + mWidth; d.y = c.y = mTop + mHeight;
-   Vertex temp;
-   PUSH_TRIANGLE(mVertices, temp, c, b, a, uv, mBackground,FILENAME);
-   PUSH_TRIANGLE(mVertices, temp, c, d, b, uv, mBackground,FILENAME);
+   // Triangle A
+   PUSH_VERTEX(mVertices, temp, c.x, c.y, mUV[3], mBackground[3],&mNameFile);    // Left/Bottom  3
+   PUSH_VERTEX(mVertices, temp, b.x, b.y, mUV[1], mBackground[1],&mNameFile);    // Right/Top    1
+   PUSH_VERTEX(mVertices, temp, a.x, a.y, mUV[0], mBackground[0],&mNameFile);    // Left/Top     0
+
+   // Triangle B
+   PUSH_VERTEX(mVertices, temp, c.x, c.y, mUV[3], mBackground[3],&mNameFile);    // Left/Bottom   3
+   PUSH_VERTEX(mVertices, temp, d.x, d.y, mUV[2], mBackground[2],&mNameFile);    // Right/Bottom  2
+   PUSH_VERTEX(mVertices, temp, b.x, b.y, mUV[1], mBackground[1],&mNameFile);    // Right/Top     1
   }
 
-  Ogre::Real left = 0, top = 0, right = 0, bottom = 0, cursorX = 0, cursorY = 0, kerning = 0, texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+  Ogre::Real left = 0, top = 0, right = 0, bottom = 0, cursorX = 0, cursorY = 0, kerning = 0;
   Ogre::Vector2 knownSize;
   Glyph* glyph = 0;
 
@@ -2445,7 +2455,6 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    cursorY = mTop +  mHeight - (mGlyphData->mLineHeight * mCharScaling);
 
   unsigned char thisChar = 0, lastChar = 0;
-  Vertex temp;
   mClippedLeftIndex = std::string::npos;
   mClippedRightIndex = std::string::npos;
 
@@ -2506,14 +2515,14 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    }
 
    // Triangle A
-   PUSH_VERTEX(mVertices, temp, left, bottom, glyph->texCoords[BottomLeft], mColour,FILENAME);  // Left/Bottom  3
-   PUSH_VERTEX(mVertices, temp, right, top, glyph->texCoords[TopRight], mColour,FILENAME);    // Right/Top    1
-   PUSH_VERTEX(mVertices, temp, left, top, glyph->texCoords[TopLeft], mColour,FILENAME);     // Left/Top     0
+   PUSH_VERTEX(mVertices, temp, left, bottom, glyph->texCoords[BottomLeft], mColour,&mNameFile);  // Left/Bottom  3
+   PUSH_VERTEX(mVertices, temp, right, top, glyph->texCoords[TopRight], mColour,&mNameFile);    // Right/Top    1
+   PUSH_VERTEX(mVertices, temp, left, top, glyph->texCoords[TopLeft], mColour,&mNameFile);     // Left/Top     0
 
    // Triangle B
-   PUSH_VERTEX(mVertices, temp, left, bottom, glyph->texCoords[BottomLeft], mColour,FILENAME);  // Left/Bottom  3
-   PUSH_VERTEX(mVertices, temp, right, bottom, glyph->texCoords[BottomRight], mColour,FILENAME); // Right/Bottom 2
-   PUSH_VERTEX(mVertices, temp, right, top, glyph->texCoords[TopRight], mColour,FILENAME);    // Right/Top    1
+   PUSH_VERTEX(mVertices, temp, left, bottom, glyph->texCoords[BottomLeft], mColour,&mNameFile);  // Left/Bottom  3
+   PUSH_VERTEX(mVertices, temp, right, bottom, glyph->texCoords[BottomRight], mColour,&mNameFile); // Right/Bottom 2
+   PUSH_VERTEX(mVertices, temp, right, top, glyph->texCoords[TopRight], mColour,&mNameFile);    // Right/Top    1
 
 
    cursorX  += (glyph->glyphAdvance + kerning) * mCharScaling;
@@ -2526,7 +2535,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
  }
 
 
- MarkupText::MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& text, Layer* parent,const Ogre::String& NameFile)
+ MarkupText::MarkupText(Ogre::uint defaultGlyphIndex, const Ogre::Vector2& pos, const Ogre::Vector2& size, const Ogre::String& text, Layer* parent,const Ogre::String& NameFile)
  : mLayer(parent)
  {
  mNameFile = NameFile;
@@ -2547,14 +2556,15 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   mTextDirty      = true;
   mVisible        = true;
   mLayer->_markDirty();
-  mLeft           = left;
-  mTop            = top;
-  mWidth          = 0.0f;
-  mHeight         = 0.0f;
+  mLeft           = pos.x;
+  mTop            = pos.y;
+  mWidth          = size.x;
+  mHeight         = size.y;
   mText           = text;
-  mBackground.a   = 0.0f;
   mPriority       = Gorilla::RP_Medium;
   mCharScaling    = 1.0f;
+  mBackground[0] = mBackground[1] = mBackground[2] = mBackground[3] = Ogre::ColourValue(1,1,1,1);
+  mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV("");
  }
 
  void MarkupText::_calculateCharacters()
@@ -2562,13 +2572,15 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   if (mTextDirty == false)
    return;
 
-  Ogre::Real cursorX = mLeft, cursorY = mTop, kerning = 0, texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY(), right = 0, bottom = 0, left = 0, top = 0;
+  mCharacters.clear();
+
+  _generateWords();
+
+  _placeWords();
+
+  /*Ogre::Real cursorX = mLeft, cursorY = mTop, kerning = 0, texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY(), right = 0, bottom = 0, left = 0, top = 0;
   unsigned int thisChar = 0, lastChar = 0;
-  Glyph* glyph = 0;
-
-  mMaxTextWidth = 0;
-
-  mCharacters.remove_all();
+  Glyph* glyph = NULL;
 
   bool markupMode = false;
   Ogre::ColourValue colour = mLayer->_getMarkupColour(0,mNameFile);
@@ -2576,6 +2588,8 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
   GlyphData* glyphData = mDefaultGlyphData;
   Ogre::Real lineHeight = glyphData->mLineHeight;
+
+  Ogre::Real clipRightPos = mLeft + mWidth;
 
   for(size_t i=0;i < mText.length();i++)
   {
@@ -2620,18 +2634,22 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
     {
      markupMode = false;
 
+     // Check if the user wants a different colour to use for all further glyphs.
      if (thisChar >= '0' && thisChar <= '9')
      {
       colour = mLayer->_getMarkupColour(thisChar - 48,mNameFile);
      }
+     // Check if the user wants to revert the current selected colour back to default.
      else if (thisChar == 'R' || thisChar == 'r')
      {
       colour = mLayer->_getMarkupColour(0,mNameFile);
      }
+     // Fixed Width?  Like Notepad?
      else if (thisChar == 'M' || thisChar == 'm')
      {
       fixedWidth = !fixedWidth;
      }
+     // Check if the user wants to change the glyph set being rendered.
      else if (thisChar == '@')
      {
       markupMode = false;
@@ -2658,6 +2676,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
       lineHeight = std::max(lineHeight, glyphData->mLineHeight);
       continue;
      }
+     // Check to see if the user wants to change the glyph with a sprite.
      else if (thisChar == ':')
      {
       markupMode = false;
@@ -2666,11 +2685,11 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 	  size_t midle = 0;
       while(i < mText.size())
       {
-	  if(mText[i] == ',')
-	  {
+	   if(mText[i] == ',')
+	   {
 		midle = i;
-	  }
-       if (mText[i] == '%')
+	   }
+       if(mText[i] == '%')
        {
         foundIt = true;
         break;
@@ -2682,13 +2701,13 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
        return;
 
       Ogre::String sprite_name = mText.substr(begin+1, midle - begin - 1);
-	Ogre::String sprite_nameFile = mText.substr(midle+1, i - midle - 1);
+	  Ogre::String sprite_nameFile = mText.substr(midle+1, i - midle - 1);
       Sprite* sprite = mLayer->_getSprite(sprite_name,sprite_nameFile);
       if (sprite == 0)
        continue;
 
       left = cursorX - texelOffsetX;
-      top = cursorY - texelOffsetY + glyph->verticalOffset;
+      top = cursorY - texelOffsetY;// + glyph->verticalOffset;
       right = left + (sprite->spriteWidth * mCharScaling) + texelOffsetX;
       bottom = top + (sprite->spriteHeight * mCharScaling) + texelOffsetY;
 
@@ -2716,8 +2735,6 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
       continue;
      }
-
-
      continue;
     }
     markupMode = false;
@@ -2758,39 +2775,335 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
      cursorX += glyphData->mMonoWidth;
    else
      cursorX += (glyph->glyphAdvance + kerning) * mCharScaling;
-   if( cursorX > mMaxTextWidth )
-       mMaxTextWidth = cursorX;
 
    lastChar = thisChar;
-  }
-
-  mMaxTextWidth -= mLeft;
+  }// */
 
   mTextDirty = false;
  }
 
- void  MarkupText::_redraw()
- {
+    void MarkupText::_generateWords()
+    {
+        _clearWords();
+        Word* CurrWord = NULL;
+        bool markupMode = false;
+        bool fixedWidth = false;
+        Glyph* glyph = NULL;
+        GlyphData* glyphData = mDefaultGlyphData;
+        Ogre::ColourValue colour = mLayer->_getMarkupColour(0,mNameFile);
+        Ogre::Real lineHeight = glyphData->mLineHeight;
+        Ogre::Real kerning = 0;
+        unsigned int thisChar = 0, lastChar = 0;
 
-  if (mDirty == false)
-   return;
+        for(size_t i=0;i < mText.length();i++)
+        {
+            thisChar = mText[i];
 
-  mVertices.remove_all();
+            if (thisChar == ' ')
+            {
+                lastChar = thisChar;
+                if(CurrWord)
+                {
+                    CurrWord->mGlyphDataSpacing = glyphData->mSpaceLength;
+                    mWords.push_back(CurrWord);
+                    CurrWord = NULL;
+                }
+                continue;
+            }
 
-  if(!mVisible)
-  {
-      mDirty = false;
-      return;
-  }
+            if (thisChar == '\n')
+            {
+                lastChar = thisChar;
+                if(CurrWord)
+                {
+                    //CurrWord->mNewlineAfter = true;
+                    mWords.push_back(CurrWord);
+                    CurrWord = NULL;
+                }
+                CurrWord = new Word();
+                CurrWord->mNewlineBefore = true;
+                continue;
+            }
 
-  Vertex temp;
-  for (size_t i=0; i < mCharacters.size();i++)
-  {
-   PUSH_QUAD2(mVertices, temp, mCharacters[i].mPosition, mCharacters[i].mColour, mCharacters[i].mUV,&mNameFile);
-  }
+            if (  thisChar < glyphData->mRangeBegin || thisChar > glyphData->mRangeEnd  )
+            {
+                lastChar = 0;
+                continue;
+            }
 
-  mDirty = false;
- }
+            if (thisChar == '%' && !markupMode)
+            {
+                markupMode = true;
+                continue;
+            }
+
+            if (markupMode == true)
+            {
+                if (thisChar == '%')
+                {
+                    // Escape Character.
+                }else{
+                    markupMode = false;
+
+                    // Check if the user wants a different colour to use for all further glyphs.
+                    if (thisChar >= '0' && thisChar <= '9')
+                    {
+                        colour = mLayer->_getMarkupColour(thisChar - 48,mNameFile);
+                    }
+                    // Check if the user wants to revert the current selected colour back to default.
+                    else if (thisChar == 'R' || thisChar == 'r')
+                    {
+                        colour = mLayer->_getMarkupColour(0,mNameFile);
+                    }
+                    // Fixed Width?  Like Notepad?
+                    else if (thisChar == 'M' || thisChar == 'm')
+                    {
+                        fixedWidth = !fixedWidth;
+                    }
+                    // Check if the user wants to change the glyph set being rendered.
+                    else if (thisChar == '@')
+                    {
+                        markupMode = false;
+                        bool foundIt = false;
+                        size_t begin = i;
+                        while(i < mText.size())
+                        {
+                            if (mText[i] == '%')
+                            {
+                                foundIt = true;
+                                break;
+                            }
+                            i++;
+                        }
+
+                        if (foundIt == false)
+                            return;
+
+                        Ogre::uint index = Ogre::StringConverter::parseUnsignedInt(mText.substr(begin+1, i - begin - 1));
+                        glyphData = mLayer->_getGlyphData(index,mNameFile);
+                        if (glyphData == 0)
+                            return;
+                        continue;
+                    }
+                    // Check to see if the user wants to change the glyph with a sprite.
+                    else if (thisChar == ':')
+                    {
+                        markupMode = false;
+                        bool foundIt = false;
+                        size_t begin = i;
+                        size_t midle = 0;
+                        while(i < mText.size())
+                        {
+                            if(mText[i] == ',')
+                            {
+                                midle = i;
+                            }
+                            if(mText[i] == '%')
+                            {
+                                foundIt = true;
+                                break;
+                            }
+                            i++;
+                        }
+
+                        if(foundIt == false)
+                            return;
+
+                        Ogre::String sprite_name = mText.substr(begin+1, midle - begin - 1);
+                        Ogre::String sprite_nameFile = mText.substr(midle+1, i - midle - 1);
+                        Sprite* sprite = mLayer->_getSprite(sprite_name,sprite_nameFile);
+                        if(sprite == 0)
+                            continue;
+
+                        if(!CurrWord)
+                            CurrWord = new Word();
+
+                        Character* c = new Character();
+                        c->mIndex = i;
+                        c->mColour = colour;
+                        c->mSprite = sprite;
+
+                        CurrWord->AddCharacter(c,mCharScaling);
+
+                        continue;
+                    }
+                    continue;
+                }
+                markupMode = false;
+            }
+
+            glyph = glyphData->getGlyph(thisChar);
+
+            if(!CurrWord)
+                CurrWord = new Word();
+
+            if (!fixedWidth)
+            {
+                kerning = glyph->getKerning(lastChar);
+                if (kerning == 0)
+                    kerning = glyphData->mLetterSpacing;
+            }
+
+            Character* c = new Character();
+            c->mIndex = i;
+            c->mColour = colour;
+            c->mGlyph = glyph;
+            c->mKerning = kerning;
+
+            CurrWord->AddCharacter(c,mCharScaling);
+
+            lastChar = thisChar;
+        }
+
+        if(CurrWord)
+        {
+            if(CurrWord->mCharacters.size()) mWords.push_back(CurrWord);
+            else delete CurrWord;
+        }
+    }
+
+    void MarkupText::_placeWords()
+    {
+        if(mWords.empty())
+            return;
+
+        Ogre::Real CursorX = mLeft, CursorY = 0;
+        Ogre::Real TexelX = mLayer->_getTexelX(), TexelY = mLayer->_getTexelY();
+        Ogre::Real kerning = 0, Top = 0, Left = 0, Bottom = 0, Right = 0;
+
+        std::vector<Ogre::Real> Lineheights;
+        Ogre::Real CurrLineHeight = 0;
+        for( Ogre::uint words = 0 ; words < mWords.size() ; ++words )
+        {
+            Word* CurrWord = mWords.at(words);
+            if(CursorX+CurrWord->mPxlength > mLeft+mWidth)
+            {
+                CurrWord->mNewlineBefore = true;
+            }
+            if(CurrWord->mNewlineBefore)
+            {
+                Lineheights.push_back(CurrLineHeight);
+                CurrLineHeight = 0;
+                CursorX = mLeft;
+            }else{
+                CursorX += (CurrWord->mPxlength + CurrWord->mGlyphDataSpacing);
+            }
+            if(CurrWord->mPxheight > CurrLineHeight)
+                CurrLineHeight = CurrWord->mPxheight;
+        }
+        Lineheights.push_back(CurrLineHeight);
+
+        CursorX = mLeft;
+        CursorY = mTop + Lineheights[0];
+        for( Ogre::uint words = 0, lineindex = 0 ; words < mWords.size() ; ++words )
+        {
+            Word* CurrWord = mWords[words];
+            Ogre::uint NumChars = CurrWord->mCharacters.size();
+
+            if(CurrWord->mNewlineBefore)
+            {
+                lineindex++;
+                CursorX = mLeft;
+                CursorY += Lineheights[lineindex];
+            }// */
+
+            for( Ogre::uint chars = 0 ; chars < NumChars ; ++chars )
+            {
+                Character* CurrChar = CurrWord->mCharacters[chars];
+
+                if(CurrChar->mGlyph)
+                {
+                    Left = CursorX;
+                    Top = CursorY - (CurrChar->mGlyph->glyphHeight * mCharScaling) - TexelY;
+                    Right = CursorX + (CurrChar->mGlyph->glyphWidth * mCharScaling) + TexelX;
+                    Bottom = CursorY - (CurrChar->mGlyph->verticalOffset * mCharScaling);
+                }
+                else if(CurrChar->mSprite)
+                {
+                    Left = CursorX - TexelX;
+                    Top = CursorY - (CurrChar->mSprite->spriteHeight * mCharScaling) - TexelY;
+                    Right = CursorX + (CurrChar->mSprite->spriteWidth * mCharScaling) + TexelX;
+                    Bottom = CursorY + TexelY;
+                }
+                else
+                {
+                    // If this happens, just skip, cause I don't know wtf is going on.
+                    continue;
+                }
+
+                CurrChar->mPosition[TopLeft].x = Left;
+                CurrChar->mPosition[TopLeft].y = Top;
+                CurrChar->mPosition[TopRight].x = Right;
+                CurrChar->mPosition[TopRight].y = Top;
+                CurrChar->mPosition[BottomLeft].x = Left;
+                CurrChar->mPosition[BottomLeft].y = Bottom;
+                CurrChar->mPosition[BottomRight].x = Right;
+                CurrChar->mPosition[BottomRight].y = Bottom;
+                CurrChar->mUV[0] = (CurrChar->mGlyph ? CurrChar->mGlyph->texCoords[0] : CurrChar->mSprite->texCoords[0]);
+                CurrChar->mUV[1] = (CurrChar->mGlyph ? CurrChar->mGlyph->texCoords[1] : CurrChar->mSprite->texCoords[1]);
+                CurrChar->mUV[2] = (CurrChar->mGlyph ? CurrChar->mGlyph->texCoords[2] : CurrChar->mSprite->texCoords[2]);
+                CurrChar->mUV[3] = (CurrChar->mGlyph ? CurrChar->mGlyph->texCoords[3] : CurrChar->mSprite->texCoords[3]);
+
+                if(CurrChar->mGlyph) CursorX += ((CurrChar->mGlyph->glyphAdvance + CurrChar->mKerning) * mCharScaling);
+                else if(CurrChar->mSprite) CursorX += (CurrChar->mSprite->spriteWidth * mCharScaling);
+
+                mCharacters.push_back(CurrChar);
+            }
+
+            CursorX += (CurrWord->mGlyphDataSpacing * mCharScaling);
+
+            /*if(CurrWord->mNewlineAfter)
+            {
+                lineindex++;
+                CursorX = mLeft;
+                CursorY += Lineheights[lineindex];
+            }// */
+        }
+    }
+
+    void MarkupText::_redraw()
+    {
+        if (mDirty == false)
+            return;
+
+        mVertices.remove_all();
+
+        if(!mVisible)
+        {
+            mDirty = false;
+            return;
+        }
+
+        Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+        Ogre::Real Right = mLeft + mWidth;
+        Ogre::Real Bottom = mTop + mHeight;
+        Ogre::Vector2 a, b, c, d;
+        a.x = mLeft + texelOffsetX; a.y = mTop   + texelOffsetY;
+        b.x = Right + texelOffsetX; b.y = mTop   + texelOffsetY;
+        c.x = mLeft + texelOffsetX; c.y = Bottom + texelOffsetY;
+        d.x = Right + texelOffsetX; d.y = Bottom + texelOffsetY;
+
+        Vertex temp;
+        // Fill
+        if (mBackground[0].a != 0)
+        {
+            // Triangle A
+            PUSH_VERTEX(mVertices, temp, c.x, c.y, mUV[3], mBackground[3],&mNameFile);    // Left/Bottom  3
+            PUSH_VERTEX(mVertices, temp, b.x, b.y, mUV[1], mBackground[1],&mNameFile);    // Right/Top    1
+            PUSH_VERTEX(mVertices, temp, a.x, a.y, mUV[0], mBackground[0],&mNameFile);    // Left/Top     0
+
+            // Triangle B
+            PUSH_VERTEX(mVertices, temp, c.x, c.y, mUV[3], mBackground[3],&mNameFile);    // Left/Bottom   3
+            PUSH_VERTEX(mVertices, temp, d.x, d.y, mUV[2], mBackground[2],&mNameFile);    // Right/Bottom  2
+            PUSH_VERTEX(mVertices, temp, b.x, b.y, mUV[1], mBackground[1],&mNameFile);    // Right/Top     1
+        }
+
+        for (size_t i=0; i < mCharacters.size();i++)
+        {
+            PUSH_QUAD2(mVertices, temp, mCharacters[i]->mPosition, mCharacters[i]->mColour, mCharacters[i]->mUV,&mNameFile);
+        }
+        mDirty = false;
+    }
 
 } // namespace Gorilla
 

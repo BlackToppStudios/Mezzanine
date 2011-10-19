@@ -42,9 +42,9 @@
 
 #include "crossplatformexport.h"
 #include "colourvalue.h"
-#include "datatypes.h"
 #include "uienumerations.h"
 #include "uirenderablerect.h"
+#include "uibasicrenderable.h"
 
 namespace Gorilla
 {
@@ -70,20 +70,15 @@ namespace phys
         /// Texts have no background functionality, but they use a light markup language to accomplish
         /// special effects with the text.
         ///////////////////////////////////////
-        class PHYS_LIB Caption
+        class PHYS_LIB Caption : public BasicRenderable
         {
             protected:
                 Gorilla::Caption* GorillaCaption;
                 Gorilla::Rectangle* GorillaRectangle;
-                Layer* Parent;
-                UIManager* Manager;
                 Whole Glyphs;
                 bool MouseHover;
                 bool AutoScaleText;
                 Real RelLineHeight;
-                Vector2 RelPosition;
-                Vector2 RelSize;
-                String Name;
                 void ConstructCaption(const RenderableRect& Rect, const Whole& Glyph, const String& Text);
             public:
                 /// @brief Internal constructor
@@ -107,7 +102,7 @@ namespace phys
                 virtual void SetVisible(bool Visible);
                 /// @brief Gets the visibility of this caption.
                 /// @return Returns a bool representing the visibility of this caption.
-                virtual bool IsVisible();
+                virtual bool IsVisible() const;
                 /// @brief Forces this caption to be shown.
                 virtual void Show();
                 /// @brief Forces this caption to hide.
@@ -119,9 +114,6 @@ namespace phys
                 /// @details This function does not perform any checks.  If you want to do a manual check, call CheckMouseHover().
                 /// @return Returns the stored value of whether or not the mouse is over the caption.
                 virtual bool GetMouseHover();
-                /// @brief Gets the name of this caption.
-                /// @return Returns a string containing the name of this caption.
-                virtual ConstString& GetName();
                 /// @brief Sets the text displayed within the caption.
                 /// @param Text The text to be displayed.
                 virtual void SetText(ConstString& Text);
@@ -183,38 +175,38 @@ namespace phys
                 virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative top left position of this caption.
                 /// @return Returns a Vector2 representing the location of this caption.
-                virtual Vector2 GetPosition();
+                virtual Vector2 GetPosition() const;
                 /// @brief Sets the top left position of this caption in pixels.
                 /// @param Position A Vector2 representing the location of this caption.
                 virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Gets the top left position of this caption in pixels.
                 /// @return Returns a Vector2 representing the location of this caption.
-                virtual Vector2 GetActualPosition();
+                virtual Vector2 GetActualPosition() const;
                 /// @brief Sets the relative size of this caption.
                 /// @param Size A vector2 representing the size of this caption.
                 virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this caption.
                 /// @return Returns a vector2 representing the size of this caption.
-                virtual Vector2 GetSize();
+                virtual Vector2 GetSize() const;
                 /// @brief Sets the size of this caption in pixels.
                 /// @param Size A vector2 representing the size of this caption.
                 virtual void SetActualSize(const Vector2& Size);
                 /// @brief Gets the size of this caption in pixels.
                 /// @return Returns a vector2 representing the size of this caption.
-                virtual Vector2 GetActualSize();
+                virtual Vector2 GetActualSize() const;
                 /// @brief Sets the priority this caption should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this caption.
                 virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this caption should be rendered with.
                 /// @return Returns an enum value representing this caption's priority level.
-                virtual UI::RenderPriority GetRenderPriority();
+                virtual UI::RenderPriority GetRenderPriority() const;
                 /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
                 /// @param Atlas The name of the atlas to be used.
                 virtual void SetPrimaryAtlas(const String& Atlas);
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set.
-                virtual String GetPrimaryAtlas();
+                virtual String GetPrimaryAtlas() const;
                 /// @brief Enables or disables scaling the text automatically on a screen size change.
                 /// @param Enable Enables or disables automatic text scaling.
                 virtual void SetAutoScaleText(bool Enable);

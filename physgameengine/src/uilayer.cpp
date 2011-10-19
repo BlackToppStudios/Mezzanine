@@ -541,7 +541,7 @@ namespace phys
             return 0;
         }
 
-        void Layer::ViewportUpdate(const Vector2& OldViewportSize)
+        void Layer::ViewportUpdate()
         {
             for ( std::vector<Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
@@ -565,7 +565,7 @@ namespace phys
             //}
             for( std::vector<Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
             {
-                (*it)->UpdateDimensions(OldViewportSize);
+                (*it)->UpdateDimensions();
             }
         }
 
