@@ -36,7 +36,7 @@ int main(int argc, char **argv)
         Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
         Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
         Info.MaxProxies = 60;
-        TheWorld = new World( Info, SceneManager::Generic );
+        TheWorld = new World( Info, SceneManager::Generic, "data/common/plugins.cfg");
     }catch( exception x){
         cerr << "Could not create world: " << x.what();
         return 1;
@@ -671,14 +671,14 @@ void LoadContent()
     String robotprefix ("Robot");
 
     std::stringstream zipname;
-    zipname << crossplatform::GetDataDirectory() << "test.zip";
+    zipname << "data/common" << "test.zip";
 
     World::GetWorldPointer()->GetLoggingFrequency();
 
     //testing the directory listing feature
     //please don;t delete this, this should be turned into a unit test.
-    World::GetWorldPointer()->LogStream << std::endl << "Checking content of data directory:" << crossplatform::GetDataDirectory() << std::endl;
-    std::set<String>* Listing = crossplatform::GetDirContents(crossplatform::GetDataDirectory());
+    World::GetWorldPointer()->LogStream << std::endl << "Checking content of data directory:" << "data/common" << std::endl;
+    std::set<String>* Listing = crossplatform::GetDirContents("data/common");
     for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
     {
         World::GetWorldPointer()->LogStream << *Iter << std::endl;
@@ -736,9 +736,9 @@ void LoadContent()
     }
 
     Real mass=15.0;
-    TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
-    TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory()+"/Music", "FileSystem", groupname, false);
-    TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory()+"/Sounds", "FileSystem", groupname, false);
+    TheWorld->GetResourceManager()->AddResourceLocation("data/common", "FileSystem", groupname, false);
+    TheWorld->GetResourceManager()->AddResourceLocation("data/common/Music", "FileSystem", groupname, false);
+    TheWorld->GetResourceManager()->AddResourceLocation("data/common/Sounds", "FileSystem", groupname, false);
     TheWorld->GetResourceManager()->AddResourceLocation(zipname.str(), "Zip", groupname, false);
     TheWorld->GetResourceManager()->AddResourceLocation("", "FileSystem", groupname, false);
 

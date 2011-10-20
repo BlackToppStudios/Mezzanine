@@ -71,27 +71,31 @@ namespace phys
         PhysicsConstructionInfo PhysicsInfo;
         std::vector <ManagerBase*> temp;
 
-        this->Construct(PhysicsInfo, SceneManager::Generic, "Physgame.log", temp);
+        this->Construct(PhysicsInfo, SceneManager::Generic, "plugins.cfg", "Physgame.log", temp);
     }
 
     World::World(   const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
+                    std::string PluginsFilePath,
                     std::string LogFileName)
     {
         std::vector <ManagerBase*> temp;
         this->Construct(PhysicsInfo,
                         SceneType,
+                        PluginsFilePath,
                         LogFileName,
                         temp );
     }
 
     World::World(  const PhysicsConstructionInfo& PhysicsInfo,
             SceneManager::SceneManagerType SceneType,
+            std::string PluginsFilePath,
             const std::string &LogFileName,
             const std::vector <ManagerBase*> &ManagerToBeAdded)
     {
         this->Construct(PhysicsInfo,
                         SceneType,
+                        PluginsFilePath,
                         LogFileName,
                         ManagerToBeAdded );
 
@@ -112,6 +116,7 @@ namespace phys
 
     void World::Construct(  const PhysicsConstructionInfo& PhysicsInfo,
                                 SceneManager::SceneManagerType SceneType,
+                                std::string PluginsFilePath,
                                 std::string LogFileName,
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
@@ -126,9 +131,9 @@ namespace phys
 
 
         if ( 0 == OgreCore )
-            { OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName); }
+            { OgreCore = new Ogre::Root(PluginsFilePath,"",LogFileName); }
         else
-            { OgreCore = Ogre::Root::getSingletonPtr();}
+            { OgreCore = Ogre::Root::getSingletonPtr(); }
 
         World::TheRealWorld = this;
 

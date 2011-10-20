@@ -107,6 +107,21 @@ namespace phys
         CF_UserFilter2 = 128
     };
 
+    /// @enum RenderSystem
+    /// @brief Used primarily by the graphics manager class during initialization.
+    /// @details This enum specifies which Rendersystem is to be used for rendering.
+    enum RenderSystem
+    {
+        RS_DirectX9,
+        RS_DirectX10,
+        RS_DirectX11,
+        RS_OpenGL2,
+        RS_OpenGL3,
+        RS_OpenGL4,
+        RS_OpenGLES1,
+        RS_OpenGLES2
+    };
+
     /// @enum WorldObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This is mostly used internally for casting void pointers.

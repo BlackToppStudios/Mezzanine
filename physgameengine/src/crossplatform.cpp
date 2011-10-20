@@ -74,45 +74,6 @@ namespace phys
     namespace crossplatform
     {
         ///////////////////////////////////////////////////////////////////////////////
-        //returns: The appropriate string, which contains a path, to the correct
-        //"plugins.cfg" file
-        string GetPluginsDotCFG()
-        {
-            #ifdef LINUX
-                return "data/linux/plugins.cfg";
-            #endif
-            #ifdef WINDOWS
-                return "data/windows/plugins.cfg";
-            #endif
-			#ifdef MACOSX
-				return "data/macosx/plugins.cfg";
-			#endif
-
-
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        //returns: The appropriate string, which contains a path, to the correct
-        //"settings.cfg" file
-        string GetSettingsDotCFG()
-        {
-            #ifdef LINUX
-                return "data/linux/settings.cfg";
-            #endif
-            #ifdef WINDOWS
-                return "data/windows/settings.cfg";
-            #endif
-			#ifdef MACOSX
-				return "data/macosx/settings.cfg";
-			#endif
-        }
-
-        string GetDataDirectory()
-        {
-            return "data/common/";
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
         //This returns a named parameter list with valid settings to use Ogre rendering
         //on a pre-existing SDL context
         //void* is always an ogre NameValuePairList

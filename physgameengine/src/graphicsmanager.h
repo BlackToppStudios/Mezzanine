@@ -40,9 +40,9 @@
 #ifndef _graphicsmanager_h
 #define _graphicsmanager_h
 
-#include "crossplatformexport.h"
 #include "managerbase.h"
 #include "graphicssettings.h"
+#include "enumerations.h"
 
 namespace Ogre
 {
@@ -86,6 +86,7 @@ namespace phys
             /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens
             /// do not support arbitrary resolutions in fullscreen mode.
             void Construct( const Whole &Width, const Whole &Height, const bool &FullScreen);
+            String ConvertRenderSystem(const phys::RenderSystem& RS);
 
             void InitSDL();
             void InitOgre();
@@ -96,6 +97,7 @@ namespace phys
             GameWindow* PrimaryGameWindow;
 
             Whole FrameDelay;
+            phys::RenderSystem CurrRenderSys;
 
             //bool SDLBeenInitialized;
             bool OgreBeenInitialized;
@@ -162,12 +164,16 @@ namespace phys
             /// @return Returns a bool indicating whether or not Ogre has been initialized yet.
             bool HasOgreBeenInitialized();
 
-            /// @brief This Shows an Engine Generated Configuration Screen
-            /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
-            /// options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps
-            /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage
-            /// user settings.
-            bool ShowGraphicsSettingDialog();
+            /// @brief Sets the render system to be used.
+            /// @remarks This will only work prior to a window being created/graphics manager being initialized.  The internal structures to be built need
+            /// to know what rendersystem to build for.  Additionally this cannot be swapped/changed at runtime.  If called after a window has been made this will throw an exception.
+            /// @param RenderSys The Render system to be used.
+            void SetRenderSystem(const phys::RenderSystem& RenderSys);
+
+            /// @brief Gets the current rendersystem being used.
+            /// @remarks This does not return a pointer or any other kind of accessor to the actual rendersystem structure.  If you need that, then we're doing something wrong.
+            /// @return Returns an enum value coresponding to the render system being used.
+            phys::RenderSystem GetCurrRenderSystem();
 
             /// @brief Gets the name of the render system in current use.
             /// @return Returns a string containing the name of the current render system.

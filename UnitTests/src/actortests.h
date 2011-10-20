@@ -72,7 +72,7 @@ class ActorTests : public UnitTestGroup
                 try{
                     String groupname ("Group1");
                     String filerobot ("robot.mesh");
-                    TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
+                    TheWorld->GetResourceManager()->AddResourceLocation("data/common", "FileSystem", groupname, false);
 
                     ActorRigid *object1 = new ActorRigid (20.0,"ABasicRobot",filerobot,groupname);
                     std::stringstream SerializeTestA1, SerializeTestP1, SerializeTestWhole1;

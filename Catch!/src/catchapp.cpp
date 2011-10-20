@@ -28,7 +28,7 @@ CatchApp::CatchApp()
     {
         PhysicsConstructionInfo Info;
         Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
-        TheWorld = new World( Info, SceneManager::Generic );
+        TheWorld = new World( Info, SceneManager::Generic, "Plugins/plugins.cfg" );
     }catch( exception x){
         //could not create world
     }
@@ -466,7 +466,7 @@ void CatchApp::ConfigResources()
 {
     ResourceManager* ResourceMan = TheWorld->GetResourceManager();
     String CommonGroup("Common");
-    String datadir = crossplatform::GetDataDirectory();
+    String datadir = "Data/";
     ResourceMan->AddResourceLocation(datadir, "FileSystem", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"Common.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"AdvThrowables.zip", "Zip", CommonGroup, false);
