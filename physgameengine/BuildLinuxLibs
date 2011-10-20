@@ -37,20 +37,21 @@ cd libincludes/linux/ogresrc/ogre
 cmake -G"CodeBlocks - Unix Makefiles" $DebugCMake
 make -j$ThreadCount
 
+# This actually breaks the build process, it still loks for the wrong name somehow...
 # rename debug libs
-echo "Renaming any debug libraries"
-rename 's/_d//' lib/*
-cd lib
-for i in *; do
-	if [ -h "$i" ]
-	then
-		Target=`readlink "$i"`
-		Target=${Target/_d/}
-		echo "Retargeting $i -> $Target"
-		rm "$i"
-		ln -s "$Target" "$i"
-	fi
-done
+#echo "Renaming any debug libraries"
+#rename 's/_d//' lib/*
+#cd lib
+#for i in *; do
+#	if [ -h "$i" ]
+#	then
+#		Target=`readlink "$i"`
+#		Target=${Target/_d/}
+#		echo "Retargeting $i -> $Target"
+#		rm "$i"
+#		ln -s "$Target" "$i"
+#	fi
+#done
 
 
 ########################################################
