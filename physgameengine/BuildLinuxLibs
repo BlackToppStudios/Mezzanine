@@ -34,7 +34,7 @@ fi
 ########################################################
 # Prepare Ogre Library
 cd libincludes/linux/ogresrc/ogre
-cmake -G"CodeBlocks - Unix Makefiles" $DebugCMake
+cmake -G"CodeBlocks - Unix Makefiles" $DebugCMake -DOGRE_STATIC=true
 make -j$ThreadCount
 
 # This actually breaks the build process, it still loks for the wrong name somehow...
