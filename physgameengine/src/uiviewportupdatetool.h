@@ -52,7 +52,7 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         /// @class ViewportUpdateTool
         /// @headerfile uiviewportupdatetool.h
-        /// @brief
+        /// @brief This class facilitates the resizing and repositioning of all renderables in the UI system during a viewport update.
         /// @details
         ///////////////////////////////////////
         class PHYS_LIB ViewportUpdateTool

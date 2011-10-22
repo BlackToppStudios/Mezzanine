@@ -54,8 +54,10 @@ namespace phys
 
 #include "audioenumerations.h"
 
-#include "audiosound.h"
 #include "audiolistener.h"
+#include "audiomusicplayer.h"
+#include "audioplaylist.h"
+#include "audiosound.h"
 #include "audiosoundset.h"
 
 #endif

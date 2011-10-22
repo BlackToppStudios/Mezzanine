@@ -69,12 +69,10 @@ namespace phys
                 AudioManager* Manager;
                 Audio::SoundType Type;
                 Real BaseVolume;
+                String Name;
                 /// @internal
                 /// @brief Class Constructor.  Internal use only.
                 Sound();
-                /// @internal
-                /// @brief Class Constructor.  Internal use only.
-                Sound(cAudio::IAudioSource* Source);
                 /// @internal
                 /// @brief Gets the volume of this sound type.
                 virtual Real GetTypeVolume() const;
@@ -207,6 +205,12 @@ namespace phys
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
+                /// @brief Gets the name of this sound.
+                /// @return Returns a string containing the name of this sound.
+                virtual String GetName() const;
+                /// @brief Gets the sound type of this sound.
+                /// @return Returns a SoundType enum value that is the type of this sound.
+                virtual Audio::SoundType GetType() const;
                 /// @brief Sets the pitch of the sound source.
                 /// @details This function will set the pitch of the sound source.  Note: higher values
                 /// will speed up the playback of the sound.  Default: 1.0

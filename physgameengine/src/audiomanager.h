@@ -62,6 +62,7 @@ namespace phys
         class Sound;
         class Listener;
         class SoundSet;
+        class MusicPlayer;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class AudioManager
@@ -88,6 +89,7 @@ namespace phys
             Real MuteStandby;
             bool Muted;
             Audio::Listener* Listener;
+            Audio::MusicPlayer* MusicPlayer;
         public:
             /// @brief Class Constructor
             /// @details This is the class constructor.  It gives you the option to start up the manager
@@ -192,6 +194,9 @@ namespace phys
             /// @brief Gets whether or not the Audio subsystem is muted.
             /// @return Returns a bool indicating whether or not the Audio subsystem is currently muted.
             virtual bool IsMuted() const;
+            /// @brief Calls on all sounds stored in this manager to update their volume after a settings change.
+            /// @note You shouldn't need to call this manually as it is automatically called every time a setting is changed.
+            virtual void UpdateAllVolumes();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Audio Device
@@ -239,6 +244,9 @@ namespace phys
             /// @details This function will return the listener for this manager which can be used to help create 3D sound.
             /// @return Returns a pointer to the managers Sound Listener.
             virtual Audio::Listener* GetListener() const;
+            /// @brief Gets the Music Player for this sound manager.
+            /// @return Returns a pointer to the managers Music Player.
+            virtual Audio::MusicPlayer* GetMusicPlayer() const;
             /// @brief Gets the internal cAudioManager this manager is based on.
             /// @return Returns a pointer to the internal cAudio manager.
             virtual cAudio::IAudioManager* GetcAudioManager() const;

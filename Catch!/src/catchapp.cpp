@@ -467,13 +467,31 @@ void CatchApp::ConfigResources()
     ResourceManager* ResourceMan = TheWorld->GetResourceManager();
     String CommonGroup("Common");
     String datadir = "Data/";
-    ResourceMan->AddResourceLocation(datadir, "FileSystem", CommonGroup, false);
+    //ResourceMan->AddResourceLocation(datadir, "FileSystem", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"Common.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"AdvThrowables.zip", "Zip", CommonGroup, false);
+    ResourceMan->AddResourceLocation(datadir+"Music.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation("Previews/", "FileSystem", CommonGroup, false);
     ResourceMan->InitResourceGroup(CommonGroup);
     /// @todo Change this to parse an actual file
     ThrowableGenerator::ParseThrowables("");
+}
+
+void CatchApp::InitMusic()
+{
+    AudioManager* AudioMan = TheWorld->GetAudioManager();
+    Audio::MusicPlayer* MPlayer = AudioMan->GetMusicPlayer();
+    String CommonGroup("Common");
+    Audio::Sound* Track1 = AudioMan->CreateMusicSound("Track1","Track1.ogg",CommonGroup);
+    Audio::Sound* Track2 = AudioMan->CreateMusicSound("Track2","Track2.ogg",CommonGroup);
+    Audio::Sound* Track3 = AudioMan->CreateMusicSound("Track3","Track3.ogg",CommonGroup);
+    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track4","Track4.ogg",CommonGroup);
+    MPlayer->GetPlaylist()->AddSound(Track1);
+    MPlayer->GetPlaylist()->AddSound(Track2);
+    MPlayer->GetPlaylist()->AddSound(Track3);
+    MPlayer->GetPlaylist()->AddSound(Track4);
+    MPlayer->SetEOPRepeat(true);
+    MPlayer->SetEOPShuffle(true);
 }
 
 void CatchApp::PopulateScoreValues()
@@ -717,6 +735,9 @@ int CatchApp::GetCatchin()
 	PopulateScoreValues();
     PopulateShopValues();
 
+    //Setup the Music
+    InitMusic();
+
     //Set logging frequency
     TheWorld->CommitLog();
     TheWorld->SetLoggingFrequency(World::LogNever);
@@ -731,6 +752,7 @@ int CatchApp::GetCatchin()
     //Generate the UI
     MakeGUI();
 
+    TheWorld->GetAudioManager()->GetMusicPlayer()->Play();
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);
@@ -1058,12 +1080,12 @@ bool CatchApp::CheckForStuff()
             { TheWorld->LogAndThrow("Trying to process a non-EventUserInput as an EventUserInput."); }
 
         //we check each MetaCode in each Event
-        for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
+        /*for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
             //Is the key we just pushed ESCAPE
             if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && MetaCode::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
                 { return false; }
-        }
+        }// */
 
         delete OneInput;
         OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
@@ -1089,7 +1111,7 @@ bool CatchApp::CheckForStuff()
         eventxml >> AnotherWindowEvent;
         TheWorld->Log(AnotherWindowEvent);
 
-        if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
+        /*if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
         {
             Audio::Sound* Welcome = NULL;
             Welcome = TheWorld->GetAudioManager()->GetSoundByName("Welcome");
@@ -1097,7 +1119,7 @@ bool CatchApp::CheckForStuff()
             {
                 Welcome->Play2d(false);
             }
-        }
+        }// */
 
         delete OneWindowEvent;
         OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();

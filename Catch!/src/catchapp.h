@@ -41,6 +41,7 @@ class CatchApp
         void MakeGUI();
         void CreateLoadingScreen();
         void ConfigResources();
+        void InitMusic();
 
         void PopulateScoreValues();
         void PopulateShopValues();
