@@ -216,21 +216,6 @@ SetupWindowData(_THIS, SDL_Window * window, Window w, BOOL created)
         }
     }
 
-    {
-        Window FocalWindow;
-        int RevertTo=0;
-        XGetInputFocus(data->videodata->display, &FocalWindow, &RevertTo);
-        if (FocalWindow==w)
-        {
-            window->flags |= SDL_WINDOW_INPUT_FOCUS;
-            SDL_SetKeyboardFocus(data->window);
-        }
-
-        if (window->flags & SDL_WINDOW_INPUT_GRABBED) {
-            /* Tell x11 to clip mouse */
-        }
-    }
-
     /* FIXME: How can I tell?
        {
        DWORD style = GetWindowLong(hwnd, GWL_STYLE);
@@ -634,14 +619,14 @@ X11_GetWindowTitle(_THIS, Window xwindow)
     status = XGetWindowProperty(display, xwindow, data->_NET_WM_NAME,
                 0L, 8192L, False, data->UTF8_STRING, &real_type, &real_format,
                 &items_read, &items_left, &propdata);
-    if (status == Success && propdata) {
+    if (status == Success) {
         title = SDL_strdup(SDL_static_cast(char*, propdata));
         XFree(propdata);
     } else {
         status = XGetWindowProperty(display, xwindow, XA_WM_NAME,
                     0L, 8192L, False, XA_STRING, &real_type, &real_format,
                     &items_read, &items_left, &propdata);
-        if (status == Success && propdata) {
+        if (status == Success) {
             title = SDL_iconv_string("UTF-8", "", SDL_static_cast(char*, propdata), items_read+1);
         } else {
             title = SDL_strdup("");
@@ -897,7 +882,7 @@ X11_MinimizeWindow(_THIS, SDL_Window * window)
     SDL_DisplayData *displaydata =
         (SDL_DisplayData *) SDL_GetDisplayForWindow(window)->driverdata;
     Display *display = data->videodata->display;
-
+ 
     XIconifyWindow(display, data->xwindow, displaydata->screen);
     XFlush(display);
 }

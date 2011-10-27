@@ -121,9 +121,7 @@ namespace phys
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
         //Set some sane Defaults for some values
-        //SDLSystemsInitialized=0;
         this->TargetFrameLength=16;
-        //this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
         this->ManualLoopBreak = false;
 

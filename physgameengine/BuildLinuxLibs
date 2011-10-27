@@ -5,6 +5,7 @@
 ThreadCount=1
 DebugSymbols=""
 DebugCMake="-DCMAKE_BUILD_TYPE=Release"
+DebugMode=false
 
 ########################################################
 #Check arg1 for thread count
@@ -23,6 +24,7 @@ fi
 if [ "Debug" = "$2" ]
 then
 	DebugSymbols="-g"
+	DebugMode=true
 	DebugCMake="-DCMAKE_BUILD_TYPE=Debug"	
 	echo "Compiling for Debugging"	
 else
@@ -35,10 +37,26 @@ cd libincludes/linux/ogresrc/ogre
 cmake -G"CodeBlocks - Unix Makefiles" $DebugCMake
 make -j$ThreadCount
 
+# This actually breaks the build process, it still loks for the wrong name somehow...
+# rename debug libs
+#echo "Renaming any debug libraries"
+#rename 's/_d//' lib/*
+#cd lib
+#for i in *; do
+#	if [ -h "$i" ]
+#	then
+#		Target=`readlink "$i"`
+#		Target=${Target/_d/}
+#		echo "Retargeting $i -> $Target"
+#		rm "$i"
+#		ln -s "$Target" "$i"
+#	fi
+#done
+
 
 ########################################################
 #Now lets do SDL
-cd ../../../common/sdlsrc/SDL/
+cd ../../../../common/sdlsrc/SDL/
 ./autogen.sh
 ./configure LDFLAGS=-fPIC CFLAGS="-O2 $DebugSymbols -fPIC"
 make -j$ThreadCount

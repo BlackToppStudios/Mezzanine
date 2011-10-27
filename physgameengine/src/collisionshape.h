@@ -581,8 +581,6 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB ConvexHullCollisionShape : public PrimitiveCollisionShape
     {
-        protected:
-
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -646,15 +644,44 @@ namespace phys
     class PHYS_LIB CylinderCollisionShape : public PrimitiveCollisionShape
     {
         protected:
-            btCylinderShape* CylinderShape;
+            /// @internal
+            /// @brief Does the initialization for a Cylinder
+            /// @param Name The name of the shape to initialize
+            /// @param HalfExtents This of the shape to initialize
+            /// @param UpAxis which direction gets the flat 'top' of the cylinder perpendicular ot it.
+            void Construct(const String& Name, const Vector3& HalfExtents, StandardAxis UpAxis);
+
+            /// @internal
+            /// @brief Does the initialization for a Cylinder
+            /// @param Name The name of the shape to initialize
+            /// @param BulletShape A pointer to a valid fully constructed internal Collision shape.
+            void Construct(const String& Name, btCylinderShape* BulletShape);
+
         public:
-            /// @brief Class Constructor.
+            /// @brief Verbose Vector Constructor.
             /// @param Name The name of this Shape.
             /// @param Radius The radius of the Cylinder.
-            /// @param Height The height of the Cylinder.
-            /// @param UpAxis Which axis the cylinder is to be oriented along.  Typical usage is for
+            /// @param Height The height of the Cylinder, Height is indicated in the direction of the upAxis.
+            /// @param UpAxis Which axis the cylinder is to be oriented along. Typical usage is for
             /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
             CylinderCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis);
+            /// @brief Verbose Constructor.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the Cylinder.
+            /// @param Height The height of the Cylinder, Height is indicated in the direction of the upAxis.
+            /// @param UpAxis Which StandardAxis the cylinder is to be oriented along.
+            CylinderCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
+            /// @brief Terse Vector Constructor.
+            /// @param Name The name of this Shape.
+            /// @param HalfExtents A Vector3 with the Height of the cylinder on the axis corresponding to the UpAxis and the Radius store in the other two axis.
+            /// @param UpAxis Which axis the cylinder is to be oriented along. Typical usage is for
+            /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
+            CylinderCollisionShape(const String& Name, const Vector3& HalfExtents, const Vector3& UpAxis);
+            /// @brief Terse Constructor.
+            /// @param Name The name of this Shape.
+            /// @param HalfExtents A Vector3 with the Height of the cylinder on the axis corresponding to the UpAxis and the Radius store in the other two axis.
+            /// @param UpAxis Which StandardAxis the cylinder is to be oriented along.
+            CylinderCollisionShape(const String& Name, const Vector3& HalfExtents, StandardAxis UpAxis);
             /// @internal
             /// @brief Internal Constructor.
             /// @param Name The name of this Shape.
@@ -666,6 +693,11 @@ namespace phys
 #endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~CylinderCollisionShape();
+            /// @brief A (very) simple way to create a Vector3 containing the Half Extents of a Cylinder with given dimenions/
+            /// @param Radius The radius of the Cylinder.
+            /// @param Height The height of the Cylinder, Height is indicated in the direction of the upAxis.
+            /// @param UpAxis Which StandardAxis the cylinder is to be oriented along.
+            static Vector3 CreateHalfExtents(const Real& Radius, const Real& Height, StandardAxis UpAxis);
             /// @brief Gets the half extents used to construct this cylinder.
             /// @return Returns a vector3 containing the half extents of this cylinder.
             virtual Vector3 GetHalfExtents() const;
@@ -683,7 +715,6 @@ namespace phys
             /// @copydoc CollisionShape::GetBulletShape
             virtual btCylinderShape* GetBulletCylinderShape() const;
 #ifdef PHYSXML
-            // Serializable
             /// @copydoc CollisionShape::GetBulletShape
             virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
             /// @copydoc CollisionShape::GetBulletShape
@@ -705,7 +736,18 @@ namespace phys
     class PHYS_LIB MultiSphereCollisionShape : public PrimitiveCollisionShape
     {
         protected:
-            btMultiSphereShape* MultiSphereShape;
+            /// @internal
+            /// @brief Creates a btMultiSphereShape* from two vectors to help unify constructor logic
+            /// @param Name The name of this name
+            /// @param Locations An std::vector containing all the locations, this must have the same amount of locations as there are radii
+            /// @param Radii An std::vector containing all the Radiuses, this must have the same amount of radii as there are locations
+            /// @throw An out of bounds exception if the there are differing amounts of radii and locations.
+            void Construct(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii);
+            /// @internal
+            /// @brief Constructs the shape when the bullet is already prepared
+            /// @param BulletShape The bullet shape to use
+            /// @param Name The name of this name
+            void Construct(const String& Name, btMultiSphereShape* BulletShape);
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -715,6 +757,10 @@ namespace phys
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             MultiSphereCollisionShape(const String& Name, btMultiSphereShape* BulletShape);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            MultiSphereCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~MultiSphereCollisionShape();
             /// @brief Gets the location(in local space) of the sphere at the specified index.
@@ -730,6 +776,17 @@ namespace phys
             virtual Whole GetNumSpheres() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btMultiSphereShape* GetMultiSphereShape() const;
+#ifdef PHYSXML
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "MultiSphereCollisionShape"
+            static String SerializableName();
+#endif
     };//multispherecollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -740,8 +797,6 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB SphereCollisionShape : public PrimitiveCollisionShape
     {
-        protected:
-            btSphereShape* SphereShape;
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -752,6 +807,10 @@ namespace phys
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             SphereCollisionShape(const String& Name, btSphereShape* BulletShape);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            SphereCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~SphereCollisionShape();
             /// @brief Gets the radius of the sphere.
@@ -759,6 +818,17 @@ namespace phys
             virtual Real GetRadius() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btSphereShape* GetSphereShape() const;
+#ifdef PHYSXML
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "SphereCollisionShape"
+            static String SerializableName();
+#endif
     };//spherecollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -88,7 +88,6 @@ namespace phys
             void Construct( const Whole &Width, const Whole &Height, const bool &FullScreen);
             String ConvertRenderSystem(const phys::RenderSystem& RS);
 
-            void InitSDL();
             void InitOgre();
             void ShutdownSDL();
             void InitViewportAndCamera(GameWindow* NewWindow);
@@ -99,11 +98,14 @@ namespace phys
             Whole FrameDelay;
             phys::RenderSystem CurrRenderSys;
 
-            //bool SDLBeenInitialized;
             bool OgreBeenInitialized;
             bool GraphicsInitialized;
 
         public:
+            /// @internal
+            /// @brief SDL is used for use input, and must be initialized prior to use.
+            static void InitSDL();
+
             /// @brief Basic constructor
             /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false
             GraphicsManager();
