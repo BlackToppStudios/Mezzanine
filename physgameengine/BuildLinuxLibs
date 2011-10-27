@@ -56,7 +56,7 @@ make -j$ThreadCount
 
 ########################################################
 #Now lets do SDL
-cd ../../../../common/sdlsrc/SDL/
+cd ../../../common/sdlsrc/SDL/
 ./autogen.sh
 ./configure LDFLAGS=-fPIC CFLAGS="-O2 $DebugSymbols -fPIC"
 make -j$ThreadCount
