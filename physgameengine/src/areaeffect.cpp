@@ -84,7 +84,7 @@ namespace phys{
         Ghost = new btPairCachingGhostObject();
         Ghost->setCollisionFlags(Ghost->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        ObjectReference* ActorRef = new ObjectReference(phys::WOT_AreaEffect,this);
+        ObjectReference* ActorRef = new ObjectReference(phys::WOT_AEUnknown,this);
         Ghost->setUserPointer(ActorRef);
     }
 
@@ -164,7 +164,7 @@ namespace phys{
 
                     ObjectReference* ActorRef = (ObjectReference*)(ColObj->getUserPointer());
                     ActorBase* Actor = NULL;
-                    if(phys::WOT_AreaEffect > ActorRef->GetType())
+                    if(phys::WOT_TerrainFirst > ActorRef->GetType())
                         Actor = (ActorBase*)ActorRef->GetObject();
                     else
                         continue;

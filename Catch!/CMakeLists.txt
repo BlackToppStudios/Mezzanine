@@ -44,6 +44,8 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}itemshopcell.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}itemshopcell.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}itemshopitems.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}itemshopitems.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}levelloader.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}levelloader.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}levelselectcell.cpp"

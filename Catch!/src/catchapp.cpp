@@ -492,6 +492,7 @@ void CatchApp::InitMusic()
     MPlayer->GetPlaylist()->AddSound(Track4);
     MPlayer->SetEOPRepeat(true);
     MPlayer->SetEOPShuffle(true);
+    //MPlayer->SwitchToSong(Track4);
 }
 
 void CatchApp::PopulateScoreValues()
@@ -1123,22 +1124,6 @@ bool CatchApp::CheckForStuff()
 
         delete OneWindowEvent;
         OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
-    }
-
-    EventCollision* OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
-    EventCollision SecondCollision(0,0,Vector3(0.5,0.5,0.5),Vector3(1.5,1.5,1.5),Vector3(1,1,1),2.5);
-    while(0 != OneCollision)
-    {
-        if(OneCollision->GetType() != EventBase::Collision)
-            { TheWorld->LogAndThrow("Trying to process a non-EventCollision as an EventCollision."); }
-
-        stringstream temp;
-        temp << *OneCollision;
-        temp >> SecondCollision;
-        TheWorld->Log(SecondCollision);
-
-        delete OneCollision;
-        OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
     }
 
     return true;

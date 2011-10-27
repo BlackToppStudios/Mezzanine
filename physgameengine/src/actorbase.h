@@ -71,6 +71,7 @@ namespace phys
     class World;
     class ActorGraphicsSettings;
     class ActorBasePhysicsSettings;
+    class EventCollision;
 
     namespace Audio
     {
@@ -119,10 +120,6 @@ namespace phys
             };
 
         protected:
-            // @brief A pointer to the World the actor will reside.
-            //World* GameWorld;
-
-            //abstraction for other libraries
             /// @brief This class encapsulates the functionality of the Ogre::Entity using this
             Ogre::Entity* GraphicsObject;
 
@@ -152,6 +149,9 @@ namespace phys
 
             /// @brief This variable stores the type of actor that this class is.
             ActorTypeName ActorType;
+
+            /// @brief This member stores all existing collision events referencing this actor.
+            std::set<EventCollision*> CurrentCollisions;
 
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
@@ -332,6 +332,12 @@ namespace phys
             /// @brief Gets the current scaling being applied to the actor.
             /// @return Returns a vector3 representing the scaling being applied on all axes of this actor.
             virtual Vector3 GetActorScaling() const;
+
+            /// @brief Gets all current collisions that apply to this actor.
+            /// @warning This returns a non-const reference because other internal stuctures need to update it directly, but under
+            /// no situation aside from expert use should this set be modified manually.
+            /// @return Returns a reference to a set containing all collisions events containing this actor.
+            virtual std::set<EventCollision*>& GetCurrentCollisions();
 
             /// @brief Gets the graphics settings class associated with this actor.
             /// @return Returns a pointer to the graphics settings class in use by this actor.

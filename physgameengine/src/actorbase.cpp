@@ -283,6 +283,11 @@ namespace phys{
         return Scale;
     }
 
+    std::set<EventCollision*>& ActorBase::GetCurrentCollisions()
+    {
+        return CurrentCollisions;
+    }
+
     ActorGraphicsSettings* ActorBase::GetGraphicsSettings() const
     {
         return GraphicsSettings;

@@ -203,9 +203,11 @@ namespace phys
         void MusicPlayer::Update()
         {
             std::list<Audio::Sound*>::iterator SongIt = GetIteratorToSong(CurrSong);
+            std::list<Audio::Sound*>::iterator NextSong = SongIt;
+            NextSong++;
             if(CurrSong->IsStopped() && Playing)
             {
-                if(SongIt == MusicPlaylist->end())
+                if(NextSong == MusicPlaylist->end())
                 {
                     if(EOPRepeat)
                     {
