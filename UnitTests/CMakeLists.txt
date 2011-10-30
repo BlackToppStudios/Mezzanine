@@ -168,12 +168,11 @@ link_directories( ${${PROJECT_NAME}_PHYSGAME_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} physgame OgreMain)
-target_link_libraries( ${PROJECT_NAME} physgame )
+target_link_libraries( ${PROJECT_NAME} physgame ${OgreLinkName})
 
 ##############################################################################
 # File copies during all builds
 message ("${PROJECT_NAME} - Begin File Copy Process")
-
 
 CopyDemoFilesDuringBuild( common/r2skin.jpg data/common/r2skin.jpg )
 CopyDemoFilesDuringBuild( common/robot.mesh data/common/robot.mesh )
