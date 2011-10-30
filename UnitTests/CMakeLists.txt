@@ -1,3 +1,43 @@
+# © Copyright 2010 - 2011 BlackTopp Studios Inc.
+# This file is part of The PhysGame Engine.
+#
+#    The PhysGame Engine is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    The PhysGame Engine is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+#
+#   The original authors have included a copy of the license specified above in the
+#   'Docs' folder. See 'gpl.txt'
+#
+#   We welcome the use of The PhysGame anyone, including companies who wish to
+#   Build professional software and charge for their product.
+#
+#   However there are some practical restrictions, so if your project involves
+#   any of the following you should contact us and we will try to work something
+#   out:
+#    - DRM or Copy Protection of any kind(except Copyrights)
+#    - Software Patents You Do Not Wish to Freely License
+#    - Any Kind of Linking to Non-GPL licensed Works
+#    - Are Currently In Violation of Another Copyright Holder's GPL License
+#    - If You want to change our code and not add a few hundred MB of stuff to
+#        your distribution
+#
+#   These and other limitations could cause serious legal problems if you ignore
+#   them, so it is best to simply contact us or the Free Software Foundation, if
+#   you have any questions.
+#
+#   Joseph Toppi - toppij@gmail.com
+#   John Blackwood - makoenergy02@gmail.com
+
+
 cmake_minimum_required (VERSION 2.8)
 project (UnitTests)
 message ("${PROJECT_NAME} - Begin")
@@ -94,23 +134,20 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
-if(${UNIX})
-	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 	#if(${UNIX} AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin") #does not appear to work as expected.
-	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-		message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
-		set(BuildPlatform linux)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	message ("${PROJECT_NAME} - Begin Linux Specific Build Process")
+	set(BuildPlatform linux)
 
-		#message("${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
-		include_directories(
-			"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/"
-			"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include/"
-			"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
+	#message("${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
+	include_directories(
+		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/"
+		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include/"
+		"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 
-		)
+	)
 
-		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
-	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-endif(${UNIX})
+	message ("${PROJECT_NAME} - End Linux Specific Build Process")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
@@ -130,7 +167,7 @@ include_directories( ${${PROJECT_NAME}_SOURCE_DIR} ${${PROJECT_NAME}_PHYSGAME_BI
 link_directories( ${${PROJECT_NAME}_PHYSGAME_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
-add_dependencies( ${PROJECT_NAME} physgame )
+add_dependencies( ${PROJECT_NAME} physgame OgreMain)
 target_link_libraries( ${PROJECT_NAME} physgame )
 
 ##############################################################################
@@ -179,25 +216,19 @@ endif(${WIN32})
 
 # Linux File Copy Specific Items
 
-if(${UNIX})
-	if(${APPLE})
-	else(${APPLE})
-
-	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
 	#CopyDemoFilesDuringBuild( linux/EngineDemo EngineDemo )
-	#CopyFilesFromPhygameDuringBuild( libOgreMain.so )
+	CopyFilesFromPhygameDuringBuild( ${OgreLinuxSoName} )
+	CopyFilesFromPhygameDuringBuild( ${OgreLibFileName} )
 	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_ParticleFX.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_CgProgramManager.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( data/linux/GLX_icon.png )
-	CopyFilesFromPhygameDuringBuild( physgame.so )
-	CopyFilesFromPhygameDuringBuild( libOgreMain.so.1.7.3 )
-	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
-
-	endif(${APPLE})
-endif(${UNIX})
+	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 
 # Mac File Copy pecific Items

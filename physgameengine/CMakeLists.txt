@@ -1,3 +1,43 @@
+# © Copyright 2010 - 2011 BlackTopp Studios Inc.
+# This file is part of The PhysGame Engine.
+#
+#    The PhysGame Engine is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    The PhysGame Engine is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+#
+#   The original authors have included a copy of the license specified above in the
+#   'Docs' folder. See 'gpl.txt'
+#
+#   We welcome the use of The PhysGame anyone, including companies who wish to
+#   Build professional software and charge for their product.
+#
+#   However there are some practical restrictions, so if your project involves
+#   any of the following you should contact us and we will try to work something
+#   out:
+#    - DRM or Copy Protection of any kind(except Copyrights)
+#    - Software Patents You Do Not Wish to Freely License
+#    - Any Kind of Linking to Non-GPL licensed Works
+#    - Are Currently In Violation of Another Copyright Holder's GPL License
+#    - If You want to change our code and not add a few hundred MB of stuff to
+#        your distribution
+#
+#   These and other limitations could cause serious legal problems if you ignore
+#   them, so it is best to simply contact us or the Free Software Foundation, if
+#   you have any questions.
+#
+#   Joseph Toppi - toppij@gmail.com
+#   John Blackwood - makoenergy02@gmail.com
+
+
 ###############################################################################
 # The build script for the physgame engine
 cmake_minimum_required (VERSION 2.8)
@@ -300,7 +340,26 @@ endfunction(CopyLibraryDuringBuild)
 
 ###############################################################################
 # System Specific Build Items
+#######################################
+# All Changes that could be system specific should be defined in these variables
+# These will set sane defaults (Where possible), but specific platforms should 
+# set a value of their own.
 set(SDL SDL)
+
+set(PhysgameBuildFlags "")
+
+set( Bullet_LibraryNames
+	"ConvexDecomposition"
+	"GIMPACTUtils"
+	"BulletWorldImporter"
+	"BulletFileLoader"
+	#"BulletSoftBodySolvers_OpenCL"
+	"BulletSoftBodySolvers_CPU"
+	"MiniCL"
+	"BulletMultiThreaded"
+	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
+)
+
 #######################################
 # Windows Build Specific Items
 if(${WIN32})
@@ -323,38 +382,42 @@ endif(${WIN32})
 #######################################
 # Linux Build Specific Items
 
-if(${UNIX})
-	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 	#if(${UNIX} AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin") #does not appear to work as expected.
-	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-		message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
-		set(BuildPlatform linux)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	message ("${PROJECT_NAME} - Begin Linux Specific Build Process")
+	set(BuildPlatform linux)
 
-		#Autobuild SDL and ogre could go here
-	
-		set(OgreSoName libOgreMain.so.1.7.3)
-		file( COPY 
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreSoName}"
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX.so"
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_CgProgramManager.so"
-			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
-		)
-		include_directories(
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
-		)
-		add_definitions( -DOGRE_GUI_GLX -DLINUX )
+	#Autobuild SDL and ogre could go here
 
-		file( COPY 
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/libSDL.a"
-			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-		)
-	    	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
-		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
-	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-endif(${UNIX})
+	set(OgreLinuxSoName ${OgreLibFileName}.${OgreVersion})
+
+	#set(PhysgameBuildFlags "-Wl,-whole-archive ${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre/libOgreMainStatic.a -Wl,-no-whole-archive")
+	file( COPY 
+			#"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMainStatic.a"
+			#"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libRenderSystem_GLStatic.a"
+			#"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libPlugin_ParticleFXStatic.a"
+			#"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libPlugin_CgProgramManagerStatic.a"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLibFileName}"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLinuxSoName}"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_CgProgramManager.so"
+		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
+	)
+
+	include_directories(
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
+	)
+	add_definitions( -DOGRE_GUI_GLX -DLINUX )
+
+	file( COPY 
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/libSDL.a"
+		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+	)
+    	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
+	message ("${PROJECT_NAME} - End Linux Specific Build Process")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 #######################################
 # Mac OS X and iPhone Build pecific Items
@@ -421,47 +484,31 @@ link_directories(
 ###############################################################################
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
-# remove lib prefix from DLL outputs
-set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
 #######################################
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
 #add_subdirectory (libincludes/common/ogresrc)
-#add_subdirectory (${BuildSpecificDirs})
+#add_subdirectory (${BuildSpecificDirs}e)
 
 add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Ogre )
 
 #######################################
 # Library Link Dependencies
-set( Bullet_LibraryNames
-	"ConvexDecomposition"
-	"GIMPACTUtils"
-	"BulletWorldImporter"
-	"BulletFileLoader"
-	#"BulletSoftBodySolvers_OpenCL"
-	"BulletSoftBodySolvers_CPU"
-	"MiniCL"
-	"BulletMultiThreaded"
-	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
+
+add_definitions( ${PhysgameBuildFlags} )
+target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Physgame Dependencies
+	${OgreLinkName} 
+	${Bullet_LibraryNames} 
+	cAudio 
+	${SDL}
 )
 
-
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	target_link_libraries(
-	    "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
-	    ${PROJECT_NAME}
-	    "${OGRE_LIBRARIES}"
-	    ${Bullet_LibraryNames}
-	    "${OPENAL_LIBRARY}" 
-	    ${${PROJECT_NAME}_ROOT_DIR}/data/macosx/sdl/libSDL.dylib
-	    ${${PROJECT_NAME}_ROOT_DIR}/data/macosx/caudio/libcAudio.dylib
-	)
-
-else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDL} )
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+set_target_properties( ${PROJECT_NAME}				# Do not link games to Physgame's Dependencies
+	PROPERTIES
+	LINK_INTERFACE_LIBRARIES 	"zzip -lfreeimage -lfreetype -lX11 -lXt -lXaw"
+)
 
 ###############################################################################
 # Build Time File copying
@@ -478,6 +525,9 @@ CopyFilesDuringBuild( ${BuildPlatform}/settings.cfg data/${BuildPlatform}/settin
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
 
+	# remove lib prefix from DLL outputs
+	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
+
 	#Copy System Dependant files during build time
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.dll data/${BuildPlatform}/ogre/Plugin_ParticleFX.dll )
@@ -493,24 +543,25 @@ endif(${WIN32})
 
 #######################################
 # Linux File Copy Specific Items
-if(${UNIX})
-	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
 
-		message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
+	#set_target_properties( ${PROJECT_NAME}				# Do not link games to Physgame's Dependencies, only required in static build
+	#	PROPERTIES
+	#	LINK_INTERFACE_LIBRARIES 	"zzip -lfreeimage -lfreetype -lX11 -lXt -lXaw"
+	#)
 
-		#Copy System Dependant files during build time
-		#CopyFilesDuringBuild( ${BuildPlatform}/sdl/${SDLLibName} ${SDLLibName})
-		CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so)
-		CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.so data/${BuildPlatform}/ogre/Plugin_ParticleFX.so)
-		CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_CgProgramManager.so data/${BuildPlatform}/ogre/Plugin_CgProgramManager.so)
-		CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
-		CopyFilesDuringBuild( ${BuildPlatform}/GLX_icon.png data/${BuildPlatform}/GLX_icon.png )
-		CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
+	#Copy System Dependant files during build time
+	CopyFilesDuringBuild( ${BuildPlatform}/GLX_icon.png data/${BuildPlatform}/GLX_icon.png )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLinuxSoName} ${OgreLinuxSoName} )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.so data/${BuildPlatform}/ogre/Plugin_ParticleFX.so )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_CgProgramManager.so data/${BuildPlatform}/ogre/Plugin_CgProgramManager.so )
 
-		message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
-	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-endif(${UNIX})
+	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
 
 #######################################
 # Mac File Copy Specific Items
@@ -518,7 +569,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 	
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
-#	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
+	#CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
 	
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
