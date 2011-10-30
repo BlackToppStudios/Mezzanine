@@ -36,16 +36,43 @@
 #
 #   Joseph Toppi - toppij@gmail.com
 #   John Blackwood - makoenergy02@gmail.com
+
+###############################################################################
+# This is the root cmake file for the physgame engine. It includes the example files 
+# from the engine demo, Catch! and a series of UnitTests. These may be freely copied
+# and used to build your projects as long as you release any changes you make to the
+# build scripts back to the public in a usable form.
 #
+# This file primarily gathers information from the developer about the build environment
+# and desired game engine options. It makes this information available to the rest of
+# the include cmake files to minimizie duplicated effort.
+#
+# Here is a listing of some of the values that this files sets up for consumption by other
+# build scripts, that can be set as cmake options:
+#	PhysDebug	 	- True if The Engine will be compile with Debug Symbols and without compiler optimization, False and it will be optimized and omit debug symbols.
+#	PhysProfile		- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking.
+#	PhysXML			- True if the engine will be compiled with XML support. This includes support for serialization
+#
+#	UseOgreDebug		- True if the developer wants to the use the ogre debug libraries, this adjusts a number of other files that child cmake scripts can use.
+#	OgreVersion		- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
+#
+# Here are some more values that can be used when creating cmake scripts that are indirectly
+# set and should not be directly passed as cmake values
+#	CommonBuildFlags 	- A listing of all the currently build flags to pass to the compiler at compile time. This is the mechanism that enforces PhysDebug's and PhysProfile's settings.
+#	OgreLinkName		- This is the name of the ogre library that the compiler expects. Examples: OgreMain, OgreMain_d
+#	OgresD			- This can be used to help pick/select ogre libraries that may or may not have an "_d" depending on how they are compiled. If debug libraries are in use this is set to "_d" otherwise "".
+#	OgreLibFileName		- The filename of the actual Ogre library. On some platforms this file may just be a symlink. Examples: OgreMain.dll, libOgreMain.so
+#	OgreLinuxSoName		- Linux's versioned library system expects specific version of so files. This is the more specific file, that must copied along with the regular so. Examples libOgreMain.so.1.7.1, libOgreMain.so.1.9.3
 
-
+#######################################
 # The name of our project is "PhysgameAndCatch". CMakeLists files in this project can
 # refer to the root source directory of the project as ${PhysgameAndCatch_SOURCE_DIR} and
 # to the root binary directory of the project as ${PhysgameAndCatch_BINARY_DIR}.
 cmake_minimum_required (VERSION 2.8)
 project (PhysgameAndCatch)
 
-# Check For the PhysDebug option and set values accordingling
+#######################################
+# Check For the PhysDebug option and set values accordingly
 option(PhysDebug "Compile with no optimizations and debug symbols" OFF)
 if(${PhysDebug})
 	message ("${PROJECT_NAME} - Enabling PHYSDEBUG Messages")
@@ -69,6 +96,8 @@ else(${PhysDebug})
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSDEBUG=0")
 endif(${PhysDebug})
 
+#######################################
+# Check For the PhysProfile option and set values accordingly
 option(PhysProfile "Executables will gather runtime statistics." OFF)
 if(${PhysProfile})
 	message ("${PROJECT_NAME} - Enabling gcc profiling and PHYSPROFILE")
@@ -79,6 +108,8 @@ else(${PhysProfile})
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSPROFILE=0")
 endif(${PhysProfile})
 
+#######################################
+# Check For the PhysXML option and set values accordingly
 option(PhysXML "Enable XML and XML serialization supprt." ON)
 if(${PhysXML})
 	message ("${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and PHYSXML")
@@ -88,9 +119,11 @@ else(${PhysXML})
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=0")
 endif(${PhysXML})
 
+#######################################
+# Ogre related values
 # Do all the arranging of data to 
 option(UseOgreDebug "Use Ogre Debug Libraries, instead of Release Libs" OFF)
-option(OgreVersion "The version of the ogre libraries to link against" 1.7.3)
+set(OgreVersion 1.7.3 CACHE STRING "The version of the ogre libraries to link against")
 if(${UseOgreDebug})
 	message ("${PROJECT_NAME} - Will Ogre Debug Libraries")
 	set(OgreLinkName OgreMain_d)
@@ -99,7 +132,6 @@ else(${UseOgreDebug})
 	message ("${PROJECT_NAME} - Will Ogre Release Libraries")
 	set(OgreLinkName OgreMain)
 	set(OgresD "")
-	set(OgreLinuxSoName ${OgreLibFileName}.${OgreVersion})
 endif(${UseOgreDebug})
 if(${WIN32})
 	set(OgreLibFileName ${OgreLinkName}.dll)

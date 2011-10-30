@@ -553,8 +553,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 	#Copy System Dependant files during build time
 	CopyFilesDuringBuild( ${BuildPlatform}/GLX_icon.png data/${BuildPlatform}/GLX_icon.png )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLinuxSoName} ${OgreLinuxSoName} )
+	CreateSymlinkDuringBuild( ${OgreLinuxSoName} ${OgreLibFileName} )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.so data/${BuildPlatform}/ogre/Plugin_ParticleFX.so )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_CgProgramManager.so data/${BuildPlatform}/ogre/Plugin_CgProgramManager.so )

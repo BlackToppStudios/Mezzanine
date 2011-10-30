@@ -122,6 +122,19 @@ function(CopyFilesFromPhygameDuringBuild FileName)
 	)
 endfunction(CopyFilesFromPhygameDuringBuild)
 
+#Description: This creates a symlink in the Binary directory to another file in the binary directory. Used on systems that expect versioned shared object names when you want to link against a more base version.
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called and only on system that support symlinks, otherwise it will fail silently
+function(CreateSymlinkDuringBuild Targeting LinkName)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
+		#COMMAND ${CMAKE_COMMAND} -E create_symlink "${${PROJECT_NAME}_BINARY_DIR}${Linkname}" "${${PROJECT_NAME}_BINARY_DIR}${Target}"
+		COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
+		VERBATIM
+	)
+endfunction(CreateSymlinkDuringBuild)
+
 function(CreateLevelDirectory)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
@@ -188,7 +201,7 @@ endif(${WIN32})
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
 	CopyFilesFromPhygameDuringBuild( ${OgreLinuxSoName} )
-	CopyFilesFromPhygameDuringBuild( ${OgreLibFileName} )
+	CreateSymlinkDuringBuild( ${OgreLinuxSoName} ${OgreLibFileName} )
 	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_ParticleFX.so )
