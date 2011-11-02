@@ -398,9 +398,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 			#"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libPlugin_CgProgramManagerStatic.a"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLibFileName}"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLinuxSoName}"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_CgProgramManager.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL${OgresD}.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX${OgresD}.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_CgProgramManager${OgresD}.so"
 		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
 	)
 
@@ -529,9 +529,9 @@ if(${WIN32})
 	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
 	#Copy System Dependant files during build time
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.dll data/${BuildPlatform}/ogre/Plugin_ParticleFX.dll )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL${OgresD}.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.dll data/${BuildPlatform}/ogre/Plugin_ParticleFX${OgresD}.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
@@ -555,9 +555,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	CopyFilesDuringBuild( ${BuildPlatform}/GLX_icon.png data/${BuildPlatform}/GLX_icon.png )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLinuxSoName} ${OgreLinuxSoName} )
 	CreateSymlinkDuringBuild( ${OgreLinuxSoName} ${OgreLibFileName} )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.so data/${BuildPlatform}/ogre/Plugin_ParticleFX.so )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_CgProgramManager.so data/${BuildPlatform}/ogre/Plugin_CgProgramManager.so )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL${OgresD}.so )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.so data/${BuildPlatform}/ogre/Plugin_ParticleFX${OgresD}.so )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_CgProgramManager.so data/${BuildPlatform}/ogre/Plugin_CgProgramManager${OgresD}.so )
 
 	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
