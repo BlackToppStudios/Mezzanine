@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_WINDOWS
+
 #include "../SDL_sysvideo.h"
 #include "../SDL_pixels_c.h"
 #include "../../events/SDL_keyboard_c.h"
@@ -87,6 +89,8 @@ SetupWindowData(_THIS, SDL_Window * window, HWND hwnd, SDL_bool created)
     data->created = created;
     data->mouse_pressed = SDL_FALSE;
     data->videodata = videodata;
+
+    window->driverdata = data;
 
     /* Associate the data with the window */
     if (!SetProp(hwnd, TEXT("SDL_WindowData"), data)) {
@@ -183,7 +187,6 @@ SetupWindowData(_THIS, SDL_Window * window, HWND hwnd, SDL_bool created)
     }
 
     /* All done! */
-    window->driverdata = data;
     return 0;
 }
 
@@ -744,5 +747,7 @@ SDL_HelperWindowDestroy(void)
         SDL_HelperWindowClass = 0;
     }
 }
+
+#endif /* SDL_VIDEO_DRIVER_WINDOWS */
 
 /* vi: set ts=4 sw=4 expandtab: */
