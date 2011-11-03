@@ -66,13 +66,15 @@ namespace phys
     // Creation and Deletion functions
     ///////////////////////////////////
     GraphicsManager::GraphicsManager()
-        : OgreBeenInitialized(false)
+        : OgreBeenInitialized(false),
+          CurrRenderSys(phys::RS_OpenGL2)
     {
         Construct( 800, 600, false );
     }
 
     GraphicsManager::GraphicsManager( const Whole &Width, const Whole &Height, const bool &FullScreen )
-        : OgreBeenInitialized(false)
+        : OgreBeenInitialized(false),
+          CurrRenderSys(phys::RS_OpenGL2)
     {
         Construct( Width, Height, FullScreen );
     }
@@ -96,8 +98,31 @@ namespace phys
         DefaultSettings.Fullscreen = FullScreen;
         DefaultSettings.RenderHeight = Height;
         DefaultSettings.RenderWidth = Width;
+
+        SDL_DisplayMode DeskMode;
+        SDL_GetDesktopDisplayMode(0,&DeskMode);
+        DesktopSettings.RenderWidth = DeskMode.w;
+        DesktopSettings.RenderHeight = DeskMode.h;
+        DesktopSettings.RefreshRate = DeskMode.refresh_rate;
+
         this->Priority = 0;
         this->FrameDelay = 0;
+    }
+
+    String GraphicsManager::ConvertRenderSystem(const phys::RenderSystem& RS)
+    {
+        switch(RS)
+        {
+            case phys::RS_DirectX9: return "Direct3D9 Rendering Subsystem"; break;
+            case phys::RS_DirectX10: return "Direct3D10 Rendering Subsystem"; break;
+            case phys::RS_DirectX11: return "Direct3D11 Rendering Subsystem"; break;
+            case phys::RS_OpenGL2: return "OpenGL Rendering Subsystem"; break;  /// @todo This will likely have to change when other OGL systems are implemented
+            //case phys::RS_OpenGL3: return ""; break;  Not yet implemented
+            //case phys::RS_OpenGL4: return ""; break;  Not yet implemented
+            case phys::RS_OpenGLES1: return "OpenGL ES 1.x Rendering Subsystem"; break;
+            //case phys::RS_OpenGLES2: return "OpenGL ES 2.x Rendering Subsystem"; break;  Not yet implemented
+        }
+        return "";
     }
 
     void GraphicsManager::InitSDL()
@@ -124,11 +149,13 @@ namespace phys
     {
         if(!OgreBeenInitialized)
         {
-            if (!Ogre::Root::getSingleton().restoreConfig())
-            {
-                GameWorld->LogAndThrow(Exception("Failed to load Ogre settings during OgreInit in GraphicsManager::InitOgre()."));
-            }
-            Ogre::Root::getSingleton().initialise(false,"AppName");
+            //if (!Ogre::Root::getSingleton().restoreConfig())
+            //{
+            //    GameWorld->LogAndThrow(Exception("Failed to load Ogre settings during OgreInit in GraphicsManager::InitOgre()."));
+            //}
+            Ogre::Root* OgreCore = Ogre::Root::getSingletonPtr();
+            OgreCore->setRenderSystem(OgreCore->getRenderSystemByName(ConvertRenderSystem(CurrRenderSys)));
+            OgreCore->initialise(false,"AppName");
             #ifdef PHYSDEBUG
             GameWorld->Log("Setup Ogre Window");
             #endif
@@ -245,19 +272,15 @@ namespace phys
         return OgreBeenInitialized;
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    //Shows the ogre settings Dialog, and allows it to save settings to ogres
-    //preset save location
-    bool GraphicsManager::ShowGraphicsSettingDialog()
+    void GraphicsManager::SetRenderSystem(const phys::RenderSystem& RenderSys)
     {
-        try
-        {
-            return Ogre::Root::getSingleton().showConfigDialog();
-        } catch (exception& e) {
-            this->GameWorld->Log("Ogre settings windows from main UI or mandatory setting failure");
-            this->GameWorld->Log(e.what());
-            return false;
-        }
+        if(!OgreBeenInitialized) CurrRenderSys = RenderSys;
+        else GameWorld->LogAndThrow(Exception("Attempting to set RenderSystem after graphics has been initialized.  This is not supported."));
+    }
+
+    phys::RenderSystem GraphicsManager::GetCurrRenderSystem()
+    {
+        return CurrRenderSys;
     }
 
     String GraphicsManager::GetRenderSystemName()
@@ -307,12 +330,6 @@ namespace phys
                 continue;
             }
         }
-
-        SDL_DisplayMode DeskMode;
-        SDL_GetDesktopDisplayMode(0,&DeskMode);
-        DesktopSettings.RenderWidth = DeskMode.w;
-        DesktopSettings.RenderHeight = DeskMode.h;
-        DesktopSettings.RefreshRate = DeskMode.refresh_rate;
 
         GraphicsInitialized = true;
     }

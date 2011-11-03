@@ -41,7 +41,9 @@
 #define _attachable_cpp
 
 #include "attachable.h"
+#include "transform.h"
 #include "worldnode.h"
+#include "world.h"
 
 /// @file attachable.cpp
 /// @brief Contains the phys::Attachable Class and phys::Attachable::AttachableElement enumeration implementations
@@ -49,25 +51,26 @@
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// Set data
+    // Set data
 
-    void Attachable::SetAttachedTo(phys::WorldNode* Target)
-        { this->AttachedTo = Target; }
+    void Attachable::SetAttachedTo(Attachable* Targeter, phys::WorldNode* Target)
+        { Targeter->AttachedTo = Target; }
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Construction
+    // Construction
+
     Attachable::Attachable()
         { AttachedTo = 0; }
 
-    Attachable::Attachable(phys::WorldNode* Target)
-        { this ->SetAttachedTo(Target); }
+    Attachable::Attachable(phys::WorldNode* AttachedToWorldNode)
+        { this->SetAttachedTo(this,AttachedToWorldNode); }
 
     Attachable::~Attachable()
         { }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Attachment management
+    // Attachment management
 
     WorldNode* Attachable::GetAttachedTo() const
         { return this->AttachedTo; }
@@ -75,29 +78,37 @@ namespace phys
     void Attachable::AttachTo(phys::WorldNode* Target)
     {
         if (AttachedTo)
-            { throw(phys::Exception("Already Attached to another WorldNode.")); }
-        Target->AttachObjectFinal(this);
+            { World::GetWorldPointer()->LogAndThrow(Exception("Already Attached to another WorldNode.")); }
+        Target->AttachObject(this);
+        SetAttachedTo(this,Target);
     }
 
     void Attachable::DetachFrom()
-        { AttachedTo->DetachObjectFinal(this); }
+    {
+        AttachedTo->DetachObject(this);
+        SetAttachedTo(this,0);
+    }
 
-    void Attachable::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
-        { this->SetAttachedTo(Target); }
+    void Attachable::SetTransform(const Transform& Trans)
+    {
+        this->SetLocation(Trans.Location);
+        this->SetOrientation(Trans.Rotation);
+    }
 
-    void Attachable::DetachFromFinal(Ogre::SceneNode* RawTarget)
-        { this->SetAttachedTo(0); }
+    Transform Attachable::GetTransform() const
+    {
+        return Transform(this->GetLocation(),this->GetOrientation());
+    }
 
-    /// @todo consider adding get/set Orientation to Attachable
     /// @todo consider adding rotate to Attachable
     /// @todo consider adding LookAt to Attachable
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Pure Virtual Functions
+    // Pure Virtual Functions
 
-    // The coding that goes into pure virtual functions is not for for inexperienced eyes such
+    // The coding that goes into pure virtual functions is not for inexperienced eyes such
     // as yours. Take your training to the Mountaintop monanstary and learn the ancient ways of
-    // c++ from the Tibetan monks you find there.
+    // c++ from the Tibetan monks you find there.  Godspeed.
 }//phys
 
 #endif

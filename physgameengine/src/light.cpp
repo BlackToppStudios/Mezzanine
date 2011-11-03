@@ -55,7 +55,7 @@
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// Construction
+    // Construction
 
     Light::Light(const String& Name, SceneManager* manager)
     {
@@ -73,7 +73,7 @@ namespace phys
         { Manager->GetGraphicsWorldPointer()->destroyLight(OgreLight); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Meta
+    // Meta
 
     ConstString& Light::GetName() const
         { return OgreLight->getName(); }
@@ -121,10 +121,13 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// 3d navigation
+    // 3d navigation
 
     void Light::SetLocation(const Vector3 &Location)
         { OgreLight->setPosition(Location.GetOgreVector3()); }
+
+    void Light::SetOrientation(const Quaternion& Orientation)
+        {}
 
     void Light::SetDirection(const Vector3& Direction)
         { OgreLight->setDirection(Direction.GetOgreVector3()); }
@@ -132,11 +135,14 @@ namespace phys
     Vector3 Light::GetLocation() const
         { return Vector3(OgreLight->getPosition()); }
 
+    Quaternion Light::GetOrientation() const
+        { return Quaternion(); }
+
     Vector3 Light::GetDirection() const
         { return Vector3(OgreLight->getDirection()); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Colour
+    // Colour
 
     void Light::SetDiffuseColour(Real Red, Real Green, Real Blue)
         { OgreLight->setDiffuseColour(Red, Green, Blue); }
@@ -157,7 +163,7 @@ namespace phys
         { return ColourValue(OgreLight->getSpecularColour()); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Attenuation
+    // Attenuation
 
     void Light::SetAttenuation(Real Range, Real Constant, Real Linear, Real Quadratic)
         { OgreLight->setAttenuation(Range, Constant, Linear, Quadratic); }
@@ -175,7 +181,7 @@ namespace phys
         { return OgreLight->getAttenuationQuadric(); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Spotlight specific methods
+    // Spotlight specific methods
 
     void Light::SetSpotlightRange(Real InnerAngle, Real OuterAngle, Real Falloff)
     {
@@ -209,7 +215,7 @@ namespace phys
         { return OgreLight->getSpotlightFalloff(); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Effects
+    // Effects
 
     Real Light::GetPowerScale() const
         { return OgreLight->getPowerScale(); }
@@ -218,23 +224,21 @@ namespace phys
         { OgreLight->setPowerScale(Power); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Inherited From Attachable
+    // Inherited From Attachable
 
     Attachable::AttachableElement Light::GetAttachableType() const
         { return Attachable::Light; }
 
-    void Light::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
-    {
-        Attachable::AttachToFinal(RawTarget, Target);
-        RawTarget->attachObject(this->OgreLight);
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Functions
 
-    void Light::DetachFromFinal(Ogre::SceneNode* RawTarget)
+    AttachableData Light::GetAttachableData() const
     {
-        Attachable::DetachFromFinal(RawTarget);
-        RawTarget->detachObject(this->OgreLight);
+        AttachableData Data;
+        Data.OgreMovable = OgreLight;
+        Data.Type = Attachable::Light;
+        return Data;
     }
-
 }//phys
 
 ///////////////////////////////////////////////////////////////////////////////

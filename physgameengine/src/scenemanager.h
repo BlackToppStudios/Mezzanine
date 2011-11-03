@@ -39,7 +39,6 @@
 */
 #ifndef _scenemanager_h
 #define _scenemanager_h
-#include "crossplatformexport.h"
 
 #include "colourvalue.h"
 #include "managerbase.h"
@@ -58,6 +57,7 @@ namespace phys
     class Light;
     class Plane;
     class ParticleEffect;
+    class Entity;
     class WorldNode;
 
     namespace internal
@@ -115,10 +115,12 @@ namespace phys
             std::vector< Light* > Lights;
             /// @brief Vector storing all the particle effects in use by this class.
             std::vector< ParticleEffect* > Particles;
+            /// @brief Vector storing all the entities in use by this class.
+            std::vector< Entity* > Entities;
 
         public:
             ///////////////////////////////////////////////////////////////////////////////
-            /// Construction
+            // Construction
 
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -267,13 +269,13 @@ namespace phys
             Light* GetLight(const String& Name) const;
             /// @brief Gets an already created light by index.
             /// @return Returns a pointer to the light at the specified index.
-            Light* GetLight(Whole Index) const;
+            Light* GetLight(const Whole& Index) const;
             /// @brief Gets the number of lights created and stored in this manager.
             /// @return Returns the number of lights this manager is storing.
             Whole GetNumLights() const;
             /// @brief Deletes a light and removes all trace of it from the manager.
-            /// @param light The light to be destroyed.
-            void DestroyLight(Light* light);
+            /// @param ToBeDestroyed The light to be destroyed.
+            void DestroyLight(Light* ToBeDestroyed);
             /// @brief Destroys all lights currently in the manager.
             void DestroyAllLights();
 
@@ -287,8 +289,8 @@ namespace phys
             /// @brief Get a LightIterator to one past the last Light*
             /// @return A LightIterator to one past the last Light*
             LightIterator EndLight();
-            /// @brief Get a ConstLightIterator to one past the last Light*
-            /// @return A ConstLightIterator to one past the last Light*
+            /// @brief Get a ConstLightIterator to the first Light*
+            /// @return A ConstLightIterator to the first Light*
             ConstLightIterator BeginLight() const;
             /// @brief Get a ConstLightIterator to one past the last Light*
             /// @return A ConstLightIterator to one past the last Light*
@@ -308,19 +310,19 @@ namespace phys
             ParticleEffect* GetParticleEffect(const String& Name) const;
             /// @brief Gets an already created particle effect by index.
             /// @return Returns a pointer to the particle effect at the specified index.
-            ParticleEffect* GetParticleEffect(Whole Index) const;
+            ParticleEffect* GetParticleEffect(const Whole& Index) const;
             /// @brief Gets the number of particle effects created and stored in this manager.
             /// @return Returns the number of particle effects this manager is storing.
             Whole GetNumParticleEffects() const;
             /// @brief Deletes a particle effect and removes all trace of it from the manager.
-            /// @param particleeffect The particle effect to be destroyed.
-            void DestroyParticleEffect(ParticleEffect* particleeffect);
+            /// @param ToBeDestroyed The particle effect to be destroyed.
+            void DestroyParticleEffect(ParticleEffect* ToBeDestroyed);
             /// @brief Destroys all particle effects currently in the manager.
             void DestroyAllParticleEffects();
 
-            /// @brief Used to make working with the Lights easier.
+            /// @brief Used to make working with the Particle Effects easier.
             typedef std::vector< ParticleEffect* >::iterator ParticleEffectIterator;
-            /// @brief Used to make working with the Lights easier, and avoid the risk of accidentally changing them.
+            /// @brief Used to make working with the Particle Effects easier, and avoid the risk of accidentally changing them.
             typedef std::vector< ParticleEffect* >::const_iterator ConstParticleEffectIterator;
             /// @brief Get a ParticleEffectIterator to the first ParticleEffect*
             /// @return A ParticleEffectIterator to the first ParticleEffect*
@@ -328,12 +330,54 @@ namespace phys
             /// @brief Get a ParticleEffectIterator to one past the last ParticleEffect*
             /// @return A ParticleEffectIterator to one past the last ParticleEffect*
             ParticleEffectIterator EndParticleEffect();
-            /// @brief Get a ConstParticleEffectIterator to one past the last ParticleEffect*
-            /// @return A ConstParticleEffectIterator to one past the last ParticleEffect*
+            /// @brief Get a ConstParticleEffectIterator to the first ParticleEffect*
+            /// @return A ConstParticleEffectIterator to the first ParticleEffect*
             ConstParticleEffectIterator BeginParticleEffect() const;
             /// @brief Get a ConstParticleEffectIterator to one past the last ParticleEffect*
             /// @return A ConstParticleEffectIterator to one past the last ParticleEffect*
             ConstParticleEffectIterator EndParticleEffect() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Entity Management
+
+            /// @brief Creates an entity.
+            /// @details Entities are objects that have zero physical representation, they are essentially meshes in world space.
+            /// @param EntName The name to be given to this entity.
+            /// @param MeshName The name of the mesh to construct this entity from.
+            /// @param Group The resource group to find the mesh.
+            /// @return Returns a pointer to the entity class which was created by this function.
+            Entity* CreateEntity(const String& EntName, const String& MeshName, const String& Group);
+            /// @brief Gets an already created entity by name.
+            /// @return Returns a pointer to the entity of the specified name.
+            Entity* GetEntity(const String& Name) const;
+            /// @brief Gets an already created entity by index.
+            /// @return Returns a pointer to the entity at the specified index.
+            Entity* GetEntity(const Whole& Index) const;
+            /// @brief Gets the number of entities created and stored in this manager.
+            /// @return Returns the number of entities this manager is storing.
+            Whole GetNumEntities() const;
+            /// @brief Deletes an entity and removes all trace of it from the manager.
+            /// @param ToBeDestroyed The entity to be destroyed.
+            void DestroyEntity(Entity* ToBeDestroyed);
+            /// @brief Destroys all entities currently in the manager.
+            void DestroyAllEntities();
+
+            /// @brief Used to make working with the Entities easier.
+            typedef std::vector< Entity* >::iterator EntityIterator;
+            /// @brief Used to make working with the Entities easier, and avoid the risk of accidentally changing them.
+            typedef std::vector< Entity* >::const_iterator ConstEntityIterator;
+            /// @brief Get an EntityIterator to the first Entity*
+            /// @return An EntityIterator to the first Entity*
+            EntityIterator BeginEntity();
+            /// @brief Get a EntityIterator to one past the last Entity*
+            /// @return A EntityIterator to one past the last Entity*
+            EntityIterator EndEntity();
+            /// @brief Get a ConstEntityIterator to the first Entity*
+            /// @return A ConstEntityIterator to the first Entity*
+            ConstEntityIterator BeginEntity() const;
+            /// @brief Get a ConstEntityIterator to one past the last Entity*
+            /// @return A ConstEntityIterator to one past the last Entity*
+            ConstEntityIterator EndEntity() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // WorldNode Management
@@ -366,7 +410,7 @@ namespace phys
             /// @brief Gets an already created node by index.
             /// @return Returns a pointer to the node at the specified index.
             /// @details This runs in constant time.
-            WorldNode* GetNode(Whole Index) const;
+            WorldNode* GetNode(const Whole& Index) const;
 
             /// @brief Gets the number of nodes created and stored in this manager.
             /// @return Returns the number of nodes this manager is storing.
@@ -384,14 +428,14 @@ namespace phys
             /// @todo TODO: create SceneManager::GetNumFreeNodes
 
             /// @brief Deletes a node and removes all trace of it from the manager.
-            /// @param node The node to be destroyed.
-            void DestroyNode(WorldNode* node);
+            /// @param ToBeDestroyed The node to be destroyed.
+            void DestroyNode(WorldNode* ToBeDestroyed);
             /// @brief Destroys all world nodes currently in the manager.
             void DestroyAllWorldNodes();
 
-            /// @brief Used to make working with the Lights easier.
+            /// @brief Used to make working with the WorldNodes easier.
             typedef std::vector< WorldNode* >::iterator WorldNodeIterator;
-            /// @brief Used to make working with the Lights easier, and avoid the risk of accidentally changing them.
+            /// @brief Used to make working with the WorldNodes easier, and avoid the risk of accidentally changing them.
             typedef std::vector< WorldNode* >::const_iterator ConstWorldNodeIterator;
             /// @brief Get a WorldNodeIterator to the first WorldNode*
             /// @return A WorldNodeIterator to the first WorldNode*
@@ -399,8 +443,8 @@ namespace phys
             /// @brief Get a WorldNodeIterator to one past the last WorldNode*
             /// @return A WorldNodeIterator to one past the last WorldNode*
             WorldNodeIterator EndWorldNode();
-            /// @brief Get a ConstWorldNodeIterator to one past the last WorldNode*
-            /// @return A ConstWorldNodeIterator to one past the last WorldNode*
+            /// @brief Get a ConstWorldNodeIterator to the first WorldNode*
+            /// @return A ConstWorldNodeIterator to the first WorldNode*
             ConstWorldNodeIterator BeginWorldNode() const;
             /// @brief Get a ConstWorldNodeIterator to one past the last WorldNode*
             /// @return A ConstWorldNodeIterator to one past the last WorldNode*

@@ -43,6 +43,7 @@
 #include "cameramanager.h"
 #include "scenemanager.h"
 #include "light.h"
+#include "entity.h"
 #include "plane.h"
 #include "particleeffect.h"
 #include "uimanager.h"
@@ -398,7 +399,7 @@ namespace phys
         return 0;
     }
 
-    Light* SceneManager::GetLight(Whole Index) const
+    Light* SceneManager::GetLight(const Whole& Index) const
     {
         return Lights[Index];
     }
@@ -408,13 +409,13 @@ namespace phys
         return Lights.size();
     }
 
-    void SceneManager::DestroyLight(Light* light)
+    void SceneManager::DestroyLight(Light* ToBeDestroyed)
     {
         if(Lights.empty())
             return;
         for( std::vector<Light*>::iterator it = Lights.begin() ; it != Lights.end() ; it++ )
         {
-            if( light == (*it) )
+            if( ToBeDestroyed == (*it) )
             {
                 delete (*it);
                 Lights.erase(it);
@@ -447,7 +448,7 @@ namespace phys
 
     ParticleEffect* SceneManager::CreateParticleEffect(const String& Name, const String& Template)
     {
-        ParticleEffect* Particle = new ParticleEffect(this->SMD->OgreManager->createParticleSystem(Name, Template), Template, this);
+        ParticleEffect* Particle = new ParticleEffect(Name,Template,this);
         Particles.push_back(Particle);
         return Particle;
     }
@@ -466,7 +467,7 @@ namespace phys
         return 0;
     }
 
-    ParticleEffect* SceneManager::GetParticleEffect(Whole Index) const
+    ParticleEffect* SceneManager::GetParticleEffect(const Whole& Index) const
     {
         return Particles[Index];
     }
@@ -476,13 +477,13 @@ namespace phys
         return Particles.size();
     }
 
-    void SceneManager::DestroyParticleEffect(ParticleEffect* particleeffect)
+    void SceneManager::DestroyParticleEffect(ParticleEffect* ToBeDestroyed)
     {
         if(Particles.empty())
             return;
         for( std::vector<ParticleEffect*>::iterator it = Particles.begin() ; it != Particles.end() ; it++ )
         {
-            if( particleeffect == (*it) )
+            if( ToBeDestroyed == (*it) )
             {
                 delete (*it);
                 Particles.erase(it);
@@ -509,6 +510,74 @@ namespace phys
 
     SceneManager::ConstParticleEffectIterator SceneManager::EndParticleEffect() const
         { return this->Particles.end(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Entity Management
+
+    Entity* SceneManager::CreateEntity(const String& EntName, const String& MeshName, const String& Group)
+    {
+        Entity* Ent = new Entity(EntName,MeshName,Group,this);
+        Entities.push_back(Ent);
+        return Ent;
+    }
+
+    Entity* SceneManager::GetEntity(const String& Name) const
+    {
+        if(Entities.empty())
+            return 0;
+        for( std::vector<Entity*>::const_iterator it = Entities.begin() ; it != Entities.end() ; it++ )
+        {
+            if( Name == (*it)->GetName() )
+            {
+                return (*it);
+            }
+        }
+        return 0;
+    }
+
+    Entity* SceneManager::GetEntity(const Whole& Index) const
+    {
+        return Entities[Index];
+    }
+
+    Whole SceneManager::GetNumEntities() const
+    {
+        return Entities.size();
+    }
+
+    void SceneManager::DestroyEntity(Entity* ToBeDestroyed)
+    {
+        if(Entities.empty())
+            return;
+        for( std::vector<Entity*>::iterator it = Entities.begin() ; it != Entities.end() ; it++ )
+        {
+            if( ToBeDestroyed == (*it) )
+            {
+                delete (*it);
+                Entities.erase(it);
+                return;
+            }
+        }
+    }
+
+    void SceneManager::DestroyAllEntities()
+    {
+        for( Whole X = 0 ; X < Entities.size() ; X++ )
+            delete Entities[X];
+        Entities.clear();
+    }
+
+    SceneManager::EntityIterator SceneManager::BeginEntity()
+        { return this->Entities.begin(); }
+
+    SceneManager::EntityIterator SceneManager::EndEntity()
+        { return this->Entities.end(); }
+
+    SceneManager::ConstEntityIterator SceneManager::BeginEntity() const
+        { return this->Entities.begin(); }
+
+    SceneManager::ConstEntityIterator SceneManager::EndEntity() const
+        { return this->Entities.end(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // WorldNode Management
@@ -570,7 +639,7 @@ namespace phys
         return 0;
     }
 
-    WorldNode* SceneManager::GetNode(Whole Index) const
+    WorldNode* SceneManager::GetNode(const Whole& Index) const
     {
         return WorldNodes[Index];
     }
@@ -610,13 +679,13 @@ namespace phys
         return Num;
     }
 
-    void SceneManager::DestroyNode(WorldNode* node)
+    void SceneManager::DestroyNode(WorldNode* ToBeDestroyed)
     {
         if(WorldNodes.empty())
             return;
         for( std::vector<WorldNode*>::iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
-            if( node == (*it) )
+            if( ToBeDestroyed == (*it) )
             {
                 delete (*it);
                 WorldNodes.erase(it);

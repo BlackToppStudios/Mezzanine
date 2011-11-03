@@ -42,9 +42,6 @@
 
 #include "attachable.h"
 #include "colourvalue.h"
-#include "crossplatformexport.h"
-#include "datatypes.h"
-#include "vector3.h"
 #include "xml.h"
 
 /// @file light.h
@@ -90,7 +87,7 @@ namespace phys
         public:
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Construction
+            // Construction
 
             /// @brief Standard initialization constructor.
             /// @param Name The name of this light.
@@ -108,7 +105,7 @@ namespace phys
             virtual ~Light();
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Meta
+            // Meta
 
             /// @brief Gets the name of this light.
             /// @return Returns a string containing the name given to this light.
@@ -123,28 +120,34 @@ namespace phys
             Light::LightType GetType() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// 3d navigation
+            // 3d navigation
 
             /// @brief Sets the location from where the light will originate.
             /// @param Location A vector3 representing the location to set the light.
-            /// @details Not used in Directional Lights
+            /// @details Not used in Directional Lights.
             void SetLocation(const Vector3& Location);
+            /// @brief Inherited from Attachable, does nothing on Light class.
+            /// @param Orientation The orientation.
+            void SetOrientation(const Quaternion& Orientation);
             /// @brief Sets the direction the light will originate from.
             /// @param Direction A vector3 representing the direction the light will come from.
+            /// @details Not used in point lights.
             void SetDirection(const Vector3& Direction);
-            /// @details Not used in point lights
 
             /// @brief Gets the current location of the light.
             /// @return Returns a vector3 representing the location of the light.
-            /// @details Not used in Directional Lights
+            /// @details Not used in Directional Lights.
             Vector3 GetLocation() const;
+            /// @brief Inherited from Attachable, returns a default Quaternion.
+            /// @return Returns a quaternion with the orientation.
+            Quaternion GetOrientation() const;
             /// @brief Gets the currently set direction of the light.
             /// @return Returns a vector3 representing the set direction of the light.
-            /// @details Not used in point lights
+            /// @details Not used in point lights.
             Vector3 GetDirection() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Colour
+            // Colour
 
             /// @brief Sets the colour for the Diffuse light from this source.
             /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.
@@ -177,7 +180,7 @@ namespace phys
             ColourValue GetSpecularColour() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Attenuation
+            // Attenuation
 
             /// @brief Sets the factors for the attenuation formula applied to this light.
             /// @details This function is only applicable when using a spotlight or point type of light.
@@ -200,7 +203,7 @@ namespace phys
             Real GetAttenuationQuadric() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Spotlight specific methods
+            // Spotlight specific methods
 
             /// @brief Defines the cone of light emitted by a spotlight.
             /// @details InnerAngle and OuterAngle should be input as Radians.
@@ -231,7 +234,7 @@ namespace phys
             Real GetSpotlightFalloff() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Effects
+            // Effects
 
             /// @brief Gets the lights power scale.
             /// @return Returns a real representing the power scale of the light.
@@ -244,16 +247,20 @@ namespace phys
             void SetPowerScale(Real Power);
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Inherited From Attachable
+            // Inherited From Attachable
 
             /// @brief What kind of Attachable is this.
             /// @return An Attachable::GetAttachableType containing Attachable::Light.
             virtual Attachable::AttachableElement GetAttachableType() const;
 
-            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Functions
 
-            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
-    };
+            /// @internal
+            /// @brief Gets pointers to the internal ogre structures for this attachable.
+            /// @return Returns an AttachableData struct with the internal data.
+            virtual AttachableData GetAttachableData() const;
+    };//Light
 }//phys
 
 ///////////////////////////////////////////////////////////////////////////////

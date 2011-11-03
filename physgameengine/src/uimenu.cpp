@@ -196,9 +196,9 @@ namespace phys
             return MenuStack.back()->GetActualSize();
         }
 
-        void Menu::UpdateDimensions(const Vector2& NewViewportSize)
+        void Menu::UpdateDimensions()
         {
-            RootWindow->UpdateDimensions(NewViewportSize);
+            RootWindow->UpdateDimensions();
         }
 
         MenuWindow* Menu::GetRootWindow()

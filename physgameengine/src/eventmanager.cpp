@@ -313,6 +313,18 @@ namespace phys
     void EventManager::AddEvent(EventBase* EventToAdd)
         { _Data->EventQ.push_back(EventToAdd); }
 
+    void EventManager::RemoveEvent(EventBase* EventToRemove)
+    {
+        for( std::list<EventBase*>::iterator EvIt = _Data->EventQ.begin() ; EvIt != _Data->EventQ.end() ; ++EvIt )
+        {
+            if(EventToRemove == (*EvIt))
+            {
+                _Data->EventQ.erase(EvIt);
+                return;
+            }
+        }
+    }
+
     void EventManager::UpdateEvents()
     {
         //SDL_PumpEvents();

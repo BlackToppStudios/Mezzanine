@@ -107,28 +107,59 @@ namespace phys
         CF_UserFilter2 = 128
     };
 
+    /// @enum RenderSystem
+    /// @brief Used primarily by the graphics manager class during initialization.
+    /// @details This enum specifies which Rendersystem is to be used for rendering.
+    enum RenderSystem
+    {
+        RS_DirectX9,
+        RS_DirectX10,
+        RS_DirectX11,
+        RS_OpenGL2,
+        RS_OpenGL3,
+        RS_OpenGL4,
+        RS_OpenGLES1,
+        RS_OpenGLES2
+    };
+
     /// @enum WorldObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This is mostly used internally for casting void pointers.
     enum WorldObjectType
     {
         // Actors
-        WOT_ActorBase = 1,
-        WOT_ActorRigid = 2,
-        WOT_ActorSoft = 4,
-        WOT_ActorCharacter = 8,
-        WOT_ActorTerrain = 16,
+        WOT_ActorFirst = 1,
+        WOT_ActorRigid = 1,
+        WOT_ActorSoft = 2,
+        WOT_ActorCharacter = 4,
+        WOT_ActorUnknown = 8,
+        WOT_ActorLast = 8,
+
+        // Terrains go here
+        WOT_TerrainFirst = 16,
+        WOT_ActorTerrain = 16, //should rename to Mesh Terrain
+        WOT_UnimplementedTerrain1 = 32, // should rename to Heightfield terrain
+        WOT_UnimplementedTerrain2 = 64, // should rename to Vectorfield terrain
+        WOT_UnimplementedTerrain3 = 128, // should rename to Voxel Terrain
+        WOT_UnknownTerrain = 256,
+        WOT_TerrainLast = 256,
 
         // AE Fields
-        WOT_AreaEffect = 32,
-        WOT_CustomAE  = 64,
-        WOT_GravityField = 128,
-        WOT_GravityWell = 256,
+        WOT_AEFirst = 512,
+        WOT_AEGravityField = 1024,
+        WOT_AEGravityWell = 2048,
+        WOT_AEFieldOfForce = 4096,
+        WOT_AEPlaceHolder1 = 8192,
+        WOT_AEPlaceHolder2 = 16384,
+        WOT_AEUnknown = 32768,
+        WOT_AELast = 32768,
 
         // Scene Objects
-        WOT_Light = 512,
-        WOT_ParticleEffect = 1024,
-        WOT_Camera = 2048
+        WOT_SceneFirst = 65536,
+        WOT_Light = 65536,
+        WOT_ParticleEffect = 131072,
+        WOT_Camera = 262144,
+        WOT_SceneLast = 262144,
     };
 
     /// @brief Used to identify different Axis in a 3d coordinate system.

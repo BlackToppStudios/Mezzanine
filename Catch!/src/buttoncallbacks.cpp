@@ -40,8 +40,19 @@ void GSMenu::DoHoverItems()
 void GSMenu::DoActivateItems()
 {
     UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
+    PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+    SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
+    SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
     layer->SetVisible(!layer->IsVisible());
+    PhysMan->PauseSimulation(!PhysMan->SimulationIsPaused());
+    if(LevelTimer->IsStopped()) LevelTimer->Start();
+    else LevelTimer->Stop();
+    if(EndTimer)
+    {
+        if(EndTimer->IsStopped()) EndTimer->Start();
+        else EndTimer->Stop();
+    }
 }
 
 //--------------------------------------------------------------
@@ -63,6 +74,39 @@ void GSReturn::DoActivateItems()
     UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
     layer->Hide();
+    PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+    SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
+    SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
+    if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
+    if(LevelTimer->IsStopped()) LevelTimer->Start();
+    if(EndTimer && EndTimer->IsStopped()) EndTimer->Start();
+}
+
+//--------------------------------------------------------------
+
+GSISReturn::GSISReturn()
+{
+}
+
+GSISReturn::~GSISReturn()
+{
+}
+
+void GSISReturn::DoHoverItems()
+{
+}
+
+void GSISReturn::DoActivateItems()
+{
+    UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
+    UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
+    layer->Hide();
+    PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+    SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
+    SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
+    if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
+    if(LevelTimer->IsStopped()) LevelTimer->Start();
+    if(EndTimer && EndTimer->IsStopped()) EndTimer->Start();
 }
 
 //--------------------------------------------------------------

@@ -278,13 +278,6 @@ namespace phys
             return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
-        void Widget::UpdateDimensions(const Vector2& OldViewportSize)
-        {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            this->SetActualPosition(RelPosition * WinDim);
-            this->SetActualSize(RelSize * WinDim);
-        }
-
         Button* Widget::GetHoveredButton() const
         {
             return HoveredButton;

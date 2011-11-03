@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -88,11 +88,11 @@ namespace phys
         Settings.RenderWidth = Width;
         Settings.RenderHeight = Height;
         //RenderContext = 0;
-        int SDLFlags = 0;
+        //int SDLFlags = 0;
         Ogre::NameValuePairList Opts;
         if(WF_Fullscreen & Flags)
         {
-            SDLFlags|=SDL_WINDOW_FULLSCREEN;
+            //SDLFlags|=SDL_WINDOW_FULLSCREEN;
             Settings.Fullscreen = true;
         }
         if(WF_Hidden & Flags)
@@ -121,19 +121,19 @@ namespace phys
         }
         if(WF_Resizeable & Flags)
         {
-            SDLFlags|=SDL_WINDOW_RESIZABLE;
+            //SDLFlags|=SDL_WINDOW_RESIZABLE;
         }
         if(WF_Maximized & Flags)
         {
-            SDLFlags|=SDL_WINDOW_MAXIMIZED;
+            //SDLFlags|=SDL_WINDOW_MAXIMIZED;
         }
         else if(WF_Minimized & Flags)
         {
-            SDLFlags|=SDL_WINDOW_MINIMIZED;
+            //SDLFlags|=SDL_WINDOW_MINIMIZED;
         }
         if(WF_Borderless & Flags)
         {
-            SDLFlags|=SDL_WINDOW_BORDERLESS;
+            //SDLFlags|=SDL_WINDOW_BORDERLESS;
             Opts["border"] = "none";
         }
         /*SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -167,13 +167,8 @@ namespace phys
         NSWindow* Data = 0;
         #endif
         OgreWindow->getCustomAttribute("WINDOW",&Data);
-
-        std::stringstream logstream;
-        logstream << "XWindow: " << Data << endl;
-        World::GetWorldPointer()->Log(logstream.str());
-        World::GetWorldPointer()->DoMainLoopLogging();
-
         SDLWindow = SDL_CreateWindowFrom((void*)Data);
+
         //SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
     }
 

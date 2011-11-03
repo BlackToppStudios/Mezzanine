@@ -104,8 +104,7 @@ namespace phys
                 virtual void SetCellSpacing(const Vector2& Spacing);
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                /// @param OldViewportSize The old size of the viewport.
-                virtual void UpdateDimensions(const Vector2& OldViewportSize);
+                virtual void UpdateDimensions();
                 /// @brief Gets the spinner in use by this widget.
                 /// @return Returns a pointer to the spinner being used by this widget.
                 virtual UI::Spinner* GetPageSpinner();

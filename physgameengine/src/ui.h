@@ -79,6 +79,7 @@ namespace phys
 #include "uispinner.h"
 #include "uitabset.h"
 #include "uitextbutton.h"
+#include "uiviewportupdatetool.h"
 #include "uiwidget.h"
 #include "uiwindow.h"
 

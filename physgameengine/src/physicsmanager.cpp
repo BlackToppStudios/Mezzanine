@@ -50,7 +50,9 @@
 #include "vector3wactor.h"
 #include "areaeffect.h"
 #include "eventmanager.h"
+#include "eventcollision.h"
 #include "worldtrigger.h"
+#include "objectreference.h"
 
 #include <queue>
 
@@ -258,9 +260,58 @@ namespace phys
         {
             return this->WireFrameCount;
         }
+    }// debug
 
+    #ifdef GetObject
+    #undef GetObject
+    #endif
 
-    }// /debug
+    class CollisionDispatcher : public btCollisionDispatcher
+    {
+        public:
+            CollisionDispatcher(btCollisionConfiguration* CollisionConfig) : btCollisionDispatcher(CollisionConfig)
+            {
+            }
+            ~CollisionDispatcher()
+            {
+            }
+            btPersistentManifold* getNewManifold(void *b0, void *b1)
+            {
+                // Get the manifold
+                btPersistentManifold* NewManifold = btCollisionDispatcher::getNewManifold(b0,b1);
+                // Get the object references
+                ObjectReference* ObjectA = (ObjectReference*)((btCollisionObject*)NewManifold->getBody0())->getUserPointer();
+                ObjectReference* ObjectB = (ObjectReference*)((btCollisionObject*)NewManifold->getBody1())->getUserPointer();
+                // Verify they are actors, then cast appropriately
+                ActorBase* ActorA = ObjectA->GetType() >= WOT_ActorFirst && ObjectA->GetType() <= WOT_ActorLast ? static_cast<ActorBase*>(ObjectA->GetObject()) : NULL;
+                ActorBase* ActorB = ObjectB->GetType() >= WOT_ActorFirst && ObjectB->GetType() <= WOT_ActorLast ? static_cast<ActorBase*>(ObjectB->GetObject()) : NULL;
+                // Verify the cast went well
+                if( ActorA && ActorB )
+                {
+                    // Creat the Event
+                    EventCollision* NewColEvent = new EventCollision(ActorA,ActorB);
+                    NewColEvent->Manifold = NewManifold;
+                    World::GetWorldPointer()->GetEventManager()->AddEvent(NewColEvent);
+                }
+                return NewManifold;
+            }
+            void releaseManifold(btPersistentManifold *manifold)
+            {
+                std::list<EventCollision*>* ColEvents = World::GetWorldPointer()->GetEventManager()->GetAllCollisionEvents();
+                for( std::list<EventCollision*>::iterator EvIt = ColEvents->begin() ; EvIt != ColEvents->end() ; ++EvIt )
+                {
+                    if(manifold == (*EvIt)->Manifold)
+                    {
+                        EventCollision* ToBeDestroyed = (*EvIt);
+                        World::GetWorldPointer()->GetEventManager()->RemoveEvent(ToBeDestroyed);
+                        delete ToBeDestroyed;
+                    }
+                }
+                delete ColEvents;
+
+                btCollisionDispatcher::releaseManifold(manifold);
+            }
+    };// CollisionDispatcher
 
     PhysicsConstructionInfo::PhysicsConstructionInfo()
         : PhysicsFlags(0),
@@ -290,7 +341,8 @@ namespace phys
 
     PhysicsManager::PhysicsManager()
         : BulletDrawer(NULL),
-          SimulationPaused(false)
+          SimulationPaused(false),
+          SubstepModifier(1)
     {
         PhysicsConstructionInfo Info;
         Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_SoftRigidWorld | PhysicsConstructionInfo::PCF_LimitlessWorld);
@@ -299,7 +351,8 @@ namespace phys
 
     PhysicsManager::PhysicsManager(const PhysicsConstructionInfo& Info)
         : BulletDrawer(NULL),
-          SimulationPaused(false)
+          SimulationPaused(false),
+          SubstepModifier(1)
     {
         this->Construct(Info);
     }
@@ -347,7 +400,7 @@ namespace phys
         //if(Info.PhysicsFlags & PhysicsConstructionInfo::PCF_SoftRigidWorld)
         //{
             this->BulletCollisionConfiguration = new btSoftBodyRigidBodyCollisionConfiguration();
-            this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
+            this->BulletDispatcher = new CollisionDispatcher(BulletCollisionConfiguration);
             btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
 
             this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld(
@@ -689,6 +742,11 @@ namespace phys
         BulletDynamicsWorld->stepSimulation(1.f/60.f,1,1.f/60.f);
     }
 
+    void PhysicsManager::SetSimulationSubstepModifier(const Whole& Modifier)
+    {
+        SubstepModifier = Modifier;
+    }
+
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
         if(SimulationPaused)
@@ -698,11 +756,10 @@ namespace phys
         Profiler->reset();
         #endif
 
-        Real FloatTime = TimeElapsed;
-        FloatTime *= 0.001;    //Convert from MilliSeconds to Seconds
-        Real IdealStep = this->GameWorld->GetTargetFrameTime();
-        IdealStep *= 0.001;
-        int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
+        Real FloatTime = TimeElapsed * 0.001; //Convert from MilliSeconds to Seconds
+        Real IdealStep = this->GameWorld->GetTargetFrameTime() * 0.001;
+        IdealStep /= SubstepModifier;
+        int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep)+1;
         #ifdef PHYSPROFILE
         Profiler->reset();
         #endif
@@ -733,7 +790,7 @@ namespace phys
         // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
         //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
 
-        #ifdef PHYSDEBUG
+        /*#ifdef PHYSDEBUG
         this->GameWorld->Log("Checking for Collisions.");
         #endif
 

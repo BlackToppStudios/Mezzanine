@@ -28,7 +28,7 @@ CatchApp::CatchApp()
     {
         PhysicsConstructionInfo Info;
         Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
-        TheWorld = new World( Info, SceneManager::Generic );
+        TheWorld = new World( Info, SceneManager::Generic, "Plugins/plugins.cfg" );
     }catch( exception x){
         //could not create world
     }
@@ -58,16 +58,16 @@ void CatchApp::MakeGUI()
     UI::Layer* MainMenuLayer = MainMenuScreen->CreateLayer("MainMenuLayer",0);
 
     //Build the Main Menu Screen
-    UI::Rectangle* Background = MainMenuLayer->CreateRectangle( UI::RenderableRect(Vector2(0,0), Vector2(1,1), true));
+    UI::Rectangle* Background = MainMenuLayer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
     Background->SetBackgroundSprite("MainMenuBackground");
 
     UI::Menu* MainMenuMenu = MainMenuLayer->CreateMenu( "MS_Menu", UI::RenderableRect(Vector2(0.0,0.915), Vector2(1.0,0.086), true));
     MainMenuMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MMBrickBackground");
     MainMenuMenu->GetRootWindow()->SetAutoHide(false);
 
+    Real MMStartLineHeight = 0.05;
     Real MMTextLineHeight = 0.04;
     Real MMSmallTextLineHeight = 0.03;
-    //std::pair<Whole,Real> MainMenuText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
     UI::TextButton* MMLevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", UI::RenderableRect(Vector2(0.05, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Level Select" );
     MMLevelSelectAccess->SetBackgroundSprite("MMButton");
     MMLevelSelectAccess->SetHoveredSprite("MMHoveredButton");
@@ -80,7 +80,7 @@ void CatchApp::MakeGUI()
     MMLevelSelectGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("MMPageBox");
     PopulateLevelList(MMLevelSelectGrid);
     MMLevelSelectGrid->GenerateGrid();
-    UI::TextButton* MMLevelStart = MMLevelSelectWin->CreateTextButton("MS_LevelStart", UI::RenderableRect(Vector2(0.42,0.85), Vector2(0.16,0.07), true),Whole(18),"Start");
+    UI::TextButton* MMLevelStart = MMLevelSelectWin->CreateTextButton("MS_LevelStart", UI::RenderableRect(Vector2(0.42,0.85), Vector2(0.16,0.07), true),MMStartLineHeight,"Start");
     MMLevelStart->SetButtonCallback(new MSStart(MMLevelSelectGrid));
     MMLevelStart->SetBackgroundSprite("MMLevelStart");
     MMLevelStart->SetHoveredSprite("MMLevelStartHovered");
@@ -211,14 +211,13 @@ void CatchApp::MakeGUI()
     MMAppExitAccess->SetHoveredSprite("MMHoveredButton");
     UI::MenuWindow* MMAppExitWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_AppExit", UI::RenderableRect(Vector2(0.25, 0.3), Vector2(0.5, 0.3), true), MMAppExitAccess);
     MMAppExitWin->GetWindowBack()->SetBackgroundSprite("MMAppExitBackground");
-    std::pair<Whole,Real> MMAppExitText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
-    UI::Caption* MMAppExitWarn = MMAppExitWin->CreateCaption("MS_AppExitWarn", UI::RenderableRect(Vector2(0.32, 0.35), Vector2(0.36, 0.07), true), MMAppExitText.first, "Are you sure you want to exit?");
+    UI::Caption* MMAppExitWarn = MMAppExitWin->CreateCaption("MS_AppExitWarn", UI::RenderableRect(Vector2(0.32, 0.35), Vector2(0.36, 0.07), true), Real(0.04), "Are you sure you want to exit?");
     MMAppExitWarn->SetBackgroundSprite("MMAppExitText");
-    UI::TextButton* MMAppExitConf = MMAppExitWin->CreateTextButton("MS_AppExitConf", UI::RenderableRect(Vector2(0.30, 0.47), Vector2(0.18, 0.06), true), MMAppExitText.first, "Yes");
+    UI::TextButton* MMAppExitConf = MMAppExitWin->CreateTextButton("MS_AppExitConf", UI::RenderableRect(Vector2(0.30, 0.47), Vector2(0.18, 0.06), true), Real(0.04), "Yes");
     MMAppExitConf->SetButtonCallback(new AllAppExit());
     MMAppExitConf->SetBackgroundSprite("MMAppExitButton");
     MMAppExitConf->SetHoveredSprite("MMAppExitHoveredButton");
-    UI::TextButton* MMAppExitDeny = MMAppExitWin->CreateBackButton(/*"MS_AppExitDeny", */UI::RenderableRect(Vector2(0.52, 0.47), Vector2(0.18, 0.06), true), MMAppExitText.first, "No");
+    UI::TextButton* MMAppExitDeny = MMAppExitWin->CreateBackButton(/*"MS_AppExitDeny", */UI::RenderableRect(Vector2(0.52, 0.47), Vector2(0.18, 0.06), true), Real(0.04), "No");
     MMAppExitDeny->SetBackgroundSprite("MMAppExitButton");
     MMAppExitDeny->SetHoveredSprite("MMAppExitHoveredButton");
     //End of Main Menu Screen
@@ -254,13 +253,29 @@ void CatchApp::MakeGUI()
     //End of HUD Layer
 
     //Build the ItemShop Layer
-    UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", UI::RenderableRect(Vector2(0.25, 0.11), Vector2(0.5, 0.78125), true));
-    ItemShopWindow->GetWindowBack()->SetBackgroundSprite("GSStoreBackground");
+    UI::Window* ItemShopWin = ItemShop->CreateWidgetWindow("GS_ItemShop", UI::RenderableRect(Vector2(0.25, 0.11), Vector2(0.5, 0.78125), true));
+    ItemShopWin->GetWindowBack()->SetBackgroundSprite("GSStoreBackground");
+    UI::Caption* ShopTitle = ItemShopWin->CreateCaption("GS_StoreTitle",UI::RenderableRect(Vector2(0.40,0.128),Vector2(0.20,0.06),true),Real(0.06),"Store");
+    ShopTitle->SetBackgroundColour(ColourValue::Transparent());
+    UI::PagedCellGrid* ItemShopGrid = ItemShopWin->CreatePagedCellGrid("GS_ItemShopGrid", UI::RenderableRect(Vector2(0.31,0.205), Vector2(0.38,0.26), true), UI::RenderableRect(Vector2(0.40,0.47), Vector2(0.20,0.05), true), UI::Spn_Separate, 0.05);
+    ItemShopGrid->GetGridBack()->SetBackgroundColour(ColourValue::Transparent());
+    ItemShopGrid->GetPageSpinner()->GetIncrement()->SetBackgroundSprite("GSIncrementPage");
+    ItemShopGrid->GetPageSpinner()->GetDecrement()->SetBackgroundSprite("GSDecrementPage");
+    ItemShopGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("GSPageBox");
+    UI::Rectangle* ItemShopDescriptionBoxBack = ItemShopWin->CreateRectangle(UI::RenderableRect(Vector2(0.31,0.525), Vector2(0.38,0.26), true));
+    ItemShopDescriptionBoxBack->SetBackgroundSprite("GSListBackground");
+    UI::MarkupText* ItemShopDescriptionBox = ItemShopWin->CreateMarkupText("GS_DescBox",UI::RenderableRect(Vector2(0.315,0.53), Vector2(0.37,0.25), true),Real(0.04),"This is a more exhaustive and thorough test of the markup text's capabilities.");
+    ItemShopDescriptionBox->SetBackgroundColour(ColourValue::Transparent());
+    UI::Caption* ItemShopMoneyBox = ItemShopWin->CreateCaption("GS_ItemShopMoney",UI::RenderableRect(Vector2(0.31,0.795),Vector2(0.12,0.06),true),Real(0.05),"$");
+    ItemShopMoneyBox->SetBackgroundSprite("GSStoreButton");
+    UI::TextButton* ItemShopBuyButton = ItemShopWin->CreateTextButton("GS_ItemShopBuy",UI::RenderableRect(Vector2(0.44,0.795),Vector2(0.12,0.06),true),Real(0.05),"Buy");
+    ItemShopBuyButton->SetBackgroundSprite("GSStoreButton");
+    ItemShopBuyButton->SetHoveredSprite("GSStoreHoveredButton");
+    UI::TextButton* ItemShopBackButton = ItemShopWin->CreateTextButton("GS_ItemShopBack",UI::RenderableRect(Vector2(0.57,0.795),Vector2(0.12,0.06),true),Real(0.05),"Back");
+    ItemShopBackButton->SetBackgroundSprite("GSStoreButton");
+    ItemShopBackButton->SetHoveredSprite("GSStoreHoveredButton");
+    ItemShopBackButton->SetButtonCallback(new GSISReturn());
 
-    /*UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",UI::RenderableRect(Vector2(0.28,0.54),Vector2(0.44,0.32), true),0.02,UI::SB_Separate);
-    ItemShopList->SetAutoHideScroll(false);
-    ItemShopList->GetBoxBack()->SetBackgroundColour(TransBlack);
-    ItemShopList->GetVertScroll()->GetScrollBack()->SetBackgroundColour(TransBlack);//*/
     ItemShop->Hide();
     //End of ItemShop Layer
 
@@ -439,7 +454,7 @@ void CatchApp::CreateLoadingScreen()
     Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
-    UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(0, 0), Vector2(1, 1), true));
+    UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
     Load->SetBackgroundSprite("BTSBanner");
     //LoadScreen->RenderOnce();
     crossplatform::RenderPhysWorld();
@@ -450,14 +465,33 @@ void CatchApp::ConfigResources()
 {
     ResourceManager* ResourceMan = TheWorld->GetResourceManager();
     String CommonGroup("Common");
-    String datadir = crossplatform::GetDataDirectory();
-    ResourceMan->AddResourceLocation(datadir, "FileSystem", CommonGroup, false);
+    String datadir = "Data/";
+    //ResourceMan->AddResourceLocation(datadir, "FileSystem", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"Common.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"AdvThrowables.zip", "Zip", CommonGroup, false);
+    ResourceMan->AddResourceLocation(datadir+"Music.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation("Previews/", "FileSystem", CommonGroup, false);
     ResourceMan->InitResourceGroup(CommonGroup);
     /// @todo Change this to parse an actual file
     ThrowableGenerator::ParseThrowables("");
+}
+
+void CatchApp::InitMusic()
+{
+    AudioManager* AudioMan = TheWorld->GetAudioManager();
+    Audio::MusicPlayer* MPlayer = AudioMan->GetMusicPlayer();
+    String CommonGroup("Common");
+    Audio::Sound* Track1 = AudioMan->CreateMusicSound("Track1","Track1.ogg",CommonGroup);
+    Audio::Sound* Track2 = AudioMan->CreateMusicSound("Track2","Track2.ogg",CommonGroup);
+    Audio::Sound* Track3 = AudioMan->CreateMusicSound("Track3","Track3.ogg",CommonGroup);
+    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track4","Track4.ogg",CommonGroup);
+    MPlayer->GetPlaylist()->AddSound(Track1);
+    MPlayer->GetPlaylist()->AddSound(Track2);
+    MPlayer->GetPlaylist()->AddSound(Track3);
+    MPlayer->GetPlaylist()->AddSound(Track4);
+    MPlayer->SetEOPRepeat(true);
+    MPlayer->SetEOPShuffle(true);
+    //MPlayer->SwitchToSong(Track4);
 }
 
 void CatchApp::PopulateScoreValues()
@@ -644,7 +678,6 @@ void CatchApp::UnloadLevel()
     SceneMan->DestroyAllParticleEffects();
     SceneMan->DestroyAllWorldNodes();
     SceneMan->DisableSky();
-    //ActorMan->DestroyAllActors();
     StartAreas.clear();
     ScoreAreas.clear();
     PlayZone = NULL;
@@ -682,8 +715,9 @@ int CatchApp::GetCatchin()
     TheWorld->GetUIManager()->SetPreMainLoopItems(&CPreUI);
     TheWorld->GetUIManager()->SetPostMainLoopItems(&CPostUI);
 
+    // Create the window BEFORE we init the graphics manager, so we can set non-default values
     const GraphicsSettings& DefSet = TheWorld->GetGraphicsManager()->GetDefaultSettings();
-    int WindowFlags = (DefSet.Fullscreen?GameWindow::WF_Fullscreen:0);// | GameWindow::WF_FSAA_4;
+    int WindowFlags = (DefSet.Fullscreen?GameWindow::WF_Fullscreen:0) | GameWindow::WF_FSAA_4;
     TheWorld->GetGraphicsManager()->CreateGameWindow("",DefSet.RenderWidth,DefSet.RenderHeight,WindowFlags);
 
     //Set the Make the RenderWindow and load system stuff
@@ -692,12 +726,17 @@ int CatchApp::GetCatchin()
 	TheWorld->GetUIManager()->EnableButtonAutoRegister(true);
     TheWorld->GetUIManager()->AddAutoRegisterCode(MetaCode::MOUSEBUTTON_1);
 
+    TheWorld->GetPhysicsManager()->SetSimulationSubstepModifier(2);
+
     ConfigResources();
 	CreateLoadingScreen();
 	ChangeState(CatchApp::Catch_Loading);
 
 	PopulateScoreValues();
     PopulateShopValues();
+
+    //Setup the Music
+    InitMusic();
 
     //Set logging frequency
     TheWorld->CommitLog();
@@ -713,6 +752,7 @@ int CatchApp::GetCatchin()
     //Generate the UI
     MakeGUI();
 
+    TheWorld->GetAudioManager()->GetMusicPlayer()->Play();
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);
@@ -1040,12 +1080,12 @@ bool CatchApp::CheckForStuff()
             { TheWorld->LogAndThrow("Trying to process a non-EventUserInput as an EventUserInput."); }
 
         //we check each MetaCode in each Event
-        for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
+        /*for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
             //Is the key we just pushed ESCAPE
             if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && MetaCode::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
                 { return false; }
-        }
+        }// */
 
         delete OneInput;
         OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
@@ -1071,7 +1111,7 @@ bool CatchApp::CheckForStuff()
         eventxml >> AnotherWindowEvent;
         TheWorld->Log(AnotherWindowEvent);
 
-        if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
+        /*if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
         {
             Audio::Sound* Welcome = NULL;
             Welcome = TheWorld->GetAudioManager()->GetSoundByName("Welcome");
@@ -1079,26 +1119,10 @@ bool CatchApp::CheckForStuff()
             {
                 Welcome->Play2d(false);
             }
-        }
+        }// */
 
         delete OneWindowEvent;
         OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
-    }
-
-    EventCollision* OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
-    EventCollision SecondCollision(0,0,Vector3(0.5,0.5,0.5),Vector3(1.5,1.5,1.5),Vector3(1,1,1),2.5);
-    while(0 != OneCollision)
-    {
-        if(OneCollision->GetType() != EventBase::Collision)
-            { TheWorld->LogAndThrow("Trying to process a non-EventCollision as an EventCollision."); }
-
-        stringstream temp;
-        temp << *OneCollision;
-        temp >> SecondCollision;
-        TheWorld->Log(SecondCollision);
-
-        delete OneCollision;
-        OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
     }
 
     return true;
@@ -1127,6 +1151,16 @@ void CatchApp::AddThrowable(ActorBase* Throwable)
 LevelLoader* CatchApp::GetLevelLoader()
 {
     return Loader;
+}
+
+SimpleTimer* CatchApp::GetLevelTimer()
+{
+    return LevelTimer;
+}
+
+SimpleTimer* CatchApp::GetEndTimer()
+{
+    return EndTimer;
 }
 
 #endif

@@ -225,8 +225,7 @@ namespace phys
                 virtual Vector2 GetActualSize() const;
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                /// @param OldViewportSize The new size of the viewport.
-                virtual void UpdateDimensions(const Vector2& OldViewportSize);
+                virtual void UpdateDimensions() = 0;
                 /// @brief Gets the hovered button within this widget, if any.
                 /// @return Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none.
                 virtual Button* GetHoveredButton() const;

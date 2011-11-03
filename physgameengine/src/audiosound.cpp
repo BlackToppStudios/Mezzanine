@@ -50,14 +50,6 @@ namespace phys
 {
     namespace Audio
     {
-        Sound::Sound(cAudio::IAudioSource* Source)
-            : BaseVolume(1.0)
-        {
-            SoundSource = Source;
-            Manager = World::GetWorldPointer()->GetAudioManager();
-            UpdateVolume();
-        }
-
         Sound::Sound(ConstString& SoundName, ConstString& FileName, ConstString& Group, Audio::SoundType SType)
             : Type(SType),
               BaseVolume(1.0)
@@ -213,6 +205,16 @@ namespace phys
         int Sound::GetCurrentCompressedAudioPosition() const
         {
             return SoundSource->getCurrentCompressedAudioPosition();
+        }
+
+        String Sound::GetName() const
+        {
+            return Name;
+        }
+
+        Audio::SoundType Sound::GetType() const
+        {
+            return Type;
         }
 
         void Sound::SetPitch(const Real& Pitch)

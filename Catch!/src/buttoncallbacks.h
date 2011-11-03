@@ -32,6 +32,15 @@ class GSReturn : public UI::ButtonCallback
         virtual void DoActivateItems();
 };
 
+class GSISReturn : public UI::ButtonCallback
+{
+    public:
+        GSISReturn();
+        virtual ~GSISReturn();
+        virtual void DoHoverItems();
+        virtual void DoActivateItems();
+};
+
 class GSMMReturn : public UI::ButtonCallback
 {
     public:

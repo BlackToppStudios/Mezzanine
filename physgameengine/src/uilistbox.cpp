@@ -47,6 +47,7 @@
 #include "uicaption.h"
 #include "uirectangle.h"
 #include "uiscrollbar.h"
+#include "uiviewportupdatetool.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -72,7 +73,6 @@ namespace phys
             Type = Widget::W_ListBox;
 
             // Set some sane template defaults
-            SelectionTemplate.Size = Rect.Size;
             SelectionTemplate.BackgroundColour = ColourValue(1.0,1.0,1.0,1.0);
             SelectionTemplate.TextColour = ColourValue(0.0,0.0,0.0,1.0);
             SelectionTemplate.TextScale = 1.0;
@@ -82,18 +82,22 @@ namespace phys
             SelectionTemplate.Priority = UI::RP_Medium;
 
             RenderableRect ScrollRect, BoxRect;
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
                 RelSize = Rect.Size;
-                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+
+                SelectionTemplate.Size = Rect.Size * WinDim;
 
                 ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ((Rect.Size.Y * WinDim.Y) / WinDim.X),RelPosition.Y);
                 ScrollRect.Size = Vector2((Rect.Size.Y * WinDim.Y) / WinDim.X,RelSize.Y * MaxDisplay);
                 ScrollRect.Relative = Rect.Relative;
             }else{
-                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
-                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+                RelPosition = Rect.Position / WinDim;
+                RelSize = Rect.Size / WinDim;
+
+                SelectionTemplate.Size = Rect.Size;
 
                 ScrollRect.Position = Vector2((Rect.Position.X + Rect.Size.X) - Rect.Size.Y,Rect.Position.Y);
                 ScrollRect.Size = Vector2(Rect.Size.Y,Rect.Size.Y * MaxDisplay);
@@ -153,9 +157,9 @@ namespace phys
             Vector2 CurrSize = Selection->GetActualSize();
             Vector2 TargetSize;
             if(VertScroll->IsVisible())
-                TargetSize = Vector2((SelectionTemplate.Size.X * WinDim.X) - VertScroll->GetActualSize().X,SelectionTemplate.Size.Y * WinDim.Y);
+                TargetSize = Vector2(SelectionTemplate.Size.X - VertScroll->GetActualSize().X,SelectionTemplate.Size.Y);
             else
-                TargetSize = SelectionTemplate.Size * WinDim;
+                TargetSize = SelectionTemplate.Size;
             if(CurrSize != TargetSize)
             {
                 Selection->SetActualSize(TargetSize);
@@ -185,7 +189,7 @@ namespace phys
                 FirstCaption = (Whole)(ToBeRounded + 0.5);
             }
             Vector2 SelectionPos = GetActualPosition();
-            Real ActualInc = SelectionTemplate.Size.Y * Parent->GetParent()->GetViewportDimensions().Y;
+            Real ActualInc = SelectionTemplate.Size.Y;
 
             for( Whole w = 0 ; w < FirstCaption ; ++w )
             {
@@ -271,11 +275,11 @@ namespace phys
             const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
             if(Relative)
             {
-                this->SelectionTemplate.Size = Size;
+                this->SelectionTemplate.Size = Size * WinDim;
                 Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);
                 SetArea(NewSize * WinDim);
             }else{
-                this->SelectionTemplate.Size = Size / WinDim;
+                this->SelectionTemplate.Size = Size;
                 Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);
                 SetArea(NewSize);
             }
@@ -337,7 +341,7 @@ namespace phys
 
         Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
-            RenderableRect SelectionRect(RelPosition,SelectionTemplate.Size,true);
+            RenderableRect SelectionRect(RelPosition,SelectionTemplate.Size / Parent->GetParent()->GetViewportDimensions(),true);
             Caption* Select = new Caption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text,Parent);
             if(!BackgroundSprite.empty())
                 Select->SetBackgroundSprite(BackgroundSprite);
@@ -408,7 +412,7 @@ namespace phys
             MaxDisplay = MaxSelections;
             Vector2 NewBackSize = SelectionTemplate.Size;
             NewBackSize.Y*=MaxDisplay;
-            SetArea(NewBackSize * Parent->GetParent()->GetViewportDimensions());
+            SetArea(NewBackSize);
             ScrollerSizeCheck();
         }
 
@@ -446,15 +450,21 @@ namespace phys
             // Size is set implicitly
         }
 
-        void ListBox::UpdateDimensions(const Vector2& OldViewportSize)
+        void ListBox::UpdateDimensions()
         {
             /*const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
             SetArea(RelSize * WinDim);
             SetActualPosition(RelPosition * WinDim);*/
 
+            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
+            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
+            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
+            Real Scale = ViewportUpdateTool::GetNewSize().Y / ViewportUpdateTool::GetOldSize().Y;
             BoxBack->UpdateDimensions();
-            VertScroll->UpdateDimensions(OldViewportSize);
+            VertScroll->UpdateDimensions();
+            SelectionTemplate.Size*=Scale;
             DrawList();
+            SetPosition(RelPosition);
         }
 
         Caption* ListBox::GetSelected()

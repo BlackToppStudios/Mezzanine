@@ -120,9 +120,9 @@ namespace phys
             RenderableContainerWidget::SetActualSize(Size);
         }
 
-        void Window::UpdateDimensions(const Vector2& OldViewportSize)
+        void Window::UpdateDimensions()
         {
-            RenderableContainerWidget::UpdateDimensions(OldViewportSize);
+            RenderableContainerWidget::UpdateDimensions();
         }
 
         Rectangle* Window::GetWindowBack()

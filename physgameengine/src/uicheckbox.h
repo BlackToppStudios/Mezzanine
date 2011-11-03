@@ -134,6 +134,9 @@ namespace phys
                 /// @brief Sets the pixel size of this checkbox.
                 /// @param Size A vector2 representing the pixel size of this checkbox.
                 virtual void SetActualSize(const Vector2& Size);
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions();
                 /// @brief Gets the Button this checkbox is based on.
                 /// @return Returns a pointer to the button this checkbox is based on.
                 Button* GetCheckBoxButton();

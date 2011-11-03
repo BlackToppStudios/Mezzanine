@@ -150,6 +150,9 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
                 virtual void SetActualSize(const Vector2& Size);
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions();
                 /// @brief Gets the increment button of this widget.
                 /// @return Returns a pointer to the increment button.
                 virtual Button* GetIncrement();

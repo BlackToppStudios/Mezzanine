@@ -269,10 +269,12 @@ namespace phys
             /// @brief This is called by all the constructors so that the is one unified place to have all the settings made.
             /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
             /// @param SceneType This is the type of Scene Manager to be created.
+            /// @param PluginsFilePath The path and filename of the plugins file to be loaded.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
             void Construct( const PhysicsConstructionInfo& PhysicsInfo,
                             SceneManager::SceneManagerType SceneType,
+                            std::string PluginsFilePath,
                             std::string LogFileName,
                             std::vector < ManagerBase* > ManagerToBeAdded);
 
@@ -309,10 +311,12 @@ namespace phys
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
             /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
+            /// @param PluginsFilePath The path and filename of the plugins file to be loaded.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @warning Do not make a new world if one already exists. This can only cause problems
             World(  const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
+                    std::string PluginsFilePath,
                     std::string LogFileName="Physgame.log" );
 
             /// @brief Descriptive constructor
@@ -320,12 +324,14 @@ namespace phys
             /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other
             /// constructors this one can accept a vector of pointers to managers. They will be add
             /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
+            /// @param PluginsFilePath The path and filename of the plugins file to be loaded.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
             /// @warning Do not make a new world if one already exists. This can only cause problems.
             World(  const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
+                    std::string PluginsFilePath,
                     const std::string &LogFileName,
                     const std::vector <ManagerBase*> &ManagerToBeAdded);
 

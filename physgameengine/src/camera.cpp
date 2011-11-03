@@ -259,22 +259,20 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Inherited From Attachable
+    // Inherited From Attachable
+
     Attachable::AttachableElement Camera::GetAttachableType() const
         { return Attachable::Camera; }
 
-    void Camera::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Functions
+    AttachableData Camera::GetAttachableData() const
     {
-        Attachable::AttachToFinal(RawTarget, Target);
-        RawTarget->attachObject(this->Cam);
+        AttachableData Data;
+        Data.OgreMovable = Cam;
+        Data.Type = Attachable::Camera;
+        return Data;
     }
-
-    void Camera::DetachFromFinal(Ogre::SceneNode* RawTarget)
-    {
-        Attachable::DetachFromFinal(RawTarget);
-        RawTarget->detachObject(this->Cam);
-    }
-
 }//phys
 
 ///////////////////////////////////////////////////////////////////////////////
