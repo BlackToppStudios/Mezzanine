@@ -68,7 +68,6 @@ void CatchApp::MakeGUI()
     Real MMStartLineHeight = 0.05;
     Real MMTextLineHeight = 0.04;
     Real MMSmallTextLineHeight = 0.03;
-    //std::pair<Whole,Real> MainMenuText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
     UI::TextButton* MMLevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", UI::RenderableRect(Vector2(0.05, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Level Select" );
     MMLevelSelectAccess->SetBackgroundSprite("MMButton");
     MMLevelSelectAccess->SetHoveredSprite("MMHoveredButton");
@@ -679,7 +678,6 @@ void CatchApp::UnloadLevel()
     SceneMan->DestroyAllParticleEffects();
     SceneMan->DestroyAllWorldNodes();
     SceneMan->DisableSky();
-    //ActorMan->DestroyAllActors();
     StartAreas.clear();
     ScoreAreas.clear();
     PlayZone = NULL;
@@ -717,6 +715,7 @@ int CatchApp::GetCatchin()
     TheWorld->GetUIManager()->SetPreMainLoopItems(&CPreUI);
     TheWorld->GetUIManager()->SetPostMainLoopItems(&CPostUI);
 
+    // Create the window BEFORE we init the graphics manager, so we can set non-default values
     const GraphicsSettings& DefSet = TheWorld->GetGraphicsManager()->GetDefaultSettings();
     int WindowFlags = (DefSet.Fullscreen?GameWindow::WF_Fullscreen:0) | GameWindow::WF_FSAA_4;
     TheWorld->GetGraphicsManager()->CreateGameWindow("",DefSet.RenderWidth,DefSet.RenderHeight,WindowFlags);

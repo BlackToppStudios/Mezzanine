@@ -74,13 +74,12 @@ namespace phys
     {
         private:
             /// @internal
-            /// The internal data for the particle effect
+            /// @brief The internal data for the particle effect
             internal::ParticleEffectInternalData *Pie;
-
         public:
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Construction
+            // Construction
 
             /// @brief Standard initialization constructor.
             /// @param Name The name of this particle effect.
@@ -97,58 +96,57 @@ namespace phys
             ParticleEffect(Ogre::ParticleSystem* System, const String& Template, SceneManager* manager);
 
             /// @brief Class destructor.
-            ~ParticleEffect();
+            virtual ~ParticleEffect();
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Inherited From Attachable
+            // Inherited From Attachable
 
-            /// @brief Gets the name of this particle effect.
-            /// @return Returns a string containing the name given to this particle effect.
+            /// @copydoc phys::Attachable::GetName()
             ConstString& GetName() const;
 
-            /// @brief What kind of Attachable is this.
-            /// @return An Attachable::GetAttachableType containing Attachable::Attachable.
+            /// @copydoc phys::Attachable::GetAttachableType()
             virtual Attachable::AttachableElement GetAttachableType() const;
 
-            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
-            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            /// Particle Functionality
-
-            /// @brief Enables the particle effect, allowing it to render.
-            /// @details If the Effect is already Enabled, this does nothing
-            void EnableParticleEffect();
-
-            /// @brief Disables the particle effect, preventing it from rendering.
-            /// @details If the Effect is already Disabled, this does nothing
-            void DisableParticleEffect();
-
-            /// @brief Is this effect enabled
-            /// @return True if enabled, false otherwise
-            bool IsEnabled() const;
-
-            /// @brief Set the location of this Particle effect relative to the object it is attached to.
-            /// @param vec The location.
+            /// @copydoc phys::Attachable::SetLocation(const Vector3& Vec)
             virtual void SetLocation(const Vector3& Vec);
 
-            /// @brief Get the location of the Particle Effect, relative to the Object is is attached to.
-            /// @return A Vector3 with the location.
+            /// @copydoc phys::Attachable::GetLocation()
             virtual Vector3 GetLocation() const;
 
-            /// @brief Sets the orientation of this node.
-            /// @param Orientation A Quaternion representing the orientation of this node.
-            void SetOrientation(Quaternion Orientation);
+            /// @copydoc phys::Attachable::SetOrientation(const Quaternion& Orientation)
+            virtual void SetOrientation(const Quaternion& Orientation);
 
-            /// @brief Gets the orientation of this node.
-            /// @return Returns a normalized quaternion representing the orientation of this node.
-            Quaternion GetOrientation() const;
+            /// @copydoc phys::Attachable::GetOrientation()
+            virtual Quaternion GetOrientation() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Particle Functionality
+
+            /// @brief Adds this particle effect to the world, allowing it to render.
+            /// @details If the Effect is already in the world, this does nothing.
+            void AddToWorld();
+
+            /// @brief Removes this particle effect from the world, preventing it from rendering.
+            /// @details If the Effect is not in the world, this does nothing
+            void RemoveFromWorld();
+
+            /// @brief Gets whether or not this effect is in the world.
+            /// @return True if in the world, false otherwise.
+            bool IsInWorld() const;
 
             /// @brief The name of the template used to create this.
             /// @return A reaference to a ConstString that has the name.
             ConstString& GetTemplate() const;
-    };
-}
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Functions
+
+            /// @internal
+            /// @brief Gets pointers to the internal ogre structures for this attachable.
+            /// @return Returns an AttachableData struct with the internal data.
+            virtual AttachableData GetAttachableData() const;
+    };//ParticleEffect
+}//phys
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment

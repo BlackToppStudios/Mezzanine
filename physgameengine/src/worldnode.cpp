@@ -87,14 +87,14 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Navigation
+    // Navigation
     void WorldNode::SetLocation(const Vector3& Location)
         { OgreNode->setPosition(Location.GetOgreVector3()); }
 
     Vector3 WorldNode::GetLocation() const
         { return Vector3(OgreNode->getPosition()); }
 
-    void WorldNode::SetOrientation(Quaternion Orientation)
+    void WorldNode::SetOrientation(const Quaternion& Orientation)
         { OgreNode->setOrientation(Orientation.GetOgreQuaternion()); }
 
     Quaternion WorldNode::GetOrientation() const
@@ -113,7 +113,7 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Auto tracking
+    // Auto tracking
     void WorldNode::SetAutoTracking(WorldNode* node, Vector3 Offset)
     {
         OgreNode->setAutoTracking(true, node->OgreNode, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
@@ -130,7 +130,7 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Basic Data
+    // Basic Data
 
     void WorldNode::SetType(WorldNode::NodeType type)
     {
@@ -149,36 +149,42 @@ namespace phys
         { return OgreNode->getName(); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Attachment child management
+    // Attachment child management
 
     void WorldNode::AttachObject(Attachable* Target)
-        { Target->AttachTo(this); }
-
-    void WorldNode::DetachObject(Attachable* Target)
-        { Target->DetachFrom(); }
-
-    void WorldNode::AttachObjectFinal(Attachable* Target)
     {
-        if(Target==this)
-            { World::GetWorldPointer()->LogAndThrow("Cannot Attach WorldNode To itself"); }
-        Target->AttachToFinal(OgreNode, this);
+        if(Target == this) //don't be stoopid, can't attach to yourself
+            return;
+        SetAttachedTo(Target,this);
+        if(this->OgreNode)
+        {
+            AttachableData AData = Target->GetAttachableData();
+            if(AData.OgreNode) this->OgreNode->addChild(AData.OgreNode);
+            else this->OgreNode->attachObject(AData.OgreMovable);
+        }
         Elements.push_back(Target);
     }
 
-    void WorldNode::DetachObjectFinal(Attachable* Target)
+    void WorldNode::DetachObject(Attachable* Target)
     {
-        Target->DetachFromFinal(OgreNode);
-        for( std::vector< Attachable* >::iterator it = Elements.begin() ; it != Elements.end() ; it++ )
+        for( std::vector< Attachable* >::iterator it = Elements.begin() ; it != Elements.end() ; ++it )
         {
-            if( Target == (*it) )
+            if(Target == (*it))
             {
+                SetAttachedTo(Target,NULL);
+                if(this->OgreNode)
+                {
+                    AttachableData AData = Target->GetAttachableData();
+                    if(AData.OgreNode) this->OgreNode->removeChild(AData.OgreNode);
+                    else this->OgreNode->detachObject(AData.OgreMovable);
+                }
                 Elements.erase(it);
                 return;
             }
         }
     }
 
-    Attachable* WorldNode::GetAttached(Whole Index) const
+    Attachable* WorldNode::GetAttached(const Whole& Index) const
         { return Elements.at(Index); }
 
     WorldNode::iterator WorldNode::begin()
@@ -204,25 +210,16 @@ namespace phys
     Whole WorldNode::GetNumAttached() const
         { return Elements.size(); }
 
-
     ///////////////////////////////////////////////////////////////////////////////
-    /// Attachment Parent management
+    // Internal Functions
 
-    void WorldNode::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
+    AttachableData WorldNode::GetAttachableData() const
     {
-        Attachable::AttachToFinal(RawTarget, Target);
-
-        if(this->OgreNode->getParent())
-            { this->OgreNode->getParentSceneNode()->removeChild(this->OgreNode); }
-        RawTarget->addChild(this->OgreNode);
+        AttachableData Data;
+        Data.OgreNode = OgreNode;
+        Data.Type = Attachable::WorldNode;
+        return Data;
     }
-
-    void WorldNode::DetachFromFinal(Ogre::SceneNode* RawTarget)
-    {
-        Attachable::DetachFromFinal(RawTarget);
-        RawTarget->removeChild(this->OgreNode);
-    }
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -278,6 +275,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
                         {
                             phys::String AttributeName(OneNode.GetAttribute("Name").AsString());
                             phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( Child.GetAttribute("Name").AsString() );
+                            /// @todo This doesn't account for other objects aside from world nodes to be attached.  Additional checks that fetch other types by name in the case of a null pointer should be implemented.
 
                             if (AttachPtr)  // fail silently, because if we don't find it then that means it just hasn't been deserialized yeat
                             {
@@ -285,7 +283,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
                                 {
                                     Ev.AttachObject(AttachPtr);
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Cannot reconcile WorldNode with the current state of the world: Attachable \"",AttachPtr->GetName()," needs to be attached, but is already attached to ",AttachPtr->GetAttachedTo()->GetName() )) );
+                                    throw( phys::Exception(phys::StringCat("Cannot reconcile WorldNode with the current state of the world: Attachable \"",AttachPtr->GetName(),"\" needs to be attached, but is already attached to ",AttachPtr->GetAttachedTo()->GetName() )) );
                                 }
                             }
 

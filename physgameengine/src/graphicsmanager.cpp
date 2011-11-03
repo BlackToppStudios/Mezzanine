@@ -120,7 +120,7 @@ namespace phys
             //case phys::RS_OpenGL3: return ""; break;  Not yet implemented
             //case phys::RS_OpenGL4: return ""; break;  Not yet implemented
             case phys::RS_OpenGLES1: return "OpenGL ES 1.x Rendering Subsystem"; break;
-            //case phys::RS_OpenGLES2: return ""; break;  Not yet implemented
+            //case phys::RS_OpenGLES2: return "OpenGL ES 2.x Rendering Subsystem"; break;  Not yet implemented
         }
         return "";
     }

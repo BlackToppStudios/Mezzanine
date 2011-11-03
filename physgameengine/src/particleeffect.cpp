@@ -99,7 +99,7 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Construction
+    // Construction
 
     ParticleEffect::ParticleEffect(const String& Name, const String& Template, SceneManager* manager)
     {
@@ -117,7 +117,7 @@ namespace phys
         { delete this->Pie; }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Inherited From Attachable
+    // Inherited From Attachable
 
     ConstString& ParticleEffect::GetName() const
         { return this->Pie->OgreParticle->getName(); }
@@ -125,51 +125,50 @@ namespace phys
     Attachable::AttachableElement ParticleEffect::GetAttachableType() const
         { return Attachable::ParticleEffect; }
 
-    void ParticleEffect::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
-    {
-        Attachable::AttachToFinal(RawTarget, Target);
-        if(this->Pie->OgreNode->getParent())
-            { this->Pie->OgreNode->getParentSceneNode()->removeChild(this->Pie->OgreNode); }
-        RawTarget->addChild(this->Pie->OgreNode);
-    }
-
-    void ParticleEffect::DetachFromFinal(Ogre::SceneNode* RawTarget)
-    {
-        Attachable::DetachFromFinal(RawTarget);
-        RawTarget->removeChild(this->Pie->OgreNode);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// Particle Functionality
-    void ParticleEffect::EnableParticleEffect()
-    {
-        if(!IsEnabled())
-            { this->Pie->OgreNode->attachObject(this->Pie->OgreParticle); }
-    }
-
-    void ParticleEffect::DisableParticleEffect()
-    {
-        if(IsEnabled())
-            { this->Pie->OgreNode->detachObject(this->Pie->OgreParticle); }
-    }
-
-    bool ParticleEffect::IsEnabled() const
-        { return this->Pie->OgreNode->numAttachedObjects(); }
-
     void ParticleEffect::SetLocation(const Vector3& Vec)
         { this->Pie->OgreNode->setPosition(Vec.GetOgreVector3()); }
 
     Vector3 ParticleEffect::GetLocation() const
         { return Vector3(this->Pie->OgreNode->getPosition()); }
 
-    void ParticleEffect::SetOrientation(Quaternion Orientation)
+    void ParticleEffect::SetOrientation(const Quaternion& Orientation)
         { this->Pie->OgreNode->setOrientation(Orientation.GetOgreQuaternion()); }
 
     Quaternion ParticleEffect::GetOrientation() const
         { return Quaternion(this->Pie->OgreNode->getOrientation()); }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Particle Functionality
+
+    void ParticleEffect::AddToWorld()
+    {
+        if(!IsInWorld())
+            { this->Pie->OgreNode->attachObject(this->Pie->OgreParticle); }
+    }
+
+    void ParticleEffect::RemoveFromWorld()
+    {
+        if(IsInWorld())
+            { this->Pie->OgreNode->detachObject(this->Pie->OgreParticle); }
+    }
+
+    bool ParticleEffect::IsInWorld() const
+        { return this->Pie->OgreParticle->getParentSceneNode() == this->Pie->OgreNode; }
+
     ConstString& ParticleEffect::GetTemplate() const
         { return this->Pie->Template; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Functions
+
+    AttachableData ParticleEffect::GetAttachableData() const
+    {
+        AttachableData Data;
+        Data.OgreMovable = Pie->OgreParticle;
+        Data.OgreNode = Pie->OgreNode;
+        Data.Type = Attachable::ParticleEffect;
+        return Data;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -179,7 +178,7 @@ std::ostream& operator << (std::ostream& stream, const phys::ParticleEffect& Ev)
 {
     stream      << "<ParticleEffect Version=\"1\" Name=\"" << Ev.GetName()
                     << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
-                    << "\" Enabled=\"" << Ev.IsEnabled()
+                    << "\" InWorld=\"" << Ev.IsInWorld()
                     << "\" Template=\"" << Ev.GetTemplate()
                 << "\">"
                 << "<Orientation>" << Ev.GetOrientation() << "</Orientation>"
@@ -204,11 +203,11 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ParticleEffe
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            if(OneNode.GetAttribute("Enabled").AsBool())
+            if(OneNode.GetAttribute("InWorld").AsBool())
             {
-                Ev.EnableParticleEffect();
+                Ev.AddToWorld();
             }else{
-                Ev.DisableParticleEffect();
+                Ev.RemoveFromWorld();
             }
 
             phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );

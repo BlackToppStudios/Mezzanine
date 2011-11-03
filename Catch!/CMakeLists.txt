@@ -42,6 +42,8 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}catchapp.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}itemshop.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}itemshop.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}itemshopcell.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}itemshopcell.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}itemshopitems.cpp"
