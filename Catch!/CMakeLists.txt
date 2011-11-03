@@ -1,3 +1,42 @@
+# © Copyright 2010 - 2011 BlackTopp Studios Inc.
+# This file is part of The PhysGame Engine.
+#
+#    The PhysGame Engine is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    The PhysGame Engine is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+#
+#   The original authors have included a copy of the license specified above in the
+#   'Docs' folder. See 'gpl.txt'
+#
+#   We welcome the use of The PhysGame anyone, including companies who wish to
+#   Build professional software and charge for their product.
+#
+#   However there are some practical restrictions, so if your project involves
+#   any of the following you should contact us and we will try to work something
+#   out:
+#    - DRM or Copy Protection of any kind(except Copyrights)
+#    - Software Patents You Do Not Wish to Freely License
+#    - Any Kind of Linking to Non-GPL licensed Works
+#    - Are Currently In Violation of Another Copyright Holder's GPL License
+#    - If You want to change our code and not add a few hundred MB of stuff to
+#        your distribution
+#
+#   These and other limitations could cause serious legal problems if you ignore
+#   them, so it is best to simply contact us or the Free Software Foundation, if
+#   you have any questions.
+#
+#   Joseph Toppi - toppij@gmail.com
+#   John Blackwood - makoenergy02@gmail.com
+
 cmake_minimum_required (VERSION 2.8)
 project (Catch)
 
@@ -89,6 +128,19 @@ function(CopyFilesFromPhygameDuringBuild SourceFile TargetFile)
 	)
 endfunction(CopyFilesFromPhygameDuringBuild)
 
+#Description: This creates a symlink in the Binary directory to another file in the binary directory. Used on systems that expect versioned shared object names when you want to link against a more base version.
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called and only on system that support symlinks, otherwise it will fail silently
+function(CreateSymlinkDuringBuild Targeting LinkName)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
+		#COMMAND ${CMAKE_COMMAND} -E create_symlink "${${PROJECT_NAME}_BINARY_DIR}${Linkname}" "${${PROJECT_NAME}_BINARY_DIR}${Target}"
+		COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
+		VERBATIM
+	)
+endfunction(CreateSymlinkDuringBuild)
+
 function(CreateDirectoryStructure)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
@@ -110,7 +162,7 @@ link_directories( ${${PROJECT_NAME}_PHYSGAME_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} physgame )
-target_link_libraries( ${PROJECT_NAME} physgame )
+target_link_libraries( ${PROJECT_NAME} physgame ${OgreLinkName})
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 
 ##############################################################################
@@ -155,13 +207,10 @@ endif(${WIN32})
 
 # Linux File Copy Specific Items
 
-if(${UNIX})
-	if(${APPLE})
-	else(${APPLE})
-
-	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
-	#CopyDemoFilesDuringBuild( linux/EngineDemo EngineDemo )
-	#CopyFilesFromPhygameDuringBuild( libOgreMain.so )
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
+	CopyFilesFromPhygameDuringBuild( ${OgreLinuxSoName} )
+	CreateSymlinkDuringBuild( ${OgreLinuxSoName} ${OgreLibFileName} )
 #	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so Plugins/RenderSystem_GL.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_ParticleFX.so Plugins/Plugin_ParticleFX.so )
@@ -169,11 +218,8 @@ if(${UNIX})
 	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg Plugins/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( data/linux/GLX_icon.png Data/GLX_icon.png )
 	CopyFilesFromPhygameDuringBuild( physgame.so physgame.so )
-	CopyFilesFromPhygameDuringBuild( libOgreMain.so.1.7.3 libOgreMain.so.1.7.3 )
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
-
-	endif(${APPLE})
-endif(${UNIX})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 
 # Mac File Copy pecific Items
