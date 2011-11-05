@@ -11,6 +11,6 @@ class ItemShop
     public:
         ItemShop();
         ~ItemShop();
-}//ItemShop
+};//ItemShop
 
 #endif

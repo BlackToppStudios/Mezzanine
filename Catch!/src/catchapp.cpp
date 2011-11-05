@@ -28,7 +28,7 @@ CatchApp::CatchApp()
     {
         PhysicsConstructionInfo Info;
         Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
-        TheWorld = new World( Info, SceneManager::Generic, "Plugins/plugins.cfg" );
+        TheWorld = new World( Info, SceneManager::Generic, "plugins.cfg", "Plugins/" );
     }catch( exception x){
         //could not create world
         // we need to halt execution right here somehow.
