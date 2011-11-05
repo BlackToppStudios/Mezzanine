@@ -1,5 +1,3 @@
-This pertains to the Ogre3d rendering libary, provided by Ogre3d.org.
-
                    GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
