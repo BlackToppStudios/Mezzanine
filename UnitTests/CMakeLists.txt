@@ -91,7 +91,7 @@ set(${PROJECT_NAME}_sources
 
 #Description: This function copies items from the Data/lib directory into it's expected location in the output directory During build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
-function(CopyDemoFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
+function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
@@ -99,8 +99,10 @@ function(CopyDemoFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
 		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
 		VERBATIM
 	)
-endfunction(CopyDemoFilesDuringBuild)
+endfunction(CopyFilesDuringBuild)
 
+#Description: This function copies items from the Data/lib directory in physgameengine into it's expected location in the output directory  for catch during build time. It does not need leading slashes
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesFromPhygameDuringBuild FileName)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
@@ -110,6 +112,19 @@ function(CopyFilesFromPhygameDuringBuild FileName)
 		VERBATIM
 	)
 endfunction(CopyFilesFromPhygameDuringBuild)
+
+#Description: This creates a symlink in the Binary directory to another file in the binary directory. Used on systems that expect versioned shared object names when you want to link against a more base version.
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called and only on system that support symlinks, otherwise it will fail silently
+function(CreateSymlinkDuringBuild Targeting LinkName)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
+		#COMMAND ${CMAKE_COMMAND} -E create_symlink "${${PROJECT_NAME}_BINARY_DIR}${Linkname}" "${${PROJECT_NAME}_BINARY_DIR}${Target}"
+		COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
+		VERBATIM
+	)
+endfunction(CreateSymlinkDuringBuild)
 
 ##############################################################################
 # Accessing correct headers
@@ -174,22 +189,22 @@ target_link_libraries( ${PROJECT_NAME} physgame ${OgreLinkName})
 # File copies during all builds
 message ("${PROJECT_NAME} - Begin File Copy Process")
 
-CopyDemoFilesDuringBuild( common/r2skin.jpg data/common/r2skin.jpg )
-CopyDemoFilesDuringBuild( common/robot.mesh data/common/robot.mesh )
-CopyDemoFilesDuringBuild( common/robot.skeleton data/common/robot.skeleton )
-CopyDemoFilesDuringBuild( common/dejavu.png data/common/dejavu.png )
-CopyDemoFilesDuringBuild( common/dejavu.gorilla data/common/dejavu.gorilla )
-CopyDemoFilesDuringBuild( common/sounds/welcomefun-1.ogg data/ )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt data/common/ubuntu-font-family/ubuntu-font-licence-1.0.txt )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf data/common/ubuntu-font-family/Ubuntu-B.ttf )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf data/common/ubuntu-font-family/Ubuntu-BI.ttf )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-I.ttf data/common/ubuntu-font-family/Ubuntu-I.ttf )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-R.ttf data/common/ubuntu-font-family/Ubuntu-R.ttf )
-CopyDemoFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
-CopyDemoFilesDuringBuild( common/Examples.particle data/common/Examples.particle )
-CopyDemoFilesDuringBuild( common/flare.png data/common/flare.png )
-CopyDemoFilesDuringBuild( common/Examples.material data/common/Examples.material )
-CopyDemoFilesDuringBuild( common/clouds.jpg data/common/clouds.jpg )
+CopyFilesDuringBuild( common/r2skin.jpg data/common/r2skin.jpg )
+CopyFilesDuringBuild( common/robot.mesh data/common/robot.mesh )
+CopyFilesDuringBuild( common/robot.skeleton data/common/robot.skeleton )
+CopyFilesDuringBuild( common/dejavu.png data/common/dejavu.png )
+CopyFilesDuringBuild( common/dejavu.gorilla data/common/dejavu.gorilla )
+CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/ )
+CopyFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt data/common/ubuntu-font-family/ubuntu-font-licence-1.0.txt )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf data/common/ubuntu-font-family/Ubuntu-B.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf data/common/ubuntu-font-family/Ubuntu-BI.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-I.ttf data/common/ubuntu-font-family/Ubuntu-I.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-R.ttf data/common/ubuntu-font-family/Ubuntu-R.ttf )
+CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
+CopyFilesDuringBuild( common/Examples.particle data/common/Examples.particle )
+CopyFilesDuringBuild( common/flare.png data/common/flare.png )
+CopyFilesDuringBuild( common/Examples.material data/common/Examples.material )
+CopyFilesDuringBuild( common/clouds.jpg data/common/clouds.jpg )
 
 CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )
@@ -200,13 +215,15 @@ CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyFilesFromPhygameDuringBuild( data/windows/ogre/RenderSystem_GL${OgresD}.dll )
-	CopyFilesFromPhygameDuringBuild( data/windows/plugins.cfg )
-	CopyFilesFromPhygameDuringBuild( data/windows/settings.cfg )
-	CopyFilesFromPhygameDuringBuild( physgame.dll )
 	CopyFilesFromPhygameDuringBuild( ${OgreLibFileName} )
-	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
+	CopyFilesFromPhygameDuringBuild( data/windows/ogre/RenderSystem_GL${OgresD}.dll )
 	CopyFilesFromPhygameDuringBuild( data/windows/ogre/Plugin_ParticleFX${OgresD}.dll )
+	CopyFilesFromPhygameDuringBuild( data/windows/ogre/Plugin_CgProgramManager${OgresD}.dll )
+	CopyFilesFromPhygameDuringBuild( data/windows/ogre/cg${OgresD}.dll )
+	CopyFilesFromPhygameDuringBuild( data/windows/plugins.cfg )
+#	CopyFilesFromPhygameDuringBuild( data/windows/settings.cfg )
+	CopyFilesFromPhygameDuringBuild( physgame.dll )
+	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromPhygameDuringBuild( OpenAL32.dll )
 	CopyFilesFromPhygameDuringBuild( SDL.dll )
 	CopyFilesFromPhygameDuringBuild( wrap_oal.dll )
@@ -214,13 +231,11 @@ if(${WIN32})
 endif(${WIN32})
 
 # Linux File Copy Specific Items
-
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
-	#CopyDemoFilesDuringBuild( linux/EngineDemo EngineDemo )
 	CopyFilesFromPhygameDuringBuild( ${OgreLinuxSoName} )
 	CreateSymlinkDuringBuild( ${OgreLinuxSoName} ${OgreLibFileName} )
-	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
+#	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL${OgresD}.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_ParticleFX${OgresD}.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_CgProgramManager${OgresD}.so )
@@ -229,7 +244,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	CopyFilesFromPhygameDuringBuild( libphysgame.so )
 	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-
 
 # Mac File Copy pecific Items
 if(${APPLE})

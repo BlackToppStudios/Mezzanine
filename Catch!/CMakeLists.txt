@@ -108,7 +108,7 @@ set(${PROJECT_NAME}_sources
 
 #Description: This function copies items from the Data/lib directory into it's expected location in the output directory During build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
-function(CopyDemoFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
+function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
@@ -116,14 +116,16 @@ function(CopyDemoFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
 		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
 		VERBATIM
 	)
-endfunction(CopyDemoFilesDuringBuild)
+endfunction(CopyFilesDuringBuild)
 
-function(CopyFilesFromPhygameDuringBuild SourceFile TargetFile)
+#Description: This function copies items from the Data/lib directory in physgameengine into it's expected location in the output directory  for catch during build time. It does not need leading slashes
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+function(CopyFilesFromPhygameDuringBuild FileName)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${SourceFile}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${SourceFile}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFile}"
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${FileName}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${FileName}"
 		VERBATIM
 	)
 endfunction(CopyFilesFromPhygameDuringBuild)
@@ -171,14 +173,11 @@ message ("${PROJECT_NAME} - Begin File Copy Process")
 
 CreateDirectoryStructure(  )
 
-#CopyDemoFilesDuringBuild( common/sounds/welcomefun-1.ogg data/welcomefun-1.ogg )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt Fonts/ubuntu-font-licence-1.0.txt )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf Fonts/Ubuntu-B.ttf )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf Fonts/Ubuntu-BI.ttf )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-I.ttf Fonts/Ubuntu-I.ttf )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-R.ttf Fonts/Ubuntu-R.ttf )
-#CopyDemoFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
-#CopyDemoFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
+CopyFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt Fonts/ubuntu-font-licence-1.0.txt )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf Fonts/Ubuntu-B.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf Fonts/Ubuntu-BI.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-I.ttf Fonts/Ubuntu-I.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-R.ttf Fonts/Ubuntu-R.ttf )
 
 CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt Licenses/Ogre-lgpl-3.0.txt )
 CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt Licenses/PugiXML-MITLicense.txt )
@@ -189,50 +188,44 @@ CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt Licenses/Pug
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyDemoFilesDuringBuild( windows/plugins.cfg Plugins/plugins.cfg )
-#	CopyDemoFilesDuringBuild( windows/settings.cfg data/windows/settings.cfg )
-	CopyDemoFilesDuringBuild( windows/Plugin_CgProgramManager.dll Plugins/Plugin_CgProgramManager.dll )
-	CopyDemoFilesDuringBuild( windows/cg.dll Plugins/cg.dll )
-	
-	CopyFilesFromPhygameDuringBuild( data/windows/ogre/RenderSystem_GL.dll Plugins/RenderSystem_GL.dll)
-	CopyFilesFromPhygameDuringBuild( data/windows/ogre/Plugin_ParticleFX.dll Plugins/Plugin_ParticleFX.dll)
-	CopyFilesFromPhygameDuringBuild( physgame.dll physgame.dll )
-	CopyFilesFromPhygameDuringBuild( OgreMain.dll OgreMain.dll )
-	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll )
-	CopyFilesFromPhygameDuringBuild( OpenAL32.dll OpenAL32.dll )
-	CopyFilesFromPhygameDuringBuild( SDL.dll SDL.dll )
-	CopyFilesFromPhygameDuringBuild( wrap_oal.dll wrap_oal.dll )
+	CopyFilesFromPhygameDuringBuild( ${OgreLibFileName} )
+	CopyFilesFromPhygameDuringBuild( data/windows/ogre/RenderSystem_GL${OgresD}.dll )
+	CopyFilesFromPhygameDuringBuild( data/windows/ogre/Plugin_ParticleFX${OgresD}.dll )
+	CopyFilesFromPhygameDuringBuild( data/windows/ogre/Plugin_CgProgramManager${OgresD}.dll )
+	CopyFilesFromPhygameDuringBuild( data/windows/ogre/cg${OgresD}.dll )
+	CopyFilesFromPhygameDuringBuild( data/windows/plugins.cfg )
+#	CopyFilesFromPhygameDuringBuild( data/windows/settings.cfg )
+	CopyFilesFromPhygameDuringBuild( physgame.dll )
+	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
+	CopyFilesFromPhygameDuringBuild( OpenAL32.dll )
+	CopyFilesFromPhygameDuringBuild( SDL.dll )
+	CopyFilesFromPhygameDuringBuild( wrap_oal.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
 # Linux File Copy Specific Items
-
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
 	CopyFilesFromPhygameDuringBuild( ${OgreLinuxSoName} )
 	CreateSymlinkDuringBuild( ${OgreLinuxSoName} ${OgreLibFileName} )
 #	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
-	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so Plugins/RenderSystem_GL.so )
-	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_ParticleFX.so Plugins/Plugin_ParticleFX.so )
-	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_CgProgramManager.so Plugins/Plugin_CgProgramManager.so )
-	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg Plugins/plugins.cfg )
-	CopyFilesFromPhygameDuringBuild( data/linux/GLX_icon.png Data/GLX_icon.png )
-	CopyFilesFromPhygameDuringBuild( physgame.so physgame.so )
-	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
+	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL${OgresD}.so )
+	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_ParticleFX${OgresD}.so )
+	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_CgProgramManager${OgresD}.so )
+	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg )
+	CopyFilesFromPhygameDuringBuild( data/linux/GLX_icon.png )
+	CopyFilesFromPhygameDuringBuild( libphysgame.so )
+	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-
 
 # Mac File Copy pecific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-#	CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 #	CopyFilesFromPhygameDuringBuild( data/macosx/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib Plugins/RenderSystem_GL.dylib )
 	CopyFilesFromPhygameDuringBuild( data/macosx/plugins.cfg Plugins/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( physgame.dylib physgame.dylib )
 #	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/Ogre.framework)
-
-
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 

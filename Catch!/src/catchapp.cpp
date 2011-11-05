@@ -31,6 +31,7 @@ CatchApp::CatchApp()
         TheWorld = new World( Info, SceneManager::Generic, "Plugins/plugins.cfg" );
     }catch( exception x){
         //could not create world
+        // we need to halt execution right here somehow.
     }
     Loader = new LevelLoader();
 }

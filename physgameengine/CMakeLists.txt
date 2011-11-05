@@ -394,8 +394,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 	#Autobuild SDL and ogre could go here
 
-	set(OgreLinuxSoName ${OgreLibFileName}.${OgreVersion})
-
+	#The fuve remarked lines could be used for statically linking OgreMain, but the engine source would need to be changed to prevent automatic loading of the libraries
 	#set(PhysgameBuildFlags "-Wl,-whole-archive ${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre/libOgreMainStatic.a -Wl,-no-whole-archive")
 	file( COPY 
 			#"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMainStatic.a"
@@ -495,8 +494,7 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
-#add_subdirectory (libincludes/common/ogresrc)
-#add_subdirectory (${BuildSpecificDirs}e)
+#add_subdirectory (libincludes/common/ogresrc) # not quite ready yet
 
 add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Ogre )
 
@@ -511,10 +509,10 @@ target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Physgame Depende
 	${SDL}
 )
 
-set_target_properties( ${PROJECT_NAME}				# Do not link games to Physgame's Dependencies
-	PROPERTIES
-	LINK_INTERFACE_LIBRARIES 	"zzip -lfreeimage -lfreetype -lX11 -lXt -lXaw"
-)
+#set_target_properties( ${PROJECT_NAME}				# Do not link games to Physgame's Dependencies
+#	PROPERTIES
+#	LINK_INTERFACE_LIBRARIES 	"zzip -lfreeimage -lfreetype -lX11 -lXt -lXaw"
+#)
 
 ###############################################################################
 # Build Time File copying
