@@ -3,6 +3,15 @@
 
 #include "itemshopitems.h"
 
+ItemShopItem::ItemShopItem(const String& Name, const String& Mesh, const String& Group)
+    : ActorRigid(Name,Mesh,Group);
+{
 
+}
+
+ItemShopItem::~ItemShopItem()
+{
+
+}
 
 #endif
