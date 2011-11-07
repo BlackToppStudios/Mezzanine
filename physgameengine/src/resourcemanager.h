@@ -76,12 +76,20 @@ namespace phys
             std::vector<String> ResourceGroups;
             void AddResourceGroupName(String Name);
 
+            /// @brief The location of engine data
+            String EngineDataPath;
+
         public:
             /// @brief Class constructor.
             /// @details Standard manager constructor.
-            ResourceManager();
+            /// @param EngineDataPath The directory for engine specific data.
+            ResourceManager(String _EngineDataPath);
             /// @details Class Destructor.
             ~ResourceManager();
+
+            /// @brief Get the pathname where engine data is stored
+            /// @return A String that contains the pathname
+            String GetEngineDataDirectory() const;
 
             /// @brief Adds a location for graphical resources.
             /// @details This function will add a location on the disk to find files needed to create and

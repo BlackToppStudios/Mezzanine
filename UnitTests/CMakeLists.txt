@@ -46,11 +46,15 @@ message ("${PROJECT_NAME} - Begin")
 #Variables
 add_definitions( ${CommonBuildFlags} )
 
+set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
+set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
+message ("Looking build resources in: ${${PROJECT_NAME}_ROOT_DIR}")
+
 set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}/data/")
 message ("Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 
-set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
-message ("Looking for source code in: ${${PROJECT_NAME}_SOURCE_DIR}")
+set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
+message ("Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set (${PROJECT_NAME}_PHYSGAME_DIR "${ProjectRootDir}/physgameengine/")
 message ("Base for physgame: ${${PROJECT_NAME}_PHYSGAME_DIR}")
@@ -70,20 +74,20 @@ set (physgame_LIBINCLUDE_DIR ${ProjectRootDir}/physgameengine/libincludes)
 ###############################################################################
 #Sources
 set(${PROJECT_NAME}_sources
-	"${${PROJECT_NAME}_SOURCE_DIR}/main.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/main.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actortests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/collisionshapetests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/compilerflagtests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/constrainttests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanagertests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/metacodetests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffecttests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanagertests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/transformtests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/vector2tests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/vector3tests.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/worldnodetests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/main.h"
+	"${${PROJECT_NAME}_SRC_DIR}/main.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}/actortests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/collisionshapetests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/compilerflagtests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/constrainttests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/eventmanagertests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/metacodetests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/particleeffecttests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/scenemanagertests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/transformtests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/vector2tests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/vector3tests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/worldnodetests.h"
 )
 
 ###############################################################################
@@ -120,7 +124,6 @@ function(CreateSymlinkDuringBuild Targeting LinkName)
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
 		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
-		#COMMAND ${CMAKE_COMMAND} -E create_symlink "${${PROJECT_NAME}_BINARY_DIR}${Linkname}" "${${PROJECT_NAME}_BINARY_DIR}${Target}"
 		COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
 		VERBATIM
 	)
@@ -129,7 +132,7 @@ endfunction(CreateSymlinkDuringBuild)
 ##############################################################################
 # Accessing correct headers
 
-include_directories( ${${PROJECT_NAME}_SOURCE_DIR}
+include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
 	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
 	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
@@ -142,8 +145,7 @@ if(${WIN32})
 	set(BuildPlatform windows)
 
 	include_directories(
-		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
-		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
+
 	)
 
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
@@ -178,7 +180,12 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 ##############################################################################
 #Executable definitions
-include_directories( ${${PROJECT_NAME}_SOURCE_DIR} ${${PROJECT_NAME}_PHYSGAME_BIN_SRC} )
+include_directories( 
+	${${PROJECT_NAME}_SRC_DIR}
+	${${PROJECT_NAME}_PHYSGAME_BIN_SRC} 
+	"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
+	"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
+)
 link_directories( ${${PROJECT_NAME}_PHYSGAME_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
@@ -195,19 +202,38 @@ CopyFilesDuringBuild( common/robot.skeleton data/common/robot.skeleton )
 CopyFilesDuringBuild( common/dejavu.png data/common/dejavu.png )
 CopyFilesDuringBuild( common/dejavu.gorilla data/common/dejavu.gorilla )
 CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/ )
+
 CopyFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt data/common/ubuntu-font-family/ubuntu-font-licence-1.0.txt )
 CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf data/common/ubuntu-font-family/Ubuntu-B.ttf )
 CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf data/common/ubuntu-font-family/Ubuntu-BI.ttf )
 CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-I.ttf data/common/ubuntu-font-family/Ubuntu-I.ttf )
 CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-R.ttf data/common/ubuntu-font-family/Ubuntu-R.ttf )
+
 CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
 CopyFilesDuringBuild( common/Examples.particle data/common/Examples.particle )
 CopyFilesDuringBuild( common/flare.png data/common/flare.png )
 CopyFilesDuringBuild( common/Examples.material data/common/Examples.material )
 CopyFilesDuringBuild( common/clouds.jpg data/common/clouds.jpg )
 
-CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
+CopyFilesFromPhygameDuringBuild( data/common/BulletZLibLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/lgpl-3.0.txt )
+CopyFilesFromPhygameDuringBuild( data/common/Ogre-MITLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/SDL-MITLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/zlib-libpngLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/gpl-3.0.txt )
+CopyFilesFromPhygameDuringBuild( data/common/Licenses.txt )
 CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/XiphCopyrightNotice.txt )
+
+
+CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/plugins.cfg )
+CopyFilesFromPhygameDuringBuild( ${OgreLibFileName} )
+CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
+CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
+CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginParticle} )
+
+#The Engine itself
+CopyFilesFromPhygameDuringBuild( ${PhysgameLibFileName} ${GameDir}${PhysgameLibFileName} )
 
 ##############################################################################
 #Copy System Dependant files during build time
@@ -215,13 +241,7 @@ CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyFilesFromPhygameDuringBuild( ${OgreLibFileName} )
-	CopyFilesFromPhygameDuringBuild( data/windows/ogre/RenderSystem_GL${OgresD}.dll )
-	CopyFilesFromPhygameDuringBuild( data/windows/ogre/Plugin_ParticleFX${OgresD}.dll )
-	CopyFilesFromPhygameDuringBuild( data/windows/ogre/Plugin_CgProgramManager${OgresD}.dll )
 	CopyFilesFromPhygameDuringBuild( data/windows/ogre/cg${OgresD}.dll )
-	CopyFilesFromPhygameDuringBuild( data/windows/plugins.cfg )
-#	CopyFilesFromPhygameDuringBuild( data/windows/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( physgame.dll )
 	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromPhygameDuringBuild( OpenAL32.dll )
@@ -233,24 +253,14 @@ endif(${WIN32})
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
-	CopyFilesFromPhygameDuringBuild( ${OgreLinuxSoName} )
-	CreateSymlinkDuringBuild( ${OgreLinuxSoName} ${OgreLibFileName} )
-#	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
-	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL${OgresD}.so )
-	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_ParticleFX${OgresD}.so )
-	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_CgProgramManager${OgresD}.so )
-	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg )
+	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName} )
 	CopyFilesFromPhygameDuringBuild( data/linux/GLX_icon.png )
-	CopyFilesFromPhygameDuringBuild( libphysgame.so )
 	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # Mac File Copy pecific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-	CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
-	CopyFilesFromPhygameDuringBuild( data/macosx/settings.cfg )
-	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib )
 	CopyFilesFromPhygameDuringBuild( data/macosx/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( physgame.dylib )
 #	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/Ogre.framework)
