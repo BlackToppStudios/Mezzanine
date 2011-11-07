@@ -1,0 +1,41 @@
+Tentatively 
+the player will be rewarded for all the items in the blue area when all the pieces have left the starting area and all pieces have come to rest.
+
+game mechanics that work
+Restitution 	Bounciness
+Damping		Environmental resistance
+Throwing	
+Dangling
+Motors		
+Fields
+Gravity
+
+Legend:
+Green shade	Starting Area
+Blue shade	Ending Area
+Brown		Wood
+Black		Lead
+Yellow		Gold
+Pink		Rubber
+White		Styrofoam
+
+Use the Gimp to work with xcf files
+
+Some spare ideas
+Circles of gravity
+	maybe they lead to the goal
+	maybe they lead back to the start
+damping fields that stop foam balls, but lead balls can knock them out.
+Use a field and some fancy graphics to make a ball's gravity rotate 90 degrees
+a spinn rubber paddle
+Pachinko
+a field that	
+	changes the size of the balls
+	changes gold to foam, foam to wood, wood to lead, and lead to gold call it the philosophers field
+	that dampens things going in one direction
+	a damping feild that changes size when things pass through it.
+	turns off gravity
+	that makes things glow red then melt ice
+use rubber to make and S curve, the player must bounce all the way through.
+A rubber basket to catch stuff in.
+a compound object shaped like a comb with gold tips the goal is in the recessed base of another matching cone.

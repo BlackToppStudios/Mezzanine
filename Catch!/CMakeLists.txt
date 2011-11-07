@@ -43,21 +43,23 @@ project (Catch)
 message ("${PROJECT_NAME} - Begin")
 
 ##############################################################################
-#EngineDemo initializations
+#Catch! initializations
 
 add_definitions( ${CommonBuildFlags} )
+
+set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
+set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
+message ("Looking build resources in: ${${PROJECT_NAME}_ROOT_DIR}")
 
 set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}/Data/")
 message ("Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 
-set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
-message ("Looking for source code in: ${${PROJECT_NAME}_SOURCE_DIR}")
+set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
+message ("Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set (${PROJECT_NAME}_PHYSGAME_DIR "${ProjectRootDir}/physgameengine/")
 message ("Base for physgame: ${${PROJECT_NAME}_PHYSGAME_DIR}")
 
-#this next line should work, but I guess CMake applies somekind of scope to variables
-#set (${PROJECT_NAME}_PHYSGAME_BIN_DIR "${physgame_BINARY_DIR}")
 set (${PROJECT_NAME}_PHYSGAME_BIN_DIR "${physgame_BINARY_DIR}/bin/")
 message ("Physgame Binaries: ${${PROJECT_NAME}_PHYSGAME_BIN_DIR}")
 
@@ -69,61 +71,95 @@ set (EXECUTABLE_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
 message ("Base Directory for Executable binaries and data output: ${${PROJECT_NAME}_BINARY_DIR}")
 
 ##############################################################################
+# Catch! Folder Structure
+
+#Root
+set (GameDir "${${PROJECT_NAME}_BINARY_DIR}/")
+message ("Catch! Complete Output: ${GameDir}")
+
+#Levels
+set (LevelDir "${GameDir}Levels/")
+message ("Catch! Levels Output: ${LevelDir}")
+
+# Common Data
+set (CommonDataDir "${GameDir}Data/")
+message ("Catch! Common Data Output: ${CommonDataDir}")
+
+# Fonts
+set (FontDir "${GameDir}Fonts/")
+message ("Catch! Font Output: ${FontDir}")
+
+# Licenses
+set (LicenseDir "${GameDir}Licenses/")
+message ("Catch! Licenses Output: ${LicenseDir}")
+
+# Plugins
+set (PluginDir "${GameDir}Plugins/")
+message ("Catch! Plugins Output: ${PluginDir}")
+
+# Previews
+set (PreviewDir "${GameDir}Previews/")
+message ("Catch! Preview Output: ${PreviewDir}")
+# ${GameDir} ${LevelDir} ${CommonDataDir} ${FontDir} ${LicenseDir} ${PluginDir} ${PreviewDir}
+
+##############################################################################
 #A complete list of our source files and headers
 set(${PROJECT_NAME}_sources
-	"${${PROJECT_NAME}_SOURCE_DIR}areaofplay.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}areaofplay.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}buttoncallbacks.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}buttoncallbacks.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}callbacks.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}callbacks.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}catchapp.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}catchapp.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}itemshop.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}itemshop.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}itemshopcell.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}itemshopcell.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}itemshopitems.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}itemshopitems.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}levelloader.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}levelloader.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}levelselectcell.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}levelselectcell.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}leveltriggers.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}leveltriggers.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}scorearea.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}scorearea.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}startingarea.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}startingarea.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}throwablegenerator.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}throwablegenerator.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}widgetcallbacks.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}widgetcallbacks.h"
+	"${${PROJECT_NAME}_SRC_DIR}areaofplay.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}areaofplay.h"
+	"${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.h"
+	"${${PROJECT_NAME}_SRC_DIR}callbacks.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}callbacks.h"
+	"${${PROJECT_NAME}_SRC_DIR}catchapp.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}catchapp.h"
+	"${${PROJECT_NAME}_SRC_DIR}gamebase.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}gamebase.h"
+	"${${PROJECT_NAME}_SRC_DIR}itemshop.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}itemshop.h"
+	"${${PROJECT_NAME}_SRC_DIR}itemshopcell.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}itemshopcell.h"
+	"${${PROJECT_NAME}_SRC_DIR}itemshopitems.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}itemshopitems.h"
+	"${${PROJECT_NAME}_SRC_DIR}levelloader.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}levelloader.h"
+	"${${PROJECT_NAME}_SRC_DIR}levelselectcell.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}levelselectcell.h"
+	"${${PROJECT_NAME}_SRC_DIR}leveltriggers.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}leveltriggers.h"
+	"${${PROJECT_NAME}_SRC_DIR}scorearea.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}scorearea.h"
+	"${${PROJECT_NAME}_SRC_DIR}startingarea.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}startingarea.h"
+	"${${PROJECT_NAME}_SRC_DIR}throwablegenerator.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}throwablegenerator.h"
+	"${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.h"
 )
 
 ##############################################################################
 # Functions to use to copy files at build time
 
-#Description: This function copies items from the Data/lib directory into it's expected location in the output directory During build time. It does not need leading slashes
+#Description: This function copies items from the Catch Project directory into the location specified. The output is not relative to the Binary Path, the caller must be explicit.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
-function(CopyDemoFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
+function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_DATA_DIR}${TargetFileInBinaryTree}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${TargetFileInBinaryTree}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_SOURCE_DIR}${SourceFileInDataTree}" "${TargetFileInBinaryTree}"
 		VERBATIM
 	)
-endfunction(CopyDemoFilesDuringBuild)
+endfunction(CopyFilesDuringBuild)
 
-function(CopyFilesFromPhygameDuringBuild SourceFile TargetFile)
+#Description: This function copies items from the output directory in physgameengine into the location specified. The output is not relative to the Binary Path, the caller must be explicit.
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+function(CopyFilesFromPhygameDuringBuild FileName Target)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${SourceFile}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${SourceFile}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFile}"
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${FileName}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${FileName}" "${Target}"
 		VERBATIM
 	)
 endfunction(CopyFilesFromPhygameDuringBuild)
@@ -135,7 +171,6 @@ function(CreateSymlinkDuringBuild Targeting LinkName)
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
 		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
-		#COMMAND ${CMAKE_COMMAND} -E create_symlink "${${PROJECT_NAME}_BINARY_DIR}${Linkname}" "${${PROJECT_NAME}_BINARY_DIR}${Target}"
 		COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
 		VERBATIM
 	)
@@ -146,18 +181,19 @@ function(CreateDirectoryStructure)
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
 		COMMAND ${CMAKE_COMMAND} -E echo "Creating Directory Structure"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${${PROJECT_NAME}_BINARY_DIR}/Fonts"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${${PROJECT_NAME}_BINARY_DIR}/Levels"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${${PROJECT_NAME}_BINARY_DIR}/Licenses"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${${PROJECT_NAME}_BINARY_DIR}/Plugins"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${${PROJECT_NAME}_BINARY_DIR}/Previews"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${LevelDir}"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${CommonDataDir}"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${FontDir}"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${LicenseDir}"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${PluginDir}"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${PreviewDir}"
 		VERBATIM
 	)
 endfunction(CreateDirectoryStructure)
 
 ##############################################################################
-#define the executable and say it requires physgame
-include_directories( ${${PROJECT_NAME}_SOURCE_DIR} ${${PROJECT_NAME}_PHYSGAME_BIN_SRC} )
+# Define the executable and say it requires physgame
+include_directories( ${${PROJECT_NAME}_SRC_DIR} ${${PROJECT_NAME}_PHYSGAME_BIN_SRC} )
 link_directories( ${${PROJECT_NAME}_PHYSGAME_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
@@ -171,17 +207,39 @@ message ("${PROJECT_NAME} - Begin File Copy Process")
 
 CreateDirectoryStructure(  )
 
-#CopyDemoFilesDuringBuild( common/sounds/welcomefun-1.ogg data/welcomefun-1.ogg )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt Fonts/ubuntu-font-licence-1.0.txt )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf Fonts/Ubuntu-B.ttf )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf Fonts/Ubuntu-BI.ttf )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-I.ttf Fonts/Ubuntu-I.ttf )
-CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-R.ttf Fonts/Ubuntu-R.ttf )
-#CopyDemoFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
-#CopyDemoFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
+#####################################
+# Fonts
+CopyFilesDuringBuild( data/common/ubuntu-font-family/ubuntu-font-licence-1.0.txt ${LicenseDir}ubuntu-font-licence-1.0.txt )
+CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-B.ttf ${FontDir}Ubuntu-B.ttf )
+CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-BI.ttf ${FontDir}Ubuntu-BI.ttf )
+CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-I.ttf ${FontDir}Ubuntu-I.ttf )
+CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-R.ttf ${FontDir}Ubuntu-R.ttf )
 
-CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt Licenses/Ogre-lgpl-3.0.txt )
-CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt Licenses/PugiXML-MITLicense.txt )
+#####################################
+# Fonts
+CopyFilesFromPhygameDuringBuild( data/common/BulletZLibLicense.txt ${LicenseDir}BulletZLibLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/lgpl-3.0.txt ${LicenseDir}lgpl-3.0.txt )
+CopyFilesFromPhygameDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}Ogre-MITLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/SDL-MITLicense.txt ${LicenseDir}SDL-MITLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/zlib-libpngLicense.txt ${LicenseDir}zlib-libpngLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/gpl-3.0.txt ${LicenseDir}gpl-3.0.txt )
+CopyFilesFromPhygameDuringBuild( data/common/Licenses.txt ${LicenseDir}Licenses.txt )
+CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt ${LicenseDir}PugiXML-MITLicense.txt )
+CopyFilesFromPhygameDuringBuild( data/common/XiphCopyrightNotice.txt ${LicenseDir}XiphCopyrightNotice.txt )
+
+#####################################
+# Common Data
+
+#Ogre stuff
+CopyFilesDuringBuild( data/${BuildPlatform}/plugins.cfg ${PluginDir}plugins.cfg)
+
+CopyFilesFromPhygameDuringBuild( ${OgreLibFileName} ${GameDir}${OgreLibFileName})
+CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginCGPM} ${PluginDir}${OgrePluginCGPM} )
+CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} ${PluginDir}${OgrePluginRenderGL} )
+CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginParticle} ${PluginDir}${OgrePluginParticle} )
+
+#The Engine itself
+CopyFilesFromPhygameDuringBuild( ${PhysgameLibFileName} ${GameDir}${PhysgameLibFileName} )
 
 ##############################################################################
 #Copy System Dependant files during build time
@@ -189,50 +247,30 @@ CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt Licenses/Pug
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyDemoFilesDuringBuild( windows/plugins.cfg Plugins/plugins.cfg )
-#	CopyDemoFilesDuringBuild( windows/settings.cfg data/windows/settings.cfg )
-	CopyDemoFilesDuringBuild( windows/Plugin_CgProgramManager.dll Plugins/Plugin_CgProgramManager.dll )
-	CopyDemoFilesDuringBuild( windows/cg.dll Plugins/cg.dll )
-	
-	CopyFilesFromPhygameDuringBuild( data/windows/ogre/RenderSystem_GL.dll Plugins/RenderSystem_GL.dll)
-	CopyFilesFromPhygameDuringBuild( data/windows/ogre/Plugin_ParticleFX.dll Plugins/Plugin_ParticleFX.dll)
-	CopyFilesFromPhygameDuringBuild( physgame.dll physgame.dll )
-	CopyFilesFromPhygameDuringBuild( OgreMain.dll OgreMain.dll )
-	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll )
-	CopyFilesFromPhygameDuringBuild( OpenAL32.dll OpenAL32.dll )
-	CopyFilesFromPhygameDuringBuild( SDL.dll SDL.dll )
-	CopyFilesFromPhygameDuringBuild( wrap_oal.dll wrap_oal.dll )
+	CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/cg${OgresD}.dll ${GameDir}cg${OgresD}.dll )
+	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll ${GameDir}libboost_thread-mgw45-mt-1_44.dll )
+	CopyFilesFromPhygameDuringBuild( OpenAL32.dll ${GameDir}OpenAL32.dll )
+	CopyFilesFromPhygameDuringBuild( wrap_oal.dll ${GameDir}wrap_oal.dll )
+	CopyFilesFromPhygameDuringBuild( SDL.dll ${GameDir}SDL.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
 # Linux File Copy Specific Items
-
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
-	CopyFilesFromPhygameDuringBuild( ${OgreLinuxSoName} )
-	CreateSymlinkDuringBuild( ${OgreLinuxSoName} ${OgreLibFileName} )
-#	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
-	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so Plugins/RenderSystem_GL.so )
-	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_ParticleFX.so Plugins/Plugin_ParticleFX.so )
-	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_CgProgramManager.so Plugins/Plugin_CgProgramManager.so )
-	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg Plugins/plugins.cfg )
-	CopyFilesFromPhygameDuringBuild( data/linux/GLX_icon.png Data/GLX_icon.png )
-	CopyFilesFromPhygameDuringBuild( physgame.so physgame.so )
-	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
+	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName}  )
+	CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/GLX_icon.png ${PluginDir}GLX_icon.png )
+	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-
 
 # Mac File Copy pecific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-#	CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 #	CopyFilesFromPhygameDuringBuild( data/macosx/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib Plugins/RenderSystem_GL.dylib )
 	CopyFilesFromPhygameDuringBuild( data/macosx/plugins.cfg Plugins/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( physgame.dylib physgame.dylib )
 #	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/Ogre.framework)
-
-
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 
