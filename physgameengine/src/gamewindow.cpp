@@ -152,9 +152,9 @@ namespace phys
         Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,(size_t)RenderContext);
         Opts.insert(Binder->begin(),Binder->end());// */
 
-        #ifdef LINUX
-        Ogre::ResourceGroupManager::getSingleton().addResourceLocation(crossplatform::GetDataDirectory(),"FileSystem");
-        #endif
+        //#ifdef LINUX
+        //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(World::GetWorldPointer()->GetResourceManager()->GetEngineDataDirectory(),"FileSystem");
+        //#endif
         OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);//*/
 
         #ifdef WINDOWS

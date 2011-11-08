@@ -59,11 +59,13 @@
 
 namespace phys {
 
-    ResourceManager::ResourceManager()
+    ResourceManager::ResourceManager(String _EngineDataPath)
     {
         this->Priority = 20;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
+        EngineDataPath = _EngineDataPath;
+        this->AddResourceLocation(_EngineDataPath, "FileSystem", "EngineData", false);
         //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
     }
 
@@ -72,6 +74,10 @@ namespace phys {
         for(std::vector<ResourceInputStream*>::iterator Iter = DeleteList.begin(); Iter != DeleteList.end(); Iter++)
             { delete *Iter; }
     }
+
+    String ResourceManager::GetEngineDataDirectory() const
+        { return EngineDataPath; }
+
 
     void ResourceManager::AddResourceGroupName(String Name)
     {

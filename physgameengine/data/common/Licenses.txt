@@ -1,0 +1,31 @@
+The following Licenses are applicable to the libraries that comprise the physgame engine as follows
+
+	The "GNU LESSER GENERAL PUBLIC LICENSE 3.0" as described in lgpl-3.0.txt:
+		libgcc 
+		libstdc++
+		OpenAL
+
+	The "MIT License with Torus Knot Copyright" as described in Ogre-MITLicense.txt:
+		Ogre3d 
+
+	The "Simple DirectMedia Layer MIT License" as described in SDL-MITLicense.txt:
+		libsdl
+		
+	The "Arseny Kapoulkine MIT License" as described in PugiXML-MITLicense.txt
+		PugiXML renamed as Phys::XML
+
+	The "Bullet Continuous Collision Detection and Physics Library ZLib License" as described in BulletZLibLicense.txt:
+		Bullet3d
+		Bullet Extras - Extras/GIMPACT
+		Bullet Extras - Extras/GIMPACTBullet
+	
+	The "zlib/libpng License" as described in zlib-libpngLicense.txt:
+		cAudio
+
+	The "Xiph.org Copyright Notice" XiphCopyrightNotice.txt:
+		libogg
+		libvorbis
+
+	The "GNU GENERAL PUBLIC LICENSE 3.0" as described in gpl-3.0.txt:
+		Physgame Engine
+	

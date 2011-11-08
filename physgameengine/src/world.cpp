@@ -71,31 +71,35 @@ namespace phys
         PhysicsConstructionInfo PhysicsInfo;
         std::vector <ManagerBase*> temp;
 
-        this->Construct(PhysicsInfo, SceneManager::Generic, "plugins.cfg", "Physgame.log", temp);
+        this->Construct(PhysicsInfo, SceneManager::Generic, "plugins.cfg",".", "Physgame.log", temp);
     }
 
     World::World(   const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
-                    std::string PluginsFilePath,
+                    const String &PluginsFileName,
+                    const String &EngineDataPath,
                     std::string LogFileName)
     {
         std::vector <ManagerBase*> temp;
         this->Construct(PhysicsInfo,
                         SceneType,
-                        PluginsFilePath,
+                        PluginsFileName,
+                        EngineDataPath,
                         LogFileName,
                         temp );
     }
 
     World::World(  const PhysicsConstructionInfo& PhysicsInfo,
-            SceneManager::SceneManagerType SceneType,
-            std::string PluginsFilePath,
-            const std::string &LogFileName,
-            const std::vector <ManagerBase*> &ManagerToBeAdded)
+                    SceneManager::SceneManagerType SceneType,
+                    const String &PluginsFileName,
+                    const String &EngineDataPath,
+                    const std::string &LogFileName,
+                    const std::vector <ManagerBase*> &ManagerToBeAdded)
     {
         this->Construct(PhysicsInfo,
                         SceneType,
-                        PluginsFilePath,
+                        PluginsFileName,
+                        EngineDataPath,
                         LogFileName,
                         ManagerToBeAdded );
 
@@ -116,8 +120,9 @@ namespace phys
 
     void World::Construct(  const PhysicsConstructionInfo& PhysicsInfo,
                                 SceneManager::SceneManagerType SceneType,
-                                std::string PluginsFilePath,
-                                std::string LogFileName,
+                                String PluginsFileName,
+                                String EngineDataPath,
+                                String LogFileName,
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
         //Set some sane Defaults for some values
@@ -129,7 +134,7 @@ namespace phys
 
 
         if ( 0 == OgreCore )
-            { OgreCore = new Ogre::Root(PluginsFilePath,"",LogFileName); }
+            { OgreCore = new Ogre::Root(EngineDataPath+PluginsFileName,"",LogFileName); }
         else
             { OgreCore = Ogre::Root::getSingletonPtr(); }
 
@@ -142,12 +147,12 @@ namespace phys
         //Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
             { this->AddManager(new ActorManager()); }
+        if(this->GetResourceManager()==0)
+            { this->AddManager(new ResourceManager(EngineDataPath)); }
         if(this->GetGraphicsManager()==0)
             { this->AddManager(new GraphicsManager()); }
         if(this->GetAudioManager()==0)
             { this->AddManager(new AudioManager()); }
-        if(this->GetResourceManager()==0)
-            { this->AddManager(new ResourceManager()); }
         if(this->GetEventManager()==0)
             { this->AddManager(new EventManager()); }
         if(this->GetPhysicsManager()==0)
