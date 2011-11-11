@@ -396,12 +396,12 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	include_directories(				
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"	#Cannot include in common until all platforms compile Ogre from source
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"						#cannot include in common until all platforms compile SDL from source
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDLbuild/include"			#cannot include in common until all platforms compile SDL from source
 	)
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
-	file( COPY 																					#cannot include in common until all platforms compile SDL from source
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/libSDL.a"
+	file( COPY 											#cannot include in common until all platforms compile SDL from source
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
 		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
 	)
     	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
