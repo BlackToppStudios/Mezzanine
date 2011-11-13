@@ -18,6 +18,9 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
+#include "SDL_config.h"
+
+#if SDL_VIDEO_DRIVER_UIKIT
 
 #include "SDL_uikitopengles.h"
 #include "SDL_uikitopenglview.h"
@@ -27,6 +30,7 @@
 #include "SDL_sysvideo.h"
 #include "../../events/SDL_keyboard_c.h"
 #include "../../events/SDL_mouse_c.h"
+#include "../../power/uikit/SDL_syspower.h"
 #include "SDL_loadso.h"
 #include <dlfcn.h>
 
@@ -34,7 +38,7 @@ static int UIKit_GL_Initialize(_THIS);
 
 void *
 UIKit_GL_GetProcAddress(_THIS, const char *proc)
-{    
+{
     /* Look through all SO's for the proc symbol.  Here's why:
        -Looking for the path to the OpenGL Library seems not to work in the iPhone Simulator.
        -We don't know that the path won't change in the future.
@@ -47,7 +51,6 @@ UIKit_GL_GetProcAddress(_THIS, const char *proc)
 */
 int UIKit_GL_MakeCurrent(_THIS, SDL_Window * window, SDL_GLContext context)
 {
-    
     if (context) {
         SDL_WindowData *data = (SDL_WindowData *)window->driverdata;
         [data->view setCurrentContext];
@@ -55,15 +58,15 @@ int UIKit_GL_MakeCurrent(_THIS, SDL_Window * window, SDL_GLContext context)
     else {
         [EAGLContext setCurrentContext: nil];
     }
-        
+
     return 0;
 }
 
 int
 UIKit_GL_LoadLibrary(_THIS, const char *path)
 {
-    /* 
-        shouldn't be passing a path into this function 
+    /*
+        shouldn't be passing a path into this function
         why?  Because we've already loaded the library
         and because the SDK forbids loading an external SO
     */
@@ -74,17 +77,15 @@ UIKit_GL_LoadLibrary(_THIS, const char *path)
     return 0;
 }
 
-extern void SDL_UIKit_UpdateBatteryMonitoring(void);
-
 void UIKit_GL_SwapWindow(_THIS, SDL_Window * window)
 {
-    #ifdef SDL_POWER_UIKIT
+#ifdef SDL_POWER_UIKIT
     // Check once a frame to see if we should turn off the battery monitor.
     SDL_UIKit_UpdateBatteryMonitoring();
-    #endif
+#endif
 
     SDL_WindowData *data = (SDL_WindowData *)window->driverdata;
-    
+
     if (nil == data->view) {
         return;
     }
@@ -95,26 +96,26 @@ void UIKit_GL_SwapWindow(_THIS, SDL_Window * window)
 
     /* we need to let the event cycle run, or the OS won't update the OpenGL view! */
     SDL_PumpEvents();
-    
+
 }
 
 SDL_GLContext UIKit_GL_CreateContext(_THIS, SDL_Window * window)
 {
     SDL_uikitopenglview *view;
     SDL_WindowData *data = (SDL_WindowData *) window->driverdata;
-    UIScreen *uiscreen = (UIScreen *) SDL_GetDisplayForWindow(window)->driverdata;
     UIWindow *uiwindow = data->uiwindow;
 
     /* construct our view, passing in SDL's OpenGL configuration data */
-    view = [[SDL_uikitopenglview alloc] initWithFrame: [uiwindow bounds] \
-                                    retainBacking: _this->gl_config.retained_backing \
-                                    rBits: _this->gl_config.red_size \
-                                    gBits: _this->gl_config.green_size \
-                                    bBits: _this->gl_config.blue_size \
-                                    aBits: _this->gl_config.alpha_size \
-                                    depthBits: _this->gl_config.depth_size \
+    view = [[SDL_uikitopenglview alloc] initWithFrame: [uiwindow bounds]
+                                    retainBacking: _this->gl_config.retained_backing
+                                    rBits: _this->gl_config.red_size
+                                    gBits: _this->gl_config.green_size
+                                    bBits: _this->gl_config.blue_size
+                                    aBits: _this->gl_config.alpha_size
+                                    depthBits: _this->gl_config.depth_size
+                                    stencilBits: _this->gl_config.stencil_size
                                     majorVersion: _this->gl_config.major_version];
-    
+
     data->view = view;
     view->viewcontroller = data->viewcontroller;
     if (view->viewcontroller != nil) {
@@ -149,5 +150,7 @@ void UIKit_GL_DeleteContext(_THIS, SDL_GLContext context)
     [view removeFromSuperview];
     [view release];
 }
+
+#endif /* SDL_VIDEO_DRIVER_UIKIT */
 
 /* vi: set ts=4 sw=4 expandtab: */

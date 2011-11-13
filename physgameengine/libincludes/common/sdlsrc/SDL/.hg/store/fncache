@@ -461,6 +461,7 @@ data/Xcode-iPhoneOS/Template/SDL iOS Application/main.c.i
 data/Xcode-iPhoneOS/Test/Info.plist.i
 data/Xcode-iPhoneOS/Test/README.i
 data/Xcode-iPhoneOS/Test/TestiPhoneOS.xcodeproj/project.pbxproj.i
+data/Xcode-iPhoneOS/rakefile.i
 data/Xcode.tar.gz.i
 data/Xcode.tar.gz.d
 data/Xcode/SDL/Info-Framework.plist.i
@@ -1719,6 +1720,7 @@ data/src/libm/k_cos.c.i
 data/src/libm/k_rem_pio2.c.i
 data/src/libm/k_sin.c.i
 data/src/libm/math.h.i
+data/src/libm/math_libm.h.i
 data/src/libm/math_private.h.i
 data/src/libm/s_atan.c.i
 data/src/libm/s_copysign.c.i
@@ -1806,6 +1808,7 @@ data/src/power/linux/SDL_syspower.c.i
 data/src/power/macosx/SDL_syspower.c.i
 data/src/power/nds/SDL_syspower.c.i
 data/src/power/os2/SDL_syspower.c.i
+data/src/power/uikit/SDL_syspower.h.i
 data/src/power/uikit/SDL_syspower.m.i
 data/src/power/windows/SDL_syspower.c.i
 data/src/render/SDL_render.c.i

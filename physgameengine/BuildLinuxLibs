@@ -99,7 +99,10 @@ make -j$ThreadCount Plugin_ParticleFX
 
 ########################################################
 #Now lets do SDL
-cd ../../../common/sdlsrc/SDL/
+cd ../../../common/sdlsrc/
+cp -an SDL SDLbuild
+cd SDLbuild
+
 ./autogen.sh
 ./configure LDFLAGS=-fPIC CFLAGS="-O2 $DebugSymbols -fPIC"
 make -j$ThreadCount

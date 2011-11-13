@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_UIKIT
+
 #include "SDL_syswm.h"
 #include "SDL_video.h"
 #include "SDL_mouse.h"
@@ -46,7 +48,7 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
     SDL_VideoDisplay *display = SDL_GetDisplayForWindow(window);
     UIScreen *uiscreen = (UIScreen *) display->driverdata;
     SDL_WindowData *data;
-        
+
     /* Allocate the window data */
     data = (SDL_WindowData *)SDL_malloc(sizeof(*data));
     if (!data) {
@@ -64,7 +66,7 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
         window->w = (int)uiwindow.frame.size.width;
         window->h = (int)uiwindow.frame.size.height;
     }
-    
+
     window->driverdata = data;
 
     // !!! FIXME: should we force this? Shouldn't specifying FULLSCREEN
@@ -88,11 +90,11 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
             [UIApplication sharedApplication].statusBarHidden = NO;
         }
 
-        const UIDeviceOrientation o = [[UIDevice currentDevice] orientation];
-        const BOOL landscape = (o == UIDeviceOrientationLandscapeLeft) ||
-                                   (o == UIDeviceOrientationLandscapeRight);
-        const BOOL rotate = ( ((window->w > window->h) && (!landscape)) ||
-                              ((window->w < window->h) && (landscape)) );
+        //const UIDeviceOrientation o = [[UIDevice currentDevice] orientation];
+        //const BOOL landscape = (o == UIDeviceOrientationLandscapeLeft) ||
+        //                           (o == UIDeviceOrientationLandscapeRight);
+        //const BOOL rotate = ( ((window->w > window->h) && (!landscape)) ||
+        //                      ((window->w < window->h) && (landscape)) );
 
         // The View Controller will handle rotating the view when the
         //  device orientation changes. This will trigger resize events, if
@@ -151,8 +153,13 @@ UIKit_CreateWindow(_THIS, SDL_Window *window)
             if (bestmode) {
                 UIScreenMode *uimode = (UIScreenMode *) bestmode->driverdata;
                 [uiscreen setCurrentMode:uimode];
-                display->desktop_mode = *bestmode;
+
+                // desktop_mode doesn't change here (the higher level will
+                //  use it to set all the screens back to their defaults
+                //  upon window destruction, SDL_Quit(), etc.
+                [((UIScreenMode *) display->current_mode.driverdata) release];
                 display->current_mode = *bestmode;
+                [((UIScreenMode *) display->current_mode.driverdata) retain];
             }
         }
     }
@@ -164,7 +171,7 @@ UIKit_CreateWindow(_THIS, SDL_Window *window)
         uiwindow = [uiwindow initWithFrame:[uiscreen bounds]];
     else
         uiwindow = [uiwindow initWithFrame:[uiscreen applicationFrame]];
-    
+
     // put the window on an external display if appropriate. This implicitly
     //  does [uiwindow setframe:[uiscreen bounds]], so don't do it on the
     //  main display, where we land by default, as that would eat the
@@ -176,14 +183,15 @@ UIKit_CreateWindow(_THIS, SDL_Window *window)
     if (SetupWindowData(_this, window, uiwindow, SDL_TRUE) < 0) {
         [uiwindow release];
         return -1;
-    }    
-    
+    }
+
     return 1;
-    
+
 }
 
 void
-UIKit_DestroyWindow(_THIS, SDL_Window * window) {
+UIKit_DestroyWindow(_THIS, SDL_Window * window)
+{
     SDL_WindowData *data = (SDL_WindowData *)window->driverdata;
     if (data) {
         [data->viewcontroller release];
@@ -208,5 +216,7 @@ UIKit_GetWindowWMInfo(_THIS, SDL_Window * window, SDL_SysWMinfo * info)
         return SDL_FALSE;
     }
 }
+
+#endif /* SDL_VIDEO_DRIVER_UIKIT */
 
 /* vi: set ts=4 sw=4 expandtab: */

@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_COCOA
+
 #include "SDL.h"
 #include "SDL_endian.h"
 #include "SDL_cocoavideo.h"
@@ -193,7 +195,7 @@ Cocoa_CreateImage(SDL_Surface * surface)
     SDL_FreeSurface(converted);
 
     /* Premultiply the alpha channel */
-    for (i = (converted->h * converted->w); i--; ) {
+    for (i = (surface->h * surface->w); i--; ) {
         Uint8 alpha = pixels[3];
         pixels[0] = (Uint8)(((Uint16)pixels[0] * alpha) / 255);
         pixels[1] = (Uint8)(((Uint16)pixels[1] * alpha) / 255);
@@ -258,5 +260,7 @@ SDL_PromptAssertion_cocoa(const SDL_assert_data *data)
 
     return (SDL_assert_state) (clicked - NSAlertFirstButtonReturn);
 }
+
+#endif /* SDL_VIDEO_DRIVER_COCOA */
 
 /* vim: set ts=4 sw=4 expandtab: */

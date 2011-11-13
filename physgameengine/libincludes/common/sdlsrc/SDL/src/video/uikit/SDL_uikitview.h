@@ -20,8 +20,6 @@
 */
 
 #import <UIKit/UIKit.h>
-#include "SDL_stdinc.h"
-#include "SDL_events.h"
 #import "SDL_uikitviewcontroller.h"
 
 #define IPHONE_TOUCH_EFFICIENT_DANGEROUS
@@ -31,7 +29,6 @@
 #define MAX_SIMULTANEOUS_TOUCHES 5
 #endif
 
-/* *INDENT-OFF* */
 #if SDL_IPHONE_KEYBOARD
 @interface SDL_uikitview : UIView<UITextFieldDelegate> {
 #else
@@ -48,7 +45,7 @@
 #if SDL_IPHONE_KEYBOARD
     UITextField *textField;
     BOOL keyboardVisible;
-#endif    
+#endif
 
 @public
     SDL_uikitviewcontroller *viewcontroller;
@@ -62,9 +59,8 @@
 - (void)hideKeyboard;
 - (void)initializeKeyboard;
 @property (readonly) BOOL keyboardVisible;
-#endif 
+#endif
 
 @end
-/* *INDENT-ON* */
 
 /* vi: set ts=4 sw=4 expandtab: */

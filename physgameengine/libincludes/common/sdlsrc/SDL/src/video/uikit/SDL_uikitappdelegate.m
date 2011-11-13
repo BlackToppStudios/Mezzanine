@@ -18,6 +18,9 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
+#include "SDL_config.h"
+
+#if SDL_VIDEO_DRIVER_UIKIT
 
 #import "../SDL_sysvideo.h"
 #import "SDL_assert.h"
@@ -36,16 +39,17 @@
 extern int SDL_main(int argc, char *argv[]);
 static int forward_argc;
 static char **forward_argv;
+static int exit_status;
 
-int main(int argc, char **argv) {
-
+int main(int argc, char **argv)
+{
     int i;
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
+
     /* store arguments */
     forward_argc = argc;
     forward_argv = (char **)malloc((argc+1) * sizeof(char *));
-    for (i=0; i<argc; i++) {
+    for (i = 0; i < argc; i++) {
         forward_argv[i] = malloc( (strlen(argv[i])+1) * sizeof(char));
         strcpy(forward_argv[i], argv[i]);
     }
@@ -53,14 +57,21 @@ int main(int argc, char **argv) {
 
     /* Give over control to run loop, SDLUIKitDelegate will handle most things from here */
     UIApplicationMain(argc, argv, NULL, [SDLUIKitDelegate getAppDelegateClassName]);
-    
+
+    /* free the memory we used to hold copies of argc and argv */
+    for (i = 0; i < forward_argc; i++) {
+        free(forward_argv[i]);
+    }
+    free(forward_argv);
+
     [pool release];
-    return 0;
+    return exit_status;
 }
 
-static void SDL_IdleTimerDisabledChanged(const char *name, const char *oldValue, const char *newValue) {
+static void SDL_IdleTimerDisabledChanged(const char *name, const char *oldValue, const char *newValue)
+{
     SDL_assert(SDL_strcmp(name, SDL_HINT_IDLE_TIMER_DISABLED) == 0);
-    
+
     BOOL disable = (*newValue != '0');
     [UIApplication sharedApplication].idleTimerDisabled = disable;
 }
@@ -68,54 +79,50 @@ static void SDL_IdleTimerDisabledChanged(const char *name, const char *oldValue,
 @implementation SDLUIKitDelegate
 
 /* convenience method */
-+(SDLUIKitDelegate *)sharedAppDelegate {
++ (SDLUIKitDelegate *)sharedAppDelegate
+{
     /* the delegate is set in UIApplicationMain(), which is garaunteed to be called before this method */
     return (SDLUIKitDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
-+(NSString *)getAppDelegateClassName {
++ (NSString *)getAppDelegateClassName
+{
     /* subclassing notice: when you subclass this appdelegate, make sure to add a category to override
        this method and return the actual name of the delegate */
     return @"SDLUIKitDelegate";
 }
 
-- (id)init {
+- (id)init
+{
     self = [super init];
     return self;
 }
 
-- (void)postFinishLaunch {
-    
+- (void)postFinishLaunch
+{
     /* register a callback for the idletimer hint */
     SDL_SetHint(SDL_HINT_IDLE_TIMER_DISABLED, "0");
     SDL_RegisterHintChangedCb(SDL_HINT_IDLE_TIMER_DISABLED, &SDL_IdleTimerDisabledChanged);
 
     /* run the user's application, passing argc and argv */
-    int exit_status = SDL_main(forward_argc, forward_argv);
-    
-    /* free the memory we used to hold copies of argc and argv */
-    int i;
-    for (i=0; i<forward_argc; i++) {
-        free(forward_argv[i]);
-    }
-    free(forward_argv);    
-        
+    exit_status = SDL_main(forward_argc, forward_argv);
+
     /* exit, passing the return status from the user's application */
-    exit(exit_status);
+    // exit(exit_status);
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-            
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     /* Set working directory to resource path */
     [[NSFileManager defaultManager] changeCurrentDirectoryPath: [[NSBundle mainBundle] resourcePath]];
-    
+
     [self performSelector:@selector(postFinishLaunch) withObject:nil afterDelay:0.0];
 
     return YES;
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    
+- (void)applicationWillTerminate:(UIApplication *)application
+{
     SDL_SendQuit();
      /* hack to prevent automatic termination.  See SDL_uikitevents.m for details */
     longjmp(*(jump_env()), 1);
@@ -130,7 +137,7 @@ static void SDL_IdleTimerDisabledChanged(const char *name, const char *oldValue,
     if (!_this) {
         return;
     }
-    
+
     SDL_Window *window;
     for (window = _this->windows; window != nil; window = window->next) {
         SDL_SendWindowEvent(window, SDL_WINDOWEVENT_MINIMIZED, 0, 0);
@@ -146,7 +153,7 @@ static void SDL_IdleTimerDisabledChanged(const char *name, const char *oldValue,
     if (!_this) {
         return;
     }
-    
+
     SDL_Window *window;
     for (window = _this->windows; window != nil; window = window->next) {
         SDL_SendWindowEvent(window, SDL_WINDOWEVENT_RESTORED, 0, 0);
@@ -154,5 +161,7 @@ static void SDL_IdleTimerDisabledChanged(const char *name, const char *oldValue,
 }
 
 @end
+
+#endif /* SDL_VIDEO_DRIVER_UIKIT */
 
 /* vi: set ts=4 sw=4 expandtab: */

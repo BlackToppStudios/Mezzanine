@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#ifdef SDL_THREAD_BEOS
+
 /* BeOS thread management routines for SDL */
 
 #include <stdio.h>
@@ -66,8 +68,9 @@ int
 SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
 {
     /* The docs say the thread name can't be longer than B_OS_NAME_LENGTH. */
+    const char *threadname = thread->name ? thread->name : "SDL Thread";
     char name[B_OS_NAME_LENGTH];
-    SDL_snprintf(name, sizeof (name), "%s", thread->name);
+    SDL_snprintf(name, sizeof (name), "%s", threadname);
     name[sizeof (name) - 1] = '\0';
 
     /* Create the thread and go! */
@@ -118,5 +121,7 @@ SDL_SYS_WaitThread(SDL_Thread * thread)
 
     wait_for_thread(thread->handle, &the_status);
 }
+
+#endif /* SDL_THREAD_BEOS */
 
 /* vi: set ts=4 sw=4 expandtab: */

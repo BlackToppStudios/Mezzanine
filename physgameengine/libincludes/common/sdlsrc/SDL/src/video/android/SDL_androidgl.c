@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_ANDROID
+
 /* Android SDL video driver implementation */
 
 #include "SDL_video.h"
@@ -29,26 +31,43 @@
 
 #include <android/log.h>
 
+#include <dlfcn.h>
+
+static void* Android_GLHandle = NULL;
 
 /* GL functions */
 int
 Android_GL_LoadLibrary(_THIS, const char *path)
 {
-    __android_log_print(ANDROID_LOG_INFO, "SDL", "[STUB] GL_LoadLibrary\n");
+    if (!Android_GLHandle) {
+        Android_GLHandle = dlopen("libGLESv1_CM.so",RTLD_GLOBAL);
+        if (!Android_GLHandle) {
+            SDL_SetError("Could not initialize GL ES library\n");
+            return -1;
+        }
+    }
     return 0;
 }
 
 void *
 Android_GL_GetProcAddress(_THIS, const char *proc)
 {
-    __android_log_print(ANDROID_LOG_INFO, "SDL", "[STUB] GL_GetProcAddress\n");
-    return 0;
+    /*
+       !!! FIXME: this _should_ use eglGetProcAddress(), but it appears to be
+       !!! FIXME:  busted on Android at the moment...
+       !!! FIXME:  http://code.google.com/p/android/issues/detail?id=7681
+       !!! FIXME: ...so revisit this later.  --ryan.
+    */
+    return dlsym(Android_GLHandle, proc);
 }
 
 void
 Android_GL_UnloadLibrary(_THIS)
 {
-    __android_log_print(ANDROID_LOG_INFO, "SDL", "[STUB] GL_UnloadLibrary\n");
+    if(Android_GLHandle) {
+        dlclose(Android_GLHandle);
+        Android_GLHandle = NULL;
+    }
 }
 
 SDL_GLContext
@@ -94,5 +113,7 @@ Android_GL_DeleteContext(_THIS, SDL_GLContext context)
 {
     __android_log_print(ANDROID_LOG_INFO, "SDL", "[STUB] GL_DeleteContext\n");
 }
+
+#endif /* SDL_VIDEO_DRIVER_ANDROID */
 
 /* vi: set ts=4 sw=4 expandtab: */

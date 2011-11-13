@@ -39,7 +39,6 @@ typedef struct
 
 /* So far only ASCII characters here */
 static UIKitKeyInfo unicharToUIKeyInfoTable[] = {
-/* *INDENT-OFF* */
 /*  0 */  {  SDL_SCANCODE_UNKNOWN, 0 },
 /*  1 */  {  SDL_SCANCODE_UNKNOWN, 0 },
 /*  2 */  {  SDL_SCANCODE_UNKNOWN, 0 },
@@ -88,7 +87,7 @@ static UIKitKeyInfo unicharToUIKeyInfoTable[] = {
 /*  45 */ {   SDL_SCANCODE_MINUS, 0 },        /* '-'                       */
 /*  46 */ {   SDL_SCANCODE_PERIOD, 0 },        /* '.'                       */
 /*  47 */ {   SDL_SCANCODE_SLASH, 0 },        /* '/'                       */
-/*  48 */ {   SDL_SCANCODE_0, 0    },        
+/*  48 */ {   SDL_SCANCODE_0, 0    },
 /*  49 */ {   SDL_SCANCODE_1, 0 },
 /*  50 */ {   SDL_SCANCODE_2, 0 },
 /*  51 */ {   SDL_SCANCODE_3, 0 },
@@ -137,7 +136,7 @@ static UIKitKeyInfo unicharToUIKeyInfoTable[] = {
 /*  94 */ {   SDL_SCANCODE_6,  KMOD_SHIFT },            /* plus shift modifier '^' */
 /*  95 */ {   SDL_SCANCODE_MINUS,  KMOD_SHIFT },        /* plus shift modifier '_' */
 /*  96 */ {   SDL_SCANCODE_GRAVE,  KMOD_SHIFT },        /* '`' */
-/*  97 */ {   SDL_SCANCODE_A, 0    },    
+/*  97 */ {   SDL_SCANCODE_A, 0    },
 /*  98 */ {   SDL_SCANCODE_B, 0 },
 /*  99 */ {   SDL_SCANCODE_C, 0 },
 /*  100 */{    SDL_SCANCODE_D, 0 },
@@ -168,7 +167,6 @@ static UIKitKeyInfo unicharToUIKeyInfoTable[] = {
 /*  125 */{    SDL_SCANCODE_RIGHTBRACKET, KMOD_SHIFT },    /* plus shift modifier '}' */
 /*  126 */{    SDL_SCANCODE_GRAVE, KMOD_SHIFT },         /* plus shift modifier '~' */
 /*  127 */{    SDL_SCANCODE_DELETE, KMOD_SHIFT }
-/* *INDENT-ON* */
 };
 
 #endif /* UIKitKeyInfo */
