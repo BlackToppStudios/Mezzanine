@@ -144,6 +144,11 @@ namespace phys {
         return Manifold->getContactPoint(Point).m_appliedImpulse;
     }
 
+    Real EventCollision::GetDistance(const Whole& Point)
+    {
+        return Manifold->getContactPoint(Point).m_distance1;
+    }
+
     Whole EventCollision::GetAge(const Whole& Point)
     {
         return (Whole)Manifold->getContactPoint(Point).m_lifeTime;

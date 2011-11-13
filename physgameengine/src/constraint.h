@@ -139,9 +139,6 @@ namespace phys
 
             ////////////////////////////////////////////////////////////////////////////////
             // TypedConstraint Protected Methods
-            /// @brief Get the Bullet constraint that this class encapsulates.
-            /// @return A pointer to the btTypedConstraint that stores the underlying constraint.
-            virtual btTypedConstraint* GetConstraintBase() const = 0;
             /// @brief Sets the Internal actor pointers.
             void SetBodies(ActorRigid* Act1, ActorRigid* Act2);
             /// @brief Sets the Internal actor pointers.
@@ -285,6 +282,10 @@ namespace phys
             /// @return Returns the value for the requested parameter.
             virtual Real GetParam(ConstraintParam Param, int Axis=-1) const;
 
+            /// @brief Get the Bullet constraint that this class encapsulates.
+            /// @return A pointer to the btTypedConstraint that stores the underlying constraint.
+            virtual btTypedConstraint* GetConstraintBase() const = 0;
+
             ///////////////////////////////////////////////////////////////////////////////
             // TypedConstraint Serialization
 #ifdef PHYSXML
@@ -406,8 +407,6 @@ namespace phys
         protected:
             /// @brief Bullet constraint that this class encapsulates.
             btConeTwistConstraint* ConeTwist;
-            /// @copydoc TypedConstraint::GetConstraintBase() const
-            virtual btTypedConstraint* GetConstraintBase() const;
         public:
             ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& Vectorb, const Quaternion& QuaternionA, const Quaternion& QuaternionB);
             ConeTwistConstraint(ActorRigid* ActorA, const Vector3& VectorA, const Quaternion& QuaternionA);
@@ -426,6 +425,9 @@ namespace phys
             virtual void SetMotorTargetInConstraintSpace(const Quaternion& Quat);
             virtual void EnableMotor(bool Enable);
             virtual bool IsPassedSwingLimit();
+
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -464,8 +466,6 @@ namespace phys
             /// @brief Inheritance Constructor.
             /// @details This is only called by derived classes, and shouldn't be called manually.
             Generic6DofConstraint();
-            /// @copydoc TypedConstraint::GetConstraintBase() const
-            virtual btTypedConstraint* GetConstraintBase() const;
         public:
 
             /// @brief Identify the Axis a bit easier when iterating over them is less convienent than typing an Identifier
@@ -779,6 +779,10 @@ namespace phys
             /// @param FrameOffset The new desired value.
             virtual void SetUseFrameOffset(bool FrameOffset);
 
+
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Generic6DofConstraint Serialization
 #ifdef PHYSXML
@@ -969,9 +973,6 @@ namespace phys
         protected:
             /// @brief Bullet constraint that this class encapsulates.
             btHingeConstraint* Hinge;
-
-            /// @copydoc TypedConstraint::GetConstraintBase() const
-            virtual btTypedConstraint* GetConstraintBase() const;
         public:
             ////////////////////////////////////////////////////////////////////////////////
             // HingeConstraint Construction and Destruction
@@ -1150,6 +1151,9 @@ namespace phys
             /// @param UseReferenceFrameA Whether certain math be performed from the perspective of Actor A or Actor B (we think this is the case, but we have not test thoroughly)
             virtual void SetUseReferenceFrameA(bool UseReferenceFrameA=false);
 
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
+
 #ifdef PHYSXML
             ////////////////////////////////////////////////////////////////////////////////
             // HingeConstraint Serialization
@@ -1216,8 +1220,6 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Point2PointConstraint();
-            /// @copydoc TypedConstraint::GetConstraintBase() const
-            virtual btTypedConstraint* GetConstraintBase() const;
 
             ////////////////////////////////////////////////////////////////////////////////
             // Point2PointConstraint Position and Orientation
@@ -1266,6 +1268,8 @@ namespace phys
             /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const
             virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
 
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
 
 #ifdef PHYSXML
             ///////////////////////////////////////////////////////////////////////////////
@@ -1304,8 +1308,6 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~SliderConstraint();
-            /// @copydoc TypedConstraint::GetConstraintBase() const
-            virtual btTypedConstraint* GetConstraintBase() const;
             virtual void SetFrameOffsetALocation(const Vector3& Location);
             virtual void SetFrameOffsetBLocation(const Vector3& Location);
             virtual void SetUpperLinLimit(Real UpperLimit);
@@ -1337,6 +1339,8 @@ namespace phys
             virtual void SetSoftnessOrthoAng(Real SoftnessOrthoAng);
             virtual void SetRestitutionOrthoAng(Real RestitutionOrthoAng);
             virtual void SetDampingOrthoAng(Real DampingOrthoAng);
+            /// @copydoc TypedConstraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
     };
 
     ///////////////////////////////////////////////////////////////////////////////

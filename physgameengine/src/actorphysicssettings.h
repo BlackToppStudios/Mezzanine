@@ -60,6 +60,7 @@ namespace phys
     class ActorSoft;
     class ActorTerrain;
     class CollisionShape;
+    class Generic6DofConstraint;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorBasePhysicsSettings
     /// @headerfile actorphysicssettings.h
@@ -238,12 +239,24 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB ActorRigidPhysicsSettings : public ActorBasePhysicsSettings
     {
+        public:
+            /// @struct StickyData
+            /// @headerfile actorrigid.h
+            /// @brief This is a basic class for storing the data related to the sticky behavior available to actorrigid's.
+            struct StickyData
+            {
+                StickyData() : MaxNumContacts(0) {};
+                std::vector<Generic6DofConstraint*> StickyConstraints;
+                Whole MaxNumContacts;
+            };//stickydata
         protected:
             /// @internal
             /// @brief Physics Object of the actor.
             btRigidBody* ActorRB;
             /// @brief The Actor this belongs to.
             ActorRigid* RigidParent;
+            /// @brief Data related to sticky behavior, if any is enabled.
+            StickyData* StickyContacts;
         public:
             /// @brief Standard Constructor.
             /// @param Actor The actor this settings class configures.
@@ -256,6 +269,15 @@ namespace phys
             /// @brief Sets the collision shape to be used.
             /// @param Shape The shape to be applied.
             virtual void SetCollisionShape(CollisionShape* Shape);
+
+            /// @brief Sets the basic parameters for enabling sticky behavior with this actor.
+            /// @param MaxNumContacts The maximum number of object this object can stick to or have stuck to it.
+            virtual void SetStickyData(const Whole& MaxNumContacts);
+            /// @brief Removes all the constraints currently active on this object
+            virtual void ClearStickyContacts();
+            /// @brief Gets the struct storing the data related to sticky behavior.
+            /// @return Returns a pointer to the struct storing the sticky data for this actor.
+            virtual StickyData* GetStickyData() const;
 
             /// @brief Sets the Damping for this object.
             /// @details Both of Linear Damping and Angular Damping default to zero.  This is useful if you wish to simulate

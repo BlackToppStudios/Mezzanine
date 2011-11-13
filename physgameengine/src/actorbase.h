@@ -98,9 +98,6 @@ namespace phys
     class PHYS_LIB ActorBase {
         private:
             friend class WorldNode;
-            friend class ActorContainerBase;
-            friend class PhysicsManager;
-            friend class ResourceManager;
             friend class ActorGraphicsSettings;
             friend class ActorBasePhysicsSettings;
 
@@ -355,8 +352,12 @@ namespace phys
             virtual void RemoveObjectFromWorld() = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
-// Internal Object Access functions
+// Internal Object functions
 ///////////////////////////////////////
+            /// @internal
+            /// @brief Utility function for altering or checking the actor every frame.
+            virtual void _Update() = 0;
+
             /// @internal
             /// @brief Notifies this actor of a collision that is occuring with it.
             /// @param Collision A pointer to the collision event pertaining to this actor.
@@ -370,12 +371,17 @@ namespace phys
             /// @internal
             /// @brief Gets the internal physics object this actor is based on.
             /// @return Returns a pointer to the internal Bullet object.
-            virtual btCollisionObject* _GetBaseBulletObject() const;
+            virtual btCollisionObject* _GetBasePhysicsObject() const;
 
             /// @internal
             /// @brief Gets the internal graphics object this actor is based on.
             /// @return Returns a pointer to the internal graphics object.
-            virtual Ogre::Entity* _GetOgreObject() const;
+            virtual Ogre::Entity* _GetGraphicsObject() const;
+
+            /// @internal
+            /// @brief Gets the internal graphics node this actor uses for it's graphics transform.
+            /// @return Returns a pointer to the internal graphics node.
+            virtual Ogre::SceneNode* _GetGraphicsNode() const;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Serialization

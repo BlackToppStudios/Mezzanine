@@ -42,7 +42,6 @@
 
 #include "actorbase.h"
 #include "actorphysicssettings.h"
-#include "crossplatformexport.h"
 
 ///////////////////////////////////
 // Actual code
@@ -50,14 +49,15 @@ namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorRigid
-    /// @headerfile actorbase.h
+    /// @headerfile actorrigid.h
     /// @brief This is the actor class for Rigid Objects.
     /// @details This class should be used to make any rigid object that can be moved as a
     /// result of force.  Most objects will fall into this catagory.  A few examples of a
     /// Rigid Object: Boxes, Car Frames, Chairs, etc.  For Semi Rigid bodies that are
     /// deformable, like jello, it is better to use ActorSoft.
     ///////////////////////////////////////
-    class PHYS_LIB ActorRigid : public ActorBase {
+    class PHYS_LIB ActorRigid : public ActorBase
+    {
         protected:
             friend class TypedConstraint;
             /// @brief Used to simulate the behavior of a btRigidBody
@@ -78,7 +78,6 @@ namespace phys
             /// @param file The 3d mesh file that contains the 3d model the actor will use.
             /// @param group The resource group where the 3d mesh and other related files can be found.
             ActorRigid(const Real& mass, const String& name, const String& file, const String& group);
-
             /// @brief Destructor.
             /// @details The class destructor.
             virtual ~ActorRigid();
@@ -109,11 +108,17 @@ namespace phys
             /// @return Returns a Vector3 representing the factors on the 3 angular axes.
             virtual Vector3 GetAngularMovementFactor() const;
 
-
-
+            ///////////////////////////////////////////////////////////////////////////////
             // Inherited from ActorBase
-            virtual void AddObjectToWorld ();
+            ///////////////////////////////////////
+            /// @copydoc ActorBase::AddObjectToWorld()
+            virtual void AddObjectToWorld();
+            /// @copydoc ActorBase::RemoveObjectFromWorld()
             virtual void RemoveObjectFromWorld();
+            /// @copydoc ActorBase::_Update()
+            virtual void _Update();
+            /// @copydoc ActorBase::_NotifyCollision(EventCollision* Collision)
+            virtual void _NotifyCollision(EventCollision* Collision);
 
             /// @internal
             /// @brief Get the Physics data raw from the physic subsystem

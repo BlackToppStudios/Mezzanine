@@ -9,7 +9,7 @@ class ItemShopItem : public ActorRigid
 {
     protected:
     public:
-        ItemShopItem(const String& Name, const String& Mesh, const String& Group);
+        ItemShopItem(const Real& Mass, const String& Name, const String& Mesh, const String& Group);
         ~ItemShopItem();
 };//Itemshopitem
 

@@ -381,9 +381,9 @@ namespace phys
         return NULL;
     }
 
-    const String& MeshManager::CreateColouredMaterial(const String& MatName, const ColourValue& Colour)
+    const String& MeshManager::CreateColouredMaterial(const String& MatName, const ColourValue& Colour, const String& Group)
     {
-        Ogre::ResourceManager::ResourceCreateOrRetrieveResult Result = Ogre::MaterialManager::getSingletonPtr()->createOrRetrieve(MatName, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        Ogre::ResourceManager::ResourceCreateOrRetrieveResult Result = Ogre::MaterialManager::getSingletonPtr()->createOrRetrieve(MatName, Group.empty() ? Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME : Group);
         Ogre::MaterialPtr NewMaterial = static_cast<Ogre::MaterialPtr>(Result.first);
         NewMaterial->setReceiveShadows(false);
         Ogre::Pass* pass = NewMaterial->getTechnique(0)->getPass(0);

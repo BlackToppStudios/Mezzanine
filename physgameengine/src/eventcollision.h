@@ -138,6 +138,12 @@ namespace phys {
             /// @param Point The index of the contact point for this collision.
             /// @return Returns a real representing the amount of force applied from the collision.
             Real GetAppliedImpulse(const Whole& Point);
+            /// @brief Gets the penetration depth of the collision.
+            /// @remarks You should double check the return of this to verify that it is <0, sometimes a collision or contact point can be
+            /// reported while there is no actual overlap depending on your physics setup.
+            /// @param Point The index of the contact point for this collision.
+            /// @return Returns a real representing the depth of penetration between the two objects in this collision.
+            Real GetDistance(const Whole& Point);
             /// @brief Gets the number of simulation steps the contact point has existed.
             /// @param Point The index of the contact point for this collision.
             /// @return Returns a Whole representing the amount of simulation steps a point has existed.

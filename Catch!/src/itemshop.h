@@ -3,6 +3,8 @@
 
 #include <physgame.h>
 
+#include "itemshopitems.h"
+
 using namespace phys;
 
 class ItemShop

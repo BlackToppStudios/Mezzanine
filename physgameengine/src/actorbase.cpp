@@ -311,14 +311,19 @@ namespace phys{
         CurrentCollisions.erase(CurrentCollisions.find(Collision));
     }
 
-    btCollisionObject* ActorBase::_GetBaseBulletObject() const
+    btCollisionObject* ActorBase::_GetBasePhysicsObject() const
     {
         return CollisionObject;
     }
 
-    Ogre::Entity* ActorBase::_GetOgreObject() const
+    Ogre::Entity* ActorBase::_GetGraphicsObject() const
     {
         return GraphicsObject;
+    }
+
+    Ogre::SceneNode* ActorBase::_GetGraphicsNode() const
+    {
+        return GraphicsNode;
     }
 
 ///////////////////////////////////////////////////////////////////////////////

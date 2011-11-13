@@ -115,6 +115,11 @@ namespace phys
         this->DetachFromGraphics();
     }
 
+    void ActorTerrain::_Update()
+    {
+
+    }
+
     btRigidBody* ActorTerrain::GetBulletObject()
     {
         return RigidBody;
