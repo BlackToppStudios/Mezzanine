@@ -137,6 +137,7 @@ namespace phys
             unsigned short int CollisionAge;
             Real Impulse;
             bool SimulationPaused;
+            Whole SubstepModifier;
             std::vector< TypedConstraint* > Constraints;
             std::vector< AreaEffect* > AreaEffects;
             std::vector< WorldTrigger* > Triggers;
@@ -328,6 +329,16 @@ namespace phys
             /// @brief Clears all data relating to actors and other simulation objects from the physics world.
             /// @details This is best used with simulation cleanup.
             void ClearPhysicsMetaData();
+            /// @brief Sets the modifier to be used when stepping the physics simulation.
+            /// @remarks For the most part, the simulation tick is determined by your target framerate set on phys::World.  However
+            /// there are some occasions when you will want to have it tick more often, in particular with sensative simulation setups
+            /// involving many constraints, or small objects, or fast moving objects, or any combination of those.  In order to make your
+            /// simulation more stable you have to tick in smaller intervals, making it less likely for the engine to miss something or
+            /// become unstable.  When you pass in a modifier it'll ensure it ticks faster by that amount.  For example, if you pass in 2
+            /// to this as the modifier, the physics simulation will take 2 smaller steps (the time being based on the target framerate)
+            /// instead of one big one during the course of one frame.
+            /// @param Modifier The amount of substeps per frame to perform.
+            void SetSimulationSubstepModifier(const Whole& Modifier);
             /// @brief This does all the work reuired for the main loop to process physics
             /// @details
             /// @param TimeElapsed This is a real that represents the amount of time we need to simulate

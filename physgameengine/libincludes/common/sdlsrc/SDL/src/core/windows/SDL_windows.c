@@ -20,8 +20,12 @@
 */
 #include "SDL_config.h"
 
+#ifdef __WIN32__
+
 #include "SDL_error.h"
 #include "SDL_windows.h"
+
+#include <objbase.h>  /* for CoInitialize/CoUninitialize */
 
 
 /* Sets an error message based on GetLastError() */
@@ -36,5 +40,27 @@ WIN_SetError(const char *prefix)
     SDL_SetError("%s%s%s", prefix ? prefix : "", prefix ? ": " : "", message);
     SDL_free(message);
 }
+
+HRESULT
+WIN_CoInitialize(void)
+{
+    const HRESULT hr = CoInitialize(NULL);
+
+    /* S_FALSE means success, but someone else already initialized. */
+    /* You still need to call CoUninitialize in this case! */
+    if (hr == S_FALSE) {
+        return S_OK;
+    }
+
+    return hr;
+}
+
+void
+WIN_CoUninitialize(void)
+{
+    CoUninitialize();
+}
+
+#endif /* __WIN32__ */
 
 /* vi: set ts=4 sw=4 expandtab: */

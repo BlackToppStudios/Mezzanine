@@ -41,6 +41,7 @@ class CatchApp
         void MakeGUI();
         void CreateLoadingScreen();
         void ConfigResources();
+        void InitMusic();
 
         void PopulateScoreValues();
         void PopulateShopValues();
@@ -73,6 +74,8 @@ class CatchApp
         void RegisterStartArea(StartingArea* Start);
         void AddThrowable(ActorBase* Throwable);
         LevelLoader* GetLevelLoader();
+        SimpleTimer* GetLevelTimer();
+        SimpleTimer* GetEndTimer();
 };
 
 #endif

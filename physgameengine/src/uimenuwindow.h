@@ -154,8 +154,7 @@ namespace phys
                 virtual void DestroyChildMenuWindow(MenuWindow* ToBeDestroyed);
                 /// @brief Updates the dimensions of this window to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                /// @param OldViewportSize The old size of the viewport.
-                virtual void UpdateDimensions(const Vector2& OldViewportSize);
+                virtual void UpdateDimensions();
         };
     }
 }

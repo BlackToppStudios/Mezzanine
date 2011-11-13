@@ -38,7 +38,7 @@ SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
 }
 
 void
-SDL_SYS_SetupThread(void)
+SDL_SYS_SetupThread(const char *name)
 {
     return;
 }
@@ -59,12 +59,6 @@ int
 SDL_SYS_SetThreadPriority(SDL_ThreadPriority priority)
 {
     return (0);
-}
-
-void
-SDL_SYS_KillThread(SDL_Thread * thread)
-{
-    return;
 }
 
 /* vi: set ts=4 sw=4 expandtab: */

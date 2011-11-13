@@ -18,8 +18,9 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-
 #include "SDL_config.h"
+
+#if SDL_VIDEO_DRIVER_WINDOWS
 
 #include "SDL_windowsvideo.h"
 #include "SDL_windowsshape.h"
@@ -557,7 +558,8 @@ WIN_WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				for (i = 0; i < num_inputs; ++i) {
 					PTOUCHINPUT input = &inputs[i];
 
-					SDL_TouchID touchId = (SDL_TouchID)input->hSource;
+					const SDL_TouchID touchId = (SDL_TouchID)
+												((size_t)input->hSource);
 					if (!SDL_GetTouch(touchId)) {
 						SDL_Touch touch;
 
@@ -692,5 +694,7 @@ SDL_UnregisterApp()
         SDL_Appname = NULL;
     }
 }
+
+#endif /* SDL_VIDEO_DRIVER_WINDOWS */
 
 /* vi: set ts=4 sw=4 expandtab: */

@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_COCOA
+
 #include "SDL_syswm.h"
 #include "SDL_timer.h"  /* For SDL_GetTicks() */
 #include "../SDL_sysvideo.h"
@@ -67,7 +69,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
     [window setAcceptsMouseMovedEvents:YES];
 
     [view setNextResponder:self];
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1060
     [view setAcceptsTouchEvents:YES];
 #endif
 }
@@ -277,8 +279,6 @@ static __inline__ void ConvertNSRect(NSRect *r)
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
-    SDL_Mouse *mouse = SDL_GetMouse();
-
     SDL_SetMouseFocus(_data->window);
 
     SDL_SetCursor(NULL);
@@ -380,7 +380,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
 
 - (void)handleTouches:(cocoaTouchType)type withEvent:(NSEvent *)event
 {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1060
     NSSet *touches = 0;
     NSEnumerator *enumerator;
     NSTouch *touch;
@@ -401,7 +401,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
     enumerator = [touches objectEnumerator];
     touch = (NSTouch*)[enumerator nextObject];
     while (touch) {
-        SDL_TouchID touchId = (SDL_TouchID)[touch device];
+        const SDL_TouchID touchId = (SDL_TouchID) ((size_t) [touch device]);
         if (!SDL_GetTouch(touchId)) {
             SDL_Touch touch;
 
@@ -421,7 +421,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
             }
         } 
 
-        SDL_FingerID fingerId = (SDL_FingerID)[touch identity];
+        const SDL_FingerID fingerId = (SDL_FingerID) ((size_t) [touch identity]);
         float x = [touch normalizedPosition].x;
         float y = [touch normalizedPosition].y;
         /* Make the origin the upper left instead of the lower left */
@@ -442,7 +442,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
         
         touch = (NSTouch*)[enumerator nextObject];
     }
-#endif /* MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6 */
+#endif /* MAC_OS_X_VERSION_MAX_ALLOWED >= 1060 */
 }
 
 @end
@@ -990,5 +990,7 @@ Cocoa_GetWindowWMInfo(_THIS, SDL_Window * window, SDL_SysWMinfo * info)
         return SDL_FALSE;
     }
 }
+
+#endif /* SDL_VIDEO_DRIVER_COCOA */
 
 /* vi: set ts=4 sw=4 expandtab: */

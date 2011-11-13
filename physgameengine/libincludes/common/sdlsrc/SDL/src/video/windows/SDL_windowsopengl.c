@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_WINDOWS
+
 #include "SDL_windowsvideo.h"
 
 /* WGL implementation of SDL OpenGL support */
@@ -466,9 +468,11 @@ WIN_GL_SetupWindow(_THIS, SDL_Window * window)
         *iAttr++ = _this->gl_config.multisamplesamples;
     }
 
-    *iAttr++ = WGL_ACCELERATION_ARB;
-    *iAttr++ = (_this->gl_config.accelerated ? WGL_FULL_ACCELERATION_ARB :
-                                               WGL_NO_ACCELERATION_ARB);
+    if (_this->gl_config.accelerated >= 0) {
+        *iAttr++ = WGL_ACCELERATION_ARB;
+        *iAttr++ = (_this->gl_config.accelerated ? WGL_FULL_ACCELERATION_ARB :
+                                                   WGL_NO_ACCELERATION_ARB);
+    }
 
     *iAttr = 0;
 
@@ -602,5 +606,7 @@ WIN_GL_DeleteContext(_THIS, SDL_GLContext context)
 }
 
 #endif /* SDL_VIDEO_OPENGL_WGL */
+
+#endif /* SDL_VIDEO_DRIVER_WINDOWS */
 
 /* vi: set ts=4 sw=4 expandtab: */

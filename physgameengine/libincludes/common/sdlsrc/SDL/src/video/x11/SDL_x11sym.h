@@ -51,6 +51,7 @@ SDL_X11_SYM(int,XFreeGC,(Display* a,GC b),(a,b),return)
 SDL_X11_SYM(int,XFreeModifiermap,(XModifierKeymap* a),(a),return)
 SDL_X11_SYM(int,XFreePixmap,(Display* a,Pixmap b),(a,b),return)
 SDL_X11_SYM(char*,XGetAtomName,(Display *a,Atom b),(a,b),return)
+SDL_X11_SYM(int,XGetInputFocus,(Display *a,Window *b,int *c),(a,b,c),return)
 SDL_X11_SYM(int,XGetErrorDatabaseText,(Display* a,_Xconst char* b,_Xconst char* c,_Xconst char* d,char* e,int f),(a,b,c,d,e,f),return)
 SDL_X11_SYM(XModifierKeymap*,XGetModifierMapping,(Display* a),(a),return)
 SDL_X11_SYM(int,XGetPointerControl,(Display* a,int* b,int* c,int* d),(a,b,c,d),return)
@@ -178,17 +179,18 @@ SDL_X11_SYM(int,ipUnallocateAndSendData,(ChannelPtr a,IPCard b),(a,b),return)
 /* XCursor support */
 #if SDL_VIDEO_DRIVER_X11_XCURSOR
 SDL_X11_MODULE(XCURSOR)
-SDL_X11_SYM(XcursorImage*,XcursorImageCreate,(int a,int b),(a,b),)
+SDL_X11_SYM(XcursorImage*,XcursorImageCreate,(int a,int b),(a,b),return)
 SDL_X11_SYM(void,XcursorImageDestroy,(XcursorImage *a),(a),)
-SDL_X11_SYM(Cursor,XcursorImageLoadCursor,(Display *a,const XcursorImage *b),(a,b),)
+SDL_X11_SYM(Cursor,XcursorImageLoadCursor,(Display *a,const XcursorImage *b),(a,b),return)
 #endif
 
 /* Xinerama support */
 #if SDL_VIDEO_DRIVER_X11_XINERAMA
 SDL_X11_MODULE(XINERAMA)
-SDL_X11_SYM(Bool,XineramaIsActive,(Display *a),(a),)
-SDL_X11_SYM(Bool,XineramaQueryExtension,(Display *a,int *b,int *c),(a,b,c),)
-SDL_X11_SYM(XineramaScreenInfo*,XineramaQueryScreens,(Display *a, int *b),(a,b),)
+SDL_X11_SYM(Bool,XineramaIsActive,(Display *a),(a),return)
+SDL_X11_SYM(Bool,XineramaQueryExtension,(Display *a,int *b,int *c),(a,b,c),return)
+SDL_X11_SYM(Status,XineramaQueryVersion,(Display *a,int *b,int *c),(a,b,c),return)
+SDL_X11_SYM(XineramaScreenInfo*,XineramaQueryScreens,(Display *a, int *b),(a,b),return)
 #endif
 
 /* XInput support for multiple mice, tablets, etc. */
@@ -229,12 +231,12 @@ SDL_X11_SYM(void,XShapeCombineMask,(Display *dpy,Window dest,int dest_kind,int x
 
 #if SDL_VIDEO_DRIVER_X11_XVIDMODE
 SDL_X11_MODULE(XVIDMODE)
-SDL_X11_SYM(Bool,XF86VidModeGetAllModeLines,(Display *a,int b,int *c,XF86VidModeModeInfo ***d),(a,b,c,d),)
-SDL_X11_SYM(Bool,XF86VidModeGetModeLine,(Display *a,int b,int *c,XF86VidModeModeLine *d),(a,b,c,d),)
-SDL_X11_SYM(Bool,XF86VidModeGetViewPort,(Display *a,int b,int *c,int *d),(a,b,c,d),)
-SDL_X11_SYM(Bool,XF86VidModeQueryExtension,(Display *a,int *b,int *c),(a,b,c),)
-SDL_X11_SYM(Bool,XF86VidModeQueryVersion,(Display *a,int *b,int *c),(a,b,c),)
-SDL_X11_SYM(Bool,XF86VidModeSwitchToMode,(Display *a,int b,XF86VidModeModeInfo *c),(a,b,c),)
+SDL_X11_SYM(Bool,XF86VidModeGetAllModeLines,(Display *a,int b,int *c,XF86VidModeModeInfo ***d),(a,b,c,d),return)
+SDL_X11_SYM(Bool,XF86VidModeGetModeLine,(Display *a,int b,int *c,XF86VidModeModeLine *d),(a,b,c,d),return)
+SDL_X11_SYM(Bool,XF86VidModeGetViewPort,(Display *a,int b,int *c,int *d),(a,b,c,d),return)
+SDL_X11_SYM(Bool,XF86VidModeQueryExtension,(Display *a,int *b,int *c),(a,b,c),return)
+SDL_X11_SYM(Bool,XF86VidModeQueryVersion,(Display *a,int *b,int *c),(a,b,c),return)
+SDL_X11_SYM(Bool,XF86VidModeSwitchToMode,(Display *a,int b,XF86VidModeModeInfo *c),(a,b,c),return)
 #endif
 
 /* *INDENT-ON* */

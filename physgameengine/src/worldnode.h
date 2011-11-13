@@ -114,7 +114,7 @@ namespace phys
             ~WorldNode();
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Navigation
+            // Navigation
 
             /// @brief Sets the Location of this node.
             /// @param Location A vector3 representing the location of this node.
@@ -125,7 +125,7 @@ namespace phys
 
             /// @brief Sets the orientation of this node.
             /// @param Orientation A Quaternion representing the orientation of this node.
-            void SetOrientation(Quaternion Orientation);
+            void SetOrientation(const Quaternion& Orientation);
             /// @brief Gets the orientation of this node.
             /// @return Returns a quaternion representing the orientation of this node.
             Quaternion GetOrientation() const;
@@ -140,7 +140,8 @@ namespace phys
             void IncrementOrbit(Real Radians);
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Auto tracking
+            // Auto tracking
+
             /// @brief Makes this node autotrack another node.
             /// @details This function will make this node update it's orientation every frame automatically so
             /// that it's always facing the target node.
@@ -158,7 +159,7 @@ namespace phys
             void DisableAutoTracking();
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Basic Data
+            // Basic Data
 
             /// @internal
             /// @brief Sets the type of node that this is.
@@ -179,7 +180,7 @@ namespace phys
             ConstString& GetName() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Attachment child management
+            // Attachment child management
 
             /// @brief Attaches an attachable element to this Node.
             /// @param Target The Attachable to be attached.
@@ -189,16 +190,6 @@ namespace phys
             /// @param Target The Attachable to be detached.
             /// @details Detach an item is done in linear time relative to the amount of attached items
             void DetachObject(Attachable* Target);
-
-            /// @internal
-            /// @brief Does the actual work of attaching on the WorldNode Side so that WorldNode::AttachObject(Attachable* Target) can be called on WorldNode or Attachable without caveats
-            /// @param Target A pointer to the Attachable to finalize the attaching of.
-            void AttachObjectFinal(Attachable* Target);
-
-            /// @internal
-            /// @brief Does the actual work of dettaching on the WorldNode Side so that WorldNode::DetachObject(Attachable* Target) can be called on WorldNode or Attachable without caveats
-            /// @param Target A pointer to the Attachable to finalize the dettaching of.
-            void DetachObjectFinal(Attachable* Target);
 
             /// @brief Detaches all attached cameras, lights, particle effects and anything else attached.
             void DetachAll();
@@ -211,7 +202,7 @@ namespace phys
             /// @param Index A number indicating which Attachable you want a pointer to. The WorldNode is like an Array starts at 0 and goes to WorldNode::GetNumAttached() - 1.
             /// @return A pointer to an Attachable Item attached to this.
             /// @throw This can throw an out of bounds std::exception if used incorrectly
-            Attachable* GetAttached(Whole Index) const;
+            Attachable* GetAttached(const Whole& Index) const;
 
             /// @brief Used to make working with the attached items easier
             typedef std::vector< Attachable* >::iterator iterator;
@@ -236,13 +227,12 @@ namespace phys
             const_iterator end() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Attachment child management
+            // Internal Functions
 
-            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
-
-            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
-
-
+            /// @internal
+            /// @brief Gets pointers to the internal ogre structures for this attachable.
+            /// @return Returns an AttachableData struct with the internal data.
+            virtual AttachableData GetAttachableData() const;
     };//node
 }//phys
 

@@ -44,6 +44,7 @@
 #include "audiosound.h"
 #include "audiolistener.h"
 #include "audiosoundset.h"
+#include "audiomusicplayer.h"
 #include "world.h"
 #include <cAudio.h>
 
@@ -59,6 +60,7 @@ namespace phys
     {
         cAudioManager = cAudio::createAudioManager(DefaultSettings);
         Listener = new Audio::Listener(cAudioManager->getListener());
+        MusicPlayer = new Audio::MusicPlayer();
         this->Priority = 10;
     }
 
@@ -105,13 +107,9 @@ namespace phys
 
     Audio::Sound* AudioManager::GetSoundByName(const String& SoundName) const
     {
-        cAudio::IAudioSource* Source = cAudioManager->getSoundByName(SoundName.c_str());
-        if(Source)
-        {
-            Audio::Sound* SoundInst = new Audio::Sound(Source);
-            return SoundInst;
-        }
-        return NULL;
+        std::map<String,Audio::Sound*>::const_iterator SoundIt = Sounds.find(SoundName);
+        if(SoundIt != Sounds.end()) return (*SoundIt).second;
+        else return NULL;
     }
 
     void AudioManager::DestroySound(Audio::Sound* SoundName)
@@ -203,10 +201,7 @@ namespace phys
     void AudioManager::SetMasterVolume(const Real& Master)
     {
         MasterVolume = Master;
-        for( std::map<String,Audio::Sound*>::iterator it = Sounds.begin() ; it != Sounds.end() ; it++ )
-        {
-            (*it).second->UpdateVolume();
-        }
+        UpdateAllVolumes();
     }
 
     Real AudioManager::GetMasterVolume() const
@@ -227,11 +222,20 @@ namespace phys
             MuteStandby = 0;
         }
         Muted = Enable;
+        UpdateAllVolumes();
     }
 
     bool AudioManager::IsMuted() const
     {
         return Muted;
+    }
+
+    void AudioManager::UpdateAllVolumes()
+    {
+        for( std::map<String,Audio::Sound*>::iterator it = Sounds.begin() ; it != Sounds.end() ; it++ )
+        {
+            (*it).second->UpdateVolume();
+        }
     }
 
     String AudioManager::GetAvailableDeviceNameByIndex(const Whole& Index) const
@@ -273,6 +277,11 @@ namespace phys
         return Listener;
     }
 
+    Audio::MusicPlayer* AudioManager::GetMusicPlayer() const
+    {
+        return MusicPlayer;
+    }
+
     cAudio::IAudioManager* AudioManager::GetcAudioManager() const
     {
         return cAudioManager;
@@ -282,7 +291,7 @@ namespace phys
         {}
 
     void AudioManager::DoMainLoopItems()
-        {}
+        { MusicPlayer->Update(); }
 
     ManagerBase::ManagerTypeName AudioManager::GetType() const
         { return ManagerBase::AudioManager; }

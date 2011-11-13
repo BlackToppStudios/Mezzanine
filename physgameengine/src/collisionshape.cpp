@@ -974,7 +974,7 @@ namespace phys
 
             this->ProtoDeSerialize(OneNode);
         }else{
-            DeSerializeError("find usable serialization version",BoxCollisionShape::SerializableName());
+            DeSerializeError("find usable serialization version", ConvexHullCollisionShape::SerializableName());
         }
     }
 #endif // /PHYSXML
@@ -1079,68 +1079,170 @@ namespace phys
     /////////////////////////////////////////
     // CylinderCollisionShape Functions
 
-    CylinderCollisionShape::CylinderCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis)
+    void CylinderCollisionShape::Construct(const String& Name, const Vector3& HalfExtents, StandardAxis UpAxis)
     {
-        this->Name = Name;
-        if(Vector3::Unit_Y() == UpAxis) CylinderShape = new btCylinderShape(btVector3(Radius,Height,Radius));
-        else if(Vector3::Unit_X() == UpAxis) CylinderShape = new btCylinderShapeX(btVector3(Height,Radius,Radius));
-        else if(Vector3::Unit_Z() == UpAxis) CylinderShape = new btCylinderShapeZ(btVector3(Radius,Radius,Height));
-        else World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up Axis passed into CylinderCollisionShape constructor."));
-        SetPointers(CylinderShape);
+        btCylinderShape* CylinderShape;
+
+        switch (UpAxis)
+        {
+            case Axis_Y:
+                CylinderShape = new btCylinderShape(HalfExtents.GetBulletVector3());
+                break;
+            case Axis_X:
+                CylinderShape = new btCylinderShapeX(HalfExtents.GetBulletVector3());
+                break;
+            case Axis_Z:
+                CylinderShape = new btCylinderShapeZ(HalfExtents.GetBulletVector3());
+                break;
+            default: World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up Axis passed into CylinderCollisionShape constructor."));
+        }
+        Construct(Name, CylinderShape);
     }
 
-    CylinderCollisionShape::CylinderCollisionShape(const String& Name, btCylinderShape* BulletShape)
+    void CylinderCollisionShape::Construct(const String& Name, btCylinderShape* BulletShape)
     {
         this->Name = Name;
-        CylinderShape = BulletShape;
-        SetPointers(CylinderShape);
+        SetPointers(BulletShape);
     }
+
+    CylinderCollisionShape::CylinderCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis)
+        { Construct(Name, CreateHalfExtents(Radius,Height,UpAxis.IsStandardUnitAxis()), UpAxis.IsStandardUnitAxis()); }
+
+    CylinderCollisionShape::CylinderCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis)
+        { Construct(Name, CreateHalfExtents(Radius,Height,UpAxis), UpAxis); }
+
+    CylinderCollisionShape::CylinderCollisionShape(const String& Name, const Vector3& HalfExtents, const Vector3& UpAxis)
+        { Construct(Name, HalfExtents, UpAxis.IsStandardUnitAxis()); }
+
+    CylinderCollisionShape::CylinderCollisionShape(const String& Name, const Vector3& HalfExtents, StandardAxis UpAxis)
+        { Construct(Name, HalfExtents, UpAxis); }
+
+    CylinderCollisionShape::CylinderCollisionShape(const String& Name, btCylinderShape* BulletShape)
+        { Construct(Name,BulletShape); }
+
+
+#ifdef PHYSXML
+    CylinderCollisionShape::CylinderCollisionShape(xml::Node OneNode)
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            xml::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
+            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+
+            /*xml::Node HalfExtentsNode = OneNode.GetChild("HalfExtents").GetFirstChild();
+            if (!HalfExtentsNode) { DeSerializeError("find HalfExtentsNode",CylinderCollisionShape::SerializableName()); }
+            SetPointers(new CylinderShape(Vector3(HalfExtentsNode).GetBulletVector3()));
+            // */
+
+            xml::Attribute Axis = OneNode.GetAttribute("Axis");
+            if (!Axis) { DeSerializeError("find Axis Attribute",CylinderCollisionShape::SerializableName()); }
+
+            Construct(OneName.AsString(), Vector3(), (StandardAxis)Axis.AsInteger());
+
+            this->ProtoDeSerialize(OneNode);
+        }else{
+            DeSerializeError("find usable serialization version", CylinderCollisionShape::SerializableName());
+        }
+    }
+#endif // /PHYSXML
 
     CylinderCollisionShape::~CylinderCollisionShape()
     {
-        delete CylinderShape;
+        delete GetBulletCylinderShape();
+    }
+
+    Vector3 CylinderCollisionShape::CreateHalfExtents(const Real& Radius, const Real& Height, StandardAxis UpAxis)
+    {
+        switch (UpAxis)
+        {
+            case Axis_Y: return Vector3(Radius,Height,Radius);
+            case Axis_X: return Vector3(Height,Radius,Radius);
+            case Axis_Z: return Vector3(Radius,Radius,Height);
+            default: World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up Axis passed into CylinderCollisionShape::CreateHalfExtents ."));
+        }
     }
 
     Vector3 CylinderCollisionShape::GetHalfExtents() const
     {
-        Vector3 HalfExtents(CylinderShape->getHalfExtentsWithoutMargin());
+        Vector3 HalfExtents(GetBulletCylinderShape()->getHalfExtentsWithoutMargin());
         return HalfExtents;
     }
 
     Vector3 CylinderCollisionShape::GetHalfExtentsWithMargin() const
     {
-        Vector3 HalfExtents(CylinderShape->getHalfExtentsWithMargin());
+        Vector3 HalfExtents(GetBulletCylinderShape()->getHalfExtentsWithMargin());
         return HalfExtents;
     }
 
     Real CylinderCollisionShape::GetRadius() const
-    {
-        return CylinderShape->getRadius();
-    }
+        { return GetBulletCylinderShape()->getRadius(); }
 
     Vector3 CylinderCollisionShape::GetUpAxis() const
+        { return Vector3::UnitOnAxis((StandardAxis)GetBulletCylinderShape()->getUpAxis()); }
+
+    CollisionShape::ShapeType CylinderCollisionShape::GetType() const
+        { return CollisionShape::ST_Cylinder; }
+
+    btCylinderShape* CylinderCollisionShape::GetBulletCylinderShape() const
+        { return static_cast<btCylinderShape*>(ShapeBase); }
+
+#ifdef PHYSXML
+    void CylinderCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        switch(CylinderShape->getUpAxis())
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->CylinderCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->CylinderCollisionShape::SerializableName());}
+
+        /*
+        xml::Node HalfExtentsNode = CollisionNode.AppendChild("HalfExtents");
+        if (!HalfExtentsNode) { SerializeError("create HalfExtentsNode",this->CylinderCollisionShape::SerializableName());}
+        //this->GetHalfExtents().ProtoSerialize(HalfExtentsNode);
+        this->GetCleanHalfExtents().ProtoSerialize(HalfExtentsNode);
+        */
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        xml::Attribute Axis = CollisionNode.AppendAttribute("Axis");
+        if (Axis)
+            { Axis.SetValue((StandardAxis)GetBulletCylinderShape()->getUpAxis()); }
+        else
+            { SerializeError("Create Axis Attribute", SerializableName()); }
+
+        this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
+    }
+
+    void CylinderCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->CylinderCollisionShape::SerializableName() )
         {
-            case 0: return Vector3::Unit_X();
-            case 1: return Vector3::Unit_Y();
-            case 2: return Vector3::Unit_Z();
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                if(!CollisionNode)
+                    { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
         }
     }
 
-    CollisionShape::ShapeType CylinderCollisionShape::GetType() const
-    {
-        return CollisionShape::ST_Cylinder;
-    }
+    String CylinderCollisionShape::SerializableName()
+        {   return String("CylinderCollisionShape"); }
+#endif
 
     /////////////////////////////////////////
     // MultiSphereCollisionShape Functions
 
-    MultiSphereCollisionShape::MultiSphereCollisionShape(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii)
+    void MultiSphereCollisionShape::Construct(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii)
     {
         if(Locations.size() != Radii.size())
             World::GetWorldPointer()->LogAndThrow(Exception("Vector size mismatch between Locations and Radii in MultiSphereCollisionShape constructor."));
-        this->Name = Name;
         Whole Spheres = Locations.size();
         btVector3* BulletLocs = new btVector3[Spheres];
         btScalar* BulletRadii = new btScalar[Spheres];
@@ -1149,38 +1251,83 @@ namespace phys
             BulletLocs[X] = Locations[X].GetBulletVector3();
             BulletRadii[X] = Radii[X];
         }
-        MultiSphereShape = new btMultiSphereShape(BulletLocs,BulletRadii,Spheres);
-        SetPointers(MultiSphereShape);
-        delete BulletLocs;
-        delete BulletRadii;
+
+        Construct(Name,new btMultiSphereShape(BulletLocs,BulletRadii,Spheres));
+
+        delete[] BulletLocs;
+        delete[] BulletRadii;
+    }
+
+    void MultiSphereCollisionShape::Construct(const String& Name, btMultiSphereShape* BulletShape)
+    {
+        this->Name = Name;
+        SetPointers(BulletShape);
+        this->GetMultiSphereShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
+    }
+
+
+    MultiSphereCollisionShape::MultiSphereCollisionShape(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii)
+    {
+        Construct(Name,Locations,Radii);
     }
 
     MultiSphereCollisionShape::MultiSphereCollisionShape(const String& Name, btMultiSphereShape* BulletShape)
     {
         this->Name = Name;
-        MultiSphereShape = BulletShape;
-        SetPointers(MultiSphereShape);
+        SetPointers(BulletShape);
     }
+
+#ifdef PHYSXML
+    MultiSphereCollisionShape::MultiSphereCollisionShape(xml::Node OneNode)
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            xml::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
+            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+
+            xml::Node Spheres = OneNode.GetChild("Spheres");
+            if(!Spheres)
+                { DeSerializeError("locate Spheres node",SerializableName()); }
+
+            std::vector<Vector3> Locations;
+            std::vector<Real> Radii;
+            xml::Node OneSphere = Spheres.GetFirstChild();
+            while (OneSphere)
+            {
+                Locations.push_back(Vector3(OneSphere.GetFirstChild()));
+                Radii.push_back(OneSphere.GetFirstAttribute().AsReal());
+
+                OneSphere = OneSphere.GetNextSibling();
+            }
+
+            Construct(OneName.AsString(),Locations,Radii);
+
+            this->ProtoDeSerialize(OneNode);
+        }else{
+            DeSerializeError("find usable serialization version",MultiSphereCollisionShape::SerializableName());
+        }
+    }
+#endif // /PHYSXML
 
     MultiSphereCollisionShape::~MultiSphereCollisionShape()
     {
-        delete MultiSphereShape;
+        delete GetMultiSphereShape();
     }
 
     Vector3 MultiSphereCollisionShape::GetSphereLocation(const Whole& Index) const
     {
-        Vector3 Loc(MultiSphereShape->getSpherePosition(Index));
+        Vector3 Loc(GetMultiSphereShape()->getSpherePosition(Index));
         return Loc;
     }
 
     Real MultiSphereCollisionShape::GetSphereRadius(const Whole& Index) const
     {
-        return MultiSphereShape->getSphereRadius(Index);
+        return GetMultiSphereShape()->getSphereRadius(Index);
     }
 
     Whole MultiSphereCollisionShape::GetNumSpheres() const
     {
-        return MultiSphereShape->getSphereCount();
+        return GetMultiSphereShape()->getSphereCount();
     }
 
     CollisionShape::ShapeType MultiSphereCollisionShape::GetType() const
@@ -1188,37 +1335,153 @@ namespace phys
         return CollisionShape::ST_MultiSphere;
     }
 
+    btMultiSphereShape* MultiSphereCollisionShape::GetMultiSphereShape() const
+        { return static_cast<btMultiSphereShape*>(ShapeBase); }
+
+#ifdef PHYSXML
+    void MultiSphereCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->MultiSphereCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->MultiSphereCollisionShape::SerializableName());}
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        xml::Node PointsNode = CollisionNode.AppendChild("Spheres");
+        if (!PointsNode) { SerializeError("create Spheres",this->MultiSphereCollisionShape::SerializableName());}
+
+        for(Whole c=0; c<this->GetNumSpheres(); ++c)
+        {
+            xml::Node Sphere = PointsNode.AppendChild("Sphere");
+            if (!Sphere) { SerializeError(String("create Sphere ")+ToString(c),this->MultiSphereCollisionShape::SerializableName());}
+
+            xml::Attribute Radius = Sphere.AppendAttribute("Radius");
+            if (!Radius) { SerializeError(String("Append readius to Sphere ")+ToString(c),this->MultiSphereCollisionShape::SerializableName());}
+            Radius.SetValue( this->GetSphereRadius(c) );
+
+            this->GetSphereLocation(c).ProtoSerialize(Sphere);
+        }
+
+        this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
+    }
+
+    void MultiSphereCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->MultiSphereCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                if(!CollisionNode)
+                    { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
+
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String MultiSphereCollisionShape::SerializableName()
+        {   return String("MultiSphereCollisionShape"); }
+#endif
+
     /////////////////////////////////////////
     // SphereCollisionShape Functions
 
     SphereCollisionShape::SphereCollisionShape(const String& Name, const Real& Radius)
     {
         this->Name = Name;
-        SphereShape = new btSphereShape(Radius);
-        SetPointers(SphereShape);
+        SetPointers(new btSphereShape(Radius));
+        this->GetSphereShape()->setImplicitShapeDimensions(Vector3(Radius,0,0).GetBulletVector3());
     }
 
     SphereCollisionShape::SphereCollisionShape(const String& Name, btSphereShape* BulletShape)
     {
         this->Name = Name;
-        SphereShape = BulletShape;
-        SetPointers(SphereShape);
+        SetPointers(BulletShape);
+        //this->GetSphereShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
     }
+
+#ifdef PHYSXML
+    SphereCollisionShape::SphereCollisionShape(xml::Node OneNode)
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            xml::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
+            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+
+            this->Name = Name;
+            SetPointers(new btSphereShape(0));
+            this->GetSphereShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
+
+            this->ProtoDeSerialize(OneNode);
+        }else{
+            DeSerializeError("find usable serialization version",SphereCollisionShape::SerializableName());
+        }
+    }
+#endif // /PHYSXML
 
     SphereCollisionShape::~SphereCollisionShape()
     {
-        delete SphereShape;
+        delete GetSphereShape();
     }
 
     Real SphereCollisionShape::GetRadius() const
     {
-        return SphereShape->getRadius();
+        return GetSphereShape()->getRadius();
     }
 
     CollisionShape::ShapeType SphereCollisionShape::GetType() const
     {
         return CollisionShape::ST_Sphere;
     }
+
+    btSphereShape* SphereCollisionShape::GetSphereShape() const
+        { return static_cast<btSphereShape*>(ShapeBase); }
+
+#ifdef PHYSXML
+    void SphereCollisionShape::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node CollisionNode = CurrentRoot.AppendChild(this->SphereCollisionShape::SerializableName());
+        if (!CollisionNode) { SerializeError("create CollisionNode",this->SphereCollisionShape::SerializableName());}
+
+        xml::Attribute Version = CollisionNode.AppendAttribute("Version");
+        if (Version)
+            { Version.SetValue(1); }
+        else
+            { SerializeError("Create Version Attribute", SerializableName()); }
+
+        this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
+    }
+
+    void SphereCollisionShape::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( phys::String(OneNode.Name())==this->SphereCollisionShape::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                xml::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                if(!CollisionNode)
+                    { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
+
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String SphereCollisionShape::SerializableName()
+        {   return String("SphereCollisionShape"); }
+#endif
 
     /////////////////////////////////////////
     // DynamicMeshCollisionShape Functions
@@ -1390,17 +1653,11 @@ namespace phys
             case CollisionShape::ST_ConvexHull:
                 return new ConvexHullCollisionShape(OneNode);
             case CollisionShape::ST_Cylinder:
-                return new CylinderCollisionShape(Name_,1,1,Vector3::Unit_Y());
+                return new CylinderCollisionShape(OneNode);
             case CollisionShape::ST_MultiSphere:
-            {
-                std::vector<Vector3> Points;
-                std::vector<Real> Radii;
-                Points.push_back(Vector3(0,0,0)); Points.push_back(Vector3(1,0,0));
-                Radii.push_back(1); Radii.push_back(1);
-                //return new MultiSphereCollisionShape(Name_,(btMultiSphereShape*)ShapeToModel);
-            }
+                return new MultiSphereCollisionShape(OneNode);
             case CollisionShape::ST_Sphere:
-                return new SphereCollisionShape(Name_,1);
+                return new SphereCollisionShape(OneNode);
             case CollisionShape::ST_DynamicTriMesh:     /// @todo Complete CreateShape function once DynamicMeshCollisionShape can be deserialized
                 //return new DynamicMeshCollisionShape(Name_,(btGImpactMeshShape*)ShapeToModel);
                 World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a DynamicMeshCollisionShape.");

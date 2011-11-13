@@ -40,10 +40,10 @@
 #ifndef _uimarkuptext_h
 #define _uimarkuptext_h
 
-#include "datatypes.h"
 #include "uienumerations.h"
 #include "colourvalue.h"
 #include "uirenderablerect.h"
+#include "uibasicrenderable.h"
 
 namespace Gorilla
 {
@@ -66,18 +66,13 @@ namespace phys
         /// Texts have no background functionality, but they use a light markup language to accomplish
         /// special effects with the text.
         ///////////////////////////////////////
-        class PHYS_LIB MarkupText
+        class PHYS_LIB MarkupText : public BasicRenderable
         {
             protected:
                 Gorilla::MarkupText* GMarkup;
-                Layer* Parent;
-                UIManager* Manager;
                 Whole Glyphs;
-                Vector2 RelPosition;
-                Vector2 RelSize;
                 bool AutoScaleText;
                 Real RelLineHeight;
-                String Name;
                 void ConstructMarkupText(const RenderableRect& Rect, const Whole& Glyph, const String& Text);
             public:
                 /// @brief Internal constructor.
@@ -103,14 +98,11 @@ namespace phys
                 virtual void SetVisible(bool Visible);
                 /// @brief Gets the visibility of this markup text.
                 /// @return Returns a bool representing the visibility of this markup text.
-                virtual bool IsVisible();
+                virtual bool IsVisible() const;
                 /// @brief Forces this markup text to be shown.
                 virtual void Show();
                 /// @brief Forces this markup text to hide.
                 virtual void Hide();
-                /// @brief Gets the name of this markup text.
-                /// @return Returns a string containing the name of this markup text.
-                virtual String& GetName();
                 /// @brief Sets the text displayed within the markup text.
                 /// @param Text The text to be displayed.
                 virtual void SetText(const String& Text);
@@ -139,43 +131,53 @@ namespace phys
                 /// @brief Aligns the text of the markup text.
                 /// @param Align The enum value representing the vertical alignment to be set.
                 void VerticallyAlign(UI::TextVerticalAlign Align);*/
+                /// @brief Sets the background colour of the caption.
+                /// @param Colour A colour value representing the colour to be set.
+                virtual void SetBackgroundColour(const ColourValue& Colour);
+                /// @brief Sets the background image(if provided in the atlas) of the caption.
+                /// @param Name The name of the sprite to set as the background.
+                virtual void SetBackgroundSprite(const String& Name);
+                /// @brief Sets the background image(if provided in the atlas) of the caption from another atlas then the one currently set.
+                /// @param Name The name of the sprite to set as the background.
+                /// @param Atlas The Atlas to load the sprite from.
+                virtual void SetBackgroundSprite(const String& Name, const String& Atlas);
                 /// @brief Sets the relative top left position of this markup text.
                 /// @param Position A Vector2 representing the location of this markup text.
                 virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative top left position of this markup text.
                 /// @return Returns a Vector2 representing the location of this markup text.
-                virtual Vector2 GetPosition();
+                virtual Vector2 GetPosition() const;
                 /// @brief Sets the top left position of this markup text in pixels.
                 /// @param Position A Vector2 representing the location of this markup text.
                 virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Gets the top left position of this markup text in pixels.
                 /// @return Returns a Vector2 representing the location of this markup text.
-                virtual Vector2 GetActualPosition();
-                /// @brief Sets the maximum relative size of this markup text.
-                /// @param Size A vector2 representing the maximum size of this markup text.
-                virtual void SetMaxSize(const Vector2& Size);
-                /// @brief Gets the maximum relative size of this markup text.
-                /// @return Returns a vector2 representing the maximum size of this markup text.
-                virtual Vector2 GetMaxSize();
-                /// @brief Sets the maximum size of this markup text in pixels.
-                /// @param Size A vector2 representing the maximum size of this markup text.
-                virtual void SetMaxActualSize(const Vector2& Size);
-                /// @brief Gets the maximum size of this markup text in pixels.
-                /// @return Returns a vector2 representing the maximum size of this markup text.
-                virtual Vector2 GetMaxActualSize();
+                virtual Vector2 GetActualPosition() const;
+                /// @brief Sets the relative size of this markup text.
+                /// @param Size A vector2 representing the size of this markup text.
+                virtual void SetSize(const Vector2& Size);
+                /// @brief Gets the relative size of this markup text.
+                /// @return Returns a vector2 representing the size of this markup text.
+                virtual Vector2 GetSize() const;
+                /// @brief Sets the size of this markup text in pixels.
+                /// @param Size A vector2 representing the size of this markup text.
+                virtual void SetActualSize(const Vector2& Size);
+                /// @brief Gets the size of this markup text in pixels.
+                /// @return Returns a vector2 representing the size of this markup text.
+                virtual Vector2 GetActualSize() const;
                 /// @brief Sets the priority this markup text should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this markup text.
                 virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this markup text should be rendered with.
                 /// @return Returns an enum value representing this markup text's priority level.
-                virtual UI::RenderPriority GetRenderPriority();
+                virtual UI::RenderPriority GetRenderPriority() const;
                 /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
                 /// @param Atlas The name of the atlas to be used.
                 virtual void SetPrimaryAtlas(const String& Atlas);
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set.
-                virtual String GetPrimaryAtlas();
+                virtual String GetPrimaryAtlas() const;
                 /// @brief Enables or disables scaling the text automatically on a screen size change.
                 /// @param Enable Enables or disables automatic text scaling.
                 virtual void SetAutoScaleText(bool Enable);

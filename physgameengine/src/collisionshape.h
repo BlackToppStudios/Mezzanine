@@ -581,8 +581,6 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB ConvexHullCollisionShape : public PrimitiveCollisionShape
     {
-        protected:
-
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -646,22 +644,60 @@ namespace phys
     class PHYS_LIB CylinderCollisionShape : public PrimitiveCollisionShape
     {
         protected:
-            btCylinderShape* CylinderShape;
+            /// @internal
+            /// @brief Does the initialization for a Cylinder
+            /// @param Name The name of the shape to initialize
+            /// @param HalfExtents This of the shape to initialize
+            /// @param UpAxis which direction gets the flat 'top' of the cylinder perpendicular ot it.
+            void Construct(const String& Name, const Vector3& HalfExtents, StandardAxis UpAxis);
+
+            /// @internal
+            /// @brief Does the initialization for a Cylinder
+            /// @param Name The name of the shape to initialize
+            /// @param BulletShape A pointer to a valid fully constructed internal Collision shape.
+            void Construct(const String& Name, btCylinderShape* BulletShape);
+
         public:
-            /// @brief Class Constructor.
+            /// @brief Verbose Vector Constructor.
             /// @param Name The name of this Shape.
             /// @param Radius The radius of the Cylinder.
-            /// @param Height The height of the Cylinder.
-            /// @param UpAxis Which axis the cylinder is to be oriented along.  Typical usage is for
+            /// @param Height The height of the Cylinder, Height is indicated in the direction of the upAxis.
+            /// @param UpAxis Which axis the cylinder is to be oriented along. Typical usage is for
             /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
             CylinderCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis);
+            /// @brief Verbose Constructor.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the Cylinder.
+            /// @param Height The height of the Cylinder, Height is indicated in the direction of the upAxis.
+            /// @param UpAxis Which StandardAxis the cylinder is to be oriented along.
+            CylinderCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
+            /// @brief Terse Vector Constructor.
+            /// @param Name The name of this Shape.
+            /// @param HalfExtents A Vector3 with the Height of the cylinder on the axis corresponding to the UpAxis and the Radius store in the other two axis.
+            /// @param UpAxis Which axis the cylinder is to be oriented along. Typical usage is for
+            /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
+            CylinderCollisionShape(const String& Name, const Vector3& HalfExtents, const Vector3& UpAxis);
+            /// @brief Terse Constructor.
+            /// @param Name The name of this Shape.
+            /// @param HalfExtents A Vector3 with the Height of the cylinder on the axis corresponding to the UpAxis and the Radius store in the other two axis.
+            /// @param UpAxis Which StandardAxis the cylinder is to be oriented along.
+            CylinderCollisionShape(const String& Name, const Vector3& HalfExtents, StandardAxis UpAxis);
             /// @internal
             /// @brief Internal Constructor.
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             CylinderCollisionShape(const String& Name, btCylinderShape* BulletShape);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            CylinderCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~CylinderCollisionShape();
+            /// @brief A (very) simple way to create a Vector3 containing the Half Extents of a Cylinder with given dimenions/
+            /// @param Radius The radius of the Cylinder.
+            /// @param Height The height of the Cylinder, Height is indicated in the direction of the upAxis.
+            /// @param UpAxis Which StandardAxis the cylinder is to be oriented along.
+            static Vector3 CreateHalfExtents(const Real& Radius, const Real& Height, StandardAxis UpAxis);
             /// @brief Gets the half extents used to construct this cylinder.
             /// @return Returns a vector3 containing the half extents of this cylinder.
             virtual Vector3 GetHalfExtents() const;
@@ -676,6 +712,17 @@ namespace phys
             virtual Vector3 GetUpAxis() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btCylinderShape* GetBulletCylinderShape() const;
+#ifdef PHYSXML
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "CylinderCollisionShape"
+            static String SerializableName();
+#endif
     };//cylindercollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -689,7 +736,18 @@ namespace phys
     class PHYS_LIB MultiSphereCollisionShape : public PrimitiveCollisionShape
     {
         protected:
-            btMultiSphereShape* MultiSphereShape;
+            /// @internal
+            /// @brief Creates a btMultiSphereShape* from two vectors to help unify constructor logic
+            /// @param Name The name of this name
+            /// @param Locations An std::vector containing all the locations, this must have the same amount of locations as there are radii
+            /// @param Radii An std::vector containing all the Radiuses, this must have the same amount of radii as there are locations
+            /// @throw An out of bounds exception if the there are differing amounts of radii and locations.
+            void Construct(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii);
+            /// @internal
+            /// @brief Constructs the shape when the bullet is already prepared
+            /// @param BulletShape The bullet shape to use
+            /// @param Name The name of this name
+            void Construct(const String& Name, btMultiSphereShape* BulletShape);
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -699,6 +757,10 @@ namespace phys
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             MultiSphereCollisionShape(const String& Name, btMultiSphereShape* BulletShape);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            MultiSphereCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~MultiSphereCollisionShape();
             /// @brief Gets the location(in local space) of the sphere at the specified index.
@@ -714,6 +776,17 @@ namespace phys
             virtual Whole GetNumSpheres() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btMultiSphereShape* GetMultiSphereShape() const;
+#ifdef PHYSXML
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "MultiSphereCollisionShape"
+            static String SerializableName();
+#endif
     };//multispherecollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -724,8 +797,6 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB SphereCollisionShape : public PrimitiveCollisionShape
     {
-        protected:
-            btSphereShape* SphereShape;
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this Shape.
@@ -736,6 +807,10 @@ namespace phys
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             SphereCollisionShape(const String& Name, btSphereShape* BulletShape);
+#ifdef PHYSXML
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(xml::Node OneNode)
+            SphereCollisionShape(xml::Node OneNode);
+#endif // /PHYSXML
             /// @brief Class Destructor.
             virtual ~SphereCollisionShape();
             /// @brief Gets the radius of the sphere.
@@ -743,6 +818,17 @@ namespace phys
             virtual Real GetRadius() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btSphereShape* GetSphereShape() const;
+#ifdef PHYSXML
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "SphereCollisionShape"
+            static String SerializableName();
+#endif
     };//spherecollisionshape
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -954,128 +1040,128 @@ namespace phys
     /// @param ShapeToSerialize The CollisionShape serialize
     /// @param stream the std::ostream to send the CollisionShape xml to.
     /// @return The ostream after the new data has been inserted.
-    std::ostream& operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize);
     /// @brief Get an actor from an XML stream.
     /// @param stream The stream to get it out of.
     /// @param x The it you will get out of the stream.
     /// @return This returns the input stream to allow operator chaining.
-    std::istream& operator >> (std::istream& stream, phys::CollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::CollisionShape& x);
     /// @brief Converts an XML Node into a functional in memory construct.
     /// @param OneNode The xml node that contains the deserialize class instance.
     /// @param x The class instance to overwrite witht the proto serialized version in the node.
-    void operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::PrimitiveCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::PrimitiveCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::PrimitiveCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::PrimitiveCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::PrimitiveCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::PrimitiveCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::FieldCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::FieldCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::FieldCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::FieldCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::FieldCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::FieldCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::MeshCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::MeshCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::MeshCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::MeshCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::MeshCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::MeshCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::BoxCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::BoxCollisionShape& ShapeToSerialize);
     /* /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
     std::istream& operator >> (std::istream& stream, phys::BoxCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
     void operator >> (const phys::xml::Node& OneNode, phys::BoxCollisionShape& x);*/
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::CapsuleCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::CapsuleCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::CapsuleCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::CapsuleCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::CapsuleCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::CapsuleCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::CompoundCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::CompoundCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::CompoundCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::CompoundCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::CompoundCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::CompoundCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::ConeCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ConeCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::ConeCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ConeCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::ConeCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ConeCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::ConvexHullCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ConvexHullCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::ConvexHullCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ConvexHullCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::ConvexHullCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ConvexHullCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::CylinderCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::CylinderCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::CylinderCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::CylinderCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::CylinderCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::CylinderCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::MultiSphereCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::MultiSphereCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::MultiSphereCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::MultiSphereCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::MultiSphereCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::MultiSphereCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::SphereCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::SphereCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::SphereCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::SphereCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::SphereCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::SphereCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::DynamicMeshCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::DynamicMeshCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::DynamicMeshCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::DynamicMeshCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::DynamicMeshCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::DynamicMeshCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::HeightfieldCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::HeightfieldCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::HeightfieldCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::HeightfieldCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::HeightfieldCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::HeightfieldCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::PlaneCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::PlaneCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::PlaneCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::PlaneCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::PlaneCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::PlaneCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::ActorSoftCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ActorSoftCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::ActorSoftCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorSoftCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::ActorSoftCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorSoftCollisionShape& x);
 
     /// @copydoc operator << (std::ostream& stream, const phys::CollisionShape& ShapeToSerialize)
-    std::ostream& operator << (std::ostream& stream, const phys::StaticMeshCollisionShape& ShapeToSerialize);
+    std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::StaticMeshCollisionShape& ShapeToSerialize);
     /// @copydoc operator >> (std::istream& stream, phys::CollisionShape& x)
-    std::istream& operator >> (std::istream& stream, phys::StaticMeshCollisionShape& x);
+    std::istream& PHYS_LIB operator >> (std::istream& stream, phys::StaticMeshCollisionShape& x);
     /// @copydoc operator >> (const phys::xml::Node& OneNode, phys::CollisionShape& x)
-    void operator >> (const phys::xml::Node& OneNode, phys::StaticMeshCollisionShape& x);
+    void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::StaticMeshCollisionShape& x);
 #endif  // \physxml
 
 

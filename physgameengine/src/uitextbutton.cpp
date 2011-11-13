@@ -55,9 +55,9 @@ namespace phys
         {
             AutoScaleText = false;
             RelLineHeight = 0.0;
-            GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text,*GorillaRectangle->GetNameFile());
-            GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
-            GorillaButton->background(Ogre::ColourValue(0,0,0,0));
+            GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,Ogre::Vector2(GorillaRectangle->left(),GorillaRectangle->top()),Ogre::Vector2(GorillaRectangle->width(),GorillaRectangle->height()),Text,*GorillaRectangle->GetNameFile());
+            //GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
+            GorillaButton->background_colour(Ogre::ColourValue(0,0,0,0));
             GorillaButton->align(Gorilla::TextAlign_Centre);
             GorillaButton->vertical_align(Gorilla::VerticalAlign_Middle);
         }
@@ -68,9 +68,9 @@ namespace phys
             AutoScaleText = true;
             RelLineHeight = LineHeight;
             std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(LineHeight * Parent->GetParent()->GetViewportDimensions().Y,*GorillaRectangle->GetNameFile());
-            GorillaButton = Parent->GetGorillaLayer()->createCaption(Result.first,GorillaRectangle->left(),GorillaRectangle->top(),Text,*GorillaRectangle->GetNameFile());
-            GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
-            GorillaButton->background(Ogre::ColourValue(0,0,0,0));
+            GorillaButton = Parent->GetGorillaLayer()->createCaption(Result.first,Ogre::Vector2(GorillaRectangle->left(),GorillaRectangle->top()),Ogre::Vector2(GorillaRectangle->width(),GorillaRectangle->height()),Text,*GorillaRectangle->GetNameFile());
+            //GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
+            GorillaButton->background_colour(Ogre::ColourValue(0,0,0,0));
             GorillaButton->align(Gorilla::TextAlign_Centre);
             GorillaButton->vertical_align(Gorilla::VerticalAlign_Middle);
             SetTextScale(Result.second);

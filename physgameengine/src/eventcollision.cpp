@@ -45,6 +45,7 @@
 #include "eventcollision.h"
 #include "world.h"
 
+#include <btBulletDynamicsCommon.h>
 #include <memory>
 
 namespace phys {
@@ -52,34 +53,105 @@ namespace phys {
     {
         ActorA=NULL;
         ActorB=NULL;
-        LocalALocation=Vector3(0,0,0);
-        LocalBLocation=Vector3(0,0,0);
-        WorldLocation=Vector3(0,0,0);
-        Impulse=0;
     }
 
-    EventCollision::EventCollision(ActorBase* actora, ActorBase* actorb, Vector3 localAlocation, Vector3 localBlocation, Vector3 worldlocation, Real impulse)
+    EventCollision::EventCollision(ActorBase* actora, ActorBase* actorb)
     {
         ActorA=actora;
         ActorB=actorb;
-        LocalALocation=localAlocation;
-        LocalBLocation=localBlocation;
-        WorldLocation=worldlocation;
-        Impulse=impulse;
+
+        ActorA->_NotifyCollision(this);
+        ActorB->_NotifyCollision(this);
     }
 
     EventCollision::EventCollision(const EventCollision& Other)
     {
         ActorA=Other.ActorA;
         ActorB=Other.ActorB;
-        LocalALocation=Other.LocalALocation;
-        LocalBLocation=Other.LocalBLocation;
-        WorldLocation=Other.WorldLocation;
-        Impulse=Other.Impulse;
+        Manifold=Other.Manifold;
+
+        ActorA->_NotifyCollision(this);
+        ActorB->_NotifyCollision(this);
     }
 
     EventCollision::~EventCollision()
     {
+        ActorA->_NotifyEndCollision(this);
+        ActorB->_NotifyEndCollision(this);
+    }
+
+    void EventCollision::SetActorA(ActorBase* A)
+    {
+        if(ActorA)
+        {
+            World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
+        }else{
+            ActorA = A;
+            ActorA->_NotifyCollision(this);
+        }
+    }
+
+    ActorBase* EventCollision::GetActorA() const
+    {
+        return ActorB;
+    }
+
+    void EventCollision::SetActorB(ActorBase* B)
+    {
+        if(ActorB)
+        {
+            World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
+        }else{
+            ActorB = B;
+            ActorB->_NotifyCollision(this);
+        }
+    }
+
+    ActorBase* EventCollision::GetActorB() const
+    {
+        return ActorB;
+    }
+
+    Whole EventCollision::GetNumContactPoints()
+    {
+        return (Whole)Manifold->getNumContacts();
+    }
+
+    Vector3 EventCollision::GetWorldLocation(const Whole& Point)
+    {
+        btVector3 PointA = Manifold->getContactPoint(Point).m_localPointA;
+        btVector3 PointB = Manifold->getContactPoint(Point).m_localPointB;
+        return Vector3((PointA+PointB) /= 2);
+    }
+
+    Vector3 EventCollision::GetLocalALocation(const Whole& Point)
+    {
+        return Vector3(Manifold->getContactPoint(Point).m_localPointA);
+    }
+
+    Vector3 EventCollision::GetLocalBLocation(const Whole& Point)
+    {
+        return Vector3(Manifold->getContactPoint(Point).m_localPointB);
+    }
+
+    Vector3 EventCollision::GetNormal(const Whole& Point)
+    {
+        return Vector3(Manifold->getContactPoint(Point).m_normalWorldOnB);
+    }
+
+    Real EventCollision::GetAppliedImpulse(const Whole& Point)
+    {
+        return Manifold->getContactPoint(Point).m_appliedImpulse;
+    }
+
+    Real EventCollision::GetDistance(const Whole& Point)
+    {
+        return Manifold->getContactPoint(Point).m_distance1;
+    }
+
+    Whole EventCollision::GetAge(const Whole& Point)
+    {
+        return (Whole)Manifold->getContactPoint(Point).m_lifeTime;
     }
 
     EventBase::EventType EventCollision::GetType() const
@@ -93,8 +165,11 @@ namespace phys {
 #ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::EventCollision& Ev)
 {
-    stream  << "<EventCollision Version=\"1\" Impulse=\"" << Ev.Impulse << "\" ActorA=\"" << Ev.ActorA->GetName() << "\" ActorB=\"" << Ev.ActorB->GetName() << "\" >"
-            <<  Ev.WorldLocation
+    stream  << "<EventCollision Version=\"1" //Impulse=\"" << Ev.Impulse
+            << "\" ActorA=\"" << Ev.GetActorA()->GetName()
+            << "\" ActorB=\"" << Ev.GetActorB()->GetName()
+            << "\" >"
+            //<<  Ev.WorldLocation
             << "</EventCollision>";
     return stream;
 }
@@ -109,6 +184,8 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventCollision& 
     return stream;
 }
 
+/// @todo This whole thing needs to be updated, and have a serializer added.
+
 void operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev)
 {
     if ( phys::String(OneNode.Name())==phys::String("EventCollision"))
@@ -116,16 +193,16 @@ void operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev)
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
 
-            Ev.ActorA=phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorA").AsString());
-            Ev.ActorB=phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorB").AsString());
-            Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
+            Ev.SetActorA(phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorA").AsString()));
+            Ev.SetActorB(phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorB").AsString()));
+            //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
 
-            if(OneNode.GetFirstChild())
-            {
-                OneNode.GetFirstChild() >> Ev.WorldLocation;
-            }else{
-                throw(phys::Exception("Normal not found while parsing phys::EventCollision"));
-            }
+            //if(OneNode.GetFirstChild())
+            //{
+            //    OneNode.GetFirstChild() >> Ev.WorldLocation;
+            //}else{
+            //    throw(phys::Exception("Normal not found while parsing phys::EventCollision"));
+            //}
 
         }else{
             throw( phys::Exception("Incompatible XML Version for EventCollision: Not Version 1"));

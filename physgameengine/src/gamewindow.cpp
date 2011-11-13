@@ -88,11 +88,11 @@ namespace phys
         Settings.RenderWidth = Width;
         Settings.RenderHeight = Height;
         //RenderContext = 0;
-        int SDLFlags = 0;
+        //int SDLFlags = 0;
         Ogre::NameValuePairList Opts;
         if(WF_Fullscreen & Flags)
         {
-            SDLFlags|=SDL_WINDOW_FULLSCREEN;
+            //SDLFlags|=SDL_WINDOW_FULLSCREEN;
             Settings.Fullscreen = true;
         }
         if(WF_Hidden & Flags)
@@ -121,19 +121,19 @@ namespace phys
         }
         if(WF_Resizeable & Flags)
         {
-            SDLFlags|=SDL_WINDOW_RESIZABLE;
+            //SDLFlags|=SDL_WINDOW_RESIZABLE;
         }
         if(WF_Maximized & Flags)
         {
-            SDLFlags|=SDL_WINDOW_MAXIMIZED;
+            //SDLFlags|=SDL_WINDOW_MAXIMIZED;
         }
         else if(WF_Minimized & Flags)
         {
-            SDLFlags|=SDL_WINDOW_MINIMIZED;
+            //SDLFlags|=SDL_WINDOW_MINIMIZED;
         }
         if(WF_Borderless & Flags)
         {
-            SDLFlags|=SDL_WINDOW_BORDERLESS;
+            //SDLFlags|=SDL_WINDOW_BORDERLESS;
             Opts["border"] = "none";
         }
         /*SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -151,25 +151,25 @@ namespace phys
 
         Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,(size_t)RenderContext);
         Opts.insert(Binder->begin(),Binder->end());// */
+
+        //#ifdef LINUX
+        //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(World::GetWorldPointer()->GetResourceManager()->GetEngineDataDirectory(),"FileSystem");
+        //#endif
         OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);//*/
 
         #ifdef WINDOWS
         HWND Data = 0;
-        OgreWindow->getCustomAttribute("WINDOW",&Data);
-        SDLWindow = SDL_CreateWindowFrom(Data);
         #endif
         #ifdef LINUX
-        Window* Data = 0;
-        OgreWindow->getCustomAttribute("WINDOW",Data);
-        SDLWindow = SDL_CreateWindowFrom(Data);
+        Window Data = 0;
         #endif
         #ifdef MACOS
         NSWindow* Data = 0;
-        OgreWindow->getCustomAttribute("WINDOW",Data);
-        SDLWindow = SDL_CreateWindowFrom(Data);
-        #endif// */
-        SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
-        //delete Binder;
+        #endif
+        OgreWindow->getCustomAttribute("WINDOW",&Data);
+        SDLWindow = SDL_CreateWindowFrom((void*)Data);
+
+        //SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
     }
 
     void GameWindow::CorrectViewportAndCamera(const Whole& Index)

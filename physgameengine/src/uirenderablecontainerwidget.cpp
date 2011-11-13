@@ -58,6 +58,7 @@
 #include "uipagedcellgrid.h"
 #include "uidropdownlist.h"
 #include "uitabset.h"
+#include "uiviewportupdatetool.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -381,35 +382,41 @@ namespace phys
             SetArea(Size);
         }
 
-        void RenderableContainerWidget::UpdateDimensions(const Vector2& OldViewportSize)
+        void RenderableContainerWidget::UpdateDimensions()
         {
             const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            //const Vector2& OldViewportSize = ViewportUpdateTool::GetOldSize();
+            Real Scale = ViewportUpdateTool::GetNewSize().Y / ViewportUpdateTool::GetOldSize().Y;
+            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
+            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
+            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
             WidgetBack->UpdateDimensions();
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
-                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
+                (*it).Offset = ((*it).Offset * Scale);
                 (*it).Object->UpdateDimensions();
             }
             for( std::vector<OffsetRectangleInfo>::iterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
             {
-                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
+                (*it).Offset = ((*it).Offset * Scale);
                 (*it).Object->UpdateDimensions();
             }
             for( std::vector<OffsetCaptionInfo>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
             {
-                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
+                (*it).Offset = ((*it).Offset * Scale);
                 (*it).Object->UpdateDimensions();
             }
             for( std::vector<OffsetMarkupTextInfo>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
             {
-                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
+                (*it).Offset = ((*it).Offset * Scale);
                 (*it).Object->UpdateDimensions();
             }
             for( std::vector<OffsetWidgetInfo>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
             {
-                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
-                (*it).Object->UpdateDimensions(OldViewportSize);
+                (*it).Offset = ((*it).Offset * Scale);
+                (*it).Object->UpdateDimensions();
             }
+            SetPosition(RelPosition);
         }
 
         Rectangle* RenderableContainerWidget::GetWidgetBack()

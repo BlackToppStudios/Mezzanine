@@ -31,9 +31,9 @@
 #define UTF8_IsLeadByte(c) ((c) >= 0xC0 && (c) <= 0xF4)
 #define UTF8_IsTrailingByte(c) ((c) >= 0x80 && (c) <= 0xBF)
 
-int UTF8_TrailingBytes(unsigned char c)
+static int UTF8_TrailingBytes(unsigned char c)
 {
-    if (c >= 0xC0 && c<= 0xDF)
+    if (c >= 0xC0 && c <= 0xDF)
         return 1;
     else if (c >= 0xE0 && c <= 0xEF)
         return 2;

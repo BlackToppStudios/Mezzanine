@@ -107,28 +107,59 @@ namespace phys
         CF_UserFilter2 = 128
     };
 
+    /// @enum RenderSystem
+    /// @brief Used primarily by the graphics manager class during initialization.
+    /// @details This enum specifies which Rendersystem is to be used for rendering.
+    enum RenderSystem
+    {
+        RS_DirectX9,
+        RS_DirectX10,
+        RS_DirectX11,
+        RS_OpenGL2,
+        RS_OpenGL3,
+        RS_OpenGL4,
+        RS_OpenGLES1,
+        RS_OpenGLES2
+    };
+
     /// @enum WorldObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This is mostly used internally for casting void pointers.
     enum WorldObjectType
     {
         // Actors
-        WOT_ActorBase = 1,
-        WOT_ActorRigid = 2,
-        WOT_ActorSoft = 4,
-        WOT_ActorCharacter = 8,
-        WOT_ActorTerrain = 16,
+        WOT_ActorFirst = 1,
+        WOT_ActorRigid = 1,
+        WOT_ActorSoft = 2,
+        WOT_ActorCharacter = 4,
+        WOT_ActorUnknown = 8,
+        WOT_ActorLast = 8,
+
+        // Terrains go here
+        WOT_TerrainFirst = 16,
+        WOT_ActorTerrain = 16, //should rename to Mesh Terrain
+        WOT_UnimplementedTerrain1 = 32, // should rename to Heightfield terrain
+        WOT_UnimplementedTerrain2 = 64, // should rename to Vectorfield terrain
+        WOT_UnimplementedTerrain3 = 128, // should rename to Voxel Terrain
+        WOT_UnknownTerrain = 256,
+        WOT_TerrainLast = 256,
 
         // AE Fields
-        WOT_AreaEffect = 32,
-        WOT_CustomAE  = 64,
-        WOT_GravityField = 128,
-        WOT_GravityWell = 256,
+        WOT_AEFirst = 512,
+        WOT_AEGravityField = 1024,
+        WOT_AEGravityWell = 2048,
+        WOT_AEFieldOfForce = 4096,
+        WOT_AEPlaceHolder1 = 8192,
+        WOT_AEPlaceHolder2 = 16384,
+        WOT_AEUnknown = 32768,
+        WOT_AELast = 32768,
 
         // Scene Objects
-        WOT_Light = 512,
-        WOT_ParticleEffect = 1024,
-        WOT_Camera = 2048
+        WOT_SceneFirst = 65536,
+        WOT_Light = 65536,
+        WOT_ParticleEffect = 131072,
+        WOT_Camera = 262144,
+        WOT_SceneLast = 262144,
     };
 
     /// @brief Used to identify different Axis in a 3d coordinate system.
@@ -138,96 +169,6 @@ namespace phys
         Axis_Y         = 1,    ///< Y axis
         Axis_Z         = 2,    ///< Z axis
     };
-/*
-    namespace UI
-    {
-        /// @enum ActivationCondition
-        /// @brief Used primarily by UI buttons to decide how/when a button is activated.
-        /// @details Essentially used to decide if a button should activate when it's activation button
-        /// is pressed or lifted.
-        enum ActivationCondition
-        {
-            AC_OnPress,
-            AC_OnLift
-        };
-        /// @enum RenderPriority
-        /// @brief Used by UI elements created by layers to determine z-ordering within a layer.
-        /// @details This essentially means we're adding layers to our layers without the messy
-        /// and un-intuitive re-coding necessary to actually accomplish that.
-        enum RenderPriority
-        {
-            RP_Low,
-            RP_Medium,
-            RP_High
-        };
-        /// @enum ResizeableAnchor
-        /// @brief Used by UI container classes to determine their movement behavior when the container is resized.
-        /// @details RA_AnchorTop means it stays in the same position if given a resize event relative to the top.
-        /// RA_AnchorBottom means the same as RA_AnchorTop but for the bottom of the container.  RA_AnchorMiddle means
-        /// it'll change position by half of the pixels that the container was resized.
-        enum ResizeableAnchor
-        {
-            RA_AnchorTopLeft,
-            RA_AnchorTop,
-            RA_AnchorTopRight,
-            RA_AnchorLeft,
-            RA_AnchorMiddle,
-            RA_AnchorRight,
-            RA_AnchorBottomLeft,
-            RA_AnchorBottom,
-            RA_AnchorBottomRight
-        };
-        /// @enum ResizeableTether
-        /// @brief Used by UI container classes to determine their resize behavior when the container is resized.
-        /// @details RT_TetherHorizontal means it will resize itself equally during any Horizontal resizing of the container.
-        /// RT_TetherVertical means the same as RT_TetherHorizontal, but for Vertical resizes.  RT_TetherBoth means it'll do both.
-        enum ResizeableTether
-        {
-            RT_TetherBoth,
-            RT_TetherNone,
-            RT_TetherHorizontal,
-            RT_TetherVertical
-        };
-        /// @enum ScrollbarStyle
-        /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.
-        /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.
-        enum ScrollbarStyle
-        {
-            SB_NoButtons,
-            SB_Separate,
-            SB_TogetherUpLeft,
-            SB_TogetherDownRight
-        };
-        /// @enum SpinnerStyle
-        /// @brief Used by the spinner class to determine what styling should be used for the spinner.
-        /// @details In the case of the buttons being together, the increment button will be above the decrement button.
-        enum SpinnerStyle
-        {
-            Spn_Separate,
-            Spn_Together_Left,
-            Spn_Together_Right
-        };
-        /// @enum TextHorizontalAlign
-        /// @brief Used by UI classes to determine the placement of text within a given area.
-        /// @details This enum determines the Horizontal alignment of text.
-        /// This enum is used by these classes in the UI namespace: Button and Caption.
-        enum TextHorizontalAlign
-        {
-            Txt_Left,
-            Txt_Right,
-            Txt_Middle
-        };
-        /// @enum TextVerticalAlign
-        /// @brief Used by UI classes to determine the placement of text within a given area.
-        /// @details This enum determines the Vertical alignment of text.
-        /// This enum is used by these classes in the UI namespace: Button and Caption.
-        enum TextVerticalAlign
-        {
-            Txt_Top,
-            Txt_Bottom,
-            Txt_Center
-        };
-    }*/
 }
 
 #endif

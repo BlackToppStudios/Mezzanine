@@ -104,7 +104,7 @@
 #define HAVE_SYSCTLBYNAME 1
 
 /* enable iPhone version of Core Audio driver */
-#define SDL_AUDIO_DRIVER_COREAUDIOIPHONE 1
+#define SDL_AUDIO_DRIVER_COREAUDIO 1
 /* Enable the dummy audio driver (src/audio/dummy/\*.c) */
 #define SDL_AUDIO_DRIVER_DUMMY	1
 
@@ -139,6 +139,9 @@
 
 /* enable iPhone keyboard support */
 #define SDL_IPHONE_KEYBOARD 1
+
+/* enable joystick subsystem */
+#define SDL_JOYSTICK_DISABLED 0
 
 /* Set max recognized G-force from accelerometer
    See src/joystick/uikit/SDLUIAccelerationDelegate.m for notes on why this is needed

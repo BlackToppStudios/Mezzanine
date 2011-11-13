@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_AUDIO_DRIVER_ESD
+
 /* Allow access to an ESD network stream mixing buffer */
 
 #include <sys/types.h>
@@ -40,9 +42,6 @@
 #else
 #define SDL_NAME(X)	X
 #endif
-
-/* The tag name used by ESD audio */
-#define ESD_DRIVER_NAME		"esd"
 
 #ifdef SDL_AUDIO_DRIVER_ESD_DYNAMIC
 
@@ -345,7 +344,9 @@ ESD_Init(SDL_AudioDriverImpl * impl)
 
 
 AudioBootStrap ESD_bootstrap = {
-    ESD_DRIVER_NAME, "Enlightened Sound Daemon", ESD_Init, 0
+    "esd", "Enlightened Sound Daemon", ESD_Init, 0
 };
+
+#endif /* SDL_AUDIO_DRIVER_ESD */
 
 /* vi: set ts=4 sw=4 expandtab: */

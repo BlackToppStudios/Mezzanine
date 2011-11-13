@@ -821,6 +821,7 @@ void
 SDL_WM_SetIcon(SDL_Surface * icon, Uint8 * mask)
 {
     SDL_VideoIcon = icon;
+    ++SDL_VideoIcon->refcount;
 }
 
 int
@@ -848,7 +849,7 @@ SDL_WM_ToggleFullScreen(SDL_Surface * surface)
     /* Copy the old bits out */
     length = SDL_PublicSurface->w * SDL_PublicSurface->format->BytesPerPixel;
     pixels = SDL_malloc(SDL_PublicSurface->h * length);
-    if (pixels) {
+    if (pixels && SDL_PublicSurface->pixels) {
         src = (Uint8*)SDL_PublicSurface->pixels;
         dst = (Uint8*)pixels;
         for (row = 0; row < SDL_PublicSurface->h; ++row) {

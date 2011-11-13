@@ -32,8 +32,6 @@
 #include "epoc/SDL_systhread_c.h"
 #elif SDL_THREAD_PTHREAD
 #include "pthread/SDL_systhread_c.h"
-#elif SDL_THREAD_SPROC
-#include "irix/SDL_systhread_c.h"
 #elif SDL_THREAD_WINDOWS
 #include "windows/SDL_systhread_c.h"
 #elif SDL_THREAD_NDS
@@ -51,6 +49,7 @@ struct SDL_Thread
     SYS_ThreadHandle handle;
     int status;
     SDL_error errbuf;
+    char *name;
     void *data;
 };
 
@@ -58,4 +57,5 @@ struct SDL_Thread
 extern void SDL_RunThread(void *data);
 
 #endif /* _SDL_thread_c_h */
+
 /* vi: set ts=4 sw=4 expandtab: */

@@ -101,6 +101,9 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
                 virtual void SetActualSize(const Vector2& Size) = 0;
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions() = 0;
                 /// @brief Overloaded Less-Than operator used for sorting on the grid.
                 /// @param Other The other Cell to be compared to this one.
                 virtual bool operator<(Cell* Other);

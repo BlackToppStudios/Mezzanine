@@ -1,3 +1,43 @@
+# © Copyright 2010 - 2011 BlackTopp Studios Inc.
+# This file is part of The PhysGame Engine.
+#
+#    The PhysGame Engine is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    The PhysGame Engine is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+#
+#   The original authors have included a copy of the license specified above in the
+#   'Docs' folder. See 'gpl.txt'
+#
+#   We welcome the use of The PhysGame anyone, including companies who wish to
+#   Build professional software and charge for their product.
+#
+#   However there are some practical restrictions, so if your project involves
+#   any of the following you should contact us and we will try to work something
+#   out:
+#    - DRM or Copy Protection of any kind(except Copyrights)
+#    - Software Patents You Do Not Wish to Freely License
+#    - Any Kind of Linking to Non-GPL licensed Works
+#    - Are Currently In Violation of Another Copyright Holder's GPL License
+#    - If You want to change our code and not add a few hundred MB of stuff to
+#        your distribution
+#
+#   These and other limitations could cause serious legal problems if you ignore
+#   them, so it is best to simply contact us or the Free Software Foundation, if
+#   you have any questions.
+#
+#   Joseph Toppi - toppij@gmail.com
+#   John Blackwood - makoenergy02@gmail.com
+
+
 ###############################################################################
 # The build script for the physgame engine
 cmake_minimum_required (VERSION 2.8)
@@ -11,16 +51,17 @@ add_definitions( ${CommonBuildFlags} )
 message("Compiler Flags used on all Builds: ${CommonBuildFlags}")
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
+set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 message ("Base Directory for ${PROJECT_NAME}: ${${PROJECT_NAME}_ROOT_DIR}")
 
-set (${PROJECT_NAME}_LIBINCLUDE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/libincludes/")
+set (${PROJECT_NAME}_LIBINCLUDE_DIR "${${PROJECT_NAME}_SOURCE_DIR}libincludes/")
 message ("Base Directory for Library headers: ${${PROJECT_NAME}_LIBINCLUDE_DIR}")
 
-set (${PROJECT_NAME}_LIBBINARY_DIR "${${PROJECT_NAME}_SOURCE_DIR}/data/")
+set (${PROJECT_NAME}_LIBBINARY_DIR "${${PROJECT_NAME}_SOURCE_DIR}data/")
 message ("Base Directory for Library binaries and data: ${${PROJECT_NAME}_LIBBINARY_DIR}")
 
-set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
-message ("Looking for source code in: ${${PROJECT_NAME}_SOURCE_DIR}")
+set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
+message ("Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")
 
@@ -32,240 +73,246 @@ message ("Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 #######################################
 # A complete listing of our header files
 set(${PROJECT_NAME}_sources
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorcharacter.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainerbase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainervector.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorgraphicssettings.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actormanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorphysicssettings.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorrigid.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorserializer.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorsoft.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorterrain.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/areaeffect.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/attachable.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audio.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audioenumerations.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audiolistener.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audiomanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audioplaylist.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audiosound.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audiosoundset.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/camera.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/cameracontroller.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/cameramanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/collisionshape.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/collisionshapemanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/colourvalue.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/constraint.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/crossplatform.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/crossplatformexport.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/datatypes.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/enumerations.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventbase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventcollision.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventgamewindow.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventquit.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventrendertime.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventuserinput.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/exception.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/extendedtimer.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/gamewindow.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/graphicsmanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/graphicssettings.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/inputquerytool.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalbulletfile.h.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalbulletfilemanager.h.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internaldecompinterface.h.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalGorilla.h.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalmeshtools.h.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalmotionstate.h.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalogredatastreambuf.h.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/light.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/linegroup.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/managerbase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/mathtool.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/mesh.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/meshmanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/metacode.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/network.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networkipaddress.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networkmanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networkpacket.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networksocket.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networksystemaddress.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/objectreference.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffect.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/physgame.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/physicsmanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/plane.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/quaternion.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/ray.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/rayquerytool.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/resourceinputstream.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/resourcemanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/simpletimer.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/singleton.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/serialization.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/stringtool.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/timer.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/timermanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/transform.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/ui.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uibasicrenderable.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uibutton.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uicaption.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uicell.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uicellgrid.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uicheckbox.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uidropdownlist.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uienumerations.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uilayer.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uilinelist.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uilistbox.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uimanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uimarkuptext.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uimenu.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uimenuwindow.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uipagedcellgrid.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiradiobutton.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uirectangle.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uirenderablecontainerwidget.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uirenderablerect.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiresizinginfo.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiscreen.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrollbar.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrolledcellgrid.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uispinner.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uitabset.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uitextbutton.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiwidget.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiwindow.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/vector2.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/vector3.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/vector3wactor.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/viewport.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/world.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/worldnode.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/worldtrigger.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xml.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorbase.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorcharacter.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorcontainerbase.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorcontainervector.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorgraphicssettings.h"
+	"${${PROJECT_NAME}_SRC_DIR}actormanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorphysicssettings.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorrigid.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorserializer.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorsoft.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorterrain.h"
+	"${${PROJECT_NAME}_SRC_DIR}areaeffect.h"
+	"${${PROJECT_NAME}_SRC_DIR}attachable.h"
+	"${${PROJECT_NAME}_SRC_DIR}audio.h"
+	"${${PROJECT_NAME}_SRC_DIR}audioenumerations.h"
+	"${${PROJECT_NAME}_SRC_DIR}audiolistener.h"
+	"${${PROJECT_NAME}_SRC_DIR}audiomanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}audiomusicplayer.h"
+	"${${PROJECT_NAME}_SRC_DIR}audioplaylist.h"
+	"${${PROJECT_NAME}_SRC_DIR}audiosound.h"
+	"${${PROJECT_NAME}_SRC_DIR}audiosoundset.h"
+	"${${PROJECT_NAME}_SRC_DIR}camera.h"
+	"${${PROJECT_NAME}_SRC_DIR}cameracontroller.h"
+	"${${PROJECT_NAME}_SRC_DIR}cameramanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}collisionshape.h"
+	"${${PROJECT_NAME}_SRC_DIR}collisionshapemanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}colourvalue.h"
+	"${${PROJECT_NAME}_SRC_DIR}constraint.h"
+	"${${PROJECT_NAME}_SRC_DIR}crossplatform.h"
+	"${${PROJECT_NAME}_SRC_DIR}crossplatformexport.h"
+	"${${PROJECT_NAME}_SRC_DIR}datatypes.h"
+	"${${PROJECT_NAME}_SRC_DIR}enumerations.h"
+	"${${PROJECT_NAME}_SRC_DIR}entity.h"
+	"${${PROJECT_NAME}_SRC_DIR}eventbase.h"
+	"${${PROJECT_NAME}_SRC_DIR}eventcollision.h"
+	"${${PROJECT_NAME}_SRC_DIR}eventgamewindow.h"
+	"${${PROJECT_NAME}_SRC_DIR}eventmanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}eventquit.h"
+	"${${PROJECT_NAME}_SRC_DIR}eventrendertime.h"
+	"${${PROJECT_NAME}_SRC_DIR}eventuserinput.h"
+	"${${PROJECT_NAME}_SRC_DIR}exception.h"
+	"${${PROJECT_NAME}_SRC_DIR}extendedtimer.h"
+	"${${PROJECT_NAME}_SRC_DIR}gamewindow.h"
+	"${${PROJECT_NAME}_SRC_DIR}graphicsmanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}graphicssettings.h"
+	"${${PROJECT_NAME}_SRC_DIR}inputquerytool.h"
+	"${${PROJECT_NAME}_SRC_DIR}internalbulletfile.h.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalbulletfilemanager.h.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internaldecompinterface.h.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalGorilla.h.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalmeshtools.h.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalmotionstate.h.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalogredatastreambuf.h.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}light.h"
+	"${${PROJECT_NAME}_SRC_DIR}linegroup.h"
+	"${${PROJECT_NAME}_SRC_DIR}managerbase.h"
+	"${${PROJECT_NAME}_SRC_DIR}mathtool.h"
+	"${${PROJECT_NAME}_SRC_DIR}mesh.h"
+	"${${PROJECT_NAME}_SRC_DIR}meshmanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}metacode.h"
+	"${${PROJECT_NAME}_SRC_DIR}network.h"
+	"${${PROJECT_NAME}_SRC_DIR}networkipaddress.h"
+	"${${PROJECT_NAME}_SRC_DIR}networkmanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}networkpacket.h"
+	"${${PROJECT_NAME}_SRC_DIR}networksocket.h"
+	"${${PROJECT_NAME}_SRC_DIR}networksystemaddress.h"
+	"${${PROJECT_NAME}_SRC_DIR}objectreference.h"
+	"${${PROJECT_NAME}_SRC_DIR}particleeffect.h"
+	"${${PROJECT_NAME}_SRC_DIR}physgame.h"
+	"${${PROJECT_NAME}_SRC_DIR}physicsmanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}plane.h"
+	"${${PROJECT_NAME}_SRC_DIR}quaternion.h"
+	"${${PROJECT_NAME}_SRC_DIR}ray.h"
+	"${${PROJECT_NAME}_SRC_DIR}rayquerytool.h"
+	"${${PROJECT_NAME}_SRC_DIR}resourceinputstream.h"
+	"${${PROJECT_NAME}_SRC_DIR}resourcemanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}scenemanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}simpletimer.h"
+	"${${PROJECT_NAME}_SRC_DIR}singleton.h"
+	"${${PROJECT_NAME}_SRC_DIR}serialization.h"
+	"${${PROJECT_NAME}_SRC_DIR}stringtool.h"
+	"${${PROJECT_NAME}_SRC_DIR}timer.h"
+	"${${PROJECT_NAME}_SRC_DIR}timermanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}transform.h"
+	"${${PROJECT_NAME}_SRC_DIR}ui.h"
+	"${${PROJECT_NAME}_SRC_DIR}uibasicrenderable.h"
+	"${${PROJECT_NAME}_SRC_DIR}uibutton.h"
+	"${${PROJECT_NAME}_SRC_DIR}uicaption.h"
+	"${${PROJECT_NAME}_SRC_DIR}uicell.h"
+	"${${PROJECT_NAME}_SRC_DIR}uicellgrid.h"
+	"${${PROJECT_NAME}_SRC_DIR}uicheckbox.h"
+	"${${PROJECT_NAME}_SRC_DIR}uidropdownlist.h"
+	"${${PROJECT_NAME}_SRC_DIR}uienumerations.h"
+	"${${PROJECT_NAME}_SRC_DIR}uilayer.h"
+	"${${PROJECT_NAME}_SRC_DIR}uilinelist.h"
+	"${${PROJECT_NAME}_SRC_DIR}uilistbox.h"
+	"${${PROJECT_NAME}_SRC_DIR}uimanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}uimarkuptext.h"
+	"${${PROJECT_NAME}_SRC_DIR}uimenu.h"
+	"${${PROJECT_NAME}_SRC_DIR}uimenuwindow.h"
+	"${${PROJECT_NAME}_SRC_DIR}uipagedcellgrid.h"
+	"${${PROJECT_NAME}_SRC_DIR}uiradiobutton.h"
+	"${${PROJECT_NAME}_SRC_DIR}uirectangle.h"
+	"${${PROJECT_NAME}_SRC_DIR}uirenderablecontainerwidget.h"
+	"${${PROJECT_NAME}_SRC_DIR}uirenderablerect.h"
+	"${${PROJECT_NAME}_SRC_DIR}uiresizinginfo.h"
+	"${${PROJECT_NAME}_SRC_DIR}uiscreen.h"
+	"${${PROJECT_NAME}_SRC_DIR}uiscrollbar.h"
+	"${${PROJECT_NAME}_SRC_DIR}uiscrolledcellgrid.h"
+	"${${PROJECT_NAME}_SRC_DIR}uispinner.h"
+	"${${PROJECT_NAME}_SRC_DIR}uitabset.h"
+	"${${PROJECT_NAME}_SRC_DIR}uitextbutton.h"
+	"${${PROJECT_NAME}_SRC_DIR}uiwidget.h"
+	"${${PROJECT_NAME}_SRC_DIR}uiwindow.h"
+	"${${PROJECT_NAME}_SRC_DIR}vector2.h"
+	"${${PROJECT_NAME}_SRC_DIR}vector3.h"
+	"${${PROJECT_NAME}_SRC_DIR}vector3wactor.h"
+	"${${PROJECT_NAME}_SRC_DIR}viewport.h"
+	"${${PROJECT_NAME}_SRC_DIR}world.h"
+	"${${PROJECT_NAME}_SRC_DIR}worldgetset.h"
+	"${${PROJECT_NAME}_SRC_DIR}worldnode.h"
+	"${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
+	"${${PROJECT_NAME}_SRC_DIR}xml.h"
+	"${${PROJECT_NAME}_SRC_DIR}xmldoc.h"
 
 #######################################
 # A complete listing of our source files
 
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorcharacter.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainerbase.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainervector.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorgraphicssettings.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actormanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorphysicssettings.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorrigid.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorserializer.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorsoft.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorterrain.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/areaeffect.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/attachable.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audiolistener.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audiomanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audioplaylist.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audiosound.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/audiosoundset.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/camera.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/cameracontroller.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/cameramanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/collisionshape.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/collisionshapemanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/colourvalue.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/constraint.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/crossplatform.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventbase.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventcollision.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventgamewindow.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventquit.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventrendertime.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventuserinput.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/exception.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/extendedtimer.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/gamewindow.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/graphicsmanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/inputquerytool.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalbulletfile.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalbulletfilemanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internaldecompinterface.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalGorilla.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalmeshtools.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalmotionstate.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/internalogredatastreambuf.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/light.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/linegroup.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/managerbase.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/mathtool.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/mesh.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/meshmanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/metacode.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networkipaddress.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networkmanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networkpacket.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networksocket.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/networksystemaddress.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffect.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/physicsmanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/plane.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/quaternion.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/ray.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/rayquerytool.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/resourceinputstream.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/resourcemanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/serialization.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/simpletimer.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/stringtool.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/timermanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/transform.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uibasicrenderable.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uibutton.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uicaption.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uicell.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uicellgrid.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uicheckbox.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uidropdownlist.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uilayer.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uilinelist.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uilistbox.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uimanager.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uimarkuptext.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uimenu.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uimenuwindow.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uipagedcellgrid.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiradiobutton.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uirectangle.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uirenderablecontainerwidget.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiresizinginfo.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiscreen.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrollbar.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrolledcellgrid.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uispinner.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uitabset.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uitextbutton.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiwidget.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/uiwindow.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/vector2.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/vector3.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/vector3wactor.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/viewport.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/world.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/worldnode.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/worldtrigger.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xml.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorbase.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorcharacter.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorcontainerbase.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorcontainervector.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorgraphicssettings.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actormanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorphysicssettings.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorrigid.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorserializer.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorsoft.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorterrain.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}areaeffect.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}attachable.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}audiolistener.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}audiomanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}audiomusicplayer.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}audioplaylist.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}audiosound.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}audiosoundset.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}camera.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}cameracontroller.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}cameramanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}collisionshape.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}collisionshapemanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}colourvalue.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}constraint.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}crossplatform.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}datatypes.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}entity.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}eventbase.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}eventcollision.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}eventgamewindow.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}eventmanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}eventquit.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}eventrendertime.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}eventuserinput.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}exception.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}extendedtimer.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}gamewindow.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}graphicsmanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}inputquerytool.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalbulletfile.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalbulletfilemanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internaldecompinterface.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalGorilla.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalmeshtools.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalmotionstate.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}internalogredatastreambuf.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}light.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}linegroup.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}managerbase.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}mathtool.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}mesh.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}meshmanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}metacode.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}networkipaddress.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}networkmanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}networkpacket.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}networksocket.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}networksystemaddress.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}particleeffect.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}physicsmanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}plane.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}quaternion.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}ray.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}rayquerytool.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}resourceinputstream.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}resourcemanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}scenemanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}serialization.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}simpletimer.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}stringtool.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}timermanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}transform.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uibasicrenderable.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uibutton.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uicaption.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uicell.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uicellgrid.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uicheckbox.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uidropdownlist.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uilayer.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uilinelist.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uilistbox.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uimanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uimarkuptext.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uimenu.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uimenuwindow.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uipagedcellgrid.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uiradiobutton.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uirectangle.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uirenderablecontainerwidget.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uiresizinginfo.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uiscreen.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uiscrollbar.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uiscrolledcellgrid.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uispinner.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uitabset.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uitextbutton.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uiviewportupdatetool.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uiwidget.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}uiwindow.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}vector2.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}vector3.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}vector3wactor.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}viewport.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}world.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}worldgetset.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}worldnode.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}xml.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}xmldoc.cpp"
 )
 
 ###############################################################################
@@ -290,7 +337,6 @@ function(CreateSymlinkDuringBuild Targeting LinkName)
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
 		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
-		#COMMAND ${CMAKE_COMMAND} -E create_symlink "${${PROJECT_NAME}_BINARY_DIR}${Linkname}" "${${PROJECT_NAME}_BINARY_DIR}${Target}"
 		COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
 		VERBATIM
 	)
@@ -310,75 +356,77 @@ endfunction(CopyLibraryDuringBuild)
 
 ###############################################################################
 # System Specific Build Items
+#######################################
+# All Changes that could be system specific should be defined in these variables
+# These will set sane defaults (Where possible), but specific platforms should 
+# set a value of their own.
 set(SDL SDL)
+
+set(PhysgameBuildFlags "")
+
+set( Bullet_LibraryNames
+	"ConvexDecomposition"
+	"GIMPACTUtils"
+	"BulletWorldImporter"
+	"BulletFileLoader"
+	#"BulletSoftBodySolvers_OpenCL"
+	"BulletSoftBodySolvers_CPU"
+	"MiniCL"
+	"BulletMultiThreaded"
+	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
+)
+
 #######################################
 # Windows Build Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
-	set(BuildPlatform windows)
-
-	#required for cAudio
-	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
-
-	include_directories( 
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" 
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
-	)
-
+	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis") #required for cAudio
 	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
-	
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
 #######################################
 # Linux Build Specific Items
 
-if(${UNIX})
-	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 	#if(${UNIX} AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin") #does not appear to work as expected.
-	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-		message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
-		set(BuildPlatform linux)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	message ("${PROJECT_NAME} - Begin Linux Specific Build Process")
 
-		#Autobuild SDL and ogre could go here
-	
-		set(OgreSoName libOgreMain.so.1.7.3)
-		file( COPY 
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreSoName}"
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX.so"
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_CgProgramManager.so"
-			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
-		)
-		include_directories(
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
-		)
-		add_definitions( -DOGRE_GUI_GLX -DLINUX )
+	#Autobuild SDL and ogre could go here
 
-		file( COPY 
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/libSDL.a"
-			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-		)
-	    	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
-		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
-	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-endif(${UNIX})
+	#this copies the files compiled by ./BuildLinuxLibs and puts them where they are expected by the normal build process
+	file( COPY 
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLibFileName}"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLinuxSoName}"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL${OgresD}.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX${OgresD}.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_CgProgramManager${OgresD}.so"
+		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
+	)
+
+	include_directories(				
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"	#Cannot include in common until all platforms compile Ogre from source
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDLbuild/include"			#cannot include in common until all platforms compile SDL from source
+	)
+	add_definitions( -DOGRE_GUI_GLX -DLINUX )
+
+	file( COPY 											#cannot include in common until all platforms compile SDL from source
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
+		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+	)
+    	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
+	message ("${PROJECT_NAME} - End Linux Specific Build Process")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 #######################################
 # Mac OS X and iPhone Build pecific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
-	set(BuildPlatform macosx)
 	set(CMAKE_OSX_ARCHITECTURES i386 CACHE STRING "do not build for 64-bit" FORCE)
 	set(ARCH i386)
-	
-        
         
         include(FindOpenAL)
 	message("OpenAL Headers and Library Found - ${OPENAL_INCLUDE_DIR}")
-
 
 	include(FindOgg)
 	message("Ogg Headers and Library Found - ${OGG_FOUND}")
@@ -400,23 +448,20 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 	link_directories("${OGRE_LIB_DIR}")
     
-
 	add_definitions( -DMACOSX)
 	message ("${PROJECT_NAME} - End Apple Specific Build Process")
-
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
 #Common Library Configuration items
-include_directories( ${${PROJECT_NAME}_SOURCE_DIR}
-	#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
+include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
-	#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogre/OgreMain/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
 )
 
 link_directories(
@@ -431,108 +476,84 @@ link_directories(
 ###############################################################################
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
-# remove lib prefix from DLL outputs
-set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
 #######################################
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
-#add_subdirectory (libincludes/common/ogresrc)
-#add_subdirectory (${BuildSpecificDirs})
+#add_subdirectory (libincludes/common/ogresrc) # not quite ready yet
 
 add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Ogre )
 
 #######################################
 # Library Link Dependencies
-set( Bullet_LibraryNames
-	"ConvexDecomposition"
-	"GIMPACTUtils"
-	"BulletWorldImporter"
-	"BulletFileLoader"
-	#"BulletSoftBodySolvers_OpenCL"
-	"BulletSoftBodySolvers_CPU"
-	"MiniCL"
-	"BulletMultiThreaded"
-	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
+
+add_definitions( ${PhysgameBuildFlags} )
+target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Physgame Dependencies
+	${OgreLinkName} 
+	${Bullet_LibraryNames} 
+	cAudio 
+	${SDL}
 )
 
-if(${WIN32})
-	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDL} Ws2_32)
-endif(${WIN32})
-
-if(${UNIX})
-	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDL} )
-endif(${UNIX})
-
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	target_link_libraries(
-	    "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
-	    ${PROJECT_NAME}
-	    "${OGRE_LIBRARIES}"
-	    ${Bullet_LibraryNames}
-	    "${OPENAL_LIBRARY}" 
-	    ${${PROJECT_NAME}_ROOT_DIR}/data/macosx/sdl/libSDL.dylib
-	    ${${PROJECT_NAME}_ROOT_DIR}/data/macosx/caudio/libcAudio.dylib
-	)
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
 # Build Time File copying
 
 #######################################
-#Copy Common Files at Build Time
-CopyFilesDuringBuild( common/Ogre-lgpl-3.0.txt data/common/Ogre-lgpl-3.0.txt )
+# Copy Common Files at Build Time
+
+# Licenses
+CopyFilesDuringBuild( common/BulletZLibLicense.txt data/common/BulletZLibLicense.txt )
+CopyFilesDuringBuild( common/lgpl-3.0.txt data/common/lgpl-3.0.txt )
+CopyFilesDuringBuild( common/Ogre-MITLicense.txt data/common/Ogre-MITLicense.txt )
+CopyFilesDuringBuild( common/SDL-MITLicense.txt data/common/SDL-MITLicense.txt )
+CopyFilesDuringBuild( common/zlib-libpngLicense.txt data/common/zlib-libpngLicense.txt )
+CopyFilesDuringBuild( common/gpl-3.0.txt data/common/gpl-3.0.txt )
+CopyFilesDuringBuild( common/Licenses.txt data/common/Licenses.txt )
 CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
+CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
+
+# Ogre 
+CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL}  data/${BuildPlatform}/ogre/${OgrePluginRenderGL}  )
+CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginParticle} data/${BuildPlatform}/ogre/${OgrePluginParticle} )
+CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginCGPM} data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
+CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
 CopyFilesDuringBuild( ${BuildPlatform}/plugins.cfg data/${BuildPlatform}/plugins.cfg )
-CopyFilesDuringBuild( ${BuildPlatform}/settings.cfg data/${BuildPlatform}/settings.cfg )
+
+#We should use the new variables to copy the ogre files and physgame library in the common code.
 
 #######################################
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-
-	#Copy System Dependant files during build time
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.dll data/${BuildPlatform}/ogre/Plugin_ParticleFX.dll )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll )
-	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
+	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")  					 # remove lib prefix from DLL outputs
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
+	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )							#compiling SDL from source will remove this
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
-	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
+	#CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
-
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
 #######################################
 # Linux File Copy Specific Items
-if(${UNIX})
-	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
+	CopyFilesDuringBuild( ${BuildPlatform}/GLX_icon.png data/${BuildPlatform}/GLX_icon.png )
+	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName} )
+	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
-		message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
-
-		#Copy System Dependant files during build time
-		#CopyFilesDuringBuild( ${BuildPlatform}/sdl/${SDLLibName} ${SDLLibName})
-		CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so)
-		CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.so data/${BuildPlatform}/ogre/Plugin_ParticleFX.so)
-		CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_CgProgramManager.so data/${BuildPlatform}/ogre/Plugin_CgProgramManager.so)
-		CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
-		CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
-
-		message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
-	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-endif(${UNIX})
 
 #######################################
 # Mac File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-	
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
-#	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
-	
+	#CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
+
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 

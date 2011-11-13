@@ -258,12 +258,12 @@ namespace phys
             }
         }
 
-        void MenuWindow::UpdateDimensions(const Vector2& OldViewportSize)
+        void MenuWindow::UpdateDimensions()
         {
-            Window::UpdateDimensions(OldViewportSize);
+            Window::UpdateDimensions();
             for( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
             {
-                (*it).second->UpdateDimensions(OldViewportSize);
+                (*it).second->UpdateDimensions();
             }
         }
     }

@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_UIKIT
+
 #include "SDL_syswm.h"
 #include "SDL_video.h"
 #include "SDL_mouse.h"
@@ -38,119 +40,6 @@
 
 #include <Foundation/Foundation.h>
 
-@implementation SDL_uikitviewcontroller
-
-- (id)initWithSDLWindow:(SDL_Window *)_window {
-    if ((self = [self init]) == nil) {
-        return nil;
-    }
-    self->window = _window;
-    return self;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orient {
-    const char *orientationsCString;
-    if ((orientationsCString = SDL_GetHint(SDL_HINT_ORIENTATIONS)) != NULL) {
-        BOOL rotate = NO;
-        NSString *orientationsNSString = [NSString stringWithCString:orientationsCString
-                                                            encoding:NSUTF8StringEncoding];
-        NSArray *orientations = [orientationsNSString componentsSeparatedByCharactersInSet:
-                                 [NSCharacterSet characterSetWithCharactersInString:@" "]];
-        
-        switch (orient) {
-            case UIInterfaceOrientationLandscapeLeft:
-                rotate = [orientations containsObject:@"LandscapeLeft"];
-                break;
-                
-            case UIInterfaceOrientationLandscapeRight:
-                rotate = [orientations containsObject:@"LandscapeRight"];
-                break;
-                
-            case UIInterfaceOrientationPortrait:
-                rotate = [orientations containsObject:@"Portrait"];
-                break;
-                
-            case UIInterfaceOrientationPortraitUpsideDown:
-                rotate = [orientations containsObject:@"PortraitUpsideDown"];
-                break;
-                
-            default: break;
-        }
-        
-        return rotate;
-    }
-
-    if (self->window->flags & SDL_WINDOW_RESIZABLE) {
-        return YES;  // any orientation is okay.
-    }
-
-    // If not resizable, allow device to orient to other matching sizes
-    //  (that is, let the user turn the device upside down...same screen
-    //   dimensions, but it lets the user place the device where it's most
-    //   comfortable in relation to its physical buttons, headphone jack, etc).
-    switch (orient) {
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight:
-            return (self->window->w >= self->window->h);
-
-        case UIInterfaceOrientationPortrait:
-        case UIInterfaceOrientationPortraitUpsideDown:
-            return (self->window->h >= self->window->w);
-
-        default: break;
-    }
-
-    return NO;  // Nothing else is acceptable.
-}
-
-- (void)loadView  {
-    // do nothing.
-}
-
-// Send a resized event when the orientation changes.
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if ((self->window->flags & SDL_WINDOW_RESIZABLE) == 0) {
-        return;   // don't care, we're just flipping over in this case.
-    }
-
-    const UIInterfaceOrientation toInterfaceOrientation = [self interfaceOrientation];
-    SDL_WindowData *data = self->window->driverdata;
-    UIWindow *uiwindow = data->uiwindow;
-    UIScreen *uiscreen = [uiwindow screen];
-    const int noborder = self->window->flags & SDL_WINDOW_BORDERLESS;
-    CGRect frame = noborder ? [uiscreen bounds] : [uiscreen applicationFrame];
-    const CGSize size = frame.size;
-    int w, h;
-
-    switch (toInterfaceOrientation) {
-        case UIInterfaceOrientationPortrait:
-        case UIInterfaceOrientationPortraitUpsideDown:
-            w = (size.width < size.height) ? size.width : size.height;
-            h = (size.width > size.height) ? size.width : size.height;
-            break;
-
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight:
-            w = (size.width > size.height) ? size.width : size.height;
-            h = (size.width < size.height) ? size.width : size.height;
-            break;
-
-        default:
-            SDL_assert(0 && "Unexpected interface orientation!");
-            return;
-    }
-
-    frame.size.width = w;
-    frame.size.height = h;
-    frame.origin.x = 0;
-    frame.origin.y = 0;
-
-    [uiwindow setFrame:frame];
-    [data->view updateFrame];
-    SDL_SendWindowEvent(self->window, SDL_WINDOWEVENT_RESIZED, w, h);
-}
-
-@end
 
 
 
@@ -159,7 +48,7 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
     SDL_VideoDisplay *display = SDL_GetDisplayForWindow(window);
     UIScreen *uiscreen = (UIScreen *) display->driverdata;
     SDL_WindowData *data;
-        
+
     /* Allocate the window data */
     data = (SDL_WindowData *)SDL_malloc(sizeof(*data));
     if (!data) {
@@ -177,7 +66,7 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
         window->w = (int)uiwindow.frame.size.width;
         window->h = (int)uiwindow.frame.size.height;
     }
-    
+
     window->driverdata = data;
 
     // !!! FIXME: should we force this? Shouldn't specifying FULLSCREEN
@@ -201,11 +90,11 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
             [UIApplication sharedApplication].statusBarHidden = NO;
         }
 
-        const UIDeviceOrientation o = [[UIDevice currentDevice] orientation];
-        const BOOL landscape = (o == UIDeviceOrientationLandscapeLeft) ||
-                                   (o == UIDeviceOrientationLandscapeRight);
-        const BOOL rotate = ( ((window->w > window->h) && (!landscape)) ||
-                              ((window->w < window->h) && (landscape)) );
+        //const UIDeviceOrientation o = [[UIDevice currentDevice] orientation];
+        //const BOOL landscape = (o == UIDeviceOrientationLandscapeLeft) ||
+        //                           (o == UIDeviceOrientationLandscapeRight);
+        //const BOOL rotate = ( ((window->w > window->h) && (!landscape)) ||
+        //                      ((window->w < window->h) && (landscape)) );
 
         // The View Controller will handle rotating the view when the
         //  device orientation changes. This will trigger resize events, if
@@ -264,8 +153,13 @@ UIKit_CreateWindow(_THIS, SDL_Window *window)
             if (bestmode) {
                 UIScreenMode *uimode = (UIScreenMode *) bestmode->driverdata;
                 [uiscreen setCurrentMode:uimode];
-                display->desktop_mode = *bestmode;
+
+                // desktop_mode doesn't change here (the higher level will
+                //  use it to set all the screens back to their defaults
+                //  upon window destruction, SDL_Quit(), etc.
+                [((UIScreenMode *) display->current_mode.driverdata) release];
                 display->current_mode = *bestmode;
+                [((UIScreenMode *) display->current_mode.driverdata) retain];
             }
         }
     }
@@ -277,7 +171,7 @@ UIKit_CreateWindow(_THIS, SDL_Window *window)
         uiwindow = [uiwindow initWithFrame:[uiscreen bounds]];
     else
         uiwindow = [uiwindow initWithFrame:[uiscreen applicationFrame]];
-    
+
     // put the window on an external display if appropriate. This implicitly
     //  does [uiwindow setframe:[uiscreen bounds]], so don't do it on the
     //  main display, where we land by default, as that would eat the
@@ -289,14 +183,15 @@ UIKit_CreateWindow(_THIS, SDL_Window *window)
     if (SetupWindowData(_this, window, uiwindow, SDL_TRUE) < 0) {
         [uiwindow release];
         return -1;
-    }    
-    
+    }
+
     return 1;
-    
+
 }
 
 void
-UIKit_DestroyWindow(_THIS, SDL_Window * window) {
+UIKit_DestroyWindow(_THIS, SDL_Window * window)
+{
     SDL_WindowData *data = (SDL_WindowData *)window->driverdata;
     if (data) {
         [data->viewcontroller release];
@@ -321,5 +216,7 @@ UIKit_GetWindowWMInfo(_THIS, SDL_Window * window, SDL_SysWMinfo * info)
         return SDL_FALSE;
     }
 }
+
+#endif /* SDL_VIDEO_DRIVER_UIKIT */
 
 /* vi: set ts=4 sw=4 expandtab: */

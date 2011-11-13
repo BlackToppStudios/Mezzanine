@@ -94,27 +94,6 @@ namespace phys
     namespace crossplatform
     {
         /// @internal
-        /// @brief Returns a string with a path/filename to the default Plugins config file
-        /// @details Plugins.cfg is the file that determines which graphics plugins are loaded.
-        /// This is a feature of the graphics subsystem and is generally not needed outside
-        /// of engine code.
-        /// @return A string which contains the path and filename of the plugins file
-        string GetPluginsDotCFG();
-
-        /// @internal
-        /// @brief Returns a string with a path/filename to the default Graphics Subsytem settings file
-        /// @details Settings.cfg is the file that determines how graphics settings are configured by default.
-        /// This is a feature of the graphics subsystem and is generally not needed outside of engine code.
-        /// @return A string which contains the path and filename of the graphics setts file
-        string GetSettingsDotCFG();
-
-        /// @brief Gets the Default Data Directory
-        /// @details The directory returned by this function can be used to easily graphics objects. In general
-        /// the Graphics subsystem can easily open files in this location with just their filename
-        /// @return A string containing the path to the default Data Directory.
-        string PHYS_LIB GetDataDirectory();
-
-        /// @internal
         /// @brief This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)
         /// @details This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)
         /// This returns a named parameter list with valid settings to use Ogre rendering on a pre-existing SDL context

@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#ifdef SDL_THREAD_BEOS
+
 /* BeOS thread management routines for SDL */
 
 #include <stdio.h>
@@ -65,8 +67,14 @@ RunThread(void *data)
 int
 SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
 {
+    /* The docs say the thread name can't be longer than B_OS_NAME_LENGTH. */
+    const char *threadname = thread->name ? thread->name : "SDL Thread";
+    char name[B_OS_NAME_LENGTH];
+    SDL_snprintf(name, sizeof (name), "%s", threadname);
+    name[sizeof (name) - 1] = '\0';
+
     /* Create the thread and go! */
-    thread->handle = spawn_thread(RunThread, "SDL", B_NORMAL_PRIORITY, args);
+    thread->handle = spawn_thread(RunThread, name, B_NORMAL_PRIORITY, args);
     if ((thread->handle == B_NO_MORE_THREADS) ||
         (thread->handle == B_NO_MEMORY)) {
         SDL_SetError("Not enough resources to create thread");
@@ -77,8 +85,9 @@ SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
 }
 
 void
-SDL_SYS_SetupThread(void)
+SDL_SYS_SetupThread(const char *name)
 {
+    /* We set the thread name during SDL_SYS_CreateThread(). */
     /* Mask asynchronous signals for this thread */
     SDL_MaskSignals(NULL);
 }
@@ -90,7 +99,7 @@ SDL_ThreadID(void)
 }
 
 int
-SDL_SYS_SetThreadPriority(SDL_Thread * thread, SDL_ThreadPriority priority)
+SDL_SYS_SetThreadPriority(SDL_ThreadPriority priority)
 {
     int32 value;
 
@@ -112,5 +121,7 @@ SDL_SYS_WaitThread(SDL_Thread * thread)
 
     wait_for_thread(thread->handle, &the_status);
 }
+
+#endif /* SDL_THREAD_BEOS */
 
 /* vi: set ts=4 sw=4 expandtab: */

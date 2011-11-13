@@ -1,24 +1,24 @@
 /*
     Gorilla
     -------
-    
+
     Copyright (c) 2010 Robin Southern
 
     Additional contributions by:
 
     - Murat Sari
     - Nigel Atkinson
-                                                                                  
+
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-                                                                                  
+
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
-                                                                                  
+
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -371,11 +371,12 @@ namespace Gorilla
  {
 
   public:
-   
+
    Glyph() : uvTop(0), uvBottom(0), uvWidth(0), uvHeight(0), uvLeft(0), uvRight(0), glyphWidth(0), glyphHeight(0), glyphAdvance(0), verticalOffset(0) {}
-   
+
   ~Glyph() {}
 
+   char glyphChar;
    Ogre::Vector2    texCoords[4];
    Ogre::Real uvTop, uvBottom, uvWidth, uvHeight, uvLeft, uvRight,
                        glyphWidth, glyphHeight, glyphAdvance, verticalOffset;
@@ -1265,7 +1266,7 @@ namespace Gorilla
         desc.
             Creates a caption
     */
-    Caption*         createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text,const std::string& LeFileName);
+    Caption*         createCaption(Ogre::uint glyphDataIndex, const Ogre::Vector2& pos, const Ogre::Vector2& size, const Ogre::String& text,const std::string& LeFileName);
 
     /*! function. destroyCaption
         desc.
@@ -1292,7 +1293,7 @@ namespace Gorilla
         desc.
             Creates a markup text
     */
-    MarkupText*         createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text, const Ogre::String& NameFile);
+    MarkupText*         createMarkupText(Ogre::uint defaultGlyphIndex, const Ogre::Vector2& pos, const Ogre::Vector2& size, const Ogre::String& text, const Ogre::String& NameFile);
 
     /*! function. destroyMarkupText
         desc.
@@ -3013,50 +3014,248 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    /*! function. background
+    /*! function. background_image
         desc.
-            Get the background colour
-    */
-    Ogre::ColourValue  background() const
-    {
-     return mBackground;
-    }
-
-    /*! function. background
-        desc.
-            Set the background colour
-    */
-    void  background(const Ogre::ColourValue& background)
-    {
-     mBackground = background;
-     mDirty = true;
-     mLayer->_markDirty();
-    }
-
-    /*! function. background
-        desc.
-            Set the background colour
-    */
-    void  background(Gorilla::Colours::Colour background)
-    {
-     if (background == Colours::None)
-      mBackground.a = 0;
-     else
-      mBackground = webcolour(background);
-     mDirty = true;
-     mLayer->_markDirty();
-    }
-
-    /*! function. no_background
-        desc.
-            Don't draw the background.
+            Set the background to a sprite from the texture atlas.
         note.
-            This just sets the background colour alpha to zero. Which on the next
-            draw tells Caption to skip over drawing the background.
+            To remove the image pass on a null pointer.
     */
-    void  no_background()
+    void  background_image(Sprite* sprite)
     {
-     mBackground.a = 0;
+     if (sprite == 0)
+     {
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(sprite->mNameFile);
+     }
+     else
+     {
+      if (sprite == 0)
+      {
+#if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Sprite name not found", __FUNC__ );
+#else
+       return;
+#endif
+      }
+      Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+      texelOffsetX /= mLayer->_getTextureSize(sprite->mNameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(sprite->mNameFile).y;
+      mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
+      mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
+      mUV[1].x = mUV[2].x = sprite->uvRight + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvBottom + texelOffsetY;
+     }
+	 mNameFile = sprite->mNameFile;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_image
+        desc.
+            Set the background to a sprite from the texture atlas, with clipping.
+            Clipping is used for example with RPM meters on HUDs, where a portion
+            of the sprite needs to be shown to indicate the RPM on the car.
+
+            widthClip  is a decimal percentage of the width of the sprite (0.0 none, 1.0 full)
+            heightClip is a decimal percentage of the height of the sprite (0.0 none, 1.0 full)
+
+            You should use this with the width() and height() functions for a full effect.
+        note.
+            To remove the image pass on a null pointer.
+    */
+    void  background_image(Sprite* sprite, Ogre::Real widthClip, Ogre::Real heightClip)
+    {
+     if (sprite == 0)
+     {
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(sprite->mNameFile);
+     }
+     else
+     {
+      if (sprite == 0)
+      {
+#if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Sprite name not found", __FUNC__ );
+#else
+       return;
+#endif
+      }
+      Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+      texelOffsetX /= mLayer->_getTextureSize(sprite->mNameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(sprite->mNameFile).y;
+      mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
+      mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
+      mUV[1].x = mUV[2].x = sprite->uvLeft + ( (sprite->uvRight - sprite->uvLeft) * widthClip ) + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvTop + ( (sprite->uvBottom - sprite->uvTop) * heightClip ) + texelOffsetY;
+     }
+	 mNameFile = sprite->mNameFile;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_image
+        desc.
+            Set the background to a sprite from the texture atlas, with clipping.
+            Clipping is used for example with RPM meters on HUDs, where a portion
+            of the sprite needs to be shown to indicate the RPM on the car.
+
+            widthClip  is a decimal percentage of the width of the sprite (0.0 none, 1.0 full)
+            heightClip is a decimal percentage of the height of the sprite (0.0 none, 1.0 full)
+
+            You should use this with the width() and height() functions for a full effect.
+        note.
+            To remove the image pass on a null pointer.
+    */
+    void  background_image(const Ogre::String& sprite_name_or_none, Ogre::Real widthClip, Ogre::Real heightClip,const Ogre::String& NameFile)
+    {
+     if (sprite_name_or_none.length() == 0 || sprite_name_or_none == "none")
+     {
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(NameFile);
+     }
+     else
+     {
+      Sprite* sprite = mLayer->_getSprite(sprite_name_or_none,NameFile);
+      if (sprite == 0)
+      {
+#if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Sprite name not found", __FUNC__ );
+#else
+       return;
+#endif
+      }
+      Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+      texelOffsetX /= mLayer->_getTextureSize(NameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(NameFile).y;
+      mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
+      mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
+      mUV[1].x = mUV[2].x = sprite->uvLeft + ( (sprite->uvRight - sprite->uvLeft) * widthClip ) + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvTop + ( (sprite->uvBottom - sprite->uvTop) * heightClip ) + texelOffsetY;
+     }
+	 mNameFile = NameFile;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_image
+        desc.
+            Set the background to a sprite from the texture atlas.
+        note.
+            To remove the image pass on "none" or a empty string
+    */
+    void  background_image(const Ogre::String& sprite_name_or_none,const Ogre::String& NameFile)
+    {
+     if (sprite_name_or_none.length() == 0 || sprite_name_or_none == "none")
+     {
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(NameFile);
+     }
+     else
+     {
+      Sprite* sprite = mLayer->_getSprite(sprite_name_or_none,NameFile);
+      if (sprite == 0)
+      {
+#if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Sprite name not found", __FUNC__ );
+#else
+       return;
+#endif
+      }
+
+      Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+      texelOffsetX /= mLayer->_getTextureSize(NameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(NameFile).y;
+      mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
+      mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
+      mUV[1].x = mUV[2].x = sprite->uvRight + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvBottom + texelOffsetY;
+     }
+	 mNameFile = NameFile;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_colour
+        desc.
+            Get a background colour of a specific corner.
+    */
+    Ogre::ColourValue  background_colour(QuadCorner index) const
+    {
+     return mBackground[index];
+    }
+    /*! function. background_colour
+        desc.
+            Set a background colour to all corners.
+    */
+    void  background_colour(const Ogre::ColourValue& colour)
+    {
+     mBackground[0] = colour;
+     mBackground[1] = colour;
+     mBackground[2] = colour;
+     mBackground[3] = colour;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_colour
+        desc.
+            Set a background colour to all corners.
+    */
+    void  background_colour(Gorilla::Colours::Colour colour)
+    {
+     mBackground[0] = webcolour(colour);
+     mBackground[1] = mBackground[0];
+     mBackground[2] = mBackground[0];
+     mBackground[3] = mBackground[0];
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_colour
+        desc.
+            Set a background colour to a specific corner.
+    */
+    void  background_colour(QuadCorner index, const Ogre::ColourValue& colour)
+    {
+     mBackground[index] = colour;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_gradient
+        desc.
+            Set the background to a gradient.
+    */
+    void  background_gradient(Gradient gradient, const Ogre::ColourValue& colourA, const Ogre::ColourValue& colourB)
+    {
+     if (gradient == Gradient_NorthSouth)
+     {
+      mBackground[0] = mBackground[1] = colourA;
+      mBackground[2] = mBackground[3] = colourB;
+     }
+     else if (gradient == Gradient_WestEast)
+     {
+      mBackground[0] = mBackground[3] = colourA;
+      mBackground[1] = mBackground[2] = colourB;
+     }
+     else if (gradient == Gradient_Diagonal_1)
+     {
+      Ogre::ColourValue avg;
+      avg.r = (colourA.r + colourB.r) * 0.5f;
+      avg.g = (colourA.g + colourB.g) * 0.5f;
+      avg.b = (colourA.b + colourB.b) * 0.5f;
+      avg.a = (colourA.a + colourB.a) * 0.5f;
+      mBackground[0] = colourA;
+      mBackground[1] = avg = mBackground[3] = avg;
+      mBackground[2] = colourB;
+     }
+     else if (gradient == Gradient_Diagonal_2)
+     {
+      Ogre::ColourValue avg;
+      avg.r = (colourA.r + colourB.r) * 0.5f;
+      avg.g = (colourA.g + colourB.g) * 0.5f;
+      avg.b = (colourA.b + colourB.b) * 0.5f;
+      avg.a = (colourA.a + colourB.a) * 0.5f;
+      mBackground[1] = colourA;
+      mBackground[2] = avg = mBackground[0] = avg;
+      mBackground[3] = colourB;
+     }
      mDirty = true;
      mLayer->_markDirty();
     }
@@ -3178,7 +3377,7 @@ namespace Gorilla
 
     void               _calculateDrawSize(Ogre::Vector2& size);
 
-    Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& caption, Layer* parent,const std::string& TheNameFile);
+    Caption(Ogre::uint glyphDataIndex, const Ogre::Vector2& pos, const Ogre::Vector2& size, const Ogre::String& caption, Layer* parent,const std::string& TheNameFile);
 
    ~Caption() {}
 
@@ -3190,7 +3389,9 @@ namespace Gorilla
     TextAlignment         mAlignment;
     VerticalAlignment     mVerticalAlign;
     Ogre::String          mText;
-    Ogre::ColourValue     mColour, mBackground;
+    Ogre::ColourValue     mColour;
+    Ogre::ColourValue     mBackground[4];
+    Ogre::Vector2         mUV[4];
     bool                  mDirty;
     bool                  mVisible;
     buffer<Vertex>        mVertices;
@@ -3268,6 +3469,7 @@ namespace Gorilla
      mWidth = width;
      mHeight = height;
      mDirty = true;
+     mTextDirty = true;
      mLayer->_markDirty();
     }
 
@@ -3310,16 +3512,6 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-    
-    /*! function. maxTextWidth
-        desc.
-            Get the width of the text once drawn.
-    */
-    Ogre::Real maxTextWidth()
-    {
-     _calculateCharacters();
-     return mMaxTextWidth;
-    }
 
     /*! function. caption
         desc.
@@ -3342,36 +3534,248 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    /*! function. background
+    /*! function. background_image
         desc.
-            Get the background colour
+            Set the background to a sprite from the texture atlas.
+        note.
+            To remove the image pass on a null pointer.
     */
-    Ogre::ColourValue  background() const
+    void  background_image(Sprite* sprite)
     {
-     return mBackground;
-    }
-
-    /*! function. background
-        desc.
-            Set the background colour
-    */
-    void  background(const Ogre::ColourValue& background)
-    {
-     mBackground = background;
+     if (sprite == 0)
+     {
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(sprite->mNameFile);
+     }
+     else
+     {
+      if (sprite == 0)
+      {
+#if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Sprite name not found", __FUNC__ );
+#else
+       return;
+#endif
+      }
+      Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+      texelOffsetX /= mLayer->_getTextureSize(sprite->mNameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(sprite->mNameFile).y;
+      mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
+      mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
+      mUV[1].x = mUV[2].x = sprite->uvRight + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvBottom + texelOffsetY;
+     }
+	 mNameFile = sprite->mNameFile;
      mDirty = true;
      mLayer->_markDirty();
     }
 
-    /*! function. background
+    /*! function. background_image
         desc.
-            Set the background colour
+            Set the background to a sprite from the texture atlas, with clipping.
+            Clipping is used for example with RPM meters on HUDs, where a portion
+            of the sprite needs to be shown to indicate the RPM on the car.
+
+            widthClip  is a decimal percentage of the width of the sprite (0.0 none, 1.0 full)
+            heightClip is a decimal percentage of the height of the sprite (0.0 none, 1.0 full)
+
+            You should use this with the width() and height() functions for a full effect.
+        note.
+            To remove the image pass on a null pointer.
     */
-    void  background(Gorilla::Colours::Colour background)
+    void  background_image(Sprite* sprite, Ogre::Real widthClip, Ogre::Real heightClip)
     {
-     if (background == Colours::None)
-      mBackground.a = 0;
+     if (sprite == 0)
+     {
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(sprite->mNameFile);
+     }
      else
-      mBackground = webcolour(background);
+     {
+      if (sprite == 0)
+      {
+#if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Sprite name not found", __FUNC__ );
+#else
+       return;
+#endif
+      }
+      Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+      texelOffsetX /= mLayer->_getTextureSize(sprite->mNameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(sprite->mNameFile).y;
+      mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
+      mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
+      mUV[1].x = mUV[2].x = sprite->uvLeft + ( (sprite->uvRight - sprite->uvLeft) * widthClip ) + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvTop + ( (sprite->uvBottom - sprite->uvTop) * heightClip ) + texelOffsetY;
+     }
+	 mNameFile = sprite->mNameFile;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_image
+        desc.
+            Set the background to a sprite from the texture atlas, with clipping.
+            Clipping is used for example with RPM meters on HUDs, where a portion
+            of the sprite needs to be shown to indicate the RPM on the car.
+
+            widthClip  is a decimal percentage of the width of the sprite (0.0 none, 1.0 full)
+            heightClip is a decimal percentage of the height of the sprite (0.0 none, 1.0 full)
+
+            You should use this with the width() and height() functions for a full effect.
+        note.
+            To remove the image pass on a null pointer.
+    */
+    void  background_image(const Ogre::String& sprite_name_or_none, Ogre::Real widthClip, Ogre::Real heightClip,const Ogre::String& NameFile)
+    {
+     if (sprite_name_or_none.length() == 0 || sprite_name_or_none == "none")
+     {
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(NameFile);
+     }
+     else
+     {
+      Sprite* sprite = mLayer->_getSprite(sprite_name_or_none,NameFile);
+      if (sprite == 0)
+      {
+#if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Sprite name not found", __FUNC__ );
+#else
+       return;
+#endif
+      }
+      Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+      texelOffsetX /= mLayer->_getTextureSize(NameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(NameFile).y;
+      mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
+      mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
+      mUV[1].x = mUV[2].x = sprite->uvLeft + ( (sprite->uvRight - sprite->uvLeft) * widthClip ) + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvTop + ( (sprite->uvBottom - sprite->uvTop) * heightClip ) + texelOffsetY;
+     }
+	 mNameFile = NameFile;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_image
+        desc.
+            Set the background to a sprite from the texture atlas.
+        note.
+            To remove the image pass on "none" or a empty string
+    */
+    void  background_image(const Ogre::String& sprite_name_or_none,const Ogre::String& NameFile)
+    {
+     if (sprite_name_or_none.length() == 0 || sprite_name_or_none == "none")
+     {
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(NameFile);
+     }
+     else
+     {
+      Sprite* sprite = mLayer->_getSprite(sprite_name_or_none,NameFile);
+      if (sprite == 0)
+      {
+#if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Sprite name not found", __FUNC__ );
+#else
+       return;
+#endif
+      }
+
+      Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+      texelOffsetX /= mLayer->_getTextureSize(NameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(NameFile).y;
+      mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
+      mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
+      mUV[1].x = mUV[2].x = sprite->uvRight + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvBottom + texelOffsetY;
+     }
+	 mNameFile = NameFile;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_colour
+        desc.
+            Get a background colour of a specific corner.
+    */
+    Ogre::ColourValue  background_colour(QuadCorner index) const
+    {
+     return mBackground[index];
+    }
+    /*! function. background_colour
+        desc.
+            Set a background colour to all corners.
+    */
+    void  background_colour(const Ogre::ColourValue& colour)
+    {
+     mBackground[0] = colour;
+     mBackground[1] = colour;
+     mBackground[2] = colour;
+     mBackground[3] = colour;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_colour
+        desc.
+            Set a background colour to all corners.
+    */
+    void  background_colour(Gorilla::Colours::Colour colour)
+    {
+     mBackground[0] = webcolour(colour);
+     mBackground[1] = mBackground[0];
+     mBackground[2] = mBackground[0];
+     mBackground[3] = mBackground[0];
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_colour
+        desc.
+            Set a background colour to a specific corner.
+    */
+    void  background_colour(QuadCorner index, const Ogre::ColourValue& colour)
+    {
+     mBackground[index] = colour;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    /*! function. background_gradient
+        desc.
+            Set the background to a gradient.
+    */
+    void  background_gradient(Gradient gradient, const Ogre::ColourValue& colourA, const Ogre::ColourValue& colourB)
+    {
+     if (gradient == Gradient_NorthSouth)
+     {
+      mBackground[0] = mBackground[1] = colourA;
+      mBackground[2] = mBackground[3] = colourB;
+     }
+     else if (gradient == Gradient_WestEast)
+     {
+      mBackground[0] = mBackground[3] = colourA;
+      mBackground[1] = mBackground[2] = colourB;
+     }
+     else if (gradient == Gradient_Diagonal_1)
+     {
+      Ogre::ColourValue avg;
+      avg.r = (colourA.r + colourB.r) * 0.5f;
+      avg.g = (colourA.g + colourB.g) * 0.5f;
+      avg.b = (colourA.b + colourB.b) * 0.5f;
+      avg.a = (colourA.a + colourB.a) * 0.5f;
+      mBackground[0] = colourA;
+      mBackground[1] = avg = mBackground[3] = avg;
+      mBackground[2] = colourB;
+     }
+     else if (gradient == Gradient_Diagonal_2)
+     {
+      Ogre::ColourValue avg;
+      avg.r = (colourA.r + colourB.r) * 0.5f;
+      avg.g = (colourA.g + colourB.g) * 0.5f;
+      avg.b = (colourA.b + colourB.b) * 0.5f;
+      avg.a = (colourA.a + colourB.a) * 0.5f;
+      mBackground[1] = colourA;
+      mBackground[2] = avg = mBackground[0] = avg;
+      mBackground[3] = colourB;
+     }
      mDirty = true;
      mLayer->_markDirty();
     }
@@ -3444,12 +3848,24 @@ namespace Gorilla
         note.
             This shouldn't be need to be called by the user.
     */
-    void               _redraw();
+    void _redraw();
 
-    void               _calculateCharacters();
+    void _calculateCharacters();
+
+    void _generateWords();
+
+    void _placeWords();
+
+    void _clearWords()
+    {
+     for( Ogre::uint X = 0 ; X < mWords.size() ; ++X )
+      delete mWords[X];
+     mWords.clear();
+    }
+
 	std::string* GetNameFile()
 	{
-	return &mNameFile;
+	 return &mNameFile;
 	}
 	void SetNameFile(Ogre::String NameFile)
 	{
@@ -3457,7 +3873,7 @@ namespace Gorilla
 	}
    protected:
 
-    MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& text, Layer* parent,const Ogre::String& NameFile);
+    MarkupText(Ogre::uint defaultGlyphIndex, const Ogre::Vector2& pos, const Ogre::Vector2& size, const Ogre::String& text, Layer* parent,const Ogre::String& NameFile);
 
    ~MarkupText() {}
 
@@ -3465,21 +3881,49 @@ namespace Gorilla
 
     struct Character
     {
-     Ogre::Vector2        mPosition[4];
-     Ogre::Vector2        mUV[4];
-     Ogre::ColourValue    mColour;
-     size_t               mIndex;
+        Character() : mKerning(0), mGlyph(NULL), mSprite(NULL) {};
+        Ogre::Vector2        mPosition[4];
+        Ogre::Vector2        mUV[4];
+        Ogre::ColourValue    mColour;
+        size_t               mIndex;
+        Ogre::Real           mKerning;
+        Glyph*               mGlyph;
+        Sprite*              mSprite;
+    };
+
+    class Word
+    {
+        public:
+        Word() : mNewlineBefore(false), mPxlength(0), mPxheight(0), mGlyphDataSpacing(0) {};
+        ~Word() { mCharacters.clear(); };
+        std::vector<Character*> mCharacters;
+        Ogre::Real        mPxlength;
+        Ogre::Real        mPxheight;
+        Ogre::Real        mGlyphDataSpacing;
+        bool              mNewlineBefore;
+        void AddCharacter(Character* ToAdd, const Ogre::Real& Scaling)
+        {
+            Ogre::Real CharWidth = ToAdd->mGlyph ? ToAdd->mGlyph->glyphAdvance+ToAdd->mKerning : ToAdd->mSprite->spriteWidth;
+            CharWidth*=Scaling;
+            mPxlength += CharWidth;
+            Ogre::Real CharHeight = ToAdd->mGlyph ? ToAdd->mGlyph->glyphHeight : ToAdd->mSprite->spriteHeight;
+            CharHeight*=Scaling;
+            if(mPxheight < CharHeight)
+                mPxheight = CharHeight;
+            mCharacters.push_back(ToAdd);
+        }
     };
 
     Layer*                mLayer;
     GlyphData*            mDefaultGlyphData;
     Ogre::Real            mLeft, mTop, mWidth, mHeight;
-    Ogre::Real            mMaxTextWidth;
     Ogre::String          mText;
-    Ogre::ColourValue     mBackground;
+    Ogre::ColourValue     mBackground[4];
+    Ogre::Vector2         mUV[4];
     bool                  mDirty, mTextDirty;
     bool                  mVisible;
-    buffer<Character>     mCharacters;
+    std::vector<Character*> mCharacters;
+    std::vector<Word*>    mWords;
     buffer<Vertex>        mVertices;
     size_t                mClippedIndex;
     Gorilla::RenderPriority mPriority;

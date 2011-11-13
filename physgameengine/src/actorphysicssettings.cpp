@@ -47,6 +47,8 @@
 #include "actorterrain.h"
 #include "collisionshape.h"
 #include "collisionshapemanager.h"
+#include "constraint.h"
+#include "physicsmanager.h"
 #include "serialization.h"
 #include "world.h"
 
@@ -382,7 +384,8 @@ namespace phys
     ActorRigidPhysicsSettings::ActorRigidPhysicsSettings(ActorRigid* Actor, btRigidBody* PhysicsObject)
         : ActorBasePhysicsSettings(Actor,PhysicsObject),
           RigidParent(Actor),
-          ActorRB(PhysicsObject)
+          ActorRB(PhysicsObject),
+          StickyContacts(NULL)
     {
         bool Dynamic = !IsStaticOrKinematic();
         CollisionGroup = Dynamic ? phys::CF_GenericFilter : phys::CF_StaticFilter;
@@ -391,6 +394,11 @@ namespace phys
 
     ActorRigidPhysicsSettings::~ActorRigidPhysicsSettings()
     {
+        if(StickyContacts)
+        {
+            ClearStickyContacts();
+            delete StickyContacts;
+        }
     }
 
     void ActorRigidPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
@@ -412,6 +420,34 @@ namespace phys
         World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Shape);
     }
 
+    void ActorRigidPhysicsSettings::SetStickyData(const Whole& MaxNumContacts)
+    {
+        if(MaxNumContacts > 0)
+        {
+            if(!StickyContacts)
+                StickyContacts = new StickyData();
+            StickyContacts->MaxNumContacts = MaxNumContacts;
+        }else{
+            ClearStickyContacts();
+        }
+    }
+
+    void ActorRigidPhysicsSettings::ClearStickyContacts()
+    {
+        if(!StickyContacts)
+            return;
+        btDiscreteDynamicsWorld* BulletWorld = World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer();
+        for( std::vector<Generic6DofConstraint*>::iterator SCit = StickyContacts->StickyConstraints.begin() ; SCit != StickyContacts->StickyConstraints.end() ; ++SCit )
+        {
+            BulletWorld->removeConstraint((*SCit)->GetConstraintBase());
+            delete (*SCit);
+        }
+        StickyContacts->StickyConstraints.clear();
+    }
+
+    ActorRigidPhysicsSettings::StickyData* ActorRigidPhysicsSettings::GetStickyData() const
+        { return StickyContacts; }
+
     void ActorRigidPhysicsSettings::SetDamping(const Real& LinDamping, const Real& AngDamping)
         { ActorRB->setDamping(LinDamping, AngDamping); }
 
@@ -422,8 +458,7 @@ namespace phys
         { return ActorRB->getAngularDamping(); }
 
     void ActorRigidPhysicsSettings::SetLinearVelocity(const Vector3& LinVel)
-    {
-        ActorRB->setLinearVelocity(LinVel.GetBulletVector3()); }
+        { ActorRB->setLinearVelocity(LinVel.GetBulletVector3()); }
 
     Vector3 ActorRigidPhysicsSettings::GetLinearVelocity() const
         { return Vector3(ActorRB->getLinearVelocity()); }
@@ -453,7 +488,7 @@ namespace phys
         { ActorRB->applyTorque(Torque.GetBulletVector3()); }
 
     Real ActorRigidPhysicsSettings::GetMass() const
-        { return  ActorRB->getInvMass() ? 1/ActorRB->getInvMass() : 0; }
+        { return  ActorRB->getInvMass() != 0 ? 1/ActorRB->getInvMass() : 0; }
 
     Vector3 ActorRigidPhysicsSettings::GetLocalInertia() const
         { return  Vector3(ActorRB->getInvInertiaDiagLocal()).Inverse() ; }

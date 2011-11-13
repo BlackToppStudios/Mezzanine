@@ -71,6 +71,7 @@ namespace phys
     class World;
     class ActorGraphicsSettings;
     class ActorBasePhysicsSettings;
+    class EventCollision;
 
     namespace Audio
     {
@@ -97,9 +98,6 @@ namespace phys
     class PHYS_LIB ActorBase {
         private:
             friend class WorldNode;
-            friend class ActorContainerBase;
-            friend class PhysicsManager;
-            friend class ResourceManager;
             friend class ActorGraphicsSettings;
             friend class ActorBasePhysicsSettings;
 
@@ -119,10 +117,6 @@ namespace phys
             };
 
         protected:
-            // @brief A pointer to the World the actor will reside.
-            //World* GameWorld;
-
-            //abstraction for other libraries
             /// @brief This class encapsulates the functionality of the Ogre::Entity using this
             Ogre::Entity* GraphicsObject;
 
@@ -152,6 +146,9 @@ namespace phys
 
             /// @brief This variable stores the type of actor that this class is.
             ActorTypeName ActorType;
+
+            /// @brief This member stores all existing collision events referencing this actor.
+            std::set<EventCollision*> CurrentCollisions;
 
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
@@ -333,6 +330,10 @@ namespace phys
             /// @return Returns a vector3 representing the scaling being applied on all axes of this actor.
             virtual Vector3 GetActorScaling() const;
 
+            /// @brief Gets all current collisions that apply to this actor.
+            /// @return Returns a const reference to a set containing all collisions events containing this actor.
+            virtual const std::set<EventCollision*>& GetCurrentCollisions();
+
             /// @brief Gets the graphics settings class associated with this actor.
             /// @return Returns a pointer to the graphics settings class in use by this actor.
             virtual ActorGraphicsSettings* GetGraphicsSettings() const;
@@ -351,17 +352,36 @@ namespace phys
             virtual void RemoveObjectFromWorld() = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
-// Internal Object Access functions
+// Internal Object functions
 ///////////////////////////////////////
+            /// @internal
+            /// @brief Utility function for altering or checking the actor every frame.
+            virtual void _Update() = 0;
+
+            /// @internal
+            /// @brief Notifies this actor of a collision that is occuring with it.
+            /// @param Collision A pointer to the collision event pertaining to this actor.
+            virtual void _NotifyCollision(EventCollision* Collision);
+
+            /// @internal
+            /// @brief Notifies this actor that a collision has ended.
+            /// @param Collision A pointer to the collision event pertaining to this actor.
+            virtual void _NotifyEndCollision(EventCollision* Collision);
+
             /// @internal
             /// @brief Gets the internal physics object this actor is based on.
             /// @return Returns a pointer to the internal Bullet object.
-            virtual btCollisionObject* GetBaseBulletObject() const;
+            virtual btCollisionObject* _GetBasePhysicsObject() const;
 
             /// @internal
             /// @brief Gets the internal graphics object this actor is based on.
             /// @return Returns a pointer to the internal graphics object.
-            virtual Ogre::Entity* GetOgreObject() const;
+            virtual Ogre::Entity* _GetGraphicsObject() const;
+
+            /// @internal
+            /// @brief Gets the internal graphics node this actor uses for it's graphics transform.
+            /// @return Returns a pointer to the internal graphics node.
+            virtual Ogre::SceneNode* _GetGraphicsNode() const;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Serialization

@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_AUDIO_DRIVER_ARTS
+
 /* Allow access to a raw mixing buffer */
 
 #ifdef HAVE_SIGNAL_H
@@ -40,9 +42,6 @@
 #else
 #define SDL_NAME(X)	X
 #endif
-
-/* The tag name used by artsc audio */
-#define ARTS_DRIVER_NAME         "arts"
 
 #ifdef SDL_AUDIO_DRIVER_ARTS_DYNAMIC
 
@@ -372,7 +371,9 @@ ARTS_Init(SDL_AudioDriverImpl * impl)
 
 
 AudioBootStrap ARTS_bootstrap = {
-    ARTS_DRIVER_NAME, "Analog RealTime Synthesizer", ARTS_Init, 0
+    "arts", "Analog RealTime Synthesizer", ARTS_Init, 0
 };
+
+#endif /* SDL_AUDIO_DRIVER_ARTS */
 
 /* vi: set ts=4 sw=4 expandtab: */

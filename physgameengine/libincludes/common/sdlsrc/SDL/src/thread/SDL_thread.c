@@ -26,6 +26,7 @@
 #include "SDL_thread.h"
 #include "SDL_thread_c.h"
 #include "SDL_systhread.h"
+#include "../SDL_error_c.h"
 
 #define ARRAY_CHUNKSIZE	32
 /* The array of threads currently active in the application
@@ -188,24 +189,18 @@ typedef struct
 void
 SDL_RunThread(void *data)
 {
-    thread_args *args;
-    int (SDLCALL * userfunc) (void *);
-    void *userdata;
-    int *statusloc;
+    thread_args *args = (thread_args *) data;
+    int (SDLCALL * userfunc) (void *) = args->func;
+    void *userdata = args->data;
+    int *statusloc = &args->info->status;
 
     /* Perform any system-dependent setup
        - this function cannot fail, and cannot use SDL_SetError()
      */
-    SDL_SYS_SetupThread();
+    SDL_SYS_SetupThread(args->info->name);
 
     /* Get the thread id */
-    args = (thread_args *) data;
     args->info->threadid = SDL_ThreadID();
-
-    /* Figure out what function to run */
-    userfunc = args->func;
-    userdata = args->data;
-    statusloc = &args->info->status;
 
     /* Wake up the parent thread */
     SDL_SemPost(args->wait);
@@ -217,12 +212,14 @@ SDL_RunThread(void *data)
 #ifdef SDL_PASSED_BEGINTHREAD_ENDTHREAD
 #undef SDL_CreateThread
 DECLSPEC SDL_Thread *SDLCALL
-SDL_CreateThread(int (SDLCALL * fn) (void *), void *data,
+SDL_CreateThread(int (SDLCALL * fn) (void *),
+                 const char *name, void *data,
                  pfnSDL_CurrentBeginThread pfnBeginThread,
                  pfnSDL_CurrentEndThread pfnEndThread)
 #else
 DECLSPEC SDL_Thread *SDLCALL
-SDL_CreateThread(int (SDLCALL * fn) (void *), void *data)
+SDL_CreateThread(int (SDLCALL * fn) (void *),
+                 const char *name, void *data)
 #endif
 {
     SDL_Thread *thread;
@@ -239,9 +236,20 @@ SDL_CreateThread(int (SDLCALL * fn) (void *), void *data)
     thread->status = -1;
 
     /* Set up the arguments for the thread */
+    if (name != NULL) {
+        thread->name = SDL_strdup(name);
+        if (thread->name == NULL) {
+            SDL_OutOfMemory();
+            SDL_free(thread);
+            return (NULL);
+        }
+    }
+
+    /* Set up the arguments for the thread */
     args = (thread_args *) SDL_malloc(sizeof(*args));
     if (args == NULL) {
         SDL_OutOfMemory();
+        SDL_free(thread->name);
         SDL_free(thread);
         return (NULL);
     }
@@ -250,6 +258,7 @@ SDL_CreateThread(int (SDLCALL * fn) (void *), void *data)
     args->info = thread;
     args->wait = SDL_CreateSemaphore(0);
     if (args->wait == NULL) {
+        SDL_free(thread->name);
         SDL_free(thread);
         SDL_free(args);
         return (NULL);
@@ -270,6 +279,7 @@ SDL_CreateThread(int (SDLCALL * fn) (void *), void *data)
     } else {
         /* Oops, failed.  Gotta free everything */
         SDL_DelThread(thread);
+        SDL_free(thread->name);
         SDL_free(thread);
         thread = NULL;
     }
@@ -293,6 +303,12 @@ SDL_GetThreadID(SDL_Thread * thread)
     return id;
 }
 
+const char *
+SDL_GetThreadName(SDL_Thread * thread)
+{
+    return thread->name;
+}
+
 int
 SDL_SetThreadPriority(SDL_ThreadPriority priority)
 {
@@ -308,6 +324,7 @@ SDL_WaitThread(SDL_Thread * thread, int *status)
             *status = thread->status;
         }
         SDL_DelThread(thread);
+        SDL_free(thread->name);
         SDL_free(thread);
     }
 }

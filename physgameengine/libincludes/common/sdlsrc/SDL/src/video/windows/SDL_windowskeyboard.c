@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_WINDOWS
+
 #ifdef _WIN32_WCE
 #define SDL_DISABLE_WINDOWS_IME
 #endif
@@ -305,7 +307,7 @@ IME_Init(SDL_VideoData *videodata, HWND hwnd)
         return;
 
     videodata->ime_hwnd_main = hwnd;
-    if (SUCCEEDED(CoInitializeEx(NULL, COINIT_APARTMENTTHREADED))) {
+    if (SUCCEEDED(WIN_CoInitialize())) {
         videodata->ime_com_initialized = SDL_TRUE;
         CoCreateInstance(&CLSID_TF_ThreadMgr, NULL, CLSCTX_INPROC_SERVER, &IID_ITfThreadMgr, (LPVOID *)&videodata->ime_threadmgr);
     }
@@ -389,7 +391,7 @@ IME_Quit(SDL_VideoData *videodata)
         videodata->ime_threadmgr = 0;
     }
     if (videodata->ime_com_initialized) {
-        CoUninitialize();
+        WIN_CoUninitialize();
         videodata->ime_com_initialized = SDL_FALSE;
     }
     IME_DestroyTextures(videodata);
@@ -1538,5 +1540,7 @@ void IME_Present(SDL_VideoData *videodata)
 }
 
 #endif /* SDL_DISABLE_WINDOWS_IME */
+
+#endif /* SDL_VIDEO_DRIVER_WINDOWS */
 
 /* vi: set ts=4 sw=4 expandtab: */

@@ -20,7 +20,10 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_X11
+
 #include "SDL_x11video.h"
+#include "SDL_assert.h"
 
 /* GLX implementation of SDL OpenGL support */
 
@@ -265,7 +268,7 @@ X11_GL_InitExtensions(_THIS)
     /* Check for GLX_EXT_swap_control */
     if (HasExtension("GLX_EXT_swap_control", extensions)) {
         _this->gl_data->glXSwapIntervalEXT =
-            (void (*)(Display*,GLXDrawable,int))
+            (int (*)(Display*,GLXDrawable,int))
                 X11_GL_GetProcAddress(_this, "glXSwapIntervalEXT");
     }
 
@@ -388,8 +391,10 @@ X11_GL_GetVisual(_THIS, Display * display, int screen)
     XVisualInfo *vinfo;
 
     /* 64 seems nice. */
-    int attribs[64];
-    int i = X11_GL_GetAttributes(_this,display,screen,attribs,64);
+    const int max_attrs = 64;
+    int attribs[max_attrs];
+    const int i = X11_GL_GetAttributes(_this,display,screen,attribs,max_attrs);
+    SDL_assert(i <= max_attrs);
 
     vinfo = _this->gl_data->glXChooseVisual(display, screen, attribs);
     if (!vinfo) {
@@ -538,9 +543,13 @@ X11_GL_SetSwapInterval(_THIS, int interval)
         const SDL_WindowData *windowdata = (SDL_WindowData *)
             _this->current_glwin->driverdata;
         Window drawable = windowdata->xwindow;
-        _this->gl_data->glXSwapIntervalEXT(display, drawable, interval);
-        status = 0;  /* always succeeds, apparently. */
-        swapinterval = interval;
+        status = _this->gl_data->glXSwapIntervalEXT(display,drawable,interval);
+        if (status != 0) {
+            SDL_SetError("glxSwapIntervalEXT failed");
+            status = -1;
+        } else {
+            swapinterval = interval;
+        }
     } else if (_this->gl_data->glXSwapIntervalMESA) {
         status = _this->gl_data->glXSwapIntervalMESA(interval);
         if (status != 0) {
@@ -603,5 +612,7 @@ X11_GL_DeleteContext(_THIS, SDL_GLContext context)
 }
 
 #endif /* SDL_VIDEO_OPENGL_GLX */
+
+#endif /* SDL_VIDEO_DRIVER_X11 */
 
 /* vi: set ts=4 sw=4 expandtab: */

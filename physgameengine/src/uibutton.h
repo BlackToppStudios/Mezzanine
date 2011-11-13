@@ -42,10 +42,10 @@
 
 #include "colourvalue.h"
 #include "crossplatformexport.h"
-#include "datatypes.h"
 #include "uienumerations.h"
 #include "metacode.h"
 #include "uirenderablerect.h"
+#include "uibasicrenderable.h"
 
 namespace Gorilla
 {
@@ -69,12 +69,10 @@ namespace phys
         /// @details Unlike rectangles and captions, this class can be interacted with by clicking.
         /// It is important to understand what you want your space to do when selecting the class to use.
         ///////////////////////////////////////
-        class PHYS_LIB Button
+        class PHYS_LIB Button : public BasicRenderable
         {
             protected:
                 Gorilla::Rectangle* GorillaRectangle;
-                Layer* Parent;
-                UIManager* Manager;
                 Gorilla::Sprite* NormalSprite;
                 Gorilla::Sprite* HoveredSprite;
                 Gorilla::Sprite* UserSprite;
@@ -82,9 +80,6 @@ namespace phys
                 bool MouseHover;
                 bool Activated;
                 bool MultipleActivations;
-                Vector2 RelPosition;
-                Vector2 RelSize;
-                String Name;
                 std::vector<MetaCode::InputCode> KeyboardActivationKeys;
                 std::vector<MetaCode::InputCode> MouseActivationButtons;
                 UI::ActivationCondition ActCond;
@@ -102,14 +97,11 @@ namespace phys
                 virtual void SetVisible(bool Visible);
                 /// @brief Gets the visibility of this button.
                 /// @return Returns a bool representing the visibility of this button.
-                virtual bool IsVisible();
+                virtual bool IsVisible() const;
                 /// @brief Forces this button to be shown.
                 virtual void Show();
                 /// @brief Forces this button to hide.
                 virtual void Hide();
-                /// @brief Gets the name of this button.
-                /// @return Returns a string containing the name of this button.
-                virtual ConstString& GetName();
                 /// @brief Gets whether this is a text button.
                 /// @return Returns a bool representing whether or not this is a text button.
                 virtual bool IsTextButton();
@@ -203,38 +195,38 @@ namespace phys
                 virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative top left position of this button.
                 /// @return Returns a Vector2 representing the location of this button.
-                virtual Vector2 GetPosition();
+                virtual Vector2 GetPosition() const;
                 /// @brief Sets the top left position of this button in pixels.
                 /// @param Position A Vector2 representing the location of this button.
                 virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Gets the top left position of this button in pixels.
                 /// @return Returns a Vector2 representing the location of this button.
-                virtual Vector2 GetActualPosition();
+                virtual Vector2 GetActualPosition() const;
                 /// @brief Sets the relative size of this button.
                 /// @param Size A vector2 representing the size of this button.
                 virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this button.
                 /// @return Returns a vector2 representing the size of this button.
-                virtual Vector2 GetSize();
+                virtual Vector2 GetSize() const;
                 /// @brief Sets the size of this button in pixels.
                 /// @param Size A vector2 representing the size of this button.
                 virtual void SetActualSize(const Vector2& Size);
                 /// @brief Gets the size of this button in pixels.
                 /// @return Returns a vector2 representing the size of this button.
-                virtual Vector2 GetActualSize();
+                virtual Vector2 GetActualSize() const;
                 /// @brief Sets the priority this button should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this button.
                 virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
-                virtual UI::RenderPriority GetRenderPriority();
+                virtual UI::RenderPriority GetRenderPriority() const;
                 /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
                 /// @param Atlas The name of the atlas to be used.
                 virtual void SetPrimaryAtlas(const String& Atlas);
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set, or an empty string if none.
-                virtual String GetPrimaryAtlas();
+                virtual String GetPrimaryAtlas() const;
                 /// @brief Gets a vector with all the keyboard input codes used to activate this button.
                 /// @return Returns a pointer to an std::vector containing all the keyboard keys that will activate this button.
                 virtual std::vector<MetaCode::InputCode>* GetKeyboardActivationKeys();

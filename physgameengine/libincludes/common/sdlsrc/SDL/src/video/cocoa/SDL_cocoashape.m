@@ -19,6 +19,10 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+#include "SDL_config.h"
+
+#if SDL_VIDEO_DRIVER_COCOA
+
 #include "SDL_cocoavideo.h"
 #include "SDL_shape.h"
 #include "SDL_cocoashape.h"
@@ -28,7 +32,7 @@ SDL_WindowShaper*
 Cocoa_CreateShaper(SDL_Window* window) {
     SDL_WindowData* windata = (SDL_WindowData*)window->driverdata;
     [windata->nswindow setOpaque:NO];
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
     [windata->nswindow setStyleMask:NSBorderlessWindowMask];
 #endif
     SDL_WindowShaper* result = result = malloc(sizeof(SDL_WindowShaper));
@@ -89,6 +93,8 @@ Cocoa_SetWindowShape(SDL_WindowShaper *shaper,SDL_Surface *shape,SDL_WindowShape
 	closure.window = shaper->window;
     SDL_TraverseShapeTree(data->shape,&ConvertRects,&closure);
     [closure.path addClip];
+
+    return 0;
 }
 
 int
@@ -97,3 +103,7 @@ Cocoa_ResizeWindowShape(SDL_Window *window) {
     assert(data != NULL);
     return 0;
 }
+
+#endif /* SDL_VIDEO_DRIVER_COCOA */
+
+/* vi: set ts=4 sw=4 expandtab: */

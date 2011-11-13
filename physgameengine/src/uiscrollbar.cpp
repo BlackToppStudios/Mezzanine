@@ -46,6 +46,7 @@
 #include "uimanager.h"
 #include "uibutton.h"
 #include "uirectangle.h"
+#include "uiviewportupdatetool.h"
 #include "inputquerytool.h"
 #include "world.h"
 
@@ -715,12 +716,15 @@ namespace phys
             }
         }
 
-        void Scrollbar::UpdateDimensions(const Vector2& OldViewportSize)
+        void Scrollbar::UpdateDimensions()
         {
+            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
+            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
+            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
             ScrollBack->UpdateDimensions();
             Scroller->UpdateDimensions();
             if(UpLeftButton)
-                UpLeftButton->UpdateDimensions();
+               UpLeftButton->UpdateDimensions();
             if(DownRightButton)
                 DownRightButton->UpdateDimensions();
             CalculateOffsets(RelSize * Parent->GetParent()->GetViewportDimensions());

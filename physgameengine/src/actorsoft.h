@@ -126,10 +126,6 @@ namespace phys
             /// @details The class destructor.
             virtual ~ActorSoft();
 
-            /// @brief Updates the rendering info with physics info.
-            /// @details This function needs to be called every frame, otherwise your soft bodies won't appear to move.
-            void UpdateSoftBody();
-
             /// @brief Retrieves the name of the object.
             /// @return A String with the name of this Actor
             String GetName() const;
@@ -187,9 +183,15 @@ namespace phys
             /// @param Rotation The Quaternion representing the Rotation.
             virtual void SetOrientation(Quaternion Rotation);
 
+            ///////////////////////////////////////////////////////////////////////////////
             // Inherited from ActorBase
-            virtual void AddObjectToWorld (World *TargetWorld);
-            virtual void RemoveObjectFromWorld(World* TargetWorld);
+            ///////////////////////////////////////
+            /// @copydoc ActorBase::AddObjectToWorld()
+            virtual void AddObjectToWorld();
+            /// @copydoc ActorBase::RemoveObjectFromWorld()
+            virtual void RemoveObjectFromWorld();
+            /// @copydoc ActorBase::_Update()
+            virtual void _Update();
 
             /// @internal
             /// @brief Get the Physics data raw from the physic subsystem

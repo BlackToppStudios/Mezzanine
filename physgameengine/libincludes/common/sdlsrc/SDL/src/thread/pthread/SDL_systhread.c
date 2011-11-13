@@ -18,16 +18,25 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
+
 #include "SDL_config.h"
 
 #include <pthread.h>
+
+#if HAVE_PTHREAD_NP_H
+#include <pthread_np.h>
+#endif
+
 #include <signal.h>
 #ifdef __LINUX__
 #include <sys/time.h>
 #include <sys/resource.h>
 #include <sys/syscall.h>
+#include <unistd.h>
+extern int pthread_setname_np (pthread_t __target_thread, __const char *__name) __THROW __nonnull ((2));
 #endif
 
+#include "SDL_platform.h"
 #include "SDL_thread.h"
 #include "../SDL_thread_c.h"
 #include "../SDL_systhread.h"
@@ -43,8 +52,7 @@ static void *
 RunThread(void *data)
 {
     SDL_RunThread(data);
-    pthread_exit((void *) 0);
-    return ((void *) 0);        /* Prevent compiler warning */
+    return NULL;
 }
 
 int
@@ -69,10 +77,21 @@ SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
 }
 
 void
-SDL_SYS_SetupThread(void)
+SDL_SYS_SetupThread(const char *name)
 {
     int i;
     sigset_t mask;
+
+    if (name != NULL) {
+#if ( (__MACOSX__ && (MAC_OS_X_VERSION_MAX_ALLOWED >= 1060)) || \
+      (__IPHONEOS__ && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)) )
+        if (pthread_setname_np != NULL) { pthread_setname_np(name); }
+#elif HAVE_PTHREAD_SETNAME_NP
+        pthread_setname_np(pthread_self(), name);
+#elif HAVE_PTHREAD_SET_NAME_NP
+        pthread_set_name_np(pthread_self(), name);
+#endif
+    }
 
     /* Mask asynchronous signals for this thread */
     sigemptyset(&mask);

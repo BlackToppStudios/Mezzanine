@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_COCOA
+
 #include "SDL_cocoavideo.h"
 
 #include "../../events/SDL_keyboard_c.h"
@@ -28,7 +30,7 @@
 #include <Carbon/Carbon.h>
 
 //#define DEBUG_IME NSLog
-#define DEBUG_IME
+#define DEBUG_IME(...)
 
 #ifndef NX_DEVICERCTLKEYMASK
     #define NX_DEVICELCTLKEYMASK    0x00000001
@@ -170,7 +172,7 @@
 }
 
 /* Needs long instead of NSInteger for compilation on Mac OS X 10.4 */
-#if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_5
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1050
 - (long) conversationIdentifier
 #else
 - (NSInteger) conversationIdentifier
@@ -481,7 +483,7 @@ HandleModifiers(_THIS, unsigned short scancode, unsigned int modifierFlags)
 static void
 UpdateKeymap(SDL_VideoData *data)
 {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
     TISInputSourceRef key_layout;
 #else
     KeyboardLayoutRef key_layout;
@@ -492,7 +494,7 @@ UpdateKeymap(SDL_VideoData *data)
     SDL_Keycode keymap[SDL_NUM_SCANCODES];
 
     /* See if the keymap needs to be updated */
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
     key_layout = TISCopyCurrentKeyboardLayoutInputSource();
 #else
     KLGetCurrentKeyboardLayout(&key_layout);
@@ -505,7 +507,7 @@ UpdateKeymap(SDL_VideoData *data)
     SDL_GetDefaultKeymap(keymap);
 
     /* Try Unicode data first (preferred as of Mac OS X 10.5) */
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
     CFDataRef uchrDataRef = TISGetInputSourceProperty(key_layout, kTISPropertyUnicodeKeyLayoutData);
     if (uchrDataRef)
         chr_data = CFDataGetBytePtr(uchrDataRef);
@@ -547,7 +549,7 @@ UpdateKeymap(SDL_VideoData *data)
         return;
     }
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
 cleanup:
     CFRelease(key_layout);
 #else
@@ -732,5 +734,7 @@ void
 Cocoa_QuitKeyboard(_THIS)
 {
 }
+
+#endif /* SDL_VIDEO_DRIVER_COCOA */
 
 /* vi: set ts=4 sw=4 expandtab: */

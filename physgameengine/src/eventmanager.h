@@ -191,11 +191,17 @@ namespace phys
             /// @exception This can throw any STL exception a que could. Any with likely throw some kind of except if called when there are no Events in the Que.
             void RemoveNextEvent();
 
-            /// @brief Adds an event of any kind to the end of the Event Queue
+            /// @brief Adds an event of any kind to the end of the Event Queue.
             /// @param EventToAdd This is a pointer to an Event.
             /// @details This adds the existing event to the Queue. Be careful this is not delete, and does not go out of scope. Deleting the Event is now the
             /// responsibilty of the code that pulls it out of Event Manager.
             void AddEvent(EventBase* EventToAdd);
+
+            /// @brief Removes an event of any kind from the Event Queue.
+            /// @param EventToRemove Pointer to the event that will be removed.
+            /// @details In most cases you will want to use the PopNextEvent() methods when going through events.  In some expert use cases however you may want
+            /// to remove a specific event at an arbitrary place in the Queue.  This is the method for doing so.
+            void RemoveEvent(EventBase* EventToRemove);
 
             /// @brief Pulls Events from the all the subsystems for use in the EventManager.
             /// @details The work this function does is already performed in the main loop. This only really needs to be used

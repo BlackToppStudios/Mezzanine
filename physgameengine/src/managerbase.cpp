@@ -120,11 +120,17 @@ namespace phys
             case ManagerBase::CameraManager:
                 return "CameraManager";
                 break;
+            case ManagerBase::CollisionShapeManager:
+                return "CollisionShapeManager";
+                break;
             case ManagerBase::EventManager:
                 return "EventManager";
                 break;
             case ManagerBase::GraphicsManager:
                 return "GraphicsManager";
+                break;
+            case ManagerBase::MeshManager:
+                return "MeshManager";
                 break;
             case ManagerBase::PhysicsManager:
                 return "PhysicsManager";
@@ -132,20 +138,23 @@ namespace phys
             case ManagerBase::ResourceManager:
                 return "ResourceManager";
                 break;
-            case ManagerBase::UIManager:
-                return "UIManager";
+            case ManagerBase::SceneManager:
+                return "SceneManager";
+                break;
+            case ManagerBase::TerrainManager:
+                return "TerrainManager";
                 break;
             case ManagerBase::TimerManager:
                 return "TimerManager";
                 break;
-            case ManagerBase::SceneManager:
-                return "SceneManager";
+            case ManagerBase::UIManager:
+                return "UIManager";
                 break;
             case ManagerBase::UserCreated:
                 return "UserCreated";
                 break;
             default:
-                return "Unknown Manager";
+                return "Unknown";
                 break;
         }
     }// */

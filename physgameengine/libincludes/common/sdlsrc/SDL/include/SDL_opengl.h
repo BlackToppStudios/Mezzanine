@@ -30,6 +30,8 @@
 
 #include "SDL_config.h"
 
+#ifndef __IPHONEOS__
+
 #ifdef __WIN32__
 #define WIN32_LEAN_AND_MEAN
 #ifndef NOMINMAX
@@ -37,6 +39,11 @@
 #endif
 #include <windows.h>
 #endif
+
+#ifdef __HAIKU__  /* !!! FIXME: temp compiler warning fix... */
+#define NO_SDL_GLEXT 1
+#endif
+
 #ifdef __glext_h_
 /* Someone has already included glext.h */
 #define NO_SDL_GLEXT
@@ -5105,20 +5112,34 @@ typedef char GLchar;
 
 #ifndef GL_VERSION_1_5
 /* GL types for handling large vertex buffer objects */
+#if defined(__APPLE__)
+typedef long GLintptr;
+typedef long GLsizeiptr;
+#else
 typedef ptrdiff_t GLintptr;
 typedef ptrdiff_t GLsizeiptr;
+#endif
 #endif
 
 #ifndef GL_ARB_vertex_buffer_object
 /* GL types for handling large vertex buffer objects */
+#if defined(__APPLE__)
+typedef long GLintptrARB;
+typedef long GLsizeiptrARB;
+#else
 typedef ptrdiff_t GLintptrARB;
 typedef ptrdiff_t GLsizeiptrARB;
+#endif
 #endif
 
 #ifndef GL_ARB_shader_objects
 /* GL types for program/shader text and shader object handles */
 typedef char GLcharARB;
+#if defined(__APPLE__)
+typedef void *GLhandleARB;
+#else
 typedef unsigned int GLhandleARB;
+#endif
 #endif
 
 /* GL type for "half" precision (s10e5) float data in host memory */
@@ -11103,6 +11124,8 @@ typedef void (APIENTRYP PFNGLVDPAUUNMAPSURFACESNVPROC) (GLsizei numSurface, cons
 #endif
 /* *INDENT-ON* */
 #endif /* NO_SDL_GLEXT */
+
+#endif /* !__IPHONEOS__ */
 
 #endif /* _SDL_opengl_h */
 

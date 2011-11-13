@@ -48,6 +48,8 @@
 #include "physicsmanager.h"
 #include "actorrigid.h"
 #include "objectreference.h"
+#include "eventcollision.h"
+#include "constraint.h"
 #include "actorgraphicssettings.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internalmeshtools.h.cpp"
@@ -123,6 +125,30 @@ namespace phys{
         btSoftRigidDynamicsWorld* BWorld = World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer();
         BWorld->removeRigidBody(this->physrigidbody);
         this->DetachFromGraphics();
+    }
+
+    void ActorRigid::_Update()
+        {  }
+
+    void ActorRigid::_NotifyCollision(EventCollision* Collision)
+    {
+        ActorBase::_NotifyCollision(Collision);
+        ActorRigidPhysicsSettings::StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
+        if(!StickyD)
+            return;
+        if(Collision->GetNumContactPoints() == 0)
+            return;
+
+        if(StickyD->StickyConstraints.size() < StickyD->MaxNumContacts)
+        {
+            bool UseA = Collision->GetActorA() != this;
+            ActorRigid* ActorA = dynamic_cast<ActorRigid*>(UseA ? Collision->GetActorA() : Collision->GetActorB());
+            Transform TransA(UseA ? Collision->GetLocalALocation(1) : Collision->GetLocalBLocation(1));
+            Transform TransB(UseA ? Collision->GetLocalBLocation(1) : Collision->GetLocalALocation(1));
+            Generic6DofConstraint* NewSticky = new Generic6DofConstraint(ActorA,this,TransA,TransB);
+            World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            StickyD->StickyConstraints.push_back(NewSticky);
+        }
     }
 
     btRigidBody* ActorRigid::GetBulletObject()

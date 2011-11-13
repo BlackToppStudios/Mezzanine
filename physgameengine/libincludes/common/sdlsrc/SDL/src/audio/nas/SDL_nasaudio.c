@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#if SDL_AUDIO_DRIVER_NAS
+
 /* Allow access to a raw mixing buffer */
 
 #include <signal.h>
@@ -31,9 +33,6 @@
 #include "../SDL_audiomem.h"
 #include "../SDL_audio_c.h"
 #include "SDL_nasaudio.h"
-
-/* The tag name used by nas audio */
-#define NAS_DRIVER_NAME         "nas"
 
 static struct SDL_PrivateAudioData *this2 = NULL;
 
@@ -111,8 +110,8 @@ LoadNASLibrary(void)
         nas_handle = SDL_LoadObject(nas_library);
         if (nas_handle == NULL) {
             /* Copy error string so we can use it in a new SDL_SetError(). */
-            char *origerr = SDL_GetError();
-            size_t len = SDL_strlen(origerr) + 1;
+            const char *origerr = SDL_GetError();
+            const size_t len = SDL_strlen(origerr) + 1;
             char *err = (char *) alloca(len);
             SDL_strlcpy(err, origerr, len);
             retval = -1;
@@ -397,7 +396,9 @@ NAS_Init(SDL_AudioDriverImpl * impl)
 }
 
 AudioBootStrap NAS_bootstrap = {
-    NAS_DRIVER_NAME, "Network Audio System", NAS_Init, 0
+    "nas", "Network Audio System", NAS_Init, 0
 };
+
+#endif /* SDL_AUDIO_DRIVER_NAS */
 
 /* vi: set ts=4 sw=4 expandtab: */

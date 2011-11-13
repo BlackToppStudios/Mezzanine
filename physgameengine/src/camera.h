@@ -188,7 +188,7 @@ namespace phys
             /// @details Sets the location of the specified camera.
             /// @param Location The new location for the camera.
             virtual void SetLocation(const Vector3& Location);
-            // @brief Gets the relative location of the camera.
+            /// @brief Gets the relative location of the camera.
             /// @details Gets the location of the camera, relative to any parent WorldNode.
             /// @return A phys::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
             virtual Vector3 GetLocation() const;
@@ -304,16 +304,20 @@ namespace phys
             Ogre::Camera* GetOgreCamera() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// Inherited From Attachable
+            // Inherited From Attachable
 
             /// @brief What kind of Attachable is this.
             /// @return An Attachable::GetAttachableType containing Attachable::Camera.
             virtual Attachable::AttachableElement GetAttachableType() const;
 
-            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Functions
 
-            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
-    };
+            /// @internal
+            /// @brief Gets pointers to the internal ogre structures for this attachable.
+            /// @return Returns an AttachableData struct with the internal data.
+            virtual AttachableData GetAttachableData() const;
+    };//Camera
 }//phys
 
 #endif

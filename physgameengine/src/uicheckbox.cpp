@@ -46,6 +46,7 @@
 #include "uiscreen.h"
 #include "uicaption.h"
 #include "uibutton.h"
+#include "uiviewportupdatetool.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -257,6 +258,16 @@ namespace phys
             Box->SetActualSize(Vector2(Size.Y,Size.Y));
             Label->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
             this->SetActualPosition(GetActualPosition());
+        }
+
+        void CheckBox::UpdateDimensions()
+        {
+            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
+            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
+            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
+            Box->UpdateDimensions();
+            Label->UpdateDimensions();
+            SetPosition(RelPosition);
         }
 
         Button* CheckBox::GetCheckBoxButton()
