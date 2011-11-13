@@ -41,6 +41,7 @@
 #define _stringtool_cpp
 
 #include "stringtool.h"
+#include <sstream>
 
 namespace phys
 {
@@ -52,7 +53,49 @@ namespace phys
     {
     }
 
-    String StringTool::ConvertInputCodeToString(const MetaCode::InputCode& Code, bool ShiftPressed)
+    String StringTool::ConvertToString(const Int8& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert;
+        return converter.str();
+    }
+
+    String StringTool::ConvertToString(const UInt8& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert;
+        return converter.str();
+    }
+
+    String StringTool::ConvertToString(const Int16& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert;
+        return converter.str();
+    }
+
+    String StringTool::ConvertToString(const UInt16& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert;
+        return converter.str();
+    }
+
+    String StringTool::ConvertToString(const Int32& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert;
+        return converter.str();
+    }
+
+    String StringTool::ConvertToString(const UInt32& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert;
+        return converter.str();
+    }
+
+    String StringTool::ConvertToString(const MetaCode::InputCode& Code, bool ShiftPressed)
     {
         switch(Code)
         {
@@ -397,6 +440,41 @@ namespace phys
                 return "";
                 break;
         }
+    }
+
+    String StringTool::StringCat(const String& Front, const String& Back)
+    {
+        std::stringstream Adder;
+        Adder << Front << Back;
+        return Adder.str();
+    }
+
+    String StringTool::StringCat(const String& Front, const String& Middle, const String& Back)
+    {
+        std::stringstream Adder;
+        Adder << Front  << Middle << Back;
+        return Adder.str();
+    }
+
+    String StringTool::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back)
+    {
+        std::stringstream Adder;
+        Adder << Front  << Middle1 << Middle2 << Back;
+        return Adder.str();
+    }
+
+    String StringTool::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back)
+    {
+        std::stringstream Adder;
+        Adder << Front  << Middle1 << Middle2 << Middle3 << Back;
+        return Adder.str();
+    }
+
+    String StringTool::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back)
+    {
+        std::stringstream Adder;
+        Adder << Front  << Middle1 << Middle2 << Middle3 << Middle4 << Back;
+        return Adder.str();
     }
 }//phys
 

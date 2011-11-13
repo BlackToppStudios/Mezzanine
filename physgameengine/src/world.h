@@ -214,6 +214,7 @@ namespace phys
     class MeshManager;
     class CollisionShapeManager;
     class PhysicsConstructionInfo;
+    class NetworkManager;
 }
 #include <list>
 #include <string>
@@ -545,6 +546,11 @@ namespace phys
             /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
             /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.
             MeshManager* GetMeshManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the NetworkManager from the manager list.
+            /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.
+            /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.
+            NetworkManager* GetNetworkManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the PhysicsManager from the manager list.
             /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.

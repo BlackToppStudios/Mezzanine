@@ -90,6 +90,12 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/mesh.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/meshmanager.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/metacode.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/network.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networkipaddress.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networkmanager.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networkpacket.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networksocket.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networksystemaddress.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/objectreference.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffect.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/physgame.h"
@@ -178,7 +184,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/colourvalue.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/constraint.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/crossplatform.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/datatypes.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/eventbase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/eventcollision.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/eventgamewindow.cpp"
@@ -205,6 +210,11 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/mesh.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/meshmanager.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/metacode.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networkipaddress.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networkmanager.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networkpacket.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networksocket.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/networksystemaddress.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffect.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/physicsmanager.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/plane.cpp"
@@ -447,6 +457,13 @@ set( Bullet_LibraryNames
 	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
 )
 
+if(${WIN32})
+	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDL} Ws2_32)
+endif(${WIN32})
+
+if(${UNIX})
+	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDL} )
+endif(${UNIX})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	target_link_libraries(
@@ -458,9 +475,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	    ${${PROJECT_NAME}_ROOT_DIR}/data/macosx/sdl/libSDL.dylib
 	    ${${PROJECT_NAME}_ROOT_DIR}/data/macosx/caudio/libcAudio.dylib
 	)
-
-else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDL} )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################

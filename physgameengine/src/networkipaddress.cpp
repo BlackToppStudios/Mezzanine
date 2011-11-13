@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -37,53 +37,73 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _datatypes_cpp
-#define _datatypes_cpp
+#ifndef _networkipaddress_cpp
+#define _networkipaddress_cpp
 
-#include <sstream>
-
-#include "datatypes.h"
+#include "networkipaddress.h"
 
 namespace phys
 {
-
-    /// @file datatypes.cpp
-    /// @brief Holds utilities for converting, concatenating, manipulating and working with simple datatypes
-
-    String StringCat(const String& Front, const String& Back)
+    namespace Network
     {
-        std::stringstream Adder;
-        Adder << Front << Back;
-        return Adder.str();
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // IPAddress member functions
 
-    String StringCat(const String& Front, const String& Middle, const String& Back)
-    {
-        std::stringstream Adder;
-        Adder << Front  << Middle << Back;
-        return Adder.str();
-    }
+        IPAddress::IPAddress()
+        {
+        }
 
-    String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back)
-    {
-        std::stringstream Adder;
-        Adder << Front  << Middle1 << Middle2 << Back;
-        return Adder.str();
-    }
+        IPAddress::~IPAddress()
+        {
+        }
 
-    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back)
-    {
-        std::stringstream Adder;
-        Adder << Front  << Middle1 << Middle2 << Middle3 << Back;
-        return Adder.str();
-    }
+        void IPAddress::SetAddress(const String& Address)
+        {
+            if(VerifyAddress(Address))
+                this->SocAddress = Address;
+        }
 
-    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back)
-    {
-        std::stringstream Adder;
-        Adder << Front  << Middle1 << Middle2 << Middle3 << Middle4 << Back;
-        return Adder.str();
-    }
+        String IPAddress::GetAddressAsString() const
+        {
+            return SocAddress;
+        }
 
-} // \phys
+        char* IPAddress::GetAddressAsCString() const
+        {
+            return SocAddress.c_str();
+        }
+
+        const String& IPAddress::GetHostName() const
+        {
+            return HostName;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // IPAddress_4 member functions
+
+        bool IPAddress_4::VerifyAddress(const String& Addr)
+        {
+
+        }
+
+        IPAddress::IPVersion IPAddress_4::GetVersion() const
+        {
+            return IPAddress::IP_v4;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // IPAddress_6 member functions
+
+        bool IPAddress_6::VerifyAddress(const String& Addr)
+        {
+
+        }
+
+        IPAddress::IPVersion IPAddress_6::GetVersion() const
+        {
+            return IPAddress::IP_v6;
+        }
+    }//Network
+}//phys
+
 #endif

@@ -97,6 +97,8 @@
 #include "mesh.h"
 #include "meshmanager.h"
 #include "metacode.h"                   // done
+#include "network.h"
+#include "networkmanager.h"
 #include "objectreference.h"
 #include "particleeffect.h"             // done
 #include "physicsmanager.h"
