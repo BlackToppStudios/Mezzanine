@@ -461,6 +461,7 @@ link_directories(
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/openal"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
+	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/lua"
 )
 
 ###############################################################################
