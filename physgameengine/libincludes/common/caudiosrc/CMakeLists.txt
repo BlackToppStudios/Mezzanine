@@ -108,7 +108,7 @@ if (${WIN32})
 	include_directories(
 		"${physgame_LIBINCLUDE_DIR}${BuildPlatform}/openal/"
 		"${physgame_LIBINCLUDE_DIR}${BuildPlatform}/openal/AL/"
-		"${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libogg-1.2.1/include"
+		"${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libogg-1.3.0/include"
 		"${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libvorbis-1.3.2/lib/"
 		"${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libvorbis-1.3.2/include"
 	)
