@@ -50,6 +50,7 @@
 # Here is a listing of some of the values that this files sets up for consumption by other
 # build scripts, that can be set as cmake options:
 #	Phys_Debug	 		- True if The Engine will be compile with Debug Symbols and without compiler optimization, False and it will be optimized and omit debug symbols.
+#	Phys_Lua			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #	Phys_Profile			- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking.
 #	Phys_XML			- True if the engine will be compiled with XML support. This includes support for serialization
 #
@@ -62,6 +63,8 @@
 #	CommonBuildFlags 		- A listing of all the currently set build flags to pass to the compiler at compile time. This is the mechanism that enforces Phys_Debug's and Phys_Profile's settings.
 #	LibPrefix			- This is a string that is required by a given platform to begin the filename of shared libraries. One windows it is "" on Linux/Unix it is "lib"
 #	LibSuffix			- This is a string that is required by a given platform to end the filename of shared libraries. One windows it is ".dll" on Linux/Unix it is ".so"
+#	LuaLinkName			- This is the name that of the actual compiled lua library, it will be blank if lua is not to be linked
+#	LuaProject			- The Name of the lua cmake project
 #	OgreLinkName			- This is the name of the ogre library that the compiler expects. Examples: OgreMain, OgreMain_d
 #	OgresD				- This can be used to help pick/select ogre libraries that may or may not have an "_d" depending on how they are compiled. If debug libraries are in use this is set to "_d" otherwise "".
 #	OgreLibFileName			- The filename of the actual Ogre library. On some platforms this file may just be a symlink. Examples: OgreMain.dll, libOgreMain.so
@@ -69,9 +72,6 @@
 #	OgrePluginCGPM			- The File name of the Ogre CG manager plugin
 #	OgrePluginRenderGL		- The File name of the Ogre OpenGL rendersystem plugin
 #	OgrePluginParticle		- The File name of the Ogre ParticleFX plugin
-#LuaProject
-#LuaLinkName
-#Phys_Lua
 
 ###############################################################################
 # The name of our project is "PhysgameAndCatch". 
@@ -128,7 +128,7 @@ endif(${Phys_XML})
 
 ###############################################################################
 # Lua Library
-option(Phys_Lua "Include Support for Lua Scripting Language" OFF)
+option(Phys_Lua "Include Support for Lua Scripting Language" ON)
 if(${Phys_Lua})
 	set(LuaProject "Lua")
 	set(LuaLinkName "lua")

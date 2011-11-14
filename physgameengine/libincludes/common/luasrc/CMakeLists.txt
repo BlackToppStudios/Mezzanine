@@ -34,8 +34,8 @@
 #   them, so it is best to simply contact us or the Free Software Foundation, if
 #   you have any questions.
 #
-#   Joseph Toppi - toppij@gmail.c"om
-#   John Blackwood - makoenergy02@gmail.c"om
+#   Joseph Toppi - toppij@gmail.com
+#   John Blackwood - makoenergy02@gmail.com
 
 
 ###############################################################################
