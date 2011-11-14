@@ -228,7 +228,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}colourvalue.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}constraint.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}crossplatform.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}datatypes.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}entity.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}eventbase.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}eventcollision.cpp"
@@ -494,6 +493,7 @@ target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Physgame Depende
 	${Bullet_LibraryNames} 
 	cAudio 
 	${SDL}
+	${NetworkLibrary}
 )
 
 

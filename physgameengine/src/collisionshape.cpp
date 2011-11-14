@@ -42,6 +42,7 @@
 
 #include "collisionshape.h"
 #include "collisionshapemanager.h"
+#include "stringtool.h"
 #include "serialization.h"
 #include "world.h"
 
@@ -1801,7 +1802,7 @@ namespace phys
         if(!Doc->Load(OneTag.c_str()))
         {
             delete Doc;
-            World::GetWorldPointer()->LogAndThrow(StringCat("Could not Deserialize XML Stream which should contain a Collision Shape, XML looked Like: ", OneTag) );
+            World::GetWorldPointer()->LogAndThrow(StringTool::StringCat("Could not Deserialize XML Stream which should contain a Collision Shape, XML looked Like: ", OneTag) );
         }
 
         CollisionShape* Results = ProtoDeSerialize(Doc->GetFirstChild());

@@ -46,6 +46,7 @@
 #define _xmldoc_cpp
 
 #include "xml.h"
+#include "stringtool.h"
 #include "world.h"
 
 namespace phys
@@ -111,7 +112,7 @@ namespace phys
             if(!Doc->Load(OneTag.c_str()))
             {
                 delete Doc;
-                World::GetWorldPointer()->LogAndThrow(Exception(StringCat("Could not Deserialize XML Stream which should contain:", ClassName, "\n XML looked Like: ", OneTag) ));
+                World::GetWorldPointer()->LogAndThrow(Exception(StringTool::StringCat("Could not Deserialize XML Stream which should contain:", ClassName, "\n XML looked Like: ", OneTag) ));
             }
 
             Node InputNode = Doc->GetFirstChild();
@@ -122,11 +123,11 @@ namespace phys
                     return Doc;
                 }else{
                     delete Doc;
-                    World::GetWorldPointer()->LogAndThrow(Exception(StringCat(NameSpace, ClassName, " not next item in stream, failed to deserialize.")));
+                    World::GetWorldPointer()->LogAndThrow(Exception(StringTool::StringCat(NameSpace, ClassName, " not next item in stream, failed to deserialize.")));
                 }
             }else{
                 delete Doc;
-                World::GetWorldPointer()->LogAndThrow(Exception(StringCat("No valid XML element in stream, when attempting to deserialize ", NameSpace, ClassName)));
+                World::GetWorldPointer()->LogAndThrow(Exception(StringTool::StringCat("No valid XML element in stream, when attempting to deserialize ", NameSpace, ClassName)));
             }
         }
 

@@ -47,6 +47,7 @@
 #include "serialization.h"
 #include "world.h"
 #include "meshmanager.h"
+#include "stringtool.h"
 
 #include <map>
 
@@ -256,7 +257,7 @@ namespace phys
                                     Child.GetFirstChild() >> TempColour;
                                     this->SetMaterialAmbient(TempColour, Child.GetAttribute("Submesh").AsWhole());
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element A-\"",Name,"\"")) );
+                                    throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element A-\"",Name,"\"")) );
                                 }
                                 break;
                             case 'S':   //fDiffuseColour
@@ -265,7 +266,7 @@ namespace phys
                                     Child.GetFirstChild() >> TempColour;
                                     this->SetMaterialSpecular(TempColour, Child.GetAttribute("Submesh").AsWhole());
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element S-\"",Name,"\"")) );
+                                    throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element S-\"",Name,"\"")) );
                                 }
                                 break;
                             case 'D':   //fDiffuseColour
@@ -274,11 +275,11 @@ namespace phys
                                     Child.GetFirstChild() >> TempColour;
                                     this->SetMaterialDiffuse(TempColour, Child.GetAttribute("Submesh").AsWhole());
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element D-\"",Name,"\"")) );
+                                    throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element D-\"",Name,"\"")) );
                                 }
                                 break;
                             default:
-                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element default-\"",Name,"\"")) );
+                                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element default-\"",Name,"\"")) );
                                 break;
                         }
                     }
@@ -286,7 +287,7 @@ namespace phys
                     throw( phys::Exception(String("Incompatible XML Version for")+ this->ActorGraphicsSettings::SerializableName() + ": Not Version 1"));
                 }
             }else{
-                throw( phys::Exception(phys::StringCat("Attempting to deserialize a ", this->ActorGraphicsSettings::SerializableName(),", found a ", OneNode.Name())));
+                throw( phys::Exception(StringTool::StringCat("Attempting to deserialize a ", this->ActorGraphicsSettings::SerializableName(),", found a ", OneNode.Name())));
             }
         }
 

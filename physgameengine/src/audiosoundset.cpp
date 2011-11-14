@@ -41,12 +41,23 @@
 #define _audiosoundset_cpp
 
 #include "audiosoundset.h"
+#include "stringtool.h"
 
 namespace phys
 {
     namespace Audio
     {
         Whole SoundSet::UnnamedInstanceCount = 0;
+
+        // Name the First "SoundSet0" then the next "SoundSet1" and then "SoundSet2"...
+        SoundSet::SoundSet()
+            { Name = StringTool::StringCat("SoundSet",StringTool::ConvertToString(UnnamedInstanceCount++)); }
+
+        SoundSet::SoundSet(const String& _Name)
+            : Name(_Name) {}
+
+        const String& SoundSet::GetName() const
+            { return Name; }
 
         xml::Node SoundSet::ProtoSerialize() const
         {

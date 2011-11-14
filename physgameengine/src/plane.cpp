@@ -45,6 +45,7 @@
 
 #include "exception.h"
 #include "plane.h"
+#include "stringtool.h"
 #include "world.h"
 #include "xml.h"
 
@@ -123,7 +124,7 @@ phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::Pla
             throw( phys::Exception("Incompatible XML Version for Plane: Not Version 1"));
         }
     }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a Plane, found a ", OneNode.Name())));
+        throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a Plane, found a ", OneNode.Name())));
     }
 }
 

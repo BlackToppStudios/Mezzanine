@@ -59,18 +59,18 @@ namespace phys
 
         void IPAddress::SetAddress(const String& Address)
         {
-            if(VerifyAddress(Address))
-                this->SocAddress = Address;
+            //if(VerifyAddress(Address))
+            //    this->SocAddress = Address;
         }
 
         String IPAddress::GetAddressAsString() const
         {
-            return SocAddress;
+            //return SocAddress;
         }
 
         char* IPAddress::GetAddressAsCString() const
         {
-            return SocAddress.c_str();
+            //return SocAddress.c_str();
         }
 
         const String& IPAddress::GetHostName() const
@@ -80,6 +80,16 @@ namespace phys
 
         ///////////////////////////////////////////////////////////////////////////////
         // IPAddress_4 member functions
+
+        IPAddress_4::IPAddress_4()
+        {
+
+        }
+
+        IPAddress_4::~IPAddress_4()
+        {
+
+        }
 
         bool IPAddress_4::VerifyAddress(const String& Addr)
         {
@@ -93,6 +103,16 @@ namespace phys
 
         ///////////////////////////////////////////////////////////////////////////////
         // IPAddress_6 member functions
+
+        IPAddress_6::IPAddress_6()
+        {
+
+        }
+
+        IPAddress_6::~IPAddress_6()
+        {
+
+        }
 
         bool IPAddress_6::VerifyAddress(const String& Addr)
         {

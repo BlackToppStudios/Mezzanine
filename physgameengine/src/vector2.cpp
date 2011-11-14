@@ -41,6 +41,7 @@
 #define _vector2_cpp
 
 #include "serialization.h"
+#include "stringtool.h"
 #include "vector2.h"
 
 //#include <memory>
@@ -213,10 +214,10 @@ namespace phys
                 this->X=OneNode.GetAttribute("X").AsReal();
                 this->Y=OneNode.GetAttribute("Y").AsReal();
             }else{
-                throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
             }
         }else{
-            throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+            throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
         }
     }
 

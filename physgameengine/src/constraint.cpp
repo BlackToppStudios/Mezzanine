@@ -43,6 +43,7 @@
 #include "constraint.h"
 #include "actormanager.h"
 #include "actorrigid.h"
+#include "stringtool.h"
 #include "serialization.h"
 #include "world.h"
 
@@ -180,7 +181,7 @@ namespace phys
         for(AxisList::iterator AxisIter=AllAxis.begin(); AllAxis.end()!=AxisIter; ++AxisIter)
         {
             xml::Node OneAxisNode;
-            CurrentAxisName = String(StringCat("Axis",ToString(*AxisIter)));                        // Should result in "Axis-1", "Axis0", "Axis1" ...
+            CurrentAxisName = String(StringTool::StringCat("Axis",ToString(*AxisIter)));                        // Should result in "Axis-1", "Axis0", "Axis1" ...
             ParamList AxisParams = ValidParamOnAxis(*AxisIter);
             for(ParamList::iterator ParamIter=AxisParams.begin(); AxisParams.end()!=ParamIter; ++ParamIter)
             {
@@ -190,12 +191,12 @@ namespace phys
                     {
                         OneAxisNode = TypedConstraintNode.AppendChild(CurrentAxisName);
                         if (!OneAxisNode)
-                            { SerializeError( StringCat("Create ", CurrentAxisName ," Node"), SerializableName()); }
+                            { SerializeError( StringTool::StringCat("Create ", CurrentAxisName ," Node"), SerializableName()); }
                     }
 
                     xml::Attribute CurrenParamAttribute = OneAxisNode.AppendAttribute( ConstraintParamAsString(*ParamIter) );
                     if (!CurrenParamAttribute)
-                        { SerializeError( StringCat("Create ", ConstraintParamAsString(*ParamIter), " Attribute in ", CurrentAxisName ," Node"), SerializableName()); }
+                        { SerializeError( StringTool::StringCat("Create ", ConstraintParamAsString(*ParamIter), " Attribute in ", CurrentAxisName ," Node"), SerializableName()); }
                     CurrenParamAttribute.SetValue( this->GetParam(*ParamIter,*AxisIter));
                 }
             }

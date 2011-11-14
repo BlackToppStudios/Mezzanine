@@ -53,6 +53,13 @@ namespace phys
     {
     }
 
+    String StringTool::ConvertToString(const Real& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert;
+        return converter.str();
+    }
+
     String StringTool::ConvertToString(const Int8& ToConvert)
     {
         std::stringstream converter;

@@ -41,11 +41,12 @@
 #define _serialization_cpp
 
 #include "serialization.h"
+#include "stringtool.h"
 
 namespace phys
 {
     void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD)
-        { throw(Exception(StringCat("Could not ", FailedTo, " during ", ClassName, SOrD? " ":" De","Serialization."))); }
+        { throw(Exception(StringTool::StringCat("Could not ", FailedTo, " during ", ClassName, SOrD? " ":" De","Serialization."))); }
 
     void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD)
         { SerializeError(FailedTo, ClassName, SOrD); }

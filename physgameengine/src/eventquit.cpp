@@ -41,6 +41,7 @@
 #define EVENTQUIT_CPP
 
 #include "eventquit.h"
+#include "stringtool.h"
 
 #ifdef PHYSXML
 #include <memory>
@@ -86,7 +87,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventQuit& E
             throw( phys::Exception("Incompatible XML Version for EventQuit: Not Version 1"));
         }
     }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a EventQuit, found a ", OneNode.Name())));
+        throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a EventQuit, found a ", OneNode.Name())));
     }
 
 }

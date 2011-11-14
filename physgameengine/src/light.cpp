@@ -42,6 +42,7 @@
 
 #include "light.h"
 #include "scenemanager.h"
+#include "stringtool.h"
 #include "world.h"
 #include "worldnode.h"
 
@@ -306,7 +307,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
                             Child.GetFirstChild() >> TempColour;
                             Ev.SetDiffuseColour(TempColour);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element f-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element f-\"",Name,"\"")) );
                         }
                         break;
                     case 'S':   //SpecularColour
@@ -315,7 +316,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
                             Child.GetFirstChild() >> TempColour;
                             Ev.SetSpecularColour(TempColour);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element S-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element S-\"",Name,"\"")) );
                         }
                         break;
                     case 'D':   //Direction
@@ -324,7 +325,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetDirection(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element D-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element D-\"",Name,"\"")) );
                         }
                         break;
                     case 'L':   //Location
@@ -333,11 +334,11 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetLocation(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element L-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element L-\"",Name,"\"")) );
                         }
                         break;
                     default:
-                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element default-\"",Name,"\"")) );
+                        throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element default-\"",Name,"\"")) );
                         break;
                 }
             }
@@ -346,7 +347,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
             throw( phys::Exception("Incompatible XML Version for Light: Not Version 1"));
         }
     }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a Light, found a ", OneNode.Name())));
+        throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a Light, found a ", OneNode.Name())));
     }
 }
 #endif // \PHYSXML

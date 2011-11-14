@@ -40,17 +40,18 @@
 #ifndef _vector3_cpp
 #define _vector3_cpp
 
+#include "vector3.h"
+#include "exception.h"
+#include "serialization.h"
+#include "stringtool.h"
+#include "world.h"          // Needed for Error logging in streaming
+#include "xml.h"            // Needed for streaming to xml
+
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 #include <cAudio.h>
 
 #include <memory>
-
-#include "vector3.h"
-#include "exception.h"
-#include "serialization.h"
-#include "world.h"          // Needed for Error logging in streaming
-#include "xml.h"            // Needed for streaming to xml
 
 namespace phys
 {
@@ -471,10 +472,10 @@ namespace phys
                     this->Y=OneNode.GetAttribute("Y").AsReal();
                     this->Z=OneNode.GetAttribute("Z").AsReal();
                 }else{
-                    throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+                    throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
                 }
             }else{
-                throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+                throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
             }
         }
 

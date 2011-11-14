@@ -75,10 +75,10 @@ namespace phys
     typedef unsigned short UInt16;
     /// @typedef Int32
     /// @brief An 32-bit integer.
-    typedef signed int Int32;
+    typedef signed long Int32;
     /// @typedef UInt32
     /// @brief An 32-bit unsigned integer.
-    typedef unsigned int UInt32;
+    typedef unsigned long UInt32;
     #if defined(_MSC_VER)
     /// @typedef Int64
     /// @brief An 64-bit integer.

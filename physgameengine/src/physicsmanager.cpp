@@ -782,7 +782,7 @@ namespace phys
         GameWorld->Log();
         #endif // */
 
-        //((CollisionDispatcher*)this->BulletDispatcher)->CreateCollisionEvents();
+        ((CollisionDispatcher*)this->BulletDispatcher)->CreateCollisionEvents();
 
         #ifdef PHYSPROFILE
         Profiler->reset();

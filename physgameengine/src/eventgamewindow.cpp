@@ -41,6 +41,7 @@
 #define EVENTGAMEWINDOW_CPP
 
 #include "eventgamewindow.h"
+#include "stringtool.h"
 
 #ifdef PHYSDEBUG
 #include "world.h"
@@ -256,7 +257,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventGameWin
             throw( phys::Exception("Incompatible XML Version for EventGameWindow: Not Version 1"));
         }
     }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a EventGameWindow, found a ", OneNode.Name())));
+        throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a EventGameWindow, found a ", OneNode.Name())));
     }
 
 }

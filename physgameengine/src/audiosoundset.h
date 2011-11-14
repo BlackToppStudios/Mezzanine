@@ -41,13 +41,14 @@
 #define _audiosoundset_h
 
 #include "datatypes.h"
-#include "audiosound.h"
+#include "xml.h"
 #include <vector>
 
 namespace phys
 {
     namespace Audio
     {
+        class Sound;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a vector that stores sounds.
         /// @details This is a vector and can be use to store sounds that can be grouped together
@@ -63,17 +64,14 @@ namespace phys
                 static Whole UnnamedInstanceCount;
 
                 /// @brief Default constructor
-                SoundSet()
-                    { Name = StringCat("SoundSet",ToString(UnnamedInstanceCount++)); } // Name the First "SoundSet0" then the next "SoundSet1" and then "SoundSet2"...
+                SoundSet();
 
                 /// @brief Default constructor
-                explicit SoundSet(const String& _Name) : Name(_Name)
-                    { }
+                explicit SoundSet(const String& _Name);
 
                 /// @brief Get the name of the SoundSet
                 /// @return The Name of this SoundSet
-                const String& GetName() const
-                    { return Name; }
+                const String& GetName() const;
 
                 /// @brief Create an xml::Node describing this
                 /// @return An xml::Node

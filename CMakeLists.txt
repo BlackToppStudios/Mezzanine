@@ -1,4 +1,4 @@
-# © Copyright 2010 - 2011 BlackTopp Studios Inc.
+# @ Copyright 2010 - 2011 BlackTopp Studios Inc.
 # This file is part of The PhysGame Engine.
 #
 #    The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -169,6 +169,13 @@ set(OgreLinuxSoName ${OgreLibFileName}.${OgreVersion})		#This value is gibberish
 set(OgrePluginCGPM Plugin_CgProgramManager${LibSuffix} )
 set(OgrePluginRenderGL RenderSystem_GL${LibSuffix} )
 set(OgrePluginParticle Plugin_ParticleFX${LibSuffix} )
+
+#######################################
+# Network Library Define
+
+if(${WIN32})
+	set(NetworkLibrary ws2_32)
+endif(${WIN32})
 
 ###############################################################################
 # Additional Variables

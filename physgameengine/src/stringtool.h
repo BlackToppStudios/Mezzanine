@@ -62,6 +62,10 @@ namespace phys
             /// @brief Converts an Int8 into a string.
             /// @param ToConvert The Int8 to be converted.
             /// @return Returns a string containing the converted input.
+            static String ConvertToString(const Real& ToConvert);
+            /// @brief Converts an Int8 into a string.
+            /// @param ToConvert The Int8 to be converted.
+            /// @return Returns a string containing the converted input.
             static String ConvertToString(const Int8& ToConvert);
             /// @brief Converts a UInt8 into a string.
             /// @param ToConvert The UInt8 to be converted.
