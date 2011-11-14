@@ -471,9 +471,12 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
+if(${Phys_Lua})
+	add_subdirectory (libincludes/common/luasrc)
+endif(${Phys_Lua})
 #add_subdirectory (libincludes/common/ogresrc) # not quite ready yet
 
-add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Ogre )
+add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Ogre ${LuaProject})
 
 #######################################
 # Library Link Dependencies
@@ -481,6 +484,7 @@ add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Og
 add_definitions( ${PhysgameBuildFlags} )
 target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Physgame Dependencies
 	${OgreLinkName} 
+	${LuaLinkName}
 	${Bullet_LibraryNames} 
 	cAudio 
 	${SDL}
@@ -522,6 +526,7 @@ if(${WIN32})
 	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )							#compiling SDL from source will remove this
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
 	#CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
+
 
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")

@@ -69,6 +69,9 @@
 #	OgrePluginCGPM			- The File name of the Ogre CG manager plugin
 #	OgrePluginRenderGL		- The File name of the Ogre OpenGL rendersystem plugin
 #	OgrePluginParticle		- The File name of the Ogre ParticleFX plugin
+#LuaProject
+#LuaLinkName
+#Phys_Lua
 
 ###############################################################################
 # The name of our project is "PhysgameAndCatch". 
@@ -104,11 +107,11 @@ endif(${Phys_Debug})
 # Check For the Phys_Profile option and set values accordingly
 option(Phys_Profile "Executables will gather runtime statistics." OFF)
 if(${Phys_Profile})
-	message ("${PROJECT_NAME} - Enabling gcc profiling and Phys_Profile")
+	message ("${PROJECT_NAME} - Enabling gcc profiling and setting PHYSPROFILE")
 	set(CommonBuildFlags "${CommonBuildFlags} -pg")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSPROFILE=1")
 else(${Phys_Profile})
-	message ("${PROJECT_NAME} - Disabling gcc profiling and Phys_Profile")
+	message ("${PROJECT_NAME} - Disabling gcc profiling and unsetting PHYSPROFILE")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSPROFILE=0")
 endif(${Phys_Profile})
 
@@ -116,12 +119,25 @@ endif(${Phys_Profile})
 # Check For the Phys_XML option and set values accordingly
 option(Phys_XML "Enable XML and XML serialization supprt." ON)
 if(${Phys_XML})
-	message ("${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and Phys_XML")
+	message ("${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting PHYSXML")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=1")
 else(${Phys_XML})
-	message ("${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and Phys_XML")
+	message ("${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting PHYSXML")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=0")
 endif(${Phys_XML})
+
+###############################################################################
+# Lua Library
+option(Phys_Lua "Include Support for Lua Scripting Language" OFF)
+if(${Phys_Lua})
+	set(LuaProject "Lua")
+	set(LuaLinkName) "lua")
+	message ("${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting PHYSLUA")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSLUA=1")
+else(${Phys_Lua})
+	message ("${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting PHYSXML")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSLUA=0")
+endif(${Phys_Lua})
 
 ###############################################################################
 # Set Platform Specific Variables
@@ -145,7 +161,6 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 #######################################
 # Physgame
-
 set(PhysgameLibFileName ${LibPrefix}physgame${LibSuffix})
 
 #######################################
