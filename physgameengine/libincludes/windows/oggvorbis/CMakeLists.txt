@@ -5,10 +5,10 @@ message ("${PROJECT_NAME} - Begin")
 #Add some source files
 
 set(${PROJECT_NAME}_sources
-	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.2.1/src/bitwise.c"
-	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.2.1/src/framing.c"
-	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.2.1/include/ogg/ogg.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.2.1/include/ogg/os_types.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.3.0/src/bitwise.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.3.0/src/framing.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.3.0/include/ogg/ogg.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.3.0/include/ogg/os_types.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/analysis.c"
 	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/bitrate.c"
 	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/block.c"
