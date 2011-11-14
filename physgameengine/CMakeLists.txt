@@ -522,6 +522,7 @@ if(${WIN32})
 	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )							#compiling SDL from source will remove this
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
 	#CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
+
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})

@@ -47,13 +47,13 @@ message ("${PROJECT_NAME} - Begin")
 add_definitions( ${CommonBuildFlags} )
 
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
-set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
+set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}")
 message ("Looking build resources in: ${${PROJECT_NAME}_ROOT_DIR}")
 
-set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}/data/")
+set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}data/")
 message ("Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 
-set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
+set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
 message ("Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set (${PROJECT_NAME}_PHYSGAME_DIR "${ProjectRootDir}/physgameengine/")

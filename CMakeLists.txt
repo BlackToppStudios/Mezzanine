@@ -78,7 +78,7 @@ project (PhysgameAndCatch)
 ###############################################################################
 # Check For the PhysDebug option and set values accordingly
 option(PhysDebug "Compile with no optimizations and debug symbols" OFF)
-if(${PhysDebug})
+if(${PhysDebug})								#Todo: Rename our cariables so that they start with PHYS_ so cmake with automatically group them.
 	message ("${PROJECT_NAME} - Enabling PHYSDEBUG Messages")
 	if(${WIN32})
 		message ("${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
@@ -152,6 +152,7 @@ set(PhysgameLibFileName ${LibPrefix}physgame${LibSuffix})
 # Ogre related values
 option(UseOgreDebug "Use Ogre Debug Libraries, instead of Release Libs" OFF)
 set(OgreVersion 1.7.3 CACHE STRING "The version of the ogre libraries to link against")
+mark_as_advanced(UseOgreDebug OgreVersion)
 if(${UseOgreDebug})
 	message ("${PROJECT_NAME} - Will we use Ogre Debug libraries")
 	set(OgreLinkName OgreMain_d)
@@ -170,15 +171,21 @@ set(OgrePluginCGPM Plugin_CgProgramManager${LibSuffix} )
 set(OgrePluginRenderGL RenderSystem_GL${LibSuffix} )
 set(OgrePluginParticle Plugin_ParticleFX${LibSuffix} )
 
+
 ###############################################################################
 # Additional Variables
 set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR})
 
 
-#Add subprojects
+###############################################################################
+# Add subprojects
 add_subdirectory (physgameengine)
 #add_subdirectory (EngineDemo)
 add_subdirectory (Catch!) 
 add_subdirectory (UnitTests) 
+
+###############################################################################
+# Hide Variables not directly related to the Physgame Engine
+mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY)
 
 

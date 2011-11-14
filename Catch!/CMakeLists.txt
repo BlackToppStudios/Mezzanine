@@ -74,7 +74,7 @@ message ("Base Directory for Executable binaries and data output: ${${PROJECT_NA
 # Catch! Folder Structure
 
 # Root
-set (GameDir "${${PROJECT_NAME}_BINARY_DIR}/")
+set (GameDir "${${PROJECT_NAME}_BINARY_DIR}")
 message ("Catch! Complete Output: ${GameDir}")
 
 # Levels
@@ -102,29 +102,30 @@ set (PreviewDir "${GameDir}Previews/")
 message ("Catch! Preview Output: ${PreviewDir}")
 # ${GameDir} ${LevelDir} ${CommonDataDir} ${FontDir} ${LicenseDir} ${PluginDir} ${PreviewDir}
 
-# FileCache
-set(CatchArchiveDir "" CACHE FILEPATH "The Directory that contains The Content Archives for Catch!")
-if(EXISTS ${CatchArchiveDir})
+# Content Archive Cache
+set(Catch_ArchiveDir "" CACHE FILEPATH "The Directory that contains The Content Archives for Catch!")
+mark_as_advanced(Catch_ArchiveDir)
+if(EXISTS ${Catch_ArchiveDir})
 	set(UseCatchArchices true)
 	#if the user select a file in the content archive folder, pull that filename out, without using FIND, because was introduced as recently as 2.8.5
-	string( LENGTH ${CatchArchiveDir} FilePos)
+	string( LENGTH ${Catch_ArchiveDir} FilePos)
 	math(EXPR FilePos "${FilePos}-1")
-	string( SUBSTRING ${CatchArchiveDir} "${FilePos}" 1 OneChar )
+	string( SUBSTRING ${Catch_ArchiveDir} "${FilePos}" 1 OneChar )
 	while(NOT (${OneChar} STREQUAL "/" OR ${OneChar} STREQUAL "\\") )
-		string( SUBSTRING ${CatchArchiveDir} 0 "${FilePos}" CatchArchiveDir ) 	#snip one char off the end of the string
-		string( LENGTH ${CatchArchiveDir} FilePos)				#get the info about the string again
+		string( SUBSTRING ${Catch_ArchiveDir} 0 "${FilePos}" Catch_ArchiveDir ) 	#snip one char off the end of the string
+		string( LENGTH ${Catch_ArchiveDir} FilePos)				#get the info about the string again
 		math(EXPR FilePos "${FilePos}-1")
-		string( SUBSTRING ${CatchArchiveDir} "${FilePos}" 1 OneChar )
+		string( SUBSTRING ${Catch_ArchiveDir} "${FilePos}" 1 OneChar )
 		if(${FilePos} LESS 2)							#safe exit strategy, in case gibberish is fed in
 			set(OneChar "/")
 			set(UseCatchArchices false)
 		endif(${FilePos} LESS 2)
 	endwhile(NOT (${OneChar} STREQUAL "/" OR ${OneChar} STREQUAL "\\") )
-else(EXISTS ${CatchArchiveDir})
+else(EXISTS ${Catch_ArchiveDir})
 	set(UseCatchArchices false)
-endif(EXISTS ${CatchArchiveDir})
+endif(EXISTS ${Catch_ArchiveDir})
 if(${UseCatchArchices})									#Let user the user know wht is actually happening
-	message ("Using content archives for Catch! in folder: ${CatchArchiveDir}")
+	message ("Using content archives for Catch! in folder: ${Catch_ArchiveDir}")
 else(${UseCatchArchices})
 	message ("Not Using content archives for Catch!")
 endif(${UseCatchArchices})
@@ -258,13 +259,13 @@ CopyFilesFromPhygameDuringBuild( data/common/XiphCopyrightNotice.txt ${LicenseDi
 # Common Data
 if(${UseCatchArchices})
 	message("Copying Common Content")
-	file(GLOB ContentDirRootContents ${CatchArchiveDir}/*.zip)
+	file(GLOB ContentDirRootContents ${Catch_ArchiveDir}/*.zip)
 	file( COPY ${ContentDirRootContents} DESTINATION ${CommonDataDir})
 	message("Copying Level archives")
-	file(GLOB ContentDirLevelContents "${CatchArchiveDir}/Lvl Files/*.lvl")
+	file(GLOB ContentDirLevelContents "${Catch_ArchiveDir}/Lvl Files/*.lvl")
 	file( COPY ${ContentDirLevelContents} DESTINATION ${LevelDir})
 	message("Copying Preview Content")
-	file(GLOB ContentDirPreviewContents "${CatchArchiveDir}/Lvl Previews/*")
+	file(GLOB ContentDirPreviewContents "${Catch_ArchiveDir}/Lvl Previews/*")
 	file( COPY ${ContentDirPreviewContents} DESTINATION ${PreviewDir})
 endif(${UseCatchArchices})
 
