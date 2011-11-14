@@ -279,6 +279,11 @@ GLES_WindowEvent(SDL_Renderer * renderer, const SDL_WindowEvent *event)
         /* Rebind the context to the window area and update matrices */
         SDL_CurrentContext = NULL;
     }
+
+    if (event->event == SDL_WINDOWEVENT_MINIMIZED) {
+        /* According to Apple documentation, we need to finish drawing NOW! */
+	glFinish();
+    }
 }
 
 static __inline__ int
@@ -483,7 +488,7 @@ GLES_UpdateViewport(SDL_Renderer * renderer)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrthof((GLfloat) 0,
-			 (GLfloat) renderer->viewport.w,
+             (GLfloat) renderer->viewport.w,
              (GLfloat) renderer->viewport.h,
              (GLfloat) 0, 0.0, 1.0);
     return 0;
@@ -620,6 +625,8 @@ GLES_RenderDrawLines(SDL_Renderer * renderer, const SDL_Point * points,
         glDrawArrays(GL_LINE_LOOP, 0, count);
     } else {
         glDrawArrays(GL_LINE_STRIP, 0, count);
+        /* We need to close the endpoint of the line */
+        glDrawArrays(GL_POINTS, count-1, 1);
     }
     SDL_stack_free(vertices);
 
@@ -696,7 +703,8 @@ GLES_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
         cropRect[3] = -srcrect->h;
         glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_CROP_RECT_OES,
                                cropRect);
-        glDrawTexiOES(dstrect->x, h - dstrect->y - dstrect->h, 0,
+        glDrawTexiOES(renderer->viewport.x + dstrect->x,
+	              h - (renderer->viewport.y + dstrect->y) - dstrect->h, 0,
                             dstrect->w, dstrect->h);
     } else {
 

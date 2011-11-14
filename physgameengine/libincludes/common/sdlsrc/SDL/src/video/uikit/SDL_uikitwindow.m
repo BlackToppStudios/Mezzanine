@@ -63,15 +63,31 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
     {
         window->x = 0;
         window->y = 0;
-        window->w = (int)uiwindow.frame.size.width;
-        window->h = (int)uiwindow.frame.size.height;
+
+        /* We can pick either width or height here and we'll rotate the
+           screen to match, so we pick the closest to what we wanted.
+         */
+        if (window->w >= window->h) {
+            if (uiwindow.frame.size.width > uiwindow.frame.size.height) {
+                window->w = (int)uiwindow.frame.size.width;
+                window->h = (int)uiwindow.frame.size.height;
+            } else {
+                window->w = (int)uiwindow.frame.size.height;
+                window->h = (int)uiwindow.frame.size.width;
+            }
+        } else {
+            if (uiwindow.frame.size.width > uiwindow.frame.size.height) {
+                window->w = (int)uiwindow.frame.size.height;
+                window->h = (int)uiwindow.frame.size.width;
+            } else {
+                window->w = (int)uiwindow.frame.size.width;
+                window->h = (int)uiwindow.frame.size.height;
+            }
+        }
     }
 
     window->driverdata = data;
 
-    // !!! FIXME: should we force this? Shouldn't specifying FULLSCREEN
-    // !!! FIXME:  imply BORDERLESS?
-    window->flags |= SDL_WINDOW_FULLSCREEN;        /* window is always fullscreen */
     window->flags |= SDL_WINDOW_SHOWN;            /* only one window on iOS, always shown */
 
     // SDL_WINDOW_BORDERLESS controls whether status bar is hidden.
@@ -84,7 +100,7 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
     } else {
         window->flags |= SDL_WINDOW_INPUT_FOCUS;  // always has input focus
 
-        if (window->flags & SDL_WINDOW_BORDERLESS) {
+        if (window->flags & (SDL_WINDOW_FULLSCREEN|SDL_WINDOW_BORDERLESS)) {
             [UIApplication sharedApplication].statusBarHidden = YES;
         } else {
             [UIApplication sharedApplication].statusBarHidden = NO;
@@ -167,7 +183,7 @@ UIKit_CreateWindow(_THIS, SDL_Window *window)
     /* ignore the size user requested, and make a fullscreen window */
     // !!! FIXME: can we have a smaller view?
     UIWindow *uiwindow = [UIWindow alloc];
-    if (window->flags & SDL_WINDOW_BORDERLESS)
+    if (window->flags & (SDL_WINDOW_FULLSCREEN|SDL_WINDOW_BORDERLESS))
         uiwindow = [uiwindow initWithFrame:[uiscreen bounds]];
     else
         uiwindow = [uiwindow initWithFrame:[uiscreen applicationFrame]];
@@ -187,6 +203,42 @@ UIKit_CreateWindow(_THIS, SDL_Window *window)
 
     return 1;
 
+}
+
+void
+UIKit_SetWindowFullscreen(_THIS, SDL_Window * window, SDL_VideoDisplay * display, SDL_bool fullscreen)
+{
+    UIScreen *uiscreen = (UIScreen *) display->driverdata;
+    UIWindow *uiwindow = ((SDL_WindowData *) window->driverdata)->uiwindow;
+
+    if (fullscreen) {
+        [UIApplication sharedApplication].statusBarHidden = YES;
+        uiwindow.frame = [uiscreen bounds];
+    } else {
+        [UIApplication sharedApplication].statusBarHidden = NO;
+        uiwindow.frame = [uiscreen applicationFrame];
+    }
+
+    /* We can pick either width or height here and we'll rotate the
+       screen to match, so we pick the closest to what we wanted.
+     */
+    if (window->w >= window->h) {
+        if (uiwindow.frame.size.width > uiwindow.frame.size.height) {
+            window->w = (int)uiwindow.frame.size.width;
+            window->h = (int)uiwindow.frame.size.height;
+        } else {
+            window->w = (int)uiwindow.frame.size.height;
+            window->h = (int)uiwindow.frame.size.width;
+        }
+    } else {
+        if (uiwindow.frame.size.width > uiwindow.frame.size.height) {
+            window->w = (int)uiwindow.frame.size.height;
+            window->h = (int)uiwindow.frame.size.width;
+        } else {
+            window->w = (int)uiwindow.frame.size.width;
+            window->h = (int)uiwindow.frame.size.height;
+        }
+    }
 }
 
 void
