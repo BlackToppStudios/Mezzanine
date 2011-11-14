@@ -54,22 +54,22 @@
 #	Phys_XML			- True if the engine will be compiled with XML support. This includes support for serialization
 #
 #	Phys_UseOgreDebug		- True if the developer wants to the use the ogre debug libraries, this adjusts a number of other files that child cmake scripts can use.
-#	Phys_UseOgreVersion			- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
+#	Phys_UseOgreVersion		- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
 #
 # Here are some more values that can be used when creating cmake scripts that are indirectly
 # set and should not be directly passed as cmake values
+#	BuildPlatform			- A string that Contains either "windows", "linux", or "macosx" at the time of this writing. This directly corresponds to the folders names in the physgame engine repository.
 #	CommonBuildFlags 		- A listing of all the currently set build flags to pass to the compiler at compile time. This is the mechanism that enforces Phys_Debug's and Phys_Profile's settings.
+#	LibPrefix			- This is a string that is required by a given platform to begin the filename of shared libraries. One windows it is "" on Linux/Unix it is "lib"
+#	LibSuffix			- This is a string that is required by a given platform to end the filename of shared libraries. One windows it is ".dll" on Linux/Unix it is ".so"
 #	OgreLinkName			- This is the name of the ogre library that the compiler expects. Examples: OgreMain, OgreMain_d
-#	OgresD					- This can be used to help pick/select ogre libraries that may or may not have an "_d" depending on how they are compiled. If debug libraries are in use this is set to "_d" otherwise "".
-#	OgreLibFileName		- The filename of the actual Ogre library. On some platforms this file may just be a symlink. Examples: OgreMain.dll, libOgreMain.so
-#	OgreLinuxSoName		- Linux's versioned library system expects specific version of so files. This is the more specific file, that must copied along with the regular so. Examples libOgreMain.so.1.7.1, libOgreMain.so.1.9.3
-#
-#LibPrefix
-#LibSuffix
-#BuildPlatform
-#OgrePluginCGPM
-#OgrePluginRenderGL
-#OgrePluginParticle
+#	OgresD				- This can be used to help pick/select ogre libraries that may or may not have an "_d" depending on how they are compiled. If debug libraries are in use this is set to "_d" otherwise "".
+#	OgreLibFileName			- The filename of the actual Ogre library. On some platforms this file may just be a symlink. Examples: OgreMain.dll, libOgreMain.so
+#	OgreLinuxSoName			- Linux's versioned library system expects specific version of so files. This is the more specific file, that must copied along with the regular so. Examples libOgreMain.so.1.7.1, libOgreMain.so.1.9.3
+#	OgrePluginCGPM			- The File name of the Ogre CG manager plugin
+#	OgrePluginRenderGL		- The File name of the Ogre OpenGL rendersystem plugin
+#	OgrePluginParticle		- The File name of the Ogre ParticleFX plugin
+
 ###############################################################################
 # The name of our project is "PhysgameAndCatch". 
 cmake_minimum_required (VERSION 2.8)
