@@ -98,9 +98,6 @@ namespace phys
     class PHYS_LIB ActorBase {
         private:
             friend class WorldNode;
-            friend class ActorContainerBase;
-            friend class PhysicsManager;
-            friend class ResourceManager;
             friend class ActorGraphicsSettings;
             friend class ActorBasePhysicsSettings;
 
@@ -334,10 +331,8 @@ namespace phys
             virtual Vector3 GetActorScaling() const;
 
             /// @brief Gets all current collisions that apply to this actor.
-            /// @warning This returns a non-const reference because other internal stuctures need to update it directly, but under
-            /// no situation aside from expert use should this set be modified manually.
-            /// @return Returns a reference to a set containing all collisions events containing this actor.
-            virtual std::set<EventCollision*>& GetCurrentCollisions();
+            /// @return Returns a const reference to a set containing all collisions events containing this actor.
+            virtual const std::set<EventCollision*>& GetCurrentCollisions();
 
             /// @brief Gets the graphics settings class associated with this actor.
             /// @return Returns a pointer to the graphics settings class in use by this actor.
@@ -357,17 +352,36 @@ namespace phys
             virtual void RemoveObjectFromWorld() = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
-// Internal Object Access functions
+// Internal Object functions
 ///////////////////////////////////////
+            /// @internal
+            /// @brief Utility function for altering or checking the actor every frame.
+            virtual void _Update() = 0;
+
+            /// @internal
+            /// @brief Notifies this actor of a collision that is occuring with it.
+            /// @param Collision A pointer to the collision event pertaining to this actor.
+            virtual void _NotifyCollision(EventCollision* Collision);
+
+            /// @internal
+            /// @brief Notifies this actor that a collision has ended.
+            /// @param Collision A pointer to the collision event pertaining to this actor.
+            virtual void _NotifyEndCollision(EventCollision* Collision);
+
             /// @internal
             /// @brief Gets the internal physics object this actor is based on.
             /// @return Returns a pointer to the internal Bullet object.
-            virtual btCollisionObject* GetBaseBulletObject() const;
+            virtual btCollisionObject* _GetBasePhysicsObject() const;
 
             /// @internal
             /// @brief Gets the internal graphics object this actor is based on.
             /// @return Returns a pointer to the internal graphics object.
-            virtual Ogre::Entity* GetOgreObject() const;
+            virtual Ogre::Entity* _GetGraphicsObject() const;
+
+            /// @internal
+            /// @brief Gets the internal graphics node this actor uses for it's graphics transform.
+            /// @return Returns a pointer to the internal graphics node.
+            virtual Ogre::SceneNode* _GetGraphicsNode() const;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Serialization

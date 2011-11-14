@@ -268,6 +268,8 @@ namespace phys
 
     class CollisionDispatcher : public btCollisionDispatcher
     {
+        protected:
+            std::queue<btPersistentManifold*> ManifoldCreationQueue;
         public:
             CollisionDispatcher(btCollisionConfiguration* CollisionConfig) : btCollisionDispatcher(CollisionConfig)
             {
@@ -279,20 +281,8 @@ namespace phys
             {
                 // Get the manifold
                 btPersistentManifold* NewManifold = btCollisionDispatcher::getNewManifold(b0,b1);
-                // Get the object references
-                ObjectReference* ObjectA = (ObjectReference*)((btCollisionObject*)NewManifold->getBody0())->getUserPointer();
-                ObjectReference* ObjectB = (ObjectReference*)((btCollisionObject*)NewManifold->getBody1())->getUserPointer();
-                // Verify they are actors, then cast appropriately
-                ActorBase* ActorA = ObjectA->GetType() >= WOT_ActorFirst && ObjectA->GetType() <= WOT_ActorLast ? static_cast<ActorBase*>(ObjectA->GetObject()) : NULL;
-                ActorBase* ActorB = ObjectB->GetType() >= WOT_ActorFirst && ObjectB->GetType() <= WOT_ActorLast ? static_cast<ActorBase*>(ObjectB->GetObject()) : NULL;
-                // Verify the cast went well
-                if( ActorA && ActorB )
-                {
-                    // Creat the Event
-                    EventCollision* NewColEvent = new EventCollision(ActorA,ActorB);
-                    NewColEvent->Manifold = NewManifold;
-                    World::GetWorldPointer()->GetEventManager()->AddEvent(NewColEvent);
-                }
+                // Store the manifold for processing later
+                ManifoldCreationQueue.push(NewManifold);
                 return NewManifold;
             }
             void releaseManifold(btPersistentManifold *manifold)
@@ -310,6 +300,29 @@ namespace phys
                 delete ColEvents;
 
                 btCollisionDispatcher::releaseManifold(manifold);
+            }
+            void CreateCollisionEvents()
+            {
+                if(ManifoldCreationQueue.empty())
+                    return;
+                for( btPersistentManifold* NewManifold = ManifoldCreationQueue.front() ; NewManifold != NULL ; NewManifold = ManifoldCreationQueue.front() )
+                {
+                    // Get the object references
+                    ObjectReference* ObjectA = (ObjectReference*)((btCollisionObject*)NewManifold->getBody0())->getUserPointer();
+                    ObjectReference* ObjectB = (ObjectReference*)((btCollisionObject*)NewManifold->getBody1())->getUserPointer();
+                    // Verify they are actors, then cast appropriately
+                    ActorBase* ActorA = (ObjectA->GetType() >= WOT_ActorFirst) && (ObjectA->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectA->GetObject()) : NULL;
+                    ActorBase* ActorB = (ObjectB->GetType() >= WOT_ActorFirst) && (ObjectB->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectB->GetObject()) : NULL;
+                    // Verify the cast went well
+                    if( ActorA && ActorB )
+                    {
+                        // Creat the Event
+                        EventCollision* NewColEvent = new EventCollision(ActorA,ActorB);
+                        NewColEvent->Manifold = NewManifold;
+                        World::GetWorldPointer()->GetEventManager()->AddEvent(NewColEvent);
+                    }
+                    ManifoldCreationQueue.pop();
+                }
             }
     };// CollisionDispatcher
 
@@ -492,7 +505,7 @@ namespace phys
     {
         if (ActorBase::Actorrigid==Actor->GetType())
         {
-            btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->CollisionObject);
+            btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->_GetBasePhysicsObject());
             Rigid->setGravity(igrav.GetBulletVector3());
         }
     }
@@ -684,7 +697,7 @@ namespace phys
     {
         if(ActorBase::Actorrigid==OffsetInfo.Actor->GetType())
         {
-            btRigidBody* Rigid = static_cast< btRigidBody* > (OffsetInfo.Actor->CollisionObject);
+            btRigidBody* Rigid = static_cast< btRigidBody* > (OffsetInfo.Actor->_GetBasePhysicsObject());
             Vector3 Offset(Rigid->getCenterOfMassTransform().inverse() * OffsetInfo.Vector.GetBulletVector3());
             return Offset;
         }else{
@@ -768,6 +781,8 @@ namespace phys
         GameWorld->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
         #endif // */
+
+        //((CollisionDispatcher*)this->BulletDispatcher)->CreateCollisionEvents();
 
         #ifdef PHYSPROFILE
         Profiler->reset();

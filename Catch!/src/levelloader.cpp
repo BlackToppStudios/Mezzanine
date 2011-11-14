@@ -162,11 +162,13 @@ void LevelLoader::LoadFerris()
     CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
     ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
+    Uranium1->GetPhysicsSettings()->SetStickyData(1);
     Uranium1->SetLocation(-145,40,0);
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
     ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
+    Uranium2->GetPhysicsSettings()->SetStickyData(1);
     Uranium2->SetLocation(-195,40,0);
     ActMan->AddActor(Uranium2);
     GameApp->AddThrowable(Uranium2);// */

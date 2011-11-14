@@ -283,7 +283,7 @@ namespace phys{
         return Scale;
     }
 
-    std::set<EventCollision*>& ActorBase::GetCurrentCollisions()
+    const std::set<EventCollision*>& ActorBase::GetCurrentCollisions()
     {
         return CurrentCollisions;
     }
@@ -301,14 +301,29 @@ namespace phys{
     ///////////////////////////////////
     // Internal Object Access functions
 
-    btCollisionObject* ActorBase::GetBaseBulletObject() const
+    void ActorBase::_NotifyCollision(EventCollision* Collision)
+    {
+        CurrentCollisions.insert(Collision);
+    }
+
+    void ActorBase::_NotifyEndCollision(EventCollision* Collision)
+    {
+        CurrentCollisions.erase(CurrentCollisions.find(Collision));
+    }
+
+    btCollisionObject* ActorBase::_GetBasePhysicsObject() const
     {
         return CollisionObject;
     }
 
-    Ogre::Entity* ActorBase::GetOgreObject() const
+    Ogre::Entity* ActorBase::_GetGraphicsObject() const
     {
         return GraphicsObject;
+    }
+
+    Ogre::SceneNode* ActorBase::_GetGraphicsNode() const
+    {
+        return GraphicsNode;
     }
 
 ///////////////////////////////////////////////////////////////////////////////

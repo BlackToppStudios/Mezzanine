@@ -177,7 +177,8 @@ namespace phys
             /// just here as convenience when calling the function as an argument in other functions.
             /// @param MatName The name to assign to the created material.
             /// @param Colour The colour to assign to the created material.
-            virtual const String& CreateColouredMaterial(const String& MatName, const ColourValue& Colour);
+            /// @param Group The resource group where to place this material.  Will be placed in an internal resouce group if left blank.
+            virtual const String& CreateColouredMaterial(const String& MatName, const ColourValue& Colour, const String& Group = "");
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase

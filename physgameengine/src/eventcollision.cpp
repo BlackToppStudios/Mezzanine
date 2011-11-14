@@ -60,8 +60,8 @@ namespace phys {
         ActorA=actora;
         ActorB=actorb;
 
-        ActorA->GetCurrentCollisions().insert(this);
-        ActorB->GetCurrentCollisions().insert(this);
+        ActorA->_NotifyCollision(this);
+        ActorB->_NotifyCollision(this);
     }
 
     EventCollision::EventCollision(const EventCollision& Other)
@@ -70,16 +70,14 @@ namespace phys {
         ActorB=Other.ActorB;
         Manifold=Other.Manifold;
 
-        ActorA->GetCurrentCollisions().insert(this);
-        ActorB->GetCurrentCollisions().insert(this);
+        ActorA->_NotifyCollision(this);
+        ActorB->_NotifyCollision(this);
     }
 
     EventCollision::~EventCollision()
     {
-        std::set<EventCollision*>& CollisionsA = ActorA->GetCurrentCollisions();
-        std::set<EventCollision*>& CollisionsB = ActorB->GetCurrentCollisions();
-        CollisionsA.erase(CollisionsA.find(this));
-        CollisionsB.erase(CollisionsB.find(this));
+        ActorA->_NotifyEndCollision(this);
+        ActorB->_NotifyEndCollision(this);
     }
 
     void EventCollision::SetActorA(ActorBase* A)
@@ -89,7 +87,7 @@ namespace phys {
             World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
         }else{
             ActorA = A;
-            ActorA->GetCurrentCollisions().insert(this);
+            ActorA->_NotifyCollision(this);
         }
     }
 
@@ -105,7 +103,7 @@ namespace phys {
             World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
         }else{
             ActorB = B;
-            ActorB->GetCurrentCollisions().insert(this);
+            ActorB->_NotifyCollision(this);
         }
     }
 
@@ -144,6 +142,11 @@ namespace phys {
     Real EventCollision::GetAppliedImpulse(const Whole& Point)
     {
         return Manifold->getContactPoint(Point).m_appliedImpulse;
+    }
+
+    Real EventCollision::GetDistance(const Whole& Point)
+    {
+        return Manifold->getContactPoint(Point).m_distance1;
     }
 
     Whole EventCollision::GetAge(const Whole& Point)

@@ -75,6 +75,7 @@ namespace phys{
 
     AreaEffect::~AreaEffect()
     {
+        delete (ObjectReference*)Ghost->getUserPointer();
         delete Ghost;
         PreGraphicsMeshCreate();
     }
@@ -414,6 +415,9 @@ namespace phys{
     {
         PreGraphicsMeshCreate();
         this->FieldMesh = FieldMesh;
+
+        if(!FieldMesh)
+            return;
 
         Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
         GraphicsObject = OgreManager->createEntity(Name,FieldMesh->GetName(),FieldMesh->GetGroup());

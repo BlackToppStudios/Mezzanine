@@ -167,33 +167,6 @@ namespace phys{
     ///////////////////////////////////////
     // Public Functions
 
-    void ActorSoft::UpdateSoftBody()
-    {
-        /*Ogre::VertexData* vertexData = entity->getMesh()->getSubMesh(0)->vertexData;
-
-        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
-        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
-
-        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL));
-        float* pReal = NULL;
-        for (size_t j = 0; j < vertexData->vertexCount; j++ )
-        {
-            posElem->baseVertexPointerToElement(vertex, &pReal);
-            *pReal++ = this->physsoftbody->m_nodes[j].m_x.x();
-            *pReal++ = this->physsoftbody->m_nodes[j].m_x.y();
-            *pReal++ = this->physsoftbody->m_nodes[j].m_x.z();
-            vertex += vBuffer->getVertexSize();
-        }
-        vBuffer->unlock();// */
-
-        //btVector3 position = this->physsoftbody->getWorldTransform().getOrigin();
-        //btQuaternion rotation = this->physsoftbody->getWorldTransform().getRotation();
-        btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();
-        btQuaternion rotation = this->physsoftbody->m_clusters[0]->m_framexform.getRotation();
-        this->GraphicsNode->setPosition(position.x(), position.y(), position.z());
-        this->GraphicsNode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-    }
-
     std::string ActorSoft::GetName () const
     {
         return this->GraphicsObject->getName();
@@ -254,16 +227,43 @@ namespace phys{
         this->SetOgreOrientation(Rotation);
     }
 
-    void ActorSoft::AddObjectToWorld (World *TargetWorld)
+    void ActorSoft::AddObjectToWorld()
     {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
+        World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
         this->AttachToGraphics();
     }
 
-    void ActorSoft::RemoveObjectFromWorld(World* TargetWorld)
+    void ActorSoft::RemoveObjectFromWorld()
     {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody);
+        World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody);
         this->DetachFromGraphics();
+    }
+
+    void ActorSoft::_Update()
+    {
+        /*Ogre::VertexData* vertexData = entity->getMesh()->getSubMesh(0)->vertexData;
+
+        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL));
+        float* pReal = NULL;
+        for (size_t j = 0; j < vertexData->vertexCount; j++ )
+        {
+            posElem->baseVertexPointerToElement(vertex, &pReal);
+            *pReal++ = this->physsoftbody->m_nodes[j].m_x.x();
+            *pReal++ = this->physsoftbody->m_nodes[j].m_x.y();
+            *pReal++ = this->physsoftbody->m_nodes[j].m_x.z();
+            vertex += vBuffer->getVertexSize();
+        }
+        vBuffer->unlock();// */
+
+        //btVector3 position = this->physsoftbody->getWorldTransform().getOrigin();
+        //btQuaternion rotation = this->physsoftbody->getWorldTransform().getRotation();
+        btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();
+        btQuaternion rotation = this->physsoftbody->m_clusters[0]->m_framexform.getRotation();
+        this->GraphicsNode->setPosition(position.x(), position.y(), position.z());
+        this->GraphicsNode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
     }
 
     btSoftBody* ActorSoft::GetBulletObject()

@@ -5,9 +5,17 @@
 
 using namespace phys;
 
-class Teleporter : public ActorRigid
+class ItemShopItem : public ActorRigid
+{
+    protected:
+    public:
+        ItemShopItem(const Real& Mass, const String& Name, const String& Mesh, const String& Group);
+        ~ItemShopItem();
+};//Itemshopitem
+
+class Teleporter : public ItemShopItem
 {
 
-};
+};//Teleporter
 
 #endif

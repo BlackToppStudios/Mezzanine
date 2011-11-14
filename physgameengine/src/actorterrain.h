@@ -93,6 +93,7 @@ namespace phys
 
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);
+            virtual void _Update();
 
             /// @internal
             /// @brief Get the Physics data raw from the physic subsystem
