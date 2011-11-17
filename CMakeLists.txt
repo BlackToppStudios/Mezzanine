@@ -81,7 +81,7 @@ project (PhysgameAndCatch)
 ###############################################################################
 # Check For the Phys_Debug option and set values accordingly
 option(Phys_Debug "Compile with no optimizations and debug symbols" OFF)
-if(${Phys_Debug})								#Todo: Rename our cariables so that they start with PHYS_ so cmake with automatically group them.
+if(${Phys_Debug})
 	message ("${PROJECT_NAME} - Enabling Phys_Debug Messages")
 	if(${WIN32})
 		message ("${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
@@ -102,6 +102,11 @@ else(${Phys_Debug})
 	endif(${WIN32})
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSDEBUG=0")
 endif(${Phys_Debug})
+					
+#consider adding options -mmmx -msse -msse2 -m3dnow
+# sse2 is the newest and is supported by the pentium4 first.
+# sse3 and sse4 should also be considered
+# A chart of compatible CPUs should be made, to guide developers to target their code better
 
 ###############################################################################
 # Check For the Phys_Profile option and set values accordingly
