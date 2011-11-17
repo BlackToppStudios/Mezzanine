@@ -147,8 +147,13 @@ then
 	LDfPIC="LDFLAGS=-fPIC"
 fi
 
+
 ########################################################
 # SDL compilation
+
+if [ 0 -eq 1 ]
+then
+
 echo "Preparing to Compile SDL"
 cd libincludes/common/sdlsrc/
 cp -a SDL SDLbuild
@@ -163,19 +168,21 @@ fi
 make -j$ThreadCount
 
 cd ../..
-pwd
+else
+cd libincludes/common
 
-if [ 1 -eq $Linux ]
-then
-	########################################################
-	# Prepare Ogre Library
-	cd ogresrc/ogre
-	cmake -G"CodeBlocks - Unix Makefiles" $DebugCMake -DOGRE_STATIC=false
-	make -j$ThreadCount OgreMain
-	make -j$ThreadCount RenderSystem_GL
-	make -j$ThreadCount Plugin_CgProgramManager
-	make -j$ThreadCount Plugin_ParticleFX
 fi
+
+########################################################
+# Prepare Ogre Library
+cd ogresrc
+cp -a ogre ogrebuild
+cd ogrebuild
+cmake -G"CodeBlocks - Unix Makefiles" $DebugCMake -DOGRE_STATIC=false
+make -j$ThreadCount OgreMain
+make -j$ThreadCount RenderSystem_GL
+make -j$ThreadCount Plugin_CgProgramManager
+make -j$ThreadCount Plugin_ParticleFX
 
 
 
