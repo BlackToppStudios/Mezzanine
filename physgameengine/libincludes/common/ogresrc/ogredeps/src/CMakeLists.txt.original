@@ -2,7 +2,7 @@
 option(OGREDEPS_BUILD_CG "Build Cg dependency" TRUE)
 option(OGREDEPS_BUILD_FREEIMAGE "Build FreeImage dependency" TRUE)
 option(OGREDEPS_BUILD_FREETYPE "Build FreeType dependency" TRUE)
-option(OGREDEPS_BUILD_OIS "Build OIS dependency" FALSE)
+option(OGREDEPS_BUILD_OIS "Build OIS dependency" TRUE)
 option(OGREDEPS_BUILD_ZLIB "Build zlib dependency" TRUE)
 option(OGREDEPS_BUILD_ZZIPLIB "Build zziplib dependency" TRUE)
 option(OGREDEPS_INSTALL_DEV "Install development headers and libraries" TRUE)
