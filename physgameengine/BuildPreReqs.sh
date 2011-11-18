@@ -150,13 +150,9 @@ fi
 
 ########################################################
 # SDL compilation
-
-if [ 0 -eq 1 ]
-then
-
 echo "Preparing to Compile SDL"
 cd libincludes/common/sdlsrc/
-cp -a SDL SDLbuild
+#cp -a SDL SDLbuild
 cd SDLbuild
 
 if [ 0 -eq $MinGW32 ]		# Do not run autogen.sh when using MinGW
@@ -164,21 +160,48 @@ then
 	./autogen.sh
 fi
 
-./configure $LDfPIC CFLAGS="-O2 $DebugSymbols $fPIC"
-make -j$ThreadCount
+#./configure $LDfPIC CFLAGS="-O2 $DebugSymbols $fPIC"
+#make -j$ThreadCount
 
 cd ../..
-else
-cd libincludes/common
-
-fi
 
 ########################################################
 # Prepare Ogre Library
+CMakeOutput="CodeBlocks - Unix Makefiles"
+OgreDepsLocation=""
+CmakeMinGWPATH=""
+OriginalPATH=$PATH
+
+if [ 1 -eq $MinGW32 ]
+then
+	CMakeOutput="CodeBlocks - MinGW Makefiles"
+	OgreDepsLocation="-DOGRE_DEPENDENCIES_DIR=../ogredepsbuild"
+fi
+
 cd ogresrc
+
+if [ 1 -eq $MinGW32 ]		#MinGW does not work well with a cluttered $PATH
+then
+	cp -a ogredeps ogredepsbuild
+	cd ogredepsbuild
+	CmakeMinGWPATH=`which gcc`
+	CmakeMinGWPATH="$CmakeMinGWPATH:`which cmake`"
+	CmakeMinGWPATH=${CmakeMinGWPATH/cmake.exe/}
+	CmakeMinGWPATH=${CmakeMinGWPATH/cmake/}
+	CmakeMinGWPATH=${CmakeMinGWPATH/gcc.exe/}
+	CmakeMinGWPATH=${CmakeMinGWPATH/gcc/}
+	PATH=$CmakeMinGWPATH
+	cmake -G"$CMakeOutput" $DebugCMake
+	PATH=$OriginalPATH
+	make
+	cd ..
+fi
+
+exit
+
 cp -a ogre ogrebuild
 cd ogrebuild
-cmake -G"CodeBlocks - Unix Makefiles" $DebugCMake -DOGRE_STATIC=false
+cmake -G"$CMakeOutput" $DebugCMake -DOGRE_STATIC=false $OgreDepsLocation
 make -j$ThreadCount OgreMain
 make -j$ThreadCount RenderSystem_GL
 make -j$ThreadCount Plugin_CgProgramManager
