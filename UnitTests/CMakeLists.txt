@@ -138,6 +138,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${physgame_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
+	"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 )
 
 if(${WIN32})
@@ -159,8 +160,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	include_directories(
 		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/"
 		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include/"
-		"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
-
 	)
 
 	message ("${PROJECT_NAME} - End Linux Specific Build Process")
@@ -245,7 +244,6 @@ if(${WIN32})
 	CopyFilesFromPhygameDuringBuild( physgame.dll )
 	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromPhygameDuringBuild( OpenAL32.dll )
-	CopyFilesFromPhygameDuringBuild( SDL.dll )
 	CopyFilesFromPhygameDuringBuild( wrap_oal.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})

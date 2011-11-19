@@ -345,6 +345,13 @@ function(CopyLibraryDuringBuild SourceFile TargetFileInLibraryDir)
 endfunction(CopyLibraryDuringBuild)
 
 ###############################################################################
+# Common configuration file copying
+file( COPY 											#cannot include in common until all platforms compile SDL from source
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
+	DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+)
+
+###############################################################################
 # System Specific Build Items
 #######################################
 # All Changes that could be system specific should be defined in these variables
@@ -385,25 +392,21 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 	#this copies the files compiled by ./BuildLinuxLibs and puts them where they are expected by the normal build process
 	file( COPY 
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLibFileName}"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLinuxSoName}"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL${OgresD}.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX${OgresD}.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_CgProgramManager${OgresD}.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/${OgreLibFileName}"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/${OgreLinuxSoName}"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/RenderSystem_GL${OgresD}.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/Plugin_ParticleFX${OgresD}.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/Plugin_CgProgramManager${OgresD}.so"
 		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
 	)
 
 	include_directories(				
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"	#Cannot include in common until all platforms compile Ogre from source
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDLbuild/include"			#cannot include in common until all platforms compile SDL from source
 	)
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
-	file( COPY 											#cannot include in common until all platforms compile SDL from source
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
-		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-	)
+	
     	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
 	message ("${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -451,7 +454,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDLbuild/include"
 )
 
 link_directories(
@@ -524,10 +527,8 @@ if(${WIN32})
 	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")  					 # remove lib prefix from DLL outputs
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
-	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )							#compiling SDL from source will remove this
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
 	#CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
-
 
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
