@@ -152,7 +152,7 @@ fi
 # SDL compilation
 echo "Preparing to Compile SDL"
 cd libincludes/common/sdlsrc/
-#cp -a SDL SDLbuild
+cp -a SDL SDLbuild
 cd SDLbuild
 
 if [ 0 -eq $MinGW32 ]		# Do not run autogen.sh when using MinGW
@@ -160,7 +160,10 @@ then
 	./autogen.sh
 fi
 
+echo "Configuring SDL"
 #./configure $LDfPIC CFLAGS="-O2 $DebugSymbols $fPIC"
+
+echo "Compiling SDL"
 #make -j$ThreadCount
 
 cd ../..
@@ -180,32 +183,54 @@ fi
 
 cd ogresrc
 
-if [ 1 -eq $MinGW32 ]		#MinGW does not work well with a cluttered $PATH
+#if [ 1 -eq $MinGW32 ]		#MinGW does not work well with a cluttered $PATH
+#then
+#	echo "Preparing to Compile Ogre3 dependencies"
+#	cp -a ogredeps ogredepsbuild
+#	cd ogredepsbuild
+#	CmakeMinGWPATH=`which gcc`
+#	if [ -a /c/Program\ Files/CMake\ 2.8/bin/cmake.exe ]
+#	then
+#		CmakeMinGWPATH="/c/Program Files/CMake 2.8/bin/cmake.exe"
+#	else
+#		CmakeMinGWPATH="`which cmake`"	
+#	fi
+#	
+#	if [ "" = $CmakeMinGWPATH ]
+#	then
+#		echo "Could not find Cmake 2.8, is it installed? Is it in the system PATH?"
+#		exit
+#	fi
+#
+#	CmakeMinGWPATH="$CmakeMinGWPATH:`which gcc`"
+#	CmakeMinGWPATH=${CmakeMinGWPATH/cmake.exe/}
+#	CmakeMinGWPATH=${CmakeMinGWPATH/cmake/}
+#	CmakeMinGWPATH=${CmakeMinGWPATH/gcc.exe/}
+#	CmakeMinGWPATH=${CmakeMinGWPATH/gcc/}
+#	PATH=$CmakeMinGWPATH
+#	echo "Configuring Ogre3d dependencies"
+#	cmake -G"$CMakeOutput" $DebugCMake
+#	echo "Compiling Ogre3d dependencies"
+#	PATH=$OriginalPATH
+#	make
+#	cd ..
+#fi
+
+if [ 1 -eq $Linux ]
 then
-	cp -a ogredeps ogredepsbuild
-	cd ogredepsbuild
-	CmakeMinGWPATH=`which gcc`
-	CmakeMinGWPATH="$CmakeMinGWPATH:`which cmake`"
-	CmakeMinGWPATH=${CmakeMinGWPATH/cmake.exe/}
-	CmakeMinGWPATH=${CmakeMinGWPATH/cmake/}
-	CmakeMinGWPATH=${CmakeMinGWPATH/gcc.exe/}
-	CmakeMinGWPATH=${CmakeMinGWPATH/gcc/}
-	PATH=$CmakeMinGWPATH
-	cmake -G"$CMakeOutput" $DebugCMake
-	PATH=$OriginalPATH
-	make
-	cd ..
+	echo "Preparing to Compile Ogre3d"
+	cp -a ogre ogrebuild
+	cd ogrebuild
+	echo "Configuring Ogre3d"
+	cmake -G"$CMakeOutput" $DebugCMake -DOGRE_STATIC=false $OgreDepsLocation
+#	cmake -G"CodeBlocks - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DOGRE_STATIC=false
+	echo "Compiling Ogre3d"
+
+
+	make -j$ThreadCount OgreMain
+	make -j$ThreadCount RenderSystem_GL
+	make -j$ThreadCount Plugin_CgProgramManager
+	make -j$ThreadCount Plugin_ParticleFX
 fi
-
-exit
-
-cp -a ogre ogrebuild
-cd ogrebuild
-cmake -G"$CMakeOutput" $DebugCMake -DOGRE_STATIC=false $OgreDepsLocation
-make -j$ThreadCount OgreMain
-make -j$ThreadCount RenderSystem_GL
-make -j$ThreadCount Plugin_CgProgramManager
-make -j$ThreadCount Plugin_ParticleFX
-
 
 
