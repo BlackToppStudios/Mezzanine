@@ -401,8 +401,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	)
 
 	include_directories(				
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"	#Cannot include in common until all platforms compile Ogre from source
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include"	#Cannot include in common until all platforms compile Ogre from source
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include"
 	)
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 

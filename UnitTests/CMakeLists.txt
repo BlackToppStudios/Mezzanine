@@ -158,8 +158,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 	#message("${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
 	include_directories(
-		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/"
-		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include/"
+		"${physgame_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include/"
+		"${physgame_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include/"
 	)
 
 	message ("${PROJECT_NAME} - End Linux Specific Build Process")
