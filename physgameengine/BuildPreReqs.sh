@@ -161,10 +161,10 @@ then
 fi
 
 echo "Configuring SDL"
-#./configure $LDfPIC CFLAGS="-O2 $DebugSymbols $fPIC"
+./configure $LDfPIC CFLAGS="-O2 $DebugSymbols $fPIC"
 
 echo "Compiling SDL"
-#make -j$ThreadCount
+make -j$ThreadCount
 
 cd ../..
 
