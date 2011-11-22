@@ -355,7 +355,7 @@ endfunction(CopyLibraryDuringBuild)
 # All Changes that could be system specific should be defined in these variables
 # These will set sane defaults (Where possible), but specific platforms should 
 # set a value of their own.
-set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
+set(SDL SDL)
 
 set(PhysgameBuildFlags "")
 
@@ -396,6 +396,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
 		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
 	)
+	set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
 
 	#this copies the files compiled by ./BuildLinuxLibs and puts them where they are expected by the normal build process
 	file( COPY 
