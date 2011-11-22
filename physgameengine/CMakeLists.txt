@@ -28,7 +28,7 @@
 #    - Any Kind of Linking to Non-GPL licensed Works
 #    - Are Currently In Violation of Another Copyright Holder's GPL License
 #    - If You want to change our code and not add a few hundred MB of stuff to
-#        your distribution
+#	your distribution
 #
 #   These and other limitations could cause serious legal problems if you ignore
 #   them, so it is best to simply contact us or the Free Software Foundation, if
@@ -346,10 +346,8 @@ endfunction(CopyLibraryDuringBuild)
 
 ###############################################################################
 # Common configuration file copying
-file( COPY 											#cannot include in common until all platforms compile SDL from source
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
-	DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-)
+
+# Auto building of SDL could go here.
 
 ###############################################################################
 # System Specific Build Items
@@ -357,7 +355,7 @@ file( COPY 											#cannot include in common until all platforms compile SDL 
 # All Changes that could be system specific should be defined in these variables
 # These will set sane defaults (Where possible), but specific platforms should 
 # set a value of their own.
-set(SDL SDL)
+set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
 
 set(PhysgameBuildFlags "")
 
@@ -370,7 +368,7 @@ set( Bullet_LibraryNames
 	"BulletSoftBodySolvers_CPU"
 	"MiniCL"
 	"BulletMultiThreaded"
-	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
+	"BulletSoftBody" "BulletDynamics" "BulletCollision" "LinearMath"
 )
 
 #######################################
@@ -379,6 +377,10 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis") #required for cAudio
 	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
+	file( COPY 											#cannot include in common until all platforms compile SDL from source
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/SDL.dll"
+		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+	)	
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
@@ -389,6 +391,11 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ("${PROJECT_NAME} - Begin Linux Specific Build Process")
 
 	#Autobuild SDL and ogre could go here
+
+	file( COPY 											#cannot include in common until all platforms compile SDL from source
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
+		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+	)
 
 	#this copies the files compiled by ./BuildLinuxLibs and puts them where they are expected by the normal build process
 	file( COPY 
@@ -406,8 +413,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	)
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
-	
-    	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
 	message ("${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
@@ -417,8 +422,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
 	set(CMAKE_OSX_ARCHITECTURES i386 CACHE STRING "do not build for 64-bit" FORCE)
 	set(ARCH i386)
-        
-        include(FindOpenAL)
+	
+	include(FindOpenAL)
 	message("OpenAL Headers and Library Found - ${OPENAL_INCLUDE_DIR}")
 
 	include(FindOgg)
@@ -430,7 +435,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	include(/Library/Frameworks/Ogre.framework)
 
 	find_package(OGRE REQUIRED)
-        
+	
 	include_directories(
 		${OPENAL_INCLUDE_DIR}
 		"${OGRE_INCLUDE_DIR}"
@@ -440,7 +445,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	)
 
 	link_directories("${OGRE_LIB_DIR}")
-    
+
 	add_definitions( -DMACOSX)
 	message ("${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -480,7 +485,7 @@ if(${Phys_Lua})
 endif(${Phys_Lua})
 #add_subdirectory (libincludes/common/ogresrc) # not quite ready yet
 
-add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Ogre ${LuaProject})
+add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio Bullet Ogre ${LuaProject})
 
 #######################################
 # Library Link Dependencies
@@ -512,7 +517,7 @@ CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicen
 CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
 
 # Ogre 
-CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL}  data/${BuildPlatform}/ogre/${OgrePluginRenderGL}  )
+CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL} data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
 CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginParticle} data/${BuildPlatform}/ogre/${OgrePluginParticle} )
 CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginCGPM} data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
 CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
@@ -524,10 +529,11 @@ CopyFilesDuringBuild( ${BuildPlatform}/plugins.cfg data/${BuildPlatform}/plugins
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")  					 # remove lib prefix from DLL outputs
+	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")					 # remove lib prefix from DLL outputs
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
 	#CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
 
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )

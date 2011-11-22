@@ -245,6 +245,7 @@ if(${WIN32})
 	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromPhygameDuringBuild( OpenAL32.dll )
 	CopyFilesFromPhygameDuringBuild( wrap_oal.dll )
+	CopyFilesFromPhygameDuringBuild( SDL.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
