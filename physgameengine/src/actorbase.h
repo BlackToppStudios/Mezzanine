@@ -37,11 +37,12 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physactorbase_h
-#define _physactorbase_h
+#ifndef _actorbase_h
+#define _actorbase_h
 
 #include "crossplatformexport.h"
 #include "worldnode.h"
+#include "collision.h"
 
 /// @file
 /// @brief The base class for all Actors is defined here
@@ -71,7 +72,6 @@ namespace phys
     class World;
     class ActorGraphicsSettings;
     class ActorBasePhysicsSettings;
-    class EventCollision;
 
     namespace Audio
     {
@@ -148,7 +148,7 @@ namespace phys
             ActorTypeName ActorType;
 
             /// @brief This member stores all existing collision events referencing this actor.
-            std::set<EventCollision*> CurrentCollisions;
+            std::set<Collision*> CurrentCollisions;
 
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
@@ -332,7 +332,7 @@ namespace phys
 
             /// @brief Gets all current collisions that apply to this actor.
             /// @return Returns a const reference to a set containing all collisions events containing this actor.
-            virtual const std::set<EventCollision*>& GetCurrentCollisions();
+            virtual const std::set<Collision*>& GetCurrentCollisions();
 
             /// @brief Gets the graphics settings class associated with this actor.
             /// @return Returns a pointer to the graphics settings class in use by this actor.
@@ -360,13 +360,9 @@ namespace phys
 
             /// @internal
             /// @brief Notifies this actor of a collision that is occuring with it.
-            /// @param Collision A pointer to the collision event pertaining to this actor.
-            virtual void _NotifyCollision(EventCollision* Collision);
-
-            /// @internal
-            /// @brief Notifies this actor that a collision has ended.
-            /// @param Collision A pointer to the collision event pertaining to this actor.
-            virtual void _NotifyEndCollision(EventCollision* Collision);
+            /// @param Col A pointer to the collision pertaining to this actor.
+            /// @param State The state of the collision pertaining to this actor.
+            virtual void _NotifyCollisionState(Collision* Col, const Collision::CollisionState& State);
 
             /// @internal
             /// @brief Gets the internal physics object this actor is based on.

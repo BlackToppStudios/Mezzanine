@@ -38,8 +38,8 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifndef _physactorbase_cpp
-#define _physactorbase_cpp
+#ifndef _actorbase_cpp
+#define _actorbase_cpp
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
@@ -55,6 +55,7 @@
 #include "serialization.h"
 #include "audiomanager.h"
 #include "audiosoundset.h"
+#include "physicsmanager.h"
 #include "world.h"
 #include "xml.h"
 #include "internalmotionstate.h.cpp"
@@ -83,15 +84,18 @@ namespace phys{
 
     ActorBase::~ActorBase()
     {
+        PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+        SceneManager* SceneMan = World::GetWorldPointer()->GetSceneManager();
+
         DetachFromGraphics();
         delete MotionState;
         //delete GraphicsObject;
-        World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
+        SceneMan->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
         delete CollisionObject;
 
-        if (World::GetWorldPointer()->GetSceneManager())
+        if (SceneMan)
         {
-            if (0!=this->ActorWorldNode && !World::GetWorldPointer()->GetSceneManager()->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+            if (0!=this->ActorWorldNode && !SceneMan->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
             { delete this->ActorWorldNode; }
         } else
             { delete this->ActorWorldNode; }
@@ -283,7 +287,7 @@ namespace phys{
         return Scale;
     }
 
-    const std::set<EventCollision*>& ActorBase::GetCurrentCollisions()
+    const std::set<Collision*>& ActorBase::GetCurrentCollisions()
     {
         return CurrentCollisions;
     }
@@ -301,14 +305,17 @@ namespace phys{
     ///////////////////////////////////
     // Internal Object Access functions
 
-    void ActorBase::_NotifyCollision(EventCollision* Collision)
+    void ActorBase::_NotifyCollisionState(Collision* Col, const Collision::CollisionState& State)
     {
-        CurrentCollisions.insert(Collision);
-    }
-
-    void ActorBase::_NotifyEndCollision(EventCollision* Collision)
-    {
-        CurrentCollisions.erase(CurrentCollisions.find(Collision));
+        if(Collision::Col_Begin == State)
+        {
+            CurrentCollisions.insert(Col);
+        }
+        else if(Collision::Col_End == State)
+        {
+            std::set<Collision*>::iterator ColIt = CurrentCollisions.find(Col);
+            if( ColIt != CurrentCollisions.end() ) CurrentCollisions.erase(ColIt);
+        }
     }
 
     btCollisionObject* ActorBase::_GetBasePhysicsObject() const

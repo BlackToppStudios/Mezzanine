@@ -48,7 +48,7 @@
 #include "physicsmanager.h"
 #include "actorrigid.h"
 #include "objectreference.h"
-#include "eventcollision.h"
+#include "collision.h"
 #include "constraint.h"
 #include "actorgraphicssettings.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
@@ -122,7 +122,13 @@ namespace phys{
 
     void ActorRigid::RemoveObjectFromWorld()
     {
-        btSoftRigidDynamicsWorld* BWorld = World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer();
+        PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+        btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
+        //first remove any collision metadata
+        /*if( !CurrentCollisions.empty() )
+        {
+            PhysMan->RemoveCollisionsContainingActor(this);
+        }// */
         BWorld->removeRigidBody(this->physrigidbody);
         this->DetachFromGraphics();
     }
@@ -130,22 +136,36 @@ namespace phys{
     void ActorRigid::_Update()
         {  }
 
-    void ActorRigid::_NotifyCollision(EventCollision* Collision)
+    void ActorRigid::_NotifyCollisionState(Collision* Col, const Collision::CollisionState& State)
     {
-        ActorBase::_NotifyCollision(Collision);
-        ActorRigidPhysicsSettings::StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
-        if(!StickyD)
+        ActorBase::_NotifyCollisionState(Col,State);
+        StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
+        // We don't care if sticky behavior isn't set or if the collision has ended.
+        // If it's ended, then we've probably already done our logic.
+        if(NULL == StickyD || Collision::Col_End == State)
             return;
-        if(Collision->GetNumContactPoints() == 0)
+        // We need a contact point to be present for this to work, since a collision without contact points is an AABB overlap.
+        // So confirm there are contact points.
+        if(Col->GetNumContactPoints() == 0)
             return;
 
         if(StickyD->StickyConstraints.size() < StickyD->MaxNumContacts)
         {
-            bool UseA = Collision->GetActorA() != this;
-            ActorRigid* ActorA = dynamic_cast<ActorRigid*>(UseA ? Collision->GetActorA() : Collision->GetActorB());
-            Transform TransA(UseA ? Collision->GetLocalALocation(1) : Collision->GetLocalBLocation(1));
-            Transform TransB(UseA ? Collision->GetLocalBLocation(1) : Collision->GetLocalALocation(1));
+            for( Whole X = 0 ; X < StickyD->StickyConstraints.size() ; ++X )
+            {
+                Generic6DofConstraint* StickyCon = StickyD->StickyConstraints.at(X);
+                if( Col->PairsMatch(StickyCon->GetActorA(),StickyCon->GetActorB()) )
+                    return;
+            }
+            bool UseA = Col->GetActorA() != this;
+            ActorRigid* ActorA = dynamic_cast<ActorRigid*>(UseA ? Col->GetActorA() : Col->GetActorB());
+            Transform TransA(UseA ? Col->GetLocalALocation(1) : Col->GetLocalBLocation(1));
+            Transform TransB(UseA ? Col->GetLocalBLocation(1) : Col->GetLocalALocation(1));
             Generic6DofConstraint* NewSticky = new Generic6DofConstraint(ActorA,this,TransA,TransB);
+            NewSticky->SetAngularLimitLower(Vector3());
+            NewSticky->SetAngularLimitUpper(Vector3());
+            NewSticky->SetLinearLimitLower(Vector3());
+            NewSticky->SetLinearLimitUpper(Vector3());
             World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
         }

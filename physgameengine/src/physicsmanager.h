@@ -59,6 +59,7 @@ class btCollisionConfiguration;
 #include "constraint.h"
 #include "crossplatformexport.h"
 #include "managerbase.h"
+#include "actorpair.h"
 
 namespace phys
 {
@@ -68,6 +69,8 @@ namespace phys
     class Vector3WActor;
     class AreaEffect;
     class WorldTrigger;
+    class Collision;
+    class CollisionDispatcher;
     namespace debug {
         class InternalDebugDrawer;
     }
@@ -132,6 +135,8 @@ namespace phys
     class PHYS_LIB PhysicsManager : public ManagerBase
     {
         private:
+            // needed for collision processing
+            friend class CollisionDispatcher;
             //Some Data Items
             PhysicsConstructionInfo WorldConstructionInfo;
             unsigned short int CollisionAge;
@@ -141,6 +146,7 @@ namespace phys
             std::vector< TypedConstraint* > Constraints;
             std::vector< AreaEffect* > AreaEffects;
             std::vector< WorldTrigger* > Triggers;
+            std::map< ActorPair,Collision* > Collisions;
 
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
@@ -163,6 +169,10 @@ namespace phys
             /// @brief Calls the ConditionsAreMet() and ApplyTrigger() functions of every stored trigger.
             /// @details This function is automatically called every step.
             void ProcessAllTriggers();
+
+            /// @brief Checks the internal collision data and generates/updates collisions as necessary.
+            /// @details This function is automatically called every step.
+            void ProcessAllCollisions();
         public:
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
@@ -193,7 +203,7 @@ namespace phys
             /// @brief Sets the gravity.
             /// @details Sets the strength and direction of gravity within the world.
             /// @param pgrav Vector3 representing the strength and direction of gravity.
-            void SetGravity(Vector3 pgrav);
+            void SetGravity(const Vector3& pgrav);
             /// @brief Gets the gravity.
             /// @details Gets the currently set world gravity.
             /// @return Returns the currently set world gravity.
@@ -202,7 +212,7 @@ namespace phys
             /// @details Gravity for soft bodies is stored separately from rigid bodies.  So if you plan to use soft bodies in your game/simulation
             /// you need to call this function otherwise they won't fall.
             /// @param sgrav Vector3 representing the strength and direction of gravity.
-            void SetSoftGravity(Vector3 sgrav);
+            void SetSoftGravity(const Vector3& sgrav);
             /// @brief Gets the soft body gravity.
             /// @details Gets the currently set soft body world gravity.
             /// @return Returns the currently set soft body world gravity.
@@ -211,7 +221,7 @@ namespace phys
             /// @details This function does not change the global gravity, only how gravity behaves for this specific object.  Note: This function only works on ActorRigid's.
             /// @param Actor The actor whos gravity is to be changed.
             /// @param igrav The value of the gravity to be applied.
-            void SetIndividualGravity(ActorBase* Actor, Vector3 igrav);
+            void SetIndividualGravity(ActorBase* Actor, const Vector3& igrav);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Constraint Management
@@ -224,7 +234,7 @@ namespace phys
             /// @brief Gets a constraint by index.
             /// @param Index The index of the constraint you want.
             /// @return Returns a pointer to the specified constraint.
-            TypedConstraint* GetConstraint(Whole Index);
+            TypedConstraint* GetConstraint(const Whole& Index);
             /// @brief Gets the number of constraints currently in the world.
             /// @return Returns a whole representing the number of constraints in the world.
             Whole GetNumConstraints();
@@ -247,6 +257,13 @@ namespace phys
             /// @param Name The name of the area effect to find.
             /// @return Returns a pointer to the named area effect, or NULL if it doesn't exist.
             AreaEffect* GetAreaEffect(const String& Name);
+            /// @brief Gets an Area Effect by index.
+            /// @param Index The index of the area effect you want.
+            /// @return Returns a pointer to the area effect at the specified index.
+            AreaEffect* GetAreaEffect(const Whole& Index);
+            /// @brief Gets the number of Area Effects currently in the world.
+            /// @return Returns a whole representing the number of Area Effects in the world.
+            Whole GetNumAreaEffects();
             /// @brief Removes an area effect from the world.
             /// @details Removes an area effect from the world so that it will have no effect.
             /// @param AE The area effect to be removed.
@@ -256,6 +273,7 @@ namespace phys
 
             ///////////////////////////////////////////////////////////////////////////////
             // Trigger Management
+
             /// @brief Adds a trigger to the world.
             /// @details Adds a trigger to the world so that it can/will take effect.
             /// @param Trig The trigger to be added.
@@ -264,12 +282,58 @@ namespace phys
             /// @param Name The name of the trigger to find.
             /// @return Returns a pointer to the named trigger, or NULL if it doesn't exist.
             WorldTrigger* GetWorldTrigger(const String& Name);
+            /// @brief Gets a trigger by index.
+            /// @param Index The index of the trigger you want.
+            /// @return Returns a pointer to the trigger at the specified index.
+            WorldTrigger* GetWorldTrigger(const Whole& Index);
+            /// @brief Gets the number of triggers currently in the world.
+            /// @return Returns a whole representing the number of triggers in the world.
+            Whole GetNumWorldTriggers();
             /// @brief Removes a trigger from the world.
             /// @details Removes a trigger from the world so that it will have no effect.
             /// @param Trig The trigger to be removed.
             void RemoveWorldTrigger(WorldTrigger* Trig);
             /// @brief Destroys all triggers currently in the manager.
             void DestroyAllWorldTriggers();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Collision Management
+
+            /// @brief Gets a Collision by actor pair.
+            /// @param Pair A pair of actors.
+            /// @return Returns a pointer to the Collision if a collision for the provided pair exists, NULL otherwise.
+            Collision* GetCollision(ActorPair* Pair);
+            /// @brief Gets the number of Collisions currently in the world.
+            /// @return Returns a whole representing the number of Collisions in the world.
+            Whole GetNumCollisions();
+            /// @brief Removes an existing collision from the world.
+            /// @remarks In general it's not a great idea to call on this manually, but there are some situations where you would.
+            /// Mostly this function exists to facilitate removal of objects from the world before the simulation ends.
+            /// In such cases you have to clean up traces of the collision.
+            /// @param Col The collision to be removed.
+            void RemoveCollision(Collision* Col);
+            /// @brief Removes all stored collisions that involve the specified actor.
+            /// @param Actor The actor which will have all of it's collisions removed.
+            void RemoveCollisionsContainingActor(ActorBase* Actor);
+            /// @brief Destroys all collisions currently being stored and processed in the manager.
+            void DestroyAllCollisions();
+
+            /// @brief Used to make working with the Collisions easier.
+            typedef std::map< ActorPair,Collision* >::iterator CollisionIterator;
+            /// @brief Used to make working with the Collisions easier, and avoid the risk of accidentally changing them.
+            typedef std::map< ActorPair,Collision* >::const_iterator ConstCollisionIterator;
+            /// @brief Get an CollisionIterator to the first Collision.
+            /// @return An CollisionIterator to the first Collision.
+            CollisionIterator BeginEntity();
+            /// @brief Get a CollisionIterator to one past the last Collision.
+            /// @return A CollisionIterator to one past the last Collision.
+            CollisionIterator EndEntity();
+            /// @brief Get a ConstCollisionIterator to the first Collision.
+            /// @return A ConstCollisionIterator to the first Collision.
+            ConstCollisionIterator BeginEntity() const;
+            /// @brief Get a ConstCollisionIterator to one past the last Collision.
+            /// @return A ConstCollisionIterator to one past the last Collision.
+            ConstCollisionIterator EndEntity() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Event Filtering Management
@@ -316,11 +380,6 @@ namespace phys
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Gets the offset between a point and an actor.
-            /// @details This function will return the offset between the specified world point and the specified actors center of mass.
-            /// @param OffsetInfo The vector and actor to compare for offset data.
-            /// @return Returns the Vector3 representing the actors offset from the world point.
-            Vector3 GetActorOffset(const Vector3WActor &OffsetInfo);
             /// @brief Resets all the internal physics structures in this manager.
             /// @warning This should only be called while the world is emtpy and objects have be unloaded from it.
             /// @param Info If you want to change the configuration of the world when restarting, you can optionally

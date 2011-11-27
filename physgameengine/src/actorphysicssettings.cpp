@@ -446,7 +446,7 @@ namespace phys
         StickyContacts->StickyConstraints.clear();
     }
 
-    ActorRigidPhysicsSettings::StickyData* ActorRigidPhysicsSettings::GetStickyData() const
+    StickyData* ActorRigidPhysicsSettings::GetStickyData() const
         { return StickyContacts; }
 
     void ActorRigidPhysicsSettings::SetDamping(const Real& LinDamping, const Real& AngDamping)

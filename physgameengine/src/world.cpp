@@ -436,6 +436,7 @@ namespace phys
             {
                 #ifdef PHYSDEBUG
                 this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " - Priority: " << (*Iter)->GetPriority();
+                //this->DoMainLoopLogging();
                 #endif
 
                 #ifdef PHYSPROFILE

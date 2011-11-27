@@ -669,25 +669,12 @@ void CatchApp::UnloadLevel()
     MeshManager* MeshMan = TheWorld->GetMeshManager();
     UIManager* UIMan = TheWorld->GetUIManager();
 
-    for( std::vector<StartingArea*>::iterator it = StartAreas.begin() ; it != StartAreas.end() ; ++it )
-    {
-        String MeshName = (*it)->GetFieldMesh()->GetName();
-        (*it)->SetFieldMesh(0);
-        MeshMan->DestroyGeneratedMesh(MeshName);
-    }
-    for( std::vector<ScoreArea*>::iterator it = ScoreAreas.begin() ; it != ScoreAreas.end() ; ++it )
-    {
-        String MeshName = (*it)->GetFieldMesh()->GetName();
-        (*it)->SetFieldMesh(0);
-        MeshMan->DestroyGeneratedMesh(MeshName);
-    }
-
     PhysMan->DestroyAllConstraints();
     ActorMan->DestroyAllActors();
     PhysMan->DestroyAllWorldTriggers();
     PhysMan->DestroyAllAreaEffects();
     CShapeMan->DestroyAllShapes();
-    //MeshMan->DestroyAllGeneratedMeshes();
+    MeshMan->DestroyAllGeneratedMeshes();
     SceneMan->DestroyAllLights();
     SceneMan->DestroyAllParticleEffects();
     SceneMan->DestroyAllWorldNodes();
@@ -699,7 +686,8 @@ void CatchApp::UnloadLevel()
     ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
     PhysMan->ClearPhysicsMetaData();
     /// @todo Probably should make a "RemoveAll" for the events as well.
-    for( EventCollision* OneCollision = EventMan->PopNextCollisionEvent() ; NULL != OneCollision ;  )
+    EventCollision* OneCollision = EventMan->PopNextCollisionEvent();
+    while( NULL != OneCollision )
     {
         delete OneCollision;
         OneCollision = EventMan->PopNextCollisionEvent();

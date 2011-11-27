@@ -46,6 +46,7 @@
 #include "vector3.h"
 #include "actorcontainerbase.h"
 #include "actormanager.h"
+#include "actorphysicssettings.h"
 #include "eventcollision.h"
 #include "vector3wactor.h"
 #include "areaeffect.h"
@@ -269,60 +270,81 @@ namespace phys
     class CollisionDispatcher : public btCollisionDispatcher
     {
         protected:
-            std::queue<btPersistentManifold*> ManifoldCreationQueue;
+            std::list<btPersistentManifold*> ManifoldCreationQueue;
+            std::list<PhysicsManager::CollisionIterator> ManifoldDestructionQueue;
         public:
-            CollisionDispatcher(btCollisionConfiguration* CollisionConfig) : btCollisionDispatcher(CollisionConfig)
+            CollisionDispatcher(btCollisionConfiguration* CollisionConfig)
+                : btCollisionDispatcher(CollisionConfig)
             {
             }
             ~CollisionDispatcher()
             {
             }
-            btPersistentManifold* getNewManifold(void *b0, void *b1)
+            btPersistentManifold* getNewManifold(void* b0, void* b1)
             {
                 // Get the manifold
                 btPersistentManifold* NewManifold = btCollisionDispatcher::getNewManifold(b0,b1);
                 // Store the manifold for processing later
-                ManifoldCreationQueue.push(NewManifold);
+                ManifoldCreationQueue.push_back(NewManifold);
                 return NewManifold;
             }
-            void releaseManifold(btPersistentManifold *manifold)
+            void releaseManifold(btPersistentManifold* manifold)
             {
-                std::list<EventCollision*>* ColEvents = World::GetWorldPointer()->GetEventManager()->GetAllCollisionEvents();
-                for( std::list<EventCollision*>::iterator EvIt = ColEvents->begin() ; EvIt != ColEvents->end() ; ++EvIt )
+                // first check the queue
+                if(!ManifoldCreationQueue.empty())
                 {
-                    if(manifold == (*EvIt)->Manifold)
+                    for(std::list<btPersistentManifold*>::iterator QueIt = ManifoldCreationQueue.begin() ; QueIt != ManifoldCreationQueue.end() ; QueIt++ )
                     {
-                        EventCollision* ToBeDestroyed = (*EvIt);
-                        World::GetWorldPointer()->GetEventManager()->RemoveEvent(ToBeDestroyed);
-                        delete ToBeDestroyed;
+                        if(manifold == (*QueIt))
+                        {
+                            ManifoldCreationQueue.erase(QueIt);
+                            btCollisionDispatcher::releaseManifold(manifold);
+                            return;
+                        }
                     }
                 }
-                delete ColEvents;
-
+                // now check the already generated collisions
+                PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+                for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
+                {
+                    if(manifold == (*ColIt).second->Manifold)
+                    {
+                        //ManifoldDestructionQueue.push_back(ColIt);
+                        //Collision* ToBeDestroyed = (*ColIt).second;
+                        //ToBeDestroyed->GetActorA()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
+                        //ToBeDestroyed->GetActorB()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
+                        delete (*ColIt).second;
+                        PhysMan->Collisions.erase(ColIt);
+                        //delete ToBeDestroyed;
+                        break;
+                    }
+                }// */
                 btCollisionDispatcher::releaseManifold(manifold);
             }
-            void CreateCollisionEvents()
+            void releaseManifoldManual(btPersistentManifold* manifold)
             {
-                if(ManifoldCreationQueue.empty())
-                    return;
-                for( btPersistentManifold* NewManifold = ManifoldCreationQueue.front() ; NewManifold != NULL ; NewManifold = ManifoldCreationQueue.front() )
+                PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+                for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
                 {
-                    // Get the object references
-                    ObjectReference* ObjectA = (ObjectReference*)((btCollisionObject*)NewManifold->getBody0())->getUserPointer();
-                    ObjectReference* ObjectB = (ObjectReference*)((btCollisionObject*)NewManifold->getBody1())->getUserPointer();
-                    // Verify they are actors, then cast appropriately
-                    ActorBase* ActorA = (ObjectA->GetType() >= WOT_ActorFirst) && (ObjectA->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectA->GetObject()) : NULL;
-                    ActorBase* ActorB = (ObjectB->GetType() >= WOT_ActorFirst) && (ObjectB->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectB->GetObject()) : NULL;
-                    // Verify the cast went well
-                    if( ActorA && ActorB )
+                    if(manifold == (*ColIt).second->Manifold)
                     {
-                        // Creat the Event
-                        EventCollision* NewColEvent = new EventCollision(ActorA,ActorB);
-                        NewColEvent->Manifold = NewManifold;
-                        World::GetWorldPointer()->GetEventManager()->AddEvent(NewColEvent);
+                        Collision* ToBeDestroyed = (*ColIt).second;
+                        //ToBeDestroyed->GetActorA()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
+                        //ToBeDestroyed->GetActorB()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
+                        PhysMan->Collisions.erase(ColIt);
+                        delete ToBeDestroyed;
+                        break;
                     }
-                    ManifoldCreationQueue.pop();
-                }
+                }// */
+                btCollisionDispatcher::releaseManifold(manifold);
+            }
+            std::list<btPersistentManifold*>& GetManifoldCreationQueue()
+            {
+                return ManifoldCreationQueue;
+            }
+            std::list<PhysicsManager::CollisionIterator>& GetManifoldDestructionQueue()
+            {
+                return ManifoldDestructionQueue;
             }
     };// CollisionDispatcher
 
@@ -469,6 +491,68 @@ namespace phys
         }
     }
 
+    void PhysicsManager::ProcessAllCollisions()
+    {
+        CollisionDispatcher* Dispatch = (CollisionDispatcher*)this->BulletDispatcher;
+        //Destroy the collisions that need to be destroyed
+        /*std::list<PhysicsManager::CollisionIterator>& DestroyQueue = Dispatch->GetManifoldDestructionQueue();
+        for( std::list<PhysicsManager::CollisionIterator>::iterator MetaIt = DestroyQueue.begin() ; MetaIt != DestroyQueue.end() ; ++MetaIt )
+        {
+            Collision* ToBeDestroyed = (*(*MetaIt)).second;
+            Collisions.erase(*MetaIt);
+            delete ToBeDestroyed;
+        }
+        DestroyQueue.clear();// */
+        //Update the collisions that already exist as necessary
+        for( PhysicsManager::CollisionIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ColIt++ )
+            (*ColIt).second->Update();
+        //Process the collisions that are in the creation queue
+        std::list<btPersistentManifold*>& ManifoldQueue = Dispatch->GetManifoldCreationQueue();
+        if(ManifoldQueue.empty())
+            return;
+        #ifdef PHYSDEBUG
+        std::stringstream logstream;
+        logstream << "Processing " << ManifoldQueue.size() << " manifolds for collisions." << endl;
+        logstream << "Showing a total of " << BulletDispatcher->getNumManifolds() << " manifolds in the dispatcher." << endl;
+        World::GetWorldPointer()->Log(logstream.str());
+        //World::GetWorldPointer()->DoMainLoopLogging();
+        #endif
+        btPersistentManifold* NewManifold = ManifoldQueue.front();
+        while( NewManifold != NULL )
+        {
+            // Get the object references
+            ObjectReference* ObjectA = (ObjectReference*)((btCollisionObject*)NewManifold->getBody0())->getUserPointer();
+            ObjectReference* ObjectB = (ObjectReference*)((btCollisionObject*)NewManifold->getBody1())->getUserPointer();
+            // Verify they are actors, then cast appropriately
+            ActorBase* ActorA = (ObjectA->GetType() >= WOT_ActorFirst) && (ObjectA->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectA->GetObject()) : NULL;
+            ActorBase* ActorB = (ObjectB->GetType() >= WOT_ActorFirst) && (ObjectB->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectB->GetObject()) : NULL;
+            // Verify the cast went well
+            if( ActorA && ActorB )
+            {
+                if( !ActorA->GetPhysicsSettings()->GetCollisionResponse() || !ActorB->GetPhysicsSettings()->GetCollisionResponse() )
+                {
+                    ManifoldQueue.pop_front();
+                    if(ManifoldQueue.size() > 0) NewManifold = ManifoldQueue.front();
+                    else NewManifold = NULL;
+                    continue;
+                }
+                // Creat the collision
+                ActorPair NewPair(ActorA,ActorB);
+                PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
+                if(ColIt == Collisions.end())
+                {
+                    Collision* NewCol = new Collision(ActorA,ActorB,NewManifold);
+                    //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Collision::Col_Begin);
+                    //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Collision::Col_Begin);
+                    Collisions.insert(std::pair<ActorPair,Collision*>(NewPair,NewCol));
+                }
+            }
+            ManifoldQueue.pop_front();
+            if(ManifoldQueue.size() > 0) NewManifold = ManifoldQueue.front();
+            else NewManifold = NULL;
+        }
+    }
+
     void PhysicsManager::PauseSimulation(bool Pause)
     {
         SimulationPaused = Pause;
@@ -479,7 +563,7 @@ namespace phys
         return SimulationPaused;
     }
 
-    void PhysicsManager::SetGravity(Vector3 pgrav)
+    void PhysicsManager::SetGravity(const Vector3& pgrav)
     {
         this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
     }
@@ -490,7 +574,7 @@ namespace phys
         return grav;
     }
 
-    void PhysicsManager::SetSoftGravity(Vector3 sgrav)
+    void PhysicsManager::SetSoftGravity(const Vector3& sgrav)
     {
         this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3();
     }
@@ -501,7 +585,7 @@ namespace phys
         return sgrav;
     }
 
-    void PhysicsManager::SetIndividualGravity(ActorBase* Actor, Vector3 igrav)
+    void PhysicsManager::SetIndividualGravity(ActorBase* Actor, const Vector3& igrav)
     {
         if (ActorBase::Actorrigid==Actor->GetType())
         {
@@ -516,7 +600,7 @@ namespace phys
         Constraints.push_back(Constraint);
     }
 
-    TypedConstraint* PhysicsManager::GetConstraint(Whole Index)
+    TypedConstraint* PhysicsManager::GetConstraint(const Whole& Index)
     {
         return Constraints[Index];
     }
@@ -569,6 +653,16 @@ namespace phys
         return NULL;
     }
 
+    AreaEffect* PhysicsManager::GetAreaEffect(const Whole& Index)
+    {
+        return AreaEffects[Index];
+    }
+
+    Whole PhysicsManager::GetNumAreaEffects()
+    {
+        return AreaEffects.size();
+    }
+
     void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
     {
         this->BulletDynamicsWorld->removeCollisionObject(AE->Ghost);
@@ -609,6 +703,16 @@ namespace phys
         return NULL;
     }
 
+    WorldTrigger* PhysicsManager::GetWorldTrigger(const Whole& Index)
+    {
+        return Triggers[Index];
+    }
+
+    Whole PhysicsManager::GetNumWorldTriggers()
+    {
+        return Triggers.size();
+    }
+
     void PhysicsManager::RemoveWorldTrigger(WorldTrigger* Trig)
     {
         for( vector<WorldTrigger*>::iterator T = Triggers.begin() ; T != Triggers.end() ; T++ )
@@ -626,6 +730,62 @@ namespace phys
         for( std::vector<WorldTrigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
             delete (*Trig);
         Triggers.clear();
+    }
+
+    Collision* PhysicsManager::GetCollision(ActorPair* Pair)
+    {
+        PhysicsManager::CollisionIterator ColIt = Collisions.find(Pair);
+        if(ColIt != Collisions.end()) return (*ColIt).second;
+        else return NULL;
+    }
+
+    Whole PhysicsManager::GetNumCollisions()
+    {
+        return Collisions.size();
+    }
+
+    void PhysicsManager::RemoveCollision(Collision* Col)
+    {
+        //((CollisionDispatcher*)BulletDispatcher)->releaseManifoldManual(Col->Manifold);
+        /*BulletBroadphase->getOverlappingPairCache()->removeOverlappingPair(
+            Col->GetActorA()->_GetBasePhysicsObject()->getBroadphaseHandle(),
+            Col->GetActorB()->_GetBasePhysicsObject()->getBroadphaseHandle(),
+            BulletDispatcher);// */
+    }
+
+    void PhysicsManager::RemoveCollisionsContainingActor(ActorBase* Actor)
+    {
+        if(!Actor->IsInWorld())
+            return;
+
+        BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs(Actor->_GetBasePhysicsObject()->getBroadphaseHandle(),BulletDispatcher);
+
+        PhysicsManager::CollisionIterator ColIt = Collisions.begin();
+        while( ColIt != Collisions.end() )
+        {
+            Collision* ToBeDestroyed = (*ColIt).second;
+            if( Actor == (*ColIt).second->GetActorA() || Actor == (*ColIt).second->GetActorB() )
+            {
+                PhysicsManager::CollisionIterator Delete = ColIt;
+                //Collision* ToBeDestroyed = (*Delete).second;
+                ++ColIt;
+                Collisions.erase(Delete);
+                //BulletDispatcher->btCollisionDispatcher::releaseManifold(ToBeDestroyed->Manifold);
+                delete ToBeDestroyed;
+            }else{
+                ++ColIt;
+            }
+        }
+    }
+
+    void PhysicsManager::DestroyAllCollisions()
+    {
+        for( PhysicsManager::CollisionIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ++ColIt )
+        {
+            Collision* ToBeDestroyed = (*ColIt).second;
+            BulletDispatcher->releaseManifold(ToBeDestroyed->Manifold);
+        }
+        Collisions.clear();
     }
 
     void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)
@@ -691,19 +851,6 @@ namespace phys
             return this->BulletDrawer->GetWireFrameCount();
         else
             return 0;
-    }
-
-    Vector3 PhysicsManager::GetActorOffset(const Vector3WActor &OffsetInfo)
-    {
-        if(ActorBase::Actorrigid==OffsetInfo.Actor->GetType())
-        {
-            btRigidBody* Rigid = static_cast< btRigidBody* > (OffsetInfo.Actor->_GetBasePhysicsObject());
-            Vector3 Offset(Rigid->getCenterOfMassTransform().inverse() * OffsetInfo.Vector.GetBulletVector3());
-            return Offset;
-        }else{
-            Vector3 Offset(0,0,0);
-            return Offset;
-        }
     }
 
     void PhysicsManager::ResetPhysicsWorld(PhysicsConstructionInfo* Info)
@@ -776,13 +923,22 @@ namespace phys
         #ifdef PHYSPROFILE
         Profiler->reset();
         #endif
+        GameWorld->LogStream << "Entering StepSimulation.";
+        GameWorld->DoMainLoopLogging();
         this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->Log();
+        GameWorld->DoMainLoopLogging();
         #endif // */
 
-        ((CollisionDispatcher*)this->BulletDispatcher)->CreateCollisionEvents();
+        #ifdef PHYSPROFILE
+        Profiler->reset();
+        #endif
+        ProcessAllCollisions();
+        #ifdef PHYSPROFILE
+        GameWorld->LogStream << "Collisions took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->DoMainLoopLogging();
+        #endif // */
 
         #ifdef PHYSPROFILE
         Profiler->reset();
@@ -790,7 +946,7 @@ namespace phys
         ProcessAllEffects();
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->Log();
+        GameWorld->DoMainLoopLogging();
         #endif // */
 
         #ifdef PHYSPROFILE
@@ -799,7 +955,7 @@ namespace phys
         ProcessAllTriggers();
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->Log();
+        GameWorld->DoMainLoopLogging();
         #endif // */
 
         // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
@@ -846,7 +1002,7 @@ namespace phys
         }
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "Contact Manifold Iteration took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->Log();
+        GameWorld->DoMainLoopLogging();
         #endif // */
 
         #ifdef PHYSPROFILE
@@ -859,7 +1015,7 @@ namespace phys
         }
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->Log();
+        GameWorld->DoMainLoopLogging();
         #endif // */
     }
 
