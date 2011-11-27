@@ -124,7 +124,7 @@ endif(${Phys_Profile})
 
 ###############################################################################
 # Check For the Phys_XML option and set values accordingly
-option(Phys_XML "Enable XML and XML serialization supprt." ON)
+option(Phys_XML "Enable XML and XML serialization support." ON)
 if(${Phys_XML})
 	message ("${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting PHYSXML")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=1")
@@ -132,6 +132,17 @@ else(${Phys_XML})
 	message ("${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting PHYSXML")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=0")
 endif(${Phys_XML})
+
+###############################################################################
+# Check For the Phys_Network option and set values accordingly
+option(Phys_Network "Enable Networking support." ON)
+if(${Phys_Network})
+	message ("${PROJECT_NAME} - Enabling Network subsystem, and setting PHYSNETWORK")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSNETWORK=1")
+else(${Phys_Network})
+	message ("${PROJECT_NAME} - Disabling Network subsystem, and unsetting PHYSNETWORK")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSNETWORK=0")
+endif(${Phys_Network})
 
 ###############################################################################
 # Lua Library
@@ -201,9 +212,11 @@ set(OgrePluginParticle Plugin_ParticleFX${LibSuffix} )
 #######################################
 # Network Library Define
 
-if(${WIN32})
-	set(NetworkLibrary ws2_32)
-endif(${WIN32})
+if(${Phys_Network})
+	if(${WIN32})
+		set(NetworkLibrary ws2_32)
+	endif(${WIN32})
+endif(${Phys_Network})
 
 ###############################################################################
 # Additional Variables

@@ -682,12 +682,12 @@ namespace phys
     {
         return dynamic_cast<MeshManager*> (this->GetManager(ManagerBase::MeshManager, WhichOne));
     }
-
+    #ifdef PHYSNETWORK
     NetworkManager* World::GetNetworkManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<NetworkManager*> (this->GetManager(ManagerBase::NetworkManager, WhichOne));
     }
-
+    #endif
     PhysicsManager* World::GetPhysicsManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));

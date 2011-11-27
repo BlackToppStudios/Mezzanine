@@ -1,3 +1,4 @@
+#ifdef PHYSNETWORK
 //© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
@@ -108,3 +109,5 @@ namespace phys
 }//phys
 
 #endif
+
+#endif //PHYSNETWORK
