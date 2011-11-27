@@ -349,6 +349,12 @@ endfunction(CopyLibraryDuringBuild)
 
 # Auto building of SDL could go here.
 
+file( COPY
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
+	DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+)
+
+
 ###############################################################################
 # System Specific Build Items
 #######################################
@@ -377,8 +383,9 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis") #required for cAudio
 	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
-	file( COPY 											#cannot include in common until all platforms compile SDL from source
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/SDL.dll"
+	file( COPY
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.la"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/libSDLmain.a"
 		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
 	)	
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
@@ -534,8 +541,16 @@ if(${WIN32})
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
-	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
+	#CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
 	#CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
+
+
+	target_link_libraries( ${PROJECT_NAME} #Statically linking against SDL means that these must be resolved now, rather than when these were compiled
+		SDLmain
+		Winmm
+		Imm32
+		Version
+	)
 
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
