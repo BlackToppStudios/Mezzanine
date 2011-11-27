@@ -45,20 +45,24 @@
 # Functions
 function Usage {
 	echo
-	echo "Usage: `basename $0` Debug|Release [ThreadCount]"
+	echo "Usage: `basename $0` Debug|Release [ThreadCount [OutputDir] ] "
 	echo "   Release - If the word Debug is the first argument, then The software will be compiled with Debug Symbols"
 	echo "   Debug - If the word Debug is the first argument, then The software will be compiled with Debug Symbols"
 	echo "   ThreadCount is the number of threads to compile with. You usually want to enter you amount of CPU cores."
-	echo
+	echo "   OutputDir - Before compilation the source is copied to prevent interference with revision tools, where should these copies be placed"
 }
 
 #########################################################
 # Gather Data from the platform
+WorkingDir=`pwd`
 SystemName=`uname`
 MakeLocation=`which make`
 Linux=0
 MinGW32=0
+MacOSX=0
 DetectedPlatform=0				#eventually I would like to make this work from a git bash prompt.
+PlatformDirName=""
+BinaryRecievingDir="data/"
 
 #########################################################
 # Work with values gathered from the system so this script knows what is going on.
@@ -67,6 +71,7 @@ then
 	echo "System Detected: Linux"
 	Linux=1
 	DetectedPlatform=1
+	PlatformDirName="linux"
 fi
 
 if [ "MINGW32" = ${SystemName:0:7} ]
@@ -74,6 +79,7 @@ then
 	echo "System Detected: 32bit MinGW"
 	MinGW32=1
 	DetectedPlatform=1
+	PlatformDirName="windows"
 fi
 
 if [ ! ${#MakeLocation} -gt 0 ]
@@ -89,6 +95,8 @@ then
 	fi
 	exit
 fi
+
+BinaryRecievingDir="data/$PlatformDirName"
 
 #########################################################
 # Prepare command line input
@@ -134,6 +142,23 @@ then
 fi
 
 ########################################################
+# Check arg2 for thread count
+OutputDir="."
+if [ -n "$3" ]
+then
+	if [ -d $3 ]
+	then
+		OutputDir=$3
+	else
+		echo "\"$3\" Does not exist or is not a directory, cannot proceed"
+		Usage
+		exit
+
+	fi
+fi
+echo "All Output will be in \"$OutputDir\"."
+
+########################################################
 # Compilation variables
 fPIC=""
 if [ 1 -eq $Linux ]
@@ -147,27 +172,46 @@ then
 	LDfPIC="LDFLAGS=-fPIC"
 fi
 
-
 ########################################################
 # SDL compilation
-echo "Preparing to Compile SDL"
-cd libincludes/common/sdlsrc/
-cp -a SDL SDLbuild
-cd SDLbuild
+SDLOutputDir="$OutputDir/SDLBuild"
+SDLCompileDir="$OutputDir/SDLBuild/SDL"
+SDLRelOutputDir=".."
+echo "Preparing to SDL source Files in: \"$SDLOutputDir\""
+cd $WorkingDir
+mkdir -p $SDLOutputDir
+cp -a libincludes/common/sdlsrc/SDL/ $SDLOutputDir/
+
 
 if [ 0 -eq $MinGW32 ]		# Do not run autogen.sh when using MinGW
 then
-	./autogen.sh
+	echo "Running ./autogen.sh and putting output in: $SDLOutputDir/Autogenlog.txt"
+	touch $SDLOutputDir/Autogenlog.txt
+	cd $SDLCompileDir
+	./autogen.sh > $SDLRelOutputDir/Autogenlog.txt
+	cd $WorkingDir
 fi
 
-echo "Configuring SDL"
-./configure $LDfPIC CFLAGS="-O2 $DebugSymbols $fPIC"
+echo "Configuring SDL, putting log in: $SDLOutputDir/Configurelog.txt"
+cd $SDLCompileDir
+./configure $LDfPIC CFLAGS="-O2 $DebugSymbols $fPIC"  > $SDLRelOutputDir/Configurelog.txt
+cd $WorkingDir
 
-echo "Compiling SDL"
-make -j$ThreadCount
+echo "Compiling SDL, putting logs in: $SDLOutputDir/Compilelog.txt"
+cd $SDLCompileDir
+make -j$ThreadCount > $SDLRelOutputDir/Compilelog.txt
+cd $WorkingDir
 
-cd ../..
+echo "Putting Compiled binaries in: $WorkingDir/$BinaryRecievingDir/sdl/"
+cp -a $SDLCompileDir/build/.libs/libSDL.a $WorkingDir/$BinaryRecievingDir/sdl/
 
+if [ 1 -eq $MinGW32 ]		# Do not run autogen.sh when using MinGW
+then
+	cp -a $SDLCompileDir/build/.libs/libSDL.la $WorkingDir/$BinaryRecievingDir/sdl/
+	cp -a $SDLCompileDir/build/libSDLmain.a $WorkingDir/$BinaryRecievingDir/sdl/
+fi
+
+exit
 ########################################################
 # Prepare Ogre Library
 CMakeOutput="CodeBlocks - Unix Makefiles"

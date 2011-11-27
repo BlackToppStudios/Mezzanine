@@ -349,10 +349,10 @@ endfunction(CopyLibraryDuringBuild)
 
 # Auto building of SDL could go here.
 
-file( COPY
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
-	DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-)
+#file( COPY
+#	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
+#	DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+#)
 
 
 ###############################################################################
@@ -383,11 +383,11 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis") #required for cAudio
 	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
-	file( COPY
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.la"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/libSDLmain.a"
-		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-	)	
+	#file( COPY
+	#	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.la"
+	#	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/libSDLmain.a"
+	#	DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+	#)	
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
@@ -399,10 +399,10 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 	#Autobuild SDL and ogre could go here
 
-	file( COPY 											#cannot include in common until all platforms compile SDL from source
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
-		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-	)
+	#file( COPY 											#cannot include in common until all platforms compile SDL from source
+	#	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
+	#	DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+	#)
 	set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
 
 	#this copies the files compiled by ./BuildLinuxLibs and puts them where they are expected by the normal build process
