@@ -194,9 +194,9 @@ set(OgreLibFileName ${LibPrefix}${OgreLinkName}${LibSuffix})
 set(OgreLinuxSoName ${OgreLibFileName}.${Phys_UseOgreVersion})		#This value is gibberish on non-Linux platforms
 
 # Ogre Plugins
-set(OgrePluginCGPM Plugin_CgProgramManager${LibSuffix} )
-set(OgrePluginRenderGL RenderSystem_GL${LibSuffix} )
-set(OgrePluginParticle Plugin_ParticleFX${LibSuffix} )
+set(OgrePluginCGPM Plugin_CgProgramManager${OgresD}${LibSuffix} )
+set(OgrePluginRenderGL RenderSystem_GL${OgresD}${LibSuffix} )
+set(OgrePluginParticle Plugin_ParticleFX${OgresD}${LibSuffix} )
 
 
 ###############################################################################
