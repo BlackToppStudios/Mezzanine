@@ -226,7 +226,7 @@ link_directories( ${${PROJECT_NAME}_PHYSGAME_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} physgame )
-target_link_libraries( ${PROJECT_NAME} physgame ${OgreLinkName})
+target_link_libraries( ${PROJECT_NAME} ${PhysgameLinkName} ${OgreLinkName})
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 
 ##############################################################################
@@ -290,7 +290,7 @@ if(${WIN32})
 	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll ${GameDir}libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromPhygameDuringBuild( OpenAL32.dll ${GameDir}OpenAL32.dll )
 	CopyFilesFromPhygameDuringBuild( wrap_oal.dll ${GameDir}wrap_oal.dll )
-	CopyFilesFromPhygameDuringBuild( SDL.dll ${GameDir}SDL.dll )
+	#CopyFilesFromPhygameDuringBuild( SDL.dll ${GameDir}SDL.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 

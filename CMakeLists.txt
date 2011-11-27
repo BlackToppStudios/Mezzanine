@@ -72,6 +72,8 @@
 #	OgrePluginCGPM			- The File name of the Ogre CG manager plugin
 #	OgrePluginRenderGL		- The File name of the Ogre OpenGL rendersystem plugin
 #	OgrePluginParticle		- The File name of the Ogre ParticleFX plugin
+#	PhysgameLinkName		- What should be entered when somethings needs to link against physgame usually "physgame" sometime it specifies and import library, like
+#	PhysgameLibFileName		- The actual name of the file the physgame is called.
 
 ###############################################################################
 # The name of our project is "PhysgameAndCatch". 
@@ -167,6 +169,11 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 #######################################
 # Physgame
 set(PhysgameLibFileName ${LibPrefix}physgame${LibSuffix})
+set(PhysgameLinkName "physgame")
+
+if(${WIN32})
+	set(PhysgameLinkName lib${PhysgameLinkName}.dll.a)
+endif(${WIN32})
 
 #######################################
 # Ogre related values
