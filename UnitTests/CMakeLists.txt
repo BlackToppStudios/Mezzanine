@@ -47,13 +47,13 @@ message ("${PROJECT_NAME} - Begin")
 add_definitions( ${CommonBuildFlags} )
 
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
-set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
+set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}")
 message ("Looking build resources in: ${${PROJECT_NAME}_ROOT_DIR}")
 
-set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}/data/")
+set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}data/")
 message ("Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 
-set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
+set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
 message ("Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set (${PROJECT_NAME}_PHYSGAME_DIR "${ProjectRootDir}/physgameengine/")
@@ -138,6 +138,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${physgame_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
+	"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 )
 
 if(${WIN32})
@@ -157,10 +158,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 	#message("${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
 	include_directories(
-		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/"
-		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include/"
-		"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
-
+		"${physgame_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include/"
+		"${physgame_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include/"
 	)
 
 	message ("${PROJECT_NAME} - End Linux Specific Build Process")
@@ -245,8 +244,8 @@ if(${WIN32})
 	CopyFilesFromPhygameDuringBuild( physgame.dll )
 	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromPhygameDuringBuild( OpenAL32.dll )
-	CopyFilesFromPhygameDuringBuild( SDL.dll )
 	CopyFilesFromPhygameDuringBuild( wrap_oal.dll )
+	CopyFilesFromPhygameDuringBuild( SDL.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 

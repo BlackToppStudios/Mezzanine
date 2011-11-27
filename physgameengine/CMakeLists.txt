@@ -1,4 +1,4 @@
-# © Copyright 2010 - 2011 BlackTopp Studios Inc.
+# Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
 # This file is part of The PhysGame Engine.
 #
 #    The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 #    - Any Kind of Linking to Non-GPL licensed Works
 #    - Are Currently In Violation of Another Copyright Holder's GPL License
 #    - If You want to change our code and not add a few hundred MB of stuff to
-#        your distribution
+#	your distribution
 #
 #   These and other limitations could cause serious legal problems if you ignore
 #   them, so it is best to simply contact us or the Free Software Foundation, if
@@ -358,6 +358,11 @@ function(CopyLibraryDuringBuild SourceFile TargetFileInLibraryDir)
 endfunction(CopyLibraryDuringBuild)
 
 ###############################################################################
+# Common configuration file copying
+
+# Auto building of SDL could go here.
+
+###############################################################################
 # System Specific Build Items
 #######################################
 # All Changes that could be system specific should be defined in these variables
@@ -376,7 +381,7 @@ set( Bullet_LibraryNames
 	"BulletSoftBodySolvers_CPU"
 	"MiniCL"
 	"BulletMultiThreaded"
-	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
+	"BulletSoftBody" "BulletDynamics" "BulletCollision" "LinearMath"
 )
 
 #######################################
@@ -385,6 +390,10 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis") #required for cAudio
 	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
+	file( COPY 											#cannot include in common until all platforms compile SDL from source
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/SDL.dll"
+		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
+	)	
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
@@ -396,28 +405,28 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 	#Autobuild SDL and ogre could go here
 
-	#this copies the files compiled by ./BuildLinuxLibs and puts them where they are expected by the normal build process
-	file( COPY 
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLibFileName}"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreLinuxSoName}"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL${OgresD}.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX${OgresD}.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_CgProgramManager${OgresD}.so"
-		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
-	)
-
-	include_directories(				
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"	#Cannot include in common until all platforms compile Ogre from source
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDLbuild/include"			#cannot include in common until all platforms compile SDL from source
-	)
-	add_definitions( -DOGRE_GUI_GLX -DLINUX )
-
 	file( COPY 											#cannot include in common until all platforms compile SDL from source
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
 		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
 	)
-    	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
+	set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
+
+	#this copies the files compiled by ./BuildLinuxLibs and puts them where they are expected by the normal build process
+	file( COPY 
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/${OgreLibFileName}"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/${OgreLinuxSoName}"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/RenderSystem_GL${OgresD}.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/Plugin_ParticleFX${OgresD}.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/Plugin_CgProgramManager${OgresD}.so"
+		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
+	)
+
+	include_directories(				
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include"	#Cannot include in common until all platforms compile Ogre from source
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include"
+	)
+	add_definitions( -DOGRE_GUI_GLX -DLINUX )
+
 	message ("${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
@@ -427,8 +436,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
 	set(CMAKE_OSX_ARCHITECTURES i386 CACHE STRING "do not build for 64-bit" FORCE)
 	set(ARCH i386)
-        
-        include(FindOpenAL)
+	
+	include(FindOpenAL)
 	message("OpenAL Headers and Library Found - ${OPENAL_INCLUDE_DIR}")
 
 	include(FindOgg)
@@ -440,7 +449,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	include(/Library/Frameworks/Ogre.framework)
 
 	find_package(OGRE REQUIRED)
-        
+	
 	include_directories(
 		${OPENAL_INCLUDE_DIR}
 		"${OGRE_INCLUDE_DIR}"
@@ -450,7 +459,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	)
 
 	link_directories("${OGRE_LIB_DIR}")
-    
+
 	add_definitions( -DMACOSX)
 	message ("${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -464,7 +473,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDLbuild/include"
 )
 
 link_directories(
@@ -474,6 +483,7 @@ link_directories(
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/openal"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
+	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/lua"
 )
 
 ###############################################################################
@@ -484,9 +494,12 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
+if(${Phys_Lua})
+	add_subdirectory (libincludes/common/luasrc)
+endif(${Phys_Lua})
 #add_subdirectory (libincludes/common/ogresrc) # not quite ready yet
 
-add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Ogre )
+add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio Bullet Ogre ${LuaProject})
 
 #######################################
 # Library Link Dependencies
@@ -494,6 +507,7 @@ add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet Og
 add_definitions( ${PhysgameBuildFlags} )
 target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Physgame Dependencies
 	${OgreLinkName} 
+	${LuaLinkName}
 	${Bullet_LibraryNames} 
 	cAudio 
 	${SDL}
@@ -519,7 +533,7 @@ CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicen
 CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
 
 # Ogre 
-CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL}  data/${BuildPlatform}/ogre/${OgrePluginRenderGL}  )
+CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL} data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
 CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginParticle} data/${BuildPlatform}/ogre/${OgrePluginParticle} )
 CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginCGPM} data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
 CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
@@ -531,12 +545,13 @@ CopyFilesDuringBuild( ${BuildPlatform}/plugins.cfg data/${BuildPlatform}/plugins
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")  					 # remove lib prefix from DLL outputs
+	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")					 # remove lib prefix from DLL outputs
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
-	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )							#compiling SDL from source will remove this
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
 	#CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
+
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})

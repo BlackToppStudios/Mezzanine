@@ -83,6 +83,7 @@ UIKit_CreateDevice(int devindex)
     device->SetDisplayMode = UIKit_SetDisplayMode;
     device->PumpEvents = UIKit_PumpEvents;
     device->CreateWindow = UIKit_CreateWindow;
+    device->SetWindowFullscreen = UIKit_SetWindowFullscreen;
     device->DestroyWindow = UIKit_DestroyWindow;
     device->GetWindowWMInfo = UIKit_GetWindowWMInfo;
 
@@ -178,7 +179,7 @@ UIKit_AddDisplay(UIScreen *uiscreen, int w, int h)
 
     // UIScreenMode showed up in 3.2 (the iPad and later). We're
     //  misusing this supports_multiple_displays flag here for that.
-    if (!SDL_UIKit_supports_multiple_displays) {
+    if (SDL_UIKit_supports_multiple_displays) {
         UIScreenMode *uimode = [uiscreen currentMode];
         [uimode retain];  // once for the desktop_mode
         [uimode retain];  // once for the current_mode
@@ -237,6 +238,13 @@ UIKit_SetDisplayMode(_THIS, SDL_VideoDisplay * display, SDL_DisplayMode * mode)
     } else {
         UIScreenMode *uimode = (UIScreenMode *) mode->driverdata;
         [uiscreen setCurrentMode:uimode];
+
+        CGSize size = [uimode size];
+        if (size.width >= size.height) {
+            [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:NO];
+        } else {
+            [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
+        }
     }
 
     return 0;

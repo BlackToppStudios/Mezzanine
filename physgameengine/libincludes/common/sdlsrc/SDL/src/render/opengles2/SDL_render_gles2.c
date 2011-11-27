@@ -169,6 +169,11 @@ GLES2_WindowEvent(SDL_Renderer * renderer, const SDL_WindowEvent *event)
         /* Rebind the context to the window area */
         SDL_CurrentContext = NULL;
     }
+
+    if (event->event == SDL_WINDOWEVENT_MINIMIZED) {
+        /* According to Apple documentation, we need to finish drawing NOW! */
+	glFinish();
+    }
 }
 
 static int
@@ -190,24 +195,34 @@ static void
 GLES2_DestroyRenderer(SDL_Renderer *renderer)
 {
     GLES2_DriverContext *rdata = (GLES2_DriverContext *)renderer->driverdata;
-    GLES2_ProgramCacheEntry *entry;
-    GLES2_ProgramCacheEntry *next;
 
     /* Deallocate everything */
     if (rdata) {
         GLES2_ActivateRenderer(renderer);
 
-        entry = rdata->program_cache.head;
-        while (entry) {
-            glDeleteShader(entry->vertex_shader->id);
-            glDeleteShader(entry->fragment_shader->id);
-            SDL_free(entry->vertex_shader);
-            SDL_free(entry->fragment_shader);
-            glDeleteProgram(entry->id);
-            next = entry->next;
-            SDL_free(entry);
-            entry = next;
-        }
+	{
+	    GLES2_ShaderCacheEntry *entry;
+	    GLES2_ShaderCacheEntry *next;
+	    entry = rdata->shader_cache.head;
+	    while (entry)
+	    {
+                glDeleteShader(entry->id);
+                next = entry->next;
+                SDL_free(entry);
+                entry = next;
+	    }
+	}
+	{
+	    GLES2_ProgramCacheEntry *entry;
+	    GLES2_ProgramCacheEntry *next;
+            entry = rdata->program_cache.head;
+            while (entry) {
+                glDeleteProgram(entry->id);
+                next = entry->next;
+                SDL_free(entry);
+                entry = next;
+            }
+	}
         if (rdata->context) {
             SDL_GL_DeleteContext(rdata->context);
         }
@@ -455,7 +470,7 @@ GLES2_CacheProgram(SDL_Renderer *renderer, GLES2_ShaderCacheEntry *vertex,
     }
     if (entry)
     {
-        if (rdata->program_cache.count > 1)
+        if (rdata->program_cache.head != entry)
         {
             if (entry->next)
                 entry->next->prev = entry->prev;
@@ -929,6 +944,12 @@ GLES2_RenderDrawLines(SDL_Renderer *renderer, const SDL_Point *points, int count
     glGetError();
     glVertexAttribPointer(GLES2_ATTRIBUTE_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertices);
     glDrawArrays(GL_LINE_STRIP, 0, count);
+
+    /* We need to close the endpoint of the line */
+    if (count == 2 ||
+        points[0].x != points[count-1].x || points[0].y != points[count-1].y) {
+        glDrawArrays(GL_POINTS, count-1, 1);
+    }
     SDL_stack_free(vertices);
     if (glGetError() != GL_NO_ERROR)
     {
