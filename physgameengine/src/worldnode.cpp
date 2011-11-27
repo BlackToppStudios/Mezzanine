@@ -67,7 +67,7 @@ namespace phys
         if (Manager)
             { OgreNode = Manager->GetGraphicsWorldPointer()->createSceneNode(Name); }
         else
-            { OgreNode = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode(Name); }
+            { OgreNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createSceneNode(Name); }
 
         Type = WorldNode::Free;
     }
@@ -84,7 +84,7 @@ namespace phys
         if (Manager)
             { Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
         else
-            { World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
+            { SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -260,7 +260,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            phys::WorldNode * AttachPtr = phys::SceneManager::GetSingletonPtr()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
                 { AttachPtr->AttachObject(&Ev); }
 
@@ -275,7 +275,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
                         if(Name==phys::String("Attached"))
                         {
                             phys::String AttributeName(OneNode.GetAttribute("Name").AsString());
-                            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( Child.GetAttribute("Name").AsString() );
+                            phys::WorldNode * AttachPtr = phys::SceneManager::GetSingletonPtr()->GetNode( Child.GetAttribute("Name").AsString() );
                             /// @todo This doesn't account for other objects aside from world nodes to be attached.  Additional checks that fetch other types by name in the case of a null pointer should be implemented.
 
                             if (AttachPtr)  // fail silently, because if we don't find it then that means it just hasn't been deserialized yeat
