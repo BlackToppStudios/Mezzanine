@@ -84,22 +84,22 @@ project (PhysgameAndCatch)
 # Check For the Phys_Debug option and set values accordingly
 option(Phys_Debug "Compile with no optimizations and debug symbols" OFF)
 if(${Phys_Debug})
-	message ("${PROJECT_NAME} - Enabling Phys_Debug Messages")
+	message ( STATUS "${PROJECT_NAME} - Enabling Phys_Debug Messages")
 	if(${WIN32})
-		message ("${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
+		message ( STATUS "${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
 		set(CommonBuildFlags "-g")
 	else(${WIN32})
-		message ("${PROJECT_NAME} - Setting Non-Windows Debug Initialiations")
+		message ( STATUS "${PROJECT_NAME} - Setting Non-Windows Debug Initialiations")
 		set(CommonBuildFlags " -fPIC -g")
 	endif(${WIN32})
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSDEBUG=1")
 else(${Phys_Debug})
-	message ("${PROJECT_NAME} - Disabling Phys_Debug Messages")
+	message ( STATUS "${PROJECT_NAME} - Disabling Phys_Debug Messages")
 	if(${WIN32})
-		message ("${PROJECT_NAME} - Setting Windows Specific Initialiations")
+		message ( STATUS "${PROJECT_NAME} - Setting Windows Specific Initialiations")
 		set(CommonBuildFlags " -O2 -s ")
 	else(${WIN32})
-		message ("${PROJECT_NAME} - Setting Non-Windows Initialiations")
+		message ( STATUS "${PROJECT_NAME} - Setting Non-Windows Initialiations")
 		set(CommonBuildFlags " -fPIC -O2 -s")
 	endif(${WIN32})
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSDEBUG=0")
@@ -114,11 +114,11 @@ endif(${Phys_Debug})
 # Check For the Phys_Profile option and set values accordingly
 option(Phys_Profile "Executables will gather runtime statistics." OFF)
 if(${Phys_Profile})
-	message ("${PROJECT_NAME} - Enabling gcc profiling and setting PHYSPROFILE")
+	message ( STATUS "${PROJECT_NAME} - Enabling gcc profiling and setting PHYSPROFILE")
 	set(CommonBuildFlags "${CommonBuildFlags} -pg")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSPROFILE=1")
 else(${Phys_Profile})
-	message ("${PROJECT_NAME} - Disabling gcc profiling and unsetting PHYSPROFILE")
+	message ( STATUS "${PROJECT_NAME} - Disabling gcc profiling and unsetting PHYSPROFILE")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSPROFILE=0")
 endif(${Phys_Profile})
 
@@ -126,10 +126,10 @@ endif(${Phys_Profile})
 # Check For the Phys_XML option and set values accordingly
 option(Phys_XML "Enable XML and XML serialization supprt." ON)
 if(${Phys_XML})
-	message ("${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting PHYSXML")
+	message ( STATUS "${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting PHYSXML")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=1")
 else(${Phys_XML})
-	message ("${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting PHYSXML")
+	message ( STATUS "${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting PHYSXML")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=0")
 endif(${Phys_XML})
 
@@ -139,10 +139,10 @@ option(Phys_Lua "Include Support for Lua Scripting Language" ON)
 if(${Phys_Lua})
 	set(LuaProject "Lua")
 	set(LuaLinkName "lua")
-	message ("${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting PHYSLUA")
+	message ( STATUS "${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting PHYSLUA")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSLUA=1")
 else(${Phys_Lua})
-	message ("${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting PHYSLUA")
+	message ( STATUS "${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting PHYSLUA")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSLUA=0")
 endif(${Phys_Lua})
 
@@ -175,17 +175,32 @@ if(${WIN32})
 	set(PhysgameLinkName lib${PhysgameLinkName}.dll.a)
 endif(${WIN32})
 
+#check physgameengine folder
+#check ../../* folders
+#Set it blank
+
+# if(IS_DIRECTORY directory-name)
+
+#message([STATUS|WARNING|AUTHOR_WARNING|FATAL_ERROR|SEND_ERROR] "message to display" ...)
+
+set(Phys_PrereqsBuildDir "" CACHE FILEPATH "Where were SDL and Ogre built, if not together, then set to blank")
+
+
+#######################################
+# SDL related values
+set(Phys_SDLIncludeDir "" CACHE FILEPATH "Which SDL headers to Use")
+
 #######################################
 # Ogre related values
 option(Phys_UseOgreDebug "Use Ogre Debug Libraries, instead of Release Libs" OFF)
 set(Phys_UseOgreVersion 1.7.3 CACHE STRING "The version of the ogre libraries to link against")
 mark_as_advanced(Phys_UseOgreDebug Phys_UseOgreVersion)
 if(${Phys_UseOgreDebug})
-	message ("${PROJECT_NAME} - Will we use Ogre Debug libraries")
+	message ( STATUS "${PROJECT_NAME} - Will we use Ogre Debug libraries")
 	set(OgreLinkName OgreMain_d)
 	set(OgresD _d)
 else(${Phys_UseOgreDebug})
-	message ("${PROJECT_NAME} - Will we use Ogre Release libraries")
+	message ( STATUS "${PROJECT_NAME} - Will we use Ogre Release libraries")
 	set(OgreLinkName OgreMain)
 	set(OgresD "")
 endif(${Phys_UseOgreDebug})
@@ -213,6 +228,6 @@ add_subdirectory (UnitTests)
 
 ###############################################################################
 # Hide Variables not directly related to the Physgame Engine
-mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY)
+mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY Phys_SDLIncludeDir)
 
 

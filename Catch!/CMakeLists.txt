@@ -49,57 +49,57 @@ add_definitions( ${CommonBuildFlags} )
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
-message ("Looking build resources in: ${${PROJECT_NAME}_ROOT_DIR}")
+message ( STATUS "Looking build resources in: ${${PROJECT_NAME}_ROOT_DIR}")
 
 set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}/Data/")
-message ("Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
+message ( STATUS "Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 
 set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
-message ("Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
+message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set (${PROJECT_NAME}_PHYSGAME_DIR "${ProjectRootDir}/physgameengine/")
-message ("Base for physgame: ${${PROJECT_NAME}_PHYSGAME_DIR}")
+message ( STATUS "Base for physgame: ${${PROJECT_NAME}_PHYSGAME_DIR}")
 
 set (${PROJECT_NAME}_PHYSGAME_BIN_DIR "${physgame_BINARY_DIR}/bin/")
-message ("Physgame Binaries: ${${PROJECT_NAME}_PHYSGAME_BIN_DIR}")
+message ( STATUS "Physgame Binaries: ${${PROJECT_NAME}_PHYSGAME_BIN_DIR}")
 
 set (${PROJECT_NAME}_PHYSGAME_BIN_SRC "${${PROJECT_NAME}_PHYSGAME_DIR}src/")
-message ("Physgame source and headers: ${${PROJECT_NAME}_PHYSGAME_BIN_SRC}")
+message ( STATUS "Physgame source and headers: ${${PROJECT_NAME}_PHYSGAME_BIN_SRC}")
 
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (EXECUTABLE_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
-message ("Base Directory for Executable binaries and data output: ${${PROJECT_NAME}_BINARY_DIR}")
+message ( STATUS "Base Directory for Executable binaries and data output: ${${PROJECT_NAME}_BINARY_DIR}")
 
 ##############################################################################
 # Catch! Folder Structure
 
 # Root
 set (GameDir "${${PROJECT_NAME}_BINARY_DIR}")
-message ("Catch! Complete Output: ${GameDir}")
+message ( STATUS "Catch! Complete Output: ${GameDir}")
 
 # Levels
 set (LevelDir "${GameDir}Levels/")
-message ("Catch! Levels Output: ${LevelDir}")
+message ( STATUS "Catch! Levels Output: ${LevelDir}")
 
 # Common Data
 set (CommonDataDir "${GameDir}Data/")
-message ("Catch! Common Data Output: ${CommonDataDir}")
+message ( STATUS "Catch! Common Data Output: ${CommonDataDir}")
 
 # Fonts
 set (FontDir "${GameDir}Fonts/")
-message ("Catch! Font Output: ${FontDir}")
+message ( STATUS "Catch! Font Output: ${FontDir}")
 
 # Licenses
 set (LicenseDir "${GameDir}Licenses/")
-message ("Catch! Licenses Output: ${LicenseDir}")
+message ( STATUS "Catch! Licenses Output: ${LicenseDir}")
 
 # Plugins
 set (PluginDir "${GameDir}Plugins/")
-message ("Catch! Plugins Output: ${PluginDir}")
+message ( STATUS "Catch! Plugins Output: ${PluginDir}")
 
 # Previews
 set (PreviewDir "${GameDir}Previews/")
-message ("Catch! Preview Output: ${PreviewDir}")
+message ( STATUS "Catch! Preview Output: ${PreviewDir}")
 # ${GameDir} ${LevelDir} ${CommonDataDir} ${FontDir} ${LicenseDir} ${PluginDir} ${PreviewDir}
 
 # Content Archive Cache
@@ -125,9 +125,9 @@ else(EXISTS ${Catch_ArchiveDir})
 	set(UseCatchArchices false)
 endif(EXISTS ${Catch_ArchiveDir})
 if(${UseCatchArchices})									#Let user the user know wht is actually happening
-	message ("Using content archives for Catch! in folder: ${Catch_ArchiveDir}")
+	message ( STATUS "Using content archives for Catch! in folder: ${Catch_ArchiveDir}")
 else(${UseCatchArchices})
-	message ("Not Using content archives for Catch!")
+	message ( STATUS "Not Using content archives for Catch!")
 endif(${UseCatchArchices})
 
 ##############################################################################
@@ -231,7 +231,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 
 ##############################################################################
 # File copies during all builds
-message ("${PROJECT_NAME} - Begin File Copy Process")
+message ( STATUS "${PROJECT_NAME} - Begin File Copy Process")
 
 CreateDirectoryStructure(  )
 
@@ -258,13 +258,13 @@ CopyFilesFromPhygameDuringBuild( data/common/XiphCopyrightNotice.txt ${LicenseDi
 #####################################
 # Common Data
 if(${UseCatchArchices})
-	message("Copying Common Content")
+	message( STATUS "Copying Common Content")
 	file(GLOB ContentDirRootContents ${Catch_ArchiveDir}/*.zip)
 	file( COPY ${ContentDirRootContents} DESTINATION ${CommonDataDir})
-	message("Copying Level archives")
+	message( STATUS "Copying Level archives")
 	file(GLOB ContentDirLevelContents "${Catch_ArchiveDir}/Lvl Files/*.lvl")
 	file( COPY ${ContentDirLevelContents} DESTINATION ${LevelDir})
-	message("Copying Preview Content")
+	message( STATUS "Copying Preview Content")
 	file(GLOB ContentDirPreviewContents "${Catch_ArchiveDir}/Lvl Previews/*")
 	file( COPY ${ContentDirPreviewContents} DESTINATION ${PreviewDir})
 endif(${UseCatchArchices})
@@ -285,34 +285,34 @@ CopyFilesFromPhygameDuringBuild( ${PhysgameLibFileName} ${GameDir}${PhysgameLibF
 
 # Windows File Copy Specific Items
 if(${WIN32})
-	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
 	CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/cg${OgresD}.dll ${GameDir}cg${OgresD}.dll )
 	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll ${GameDir}libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromPhygameDuringBuild( OpenAL32.dll ${GameDir}OpenAL32.dll )
 	CopyFilesFromPhygameDuringBuild( wrap_oal.dll ${GameDir}wrap_oal.dll )
 	#CopyFilesFromPhygameDuringBuild( SDL.dll ${GameDir}SDL.dll )
-	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific File Copy Process")
 	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName}  )
 	CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/GLX_icon.png ${PluginDir}GLX_icon.png )
-	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # Mac File Copy pecific Items
 if(${APPLE})
-	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 #	CopyFilesFromPhygameDuringBuild( data/macosx/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib Plugins/RenderSystem_GL.dylib )
 	CopyFilesFromPhygameDuringBuild( data/macosx/plugins.cfg Plugins/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( physgame.dylib physgame.dylib )
 #	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/Ogre.framework)
-	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 
-message ("${PROJECT_NAME} - End Copy Process")
+message ( STATUS "${PROJECT_NAME} - End Copy Process")
 
 message ("${PROJECT_NAME} - End")
