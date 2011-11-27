@@ -20,12 +20,12 @@ LevelLoader::~LevelLoader()
 void LevelLoader::LoadFerris()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
@@ -34,7 +34,7 @@ void LevelLoader::LoadFerris()
     ResourceMan->InitResourceGroup(FerrisGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -217,12 +217,12 @@ void LevelLoader::LoadFerris()
 void LevelLoader::LoadBigCurve()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String BigCurveGroup("BigCurve");
@@ -231,7 +231,7 @@ void LevelLoader::LoadBigCurve()
     ResourceMan->InitResourceGroup(BigCurveGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -318,12 +318,12 @@ void LevelLoader::LoadBigCurve()
 void LevelLoader::LoadBlowsNotSucks()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String BlowsNotSucksGroup("BlowsNotSucks");
@@ -332,7 +332,7 @@ void LevelLoader::LoadBlowsNotSucks()
     ResourceMan->InitResourceGroup(BlowsNotSucksGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -490,12 +490,12 @@ void LevelLoader::LoadBlowsNotSucks()
 void LevelLoader::LoadJustice()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String JusticeGroup("Justice");
@@ -504,7 +504,7 @@ void LevelLoader::LoadJustice()
     ResourceMan->InitResourceGroup(JusticeGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -683,12 +683,12 @@ void LevelLoader::LoadJustice()
 void LevelLoader::LoadRollers()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String RollersGroup("Rollers");
@@ -697,7 +697,7 @@ void LevelLoader::LoadRollers()
     ResourceMan->InitResourceGroup(RollersGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -800,12 +800,12 @@ void LevelLoader::LoadRollers()
 void LevelLoader::LoadJustBounce()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String JustBounceGroup("JustBounce");
@@ -814,7 +814,7 @@ void LevelLoader::LoadJustBounce()
     ResourceMan->InitResourceGroup(JustBounceGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 

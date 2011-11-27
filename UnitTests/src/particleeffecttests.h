@@ -66,8 +66,8 @@ class ParticleEffectTests : public UnitTestGroup
                 {
                     StartEngine();
                     TheMessage="ParticleEffect Tests";
-                    WorldNode* Test0 = TheWorld->GetSceneManager()->CreateFreeNode("Alpha", Vector3(0,0,0),Vector3(10,0,0));
-                    ParticleEffect* Test1 = TheWorld->GetSceneManager()->CreateParticleEffect("Beta", "Examples/GreenyNimbus");
+                    WorldNode* Test0 = SceneManager::GetSingletonPtr()->CreateFreeNode("Alpha", Vector3(0,0,0),Vector3(10,0,0));
+                    ParticleEffect* Test1 = SceneManager::GetSingletonPtr()->CreateParticleEffect("Beta", "Examples/GreenyNimbus");
 
                     AddTestResult("ParticleEffect::SetOrientation", Failed, UnitTestGroup::OverWrite);
                     AddTestResult("ParticleEffect::GetOrientation", Failed, UnitTestGroup::OverWrite);
@@ -101,7 +101,7 @@ class ParticleEffectTests : public UnitTestGroup
                     if(0==Test1->GetAttachedTo())
                         { AddTestResult("ParticleEffect::DetachFrom", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
 
-                    ParticleEffect* Test3 = TheWorld->GetSceneManager()->CreateParticleEffect("Omega", "Examples/GreenyNimbus");
+                    ParticleEffect* Test3 = SceneManager::GetSingletonPtr()->CreateParticleEffect("Omega", "Examples/GreenyNimbus");
                     AddTestResult("ParticleEffect::operator>>(std::stream,ParticleEffect)", Failed, UnitTestGroup::OverWriteIfMoreSuccessful);
                     XMLstream >> *Test3;
                     if (ToString(*Test3) == String("<ParticleEffect Version=\"1\" Name=\"Omega\" AttachedTo=\"Alpha\" Enabled=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.426162\" Y=\"0.473514\" Z=\"0.520865\" W=\"0.568217\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\"/></Location></ParticleEffect>"))

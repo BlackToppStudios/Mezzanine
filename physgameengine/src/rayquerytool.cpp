@@ -152,7 +152,7 @@ namespace phys
                         if (new_closest_found)
                         {
                             closest_result = Ooray.getPoint(closest_distance);
-                            ClosestActor->Actor = World::GetWorldPointer()->GetActorManager()->GetActorContainer()->FindActor( pentity->getParentSceneNode() );
+                            ClosestActor->Actor = ActorManager::GetSingletonPtr()->GetActorContainer()->FindActor( pentity->getParentSceneNode() );
                         }
 
                     } // \if WOT_ActorRigid
@@ -195,7 +195,7 @@ namespace phys
         {
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
             Vector3WActor* ClosestActor = new Vector3WActor();
-            ClosestActor->Actor = World::GetWorldPointer()->GetActorManager()->GetActorContainer()->FindActor( pentity->getParentSceneNode() );
+            ClosestActor->Actor = ActorManager::GetSingletonPtr()->GetActorContainer()->FindActor( pentity->getParentSceneNode() );
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account
@@ -326,9 +326,9 @@ namespace phys
     Ray* RayQueryTool::GetMouseRay(Real Length)
     {
         VerifyRayQuery();
-        Ray* MouseRay = new Ray( World::GetWorldPointer()->GetCameraManager()->GetDefaultCamera()->GetCameraToViewportRay(
-                float(InputQueryTool::GetMouseX()) / float( World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getRenderWidth() ) ,
-                float(InputQueryTool::GetMouseY()) / float( World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getRenderHeight() )
+        Ray* MouseRay = new Ray( CameraManager::GetSingletonPtr()->GetDefaultCamera()->GetCameraToViewportRay(
+                float(InputQueryTool::GetMouseX()) / float( GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->getRenderWidth() ) ,
+                float(InputQueryTool::GetMouseY()) / float( GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->getRenderHeight() )
             ) );
 
         (*MouseRay) *= Length;
@@ -341,7 +341,7 @@ namespace phys
     {
         if(!RayQuery)
         {
-            RayQuery = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+            RayQuery = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
             RayQuery->setSortByDistance(true);
         }
     }

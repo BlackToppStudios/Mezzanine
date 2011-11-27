@@ -51,7 +51,6 @@
 
 using namespace std;
 
-#include "crossplatformexport.h"
 #include "eventbase.h"
 #include "eventcollision.h"
 #include "eventgamewindow.h"
@@ -59,6 +58,7 @@ using namespace std;
 #include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "managerbase.h"
+#include "singleton.h"
 #include "metacode.h"
 #include "vector2.h"
 #include "xml.h"
@@ -124,7 +124,7 @@ namespace phys
     /// the events.
     /// @warning Currently this is not thread safe, even though it should be.
     ///////////////////////////////////////////////////////////////////////////////
-    class PHYS_LIB EventManager: public ManagerBase
+    class PHYS_LIB EventManager: public ManagerBase, public Singleton<EventManager>
     {
         private:
             /// @internal

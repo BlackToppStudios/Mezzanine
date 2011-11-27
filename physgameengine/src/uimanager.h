@@ -40,9 +40,9 @@
 #ifndef _uimanager_h
 #define _uimanager_h
 
-#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "managerbase.h"
+#include "singleton.h"
 #include "uirenderablerect.h"
 #include "metacode.h"
 
@@ -73,7 +73,7 @@ namespace phys
     /// @brief This class is responsible for any and all user interactions with the User interface/HUD.
     /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade Gorilla file(*.gorilla).
     ///////////////////////////////////////
-    class PHYS_LIB UIManager : public ManagerBase
+    class PHYS_LIB UIManager : public ManagerBase, public Singleton<UIManager>
     {
         protected:
             /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.

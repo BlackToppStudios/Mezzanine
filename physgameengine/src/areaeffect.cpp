@@ -91,7 +91,7 @@ namespace phys{
 
     void AreaEffect::PreGraphicsMeshCreate()
     {
-        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        Ogre::SceneManager* OgreManager = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer();
         if(GraphicsObject)
         {
             OgreManager->destroyEntity(GraphicsObject);
@@ -128,7 +128,7 @@ namespace phys{
             AddedActors.clear();
         if ( !RemovedActors.empty() )
             RemovedActors.clear();
-        btSoftRigidDynamicsWorld* PhysWorld = TheWorld->GetPhysicsManager()->GetPhysicsWorldPointer();
+        btSoftRigidDynamicsWorld* PhysWorld = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
 
         std::list<ActorBase*>::iterator it = OverlappingActors.begin();
         // Make a bool vector to keep track of which actors to keep when updating.
@@ -337,7 +337,7 @@ namespace phys{
     {
         this->FieldShape = FieldShape;
         Ghost->setCollisionShape(this->FieldShape->GetBulletShape());
-        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(this->FieldShape);
+        CollisionShapeManager::GetSingletonPtr()->StoreShape(this->FieldShape);
     }
 
     CollisionShape* AreaEffect::GetFieldShape() const
@@ -396,10 +396,10 @@ namespace phys{
     {
         if(IsInWorld())
         {
-            World::GetWorldPointer()->GetPhysicsManager()->RemoveAreaEffect(this);
+            PhysicsManager::GetSingletonPtr()->RemoveAreaEffect(this);
             short flags = Static ? btCollisionObject::CF_STATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE : btCollisionObject::CF_NO_CONTACT_RESPONSE;
             Ghost->setCollisionFlags(flags);
-            World::GetWorldPointer()->GetPhysicsManager()->AddAreaEffect(this);
+            PhysicsManager::GetSingletonPtr()->AddAreaEffect(this);
         }else{
             short flags = Static ? btCollisionObject::CF_STATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE : btCollisionObject::CF_NO_CONTACT_RESPONSE;
             Ghost->setCollisionFlags(flags);
@@ -419,7 +419,7 @@ namespace phys{
         if(!FieldMesh)
             return;
 
-        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        Ogre::SceneManager* OgreManager = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer();
         GraphicsObject = OgreManager->createEntity(Name,FieldMesh->GetName(),FieldMesh->GetGroup());
         GraphicsNode = OgreManager->createSceneNode();
         OgreManager->getRootSceneNode()->addChild(GraphicsNode);
@@ -432,7 +432,7 @@ namespace phys{
 
     void AreaEffect::SetFieldMesh(const String& MeshName, const String& Group)
     {
-        Mesh* TheMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         this->SetFieldMesh(TheMesh);
     }
 
@@ -516,7 +516,7 @@ namespace phys{
     void GravityField::ApplyEffect()
     {
         std::vector<ActorBase*>::iterator It;
-        PhysicsManager* Physics = TheWorld->GetPhysicsManager();
+        PhysicsManager* Physics = PhysicsManager::GetSingletonPtr();
         ActorBase* Act = NULL;
 
         if ( !AddedActors.empty() )
@@ -618,7 +618,7 @@ namespace phys{
         }
         if(!AllowWorldGrav && !RemovedActors.empty())
         {
-            Vector3 WorldGrav = TheWorld->GetPhysicsManager()->GetGravity();
+            Vector3 WorldGrav = PhysicsManager::GetSingletonPtr()->GetGravity();
             for ( std::vector<ActorBase*>::iterator RA = RemovedActors.begin() ; RA != RemovedActors.end() ; RA++ )
             {
                 if(ActorBase::Actorrigid != (*RA)->GetType())

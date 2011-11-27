@@ -54,7 +54,7 @@ namespace phys
             : Type(SType),
               BaseVolume(1.0)
         {
-            Manager = World::GetWorldPointer()->GetAudioManager();
+            Manager = AudioManager::GetSingletonPtr();
             String Extension = FileName.substr(FileName.find_last_of(".")+1);
             Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(FileName,Group);
             char* buffer = new char[Stream->size()];

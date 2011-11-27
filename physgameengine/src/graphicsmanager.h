@@ -41,6 +41,7 @@
 #define _graphicsmanager_h
 
 #include "managerbase.h"
+#include "singleton.h"
 #include "graphicssettings.h"
 #include "enumerations.h"
 
@@ -66,7 +67,7 @@ namespace phys
     /// complex graphics settings. We hope to eventually include other items like
     /// shader settings, rendering API, and maybe other settings too.
     ///////////////////////////////////////
-    class PHYS_LIB GraphicsManager: public ManagerBase
+    class PHYS_LIB GraphicsManager: public ManagerBase, public Singleton<GraphicsManager>
     {
         private:
             GraphicsSettings PrimarySettings;

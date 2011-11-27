@@ -74,7 +74,7 @@ namespace phys
               GorillaLayer(GLayer),
               Parent(PScreen)
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
+            Manager = UIManager::GetSingletonPtr();
         }
 
         Layer::~Layer()

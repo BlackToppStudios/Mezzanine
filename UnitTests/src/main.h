@@ -81,7 +81,7 @@ phys::String TestResultToString(TestResult Convertable)
         case NotApplicable:
             return "N/A";
         default:
-            throw(phys::Exception(phys::StringCat("Cannot convert TestResult with value ", phys::ToString(Convertable))));
+            throw(phys::Exception(phys::StringTool::StringCat("Cannot convert TestResult with value ", phys::ToString(Convertable))));
     }
 }
 
@@ -347,11 +347,11 @@ void StartEngine()
     Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
     TheWorld = new World(Info,SceneManager::Generic,"plugins.cfg","data/common/");
     TheWorld->GameInit(false);
-    TheWorld->GetResourceManager()->AddResourceLocation("data/common", "FileSystem", "files", false);
-    TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
-    TheWorld->GetUIManager()->LoadGorilla("dejavu");
-    TheWorld->GetResourceManager()->InitResourceGroup("files");
-    phys::UI::Screen *TheScreen = TheWorld->GetUIManager()->CreateScreen("Screen","dejavu",TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0));
+    ResourceManager::GetSingletonPtr()->AddResourceLocation("data/common", "FileSystem", "files", false);
+    GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
+    UIManager::GetSingletonPtr()->LoadGorilla("dejavu");
+    ResourceManager::GetSingletonPtr()->InitResourceGroup("files");
+    phys::UI::Screen *TheScreen = UIManager::GetSingletonPtr()->CreateScreen("Screen","dejavu",GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0));
     phys::UI::Layer *TheLayer = TheScreen->CreateLayer("Layer",0);
 
     TheTextB1 = TheLayer->CreateCaption(ConstString("TheTextB1"),UI::RenderableRect(Vector2(0.0016,0.603),Vector2(1,0.25),true), (Whole)24, TheMessage);
@@ -383,7 +383,7 @@ void UpdateMessage( String Message, String Message2)
 bool PostTimerEnd()
 {
     return false;
-    TheWorld->GetTimerManager()->SetPostMainLoopItems(0);
+    TimerManager::GetSingletonPtr()->SetPostMainLoopItems(0);
 }
 
 bool PostTimerUpdate()
@@ -392,7 +392,7 @@ bool PostTimerUpdate()
 class TimerEnding : public TimerCallback
 {
     virtual void DoCallbackItems()
-        { TheWorld->GetTimerManager()->SetPostMainLoopItems(&PostTimerEnd); }
+        { TimerManager::GetSingletonPtr()->SetPostMainLoopItems(&PostTimerEnd); }
 };
 TimerEnding* CountDownCallback;
 
@@ -407,7 +407,8 @@ bool PostInputCheck()
 {
     UpdateMessage(TheMessage,TheMessage2);
     AnswerToQuestion=Unknown;
-    EventUserInput *ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+    EventManager* EventMan = EventManager::GetSingletonPtr();
+    EventUserInput* ThisInput = EventMan->PopNextUserInputEvent();
     while (ThisInput) //for each userinput event
     {
         for (Whole c=0; c<ThisInput->GetMetaCodeCount(); ++c ) //for each metacode in each userinput
@@ -433,7 +434,7 @@ bool PostInputCheck()
             }
         }
         delete ThisInput;
-        ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+        ThisInput = EventMan->PopNextUserInputEvent();
     }
 
 
@@ -446,21 +447,21 @@ bool PostInputCheck()
 // Use this to start a countdown in the interactive test
 void StartCountdown(Whole Seconds)
 {
-    ThisTimer = World::GetWorldPointer()->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
+    ThisTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::StopWatch);
     ThisTimer->SetInitialTime(Seconds * 1000000);
     ThisTimer->Reset();
     ThisTimer->SetGoalTime(0);
     ThisTimer->Start();
     CountDownCallback = new TimerEnding;
     ThisTimer->SetCallback(CountDownCallback);
-    TheWorld->GetTimerManager()->SetPostMainLoopItems(&PostTimerUpdate);
+    TimerManager::GetSingletonPtr()->SetPostMainLoopItems(&PostTimerUpdate);
 }
 
 void GetAnswer()
 {
     TheMessage2 = "T/Y:Yes  F/N:No  C:Cancel  U/I:Inconclusive";
     UpdateMessage(TheMessage, TheMessage2);
-    World::GetWorldPointer()->GetEventManager()->SetPostMainLoopItems(&PostInputCheck);
+    EventManager::GetSingletonPtr()->SetPostMainLoopItems(&PostInputCheck);
 }
 
 #endif

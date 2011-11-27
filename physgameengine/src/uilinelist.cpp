@@ -55,7 +55,7 @@ namespace phys
         LineList::LineList(Layer* PLayer)
             : Parent(PLayer)
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
+            Manager = UIManager::GetSingletonPtr();
 
             GLineList = Parent->GetGorillaLayer()->createLineList();
         }

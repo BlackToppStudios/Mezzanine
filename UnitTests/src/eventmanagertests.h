@@ -74,7 +74,8 @@ class EventManagerTests : public UnitTestGroup
                 StartEngine();
                 TheMessage = "Please Press Some Buttons.";
                 StartCountdown(15);
-                TheWorld->GetEventManager()->SetPostMainLoopItems(&PostInputTestNull);
+                EventManager* EventMan = EventManager::GetSingletonPtr();
+                EventMan->SetPostMainLoopItems(&PostInputTestNull);
                 TheWorld->MainLoop();
 
                 TestResult Order1 = Success;
@@ -87,7 +88,7 @@ class EventManagerTests : public UnitTestGroup
                 vector<int> Keymap;
                 Keymap.insert(Keymap.end(), MetaCode::KEY_LAST, 0); // make a big empty arraylike thing
 
-                EventUserInput *ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+                EventUserInput *ThisInput = EventMan->PopNextUserInputEvent();
                 while (ThisInput) //for each userinput event
                 {
                     for (Whole c=0; c<ThisInput->GetMetaCodeCount(); ++c ) //for each metacode in each userinput
@@ -122,7 +123,7 @@ class EventManagerTests : public UnitTestGroup
                         }
                     }
                     delete ThisInput;
-                    ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+                    ThisInput = EventMan->PopNextUserInputEvent();
                 }
 
                 if (!Tested1)

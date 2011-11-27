@@ -61,6 +61,7 @@
 
 namespace phys
 {
+    template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = 0;
 
     ///////////////////////////////////////////////////////////////////////////
     // Creation and Deletion functions
@@ -82,15 +83,6 @@ namespace phys
     GraphicsManager::~GraphicsManager()
     {
         DestroyAllGameWindows(false);
-
-        Whole x = 0;
-        while(World::GetWorldPointer()->GetCameraManager(x) != 0)
-        {
-            World::GetWorldPointer()->GetCameraManager(x)->SManager = 0;
-            x++;
-        }
-
-        //ShutdownSDL(); //Now this is down in ~World()
     }
 
     void GraphicsManager::Construct(const Whole &Width, const Whole &Height, const bool &FullScreen )
@@ -179,7 +171,7 @@ namespace phys
         {
             GameWorld->AddManager(new phys::CameraManager(0));
         }
-        camera = GameWorld->GetCameraManager()->GetDefaultCamera();
+        camera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
         #ifdef PHYSDEBUG
         GameWorld->Log("Created Default Camera");
         #endif
@@ -360,7 +352,7 @@ namespace phys
 
     bool GraphicsManager::PostMainLoopItems()
     {
-        this->GameWorld->GetEventManager()->AddEvent(new EventRenderTime(this->GameWorld->GetFrameTime()));
+        EventManager::GetSingletonPtr()->AddEvent(new EventRenderTime(this->GameWorld->GetFrameTime()));
         return ManagerBase::PostMainLoopItems();
     }
 }

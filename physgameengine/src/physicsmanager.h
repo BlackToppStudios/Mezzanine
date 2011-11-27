@@ -59,6 +59,7 @@ class btCollisionConfiguration;
 #include "constraint.h"
 #include "crossplatformexport.h"
 #include "managerbase.h"
+#include "singleton.h"
 #include "actorpair.h"
 
 namespace phys
@@ -132,7 +133,7 @@ namespace phys
     /// drawing, Adding constraints, screwing with gravity and doing other physics
     /// Related features.
     ///////////////////////////////////////
-    class PHYS_LIB PhysicsManager : public ManagerBase
+    class PHYS_LIB PhysicsManager : public ManagerBase, public Singleton<PhysicsManager>
     {
         private:
             // needed for collision processing

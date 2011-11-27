@@ -118,7 +118,7 @@ namespace phys
         void RenderPhysWorld()
         {
             World* TheWorld = World::GetWorldPointer();
-            GraphicsManager* Graphics = TheWorld->GetGraphicsManager();
+            GraphicsManager* Graphics = GraphicsManager::GetSingletonPtr();
             #ifdef PHYSDEBUG
             TheWorld->Log("Rendering the World.");
             #endif

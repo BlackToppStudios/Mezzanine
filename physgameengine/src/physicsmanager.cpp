@@ -304,7 +304,7 @@ namespace phys
                     }
                 }
                 // now check the already generated collisions
-                PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+                PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
                 for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
                 {
                     if(manifold == (*ColIt).second->Manifold)
@@ -323,7 +323,7 @@ namespace phys
             }
             void releaseManifoldManual(btPersistentManifold* manifold)
             {
-                PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+                PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
                 for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
                 {
                     if(manifold == (*ColIt).second->Manifold)
@@ -373,6 +373,11 @@ namespace phys
         this->GeographyUpperBounds = Other.GeographyUpperBounds;
         this->Gravity = Other.Gravity;
     }
+
+    ///////////////////////////////////////////////////////////
+    // Physicsmanager functions
+
+    template<> PhysicsManager* Singleton<PhysicsManager>::SingletonPtr = 0;
 
     PhysicsManager::PhysicsManager()
         : BulletDrawer(NULL),
@@ -981,8 +986,8 @@ namespace phys
                     /// @todo This chunk of code won't take the upcoming terrain system into account, and should be modified accordingly
                     btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
                     btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
-                    ActorBase* ActA = this->GameWorld->GetActorManager()->GetActorContainer()->FindActor(objectA);
-                    ActorBase* ActB = this->GameWorld->GetActorManager()->GetActorContainer()->FindActor(objectB);
+                    ActorBase* ActA = ActorManager::GetSingletonPtr()->GetActorContainer()->FindActor(objectA);
+                    ActorBase* ActB = ActorManager::GetSingletonPtr()->GetActorContainer()->FindActor(objectB);
 
                     if( !ActA || !ActB )
                         continue;
@@ -992,7 +997,7 @@ namespace phys
                     Vector3 ActBLoc(pt.m_localPointB);
                     EventCollision* ColEvent = new EventCollision(ActA,ActB,ActALoc,ActBLoc,WorldLoc,pt.m_appliedImpulse);
                     //create collision event
-                    this->GameWorld->GetEventManager()->AddEvent(ColEvent);
+                    EventManager::GetSingletonPtr()->AddEvent(ColEvent);
                     #ifdef PHYSDEBUG
                     this->GameWorld->Log("Collision Event:");
                     this->GameWorld->Log(*ColEvent);

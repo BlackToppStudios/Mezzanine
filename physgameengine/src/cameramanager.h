@@ -40,8 +40,8 @@
 #ifndef _CameraManager_h
 #define _CameraManager_h
 
-#include "crossplatformexport.h"
 #include "managerbase.h"
+#include "singleton.h"
 #include "quaternion.h"
 #include "ray.h"
 #include "vector3.h"
@@ -70,7 +70,8 @@ namespace phys
     /// one camera you should never have to name the camera you want to use. @n
     /// This class should only be created after the SceneManager has been created.
     ///////////////////////////////////////////////////////////////////////////////
-    class PHYS_LIB CameraManager : public ManagerBase {
+    class PHYS_LIB CameraManager : public ManagerBase, public Singleton<CameraManager>
+    {
         protected:
             friend class GraphicsManager;
             friend class World;
@@ -79,7 +80,7 @@ namespace phys
             Camera* DefaultCamera;
             std::vector< Camera* > Cameras;
             std::map< Camera* , CameraController* > CameraControllers;
-            Camera* FindCamera(String Name);
+            Camera* FindCamera(const String& Name);
         public:
             /// @internal
             /// @brief Used to reference the appropriate scene
@@ -102,6 +103,8 @@ namespace phys
             /// @brief Gets the default camera if it has been initialized.
             /// @return Returns the Default Camera or a null point if it hasn't been created yet.
             Camera* GetDefaultCamera();
+            /// @brief Destroys the default camera.
+            void DestroyDefaultCamera();
             /// @brief Creates a camera and returns a pointer.
             /// @details This function does the same as the other CreateCamera function but will also return a pointer to
             /// the camera class instead of a string(being the name of the camera).
@@ -111,14 +114,15 @@ namespace phys
             Camera* GetCamera(const String& Name);
             /// @brief Gets an already created camera by index.
             /// @return Returns a pointer to the camera at the specified index.
-            Camera* GetCamera(Whole Index);
+            Camera* GetCamera(const Whole& Index);
             /// @brief Gets the number of cameras created and stored in this manager.
             /// @return Returns the number of cameras this manager is storing.
             Whole GetNumCameras();
             /// @brief Deletes all cameras except for the first camera.
             /// @details This will clear the container of cameras.  The default camera is not stored in this container
             /// however, so it is spared from this wipe.
-            void ClearCameras();
+            /// @param DefaultAlso Whether or not to also destroy the default camera when deleting all camera's.
+            void DestroyAllCameras(bool DefaultAlso = true);
 
             /// @brief Gets a camera controller if it exists, otherwise creates it.
             /// @param Controlled The camera that will be controlled by the controller returned.

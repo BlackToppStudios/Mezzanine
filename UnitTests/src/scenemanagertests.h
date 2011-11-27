@@ -57,7 +57,7 @@ class SceneManagerTests : public UnitTestGroup
                 {
                     StartEngine();
                     TheMessage="Does It Look Like a SkyPlane?";
-                    SM = TheWorld->GetSceneManager();
+                    SM = SceneManager::GetSingletonPtr();
                     SM->SetAmbientLight(1,1,1,1);
                     //SM->CreateSkyPlane(Plane(Vector3(0,1,0),5),"Examples/CloudPlane","files");
                     SM->CreateSkyPlane(Plane(Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0)),"Examples/CloudPlane","files");
@@ -75,7 +75,7 @@ class SceneManagerTests : public UnitTestGroup
                     StartEngine();
                     AddTestResult("SceneManager::DisplaySkyBox", Unknown);
                     TheMessage="Does It Look Like a SkyBox?";
-                    SM = TheWorld->GetSceneManager();
+                    SM = SceneManager::GetSingletonPtr();
                     SM->SetAmbientLight(1,1,1,1);
                     SM->CreateSkyBox("Examples/CloudBox","files",50);
                     GetAnswer();
@@ -92,7 +92,7 @@ class SceneManagerTests : public UnitTestGroup
                     StartEngine();
                     AddTestResult("SceneManager::DisplaySkyDome", Unknown);
                     TheMessage="Does It Look Like a SkyDome?";
-                    SM = TheWorld->GetSceneManager();
+                    SM = SceneManager::GetSingletonPtr();
                     SM->SetAmbientLight(1,1,1,1);
                     SM->CreateSkyDome("Examples/CloudPlane","files",50);
                     GetAnswer();
@@ -115,7 +115,7 @@ class SceneManagerTests : public UnitTestGroup
             {
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (No Sky)", Unknown);
-                SceneManager* SM = TheWorld->GetSceneManager();
+                SceneManager* SM = SceneManager::GetSingletonPtr();
                 stringstream SerializeTest1("");
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateLight("ADefaultLightWithNoChangesAtAll");
@@ -132,7 +132,7 @@ class SceneManagerTests : public UnitTestGroup
 
                 StartEngine();
                 AddTestResult("SceneManager::operator>> (No Sky)", Unknown);
-                SM = TheWorld->GetSceneManager();
+                SM = SceneManager::GetSingletonPtr();
                 try
                 {
                     SerializeTest1 >> *SM;
@@ -154,7 +154,7 @@ class SceneManagerTests : public UnitTestGroup
 
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (SkyDome)", Unknown);
-                SM = TheWorld->GetSceneManager();
+                SM = SceneManager::GetSingletonPtr();
                 stringstream SerializeTest2("");
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateSkyDome("Examples/CloudPlane","files",50);
@@ -172,7 +172,7 @@ class SceneManagerTests : public UnitTestGroup
 
                 StartEngine();
                 AddTestResult("SceneManager::operator>> (SkyDome)", Unknown);
-                SM = TheWorld->GetSceneManager();
+                SM = SceneManager::GetSingletonPtr();
                 try
                 {
                     SerializeTest2 >> *SM;
@@ -195,7 +195,7 @@ class SceneManagerTests : public UnitTestGroup
 
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (SkyPlane)", Unknown);
-                SM = TheWorld->GetSceneManager();
+                SM = SceneManager::GetSingletonPtr();
                 stringstream SerializeTest3("");
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateSkyPlane(Plane(Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0)),"Examples/CloudPlane","files");
@@ -213,7 +213,7 @@ class SceneManagerTests : public UnitTestGroup
 
                 StartEngine();
                 AddTestResult("SceneManager::operator>> (SkyPlane)", Unknown);
-                SM = TheWorld->GetSceneManager();
+                SM = SceneManager::GetSingletonPtr();
                 try
                 {
                     SerializeTest3 >> *SM;
@@ -235,7 +235,7 @@ class SceneManagerTests : public UnitTestGroup
 
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (SkyBox)", Unknown);
-                SM = TheWorld->GetSceneManager();
+                SM = SceneManager::GetSingletonPtr();
                 stringstream SerializeTest4("");
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateSkyBox("Examples/CloudBox","files",50);
@@ -254,7 +254,7 @@ class SceneManagerTests : public UnitTestGroup
 
                 StartEngine();
                 AddTestResult("SceneManager::operator>> (SkyBox)", Unknown);
-                SM = TheWorld->GetSceneManager();
+                SM = SceneManager::GetSingletonPtr();
                 try
                 {
                     SerializeTest4 >> *SM;

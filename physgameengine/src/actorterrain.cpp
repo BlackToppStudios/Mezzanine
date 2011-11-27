@@ -59,9 +59,9 @@ namespace phys
         : ActorBase()
     {
         // this isn't required to operate, but it does allow the mesh manager to know what is loaded.
-        World::GetWorldPointer()->GetMeshManager()->LoadMesh(file,group);
+        MeshManager::GetSingletonPtr()->LoadMesh(file,group);
 
-        this->GraphicsObject = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
+        this->GraphicsObject = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->MotionState->SetPosition(InitPosition);
@@ -103,14 +103,14 @@ namespace phys
 
     void ActorTerrain::AddObjectToWorld (World *TargetWorld)
     {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addCollisionObject(this->CollisionObject);
+        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addCollisionObject(this->CollisionObject);
         //TargetWorld->Physics->BulletDynamicsWorld->addRigidBody(this->CollisionObject);
         this->AttachToGraphics();
     }
 
     void ActorTerrain::RemoveObjectFromWorld(World* TargetWorld)
     {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeCollisionObject(this->CollisionObject);
+        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->removeCollisionObject(this->CollisionObject);
         //TargetWorld->Physics->BulletDynamicsWorld->removeRigidBody(this->CollisionObject);
         this->DetachFromGraphics();
     }

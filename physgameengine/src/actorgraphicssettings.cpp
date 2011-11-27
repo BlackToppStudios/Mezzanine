@@ -96,7 +96,7 @@ namespace phys
         : Parent(Actor)
     {
         this->IAGS = new internal::InternalActorGraphicsSettings(GraphicsObject);
-        ActorMesh = World::GetWorldPointer()->GetMeshManager()->GetMesh(GraphicsObject->getMesh()->getName());
+        ActorMesh = MeshManager::GetSingletonPtr()->GetMesh(GraphicsObject->getMesh()->getName());
     }
 
     ActorGraphicsSettings::~ActorGraphicsSettings()

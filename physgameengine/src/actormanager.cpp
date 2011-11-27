@@ -47,6 +47,8 @@
 
 namespace phys
 {
+    template<> ActorManager* Singleton<ActorManager>::SingletonPtr = 0;
+
     ActorManager::ActorManager()
     {
         Priority = -25;

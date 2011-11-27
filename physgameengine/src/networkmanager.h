@@ -41,6 +41,7 @@
 #define _networkmanager_h
 
 #include "managerbase.h"
+#include "singleton.h"
 
 namespace phys
 {
@@ -51,7 +52,7 @@ namespace phys
     /// @brief This is a basic socket interface for the transmission and retrieval of packets.
     /// @details
     ///////////////////////////////////////
-    class PHYS_LIB NetworkManager : public ManagerBase
+    class PHYS_LIB NetworkManager : public ManagerBase, public Singleton<NetworkManager>
     {
         protected:
             //std::map<unsigned short int,Socket*> Sockets;

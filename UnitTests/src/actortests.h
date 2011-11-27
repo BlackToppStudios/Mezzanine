@@ -72,12 +72,12 @@ class ActorTests : public UnitTestGroup
                 try{
                     String groupname ("Group1");
                     String filerobot ("robot.mesh");
-                    TheWorld->GetResourceManager()->AddResourceLocation("data/common", "FileSystem", groupname, false);
+                    ResourceManager::GetSingletonPtr()->AddResourceLocation("data/common", "FileSystem", groupname, false);
 
                     ActorRigid *object1 = new ActorRigid (20.0,"ABasicRobot",filerobot,groupname);
                     std::stringstream SerializeTestA1, SerializeTestP1, SerializeTestWhole1;
 
-                    object1->GetPhysicsSettings()->SetCollisionShape( TheWorld->GetCollisionShapeManager()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname) );
+                    object1->GetPhysicsSettings()->SetCollisionShape( CollisionShapeManager::GetSingletonPtr()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname) );
                     object1->SetLocation(Vector3(400,70,100));
                     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
                     object1->SetAnimation("Idle", true);
@@ -250,17 +250,17 @@ class ActorTests : public UnitTestGroup
                     DeSerializerTest1 << TestWhole1 ;
                     DeSerializerTest2 << "<RigidActors>" << TestWhole2 << "</RigidActors>";
 
-                    ActorRigidDeSerializer ActorFactory(TheWorld->GetActorManager());
+                    ActorRigidDeSerializer ActorFactory(ActorManager::GetSingletonPtr());
 
-                    TheWorld->GetActorManager()->RemoveAllActors();
+                    ActorManager::GetSingletonPtr()->RemoveAllActors();
                     delete object1;
                     ActorFactory.DeSerialize(DeSerializerTest1);
-                    DeSerializerTest1RS << *(dynamic_cast<ActorRigid*>(TheWorld->GetActorManager()->GetActor("ABasicRobot")));
+                    DeSerializerTest1RS << *(dynamic_cast<ActorRigid*>(ActorManager::GetSingletonPtr()->GetActor("ABasicRobot")));
 
-                    TheWorld->GetActorManager()->RemoveAllActors();
+                    ActorManager::GetSingletonPtr()->RemoveAllActors();
                     delete object1;
                     ActorFactory.DeSerializeAll(DeSerializerTest2);
-                    DeSerializerTest2RS << "<RigidActors>" << *( dynamic_cast<ActorRigid*>(TheWorld->GetActorManager()->GetActor("ABasicRobot")) ) << "</RigidActors>";
+                    DeSerializerTest2RS << "<RigidActors>" << *( dynamic_cast<ActorRigid*>(ActorManager::GetSingletonPtr()->GetActor("ABasicRobot")) ) << "</RigidActors>";
                     //cout  << endl << endl << TestWhole1 << endl << " == " << endl << DeSerializerTest1RS.str() << endl << endl;
                     if (TestWhole1 == DeSerializerTest1RS.str())
                     {

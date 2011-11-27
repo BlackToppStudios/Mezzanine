@@ -63,9 +63,9 @@ namespace phys{
         : ActorBase ()
     {
         // this isn't required to operate, but it does allow the mesh manager to know what is loaded.
-        World::GetWorldPointer()->GetMeshManager()->LoadMesh(file,group);
+        MeshManager::GetSingletonPtr()->LoadMesh(file,group);
 
-        this->GraphicsObject = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
+        this->GraphicsObject = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
@@ -116,13 +116,13 @@ namespace phys{
 
     void ActorRigid::AddObjectToWorld()
     {
-        World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
+        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
     void ActorRigid::RemoveObjectFromWorld()
     {
-        PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+        PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
         btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
         //first remove any collision metadata
         /*if( !CurrentCollisions.empty() )
@@ -166,7 +166,7 @@ namespace phys{
             NewSticky->SetAngularLimitUpper(Vector3());
             NewSticky->SetLinearLimitLower(Vector3());
             NewSticky->SetLinearLimitUpper(Vector3());
-            World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
         }
     }

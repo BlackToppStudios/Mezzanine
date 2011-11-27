@@ -235,13 +235,13 @@ namespace phys
                 String ActorNameB(OneNode.GetAttribute("ActorNameB").AsString());
                 if (""!=ActorNameA)                                                                                                         //Figure out if the actors are fine
                 {
-                    ActorRigid* FutureA = dynamic_cast<ActorRigid*>(World::GetWorldPointer()->GetActorManager()->GetActor(ActorNameA));     // get ActorA from the Actormanager
+                    ActorRigid* FutureA = dynamic_cast<ActorRigid*>(ActorManager::GetSingletonPtr()->GetActor(ActorNameA));     // get ActorA from the Actormanager
                     if (0==FutureA)
                         { DeSerializeError("find an ActorRigid named "+ActorNameA+" in the ActorManager", SerializableName()); }
 
                     if (""!=ActorNameB)
                     {
-                        ActorRigid* FutureB = dynamic_cast<ActorRigid*>(World::GetWorldPointer()->GetActorManager()->GetActor(ActorNameB)); // get ActorB from the Actormanager
+                        ActorRigid* FutureB = dynamic_cast<ActorRigid*>(ActorManager::GetSingletonPtr()->GetActor(ActorNameB)); // get ActorB from the Actormanager
                         if (0==FutureB)
                             { DeSerializeError("find an ActorRigid named "+ActorNameB+" in the ActorManager", SerializableName()); }
                         this->SetBodies(FutureA,FutureB);

@@ -211,7 +211,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ParticleEffe
                 Ev.RemoveFromWorld();
             }
 
-            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            phys::WorldNode * AttachPtr = phys::SceneManager::GetSingletonPtr()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
                 { AttachPtr->AttachObject(&Ev); }
 

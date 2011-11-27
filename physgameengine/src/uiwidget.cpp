@@ -44,6 +44,7 @@
 #include "uibutton.h"
 #include "uilayer.h"
 #include "uiscreen.h"
+#include "uimanager.h"
 #include "inputquerytool.h"
 #include "world.h"
 
@@ -107,7 +108,7 @@ namespace phys
               RelSize(Vector2(0,0)),
               Name(name)
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
+            Manager = UIManager::GetSingletonPtr();
         }
 
         Widget::~Widget()

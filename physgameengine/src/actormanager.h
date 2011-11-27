@@ -42,6 +42,7 @@
 
 #include "datatypes.h"
 #include "managerbase.h"
+#include "singleton.h"
 
 namespace phys
 {
@@ -56,7 +57,7 @@ namespace phys
     /// @brief A manager responsible for the storage and management of all actors in use.
     /// @details More or less Management point for a container of actors to help keep them sorted.
     ///////////////////////////////////////
-    class PHYS_LIB ActorManager : public ManagerBase
+    class PHYS_LIB ActorManager : public ManagerBase, public Singleton<ActorManager>
     {
         protected:
             /// @brief The actual actor container

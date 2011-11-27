@@ -351,7 +351,7 @@ namespace phys
 
     void LineGroup::PrepareForRendering()
     {
-        Ogre::SceneNode *myNode = this->Parent->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        Ogre::SceneNode *myNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         myNode->attachObject(this->LineData);
     }
 }

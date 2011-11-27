@@ -43,6 +43,7 @@
 #include "vector3.h"
 #include "colourvalue.h"
 #include "managerbase.h"
+#include "singleton.h"
 
 namespace phys
 {
@@ -54,7 +55,7 @@ namespace phys
     /// @brief This manager handles the storage, generation, and query of of Graphics Meshes.
     /// @details
     ///////////////////////////////////////
-    class PHYS_LIB MeshManager : public ManagerBase
+    class PHYS_LIB MeshManager : public ManagerBase, public Singleton<MeshManager>
     {
         protected:
             std::map<String,Mesh*> GeneratedMeshes;

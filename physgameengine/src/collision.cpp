@@ -214,8 +214,8 @@ void operator >> (const phys::xml::Node& OneNode, phys::Collision& Col)
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
 
-            Col.SetActorA(phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorA").AsString()));
-            Col.SetActorB(phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorB").AsString()));
+            Col.SetActorA(phys::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ActorA").AsString()));
+            Col.SetActorB(phys::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ActorB").AsString()));
             //Col.Impulse=OneNode.GetAttribute("Impulse").AsReal();
 
             //if(OneNode.GetFirstChild())

@@ -114,10 +114,10 @@ namespace phys
         CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL] = H;
         CodeCache[MetaCode::MOUSEABSOLUTEVERTICAL] = V;
 
-        std::list<EventUserInput*>* UserInput = World::GetWorldPointer()->GetEventManager()->GetAllUserInputEvents();   // Get the updated list of events
+        std::list<EventUserInput*>* UserInput = EventManager::GetSingletonPtr()->GetAllUserInputEvents();   // Get the updated list of events
 
         if( ClearEventsFromEventMgr )
-            { World::GetWorldPointer()->GetEventManager()->RemoveAllSpecificEvents(EventBase::UserInput); }
+            { EventManager::GetSingletonPtr()->RemoveAllSpecificEvents(EventBase::UserInput); }
 
         MetaCode::InputCode ThisCode;
         for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); Iter!=UserInput->end(); Iter++) //for each event

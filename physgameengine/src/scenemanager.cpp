@@ -160,28 +160,19 @@ namespace phys
             /// @brief Destructor
             ~SceneManagerData()
             {
-                Whole Counter = 0;
-                while(World::GetWorldPointer()->GetCameraManager(Counter))
+                CameraManager* CamMan = World::GetWorldPointer()->GetCameraManager();
+                if(CamMan)
                 {
-                    if(World::GetWorldPointer()->GetCameraManager()->SManager == this->SM )
-                    {
-                        World::GetWorldPointer()->GetCameraManager()->SManager = 0;
-                        ++Counter;
-                    }
+                    CamMan->DestroyAllCameraControllers();
+                    CamMan->DestroyAllCameras();
+                    CamMan->SManager = 0;
                 }
-
-
-                while(World::GetWorldPointer()->GetUIManager())
-                {
-                    World::GetWorldPointer()->RemoveManager(World::GetWorldPointer()->GetUIManager());
-                    delete World::GetWorldPointer()->GetUIManager();
-                }
-
                 Ogre::Root::getSingleton().destroySceneManager(OgreManager);
-                //delete OgreManager;
             }
         };
     }
+
+    template<> SceneManager* Singleton<SceneManager>::SingletonPtr = 0;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// Construction
@@ -810,16 +801,16 @@ std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
                 }
                 /*  Sky Cache Member - String SkyMaterialName; Quaternion SkyOrientation; String SkyMaterialGroupName; bool SkyDrawnFirst; Plane SkyThePlane; */
 
-                for (phys::SceneManager::ConstLightIterator Iter = phys::World::GetWorldPointer()->GetSceneManager()->BeginLight();
-                        phys::World::GetWorldPointer()->GetSceneManager()->EndLight()!=Iter;
+                for (phys::SceneManager::ConstLightIterator Iter = phys::SceneManager::GetSingletonPtr()->BeginLight();
+                        phys::SceneManager::GetSingletonPtr()->EndLight()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
-                for (phys::SceneManager::ConstParticleEffectIterator Iter = phys::World::GetWorldPointer()->GetSceneManager()->BeginParticleEffect();
-                        phys::World::GetWorldPointer()->GetSceneManager()->EndParticleEffect()!=Iter;
+                for (phys::SceneManager::ConstParticleEffectIterator Iter = phys::SceneManager::GetSingletonPtr()->BeginParticleEffect();
+                        phys::SceneManager::GetSingletonPtr()->EndParticleEffect()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
-                for (phys::SceneManager::ConstWorldNodeIterator Iter = phys::World::GetWorldPointer()->GetSceneManager()->BeginWorldNode();
-                        phys::World::GetWorldPointer()->GetSceneManager()->EndWorldNode()!=Iter;
+                for (phys::SceneManager::ConstWorldNodeIterator Iter = phys::SceneManager::GetSingletonPtr()->BeginWorldNode();
+                        phys::SceneManager::GetSingletonPtr()->EndWorldNode()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
     stream      << "</SceneManager>";

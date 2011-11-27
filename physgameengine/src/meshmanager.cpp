@@ -47,6 +47,8 @@
 
 namespace phys
 {
+    template<> MeshManager* Singleton<MeshManager>::SingletonPtr = 0;
+
     MeshManager::MeshManager()
     {
         this->Priority = 35;

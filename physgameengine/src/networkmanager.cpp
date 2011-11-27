@@ -44,6 +44,8 @@
 
 namespace phys
 {
+    template<> NetworkManager* Singleton<NetworkManager>::SingletonPtr = 0;
+
     NetworkManager::NetworkManager()
     {
 

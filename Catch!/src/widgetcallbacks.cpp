@@ -42,42 +42,42 @@ void OptsVolume::DoVisibilityChangeItems()
 
 void OptsAmbientVol::SetVolume(const Real& Volume)
 {
-    World::GetWorldPointer()->GetAudioManager()->SetAmbientVolume(Volume);
+    AudioManager::GetSingletonPtr()->SetAmbientVolume(Volume);
 }
 
 Real OptsAmbientVol::GetVolume() const
 {
-    return World::GetWorldPointer()->GetAudioManager()->GetAmbientVolume();
+    return AudioManager::GetSingletonPtr()->GetAmbientVolume();
 }
 
 void OptsDialogVol::SetVolume(const Real& Volume)
 {
-    World::GetWorldPointer()->GetAudioManager()->SetDialogVolume(Volume);
+    AudioManager::GetSingletonPtr()->SetDialogVolume(Volume);
 }
 
 Real OptsDialogVol::GetVolume() const
 {
-    return World::GetWorldPointer()->GetAudioManager()->GetDialogVolume();
+    return AudioManager::GetSingletonPtr()->GetDialogVolume();
 }
 
 void OptsEffectVol::SetVolume(const Real& Volume)
 {
-    World::GetWorldPointer()->GetAudioManager()->SetEffectVolume(Volume);
+    AudioManager::GetSingletonPtr()->SetEffectVolume(Volume);
 }
 
 Real OptsEffectVol::GetVolume() const
 {
-    return World::GetWorldPointer()->GetAudioManager()->GetEffectVolume();
+    return AudioManager::GetSingletonPtr()->GetEffectVolume();
 }
 
 void OptsMusicVol::SetVolume(const Real& Volume)
 {
-    World::GetWorldPointer()->GetAudioManager()->SetMusicVolume(Volume);
+    AudioManager::GetSingletonPtr()->SetMusicVolume(Volume);
 }
 
 Real OptsMusicVol::GetVolume() const
 {
-    return World::GetWorldPointer()->GetAudioManager()->GetMusicVolume();
+    return AudioManager::GetSingletonPtr()->GetMusicVolume();
 }
 
 OptsAudioMute::~OptsAudioMute()
@@ -90,7 +90,7 @@ void OptsAudioMute::SetCaller(UI::Widget* Caller)
         World::GetWorldPointer()->LogAndThrow(Exception("Audio Mute Widget callback was attempted to be applied to a non-checkbox widget."));
     UI::WidgetCallback::SetCaller(Caller);
     /// @todo This code should eventually be replaced with something that reads from a settings file.
-    bool Mute = World::GetWorldPointer()->GetAudioManager()->IsMuted();
+    bool Mute = AudioManager::GetSingletonPtr()->IsMuted();
     UI::CheckBox* MuteCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(Mute != MuteCheck->IsChecked())
         MuteCheck->ManualCheck(Mute);
@@ -106,7 +106,7 @@ void OptsAudioMute::DoPreUpdateItems()
 
 void OptsAudioMute::DoPostUpdateItems()
 {
-    AudioManager* AudioMan = World::GetWorldPointer()->GetAudioManager();
+    AudioManager* AudioMan = AudioManager::GetSingletonPtr();
     bool Mute = AudioMan->IsMuted();
     UI::CheckBox* MuteCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(Mute != MuteCheck->IsChecked())
@@ -115,7 +115,7 @@ void OptsAudioMute::DoPostUpdateItems()
 
 void OptsAudioMute::DoVisibilityChangeItems()
 {
-    bool Mute = World::GetWorldPointer()->GetAudioManager()->IsMuted();
+    bool Mute = AudioManager::GetSingletonPtr()->IsMuted();
     UI::CheckBox* MuteCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(Mute != MuteCheck->IsChecked())
         MuteCheck->ManualCheck(Mute);
@@ -132,7 +132,7 @@ void OptsVideoRes::SetCaller(UI::Widget* Caller)
     UI::WidgetCallback::SetCaller(Caller);
     UI::DropDownList* ResList = static_cast<UI::DropDownList*>(this->Caller);
     std::stringstream ResStream;
-    GraphicsManager* GraphicsMan = World::GetWorldPointer()->GetGraphicsManager();
+    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
     GameWindow* PriWin = GraphicsMan->GetPrimaryGameWindow();
     ResStream << PriWin->getRenderWidth() << " x " << PriWin->getRenderHeight();
     String CurrentRes(ResStream.str());
@@ -164,7 +164,7 @@ void OptsVideoRes::DoVisibilityChangeItems()
     if(Caller->IsVisible())
     {
         UI::DropDownList* ResList = static_cast<UI::DropDownList*>(this->Caller);
-        GameWindow* PriWin = World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow();
+        GameWindow* PriWin = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow();
         std::stringstream ResStream;
         ResStream << PriWin->getRenderWidth() << " x " << PriWin->getRenderHeight();
         ResList->SetSelection(ResStream.str());
@@ -182,7 +182,7 @@ void OptsVideoFullscreen::SetCaller(UI::Widget* Caller)
     UI::WidgetCallback::SetCaller(Caller);
     /// @todo This code should eventually be replaced with something that reads from a settings file.
     /// @todo Temp code to verify fullscreen setting is set properly.
-    bool FullScreen = World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getFullscreen();
+    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->getFullscreen();
     UI::CheckBox* FSCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(FullScreen != FSCheck->IsChecked())
         FSCheck->ManualCheck(FullScreen);
@@ -202,7 +202,7 @@ void OptsVideoFullscreen::DoPostUpdateItems()
 
 void OptsVideoFullscreen::DoVisibilityChangeItems()
 {
-    bool FullScreen = World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getFullscreen();
+    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->getFullscreen();
     UI::CheckBox* FSCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(FullScreen != FSCheck->IsChecked())
         FSCheck->ManualCheck(FullScreen);
@@ -251,7 +251,7 @@ void OptsVideoFSAA::DoVisibilityChangeItems()
     if(Caller->IsVisible())
     {
         UI::DropDownList* FSAAList = static_cast<UI::DropDownList*>(this->Caller);
-        Whole CurrFSAA = World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->GetFSAALevel();
+        Whole CurrFSAA = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetFSAALevel();
         std::stringstream AAstream;
         AAstream << "x" << CurrFSAA << " AA";
         FSAAList->SetSelection(CurrFSAA ? AAstream.str() : "No AA");
@@ -289,7 +289,7 @@ void OptsVideoStats::DoPostUpdateItems()
 
 void OptsVideoStats::DoVisibilityChangeItems()
 {
-    bool Stats = World::GetWorldPointer()->GetUIManager()->GetLayer("StatsLayer")->GetVisible();
+    bool Stats = UIManager::GetSingletonPtr()->GetLayer("StatsLayer")->GetVisible();
     UI::CheckBox* StatsCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(Stats != StatsCheck->IsChecked())
         StatsCheck->ManualCheck(Stats);

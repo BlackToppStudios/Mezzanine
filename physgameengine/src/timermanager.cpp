@@ -47,6 +47,8 @@
 
 namespace phys
 {
+    template<> TimerManager* Singleton<TimerManager>::SingletonPtr = 0;
+
     TimerManager::TimerManager()
     {
         this->Priority = 5;

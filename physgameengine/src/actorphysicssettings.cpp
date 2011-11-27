@@ -354,7 +354,7 @@ namespace phys
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    CollisionShape* Shapeptr = phys::World::GetWorldPointer()->GetCollisionShapeManager()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
+                    CollisionShape* Shapeptr = phys::CollisionShapeManager::GetSingletonPtr()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
                     if(!Shapeptr)
                         { DeSerializeError("Find the correct Collision Shape",this->ActorBasePhysicsSettings::SerializableName()); }
                     this->SetCollisionShape( Shapeptr );
@@ -418,7 +418,7 @@ namespace phys
         }else{
             this->ActorRB->setCollisionShape(Shape->GetBulletShape());
         }
-        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Shape);
+        CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
     }
 
     void ActorRigidPhysicsSettings::SetStickyData(const Whole& MaxNumContacts)
@@ -437,7 +437,7 @@ namespace phys
     {
         if(!StickyContacts)
             return;
-        btDiscreteDynamicsWorld* BulletWorld = World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer();
+        btDiscreteDynamicsWorld* BulletWorld = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
         for( std::vector<Generic6DofConstraint*>::iterator SCit = StickyContacts->StickyConstraints.begin() ; SCit != StickyContacts->StickyConstraints.end() ; ++SCit )
         {
             BulletWorld->removeConstraint((*SCit)->GetConstraintBase());
@@ -706,7 +706,7 @@ namespace phys
             this->ActorRB->updateInertiaTensor();
         }
         this->ActorRB->setCollisionShape(Shape->GetBulletShape());
-        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Shape);
+        CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
     }
 }
 

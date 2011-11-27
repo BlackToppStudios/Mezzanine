@@ -84,7 +84,7 @@ namespace phys
 
     void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
     {
-        Manager = World::GetWorldPointer()->GetGraphicsManager();
+        Manager = GraphicsManager::GetSingletonPtr();
         Settings.RenderWidth = Width;
         Settings.RenderHeight = Height;
         //RenderContext = 0;
@@ -153,7 +153,7 @@ namespace phys
         Opts.insert(Binder->begin(),Binder->end());// */
 
         //#ifdef LINUX
-        //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(World::GetWorldPointer()->GetResourceManager()->GetEngineDataDirectory(),"FileSystem");
+        //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(ResourceManager::GetSingletonPtr()->GetEngineDataDirectory(),"FileSystem");
         //#endif
         OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);//*/
 

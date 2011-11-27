@@ -53,13 +53,13 @@ class CompilerFlagTests : public UnitTestGroup
             if (RunInteractiveTests)
             {
                 TestResult temp;
-                temp = GetTestAnswer( phys::StringCat("Was PHYSDEBUG set to \"", BoolToString(PHYSDEBUG), "\" when this was configured with cmake (or other config tool)? "));
+                temp = GetTestAnswer( phys::StringTool::StringCat("Was PHYSDEBUG set to \"", BoolToString(PHYSDEBUG), "\" when this was configured with cmake (or other config tool)? "));
                 AddTestResult("CompilerFlag::PHYSDEBUG", temp);
 
-                temp = GetTestAnswer( phys::StringCat("Was PHYSXML set to \"", BoolToString(PHYSXML), "\" when this was configured with cmake (or other config tool)? "));
+                temp = GetTestAnswer( phys::StringTool::StringCat("Was PHYSXML set to \"", BoolToString(PHYSXML), "\" when this was configured with cmake (or other config tool)? "));
                 AddTestResult("CompilerFlag::PHYSXML", temp);
 
-                temp = GetTestAnswer( phys::StringCat("Was PHYSPROFILE set to \"", BoolToString(PHYSPROFILE), "\" when this was configured with cmake (or other config tool)? "));
+                temp = GetTestAnswer( phys::StringTool::StringCat("Was PHYSPROFILE set to \"", BoolToString(PHYSPROFILE), "\" when this was configured with cmake (or other config tool)? "));
                 AddTestResult("CompilerFlag::PHYSPROFILE", temp);
 
             }else{

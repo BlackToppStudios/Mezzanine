@@ -78,14 +78,14 @@ namespace phys{
           ActorType(ActorBase::Actorbase)
     {
         //this->GameWorld = World::GetWorldPointer();
-        this->GraphicsNode = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
-        this->ActorWorldNode = new WorldNode(GraphicsNode,World::GetWorldPointer()->GetSceneManager());
+        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        this->ActorWorldNode = new WorldNode(GraphicsNode,SceneManager::GetSingletonPtr());
     }
 
     ActorBase::~ActorBase()
     {
-        PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
-        SceneManager* SceneMan = World::GetWorldPointer()->GetSceneManager();
+        PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+        SceneManager* SceneMan = SceneManager::GetSingletonPtr();
 
         DetachFromGraphics();
         delete MotionState;
@@ -378,7 +378,7 @@ namespace phys{
         }
 
         // if actor node is in scenemanager just save a name
-        if( World::GetWorldPointer()->GetSceneManager(0)->GetNode( this->ActorWorldNode->GetName() ) )
+        if( SceneManager::GetSingletonPtr()->GetNode( this->ActorWorldNode->GetName() ) )
         {
             xml::Attribute ActorWorldNode = ActorNode.AppendAttribute("WorldNode");
             if(!ActorWorldNode.SetValue(this->ActorWorldNode->GetName()))
@@ -433,7 +433,7 @@ namespace phys{
                 }
 
                 if( 0!=OneNode.GetAttribute("SoundSet") && ""!=OneNode.GetAttribute("SoundSet").AsString())
-                    { this->ActorSounds = World::GetWorldPointer()->GetAudioManager()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
+                    { this->ActorSounds = AudioManager::GetSingletonPtr()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
                 else
                     { this->ActorSounds = 0; }
 
@@ -443,15 +443,15 @@ namespace phys{
                     xml::Node ActorWorldNode = OneNode.GetChild("WorldNode");                               // Assumption made base on old style serialization
                     if(!ActorWorldNode)
                         { DeSerializeError("locate ActorWorldNode node",SerializableName()); }
-                    if (0!=this->ActorWorldNode && !World::GetWorldPointer()->GetSceneManager(0)->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+                    if (0!=this->ActorWorldNode && !SceneManager::GetSingletonPtr()->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
                         { delete this->ActorWorldNode; }
                     this->ActorWorldNode = new WorldNode(ActorWorldNode.GetAttribute("Name").AsString(),0);
                     ActorWorldNode >> *(this->ActorWorldNode);                                              // Deserialized with old style serialization
                 }else{
-                    WorldNode *TempWorldNode = World::GetWorldPointer()->GetSceneManager(0)->GetNode(OneNode.GetAttribute("WorldNode").AsString());
+                    WorldNode *TempWorldNode = SceneManager::GetSingletonPtr()->GetNode(OneNode.GetAttribute("WorldNode").AsString());
                     if( TempWorldNode == this->ActorWorldNode )
                         { return; }                                                                         //This already has the correct node we are done
-                    if (0!=this->ActorWorldNode && !World::GetWorldPointer()->GetSceneManager(0)->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+                    if (0!=this->ActorWorldNode && !SceneManager::GetSingletonPtr()->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
                         { delete this->ActorWorldNode; }
                     this->ActorWorldNode = TempWorldNode;                                                   // The old node has bee cleaned up and the new node is in place
                     if (0==this->ActorWorldNode)

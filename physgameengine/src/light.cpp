@@ -289,7 +289,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
             Ev.SetSpotlightInnerAngle(OneNode.GetAttribute("SpotlightInnerAngle").AsReal());
             Ev.SetSpotlightOuterAngle(OneNode.GetAttribute("SpotlightOuterAngle").AsReal());
             Ev.SetSpotlightFalloff(OneNode.GetAttribute("SpotlightFalloff").AsReal());
-            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            phys::WorldNode * AttachPtr = phys::SceneManager::GetSingletonPtr()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
                 { AttachPtr->AttachObject(&Ev); }
 
