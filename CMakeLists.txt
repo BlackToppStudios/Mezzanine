@@ -52,8 +52,11 @@
 #	Phys_Debug	 		- True if The Engine will be compile with Debug Symbols and without compiler optimization, False and it will be optimized and omit debug symbols.
 #	Phys_Lua			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #	Phys_Profile			- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking.
+#	Phys_Network			- Enable or disable networking support
 #	Phys_XML			- True if the engine will be compiled with XML support. This includes support for serialization
 #
+#	Phys_OgreBuildDir		- The location of the Ogre source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
+#	Phys_SDLBuildDir		- The location of the SDL source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
 #	Phys_UseOgreDebug		- True if the developer wants to the use the ogre debug libraries, this adjusts a number of other files that child cmake scripts can use.
 #	Phys_UseOgreVersion		- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
 #
@@ -137,10 +140,10 @@ endif(${Phys_XML})
 # Check For the Phys_Network option and set values accordingly
 option(Phys_Network "Enable Networking support." ON)
 if(${Phys_Network})
-	message ("${PROJECT_NAME} - Enabling Network subsystem, and setting PHYSNETWORK")
+	message ( STATUS "${PROJECT_NAME} - Enabling Network subsystem, and setting PHYSNETWORK")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSNETWORK=1")
 else(${Phys_Network})
-	message ("${PROJECT_NAME} - Disabling Network subsystem, and unsetting PHYSNETWORK")
+	message ( STATUS "${PROJECT_NAME} - Disabling Network subsystem, and unsetting PHYSNETWORK")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSNETWORK=0")
 endif(${Phys_Network})
 
@@ -179,6 +182,7 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 #######################################
 # Physgame
+set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR}/)
 set(PhysgameLibFileName ${LibPrefix}physgame${LibSuffix})
 set(PhysgameLinkName "physgame")
 
@@ -186,20 +190,32 @@ if(${WIN32})
 	set(PhysgameLinkName lib${PhysgameLinkName}.dll.a)
 endif(${WIN32})
 
-#check physgameengine folder
-#check ../../* folders
-#Set it blank
-
-# if(IS_DIRECTORY directory-name)
-
-#message([STATUS|WARNING|AUTHOR_WARNING|FATAL_ERROR|SEND_ERROR] "message to display" ...)
-
-set(Phys_PrereqsBuildDir "" CACHE FILEPATH "Where were SDL and Ogre built, if not together, then set to blank")
-
-
 #######################################
 # SDL related values
-set(Phys_SDLIncludeDir "" CACHE FILEPATH "Which SDL headers to Use")
+
+#Find the SDL source
+file(GLOB PossibleMatches ${ProjectRootDir}physgameengine/libincludes/*/sdlsrc/SDLBuild ${ProjectRootDir}physgameengine/SDLBuild ${ProjectRootDir}../*/SDLBuild)
+foreach(Current ${PossibleMatches})
+	if(IS_DIRECTORY ${Current})
+		set(SDLTempDir ${Current})
+	else(IS_DIRECTORY ${Current})
+		message( STATUS "Found something similar to SDL build directory, not using: ${Current}")
+	endif(IS_DIRECTORY ${Current})
+endforeach(Current ${PossibleMatches})
+
+set(TempDirDefined 0)
+if(DEFINED SDLTempDir)
+	set(TempDirDefined 1)
+endif(DEFINED SDLTempDir)
+
+set(Phys_SDLBuildDir ${SDLTempDir} CACHE FILEPATH "Where were SDL was built")
+
+if(${TempDirDefined} EQUAL 0)
+	message( SEND_ERROR "Could not find SDL source, please provide path in Phys_SDLBuildDir")
+else(${TempDirDefined} EQUAL 0)
+	message( STATUS "Found SDL build directory. Using: ${SDLTempDir}")
+	mark_as_advanced(Phys_SDLBuildDir)
+endif(${TempDirDefined} EQUAL 0)
 
 #######################################
 # Ogre related values
@@ -224,6 +240,33 @@ set(OgrePluginCGPM Plugin_CgProgramManager${OgresD}${LibSuffix} )
 set(OgrePluginRenderGL RenderSystem_GL${OgresD}${LibSuffix} )
 set(OgrePluginParticle Plugin_ParticleFX${OgresD}${LibSuffix} )
 
+#Find the Ogre source
+if(${WIN32})
+else(${WIN32})
+	file(GLOB PossibleMatches ${ProjectRootDir}physgameengine/libincludes/*/ogresrc/OgreBuild ${ProjectRootDir}physgameengine/OgreBuild ${ProjectRootDir}../*/OgreBuild)
+	foreach(Current ${PossibleMatches})
+		if(IS_DIRECTORY ${Current})
+			set(OgreTempDir ${Current})
+		else(IS_DIRECTORY ${Current})
+			message( STATUS "Found something similar to Ogre build directory, not using: ${Current}")
+		endif(IS_DIRECTORY ${Current})
+	endforeach(Current ${PossibleMatches})
+
+	set(TempDirDefined 0)
+	if(DEFINED OgreTempDir)
+		set(TempDirDefined 1)
+	endif(DEFINED OgreTempDir)
+
+	set(Phys_OgreBuildDir ${OgreTempDir} CACHE FILEPATH "Where were Ogre was built")
+
+	if(${TempDirDefined} EQUAL 0)
+		message( SEND_ERROR "Could not find SDL source, please provide path in Phys_OgreBuildDir")
+	else(${TempDirDefined} EQUAL 0)
+		message( STATUS "Found Ogre build directory. Using: ${OgreTempDir}")
+		mark_as_advanced(Phys_OgreBuildDir)
+	endif(${TempDirDefined} EQUAL 0)
+endif(${WIN32})
+
 #######################################
 # Network Library Define
 
@@ -233,9 +276,7 @@ if(${Phys_Network})
 	endif(${WIN32})
 endif(${Phys_Network})
 
-###############################################################################
-# Additional Variables
-set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR})
+
 
 
 ###############################################################################
@@ -247,6 +288,6 @@ add_subdirectory (UnitTests)
 
 ###############################################################################
 # Hide Variables not directly related to the Physgame Engine
-mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY Phys_SDLIncludeDir)
+mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY )
 
 

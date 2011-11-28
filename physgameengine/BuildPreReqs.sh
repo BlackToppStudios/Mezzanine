@@ -177,32 +177,27 @@ fi
 SDLOutputDir="$OutputDir/SDLBuild"
 SDLCompileDir="$OutputDir/SDLBuild/SDL"
 SDLRelOutputDir=".."
-echo "Preparing to SDL source Files in: \"$SDLOutputDir\""
+echo "Preparing SDL source Files in: \"$SDLOutputDir\""
 cd $WorkingDir
 mkdir -p $SDLOutputDir
 cp -a libincludes/common/sdlsrc/SDL/ $SDLOutputDir/
 
+cd $SDLCompileDir
 
 if [ 0 -eq $MinGW32 ]		# Do not run autogen.sh when using MinGW
 then
 	echo "Running ./autogen.sh and putting output in: $SDLOutputDir/Autogenlog.txt"
-	touch $SDLOutputDir/Autogenlog.txt
-	cd $SDLCompileDir
 	./autogen.sh > $SDLRelOutputDir/Autogenlog.txt
-	cd $WorkingDir
 fi
 
 echo "Configuring SDL, putting log in: $SDLOutputDir/Configurelog.txt"
-cd $SDLCompileDir
 ./configure $LDfPIC CFLAGS="-O2 $DebugSymbols $fPIC"  > $SDLRelOutputDir/Configurelog.txt
-cd $WorkingDir
 
 echo "Compiling SDL, putting logs in: $SDLOutputDir/Compilelog.txt"
-cd $SDLCompileDir
 make -j$ThreadCount > $SDLRelOutputDir/Compilelog.txt
-cd $WorkingDir
 
-echo "Putting Compiled binaries in: $WorkingDir/$BinaryRecievingDir/sdl/"
+cd $WorkingDir
+echo "Putting Compiled SDL binaries in: $WorkingDir/$BinaryRecievingDir/sdl/"
 cp -a $SDLCompileDir/build/.libs/libSDL.a $WorkingDir/$BinaryRecievingDir/sdl/
 
 if [ 1 -eq $MinGW32 ]		# Do not run autogen.sh when using MinGW
@@ -211,7 +206,6 @@ then
 	cp -a $SDLCompileDir/build/libSDLmain.a $WorkingDir/$BinaryRecievingDir/sdl/
 fi
 
-exit
 ########################################################
 # Prepare Ogre Library
 CMakeOutput="CodeBlocks - Unix Makefiles"
@@ -219,13 +213,44 @@ OgreDepsLocation=""
 CmakeMinGWPATH=""
 OriginalPATH=$PATH
 
+OgreOutputDir="$OutputDir/OgreBuild"
+OgreCompileDir="$OutputDir/OgreBuild/ogre"
+OgreRelOutputDir=".."
+
 if [ 1 -eq $MinGW32 ]
 then
 	CMakeOutput="CodeBlocks - MinGW Makefiles"
 	OgreDepsLocation="-DOGRE_DEPENDENCIES_DIR=../ogredepsbuild"
+	exit	#this needs to stay until the ogre build is somehow in the unified build system
 fi
 
-cd ogresrc
+echo "Preparing Ogre source Files in: \"$OgreOutputDir\""
+cd $WorkingDir
+mkdir -p $OgreOutputDir
+cp -a libincludes/common/ogresrc/ogre/ $OgreOutputDir/
+
+cd $OgreCompileDir
+
+echo "Configuring Ogre3d, putting output in: $OgreOutputDir/Configurelog.txt"
+cmake -G"$CMakeOutput" $DebugCMake -DOGRE_STATIC=false $OgreDepsLocation > ../Configurelog.txt
+
+echo "Compiling Ogre3d, OgreMain, putting output in: $OgreOutputDir/Compilelog-OgreMain.txt"
+make -j$ThreadCount OgreMain > $OgreRelOutputDir/Compilelog-OgreMain.txt
+
+echo "Compiling Ogre3d, RenderSystem_GL, putting output in: $OgreOutputDir/Compilelog-RenderSystem_GL.txt"
+make -j$ThreadCount RenderSystem_GL > $OgreRelOutputDir/Compilelog-RenderSystem_GL.txt
+
+echo "Compiling Ogre3d, Plugin_CgProgramManager, putting output in: $OgreOutputDir/Compilelog-Plugin_CgProgramManager.txt"
+make -j$ThreadCount Plugin_CgProgramManager > $OgreRelOutputDir/Compilelog-Plugin_CgProgramManager.txt
+
+echo "Compiling Ogre3d, Plugin_ParticleFX, putting output in: $OgreOutputDir/Compilelog-Plugin_ParticleFX.txt"
+make -j$ThreadCount Plugin_ParticleFX > $OgreRelOutputDir/Compilelog-Plugin_ParticleFX.txt
+
+cd $WorkingDir
+echo "Putting Compiled Ogre binaries in: $WorkingDir/$BinaryRecievingDir/ogre/"
+cp -a $OgreCompileDir/lib/* $WorkingDir/$BinaryRecievingDir/ogre/
+
+exit
 
 #if [ 1 -eq $MinGW32 ]		#MinGW does not work well with a cluttered $PATH
 #then
@@ -259,22 +284,4 @@ cd ogresrc
 #	make
 #	cd ..
 #fi
-
-if [ 1 -eq $Linux ]
-then
-	echo "Preparing to Compile Ogre3d"
-	cp -a ogre ogrebuild
-	cd ogrebuild
-	echo "Configuring Ogre3d"
-	cmake -G"$CMakeOutput" $DebugCMake -DOGRE_STATIC=false $OgreDepsLocation
-#	cmake -G"CodeBlocks - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DOGRE_STATIC=false
-	echo "Compiling Ogre3d"
-
-
-	make -j$ThreadCount OgreMain
-	make -j$ThreadCount RenderSystem_GL
-	make -j$ThreadCount Plugin_CgProgramManager
-	make -j$ThreadCount Plugin_ParticleFX
-fi
-
 

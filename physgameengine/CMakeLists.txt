@@ -403,21 +403,12 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 	set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
 
-	#this copies the files compiled by ./BuildLinuxLibs and puts them where they are expected by the normal build process
-	file( COPY 
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/${OgreLibFileName}"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/${OgreLinuxSoName}"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/RenderSystem_GL${OgresD}.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/Plugin_ParticleFX${OgresD}.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/Plugin_CgProgramManager${OgresD}.so"
-		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
-	)
-
-	include_directories(				
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include"	#Cannot include in common until all platforms compile Ogre from source
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include"
-	)
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
+	include_directories(
+		${Phys_OgreBuildDir}/ogre/OgreMain/include/
+		${Phys_OgreBuildDir}/ogre/include/
+	)
+	message (${Phys_OgreBuildDir}/ogre/OgreMain/include/)
 
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -465,6 +456,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
+	${Phys_SDLBuildDir}/SDL/include/
 )
 
 link_directories(

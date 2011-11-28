@@ -138,7 +138,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${physgame_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
-	"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
+	"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
 )
 
 if(${WIN32})
@@ -158,8 +158,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 	#message( STATUS "${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
 	include_directories(
-		"${physgame_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include/"
-		"${physgame_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include/"
+		${Phys_OgreBuildDir}/ogre/OgreMain/include/
+		${Phys_OgreBuildDir}/ogre/include/
 	)
 
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
@@ -167,7 +167,6 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
-
 
 	include_directories(
 		${${PROJECT_NAME}_ROOT_DIR}/libincludes/common/sdlsrc/SDL/include
