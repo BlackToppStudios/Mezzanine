@@ -41,7 +41,6 @@
 #ifndef _exception_h
 #define _exception_h
 
-#include "crossplatformexport.h"
 #include "datatypes.h"
 
 #include <exception>

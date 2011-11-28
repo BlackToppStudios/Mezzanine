@@ -369,7 +369,7 @@ namespace phys
                     EnterPressed = true;
                     continue;
                 }else{
-                    EditCache+=StringTool::ConvertInputCodeToString(Current,false);
+                    EditCache+=StringTool::ConvertToString(Current,false);
                 }
             }
             if(EnterPressed)

@@ -42,6 +42,7 @@
 
 #include "collisionshape.h"
 #include "collisionshapemanager.h"
+#include "stringtool.h"
 #include "serialization.h"
 #include "world.h"
 
@@ -340,7 +341,7 @@ namespace phys
             btCollisionShape* CurrChild = GetBulletCompoundShape()->getChildShape(X);
             CollisionShape* CreatedShape = CreateShape(BulletSapeTypeToShapeType(CurrChild->getShapeType()), this->Name+"Child"+ToString(X), CurrChild);
             ChildShapes.push_back(CreatedShape);
-            World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(CreatedShape);
+            CollisionShapeManager::GetSingletonPtr()->StoreShape(CreatedShape);
         }
     }
 
@@ -360,7 +361,7 @@ namespace phys
         btTransform ChildTrans(ChildRotation.GetBulletQuaternion(),ChildLocation.GetBulletVector3());
         GetBulletCompoundShape()->addChildShape(ChildTrans,Child->GetBulletShape());
         ChildShapes.push_back(Child);
-        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Child);
+        CollisionShapeManager::GetSingletonPtr()->StoreShape(Child);
     }
 
     void CompoundCollisionShape::AddChildShape(CollisionShape* Child, const Vector3& ChildLocation)
@@ -370,14 +371,14 @@ namespace phys
         ChildTrans.setOrigin(ChildLocation.GetBulletVector3());
         GetBulletCompoundShape()->addChildShape(ChildTrans,Child->GetBulletShape());
         ChildShapes.push_back(Child);
-        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Child);
+        CollisionShapeManager::GetSingletonPtr()->StoreShape(Child);
     }
 
     void CompoundCollisionShape::AddChildShape(CollisionShape* Child, const Transform& ChildLocation)
     {
         GetBulletCompoundShape()->addChildShape(ChildLocation.GetBulletTransform(),Child->GetBulletShape());
         ChildShapes.push_back(Child);
-        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Child);
+        CollisionShapeManager::GetSingletonPtr()->StoreShape(Child);
     }
 
     Whole CompoundCollisionShape::GetNumChildren() const
@@ -471,7 +472,7 @@ namespace phys
                     {
                         xml::Attribute OneName = ChildNode.GetAttribute("Name");
                         if(!OneName) { DeSerializeError("find Name Attribute on ChildShapeFromManager Node",this->CompoundCollisionShape::SerializableName()); }
-                        CollisionShape* CurrentShape = World::GetWorldPointer()->GetCollisionShapeManager()->GetShape(OneName.AsString());
+                        CollisionShape* CurrentShape = CollisionShapeManager::GetSingletonPtr()->GetShape(OneName.AsString());
                         if(!CurrentShape) { DeSerializeError("find correct shape in CollisionShape Manager",this->CompoundCollisionShape::SerializableName()); }
                         ChildShapes.push_back(CurrentShape);
                     }else{
@@ -1801,7 +1802,7 @@ namespace phys
         if(!Doc->Load(OneTag.c_str()))
         {
             delete Doc;
-            World::GetWorldPointer()->LogAndThrow(StringCat("Could not Deserialize XML Stream which should contain a Collision Shape, XML looked Like: ", OneTag) );
+            World::GetWorldPointer()->LogAndThrow(StringTool::StringCat("Could not Deserialize XML Stream which should contain a Collision Shape, XML looked Like: ", OneTag) );
         }
 
         CollisionShape* Results = ProtoDeSerialize(Doc->GetFirstChild());

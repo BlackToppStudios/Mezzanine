@@ -134,7 +134,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("BoxCollisionShape::operator<< (Case2)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject1RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
+                    TestObject1RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
                     if (TestObject1RS)
                         { Case1StreamRS << *TestObject1RS; }
                     if ( TestCase1Target == Case1StreamRS.str())
@@ -142,7 +142,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("BoxCollisionShape::operator>> (Case1)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject2RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
+                    TestObject2RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
                     if (TestObject2RS)
                         { Case2StreamRS << *TestObject2RS; }
                     if ( TestCase2Target == Case2StreamRS.str())
@@ -183,7 +183,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("CapsuleCollisionShape::operator<< (Case2)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject1RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
+                    TestObject1RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
                     if (TestObject1RS)
                         { Case1StreamRS << *TestObject1RS; }
                     if ( TestCase1Target == Case1StreamRS.str())
@@ -191,7 +191,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("CapsuleCollisionShape::operator>> (Case1)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject2RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
+                    TestObject2RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
                     if (TestObject2RS)
                         { Case2StreamRS << *TestObject2RS; }
                     if ( TestCase2Target == Case2StreamRS.str())
@@ -232,7 +232,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("ConeCollisionShape::operator<< (Case2)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject1RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
+                    TestObject1RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
                     if (TestObject1RS)
                         { Case1StreamRS << *TestObject1RS; }
                     if ( TestCase1Target == Case1StreamRS.str())
@@ -240,7 +240,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("ConeCollisionShape::operator>> (Case1)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject2RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
+                    TestObject2RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
                     if (TestObject2RS)
                         { Case2StreamRS << *TestObject2RS; }
                     if ( TestCase2Target == Case2StreamRS.str())
@@ -297,7 +297,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("ConvexHullCollisionShape::operator<< (Case2)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject1RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
+                    TestObject1RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
                     if (TestObject1RS)
                         { Case1StreamRS << *TestObject1RS; }
                     if ( TestCase1Target == Case1StreamRS.str())
@@ -305,7 +305,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("ConvexHullCollisionShape::operator>> (Case1)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject2RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
+                    TestObject2RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
                     if (TestObject2RS)
                         { Case2StreamRS << *TestObject2RS; }
                     if ( TestCase2Target == Case2StreamRS.str())
@@ -346,7 +346,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("CylinderCollisionShape::operator<< (Case2)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject1RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
+                    TestObject1RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
                     if (TestObject1RS)
                         { Case1StreamRS << *TestObject1RS; }
                     if ( TestCase1Target == Case1StreamRS.str())
@@ -354,7 +354,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("CylinderCollisionShape::operator>> (Case1)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject2RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
+                    TestObject2RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
                     if (TestObject2RS)
                         { Case2StreamRS << *TestObject2RS; }
                     if ( TestCase2Target == Case2StreamRS.str())
@@ -425,7 +425,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("MultiSphereCollisionShape::operator<< (Case2)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject1RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
+                    TestObject1RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
                     if (TestObject1RS)
                         { Case1StreamRS << *TestObject1RS; }
                     if ( TestCase1Target == Case1StreamRS.str())
@@ -433,7 +433,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("MultiSphereCollisionShape::operator>> (Case1)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject2RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
+                    TestObject2RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
                     if (TestObject2RS)
                         { Case2StreamRS << *TestObject2RS; }
                     if ( TestCase2Target == Case2StreamRS.str())
@@ -475,7 +475,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("SphereCollisionShape::operator<< (Case2)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject1RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
+                    TestObject1RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case1Stream);
                     if (TestObject1RS)
                         { Case1StreamRS << *TestObject1RS; }
                     if ( TestCase1Target == Case1StreamRS.str())
@@ -483,7 +483,7 @@ class CollisionShapeTests : public UnitTestGroup
                     else
                         { AddTestResult("SphereCollisionShape::operator>> (Case1)", Failed, UnitTestGroup::OverWrite); }
 
-                    TestObject2RS = World::GetWorldPointer()->GetCollisionShapeManager()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
+                    TestObject2RS = CollisionShapeManager::GetSingletonPtr()->ShapeDeserializer.DeSerializeAndRetrieve(Case2Stream);
                     if (TestObject2RS)
                         { Case2StreamRS << *TestObject2RS; }
                     if ( TestCase2Target == Case2StreamRS.str())

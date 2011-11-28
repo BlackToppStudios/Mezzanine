@@ -43,6 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "managerbase.h"
+#include "singleton.h"
 
 #include <vector>
 #include <map>
@@ -71,7 +72,7 @@ namespace phys
     /// @details This is a place for loading, storing, and running sound files as
     /// necessary in a given game.
     ///////////////////////////////////////////////////////////////////////////////
-    class PHYS_LIB AudioManager : public ManagerBase
+    class PHYS_LIB AudioManager : public ManagerBase, public Singleton<AudioManager>
     {
         protected:
             cAudio::IAudioManager* cAudioManager;
@@ -133,7 +134,7 @@ namespace phys
             virtual Audio::Sound* GetSoundByName(const String& SoundName) const;
             /// @brief Deletes a Sound.
             /// @param SoundName A pointer to the Sound you want deleted.
-            virtual void DestroySound(Audio::Sound* SoundName);
+            virtual void DestroySound(Audio::Sound* ToBeDestroyed);
             /// @brief Deletes all stored sounds.
             virtual void DestroyAllSounds();
 

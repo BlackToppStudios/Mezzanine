@@ -43,6 +43,7 @@
 #include "constraint.h"
 #include "actormanager.h"
 #include "actorrigid.h"
+#include "stringtool.h"
 #include "serialization.h"
 #include "world.h"
 
@@ -180,7 +181,7 @@ namespace phys
         for(AxisList::iterator AxisIter=AllAxis.begin(); AllAxis.end()!=AxisIter; ++AxisIter)
         {
             xml::Node OneAxisNode;
-            CurrentAxisName = String(StringCat("Axis",ToString(*AxisIter)));                        // Should result in "Axis-1", "Axis0", "Axis1" ...
+            CurrentAxisName = String(StringTool::StringCat("Axis",ToString(*AxisIter)));                        // Should result in "Axis-1", "Axis0", "Axis1" ...
             ParamList AxisParams = ValidParamOnAxis(*AxisIter);
             for(ParamList::iterator ParamIter=AxisParams.begin(); AxisParams.end()!=ParamIter; ++ParamIter)
             {
@@ -190,12 +191,12 @@ namespace phys
                     {
                         OneAxisNode = TypedConstraintNode.AppendChild(CurrentAxisName);
                         if (!OneAxisNode)
-                            { SerializeError( StringCat("Create ", CurrentAxisName ," Node"), SerializableName()); }
+                            { SerializeError( StringTool::StringCat("Create ", CurrentAxisName ," Node"), SerializableName()); }
                     }
 
                     xml::Attribute CurrenParamAttribute = OneAxisNode.AppendAttribute( ConstraintParamAsString(*ParamIter) );
                     if (!CurrenParamAttribute)
-                        { SerializeError( StringCat("Create ", ConstraintParamAsString(*ParamIter), " Attribute in ", CurrentAxisName ," Node"), SerializableName()); }
+                        { SerializeError( StringTool::StringCat("Create ", ConstraintParamAsString(*ParamIter), " Attribute in ", CurrentAxisName ," Node"), SerializableName()); }
                     CurrenParamAttribute.SetValue( this->GetParam(*ParamIter,*AxisIter));
                 }
             }
@@ -234,13 +235,13 @@ namespace phys
                 String ActorNameB(OneNode.GetAttribute("ActorNameB").AsString());
                 if (""!=ActorNameA)                                                                                                         //Figure out if the actors are fine
                 {
-                    ActorRigid* FutureA = dynamic_cast<ActorRigid*>(World::GetWorldPointer()->GetActorManager()->GetActor(ActorNameA));     // get ActorA from the Actormanager
+                    ActorRigid* FutureA = dynamic_cast<ActorRigid*>(ActorManager::GetSingletonPtr()->GetActor(ActorNameA));     // get ActorA from the Actormanager
                     if (0==FutureA)
                         { DeSerializeError("find an ActorRigid named "+ActorNameA+" in the ActorManager", SerializableName()); }
 
                     if (""!=ActorNameB)
                     {
-                        ActorRigid* FutureB = dynamic_cast<ActorRigid*>(World::GetWorldPointer()->GetActorManager()->GetActor(ActorNameB)); // get ActorB from the Actormanager
+                        ActorRigid* FutureB = dynamic_cast<ActorRigid*>(ActorManager::GetSingletonPtr()->GetActor(ActorNameB)); // get ActorB from the Actormanager
                         if (0==FutureB)
                             { DeSerializeError("find an ActorRigid named "+ActorNameB+" in the ActorManager", SerializableName()); }
                         this->SetBodies(FutureA,FutureB);

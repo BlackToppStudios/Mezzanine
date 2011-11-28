@@ -57,7 +57,9 @@
 #include "world.h"
 #endif
 
-namespace phys {
+namespace phys
+{
+    template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
 
     ResourceManager::ResourceManager(String _EngineDataPath)
     {
@@ -111,7 +113,7 @@ namespace phys {
         {
             if(ResourceNames->at(X).find(".mesh"))
             {
-                World::GetWorldPointer()->GetMeshManager()->UnloadMesh(ResourceNames->at(X));
+                MeshManager::GetSingletonPtr()->UnloadMesh(ResourceNames->at(X));
             }
         }
         ///

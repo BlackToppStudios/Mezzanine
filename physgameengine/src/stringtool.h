@@ -51,13 +51,82 @@ namespace phys
     /// @brief This is a utility to help perform all kinds of string related tasks.
     /// @details
     ///////////////////////////////////////
-    class StringTool
+    class PHYS_LIB StringTool
     {
         protected:
         public:
+            /// @brief Class constructor.
             StringTool();
+            /// @brief Class destructor.
             ~StringTool();
-            static String ConvertInputCodeToString(const MetaCode::InputCode& Code, bool ShiftPressed);
+            /// @brief Converts an Int8 into a string.
+            /// @param ToConvert The Int8 to be converted.
+            /// @return Returns a string containing the converted input.
+            static String ConvertToString(const Real& ToConvert);
+            /// @brief Converts an Int8 into a string.
+            /// @param ToConvert The Int8 to be converted.
+            /// @return Returns a string containing the converted input.
+            static String ConvertToString(const Int8& ToConvert);
+            /// @brief Converts a UInt8 into a string.
+            /// @param ToConvert The UInt8 to be converted.
+            /// @return Returns a string containing the converted input.
+            static String ConvertToString(const UInt8& ToConvert);
+            /// @brief Converts an Int16 into a string.
+            /// @param ToConvert The Int16 to be converted.
+            /// @return Returns a string containing the converted input.
+            static String ConvertToString(const Int16& ToConvert);
+            /// @brief Converts a UInt16 into a string.
+            /// @param ToConvert The UInt16 to be converted.
+            /// @return Returns a string containing the converted input.
+            static String ConvertToString(const UInt16& ToConvert);
+            /// @brief Converts an Int32 into a string.
+            /// @param ToConvert The Int32 to be converted.
+            /// @return Returns a string containing the converted input.
+            static String ConvertToString(const Int32& ToConvert);
+            /// @brief Converts a UInt32 into a string.
+            /// @param ToConvert The UInt32 to be converted.
+            /// @return Returns a string containing the converted input.
+            static String ConvertToString(const UInt32& ToConvert);
+            /// @brief Converts a MetaCode::InputCode into a string.
+            /// @param Code The input code to be converted.
+            /// @param ShiftPressed Whether or not the shift modifier key has been pressed.
+            /// @return Returns a string(usually with only one character) containing the converted input code.
+            static String ConvertToString(const MetaCode::InputCode& Code, bool ShiftPressed);
+            /// @brief Concatenates 2 Strings
+            /// @param Front The first String
+            /// @param Back The last String
+            /// @return A string containing the other Strings passed attached end to end
+            static String StringCat(const String& Front, const String& Back);
+            /// @brief Concatenates 3 Strings
+            /// @param Front The first String
+            /// @param Middle A String in the middle
+            /// @param Back The last String
+            /// @return A string containing the other Strings passed attached end to end
+            static String StringCat(const String& Front, const String& Middle, const String& Back);
+            /// @brief Concatenates 4 Strings
+            /// @param Front The first String
+            /// @param Middle1 The second string
+            /// @param Middle2 The third string
+            /// @param Back The last String
+            /// @return A string containing the other Strings passed attached end to end
+            static String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back);
+            /// @brief Concatenates 5 Strings
+            /// @param Front The first String
+            /// @param Middle1 The second string
+            /// @param Middle2 The third string
+            /// @param Middle3 The fourth string
+            /// @param Back The last String
+            /// @return A string containing the other Strings passed attached end to end
+            static String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back);
+            /// @brief Concatenates 6 Strings
+            /// @param Front The first String
+            /// @param Middle1 The second string
+            /// @param Middle2 The third string
+            /// @param Middle3 The fourth string
+            /// @param Middle4 The fifth string
+            /// @param Back The last String
+            /// @return A string containing the other Strings passed attached end to end
+            static String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back);
     };//stringtool
 }//phys
 

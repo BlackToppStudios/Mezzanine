@@ -79,6 +79,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}actorcontainervector.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorgraphicssettings.h"
 	"${${PROJECT_NAME}_SRC_DIR}actormanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}actorpair.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorphysicssettings.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorrigid.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorserializer.h"
@@ -97,6 +98,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}camera.h"
 	"${${PROJECT_NAME}_SRC_DIR}cameracontroller.h"
 	"${${PROJECT_NAME}_SRC_DIR}cameramanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}collision.h"
 	"${${PROJECT_NAME}_SRC_DIR}collisionshape.h"
 	"${${PROJECT_NAME}_SRC_DIR}collisionshapemanager.h"
 	"${${PROJECT_NAME}_SRC_DIR}colourvalue.h"
@@ -133,6 +135,12 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}mesh.h"
 	"${${PROJECT_NAME}_SRC_DIR}meshmanager.h"
 	"${${PROJECT_NAME}_SRC_DIR}metacode.h"
+	"${${PROJECT_NAME}_SRC_DIR}network.h"
+	"${${PROJECT_NAME}_SRC_DIR}networkipaddress.h"
+	"${${PROJECT_NAME}_SRC_DIR}networkmanager.h"
+	"${${PROJECT_NAME}_SRC_DIR}networkpacket.h"
+	"${${PROJECT_NAME}_SRC_DIR}networksocket.h"
+	"${${PROJECT_NAME}_SRC_DIR}networksystemaddress.h"
 	"${${PROJECT_NAME}_SRC_DIR}objectreference.h"
 	"${${PROJECT_NAME}_SRC_DIR}particleeffect.h"
 	"${${PROJECT_NAME}_SRC_DIR}physgame.h"
@@ -202,6 +210,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}actorcontainervector.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}actorgraphicssettings.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}actormanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}actorpair.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}actorphysicssettings.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}actorrigid.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}actorserializer.cpp"
@@ -218,12 +227,12 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}camera.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}cameracontroller.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}cameramanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}collision.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}collisionshape.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}collisionshapemanager.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}colourvalue.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}constraint.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}crossplatform.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}datatypes.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}entity.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}eventbase.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}eventcollision.cpp"
@@ -251,6 +260,11 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}mesh.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}meshmanager.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}metacode.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networkipaddress.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networkmanager.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networkpacket.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networksocket.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networksystemaddress.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}particleeffect.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}physicsmanager.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}plane.cpp"
@@ -488,6 +502,7 @@ target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Physgame Depende
 	${Bullet_LibraryNames} 
 	cAudio 
 	${SDL}
+	${NetworkLibrary}
 )
 
 ###############################################################################

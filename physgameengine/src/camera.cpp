@@ -43,6 +43,7 @@
 
 #include "camera.h"
 #include "cameramanager.h"
+#include "stringtool.h"
 #include "exception.h"
 #include "scenemanager.h"
 #include "world.h"
@@ -312,7 +313,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Camera& Ev)
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             Ev.SetCameraType(static_cast<phys::Camera::ProjectionType>(OneNode.GetAttribute("CameraPerspective").AsInt()));
-            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            phys::WorldNode * AttachPtr = phys::SceneManager::GetSingletonPtr()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
                 { AttachPtr->AttachObject(&Ev); }
 
@@ -330,7 +331,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Camera& Ev)
                             Child.GetFirstChild() >> TempQuat;
                             Ev.SetOrientation(TempQuat);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Camera: Includes unknown Element O-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for Camera: Includes unknown Element O-\"",Name,"\"")) );
                         }
                         break;
                     case 'L':   //Location
@@ -339,7 +340,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Camera& Ev)
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetLocation(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Camera: Includes unknown Element L-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for Camera: Includes unknown Element L-\"",Name,"\"")) );
                         }
                         break;
                     case 'F':   //FixedYawAxis
@@ -350,11 +351,11 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Camera& Ev)
                         }else if(Name==phys::String("FixedYawAxis")){
                             Ev.SetFixedYawAxis(false);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Camera: Includes unknown Element F-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for Camera: Includes unknown Element F-\"",Name,"\"")) );
                         }
                         break;
                     default:
-                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for Camera: Includes unknown Element default-\"",Name,"\"")) );
+                        throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for Camera: Includes unknown Element default-\"",Name,"\"")) );
                         break;
                 }
             }
@@ -363,7 +364,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Camera& Ev)
             throw( phys::Exception("Incompatible XML Version for Camera: Not Version 1"));
         }
     }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a Camera, found a ", OneNode.Name())));
+        throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a Camera, found a ", OneNode.Name())));
     }
 }
 #endif // \PHYSXML

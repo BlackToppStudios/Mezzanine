@@ -42,6 +42,7 @@
 
 #include "colourvalue.h"
 #include "managerbase.h"
+#include "singleton.h"
 #include "quaternion.h"
 #include "vector3.h"
 #include "xml.h"
@@ -73,7 +74,7 @@ namespace phys
     /// @details This class contains functions that allow the manipulation of lighting, skyboxes, internal
     /// scenemanager types, and more.
     ///////////////////////////////////////
-    class PHYS_LIB SceneManager : public ManagerBase
+    class PHYS_LIB SceneManager : public ManagerBase, public Singleton<SceneManager>
     {
         public:
             /// @brief Needs to be documented.

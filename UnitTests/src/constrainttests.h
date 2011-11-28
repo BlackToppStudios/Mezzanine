@@ -115,19 +115,19 @@ class ConstraintTests : public UnitTestGroup
                 // Make minimal set for constraint
                 String groupname ("Group1");
                 String filerobot ("robot.mesh");
-                TheWorld->GetResourceManager()->AddResourceLocation("data/common", "FileSystem", groupname, false);
-                CollisionShape* RobotShape = TheWorld->GetCollisionShapeManager()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname);
+                ResourceManager::GetSingletonPtr()->AddResourceLocation("data/common", "FileSystem", groupname, false);
+                CollisionShape* RobotShape = CollisionShapeManager::GetSingletonPtr()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname);
 
                 ActorRigid *ActorA = new ActorRigid (20.0,"RobotA",filerobot,groupname);
                 ActorA->GetPhysicsSettings();//->SetCollisionShape();
                 ActorA->GetPhysicsSettings()->SetCollisionShape(RobotShape);
                 ActorA->SetLocation(Vector3(100,0,0));
-                TheWorld->GetActorManager()->AddActor(ActorA);
+                ActorManager::GetSingletonPtr()->AddActor(ActorA);
 
                 ActorRigid *ActorB = new ActorRigid (20.0,"RobotB",filerobot,groupname);
                 ActorB->GetPhysicsSettings()->SetCollisionShape(RobotShape);
                 ActorB->SetLocation(Vector3(110,0,0));
-                TheWorld->GetActorManager()->AddActor(ActorB);
+                ActorManager::GetSingletonPtr()->AddActor(ActorB);
 
 
 

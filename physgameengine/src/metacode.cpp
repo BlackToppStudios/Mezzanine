@@ -48,6 +48,7 @@
 
 #include "exception.h"
 #include "metacode.h"
+#include "stringtool.h"
 
 #include <assert.h>
 #include <ostream>
@@ -305,10 +306,10 @@ namespace phys
                 SetCode(OneNode.GetAttribute("Code").AsInt());
                 MetaValue=OneNode.GetAttribute("MetaValue").AsInt();
             }else{
-                throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
             }
         }else{
-            throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+            throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
         }
     }
 

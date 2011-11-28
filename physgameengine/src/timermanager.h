@@ -41,6 +41,7 @@
 #define _timermanager_h
 
 #include "managerbase.h"
+#include "singleton.h"
 #include "datatypes.h"
 #include "timer.h"
 
@@ -59,7 +60,7 @@ namespace phys
     /// @brief A manager responsible for the updating of all timers in use by this engine.
     /// @details
     ///////////////////////////////////////
-    class TimerManager : public ManagerBase
+    class TimerManager : public ManagerBase, public Singleton<TimerManager>
     {
         protected:
             std::vector<Timer*> Timers;

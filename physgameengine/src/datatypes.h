@@ -59,6 +59,42 @@ namespace phys
     // Datatypes
     ///////////////////////////////////////
 
+    // "fixed-width" types from SFML
+    /// @todo Verify that these "fixed-width" type-defs work on mobiles and tablets.
+    /// @typedef Int8
+    /// @brief An 8-bit integer.
+    typedef signed char Int8;
+    /// @typedef UInt8
+    /// @brief An 8-bit unsigned integer.
+    typedef unsigned char UInt8;
+    /// @typedef Int16
+    /// @brief An 16-bit integer.
+    typedef signed short Int16;
+    /// @typedef UInt16
+    /// @brief An 16-bit unsigned integer.
+    typedef unsigned short UInt16;
+    /// @typedef Int32
+    /// @brief An 32-bit integer.
+    typedef signed long Int32;
+    /// @typedef UInt32
+    /// @brief An 32-bit unsigned integer.
+    typedef unsigned long UInt32;
+    #if defined(_MSC_VER)
+    /// @typedef Int64
+    /// @brief An 64-bit integer.
+    typedef signed __int64 Int64;
+    /// @typedef UInt64
+    /// @brief An 64-bit unsigned integer.
+    typedef unsigned __int64 UInt64;
+    #else
+    /// @typedef Int64
+    /// @brief An 64-bit integer.
+    typedef signed long long Int64;
+    /// @typedef UInt64
+    /// @brief An 64-bit unsigned integer.
+    typedef unsigned long long UInt64;
+    #endif
+
     /// @typedef Real
     /// @brief A Datatype used to represent a real floating point number
     /// @details This Datatype is currently a typedef to a float, This is to match
@@ -85,6 +121,11 @@ namespace phys
     /// @details This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is
     /// changed, The Character typedef should be adjusted accordingly.
     typedef std::string String;
+
+    /// @typedef String16
+    /// @brief A wide version of the String typedef.
+    /// @details Wide strings are seldom used, but often come in handy when dealing with Unicode strings.
+    typedef std::wstring WideString;
 
     /// @typedef ConstString
     /// @brief A Datatype used to a series of imutable characters
@@ -210,49 +251,6 @@ namespace phys
         Converter >> Results;
         return Results;
     }
-
-    /// @brief Concatenates 2 Strings
-    /// @param Front The first String
-    /// @param Back The last String
-    /// @return A string containing the other Strings passed attached end to end
-    String PHYS_LIB StringCat(const String& Front, const String& Back);
-
-    /// @brief Concatenates 3 Strings
-    /// @param Front The first String
-    /// @param Middle A String in the middle
-    /// @param Back The last String
-    /// @return A string containing the other Strings passed attached end to end
-    String PHYS_LIB StringCat(const String& Front, const String& Middle, const String& Back);
-
-    /// @brief Concatenates 4 Strings
-    /// @param Front The first String
-    /// @param Middle1 The second string
-    /// @param Middle2 The third string
-    /// @param Back The last String
-    /// @return A string containing the other Strings passed attached end to end
-    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back);
-
-    /// @brief Concatenates 5 Strings
-    /// @param Front The first String
-    /// @param Middle1 The second string
-    /// @param Middle2 The third string
-    /// @param Middle3 The fourth string
-    /// @param Back The last String
-    /// @return A string containing the other Strings passed attached end to end
-    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back);
-
-    /// @brief Concatenates 6 Strings
-    /// @param Front The first String
-    /// @param Middle1 The second string
-    /// @param Middle2 The third string
-    /// @param Middle3 The fourth string
-    /// @param Middle4 The fifth string
-    /// @param Back The last String
-    /// @return A string containing the other Strings passed attached end to end
-    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back);
-
-
-
 } // \phys
 
 #endif

@@ -40,43 +40,26 @@
 #ifndef eventcollision_h
 #define eventcollision_h
 
-#include "actorbase.h"
-#include "crossplatformexport.h"
-#include "datatypes.h"
 #include "eventbase.h"
 #include "xml.h"
 #include "vector3.h"
 
-class btPersistentManifold;
-
 namespace phys {
+    class ActorBase;
+    class Collision;
     class CollisionDispatcher;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class EventCollision
     /// @headerfile eventcollision.h
     /// @brief This is an event class used to track collsions in the physics world.
-    /// @details This class will be used for tracking collisions in the physics world and will keep track of basic data related to the collision.
-    /// This class stores the information in the form of contact points.  Often when a collision occurs there will be more then one place where
-    /// the collision occured, this is a contact point.  Internally collisions only store up to a maximum of 4 contact points.  When querying for
-    /// collision information, you have to provide the desired contact point index, and it must be valid.  If the requested index isn't valid an
-    /// exception will be thrown.  So always make sure it is with GetNumContactPoints().
+    /// @details
     ///////////////////////////////////////
     class PHYS_LIB EventCollision : public EventBase
     {
-        public:
-            /// @enum CollisionType
-            /// @brief Enum specifying what kind of collision this class is storing.
-            enum CollisionType
-            {
-                Col_Actor_Actor,        ///< Specifies a collision between two Actors.
-                Col_Actor_Terrain,      ///< Specifies a collision between an Actor and some Terrain.
-                Col_Actor_AreaEffect,   ///< Specifies a collision between an Actor and an AreaRffect.
-                Col_AreaEffect_Terrain  ///< Specifies a collision between an AreaEffect and some Terrain.
-            };
         protected:
             friend class CollisionDispatcher;
             /// @brief The internal collision class this event is based on.
-            btPersistentManifold* Manifold;
+            phys::Collision* ObjectCollision;
             /// @brief The first Actor involved in the collision.
             ActorBase* ActorA;
             /// @brief The second Actor invovled in the collision.
@@ -88,7 +71,8 @@ namespace phys {
             /// @details This will construct a basic event class with the minimum data needed.
             /// @param actora The first Actor involved in the collision.
             /// @param actorb The second Actor invovled in the collision.
-            EventCollision(ActorBase* actora, ActorBase* actorb);
+            /// @param PhysicsManifold The internal manifold used for querying collision data.
+            EventCollision(ActorBase* actora, ActorBase* actorb, phys::Collision* Col);
             /// @brief Copy Constructor.
             /// @param Other The other EventCollision to copy
             EventCollision(const EventCollision& Other);
@@ -114,40 +98,6 @@ namespace phys {
             /// @brief Gets the second actor this collision applies to.
             /// @return Returns a pointer to the second actor in this event.
             virtual ActorBase* GetActorB() const;
-
-            /// @brief Gets the number of contact points this collision is storing.
-            /// @return Returns the number of contact points that currently exist for this collision.
-            Whole GetNumContactPoints();
-            /// @brief Gets the location in the world where the collision occured.
-            /// @param Point The index of the contact point for this collision.
-            /// @return Returns a vector3 containing the approximate world location of the collision.
-            Vector3 GetWorldLocation(const Whole& Point);
-            /// @brief Gets the location in ObjectA's local space where the collision occured.
-            /// @param Point The index of the contact point for this collision.
-            /// @return Returns a vector3 with the point of the collision in ObjectA's local space.
-            Vector3 GetLocalALocation(const Whole& Point);
-            /// @brief Gets the location in ObjectB's local space where the collision occured.
-            /// @param Point The index of the contact point for this collision.
-            /// @return Returns a vector3 with the point of the collision in ObjectB's local space.
-            Vector3 GetLocalBLocation(const Whole& Point);
-            /// @brief GEts the collision normal for a contact point.
-            /// @param Point The index of the contact point for this collision.
-            /// @return Returns a vector3 representing the collision normal for a contact point.
-            Vector3 GetNormal(const Whole& Point);
-            /// @brief Gets the amount of force of the collision.
-            /// @param Point The index of the contact point for this collision.
-            /// @return Returns a real representing the amount of force applied from the collision.
-            Real GetAppliedImpulse(const Whole& Point);
-            /// @brief Gets the penetration depth of the collision.
-            /// @remarks You should double check the return of this to verify that it is <0, sometimes a collision or contact point can be
-            /// reported while there is no actual overlap depending on your physics setup.
-            /// @param Point The index of the contact point for this collision.
-            /// @return Returns a real representing the depth of penetration between the two objects in this collision.
-            Real GetDistance(const Whole& Point);
-            /// @brief Gets the number of simulation steps the contact point has existed.
-            /// @param Point The index of the contact point for this collision.
-            /// @return Returns a Whole representing the amount of simulation steps a point has existed.
-            Whole GetAge(const Whole& Point);
 
             /// @brief This returns EventType::Collision.
             /// @details  This returns the kind of message this is, specifcally EventType::Collision.  This method is inherited from phys::Event. .

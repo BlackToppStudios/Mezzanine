@@ -59,8 +59,21 @@ namespace phys
     class ActorRigid;
     class ActorSoft;
     class ActorTerrain;
+    class Collision;
     class CollisionShape;
     class Generic6DofConstraint;
+
+    typedef std::pair<Collision*,Generic6DofConstraint*> StickyDataPair;
+    /// @struct StickyData
+    /// @headerfile actorphysicssettings.h
+    /// @brief This is a basic class for storing the data related to the sticky behavior available to actorrigid's.
+    struct StickyData
+    {
+        StickyData() : MaxNumContacts(0) {};
+        std::vector<Generic6DofConstraint*> StickyConstraints;
+        Whole MaxNumContacts;
+    };//stickydata
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorBasePhysicsSettings
     /// @headerfile actorphysicssettings.h
@@ -239,16 +252,6 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB ActorRigidPhysicsSettings : public ActorBasePhysicsSettings
     {
-        public:
-            /// @struct StickyData
-            /// @headerfile actorrigid.h
-            /// @brief This is a basic class for storing the data related to the sticky behavior available to actorrigid's.
-            struct StickyData
-            {
-                StickyData() : MaxNumContacts(0) {};
-                std::vector<Generic6DofConstraint*> StickyConstraints;
-                Whole MaxNumContacts;
-            };//stickydata
         protected:
             /// @internal
             /// @brief Physics Object of the actor.

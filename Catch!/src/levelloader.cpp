@@ -20,12 +20,12 @@ LevelLoader::~LevelLoader()
 void LevelLoader::LoadFerris()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
@@ -34,7 +34,7 @@ void LevelLoader::LoadFerris()
     ResourceMan->InitResourceGroup(FerrisGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -162,13 +162,13 @@ void LevelLoader::LoadFerris()
     CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
     ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
-    Uranium1->GetPhysicsSettings()->SetStickyData(1);
+    //Uranium1->GetPhysicsSettings()->SetStickyData(1);
     Uranium1->SetLocation(-145,40,0);
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
     ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
-    Uranium2->GetPhysicsSettings()->SetStickyData(1);
+    //Uranium2->GetPhysicsSettings()->SetStickyData(1);
     Uranium2->SetLocation(-195,40,0);
     ActMan->AddActor(Uranium2);
     GameApp->AddThrowable(Uranium2);// */
@@ -194,7 +194,7 @@ void LevelLoader::LoadFerris()
     GameApp->AddThrowable(Clay2);// */
 
     // Create the zones
-    AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
     PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
@@ -217,12 +217,12 @@ void LevelLoader::LoadFerris()
 void LevelLoader::LoadBigCurve()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String BigCurveGroup("BigCurve");
@@ -231,7 +231,7 @@ void LevelLoader::LoadBigCurve()
     ResourceMan->InitResourceGroup(BigCurveGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -295,7 +295,7 @@ void LevelLoader::LoadBigCurve()
     GameApp->AddThrowable(Pyrite2);// */
 
     // Create the zones
-    AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
     PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
@@ -318,12 +318,12 @@ void LevelLoader::LoadBigCurve()
 void LevelLoader::LoadBlowsNotSucks()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String BlowsNotSucksGroup("BlowsNotSucks");
@@ -332,7 +332,7 @@ void LevelLoader::LoadBlowsNotSucks()
     ResourceMan->InitResourceGroup(BlowsNotSucksGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -457,7 +457,7 @@ void LevelLoader::LoadBlowsNotSucks()
     GameApp->AddThrowable(Styrofoam2);// */
 
     // Create the zones
-    AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
     PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
@@ -490,12 +490,12 @@ void LevelLoader::LoadBlowsNotSucks()
 void LevelLoader::LoadJustice()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String JusticeGroup("Justice");
@@ -504,7 +504,7 @@ void LevelLoader::LoadJustice()
     ResourceMan->InitResourceGroup(JusticeGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -646,7 +646,7 @@ void LevelLoader::LoadJustice()
     GameApp->AddThrowable(Uranium2);
 
     // Create the zones
-    AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
     PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
@@ -683,12 +683,12 @@ void LevelLoader::LoadJustice()
 void LevelLoader::LoadRollers()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String RollersGroup("Rollers");
@@ -697,7 +697,7 @@ void LevelLoader::LoadRollers()
     ResourceMan->InitResourceGroup(RollersGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -764,20 +764,20 @@ void LevelLoader::LoadRollers()
     ActorRigid* Pyrite1 = ThrowableGenerator::CreateThrowable("Pyrite");
     Pyrite1->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
     Pyrite1->GetPhysicsSettings()->SetDamping(0.1,0.2);
-    Pyrite1->GetPhysicsSettings()->SetCCDParams(1.0);
+    //Pyrite1->GetPhysicsSettings()->SetCCDParams(1.0);
     Pyrite1->SetLocation(-160,70,0);
     ActMan->AddActor(Pyrite1);
     GameApp->AddThrowable(Pyrite1);
     ActorRigid* Pyrite2 = ThrowableGenerator::CreateThrowable("Pyrite");
     Pyrite2->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
     Pyrite2->GetPhysicsSettings()->SetDamping(0.1,0.1);
-    Pyrite2->GetPhysicsSettings()->SetCCDParams(1.0);
+    //Pyrite2->GetPhysicsSettings()->SetCCDParams(1.0);
     Pyrite2->SetLocation(-120,70,0);
     ActMan->AddActor(Pyrite2);
     GameApp->AddThrowable(Pyrite2);// */
 
     // Create the zones
-    AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
     PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
@@ -800,12 +800,12 @@ void LevelLoader::LoadRollers()
 void LevelLoader::LoadJustBounce()
 {
     // Get managers
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
-    ActorManager* ActMan = TheWorld->GetActorManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    ActorManager* ActMan = ActorManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
     String CommonGroup("Common");
     String JustBounceGroup("JustBounce");
@@ -814,7 +814,7 @@ void LevelLoader::LoadJustBounce()
     ResourceMan->InitResourceGroup(JustBounceGroup);
 
     // Camera Setup
-	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -890,32 +890,32 @@ void LevelLoader::LoadJustBounce()
     CollisionShape* WoodCS = CShapeMan->GenerateConvexHull("WoodCS",WoodData->MeshName,CommonGroup);// */
     ActorRigid* Rubber1 = ThrowableGenerator::CreateThrowable("Rubber");
     Rubber1->GetPhysicsSettings()->SetCollisionShape(RubberCS);
-    Rubber1->GetPhysicsSettings()->SetCCDParams(0.01);
+    //Rubber1->GetPhysicsSettings()->SetCCDParams(0.01);
     Rubber1->SetLocation(-185,110,0);
     ActMan->AddActor(Rubber1);
     GameApp->AddThrowable(Rubber1);
     ActorRigid* Rubber2 = ThrowableGenerator::CreateThrowable("Rubber");
     Rubber2->GetPhysicsSettings()->SetCollisionShape(RubberCS);
-    Rubber2->GetPhysicsSettings()->SetCCDParams(0.01);
+    //Rubber2->GetPhysicsSettings()->SetCCDParams(0.01);
     Rubber2->SetLocation(-155,110,0);
     ActMan->AddActor(Rubber2);
     GameApp->AddThrowable(Rubber2);// */
     ActorRigid* Wood1 = ThrowableGenerator::CreateThrowable("Wood");
     Wood1->GetPhysicsSettings()->SetCollisionShape(WoodCS);
-    Wood1->GetPhysicsSettings()->SetCCDParams(0.01);
+    //Wood1->GetPhysicsSettings()->SetCCDParams(0.01);
     Wood1->SetLocation(-185,70,0);
     ActMan->AddActor(Wood1);
     GameApp->AddThrowable(Wood1);
     ActorRigid* Wood2 = ThrowableGenerator::CreateThrowable("Wood");
     Wood2->GetPhysicsSettings()->SetCollisionShape(WoodCS);
-    Wood2->GetPhysicsSettings()->SetCCDParams(0.01);
+    //Wood2->GetPhysicsSettings()->SetCCDParams(0.01);
     Wood2->SetLocation(-155,70,0);
     ActMan->AddActor(Wood2);
     GameApp->AddThrowable(Wood2);// */
 
 
     // Create the zones
-    AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
     PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */

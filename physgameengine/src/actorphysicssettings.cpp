@@ -51,6 +51,7 @@
 #include "physicsmanager.h"
 #include "serialization.h"
 #include "world.h"
+#include "stringtool.h"
 
 #ifdef PHYSXML
 #include <memory>
@@ -353,7 +354,7 @@ namespace phys
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    CollisionShape* Shapeptr = phys::World::GetWorldPointer()->GetCollisionShapeManager()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
+                    CollisionShape* Shapeptr = phys::CollisionShapeManager::GetSingletonPtr()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
                     if(!Shapeptr)
                         { DeSerializeError("Find the correct Collision Shape",this->ActorBasePhysicsSettings::SerializableName()); }
                     this->SetCollisionShape( Shapeptr );
@@ -370,7 +371,7 @@ namespace phys
                     throw( phys::Exception(String("Incompatible XML Version for")+ this->ActorBasePhysicsSettings::SerializableName() + ": Not Version 1"));
                 }
             }else{
-                throw( phys::Exception(phys::StringCat("Attempting to deserialize a ", this->ActorBasePhysicsSettings::SerializableName(),", found a ", OneNode.Name())));
+                throw( phys::Exception(StringTool::StringCat("Attempting to deserialize a ", this->ActorBasePhysicsSettings::SerializableName(),", found a ", OneNode.Name())));
             }
         }
 
@@ -417,7 +418,7 @@ namespace phys
         }else{
             this->ActorRB->setCollisionShape(Shape->GetBulletShape());
         }
-        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Shape);
+        CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
     }
 
     void ActorRigidPhysicsSettings::SetStickyData(const Whole& MaxNumContacts)
@@ -436,7 +437,7 @@ namespace phys
     {
         if(!StickyContacts)
             return;
-        btDiscreteDynamicsWorld* BulletWorld = World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer();
+        btDiscreteDynamicsWorld* BulletWorld = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
         for( std::vector<Generic6DofConstraint*>::iterator SCit = StickyContacts->StickyConstraints.begin() ; SCit != StickyContacts->StickyConstraints.end() ; ++SCit )
         {
             BulletWorld->removeConstraint((*SCit)->GetConstraintBase());
@@ -445,7 +446,7 @@ namespace phys
         StickyContacts->StickyConstraints.clear();
     }
 
-    ActorRigidPhysicsSettings::StickyData* ActorRigidPhysicsSettings::GetStickyData() const
+    StickyData* ActorRigidPhysicsSettings::GetStickyData() const
         { return StickyContacts; }
 
     void ActorRigidPhysicsSettings::SetDamping(const Real& LinDamping, const Real& AngDamping)
@@ -581,7 +582,7 @@ namespace phys
                             {
                                 this->ActorBasePhysicsSettings::ProtoDeSerialize(Child);
                             }else{
-                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element B-\"",Name,"\"")) );
+                                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element B-\"",Name,"\"")) );
                             }
                             break;
                         case 'a':   //AngularVelocity
@@ -590,7 +591,7 @@ namespace phys
                                 Child.GetFirstChild() >> TempVec;
                                 this->SetAngularVelocity(TempVec);
                             }else{
-                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element a-\"",Name,"\"")) );
+                                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element a-\"",Name,"\"")) );
                             }
                             break;
                         case 'r':   //LinearVelocity
@@ -599,7 +600,7 @@ namespace phys
                                 Child.GetFirstChild() >> TempVec;
                                 this->SetLinearVelocity(TempVec);
                             }else{
-                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element r-\"",Name,"\"")) );
+                                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element r-\"",Name,"\"")) );
                             }
                             break;
                         case 'i':   //IndividualGravity
@@ -608,7 +609,7 @@ namespace phys
                                 Child.GetFirstChild() >> TempVec;
                                 this->SetIndividualGravity(TempVec);
                             }else{
-                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element i-\"",Name,"\"")) );
+                                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element i-\"",Name,"\"")) );
                             }
                             break;
                         case 'T':   //TotalTorque
@@ -617,7 +618,7 @@ namespace phys
                                 Child.GetFirstChild() >> TempVec;
                                 this->ApplyTorque(TempVec);
                             }else{
-                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element T-\"",Name,"\"")) );
+                                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element T-\"",Name,"\"")) );
                             }
                             break;
                         case 'F':   //TotalForce
@@ -626,7 +627,7 @@ namespace phys
                                 Child.GetFirstChild() >> TempVec;
                                 this->ApplyForce(TempVec);
                             }else{
-                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element F-\"",Name,"\"")) );
+                                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element F-\"",Name,"\"")) );
                             }
                             break;
                         case 'I':   //Inertia
@@ -635,11 +636,11 @@ namespace phys
                                 Child.GetFirstChild() >> TempVec;
                                 this->SetMass(OneNode.GetAttribute("Mass").AsReal(), TempVec);
                             }else{
-                                throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element I-\"",Name,"\"")) );
+                                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element I-\"",Name,"\"")) );
                             }
                             break;
                         default:
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element default-\"",Name,"\"")) );
+                            throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element default-\"",Name,"\"")) );
                             break;
                     }
                 }
@@ -705,7 +706,7 @@ namespace phys
             this->ActorRB->updateInertiaTensor();
         }
         this->ActorRB->setCollisionShape(Shape->GetBulletShape());
-        World::GetWorldPointer()->GetCollisionShapeManager()->StoreShape(Shape);
+        CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
     }
 }
 

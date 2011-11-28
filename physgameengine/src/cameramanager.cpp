@@ -54,9 +54,11 @@
 
 namespace phys
 {
+    template<> CameraManager* Singleton<CameraManager>::SingletonPtr = 0;
+
     CameraManager::CameraManager(Whole SceneManagerIndex)
     {
-        this->SManager = GameWorld->GetSceneManager(SceneManagerIndex);
+        this->SManager = SceneManager::GetSingletonPtr();
         this->DefaultCamera = NULL;
         this->Priority = -20;
         this->CreateDefaultCamera();
@@ -64,23 +66,11 @@ namespace phys
 
     CameraManager::~CameraManager()
     {
-        if(NULL!=DefaultCamera)
-        {
-            delete DefaultCamera;
-        }
-        Camera* tempcam = NULL;
-        if(!(Cameras.empty()))
-        {
-            for( std::vector<Camera*>::iterator it = Cameras.begin() ; it != Cameras.end() ; it++ )
-            {
-                tempcam = (*it);
-                delete tempcam;
-                Cameras.erase(it);
-            }
-        }
+        DestroyAllCameraControllers();
+        DestroyAllCameras();
     }
 
-    Camera* CameraManager::FindCamera(String Name)
+    Camera* CameraManager::FindCamera(const String& Name)
     {
         for( std::vector<Camera*>::iterator c=Cameras.begin(); c!=Cameras.end(); c++ )
         {
@@ -94,11 +84,7 @@ namespace phys
 
     Camera* CameraManager::CreateDefaultCamera()
     {
-        if(NULL!=DefaultCamera)
-        {
-            delete DefaultCamera;
-            DefaultCamera = NULL;
-        }
+        DestroyDefaultCamera();
         String Name="DefaultCamera";
         Ogre::Camera* OgreCam = this->SManager->GetGraphicsWorldPointer()->createCamera(Name);
         this->DefaultCamera = new Camera(OgreCam, this);
@@ -108,6 +94,15 @@ namespace phys
     Camera* CameraManager::GetDefaultCamera()
     {
         return DefaultCamera;
+    }
+
+    void CameraManager::DestroyDefaultCamera()
+    {
+        if(NULL!=DefaultCamera)
+        {
+            delete DefaultCamera;
+            DefaultCamera = NULL;
+        }
     }
 
     Camera* CameraManager::CreateCamera(const String& Name)
@@ -124,7 +119,7 @@ namespace phys
         return tempcam;
     }
 
-    Camera* CameraManager::GetCamera(Whole Index)
+    Camera* CameraManager::GetCamera(const Whole& Index)
     {
         return Cameras[Index];
     }
@@ -134,15 +129,17 @@ namespace phys
         return Cameras.size();
     }
 
-    void CameraManager::ClearCameras()
+    void CameraManager::DestroyAllCameras(bool DefaultAlso)
     {
+        if(DefaultAlso)
+            DestroyDefaultCamera();
         Camera* camera = NULL;
         for( std::vector< Camera* >::iterator it = Cameras.begin() ; it != Cameras.end() ; it++ )
         {
             camera = (*it);
             delete camera;
-            Cameras.erase(it);
         }
+        Cameras.clear();
         return;
     }
 

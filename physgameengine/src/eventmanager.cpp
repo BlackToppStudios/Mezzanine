@@ -244,6 +244,8 @@ namespace phys
 
     } // /internal
 
+    template<> EventManager* Singleton<EventManager>::SingletonPtr = 0;
+
     /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
     EventManager::EventManager()

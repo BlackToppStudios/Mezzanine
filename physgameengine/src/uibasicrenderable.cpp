@@ -53,7 +53,7 @@ namespace phys
             : Name(name),
               Parent(parent)
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
+            Manager = UIManager::GetSingletonPtr();
         }
 
         BasicRenderable::~BasicRenderable()

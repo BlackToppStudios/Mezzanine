@@ -61,9 +61,9 @@ class WorldNodeTests : public UnitTestGroup
                 {
                     StartEngine();
                     TheMessage ="WorldNode Tests";
-                    WorldNode* Test0 = TheWorld->GetSceneManager()->CreateFreeNode("Alpha", Vector3(0,0,0),Vector3(10,0,0));
-                    WorldNode* Test1 = TheWorld->GetSceneManager()->CreateFreeNode("Beta", Vector3(0,0,0),Vector3(1,0,0));
-                    WorldNode* Test2 = TheWorld->GetSceneManager()->CreateFreeNode("Gamma", Vector3(2,0,0),Vector3(1,0,0));
+                    WorldNode* Test0 = SceneManager::GetSingletonPtr()->CreateFreeNode("Alpha", Vector3(0,0,0),Vector3(10,0,0));
+                    WorldNode* Test1 = SceneManager::GetSingletonPtr()->CreateFreeNode("Beta", Vector3(0,0,0),Vector3(1,0,0));
+                    WorldNode* Test2 = SceneManager::GetSingletonPtr()->CreateFreeNode("Gamma", Vector3(2,0,0),Vector3(1,0,0));
 
 
                     AddTestResult("WorldNode::AttachObject", Failed);
@@ -85,7 +85,7 @@ class WorldNodeTests : public UnitTestGroup
                     if(0==Test2->GetAttachedTo()&&0==Test1->GetAttachedTo())
                         { AddTestResult("WorldNode::DetachFrom", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
 
-                    WorldNode* Test3 = TheWorld->GetSceneManager()->CreateFreeNode("Omega", Vector3(0,0,0),Vector3(0,0,0));
+                    WorldNode* Test3 = SceneManager::GetSingletonPtr()->CreateFreeNode("Omega", Vector3(0,0,0),Vector3(0,0,0));
                     AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Failed, UnitTestGroup::OverWriteIfMoreSuccessful);
                     XMLstream >> *Test3;
                     cout << *Test1 << endl;

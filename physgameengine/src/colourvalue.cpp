@@ -41,6 +41,7 @@
 #define _colourvalue_cpp
 
 #include "colourvalue.h"
+#include "stringtool.h"
 #include "serialization.h"
 
 #include <Ogre.h>
@@ -199,10 +200,10 @@ namespace phys
                 this->B=OneNode.GetAttribute("Blue").AsReal();
                 this->A=OneNode.GetAttribute("Alpha").AsReal();
             }else{
-                throw( phys::Exception(StringCat("Incompatible XML Version for ",this->ColourValue::SerializableName(),": Not Version 1")) );
+                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ",this->ColourValue::SerializableName(),": Not Version 1")) );
             }
         }else{
-            throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",this->ColourValue::SerializableName(),", found a ", OneNode.Name())));
+            throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a ",this->ColourValue::SerializableName(),", found a ", OneNode.Name())));
         }
     }
 

@@ -45,8 +45,8 @@ CatchApp::~CatchApp()
 
 void CatchApp::MakeGUI()
 {
-    UIManager* GUI = TheWorld->GetUIManager();
-    Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
+    UIManager* GUI = UIManager::GetSingletonPtr();
+    Viewport* UIViewport = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ColourValue Black(0.0,0.0,0.0,1.0);
@@ -450,9 +450,9 @@ void CatchApp::MakeGUI()
 
 void CatchApp::CreateLoadingScreen()
 {
-    UIManager* GUI = TheWorld->GetUIManager();
+    UIManager* GUI = UIManager::GetSingletonPtr();
     GUI->LoadGorilla("Catch_Loading");
-    Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
+    Viewport* UIViewport = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0);
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
     UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
@@ -464,7 +464,7 @@ void CatchApp::CreateLoadingScreen()
 
 void CatchApp::ConfigResources()
 {
-    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     String CommonGroup("Common");
     String datadir = "Data/";
     //ResourceMan->AddResourceLocation(datadir, "FileSystem", CommonGroup, false);
@@ -479,7 +479,7 @@ void CatchApp::ConfigResources()
 
 void CatchApp::InitMusic()
 {
-    AudioManager* AudioMan = TheWorld->GetAudioManager();
+    AudioManager* AudioMan = AudioManager::GetSingletonPtr();
     Audio::MusicPlayer* MPlayer = AudioMan->GetMusicPlayer();
     String CommonGroup("Common");
     Audio::Sound* Track1 = AudioMan->CreateMusicSound("Track1","Track1.ogg",CommonGroup);
@@ -514,8 +514,8 @@ void CatchApp::PopulateShopValues()
 
 void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
 {
-    ResourceManager* ResourceMan = World::GetWorldPointer()->GetResourceManager();
-    UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
+    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    UIManager* UIMan = UIManager::GetSingletonPtr();
     ResourceMan->AddResourceLocation("/Previews","FileSystem","Previews",false);
     ResourceMan->InitResourceGroup("Previews");
     UI::RenderableRect CellRect(Vector2(0.1,0.1),Vector2(0.33,0.11),true);
@@ -561,7 +561,7 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
 {
     if(CurrentState == StateToSet)
         return;
-    UIManager* UIMan = TheWorld->GetUIManager();
+    UIManager* UIMan = UIManager::GetSingletonPtr();
     switch (StateToSet)
     {
         case CatchApp::Catch_GameScreen:
@@ -610,7 +610,7 @@ bool CatchApp::CheckEndOfLevel()
         return false;
     if(!EndTimer)
     {
-        EndTimer = TheWorld->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
+        EndTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::StopWatch);
         EndTimer->SetInitialTime(5 * 1000000);
         EndTimer->SetCurrentTime(5 * 1000000);
         EndTimer->SetGoalTime(0);
@@ -659,35 +659,22 @@ void CatchApp::UnloadLevel()
 {
     if("MainMenu"==Loader->GetCurrentLevel())
         return;
-    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    ResourceManager* ResMan = TheWorld->GetResourceManager();
-    SceneManager* SceneMan = TheWorld->GetSceneManager();
-    ActorManager* ActorMan = TheWorld->GetActorManager();
-    TimerManager* TimeMan = TheWorld->GetTimerManager();
-    EventManager* EventMan = TheWorld->GetEventManager();
-    CollisionShapeManager* CShapeMan = TheWorld->GetCollisionShapeManager();
-    MeshManager* MeshMan = TheWorld->GetMeshManager();
-    UIManager* UIMan = TheWorld->GetUIManager();
-
-    for( std::vector<StartingArea*>::iterator it = StartAreas.begin() ; it != StartAreas.end() ; ++it )
-    {
-        String MeshName = (*it)->GetFieldMesh()->GetName();
-        (*it)->SetFieldMesh(0);
-        MeshMan->DestroyGeneratedMesh(MeshName);
-    }
-    for( std::vector<ScoreArea*>::iterator it = ScoreAreas.begin() ; it != ScoreAreas.end() ; ++it )
-    {
-        String MeshName = (*it)->GetFieldMesh()->GetName();
-        (*it)->SetFieldMesh(0);
-        MeshMan->DestroyGeneratedMesh(MeshName);
-    }
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    ResourceManager* ResMan = ResourceManager::GetSingletonPtr();
+    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+    ActorManager* ActorMan = ActorManager::GetSingletonPtr();
+    TimerManager* TimeMan = TimerManager::GetSingletonPtr();
+    EventManager* EventMan = EventManager::GetSingletonPtr();
+    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
+    UIManager* UIMan = UIManager::GetSingletonPtr();
 
     PhysMan->DestroyAllConstraints();
     ActorMan->DestroyAllActors();
     PhysMan->DestroyAllWorldTriggers();
     PhysMan->DestroyAllAreaEffects();
     CShapeMan->DestroyAllShapes();
-    //MeshMan->DestroyAllGeneratedMeshes();
+    MeshMan->DestroyAllGeneratedMeshes();
     SceneMan->DestroyAllLights();
     SceneMan->DestroyAllParticleEffects();
     SceneMan->DestroyAllWorldNodes();
@@ -699,7 +686,8 @@ void CatchApp::UnloadLevel()
     ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
     PhysMan->ClearPhysicsMetaData();
     /// @todo Probably should make a "RemoveAll" for the events as well.
-    for( EventCollision* OneCollision = EventMan->PopNextCollisionEvent() ; NULL != OneCollision ;  )
+    EventCollision* OneCollision = EventMan->PopNextCollisionEvent();
+    while( NULL != OneCollision )
     {
         delete OneCollision;
         OneCollision = EventMan->PopNextCollisionEvent();
@@ -721,26 +709,30 @@ CatchApp* CatchApp::GetCatchAppPointer()
 int CatchApp::GetCatchin()
 {
     //Give the world functions to run before and after input and physics
-    TheWorld->GetEventManager()->SetPreMainLoopItems(&CPreInput);
-    TheWorld->GetEventManager()->SetPostMainLoopItems(&CPostInput);
-    TheWorld->GetPhysicsManager()->SetPreMainLoopItems(&CPrePhysics);
-    TheWorld->GetPhysicsManager()->SetPostMainLoopItems(&CPostPhysics);
-    TheWorld->GetGraphicsManager()->SetPostMainLoopItems(&CPostRender);
-    TheWorld->GetUIManager()->SetPreMainLoopItems(&CPreUI);
-    TheWorld->GetUIManager()->SetPostMainLoopItems(&CPostUI);
+    EventManager* EventMan = EventManager::GetSingletonPtr();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
+    UIManager* UIMan = UIManager::GetSingletonPtr();
+    EventMan->SetPreMainLoopItems(&CPreInput);
+    EventMan->SetPostMainLoopItems(&CPostInput);
+    PhysMan->SetPreMainLoopItems(&CPrePhysics);
+    PhysMan->SetPostMainLoopItems(&CPostPhysics);
+    GraphicsMan->SetPostMainLoopItems(&CPostRender);
+    UIMan->SetPreMainLoopItems(&CPreUI);
+    UIMan->SetPostMainLoopItems(&CPostUI);
 
     // Create the window BEFORE we init the graphics manager, so we can set non-default values
-    const GraphicsSettings& DefSet = TheWorld->GetGraphicsManager()->GetDefaultSettings();
+    const GraphicsSettings& DefSet = GraphicsMan->GetDefaultSettings();
     int WindowFlags = (DefSet.Fullscreen?GameWindow::WF_Fullscreen:0) | GameWindow::WF_FSAA_4;
-    TheWorld->GetGraphicsManager()->CreateGameWindow("",DefSet.RenderWidth,DefSet.RenderHeight,WindowFlags);
+    GraphicsMan->CreateGameWindow("",DefSet.RenderWidth,DefSet.RenderHeight,WindowFlags);
 
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
 
-	TheWorld->GetUIManager()->EnableButtonAutoRegister(true);
-    TheWorld->GetUIManager()->AddAutoRegisterCode(MetaCode::MOUSEBUTTON_1);
+	UIMan->EnableButtonAutoRegister(true);
+    UIMan->AddAutoRegisterCode(MetaCode::MOUSEBUTTON_1);
 
-    TheWorld->GetPhysicsManager()->SetSimulationSubstepModifier(2);
+    PhysMan->SetSimulationSubstepModifier(2);
 
     ConfigResources();
 	CreateLoadingScreen();
@@ -757,16 +749,16 @@ int CatchApp::GetCatchin()
     TheWorld->SetLoggingFrequency(World::LogNever);
 
 	// Set the Title
-    TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("Catch!");
+    GraphicsMan->GetPrimaryGameWindow()->SetWindowCaption("Catch!");
     TheWorld->SetTargetFrameRate(60);
 
     // Create the Timer
-    LevelTimer = TheWorld->GetTimerManager()->CreateSimpleTimer(Timer::Normal);
+    LevelTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::Normal);
 
     //Generate the UI
     MakeGUI();
 
-    TheWorld->GetAudioManager()->GetMusicPlayer()->Play();
+    AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);
@@ -782,8 +774,8 @@ int CatchApp::GetCatchin()
         LevelTimer->Start();
 
         //if("Ferris"==Loader->GetCurrentLevel())
-        //    TheWorld->GetUIManager()->GetScreen("GameScreen")->Hide();
-        //TheWorld->GetPhysicsManager()->PauseSimulation(true);
+        //    UIMan->GetScreen("GameScreen")->Hide();
+        //PhysMan->PauseSimulation(true);
         //Start the Main Loop
         TheWorld->MainLoop();
         UnloadLevel();
@@ -803,7 +795,7 @@ bool CatchApp::PreInput()
 
 bool CatchApp::PostInput()
 {
-    CameraController* DefaultControl = TheWorld->GetCameraManager()->GetOrCreateCameraController(TheWorld->GetCameraManager()->GetDefaultCamera());
+    CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetDefaultCamera());
     if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_A))
         DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
     if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_D))
@@ -823,13 +815,14 @@ bool CatchApp::PostInput()
 
     if( MetaCode::BUTTON_PRESSING == InputQueryTool::GetKeyboardButtonState(MetaCode::KEY_C) )
     {
-        if(TheWorld->GetPhysicsManager()->GetDebugPhysicsRendering())
+        PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+        if(PhysMan->GetDebugPhysicsRendering())
         {
-            TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(0);
-            TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
+            PhysMan->SetDebugPhysicsWireCount(0);
+            PhysMan->SetDebugPhysicsRendering(0);
         }else{
-            TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
-            TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(1);
+            PhysMan->SetDebugPhysicsWireCount(2);
+            PhysMan->SetDebugPhysicsRendering(1);
         }
     }
 
@@ -856,7 +849,7 @@ bool CatchApp::PostUI()
 
     if( InputQueryer->IsMouseButtonPushed(1) )
     {
-        if(!TheWorld->GetUIManager()->MouseIsInUISystem())
+        if(!UIManager::GetSingletonPtr()->MouseIsInUISystem())
         {
             Ray *MouseRay = RayQueryer->GetMouseRay(5000);
             //*MouseRay *= 1000;
@@ -903,7 +896,7 @@ bool CatchApp::PostUI()
                             //Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
                             //Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
                             //Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
-                            TheWorld->GetPhysicsManager()->AddConstraint(Dragger);
+                            PhysicsManager::GetSingletonPtr()->AddConstraint(Dragger);
                             Dragger->SetParam(Con_Stop_CFM,0.8,0); Dragger->SetParam(Con_Stop_CFM,0.8,1); Dragger->SetParam(Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
                             Dragger->SetParam(Con_Stop_ERP,0.1,0); Dragger->SetParam(Con_Stop_ERP,0.1,1); Dragger->SetParam(Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
                             firstframe=true;
@@ -942,7 +935,7 @@ bool CatchApp::PostUI()
             if(Dragger && !IsInsideAnyStartZone(LastActorThrown))
             {
                 ActorRigid* Act = Dragger->GetActorA();
-                TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
+                PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
                 delete Dragger;
                 Dragger=NULL;
                 Act->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
@@ -959,7 +952,7 @@ bool CatchApp::PostUI()
         if(Dragger)
         {
             ActorRigid* Act = Dragger->GetActorA();
-            TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
+            PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
             Act->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
@@ -1015,7 +1008,8 @@ bool CatchApp::PostRender()
     TheWorld->Log(String("Current Game Time "));
 
 	//getting a message from the event manager)
-	EventRenderTime* CurrentTime = TheWorld->GetEventManager()->PopNextRenderTimeEvent();
+	EventManager* EventMan = EventManager::GetSingletonPtr();
+	EventRenderTime* CurrentTime = EventMan->PopNextRenderTimeEvent();
     Whole LastFrame = 0;
 
     // Is CurrentTime a valid event?
@@ -1027,11 +1021,11 @@ bool CatchApp::PostRender()
         gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
 
         delete CurrentTime;
-        CurrentTime = TheWorld->GetEventManager()->GetNextRenderTimeEvent();
+        CurrentTime = EventMan->GetNextRenderTimeEvent();
     }
 
     // Update the timer
-    UI::Caption* Timer = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("GS_Timer");
+    UI::Caption* Timer = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("GS_Timer");
     std::stringstream time;
     Whole TotalSeconds = LevelTimer->GetCurrentTimeInMilli() / 1000;
     Whole Minutes = TotalSeconds / 60;
@@ -1051,19 +1045,19 @@ bool CatchApp::PostRender()
     Timer->SetText(time.str());
 
     // Update the score
-    UI::Caption* ScoreAmount = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("GS_ScoreArea");
+    UI::Caption* ScoreAmount = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("GS_ScoreArea");
     std::stringstream Score;
     Score << CurrScore;
     String ScoreOut = Score.str();
     ScoreAmount->SetText(ScoreOut);
 
     // Update Stat information
-    UI::Caption* CurFPS = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("CurFPS");
-    UI::Caption* AvFPS = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
+    UI::Caption* CurFPS = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("CurFPS");
+    UI::Caption* AvFPS = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
     std::stringstream CFPSstream;
     std::stringstream AFPSstream;
-    CFPSstream << TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetLastFPS();
-    AFPSstream << TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetAverageFPS();
+    CFPSstream << GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetLastFPS();
+    AFPSstream << GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetAverageFPS();
     String CFPS = CFPSstream.str();
     String AFPS = AFPSstream.str();
     CurFPS->SetText(CFPS);
@@ -1074,8 +1068,8 @@ bool CatchApp::PostRender()
     {
         if(CheckEndOfLevel())
         {
-            TheWorld->GetPhysicsManager()->PauseSimulation(true);
-            TheWorld->GetUIManager()->GetLayer("ReportLayer")->Show();
+            PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
+            UIManager::GetSingletonPtr()->GetLayer("ReportLayer")->Show();
         }
     }
 
@@ -1084,8 +1078,9 @@ bool CatchApp::PostRender()
 
 bool CatchApp::CheckForStuff()
 {
+    EventManager* EventMan = EventManager::GetSingletonPtr();
     //this will either set the pointer to 0 or return a valid pointer to work with.
-    EventUserInput* OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+    EventUserInput* OneInput = EventMan->PopNextUserInputEvent();
 
     //We check each Event
     while(0 != OneInput)
@@ -1102,10 +1097,10 @@ bool CatchApp::CheckForStuff()
         }// */
 
         delete OneInput;
-        OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+        OneInput = EventMan->PopNextUserInputEvent();
     }
 
-    EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+    EventGameWindow* OneWindowEvent = EventMan->PopNextGameWindowEvent();
     while(0 != OneWindowEvent)
     {
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
@@ -1128,7 +1123,7 @@ bool CatchApp::CheckForStuff()
         /*if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
         {
             Audio::Sound* Welcome = NULL;
-            Welcome = TheWorld->GetAudioManager()->GetSoundByName("Welcome");
+            Welcome = AudioManager::GetSingletonPtr()->GetSoundByName("Welcome");
             if(Welcome)
             {
                 Welcome->Play2d(false);
@@ -1136,7 +1131,7 @@ bool CatchApp::CheckForStuff()
         }// */
 
         delete OneWindowEvent;
-        OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+        OneWindowEvent = EventMan->PopNextGameWindowEvent();
     }
 
     return true;

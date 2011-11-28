@@ -40,9 +40,11 @@
 #ifndef eventcollision_cpp
 #define eventcollision_cpp
 
+#include "eventcollision.h"
 #include "actorcontainerbase.h"
 #include "actormanager.h"
-#include "eventcollision.h"
+#include "actorbase.h"
+#include "stringtool.h"
 #include "world.h"
 
 #include <btBulletDynamicsCommon.h>
@@ -53,31 +55,24 @@ namespace phys {
     {
         ActorA=NULL;
         ActorB=NULL;
+        ObjectCollision=NULL;
     }
 
-    EventCollision::EventCollision(ActorBase* actora, ActorBase* actorb)
+    EventCollision::EventCollision(ActorBase* actora, ActorBase* actorb, phys::Collision* Col)
     {
         ActorA=actora;
         ActorB=actorb;
-
-        ActorA->_NotifyCollision(this);
-        ActorB->_NotifyCollision(this);
+        ObjectCollision=Col;
     }
 
     EventCollision::EventCollision(const EventCollision& Other)
     {
         ActorA=Other.ActorA;
         ActorB=Other.ActorB;
-        Manifold=Other.Manifold;
-
-        ActorA->_NotifyCollision(this);
-        ActorB->_NotifyCollision(this);
     }
 
     EventCollision::~EventCollision()
     {
-        ActorA->_NotifyEndCollision(this);
-        ActorB->_NotifyEndCollision(this);
     }
 
     void EventCollision::SetActorA(ActorBase* A)
@@ -87,13 +82,12 @@ namespace phys {
             World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
         }else{
             ActorA = A;
-            ActorA->_NotifyCollision(this);
         }
     }
 
     ActorBase* EventCollision::GetActorA() const
     {
-        return ActorB;
+        return ActorA;
     }
 
     void EventCollision::SetActorB(ActorBase* B)
@@ -103,55 +97,12 @@ namespace phys {
             World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
         }else{
             ActorB = B;
-            ActorB->_NotifyCollision(this);
         }
     }
 
     ActorBase* EventCollision::GetActorB() const
     {
         return ActorB;
-    }
-
-    Whole EventCollision::GetNumContactPoints()
-    {
-        return (Whole)Manifold->getNumContacts();
-    }
-
-    Vector3 EventCollision::GetWorldLocation(const Whole& Point)
-    {
-        btVector3 PointA = Manifold->getContactPoint(Point).m_localPointA;
-        btVector3 PointB = Manifold->getContactPoint(Point).m_localPointB;
-        return Vector3((PointA+PointB) /= 2);
-    }
-
-    Vector3 EventCollision::GetLocalALocation(const Whole& Point)
-    {
-        return Vector3(Manifold->getContactPoint(Point).m_localPointA);
-    }
-
-    Vector3 EventCollision::GetLocalBLocation(const Whole& Point)
-    {
-        return Vector3(Manifold->getContactPoint(Point).m_localPointB);
-    }
-
-    Vector3 EventCollision::GetNormal(const Whole& Point)
-    {
-        return Vector3(Manifold->getContactPoint(Point).m_normalWorldOnB);
-    }
-
-    Real EventCollision::GetAppliedImpulse(const Whole& Point)
-    {
-        return Manifold->getContactPoint(Point).m_appliedImpulse;
-    }
-
-    Real EventCollision::GetDistance(const Whole& Point)
-    {
-        return Manifold->getContactPoint(Point).m_distance1;
-    }
-
-    Whole EventCollision::GetAge(const Whole& Point)
-    {
-        return (Whole)Manifold->getContactPoint(Point).m_lifeTime;
     }
 
     EventBase::EventType EventCollision::GetType() const
@@ -193,8 +144,8 @@ void operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev)
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
 
-            Ev.SetActorA(phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorA").AsString()));
-            Ev.SetActorB(phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorB").AsString()));
+            Ev.SetActorA(phys::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ActorA").AsString()));
+            Ev.SetActorB(phys::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ActorB").AsString()));
             //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
 
             //if(OneNode.GetFirstChild())
@@ -208,7 +159,7 @@ void operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev)
             throw( phys::Exception("Incompatible XML Version for EventCollision: Not Version 1"));
         }
     }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a EventCollision, found a ", OneNode.Name())));
+        throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a EventCollision, found a ", OneNode.Name())));
     }
 }
 #endif // \PHYSXML

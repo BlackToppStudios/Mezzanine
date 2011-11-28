@@ -41,6 +41,7 @@
 #define _transform_cpp
 
 #include "serialization.h"
+#include "stringtool.h"
 #include "transform.h"
 
 #include <btBulletDynamicsCommon.h>
@@ -117,10 +118,10 @@ namespace phys
                 this->Location.ProtoDeSerialize(OneNode.GetChild("Vector3"));
                 this->Rotation.ProtoDeSerialize(OneNode.GetChild("Quaternion"));
             }else{
-                throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+                throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
             }
         }else{
-            throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+            throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
         }
     }
 

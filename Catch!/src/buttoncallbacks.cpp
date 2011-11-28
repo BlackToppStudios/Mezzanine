@@ -18,7 +18,7 @@ void GSStore::DoHoverItems()
 
 void GSStore::DoActivateItems()
 {
-    UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
+    UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
     layer->SetVisible(!layer->IsVisible());
 }
@@ -39,8 +39,8 @@ void GSMenu::DoHoverItems()
 
 void GSMenu::DoActivateItems()
 {
-    UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
-    PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+    UIManager* UIMan = UIManager::GetSingletonPtr();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
     SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
     SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
@@ -71,10 +71,10 @@ void GSReturn::DoHoverItems()
 
 void GSReturn::DoActivateItems()
 {
-    UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
+    UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
     layer->Hide();
-    PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
     SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
     SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
     if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
@@ -98,10 +98,10 @@ void GSISReturn::DoHoverItems()
 
 void GSISReturn::DoActivateItems()
 {
-    UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
+    UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
     layer->Hide();
-    PhysicsManager* PhysMan = World::GetWorldPointer()->GetPhysicsManager();
+    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
     SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
     SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
     if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
@@ -230,9 +230,9 @@ void OptsVideoApply::DoActivateItems()
     NewSettings.RenderWidth = Width;
     NewSettings.RenderHeight = Height;
     // Apply the resolution and fullscreen settings
-    World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderOptions(NewSettings);
+    GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->setRenderOptions(NewSettings);
     // Apply other settings
-    World::GetWorldPointer()->GetUIManager()->GetLayer("StatsLayer")->SetVisible(FPSStatsBox->IsChecked());
+    UIManager::GetSingletonPtr()->GetLayer("StatsLayer")->SetVisible(FPSStatsBox->IsChecked());
 }
 
 #endif

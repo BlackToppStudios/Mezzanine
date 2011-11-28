@@ -66,11 +66,10 @@
     slouken@libsdl.org
 */
 
-#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "xml.h"
 
-using namespace std;
+//using namespace std;
 
 namespace phys
 {

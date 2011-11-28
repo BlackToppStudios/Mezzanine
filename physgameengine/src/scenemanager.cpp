@@ -47,6 +47,7 @@
 #include "plane.h"
 #include "particleeffect.h"
 #include "uimanager.h"
+#include "stringtool.h"
 #include "worldnode.h"
 #include "world.h"
 
@@ -159,28 +160,19 @@ namespace phys
             /// @brief Destructor
             ~SceneManagerData()
             {
-                Whole Counter = 0;
-                while(World::GetWorldPointer()->GetCameraManager(Counter))
+                CameraManager* CamMan = World::GetWorldPointer()->GetCameraManager();
+                if(CamMan)
                 {
-                    if(World::GetWorldPointer()->GetCameraManager()->SManager == this->SM )
-                    {
-                        World::GetWorldPointer()->GetCameraManager()->SManager = 0;
-                        ++Counter;
-                    }
+                    CamMan->DestroyAllCameraControllers();
+                    CamMan->DestroyAllCameras();
+                    CamMan->SManager = 0;
                 }
-
-
-                while(World::GetWorldPointer()->GetUIManager())
-                {
-                    World::GetWorldPointer()->RemoveManager(World::GetWorldPointer()->GetUIManager());
-                    delete World::GetWorldPointer()->GetUIManager();
-                }
-
                 Ogre::Root::getSingleton().destroySceneManager(OgreManager);
-                //delete OgreManager;
             }
         };
     }
+
+    template<> SceneManager* Singleton<SceneManager>::SingletonPtr = 0;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// Construction
@@ -809,16 +801,16 @@ std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
                 }
                 /*  Sky Cache Member - String SkyMaterialName; Quaternion SkyOrientation; String SkyMaterialGroupName; bool SkyDrawnFirst; Plane SkyThePlane; */
 
-                for (phys::SceneManager::ConstLightIterator Iter = phys::World::GetWorldPointer()->GetSceneManager()->BeginLight();
-                        phys::World::GetWorldPointer()->GetSceneManager()->EndLight()!=Iter;
+                for (phys::SceneManager::ConstLightIterator Iter = phys::SceneManager::GetSingletonPtr()->BeginLight();
+                        phys::SceneManager::GetSingletonPtr()->EndLight()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
-                for (phys::SceneManager::ConstParticleEffectIterator Iter = phys::World::GetWorldPointer()->GetSceneManager()->BeginParticleEffect();
-                        phys::World::GetWorldPointer()->GetSceneManager()->EndParticleEffect()!=Iter;
+                for (phys::SceneManager::ConstParticleEffectIterator Iter = phys::SceneManager::GetSingletonPtr()->BeginParticleEffect();
+                        phys::SceneManager::GetSingletonPtr()->EndParticleEffect()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
-                for (phys::SceneManager::ConstWorldNodeIterator Iter = phys::World::GetWorldPointer()->GetSceneManager()->BeginWorldNode();
-                        phys::World::GetWorldPointer()->GetSceneManager()->EndWorldNode()!=Iter;
+                for (phys::SceneManager::ConstWorldNodeIterator Iter = phys::SceneManager::GetSingletonPtr()->BeginWorldNode();
+                        phys::SceneManager::GetSingletonPtr()->EndWorldNode()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
     stream      << "</SceneManager>";
@@ -881,10 +873,10 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                 Child.GetFirstChild() >> AllAroundUs;
                                 Ev.SetAmbientLight(AllAroundUs);
                             }else{
-                                throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element AmbientLight-\"",Name,"\"")) );
+                                throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element AmbientLight-\"",Name,"\"")) );
                             }
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Sd-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element Sd-\"",Name,"\"")) );
                         }
                         break;
                     case 'L': // Light
@@ -899,7 +891,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                 throw( phys::Exception("Attemping to deserialize nameless light during deserialization of SceneManager but lights must have a name.") );
                             }
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element L-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element L-\"",Name,"\"")) );
                         }
                         break;
                     case 'P': // Particle Effect
@@ -920,7 +912,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                 throw( phys::Exception("Attemping to deserialize nameless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a name.") );
                             }
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element P-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element P-\"",Name,"\"")) );
                         }
                         break;
 
@@ -949,14 +941,14 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                         Child >> *ChildNode;
                                         break;
                                     default:
-                                        throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
+                                        throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
                                         break;
                                 }
                             }else{
                                 throw( phys::Exception("Attemping to deserialize nameless WorldNode during deserialization of SceneManager but WorldNodes must have a name.") );
                             }
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
                         }
                         break;
                     case 'S': // Sky of some kind or "ShadowColor"
@@ -973,13 +965,13 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                             Child.GetFirstChild() >> InTheShade;
                                             Ev.SetShadowColour(InTheShade);
                                         }else{
-                                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element ShadowColour-\"",Child.GetFirstChild().Name(),"\"")) );
+                                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element ShadowColour-\"",Child.GetFirstChild().Name(),"\"")) );
                                         }
                                     }else{
                                         throw( phys::Exception("Incompatible XML for SceneManager: ShadowColour has no child"));
                                     }
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Sd-\"",Name,"\"")) );
+                                    throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element Sd-\"",Name,"\"")) );
                                 }
                                 break;
                             case 'B': // SkyBox
@@ -992,7 +984,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                         {
                                             Child.GetFirstChild().GetFirstChild() >> Orientation;
                                         }else{
-                                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Orientation-\"",Name,"\"")) );
+                                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element Orientation-\"",Name,"\"")) );
                                         }
                                         Ev.CreateSkyBox( Child.GetAttribute("MaterialName").AsString(),
                                                          Child.GetAttribute("MaterialGroupName").AsString(),
@@ -1003,7 +995,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                         throw( phys::Exception("Incompatible XML for SkyBox: Not Version 1"));
                                     }
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element SB-\"",Name,"\"")) );
+                                    throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element SB-\"",Name,"\"")) );
                                 }
                                 break;
                             case 'D': // SkyDome
@@ -1016,7 +1008,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                         {
                                             Child.GetFirstChild().GetFirstChild() >> Orientation;
                                         }else{
-                                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Orientation-\"",Name,"\"")) );
+                                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element Orientation-\"",Name,"\"")) );
                                         }
                                         Ev.CreateSkyDome( Child.GetAttribute("MaterialName").AsString(),
                                                           Child.GetAttribute("MaterialGroupName").AsString(),
@@ -1032,7 +1024,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                         throw( phys::Exception("Incompatible XML for SkyDome: Not Version 1"));
                                     }
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element SD-\"",Name,"\"")) );
+                                    throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element SD-\"",Name,"\"")) );
                                 }
                                 break;
                             case 'P': // SkyPlane
@@ -1056,20 +1048,20 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                         throw( phys::Exception("Incompatible XML for SkyPlane: Not Version 1"));
                                     }
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element SP-\"",Name,"\"")) );
+                                    throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element SP-\"",Name,"\"")) );
                                 }
                                 break;
                         }
                         break;
                         default:
-                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element def-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element def-\"",Name,"\"")) );
                 }
             }
         }else{
             throw( phys::Exception("Incompatible XML Version for SceneManager: Not Version 1"));
         }
     }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a SceneManager, found a ", OneNode.Name())));
+        throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a SceneManager, found a ", OneNode.Name())));
     }
 }
 #endif

@@ -1,4 +1,5 @@
-//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
+#ifdef PHYSNETWORK
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -37,53 +38,76 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _datatypes_cpp
-#define _datatypes_cpp
+#ifndef _networksocket_cpp
+#define _networksocket_cpp
 
-#include <sstream>
+#include "networksocket.h"
 
-#include "datatypes.h"
+#ifdef WINDOWS
+#include <winsock2.h>  //winsock
+#include <basetsd.h>
+#else
+#include <sys/types.h>  //berkely sockets
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <errno.h>
+#include <fcntl.h>
+#endif
 
 namespace phys
 {
-
-    /// @file datatypes.cpp
-    /// @brief Holds utilities for converting, concatenating, manipulating and working with simple datatypes
-
-    String StringCat(const String& Front, const String& Back)
+    namespace Network
     {
-        std::stringstream Adder;
-        Adder << Front << Back;
-        return Adder.str();
-    }
+        #ifdef WINDOWS
+        typedef int AddrLen;
+        typedef UINT_PTR SocketHandle;
+        #else
+        typedef socklen_t AddrLen;
+        typedef int SocketHandle;
+        #endif
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @struct InternalSocketData
+        /// @headerfile networksocket.cpp
+        /// @brief
+        /// @details
+        ///////////////////////////////////////
+        struct InternalSocketData
+        {
+            InternalSocketData() : Handle(0) {};
+            SocketHandle Handle;
+        };//internalsocketdata
 
-    String StringCat(const String& Front, const String& Middle, const String& Back)
-    {
-        std::stringstream Adder;
-        Adder << Front  << Middle << Back;
-        return Adder.str();
-    }
+        Socket::Socket(const SocketType& Type)
+            : SType(Type)
+        {
 
-    String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back)
-    {
-        std::stringstream Adder;
-        Adder << Front  << Middle1 << Middle2 << Back;
-        return Adder.str();
-    }
+        }
 
-    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back)
-    {
-        std::stringstream Adder;
-        Adder << Front  << Middle1 << Middle2 << Middle3 << Back;
-        return Adder.str();
-    }
+        Socket::~Socket()
+        {
 
-    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back)
-    {
-        std::stringstream Adder;
-        Adder << Front  << Middle1 << Middle2 << Middle3 << Middle4 << Back;
-        return Adder.str();
-    }
+        }
 
-} // \phys
+        Socket::SocketType Socket::GetType() const
+        {
+            return SType;
+        }
+
+        Socket::SocketError Socket::GetError() const
+        {
+            #ifdef WINDOWS
+
+            #else
+
+            #endif
+        }
+    }//Network
+}//phys
+
 #endif
+
+#endif //PHYSNETWORK

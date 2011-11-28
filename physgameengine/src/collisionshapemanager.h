@@ -43,6 +43,8 @@
 #include "collisionshape.h"
 #include "datatypes.h"
 #include "managerbase.h"
+#include "singleton.h"
+
 #include <set>
 
 class btTriangleMesh;
@@ -65,7 +67,7 @@ namespace phys
     /// recommended to store and re-use a collision shape anytime you need it in multiple objects,
     /// rather then re-creating the same shape again and again.
     ///////////////////////////////////////
-    class PHYS_LIB CollisionShapeManager : public ManagerBase
+    class PHYS_LIB CollisionShapeManager : public ManagerBase, public Singleton<CollisionShapeManager>
     {
         protected:
             /// @brief This Stores the names and collision Shapes

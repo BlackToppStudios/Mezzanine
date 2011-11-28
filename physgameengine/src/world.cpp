@@ -197,7 +197,7 @@ namespace phys
 
     void World::OneTimeMainLoopInit()
     {
-        this->GetGraphicsManager()->ResetRenderTimer();
+        GraphicsManager::GetSingletonPtr()->ResetRenderTimer();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -209,11 +209,13 @@ namespace phys
         for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); !ManagerList.empty(); iter = this->ManagerList.begin() ) //forward
         {
             #ifdef PHYSDEBUG
-            std::cout << "Deleting " << (*iter)->GetTypeName() << std::endl; //Be careful using this. Because the UImanager is deleted during scenemanager deconstruction, it may not be obvious when that memory is freed.
+            //Be careful using this. Because the UImanager is deleted during scenemanager deconstruction, it may not be obvious when that memory is freed.
+            String TypeName = (*iter)->GetTypeName();
+            std::cout << "Deleting " << TypeName << std::endl;
             #endif
             Current = (*iter);
-            delete Current;
             RemoveManager(Current);
+            delete Current;
         }
 
         SDL_Quit();
@@ -290,10 +292,10 @@ namespace phys
         {
             if (LogTimer)
             {
-                World::GetWorldPointer()->GetTimerManager()->DestroyTimer(LogTimer);
+                TimerManager::GetSingletonPtr()->DestroyTimer(LogTimer);
                 LogTimer=0;
             }
-            LogTimer = World::GetWorldPointer()->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
+            LogTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::StopWatch);
             LogTimer->SetInitialTime(FrequencyCounter__ * 1000000);
             LogTimer->SetGoalTime(0);
             LogTimer->Reset();
@@ -308,7 +310,7 @@ namespace phys
     {
         if (LogTimer)
         {
-            World::GetWorldPointer()->GetTimerManager()->DestroyTimer(LogTimer);
+            TimerManager::GetSingletonPtr()->DestroyTimer(LogTimer);
             LogTimer=0;
         }
         FrequencyCounter__=FrequencyCounter;
@@ -352,8 +354,9 @@ namespace phys
     void World::LogString(const String& Message)
     {
         // if it is in the Audiologs then it has already happened so it needs to be logged first
-        if (this->GetAudioManager()->GetLogs())
-            { this->LogStream << this->GetAudioManager()->GetLogs()->str(); }
+        AudioManager* AudioMan = this->GetAudioManager();
+        if(AudioMan && AudioMan->GetLogs())
+            { this->LogStream << AudioMan->GetLogs()->str(); }
         if(Message.size()>0)
             { this->LogStream << endl << Message; }
     }
@@ -389,7 +392,7 @@ namespace phys
                 (*Iter)->Initialize();
             }
         }
-        GetGraphicsManager()->Initialize();
+        GraphicsManager::GetSingletonPtr()->Initialize();
 
         if(CallMainLoop)
         {
@@ -436,6 +439,7 @@ namespace phys
             {
                 #ifdef PHYSDEBUG
                 this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " - Priority: " << (*Iter)->GetPriority();
+                //this->DoMainLoopLogging();
                 #endif
 
                 #ifdef PHYSPROFILE
@@ -678,7 +682,12 @@ namespace phys
     {
         return dynamic_cast<MeshManager*> (this->GetManager(ManagerBase::MeshManager, WhichOne));
     }
-
+    #ifdef PHYSNETWORK
+    NetworkManager* World::GetNetworkManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<NetworkManager*> (this->GetManager(ManagerBase::NetworkManager, WhichOne));
+    }
+    #endif
     PhysicsManager* World::GetPhysicsManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));

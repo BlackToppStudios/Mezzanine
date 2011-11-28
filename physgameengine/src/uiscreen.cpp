@@ -58,7 +58,7 @@ namespace phys
               PrimaryAtlas(Atlas),
               GameViewport(WindowViewport)
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
+            Manager = UIManager::GetSingletonPtr();
 
             GorillaScreen = Manager->GetSilverbackPointer()->createScreen(WindowViewport->GetOgreViewport());
             KnownViewportSize = Vector2((Real)GameViewport->GetActualWidth(),(Real)GameViewport->GetActualHeight());

@@ -117,8 +117,8 @@ namespace phys
             virtual void RemoveObjectFromWorld();
             /// @copydoc ActorBase::_Update()
             virtual void _Update();
-            /// @copydoc ActorBase::_NotifyCollision(EventCollision* Collision)
-            virtual void _NotifyCollision(EventCollision* Collision);
+            /// @copydoc ActorBase::_NotifyCollisionState(Collision* Col)
+            virtual void _NotifyCollisionState(Collision* Col, const Collision::CollisionState& State);
 
             /// @internal
             /// @brief Get the Physics data raw from the physic subsystem

@@ -43,6 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "managerbase.h"
+#include "singleton.h"
 #include "resourceinputstream.h"
 
 #include <istream>
@@ -65,7 +66,8 @@ namespace phys
     /// @details This class is responsible for the reading and writing of files of all kinds, be
     /// it graphical meshes, physics data, or XMl files.
     ///////////////////////////////////////
-    class PHYS_LIB ResourceManager : public ManagerBase {
+    class PHYS_LIB ResourceManager : public ManagerBase, public Singleton<ResourceManager>
+    {
         protected:
             /// @brief Encapsulates the functionality of the ogre resource group manager.
             Ogre::ResourceGroupManager* OgreResource;

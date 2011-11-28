@@ -45,6 +45,7 @@
 
 #include "datatypes.h"
 #include "eventrendertime.h"
+#include "stringtool.h"
 
 #include <memory>
 
@@ -103,7 +104,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventRenderT
             throw( phys::Exception("Incompatible XML Version for EventRenderTime: Not Version 1"));
         }
     }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a EventRenderTime, found a ", OneNode.Name())));
+        throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a EventRenderTime, found a ", OneNode.Name())));
     }
 }
 #endif // \PHYSXML

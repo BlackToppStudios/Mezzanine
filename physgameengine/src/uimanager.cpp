@@ -58,12 +58,13 @@
 
 namespace
 {
-    // used to work around the lack of ability to check for the existence or ogre singletons
     bool HasSilverAlreadyBeenCreated = false;
 }
 
 namespace phys
 {
+    template<> UIManager* Singleton<UIManager>::SingletonPtr = 0;
+
     UIManager::UIManager()
         : HoveredButton(NULL),
           HoveredWidgetButton(NULL),
@@ -134,7 +135,7 @@ namespace phys
         if(HotKeys.empty())
             return;
         std::vector<MetaCode::InputCode> CapturedCodes;
-        std::list<EventUserInput*>* InputList = GameWorld->GetEventManager()->GetAllUserInputEvents();
+        std::list<EventUserInput*>* InputList = EventManager::GetSingletonPtr()->GetAllUserInputEvents();
         MetaCode::InputCode CurrCode;
         for( std::list<EventUserInput*>::iterator Ilit = InputList->begin() ; Ilit != InputList->end() ; Ilit++ )
         {

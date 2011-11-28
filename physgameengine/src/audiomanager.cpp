@@ -50,6 +50,8 @@
 
 namespace phys
 {
+    template<> AudioManager* Singleton<AudioManager>::SingletonPtr = 0;
+
     AudioManager::AudioManager(bool DefaultSettings)
         : AmbientVolume(1.0),
           DialogVolume(1.0),
@@ -66,9 +68,6 @@ namespace phys
 
     AudioManager::~AudioManager()
     {
-        #ifdef PHYSDEBUG
-        this->GameWorld->Log("Destructing Sound Manager");
-        #endif
         DestroyAllSounds();
         cAudio::destroyAudioManager(cAudioManager);
     }
@@ -112,13 +111,26 @@ namespace phys
         else return NULL;
     }
 
-    void AudioManager::DestroySound(Audio::Sound* SoundName)
+    void AudioManager::DestroySound(Audio::Sound* ToBeDestroyed)
     {
-        cAudioManager->release(SoundName->SoundSource);
+        for( std::map<String,Audio::Sound*>::iterator It = Sounds.begin() ; It != Sounds.end() ; ++It )
+        {
+            if(ToBeDestroyed == (*It).second)
+            {
+                delete (*It).second;
+                Sounds.erase(It);
+                return;
+            }
+        }
     }
 
     void AudioManager::DestroyAllSounds()
     {
+        for( std::map<String,Audio::Sound*>::iterator It = Sounds.begin() ; It != Sounds.end() ; ++It )
+        {
+            delete (*It).second;
+        }
+        Sounds.clear();
         cAudioManager->releaseAllSources();
     }
 

@@ -40,16 +40,17 @@
 #ifndef _quaternion_cpp
 #define _quaternion_cpp
 
+#include "stringtool.h"
+#include "quaternion.h"
+#include "serialization.h"
+#include "vector3.h"
+#include "world.h"
+
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 
 #include <cmath>
 #include <memory>
-
-#include "quaternion.h"
-#include "serialization.h"
-#include "vector3.h"
-#include "world.h"
 
 namespace phys
 {
@@ -387,10 +388,10 @@ namespace phys
                     this->Z=OneNode.GetAttribute("Z").AsReal();
                     this->W=OneNode.GetAttribute("W").AsReal();
                 }else{
-                    throw( phys::Exception(StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+                    throw( phys::Exception(StringTool::StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
                 }
             }else{
-                throw( phys::Exception(phys::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+                throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
             }
         }
 

@@ -59,6 +59,8 @@
 
 namespace phys
 {
+    template<> CollisionShapeManager* Singleton<CollisionShapeManager>::SingletonPtr = 0;
+
     CollisionShapeManager::CollisionShapeManager()
     {
         this->Priority = 36;
@@ -377,7 +379,7 @@ namespace phys
 
     ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
     {
-        Mesh* ObjectMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         return this->GenerateConvexHull(Name,ObjectMesh,UseAllSubmeshes);
     }
 
@@ -389,7 +391,7 @@ namespace phys
 
     DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
     {
-        Mesh* ObjectMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         return this->GenerateDynamicTriMesh(Name,ObjectMesh,UseAllSubmeshes);
     }
 
@@ -401,7 +403,7 @@ namespace phys
 
     StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
     {
-        Mesh* ObjectMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         return this->GenerateStaticTriMesh(Name,ObjectMesh,UseAllSubmeshes);
     }
 
@@ -585,7 +587,7 @@ namespace phys
 
     CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
     {
-        Mesh* ObjectMesh = World::GetWorldPointer()->GetMeshManager()->LoadMesh(MeshName,Group);
+        Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         return this->PerformConvexDecomposition(Name,ObjectMesh,Depth,CPercent,PPercent,UseAllSubmeshes);
     }
 

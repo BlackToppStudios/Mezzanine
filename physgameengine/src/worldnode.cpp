@@ -48,6 +48,7 @@
 #include "light.h"
 #include "particleeffect.h"
 #include "actorbase.h"
+#include "stringtool.h"
 #include "world.h"
 
 #include <Ogre.h>
@@ -66,7 +67,7 @@ namespace phys
         if (Manager)
             { OgreNode = Manager->GetGraphicsWorldPointer()->createSceneNode(Name); }
         else
-            { OgreNode = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode(Name); }
+            { OgreNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createSceneNode(Name); }
 
         Type = WorldNode::Free;
     }
@@ -83,7 +84,7 @@ namespace phys
         if (Manager)
             { Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
         else
-            { World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
+            { SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -259,7 +260,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            phys::WorldNode * AttachPtr = phys::SceneManager::GetSingletonPtr()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
                 { AttachPtr->AttachObject(&Ev); }
 
@@ -274,7 +275,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
                         if(Name==phys::String("Attached"))
                         {
                             phys::String AttributeName(OneNode.GetAttribute("Name").AsString());
-                            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( Child.GetAttribute("Name").AsString() );
+                            phys::WorldNode * AttachPtr = phys::SceneManager::GetSingletonPtr()->GetNode( Child.GetAttribute("Name").AsString() );
                             /// @todo This doesn't account for other objects aside from world nodes to be attached.  Additional checks that fetch other types by name in the case of a null pointer should be implemented.
 
                             if (AttachPtr)  // fail silently, because if we don't find it then that means it just hasn't been deserialized yeat
@@ -283,12 +284,12 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
                                 {
                                     Ev.AttachObject(AttachPtr);
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Cannot reconcile WorldNode with the current state of the world: Attachable \"",AttachPtr->GetName(),"\" needs to be attached, but is already attached to ",AttachPtr->GetAttachedTo()->GetName() )) );
+                                    throw( phys::Exception(phys::StringTool::StringCat("Cannot reconcile WorldNode with the current state of the world: Attachable \"",AttachPtr->GetName(),"\" needs to be attached, but is already attached to ",AttachPtr->GetAttachedTo()->GetName() )) );
                                 }
                             }
 
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
                         }
                         break;
                     case 'O':   //Orientation
@@ -297,7 +298,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
                             Child.GetFirstChild() >> TempQuat;
                             Ev.SetOrientation(TempQuat);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
                         }
                         break;
                     case 'L':   //Location
@@ -306,11 +307,11 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetLocation(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element L-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element L-\"",Name,"\"")) );
                         }
                         break;
                     default:
-                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element default-\"",Name,"\"")) );
+                        throw( phys::Exception(phys::StringTool::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element default-\"",Name,"\"")) );
                         break;
                 }
             }
@@ -318,7 +319,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& E
             throw( phys::Exception("Incompatible XML Version for WorldNode: Not Version 1"));
         }
     }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a WorldNode, found a ", OneNode.Name())));
+        throw( phys::Exception(phys::StringTool::StringCat("Attempting to deserialize a WorldNode, found a ", OneNode.Name())));
     }
 
 }
