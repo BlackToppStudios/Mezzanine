@@ -101,7 +101,7 @@ BinaryRecievingDir="data/$PlatformDirName"
 #########################################################
 # Prepare command line input
 ArgDebug=`echo "$1" | tr a-z A-Z`
-DebugSymbols=""
+DebugSymbols="-O2"
 DebugCMake="-DCMAKE_BUILD_TYPE=Release"
 DebugMode=0
 
@@ -191,7 +191,7 @@ then
 fi
 
 echo "Configuring SDL, putting log in: $SDLOutputDir/Configurelog.txt"
-./configure $LDfPIC CFLAGS="-O2 $DebugSymbols $fPIC"  > $SDLRelOutputDir/Configurelog.txt
+./configure $LDfPIC CFLAGS="$DebugSymbols $fPIC"  > $SDLRelOutputDir/Configurelog.txt
 
 echo "Compiling SDL, putting logs in: $SDLOutputDir/Compilelog.txt"
 make -j$ThreadCount > $SDLRelOutputDir/Compilelog.txt
