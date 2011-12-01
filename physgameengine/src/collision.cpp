@@ -49,33 +49,42 @@
 #include <btBulletDynamicsCommon.h>
 #include <memory>
 
-namespace phys {
-    Collision::Collision(ActorBase* actora, ActorBase* actorb, btPersistentManifold* PhysicsManifold)
+namespace phys
+{
+    struct CollisionInternalData
     {
-        ActorA=actora;
-        ActorB=actorb;
-        Manifold=PhysicsManifold;
+        btManifoldArray Manifolds;
+    };
+
+    Collision::Collision(ActorBase* actora, ActorBase* actorb, btBroadphasePair* PhysicsPair)
+    {
+        ActorA = actora;
+        ActorB = actorb;
+        InternalAlgo = PhysicsPair->m_algorithm;
+        InternalData = new CollisionInternalData();
 
         ActorA->_NotifyCollisionState(this,Collision::Col_Begin);
         ActorB->_NotifyCollisionState(this,Collision::Col_Begin);
 
-        NumContacts = Manifold->getNumContacts();
-        //for( int X = 0 ; X < NumContacts ; ++X )
-        //    ContactLifeTimes.push_back(Manifold->getContactPoint(X)->m_lifeTime);
+        InternalAlgo->getAllContactManifolds(InternalData->Manifolds);
+        NumContacts = InternalData->Manifolds.size();
     }
 
     Collision::Collision()
     {
-        ActorA=NULL;
-        ActorB=NULL;
-        Manifold=NULL;
+        ActorA = NULL;
+        ActorB = NULL;
+        InternalAlgo = NULL;
+        InternalData = new CollisionInternalData();
     }
 
     Collision::Collision(const Collision& Other)
     {
-        ActorA=Other.ActorA;
-        ActorB=Other.ActorB;
-        Manifold=Other.Manifold;
+        ActorA = Other.ActorA;
+        ActorB = Other.ActorB;
+        InternalAlgo = Other.InternalAlgo;
+        for( Whole X = 0 ; X < Other.InternalData->Manifolds.size() ; ++X )
+            InternalData->Manifolds.push_back(Other.InternalData->Manifolds[X]);
 
         // Double notifies seems like a bad idea.
         //ActorA->_NotifyCollisionState(this,Collision::Col_Begin);
@@ -86,6 +95,22 @@ namespace phys {
     {
         ActorA->_NotifyCollisionState(this,Collision::Col_End);
         ActorB->_NotifyCollisionState(this,Collision::Col_End);
+        delete InternalData;
+    }
+
+    btManifoldPoint& Collision::GetManifoldPoint(const Whole& Index)
+    {
+        if(Index >= InternalData->Manifolds.size())
+            World::GetWorldPointer()->LogAndThrow(Exception("Attempting to access invalid index in Collision."));
+
+        if(Index > 3)
+        {
+            Whole SuperIndex = Index/4;
+            Whole SubIndex = Index%4;
+            return (InternalData->Manifolds.at(SuperIndex)->getContactPoint(SubIndex));
+        }else{
+            return (InternalData->Manifolds.at(0)->getContactPoint(Index));
+        }
     }
 
     void Collision::SetActorA(ActorBase* A)
@@ -122,44 +147,44 @@ namespace phys {
 
     Whole Collision::GetNumContactPoints()
     {
-        return (Whole)Manifold->getNumContacts();
+        return (Whole)InternalData->Manifolds.size();
     }
 
     Vector3 Collision::GetWorldLocation(const Whole& Point)
     {
-        btVector3 PointA = Manifold->getContactPoint(Point).m_localPointA;
-        btVector3 PointB = Manifold->getContactPoint(Point).m_localPointB;
+        btVector3 PointA = GetManifoldPoint(Point).m_localPointA;
+        btVector3 PointB = GetManifoldPoint(Point).m_localPointB;
         return Vector3((PointA+PointB) /= 2);
     }
 
     Vector3 Collision::GetLocalALocation(const Whole& Point)
     {
-        return Vector3(Manifold->getContactPoint(Point).m_localPointA);
+        return Vector3(GetManifoldPoint(Point).m_localPointA);
     }
 
     Vector3 Collision::GetLocalBLocation(const Whole& Point)
     {
-        return Vector3(Manifold->getContactPoint(Point).m_localPointB);
+        return Vector3(GetManifoldPoint(Point).m_localPointB);
     }
 
     Vector3 Collision::GetNormal(const Whole& Point)
     {
-        return Vector3(Manifold->getContactPoint(Point).m_normalWorldOnB);
+        return Vector3(GetManifoldPoint(Point).m_normalWorldOnB);
     }
 
     Real Collision::GetAppliedImpulse(const Whole& Point)
     {
-        return Manifold->getContactPoint(Point).m_appliedImpulse;
+        return GetManifoldPoint(Point).m_appliedImpulse;
     }
 
     Real Collision::GetDistance(const Whole& Point)
     {
-        return Manifold->getContactPoint(Point).m_distance1;
+        return GetManifoldPoint(Point).m_distance1;
     }
 
     Whole Collision::GetAge(const Whole& Point)
     {
-        return (Whole)Manifold->getContactPoint(Point).m_lifeTime;
+        return (Whole)GetManifoldPoint(Point).m_lifeTime;
     }
 
     bool Collision::PairsMatch(ActorBase* A, ActorBase* B) const
@@ -171,12 +196,12 @@ namespace phys {
 
     void Collision::Update()
     {
-        if( NumContacts != Manifold->getNumContacts() )
+        InternalAlgo->getAllContactManifolds(InternalData->Manifolds);
+        if( NumContacts != InternalData->Manifolds.size() )
         {
             ActorA->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
             ActorB->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
-            NumContacts = Manifold->getNumContacts();
-            return;
+            NumContacts = InternalData->Manifolds.size();
         }
     }
 }

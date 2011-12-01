@@ -46,6 +46,9 @@
 #include "world.h"
 #include "worldnode.h"
 
+#include "particleaffector.h"
+#include "particleemitter.h"
+
 #include <memory>
 
 #include <Ogre.h>
@@ -96,8 +99,8 @@ namespace phys
                 Manager->GetGraphicsWorldPointer()->destroyParticleSystem(OgreParticle);
                 Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
             }
-        };
-    }
+        };//ParticleEffectInternalData
+    }//internal
 
     ///////////////////////////////////////////////////////////////////////////////
     // Construction
@@ -106,12 +109,40 @@ namespace phys
     {
         this->Pie = new internal::ParticleEffectInternalData(manager, manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template));
         this->Pie->Template = Template;
+
+        UInt16 NumEmitters = Pie->OgreParticle->getNumEmitters();
+        for( UInt16 X = 0 ; X < NumEmitters ; ++X )
+        {
+            ParticleEmitter* NewEmitter = new ParticleEmitter(Pie->OgreParticle->getEmitter(X));
+            Emitters.push_back(NewEmitter);
+        }
+
+        UInt16 NumAffectors = Pie->OgreParticle->getNumAffectors();
+        for( UInt16 X = 0 ; X < NumAffectors ; ++X )
+        {
+            ParticleAffector* NewAffector = new ParticleAffector(Pie->OgreParticle->getAffector(X));
+            Affectors.push_back(NewAffector);
+        }
     }
 
     ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, const String& Template, SceneManager* manager)
     {
         this->Pie = new internal::ParticleEffectInternalData(manager, System);
         this->Pie->Template = Template;
+
+        UInt16 NumEmitters = Pie->OgreParticle->getNumEmitters();
+        for( UInt16 X = 0 ; X < NumEmitters ; ++X )
+        {
+            ParticleEmitter* NewEmitter = new ParticleEmitter(Pie->OgreParticle->getEmitter(X));
+            Emitters.push_back(NewEmitter);
+        }
+
+        UInt16 NumAffectors = Pie->OgreParticle->getNumAffectors();
+        for( UInt16 X = 0 ; X < NumAffectors ; ++X )
+        {
+            ParticleAffector* NewAffector = new ParticleAffector(Pie->OgreParticle->getAffector(X));
+            Affectors.push_back(NewAffector);
+        }
     }
 
     ParticleEffect::~ParticleEffect()
@@ -139,7 +170,65 @@ namespace phys
         { return Quaternion(this->Pie->OgreNode->getOrientation()); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Particle Functionality
+    // Emitters
+
+    ParticleEmitter* ParticleEffect::GetEmitter(const UInt16& Index) const
+    {
+        return Emitters.at(Index);
+    }
+
+    UInt16 ParticleEffect::GetNumEmitters() const
+    {
+        return Pie->OgreParticle->getNumEmitters();
+    }
+
+    void ParticleEffect::DestroyEmitter(const UInt16& Index)
+    {
+        std::vector<ParticleEmitter*>::iterator it = Emitters.begin() + Index;
+        delete (*it);
+        Emitters.erase(it);
+        Pie->OgreParticle->removeEmitter(Index);
+    }
+
+    void ParticleEffect::DestroyAllEmitters()
+    {
+        for( std::vector<ParticleEmitter*>::iterator it = Emitters.begin() ; it != Emitters.end() ; ++it )
+            delete (*it);
+        Emitters.clear();
+        Pie->OgreParticle->removeAllEmitters();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Affectors
+
+    ParticleAffector* ParticleEffect::GetAffector(const UInt16& Index) const
+    {
+        return Affectors.at(Index);
+    }
+
+    UInt16 ParticleEffect::GetNumAffectors() const
+    {
+        return Pie->OgreParticle->getNumAffectors();
+    }
+
+    void ParticleEffect::DestroyAffector(const UInt16& Index)
+    {
+        std::vector<ParticleAffector*>::iterator it = Affectors.begin() + Index;
+        delete (*it);
+        Affectors.erase(it);
+        Pie->OgreParticle->removeAffector(Index);
+    }
+
+    void ParticleEffect::DestroyAllAffectors()
+    {
+        for( std::vector<ParticleAffector*>::iterator it = Affectors.begin() ; it != Affectors.end() ; ++it )
+            delete (*it);
+        Affectors.clear();
+        Pie->OgreParticle->removeAllAffectors();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Other Particle Functionality
 
     void ParticleEffect::AddToWorld()
     {
@@ -158,6 +247,12 @@ namespace phys
 
     ConstString& ParticleEffect::GetTemplate() const
         { return this->Pie->Template; }
+
+    void ParticleEffect::SetCustomParam(const String& Name, const String& Value)
+        { this->Pie->OgreParticle->setParameter(Name,Value); }
+
+    String ParticleEffect::GetCustomParam(const String& Name) const
+        { return this->Pie->OgreParticle->getParameter(Name); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Functions

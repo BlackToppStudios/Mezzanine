@@ -141,6 +141,9 @@ namespace phys
             case ManagerBase::SceneManager:
                 return "SceneManager";
                 break;
+            case ManagerBase::ScriptingManager:
+                return "ScriptingManager";
+                break;
             case ManagerBase::TerrainManager:
                 return "TerrainManager";
                 break;

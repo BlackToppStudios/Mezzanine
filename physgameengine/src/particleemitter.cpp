@@ -37,64 +37,33 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorpair_cpp
-#define _actorpair_cpp
 
-#include "actorpair.h"
-#include "actorbase.h"
+#ifndef _particleemitter_cpp
+#define _particleemitter_cpp
+
+#include "particleemitter.h"
+
+#include <Ogre.h>
 
 namespace phys
 {
-    ActorPair::ActorPair() : ActorA(NULL), ActorB(NULL)
+    ParticleEmitter::ParticleEmitter(Ogre::ParticleEmitter* InternalEmitter)
+        : Emitter(InternalEmitter)
     {
     }
 
-    ActorPair::ActorPair(ActorBase* A, ActorBase* B)
-        : ActorA(A), ActorB(B)
+    ParticleEmitter::~ParticleEmitter()
     {
     }
 
-    ActorPair::ActorPair(ActorPair* OtherPair)
+    void ParticleEmitter::SetCustomParam(const String& Name, const String& Value)
     {
-        ActorA = OtherPair->ActorA;
-        ActorB = OtherPair->ActorB;
+        Emitter->setParameter(Name,Value);
     }
 
-    ActorPair::ActorPair(const ActorPair& OtherPair)
+    String ParticleEmitter::GetCustomParam(const String& Name) const
     {
-        ActorA = OtherPair.ActorA;
-        ActorB = OtherPair.ActorB;
-    }
-
-    bool ActorPair::PairsMatch(ActorBase* A, ActorBase* B) const
-    {
-        bool ContainsA = (A == ActorA) || (A == ActorB);
-        bool ContainsB = (B == ActorA) || (B == ActorB);
-        return (ContainsA && ContainsB);
-    }
-
-    bool ActorPair::PairsMatch(ActorPair* Pair) const
-    {
-        return PairsMatch(Pair->ActorA,Pair->ActorB);
-    }
-
-    bool ActorPair::operator==(const ActorPair& Pair) const
-    {
-        return PairsMatch(Pair.ActorA,Pair.ActorB);
-    }
-
-    bool ActorPair::operator<(const ActorPair& Pair) const
-    {
-        String PairAName(this->ActorA->GetName() + this->ActorB->GetName());
-        String PairBName(Pair.ActorA->GetName() + Pair.ActorB->GetName());
-        return PairAName.compare(PairBName) < 0;
-    }
-
-    bool ActorPair::operator>(const ActorPair& Pair) const
-    {
-        String PairAName(this->ActorA->GetName() + this->ActorB->GetName());
-        String PairBName(Pair.ActorA->GetName() + Pair.ActorB->GetName());
-        return PairAName.compare(PairBName) > 0;
+        return Emitter->getParameter(Name);
     }
 }//phys
 

@@ -47,13 +47,13 @@
 #include "actorcontainerbase.h"
 #include "actormanager.h"
 #include "actorphysicssettings.h"
-#include "eventcollision.h"
 #include "vector3wactor.h"
 #include "areaeffect.h"
 #include "eventmanager.h"
 #include "eventcollision.h"
 #include "worldtrigger.h"
 #include "objectreference.h"
+#include "collision.h"
 
 #include <queue>
 
@@ -267,10 +267,45 @@ namespace phys
     #undef GetObject
     #endif
 
-    class CollisionDispatcher : public btCollisionDispatcher
+    /*class BroadphaseCache : public btHashedOverlappingPairCache
     {
         protected:
-            std::list<btPersistentManifold*> ManifoldCreationQueue;
+            std::list<btBroadphasePair*> CollisionCreationQueue;
+            ActorPair ConvertProxiesToActorPair(btBroadphaseProxy* proxy0, btBroadphaseProxy* proxy1)
+            {
+                // Get the object references
+                ObjectReference* ObjectA = (ObjectReference*)((btCollisionObject*)proxy0->m_clientObject)->getUserPointer();
+                ObjectReference* ObjectB = (ObjectReference*)((btCollisionObject*)proxy1->m_clientObject)->getUserPointer();
+                // Verify they are actors, then cast appropriately
+                ActorBase* ActorA = (ObjectA->GetType() >= WOT_ActorFirst) && (ObjectA->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectA->GetObject()) : NULL;
+                ActorBase* ActorB = (ObjectB->GetType() >= WOT_ActorFirst) && (ObjectB->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectB->GetObject()) : NULL;
+                // Verify the cast went well
+                if( ActorA && ActorB )
+                {
+                    if( !ActorA->GetPhysicsSettings()->GetCollisionResponse() || !ActorB->GetPhysicsSettings()->GetCollisionResponse() )
+                        return;
+                    // Creat the collision
+                    return ActorPair(ActorA,ActorB);
+                }
+            }
+        public:
+            void removeOverlappingPair(btBroadphaseProxy* proxy0, btBroadphaseProxy* proxy1, btDispatcher* dispatcher)
+            {
+                btHashedOverlappingPairCache::removeOverlappingPair(proxy0,proxy1,dispatcher);
+            }
+            btBroadphasePair* addOverlappingPair(btBroadphaseProxy* proxy0, btBroadphaseProxy* proxy1)
+            {
+                btBroadphasePair* NewPair = btHashedOverlappingPairCache::addOverlappingPair(proxy0,proxy1);
+                return NewPair;
+            }
+    }// */
+
+    class CollisionDispatcher : public btCollisionDispatcher
+    {
+        public:
+            typedef std::list<btCollisionAlgorithm*> AlgoList;
+        protected:
+            AlgoList AlgoCreationQueue;
             std::list<PhysicsManager::CollisionIterator> ManifoldDestructionQueue;
         public:
             CollisionDispatcher(btCollisionConfiguration* CollisionConfig)
@@ -280,7 +315,7 @@ namespace phys
             ~CollisionDispatcher()
             {
             }
-            btPersistentManifold* getNewManifold(void* b0, void* b1)
+            /*btPersistentManifold* getNewManifold(void* b0, void* b1)
             {
                 // Get the manifold
                 btPersistentManifold* NewManifold = btCollisionDispatcher::getNewManifold(b0,b1);
@@ -307,7 +342,7 @@ namespace phys
                 PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
                 for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
                 {
-                    if(manifold == (*ColIt).second->Manifold)
+                    if(manifold == (*ColIt).second->InternalAlgo)
                     {
                         //ManifoldDestructionQueue.push_back(ColIt);
                         //Collision* ToBeDestroyed = (*ColIt).second;
@@ -318,7 +353,7 @@ namespace phys
                         //delete ToBeDestroyed;
                         break;
                     }
-                }// */
+                }
                 btCollisionDispatcher::releaseManifold(manifold);
             }
             void releaseManifoldManual(btPersistentManifold* manifold)
@@ -335,12 +370,23 @@ namespace phys
                         delete ToBeDestroyed;
                         break;
                     }
-                }// */
+                }
                 btCollisionDispatcher::releaseManifold(manifold);
-            }
-            std::list<btPersistentManifold*>& GetManifoldCreationQueue()
+            }// */
+            void* allocateCollisionAlgorithm(int size)
             {
-                return ManifoldCreationQueue;
+                void* ToReturn = btCollisionDispatcher::allocateCollisionAlgorithm(size);
+                btCollisionAlgorithm* Casted = (btCollisionAlgorithm*)ToReturn;
+                AlgoCreationQueue.push_back(Casted);
+                return ToReturn;
+            }
+            void freeCollisionAlgorithm(void *ptr)
+            {
+
+            }
+            AlgoList& GetAlgoCreationQueue()
+            {
+                return AlgoCreationQueue;
             }
             std::list<PhysicsManager::CollisionIterator>& GetManifoldDestructionQueue()
             {

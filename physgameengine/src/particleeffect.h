@@ -41,7 +41,6 @@
 #define _particleeffect_h
 
 #include "attachable.h"
-#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "quaternion.h"
 #include "xml.h"
@@ -63,6 +62,8 @@ namespace phys
     }
 
     class SceneManager;
+    class ParticleAffector;
+    class ParticleEmitter;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ParticleEffect
     /// @headerfile particleeffect.h
@@ -76,8 +77,13 @@ namespace phys
             /// @internal
             /// @brief The internal data for the particle effect
             internal::ParticleEffectInternalData *Pie;
+            /// @internal
+            /// @brief Vector of emitters in use by this particle effect.
+            std::vector<ParticleEmitter*> Emitters;
+            /// @internal
+            /// @brief Vector of affectors in use by this particle effect.
+            std::vector<ParticleAffector*> Affectors;
         public:
-
             ///////////////////////////////////////////////////////////////////////////////
             // Construction
 
@@ -120,7 +126,39 @@ namespace phys
             virtual Quaternion GetOrientation() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Particle Functionality
+            // Emitters
+
+            /// @brief Gets the Emitter at the specified index.
+            /// @param Index The index of the Emitter to get.
+            /// @return Returns a pointer to the Emitter at the specified index.
+            ParticleEmitter* GetEmitter(const UInt16& Index) const;
+            /// @brief Gets the number of Emitters in use by this particle effect.
+            /// @return Returns a UInt16 representing the number of Emitters in this particle effect.
+            UInt16 GetNumEmitters() const;
+            /// @brief Destroy's an Emitter in use by this particle effect.
+            /// @param Index The index to destroy.
+            void DestroyEmitter(const UInt16& Index);
+            /// @brief Destroy's all Emitters in use by this particle effect.
+            void DestroyAllEmitters();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Affectors
+
+            /// @brief Gets the Affector at the specified index.
+            /// @param Index The index of the Affector to get.
+            /// @return Returns a pointer to the Affector at the specified index.
+            ParticleAffector* GetAffector(const UInt16& Index) const;
+            /// @brief Gets the number of Affectors in use by this particle effect.
+            /// @return Returns a UInt16 representing the number of Affectors in this particle effect.
+            UInt16 GetNumAffectors() const;
+            /// @brief Destroy's an Affector in use by this particle effect.
+            /// @param Index The index to destroy.
+            void DestroyAffector(const UInt16& Index);
+            /// @brief Destroy's all Affectors in use by this particle effect.
+            void DestroyAllAffectors();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Other Particle Functionality
 
             /// @brief Adds this particle effect to the world, allowing it to render.
             /// @details If the Effect is already in the world, this does nothing.
@@ -137,6 +175,21 @@ namespace phys
             /// @brief The name of the template used to create this.
             /// @return A reaference to a ConstString that has the name.
             ConstString& GetTemplate() const;
+
+            /// @brief Sets a custom parameter of a particle effect.
+            /// @remarks The params available to change depends on the internal particle system used.
+            /// You should check your particle script where possible to ensure particles you are
+            /// changing are the type you expect.
+            /// @param Name The name of the parameter to alter.
+            /// @param Value The new value to set for the named parameter.
+            void SetCustomParam(const String& Name, const String& Value);
+
+            /// @brief Gets a custom parameter of a particle effect.
+            /// @remarks The params available to change depends on the internal particle system used.
+            /// You should check your particle script where possible to ensure the particle has the
+            /// param you are looking for.
+            /// @param Name The name of the parameter to fetch.
+            String GetCustomParam(const String& Name) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Functions

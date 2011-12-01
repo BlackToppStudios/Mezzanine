@@ -46,9 +46,14 @@
 #include "xml.h"
 
 class btPersistentManifold;
+class btBroadphasePair;
+class btCollisionAlgorithm;
+class btManifoldPoint;
 
-namespace phys {
+namespace phys
+{
     class CollisionDispatcher;
+    struct CollisionInternalData;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Collision
     /// @headerfile collision.h
@@ -83,7 +88,9 @@ namespace phys {
             friend class CollisionDispatcher;
             friend class PhysicsManager;
             /// @brief The internal collision class this event is based on.
-            btPersistentManifold* Manifold;
+            btCollisionAlgorithm* InternalAlgo;
+            /// @brief Array of manifolds that apply to this collision.
+            CollisionInternalData* InternalData;
             /// @brief The first Actor involved in the collision.
             ActorBase* ActorA;
             /// @brief The second Actor invovled in the collision.
@@ -96,7 +103,10 @@ namespace phys {
             /// @param actora The first Actor involved in the collision.
             /// @param actorb The second Actor invovled in the collision.
             /// @param PhysicsManifold The internal manifold used for querying collision data.
-            Collision(ActorBase* actora, ActorBase* actorb, btPersistentManifold* PhysicsManifold);
+            Collision(ActorBase* actora, ActorBase* actorb, btBroadphasePair* PhysicsPair);
+            /// @internal
+            /// @brief Internal function responsible for fetching the appropriate contact point.
+            btManifoldPoint& GetManifoldPoint(const Whole& Index);
         public:
             /// @brief Default Constructor
             Collision();

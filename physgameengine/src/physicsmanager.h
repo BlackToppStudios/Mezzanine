@@ -57,10 +57,9 @@ class btCollisionConfiguration;
 #include <vector>
 
 #include "constraint.h"
-#include "crossplatformexport.h"
 #include "managerbase.h"
 #include "singleton.h"
-#include "actorpair.h"
+#include "objectpair.h"
 
 namespace phys
 {
@@ -72,6 +71,7 @@ namespace phys
     class WorldTrigger;
     class Collision;
     class CollisionDispatcher;
+    class BroadphaseCache;
     namespace debug {
         class InternalDebugDrawer;
     }
