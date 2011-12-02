@@ -1,0 +1,131 @@
+# © Copyright 2010 - 2011 BlackTopp Studios Inc.
+# This file is part of The Mezzanine Engine.
+#
+#    The Mezzanine Engine is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    The Mezzanine Engine is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
+#
+#   The original authors have included a copy of the license specified above in the
+#   'Docs' folder. See 'gpl.txt'
+#
+#   We welcome the use of the Mezzanine engine to anyone, including companies who wish to
+#   Build professional software and charge for their product.
+#
+#   However there are some practical restrictions, so if your project involves
+#   any of the following you should contact us and we will try to work something
+#   out:
+#    - DRM or Copy Protection of any kind(except Copyrights)
+#    - Software Patents You Do Not Wish to Freely License
+#    - Any Kind of Linking to Non-GPL licensed Works
+#    - Are Currently In Violation of Another Copyright Holder's GPL License
+#    - If You want to change our code and not add a few hundred MB of stuff to
+#        your distribution
+#
+#   These and other limitations could cause serious legal problems if you ignore
+#   them, so it is best to simply contact us or the Free Software Foundation, if
+#   you have any questions.
+#
+#   Joseph Toppi - toppij@gmail.com
+#   John Blackwood - makoenergy02@gmail.com
+
+
+cmake_minimum_required (VERSION 2.8)
+Project( oggvorbis )
+message ("${PROJECT_NAME} - Begin")
+
+#Add some source files
+
+set(${PROJECT_NAME}_sources
+	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.3.0/src/bitwise.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.3.0/src/framing.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.3.0/include/ogg/ogg.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.3.0/include/ogg/os_types.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/analysis.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/bitrate.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/block.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/codebook.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/envelope.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/floor0.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/floor1.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/info.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/lookup.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/lpc.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/lsp.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/mapping0.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/mdct.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/psy.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/registry.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/res0.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/sharedbook.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/smallft.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/synthesis.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/vorbisenc.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/window.c"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/backends.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/bitrate.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/codebook.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/include/vorbis/codec.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/codec_internal.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/envelope.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/floor_all.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/books/floor/floor_books.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/highlevel.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/lookup.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/lookup_data.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/lpc.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/lsp.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/masking.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/mdct.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/misc.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/os.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/psy.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/psych_11.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/psych_16.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/psych_44.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/psych_8.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/registry.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/books/coupled/res_books_stereo.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/books/uncoupled/res_books_uncoupled.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/residue_16.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/residue_44.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/residue_44u.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/residue_8.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/scales.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/setup_11.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/setup_16.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/setup_22.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/setup_32.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/setup_44.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/setup_44u.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/setup_8.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/modes/setup_X.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/smallft.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/include/vorbis/vorbisenc.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/include/vorbis/vorbisfile.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/window.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/vorbisfile.c"
+)
+
+include_directories(
+	"${${PROJECT_NAME}_SOURCE_DIR}/libogg-1.3.0/include"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/include"
+)
+
+add_definitions( ${CommonBuildFlags} )
+
+set (LIBRARY_OUTPUT_PATH "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/oggvorbis/")
+message ("Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
+
+add_library(oggvorbis STATIC ${${PROJECT_NAME}_sources})
+
+message ( "${PROJECT_NAME} - End" )
