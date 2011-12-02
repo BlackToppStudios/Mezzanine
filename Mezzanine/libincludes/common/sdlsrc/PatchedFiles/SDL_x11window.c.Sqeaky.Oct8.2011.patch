@@ -1,0 +1,8 @@
+622c622
+<     if (status == Success) {
+---
+>     if (status == Success && propdata) {
+629c629
+<         if (status == Success) {
+---
+>         if (status == Success && propdata) {
