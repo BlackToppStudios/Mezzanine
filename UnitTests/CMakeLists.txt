@@ -48,26 +48,26 @@ add_definitions( ${CommonBuildFlags} )
 
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}")
-message ("Looking build resources in: ${${PROJECT_NAME}_ROOT_DIR}")
+message ( STATUS "Looking build resources in: ${${PROJECT_NAME}_ROOT_DIR}")
 
 set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}data/")
-message ("Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
+message ( STATUS "Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 
 set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
-message ("Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
+message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_DIR "${ProjectRootDir}/Mezzanine/")
-message ("Base for Mezzanine: ${${PROJECT_NAME}_MEZZANINE_DIR}")
+message ( STATUS "Base for Mezzanine: ${${PROJECT_NAME}_MEZZANINE_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_BIN_DIR "${Mezzanine_BINARY_DIR}/bin/")
-message ("Mezzanine Binaries: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}")
+message ( STATUS "Mezzanine Binaries: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_BIN_SRC "${${PROJECT_NAME}_MEZZANINE_DIR}src/")
-message ("Mezzanine source and headers: ${${PROJECT_NAME}_MEZZANINE_BIN_SRC}")
+message ( STATUS "Mezzanine source and headers: ${${PROJECT_NAME}_MEZZANINE_BIN_SRC}")
 
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (EXECUTABLE_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
-message ("Base Directory for Executable Test binaries and test data output: ${${PROJECT_NAME}_BINARY_DIR}")
+message ( STATUS "Base Directory for Executable Test binaries and test data output: ${${PROJECT_NAME}_BINARY_DIR}")
 
 set (Mezzanine_LIBINCLUDE_DIR ${ProjectRootDir}/Mezzanine/libincludes)
 
@@ -138,36 +138,36 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${Mezzanine_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
+	"${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
 	"${Mezzanine_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 )
 
 if(${WIN32})
-	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	set(BuildPlatform windows)
 
 	include_directories(
 
 	)
 
-	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
+	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	message ("${PROJECT_NAME} - Begin Linux Specific Build Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific Build Process")
 	set(BuildPlatform linux)
 
-	#message("${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
+	#message( STATUS "${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
 	include_directories(
-		"${Mezzanine_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include/"
-		"${Mezzanine_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include/"
+		${Mezzanine_OgreBuildDir}/ogre/OgreMain/include/
+		${Mezzanine_OgreBuildDir}/ogre/include/
 	)
 
-	message ("${PROJECT_NAME} - End Linux Specific Build Process")
+	message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
-
+	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
 
 	include_directories(
 		${${PROJECT_NAME}_ROOT_DIR}/libincludes/common/sdlsrc/SDL/include
@@ -189,11 +189,11 @@ link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine OgreMain)
-target_link_libraries( ${PROJECT_NAME} Mezzanine ${OgreLinkName})
+target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName})
 
 ##############################################################################
 # File copies during all builds
-message ("${PROJECT_NAME} - Begin File Copy Process")
+message ( STATUS "${PROJECT_NAME} - Begin File Copy Process")
 
 CopyFilesDuringBuild( common/r2skin.jpg data/common/r2skin.jpg )
 CopyFilesDuringBuild( common/robot.mesh data/common/robot.mesh )
@@ -239,34 +239,33 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${Mezzanine
 
 # Windows File Copy Specific Items
 if(${WIN32})
-	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
 	CopyFilesFromMezzanineDuringBuild( data/windows/ogre/cg${OgresD}.dll )
 	CopyFilesFromMezzanineDuringBuild( Mezzanine.dll )
 	CopyFilesFromMezzanineDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromMezzanineDuringBuild( OpenAL32.dll )
 	CopyFilesFromMezzanineDuringBuild( wrap_oal.dll )
-	CopyFilesFromMezzanineDuringBuild( SDL.dll )
-	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific File Copy Process")
 	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName} )
 	CopyFilesFromMezzanineDuringBuild( data/linux/GLX_icon.png )
-	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # Mac File Copy pecific Items
 if(${APPLE})
-	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 	CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg )
 	CopyFilesFromMezzanineDuringBuild( Mezzanine.dylib )
 #	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
-	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 
-message ("${PROJECT_NAME} - End Copy Process")
+message ( STATUS "${PROJECT_NAME} - End Copy Process")
 
 message ("${PROJECT_NAME} - End")
 

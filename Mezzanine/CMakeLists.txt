@@ -52,23 +52,23 @@ message("Compiler Flags used on all Builds: ${CommonBuildFlags}")
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
-message ("Base Directory for ${PROJECT_NAME}: ${${PROJECT_NAME}_ROOT_DIR}")
+message ( STATUS "Base Directory for ${PROJECT_NAME}: ${${PROJECT_NAME}_ROOT_DIR}")
 
 set (${PROJECT_NAME}_LIBINCLUDE_DIR "${${PROJECT_NAME}_SOURCE_DIR}libincludes/")
-message ("Base Directory for Library headers: ${${PROJECT_NAME}_LIBINCLUDE_DIR}")
+message ( STATUS "Base Directory for Library headers: ${${PROJECT_NAME}_LIBINCLUDE_DIR}")
 
 set (${PROJECT_NAME}_LIBBINARY_DIR "${${PROJECT_NAME}_SOURCE_DIR}data/")
-message ("Base Directory for Library binaries and data: ${${PROJECT_NAME}_LIBBINARY_DIR}")
+message ( STATUS "Base Directory for Library binaries and data: ${${PROJECT_NAME}_LIBBINARY_DIR}")
 
 set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
-message ("Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
+message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")
 
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (PROJECT_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}")
 set (LIBRARY_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
-message ("Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
+message ( STATUS "Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 
 #######################################
 # A complete listing of our header files
@@ -261,11 +261,11 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}mesh.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}meshmanager.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}metacode.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}networkipaddress.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}networkmanager.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}networkpacket.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}networksocket.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}networksystemaddress.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networkipaddress.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networkmanager.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networkpacket.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networksocket.cpp"
+ 	"${${PROJECT_NAME}_SRC_DIR}networksystemaddress.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}objectpair.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}particleaffector.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}particleeffect.cpp"
@@ -363,14 +363,9 @@ function(CopyLibraryDuringBuild SourceFile TargetFileInLibraryDir)
 endfunction(CopyLibraryDuringBuild)
 
 ###############################################################################
-# Common configuration file copying
+# Common pre-build configuration
 
 # Auto building of SDL could go here.
-
-file( COPY
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
-	DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-)
 
 
 ###############################################################################
@@ -398,65 +393,45 @@ set( Bullet_LibraryNames
 #######################################
 # Windows Build Specific Items
 if(${WIN32})
-	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	add_subdirectory ("${Mezzanine_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis") #required for cAudio
-	add_definitions( -DWINDOWS -DEXPORTINGMEZZANINEDLL )
-	file( COPY
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.la"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/libSDLmain.a"
-		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-	)
-	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
+	add_definitions( -DWINDOWS -DEXPORTINGMEZZANINEDLL )	
+	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
 #######################################
 # Linux Build Specific Items
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	message ("${PROJECT_NAME} - Begin Linux Specific Build Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific Build Process")
 
-	#Autobuild SDL and ogre could go here
-
-	file( COPY 											#cannot include in common until all platforms compile SDL from source
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDLbuild/build/.libs/libSDL.a"
-		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
-	)
 	set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
 
-	#this copies the files compiled by ./BuildLinuxLibs and puts them where they are expected by the normal build process
-	file( COPY
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/${OgreLibFileName}"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/${OgreLinuxSoName}"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/RenderSystem_GL${OgresD}.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/Plugin_ParticleFX${OgresD}.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/ogresrc/ogrebuild/lib/Plugin_CgProgramManager${OgresD}.so"
-		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
-	)
-
-	include_directories(
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include"	#Cannot include in common until all platforms compile Ogre from source
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include"
-	)
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
+	include_directories(
+		${Mezz_OgreBuildDir}/ogre/OgreMain/include/
+		${Mezz_OgreBuildDir}/ogre/include/
+	)
+	message (${Phys_OgreBuildDir}/ogre/OgreMain/include/)
 
-	message ("${PROJECT_NAME} - End Linux Specific Build Process")
+	message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 #######################################
 # Mac OS X and iPhone Build pecific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
 	set(CMAKE_OSX_ARCHITECTURES i386 CACHE STRING "do not build for 64-bit" FORCE)
 	set(ARCH i386)
 
 	include(FindOpenAL)
-	message("OpenAL Headers and Library Found - ${OPENAL_INCLUDE_DIR}")
+	message( STATUS "OpenAL Headers and Library Found - ${OPENAL_INCLUDE_DIR}")
 
 	include(FindOgg)
-	message("Ogg Headers and Library Found - ${OGG_FOUND}")
+	message( STATUS "Ogg Headers and Library Found - ${OGG_FOUND}")
 
 	include(FindOgre)
-	message("Ogre Headers And library Found -	"${OGRE_INCLUDE_DIR}"")
+	message( STATUS "Ogre Headers And library Found -	"${OGRE_INCLUDE_DIR}"")
 
 	include(/Library/Frameworks/Ogre.framework)
 
@@ -473,7 +448,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	link_directories("${OGRE_LIB_DIR}")
 
 	add_definitions( -DMACOSX)
-	message ("${PROJECT_NAME} - End Apple Specific Build Process")
+	message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
@@ -485,7 +460,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDLbuild/include"
+	${Phys_SDLBuildDir}/SDL/include/
 )
 
 link_directories(
@@ -555,7 +530,7 @@ CopyFilesDuringBuild( ${BuildPlatform}/plugins.cfg data/${BuildPlatform}/plugins
 #######################################
 # Windows File Copy Specific Items
 if(${WIN32})
-	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
 	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")					 # remove lib prefix from DLL outputs
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
@@ -572,27 +547,27 @@ if(${WIN32})
 	)
 
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
-	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
 #######################################
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific File Copy Process")
 	CopyFilesDuringBuild( ${BuildPlatform}/GLX_icon.png data/${BuildPlatform}/GLX_icon.png )
 	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName} )
-	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 
 #######################################
 # Mac File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
 	#CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
 
-	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
+	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################

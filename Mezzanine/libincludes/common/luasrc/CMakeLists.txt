@@ -111,7 +111,7 @@ include_directories(
 add_definitions( ${CommonBuildFlags} )
 
 set (LIBRARY_OUTPUT_PATH "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/lua/")
-message ("Putting lua binaries in: ${LIBRARY_OUTPUT_PATH}")
+message ( STATUS "Putting lua binaries in: ${LIBRARY_OUTPUT_PATH}")
 
 add_library(lua STATIC ${${PROJECT_NAME}_sources})
 message ("${PROJECT_NAME} - End")

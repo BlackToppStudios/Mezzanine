@@ -124,7 +124,7 @@ include_directories(
 add_definitions( ${CommonBuildFlags} )
 
 set (LIBRARY_OUTPUT_PATH "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/oggvorbis/")
-message ("Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
+message ( STATUS "Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
 
 add_library(oggvorbis STATIC ${${PROJECT_NAME}_sources})
 

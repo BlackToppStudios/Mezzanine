@@ -90,7 +90,7 @@ set(${PROJECT_NAME}_sources
 #set (${PROJECT_NAME}_BINARY_DIR "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/caudio/")
 #set (PROJECT_BINARY_DIR "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/caudio/")
 set (LIBRARY_OUTPUT_PATH "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/caudio/")
-message ("Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
+message ( STATUS "Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
 
 add_definitions( ${CommonBuildFlags} )
 add_library(cAudio STATIC ${${PROJECT_NAME}_sources})

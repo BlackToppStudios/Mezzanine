@@ -52,8 +52,11 @@
 #	Mezz_Debug	 		- True if The Engine will be compile with Debug Symbols and without compiler optimization, False and it will be optimized and omit debug symbols.
 #	Mezz_Lua			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #	Mezz_Profile			- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking.
+#	Mezz_Network			- Enable or disable networking support
 #	Mezz_XML			- True if the engine will be compiled with XML support. This includes support for serialization
 #
+#	Mezz_OgreBuildDir		- The location of the Ogre source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
+#	Mezz_SDLBuildDir		- The location of the SDL source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
 #	Mezz_UseOgreDebug		- True if the developer wants to the use the ogre debug libraries, this adjusts a number of other files that child cmake scripts can use.
 #	Mezz_UseOgreVersion		- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
 #
@@ -86,20 +89,20 @@ option(Mezz_Debug "Compile with no optimizations and debug symbols" OFF)
 if(${Mezz_Debug})
 	message ("${PROJECT_NAME} - Enabling Mezz_Debug Messages")
 	if(${WIN32})
-		message ("${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
+		message ( STATUS "${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
 		set(CommonBuildFlags "-g")
 	else(${WIN32})
-		message ("${PROJECT_NAME} - Setting Non-Windows Debug Initialiations")
+		message ( STATUS "${PROJECT_NAME} - Setting Non-Windows Debug Initialiations")
 		set(CommonBuildFlags " -fPIC -g")
 	endif(${WIN32})
 	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZDEBUG=1")
 else(${Mezz_Debug})
 	message ("${PROJECT_NAME} - Disabling Mezz_Debug Messages")
 	if(${WIN32})
-		message ("${PROJECT_NAME} - Setting Windows Specific Initialiations")
+		message ( STATUS "${PROJECT_NAME} - Setting Windows Specific Initialiations")
 		set(CommonBuildFlags " -O2 -s ")
 	else(${WIN32})
-		message ("${PROJECT_NAME} - Setting Non-Windows Initialiations")
+		message ( STATUS "${PROJECT_NAME} - Setting Non-Windows Initialiations")
 		set(CommonBuildFlags " -fPIC -O2 -s")
 	endif(${WIN32})
 	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZDEBUG=0")
@@ -179,6 +182,7 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 #######################################
 # Mezzanine
+set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR}/)
 set(MezzanineLibFileName ${LibPrefix}Mezzanine${LibSuffix})
 set(MezzanineLinkName "Mezzanine")
 
@@ -187,16 +191,43 @@ if(${WIN32})
 endif(${WIN32})
 
 #######################################
+# SDL related values
+
+#Find the SDL source
+file(GLOB PossibleMatches ${ProjectRootDir}physgameengine/libincludes/*/sdlsrc/SDLBuild ${ProjectRootDir}physgameengine/SDLBuild ${ProjectRootDir}../*/SDLBuild)
+foreach(Current ${PossibleMatches})
+	if(IS_DIRECTORY ${Current})
+		set(SDLTempDir ${Current})
+	else(IS_DIRECTORY ${Current})
+		message( STATUS "Found something similar to SDL build directory, not using: ${Current}")
+	endif(IS_DIRECTORY ${Current})
+endforeach(Current ${PossibleMatches})
+
+set(TempDirDefined 0)
+if(DEFINED SDLTempDir)
+	set(TempDirDefined 1)
+endif(DEFINED SDLTempDir)
+
+set(Phys_SDLBuildDir ${SDLTempDir} CACHE FILEPATH "Where were SDL was built")
+
+if(${TempDirDefined} EQUAL 0)
+	message( SEND_ERROR "Could not find SDL source, please provide path in Phys_SDLBuildDir")
+else(${TempDirDefined} EQUAL 0)
+	message( STATUS "Found SDL build directory. Using: ${SDLTempDir}")
+	mark_as_advanced(Phys_SDLBuildDir)
+endif(${TempDirDefined} EQUAL 0)
+
+#######################################
 # Ogre related values
 option(Mezz_UseOgreDebug "Use Ogre Debug Libraries, instead of Release Libs" OFF)
 set(Mezz_UseOgreVersion 1.7.3 CACHE STRING "The version of the ogre libraries to link against")
 mark_as_advanced(Mezz_UseOgreDebug Mezz_UseOgreVersion)
 if(${Mezz_UseOgreDebug})
-	message ("${PROJECT_NAME} - Will we use Ogre Debug libraries")
+	message ( STATUS "${PROJECT_NAME} - Will we use Ogre Debug libraries")
 	set(OgreLinkName OgreMain_d)
 	set(OgresD _d)
 else(${Mezz_UseOgreDebug})
-	message ("${PROJECT_NAME} - Will we use Ogre Release libraries")
+	message ( STATUS "${PROJECT_NAME} - Will we use Ogre Release libraries")
 	set(OgreLinkName OgreMain)
 	set(OgresD "")
 endif(${Mezz_UseOgreDebug})
@@ -205,9 +236,36 @@ set(OgreLibFileName ${LibPrefix}${OgreLinkName}${LibSuffix})
 set(OgreLinuxSoName ${OgreLibFileName}.${Mezz_UseOgreVersion})		#This value is gibberish on non-Linux platforms
 
 # Ogre Plugins
-set(OgrePluginCGPM Plugin_CgProgramManager${LibSuffix} )
-set(OgrePluginRenderGL RenderSystem_GL${LibSuffix} )
-set(OgrePluginParticle Plugin_ParticleFX${LibSuffix} )
+set(OgrePluginCGPM Plugin_CgProgramManager${OgresD}${LibSuffix} )
+set(OgrePluginRenderGL RenderSystem_GL${OgresD}${LibSuffix} )
+set(OgrePluginParticle Plugin_ParticleFX${OgresD}${LibSuffix} )
+
+#Find the Ogre source
+if(${WIN32})
+else(${WIN32})
+	file(GLOB PossibleMatches ${ProjectRootDir}physgameengine/libincludes/*/ogresrc/OgreBuild ${ProjectRootDir}physgameengine/OgreBuild ${ProjectRootDir}../*/OgreBuild)
+	foreach(Current ${PossibleMatches})
+		if(IS_DIRECTORY ${Current})
+			set(OgreTempDir ${Current})
+		else(IS_DIRECTORY ${Current})
+			message( STATUS "Found something similar to Ogre build directory, not using: ${Current}")
+		endif(IS_DIRECTORY ${Current})
+	endforeach(Current ${PossibleMatches})
+
+	set(TempDirDefined 0)
+	if(DEFINED OgreTempDir)
+		set(TempDirDefined 1)
+	endif(DEFINED OgreTempDir)
+
+	set(Phys_OgreBuildDir ${OgreTempDir} CACHE FILEPATH "Where were Ogre was built")
+
+	if(${TempDirDefined} EQUAL 0)
+		message( SEND_ERROR "Could not find SDL source, please provide path in Phys_OgreBuildDir")
+	else(${TempDirDefined} EQUAL 0)
+		message( STATUS "Found Ogre build directory. Using: ${OgreTempDir}")
+		mark_as_advanced(Phys_OgreBuildDir)
+	endif(${TempDirDefined} EQUAL 0)
+endif(${WIN32})
 
 #######################################
 # Network Library Define
@@ -218,9 +276,7 @@ if(${Mezz_Network})
 	endif(${WIN32})
 endif(${Mezz_Network})
 
-###############################################################################
-# Additional Variables
-set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR})
+
 
 
 ###############################################################################
@@ -232,6 +288,6 @@ add_subdirectory (UnitTests)
 
 ###############################################################################
 # Hide Variables not directly related to the Mezzanine Engine
-mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY)
+mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY )
 
 
