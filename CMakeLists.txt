@@ -76,7 +76,7 @@
 #	OgrePluginRenderGL		- The File name of the Ogre OpenGL rendersystem plugin
 #	OgrePluginParticle		- The File name of the Ogre ParticleFX plugin
 #	MezzanineLinkName		- What should be entered when somethings needs to link against Mezzanine usually "Mezzanine" sometime it specifies and import library, like
-#	MezzanineLibFileName	- The actual name of the file the Mezzanine is called.
+#	MezzanineLibFileName		- The actual name of the file the Mezzanine is called.
 
 ###############################################################################
 # The name of our project is "MezzanineAndCatch".
