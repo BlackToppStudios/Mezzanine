@@ -460,7 +460,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
-	${Phys_SDLBuildDir}/SDL/include/
+	"${Mezz_SDLBuildDir}/SDL/include/"
 )
 
 link_directories(

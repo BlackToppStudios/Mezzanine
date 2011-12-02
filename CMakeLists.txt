@@ -194,7 +194,7 @@ endif(${WIN32})
 # SDL related values
 
 #Find the SDL source
-file(GLOB PossibleMatches ${ProjectRootDir}physgameengine/libincludes/*/sdlsrc/SDLBuild ${ProjectRootDir}physgameengine/SDLBuild ${ProjectRootDir}../*/SDLBuild)
+file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/sdlsrc/SDLBuild ${ProjectRootDir}Mezzanine/SDLBuild ${ProjectRootDir}../*/SDLBuild)
 foreach(Current ${PossibleMatches})
 	if(IS_DIRECTORY ${Current})
 		set(SDLTempDir ${Current})
@@ -208,13 +208,13 @@ if(DEFINED SDLTempDir)
 	set(TempDirDefined 1)
 endif(DEFINED SDLTempDir)
 
-set(Phys_SDLBuildDir ${SDLTempDir} CACHE FILEPATH "Where were SDL was built")
+set(Mezz_SDLBuildDir ${SDLTempDir} CACHE FILEPATH "Where were SDL was built")
 
 if(${TempDirDefined} EQUAL 0)
-	message( SEND_ERROR "Could not find SDL source, please provide path in Phys_SDLBuildDir")
+	message( SEND_ERROR "Could not find SDL source, please provide path in Mezz_SDLBuildDir")
 else(${TempDirDefined} EQUAL 0)
 	message( STATUS "Found SDL build directory. Using: ${SDLTempDir}")
-	mark_as_advanced(Phys_SDLBuildDir)
+	mark_as_advanced(Mezz_SDLBuildDir)
 endif(${TempDirDefined} EQUAL 0)
 
 #######################################
