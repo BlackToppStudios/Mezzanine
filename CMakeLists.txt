@@ -243,7 +243,7 @@ set(OgrePluginParticle Plugin_ParticleFX${OgresD}${LibSuffix} )
 #Find the Ogre source
 if(${WIN32})
 else(${WIN32})
-	file(GLOB PossibleMatches ${ProjectRootDir}physgameengine/libincludes/*/ogresrc/OgreBuild ${ProjectRootDir}physgameengine/OgreBuild ${ProjectRootDir}../*/OgreBuild)
+	file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/ogresrc/OgreBuild ${ProjectRootDir}Mezzanine/OgreBuild ${ProjectRootDir}../*/OgreBuild)
 	foreach(Current ${PossibleMatches})
 		if(IS_DIRECTORY ${Current})
 			set(OgreTempDir ${Current})

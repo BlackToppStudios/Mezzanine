@@ -403,9 +403,7 @@ SDL_JoystickQuit(void)
     /* Stop the event polling */
     SDL_numjoysticks = 0;
 
-    SDL_assert( (SDL_joysticks == NULL) == (numsticks == 0) );
-
-    for (i = 0; i < numsticks; i++) {
+    for (i = numsticks; i--; ) {
         SDL_Joystick *stick = SDL_joysticks[i];
         if (stick && (stick->ref_count >= 1)) {
             stick->ref_count = 1;

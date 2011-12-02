@@ -1604,6 +1604,8 @@ data/src/events/Makefile.wat.i
 data/src/events/SDL_active.c.i
 data/src/events/SDL_clipboardevents.c.i
 data/src/events/SDL_clipboardevents_c.h.i
+data/src/events/SDL_dropevents.c.i
+data/src/events/SDL_dropevents_c.h.i
 data/src/events/SDL_events.c.i
 data/src/events/SDL_events_c.h.i
 data/src/events/SDL_expose.c.i
