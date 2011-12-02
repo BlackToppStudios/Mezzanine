@@ -66,8 +66,7 @@
  codebase. When we are done with "Catch!" We want it to have one codebase (with no messy \#IFDEFs in game code for compatibility), and downloadable in the Iphone
  app store, in the Android Marketplace, on the PS3, Wii, downloadable on Steam, and in a variety of linux repositories.
 
- To get the latest news on development checkout: http://gitorious.org/physgame
- Or check the webpage http://www.blacktoppstudios.com
+ To get the latest news on development checkout: http://www.blacktoppstudios.com
 
  Here we will detail the engine structure and different classes and datatypes, but some of these need an update.
 
@@ -131,13 +130,13 @@
 
  @section Licensing Licensing Information
 
-  @ref GPLLicense "Physgame GNU Public License 3"
+  @ref GPLLicense "Mezzanine GNU Public License 3"
 
   @ref OriginalpugixmlLicense "XML MIT License"
 
 
 
- @page GPLLicense Physgame GNU Public License 3
+ @page GPLLicense Mezzanine GNU Public License 3
   Here is a simple summary of the license terms. It is included at the top of every
   source and header file in the engine:
   \n \n

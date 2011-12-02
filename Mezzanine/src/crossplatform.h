@@ -110,7 +110,7 @@ namespace Mezzanine
         /// Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop
         /// at the aproppriate times. Currently this references Ogre systems, that makes this internal
         /// Handles the actual cross platform swapping of graphics buffers.
-        void MEZZ_LIB RenderPhysWorld();
+        void MEZZ_LIB RenderMezzWorld();
 
         /// @brief Gets the platform currently being run on.
         /// @return Returns a string based on the platform.  "Windows", "Linux", or "MacOSX".

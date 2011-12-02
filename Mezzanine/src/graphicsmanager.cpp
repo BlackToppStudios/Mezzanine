@@ -329,7 +329,7 @@ namespace Mezzanine
     void GraphicsManager::DoMainLoopItems()
     {
         Ogre::WindowEventUtilities::messagePump();
-        crossplatform::RenderPhysWorld();
+        crossplatform::RenderMezzWorld();
 
         //Do Time Calculations to Determine Rendering Time
         this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );

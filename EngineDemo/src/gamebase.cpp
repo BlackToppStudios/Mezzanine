@@ -9,7 +9,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "gamebase.h"       //Game Include
-#include <physgame.h>       //Physgame include
+#include <mezzanine.h>      //Mezzanine include
 #include <sstream>          //STL includes
 
 #include <string>
@@ -17,7 +17,7 @@
 #include <fstream>            //Only used for testing
 
 
-using namespace phys;
+using namespace Mezzanine;
 using namespace std;
 
 //Create the World.... Globally! and set it to hold some actors

@@ -220,12 +220,12 @@ namespace Mezzanine
             // Logging
 
             /// @brief This gets the logs that the audio subystem creates
-            /// @details Internally the Physgame engine currently uses cAudio to process 3d sound. It has it's own
+            /// @details Internally the Mezzanine engine currently uses cAudio to process 3d sound. It has it's own
             /// logging system that we have customized to work with our logger.
             /// @return This gets the log of what actions the audio system has performed
             virtual std::stringstream* GetLogs() const;
             /// @brief This empties logs that the audio subystem creates
-            /// @details Internally the Physgame engine currently uses cAudio to process 3d sound. It has it's own
+            /// @details Internally the Mezzanine engine currently uses cAudio to process 3d sound. It has it's own
             /// logging system that we have customized to work with our logger. This clears that data allow us to
             /// work with it as we need
             virtual void ClearLogs();

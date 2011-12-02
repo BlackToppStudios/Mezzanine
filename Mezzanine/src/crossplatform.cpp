@@ -115,7 +115,7 @@ namespace Mezzanine
             #endif
         }
 
-        void RenderPhysWorld()
+        void RenderMezzWorld()
         {
             World* TheWorld = World::GetWorldPointer();
             GraphicsManager* Graphics = GraphicsManager::GetSingletonPtr();
@@ -133,7 +133,7 @@ namespace Mezzanine
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
                 for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
                 {
-                    SDL_GL_MakeCurrent(Graphics->GetGameWindow(X)->GetSDLWindowPointer(),Graphics->GetGameWindow(X)->GetRenderContext()); /// @todo TODO: RenderPhysWorld needs the context on non-windows builds
+                    SDL_GL_MakeCurrent(Graphics->GetGameWindow(X)->GetSDLWindowPointer(),Graphics->GetGameWindow(X)->GetRenderContext()); /// @todo TODO: RenderMezzWorld needs the context on non-windows builds
                     Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(false);
                     SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
                 }

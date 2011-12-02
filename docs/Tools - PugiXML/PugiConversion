@@ -1,5 +1,5 @@
 #!/bin/bash
-# Takes in PugiXML and emits XML files appropriate for direct inclusion in the Physgame library
+# Takes in PugiXML and emits XML files appropriate for direct inclusion in the Mezzanine library
 # This expects the PugiXML source files to be in the subdirectory call PugiSrc
 
 # This script isn't magic, it was designed with version 1.0 of PugiXML in mind. If new features have been added, then new commands
@@ -21,13 +21,13 @@ PugiCppFile="pugisrc/pugixml.cpp"
 PugiHFile="pugisrc/pugixml.hpp"
 PugiConfigFile="pugisrc/pugiconfig.hpp"
 PugiTempHFile="pugisrc/temp.hpp"
-PhysxmlifdefFile="ifdef.txt"
-PhysxmlendifFile="endif.txt"
+MezzxmlifdefFile="ifdef.txt"
+MezzxmlendifFile="endif.txt"
 DoxEnd="DoxEnd.txt"
 DoxResume="DoxResume.txt"
 
 #Output Files
-OutDir="../../physgameengine/src"
+OutDir="../../Mezzanine/src"
 NewHFileOnly="xml.h"
 NewCppFileOnly="xml.cpp"
 NewHFile="$OutDir/$NewHFileOnly"
@@ -48,14 +48,14 @@ CopyrightCleantags='\/\*'
 #Namespace Variables
 PugiUsingNamespace="using namespace pugi"
 PugiNamespace="namespace pugi"
-OurUsingNamespace="using namespace phys::xml"
-#OurUsingNamespace="using namespace phys"
+OurUsingNamespace="using namespace Mezzanine::xml"
+#OurUsingNamespace="using namespace Mezzanine"
 #OurUsingNamespace="using namespace xml"
 OurNamespace="namespace xml"
 OurExtraNamespace="
-namespace phys
+namespace Mezzanine
 {"
-OurExtraNamespaceClosing="} // \phys"
+OurExtraNamespaceClosing="} // \Mezzanine"
 
 
 #Make the Files to begin appending Source code to.
@@ -86,10 +86,10 @@ tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"
 #		HEADER_PUGIXML_HPP -> _xml_h
 #		HEADER_PUGICONFIG_HPP	-> _xmlconfig_h
 #	- Put the results in the final place they belong
-cat $PhysxmlifdefFile $PugiTempHFile $PhysxmlendifFile| sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_XML_H/g 	-e s/HEADER_PUGICONFIG_HPP/_XMLCONFIG_H/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	> $NewHFile
+cat $MezzxmlifdefFile $PugiTempHFile $MezzxmlendifFile| sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_XML_H/g 	-e s/HEADER_PUGICONFIG_HPP/_XMLCONFIG_H/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	> $NewHFile
 
 # This does mostly the same thing that the header transfortmation does, a bunch of cleanup and putting the code where it belongs
-cat $PhysxmlifdefFile $PugiCppFile $PhysxmlendifFile $DoxResume | sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	>> $NewCppFile
+cat $MezzxmlifdefFile $PugiCppFile $MezzxmlendifFile $DoxResume | sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	>> $NewCppFile
 
 # This will look in file $1 for the bracket that should end the statement that starts with $2 and ends the statement with $4
 # while doing this, old instances of $2 and replace them with $3
@@ -154,7 +154,7 @@ function FixNamespaces
 FixNamespaces $NewHFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$OurExtraNamespaceClosing"
 FixNamespaces $NewCppFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$OurExtraNamespaceClosing"
 
-#This will replace all the old PugiXML names in the file providesd in $1 with the new BTS phys::xml names
+#This will replace all the old PugiXML names in the file providesd in $1 with the new BTS Mezzanine::xml names
 function FixNames
 {
 	#FileContent=`cat $1`
@@ -165,7 +165,7 @@ function FixNames
 	#sed -i -e 's/needle/replacement/'`
 
 	#######################################################################
-	#This is the list of items to find/replace to convert the Pugi API into Physgame API
+	#This is the list of items to find/replace to convert the Pugi API into Mezzanine API
 
 	#Remove the original and grossly incomplete doxygen documentations
 	sed -i -e 's|///|////|g' $1								
@@ -175,9 +175,9 @@ function FixNames
 	sed -i -e 's/xml_\(.\)/\U\1/g' $1
 
 	#These configure the XML API to be exported to a DLL on windows
-	sed -i -e 's/XML_CLASS/PHYS_LIB/g' $1					
-	sed -i -e 's/XML_FUNCTION/PHYS_LIB/g' $1
-	sed -i -e 's/XML_API/PHYS_LIB/g' $1
+	sed -i -e 's/XML_CLASS/MEZZ_LIB/g' $1					
+	sed -i -e 's/XML_FUNCTION/MEZZ_LIB/g' $1
+	sed -i -e 's/XML_API/MEZZ_LIB/g' $1
 
 	#Status and error codes
 	sed -i -e 's/status_ok/StatusOk/g' $1										
@@ -323,7 +323,7 @@ function FixNames
 	sed -i -e 's|evaluate_\(.\)\([a-z]*\)|Evaluate\U\1\L\2|g' $1				
 	sed -i -e 's|return_type|ReturnType|g' $1
 	sed -i -e 's|result|Result|g' $1
-	sed -i -e 's|std::exception|phys::Exception|g' $1
+	sed -i -e 's|std::exception|Mezzanine::Exception|g' $1
 
 	#XPathNodeSet
 	sed -i -e 's|Type_unsorted|TypeUnsorted|g' $1
@@ -339,7 +339,7 @@ function FixNames
 	sed -i -e 's|GetMemory_deallocation_function|GetMemoryDeallocationFunction|g' $1
 	sed -i -e 's|allocation_function|AllocationFunction|g' $1
 	sed -i -e 's|deallocation_function|DeallocationFunction|g' $1
-	sed -i -e 's|pugi::|phys::xml::|g' $1
+	sed -i -e 's|pugi::|Mezzanine::xml::|g' $1
 
 	#Common	
 	sed -i -e 's|Nodeset|NodeSet|g' $1
@@ -349,8 +349,8 @@ function FixNames
 	#Documentation that was not put in xmldoc.h
 
 	#Typedefs
-	sed -i -e 's|// Character Type used for all internal storage and operations; depends on XML_WCHAR_MODE|/// @brief Used to represent a UTF8 code point, char, or wchar_t depending on how compiled. \n		/// @details compatibility with phys::Character is guaranteed. The exact type of this depends on depends on XML_WCHAR_MODE .\n		|' $1
-	sed -i -e 's|// String Type used for operations that work with STL string; depends on XML_WCHAR_MODE|/// @brief Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.\n		/// @details compatibility with phys::String is guaranteed. The exact type of this depends on depends on XML_WCHAR_MODE .\n		|' $1
+	sed -i -e 's|// Character Type used for all internal storage and operations; depends on XML_WCHAR_MODE|/// @brief Used to represent a UTF8 code point, char, or wchar_t depending on how compiled. \n		/// @details compatibility with Mezzanine::Character is guaranteed. The exact type of this depends on depends on XML_WCHAR_MODE .\n		|' $1
+	sed -i -e 's|// String Type used for operations that work with STL string; depends on XML_WCHAR_MODE|/// @brief Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.\n		/// @details compatibility with Mezzanine::String is guaranteed. The exact type of this depends on depends on XML_WCHAR_MODE .\n		|' $1
 
 	#Parsing status items
 	sed -i -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|' $1
