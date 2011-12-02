@@ -412,7 +412,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 		${Mezz_OgreBuildDir}/ogre/OgreMain/include/
 		${Mezz_OgreBuildDir}/ogre/include/
 	)
-	message (${Phys_OgreBuildDir}/ogre/OgreMain/include/)
+	message (${Mezz_OgreBuildDir}/ogre/OgreMain/include/)
 
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")

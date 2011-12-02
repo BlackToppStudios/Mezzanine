@@ -257,13 +257,13 @@ else(${WIN32})
 		set(TempDirDefined 1)
 	endif(DEFINED OgreTempDir)
 
-	set(Phys_OgreBuildDir ${OgreTempDir} CACHE FILEPATH "Where were Ogre was built")
+	set(Mezz_OgreBuildDir ${OgreTempDir} CACHE FILEPATH "Where were Ogre was built")
 
 	if(${TempDirDefined} EQUAL 0)
-		message( SEND_ERROR "Could not find SDL source, please provide path in Phys_OgreBuildDir")
+		message( SEND_ERROR "Could not find SDL source, please provide path in Mezz_OgreBuildDir")
 	else(${TempDirDefined} EQUAL 0)
 		message( STATUS "Found Ogre build directory. Using: ${OgreTempDir}")
-		mark_as_advanced(Phys_OgreBuildDir)
+		mark_as_advanced(Mezz_OgreBuildDir)
 	endif(${TempDirDefined} EQUAL 0)
 endif(${WIN32})
 

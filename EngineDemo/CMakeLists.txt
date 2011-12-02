@@ -51,7 +51,7 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
 	)
 endfunction(CopyFilesDuringBuild)
 
-#Description: This function copies items from the Data/lib directory in physgameengine into it's expected location in the output directory  for catch during build time. It does not need leading slashes
+#Description: This function copies items from the Data/lib directory in Mezzanine into it's expected location in the output directory  for catch during build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesFromMezzanineDuringBuild FileName)
 	add_custom_command(
@@ -112,8 +112,10 @@ CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioThem
 CopyFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
 CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/sounds/welcomefun-1.ogg )
 
-CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
-CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/Ogre-lgpl-3.0.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt )
+
+CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName}
 
 ##############################################################################
 #Copy System Dependant files during build time
@@ -128,7 +130,7 @@ if(${WIN32})
 	CopyFilesFromMezzanineDuringBuild( data/windows/ogre/cg${OgresD}.dll )
 	CopyFilesFromMezzanineDuringBuild( data/windows/plugins.cfg )
 #	CopyFilesFromMezzanineDuringBuild( data/windows/settings.cfg )
-	CopyFilesFromMezzanineDuringBuild( physgame.dll )
+	 )
 	CopyFilesFromMezzanineDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromMezzanineDuringBuild( OpenAL32.dll )
 	CopyFilesFromMezzanineDuringBuild( SDL.dll )
@@ -147,7 +149,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	CopyFilesFromMezzanineDuringBuild( data/linux/ogre/Plugin_CgProgramManager${OgresD}.so )
 	CopyFilesFromMezzanineDuringBuild( data/linux/plugins.cfg )
 	CopyFilesFromMezzanineDuringBuild( data/linux/GLX_icon.png )
-	CopyFilesFromMezzanineDuringBuild( libphysgame.so )
 	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
@@ -158,7 +159,6 @@ if(${APPLE})
 	CopyFilesFromMezzanineDuringBuild( data/macosx/settings.cfg )
 	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib )
 	CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg )
-	CopyFilesFromMezzanineDuringBuild( physgame.dylib )
 	#CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
