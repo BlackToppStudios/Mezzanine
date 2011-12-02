@@ -1,23 +1,23 @@
 # © Copyright 2010 - 2011 BlackTopp Studios Inc.
-# This file is part of The PhysGame Engine.
+# This file is part of The Mezzanine Engine.
 #
-#    The PhysGame Engine is free software: you can redistribute it and/or modify
+#    The Mezzanine Engine is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    The PhysGame Engine is distributed in the hope that it will be useful,
+#    The Mezzanine Engine is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+#    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
 #
 #   The original authors have included a copy of the license specified above in the
 #   'Docs' folder. See 'gpl.txt'
 #
-#   We welcome the use of The PhysGame anyone, including companies who wish to
+#   We welcome the use of the Mezzanine engine to anyone, including companies who wish to
 #   Build professional software and charge for their product.
 #
 #   However there are some practical restrictions, so if your project involves
@@ -56,20 +56,20 @@ message ("Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
 message ("Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
-set (${PROJECT_NAME}_PHYSGAME_DIR "${ProjectRootDir}/physgameengine/")
-message ("Base for physgame: ${${PROJECT_NAME}_PHYSGAME_DIR}")
+set (${PROJECT_NAME}_MEZZANINE_DIR "${ProjectRootDir}/Mezzanine/")
+message ("Base for Mezzanine: ${${PROJECT_NAME}_MEZZANINE_DIR}")
 
-set (${PROJECT_NAME}_PHYSGAME_BIN_DIR "${physgame_BINARY_DIR}/bin/")
-message ("Physgame Binaries: ${${PROJECT_NAME}_PHYSGAME_BIN_DIR}")
+set (${PROJECT_NAME}_MEZZANINE_BIN_DIR "${Mezzanine_BINARY_DIR}/bin/")
+message ("Mezzanine Binaries: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}")
 
-set (${PROJECT_NAME}_PHYSGAME_BIN_SRC "${${PROJECT_NAME}_PHYSGAME_DIR}src/")
-message ("Physgame source and headers: ${${PROJECT_NAME}_PHYSGAME_BIN_SRC}")
+set (${PROJECT_NAME}_MEZZANINE_BIN_SRC "${${PROJECT_NAME}_MEZZANINE_DIR}src/")
+message ("Mezzanine source and headers: ${${PROJECT_NAME}_MEZZANINE_BIN_SRC}")
 
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (EXECUTABLE_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
 message ("Base Directory for Executable Test binaries and test data output: ${${PROJECT_NAME}_BINARY_DIR}")
 
-set (physgame_LIBINCLUDE_DIR ${ProjectRootDir}/physgameengine/libincludes)
+set (Mezzanine_LIBINCLUDE_DIR ${ProjectRootDir}/Mezzanine/libincludes)
 
 ###############################################################################
 #Sources
@@ -105,17 +105,17 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
 	)
 endfunction(CopyFilesDuringBuild)
 
-#Description: This function copies items from the Data/lib directory in physgameengine into it's expected location in the output directory  for catch during build time. It does not need leading slashes
+#Description: This function copies items from the Data/lib directory in Mezzanine into it's expected location in the output directory  for catch during build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
-function(CopyFilesFromPhygameDuringBuild FileName)
+function(CopyFilesFromMezzanineDuringBuild FileName)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
 		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${FileName}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_PHYSGAME_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${FileName}"
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${FileName}"
 		VERBATIM
 	)
-endfunction(CopyFilesFromPhygameDuringBuild)
+endfunction(CopyFilesFromMezzanineDuringBuild)
 
 #Description: This creates a symlink in the Binary directory to another file in the binary directory. Used on systems that expect versioned shared object names when you want to link against a more base version.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called and only on system that support symlinks, otherwise it will fail silently
@@ -133,12 +133,12 @@ endfunction(CreateSymlinkDuringBuild)
 # Accessing correct headers
 
 include_directories( ${${PROJECT_NAME}_SRC_DIR}
-	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
-	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
-	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
-	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
-	"${physgame_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
-	"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
+	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
+	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
+	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
+	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
+	"${Mezzanine_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
+	"${Mezzanine_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 )
 
 if(${WIN32})
@@ -156,10 +156,10 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ("${PROJECT_NAME} - Begin Linux Specific Build Process")
 	set(BuildPlatform linux)
 
-	#message("${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
+	#message("${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
 	include_directories(
-		"${physgame_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include/"
-		"${physgame_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include/"
+		"${Mezzanine_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/OgreMain/include/"
+		"${Mezzanine_LIBINCLUDE_DIR}/common/ogresrc/ogrebuild/include/"
 	)
 
 	message ("${PROJECT_NAME} - End Linux Specific Build Process")
@@ -179,17 +179,17 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 ##############################################################################
 #Executable definitions
-include_directories( 
+include_directories(
 	${${PROJECT_NAME}_SRC_DIR}
-	${${PROJECT_NAME}_PHYSGAME_BIN_SRC} 
-	"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
-	"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
+	${${PROJECT_NAME}_MEZZANINE_BIN_SRC}
+	"${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
+	"${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
 )
-link_directories( ${${PROJECT_NAME}_PHYSGAME_BIN_DIR} )
+link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
-add_dependencies( ${PROJECT_NAME} physgame OgreMain)
-target_link_libraries( ${PROJECT_NAME} physgame ${OgreLinkName})
+add_dependencies( ${PROJECT_NAME} Mezzanine OgreMain)
+target_link_libraries( ${PROJECT_NAME} Mezzanine ${OgreLinkName})
 
 ##############################################################################
 # File copies during all builds
@@ -214,25 +214,25 @@ CopyFilesDuringBuild( common/flare.png data/common/flare.png )
 CopyFilesDuringBuild( common/Examples.material data/common/Examples.material )
 CopyFilesDuringBuild( common/clouds.jpg data/common/clouds.jpg )
 
-CopyFilesFromPhygameDuringBuild( data/common/BulletZLibLicense.txt )
-CopyFilesFromPhygameDuringBuild( data/common/lgpl-3.0.txt )
-CopyFilesFromPhygameDuringBuild( data/common/Ogre-MITLicense.txt )
-CopyFilesFromPhygameDuringBuild( data/common/SDL-MITLicense.txt )
-CopyFilesFromPhygameDuringBuild( data/common/zlib-libpngLicense.txt )
-CopyFilesFromPhygameDuringBuild( data/common/gpl-3.0.txt )
-CopyFilesFromPhygameDuringBuild( data/common/Licenses.txt )
-CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )
-CopyFilesFromPhygameDuringBuild( data/common/XiphCopyrightNotice.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/zlib-libpngLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/gpl-3.0.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt )
 
 
-CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/plugins.cfg )
-CopyFilesFromPhygameDuringBuild( ${OgreLibFileName} )
-CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
-CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
-CopyFilesFromPhygameDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginParticle} )
+CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/plugins.cfg )
+CopyFilesFromMezzanineDuringBuild( ${OgreLibFileName} )
+CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
+CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
+CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginParticle} )
 
 #The Engine itself
-CopyFilesFromPhygameDuringBuild( ${PhysgameLibFileName} ${GameDir}${PhysgameLibFileName} )
+CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${MezzanineLibFileName} )
 
 ##############################################################################
 #Copy System Dependant files during build time
@@ -240,12 +240,12 @@ CopyFilesFromPhygameDuringBuild( ${PhysgameLibFileName} ${GameDir}${PhysgameLibF
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyFilesFromPhygameDuringBuild( data/windows/ogre/cg${OgresD}.dll )
-	CopyFilesFromPhygameDuringBuild( physgame.dll )
-	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
-	CopyFilesFromPhygameDuringBuild( OpenAL32.dll )
-	CopyFilesFromPhygameDuringBuild( wrap_oal.dll )
-	CopyFilesFromPhygameDuringBuild( SDL.dll )
+	CopyFilesFromMezzanineDuringBuild( data/windows/ogre/cg${OgresD}.dll )
+	CopyFilesFromMezzanineDuringBuild( Mezzanine.dll )
+	CopyFilesFromMezzanineDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
+	CopyFilesFromMezzanineDuringBuild( OpenAL32.dll )
+	CopyFilesFromMezzanineDuringBuild( wrap_oal.dll )
+	CopyFilesFromMezzanineDuringBuild( SDL.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
@@ -253,16 +253,16 @@ endif(${WIN32})
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
 	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName} )
-	CopyFilesFromPhygameDuringBuild( data/linux/GLX_icon.png )
+	CopyFilesFromMezzanineDuringBuild( data/linux/GLX_icon.png )
 	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # Mac File Copy pecific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-	CopyFilesFromPhygameDuringBuild( data/macosx/plugins.cfg )
-	CopyFilesFromPhygameDuringBuild( physgame.dylib )
-#	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/Ogre.framework)
+	CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg )
+	CopyFilesFromMezzanineDuringBuild( Mezzanine.dylib )
+#	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 

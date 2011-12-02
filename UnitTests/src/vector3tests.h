@@ -1,23 +1,23 @@
 //© Copyright 2010 - 2011 BlackTopp Studios Inc.
-/* This file is part of The PhysGame Engine.
+/* This file is part of The Mezzanine Engine.
 
-    The PhysGame Engine is free software: you can redistribute it and/or modify
+    The Mezzanine Engine is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    The PhysGame Engine is distributed in the hope that it will be useful,
+    The Mezzanine Engine is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to
+/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -46,7 +46,7 @@
 #include <btBulletDynamicsCommon.h>
 #include <cAudio.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 class Vector3Tests : public UnitTestGroup
 {
@@ -119,7 +119,7 @@ class Vector3Tests : public UnitTestGroup
                 else
                     { temp=Failed; }
                 AddTestResult("Vector3::Vector3(Vector3)", temp);                       //test
-#ifdef PHYSXML
+#ifdef MEZZXML
 		//Vector3(xml::Node OneNode);
 #endif
 
@@ -734,12 +734,12 @@ class Vector3Tests : public UnitTestGroup
                 }
 
                 temp = Skipped;
-                #ifdef PHYSXML
+                #ifdef MEZZXML
                 Vec=Vector3(3.0,4.0,5.0);
                 stringstream XMLstream;
                 XMLstream<<Vec;
-                phys::String Actual(XMLstream.str());
-                phys::String Ideal("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\" />");
+                Mezzanine::String Actual(XMLstream.str());
+                Mezzanine::String Ideal("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\" />");
                 if(Actual==Ideal)
                     { temp=Success; }
                 else
@@ -748,7 +748,7 @@ class Vector3Tests : public UnitTestGroup
                 AddTestResult("Vector3::operator<<(ostream,Vector3)", temp);            //test
 
                 temp = Skipped;
-                #ifdef PHYSXML
+                #ifdef MEZZXML
                 try
                 {
                     Vector3 Vec4;
@@ -757,8 +757,8 @@ class Vector3Tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                }catch (phys::Exception e){
-                    cerr << "Failure in: Vector3::operator>>(istream,Vector3)" << endl <<"\t phys::Exception: " << e.what();
+                }catch (Mezzanine::Exception e){
+                    cerr << "Failure in: Vector3::operator>>(istream,Vector3)" << endl <<"\t Mezzanine::Exception: " << e.what();
                     temp=Failed;
                 }
                 #endif
@@ -766,7 +766,7 @@ class Vector3Tests : public UnitTestGroup
 
 
                 temp = Skipped;
-                #ifdef PHYSXML
+                #ifdef MEZZXML
                 try
                 {
                     Vector3 Vec5;
@@ -777,8 +777,8 @@ class Vector3Tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                }catch (phys::Exception e){
-                    cerr << "Failure in: Vector3::operator>>(xml::Node,Vector3)" << endl <<"\t phys::Exception: " << e.what();
+                }catch (Mezzanine::Exception e){
+                    cerr << "Failure in: Vector3::operator>>(xml::Node,Vector3)" << endl <<"\t Mezzanine::Exception: " << e.what();
                     temp=Failed;
                 }
                 #endif
@@ -787,7 +787,7 @@ class Vector3Tests : public UnitTestGroup
                 {
                     Ogre::Vector3 Vec0(0.0, 0.0, 0.0);
 
-                    phys::Vector3 Vec4(1.5, 3.1, 7.2);
+                    Mezzanine::Vector3 Vec4(1.5, 3.1, 7.2);
                     btVector3 Vec5(2.3, 9.4, 6.3);
                     cAudio::cVector3 Vec6(0.3, 3.6, 4.6);
 
@@ -814,7 +814,7 @@ class Vector3Tests : public UnitTestGroup
                 }
 
                 {
-                    phys::Vector3 Vec0(0.0, 0.0, 0.0);
+                    Mezzanine::Vector3 Vec0(0.0, 0.0, 0.0);
 
                     Ogre::Vector3 Vec4(1.5, 3.1, 7.2);
                     btVector3 Vec5(2.3, 9.4, 6.3);
@@ -972,7 +972,7 @@ class Vector3Tests : public UnitTestGroup
                 AddTestResult("Vector3::operator-(cAudio::cVector3,Vector3)", Skipped);
                 AddTestResult("Vector3::operator*(cAudio::cVector3,Vector3)", Skipped);
                 AddTestResult("Vector3::operator/(cAudio::cVector3,Vector3)", Skipped);
-                #ifdef PHYSXML
+                #ifdef MEZZXML
                 AddTestResult("Vector3::operator<<(ostream,Vector3)", Skipped);
                 AddTestResult("Vector3::operator>>(istream,Vector3)", Skipped);
                 AddTestResult("Vector3::operator>>(xml::Node,Vector3)", Skipped);

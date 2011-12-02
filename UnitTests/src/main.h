@@ -1,23 +1,23 @@
 //© Copyright 2010 - 2011 BlackTopp Studios Inc.
-/* This file is part of The PhysGame Engine.
+/* This file is part of The Mezzanine Engine.
 
-    The PhysGame Engine is free software: you can redistribute it and/or modify
+    The Mezzanine Engine is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    The PhysGame Engine is distributed in the hope that it will be useful,
+    The Mezzanine Engine is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to
+/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -46,7 +46,7 @@
 
 #include <cctype> //for tolower
 
-#include <physgame.h> // For String and all of physgame
+#include <mezzanine.h> // For String and all of Mezzanine
 
 
 // Define some Results of tests
@@ -62,7 +62,7 @@ enum TestResult
 };
 
 // convert the above enum to a Striong that matchins the in-code name.
-phys::String TestResultToString(TestResult Convertable)
+Mezzanine::String TestResultToString(TestResult Convertable)
 {
     switch(Convertable)
     {
@@ -81,25 +81,25 @@ phys::String TestResultToString(TestResult Convertable)
         case NotApplicable:
             return "N/A";
         default:
-            throw(phys::Exception(phys::StringTool::StringCat("Cannot convert TestResult with value ", phys::ToString(Convertable))));
+            throw(Mezzanine::Exception(Mezzanine::StringTool::StringCat("Cannot convert TestResult with value ", Mezzanine::ToString(Convertable))));
     }
 }
 
 // Used for padding spaces, after a piece of leader text, such that it always ends at teh expected colum
-phys::String MakePadding(phys::String Leader, unsigned int Column)
+Mezzanine::String MakePadding(Mezzanine::String Leader, unsigned int Column)
 {
-    phys::String Spaces(" ");
+    Mezzanine::String Spaces(" ");
     for (unsigned int c=Leader.length(); c<Column;++c)
         { Spaces+=" "; }
     return Spaces;
 }
 
 // the return type of tests
-typedef std::pair<phys::String,TestResult> TestData;
+typedef std::pair<Mezzanine::String,TestResult> TestData;
 
 // The classes for Tests themselves
 // inherits from std::map to make storage location of of the TestData obvious
-typedef std::map<phys::String,TestResult> TestDataStorage;
+typedef std::map<Mezzanine::String,TestResult> TestDataStorage;
 
 class UnitTestGroup : public TestDataStorage
 {
@@ -179,14 +179,14 @@ class UnitTestGroup : public TestDataStorage
             }
         }
 
-        // It is expected that every member of a class in physgame will be tested and its full name, include scoping operators, namespace,
+        // It is expected that every member of a class in Mezzanine will be tested and its full name, include scoping operators, namespace,
         // class and function name will here (include argnames if required). Functions outside of classes should use their namespace, functionname
         // and arguments if required as the testname.
         // Example TestNames (The Fresh parameter)
-        //      "phys::Vector2::Vector2(Real,Real)"     //Test of the Vector2 Constructor that accepts 2 reals
-        //      "phys::Vector2::operator+"              //Test of only operator+ on Vector2
+        //      "Mezzanine::Vector2::Vector2(Real,Real)"     //Test of the Vector2 Constructor that accepts 2 reals
+        //      "Mezzanine::Vector2::operator+"              //Test of only operator+ on Vector2
         //      "operator<<(ostream,Vector2)"           //Test of streaming operator for vector2 in root namespace
-        void AddTestResult(const phys::String Fresh, TestResult Meat, OverWriteResults Behavior=OverWriteIfLessSuccessful)
+        void AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior=OverWriteIfLessSuccessful)
             { AddTestResult(TestData(Fresh,Meat),Behavior); }
 
         // make it a little easier to aggregate answers in one place
@@ -203,7 +203,7 @@ class UnitTestGroup : public TestDataStorage
             vector<unsigned int> TestCounts;
             TestCounts.insert(TestCounts.end(),1+(unsigned int)Unknown, 0);
 
-            phys::String TestName("Test Name");
+            Mezzanine::String TestName("Test Name");
             cout << endl << " " << TestName << MakePadding(TestName, LongestNameLength) << "Result" << endl;
             for (TestDataStorage::iterator Iter=this->begin(); Iter!=this->end(); Iter++)
             {
@@ -219,7 +219,7 @@ class UnitTestGroup : public TestDataStorage
                 cout << endl << " Results Summary:" << endl;
                 for(unsigned int c=0; c<TestCounts.size();++c)
                 {
-                    phys::String ResultName(TestResultToString((TestResult)c));
+                    Mezzanine::String ResultName(TestResultToString((TestResult)c));
                     cout << "  " << ResultName << MakePadding(ResultName,16) << TestCounts.at(c) << endl;
                 }
                 cout << endl;
@@ -229,7 +229,7 @@ class UnitTestGroup : public TestDataStorage
 };
 
 // The list of all the testgroups
-map<phys::String, UnitTestGroup*> TestGroups;
+map<Mezzanine::String, UnitTestGroup*> TestGroups;
 
 // Drops a String to all lower case, changes the string passed in
 char* AllLower(char* CString)
@@ -243,7 +243,7 @@ char* AllLower(char* CString)
 }
 
 // Some simple functions for formatting user input/output
-phys::String BoolToString(bool i)
+Mezzanine::String BoolToString(bool i)
     { return i?"True":"False" ; }
 
 // Picks up on
@@ -251,9 +251,9 @@ phys::String BoolToString(bool i)
 //      False, No as Failed
 //      Cancel as Canceled
 //      Unsure, Inconclusive as Inconclusive
-TestResult GetTestAnswer(phys::String Question)
+TestResult GetTestAnswer(Mezzanine::String Question)
 {
-    phys::String Input;
+    Mezzanine::String Input;
     char Answer;
 
     while(true)
@@ -294,7 +294,7 @@ enum ExitCodes
     ExitInvalidArguments    = 1
 };
 
-int Usage(phys::String ThisName)
+int Usage(Mezzanine::String ThisName)
 {
     std::cout   << endl << "Usage: " << ThisName << " [help] [summary] [testlist] [interactive|automatic] [all] Test Group Names ..." << endl << endl
                 << "All:         All test groups will be run." << endl
@@ -307,8 +307,8 @@ int Usage(phys::String ThisName)
                 << "If only test group names are entered, then all tests in those groups are run." << endl
                 << "This command is not case sensitive." << endl << endl
                 << "Current Test Groups: " << endl;
-    phys::Whole c = 0;
-    for(map<phys::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+    Mezzanine::Whole c = 0;
+    for(map<Mezzanine::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
     {
         cout <<"\t" << Iter->first << (Iter->first.size()<7?"\t":"") << " ";
         ++c;        //enforce 4 names per line
@@ -322,20 +322,20 @@ int Usage(phys::String ThisName)
 
 int PrintList()
 {
-    for(map<phys::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+    for(map<Mezzanine::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
         { cout << Iter->first << endl; }
     return ExitSuccess;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
 //This next block of code creates a minimal engine environment for testing managers and other ngine components
-using namespace phys;
+using namespace Mezzanine;
 
 World *TheWorld;
-phys::UI::Caption *TheTextW1;
-phys::UI::Caption *TheTextB1;
-phys::UI::Caption *TheTextW2;
-phys::UI::Caption *TheTextB2;
+Mezzanine::UI::Caption *TheTextW1;
+Mezzanine::UI::Caption *TheTextB1;
+Mezzanine::UI::Caption *TheTextW2;
+Mezzanine::UI::Caption *TheTextB2;
 String TheMessage;
 String TheMessage2;
 SimpleTimer *ThisTimer;
@@ -351,8 +351,8 @@ void StartEngine()
     GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
     UIManager::GetSingletonPtr()->LoadGorilla("dejavu");
     ResourceManager::GetSingletonPtr()->InitResourceGroup("files");
-    phys::UI::Screen *TheScreen = UIManager::GetSingletonPtr()->CreateScreen("Screen","dejavu",GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0));
-    phys::UI::Layer *TheLayer = TheScreen->CreateLayer("Layer",0);
+    Mezzanine::UI::Screen *TheScreen = UIManager::GetSingletonPtr()->CreateScreen("Screen","dejavu",GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0));
+    Mezzanine::UI::Layer *TheLayer = TheScreen->CreateLayer("Layer",0);
 
     TheTextB1 = TheLayer->CreateCaption(ConstString("TheTextB1"),UI::RenderableRect(Vector2(0.0016,0.603),Vector2(1,0.25),true), (Whole)24, TheMessage);
     TheTextB1->SetTextColour(ColourValue::Black());

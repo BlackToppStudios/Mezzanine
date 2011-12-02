@@ -1,23 +1,23 @@
 //© Copyright 2010 - 2011 BlackTopp Studios Inc.
-/* This file is part of The PhysGame Engine.
+/* This file is part of The Mezzanine Engine.
 
-    The PhysGame Engine is free software: you can redistribute it and/or modify
+    The Mezzanine Engine is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    The PhysGame Engine is distributed in the hope that it will be useful,
+    The Mezzanine Engine is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to
+/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -53,19 +53,19 @@ class CompilerFlagTests : public UnitTestGroup
             if (RunInteractiveTests)
             {
                 TestResult temp;
-                temp = GetTestAnswer( phys::StringTool::StringCat("Was PHYSDEBUG set to \"", BoolToString(PHYSDEBUG), "\" when this was configured with cmake (or other config tool)? "));
-                AddTestResult("CompilerFlag::PHYSDEBUG", temp);
+                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZDEBUG set to \"", BoolToString(MEZZDEBUG), "\" when this was configured with cmake (or other config tool)? "));
+                AddTestResult("CompilerFlag::MEZZDEBUG", temp);
 
-                temp = GetTestAnswer( phys::StringTool::StringCat("Was PHYSXML set to \"", BoolToString(PHYSXML), "\" when this was configured with cmake (or other config tool)? "));
-                AddTestResult("CompilerFlag::PHYSXML", temp);
+                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZXML set to \"", BoolToString(MEZZXML), "\" when this was configured with cmake (or other config tool)? "));
+                AddTestResult("CompilerFlag::MEZZXML", temp);
 
-                temp = GetTestAnswer( phys::StringTool::StringCat("Was PHYSPROFILE set to \"", BoolToString(PHYSPROFILE), "\" when this was configured with cmake (or other config tool)? "));
-                AddTestResult("CompilerFlag::PHYSPROFILE", temp);
+                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZPROFILE set to \"", BoolToString(MEZZPROFILE), "\" when this was configured with cmake (or other config tool)? "));
+                AddTestResult("CompilerFlag::MEZZPROFILE", temp);
 
             }else{
-                AddTestResult("CompilerFlag::PHYSDEBUG", Skipped);
-                AddTestResult("CompilerFlag::PHYSXML", Skipped);
-                AddTestResult("CompilerFlag::PHYSPROFILE", Skipped);
+                AddTestResult("CompilerFlag::MEZZDEBUG", Skipped);
+                AddTestResult("CompilerFlag::MEZZXML", Skipped);
+                AddTestResult("CompilerFlag::MEZZPROFILE", Skipped);
             }
 
         }

@@ -1,9 +1,9 @@
 #ifndef _levelselectcell_h
 #define _levelselectcell_h
 
-#include <physgame.h>
+#include <mezzanine.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 class LevelSelectCell : public UI::Cell
 {

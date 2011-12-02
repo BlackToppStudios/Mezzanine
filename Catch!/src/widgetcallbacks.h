@@ -1,9 +1,9 @@
 #ifndef _widgetcallbacks_h
 #define _widgetcallbacks_h
 
-#include <physgame.h>
+#include <mezzanine.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 class OptsVolume : public UI::WidgetCallback
 {

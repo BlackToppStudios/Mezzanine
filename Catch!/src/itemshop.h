@@ -1,11 +1,11 @@
 #ifndef _itemshop_h
 #define _itemshop_h
 
-#include <physgame.h>
+#include <mezzanine.h>
 
 #include "itemshopitems.h"
 
-using namespace phys;
+using namespace Mezzanine;
 
 class ItemShop
 {
