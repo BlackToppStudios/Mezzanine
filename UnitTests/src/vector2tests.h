@@ -1,23 +1,23 @@
 //© Copyright 2010 - 2011 BlackTopp Studios Inc.
-/* This file is part of The PhysGame Engine.
+/* This file is part of The Mezzanine Engine.
 
-    The PhysGame Engine is free software: you can redistribute it and/or modify
+    The Mezzanine Engine is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    The PhysGame Engine is distributed in the hope that it will be useful,
+    The Mezzanine Engine is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to
+/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -44,7 +44,7 @@
 
 #include <Ogre.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 class Vector2Tests : public UnitTestGroup
 {
@@ -170,11 +170,11 @@ class Vector2Tests : public UnitTestGroup
                 AddTestResult("Vector2::operator-(Vector2)", temp);              //test
 
 
-                #ifdef PHYSXML
+                #ifdef MEZZXML
                 stringstream XMLstream;
                 XMLstream<<Vec;
-                phys::String Actual(XMLstream.str());
-                phys::String Ideal("<Vector2 Version=\"1\" X=\"3\" Y=\"4\" />");
+                Mezzanine::String Actual(XMLstream.str());
+                Mezzanine::String Ideal("<Vector2 Version=\"1\" X=\"3\" Y=\"4\" />");
                 cout << XMLstream.str();
                 if(Actual==Ideal)
                     { temp=Success; }
@@ -190,8 +190,8 @@ class Vector2Tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                }catch (phys::Exception e){
-                    cerr << "Failure in: Vector2::operator>>(istream,Vector2)" << endl <<"\t phys::Exception: " << e.what();
+                }catch (Mezzanine::Exception e){
+                    cerr << "Failure in: Vector2::operator>>(istream,Vector2)" << endl <<"\t Mezzanine::Exception: " << e.what();
                     temp=Failed;
                 }
                 AddTestResult("Vector2::operator>>(istream,Vector2)", temp);            //test
@@ -206,8 +206,8 @@ class Vector2Tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                }catch (phys::Exception e){
-                    cerr << "Failure in: Vector2::operator>>(xml::Node,Vector2)" << endl <<"\t phys::Exception: " << e.what();
+                }catch (Mezzanine::Exception e){
+                    cerr << "Failure in: Vector2::operator>>(xml::Node,Vector2)" << endl <<"\t Mezzanine::Exception: " << e.what();
                     temp=Failed;
                 }
                 #endif
@@ -230,7 +230,7 @@ class Vector2Tests : public UnitTestGroup
                 AddTestResult("Vector2::operator-(Vector2)", Skipped);
                 AddTestResult("Vector2::operator*(Vector2)", Skipped);
                 AddTestResult("Vector2::operator/(Vector2)", Skipped);
-                #ifdef PHYSXML
+                #ifdef MEZZXML
                 AddTestResult("Vector2::operator<<(ostream,Vector2)", Skipped);
                 AddTestResult("Vector2::operator>>(istream,Vector2)", Skipped);
                 AddTestResult("Vector2::operator>>(xml::Node,Vector2)", Skipped);

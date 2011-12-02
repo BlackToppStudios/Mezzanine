@@ -1,9 +1,9 @@
 #ifndef _throwablegenerator_h
 #define _throwablegenerator_h
 
-#include <physgame.h>
+#include <mezzanine.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 struct ThrowableData
 {

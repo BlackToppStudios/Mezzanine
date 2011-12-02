@@ -10,7 +10,7 @@
 #include <cassert>
 #include <set>
 
-using namespace phys;
+using namespace Mezzanine;
 
 CatchApp* CatchApp::TheRealCatchApp = 0;
 
@@ -681,7 +681,6 @@ void CatchApp::UnloadLevel()
     SceneMan->DisableSky();
     StartAreas.clear();
     ScoreAreas.clear();
-    PlayZone = NULL;
 
     ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
     PhysMan->ClearPhysicsMetaData();
@@ -855,8 +854,8 @@ bool CatchApp::PostUI()
             //*MouseRay *= 1000;
             //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
-            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,phys::WOT_ActorRigid);
-            #ifdef PHYSDEBUG
+            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WOT_ActorRigid);
+            #ifdef MEZZDEBUG
             TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
             TheWorld->Log("PlaneOfPlay"); TheWorld->Log(PlaneOfPlay);
             #endif
@@ -866,15 +865,15 @@ bool CatchApp::PostUI()
             bool firstframe=false;
             if(0 == ClickOnActor || 0 == ClickOnActor->Actor)
             {
-                #ifdef PHYSDEBUG
+                #ifdef MEZZDEBUG
                 TheWorld->Log("No Actor Clicked on");
                 #endif
             }else if(!IsInsideAnyStartZone(ClickOnActor->Actor)){
-                #ifdef PHYSDEBUG
+                #ifdef MEZZDEBUG
                 TheWorld->Log("Actor is not in any starting zone");
                 #endif
             }else{
-                #ifdef PHYSDEBUG
+                #ifdef MEZZDEBUG
                 TheWorld->Log("Actor Clicked on");
                 TheWorld->Log(*ClickOnActor);
                 TheWorld->Log(*ClickOnActor);
@@ -888,7 +887,7 @@ bool CatchApp::PostUI()
                         {
                             Vector3 LocalPivot = ClickOnActor->Vector;
                             ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                            rigid->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
+                            rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::AAS_DisableDeactivation);
                             //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                             Dragger = new Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
@@ -902,13 +901,13 @@ bool CatchApp::PostUI()
                             firstframe=true;
                             LastActorThrown = rigid;
                         }else{  // since we don't
-                            #ifdef PHYSDEBUG
+                            #ifdef MEZZDEBUG
                             TheWorld->Log("Actor is not an ActorRigid.  Aborting.");
                             #endif
                         }
                     }
                 }else{
-                    #ifdef PHYSDEBUG
+                    #ifdef MEZZDEBUG
                     TheWorld->Log("Actor is Static/Kinematic.  Aborting.");
                     #endif
                 }
@@ -918,13 +917,13 @@ bool CatchApp::PostUI()
             Vector3 *DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
             if (0 == DragTo)
             {
-                #ifdef PHYSDEBUG
+                #ifdef MEZZDEBUG
                 TheWorld->Log("PlaneOfPlay Not Clicked on");
                 #endif
             }else{
                 if(Dragger && !firstframe)
                 {
-                    #ifdef PHYSDEBUG
+                    #ifdef MEZZDEBUG
                     TheWorld->Log("Dragged To");
                     TheWorld->Log(*DragTo);
                     #endif
@@ -938,7 +937,7 @@ bool CatchApp::PostUI()
                 PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
                 delete Dragger;
                 Dragger=NULL;
-                Act->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
+                Act->GetPhysicsSettings()->SetActivationState(Mezzanine::AAS_DisableDeactivation);
             }
 
             // Here we cleanup everything we needed for the clicking/dragging
@@ -955,7 +954,7 @@ bool CatchApp::PostUI()
             PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
-            Act->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
+            Act->GetPhysicsSettings()->SetActivationState(Mezzanine::AAS_DisableDeactivation);
         }
     }
     return true;
@@ -1137,17 +1136,12 @@ bool CatchApp::CheckForStuff()
     return true;
 }
 
-void CatchApp::SetPlayArea(AreaOfPlay* PlayArea)
-{
-    PlayZone = PlayArea;
-}
-
 void CatchApp::RegisterScoreArea(ScoreArea* Score)
 {
     ScoreAreas.push_back(Score);
 }
 
-void CatchApp::RegisterStartArea(StartingArea* Start)
+void CatchApp::RegisterStartArea(StartArea* Start)
 {
     StartAreas.push_back(Start);
 }

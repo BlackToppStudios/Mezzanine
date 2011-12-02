@@ -1,23 +1,23 @@
 //© Copyright 2010 - 2011 BlackTopp Studios Inc.
-/* This file is part of The PhysGame Engine.
+/* This file is part of The Mezzanine Engine.
 
-    The PhysGame Engine is free software: you can redistribute it and/or modify
+    The Mezzanine Engine is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    The PhysGame Engine is distributed in the hope that it will be useful,
+    The Mezzanine Engine is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to
+/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -87,11 +87,11 @@ class ActorTests : public UnitTestGroup
                     SerializeTestP1 << *(object1->GetPhysicsSettings());
                     SerializeTestWhole1 << *object1;
 
-                    object1->GetGraphicsSettings()->SetMaterialAmbient(phys::ColourValue(0.1,0.2,0.3,0.4));
-                    object1->GetGraphicsSettings()->SetMaterialSpecular(phys::ColourValue(0.2,0.3,0.4,0.5));
-                    object1->GetGraphicsSettings()->SetMaterialDiffuse(phys::ColourValue(0.3,0.4,0.5,0.6));
+                    object1->GetGraphicsSettings()->SetMaterialAmbient(Mezzanine::ColourValue(0.1,0.2,0.3,0.4));
+                    object1->GetGraphicsSettings()->SetMaterialSpecular(Mezzanine::ColourValue(0.2,0.3,0.4,0.5));
+                    object1->GetGraphicsSettings()->SetMaterialDiffuse(Mezzanine::ColourValue(0.3,0.4,0.5,0.6));
                     object1->GetPhysicsSettings()->SetDamping(0.9,0.01);
-                    object1->GetPhysicsSettings()->SetIndividualGravity(phys::Vector3(0.9,9.8,0.0));
+                    object1->GetPhysicsSettings()->SetIndividualGravity(Mezzanine::Vector3(0.9,9.8,0.0));
                     object1->GetPhysicsSettings()->SetFriction(0.01);
                     object1->GetPhysicsSettings()->SetCCDParams(0.02,0.03);
 
@@ -150,11 +150,11 @@ class ActorTests : public UnitTestGroup
                         AddTestResult("Actor::operator<< (ActorRigid-populated)", Failed, UnitTestGroup::OverWrite);
                     }
 
-                    object1->GetGraphicsSettings()->SetMaterialAmbient(phys::ColourValue(0.0,0.0,0.0,0.0));
-                    object1->GetGraphicsSettings()->SetMaterialSpecular(phys::ColourValue(0.0,0.0,0.0,0.0));
-                    object1->GetGraphicsSettings()->SetMaterialDiffuse(phys::ColourValue(0.0,0.0,0.0,0.0));
+                    object1->GetGraphicsSettings()->SetMaterialAmbient(Mezzanine::ColourValue(0.0,0.0,0.0,0.0));
+                    object1->GetGraphicsSettings()->SetMaterialSpecular(Mezzanine::ColourValue(0.0,0.0,0.0,0.0));
+                    object1->GetGraphicsSettings()->SetMaterialDiffuse(Mezzanine::ColourValue(0.0,0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetDamping(0.0,0.00);
-                    object1->GetPhysicsSettings()->SetIndividualGravity(phys::Vector3(0.0,0.0,0.0));
+                    object1->GetPhysicsSettings()->SetIndividualGravity(Mezzanine::Vector3(0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetFriction(0.00);
                     object1->GetPhysicsSettings()->SetCCDParams(0.00,0.00);
                     object1->GetActorNode()->SetLocation(Vector3(10.0,11.0,12.0));
@@ -182,11 +182,11 @@ class ActorTests : public UnitTestGroup
                     }
 
                     object1->SetLocation(Vector3());
-                    object1->GetGraphicsSettings()->SetMaterialAmbient(phys::ColourValue(0.0,0.0,0.0,0.0));
-                    object1->GetGraphicsSettings()->SetMaterialSpecular(phys::ColourValue(0.0,0.0,0.0,0.0));
-                    object1->GetGraphicsSettings()->SetMaterialDiffuse(phys::ColourValue(0.0,0.0,0.0,0.0));
+                    object1->GetGraphicsSettings()->SetMaterialAmbient(Mezzanine::ColourValue(0.0,0.0,0.0,0.0));
+                    object1->GetGraphicsSettings()->SetMaterialSpecular(Mezzanine::ColourValue(0.0,0.0,0.0,0.0));
+                    object1->GetGraphicsSettings()->SetMaterialDiffuse(Mezzanine::ColourValue(0.0,0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetDamping(0.0,0.00);
-                    object1->GetPhysicsSettings()->SetIndividualGravity(phys::Vector3(0.0,0.0,0.0));
+                    object1->GetPhysicsSettings()->SetIndividualGravity(Mezzanine::Vector3(0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetFriction(0.00);
                     object1->GetPhysicsSettings()->SetCCDParams(0.00,0.00);
                     object1->GetActorNode()->SetLocation(Vector3(10.0,11.0,12.0));
@@ -214,11 +214,11 @@ class ActorTests : public UnitTestGroup
                     }
 
                     object1->SetLocation(Vector3());
-                    object1->GetGraphicsSettings()->SetMaterialAmbient(phys::ColourValue(0.0,0.0,0.0,0.0));
-                    object1->GetGraphicsSettings()->SetMaterialSpecular(phys::ColourValue(0.0,0.0,0.0,0.0));
-                    object1->GetGraphicsSettings()->SetMaterialDiffuse(phys::ColourValue(0.0,0.0,0.0,0.0));
+                    object1->GetGraphicsSettings()->SetMaterialAmbient(Mezzanine::ColourValue(0.0,0.0,0.0,0.0));
+                    object1->GetGraphicsSettings()->SetMaterialSpecular(Mezzanine::ColourValue(0.0,0.0,0.0,0.0));
+                    object1->GetGraphicsSettings()->SetMaterialDiffuse(Mezzanine::ColourValue(0.0,0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetDamping(0.0,0.00);
-                    object1->GetPhysicsSettings()->SetIndividualGravity(phys::Vector3(0.0,0.0,0.0));
+                    object1->GetPhysicsSettings()->SetIndividualGravity(Mezzanine::Vector3(0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetFriction(0.00);
                     object1->GetPhysicsSettings()->SetCCDParams(0.00,0.00);
 
@@ -277,7 +277,7 @@ class ActorTests : public UnitTestGroup
                         AddTestResult("ActorRigidDeSerializer::DeSerializeAll()", Failed, UnitTestGroup::OverWrite);
                     }
                 }
-                catch(phys::Exception e)
+                catch(Mezzanine::Exception e)
                 {
                     cout << endl << endl << e.what() << endl << endl ;
                 }

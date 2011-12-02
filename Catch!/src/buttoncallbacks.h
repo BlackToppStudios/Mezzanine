@@ -1,9 +1,9 @@
 #ifndef _buttoncallbacks_h
 #define _buttoncallbacks_h
 
-#include <physgame.h>
+#include <mezzanine.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 class GSStore : public UI::ButtonCallback
 {

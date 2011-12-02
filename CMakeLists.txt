@@ -1,23 +1,23 @@
 # @ Copyright 2010 - 2011 BlackTopp Studios Inc.
-# This file is part of The PhysGame Engine.
+# This file is part of The Mezzanine Engine.
 #
-#    The PhysGame Engine is free software: you can redistribute it and/or modify
+#    The Mezzanine Engine is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    The PhysGame Engine is distributed in the hope that it will be useful,
+#    The Mezzanine Engine is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+#    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
 #
 #   The original authors have included a copy of the license specified above in the
 #   'Docs' folder. See 'gpl.txt'
 #
-#   We welcome the use of The PhysGame anyone, including companies who wish to
+#   We welcome the use of the Mezzanine engine to anyone, including companies who wish to
 #   Build professional software and charge for their product.
 #
 #   However there are some practical restrictions, so if your project involves
@@ -38,7 +38,7 @@
 #   John Blackwood - makoenergy02@gmail.com
 
 ###############################################################################
-# This is the root cmake file for the physgame engine. It includes the example files 
+# This is the root cmake file for the Mezzanine engine. It includes the example files
 # from the engine demo, Catch! and a series of UnitTests. These may be freely copied
 # and used to build your projects as long as you release any changes you make to the
 # build scripts back to the public in a usable form.
@@ -49,21 +49,21 @@
 #
 # Here is a listing of some of the values that this files sets up for consumption by other
 # build scripts, that can be set as cmake options:
-#	Phys_Debug	 		- True if The Engine will be compile with Debug Symbols and without compiler optimization, False and it will be optimized and omit debug symbols.
-#	Phys_Lua			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
-#	Phys_Profile			- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking.
-#	Phys_Network			- Enable or disable networking support
-#	Phys_XML			- True if the engine will be compiled with XML support. This includes support for serialization
+#	Mezz_Debug	 		- True if The Engine will be compile with Debug Symbols and without compiler optimization, False and it will be optimized and omit debug symbols.
+#	Mezz_Lua			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
+#	Mezz_Profile			- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking.
+#	Mezz_Network			- Enable or disable networking support
+#	Mezz_XML			- True if the engine will be compiled with XML support. This includes support for serialization
 #
-#	Phys_OgreBuildDir		- The location of the Ogre source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
-#	Phys_SDLBuildDir		- The location of the SDL source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
-#	Phys_UseOgreDebug		- True if the developer wants to the use the ogre debug libraries, this adjusts a number of other files that child cmake scripts can use.
-#	Phys_UseOgreVersion		- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
+#	Mezz_OgreBuildDir		- The location of the Ogre source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
+#	Mezz_SDLBuildDir		- The location of the SDL source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
+#	Mezz_UseOgreDebug		- True if the developer wants to the use the ogre debug libraries, this adjusts a number of other files that child cmake scripts can use.
+#	Mezz_UseOgreVersion		- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
 #
 # Here are some more values that can be used when creating cmake scripts that are indirectly
 # set and should not be directly passed as cmake values
-#	BuildPlatform			- A string that Contains either "windows", "linux", or "macosx" at the time of this writing. This directly corresponds to the folders names in the physgame engine repository.
-#	CommonBuildFlags 		- A listing of all the currently set build flags to pass to the compiler at compile time. This is the mechanism that enforces Phys_Debug's and Phys_Profile's settings.
+#	BuildPlatform			- A string that Contains either "windows", "linux", or "macosx" at the time of this writing. This directly corresponds to the folders names in the Mezzanine engine repository.
+#	CommonBuildFlags 		- A listing of all the currently set build flags to pass to the compiler at compile time. This is the mechanism that enforces Mezz_Debug's and Mezz_Profile's settings.
 #	LibPrefix			- This is a string that is required by a given platform to begin the filename of shared libraries. One windows it is "" on Linux/Unix it is "lib"
 #	LibSuffix			- This is a string that is required by a given platform to end the filename of shared libraries. One windows it is ".dll" on Linux/Unix it is ".so"
 #	LuaLinkName			- This is the name that of the actual compiled lua library, it will be blank if lua is not to be linked
@@ -75,19 +75,19 @@
 #	OgrePluginCGPM			- The File name of the Ogre CG manager plugin
 #	OgrePluginRenderGL		- The File name of the Ogre OpenGL rendersystem plugin
 #	OgrePluginParticle		- The File name of the Ogre ParticleFX plugin
-#	PhysgameLinkName		- What should be entered when somethings needs to link against physgame usually "physgame" sometime it specifies and import library, like
-#	PhysgameLibFileName		- The actual name of the file the physgame is called.
+#	MezzanineLinkName		- What should be entered when somethings needs to link against Mezzanine usually "Mezzanine" sometime it specifies and import library, like
+#	MezzanineLibFileName	- The actual name of the file the Mezzanine is called.
 
 ###############################################################################
-# The name of our project is "PhysgameAndCatch". 
+# The name of our project is "MezzanineAndCatch".
 cmake_minimum_required (VERSION 2.8)
-project (PhysgameAndCatch)
+project (MezzanineAndCatch)
 
 ###############################################################################
-# Check For the Phys_Debug option and set values accordingly
-option(Phys_Debug "Compile with no optimizations and debug symbols" OFF)
-if(${Phys_Debug})
-	message ( STATUS "${PROJECT_NAME} - Enabling Phys_Debug Messages")
+# Check For the Mezz_Debug option and set values accordingly
+option(Mezz_Debug "Compile with no optimizations and debug symbols" OFF)
+if(${Mezz_Debug})
+	message ("${PROJECT_NAME} - Enabling Mezz_Debug Messages")
 	if(${WIN32})
 		message ( STATUS "${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
 		set(CommonBuildFlags "-g")
@@ -95,9 +95,9 @@ if(${Phys_Debug})
 		message ( STATUS "${PROJECT_NAME} - Setting Non-Windows Debug Initialiations")
 		set(CommonBuildFlags " -fPIC -g")
 	endif(${WIN32})
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSDEBUG=1")
-else(${Phys_Debug})
-	message ( STATUS "${PROJECT_NAME} - Disabling Phys_Debug Messages")
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZDEBUG=1")
+else(${Mezz_Debug})
+	message ("${PROJECT_NAME} - Disabling Mezz_Debug Messages")
 	if(${WIN32})
 		message ( STATUS "${PROJECT_NAME} - Setting Windows Specific Initialiations")
 		set(CommonBuildFlags " -O2 -s ")
@@ -105,60 +105,60 @@ else(${Phys_Debug})
 		message ( STATUS "${PROJECT_NAME} - Setting Non-Windows Initialiations")
 		set(CommonBuildFlags " -fPIC -O2 -s")
 	endif(${WIN32})
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSDEBUG=0")
-endif(${Phys_Debug})
-					
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZDEBUG=0")
+endif(${Mezz_Debug})
+
 #consider adding options -mmmx -msse -msse2 -m3dnow
 # sse2 is the newest and is supported by the pentium4 first.
 # sse3 and sse4 should also be considered
 # A chart of compatible CPUs should be made, to guide developers to target their code better
 
 ###############################################################################
-# Check For the Phys_Profile option and set values accordingly
-option(Phys_Profile "Executables will gather runtime statistics." OFF)
-if(${Phys_Profile})
-	message ( STATUS "${PROJECT_NAME} - Enabling gcc profiling and setting PHYSPROFILE")
+# Check For the Mezz_Profile option and set values accordingly
+option(Mezz_Profile "Executables will gather runtime statistics." OFF)
+if(${Mezz_Profile})
+	message ("${PROJECT_NAME} - Enabling gcc profiling and setting MEZZPROFILE")
 	set(CommonBuildFlags "${CommonBuildFlags} -pg")
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSPROFILE=1")
-else(${Phys_Profile})
-	message ( STATUS "${PROJECT_NAME} - Disabling gcc profiling and unsetting PHYSPROFILE")
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSPROFILE=0")
-endif(${Phys_Profile})
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZPROFILE=1")
+else(${Mezz_Profile})
+	message ("${PROJECT_NAME} - Disabling gcc profiling and unsetting MEZZPROFILE")
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZPROFILE=0")
+endif(${Mezz_Profile})
 
 ###############################################################################
-# Check For the Phys_XML option and set values accordingly
-option(Phys_XML "Enable XML and XML serialization support." ON)
-if(${Phys_XML})
-	message ( STATUS "${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting PHYSXML")
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=1")
-else(${Phys_XML})
-	message ( STATUS "${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting PHYSXML")
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=0")
-endif(${Phys_XML})
+# Check For the Mezz_XML option and set values accordingly
+option(Mezz_XML "Enable XML and XML serialization support." ON)
+if(${Mezz_XML})
+	message ("${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting MEZZXML")
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZXML=1")
+else(${Mezz_XML})
+	message ("${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting MEZZXML")
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZXML=0")
+endif(${Mezz_XML})
 
 ###############################################################################
-# Check For the Phys_Network option and set values accordingly
-option(Phys_Network "Enable Networking support." ON)
-if(${Phys_Network})
-	message ( STATUS "${PROJECT_NAME} - Enabling Network subsystem, and setting PHYSNETWORK")
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSNETWORK=1")
-else(${Phys_Network})
-	message ( STATUS "${PROJECT_NAME} - Disabling Network subsystem, and unsetting PHYSNETWORK")
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSNETWORK=0")
-endif(${Phys_Network})
+# Check For the Mezz_Network option and set values accordingly
+option(Mezz_Network "Enable Networking support." ON)
+if(${Mezz_Network})
+	message ("${PROJECT_NAME} - Enabling Network subsystem, and setting MEZZNETWORK")
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZNETWORK=1")
+else(${Mezz_Network})
+	message ("${PROJECT_NAME} - Disabling Network subsystem, and unsetting MEZZNETWORK")
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZNETWORK=0")
+endif(${Mezz_Network})
 
 ###############################################################################
 # Lua Library
-option(Phys_Lua "Include Support for Lua Scripting Language" ON)
-if(${Phys_Lua})
+option(Mezz_Lua "Include Support for Lua Scripting Language" ON)
+if(${Mezz_Lua})
 	set(LuaProject "Lua")
 	set(LuaLinkName "lua")
-	message ( STATUS "${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting PHYSLUA")
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSLUA=1")
-else(${Phys_Lua})
-	message ( STATUS "${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting PHYSLUA")
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSLUA=0")
-endif(${Phys_Lua})
+	message ("${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting MEZZLUA")
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZLUA=1")
+else(${Mezz_Lua})
+	message ("${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting MEZZLUA")
+	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZLUA=0")
+endif(${Mezz_Lua})
 
 ###############################################################################
 # Set Platform Specific Variables
@@ -181,20 +181,20 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 #######################################
-# Physgame
+# Mezzanine
 set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR}/)
-set(PhysgameLibFileName ${LibPrefix}physgame${LibSuffix})
-set(PhysgameLinkName "physgame")
+set(MezzanineLibFileName ${LibPrefix}Mezzanine${LibSuffix})
+set(MezzanineLinkName "Mezzanine")
 
 if(${WIN32})
-	set(PhysgameLinkName lib${PhysgameLinkName}.dll.a)
+	set(MezzanineLinkName lib${MezzanineLinkName}.dll.a)
 endif(${WIN32})
 
 #######################################
 # SDL related values
 
 #Find the SDL source
-file(GLOB PossibleMatches ${ProjectRootDir}physgameengine/libincludes/*/sdlsrc/SDLBuild ${ProjectRootDir}physgameengine/SDLBuild ${ProjectRootDir}../*/SDLBuild)
+file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/sdlsrc/SDLBuild ${ProjectRootDir}Mezzanine/SDLBuild ${ProjectRootDir}../*/SDLBuild)
 foreach(Current ${PossibleMatches})
 	if(IS_DIRECTORY ${Current})
 		set(SDLTempDir ${Current})
@@ -208,32 +208,32 @@ if(DEFINED SDLTempDir)
 	set(TempDirDefined 1)
 endif(DEFINED SDLTempDir)
 
-set(Phys_SDLBuildDir ${SDLTempDir} CACHE FILEPATH "Where were SDL was built")
+set(Mezz_SDLBuildDir ${SDLTempDir} CACHE FILEPATH "Where were SDL was built")
 
 if(${TempDirDefined} EQUAL 0)
-	message( SEND_ERROR "Could not find SDL source, please provide path in Phys_SDLBuildDir")
+	message( SEND_ERROR "Could not find SDL source, please provide path in Mezz_SDLBuildDir")
 else(${TempDirDefined} EQUAL 0)
 	message( STATUS "Found SDL build directory. Using: ${SDLTempDir}")
-	mark_as_advanced(Phys_SDLBuildDir)
+	mark_as_advanced(Mezz_SDLBuildDir)
 endif(${TempDirDefined} EQUAL 0)
 
 #######################################
 # Ogre related values
-option(Phys_UseOgreDebug "Use Ogre Debug Libraries, instead of Release Libs" OFF)
-set(Phys_UseOgreVersion 1.7.3 CACHE STRING "The version of the ogre libraries to link against")
-mark_as_advanced(Phys_UseOgreDebug Phys_UseOgreVersion)
-if(${Phys_UseOgreDebug})
+option(Mezz_UseOgreDebug "Use Ogre Debug Libraries, instead of Release Libs" OFF)
+set(Mezz_UseOgreVersion 1.7.3 CACHE STRING "The version of the ogre libraries to link against")
+mark_as_advanced(Mezz_UseOgreDebug Mezz_UseOgreVersion)
+if(${Mezz_UseOgreDebug})
 	message ( STATUS "${PROJECT_NAME} - Will we use Ogre Debug libraries")
 	set(OgreLinkName OgreMain_d)
 	set(OgresD _d)
-else(${Phys_UseOgreDebug})
+else(${Mezz_UseOgreDebug})
 	message ( STATUS "${PROJECT_NAME} - Will we use Ogre Release libraries")
 	set(OgreLinkName OgreMain)
 	set(OgresD "")
-endif(${Phys_UseOgreDebug})
+endif(${Mezz_UseOgreDebug})
 
 set(OgreLibFileName ${LibPrefix}${OgreLinkName}${LibSuffix})
-set(OgreLinuxSoName ${OgreLibFileName}.${Phys_UseOgreVersion})		#This value is gibberish on non-Linux platforms
+set(OgreLinuxSoName ${OgreLibFileName}.${Mezz_UseOgreVersion})		#This value is gibberish on non-Linux platforms
 
 # Ogre Plugins
 set(OgrePluginCGPM Plugin_CgProgramManager${OgresD}${LibSuffix} )
@@ -270,24 +270,24 @@ endif(${WIN32})
 #######################################
 # Network Library Define
 
-if(${Phys_Network})
+if(${Mezz_Network})
 	if(${WIN32})
 		set(NetworkLibrary ws2_32)
 	endif(${WIN32})
-endif(${Phys_Network})
+endif(${Mezz_Network})
 
 
 
 
 ###############################################################################
 # Add subprojects
-add_subdirectory (physgameengine)
+add_subdirectory (Mezzanine)
 #add_subdirectory (EngineDemo)
-add_subdirectory (Catch!) 
-add_subdirectory (UnitTests) 
+add_subdirectory (Catch!)
+add_subdirectory (UnitTests)
 
 ###############################################################################
-# Hide Variables not directly related to the Physgame Engine
+# Hide Variables not directly related to the Mezzanine Engine
 mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY )
 
 

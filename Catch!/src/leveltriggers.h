@@ -1,9 +1,9 @@
 #ifndef _leveltriggers_h
 #define _leveltriggers_h
 
-#include <physgame.h>
+#include <mezzanine.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 class BNS_Fan : public WorldTrigger
 {

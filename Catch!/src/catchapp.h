@@ -1,13 +1,11 @@
 #ifndef _catchapp_h
 #define _catchapp_h
 
-#include "startingarea.h"
-#include "scorearea.h"
-#include "areaofplay.h"
+#include "levelzones.h"
 #include "levelloader.h"
-#include <physgame.h>
+#include <mezzanine.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 class CatchApp
 {
@@ -26,13 +24,12 @@ class CatchApp
         World* TheWorld;
         LevelLoader* Loader;
         ActorBase* LastActorThrown;
-        AreaOfPlay* PlayZone;
         Whole CurrScore;
         CatchApp::GameState CurrentState;
         std::map<String,Whole> ItemScoreValues;
         std::map<String,Whole> ShopCostValues;
         std::vector<ActorBase*> ThrownItems;
-        std::vector<StartingArea*> StartAreas;
+        std::vector<StartArea*> StartAreas;
         std::vector<ScoreArea*> ScoreAreas;
 
         SimpleTimer* LevelTimer;
@@ -69,9 +66,8 @@ class CatchApp
         bool PostRender();
 
         bool CheckForStuff();
-        void SetPlayArea(AreaOfPlay* PlayArea);
         void RegisterScoreArea(ScoreArea* Score);
-        void RegisterStartArea(StartingArea* Start);
+        void RegisterStartArea(StartArea* Start);
         void AddThrowable(ActorBase* Throwable);
         LevelLoader* GetLevelLoader();
         SimpleTimer* GetLevelTimer();

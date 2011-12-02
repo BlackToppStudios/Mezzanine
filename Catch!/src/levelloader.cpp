@@ -200,7 +200,7 @@ void LevelLoader::LoadFerris()
     GameApp->SetPlayArea(PlayZone);// */
 
     Vector3 StartSize(50,130,15);
-    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,0,0));
+    StartArea* StartZone = new StartArea("StartArea",Vector3(-170,0,0));
     StartZone->SetFieldShape(new BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->SetFieldMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
     PhysMan->AddAreaEffect(StartZone);
@@ -295,13 +295,8 @@ void LevelLoader::LoadBigCurve()
     GameApp->AddThrowable(Pyrite2);// */
 
     // Create the zones
-    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
-    PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
-    PhysMan->AddAreaEffect(PlayZone);
-    GameApp->SetPlayArea(PlayZone);// */
-
     Vector3 StartSize(50,80,15);
-    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-180,-60,0));
+    StartArea* StartZone = new StartArea("StartArea",Vector3(-180,-60,0));
     StartZone->SetFieldShape(new BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->SetFieldMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
     PhysMan->AddAreaEffect(StartZone);
@@ -379,7 +374,7 @@ void LevelLoader::LoadBlowsNotSucks()
     Fan->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Fan"));
     Fan->SetLocation(Vector3(0,0,0));
     Fan->SetOrientation(Quaternion(MathTool::GetHalfPi() * 0.5,Vector3(0,0,1)));
-    Fan->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
+    Fan->GetPhysicsSettings()->SetActivationState(Mezzanine::AAS_DisableDeactivation);
     ActMan->AddActor(Fan);
 
     ActorRigid* FanBody = new ActorRigid(0,"FanBody","body.mesh",BlowsNotSucksGroup);
@@ -416,7 +411,7 @@ void LevelLoader::LoadBlowsNotSucks()
     FanWind->SetFieldMesh(MeshMan->CreateCylinderMesh("FanWindMesh",ColourValue(0.8,0.1,0.1,0.2),FanWindSize,Vector3::Unit_Y()));
     FanWind->SetOrientation(Quaternion(MathTool::GetHalfPi() * 0.5,Vector3(0,0,1)));
     FanWind->SetDirectionOfForce(Vector3(-1,1,0));
-    FanWind->SetAttenuation(0.2f,phys::Att_Linear,Vector3(-125.5,-81,7.5));
+    FanWind->SetAttenuation(0.2f,Mezzanine::Att_Linear,Vector3(-125.5,-81,7.5));
     FanWind->SetFieldStrength(1000.f);
     PhysMan->AddAreaEffect(FanWind);
 
@@ -457,13 +452,8 @@ void LevelLoader::LoadBlowsNotSucks()
     GameApp->AddThrowable(Styrofoam2);// */
 
     // Create the zones
-    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
-    PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
-    PhysMan->AddAreaEffect(PlayZone);
-    GameApp->SetPlayArea(PlayZone);// */
-
     Vector3 StartSize(50,70,15);
-    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,-70,0));
+    StartArea* StartZone = new StartArea("StartArea",Vector3(-170,-70,0));
     StartZone->SetFieldShape(new BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->SetFieldMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
     PhysMan->AddAreaEffect(StartZone);
@@ -646,20 +636,15 @@ void LevelLoader::LoadJustice()
     GameApp->AddThrowable(Uranium2);
 
     // Create the zones
-    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
-    PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
-    PhysMan->AddAreaEffect(PlayZone);
-    GameApp->SetPlayArea(PlayZone);// */
-
     Vector3 StartSize(60,30,15);
     CollisionShape* StartAreaShape = new BoxCollisionShape("StartArea1Shape",StartSize);
     Mesh* StartAreaMesh = MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize);
-    StartingArea* StartZone1 = new StartingArea("StartArea1",Vector3(-160,120,0));
+    StartArea* StartZone1 = new StartArea("StartArea1",Vector3(-160,120,0));
     StartZone1->SetFieldShape(StartAreaShape);
     StartZone1->SetFieldMesh(StartAreaMesh);
     PhysMan->AddAreaEffect(StartZone1);
     GameApp->RegisterStartArea(StartZone1);
-    StartingArea* StartZone2 = new StartingArea("StartArea2",Vector3(160,120,0));
+    StartArea* StartZone2 = new StartArea("StartArea2",Vector3(160,120,0));
     StartZone2->SetFieldShape(StartAreaShape);
     StartZone2->SetFieldMesh(StartAreaMesh);
     PhysMan->AddAreaEffect(StartZone2);
@@ -777,13 +762,8 @@ void LevelLoader::LoadRollers()
     GameApp->AddThrowable(Pyrite2);// */
 
     // Create the zones
-    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
-    PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
-    PhysMan->AddAreaEffect(PlayZone);
-    GameApp->SetPlayArea(PlayZone);// */
-
     Vector3 StartSize(50,50,15);
-    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-140,60,0));
+    StartArea* StartZone = new StartArea("StartArea",Vector3(-140,60,0));
     StartZone->SetFieldShape(new BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->SetFieldMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
     PhysMan->AddAreaEffect(StartZone);
@@ -915,13 +895,8 @@ void LevelLoader::LoadJustBounce()
 
 
     // Create the zones
-    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
-    PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
-    PhysMan->AddAreaEffect(PlayZone);
-    GameApp->SetPlayArea(PlayZone);// */
-
     Vector3 StartSize(50,50,15);
-    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,90,0));
+    StartArea* StartZone = new StartArea("StartArea",Vector3(-170,90,0));
     StartZone->SetFieldShape(new BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->SetFieldMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
     PhysMan->AddAreaEffect(StartZone);

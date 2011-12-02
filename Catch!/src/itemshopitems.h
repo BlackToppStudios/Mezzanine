@@ -1,9 +1,9 @@
 #ifndef _itemshopitems_h
 #define _itemshopitems_h
 
-#include <physgame.h>
+#include <mezzanine.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 class ItemShopItem : public ActorRigid
 {

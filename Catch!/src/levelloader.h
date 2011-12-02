@@ -1,9 +1,9 @@
 #ifndef _levelloader_h
 #define _levelloader_h
 
-#include <physgame.h>
+#include <mezzanine.h>
 
-using namespace phys;
+using namespace Mezzanine;
 
 class CatchApp;
 
