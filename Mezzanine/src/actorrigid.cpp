@@ -70,21 +70,21 @@ namespace Mezzanine
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
-        BasePhysicsSettings = new ActorRigidPhysicsSettings(this,physrigidbody);
+        BasePhysicsSettings = new ActorRigidPhysicsSettings(this,PhysicsRigidBody);
         ActorType=ActorBase::Actorrigid;
     }
 
     ActorRigid::~ActorRigid()
     {
-        delete physrigidbody;
+        delete PhysicsRigidBody;
         CollisionObject = NULL;
     }
 
     void ActorRigid::CreateRigidObject(const Real& pmass)
     {
         btScalar bmass=pmass;
-        this->physrigidbody = new btRigidBody(bmass, this->MotionState, this->Shape);
-        CollisionObject=physrigidbody;
+        this->PhysicsRigidBody = new btRigidBody(bmass, this->MotionState, this->Shape);
+        CollisionObject=PhysicsRigidBody;
         ObjectReference* ActorRef = new ObjectReference(Mezzanine::WOT_ActorRigid,this);
         Ogre::Any OgreRef(ActorRef);
         GraphicsObject->setUserAny(OgreRef);
@@ -104,20 +104,20 @@ namespace Mezzanine
         { return static_cast<ActorRigidPhysicsSettings*>(this->BasePhysicsSettings); }
 
     void ActorRigid::SetLinearMovementFactor(const Vector3& Factor)
-        { this->physrigidbody->setLinearFactor(Factor.GetBulletVector3()); }
+        { this->PhysicsRigidBody->setLinearFactor(Factor.GetBulletVector3()); }
 
     Vector3 ActorRigid::GetLinearMovementFactor() const
-        { return Vector3(this->physrigidbody->getLinearFactor()); }
+        { return Vector3(this->PhysicsRigidBody->getLinearFactor()); }
 
     void ActorRigid::SetAngularMovementFactor(const Vector3& Factor)
-        { this->physrigidbody->setAngularFactor(Factor.GetBulletVector3()); }
+        { this->PhysicsRigidBody->setAngularFactor(Factor.GetBulletVector3()); }
 
     Vector3 ActorRigid::GetAngularMovementFactor() const
-        { return Vector3(this->physrigidbody->getAngularFactor()); }
+        { return Vector3(this->PhysicsRigidBody->getAngularFactor()); }
 
     void ActorRigid::AddObjectToWorld()
     {
-        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
+        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addRigidBody(this->PhysicsRigidBody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
@@ -130,7 +130,7 @@ namespace Mezzanine
         {
             PhysMan->RemoveCollisionsContainingActor(this);
         }// */
-        BWorld->removeRigidBody(this->physrigidbody);
+        BWorld->removeRigidBody(this->PhysicsRigidBody);
         this->DetachFromGraphics();
     }
 
@@ -173,7 +173,7 @@ namespace Mezzanine
     }
 
     btRigidBody* ActorRigid::GetBulletObject()
-        { return physrigidbody; }
+        { return PhysicsRigidBody; }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Serialization

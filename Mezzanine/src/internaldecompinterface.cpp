@@ -49,13 +49,13 @@ namespace Mezzanine
 {
     namespace internal
     {
-        PhysConvexDecomposition::PhysConvexDecomposition()
+        MezzConvexDecomposition::MezzConvexDecomposition()
         {
             mBaseCount=0;
             mHullCount=0;
         }
 
-        void PhysConvexDecomposition::ConvexDecompResult(ConvexDecomposition::ConvexResult &result)
+        void MezzConvexDecomposition::ConvexDecompResult(ConvexDecomposition::ConvexResult &result)
         {
             btTriangleMesh* trimesh = new btTriangleMesh();
 

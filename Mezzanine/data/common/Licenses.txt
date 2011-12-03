@@ -1,4 +1,4 @@
-The following Licenses are applicable to the libraries that comprise the physgame engine as follows
+The following Licenses are applicable to the libraries that comprise the Mezzanine engine as follows
 
 	The "GNU LESSER GENERAL PUBLIC LICENSE 3.0" as described in lgpl-3.0.txt:
 		libgcc 
@@ -12,7 +12,7 @@ The following Licenses are applicable to the libraries that comprise the physgam
 		libsdl
 		
 	The "Arseny Kapoulkine MIT License" as described in PugiXML-MITLicense.txt
-		PugiXML renamed as Phys::XML
+		PugiXML renamed as Mezzanine::XML
 
 	The "Bullet Continuous Collision Detection and Physics Library ZLib License" as described in BulletZLibLicense.txt:
 		Bullet3d
@@ -27,5 +27,5 @@ The following Licenses are applicable to the libraries that comprise the physgam
 		libvorbis
 
 	The "GNU GENERAL PUBLIC LICENSE 3.0" as described in gpl-3.0.txt:
-		Physgame Engine
+		Mezzanine Engine
 	

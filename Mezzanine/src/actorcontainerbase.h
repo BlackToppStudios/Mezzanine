@@ -201,7 +201,7 @@ namespace Mezzanine
             /// @param GameWorld_ The new GameWorldPointer, or 0 to set none
             virtual void SetGameWorld( World* GameWorld_ ) = 0;
 
-            /// @brief Optionally move actors into or out of a physworld
+            /// @brief Optionally move actors into or out of a world
             /// @param GameWorld_ The new GameWorldPointer, or 0 to set none
             /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add
             /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove

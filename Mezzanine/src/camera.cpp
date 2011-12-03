@@ -299,7 +299,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Camera& Ev)
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Camera& Ev)
 {
     Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("phys::", "Camera", OneTag) );
+    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "Camera", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 

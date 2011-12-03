@@ -129,7 +129,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::EventCollision
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventCollision& Ev)
 {
     Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("phys::", "EventCollision", OneTag) );
+    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "EventCollision", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 

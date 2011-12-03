@@ -79,7 +79,7 @@ namespace Mezzanine
     class MEZZ_LIB ActorSoft: public ActorBase {
         protected:
             ///@brief Used to simulate the functionality of a btSoftBody for use with the physics subsystem.
-            btSoftBody* physsoftbody;
+            btSoftBody* PhysicsSoftBody;
             /// @brief This class encapsulates physics specific configuration for this actor.
             ActorSoftPhysicsSettings* PhysicsSettings;
             /// @brief Creates a soft object for the actor.
