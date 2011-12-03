@@ -26,3 +26,7 @@ Mezzanine/src/areaeffect.cpp:        btSoftRigidDynamicsWorld* PhysWorld = Physi
 Mezzanine/src/areaeffect.cpp:            btBroadphasePair* collisionPair = PhysWorld->getPairCache()->findPair(pair.m_pProxy0,pair.m_pProxy1);
 Mezzanine/src/areaeffect.cpp:        int numManifolds = PhysWorld->getDispatcher()->getNumManifolds();
 Mezzanine/src/areaeffect.cpp:            btPersistentManifold* contactManifold = PhysWorld->getDispatcher()->getManifoldByIndexInternal(i);
+Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/ChangeLog:	- Walt Disney Studios contributes their in-house Maya Plugin for simulating Bullet physics, with options for other engines such as PhysBam or PhysX.
+Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/CMakeLists.txt:#Hack to put the libs directly into the phys source tree
+Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/CMakeLists.txt.bak:#Hack to put the libs directly into the phys source tree
+Binary file Mezzanine/libincludes/macosx/frameworks/Ogre.framework/Ogre matches

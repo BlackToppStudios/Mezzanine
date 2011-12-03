@@ -39,7 +39,7 @@
 
 
 ###############################################################################
-# The build script for one piece of the physgame engine
+# The build script for one piece of the Mezzanine engine
 cmake_minimum_required (VERSION 2.8)
 project (Lua)
 

@@ -1458,3 +1458,9 @@ Mezzanine/src/doxyfiles/warnings:/home/sqeaky/physgame/Mezzanine/src/uiwidget.h:
 Mezzanine/src/doxyfiles/warnings:/home/sqeaky/physgame/Mezzanine/src/uiwindow.h:75: warning: Member BorderWidth (variable) of class Mezzanine::UI::Window is not documented.
 Mezzanine/src/doxyfiles/warnings:/home/sqeaky/physgame/Mezzanine/src/uiwindow.h:76: warning: Member CurrentRM (variable) of class Mezzanine::UI::Window is not documented.
 Mezzanine/src/doxyfiles/warnings:/home/sqeaky/physgame/Mezzanine/src/uiwindow.h:73: warning: Member WindowBack (variable) of class Mezzanine::UI::Window is not documented.
+Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/ChangeLog:	- Walt Disney Studios contributes their in-house Maya Plugin for simulating Bullet physics, with options for other engines such as PhysBam or PhysX.
+Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/CMakeLists.txt:#Hack to put the libs directly into the phys source tree
+Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/CMakeLists.txt.bak:#Hack to put the libs directly into the phys source tree
+Binary file Mezzanine/libincludes/macosx/frameworks/Ogre.framework/Ogre matches
+Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/src/Bullet-C-Api.h:	extern	plPhysicsSdkHandle	plNewBulletSdk(void); //this could be also another sdk, like ODE, PhysX etc.
+Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/src/Bullet-C-Api.h:/* PhysX has Triggers, User Callbacks and filtering */
