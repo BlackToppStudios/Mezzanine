@@ -1,0 +1,84 @@
+\hypertarget{classMezzanine_1_1UI_1_1ButtonCallback}{
+\subsection{Mezzanine::UI::ButtonCallback Class Reference}
+\label{classMezzanine_1_1UI_1_1ButtonCallback}\index{Mezzanine::UI::ButtonCallback@{Mezzanine::UI::ButtonCallback}}
+}
+
+
+This class provides customizable functionality to the button class.  
+
+
+
+
+{\ttfamily \#include $<$uibutton.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1UI_1_1ButtonCallback_af7cd7252696a7c4a47e0753eeef41d72}{ButtonCallback} ()
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1ButtonCallback_a4e5b608adea7aa2b8589f2b1644ef698}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1ButtonCallback_a4e5b608adea7aa2b8589f2b1644ef698}{DoActivateItems} ()=0}
+\label{classMezzanine_1_1UI_1_1ButtonCallback_a4e5b608adea7aa2b8589f2b1644ef698}
+
+\begin{DoxyCompactList}\small\item\em The activation function for this callback. This will be called every time the button is activated by the mouse or keyboard. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1ButtonCallback_a03454a17a979a86a72a0c3afae69737f}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1ButtonCallback_a03454a17a979a86a72a0c3afae69737f}{DoHoverItems} ()=0}
+\label{classMezzanine_1_1UI_1_1ButtonCallback_a03454a17a979a86a72a0c3afae69737f}
+
+\begin{DoxyCompactList}\small\item\em The hover function for this callback. This will be called every time the button is hovered over by the mouse. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1ButtonCallback_a59e06318745a208789d21bde7ad01349}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1ButtonCallback_a59e06318745a208789d21bde7ad01349}{SetCaller} (\hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$Caller)}
+\label{classMezzanine_1_1UI_1_1ButtonCallback_a59e06318745a208789d21bde7ad01349}
+
+\begin{DoxyCompactList}\small\item\em Sets the button this callback belongs to. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1ButtonCallback_a2db8a95ef38e7036d3e31cbf01e8f126}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1ButtonCallback_a2db8a95ef38e7036d3e31cbf01e8f126}{$\sim$ButtonCallback} ()}
+\label{classMezzanine_1_1UI_1_1ButtonCallback_a2db8a95ef38e7036d3e31cbf01e8f126}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1ButtonCallback_aeda7036edbf0c2dbcb06c85c7ac1bd47}{
+\hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ {\bfseries Caller}}
+\label{classMezzanine_1_1UI_1_1ButtonCallback_aeda7036edbf0c2dbcb06c85c7ac1bd47}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class provides customizable functionality to the button class. This is a pure virtual class that must be inherited from for use with specialized behaviors when working with buttons. 
+
+Definition at line 248 of file uibutton.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1ButtonCallback_af7cd7252696a7c4a47e0753eeef41d72}{
+\index{Mezzanine::UI::ButtonCallback@{Mezzanine::UI::ButtonCallback}!ButtonCallback@{ButtonCallback}}
+\index{ButtonCallback@{ButtonCallback}!Mezzanine::UI::ButtonCallback@{Mezzanine::UI::ButtonCallback}}
+\paragraph[{ButtonCallback}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::ButtonCallback::ButtonCallback (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1ButtonCallback_af7cd7252696a7c4a47e0753eeef41d72}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CallerButton} & The button to which this callback belongs. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 438 of file uibutton.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uibutton.h\item 
+uibutton.cpp\end{DoxyCompactItemize}

@@ -1,0 +1,561 @@
+\hypertarget{classMezzanine_1_1Collision}{
+\subsection{Mezzanine::Collision Class Reference}
+\label{classMezzanine_1_1Collision}\index{Mezzanine::Collision@{Mezzanine::Collision}}
+}
+
+
+This is an event class used to track collsions in the physics world.  
+
+
+
+
+{\ttfamily \#include $<$collision.h$>$}
+
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMezzanine_1_1Collision_a24094c597061743dcd571f36077f4d19}{CollisionState} \{ {\bfseries Col\_\-Begin}, 
+{\bfseries Col\_\-Contacts\_\-Updated}, 
+{\bfseries Col\_\-End}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum specifying the state change occuring in the collision. \item\end{DoxyCompactList}\item 
+enum \hyperlink{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153}{CollisionType} \{ \hyperlink{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153a02aba47edf804a1f74605b2a18c5fea6}{Col\_\-Actor\_\-Actor}, 
+\hyperlink{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153a06281a4725aae432fea2d878ed664b87}{Col\_\-Actor\_\-Terrain}, 
+\hyperlink{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153a35f141cb89933c3b6f42cb6c022bfac0}{Col\_\-Actor\_\-AreaEffect}, 
+\hyperlink{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153af9b276afb2ed485927a7fb81ca85e23c}{Col\_\-AreaEffect\_\-Terrain}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum specifying what kind of collision this class is storing. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Collision_a2eeacd2ab527b1d5e414917db41d580b}{
+\hyperlink{classMezzanine_1_1Collision_a2eeacd2ab527b1d5e414917db41d580b}{Collision} ()}
+\label{classMezzanine_1_1Collision_a2eeacd2ab527b1d5e414917db41d580b}
+
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Collision_a1170d2c2e674ab3e9b1bf68c91171db4}{Collision} (const \hyperlink{classMezzanine_1_1Collision}{Collision} \&Other)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1Collision_a8b54f6c8629299f7e55141d5fccc374d}{GetActorA} () const 
+\begin{DoxyCompactList}\small\item\em Gets the first actor this collision applies to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1Collision_a36e8d3977e93201881637d324a5cf90f}{GetActorB} () const 
+\begin{DoxyCompactList}\small\item\em Gets the second actor this collision applies to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1Collision_ad9d72f1d883214242803b72d1b82c343}{GetAge} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Point)
+\begin{DoxyCompactList}\small\item\em Gets the number of simulation steps the contact point has existed. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Collision_aa53aa5016ea75885b9be4f317968b407}{GetAppliedImpulse} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Point)
+\begin{DoxyCompactList}\small\item\em Gets the amount of force of the collision. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Collision_a365b382bac319b1258369c9bdeeb5048}{GetDistance} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Point)
+\begin{DoxyCompactList}\small\item\em Gets the penetration depth of the collision. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Collision_a63a18605e0f34392f8521cdc3afd4b62}{GetLocalALocation} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Point)
+\begin{DoxyCompactList}\small\item\em Gets the location in ObjectA's local space where the collision occured. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Collision_a6a75e50b8e2160e356e96080206d60bb}{GetLocalBLocation} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Point)
+\begin{DoxyCompactList}\small\item\em Gets the location in ObjectB's local space where the collision occured. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Collision_abd59dc03ed9226275e85681ec3ef1555}{GetNormal} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Point)
+\begin{DoxyCompactList}\small\item\em GEts the collision normal for a contact point. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1Collision_a75c8f35acf6ceba61b62da0049dcbf1c}{GetNumContactPoints} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of contact points this collision is storing. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Collision_abefbe2ba9b0aaa1830be4f1070c44480}{GetWorldLocation} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Point)
+\begin{DoxyCompactList}\small\item\em Gets the location in the world where the collision occured. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1Collision_a7834ded06e5313712f5d18a565d7519e}{PairsMatch} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$A, \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$B) const 
+\begin{DoxyCompactList}\small\item\em Convenience function to see if the provided pair match the pair in this class. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Collision_a0d6af6364ddf665a8696b6addcfd6b17}{SetActorA} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$A)
+\begin{DoxyCompactList}\small\item\em Sets the first actor this collision applies to. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Collision_a63a9d2fe2e1a10d4fa874a1272ad7ad1}{SetActorB} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$B)
+\begin{DoxyCompactList}\small\item\em Sets the second actor this collision applies to. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Collision_afee98e7728b4f2a4865a2ef38a051577}{
+virtual void \hyperlink{classMezzanine_1_1Collision_afee98e7728b4f2a4865a2ef38a051577}{Update} ()}
+\label{classMezzanine_1_1Collision_afee98e7728b4f2a4865a2ef38a051577}
+
+\begin{DoxyCompactList}\small\item\em Updates this collisions contact point data if it needs updating. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Collision_abeac6cfc637fe44493602a04f75c0232}{$\sim$Collision} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1Collision_a83a68efcc824afa4d0ca19d5183712e4}{Collision} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$actora, \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$actorb, btBroadphasePair $\ast$PhysicsPair)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Collision_ab337bbfb55f330ac095934cd1a0e40ed}{
+btManifoldPoint \& \hyperlink{classMezzanine_1_1Collision_ab337bbfb55f330ac095934cd1a0e40ed}{GetManifoldPoint} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)}
+\label{classMezzanine_1_1Collision_ab337bbfb55f330ac095934cd1a0e40ed}
+
+\begin{DoxyCompactList}\small\item\em Internal function responsible for fetching the appropriate contact point. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Collision_ae5040098b1a04efc5e91bd3911fceec2}{
+\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1Collision_ae5040098b1a04efc5e91bd3911fceec2}{ActorA}}
+\label{classMezzanine_1_1Collision_ae5040098b1a04efc5e91bd3911fceec2}
+
+\begin{DoxyCompactList}\small\item\em The first Actor involved in the collision. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Collision_aadf626c39ecec30c38caced1629cb398}{
+\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1Collision_aadf626c39ecec30c38caced1629cb398}{ActorB}}
+\label{classMezzanine_1_1Collision_aadf626c39ecec30c38caced1629cb398}
+
+\begin{DoxyCompactList}\small\item\em The second Actor invovled in the collision. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Collision_a6326964a8f8601655d97efc231ec3f86}{
+btCollisionAlgorithm $\ast$ \hyperlink{classMezzanine_1_1Collision_a6326964a8f8601655d97efc231ec3f86}{InternalAlgo}}
+\label{classMezzanine_1_1Collision_a6326964a8f8601655d97efc231ec3f86}
+
+\begin{DoxyCompactList}\small\item\em The internal collision class this event is based on. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Collision_ac4a67a946284d3bacbd342b935495b57}{
+\hyperlink{structMezzanine_1_1CollisionInternalData}{CollisionInternalData} $\ast$ \hyperlink{classMezzanine_1_1Collision_ac4a67a946284d3bacbd342b935495b57}{InternalData}}
+\label{classMezzanine_1_1Collision_ac4a67a946284d3bacbd342b935495b57}
+
+\begin{DoxyCompactList}\small\item\em Array of manifolds that apply to this collision. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Collision_a4cc057f249b1694ac66d1a64d7a437b9}{
+int \hyperlink{classMezzanine_1_1Collision_a4cc057f249b1694ac66d1a64d7a437b9}{NumContacts}}
+\label{classMezzanine_1_1Collision_a4cc057f249b1694ac66d1a64d7a437b9}
+
+\begin{DoxyCompactList}\small\item\em This stores the number of contact points within this collision, for using to track updates. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Collision_aa4a13416efe17e957deb2cf4dcce3a60}{
+class {\bfseries CollisionDispatcher}}
+\label{classMezzanine_1_1Collision_aa4a13416efe17e957deb2cf4dcce3a60}
+
+\item 
+\hypertarget{classMezzanine_1_1Collision_a139cf05ac01161b7071c8a037c841683}{
+class {\bfseries PhysicsManager}}
+\label{classMezzanine_1_1Collision_a139cf05ac01161b7071c8a037c841683}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is an event class used to track collsions in the physics world. This class will be used for tracking collisions in the physics world and will keep track of basic data related to the collision. This class stores the information in the form of contact points. Often when a collision occurs there will be more then one place where the collision occured, this is a contact point. Internally collisions only store up to a maximum of 4 contact points. When querying for collision information, you have to provide the desired contact point index, and it must be valid. If the requested index isn't valid an exception will be thrown. So always make sure it is with \hyperlink{classMezzanine_1_1Collision_a75c8f35acf6ceba61b62da0049dcbf1c}{GetNumContactPoints()}. 
+
+Definition at line 67 of file collision.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!CollisionType@{CollisionType}}
+\index{CollisionType@{CollisionType}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{CollisionType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::Collision::CollisionType}}\hfill}
+\label{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153}
+
+
+Enum specifying what kind of collision this class is storing. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{Col\_\-Actor\_\-Actor@{Col\_\-Actor\_\-Actor}!Mezzanine::Collision@{Mezzanine::Collision}}\index{Mezzanine::Collision@{Mezzanine::Collision}!Col\_\-Actor\_\-Actor@{Col\_\-Actor\_\-Actor}}\item[{\em 
+\hypertarget{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153a02aba47edf804a1f74605b2a18c5fea6}{
+Col\_\-Actor\_\-Actor}
+\label{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153a02aba47edf804a1f74605b2a18c5fea6}
+}]Specifies a collision between two Actors. \index{Col\_\-Actor\_\-Terrain@{Col\_\-Actor\_\-Terrain}!Mezzanine::Collision@{Mezzanine::Collision}}\index{Mezzanine::Collision@{Mezzanine::Collision}!Col\_\-Actor\_\-Terrain@{Col\_\-Actor\_\-Terrain}}\item[{\em 
+\hypertarget{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153a06281a4725aae432fea2d878ed664b87}{
+Col\_\-Actor\_\-Terrain}
+\label{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153a06281a4725aae432fea2d878ed664b87}
+}]Specifies a collision between an Actor and some Terrain. \index{Col\_\-Actor\_\-AreaEffect@{Col\_\-Actor\_\-AreaEffect}!Mezzanine::Collision@{Mezzanine::Collision}}\index{Mezzanine::Collision@{Mezzanine::Collision}!Col\_\-Actor\_\-AreaEffect@{Col\_\-Actor\_\-AreaEffect}}\item[{\em 
+\hypertarget{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153a35f141cb89933c3b6f42cb6c022bfac0}{
+Col\_\-Actor\_\-AreaEffect}
+\label{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153a35f141cb89933c3b6f42cb6c022bfac0}
+}]Specifies a collision between an Actor and an AreaRffect. \index{Col\_\-AreaEffect\_\-Terrain@{Col\_\-AreaEffect\_\-Terrain}!Mezzanine::Collision@{Mezzanine::Collision}}\index{Mezzanine::Collision@{Mezzanine::Collision}!Col\_\-AreaEffect\_\-Terrain@{Col\_\-AreaEffect\_\-Terrain}}\item[{\em 
+\hypertarget{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153af9b276afb2ed485927a7fb81ca85e23c}{
+Col\_\-AreaEffect\_\-Terrain}
+\label{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153af9b276afb2ed485927a7fb81ca85e23c}
+}]Specifies a collision between an \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect} and some Terrain. \end{description}
+\end{Desc}
+
+
+
+Definition at line 80 of file collision.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1Collision_a83a68efcc824afa4d0ca19d5183712e4}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!Collision@{Collision}}
+\index{Collision@{Collision}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{Collision}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Collision::Collision (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{actora, }
+\item[{{\bf ActorBase} $\ast$}]{actorb, }
+\item[{btBroadphasePair $\ast$}]{PhysicsPair}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a83a68efcc824afa4d0ca19d5183712e4}
+
+
+Class Constructor. 
+
+This will construct a basic event class with the minimum data needed. 
+\begin{DoxyParams}{Parameters}
+{\em actora} & The first Actor involved in the collision. \\
+\hline
+{\em actorb} & The second Actor invovled in the collision. \\
+\hline
+{\em PhysicsManifold} & The internal manifold used for querying collision data. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 59 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_a1170d2c2e674ab3e9b1bf68c91171db4}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!Collision@{Collision}}
+\index{Collision@{Collision}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{Collision}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Collision::Collision (
+\begin{DoxyParamCaption}
+\item[{const {\bf Collision} \&}]{Other}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Collision_a1170d2c2e674ab3e9b1bf68c91171db4}
+
+
+Copy Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1EventCollision}{EventCollision} to copy \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 81 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_abeac6cfc637fe44493602a04f75c0232}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!$\sim$Collision@{$\sim$Collision}}
+\index{$\sim$Collision@{$\sim$Collision}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{$\sim$Collision}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Collision::$\sim$Collision (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_abeac6cfc637fe44493602a04f75c0232}
+
+
+Class Destructor. 
+
+Basic Class Destructor. 
+
+Definition at line 94 of file collision.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Collision_a8b54f6c8629299f7e55141d5fccc374d}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetActorA@{GetActorA}}
+\index{GetActorA@{GetActorA}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetActorA}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::Collision::GetActorA (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a8b54f6c8629299f7e55141d5fccc374d}
+
+
+Gets the first actor this collision applies to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the first actor in this event. 
+\end{DoxyReturn}
+
+
+Definition at line 127 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_a36e8d3977e93201881637d324a5cf90f}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetActorB@{GetActorB}}
+\index{GetActorB@{GetActorB}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetActorB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::Collision::GetActorB (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a36e8d3977e93201881637d324a5cf90f}
+
+
+Gets the second actor this collision applies to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the second actor in this event. 
+\end{DoxyReturn}
+
+
+Definition at line 143 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_ad9d72f1d883214242803b72d1b82c343}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetAge@{GetAge}}
+\index{GetAge@{GetAge}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetAge}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::Collision::GetAge (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_ad9d72f1d883214242803b72d1b82c343}
+
+
+Gets the number of simulation steps the contact point has existed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Point} & The index of the contact point for this collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the amount of simulation steps a point has existed. 
+\end{DoxyReturn}
+
+
+Definition at line 185 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_aa53aa5016ea75885b9be4f317968b407}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetAppliedImpulse@{GetAppliedImpulse}}
+\index{GetAppliedImpulse@{GetAppliedImpulse}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetAppliedImpulse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Collision::GetAppliedImpulse (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_aa53aa5016ea75885b9be4f317968b407}
+
+
+Gets the amount of force of the collision. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Point} & The index of the contact point for this collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a real representing the amount of force applied from the collision. 
+\end{DoxyReturn}
+
+
+Definition at line 175 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_a365b382bac319b1258369c9bdeeb5048}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetDistance@{GetDistance}}
+\index{GetDistance@{GetDistance}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetDistance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Collision::GetDistance (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a365b382bac319b1258369c9bdeeb5048}
+
+
+Gets the penetration depth of the collision. 
+
+\begin{DoxyRemark}{Remarks}
+You should double check the return of this to verify that it is $<$0, sometimes a collision or contact point can be reported while there is no actual overlap depending on your physics setup. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Point} & The index of the contact point for this collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a real representing the depth of penetration between the two objects in this collision. 
+\end{DoxyReturn}
+
+
+Definition at line 180 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_a63a18605e0f34392f8521cdc3afd4b62}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetLocalALocation@{GetLocalALocation}}
+\index{GetLocalALocation@{GetLocalALocation}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetLocalALocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Collision::GetLocalALocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a63a18605e0f34392f8521cdc3afd4b62}
+
+
+Gets the location in ObjectA's local space where the collision occured. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Point} & The index of the contact point for this collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a vector3 with the point of the collision in ObjectA's local space. 
+\end{DoxyReturn}
+
+
+Definition at line 160 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_a6a75e50b8e2160e356e96080206d60bb}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetLocalBLocation@{GetLocalBLocation}}
+\index{GetLocalBLocation@{GetLocalBLocation}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetLocalBLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Collision::GetLocalBLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a6a75e50b8e2160e356e96080206d60bb}
+
+
+Gets the location in ObjectB's local space where the collision occured. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Point} & The index of the contact point for this collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a vector3 with the point of the collision in ObjectB's local space. 
+\end{DoxyReturn}
+
+
+Definition at line 165 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_abd59dc03ed9226275e85681ec3ef1555}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetNormal@{GetNormal}}
+\index{GetNormal@{GetNormal}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetNormal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Collision::GetNormal (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_abd59dc03ed9226275e85681ec3ef1555}
+
+
+GEts the collision normal for a contact point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Point} & The index of the contact point for this collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a vector3 representing the collision normal for a contact point. 
+\end{DoxyReturn}
+
+
+Definition at line 170 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_a75c8f35acf6ceba61b62da0049dcbf1c}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetNumContactPoints@{GetNumContactPoints}}
+\index{GetNumContactPoints@{GetNumContactPoints}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetNumContactPoints}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::Collision::GetNumContactPoints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a75c8f35acf6ceba61b62da0049dcbf1c}
+
+
+Gets the number of contact points this collision is storing. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of contact points that currently exist for this collision. 
+\end{DoxyReturn}
+
+
+Definition at line 148 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_abefbe2ba9b0aaa1830be4f1070c44480}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!GetWorldLocation@{GetWorldLocation}}
+\index{GetWorldLocation@{GetWorldLocation}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{GetWorldLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Collision::GetWorldLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_abefbe2ba9b0aaa1830be4f1070c44480}
+
+
+Gets the location in the world where the collision occured. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Point} & The index of the contact point for this collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a vector3 containing the approximate world location of the collision. 
+\end{DoxyReturn}
+
+
+Definition at line 153 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_a7834ded06e5313712f5d18a565d7519e}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!PairsMatch@{PairsMatch}}
+\index{PairsMatch@{PairsMatch}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{PairsMatch}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Collision::PairsMatch (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{A, }
+\item[{{\bf ActorBase} $\ast$}]{B}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a7834ded06e5313712f5d18a565d7519e}
+
+
+Convenience function to see if the provided pair match the pair in this class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The first actor to be compared. Will be checked against both objects in this collision. \\
+\hline
+{\em B} & The second actor to be compared. Will be checked against both objects in this collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a bool, true if the pairs match, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 190 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_a0d6af6364ddf665a8696b6addcfd6b17}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!SetActorA@{SetActorA}}
+\index{SetActorA@{SetActorA}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{SetActorA}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Collision::SetActorA (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{A}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a0d6af6364ddf665a8696b6addcfd6b17}
+
+
+Sets the first actor this collision applies to. 
+
+\begin{DoxyWarning}{Warning}
+\hyperlink{classMezzanine_1_1Collision}{Collision} events can't/shouldn't have the bodies they apply to changed. This function exists mostly just for the blank constructor when you need to set them afterward. If you attempt to set this when the pointer is already set, it will log the event but otherwise silently fail. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The first actor in this event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 116 of file collision.cpp.
+
+\hypertarget{classMezzanine_1_1Collision_a63a9d2fe2e1a10d4fa874a1272ad7ad1}{
+\index{Mezzanine::Collision@{Mezzanine::Collision}!SetActorB@{SetActorB}}
+\index{SetActorB@{SetActorB}!Mezzanine::Collision@{Mezzanine::Collision}}
+\paragraph[{SetActorB}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Collision::SetActorB (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{B}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Collision_a63a9d2fe2e1a10d4fa874a1272ad7ad1}
+
+
+Sets the second actor this collision applies to. 
+
+\begin{DoxyWarning}{Warning}
+\hyperlink{classMezzanine_1_1Collision}{Collision} events can't/shouldn't have the bodies they apply to changed. This function exists mostly just for the blank constructor when you need to set them afterward. If you attempt to set this when the pointer is already set, it will log the event but otherwise silently fail. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The second actor in this event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 132 of file collision.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collision.h\item 
+collision.cpp\end{DoxyCompactItemize}

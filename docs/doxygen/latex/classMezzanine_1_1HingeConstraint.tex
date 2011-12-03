@@ -1,0 +1,963 @@
+\hypertarget{classMezzanine_1_1HingeConstraint}{
+\subsection{Mezzanine::HingeConstraint Class Reference}
+\label{classMezzanine_1_1HingeConstraint}\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+}
+
+
+This is a constraint to be used to restrict the movement between two objects to angular rotation on a single axis.  
+
+
+
+
+{\ttfamily \#include $<$constraint.h$>$}
+
+Inheritance diagram for Mezzanine::HingeConstraint:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classMezzanine_1_1HingeConstraint}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a4a87201e6370d7ce29f967aecaf54d8e}{EnableMotor} (bool EnableMotor, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} TargetVelocity, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} MaxMotorImpulse)
+\begin{DoxyCompactList}\small\item\em Enables(or Disables) the motor on the hinge and sets it's parameters. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a92a4d535a069ecb4dea600f7c4ac38ef}{EnableMotor} (bool EnableMotor)
+\begin{DoxyCompactList}\small\item\em Enables(or Disables) the motor on the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1HingeConstraint_ab8b8a045c8338a3daeb970cb4696aab3}{GetAPivotRotation} () const 
+\begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorA. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1HingeConstraint_a574d375c6eac6f5d5b5f9c1266b85d60}{GetBPivotRotation} () const 
+\begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorB. \item\end{DoxyCompactList}\item 
+virtual btTypedConstraint $\ast$ \hyperlink{classMezzanine_1_1HingeConstraint_a04c77dee8074b293d9db893e1af42608}{GetConstraintBase} () const 
+\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1HingeConstraint_aaf946de046cc59210ae1f70ce53629e5}{GetHingeAngle} ()
+\begin{DoxyCompactList}\small\item\em Gets the current angle of the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1HingeConstraint_aa614cc523ffa01d50e83ef2472126419}{GetLimitBiasFactor} () const 
+\begin{DoxyCompactList}\small\item\em Return the bias factor of the hinge (Not entirely certain hat this on is) \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1HingeConstraint_acb0a9676b91cf7c987569bed3510b5da}{GetLimitHigh} () const 
+\begin{DoxyCompactList}\small\item\em Return the Upper Limit of the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1HingeConstraint_a7815264c012e03fdf09a72d1aa76e50f}{GetLimitLow} () const 
+\begin{DoxyCompactList}\small\item\em Return the Lower Limit of the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1HingeConstraint_a547dfa04268f9fa0d938fb00a082fc03}{GetLimitRelaxationFactor} () const 
+\begin{DoxyCompactList}\small\item\em Return the Relaxation Factor of the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1HingeConstraint_aa5202368b6de6721f0f6f96b6210e83f}{GetLimitSoftness} () const 
+\begin{DoxyCompactList}\small\item\em Return the Softness of the hinge. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1HingeConstraint_a02ea6dc2a0e80649737c4c478fec274d}{GetMaxMotorImpulse} () const 
+\begin{DoxyCompactList}\small\item\em Retrieve the maximimum value that the acceleration of the motor can be increased. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1HingeConstraint_adcc717f158be2173d179004a6b8d2b11}{GetMotorEnabled} () const 
+\begin{DoxyCompactList}\small\item\em Is this motor on this hinge enabled? \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1HingeConstraint_ab357a37ce5a447b007cbaef74c4b47d5}{GetMotorTargetVelocity} () const 
+\begin{DoxyCompactList}\small\item\em Get the Target Velocity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1HingeConstraint_a74f1b8d8de18ab991d2f42c7141eedc7}{GetPivotALocation} () const 
+\begin{DoxyCompactList}\small\item\em Get the location of the hinge pivot relative to ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Transform}{Transform} \hyperlink{classMezzanine_1_1HingeConstraint_a208687c856410bf70f068ddf8c8f9161}{GetPivotATransform} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1HingeConstraint_a87b14b3cbf5241aeba723226661764e6}{GetPivotBLocation} () const 
+\begin{DoxyCompactList}\small\item\em Get the location of the hinge pivot relative to ActorB's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Transform}{Transform} \hyperlink{classMezzanine_1_1HingeConstraint_a7d9a9ddc367d1a9105f1eb27fd76a65f}{GetPivotBTransform} () const 
+\item 
+virtual bool \hyperlink{classMezzanine_1_1HingeConstraint_a09dc1bb27e02b619222aebea91bc6705}{GetUseFrameOffset} () const 
+\begin{DoxyCompactList}\small\item\em Retrieve the stored value from the physics subsystem(bullet) \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1HingeConstraint_a638b7b76542d850becea2d49d3f1c8b1}{GetUseReferenceFrameA} () const 
+\begin{DoxyCompactList}\small\item\em Is this Using Reference Frame A. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1HingeConstraint_a58f5758cb5926f785c07c7ebb544d91b}{HasParamBeenSet} (\hyperlink{namespaceMezzanine_a6c62e8c2938fb203eb7a7072c12176f4}{ConstraintParam} Param, int Axis) const 
+\item 
+\hyperlink{classMezzanine_1_1HingeConstraint_af769aacbd1756b528fe8724ecf5fc654}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformA, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1HingeConstraint_a65d04021f0ac11d284de975d7552012e}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotInB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will connect two actors together by their offsets. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1HingeConstraint_acb7f380b212a396b92d78ac055c55a68}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInA, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will attach an actor to a point in world space. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1HingeConstraint_a62a733c3ad51d3e7c5f51ae5a8adadd0}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_aa38c63cb80624e1e26043cf84e5c01c2}{SetAPivotRotation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorA. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a4c8bbe6e1d7f1fec78b1e8b0296ad61f}{SetAxis} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInA)
+\begin{DoxyCompactList}\small\item\em Sets the axis on which this constraint acts. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a99f32e38d0df3bdfb266f36b83f4f1f6}{SetBPivotRotation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorB. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_ac6d39a9c3da1aa6611507fdcf9b9e901}{SetLimit} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Low, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} High, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Softness=0.9, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} BiasFactor=0.3, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} RelaxationFactor=1.0)
+\begin{DoxyCompactList}\small\item\em Sets the angle limits of the constraint in radians. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_aa2f0a760f84f7682feb6d8564256e644}{SetMaxMotorImpulse} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} MaxMotorImpulse)
+\begin{DoxyCompactList}\small\item\em Sets the maximum amount of force the motor is to apply. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a7d195f18c2fbe6f458c4af94320c923c}{SetMotorTarget} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuatAInB, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Dt)
+\begin{DoxyCompactList}\small\item\em Sets a Target Velocity, indirectly using the angle stored in a quaternion. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_ab6ec259478024f5fedc055563cf15ee6}{SetMotorTarget} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} TargetAngle, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Dt)
+\begin{DoxyCompactList}\small\item\em Set the Rotational velocity in a more direct fashion. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a8aa2831ceaa742ced7f120f930409e9b}{SetMotorTargetVelocity} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} TargetVelocity)
+\begin{DoxyCompactList}\small\item\em Desired angular velocity of the motor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a0990b3b85529df353aaa46f76951fd68}{SetPivotALocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Set The relative location of the hinge pivot from ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a44bc111ce8642c52c106af2cfe1fd7d5}{SetPivotATransform} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TranA)
+\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a7ae57514d6bd1119859ecb137cf58e5e}{SetPivotBLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Set The relative location of the hinge pivot from ActorB's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_abbe27830e0d17c44125cee59d84a9d37}{SetPivotBTransform} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TranB)
+\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a9a77fd9be29d97313e6a014d4e110697}{SetUseFrameOffset} (bool FrameOffset)
+\begin{DoxyCompactList}\small\item\em Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet) \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a94a8a1c4b6febf1ca8859e7d3bf3c5ca}{SetUseReferenceFrameA} (bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Change whether this is Using Reference Frame A or not. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1TypedConstraint_ac6b8e0839cd686f73d0c9e9ad5db47a4}{TypedConstraint::AxisList} \hyperlink{classMezzanine_1_1HingeConstraint_aaed95fc3750346a6f9791b025e600aa0}{ValidAngularAxis} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1TypedConstraint_ac6b8e0839cd686f73d0c9e9ad5db47a4}{TypedConstraint::AxisList} \hyperlink{classMezzanine_1_1HingeConstraint_a2af69ea5320ff27bf4d5de7ae9530594}{ValidLinearAxis} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1TypedConstraint_abd499db29c9e9755e9bb547d29eaa49a}{TypedConstraint::ParamList} \hyperlink{classMezzanine_1_1HingeConstraint_a3ea048fe9e7eda83e4ef42174a0c6157}{ValidParamOnAxis} (int Axis) const 
+\item 
+virtual \hyperlink{classMezzanine_1_1HingeConstraint_a9964c958874d5c6c7d410b4c09818837}{$\sim$HingeConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1HingeConstraint_a5d199b12753d7143ddd521d5f4728b45}{
+btHingeConstraint $\ast$ \hyperlink{classMezzanine_1_1HingeConstraint_a5d199b12753d7143ddd521d5f4728b45}{Hinge}}
+\label{classMezzanine_1_1HingeConstraint_a5d199b12753d7143ddd521d5f4728b45}
+
+\begin{DoxyCompactList}\small\item\em Bullet constraint that this class encapsulates. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a constraint to be used to restrict the movement between two objects to angular rotation on a single axis. As the name suggests, this constraint essentially works like a door Hinge. 
+
+Definition at line 971 of file constraint.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1HingeConstraint_a65d04021f0ac11d284de975d7552012e}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!HingeConstraint@{HingeConstraint}}
+\index{HingeConstraint@{HingeConstraint}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::HingeConstraint::HingeConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{{\bf ActorRigid} $\ast$}]{ActorB, }
+\item[{const {\bf Vector3} \&}]{PivotInA, }
+\item[{const {\bf Vector3} \&}]{PivotInB, }
+\item[{const {\bf Vector3} \&}]{AxisInA, }
+\item[{const {\bf Vector3} \&}]{AxisInB, }
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a65d04021f0ac11d284de975d7552012e}
+
+
+Creates a Hinge constraint that will connect two actors together by their offsets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The first actor to apply this constraint to. \\
+\hline
+{\em ActorB} & The second actor to apply this constraint to. \\
+\hline
+{\em PivotA} & The location in ActorA's local space to apply the constraint to. \\
+\hline
+{\em PivotB} & The location in ActorB's local space to apply the constraint to. \\
+\hline
+{\em AxisInA} & The axis(for ActorA) on which the hinge is to act. For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis. \\
+\hline
+{\em AxisInB} & The axis(for ActorB) on which the hinge is to act. For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis. \\
+\hline
+{\em UseReferenceFrameA} & By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_acb7f380b212a396b92d78ac055c55a68}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!HingeConstraint@{HingeConstraint}}
+\index{HingeConstraint@{HingeConstraint}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::HingeConstraint::HingeConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{const {\bf Vector3} \&}]{PivotInA, }
+\item[{const {\bf Vector3} \&}]{AxisInA, }
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1HingeConstraint_acb7f380b212a396b92d78ac055c55a68}
+
+
+Creates a Hinge constraint that will attach an actor to a point in world space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The actor to apply this constraint to. \\
+\hline
+{\em PivotInA} & The point in the object's(ActorA) local space where the constraint is to be attached to world space. \\
+\hline
+{\em AxisInA} & The axis(for ActorA) on which the hinge is to act. For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis. \\
+\hline
+{\em UseReferenceFrameA} & By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_a62a733c3ad51d3e7c5f51ae5a8adadd0}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!HingeConstraint@{HingeConstraint}}
+\index{HingeConstraint@{HingeConstraint}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::HingeConstraint::HingeConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{{\bf ActorRigid} $\ast$}]{ActorB, }
+\item[{const {\bf Vector3} \&}]{VectorA, }
+\item[{const {\bf Vector3} \&}]{VectorB, }
+\item[{const {\bf Quaternion} \&}]{QuaternionA, }
+\item[{const {\bf Quaternion} \&}]{QuaternionB, }
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a62a733c3ad51d3e7c5f51ae5a8adadd0}
+
+
+Create a Hinge with components of a tranform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The first actor to apply this constraint to. \\
+\hline
+{\em ActorB} & The second actor to apply this constraint to. \\
+\hline
+{\em VectorA} & The location component of \hyperlink{classMezzanine_1_1Transform}{Transform} A \\
+\hline
+{\em VectorB} & The location component of \hyperlink{classMezzanine_1_1Transform}{Transform} B \\
+\hline
+{\em QuaternionA} & The rotation component of \hyperlink{classMezzanine_1_1Transform}{Transform} A \\
+\hline
+{\em QuaternionB} & The rotation component of \hyperlink{classMezzanine_1_1Transform}{Transform} B \\
+\hline
+{\em UseReferenceFrameA} & By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_af769aacbd1756b528fe8724ecf5fc654}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!HingeConstraint@{HingeConstraint}}
+\index{HingeConstraint@{HingeConstraint}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::HingeConstraint::HingeConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{ActorA, }
+\item[{{\bf ActorRigid} $\ast$}]{ActorB, }
+\item[{const {\bf Transform} \&}]{TransformA, }
+\item[{const {\bf Transform} \&}]{TransformB, }
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1HingeConstraint_af769aacbd1756b528fe8724ecf5fc654}
+
+
+Create a Hinge with components of a tranform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ActorA} & The first actor to apply this constraint to. \\
+\hline
+{\em ActorB} & The second actor to apply this constraint to. \\
+\hline
+{\em TransformA} & The location component of \hyperlink{classMezzanine_1_1Transform}{Transform} A \\
+\hline
+{\em TransformB} & The location component of \hyperlink{classMezzanine_1_1Transform}{Transform} B \\
+\hline
+{\em UseReferenceFrameA} & By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_a9964c958874d5c6c7d410b4c09818837}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!$\sim$HingeConstraint@{$\sim$HingeConstraint}}
+\index{$\sim$HingeConstraint@{$\sim$HingeConstraint}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{$\sim$HingeConstraint}]{\setlength{\rightskip}{0pt plus 5cm}virtual Mezzanine::HingeConstraint::$\sim$HingeConstraint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a9964c958874d5c6c7d410b4c09818837}
+
+
+Class destructor. 
+
+The class destructor. 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1HingeConstraint_a4a87201e6370d7ce29f967aecaf54d8e}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!EnableMotor@{EnableMotor}}
+\index{EnableMotor@{EnableMotor}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{EnableMotor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::EnableMotor (
+\begin{DoxyParamCaption}
+\item[{bool}]{EnableMotor, }
+\item[{{\bf Real}}]{TargetVelocity, }
+\item[{{\bf Real}}]{MaxMotorImpulse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a4a87201e6370d7ce29f967aecaf54d8e}
+
+
+Enables(or Disables) the motor on the hinge and sets it's parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em EnableMotor} & Sets whether or not the motor on this constraint is enabled. \\
+\hline
+{\em TargetVelocity} & The desired velocity of rotation the motor will have. This may or may not be achieved based on obstructions in the simulation. \\
+\hline
+{\em MaxMotorImpulse} & The maximum amount of force the motor is to apply to try and reach it's target velocity. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_a92a4d535a069ecb4dea600f7c4ac38ef}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!EnableMotor@{EnableMotor}}
+\index{EnableMotor@{EnableMotor}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{EnableMotor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::EnableMotor (
+\begin{DoxyParamCaption}
+\item[{bool}]{EnableMotor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a92a4d535a069ecb4dea600f7c4ac38ef}
+
+
+Enables(or Disables) the motor on the hinge. 
+
+\begin{DoxyWarning}{Warning}
+Be sure to set values for the Motor max impulse and/or velocity before enabling the motor, or else you may get a crash. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em EnableMotor} & Sets whether or not the motor on this constraint is enabled. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_ab8b8a045c8338a3daeb970cb4696aab3}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetAPivotRotation@{GetAPivotRotation}}
+\index{GetAPivotRotation@{GetAPivotRotation}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetAPivotRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} Mezzanine::HingeConstraint::GetAPivotRotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_ab8b8a045c8338a3daeb970cb4696aab3}
+
+
+Get the relative rotation for ActorA. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} that has the rotation
+\end{DoxyReturn}
+This implements a more Hinge specific version of the logic than \hyperlink{classMezzanine_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. \hypertarget{classMezzanine_1_1HingeConstraint_a574d375c6eac6f5d5b5f9c1266b85d60}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetBPivotRotation@{GetBPivotRotation}}
+\index{GetBPivotRotation@{GetBPivotRotation}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetBPivotRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} Mezzanine::HingeConstraint::GetBPivotRotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a574d375c6eac6f5d5b5f9c1266b85d60}
+
+
+Get the relative rotation for ActorB. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} that has the rotation
+\end{DoxyReturn}
+This implements a more Hinge specific version of the logic than \hyperlink{classMezzanine_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. \hypertarget{classMezzanine_1_1HingeConstraint_a04c77dee8074b293d9db893e1af42608}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetConstraintBase@{GetConstraintBase}}
+\index{GetConstraintBase@{GetConstraintBase}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetConstraintBase}]{\setlength{\rightskip}{0pt plus 5cm}virtual btTypedConstraint$\ast$ Mezzanine::HingeConstraint::GetConstraintBase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a04c77dee8074b293d9db893e1af42608}
+Get the Bullet constraint that this class encapsulates. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the btTypedConstraint that stores the underlying constraint. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1TypedConstraint_a7aa13fc4448cf1fc32673bde4ec84767}{Mezzanine::TypedConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_aaf946de046cc59210ae1f70ce53629e5}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetHingeAngle@{GetHingeAngle}}
+\index{GetHingeAngle@{GetHingeAngle}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetHingeAngle}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} Mezzanine::HingeConstraint::GetHingeAngle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_aaf946de046cc59210ae1f70ce53629e5}
+
+
+Gets the current angle of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+Gets the amount of rotation this hinge is off from it's origin in radians. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_aa614cc523ffa01d50e83ef2472126419}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetLimitBiasFactor@{GetLimitBiasFactor}}
+\index{GetLimitBiasFactor@{GetLimitBiasFactor}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetLimitBiasFactor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} Mezzanine::HingeConstraint::GetLimitBiasFactor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_aa614cc523ffa01d50e83ef2472126419}
+
+
+Return the bias factor of the hinge (Not entirely certain hat this on is) 
+
+\begin{DoxyReturn}{Returns}
+A real containing the bias Factor 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_acb0a9676b91cf7c987569bed3510b5da}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetLimitHigh@{GetLimitHigh}}
+\index{GetLimitHigh@{GetLimitHigh}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetLimitHigh}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} Mezzanine::HingeConstraint::GetLimitHigh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_acb0a9676b91cf7c987569bed3510b5da}
+
+
+Return the Upper Limit of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+A real containing the Higher Limit 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_a7815264c012e03fdf09a72d1aa76e50f}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetLimitLow@{GetLimitLow}}
+\index{GetLimitLow@{GetLimitLow}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetLimitLow}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} Mezzanine::HingeConstraint::GetLimitLow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a7815264c012e03fdf09a72d1aa76e50f}
+
+
+Return the Lower Limit of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+A real containing the Lower Limit 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_a547dfa04268f9fa0d938fb00a082fc03}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetLimitRelaxationFactor@{GetLimitRelaxationFactor}}
+\index{GetLimitRelaxationFactor@{GetLimitRelaxationFactor}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetLimitRelaxationFactor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} Mezzanine::HingeConstraint::GetLimitRelaxationFactor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a547dfa04268f9fa0d938fb00a082fc03}
+
+
+Return the Relaxation Factor of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+A real containing the Relaxation Factor 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_aa5202368b6de6721f0f6f96b6210e83f}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetLimitSoftness@{GetLimitSoftness}}
+\index{GetLimitSoftness@{GetLimitSoftness}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetLimitSoftness}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} Mezzanine::HingeConstraint::GetLimitSoftness (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_aa5202368b6de6721f0f6f96b6210e83f}
+
+
+Return the Softness of the hinge. 
+
+\begin{DoxyReturn}{Returns}
+A real containing the Softness 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_a02ea6dc2a0e80649737c4c478fec274d}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetMaxMotorImpulse@{GetMaxMotorImpulse}}
+\index{GetMaxMotorImpulse@{GetMaxMotorImpulse}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetMaxMotorImpulse}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} Mezzanine::HingeConstraint::GetMaxMotorImpulse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a02ea6dc2a0e80649737c4c478fec274d}
+
+
+Retrieve the maximimum value that the acceleration of the motor can be increased. 
+
+\begin{DoxyReturn}{Returns}
+A real containing the maximum impulse. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_adcc717f158be2173d179004a6b8d2b11}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetMotorEnabled@{GetMotorEnabled}}
+\index{GetMotorEnabled@{GetMotorEnabled}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetMotorEnabled}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mezzanine::HingeConstraint::GetMotorEnabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_adcc717f158be2173d179004a6b8d2b11}
+
+
+Is this motor on this hinge enabled? 
+
+\begin{DoxyReturn}{Returns}
+True if it is, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_ab357a37ce5a447b007cbaef74c4b47d5}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetMotorTargetVelocity@{GetMotorTargetVelocity}}
+\index{GetMotorTargetVelocity@{GetMotorTargetVelocity}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetMotorTargetVelocity}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Real} Mezzanine::HingeConstraint::GetMotorTargetVelocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_ab357a37ce5a447b007cbaef74c4b47d5}
+
+
+Get the Target Velocity. 
+
+\begin{DoxyReturn}{Returns}
+the target valocity as a real. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_a74f1b8d8de18ab991d2f42c7141eedc7}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetPivotALocation@{GetPivotALocation}}
+\index{GetPivotALocation@{GetPivotALocation}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetPivotALocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} Mezzanine::HingeConstraint::GetPivotALocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a74f1b8d8de18ab991d2f42c7141eedc7}
+
+
+Get the location of the hinge pivot relative to ActorA's Center of gravity. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the pivot location.
+\end{DoxyReturn}
+This implements a more Hinge specific version of the logic than \hyperlink{classMezzanine_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. 
+
+Reimplemented from \hyperlink{classMezzanine_1_1DualTransformConstraint_ad79b92cb1faeba6e7ba7123e02d86dc1}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a208687c856410bf70f068ddf8c8f9161}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetPivotATransform@{GetPivotATransform}}
+\index{GetPivotATransform@{GetPivotATransform}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetPivotATransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Transform} Mezzanine::HingeConstraint::GetPivotATransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a208687c856410bf70f068ddf8c8f9161}
+ 
+
+Implements \hyperlink{classMezzanine_1_1DualTransformConstraint_ac6798a2ea8e80e38fbfbf17df6043265}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a87b14b3cbf5241aeba723226661764e6}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetPivotBLocation@{GetPivotBLocation}}
+\index{GetPivotBLocation@{GetPivotBLocation}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetPivotBLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} Mezzanine::HingeConstraint::GetPivotBLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a87b14b3cbf5241aeba723226661764e6}
+
+
+Get the location of the hinge pivot relative to ActorB's Center of gravity. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the pivot location.
+\end{DoxyReturn}
+This implements a more Hinge specific version of the logic than \hyperlink{classMezzanine_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. 
+
+Reimplemented from \hyperlink{classMezzanine_1_1DualTransformConstraint_ade678f85e0e32b5bf59778130e9d1730}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a7d9a9ddc367d1a9105f1eb27fd76a65f}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetPivotBTransform@{GetPivotBTransform}}
+\index{GetPivotBTransform@{GetPivotBTransform}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetPivotBTransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Transform} Mezzanine::HingeConstraint::GetPivotBTransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a7d9a9ddc367d1a9105f1eb27fd76a65f}
+ 
+
+Implements \hyperlink{classMezzanine_1_1DualTransformConstraint_a43e5f5d4cfd9b0ab7032d81df5c935d7}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a09dc1bb27e02b619222aebea91bc6705}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetUseFrameOffset@{GetUseFrameOffset}}
+\index{GetUseFrameOffset@{GetUseFrameOffset}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetUseFrameOffset}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mezzanine::HingeConstraint::GetUseFrameOffset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a09dc1bb27e02b619222aebea91bc6705}
+
+
+Retrieve the stored value from the physics subsystem(bullet) 
+
+\begin{DoxyReturn}{Returns}
+a True or false. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_a638b7b76542d850becea2d49d3f1c8b1}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!GetUseReferenceFrameA@{GetUseReferenceFrameA}}
+\index{GetUseReferenceFrameA@{GetUseReferenceFrameA}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{GetUseReferenceFrameA}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mezzanine::HingeConstraint::GetUseReferenceFrameA (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a638b7b76542d850becea2d49d3f1c8b1}
+
+
+Is this Using Reference Frame A. 
+
+\begin{DoxyReturn}{Returns}
+A the value UseReferenceFrameA is set to internally. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1HingeConstraint_a58f5758cb5926f785c07c7ebb544d91b}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!HasParamBeenSet@{HasParamBeenSet}}
+\index{HasParamBeenSet@{HasParamBeenSet}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{HasParamBeenSet}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mezzanine::HingeConstraint::HasParamBeenSet (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstraintParam}}]{Param, }
+\item[{int}]{Axis}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a58f5758cb5926f785c07c7ebb544d91b}
+ 
+
+Implements \hyperlink{classMezzanine_1_1TypedConstraint_a96a6b4c16521f24d72feea98044ef3a8}{Mezzanine::TypedConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_aa38c63cb80624e1e26043cf84e5c01c2}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetAPivotRotation@{SetAPivotRotation}}
+\index{SetAPivotRotation@{SetAPivotRotation}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetAPivotRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetAPivotRotation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_aa38c63cb80624e1e26043cf84e5c01c2}
+
+
+Set The relative rotation of ActorA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The new rotation amount for A\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformA. This implements a more Hinge specific version of the logic than \hyperlink{classMezzanine_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. \hypertarget{classMezzanine_1_1HingeConstraint_a4c8bbe6e1d7f1fec78b1e8b0296ad61f}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetAxis@{SetAxis}}
+\index{SetAxis@{SetAxis}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetAxis}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetAxis (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{AxisInA}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a4c8bbe6e1d7f1fec78b1e8b0296ad61f}
+
+
+Sets the axis on which this constraint acts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em AxisInA} & A vector3 representing the axis to be used with this constraint. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_a99f32e38d0df3bdfb266f36b83f4f1f6}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetBPivotRotation@{SetBPivotRotation}}
+\index{SetBPivotRotation@{SetBPivotRotation}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetBPivotRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetBPivotRotation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a99f32e38d0df3bdfb266f36b83f4f1f6}
+
+
+Set The relative rotation of ActorB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otation} & The new rotation amount for B\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformB. This implements a more Hinge specific version of the logic than \hyperlink{classMezzanine_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. \hypertarget{classMezzanine_1_1HingeConstraint_ac6d39a9c3da1aa6611507fdcf9b9e901}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetLimit@{SetLimit}}
+\index{SetLimit@{SetLimit}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetLimit}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetLimit (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Low, }
+\item[{{\bf Real}}]{High, }
+\item[{{\bf Real}}]{Softness = {\ttfamily 0.9}, }
+\item[{{\bf Real}}]{BiasFactor = {\ttfamily 0.3}, }
+\item[{{\bf Real}}]{RelaxationFactor = {\ttfamily 1.0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_ac6d39a9c3da1aa6611507fdcf9b9e901}
+
+
+Sets the angle limits of the constraint in radians. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Low} & The minimum angle limit for the constraint in radians. \\
+\hline
+{\em High} & The maximum angle limit for the constraint in radians. \\
+\hline
+{\em Softness} & Not currently used internally. \\
+\hline
+{\em BiasFactor} & Multiplier for the constraint error, constraint appears more \char`\"{}soft\char`\"{} when closer to zero. \\
+\hline
+{\em RelaxationFactor} & The amount of bounce to apply when the constraint reaches it's limit. Range: 0.0-\/1.0. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_aa2f0a760f84f7682feb6d8564256e644}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetMaxMotorImpulse@{SetMaxMotorImpulse}}
+\index{SetMaxMotorImpulse@{SetMaxMotorImpulse}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetMaxMotorImpulse}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetMaxMotorImpulse (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{MaxMotorImpulse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_aa2f0a760f84f7682feb6d8564256e644}
+
+
+Sets the maximum amount of force the motor is to apply. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MaxMotorImpulse} & The maximum amount of force the motor is to apply to try and reach it's target velocity. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_a7d195f18c2fbe6f458c4af94320c923c}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetMotorTarget@{SetMotorTarget}}
+\index{SetMotorTarget@{SetMotorTarget}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetMotorTarget}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetMotorTarget (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{QuatAInB, }
+\item[{{\bf Real}}]{Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a7d195f18c2fbe6f458c4af94320c923c}
+
+
+Sets a Target Velocity, indirectly using the angle stored in a quaternion. 
+
+Is implemented in terms of \hyperlink{classMezzanine_1_1HingeConstraint_ab6ec259478024f5fedc055563cf15ee6}{SetMotorTarget(Real, Real)}; 
+\begin{DoxyParams}{Parameters}
+{\em QuatAInB} & The angle a quaternion relative to the two objects in the constraint. \\
+\hline
+{\em Dt} & The Desired \hyperlink{structMezzanine_1_1Time}{Time} steps that the target rotational velocity should be reached in. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_ab6ec259478024f5fedc055563cf15ee6}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetMotorTarget@{SetMotorTarget}}
+\index{SetMotorTarget@{SetMotorTarget}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetMotorTarget}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetMotorTarget (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{TargetAngle, }
+\item[{{\bf Real}}]{Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_ab6ec259478024f5fedc055563cf15ee6}
+
+
+Set the Rotational velocity in a more direct fashion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TargetAngle} & The desired angle in radians. \\
+\hline
+{\em Dt} & The Desired \hyperlink{structMezzanine_1_1Time}{Time} steps that the target rotational velocity should be reached in. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_a8aa2831ceaa742ced7f120f930409e9b}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetMotorTargetVelocity@{SetMotorTargetVelocity}}
+\index{SetMotorTargetVelocity@{SetMotorTargetVelocity}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetMotorTargetVelocity}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetMotorTargetVelocity (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{TargetVelocity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a8aa2831ceaa742ced7f120f930409e9b}
+
+
+Desired angular velocity of the motor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TargetVelocity} & The Desired velocity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Causes segfaults in some tests. 
+\end{DoxyWarning}
+\hypertarget{classMezzanine_1_1HingeConstraint_a0990b3b85529df353aaa46f76951fd68}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetPivotALocation@{SetPivotALocation}}
+\index{SetPivotALocation@{SetPivotALocation}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetPivotALocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetPivotALocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a0990b3b85529df353aaa46f76951fd68}
+
+
+Set The relative location of the hinge pivot from ActorA's Center of gravity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The New value for PivotA\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformA. This implements a more Hinge specific version of the logic than \hyperlink{classMezzanine_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. 
+
+Reimplemented from \hyperlink{classMezzanine_1_1DualTransformConstraint_a3dc5e7afcf612a481f81071201ecdeb7}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a44bc111ce8642c52c106af2cfe1fd7d5}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetPivotATransform@{SetPivotATransform}}
+\index{SetPivotATransform@{SetPivotATransform}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetPivotATransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetPivotATransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{TranA}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a44bc111ce8642c52c106af2cfe1fd7d5}
+ 
+
+Implements \hyperlink{classMezzanine_1_1DualTransformConstraint_a6f1713e6af9d89de70ff77ed47c82d31}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a7ae57514d6bd1119859ecb137cf58e5e}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetPivotBLocation@{SetPivotBLocation}}
+\index{SetPivotBLocation@{SetPivotBLocation}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetPivotBLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetPivotBLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a7ae57514d6bd1119859ecb137cf58e5e}
+
+
+Set The relative location of the hinge pivot from ActorB's Center of gravity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The New value for PivotB\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformB. This implements a more Hinge specific version of the logic than \hyperlink{classMezzanine_1_1DualTransformConstraint}{DualTransformConstraint} for efficiency reasons. 
+
+Reimplemented from \hyperlink{classMezzanine_1_1DualTransformConstraint_abf63fe4c4fc3c57a0eed7ed006a00aee}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_abbe27830e0d17c44125cee59d84a9d37}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetPivotBTransform@{SetPivotBTransform}}
+\index{SetPivotBTransform@{SetPivotBTransform}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetPivotBTransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetPivotBTransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{TranB}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_abbe27830e0d17c44125cee59d84a9d37}
+ 
+
+Implements \hyperlink{classMezzanine_1_1DualTransformConstraint_ac5ee69ce5d68f4e299e7916f764ee396}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a9a77fd9be29d97313e6a014d4e110697}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetUseFrameOffset@{SetUseFrameOffset}}
+\index{SetUseFrameOffset@{SetUseFrameOffset}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetUseFrameOffset}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetUseFrameOffset (
+\begin{DoxyParamCaption}
+\item[{bool}]{FrameOffset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a9a77fd9be29d97313e6a014d4e110697}
+
+
+Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FrameOffset} & The new desired value. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_a94a8a1c4b6febf1ca8859e7d3bf3c5ca}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetUseReferenceFrameA@{SetUseReferenceFrameA}}
+\index{SetUseReferenceFrameA@{SetUseReferenceFrameA}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetUseReferenceFrameA}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetUseReferenceFrameA (
+\begin{DoxyParamCaption}
+\item[{bool}]{UseReferenceFrameA = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a94a8a1c4b6febf1ca8859e7d3bf3c5ca}
+
+
+Change whether this is Using Reference Frame A or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em UseReferenceFrameA} & Whether certain math be performed from the perspective of Actor A or Actor B (we think this is the case, but we have not test thoroughly) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_aaed95fc3750346a6f9791b025e600aa0}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!ValidAngularAxis@{ValidAngularAxis}}
+\index{ValidAngularAxis@{ValidAngularAxis}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{ValidAngularAxis}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf TypedConstraint::AxisList} Mezzanine::HingeConstraint::ValidAngularAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_aaed95fc3750346a6f9791b025e600aa0}
+Get A list sorted (low to high) of all axis that operate Angularly (that lock sliding/translation) 
+
+\begin{DoxyWarning}{Warning}
+Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+An Axislist with the Axis this constraint Angularly supports. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1TypedConstraint_a09ecca761c4af51a8b41c056f6b15b30}{Mezzanine::TypedConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a2af69ea5320ff27bf4d5de7ae9530594}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!ValidLinearAxis@{ValidLinearAxis}}
+\index{ValidLinearAxis@{ValidLinearAxis}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{ValidLinearAxis}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf TypedConstraint::AxisList} Mezzanine::HingeConstraint::ValidLinearAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a2af69ea5320ff27bf4d5de7ae9530594}
+Get a sorted (low to high) list of all axis that operate linearly (that lock sliding/translation) 
+
+\begin{DoxyWarning}{Warning}
+Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+An Axislist with the Axis this constraint linearly supports. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1TypedConstraint_aa9cc59688e58329ce18cc3e024094602}{Mezzanine::TypedConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a3ea048fe9e7eda83e4ef42174a0c6157}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!ValidParamOnAxis@{ValidParamOnAxis}}
+\index{ValidParamOnAxis@{ValidParamOnAxis}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{ValidParamOnAxis}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf TypedConstraint::ParamList} Mezzanine::HingeConstraint::ValidParamOnAxis (
+\begin{DoxyParamCaption}
+\item[{int}]{Axis}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a3ea048fe9e7eda83e4ef42174a0c6157}
+Get a sorted (low to high) list of Parameters that are valid on this Axis. 
+
+Parameters returned from this will work on the given axis even if they are not valid on any other axis. There is no guarantee that the Parameters will be uniquely stored per an axis. There is no guarantee that changing one parameter will not change another. 
+\begin{DoxyParams}{Parameters}
+{\em Axis} & the Axis to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Paramlist with all the valid parameters for this axis. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1TypedConstraint_a3f895880ea78984a088996e1950fddcc}{Mezzanine::TypedConstraint}.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+constraint.h\end{DoxyCompactItemize}

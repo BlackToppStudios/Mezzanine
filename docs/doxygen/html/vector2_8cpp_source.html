@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: vector2.cpp Source File</title>
+<title>MezzanineEngine: vector2.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -105,214 +105,215 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _vector2_cpp</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;serialization.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;vector2.h&quot;</span>
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="comment">//#include &lt;memory&gt;</span>
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="keyword">namespace </span>phys
-<a name="l00051"></a>00051 {
-<a name="l00052"></a><a class="code" href="classphys_1_1Vector2.html#a1e9c6000e5acd162a49836414a27bac7">00052</a>     <a class="code" href="classphys_1_1Vector2.html#a1e9c6000e5acd162a49836414a27bac7" title="Default Constructor.">Vector2::Vector2</a>()
-<a name="l00053"></a>00053     {
-<a name="l00054"></a>00054         <a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> = 0;
-<a name="l00055"></a>00055         <a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> = 0;
-<a name="l00056"></a>00056     }
-<a name="l00057"></a>00057 
-<a name="l00058"></a><a class="code" href="classphys_1_1Vector2.html#ae8d3c95a5a60d12e706739cbadf01ffb">00058</a>     <a class="code" href="classphys_1_1Vector2.html#a1e9c6000e5acd162a49836414a27bac7" title="Default Constructor.">Vector2::Vector2</a>(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> x, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> y)
-<a name="l00059"></a>00059     {
-<a name="l00060"></a>00060         <a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> = x;
-<a name="l00061"></a>00061         <a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> = y;
-<a name="l00062"></a>00062     }
-<a name="l00063"></a>00063 
-<a name="l00064"></a><a class="code" href="classphys_1_1Vector2.html#af3dbb91ef994e19b68c84e4e26eafac3">00064</a>     <a class="code" href="classphys_1_1Vector2.html#a1e9c6000e5acd162a49836414a27bac7" title="Default Constructor.">Vector2::Vector2</a>(Ogre::Vector2 Vec)
-<a name="l00065"></a>00065     {
-<a name="l00066"></a>00066         <a class="code" href="classphys_1_1Vector2.html#af12824b786ce4b91443b5dbd700dfd58" title="Copies an existing Ogre vector2.">ExtractOgreVector2</a>(Vec);
-<a name="l00067"></a>00067     }
-<a name="l00068"></a>00068 
-<a name="l00069"></a><a class="code" href="classphys_1_1Vector2.html#adc6efedbdfdca596b719decc87ee2e4b">00069</a>     Ogre::Vector2 <a class="code" href="classphys_1_1Vector2.html#adc6efedbdfdca596b719decc87ee2e4b" title="Gets a Ogre vector2.">Vector2::GetOgreVector2</a>()<span class="keyword"> const</span>
-<a name="l00070"></a>00070 <span class="keyword">    </span>{
-<a name="l00071"></a>00071         Ogre::Vector2 Theirs;
-<a name="l00072"></a>00072         Theirs.x=this-&gt;<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00073"></a>00073         Theirs.y=this-&gt;<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00074"></a>00074         <span class="keywordflow">return</span> Theirs;
-<a name="l00075"></a>00075     }
-<a name="l00076"></a>00076 
-<a name="l00077"></a><a class="code" href="classphys_1_1Vector2.html#af12824b786ce4b91443b5dbd700dfd58">00077</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector2.html#af12824b786ce4b91443b5dbd700dfd58" title="Copies an existing Ogre vector2.">Vector2::ExtractOgreVector2</a>(Ogre::Vector2 Ours)
-<a name="l00078"></a>00078     {
-<a name="l00079"></a>00079         this-&gt;<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>=Ours.x;
-<a name="l00080"></a>00080         this-&gt;<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>=Ours.y;
-<a name="l00081"></a>00081     }
-<a name="l00082"></a>00082 <span class="comment"></span>
-<a name="l00083"></a>00083 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00084"></a>00084 <span class="comment"></span>    <span class="comment">// Equality Comparison operators</span>
-<a name="l00085"></a>00085 
-<a name="l00086"></a><a class="code" href="classphys_1_1Vector2.html#a89874b6def8107146ca7079a2de49360">00086</a>     <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1Vector2.html#a89874b6def8107146ca7079a2de49360" title="Equality Comparison Operator.">Vector2::operator== </a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a> &amp;Vec2)
-<a name="l00087"></a>00087     {
-<a name="l00088"></a>00088         <span class="keywordflow">if</span> ( Vec2.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> == this-&gt;X &amp;&amp; Vec2.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> == this-&gt;Y )
-<a name="l00089"></a>00089             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
-<a name="l00090"></a>00090         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00091"></a>00091     }
-<a name="l00092"></a>00092 
-<a name="l00093"></a><a class="code" href="classphys_1_1Vector2.html#a074ca2a4d54925f745dbb9effd5c7e19">00093</a>     <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1Vector2.html#a074ca2a4d54925f745dbb9effd5c7e19" title="Equality Comparison Operator.">Vector2::operator!= </a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a> &amp;Vec2)
-<a name="l00094"></a>00094     {
-<a name="l00095"></a>00095         <span class="keywordflow">if</span> ( Vec2.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> != this-&gt;X || Vec2.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> != this-&gt;Y )
-<a name="l00096"></a>00096             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
-<a name="l00097"></a>00097         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00098"></a>00098     }
-<a name="l00099"></a>00099 
-<a name="l00100"></a><a class="code" href="classphys_1_1Vector2.html#a2fe433e9401748547b19cc5be891ed52">00100</a>     <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1Vector2.html#a89874b6def8107146ca7079a2de49360" title="Equality Comparison Operator.">Vector2::operator== </a>(<span class="keyword">const</span> Ogre::Vector2 &amp;Vec2)
-<a name="l00101"></a>00101     {
-<a name="l00102"></a>00102         <span class="keywordflow">if</span> ( Vec2.x == this-&gt;X &amp;&amp; Vec2.y == this-&gt;Y )
-<a name="l00103"></a>00103             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
-<a name="l00104"></a>00104         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00105"></a>00105     }
-<a name="l00106"></a>00106 
-<a name="l00107"></a><a class="code" href="classphys_1_1Vector2.html#a186c1da597e1471a9ee5b07cc8bb9fb8">00107</a>     <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1Vector2.html#a074ca2a4d54925f745dbb9effd5c7e19" title="Equality Comparison Operator.">Vector2::operator!= </a>(<span class="keyword">const</span> Ogre::Vector2 &amp;Vec2)
-<a name="l00108"></a>00108     {
-<a name="l00109"></a>00109         <span class="keywordflow">if</span> ( Vec2.x != this-&gt;X || Vec2.y != this-&gt;Y )
-<a name="l00110"></a>00110             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
-<a name="l00111"></a>00111         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00112"></a>00112     }
-<a name="l00113"></a>00113 <span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00115"></a>00115 <span class="comment"></span>    <span class="comment">// Vector2 Arithmetic with Real</span>
-<a name="l00116"></a><a class="code" href="classphys_1_1Vector2.html#a59fa4aaadcccd04bf6de8fcd84b31c6d">00116</a>     <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1Vector2.html#a59fa4aaadcccd04bf6de8fcd84b31c6d" title="Scaling by multiplication.">Vector2::operator* </a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)<span class="keyword"> const</span>
-<a name="l00117"></a>00117 <span class="keyword">    </span>{
-<a name="l00118"></a>00118         <span class="keywordflow">return</span> <a class="code" href="classphys_1_1Vector2.html#a1e9c6000e5acd162a49836414a27bac7" title="Default Constructor.">Vector2</a>(
-<a name="l00119"></a>00119             this-&gt;<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * scalar,
-<a name="l00120"></a>00120             this-&gt;<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * scalar
-<a name="l00121"></a>00121         );
-<a name="l00122"></a>00122     }
-<a name="l00123"></a>00123 
-<a name="l00124"></a><a class="code" href="classphys_1_1Vector2.html#a51f7d8ce03f7ab05137b277532edf93b">00124</a>     <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1Vector2.html#a51f7d8ce03f7ab05137b277532edf93b" title="Scaling by Division.">Vector2::operator/ </a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)<span class="keyword"> const</span>
-<a name="l00125"></a>00125 <span class="keyword">    </span>{
-<a name="l00126"></a>00126         <span class="keywordflow">return</span> <a class="code" href="classphys_1_1Vector2.html#a1e9c6000e5acd162a49836414a27bac7" title="Default Constructor.">Vector2</a>(
-<a name="l00127"></a>00127             this-&gt;<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> / scalar,
-<a name="l00128"></a>00128             this-&gt;<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> / scalar
-<a name="l00129"></a>00129         );
-<a name="l00130"></a>00130     }
-<a name="l00131"></a>00131 <span class="comment"></span>
-<a name="l00132"></a>00132 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00133"></a>00133 <span class="comment"></span>    <span class="comment">// Vector2 Arithmetic and assignment with Real</span>
-<a name="l00134"></a><a class="code" href="classphys_1_1Vector2.html#a0b1555274551eb9bdea20d762c446e99">00134</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector2.html#a0b1555274551eb9bdea20d762c446e99" title="Scaling by multiplication.">Vector2::operator*= </a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)
-<a name="l00135"></a>00135     {
-<a name="l00136"></a>00136         this-&gt;<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> *= scalar;
-<a name="l00137"></a>00137         this-&gt;<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> *= scalar;
-<a name="l00138"></a>00138     }
-<a name="l00139"></a>00139 
-<a name="l00140"></a><a class="code" href="classphys_1_1Vector2.html#a27a0da5b4cfa49ea92dd16107692775b">00140</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector2.html#a27a0da5b4cfa49ea92dd16107692775b" title="Scaling by Division.">Vector2::operator/= </a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)
-<a name="l00141"></a>00141     {
-<a name="l00142"></a>00142         this-&gt;<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> /= scalar;
-<a name="l00143"></a>00143         this-&gt;<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> /= scalar;
-<a name="l00144"></a>00144     }
-<a name="l00145"></a>00145 <span class="comment"></span>
-<a name="l00146"></a>00146 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00147"></a>00147 <span class="comment"></span>    <span class="comment">// Arithmetic Operators</span>
-<a name="l00148"></a>00148 
-<a name="l00149"></a><a class="code" href="classphys_1_1Vector2.html#a62102e9d75364c6be43723867cec3df8">00149</a>     <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1Vector2.html#a62102e9d75364c6be43723867cec3df8" title="Addition Operator.">Vector2::operator+ </a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2)<span class="keyword"> const</span>
-<a name="l00150"></a>00150 <span class="keyword">    </span>{
-<a name="l00151"></a>00151         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Temp(<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>,<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00152"></a>00152         Temp.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>+=Vec2.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00153"></a>00153         Temp.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>+=Vec2.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00154"></a>00154         <span class="keywordflow">return</span> Temp;
-<a name="l00155"></a>00155     }
-<a name="l00156"></a>00156 
-<a name="l00157"></a><a class="code" href="classphys_1_1Vector2.html#a0aef47f873ef5a78707dd850d7d59504">00157</a>     <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1Vector2.html#a0aef47f873ef5a78707dd850d7d59504" title="Subraction Operator.">Vector2::operator- </a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2)<span class="keyword"> const</span>
-<a name="l00158"></a>00158 <span class="keyword">    </span>{
-<a name="l00159"></a>00159         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Temp(<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>,<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00160"></a>00160         Temp.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>-=Vec2.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00161"></a>00161         Temp.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>-=Vec2.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00162"></a>00162         <span class="keywordflow">return</span> Temp;
-<a name="l00163"></a>00163     }
-<a name="l00164"></a>00164 
-<a name="l00165"></a><a class="code" href="classphys_1_1Vector2.html#a6a253bb2507b9254a102c0793bf0f215">00165</a>     <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1Vector2.html#a59fa4aaadcccd04bf6de8fcd84b31c6d" title="Scaling by multiplication.">Vector2::operator* </a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2)<span class="keyword"> const</span>
-<a name="l00166"></a>00166 <span class="keyword">    </span>{
-<a name="l00167"></a>00167         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Temp(<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>,<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00168"></a>00168         Temp.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>*=Vec2.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00169"></a>00169         Temp.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>*=Vec2.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00170"></a>00170         <span class="keywordflow">return</span> Temp;
-<a name="l00171"></a>00171     }
-<a name="l00172"></a>00172 
-<a name="l00173"></a><a class="code" href="classphys_1_1Vector2.html#a3e4afe212ce1c739942aa8385c8f71e9">00173</a>     <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1Vector2.html#a51f7d8ce03f7ab05137b277532edf93b" title="Scaling by Division.">Vector2::operator/ </a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2)<span class="keyword"> const</span>
-<a name="l00174"></a>00174 <span class="keyword">    </span>{
-<a name="l00175"></a>00175         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Temp(<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>,<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00176"></a>00176         Temp.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>/=Vec2.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00177"></a>00177         Temp.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>/=Vec2.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00178"></a>00178         <span class="keywordflow">return</span> Temp;
-<a name="l00179"></a>00179     }
-<a name="l00180"></a>00180 <span class="comment"></span>
-<a name="l00181"></a>00181 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00182"></a>00182 <span class="comment"></span>    <span class="comment">// Serialization</span>
-<a name="l00183"></a>00183 <span class="preprocessor">#ifdef PHYSXML</span>
-<a name="l00184"></a>00184 <span class="preprocessor"></span>    <span class="comment">// Serializable</span>
-<a name="l00185"></a><a class="code" href="classphys_1_1Vector2.html#a024242f2cfae55cb08243a9cc3ac7a8c">00185</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector2.html#a024242f2cfae55cb08243a9cc3ac7a8c" title="Convert this class to an xml::Node ready for serialization.">Vector2::ProtoSerialize</a>(<a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; CurrentRoot)<span class="keyword"> const</span>
-<a name="l00186"></a>00186 <span class="keyword">    </span>{
-<a name="l00187"></a>00187         <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a> VecNode = CurrentRoot.<a class="code" href="classphys_1_1xml_1_1Node.html#aef276a1af2f747e56072173c18e8382d" title="Creates a Node and makes it a child of this one.">AppendChild</a>(<a class="code" href="classphys_1_1Vector2.html#a95185241b1799ce8bb25fa3773ff576a" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>());
-<a name="l00188"></a>00188         VecNode.<a class="code" href="classphys_1_1xml_1_1Node.html#ab686e72f297e120682e7278538fa7e66" title="Set the name of .">SetName</a>(<a class="code" href="classphys_1_1Vector2.html#a95185241b1799ce8bb25fa3773ff576a" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>());
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190         <a class="code" href="classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">phys::xml::Attribute</a> VersionAttr = VecNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a09ae0a1499b13de2db447fc95dd3b747" title="Creates an Attribute and puts it at the end of this Nodes attributes.">AppendAttribute</a>(<span class="stringliteral">&quot;Version&quot;</span>);
-<a name="l00191"></a>00191         <a class="code" href="classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">phys::xml::Attribute</a> XAttr = VecNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a09ae0a1499b13de2db447fc95dd3b747" title="Creates an Attribute and puts it at the end of this Nodes attributes.">AppendAttribute</a>(<span class="stringliteral">&quot;X&quot;</span>);
-<a name="l00192"></a>00192         <a class="code" href="classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">phys::xml::Attribute</a> YAttr = VecNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a09ae0a1499b13de2db447fc95dd3b747" title="Creates an Attribute and puts it at the end of this Nodes attributes.">AppendAttribute</a>(<span class="stringliteral">&quot;Y&quot;</span>);
-<a name="l00193"></a>00193         <span class="keywordflow">if</span>( VersionAttr &amp;&amp; XAttr &amp;&amp; YAttr )
-<a name="l00194"></a>00194         {
-<a name="l00195"></a>00195             <span class="keywordflow">if</span>( VersionAttr.<a class="code" href="classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa" title="Set the value of this.">SetValue</a>(<span class="stringliteral">&quot;1&quot;</span>) &amp;&amp; XAttr.<a class="code" href="classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa" title="Set the value of this.">SetValue</a>(this-&gt;<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>) &amp;&amp; YAttr.<a class="code" href="classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa" title="Set the value of this.">SetValue</a>(this-&gt;<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>) )
-<a name="l00196"></a>00196             {
-<a name="l00197"></a>00197                 <span class="keywordflow">return</span>;
-<a name="l00198"></a>00198             }<span class="keywordflow">else</span>{
-<a name="l00199"></a>00199                 <a class="code" href="namespacephys.html#a3d75403c50afb8ed658bb9f22a70939f" title="Simply does some string concatenation, then throws an Exception.">SerializeError</a>(<span class="stringliteral">&quot;Create XML Attribute Values&quot;</span>, <a class="code" href="classphys_1_1Vector2.html#a95185241b1799ce8bb25fa3773ff576a" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>(),<span class="keyword">true</span>);
-<a name="l00200"></a>00200             }
-<a name="l00201"></a>00201         }<span class="keywordflow">else</span>{
-<a name="l00202"></a>00202             <a class="code" href="namespacephys.html#a3d75403c50afb8ed658bb9f22a70939f" title="Simply does some string concatenation, then throws an Exception.">SerializeError</a>(<span class="stringliteral">&quot;Create XML Attributes&quot;</span>, <a class="code" href="classphys_1_1Vector2.html#a95185241b1799ce8bb25fa3773ff576a" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>(),<span class="keyword">true</span>);
-<a name="l00203"></a>00203         }
-<a name="l00204"></a>00204     }
-<a name="l00205"></a>00205 
-<a name="l00206"></a>00206     <span class="comment">// DeSerializable</span>
-<a name="l00207"></a><a class="code" href="classphys_1_1Vector2.html#a124eb6c4c935991e41de939e62cf03ee">00207</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Vector2.html#a124eb6c4c935991e41de939e62cf03ee" title="Take the data stored in an XML and overwrite this instance of this object with it.">Vector2::ProtoDeSerialize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; OneNode)
-<a name="l00208"></a>00208     {
-<a name="l00209"></a>00209         <span class="keywordflow">if</span> ( <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>())==<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(<a class="code" href="classphys_1_1Vector2.html#a95185241b1799ce8bb25fa3773ff576a" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>()) )
-<a name="l00210"></a>00210         {
-<a name="l00211"></a>00211             <span class="keywordflow">if</span>(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
-<a name="l00212"></a>00212             {
-<a name="l00213"></a>00213                 this-&gt;<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>=OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;X&quot;</span>).AsReal();
-<a name="l00214"></a>00214                 this-&gt;<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>=OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Y&quot;</span>).AsReal();
-<a name="l00215"></a>00215             }<span class="keywordflow">else</span>{
-<a name="l00216"></a>00216                 <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<a class="code" href="namespacephys.html#ae057253f75738c79bc5fdb5f1c5410de" title="Concatenates 2 Strings.">StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for &quot;</span>,<a class="code" href="classphys_1_1Vector2.html#a95185241b1799ce8bb25fa3773ff576a" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>(),<span class="stringliteral">&quot;: Not Version 1&quot;</span>)) );
-<a name="l00217"></a>00217             }
-<a name="l00218"></a>00218         }<span class="keywordflow">else</span>{
-<a name="l00219"></a>00219             <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<a class="code" href="namespacephys.html#ae057253f75738c79bc5fdb5f1c5410de" title="Concatenates 2 Strings.">phys::StringCat</a>(<span class="stringliteral">&quot;Attempting to deserialize a &quot;</span>,<a class="code" href="classphys_1_1Vector2.html#a95185241b1799ce8bb25fa3773ff576a" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>(),<span class="stringliteral">&quot;, found a &quot;</span>, OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>())));
-<a name="l00220"></a>00220         }
-<a name="l00221"></a>00221     }
-<a name="l00222"></a>00222 
-<a name="l00223"></a><a class="code" href="classphys_1_1Vector2.html#a95185241b1799ce8bb25fa3773ff576a">00223</a>     <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classphys_1_1Vector2.html#a95185241b1799ce8bb25fa3773ff576a" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">Vector2::SerializableName</a>()
-<a name="l00224"></a>00224         { <span class="keywordflow">return</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;Vector2&quot;</span>); }
-<a name="l00225"></a>00225 
-<a name="l00226"></a>00226 <span class="preprocessor">#endif</span>
-<a name="l00227"></a>00227 <span class="preprocessor"></span>
-<a name="l00228"></a>00228 }
-<a name="l00229"></a>00229 <span class="comment"></span>
-<a name="l00230"></a>00230 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00231"></a>00231 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
-<a name="l00232"></a>00232 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a>&amp; x)
-<a name="l00233"></a>00233 {
-<a name="l00234"></a>00234 <span class="preprocessor">    #ifdef PHYSXML</span>
-<a name="l00235"></a>00235 <span class="preprocessor"></span>        <span class="comment">//stream &lt;&lt; &quot;&lt;Vector2 Version=\&quot;1\&quot; X=\&quot;&quot; &lt;&lt; x.X &lt;&lt; &quot;\&quot; Y=\&quot;&quot; &lt;&lt; x.Y &lt;&lt; &quot;\&quot; /&gt;&quot;;</span>
-<a name="l00236"></a>00236         Serialize(stream,x);
-<a name="l00237"></a>00237 <span class="preprocessor">    #else</span>
-<a name="l00238"></a>00238 <span class="preprocessor"></span>        stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
-<a name="l00239"></a>00239 <span class="preprocessor">    #endif // \PHYSXML</span>
-<a name="l00240"></a>00240 <span class="preprocessor"></span>    <span class="keywordflow">return</span> stream;
-<a name="l00241"></a>00241 }
-<a name="l00242"></a>00242 
-<a name="l00243"></a>00243 <span class="preprocessor">#ifdef PHYSXML</span>
-<a name="l00244"></a>00244 <span class="preprocessor"></span>std::istream&amp; PHYS_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a>&amp; Vec)
-<a name="l00245"></a>00245     { <span class="keywordflow">return</span> <a class="code" href="namespacephys.html#adbc8714ac6e9a549a5ef261d1bda1505" title="Deserialize the next xml tag in the stream into a specific in memory class instance.">DeSerialize</a>(stream, Vec); }
-<a name="l00246"></a>00246 
-<a name="l00247"></a>00247 <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a>&amp; Vec)
-<a name="l00248"></a>00248     { Vec.<a class="code" href="classphys_1_1Vector2.html#a124eb6c4c935991e41de939e62cf03ee" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(OneNode); }
-<a name="l00249"></a>00249 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l00250"></a>00250 <span class="preprocessor"></span>
-<a name="l00251"></a>00251 <span class="preprocessor">#endif</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;stringtool.h&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;vector2.h&quot;</span>
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <span class="comment">//#include &lt;memory&gt;</span>
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="keyword">namespace </span>Mezzanine
+<a name="l00052"></a>00052 {
+<a name="l00053"></a><a class="code" href="classMezzanine_1_1Vector2.html#a28774bd4b7bcbb09bfd20cf7c30213a2">00053</a>     <a class="code" href="classMezzanine_1_1Vector2.html#a28774bd4b7bcbb09bfd20cf7c30213a2" title="Default Constructor.">Vector2::Vector2</a>()
+<a name="l00054"></a>00054     {
+<a name="l00055"></a>00055         <a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = 0;
+<a name="l00056"></a>00056         <a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = 0;
+<a name="l00057"></a>00057     }
+<a name="l00058"></a>00058 
+<a name="l00059"></a><a class="code" href="classMezzanine_1_1Vector2.html#a3abcc1fd9f74456cd8f8441d790d03ce">00059</a>     <a class="code" href="classMezzanine_1_1Vector2.html#a28774bd4b7bcbb09bfd20cf7c30213a2" title="Default Constructor.">Vector2::Vector2</a>(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> x, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> y)
+<a name="l00060"></a>00060     {
+<a name="l00061"></a>00061         <a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = x;
+<a name="l00062"></a>00062         <a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = y;
+<a name="l00063"></a>00063     }
+<a name="l00064"></a>00064 
+<a name="l00065"></a><a class="code" href="classMezzanine_1_1Vector2.html#afef55035d60801454d4b207cf3c2aeaf">00065</a>     <a class="code" href="classMezzanine_1_1Vector2.html#a28774bd4b7bcbb09bfd20cf7c30213a2" title="Default Constructor.">Vector2::Vector2</a>(Ogre::Vector2 Vec)
+<a name="l00066"></a>00066     {
+<a name="l00067"></a>00067         <a class="code" href="classMezzanine_1_1Vector2.html#a122b3ce34c1afea300ddcae158fca294" title="Copies an existing Ogre vector2.">ExtractOgreVector2</a>(Vec);
+<a name="l00068"></a>00068     }
+<a name="l00069"></a>00069 
+<a name="l00070"></a><a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083">00070</a>     Ogre::Vector2 <a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">Vector2::GetOgreVector2</a>()<span class="keyword"> const</span>
+<a name="l00071"></a>00071 <span class="keyword">    </span>{
+<a name="l00072"></a>00072         Ogre::Vector2 Theirs;
+<a name="l00073"></a>00073         Theirs.x=this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00074"></a>00074         Theirs.y=this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00075"></a>00075         <span class="keywordflow">return</span> Theirs;
+<a name="l00076"></a>00076     }
+<a name="l00077"></a>00077 
+<a name="l00078"></a><a class="code" href="classMezzanine_1_1Vector2.html#a122b3ce34c1afea300ddcae158fca294">00078</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Vector2.html#a122b3ce34c1afea300ddcae158fca294" title="Copies an existing Ogre vector2.">Vector2::ExtractOgreVector2</a>(Ogre::Vector2 Ours)
+<a name="l00079"></a>00079     {
+<a name="l00080"></a>00080         this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>=Ours.x;
+<a name="l00081"></a>00081         this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>=Ours.y;
+<a name="l00082"></a>00082     }
+<a name="l00083"></a>00083 <span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00085"></a>00085 <span class="comment"></span>    <span class="comment">// Equality Comparison operators</span>
+<a name="l00086"></a>00086 
+<a name="l00087"></a><a class="code" href="classMezzanine_1_1Vector2.html#a62ea76da87eee960f8bd373a6243e9a2">00087</a>     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1Vector2.html#a62ea76da87eee960f8bd373a6243e9a2" title="Equality Comparison Operator.">Vector2::operator== </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a> &amp;Vec2)
+<a name="l00088"></a>00088     {
+<a name="l00089"></a>00089         <span class="keywordflow">if</span> ( Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> == this-&gt;X &amp;&amp; Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> == this-&gt;Y )
+<a name="l00090"></a>00090             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
+<a name="l00091"></a>00091         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093 
+<a name="l00094"></a><a class="code" href="classMezzanine_1_1Vector2.html#ae777558f9f198bf3523e6fabb22e7b3f">00094</a>     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1Vector2.html#ae777558f9f198bf3523e6fabb22e7b3f" title="Equality Comparison Operator.">Vector2::operator!= </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a> &amp;Vec2)
+<a name="l00095"></a>00095     {
+<a name="l00096"></a>00096         <span class="keywordflow">if</span> ( Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> != this-&gt;X || Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> != this-&gt;Y )
+<a name="l00097"></a>00097             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
+<a name="l00098"></a>00098         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00099"></a>00099     }
+<a name="l00100"></a>00100 
+<a name="l00101"></a><a class="code" href="classMezzanine_1_1Vector2.html#a790134b37da0df462c66c0013f25c681">00101</a>     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1Vector2.html#a62ea76da87eee960f8bd373a6243e9a2" title="Equality Comparison Operator.">Vector2::operator== </a>(<span class="keyword">const</span> Ogre::Vector2 &amp;Vec2)
+<a name="l00102"></a>00102     {
+<a name="l00103"></a>00103         <span class="keywordflow">if</span> ( Vec2.x == this-&gt;X &amp;&amp; Vec2.y == this-&gt;Y )
+<a name="l00104"></a>00104             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
+<a name="l00105"></a>00105         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00106"></a>00106     }
+<a name="l00107"></a>00107 
+<a name="l00108"></a><a class="code" href="classMezzanine_1_1Vector2.html#a0f8d828c2bcce1bd568fe11b44d83901">00108</a>     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1Vector2.html#ae777558f9f198bf3523e6fabb22e7b3f" title="Equality Comparison Operator.">Vector2::operator!= </a>(<span class="keyword">const</span> Ogre::Vector2 &amp;Vec2)
+<a name="l00109"></a>00109     {
+<a name="l00110"></a>00110         <span class="keywordflow">if</span> ( Vec2.x != this-&gt;X || Vec2.y != this-&gt;Y )
+<a name="l00111"></a>00111             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
+<a name="l00112"></a>00112         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00113"></a>00113     }
+<a name="l00114"></a>00114 <span class="comment"></span>
+<a name="l00115"></a>00115 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00116"></a>00116 <span class="comment"></span>    <span class="comment">// Vector2 Arithmetic with Real</span>
+<a name="l00117"></a><a class="code" href="classMezzanine_1_1Vector2.html#a310d2690ca671c81dc58c571479ee004">00117</a>     <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1Vector2.html#a310d2690ca671c81dc58c571479ee004" title="Scaling by multiplication.">Vector2::operator* </a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)<span class="keyword"> const</span>
+<a name="l00118"></a>00118 <span class="keyword">    </span>{
+<a name="l00119"></a>00119         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Vector2.html#a28774bd4b7bcbb09bfd20cf7c30213a2" title="Default Constructor.">Vector2</a>(
+<a name="l00120"></a>00120             this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * scalar,
+<a name="l00121"></a>00121             this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * scalar
+<a name="l00122"></a>00122         );
+<a name="l00123"></a>00123     }
+<a name="l00124"></a>00124 
+<a name="l00125"></a><a class="code" href="classMezzanine_1_1Vector2.html#a76d2db9e91db1662612ccf122a4b55bd">00125</a>     <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1Vector2.html#a76d2db9e91db1662612ccf122a4b55bd" title="Scaling by Division.">Vector2::operator/ </a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)<span class="keyword"> const</span>
+<a name="l00126"></a>00126 <span class="keyword">    </span>{
+<a name="l00127"></a>00127         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Vector2.html#a28774bd4b7bcbb09bfd20cf7c30213a2" title="Default Constructor.">Vector2</a>(
+<a name="l00128"></a>00128             this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> / scalar,
+<a name="l00129"></a>00129             this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> / scalar
+<a name="l00130"></a>00130         );
+<a name="l00131"></a>00131     }
+<a name="l00132"></a>00132 <span class="comment"></span>
+<a name="l00133"></a>00133 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00134"></a>00134 <span class="comment"></span>    <span class="comment">// Vector2 Arithmetic and assignment with Real</span>
+<a name="l00135"></a><a class="code" href="classMezzanine_1_1Vector2.html#a47d00c3847a59f726ffa6a0a99a372c8">00135</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Vector2.html#a47d00c3847a59f726ffa6a0a99a372c8" title="Scaling by multiplication.">Vector2::operator*= </a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)
+<a name="l00136"></a>00136     {
+<a name="l00137"></a>00137         this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> *= scalar;
+<a name="l00138"></a>00138         this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> *= scalar;
+<a name="l00139"></a>00139     }
+<a name="l00140"></a>00140 
+<a name="l00141"></a><a class="code" href="classMezzanine_1_1Vector2.html#ad42b7cd3efd647cdbf4b299ab2dc39f2">00141</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Vector2.html#ad42b7cd3efd647cdbf4b299ab2dc39f2" title="Scaling by Division.">Vector2::operator/= </a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)
+<a name="l00142"></a>00142     {
+<a name="l00143"></a>00143         this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> /= scalar;
+<a name="l00144"></a>00144         this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> /= scalar;
+<a name="l00145"></a>00145     }
+<a name="l00146"></a>00146 <span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00148"></a>00148 <span class="comment"></span>    <span class="comment">// Arithmetic Operators</span>
+<a name="l00149"></a>00149 
+<a name="l00150"></a><a class="code" href="classMezzanine_1_1Vector2.html#a232c79761cfd97aef96999732cda0acc">00150</a>     <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1Vector2.html#a232c79761cfd97aef96999732cda0acc" title="Addition Operator.">Vector2::operator+ </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2)<span class="keyword"> const</span>
+<a name="l00151"></a>00151 <span class="keyword">    </span>{
+<a name="l00152"></a>00152         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Temp(<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00153"></a>00153         Temp.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>+=Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00154"></a>00154         Temp.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>+=Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00155"></a>00155         <span class="keywordflow">return</span> Temp;
+<a name="l00156"></a>00156     }
+<a name="l00157"></a>00157 
+<a name="l00158"></a><a class="code" href="classMezzanine_1_1Vector2.html#a8311974bf9b4f65e2a43f3cb6d2b32b0">00158</a>     <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1Vector2.html#a8311974bf9b4f65e2a43f3cb6d2b32b0" title="Subraction Operator.">Vector2::operator- </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2)<span class="keyword"> const</span>
+<a name="l00159"></a>00159 <span class="keyword">    </span>{
+<a name="l00160"></a>00160         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Temp(<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00161"></a>00161         Temp.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>-=Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00162"></a>00162         Temp.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>-=Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00163"></a>00163         <span class="keywordflow">return</span> Temp;
+<a name="l00164"></a>00164     }
+<a name="l00165"></a>00165 
+<a name="l00166"></a><a class="code" href="classMezzanine_1_1Vector2.html#aee38ccddf8fac68406b2b5ea479a8332">00166</a>     <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1Vector2.html#a310d2690ca671c81dc58c571479ee004" title="Scaling by multiplication.">Vector2::operator* </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2)<span class="keyword"> const</span>
+<a name="l00167"></a>00167 <span class="keyword">    </span>{
+<a name="l00168"></a>00168         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Temp(<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00169"></a>00169         Temp.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>*=Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00170"></a>00170         Temp.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>*=Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00171"></a>00171         <span class="keywordflow">return</span> Temp;
+<a name="l00172"></a>00172     }
+<a name="l00173"></a>00173 
+<a name="l00174"></a><a class="code" href="classMezzanine_1_1Vector2.html#a2c956fc7eafffba4c0f707b240e113a8">00174</a>     <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1Vector2.html#a76d2db9e91db1662612ccf122a4b55bd" title="Scaling by Division.">Vector2::operator/ </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2)<span class="keyword"> const</span>
+<a name="l00175"></a>00175 <span class="keyword">    </span>{
+<a name="l00176"></a>00176         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Temp(<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00177"></a>00177         Temp.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>/=Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00178"></a>00178         Temp.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>/=Vec2.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00179"></a>00179         <span class="keywordflow">return</span> Temp;
+<a name="l00180"></a>00180     }
+<a name="l00181"></a>00181 <span class="comment"></span>
+<a name="l00182"></a>00182 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00183"></a>00183 <span class="comment"></span>    <span class="comment">// Serialization</span>
+<a name="l00184"></a>00184 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l00185"></a>00185 <span class="preprocessor"></span>    <span class="comment">// Serializable</span>
+<a name="l00186"></a>00186     <span class="keywordtype">void</span> Vector2::ProtoSerialize(xml::Node&amp; CurrentRoot)<span class="keyword"> const</span>
+<a name="l00187"></a>00187 <span class="keyword">    </span>{
+<a name="l00188"></a>00188         Mezzanine::xml::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+<a name="l00189"></a>00189         VecNode.SetName(SerializableName());
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191         Mezzanine::xml::Attribute VersionAttr = VecNode.AppendAttribute(<span class="stringliteral">&quot;Version&quot;</span>);
+<a name="l00192"></a>00192         Mezzanine::xml::Attribute XAttr = VecNode.AppendAttribute(<span class="stringliteral">&quot;X&quot;</span>);
+<a name="l00193"></a>00193         Mezzanine::xml::Attribute YAttr = VecNode.AppendAttribute(<span class="stringliteral">&quot;Y&quot;</span>);
+<a name="l00194"></a>00194         <span class="keywordflow">if</span>( VersionAttr &amp;&amp; XAttr &amp;&amp; YAttr )
+<a name="l00195"></a>00195         {
+<a name="l00196"></a>00196             <span class="keywordflow">if</span>( VersionAttr.SetValue(<span class="stringliteral">&quot;1&quot;</span>) &amp;&amp; XAttr.SetValue(this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>) &amp;&amp; YAttr.SetValue(this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) )
+<a name="l00197"></a>00197             {
+<a name="l00198"></a>00198                 <span class="keywordflow">return</span>;
+<a name="l00199"></a>00199             }<span class="keywordflow">else</span>{
+<a name="l00200"></a>00200                 SerializeError(<span class="stringliteral">&quot;Create XML Attribute Values&quot;</span>, SerializableName(),<span class="keyword">true</span>);
+<a name="l00201"></a>00201             }
+<a name="l00202"></a>00202         }<span class="keywordflow">else</span>{
+<a name="l00203"></a>00203             SerializeError(<span class="stringliteral">&quot;Create XML Attributes&quot;</span>, SerializableName(),<span class="keyword">true</span>);
+<a name="l00204"></a>00204         }
+<a name="l00205"></a>00205     }
+<a name="l00206"></a>00206 
+<a name="l00207"></a>00207     <span class="comment">// DeSerializable</span>
+<a name="l00208"></a>00208     <span class="keywordtype">void</span> Vector2::ProtoDeSerialize(<span class="keyword">const</span> xml::Node&amp; OneNode)
+<a name="l00209"></a>00209     {
+<a name="l00210"></a>00210         <span class="keywordflow">if</span> ( <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(OneNode.Name())==<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(SerializableName()) )
+<a name="l00211"></a>00211         {
+<a name="l00212"></a>00212             <span class="keywordflow">if</span>(OneNode.GetAttribute(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
+<a name="l00213"></a>00213             {
+<a name="l00214"></a>00214                 this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>=OneNode.GetAttribute(<span class="stringliteral">&quot;X&quot;</span>).AsReal();
+<a name="l00215"></a>00215                 this-&gt;<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>=OneNode.GetAttribute(<span class="stringliteral">&quot;Y&quot;</span>).AsReal();
+<a name="l00216"></a>00216             }<span class="keywordflow">else</span>{
+<a name="l00217"></a>00217                 <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">StringTool::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for &quot;</span>,SerializableName(),<span class="stringliteral">&quot;: Not Version 1&quot;</span>)) );
+<a name="l00218"></a>00218             }
+<a name="l00219"></a>00219         }<span class="keywordflow">else</span>{
+<a name="l00220"></a>00220             <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">Mezzanine::StringTool::StringCat</a>(<span class="stringliteral">&quot;Attempting to deserialize a &quot;</span>,SerializableName(),<span class="stringliteral">&quot;, found a &quot;</span>, OneNode.Name())));
+<a name="l00221"></a>00221         }
+<a name="l00222"></a>00222     }
+<a name="l00223"></a>00223 
+<a name="l00224"></a>00224     <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Vector2::SerializableName()
+<a name="l00225"></a>00225         { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;Vector2&quot;</span>); }
+<a name="l00226"></a>00226 
+<a name="l00227"></a>00227 <span class="preprocessor">#endif</span>
+<a name="l00228"></a>00228 <span class="preprocessor"></span>
+<a name="l00229"></a>00229 }
+<a name="l00230"></a>00230 <span class="comment"></span>
+<a name="l00231"></a>00231 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00232"></a>00232 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
+<a name="l00233"></a>00233 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a>&amp; x)
+<a name="l00234"></a>00234 {
+<a name="l00235"></a>00235 <span class="preprocessor">    #ifdef MEZZXML</span>
+<a name="l00236"></a>00236 <span class="preprocessor"></span>        <span class="comment">//stream &lt;&lt; &quot;&lt;Vector2 Version=\&quot;1\&quot; X=\&quot;&quot; &lt;&lt; x.X &lt;&lt; &quot;\&quot; Y=\&quot;&quot; &lt;&lt; x.Y &lt;&lt; &quot;\&quot; /&gt;&quot;;</span>
+<a name="l00237"></a>00237         Serialize(stream,x);
+<a name="l00238"></a>00238 <span class="preprocessor">    #else</span>
+<a name="l00239"></a>00239 <span class="preprocessor"></span>        stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00240"></a>00240 <span class="preprocessor">    #endif // \MEZZXML</span>
+<a name="l00241"></a>00241 <span class="preprocessor"></span>    <span class="keywordflow">return</span> stream;
+<a name="l00242"></a>00242 }
+<a name="l00243"></a>00243 
+<a name="l00244"></a>00244 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l00245"></a>00245 <span class="preprocessor"></span>std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a>&amp; Vec)
+<a name="l00246"></a>00246     { <span class="keywordflow">return</span> DeSerialize(stream, Vec); }
+<a name="l00247"></a>00247 
+<a name="l00248"></a>00248 <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a>&amp; Vec)
+<a name="l00249"></a>00249     { Vec.ProtoDeSerialize(OneNode); }
+<a name="l00250"></a>00250 <span class="preprocessor">#endif // \MEZZXML</span>
+<a name="l00251"></a>00251 <span class="preprocessor"></span>
+<a name="l00252"></a>00252 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -320,7 +321,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -330,6 +331,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

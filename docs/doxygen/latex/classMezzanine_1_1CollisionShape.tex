@@ -1,0 +1,328 @@
+\hypertarget{classMezzanine_1_1CollisionShape}{
+\subsection{Mezzanine::CollisionShape Class Reference}
+\label{classMezzanine_1_1CollisionShape}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+}
+
+
+This is the base class for all collision shapes.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for Mezzanine::CollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.868526cm]{classMezzanine_1_1CollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{ShapeType} \{ \par
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dae9be64274af07a7f8f29bebada214d5e}{ST\_\-Box} = 0, 
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da940b4f486bbd0a25de10bc336e30870c}{ST\_\-Capsule} = 1, 
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da055fc638f933b50c7bfe869f7ee47470}{ST\_\-Compound} = 2, 
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100daa25857b0cefdd16e85dd195c7ad8d489}{ST\_\-Cone} = 3, 
+\par
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da077fcba1a677c63f12da94dd02931268}{ST\_\-ConvexHull} = 4, 
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da12f7d22b55a3d58ce395bc0fbb536312}{ST\_\-Cylinder} = 5, 
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dac81816d19328b9b19e7c318728d095f6}{ST\_\-MultiSphere} = 6, 
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da950c329f000560c92b241ffb8d6a5203}{ST\_\-Sphere} = 7, 
+\par
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da5079488918ad2a3f2adaaa0dfda7bb2d}{ST\_\-DynamicTriMesh} = 8, 
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dae861a5ebc159b7b364ac58474baa3351}{ST\_\-Heightfield} = 9, 
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da8571f53f8a8bcc6126dce27c200655e0}{ST\_\-Plane} = 10, 
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dad26769aea76ec2c46f4fdc90829eeb66}{ST\_\-ActorSoft} = 11, 
+\par
+\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100daa1214cb8a95bd027094648ce0617c53e}{ST\_\-StaticTriMesh} = 12
+ \}
+\begin{DoxyCompactList}\small\item\em This enum describes what kind of shape you are currently working with. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1CollisionShape_a0af2c4dbb24ad4fda4698b81799b65e2}{
+\hyperlink{classMezzanine_1_1CollisionShape_a0af2c4dbb24ad4fda4698b81799b65e2}{CollisionShape} ()}
+\label{classMezzanine_1_1CollisionShape_a0af2c4dbb24ad4fda4698b81799b65e2}
+
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+virtual btCollisionShape $\ast$ \hyperlink{classMezzanine_1_1CollisionShape_a0a5d6eb69c26665051ebb2b9d8004802}{GetBulletShape} () const 
+\begin{DoxyCompactList}\small\item\em Gets the internal shape pointer this collision shape is based on. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1CollisionShape_a7f9d28c4c5ce7ab5a78af217d314fcaa}{GetMargin} () const 
+\begin{DoxyCompactList}\small\item\em Gets the amount of padding currently being applied to the collision shape. \item\end{DoxyCompactList}\item 
+virtual const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \& \hyperlink{classMezzanine_1_1CollisionShape_af3f50f7ee9cb2d25c88daf0c92facb31}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of this shape. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1CollisionShape_ac05c6969066a1ab14c45aa566da701b6}{GetScaling} () const 
+\begin{DoxyCompactList}\small\item\em Gets the current scaling being applied to the collision shape. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{classMezzanine_1_1CollisionShape_a27e5055f81cb8fb6d65a6c9f8dc73b69}{GetType} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the type of \hyperlink{classMezzanine_1_1Collision}{Collision} shape this is. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1CollisionShape_a3884d005f857180185a44c99e55024e3}{SetMargin} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Margin)
+\begin{DoxyCompactList}\small\item\em Sets the padding that will be applied when checking for collisions. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1CollisionShape_a1017c09132113afe0f33fe9b2e7b9def}{SetScaling} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scaling)
+\begin{DoxyCompactList}\small\item\em Scales the collision shape on each of it's axes. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CollisionShape_a55253f27f2f64baf9a21fb440cfeaea6}{
+virtual \hyperlink{classMezzanine_1_1CollisionShape_a55253f27f2f64baf9a21fb440cfeaea6}{$\sim$CollisionShape} ()}
+\label{classMezzanine_1_1CollisionShape_a55253f27f2f64baf9a21fb440cfeaea6}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}}
+\label{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}
+
+\begin{DoxyCompactList}\small\item\em Storage for the name of this class instance. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CollisionShape_a105322f4ad5139768ca1abba44561dec}{
+btCollisionShape $\ast$ \hyperlink{classMezzanine_1_1CollisionShape_a105322f4ad5139768ca1abba44561dec}{ShapeBase}}
+\label{classMezzanine_1_1CollisionShape_a105322f4ad5139768ca1abba44561dec}
+
+\begin{DoxyCompactList}\small\item\em A pointer to the bullet collision this uses. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1CollisionShape_a3989497c48c3690f2d73227804a47a77}{
+class {\bfseries CollisionShapeManager}}
+\label{classMezzanine_1_1CollisionShape_a3989497c48c3690f2d73227804a47a77}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is the base class for all collision shapes. Currently there are a total of 13 collision shape classes inheriting from 3 other base classes. \hyperlink{classMezzanine_1_1Collision}{Collision} shapes are shape representations for Actors, AreaEffects, and other classes with bodies in the physics engine. \par
+ \par
+ It's important to note that \hyperlink{classMezzanine_1_1Collision}{Collision} shapes can be created and then re-\/used in as many \hyperlink{classMezzanine_1_1World}{World} objects(at the same time) as you need, and it is encouraged to do this. 
+
+Definition at line 82 of file collisionshape.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ShapeType@{ShapeType}}
+\index{ShapeType@{ShapeType}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{ShapeType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::CollisionShape::ShapeType}}\hfill}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}
+
+
+This enum describes what kind of shape you are currently working with. 
+
+\begin{DoxyNote}{Note}
+These are number primarily for Serialization purposes. These corresponding numbers could vary wildly. Any use of corresponding raw number in serialization will be done with object serialization version in mind. 
+\end{DoxyNote}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ST\_\-Box@{ST\_\-Box}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-Box@{ST\_\-Box}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dae9be64274af07a7f8f29bebada214d5e}{
+ST\_\-Box}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dae9be64274af07a7f8f29bebada214d5e}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1BoxCollisionShape}{BoxCollisionShape}. \index{ST\_\-Capsule@{ST\_\-Capsule}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-Capsule@{ST\_\-Capsule}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da940b4f486bbd0a25de10bc336e30870c}{
+ST\_\-Capsule}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da940b4f486bbd0a25de10bc336e30870c}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1CapsuleCollisionShape}{CapsuleCollisionShape}. \index{ST\_\-Compound@{ST\_\-Compound}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-Compound@{ST\_\-Compound}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da055fc638f933b50c7bfe869f7ee47470}{
+ST\_\-Compound}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da055fc638f933b50c7bfe869f7ee47470}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1CompoundCollisionShape}{CompoundCollisionShape}. \index{ST\_\-Cone@{ST\_\-Cone}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-Cone@{ST\_\-Cone}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100daa25857b0cefdd16e85dd195c7ad8d489}{
+ST\_\-Cone}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100daa25857b0cefdd16e85dd195c7ad8d489}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1ConeCollisionShape}{ConeCollisionShape}. \index{ST\_\-ConvexHull@{ST\_\-ConvexHull}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-ConvexHull@{ST\_\-ConvexHull}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da077fcba1a677c63f12da94dd02931268}{
+ST\_\-ConvexHull}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da077fcba1a677c63f12da94dd02931268}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1ConvexHullCollisionShape}{ConvexHullCollisionShape}. \index{ST\_\-Cylinder@{ST\_\-Cylinder}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-Cylinder@{ST\_\-Cylinder}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da12f7d22b55a3d58ce395bc0fbb536312}{
+ST\_\-Cylinder}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da12f7d22b55a3d58ce395bc0fbb536312}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1CylinderCollisionShape}{CylinderCollisionShape}. \index{ST\_\-MultiSphere@{ST\_\-MultiSphere}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-MultiSphere@{ST\_\-MultiSphere}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dac81816d19328b9b19e7c318728d095f6}{
+ST\_\-MultiSphere}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dac81816d19328b9b19e7c318728d095f6}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1MultiSphereCollisionShape}{MultiSphereCollisionShape}. \index{ST\_\-Sphere@{ST\_\-Sphere}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-Sphere@{ST\_\-Sphere}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da950c329f000560c92b241ffb8d6a5203}{
+ST\_\-Sphere}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da950c329f000560c92b241ffb8d6a5203}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1SphereCollisionShape}{SphereCollisionShape}. \index{ST\_\-DynamicTriMesh@{ST\_\-DynamicTriMesh}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-DynamicTriMesh@{ST\_\-DynamicTriMesh}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da5079488918ad2a3f2adaaa0dfda7bb2d}{
+ST\_\-DynamicTriMesh}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da5079488918ad2a3f2adaaa0dfda7bb2d}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1DynamicMeshCollisionShape}{DynamicMeshCollisionShape}. \index{ST\_\-Heightfield@{ST\_\-Heightfield}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-Heightfield@{ST\_\-Heightfield}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dae861a5ebc159b7b364ac58474baa3351}{
+ST\_\-Heightfield}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dae861a5ebc159b7b364ac58474baa3351}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1HeightfieldCollisionShape}{HeightfieldCollisionShape}. \index{ST\_\-Plane@{ST\_\-Plane}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-Plane@{ST\_\-Plane}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da8571f53f8a8bcc6126dce27c200655e0}{
+ST\_\-Plane}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100da8571f53f8a8bcc6126dce27c200655e0}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1PlaneCollisionShape}{PlaneCollisionShape}. \index{ST\_\-ActorSoft@{ST\_\-ActorSoft}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-ActorSoft@{ST\_\-ActorSoft}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dad26769aea76ec2c46f4fdc90829eeb66}{
+ST\_\-ActorSoft}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100dad26769aea76ec2c46f4fdc90829eeb66}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1ActorSoftCollisionShape}{ActorSoftCollisionShape}. \index{ST\_\-StaticTriMesh@{ST\_\-StaticTriMesh}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ST\_\-StaticTriMesh@{ST\_\-StaticTriMesh}}\item[{\em 
+\hypertarget{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100daa1214cb8a95bd027094648ce0617c53e}{
+ST\_\-StaticTriMesh}
+\label{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100daa1214cb8a95bd027094648ce0617c53e}
+}]Indicates the class is a \hyperlink{classMezzanine_1_1StaticMeshCollisionShape}{StaticMeshCollisionShape}. \end{description}
+\end{Desc}
+
+
+
+Definition at line 88 of file collisionshape.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1CollisionShape_a0a5d6eb69c26665051ebb2b9d8004802}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!GetBulletShape@{GetBulletShape}}
+\index{GetBulletShape@{GetBulletShape}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{GetBulletShape}]{\setlength{\rightskip}{0pt plus 5cm}btCollisionShape $\ast$ Mezzanine::CollisionShape::GetBulletShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_a0a5d6eb69c26665051ebb2b9d8004802}
+
+
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShape_a7f9d28c4c5ce7ab5a78af217d314fcaa}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!GetMargin@{GetMargin}}
+\index{GetMargin@{GetMargin}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{GetMargin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::CollisionShape::GetMargin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_a7f9d28c4c5ce7ab5a78af217d314fcaa}
+
+
+Gets the amount of padding currently being applied to the collision shape. 
+
+\begin{DoxyReturn}{Returns}
+Returns the amount of padding, in world units, is being applied to the collision shape. 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShape_af3f50f7ee9cb2d25c88daf0c92facb31}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf String} \& Mezzanine::CollisionShape::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_af3f50f7ee9cb2d25c88daf0c92facb31}
+
+
+Gets the name of this shape. 
+
+\begin{DoxyReturn}{Returns}
+Returns a const reference string containing the name of this collision shape. 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShape_ac05c6969066a1ab14c45aa566da701b6}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!GetScaling@{GetScaling}}
+\index{GetScaling@{GetScaling}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{GetScaling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::CollisionShape::GetScaling (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_ac05c6969066a1ab14c45aa566da701b6}
+
+
+Gets the current scaling being applied to the collision shape. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 representing the amount of scaling being applied to the shape. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShape_a27e5055f81cb8fb6d65a6c9f8dc73b69}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf CollisionShape::ShapeType} Mezzanine::CollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_a27e5055f81cb8fb6d65a6c9f8dc73b69}
+
+
+Gets the type of \hyperlink{classMezzanine_1_1Collision}{Collision} shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ad3d4143a5640204b987e0b57eb24af41}{Mezzanine::PrimitiveCollisionShape}, \hyperlink{classMezzanine_1_1FieldCollisionShape_a85a444fa9bcaca9fec08c3b5697677c9}{Mezzanine::FieldCollisionShape}, \hyperlink{classMezzanine_1_1MeshCollisionShape_a00dc444afac92030ea43815ec21dd8e8}{Mezzanine::MeshCollisionShape}, \hyperlink{classMezzanine_1_1CompoundCollisionShape_a8b701bbbc32b007f32884946d285fba1}{Mezzanine::CompoundCollisionShape}, \hyperlink{classMezzanine_1_1BoxCollisionShape_ae2b4af7afa6cc37c51b062589048e26d}{Mezzanine::BoxCollisionShape}, \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a2773853a924c2a97838546d96d851ba5}{Mezzanine::CapsuleCollisionShape}, \hyperlink{classMezzanine_1_1ConeCollisionShape_a874892f3aaba7e79200633691037a410}{Mezzanine::ConeCollisionShape}, \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a73ccd6364f52a68a642a0fb55159f020}{Mezzanine::ConvexHullCollisionShape}, \hyperlink{classMezzanine_1_1CylinderCollisionShape_a4feb07a9d71bda6ca4b6c82b745df8a0}{Mezzanine::CylinderCollisionShape}, \hyperlink{classMezzanine_1_1MultiSphereCollisionShape_ad4b8a2e2f71686e2495d414a13b0f95a}{Mezzanine::MultiSphereCollisionShape}, \hyperlink{classMezzanine_1_1SphereCollisionShape_ad2c8d33b21fe7215742db4551429c5a6}{Mezzanine::SphereCollisionShape}, \hyperlink{classMezzanine_1_1DynamicMeshCollisionShape_ae323a4ac9ae12890e1f8ce82b22f1ccc}{Mezzanine::DynamicMeshCollisionShape}, \hyperlink{classMezzanine_1_1HeightfieldCollisionShape_af27ffaf88fc12af6ddc89704e60ecd33}{Mezzanine::HeightfieldCollisionShape}, \hyperlink{classMezzanine_1_1PlaneCollisionShape_aeb4b5e1a235023d375b5514065a5e382}{Mezzanine::PlaneCollisionShape}, \hyperlink{classMezzanine_1_1ActorSoftCollisionShape_ae9ac8413434ff0de10376deb64ab49d0}{Mezzanine::ActorSoftCollisionShape}, and \hyperlink{classMezzanine_1_1StaticMeshCollisionShape_ae6cf497bf3a0c1db7b0f39a0513ebb79}{Mezzanine::StaticMeshCollisionShape}.
+
+\hypertarget{classMezzanine_1_1CollisionShape_a3884d005f857180185a44c99e55024e3}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!SetMargin@{SetMargin}}
+\index{SetMargin@{SetMargin}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{SetMargin}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CollisionShape::SetMargin (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Margin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_a3884d005f857180185a44c99e55024e3}
+
+
+Sets the padding that will be applied when checking for collisions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Margin} & A real in world units representing how much padding is to be applied to this shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShape_a1017c09132113afe0f33fe9b2e7b9def}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!SetScaling@{SetScaling}}
+\index{SetScaling@{SetScaling}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{SetScaling}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CollisionShape::SetScaling (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Scaling}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_a1017c09132113afe0f33fe9b2e7b9def}
+
+
+Scales the collision shape on each of it's axes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Scaling} & A vector3 representing how much scaling should be applied on each of the shapes 3 axes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 83 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

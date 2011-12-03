@@ -1,0 +1,270 @@
+\hypertarget{classMezzanine_1_1LineGroup}{
+\subsection{Mezzanine::LineGroup Class Reference}
+\label{classMezzanine_1_1LineGroup}\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+}
+
+
+This is a group of consectutive line segments to be rendered together.  
+
+
+
+
+{\ttfamily \#include $<$linegroup.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMezzanine_1_1LineGroup_a3326fcfa0207505082af2610d73c2e46}{addPoint} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&p)
+\begin{DoxyCompactList}\small\item\em This add Either a start pointing, or a line segment to the next point. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1LineGroup_acadb6f8ccbe70828b094f07a11f276ac}{drawLine} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&start, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&end)
+\begin{DoxyCompactList}\small\item\em This adds Two points to the list. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1LineGroup_a85da1685525915f1e07d685b98f79f23}{drawLines} (void)
+\begin{DoxyCompactList}\small\item\em Renders the line segment chain. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1LineGroup_acf6419a64d2d387bafe36b3dda752678}{getBoundingRadius} (void) const 
+\begin{DoxyCompactList}\small\item\em How big would a circle need to be to encapsulate this. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1LineGroup_a518e2ccf64cb6dc9bcc309a08d40f8c9}{getNumPoints} (void) const 
+\begin{DoxyCompactList}\small\item\em Get the amount of points used to define Line Segments. \item\end{DoxyCompactList}\item 
+const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1LineGroup_a5a6aca5f86fa5751b335ee4a3d498cbf}{getPoint} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} index) const 
+\begin{DoxyCompactList}\small\item\em Access points by order they were added. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1LineGroup_a8789254da1d3e930681b793165fedeca}{LineGroup} (\hyperlink{classMezzanine_1_1World}{World} $\ast$Parent\_\-)
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1LineGroup_ab94688dd800d390aefce0e6b9742b296}{PrepareForRendering} ()
+\begin{DoxyCompactList}\small\item\em This assists in the rendering process. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1LineGroup_adfb54ecbd62dc13d42b4e05c1b30a155}{updatePoint} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} index, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&value)
+\begin{DoxyCompactList}\small\item\em This changes a specific point. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1LineGroup_afd14821b5b54fff9d670458748125f3f}{$\sim$LineGroup} (void)
+\begin{DoxyCompactList}\small\item\em Default Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a group of consectutive line segments to be rendered together. This class stores a listing of points and renders thems as one object into the world provided. 
+
+Definition at line 62 of file linegroup.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1LineGroup_a8789254da1d3e930681b793165fedeca}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!LineGroup@{LineGroup}}
+\index{LineGroup@{LineGroup}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{LineGroup}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::LineGroup::LineGroup (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{Parent\_\-}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1LineGroup_a8789254da1d3e930681b793165fedeca}
+
+
+Basic Constructor. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000013}{Todo}]TODO: This class really should support rotation, the underlying implementation does. \end{Desc}
+
+
+This creates a basic, empty, \hyperlink{classMezzanine_1_1LineGroup}{LineGroup}. 
+\begin{DoxyParams}{Parameters}
+{\em Parent\_\-} & This is a pointer to the world to render to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 303 of file linegroup.cpp.
+
+\hypertarget{classMezzanine_1_1LineGroup_afd14821b5b54fff9d670458748125f3f}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!$\sim$LineGroup@{$\sim$LineGroup}}
+\index{$\sim$LineGroup@{$\sim$LineGroup}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{$\sim$LineGroup}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::LineGroup::$\sim$LineGroup (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1LineGroup_afd14821b5b54fff9d670458748125f3f}
+
+
+Default Destructor. 
+
+This safely tears down, and removes from the graphics system the \hyperlink{classMezzanine_1_1LineGroup}{LineGroup} 
+
+Definition at line 309 of file linegroup.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1LineGroup_a3326fcfa0207505082af2610d73c2e46}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!addPoint@{addPoint}}
+\index{addPoint@{addPoint}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{addPoint}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::LineGroup::addPoint (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{p}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1LineGroup_a3326fcfa0207505082af2610d73c2e46}
+
+
+This add Either a start pointing, or a line segment to the next point. 
+
+This adds a point that will be rendered as the endpoint of a line 
+\begin{DoxyParams}{Parameters}
+{\em p} & The Point to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 314 of file linegroup.cpp.
+
+\hypertarget{classMezzanine_1_1LineGroup_acadb6f8ccbe70828b094f07a11f276ac}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!drawLine@{drawLine}}
+\index{drawLine@{drawLine}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{drawLine}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::LineGroup::drawLine (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{start, }
+\item[{const {\bf Vector3} \&}]{end}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1LineGroup_acadb6f8ccbe70828b094f07a11f276ac}
+
+
+This adds Two points to the list. 
+
+This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an easy way to guarantee that a specific line segment be rendered. \begin{Desc}
+\item[\hyperlink{todo__todo000014}{Todo}]TODO: In the future we will add a break in the line segment chain when this is called. \end{Desc}
+
+\begin{DoxyParams}{Parameters}
+{\em start} & The first point to be added \\
+\hline
+{\em end} & The first point to be added \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 335 of file linegroup.cpp.
+
+\hypertarget{classMezzanine_1_1LineGroup_a85da1685525915f1e07d685b98f79f23}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!drawLines@{drawLines}}
+\index{drawLines@{drawLines}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{drawLines}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::LineGroup::drawLines (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1LineGroup_a85da1685525915f1e07d685b98f79f23}
+
+
+Renders the line segment chain. 
+
+This send the Line segment information to the rending subsystem. \hyperlink{classMezzanine_1_1LineGroup_ab94688dd800d390aefce0e6b9742b296}{PrepareForRendering()} should be called first \begin{Desc}
+\item[\hyperlink{todo__todo000015}{Todo}]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. \end{Desc}
+
+
+Definition at line 342 of file linegroup.cpp.
+
+\hypertarget{classMezzanine_1_1LineGroup_acf6419a64d2d387bafe36b3dda752678}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!getBoundingRadius@{getBoundingRadius}}
+\index{getBoundingRadius@{getBoundingRadius}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{getBoundingRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::LineGroup::getBoundingRadius (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1LineGroup_acf6419a64d2d387bafe36b3dda752678}
+
+
+How big would a circle need to be to encapsulate this. 
+
+This returns the radius the a circle would need to have to surround this line group. \begin{DoxyReturn}{Returns}
+This returns a real number which indicates the radius. 
+\end{DoxyReturn}
+
+
+Definition at line 347 of file linegroup.cpp.
+
+\hypertarget{classMezzanine_1_1LineGroup_a518e2ccf64cb6dc9bcc309a08d40f8c9}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!getNumPoints@{getNumPoints}}
+\index{getNumPoints@{getNumPoints}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{getNumPoints}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::LineGroup::getNumPoints (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1LineGroup_a518e2ccf64cb6dc9bcc309a08d40f8c9}
+
+
+Get the amount of points used to define Line Segments. 
+
+This return the amount of points and therefore line segments. There will always be one more point Than line segments. \begin{DoxyReturn}{Returns}
+A Whole Number which indicates the amount of points. 
+\end{DoxyReturn}
+
+
+Definition at line 325 of file linegroup.cpp.
+
+\hypertarget{classMezzanine_1_1LineGroup_a5a6aca5f86fa5751b335ee4a3d498cbf}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!getPoint@{getPoint}}
+\index{getPoint@{getPoint}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{getPoint}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vector3} Mezzanine::LineGroup::getPoint (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{index}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1LineGroup_a5a6aca5f86fa5751b335ee4a3d498cbf}
+
+
+Access points by order they were added. 
+
+This returns the point indicated by index. They start at 0, and increment from there 
+\begin{DoxyParams}{Parameters}
+{\em index} & A Whole number which indicates which point to retrieve. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 319 of file linegroup.cpp.
+
+\hypertarget{classMezzanine_1_1LineGroup_ab94688dd800d390aefce0e6b9742b296}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!PrepareForRendering@{PrepareForRendering}}
+\index{PrepareForRendering@{PrepareForRendering}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{PrepareForRendering}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::LineGroup::PrepareForRendering (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1LineGroup_ab94688dd800d390aefce0e6b9742b296}
+
+
+This assists in the rendering process. 
+
+This sends some of the data to the rendering subsystem to aid drawLines 
+
+Definition at line 352 of file linegroup.cpp.
+
+\hypertarget{classMezzanine_1_1LineGroup_adfb54ecbd62dc13d42b4e05c1b30a155}{
+\index{Mezzanine::LineGroup@{Mezzanine::LineGroup}!updatePoint@{updatePoint}}
+\index{updatePoint@{updatePoint}!Mezzanine::LineGroup@{Mezzanine::LineGroup}}
+\paragraph[{updatePoint}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::LineGroup::updatePoint (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{index, }
+\item[{const {\bf Vector3} \&}]{value}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1LineGroup_adfb54ecbd62dc13d42b4e05c1b30a155}
+
+
+This changes a specific point. 
+
+This replaces a point specified by index with a new point 
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the point to replace. \\
+\hline
+{\em value} & A point to replace the existing point with \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 330 of file linegroup.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+linegroup.h\item 
+linegroup.cpp\end{DoxyCompactItemize}

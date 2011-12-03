@@ -1,0 +1,117 @@
+\hypertarget{classMezzanine_1_1WorldTrigger}{
+\subsection{Mezzanine::WorldTrigger Class Reference}
+\label{classMezzanine_1_1WorldTrigger}\index{Mezzanine::WorldTrigger@{Mezzanine::WorldTrigger}}
+}
+
+
+This is an abstract class for creating in-\/game triggers.  
+
+
+
+
+{\ttfamily \#include $<$worldtrigger.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1WorldTrigger_abbe8c0195fd7b9bc3c93f6c8b20d843b}{
+virtual void \hyperlink{classMezzanine_1_1WorldTrigger_abbe8c0195fd7b9bc3c93f6c8b20d843b}{ApplyTrigger} ()=0}
+\label{classMezzanine_1_1WorldTrigger_abbe8c0195fd7b9bc3c93f6c8b20d843b}
+
+\begin{DoxyCompactList}\small\item\em Applies the effects of this trigger. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1WorldTrigger_ae7a24ce175086bcd6e77f10d14c84b34}{ConditionsAreMet} ()=0
+\begin{DoxyCompactList}\small\item\em Checks for the condition for the trigger. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1WorldTrigger_a20303907a5b0a0873951a24de5ee4c00}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this trigger. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldTrigger_afc43e40a268f0573db5b80bed976563d}{WorldTrigger} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldTrigger_abf4b164bc629f4c7a9e5cfb8dfcf919f}{
+virtual \hyperlink{classMezzanine_1_1WorldTrigger_abf4b164bc629f4c7a9e5cfb8dfcf919f}{$\sim$WorldTrigger} ()}
+\label{classMezzanine_1_1WorldTrigger_abf4b164bc629f4c7a9e5cfb8dfcf919f}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1WorldTrigger_a2fed5d67dcef203c169c3b3d3c795368}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} {\bfseries Name}}
+\label{classMezzanine_1_1WorldTrigger_a2fed5d67dcef203c169c3b3d3c795368}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is an abstract class for creating in-\/game triggers. 
+
+Definition at line 53 of file worldtrigger.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1WorldTrigger_afc43e40a268f0573db5b80bed976563d}{
+\index{Mezzanine::WorldTrigger@{Mezzanine::WorldTrigger}!WorldTrigger@{WorldTrigger}}
+\index{WorldTrigger@{WorldTrigger}!Mezzanine::WorldTrigger@{Mezzanine::WorldTrigger}}
+\paragraph[{WorldTrigger}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::WorldTrigger::WorldTrigger (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1WorldTrigger_afc43e40a268f0573db5b80bed976563d}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The unique name to be given to this trigger. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 47 of file worldtrigger.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1WorldTrigger_ae7a24ce175086bcd6e77f10d14c84b34}{
+\index{Mezzanine::WorldTrigger@{Mezzanine::WorldTrigger}!ConditionsAreMet@{ConditionsAreMet}}
+\index{ConditionsAreMet@{ConditionsAreMet}!Mezzanine::WorldTrigger@{Mezzanine::WorldTrigger}}
+\paragraph[{ConditionsAreMet}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mezzanine::WorldTrigger::ConditionsAreMet (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldTrigger_ae7a24ce175086bcd6e77f10d14c84b34}
+
+
+Checks for the condition for the trigger. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not the condition(s) has been met. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1WorldTrigger_a20303907a5b0a0873951a24de5ee4c00}{
+\index{Mezzanine::WorldTrigger@{Mezzanine::WorldTrigger}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::WorldTrigger@{Mezzanine::WorldTrigger}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::WorldTrigger::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldTrigger_a20303907a5b0a0873951a24de5ee4c00}
+
+
+Gets the name of this trigger. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of this trigger. 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file worldtrigger.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+worldtrigger.h\item 
+worldtrigger.cpp\end{DoxyCompactItemize}

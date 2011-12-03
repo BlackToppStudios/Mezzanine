@@ -1,0 +1,266 @@
+\hypertarget{classMezzanine_1_1EventCollision}{
+\subsection{Mezzanine::EventCollision Class Reference}
+\label{classMezzanine_1_1EventCollision}\index{Mezzanine::EventCollision@{Mezzanine::EventCollision}}
+}
+
+
+This is an event class used to track collsions in the physics world.  
+
+
+
+
+{\ttfamily \#include $<$eventcollision.h$>$}
+
+Inheritance diagram for Mezzanine::EventCollision:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1EventCollision}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1EventCollision_ae0813b544c1df94159e364b3a5720a6a}{
+\hyperlink{classMezzanine_1_1EventCollision_ae0813b544c1df94159e364b3a5720a6a}{EventCollision} ()}
+\label{classMezzanine_1_1EventCollision_ae0813b544c1df94159e364b3a5720a6a}
+
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1EventCollision_affa8e2d9f0d20d33e8131fa05348879c}{EventCollision} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$actora, \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$actorb, \hyperlink{classMezzanine_1_1Collision}{Mezzanine::Collision} $\ast$Col)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1EventCollision_ae6917514b805e00607ce88ae01f52780}{EventCollision} (const \hyperlink{classMezzanine_1_1EventCollision}{EventCollision} \&Other)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1EventCollision_adb7943576f8033703f0afcbce43f56cc}{GetActorA} () const 
+\begin{DoxyCompactList}\small\item\em Gets the first actor this collision applies to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1EventCollision_ad3d7b44e680425d33bb2556de4d9a056}{GetActorB} () const 
+\begin{DoxyCompactList}\small\item\em Gets the second actor this collision applies to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baef}{EventType} \hyperlink{classMezzanine_1_1EventCollision_af5d9f7eb0ee0ce22b0dd5dfbafc8f297}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns EventType::Collision. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1EventCollision_a90e9b3a89762db6a3c55aa262833bcd7}{SetActorA} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$A)
+\begin{DoxyCompactList}\small\item\em Sets the first actor this collision applies to. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1EventCollision_aef6da3acdc9879b21990cb25fa285304}{SetActorB} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$B)
+\begin{DoxyCompactList}\small\item\em Sets the second actor this collision applies to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1EventCollision_a72cabbfa2f7983d8b017755791e89632}{$\sim$EventCollision} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1EventCollision_a9e076c11df8b6e16c357f0a5c373542a}{
+\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1EventCollision_a9e076c11df8b6e16c357f0a5c373542a}{ActorA}}
+\label{classMezzanine_1_1EventCollision_a9e076c11df8b6e16c357f0a5c373542a}
+
+\begin{DoxyCompactList}\small\item\em The first Actor involved in the collision. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1EventCollision_aca0535fa8e9e4fbbb0229c6342e05da4}{
+\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1EventCollision_aca0535fa8e9e4fbbb0229c6342e05da4}{ActorB}}
+\label{classMezzanine_1_1EventCollision_aca0535fa8e9e4fbbb0229c6342e05da4}
+
+\begin{DoxyCompactList}\small\item\em The second Actor invovled in the collision. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1EventCollision_a562c1ab56444569b478a7a613caef42c}{
+\hyperlink{classMezzanine_1_1Collision}{Mezzanine::Collision} $\ast$ \hyperlink{classMezzanine_1_1EventCollision_a562c1ab56444569b478a7a613caef42c}{ObjectCollision}}
+\label{classMezzanine_1_1EventCollision_a562c1ab56444569b478a7a613caef42c}
+
+\begin{DoxyCompactList}\small\item\em The internal collision class this event is based on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1EventCollision_aa4a13416efe17e957deb2cf4dcce3a60}{
+class {\bfseries CollisionDispatcher}}
+\label{classMezzanine_1_1EventCollision_aa4a13416efe17e957deb2cf4dcce3a60}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is an event class used to track collsions in the physics world. 
+
+Definition at line 58 of file eventcollision.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1EventCollision_affa8e2d9f0d20d33e8131fa05348879c}{
+\index{Mezzanine::EventCollision@{Mezzanine::EventCollision}!EventCollision@{EventCollision}}
+\index{EventCollision@{EventCollision}!Mezzanine::EventCollision@{Mezzanine::EventCollision}}
+\paragraph[{EventCollision}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::EventCollision::EventCollision (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{actora, }
+\item[{{\bf ActorBase} $\ast$}]{actorb, }
+\item[{{\bf Mezzanine::Collision} $\ast$}]{Col}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1EventCollision_affa8e2d9f0d20d33e8131fa05348879c}
+
+
+Class Constructor. 
+
+This will construct a basic event class with the minimum data needed. 
+\begin{DoxyParams}{Parameters}
+{\em actora} & The first Actor involved in the collision. \\
+\hline
+{\em actorb} & The second Actor invovled in the collision. \\
+\hline
+{\em PhysicsManifold} & The internal manifold used for querying collision data. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 62 of file eventcollision.cpp.
+
+\hypertarget{classMezzanine_1_1EventCollision_ae6917514b805e00607ce88ae01f52780}{
+\index{Mezzanine::EventCollision@{Mezzanine::EventCollision}!EventCollision@{EventCollision}}
+\index{EventCollision@{EventCollision}!Mezzanine::EventCollision@{Mezzanine::EventCollision}}
+\paragraph[{EventCollision}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::EventCollision::EventCollision (
+\begin{DoxyParamCaption}
+\item[{const {\bf EventCollision} \&}]{Other}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1EventCollision_ae6917514b805e00607ce88ae01f52780}
+
+
+Copy Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1EventCollision}{EventCollision} to copy \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 69 of file eventcollision.cpp.
+
+\hypertarget{classMezzanine_1_1EventCollision_a72cabbfa2f7983d8b017755791e89632}{
+\index{Mezzanine::EventCollision@{Mezzanine::EventCollision}!$\sim$EventCollision@{$\sim$EventCollision}}
+\index{$\sim$EventCollision@{$\sim$EventCollision}!Mezzanine::EventCollision@{Mezzanine::EventCollision}}
+\paragraph[{$\sim$EventCollision}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::EventCollision::$\sim$EventCollision (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1EventCollision_a72cabbfa2f7983d8b017755791e89632}
+
+
+Class Destructor. 
+
+Basic Class Destructor. 
+
+Definition at line 75 of file eventcollision.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1EventCollision_adb7943576f8033703f0afcbce43f56cc}{
+\index{Mezzanine::EventCollision@{Mezzanine::EventCollision}!GetActorA@{GetActorA}}
+\index{GetActorA@{GetActorA}!Mezzanine::EventCollision@{Mezzanine::EventCollision}}
+\paragraph[{GetActorA}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::EventCollision::GetActorA (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1EventCollision_adb7943576f8033703f0afcbce43f56cc}
+
+
+Gets the first actor this collision applies to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the first actor in this event. 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file eventcollision.cpp.
+
+\hypertarget{classMezzanine_1_1EventCollision_ad3d7b44e680425d33bb2556de4d9a056}{
+\index{Mezzanine::EventCollision@{Mezzanine::EventCollision}!GetActorB@{GetActorB}}
+\index{GetActorB@{GetActorB}!Mezzanine::EventCollision@{Mezzanine::EventCollision}}
+\paragraph[{GetActorB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::EventCollision::GetActorB (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1EventCollision_ad3d7b44e680425d33bb2556de4d9a056}
+
+
+Gets the second actor this collision applies to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the second actor in this event. 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file eventcollision.cpp.
+
+\hypertarget{classMezzanine_1_1EventCollision_af5d9f7eb0ee0ce22b0dd5dfbafc8f297}{
+\index{Mezzanine::EventCollision@{Mezzanine::EventCollision}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::EventCollision@{Mezzanine::EventCollision}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventBase::EventType} Mezzanine::EventCollision::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1EventCollision_af5d9f7eb0ee0ce22b0dd5dfbafc8f297}
+
+
+This returns EventType::Collision. 
+
+This returns the kind of message this is, specifcally EventType::Collision. This method is inherited from Mezzanine::Event. . 
+
+Implements \hyperlink{classMezzanine_1_1EventBase_aea900262a74d27e3b5df68a9deb18543}{Mezzanine::EventBase}.
+
+
+
+Definition at line 109 of file eventcollision.cpp.
+
+\hypertarget{classMezzanine_1_1EventCollision_a90e9b3a89762db6a3c55aa262833bcd7}{
+\index{Mezzanine::EventCollision@{Mezzanine::EventCollision}!SetActorA@{SetActorA}}
+\index{SetActorA@{SetActorA}!Mezzanine::EventCollision@{Mezzanine::EventCollision}}
+\paragraph[{SetActorA}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::EventCollision::SetActorA (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{A}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1EventCollision_a90e9b3a89762db6a3c55aa262833bcd7}
+
+
+Sets the first actor this collision applies to. 
+
+\begin{DoxyWarning}{Warning}
+\hyperlink{classMezzanine_1_1Collision}{Collision} events can't/shouldn't have the bodies they apply to changed. This function exists mostly just for the blank constructor when you need to set them afterward. If you attempt to set this when the pointer is already set, it will log the event but otherwise silently fail. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The first actor in this event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 79 of file eventcollision.cpp.
+
+\hypertarget{classMezzanine_1_1EventCollision_aef6da3acdc9879b21990cb25fa285304}{
+\index{Mezzanine::EventCollision@{Mezzanine::EventCollision}!SetActorB@{SetActorB}}
+\index{SetActorB@{SetActorB}!Mezzanine::EventCollision@{Mezzanine::EventCollision}}
+\paragraph[{SetActorB}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::EventCollision::SetActorB (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{B}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1EventCollision_aef6da3acdc9879b21990cb25fa285304}
+
+
+Sets the second actor this collision applies to. 
+
+\begin{DoxyWarning}{Warning}
+\hyperlink{classMezzanine_1_1Collision}{Collision} events can't/shouldn't have the bodies they apply to changed. This function exists mostly just for the blank constructor when you need to set them afterward. If you attempt to set this when the pointer is already set, it will log the event but otherwise silently fail. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em B} & The second actor in this event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 94 of file eventcollision.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+eventcollision.h\item 
+eventcollision.cpp\end{DoxyCompactItemize}

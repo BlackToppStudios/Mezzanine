@@ -1,0 +1,363 @@
+\hypertarget{classMezzanine_1_1DualTransformConstraint}{
+\subsection{Mezzanine::DualTransformConstraint Class Reference}
+\label{classMezzanine_1_1DualTransformConstraint}\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+}
+
+
+All constraints that track rotation and location of the Pivot relative to each Actor inherit from this.  
+
+
+
+
+{\ttfamily \#include $<$constraint.h$>$}
+
+Inheritance diagram for Mezzanine::DualTransformConstraint:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.689065cm]{classMezzanine_1_1DualTransformConstraint}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1DualTransformConstraint_ad79b92cb1faeba6e7ba7123e02d86dc1}{GetPivotALocation} () const 
+\begin{DoxyCompactList}\small\item\em Get the location of the pivot relative to ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1DualTransformConstraint_ac3f2449bc4c0ccd959f4c67216246832}{GetPivotARotation} () const 
+\begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorA. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Transform}{Transform} \hyperlink{classMezzanine_1_1DualTransformConstraint_ac6798a2ea8e80e38fbfbf17df6043265}{GetPivotATransform} () const =0
+\begin{DoxyCompactList}\small\item\em Get the current Rotation and Location of Actor A. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1DualTransformConstraint_ade678f85e0e32b5bf59778130e9d1730}{GetPivotBLocation} () const 
+\begin{DoxyCompactList}\small\item\em Get the location of the pivot relative to ActorB's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1DualTransformConstraint_a56e30c94d128e4c13f449b9933f815fe}{GetPivotBRotation} () const 
+\begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorB. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Transform}{Transform} \hyperlink{classMezzanine_1_1DualTransformConstraint_a43e5f5d4cfd9b0ab7032d81df5c935d7}{GetPivotBTransform} () const =0
+\begin{DoxyCompactList}\small\item\em Get the current Rotation and Location of Actor B. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_a3dc5e7afcf612a481f81071201ecdeb7}{SetPivotALocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Set The relative location of the pivot from ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_a73cba60ff65f8ac2775b19f74e5cbe9e}{SetPivotARotation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorA. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_a6f1713e6af9d89de70ff77ed47c82d31}{SetPivotATransform} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TranA)=0
+\begin{DoxyCompactList}\small\item\em Set the Position and Rotation using a \hyperlink{classMezzanine_1_1Transform}{Transform}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_abf63fe4c4fc3c57a0eed7ed006a00aee}{SetPivotBLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Set The relative location of the pivot from ActorB's Center of gravity. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_ab25460e03f187dd56657e43e6302ef45}{SetPivotBRotation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorB. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_ac5ee69ce5d68f4e299e7916f764ee396}{SetPivotBTransform} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TranB)=0
+\begin{DoxyCompactList}\small\item\em Set the Position and Rotation using a \hyperlink{classMezzanine_1_1Transform}{Transform}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+All constraints that track rotation and location of the Pivot relative to each Actor inherit from this. Since not all contraints provide tracking for the Actor \hyperlink{classMezzanine_1_1Transform}{Transform} (location/rotation of the pivot) we subdivided the constraints to unify the interface of those that could be unified. This stores nothing, but provides uniform access to the transform and rotation functions. \par
+ \par
+ Any deriving class must implement every thing from \hyperlink{classMezzanine_1_1TypedConstraint}{TypedConstraint} and the four set/get \hyperlink{classMezzanine_1_1Transform}{Transform} function. It is expected that more derived classes will implement the Set/Get Pivot/Rotation Functino in a more efficient Manner if a more efficient way exists. The non-\/transform get/set function are implmented in terms of the get/set transform function extra copies of values and extra reading/writing may occur if the compiler weakly optimizes. Of course, implementing more functions could slow down the software if it no longer fits in CPU caches. As always benchmark if this is something that may be critically slowing you down. 
+
+Definition at line 325 of file constraint.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1DualTransformConstraint_ad79b92cb1faeba6e7ba7123e02d86dc1}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!GetPivotALocation@{GetPivotALocation}}
+\index{GetPivotALocation@{GetPivotALocation}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{GetPivotALocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} Mezzanine::DualTransformConstraint::GetPivotALocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_ad79b92cb1faeba6e7ba7123e02d86dc1}
+
+
+Get the location of the pivot relative to ActorA's Center of gravity. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the pivot location. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1TypedConstraint_af785319e62e274656f180ab80f5f8dd9}{Mezzanine::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_a180f26186e0ddd58c9c0746897155eaf}{Mezzanine::Generic6DofConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a74f1b8d8de18ab991d2f42c7141eedc7}{Mezzanine::HingeConstraint}.
+
+
+
+Definition at line 353 of file constraint.h.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_ac3f2449bc4c0ccd959f4c67216246832}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!GetPivotARotation@{GetPivotARotation}}
+\index{GetPivotARotation@{GetPivotARotation}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{GetPivotARotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} Mezzanine::DualTransformConstraint::GetPivotARotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_ac3f2449bc4c0ccd959f4c67216246832}
+
+
+Get the relative rotation for ActorA. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} that has the rotation 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_a517388fdf36423ed0550ec19089955b9}{Mezzanine::Generic6DofConstraint}.
+
+
+
+Definition at line 372 of file constraint.h.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_ac6798a2ea8e80e38fbfbf17df6043265}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!GetPivotATransform@{GetPivotATransform}}
+\index{GetPivotATransform@{GetPivotATransform}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{GetPivotATransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Transform} Mezzanine::DualTransformConstraint::GetPivotATransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_ac6798a2ea8e80e38fbfbf17df6043265}
+
+
+Get the current Rotation and Location of Actor A. 
+
+\begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_adac17da02ce3ecacf583515a66576533}{Mezzanine::Generic6DofConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a208687c856410bf70f068ddf8c8f9161}{Mezzanine::HingeConstraint}.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_ade678f85e0e32b5bf59778130e9d1730}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!GetPivotBLocation@{GetPivotBLocation}}
+\index{GetPivotBLocation@{GetPivotBLocation}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{GetPivotBLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} Mezzanine::DualTransformConstraint::GetPivotBLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_ade678f85e0e32b5bf59778130e9d1730}
+
+
+Get the location of the pivot relative to ActorB's Center of gravity. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the pivot location. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1TypedConstraint_a2c0984d3211b30756c7ec5263c99b014}{Mezzanine::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_a2b7344ab150f2f6dd898b6cbcd150d6e}{Mezzanine::Generic6DofConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a87b14b3cbf5241aeba723226661764e6}{Mezzanine::HingeConstraint}.
+
+
+
+Definition at line 357 of file constraint.h.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_a56e30c94d128e4c13f449b9933f815fe}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!GetPivotBRotation@{GetPivotBRotation}}
+\index{GetPivotBRotation@{GetPivotBRotation}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{GetPivotBRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} Mezzanine::DualTransformConstraint::GetPivotBRotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_a56e30c94d128e4c13f449b9933f815fe}
+
+
+Get the relative rotation for ActorB. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} that has the rotation 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_ab3979edc1d5f3bfce878de009c18494d}{Mezzanine::Generic6DofConstraint}.
+
+
+
+Definition at line 376 of file constraint.h.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_a43e5f5d4cfd9b0ab7032d81df5c935d7}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!GetPivotBTransform@{GetPivotBTransform}}
+\index{GetPivotBTransform@{GetPivotBTransform}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{GetPivotBTransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Transform} Mezzanine::DualTransformConstraint::GetPivotBTransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_a43e5f5d4cfd9b0ab7032d81df5c935d7}
+
+
+Get the current Rotation and Location of Actor B. 
+
+\begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_ad38e140ea8edf8d9d74e99bbebf68417}{Mezzanine::Generic6DofConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a7d9a9ddc367d1a9105f1eb27fd76a65f}{Mezzanine::HingeConstraint}.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_a3dc5e7afcf612a481f81071201ecdeb7}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!SetPivotALocation@{SetPivotALocation}}
+\index{SetPivotALocation@{SetPivotALocation}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{SetPivotALocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::DualTransformConstraint::SetPivotALocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_a3dc5e7afcf612a481f81071201ecdeb7}
+
+
+Set The relative location of the pivot from ActorA's Center of gravity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The New value for PivotA\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformA. 
+
+Implements \hyperlink{classMezzanine_1_1TypedConstraint_a09aacdc6f424623cc3a2fdad9c1d0caf}{Mezzanine::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_a4670a488bc5cab478c6d69c8a0d240a5}{Mezzanine::Generic6DofConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a0990b3b85529df353aaa46f76951fd68}{Mezzanine::HingeConstraint}.
+
+
+
+Definition at line 344 of file constraint.h.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_a73cba60ff65f8ac2775b19f74e5cbe9e}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!SetPivotARotation@{SetPivotARotation}}
+\index{SetPivotARotation@{SetPivotARotation}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{SetPivotARotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::DualTransformConstraint::SetPivotARotation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_a73cba60ff65f8ac2775b19f74e5cbe9e}
+
+
+Set The relative rotation of ActorA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The new rotation amount for A\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformA 
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_a34027d82e3b8c09c6cd488335ea343bb}{Mezzanine::Generic6DofConstraint}.
+
+
+
+Definition at line 363 of file constraint.h.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_a6f1713e6af9d89de70ff77ed47c82d31}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!SetPivotATransform@{SetPivotATransform}}
+\index{SetPivotATransform@{SetPivotATransform}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{SetPivotATransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::DualTransformConstraint::SetPivotATransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{TranA}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_a6f1713e6af9d89de70ff77ed47c82d31}
+
+
+Set the Position and Rotation using a \hyperlink{classMezzanine_1_1Transform}{Transform}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TranA} & The new Position and rotation \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_a88f26ccb9a6ec67adc743d4bc7c86ddf}{Mezzanine::Generic6DofConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a44bc111ce8642c52c106af2cfe1fd7d5}{Mezzanine::HingeConstraint}.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_abf63fe4c4fc3c57a0eed7ed006a00aee}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!SetPivotBLocation@{SetPivotBLocation}}
+\index{SetPivotBLocation@{SetPivotBLocation}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{SetPivotBLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::DualTransformConstraint::SetPivotBLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_abf63fe4c4fc3c57a0eed7ed006a00aee}
+
+
+Set The relative location of the pivot from ActorB's Center of gravity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The New value for PivotB\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformB 
+
+Implements \hyperlink{classMezzanine_1_1TypedConstraint_ad59aa55a0e4b8aa107db9c9460b57ec3}{Mezzanine::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_a1b5fc577a2c627266436fd5b134728bc}{Mezzanine::Generic6DofConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a7ae57514d6bd1119859ecb137cf58e5e}{Mezzanine::HingeConstraint}.
+
+
+
+Definition at line 349 of file constraint.h.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_ab25460e03f187dd56657e43e6302ef45}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!SetPivotBRotation@{SetPivotBRotation}}
+\index{SetPivotBRotation@{SetPivotBRotation}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{SetPivotBRotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::DualTransformConstraint::SetPivotBRotation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_ab25460e03f187dd56657e43e6302ef45}
+
+
+Set The relative rotation of ActorB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otation} & The new rotation amount for B\\
+\hline
+\end{DoxyParams}
+Ultimately this information winds up being stored in the TransformB 
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_afd149f6868de162f75a3e2293d6c143d}{Mezzanine::Generic6DofConstraint}.
+
+
+
+Definition at line 368 of file constraint.h.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_ac5ee69ce5d68f4e299e7916f764ee396}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!SetPivotBTransform@{SetPivotBTransform}}
+\index{SetPivotBTransform@{SetPivotBTransform}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{SetPivotBTransform}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::DualTransformConstraint::SetPivotBTransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{TranB}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_ac5ee69ce5d68f4e299e7916f764ee396}
+
+
+Set the Position and Rotation using a \hyperlink{classMezzanine_1_1Transform}{Transform}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TranB} & The new Position and rotation \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_adaa5bb038814aa287773f56d40e90210}{Mezzanine::Generic6DofConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_abbe27830e0d17c44125cee59d84a9d37}{Mezzanine::HingeConstraint}.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+constraint.h\end{DoxyCompactItemize}

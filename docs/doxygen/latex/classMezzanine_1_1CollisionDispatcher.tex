@@ -1,0 +1,65 @@
+\hypertarget{classMezzanine_1_1CollisionDispatcher}{
+\subsection{Mezzanine::CollisionDispatcher Class Reference}
+\label{classMezzanine_1_1CollisionDispatcher}\index{Mezzanine::CollisionDispatcher@{Mezzanine::CollisionDispatcher}}
+}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1CollisionDispatcher_a0fd318aa1057f8b48f79b28e0fc3783f}{
+typedef std::list$<$ btCollisionAlgorithm $\ast$ $>$ {\bfseries AlgoList}}
+\label{classMezzanine_1_1CollisionDispatcher_a0fd318aa1057f8b48f79b28e0fc3783f}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1CollisionDispatcher_ae384ed995cba028d6e7bd57098d2f67d}{
+void $\ast$ {\bfseries allocateCollisionAlgorithm} (int size)}
+\label{classMezzanine_1_1CollisionDispatcher_ae384ed995cba028d6e7bd57098d2f67d}
+
+\item 
+\hypertarget{classMezzanine_1_1CollisionDispatcher_a9aa6ea6e6c0aaa308a5693062ccf6568}{
+{\bfseries CollisionDispatcher} (btCollisionConfiguration $\ast$CollisionConfig)}
+\label{classMezzanine_1_1CollisionDispatcher_a9aa6ea6e6c0aaa308a5693062ccf6568}
+
+\item 
+\hypertarget{classMezzanine_1_1CollisionDispatcher_a7f5296daba765a8b1c258239f519c021}{
+void {\bfseries freeCollisionAlgorithm} (void $\ast$ptr)}
+\label{classMezzanine_1_1CollisionDispatcher_a7f5296daba765a8b1c258239f519c021}
+
+\item 
+\hypertarget{classMezzanine_1_1CollisionDispatcher_accdd6570d86d41be9bc1672254d15ff9}{
+AlgoList \& {\bfseries GetAlgoCreationQueue} ()}
+\label{classMezzanine_1_1CollisionDispatcher_accdd6570d86d41be9bc1672254d15ff9}
+
+\item 
+\hypertarget{classMezzanine_1_1CollisionDispatcher_aa401c7c3c50f72578df60609f9cce02e}{
+std::list$<$ \hyperlink{classMezzanine_1_1PhysicsManager_a930a032df1bf01b9f93ba4e815a433c2}{PhysicsManager::CollisionIterator} $>$ \& {\bfseries GetManifoldDestructionQueue} ()}
+\label{classMezzanine_1_1CollisionDispatcher_aa401c7c3c50f72578df60609f9cce02e}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1CollisionDispatcher_a124864848dcdbf42a92b45b3cca2137e}{
+AlgoList {\bfseries AlgoCreationQueue}}
+\label{classMezzanine_1_1CollisionDispatcher_a124864848dcdbf42a92b45b3cca2137e}
+
+\item 
+\hypertarget{classMezzanine_1_1CollisionDispatcher_abec245f674a643a070fb7b87f96cfc79}{
+std::list$<$ \hyperlink{classMezzanine_1_1PhysicsManager_a930a032df1bf01b9f93ba4e815a433c2}{PhysicsManager::CollisionIterator} $>$ {\bfseries ManifoldDestructionQueue}}
+\label{classMezzanine_1_1CollisionDispatcher_abec245f674a643a070fb7b87f96cfc79}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+
+
+Definition at line 303 of file physicsmanager.cpp.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+physicsmanager.cpp\end{DoxyCompactItemize}

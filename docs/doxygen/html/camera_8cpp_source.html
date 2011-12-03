@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: camera.cpp Source File</title>
+<title>MezzanineEngine: camera.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -64,25 +64,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
 <a name="l00002"></a>00002 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00003"></a>00003 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00003"></a>00003 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00004"></a>00004 <span class="comment"></span>
-<a name="l00005"></a>00005 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00005"></a>00005 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00006"></a>00006 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00007"></a>00007 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00008"></a>00008 <span class="comment">    (at your option) any later version.</span>
 <a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00010"></a>00010 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00011"></a>00011 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00012"></a>00012 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00013"></a>00013 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00014"></a>00014 <span class="comment"></span>
 <a name="l00015"></a>00015 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00016"></a>00016 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00016"></a>00016 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00017"></a>00017 <span class="comment">*/</span>
 <a name="l00018"></a>00018 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00019"></a>00019 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00020"></a>00020 <span class="comment">*/</span>
-<a name="l00021"></a>00021 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00021"></a>00021 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00022"></a>00022 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00023"></a>00023 <span class="comment"></span>
 <a name="l00024"></a>00024 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -105,337 +105,336 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00041"></a>00041 <span class="preprocessor">#ifndef _Camera_cpp</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span><span class="preprocessor">#define _Camera_cpp</span>
 <a name="l00043"></a>00043 <span class="preprocessor"></span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;<a class="code" href="camera_8h.html" title="Declaration of the phys::Camera class.">camera.h</a>&quot;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;<a class="code" href="camera_8h.html" title="Declaration of the Mezzanine::Camera class.">camera.h</a>&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;cameramanager.h&quot;</span>
-<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;exception.h&quot;</span>
-<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;scenemanager.h&quot;</span>
-<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;<a class="code" href="xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a>&quot;</span>
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="preprocessor">#include &lt;memory&gt;</span>
-<a name="l00054"></a>00054 <span class="comment"></span>
-<a name="l00055"></a>00055 <span class="comment">/// @file camera.h</span>
-<a name="l00056"></a>00056 <span class="comment">/// @brief Declaration of the phys::Camera class</span>
-<a name="l00057"></a>00057 <span class="comment"></span>
-<a name="l00058"></a>00058 <span class="keyword">namespace </span>phys
-<a name="l00059"></a>00059 {
-<a name="l00060"></a><a class="code" href="classphys_1_1Camera.html#a863e7b7a0fb4db7969014d8391b5ca30">00060</a>     <a class="code" href="classphys_1_1Camera.html#a863e7b7a0fb4db7969014d8391b5ca30" title="Basic Camera Constructor.">Camera::Camera</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="classphys_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* Manager)
-<a name="l00061"></a>00061     {
-<a name="l00062"></a>00062         Ogre::Camera* OgreCam = Manager-&gt;<a class="code" href="classphys_1_1CameraManager.html#a8e89645398c7d334e99280cfa721d864" title="Used to reference the appropriate scene.">SManager</a>-&gt;<a class="code" href="classphys_1_1SceneManager.html#aa6bfec6329ecfb7c6196f488e1499c3c" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createCamera(Name);
-<a name="l00063"></a>00063         this-&gt;Construct(OgreCam, Manager);
-<a name="l00064"></a>00064     }
-<a name="l00065"></a>00065 
-<a name="l00066"></a><a class="code" href="classphys_1_1Camera.html#a0510d4f9bf6fb195115272cbd116e8dd">00066</a>     <a class="code" href="classphys_1_1Camera.html#a863e7b7a0fb4db7969014d8391b5ca30" title="Basic Camera Constructor.">Camera::Camera</a>(Ogre::Camera* <a class="code" href="classphys_1_1Camera.html" title="This is the camera class.">Camera</a>, <a class="code" href="classphys_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* Manager)
-<a name="l00067"></a>00067     {
-<a name="l00068"></a>00068         this-&gt;Construct(Camera, Manager);
-<a name="l00069"></a>00069     }
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071     <span class="keywordtype">void</span> Camera::Construct(Ogre::Camera* <a class="code" href="classphys_1_1Camera.html" title="This is the camera class.">Camera</a>, <a class="code" href="classphys_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* Manager)
-<a name="l00072"></a>00072     {
-<a name="l00073"></a>00073         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a> = <a class="code" href="classphys_1_1Camera.html#a863e7b7a0fb4db7969014d8391b5ca30" title="Basic Camera Constructor.">Camera</a>;
-<a name="l00074"></a>00074         this-&gt;<a class="code" href="classphys_1_1Camera.html#a909203ede748deb1b587a8758ba8cec4" title="This is the Camera manager that this camera is attached to.">CamManager</a> = Manager;
-<a name="l00075"></a>00075         this-&gt;<a class="code" href="classphys_1_1Camera.html#a0fdf28666baba46e907d6a8eac714915" title="Sets the short range clip distance.">SetNearClipDistance</a>(5.0f);
-<a name="l00076"></a>00076         this-&gt;<a class="code" href="classphys_1_1Camera.html#a77f0fa5cb6b934cfda8f5143afae3a0e" title="Sets the long range clip distance.">SetFarClipDistance</a>(5000.0f);
-<a name="l00077"></a>00077         this-&gt;<a class="code" href="classphys_1_1Camera.html#aa6d7285b7a3fc43e3c6dd05ff30f89ab" title="Sets whether to lock rotation around the Y axis.">SetFixedYawAxis</a>(<span class="keyword">true</span>,<a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>(0,1,0));
-<a name="l00078"></a>00078     }
-<a name="l00079"></a>00079 
-<a name="l00080"></a><a class="code" href="classphys_1_1Camera.html#aa45f340a6f7ba0970aa2602a928463ea">00080</a>     <a class="code" href="classphys_1_1Camera.html#aa45f340a6f7ba0970aa2602a928463ea" title="Class Destructor.">Camera::~Camera</a>()
-<a name="l00081"></a>00081     {
-<a name="l00082"></a>00082         <span class="keywordflow">if</span> (<a class="code" href="classphys_1_1Camera.html#a909203ede748deb1b587a8758ba8cec4" title="This is the Camera manager that this camera is attached to.">CamManager</a>-&gt;<a class="code" href="classphys_1_1CameraManager.html#a8e89645398c7d334e99280cfa721d864" title="Used to reference the appropriate scene.">SManager</a> &amp;&amp; <a class="code" href="classphys_1_1Camera.html#a909203ede748deb1b587a8758ba8cec4" title="This is the Camera manager that this camera is attached to.">CamManager</a>-&gt;<a class="code" href="classphys_1_1CameraManager.html#a8e89645398c7d334e99280cfa721d864" title="Used to reference the appropriate scene.">SManager</a>-&gt;<a class="code" href="classphys_1_1SceneManager.html#aa6bfec6329ecfb7c6196f488e1499c3c" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>())
-<a name="l00083"></a>00083             { <a class="code" href="classphys_1_1Camera.html#a909203ede748deb1b587a8758ba8cec4" title="This is the Camera manager that this camera is attached to.">CamManager</a>-&gt;<a class="code" href="classphys_1_1CameraManager.html#a8e89645398c7d334e99280cfa721d864" title="Used to reference the appropriate scene.">SManager</a>-&gt;<a class="code" href="classphys_1_1SceneManager.html#aa6bfec6329ecfb7c6196f488e1499c3c" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;destroyCamera(<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>); }
-<a name="l00084"></a>00084     }
-<a name="l00085"></a>00085 
-<a name="l00086"></a><a class="code" href="classphys_1_1Camera.html#ae24490b8589796cb5f51d291cc418d84">00086</a>     <a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="classphys_1_1Camera.html#ae24490b8589796cb5f51d291cc418d84" title="Gets the camera&amp;#39;s set name.">Camera::GetName</a>()<span class="keyword"> const</span>
-<a name="l00087"></a>00087 <span class="keyword">    </span>{
-<a name="l00088"></a>00088         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getName();
-<a name="l00089"></a>00089     }
-<a name="l00090"></a>00090 
-<a name="l00091"></a><a class="code" href="classphys_1_1Camera.html#a95d04ee7482ae6670229f59d63ee8926">00091</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a95d04ee7482ae6670229f59d63ee8926" title="Sets the type of projection to be used with this camera.">Camera::SetCameraType</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Camera.html#a87d8d46e9eb2080b10712079be69d86a" title="Values for storing how perspective should be interpretted.">ProjectionType</a> Type)
-<a name="l00092"></a>00092     {
-<a name="l00093"></a>00093         <span class="keywordflow">if</span>( <a class="code" href="classphys_1_1Camera.html#a87d8d46e9eb2080b10712079be69d86aa6a71e6ab2139c8fc4d48d64aa9717f02" title="Not at all, objects at any distance are the same size.">Camera::Orthographic</a> == Type )
-<a name="l00094"></a>00094         {
-<a name="l00095"></a>00095             this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setProjectionType(Ogre::PT_ORTHOGRAPHIC);
-<a name="l00096"></a>00096         }
-<a name="l00097"></a>00097         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classphys_1_1Camera.html#a87d8d46e9eb2080b10712079be69d86aacfe21986c8c655b8d19ebd76118de055" title="Normal perspective.">Camera::Perspective</a> == Type )
-<a name="l00098"></a>00098         {
-<a name="l00099"></a>00099             this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setProjectionType(Ogre::PT_PERSPECTIVE);
-<a name="l00100"></a>00100         }<span class="keywordflow">else</span>{
-<a name="l00101"></a>00101             <span class="keywordflow">throw</span>(<a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<span class="stringliteral">&quot;Unknown ProjectionType when attempting to set Camera Type.&quot;</span>));
-<a name="l00102"></a>00102         }
-<a name="l00103"></a>00103     }
-<a name="l00104"></a>00104 
-<a name="l00105"></a><a class="code" href="classphys_1_1Camera.html#aa79582e78a3eff11a8c4fe9c058566b0">00105</a>     <a class="code" href="classphys_1_1Camera.html#a87d8d46e9eb2080b10712079be69d86a" title="Values for storing how perspective should be interpretted.">Camera::ProjectionType</a> <a class="code" href="classphys_1_1Camera.html#aa79582e78a3eff11a8c4fe9c058566b0" title="Get the type of projection used by the camera.">Camera::GetCameraType</a>()<span class="keyword"> const</span>
-<a name="l00106"></a>00106 <span class="keyword">    </span>{
-<a name="l00107"></a>00107         <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getProjectionType()==Ogre::PT_ORTHOGRAPHIC )
-<a name="l00108"></a>00108         {
-<a name="l00109"></a>00109             <span class="keywordflow">return</span> <a class="code" href="classphys_1_1Camera.html#a87d8d46e9eb2080b10712079be69d86aa6a71e6ab2139c8fc4d48d64aa9717f02" title="Not at all, objects at any distance are the same size.">Camera::Orthographic</a>;
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111         }
-<a name="l00112"></a>00112         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getProjectionType()==Ogre::PT_PERSPECTIVE )
-<a name="l00113"></a>00113         {
-<a name="l00114"></a>00114             <span class="keywordflow">return</span> <a class="code" href="classphys_1_1Camera.html#a87d8d46e9eb2080b10712079be69d86aacfe21986c8c655b8d19ebd76118de055" title="Normal perspective.">Camera::Perspective</a>;
-<a name="l00115"></a>00115         }<span class="keywordflow">else</span>{
-<a name="l00116"></a>00116             <span class="keywordflow">throw</span>(<a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<span class="stringliteral">&quot;Unknown ProjectionType when attempting to get Camera Type.&quot;</span>));
-<a name="l00117"></a>00117         }
-<a name="l00118"></a>00118     }
-<a name="l00119"></a>00119 
-<a name="l00120"></a><a class="code" href="classphys_1_1Camera.html#a24cb50ccb644f3f7e925819aba3ddad2">00120</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a24cb50ccb644f3f7e925819aba3ddad2" title="Defines the size of the Orthographic projection window.">Camera::SetOrthoWindow</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Width, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Height)
-<a name="l00121"></a>00121     {
-<a name="l00122"></a>00122         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrthoWindow(Width, Height);
-<a name="l00123"></a>00123     }
-<a name="l00124"></a>00124 
-<a name="l00125"></a><a class="code" href="classphys_1_1Camera.html#a76c140a73a4d862f260b4a76d85b4e34">00125</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a76c140a73a4d862f260b4a76d85b4e34" title="Defines the size of the Orthographic projection window.">Camera::SetOrthoWindowHeight</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Height)
-<a name="l00126"></a>00126     {
-<a name="l00127"></a>00127         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrthoWindowHeight(Height);
-<a name="l00128"></a>00128     }
-<a name="l00129"></a>00129 
-<a name="l00130"></a><a class="code" href="classphys_1_1Camera.html#a1e5ba572ce27880def46538157f4ccb7">00130</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a1e5ba572ce27880def46538157f4ccb7" title="Defines the size of the Orthographic projection window.">Camera::SetOrthoWindowWidth</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Width)
-<a name="l00131"></a>00131     {
-<a name="l00132"></a>00132         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrthoWindowWidth(Width);
-<a name="l00133"></a>00133     }
-<a name="l00134"></a>00134 
-<a name="l00135"></a><a class="code" href="classphys_1_1Camera.html#afd2a77e96dd6d0dec1071dcc3229425f">00135</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#afd2a77e96dd6d0dec1071dcc3229425f" title="Sets the location of a camera.">Camera::SetLocation</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location)
-<a name="l00136"></a>00136     {
-<a name="l00137"></a>00137         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setPosition(Location.<a class="code" href="classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00138"></a>00138     }
-<a name="l00139"></a><a class="code" href="classphys_1_1Camera.html#a6ece06a179798b3240362b1bcb751f2f">00139</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a6ece06a179798b3240362b1bcb751f2f" title="Sets the Direction for the camera.">Camera::SetDirection</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Direction)
-<a name="l00140"></a>00140     {
-<a name="l00141"></a>00141         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setDirection(Direction.<a class="code" href="classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00142"></a>00142     }
-<a name="l00143"></a>00143 
-<a name="l00144"></a><a class="code" href="classphys_1_1Camera.html#adbfa4a59eb09c0578c9aac792b78ef55">00144</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#adbfa4a59eb09c0578c9aac792b78ef55" title="Sets the orientation of the camera.">Camera::SetOrientation</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Orientation)
-<a name="l00145"></a>00145     {
-<a name="l00146"></a>00146         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrientation(Orientation.<a class="code" href="classphys_1_1Quaternion.html#aa22645e2e2972007bcf61cd2f8e506d0" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>());
-<a name="l00147"></a>00147     }
-<a name="l00148"></a>00148 
-<a name="l00149"></a><a class="code" href="classphys_1_1Camera.html#a0fdf28666baba46e907d6a8eac714915">00149</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a0fdf28666baba46e907d6a8eac714915" title="Sets the short range clip distance.">Camera::SetNearClipDistance</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; NearDist)
-<a name="l00150"></a>00150     {
-<a name="l00151"></a>00151         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setNearClipDistance(NearDist);
-<a name="l00152"></a>00152     }
-<a name="l00153"></a>00153 
-<a name="l00154"></a><a class="code" href="classphys_1_1Camera.html#a77f0fa5cb6b934cfda8f5143afae3a0e">00154</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a77f0fa5cb6b934cfda8f5143afae3a0e" title="Sets the long range clip distance.">Camera::SetFarClipDistance</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; FarDist)
-<a name="l00155"></a>00155     {
-<a name="l00156"></a>00156         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setFarClipDistance (FarDist);
-<a name="l00157"></a>00157     }
-<a name="l00158"></a>00158 
-<a name="l00159"></a><a class="code" href="classphys_1_1Camera.html#a731d933c30bc95a83555412184d65cf8">00159</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a731d933c30bc95a83555412184d65cf8" title="Sets the aspect ratio of the cameras veiw.">Camera::SetAspectRatio</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Ratio)
-<a name="l00160"></a>00160     {
-<a name="l00161"></a>00161         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setAspectRatio(Ratio);
-<a name="l00162"></a>00162     }
-<a name="l00163"></a>00163 
-<a name="l00164"></a><a class="code" href="classphys_1_1Camera.html#a299de2281cc566df476b4684ac7d89fa">00164</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a299de2281cc566df476b4684ac7d89fa" title="Sets the direction the camera faces.">Camera::LookAt</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; TargetLoc)
-<a name="l00165"></a>00165     {
-<a name="l00166"></a>00166         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;lookAt(TargetLoc.<a class="code" href="classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00167"></a>00167     }
-<a name="l00168"></a>00168 
-<a name="l00169"></a><a class="code" href="classphys_1_1Camera.html#a63cce67b42008ee8ce481b1ffd7fcbdf">00169</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a63cce67b42008ee8ce481b1ffd7fcbdf" title="Moves the camera without factoring orientation.">Camera::Move</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; ToMove)
-<a name="l00170"></a>00170     {
-<a name="l00171"></a>00171         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;move(ToMove.<a class="code" href="classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00172"></a>00172     }
-<a name="l00173"></a>00173 
-<a name="l00174"></a><a class="code" href="classphys_1_1Camera.html#a34a5a7b76016042ce8b2278c35437486">00174</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a34a5a7b76016042ce8b2278c35437486" title="Moves the camera while factoring orientation.">Camera::MoveRelative</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; ToMove)
-<a name="l00175"></a>00175     {
-<a name="l00176"></a>00176         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;moveRelative(ToMove.<a class="code" href="classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00177"></a>00177     }
-<a name="l00178"></a>00178 
-<a name="l00179"></a><a class="code" href="classphys_1_1Camera.html#aa6d7285b7a3fc43e3c6dd05ff30f89ab">00179</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#aa6d7285b7a3fc43e3c6dd05ff30f89ab" title="Sets whether to lock rotation around the Y axis.">Camera::SetFixedYawAxis</a>(<span class="keywordtype">bool</span> UseFixed, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Axis)
-<a name="l00180"></a>00180     {
-<a name="l00181"></a>00181         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setFixedYawAxis(UseFixed, Axis.<a class="code" href="classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00182"></a>00182         this-&gt;YawAxis = Axis;
-<a name="l00183"></a>00183         this-&gt;YawOnAxis = UseFixed;
-<a name="l00184"></a>00184     }
-<a name="l00185"></a>00185 
-<a name="l00186"></a><a class="code" href="classphys_1_1Camera.html#a1b4d5be85c528541c7a1cbebb41bfd89">00186</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#aa6d7285b7a3fc43e3c6dd05ff30f89ab" title="Sets whether to lock rotation around the Y axis.">Camera::SetFixedYawAxis</a>(<span class="keywordtype">bool</span> UseFixed)
-<a name="l00187"></a>00187     {
-<a name="l00188"></a>00188         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setFixedYawAxis(UseFixed);
-<a name="l00189"></a>00189         this-&gt;YawOnAxis = UseFixed;
-<a name="l00190"></a>00190     }
-<a name="l00191"></a>00191 
-<a name="l00192"></a><a class="code" href="classphys_1_1Camera.html#a9b0aa17df46c427ab531bd587bd76e0f">00192</a>     <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1Camera.html#a9b0aa17df46c427ab531bd587bd76e0f" title="Is fixed yaw enabled.">Camera::IsFixedYawEnabled</a>()<span class="keyword"> const</span>
-<a name="l00193"></a>00193 <span class="keyword">        </span>{ <span class="keywordflow">return</span> this-&gt;YawOnAxis; }
-<a name="l00194"></a>00194 
-<a name="l00195"></a><a class="code" href="classphys_1_1Camera.html#a1f4126761e14d9b960395c79b6c4f13f">00195</a>     <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classphys_1_1Camera.html#a1f4126761e14d9b960395c79b6c4f13f" title="If fixed yaw is enabled, on which axis is yawing disabled.">Camera::GetFixedYawAxis</a>()<span class="keyword"> const</span>
-<a name="l00196"></a>00196 <span class="keyword">    </span>{
-<a name="l00197"></a>00197         <span class="keywordflow">if</span> (this-&gt;YawOnAxis)
-<a name="l00198"></a>00198             { <span class="keywordflow">return</span> this-&gt;YawAxis; }
-<a name="l00199"></a>00199         <span class="keywordflow">else</span>
-<a name="l00200"></a>00200             { <span class="keywordflow">return</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0); }
-<a name="l00201"></a>00201     }
-<a name="l00202"></a>00202 
-<a name="l00203"></a>00203     <span class="comment">/*void Camera::SetAutoTracking(bool Enabled, String Target, Vector3 Offset)</span>
-<a name="l00204"></a>00204 <span class="comment">    {</span>
-<a name="l00205"></a>00205 <span class="comment">        Ogre::SceneNode* Trgt = CamManager-&gt;FindNode(Target);</span>
-<a name="l00206"></a>00206 <span class="comment">        this-&gt;Cam-&gt;setAutoTracking(Enabled, Trgt, Offset.GetOgreVector3());</span>
-<a name="l00207"></a>00207 <span class="comment">    }</span>
-<a name="l00208"></a>00208 <span class="comment"></span>
-<a name="l00209"></a>00209 <span class="comment">    void Camera::SetAutoTracking(bool Enabled, String Target)</span>
-<a name="l00210"></a>00210 <span class="comment">    {</span>
-<a name="l00211"></a>00211 <span class="comment">        Ogre::SceneNode* Trgt = CamManager-&gt;FindNode(Target);</span>
-<a name="l00212"></a>00212 <span class="comment">        this-&gt;Cam-&gt;setAutoTracking(Enabled, Trgt);</span>
-<a name="l00213"></a>00213 <span class="comment">    }*/</span>
-<a name="l00214"></a>00214 
-<a name="l00215"></a><a class="code" href="classphys_1_1Camera.html#a01d119eb8bd10a8654493b043110ca0f">00215</a>     <a class="code" href="classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="classphys_1_1Camera.html#a01d119eb8bd10a8654493b043110ca0f" title="Gets a Ray from the camera to the viewport.">Camera::GetCameraToViewportRay</a>(<a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Screenx, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Screeny)<span class="keyword"> const</span>
-<a name="l00216"></a>00216 <span class="keyword">    </span>{
-<a name="l00217"></a>00217         <a class="code" href="classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> R(this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getCameraToViewportRay(Screenx, Screeny));
-<a name="l00218"></a>00218         <span class="keywordflow">return</span> R;
-<a name="l00219"></a>00219     }
-<a name="l00220"></a>00220 
-<a name="l00221"></a>00221     <span class="comment">/*WorldNode* Camera::GetWorldNode() const</span>
-<a name="l00222"></a>00222 <span class="comment">    {</span>
-<a name="l00223"></a>00223 <span class="comment">        //Ogre::SceneNode* tempnode = this-&gt;Cam-&gt;getParentSceneNode();</span>
-<a name="l00224"></a>00224 <span class="comment">        //return tempnode-&gt;getName();</span>
-<a name="l00225"></a>00225 <span class="comment">    }*/</span>
-<a name="l00226"></a>00226 
-<a name="l00227"></a><a class="code" href="classphys_1_1Camera.html#a75b3f25ff664c4f95f0e04cb9edceeb4">00227</a>     <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classphys_1_1Camera.html#a75b3f25ff664c4f95f0e04cb9edceeb4">Camera::GetLocation</a>()<span class="keyword"> const</span>
-<a name="l00228"></a>00228 <span class="keyword">        </span>{ <span class="keywordflow">return</span>  <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition()); }
-<a name="l00229"></a>00229 
-<a name="l00230"></a><a class="code" href="classphys_1_1Camera.html#ae3dc70090e83e19a9c5f6df302bb57a5">00230</a>     <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classphys_1_1Camera.html#ae3dc70090e83e19a9c5f6df302bb57a5" title="Gets the relative location of the camera.">Camera::GetRelativeLocation</a>()<span class="keyword"> const</span>
-<a name="l00231"></a>00231 <span class="keyword">        </span>{ <span class="keywordflow">return</span>  <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition()); }
-<a name="l00232"></a>00232 
-<a name="l00233"></a><a class="code" href="classphys_1_1Camera.html#a7f71146cd533f6a1fc8426a9ed40b763">00233</a>     <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classphys_1_1Camera.html#a7f71146cd533f6a1fc8426a9ed40b763" title="Gets the global/absolute location of the camera.">Camera::GetGlobalLocation</a>()<span class="keyword"> const</span>
-<a name="l00234"></a>00234 <span class="keyword">        </span>{ <span class="keywordflow">return</span>  <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getRealPosition()); }
-<a name="l00235"></a>00235 
-<a name="l00236"></a><a class="code" href="classphys_1_1Camera.html#a48e0b33e0f12247bc0a0e0d6f759683e">00236</a>     <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> <a class="code" href="classphys_1_1Camera.html#a48e0b33e0f12247bc0a0e0d6f759683e" title="Gets the direction the camera is facing.">Camera::GetOrientation</a>()<span class="keyword"> const</span>
-<a name="l00237"></a>00237 <span class="keyword">    </span>{
-<a name="l00238"></a>00238         <span class="keywordflow">return</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>(this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getOrientation());
-<a name="l00239"></a>00239     }
-<a name="l00240"></a>00240 
-<a name="l00241"></a><a class="code" href="classphys_1_1Camera.html#a66e2854557687d98cc5882363e6d6606">00241</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a66e2854557687d98cc5882363e6d6606" title="Will zoom in or out the camera.">Camera::ZoomCamera</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Zoom)
-<a name="l00242"></a>00242     {
-<a name="l00243"></a>00243         Ogre::Vector3 zoomlevel(0,0,Zoom);
-<a name="l00244"></a>00244         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;moveRelative(zoomlevel);
-<a name="l00245"></a>00245     }
-<a name="l00246"></a>00246 
-<a name="l00247"></a><a class="code" href="classphys_1_1Camera.html#a181465e6add36c07a63fdd26aee7c69a">00247</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a181465e6add36c07a63fdd26aee7c69a" title="Resets the zoom level back to the default.">Camera::ResetZoom</a>()
-<a name="l00248"></a>00248     {
-<a name="l00249"></a>00249         Ogre::Vector3 loc;
-<a name="l00250"></a>00250         loc = this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition();
-<a name="l00251"></a>00251         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> zoom=loc.z;
-<a name="l00252"></a>00252         zoom=0-zoom;
-<a name="l00253"></a>00253         this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;moveRelative(Ogre::Vector3(0,0,zoom));
-<a name="l00254"></a>00254     }
-<a name="l00255"></a>00255 
-<a name="l00256"></a><a class="code" href="classphys_1_1Camera.html#a4f78f7a62580fa538d5bf2cb361644b2">00256</a>     Ogre::Camera* <a class="code" href="classphys_1_1Camera.html#a4f78f7a62580fa538d5bf2cb361644b2" title="Gets the internal camera this camera is based on.">Camera::GetOgreCamera</a>()<span class="keyword"> const</span>
-<a name="l00257"></a>00257 <span class="keyword">    </span>{
-<a name="l00258"></a>00258         <span class="keywordflow">return</span> <a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>;
-<a name="l00259"></a>00259     }
-<a name="l00260"></a>00260 <span class="comment"></span>
-<a name="l00261"></a>00261 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00262"></a>00262 <span class="comment">    /// Inherited From Attachable</span>
-<a name="l00263"></a><a class="code" href="classphys_1_1Camera.html#a4dce38bad69f1bc58f510ce01d6d6edf">00263</a> <span class="comment"></span>    <a class="code" href="classphys_1_1Attachable.html#acd1fca033e7cc0bb3024a92d466d213a" title="A list of possible types of this that could be attached to a WorldNode.">Attachable::AttachableElement</a> <a class="code" href="classphys_1_1Camera.html#a4dce38bad69f1bc58f510ce01d6d6edf" title="What kind of Attachable is this.">Camera::GetAttachableType</a>()<span class="keyword"> const</span>
-<a name="l00264"></a>00264 <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="classphys_1_1Camera.html#a863e7b7a0fb4db7969014d8391b5ca30" title="Basic Camera Constructor.">Attachable::Camera</a>; }
-<a name="l00265"></a>00265 
-<a name="l00266"></a><a class="code" href="classphys_1_1Camera.html#afaa81ebb01f1c64a324f802b6743b6f7">00266</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#afaa81ebb01f1c64a324f802b6743b6f7" title="Does the Final Work to attach on the Attachable Side, should only be called by WorldNode::AttachFinal...">Camera::AttachToFinal</a>(Ogre::SceneNode* RawTarget, <a class="code" href="classphys_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">phys::WorldNode</a>* Target)
-<a name="l00267"></a>00267     {
-<a name="l00268"></a>00268         <a class="code" href="classphys_1_1Camera.html#afaa81ebb01f1c64a324f802b6743b6f7" title="Does the Final Work to attach on the Attachable Side, should only be called by WorldNode::AttachFinal...">Attachable::AttachToFinal</a>(RawTarget, Target);
-<a name="l00269"></a>00269         RawTarget-&gt;attachObject(this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>);
-<a name="l00270"></a>00270     }
-<a name="l00271"></a>00271 
-<a name="l00272"></a><a class="code" href="classphys_1_1Camera.html#a087e4e09b4b0c7adf4c267c5e8e1a6d9">00272</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1Camera.html#a087e4e09b4b0c7adf4c267c5e8e1a6d9" title="Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal...">Camera::DetachFromFinal</a>(Ogre::SceneNode* RawTarget)
-<a name="l00273"></a>00273     {
-<a name="l00274"></a>00274         <a class="code" href="classphys_1_1Camera.html#a087e4e09b4b0c7adf4c267c5e8e1a6d9" title="Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal...">Attachable::DetachFromFinal</a>(RawTarget);
-<a name="l00275"></a>00275         RawTarget-&gt;detachObject(this-&gt;<a class="code" href="classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>);
+<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;stringtool.h&quot;</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;exception.h&quot;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;scenemanager.h&quot;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;xml.h&quot;</span>
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="preprocessor">#include &lt;memory&gt;</span>
+<a name="l00055"></a>00055 <span class="comment"></span>
+<a name="l00056"></a>00056 <span class="comment">/// @file camera.h</span>
+<a name="l00057"></a>00057 <span class="comment">/// @brief Declaration of the Mezzanine::Camera class</span>
+<a name="l00058"></a>00058 <span class="comment"></span>
+<a name="l00059"></a>00059 <span class="keyword">namespace </span>Mezzanine
+<a name="l00060"></a>00060 {
+<a name="l00061"></a><a class="code" href="classMezzanine_1_1Camera.html#a172e91734ebe0cb5d8332ef00606526e">00061</a>     <a class="code" href="classMezzanine_1_1Camera.html#a172e91734ebe0cb5d8332ef00606526e" title="Basic Camera Constructor.">Camera::Camera</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="classMezzanine_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* Manager)
+<a name="l00062"></a>00062     {
+<a name="l00063"></a>00063         Ogre::Camera* OgreCam = Manager-&gt;<a class="code" href="classMezzanine_1_1CameraManager.html#a384babc63ab516b26e0e5d45ea525ced" title="Used to reference the appropriate scene.">SManager</a>-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createCamera(Name);
+<a name="l00064"></a>00064         this-&gt;Construct(OgreCam, Manager);
+<a name="l00065"></a>00065     }
+<a name="l00066"></a>00066 
+<a name="l00067"></a><a class="code" href="classMezzanine_1_1Camera.html#aa20f07494ece246945eb3cb05f549f82">00067</a>     <a class="code" href="classMezzanine_1_1Camera.html#a172e91734ebe0cb5d8332ef00606526e" title="Basic Camera Constructor.">Camera::Camera</a>(Ogre::Camera* <a class="code" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Camera</a>, <a class="code" href="classMezzanine_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* Manager)
+<a name="l00068"></a>00068     {
+<a name="l00069"></a>00069         this-&gt;Construct(Camera, Manager);
+<a name="l00070"></a>00070     }
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072     <span class="keywordtype">void</span> Camera::Construct(Ogre::Camera* <a class="code" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Camera</a>, <a class="code" href="classMezzanine_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* Manager)
+<a name="l00073"></a>00073     {
+<a name="l00074"></a>00074         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a> = <a class="code" href="classMezzanine_1_1Camera.html#a172e91734ebe0cb5d8332ef00606526e" title="Basic Camera Constructor.">Camera</a>;
+<a name="l00075"></a>00075         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a8491540c829acc1bebbed24c9de0dfaf" title="This is the Camera manager that this camera is attached to.">CamManager</a> = Manager;
+<a name="l00076"></a>00076         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a638201c94b28ca0acc406b11f166e751" title="Sets the short range clip distance.">SetNearClipDistance</a>(5.0f);
+<a name="l00077"></a>00077         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#af24424a1670ae6b10e9a61fbaf9fd23a" title="Sets the long range clip distance.">SetFarClipDistance</a>(5000.0f);
+<a name="l00078"></a>00078         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a2ffb9eca37630a8d26669aab8668bce3" title="Sets whether to lock rotation around the Y axis.">SetFixedYawAxis</a>(<span class="keyword">true</span>,<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Mezzanine::Vector3</a>(0,1,0));
+<a name="l00079"></a>00079     }
+<a name="l00080"></a>00080 
+<a name="l00081"></a><a class="code" href="classMezzanine_1_1Camera.html#ab25144933c625492a059e57401387c40">00081</a>     <a class="code" href="classMezzanine_1_1Camera.html#ab25144933c625492a059e57401387c40" title="Class Destructor.">Camera::~Camera</a>()
+<a name="l00082"></a>00082     {
+<a name="l00083"></a>00083         <span class="keywordflow">if</span> (<a class="code" href="classMezzanine_1_1Camera.html#a8491540c829acc1bebbed24c9de0dfaf" title="This is the Camera manager that this camera is attached to.">CamManager</a>-&gt;<a class="code" href="classMezzanine_1_1CameraManager.html#a384babc63ab516b26e0e5d45ea525ced" title="Used to reference the appropriate scene.">SManager</a> &amp;&amp; <a class="code" href="classMezzanine_1_1Camera.html#a8491540c829acc1bebbed24c9de0dfaf" title="This is the Camera manager that this camera is attached to.">CamManager</a>-&gt;<a class="code" href="classMezzanine_1_1CameraManager.html#a384babc63ab516b26e0e5d45ea525ced" title="Used to reference the appropriate scene.">SManager</a>-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>())
+<a name="l00084"></a>00084             { <a class="code" href="classMezzanine_1_1Camera.html#a8491540c829acc1bebbed24c9de0dfaf" title="This is the Camera manager that this camera is attached to.">CamManager</a>-&gt;<a class="code" href="classMezzanine_1_1CameraManager.html#a384babc63ab516b26e0e5d45ea525ced" title="Used to reference the appropriate scene.">SManager</a>-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;destroyCamera(<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>); }
+<a name="l00085"></a>00085     }
+<a name="l00086"></a>00086 
+<a name="l00087"></a><a class="code" href="classMezzanine_1_1Camera.html#abf6e3c2e642753023acd91f6d1413455">00087</a>     <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="classMezzanine_1_1Camera.html#abf6e3c2e642753023acd91f6d1413455" title="Gets the camera&amp;#39;s set name.">Camera::GetName</a>()<span class="keyword"> const</span>
+<a name="l00088"></a>00088 <span class="keyword">    </span>{
+<a name="l00089"></a>00089         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getName();
+<a name="l00090"></a>00090     }
+<a name="l00091"></a>00091 
+<a name="l00092"></a><a class="code" href="classMezzanine_1_1Camera.html#a1bc33506c8df0607777b0b122fd9c9cb">00092</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a1bc33506c8df0607777b0b122fd9c9cb" title="Sets the type of projection to be used with this camera.">Camera::SetCameraType</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Camera.html#a643bf90630796bca5353967664d5f6e3" title="Values for storing how perspective should be interpretted.">ProjectionType</a> Type)
+<a name="l00093"></a>00093     {
+<a name="l00094"></a>00094         <span class="keywordflow">if</span>( <a class="code" href="classMezzanine_1_1Camera.html#a643bf90630796bca5353967664d5f6e3a5bf29bb9ff44080ae6cbfa3e2aeb467c" title="Not at all, objects at any distance are the same size.">Camera::Orthographic</a> == Type )
+<a name="l00095"></a>00095         {
+<a name="l00096"></a>00096             this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setProjectionType(Ogre::PT_ORTHOGRAPHIC);
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classMezzanine_1_1Camera.html#a643bf90630796bca5353967664d5f6e3a616794ef1e113f63b1b9bf6896c61eba" title="Normal perspective.">Camera::Perspective</a> == Type )
+<a name="l00099"></a>00099         {
+<a name="l00100"></a>00100             this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setProjectionType(Ogre::PT_PERSPECTIVE);
+<a name="l00101"></a>00101         }<span class="keywordflow">else</span>{
+<a name="l00102"></a>00102             <span class="keywordflow">throw</span>(<a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<span class="stringliteral">&quot;Unknown ProjectionType when attempting to set Camera Type.&quot;</span>));
+<a name="l00103"></a>00103         }
+<a name="l00104"></a>00104     }
+<a name="l00105"></a>00105 
+<a name="l00106"></a><a class="code" href="classMezzanine_1_1Camera.html#aef2f7b71aedee46bacc1341c02a813a2">00106</a>     <a class="code" href="classMezzanine_1_1Camera.html#a643bf90630796bca5353967664d5f6e3" title="Values for storing how perspective should be interpretted.">Camera::ProjectionType</a> <a class="code" href="classMezzanine_1_1Camera.html#aef2f7b71aedee46bacc1341c02a813a2" title="Get the type of projection used by the camera.">Camera::GetCameraType</a>()<span class="keyword"> const</span>
+<a name="l00107"></a>00107 <span class="keyword">    </span>{
+<a name="l00108"></a>00108         <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getProjectionType()==Ogre::PT_ORTHOGRAPHIC )
+<a name="l00109"></a>00109         {
+<a name="l00110"></a>00110             <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Camera.html#a643bf90630796bca5353967664d5f6e3a5bf29bb9ff44080ae6cbfa3e2aeb467c" title="Not at all, objects at any distance are the same size.">Camera::Orthographic</a>;
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112         }
+<a name="l00113"></a>00113         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getProjectionType()==Ogre::PT_PERSPECTIVE )
+<a name="l00114"></a>00114         {
+<a name="l00115"></a>00115             <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Camera.html#a643bf90630796bca5353967664d5f6e3a616794ef1e113f63b1b9bf6896c61eba" title="Normal perspective.">Camera::Perspective</a>;
+<a name="l00116"></a>00116         }<span class="keywordflow">else</span>{
+<a name="l00117"></a>00117             <span class="keywordflow">throw</span>(<a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<span class="stringliteral">&quot;Unknown ProjectionType when attempting to get Camera Type.&quot;</span>));
+<a name="l00118"></a>00118         }
+<a name="l00119"></a>00119     }
+<a name="l00120"></a>00120 
+<a name="l00121"></a><a class="code" href="classMezzanine_1_1Camera.html#a2beffe698c8952407f94683adea2fa24">00121</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a2beffe698c8952407f94683adea2fa24" title="Defines the size of the Orthographic projection window.">Camera::SetOrthoWindow</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Width, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Height)
+<a name="l00122"></a>00122     {
+<a name="l00123"></a>00123         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrthoWindow(Width, Height);
+<a name="l00124"></a>00124     }
+<a name="l00125"></a>00125 
+<a name="l00126"></a><a class="code" href="classMezzanine_1_1Camera.html#a7e99427ba89306e3c7e6a0d5ccb23482">00126</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a7e99427ba89306e3c7e6a0d5ccb23482" title="Defines the size of the Orthographic projection window.">Camera::SetOrthoWindowHeight</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Height)
+<a name="l00127"></a>00127     {
+<a name="l00128"></a>00128         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrthoWindowHeight(Height);
+<a name="l00129"></a>00129     }
+<a name="l00130"></a>00130 
+<a name="l00131"></a><a class="code" href="classMezzanine_1_1Camera.html#a58279b526f2a386bfa0327a9084d24e4">00131</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a58279b526f2a386bfa0327a9084d24e4" title="Defines the size of the Orthographic projection window.">Camera::SetOrthoWindowWidth</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Width)
+<a name="l00132"></a>00132     {
+<a name="l00133"></a>00133         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrthoWindowWidth(Width);
+<a name="l00134"></a>00134     }
+<a name="l00135"></a>00135 
+<a name="l00136"></a><a class="code" href="classMezzanine_1_1Camera.html#afdc236c2c875035c8a11473350d0d17a">00136</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#afdc236c2c875035c8a11473350d0d17a" title="Sets the location of a camera.">Camera::SetLocation</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location)
+<a name="l00137"></a>00137     {
+<a name="l00138"></a>00138         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setPosition(Location.<a class="code" href="classMezzanine_1_1Vector3.html#a2948167508c456d64032acfc8c2f6fd8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00139"></a>00139     }
+<a name="l00140"></a><a class="code" href="classMezzanine_1_1Camera.html#a3adfffaec91715cbf120bbbbc50f82db">00140</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a3adfffaec91715cbf120bbbbc50f82db" title="Sets the Direction for the camera.">Camera::SetDirection</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Direction)
+<a name="l00141"></a>00141     {
+<a name="l00142"></a>00142         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setDirection(Direction.<a class="code" href="classMezzanine_1_1Vector3.html#a2948167508c456d64032acfc8c2f6fd8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00143"></a>00143     }
+<a name="l00144"></a>00144 
+<a name="l00145"></a><a class="code" href="classMezzanine_1_1Camera.html#af502b9c47b1acce46e1482ce049320eb">00145</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#af502b9c47b1acce46e1482ce049320eb" title="Sets the orientation of the camera.">Camera::SetOrientation</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Orientation)
+<a name="l00146"></a>00146     {
+<a name="l00147"></a>00147         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrientation(Orientation.<a class="code" href="classMezzanine_1_1Quaternion.html#a152abb6ccfe1c9dfb22218fd54b84863" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>());
+<a name="l00148"></a>00148     }
+<a name="l00149"></a>00149 
+<a name="l00150"></a><a class="code" href="classMezzanine_1_1Camera.html#a638201c94b28ca0acc406b11f166e751">00150</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a638201c94b28ca0acc406b11f166e751" title="Sets the short range clip distance.">Camera::SetNearClipDistance</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; NearDist)
+<a name="l00151"></a>00151     {
+<a name="l00152"></a>00152         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setNearClipDistance(NearDist);
+<a name="l00153"></a>00153     }
+<a name="l00154"></a>00154 
+<a name="l00155"></a><a class="code" href="classMezzanine_1_1Camera.html#af24424a1670ae6b10e9a61fbaf9fd23a">00155</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#af24424a1670ae6b10e9a61fbaf9fd23a" title="Sets the long range clip distance.">Camera::SetFarClipDistance</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; FarDist)
+<a name="l00156"></a>00156     {
+<a name="l00157"></a>00157         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setFarClipDistance (FarDist);
+<a name="l00158"></a>00158     }
+<a name="l00159"></a>00159 
+<a name="l00160"></a><a class="code" href="classMezzanine_1_1Camera.html#ab619a29b83487e8f86c8adb443689078">00160</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#ab619a29b83487e8f86c8adb443689078" title="Sets the aspect ratio of the cameras veiw.">Camera::SetAspectRatio</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Ratio)
+<a name="l00161"></a>00161     {
+<a name="l00162"></a>00162         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setAspectRatio(Ratio);
+<a name="l00163"></a>00163     }
+<a name="l00164"></a>00164 
+<a name="l00165"></a><a class="code" href="classMezzanine_1_1Camera.html#a8343f2d2fb174937aef2894ebf8a5e29">00165</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a8343f2d2fb174937aef2894ebf8a5e29" title="Sets the direction the camera faces.">Camera::LookAt</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; TargetLoc)
+<a name="l00166"></a>00166     {
+<a name="l00167"></a>00167         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;lookAt(TargetLoc.<a class="code" href="classMezzanine_1_1Vector3.html#a2948167508c456d64032acfc8c2f6fd8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00168"></a>00168     }
+<a name="l00169"></a>00169 
+<a name="l00170"></a><a class="code" href="classMezzanine_1_1Camera.html#afdc17999a097218df445370123d41239">00170</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#afdc17999a097218df445370123d41239" title="Moves the camera without factoring orientation.">Camera::Move</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; ToMove)
+<a name="l00171"></a>00171     {
+<a name="l00172"></a>00172         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;move(ToMove.<a class="code" href="classMezzanine_1_1Vector3.html#a2948167508c456d64032acfc8c2f6fd8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00173"></a>00173     }
+<a name="l00174"></a>00174 
+<a name="l00175"></a><a class="code" href="classMezzanine_1_1Camera.html#ac8f450698006baf6e8fca2a864d59533">00175</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#ac8f450698006baf6e8fca2a864d59533" title="Moves the camera while factoring orientation.">Camera::MoveRelative</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; ToMove)
+<a name="l00176"></a>00176     {
+<a name="l00177"></a>00177         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;moveRelative(ToMove.<a class="code" href="classMezzanine_1_1Vector3.html#a2948167508c456d64032acfc8c2f6fd8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00178"></a>00178     }
+<a name="l00179"></a>00179 
+<a name="l00180"></a><a class="code" href="classMezzanine_1_1Camera.html#a2ffb9eca37630a8d26669aab8668bce3">00180</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a2ffb9eca37630a8d26669aab8668bce3" title="Sets whether to lock rotation around the Y axis.">Camera::SetFixedYawAxis</a>(<span class="keywordtype">bool</span> UseFixed, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Axis)
+<a name="l00181"></a>00181     {
+<a name="l00182"></a>00182         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setFixedYawAxis(UseFixed, Axis.<a class="code" href="classMezzanine_1_1Vector3.html#a2948167508c456d64032acfc8c2f6fd8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00183"></a>00183         this-&gt;YawAxis = Axis;
+<a name="l00184"></a>00184         this-&gt;YawOnAxis = UseFixed;
+<a name="l00185"></a>00185     }
+<a name="l00186"></a>00186 
+<a name="l00187"></a><a class="code" href="classMezzanine_1_1Camera.html#abd19c7667593b8ea0bff576ae3a451ba">00187</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a2ffb9eca37630a8d26669aab8668bce3" title="Sets whether to lock rotation around the Y axis.">Camera::SetFixedYawAxis</a>(<span class="keywordtype">bool</span> UseFixed)
+<a name="l00188"></a>00188     {
+<a name="l00189"></a>00189         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setFixedYawAxis(UseFixed);
+<a name="l00190"></a>00190         this-&gt;YawOnAxis = UseFixed;
+<a name="l00191"></a>00191     }
+<a name="l00192"></a>00192 
+<a name="l00193"></a><a class="code" href="classMezzanine_1_1Camera.html#adfe5be54632aeedb9656c850f3f03ae5">00193</a>     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1Camera.html#adfe5be54632aeedb9656c850f3f03ae5" title="Is fixed yaw enabled.">Camera::IsFixedYawEnabled</a>()<span class="keyword"> const</span>
+<a name="l00194"></a>00194 <span class="keyword">        </span>{ <span class="keywordflow">return</span> this-&gt;YawOnAxis; }
+<a name="l00195"></a>00195 
+<a name="l00196"></a><a class="code" href="classMezzanine_1_1Camera.html#af7a94974ef5ff6caff66da3a9f71b579">00196</a>     <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1Camera.html#af7a94974ef5ff6caff66da3a9f71b579" title="If fixed yaw is enabled, on which axis is yawing disabled.">Camera::GetFixedYawAxis</a>()<span class="keyword"> const</span>
+<a name="l00197"></a>00197 <span class="keyword">    </span>{
+<a name="l00198"></a>00198         <span class="keywordflow">if</span> (this-&gt;YawOnAxis)
+<a name="l00199"></a>00199             { <span class="keywordflow">return</span> this-&gt;YawAxis; }
+<a name="l00200"></a>00200         <span class="keywordflow">else</span>
+<a name="l00201"></a>00201             { <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0); }
+<a name="l00202"></a>00202     }
+<a name="l00203"></a>00203 
+<a name="l00204"></a>00204     <span class="comment">/*void Camera::SetAutoTracking(bool Enabled, String Target, Vector3 Offset)</span>
+<a name="l00205"></a>00205 <span class="comment">    {</span>
+<a name="l00206"></a>00206 <span class="comment">        Ogre::SceneNode* Trgt = CamManager-&gt;FindNode(Target);</span>
+<a name="l00207"></a>00207 <span class="comment">        this-&gt;Cam-&gt;setAutoTracking(Enabled, Trgt, Offset.GetOgreVector3());</span>
+<a name="l00208"></a>00208 <span class="comment">    }</span>
+<a name="l00209"></a>00209 <span class="comment"></span>
+<a name="l00210"></a>00210 <span class="comment">    void Camera::SetAutoTracking(bool Enabled, String Target)</span>
+<a name="l00211"></a>00211 <span class="comment">    {</span>
+<a name="l00212"></a>00212 <span class="comment">        Ogre::SceneNode* Trgt = CamManager-&gt;FindNode(Target);</span>
+<a name="l00213"></a>00213 <span class="comment">        this-&gt;Cam-&gt;setAutoTracking(Enabled, Trgt);</span>
+<a name="l00214"></a>00214 <span class="comment">    }*/</span>
+<a name="l00215"></a>00215 
+<a name="l00216"></a><a class="code" href="classMezzanine_1_1Camera.html#a7dc2eeda0370fd1d942dc4467795d87b">00216</a>     <a class="code" href="classMezzanine_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="classMezzanine_1_1Camera.html#a7dc2eeda0370fd1d942dc4467795d87b" title="Gets a Ray from the camera to the viewport.">Camera::GetCameraToViewportRay</a>(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Screenx, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Screeny)<span class="keyword"> const</span>
+<a name="l00217"></a>00217 <span class="keyword">    </span>{
+<a name="l00218"></a>00218         <a class="code" href="classMezzanine_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> R(this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getCameraToViewportRay(Screenx, Screeny));
+<a name="l00219"></a>00219         <span class="keywordflow">return</span> R;
+<a name="l00220"></a>00220     }
+<a name="l00221"></a>00221 
+<a name="l00222"></a>00222     <span class="comment">/*WorldNode* Camera::GetWorldNode() const</span>
+<a name="l00223"></a>00223 <span class="comment">    {</span>
+<a name="l00224"></a>00224 <span class="comment">        //Ogre::SceneNode* tempnode = this-&gt;Cam-&gt;getParentSceneNode();</span>
+<a name="l00225"></a>00225 <span class="comment">        //return tempnode-&gt;getName();</span>
+<a name="l00226"></a>00226 <span class="comment">    }*/</span>
+<a name="l00227"></a>00227 
+<a name="l00228"></a><a class="code" href="classMezzanine_1_1Camera.html#afb87a19855c4cd5361861e1e400d5481">00228</a>     <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1Camera.html#afb87a19855c4cd5361861e1e400d5481" title="Gets the relative location of the camera.">Camera::GetLocation</a>()<span class="keyword"> const</span>
+<a name="l00229"></a>00229 <span class="keyword">        </span>{ <span class="keywordflow">return</span>  <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition()); }
+<a name="l00230"></a>00230 
+<a name="l00231"></a><a class="code" href="classMezzanine_1_1Camera.html#a3262342c754eb31b4caa0693c5b60842">00231</a>     <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1Camera.html#a3262342c754eb31b4caa0693c5b60842" title="Gets the relative location of the camera.">Camera::GetRelativeLocation</a>()<span class="keyword"> const</span>
+<a name="l00232"></a>00232 <span class="keyword">        </span>{ <span class="keywordflow">return</span>  <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition()); }
+<a name="l00233"></a>00233 
+<a name="l00234"></a><a class="code" href="classMezzanine_1_1Camera.html#a94b66663d7c52ec642347d5d939cf67b">00234</a>     <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1Camera.html#a94b66663d7c52ec642347d5d939cf67b" title="Gets the global/absolute location of the camera.">Camera::GetGlobalLocation</a>()<span class="keyword"> const</span>
+<a name="l00235"></a>00235 <span class="keyword">        </span>{ <span class="keywordflow">return</span>  <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getRealPosition()); }
+<a name="l00236"></a>00236 
+<a name="l00237"></a><a class="code" href="classMezzanine_1_1Camera.html#af693fe97c4f281940a33dc8087a80fcb">00237</a>     <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> <a class="code" href="classMezzanine_1_1Camera.html#af693fe97c4f281940a33dc8087a80fcb" title="Gets the direction the camera is facing.">Camera::GetOrientation</a>()<span class="keyword"> const</span>
+<a name="l00238"></a>00238 <span class="keyword">    </span>{
+<a name="l00239"></a>00239         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>(this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getOrientation());
+<a name="l00240"></a>00240     }
+<a name="l00241"></a>00241 
+<a name="l00242"></a><a class="code" href="classMezzanine_1_1Camera.html#a10042b496caf5783657e138c62849b2f">00242</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#a10042b496caf5783657e138c62849b2f" title="Will zoom in or out the camera.">Camera::ZoomCamera</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Zoom)
+<a name="l00243"></a>00243     {
+<a name="l00244"></a>00244         Ogre::Vector3 zoomlevel(0,0,Zoom);
+<a name="l00245"></a>00245         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;moveRelative(zoomlevel);
+<a name="l00246"></a>00246     }
+<a name="l00247"></a>00247 
+<a name="l00248"></a><a class="code" href="classMezzanine_1_1Camera.html#ad63ed9c54ecf0940f20c5e4fbc9a1590">00248</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#ad63ed9c54ecf0940f20c5e4fbc9a1590" title="Resets the zoom level back to the default.">Camera::ResetZoom</a>()
+<a name="l00249"></a>00249     {
+<a name="l00250"></a>00250         Ogre::Vector3 loc;
+<a name="l00251"></a>00251         loc = this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition();
+<a name="l00252"></a>00252         <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> zoom=loc.z;
+<a name="l00253"></a>00253         zoom=0-zoom;
+<a name="l00254"></a>00254         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;moveRelative(Ogre::Vector3(0,0,zoom));
+<a name="l00255"></a>00255     }
+<a name="l00256"></a>00256 
+<a name="l00257"></a><a class="code" href="classMezzanine_1_1Camera.html#ac7985618c8f908a6cc93069ccb51bb47">00257</a>     Ogre::Camera* <a class="code" href="classMezzanine_1_1Camera.html#ac7985618c8f908a6cc93069ccb51bb47" title="Gets the internal camera this camera is based on.">Camera::GetOgreCamera</a>()<span class="keyword"> const</span>
+<a name="l00258"></a>00258 <span class="keyword">    </span>{
+<a name="l00259"></a>00259         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>;
+<a name="l00260"></a>00260     }
+<a name="l00261"></a>00261 <span class="comment"></span>
+<a name="l00262"></a>00262 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00263"></a>00263 <span class="comment"></span>    <span class="comment">// Inherited From Attachable</span>
+<a name="l00264"></a>00264 
+<a name="l00265"></a><a class="code" href="classMezzanine_1_1Camera.html#a4a8523981c43ba8f4c5358b9ce7aef37">00265</a>     <a class="code" href="classMezzanine_1_1Attachable.html#a274bd45f9666f6e50f6fdd8a0162bc9e" title="A list of possible types of this that could be attached to a WorldNode.">Attachable::AttachableElement</a> <a class="code" href="classMezzanine_1_1Camera.html#a4a8523981c43ba8f4c5358b9ce7aef37" title="What kind of Attachable is this.">Camera::GetAttachableType</a>()<span class="keyword"> const</span>
+<a name="l00266"></a>00266 <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Camera.html#a172e91734ebe0cb5d8332ef00606526e" title="Basic Camera Constructor.">Attachable::Camera</a>; }
+<a name="l00267"></a>00267 <span class="comment"></span>
+<a name="l00268"></a>00268 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00269"></a>00269 <span class="comment"></span>    <span class="comment">// Internal Functions</span>
+<a name="l00270"></a><a class="code" href="classMezzanine_1_1Camera.html#a9bbd0126f025996457c87fb8564cc38d">00270</a>     <a class="code" href="structMezzanine_1_1AttachableData.html" title="Helper class for the presentation of internal data of an attachable.">AttachableData</a> <a class="code" href="classMezzanine_1_1Camera.html#a9bbd0126f025996457c87fb8564cc38d" title="Gets pointers to the internal ogre structures for this attachable.">Camera::GetAttachableData</a>()<span class="keyword"> const</span>
+<a name="l00271"></a>00271 <span class="keyword">    </span>{
+<a name="l00272"></a>00272         <a class="code" href="structMezzanine_1_1AttachableData.html" title="Helper class for the presentation of internal data of an attachable.">AttachableData</a> Data;
+<a name="l00273"></a>00273         Data.OgreMovable = <a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>;
+<a name="l00274"></a>00274         Data.Type = <a class="code" href="classMezzanine_1_1Camera.html#a172e91734ebe0cb5d8332ef00606526e" title="Basic Camera Constructor.">Attachable::Camera</a>;
+<a name="l00275"></a>00275         <span class="keywordflow">return</span> Data;
 <a name="l00276"></a>00276     }
-<a name="l00277"></a>00277 
-<a name="l00278"></a>00278 }<span class="comment">//phys</span>
-<a name="l00279"></a>00279 <span class="comment"></span>
-<a name="l00280"></a>00280 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00281"></a>00281 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
-<a name="l00282"></a>00282 <span class="preprocessor">#ifdef PHYSXML</span>
-<a name="l00283"></a><a class="code" href="camera_8h.html#a5bd1310f4f2c5d34e63336252578d6c7">00283</a> <span class="preprocessor"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1Camera.html" title="This is the camera class.">phys::Camera</a>&amp; Ev)
-<a name="l00284"></a>00284 {
-<a name="l00285"></a>00285 
-<a name="l00286"></a>00286     <span class="comment">//stream &lt;&lt; &quot;&lt;Camera Version=\&quot;1\&quot; attachedto=\&quot;1\&quot; location=\&quot;1\&quot; orientation=\&quot;1\&quot; name=\&quot;1\&quot; /&gt;&quot; &lt;&lt; *(Ev.Cam) &lt;&lt; &quot;&lt;/Camera&gt;&quot;;</span>
-<a name="l00287"></a>00287     stream      &lt;&lt; <span class="stringliteral">&quot;&lt;Camera Version=\&quot;1\&quot; Name=\&quot;&quot;</span> &lt;&lt; Ev.<a class="code" href="classphys_1_1Camera.html#ae24490b8589796cb5f51d291cc418d84" title="Gets the camera&amp;#39;s set name.">GetName</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot; AttachedTo=\&quot;&quot;</span> &lt;&lt; (Ev.<a class="code" href="classphys_1_1Attachable.html#a6df6034ed61c98d350378bdd7a3129f6" title="Gets the WorldNode this thinks it is attached to.">GetAttachedTo</a>() ? Ev.<a class="code" href="classphys_1_1Attachable.html#a6df6034ed61c98d350378bdd7a3129f6" title="Gets the WorldNode this thinks it is attached to.">GetAttachedTo</a>()-&gt;<a class="code" href="classphys_1_1WorldNode.html#ae3c12e7aced8f84e2191a5e08e2767a8" title="Gets the name of this node.">GetName</a>() : <span class="stringliteral">&quot;&quot;</span>) &lt;&lt; <span class="stringliteral">&quot;\&quot; CameraPerspective=\&quot;&quot;</span> &lt;&lt; Ev.<a class="code" href="classphys_1_1Camera.html#aa79582e78a3eff11a8c4fe9c058566b0" title="Get the type of projection used by the camera.">GetCameraType</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&gt;&quot;</span>
-<a name="l00288"></a>00288                 &lt;&lt; <span class="stringliteral">&quot;&lt;Orientation&gt;&quot;</span> &lt;&lt; Ev.<a class="code" href="classphys_1_1Camera.html#a48e0b33e0f12247bc0a0e0d6f759683e" title="Gets the direction the camera is facing.">GetOrientation</a>() &lt;&lt; <span class="stringliteral">&quot;&lt;/Orientation&gt;&quot;</span>
-<a name="l00289"></a>00289                 &lt;&lt; <span class="stringliteral">&quot;&lt;Location&gt;&quot;</span> &lt;&lt; Ev.<a class="code" href="classphys_1_1Camera.html#ae3dc70090e83e19a9c5f6df302bb57a5" title="Gets the relative location of the camera.">GetRelativeLocation</a>() &lt;&lt; <span class="stringliteral">&quot;&lt;/Location&gt;&quot;</span>;
-<a name="l00290"></a>00290 
-<a name="l00291"></a>00291     <span class="keywordflow">if</span> ( Ev.<a class="code" href="classphys_1_1Camera.html#a9b0aa17df46c427ab531bd587bd76e0f" title="Is fixed yaw enabled.">IsFixedYawEnabled</a>() )
-<a name="l00292"></a>00292         {stream &lt;&lt; <span class="stringliteral">&quot;&lt;FixedYawAxis Enabled=\&quot;1\&quot;&gt;&quot;</span> &lt;&lt; Ev.<a class="code" href="classphys_1_1Camera.html#a1f4126761e14d9b960395c79b6c4f13f" title="If fixed yaw is enabled, on which axis is yawing disabled.">GetFixedYawAxis</a>() &lt;&lt; <span class="stringliteral">&quot;&lt;/FixedYawAxis&gt;&quot;</span>; }
-<a name="l00293"></a>00293     <span class="keywordflow">else</span>
-<a name="l00294"></a>00294         {stream &lt;&lt; <span class="stringliteral">&quot;&lt;FixedYawAxis Enabled=\&quot;0\&quot; /&gt;&quot;</span>; }
-<a name="l00295"></a>00295 
-<a name="l00296"></a>00296     stream      &lt;&lt; <span class="stringliteral">&quot;&lt;/Camera&gt;&quot;</span>;
-<a name="l00297"></a>00297     <span class="keywordflow">return</span> stream;
-<a name="l00298"></a>00298 }
-<a name="l00299"></a>00299 
-<a name="l00300"></a><a class="code" href="camera_8h.html#a34ccd98dc1a4e29c952c16320f3a16b1">00300</a> std::istream&amp; PHYS_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classphys_1_1Camera.html" title="This is the camera class.">phys::Camera</a>&amp; Ev)
-<a name="l00301"></a>00301 {
-<a name="l00302"></a>00302     <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a> OneTag( <a class="code" href="namespacephys_1_1xml.html#a2b175958ac1d39cc297c24e3f377739b" title="Gets the first tag out of the Stream and returns it as a String.">phys::xml::GetOneTag</a>(stream) );
-<a name="l00303"></a>00303     std::auto_ptr&lt;phys::xml::Document&gt; Doc( <a class="code" href="namespacephys_1_1xml.html#ab5e51b3ea3a6e61bf4c8368005232210" title="Perform a basic series of checks for extracting meaning from a single xml tag.">phys::xml::PreParseClassFromSingleTag</a>(<span class="stringliteral">&quot;phys::&quot;</span>, <span class="stringliteral">&quot;Camera&quot;</span>, OneTag) );
-<a name="l00304"></a>00304 
-<a name="l00305"></a>00305     Doc-&gt;GetFirstChild() &gt;&gt; Ev;
-<a name="l00306"></a>00306 
-<a name="l00307"></a>00307     <span class="keywordflow">return</span> stream;
-<a name="l00308"></a>00308 }
-<a name="l00309"></a>00309 
-<a name="l00310"></a><a class="code" href="camera_8h.html#aa34df8e730bd16e3062bde8cd47bdb86">00310</a> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="classphys_1_1Camera.html" title="This is the camera class.">phys::Camera</a>&amp; Ev)
-<a name="l00311"></a>00311 {
-<a name="l00312"></a>00312     <span class="keywordflow">if</span> ( <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>())==<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(<span class="stringliteral">&quot;Camera&quot;</span>) )
-<a name="l00313"></a>00313     {
-<a name="l00314"></a>00314         <span class="keywordflow">if</span>(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
-<a name="l00315"></a>00315         {
-<a name="l00316"></a>00316             Ev.<a class="code" href="classphys_1_1Camera.html#a95d04ee7482ae6670229f59d63ee8926" title="Sets the type of projection to be used with this camera.">SetCameraType</a>(static_cast&lt;phys::Camera::ProjectionType&gt;(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;CameraPerspective&quot;</span>).AsInt()));
-<a name="l00317"></a>00317             <a class="code" href="classphys_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">phys::WorldNode</a> * AttachPtr = <a class="code" href="classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;GetSceneManager()-&gt;GetNode( OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;AttachedTo&quot;</span>).AsString() );
-<a name="l00318"></a>00318             <span class="keywordflow">if</span> (AttachPtr)
-<a name="l00319"></a>00319                 { AttachPtr-&gt;<a class="code" href="classphys_1_1WorldNode.html#a25b5a05bb87967fe21f153ce4418b43e" title="Attaches an attachable element to this Node.">AttachObject</a>(&amp;Ev); }
-<a name="l00320"></a>00320 
-<a name="l00321"></a>00321             <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">phys::Quaternion</a> TempQuat(0,0,0,0);
-<a name="l00322"></a>00322             <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a> TempVec(0,0,0);
-<a name="l00323"></a>00323 
-<a name="l00324"></a>00324             <span class="keywordflow">for</span>(<a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a> Child = OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); Child!=0; Child = Child.GetNextSibling())
-<a name="l00325"></a>00325             {
-<a name="l00326"></a>00326                 <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a> Name(Child.Name());
-<a name="l00327"></a>00327                 <span class="keywordflow">switch</span>(Name[0])
-<a name="l00328"></a>00328                 {
-<a name="l00329"></a>00329                     <span class="keywordflow">case</span> <span class="charliteral">&#39;O&#39;</span>:   <span class="comment">//Orientation</span>
-<a name="l00330"></a>00330                         <span class="keywordflow">if</span>(Name==<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(<span class="stringliteral">&quot;Orientation&quot;</span>))
-<a name="l00331"></a>00331                         {
-<a name="l00332"></a>00332                             Child.GetFirstChild() &gt;&gt; TempQuat;
-<a name="l00333"></a>00333                             Ev.<a class="code" href="classphys_1_1Camera.html#adbfa4a59eb09c0578c9aac792b78ef55" title="Sets the orientation of the camera.">SetOrientation</a>(TempQuat);
-<a name="l00334"></a>00334                         }<span class="keywordflow">else</span>{
-<a name="l00335"></a>00335                             <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<a class="code" href="namespacephys.html#ae057253f75738c79bc5fdb5f1c5410de" title="Concatenates 2 Strings.">phys::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Includes unknown Element O-\&quot;&quot;</span>,Name,<span class="stringliteral">&quot;\&quot;&quot;</span>)) );
-<a name="l00336"></a>00336                         }
-<a name="l00337"></a>00337                         <span class="keywordflow">break</span>;
-<a name="l00338"></a>00338                     <span class="keywordflow">case</span> <span class="charliteral">&#39;L&#39;</span>:   <span class="comment">//Location</span>
-<a name="l00339"></a>00339                         <span class="keywordflow">if</span>(Name==<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(<span class="stringliteral">&quot;Location&quot;</span>))
-<a name="l00340"></a>00340                         {
-<a name="l00341"></a>00341                             Child.GetFirstChild() &gt;&gt; TempVec;
-<a name="l00342"></a>00342                             Ev.<a class="code" href="classphys_1_1Camera.html#afd2a77e96dd6d0dec1071dcc3229425f" title="Sets the location of a camera.">SetLocation</a>(TempVec);
-<a name="l00343"></a>00343                         }<span class="keywordflow">else</span>{
-<a name="l00344"></a>00344                             <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<a class="code" href="namespacephys.html#ae057253f75738c79bc5fdb5f1c5410de" title="Concatenates 2 Strings.">phys::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Includes unknown Element L-\&quot;&quot;</span>,Name,<span class="stringliteral">&quot;\&quot;&quot;</span>)) );
-<a name="l00345"></a>00345                         }
-<a name="l00346"></a>00346                         <span class="keywordflow">break</span>;
-<a name="l00347"></a>00347                     <span class="keywordflow">case</span> <span class="charliteral">&#39;F&#39;</span>:   <span class="comment">//FixedYawAxis</span>
-<a name="l00348"></a>00348                         <span class="keywordflow">if</span>(Name==<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(<span class="stringliteral">&quot;FixedYawAxis&quot;</span>) &amp;&amp; Child.GetAttribute(<span class="stringliteral">&quot;Enabled&quot;</span>).AsBool())
-<a name="l00349"></a>00349                         {
-<a name="l00350"></a>00350                             Child.GetFirstChild() &gt;&gt; TempVec;
-<a name="l00351"></a>00351                             Ev.<a class="code" href="classphys_1_1Camera.html#aa6d7285b7a3fc43e3c6dd05ff30f89ab" title="Sets whether to lock rotation around the Y axis.">SetFixedYawAxis</a>(<span class="keyword">true</span>,TempVec);
-<a name="l00352"></a>00352                         }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(Name==<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(<span class="stringliteral">&quot;FixedYawAxis&quot;</span>)){
-<a name="l00353"></a>00353                             Ev.<a class="code" href="classphys_1_1Camera.html#aa6d7285b7a3fc43e3c6dd05ff30f89ab" title="Sets whether to lock rotation around the Y axis.">SetFixedYawAxis</a>(<span class="keyword">false</span>);
-<a name="l00354"></a>00354                         }<span class="keywordflow">else</span>{
-<a name="l00355"></a>00355                             <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<a class="code" href="namespacephys.html#ae057253f75738c79bc5fdb5f1c5410de" title="Concatenates 2 Strings.">phys::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Includes unknown Element F-\&quot;&quot;</span>,Name,<span class="stringliteral">&quot;\&quot;&quot;</span>)) );
-<a name="l00356"></a>00356                         }
-<a name="l00357"></a>00357                         <span class="keywordflow">break</span>;
-<a name="l00358"></a>00358                     <span class="keywordflow">default</span>:
-<a name="l00359"></a>00359                         <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<a class="code" href="namespacephys.html#ae057253f75738c79bc5fdb5f1c5410de" title="Concatenates 2 Strings.">phys::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Includes unknown Element default-\&quot;&quot;</span>,Name,<span class="stringliteral">&quot;\&quot;&quot;</span>)) );
-<a name="l00360"></a>00360                         <span class="keywordflow">break</span>;
-<a name="l00361"></a>00361                 }
-<a name="l00362"></a>00362             }
-<a name="l00363"></a>00363 
-<a name="l00364"></a>00364         }<span class="keywordflow">else</span>{
-<a name="l00365"></a>00365             <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Not Version 1&quot;</span>));
-<a name="l00366"></a>00366         }
-<a name="l00367"></a>00367     }<span class="keywordflow">else</span>{
-<a name="l00368"></a>00368         <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<a class="code" href="namespacephys.html#ae057253f75738c79bc5fdb5f1c5410de" title="Concatenates 2 Strings.">phys::StringCat</a>(<span class="stringliteral">&quot;Attempting to deserialize a Camera, found a &quot;</span>, OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>())));
-<a name="l00369"></a>00369     }
-<a name="l00370"></a>00370 }
-<a name="l00371"></a>00371 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l00372"></a>00372 <span class="preprocessor"></span>
-<a name="l00373"></a>00373 
-<a name="l00374"></a>00374 <span class="preprocessor">#endif</span>
+<a name="l00277"></a>00277 }<span class="comment">//Mezzanine</span>
+<a name="l00278"></a>00278 <span class="comment"></span>
+<a name="l00279"></a>00279 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00280"></a>00280 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
+<a name="l00281"></a>00281 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l00282"></a>00282 <span class="preprocessor"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a>&amp; Ev)
+<a name="l00283"></a>00283 {
+<a name="l00284"></a>00284 
+<a name="l00285"></a>00285     <span class="comment">//stream &lt;&lt; &quot;&lt;Camera Version=\&quot;1\&quot; attachedto=\&quot;1\&quot; location=\&quot;1\&quot; orientation=\&quot;1\&quot; name=\&quot;1\&quot; /&gt;&quot; &lt;&lt; *(Ev.Cam) &lt;&lt; &quot;&lt;/Camera&gt;&quot;;</span>
+<a name="l00286"></a>00286     stream      &lt;&lt; <span class="stringliteral">&quot;&lt;Camera Version=\&quot;1\&quot; Name=\&quot;&quot;</span> &lt;&lt; Ev.<a class="code" href="classMezzanine_1_1Camera.html#abf6e3c2e642753023acd91f6d1413455" title="Gets the camera&amp;#39;s set name.">GetName</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot; AttachedTo=\&quot;&quot;</span> &lt;&lt; (Ev.<a class="code" href="classMezzanine_1_1Attachable.html#afbb1f55b0ef23cfaa4aea248c1356224" title="Gets the WorldNode this thinks it is attached to.">GetAttachedTo</a>() ? Ev.<a class="code" href="classMezzanine_1_1Attachable.html#afbb1f55b0ef23cfaa4aea248c1356224" title="Gets the WorldNode this thinks it is attached to.">GetAttachedTo</a>()-&gt;<a class="code" href="classMezzanine_1_1WorldNode.html#a9538be39292a297f64d15bf1335ee0cf" title="Gets the name of this node.">GetName</a>() : <span class="stringliteral">&quot;&quot;</span>) &lt;&lt; <span class="stringliteral">&quot;\&quot; CameraPerspective=\&quot;&quot;</span> &lt;&lt; Ev.<a class="code" href="classMezzanine_1_1Camera.html#aef2f7b71aedee46bacc1341c02a813a2" title="Get the type of projection used by the camera.">GetCameraType</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&gt;&quot;</span>
+<a name="l00287"></a>00287                 &lt;&lt; <span class="stringliteral">&quot;&lt;Orientation&gt;&quot;</span> &lt;&lt; Ev.<a class="code" href="classMezzanine_1_1Camera.html#af693fe97c4f281940a33dc8087a80fcb" title="Gets the direction the camera is facing.">GetOrientation</a>() &lt;&lt; <span class="stringliteral">&quot;&lt;/Orientation&gt;&quot;</span>
+<a name="l00288"></a>00288                 &lt;&lt; <span class="stringliteral">&quot;&lt;Location&gt;&quot;</span> &lt;&lt; Ev.<a class="code" href="classMezzanine_1_1Camera.html#a3262342c754eb31b4caa0693c5b60842" title="Gets the relative location of the camera.">GetRelativeLocation</a>() &lt;&lt; <span class="stringliteral">&quot;&lt;/Location&gt;&quot;</span>;
+<a name="l00289"></a>00289 
+<a name="l00290"></a>00290     <span class="keywordflow">if</span> ( Ev.<a class="code" href="classMezzanine_1_1Camera.html#adfe5be54632aeedb9656c850f3f03ae5" title="Is fixed yaw enabled.">IsFixedYawEnabled</a>() )
+<a name="l00291"></a>00291         {stream &lt;&lt; <span class="stringliteral">&quot;&lt;FixedYawAxis Enabled=\&quot;1\&quot;&gt;&quot;</span> &lt;&lt; Ev.<a class="code" href="classMezzanine_1_1Camera.html#af7a94974ef5ff6caff66da3a9f71b579" title="If fixed yaw is enabled, on which axis is yawing disabled.">GetFixedYawAxis</a>() &lt;&lt; <span class="stringliteral">&quot;&lt;/FixedYawAxis&gt;&quot;</span>; }
+<a name="l00292"></a>00292     <span class="keywordflow">else</span>
+<a name="l00293"></a>00293         {stream &lt;&lt; <span class="stringliteral">&quot;&lt;FixedYawAxis Enabled=\&quot;0\&quot; /&gt;&quot;</span>; }
+<a name="l00294"></a>00294 
+<a name="l00295"></a>00295     stream      &lt;&lt; <span class="stringliteral">&quot;&lt;/Camera&gt;&quot;</span>;
+<a name="l00296"></a>00296     <span class="keywordflow">return</span> stream;
+<a name="l00297"></a>00297 }
+<a name="l00298"></a>00298 
+<a name="l00299"></a>00299 std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a>&amp; Ev)
+<a name="l00300"></a>00300 {
+<a name="l00301"></a>00301     <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> OneTag( Mezzanine::xml::GetOneTag(stream) );
+<a name="l00302"></a>00302     std::auto_ptr&lt;Mezzanine::xml::Document&gt; Doc( Mezzanine::xml::PreParseClassFromSingleTag(<span class="stringliteral">&quot;Mezzanine::&quot;</span>, <span class="stringliteral">&quot;Camera&quot;</span>, OneTag) );
+<a name="l00303"></a>00303 
+<a name="l00304"></a>00304     Doc-&gt;GetFirstChild() &gt;&gt; Ev;
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306     <span class="keywordflow">return</span> stream;
+<a name="l00307"></a>00307 }
+<a name="l00308"></a>00308 
+<a name="l00309"></a>00309 Mezzanine::xml::Node&amp; operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a>&amp; Ev)
+<a name="l00310"></a>00310 {
+<a name="l00311"></a>00311     <span class="keywordflow">if</span> ( <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(OneNode.Name())==<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(<span class="stringliteral">&quot;Camera&quot;</span>) )
+<a name="l00312"></a>00312     {
+<a name="l00313"></a>00313         <span class="keywordflow">if</span>(OneNode.GetAttribute(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
+<a name="l00314"></a>00314         {
+<a name="l00315"></a>00315             Ev.<a class="code" href="classMezzanine_1_1Camera.html#a1bc33506c8df0607777b0b122fd9c9cb" title="Sets the type of projection to be used with this camera.">SetCameraType</a>(static_cast&lt;Mezzanine::Camera::ProjectionType&gt;(OneNode.GetAttribute(<span class="stringliteral">&quot;CameraPerspective&quot;</span>).AsInt()));
+<a name="l00316"></a>00316             <a class="code" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> * AttachPtr = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Mezzanine::SceneManager::GetSingletonPtr</a>()-&gt;GetNode( OneNode.GetAttribute(<span class="stringliteral">&quot;AttachedTo&quot;</span>).AsString() );
+<a name="l00317"></a>00317             <span class="keywordflow">if</span> (AttachPtr)
+<a name="l00318"></a>00318                 { AttachPtr-&gt;<a class="code" href="classMezzanine_1_1WorldNode.html#a241c57161dea141aa0820e9439517f85" title="Attaches an attachable element to this Node.">AttachObject</a>(&amp;Ev); }
+<a name="l00319"></a>00319 
+<a name="l00320"></a>00320             <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Mezzanine::Quaternion</a> TempQuat(0,0,0,0);
+<a name="l00321"></a>00321             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Mezzanine::Vector3</a> TempVec(0,0,0);
+<a name="l00322"></a>00322 
+<a name="l00323"></a>00323             <span class="keywordflow">for</span>(Mezzanine::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+<a name="l00324"></a>00324             {
+<a name="l00325"></a>00325                 <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> Name(Child.Name());
+<a name="l00326"></a>00326                 <span class="keywordflow">switch</span>(Name[0])
+<a name="l00327"></a>00327                 {
+<a name="l00328"></a>00328                     <span class="keywordflow">case</span> <span class="charliteral">&#39;O&#39;</span>:   <span class="comment">//Orientation</span>
+<a name="l00329"></a>00329                         <span class="keywordflow">if</span>(Name==<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(<span class="stringliteral">&quot;Orientation&quot;</span>))
+<a name="l00330"></a>00330                         {
+<a name="l00331"></a>00331                             Child.GetFirstChild() &gt;&gt; TempQuat;
+<a name="l00332"></a>00332                             Ev.<a class="code" href="classMezzanine_1_1Camera.html#af502b9c47b1acce46e1482ce049320eb" title="Sets the orientation of the camera.">SetOrientation</a>(TempQuat);
+<a name="l00333"></a>00333                         }<span class="keywordflow">else</span>{
+<a name="l00334"></a>00334                             <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">Mezzanine::StringTool::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Includes unknown Element O-\&quot;&quot;</span>,Name,<span class="stringliteral">&quot;\&quot;&quot;</span>)) );
+<a name="l00335"></a>00335                         }
+<a name="l00336"></a>00336                         <span class="keywordflow">break</span>;
+<a name="l00337"></a>00337                     <span class="keywordflow">case</span> <span class="charliteral">&#39;L&#39;</span>:   <span class="comment">//Location</span>
+<a name="l00338"></a>00338                         <span class="keywordflow">if</span>(Name==<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(<span class="stringliteral">&quot;Location&quot;</span>))
+<a name="l00339"></a>00339                         {
+<a name="l00340"></a>00340                             Child.GetFirstChild() &gt;&gt; TempVec;
+<a name="l00341"></a>00341                             Ev.<a class="code" href="classMezzanine_1_1Camera.html#afdc236c2c875035c8a11473350d0d17a" title="Sets the location of a camera.">SetLocation</a>(TempVec);
+<a name="l00342"></a>00342                         }<span class="keywordflow">else</span>{
+<a name="l00343"></a>00343                             <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">Mezzanine::StringTool::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Includes unknown Element L-\&quot;&quot;</span>,Name,<span class="stringliteral">&quot;\&quot;&quot;</span>)) );
+<a name="l00344"></a>00344                         }
+<a name="l00345"></a>00345                         <span class="keywordflow">break</span>;
+<a name="l00346"></a>00346                     <span class="keywordflow">case</span> <span class="charliteral">&#39;F&#39;</span>:   <span class="comment">//FixedYawAxis</span>
+<a name="l00347"></a>00347                         <span class="keywordflow">if</span>(Name==<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(<span class="stringliteral">&quot;FixedYawAxis&quot;</span>) &amp;&amp; Child.GetAttribute(<span class="stringliteral">&quot;Enabled&quot;</span>).AsBool())
+<a name="l00348"></a>00348                         {
+<a name="l00349"></a>00349                             Child.GetFirstChild() &gt;&gt; TempVec;
+<a name="l00350"></a>00350                             Ev.<a class="code" href="classMezzanine_1_1Camera.html#a2ffb9eca37630a8d26669aab8668bce3" title="Sets whether to lock rotation around the Y axis.">SetFixedYawAxis</a>(<span class="keyword">true</span>,TempVec);
+<a name="l00351"></a>00351                         }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(Name==<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(<span class="stringliteral">&quot;FixedYawAxis&quot;</span>)){
+<a name="l00352"></a>00352                             Ev.<a class="code" href="classMezzanine_1_1Camera.html#a2ffb9eca37630a8d26669aab8668bce3" title="Sets whether to lock rotation around the Y axis.">SetFixedYawAxis</a>(<span class="keyword">false</span>);
+<a name="l00353"></a>00353                         }<span class="keywordflow">else</span>{
+<a name="l00354"></a>00354                             <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">Mezzanine::StringTool::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Includes unknown Element F-\&quot;&quot;</span>,Name,<span class="stringliteral">&quot;\&quot;&quot;</span>)) );
+<a name="l00355"></a>00355                         }
+<a name="l00356"></a>00356                         <span class="keywordflow">break</span>;
+<a name="l00357"></a>00357                     <span class="keywordflow">default</span>:
+<a name="l00358"></a>00358                         <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">Mezzanine::StringTool::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Includes unknown Element default-\&quot;&quot;</span>,Name,<span class="stringliteral">&quot;\&quot;&quot;</span>)) );
+<a name="l00359"></a>00359                         <span class="keywordflow">break</span>;
+<a name="l00360"></a>00360                 }
+<a name="l00361"></a>00361             }
+<a name="l00362"></a>00362 
+<a name="l00363"></a>00363         }<span class="keywordflow">else</span>{
+<a name="l00364"></a>00364             <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<span class="stringliteral">&quot;Incompatible XML Version for Camera: Not Version 1&quot;</span>));
+<a name="l00365"></a>00365         }
+<a name="l00366"></a>00366     }<span class="keywordflow">else</span>{
+<a name="l00367"></a>00367         <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">Mezzanine::StringTool::StringCat</a>(<span class="stringliteral">&quot;Attempting to deserialize a Camera, found a &quot;</span>, OneNode.Name())));
+<a name="l00368"></a>00368     }
+<a name="l00369"></a>00369 }
+<a name="l00370"></a>00370 <span class="preprocessor">#endif // \MEZZXML</span>
+<a name="l00371"></a>00371 <span class="preprocessor"></span>
+<a name="l00372"></a>00372 
+<a name="l00373"></a>00373 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -443,7 +442,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -453,6 +452,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

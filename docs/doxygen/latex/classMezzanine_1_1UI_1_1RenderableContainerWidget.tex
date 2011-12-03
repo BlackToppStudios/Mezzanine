@@ -1,0 +1,1503 @@
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget}{
+\subsection{Mezzanine::UI::RenderableContainerWidget Class Reference}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget}\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+}
+
+
+This is an abstract class for the creation and storage of widgets to be used by other classes.  
+
+
+
+
+{\ttfamily \#include $<$uirenderablecontainerwidget.h$>$}
+
+Inheritance diagram for Mezzanine::UI::RenderableContainerWidget:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classMezzanine_1_1UI_1_1RenderableContainerWidget}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_ab4923b194c5eedf4fe24861cc19ee641}{CreateButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Creates a button within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a091ce1b3a1b9596c038bad6ce1cf0a91}{CreateCaption} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a caption within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a073a30682c074b96d12975bc1fd9d1ea}{CreateCaption} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a caption within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2d65f8303b6214469f3bd081d2fcd767}{CreateCheckBox} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&LabelText)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox} within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1DropDownList}{DropDownList} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a953791f485efc0a0f6e3a9393c6d610c}{CreateDropDownList} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&ScrollStyle)
+\begin{DoxyCompactList}\small\item\em Creates a drop down list within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox}{ListBox} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6855ab02db180ce6fcb1ca8309ad4dea}{CreateListBox} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&\hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{ScrollbarStyle})
+\begin{DoxyCompactList}\small\item\em Creates a List Box within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a42be1f21bd23eaca548243d94e25009b}{CreateMarkupText} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a markup text within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a7c70dd9a1404fd9ae3a95bc7e6613349}{CreateMarkupText} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a markup text within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid}{PagedCellGrid} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a304bcbffecb97c9f07ad3c21f112a9e9}{CreatePagedCellGrid} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&SpnRect, const \hyperlink{namespaceMezzanine_1_1UI_a62462d4df783dcdda77e1590a96bc6d6}{UI::SpinnerStyle} \&SStyle, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&GlyphHeight)
+\begin{DoxyCompactList}\small\item\em Creates a paged cell grid within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a0c80f0949dbfd82e2120e737158c70fc}{CreateRectangle} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Creates a rectangle within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a15672e5bcb4d8ba8e5a1b083c90b0df8}{CreateScrollbar} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&Style)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid}{ScrolledCellGrid} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_acd2c7557223fe1c4f070f59ecfaff53c}{CreateScrolledCellGrid} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Thickness, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&Style)
+\begin{DoxyCompactList}\small\item\em Creates a scrolled cell grid within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a0afb9d45872dd11e1486ec6eb697fc94}{CreateSpinner} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_1_1UI_a62462d4df783dcdda77e1590a96bc6d6}{UI::SpinnerStyle} \&SStyle, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&GlyphHeight)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner} within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TabSet}{TabSet} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa0ec24b4df0d3fd138f7b259fba1e30e}{CreateTabSet} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&SetRect)
+\begin{DoxyCompactList}\small\item\em Creates a tabset within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a7083c20a1b8e17c86f57265138f06ed9}{CreateTextButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a text button within this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a8c5625278f0228bde4179b66ec933a65}{CreateTextButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a text button within this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a190db65e0ffef0cd0239799038b8e082}{DestroyButton} (\hyperlink{classMezzanine_1_1UI_1_1Button}{UI::Button} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_afa2fcd8083709cebd768ab64e9fa6a5c}{DestroyCaption} (\hyperlink{classMezzanine_1_1UI_1_1Caption}{UI::Caption} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_adc1447e4d57471119df261ef1689f085}{DestroyMarkupText} (\hyperlink{classMezzanine_1_1UI_1_1MarkupText}{UI::MarkupText} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_aea0493e6e52d3fbb0b195f9e5ecaab00}{DestroyRectangle} (\hyperlink{classMezzanine_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a rectangle. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a8b3ae9758380265ee2ca54edef9791ac}{DestroyWidget} (\hyperlink{classMezzanine_1_1UI_1_1Widget}{UI::Widget} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2569f8c7641efa475aba9ff8efad1ce2}{GetButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created button by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_ae18a59c3a4eee8dcba28229e6ada33bc}{GetButton} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created button by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa6c02feb49937d38bd265a2a808e6a57}{GetCaption} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created caption by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_acdf3614fc900c3b33055f95cd9ba654c}{GetCaption} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created caption by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_ab37d9833f73a80cafc72d9b1b0a57c36}{GetMarkupText} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created markup text by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a7454e3b8a2864d207d30d143eb198df1}{GetMarkupText} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created markup text by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2d8dcbeee8b5dd7c344efe7589a5f4a9}{GetNumButtons} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of buttons created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a3d2bed41ccc4e70cae464ec0c74de174}{GetNumCaptions} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of captions created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_af3b4ffb256a6adbe900cc7a1d8c4f342}{GetNumMarkupTexts} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of markup texts created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac7f19ba0b9eb60e413f2f2d2c1fadd42}{GetNumRectangles} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of rectangles created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a0f37f929679f1472ef23c3cf8e4c38bc}{GetNumWidgets} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of widgets created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetButtonInfo} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_ae04b7304acf969c7b5b11417268bf458}{GetOffsetButtonInfo} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets the OffsetButtonInfo of an already created button by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetButtonInfo} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac4842f3ccc449a30397041556aebeaa5}{GetOffsetButtonInfo} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets the OffsetButtonInfo of an already created button by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetCaptionInfo} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2de9ad86228863ce264137dcf0e98ec5}{GetOffsetCaptionInfo} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets the OffsetCaptionInfo of an already created caption by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetCaptionInfo} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6bb021b2eec02f089672f624ce4f0ffb}{GetOffsetCaptionInfo} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets the OffsetCaptionInfo of an already created caption by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetMarkupTextInfo} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac399e3b87cb416612916a83db872edbb}{GetOffsetMarkupTextInfo} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets the OffsetMarkupTextInfo of an already created markup text by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetMarkupTextInfo} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6e6cf9cca3582fe18e29e06005c4b100}{GetOffsetMarkupTextInfo} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets the OffsetMarkupTextInfo of an already created markup text by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetRectangleInfo} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_aadbd42f96fcdd57ece45b945b7e647e8}{GetOffsetRectangleInfo} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets the OffsetRectangleInfo of an already created rectangle by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetWidgetInfo} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac361c86ce02772e4206d20159fd4d49f}{GetOffsetWidgetInfo} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets the OffsetWidgetInfo of an already created widget by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetWidgetInfo} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa06bf93fc0969e52b00d6b37d1ebd94f}{GetOffsetWidgetInfo} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets the OffsetWidgetInfo of an already created widget by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a1334e1240c24338f64733200b17ec1b9}{GetRectangle} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created rectangle by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a78b0efca881531555270c395736440dd}{GetWidget} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created widget by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a571b5ca8add99b46681e28c7f0dff94f}{GetWidget} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created widget by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2460c47cb84718ba7f23399ebc31a536}{GetWidgetBack} ()
+\begin{DoxyCompactList}\small\item\em Gets the background object of this widget. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_adc5f635cdb48dad33934ff82df3c61f9}{RenderableContainerWidget} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a40f37509c36c3d131cfa8a29db49fd1d}{SetActualPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a036b474eb0d08197ee5130954a1ea992}{SetActualSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a169f11799bf2f3642ddfae70832dff59}{SetPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a672008c2b0340b36ca3041b858b570bc}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_acfea936d03f85a2e6d289e50844d6b11}{UpdateDimensions} ()
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa714e0983c31452f7f9aebf7932262cb}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa714e0983c31452f7f9aebf7932262cb}{$\sim$RenderableContainerWidget} ()}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa714e0983c31452f7f9aebf7932262cb}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a8c0d1898f91eb618bad0f1257fe0e202}{
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a8c0d1898f91eb618bad0f1257fe0e202}{CalculateOffset} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&NewSize, const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&OldSize, const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&EleOffset, const \hyperlink{namespaceMezzanine_1_1UI_a1c571649db3aa98f4e16285b5b754928}{UI::ResizeableAnchor} \&Anchor)}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a8c0d1898f91eb618bad0f1257fe0e202}
+
+\begin{DoxyCompactList}\small\item\em Calculates a new offset for an individual element. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_abc24299d5ba8104f8936828d6b4b886a}{
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_abc24299d5ba8104f8936828d6b4b886a}{CalculateSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&NewSize, const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&OldSize, const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&EleSize, const \hyperlink{namespaceMezzanine_1_1UI_a0334e290e4c9f6a5468fbe11164a17b9}{UI::ResizeableTether} \&Tether)}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_abc24299d5ba8104f8936828d6b4b886a}
+
+\begin{DoxyCompactList}\small\item\em Calculates a new size for an individual element. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_aaa39434fd933ca9b68041df382131340}{
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_aaa39434fd933ca9b68041df382131340}{CheckMouseHoverImpl} ()}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_aaa39434fd933ca9b68041df382131340}
+
+\begin{DoxyCompactList}\small\item\em Child specific mouse hover method. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ab9c2025cfebccefe25402d1cdef2fbec}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_ab9c2025cfebccefe25402d1cdef2fbec}{SetArea} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ab9c2025cfebccefe25402d1cdef2fbec}
+
+\begin{DoxyCompactList}\small\item\em Internal function for setting the area(size) of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a25b447380d4f11aeec35f87858037c93}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a25b447380d4f11aeec35f87858037c93}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a25b447380d4f11aeec35f87858037c93}
+
+\begin{DoxyCompactList}\small\item\em Internal function for setting the location(position) of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6e1275f6ab381dfc0832422e5cefa817}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6e1275f6ab381dfc0832422e5cefa817}{SetVisibleImpl} (bool visible)}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6e1275f6ab381dfc0832422e5cefa817}
+
+\begin{DoxyCompactList}\small\item\em Child specific visibility method. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_aff6cb63e616af69948941a0db8183b80}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_aff6cb63e616af69948941a0db8183b80}{UpdateImpl} (bool Force=false)}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_aff6cb63e616af69948941a0db8183b80}
+
+\begin{DoxyCompactList}\small\item\em Child specific update method. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a056613e4cb28034bd2f7fb761e6f320d}{
+std::vector$<$ \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetButtonInfo} $>$ {\bfseries Buttons}}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a056613e4cb28034bd2f7fb761e6f320d}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2e0005366cd883800dd1430c84d73e81}{
+std::vector$<$ \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetCaptionInfo} $>$ {\bfseries Captions}}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2e0005366cd883800dd1430c84d73e81}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_abbfd499e2cc5bcbfda5d73bcd48b656b}{
+std::vector$<$ \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetMarkupTextInfo} $>$ {\bfseries MarkupTexts}}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_abbfd499e2cc5bcbfda5d73bcd48b656b}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a9977c6847a6d10b64c8403f7aff915da}{
+std::vector$<$ \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetRectangleInfo} $>$ {\bfseries Rectangles}}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a9977c6847a6d10b64c8403f7aff915da}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_acc8d68c1879a71b8bb3415dd48d944d6}{
+\hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ {\bfseries WidgetBack}}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_acc8d68c1879a71b8bb3415dd48d944d6}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac349585b169a6c88c6741f86bef81972}{
+std::vector$<$ \hyperlink{structMezzanine_1_1UI_1_1ResizingInfo}{OffsetWidgetInfo} $>$ {\bfseries Widgets}}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac349585b169a6c88c6741f86bef81972}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is an abstract class for the creation and storage of widgets to be used by other classes. 
+
+Definition at line 77 of file uirenderablecontainerwidget.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_adc5f635cdb48dad33934ff82df3c61f9}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!RenderableContainerWidget@{RenderableContainerWidget}}
+\index{RenderableContainerWidget@{RenderableContainerWidget}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{RenderableContainerWidget}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::RenderableContainerWidget::RenderableContainerWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{{\bf Layer} $\ast$}]{PLayer}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_adc5f635cdb48dad33934ff82df3c61f9}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the window. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the window. \\
+\hline
+{\em PLayer} & The parent layer this window belongs to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 70 of file uirenderablecontainerwidget.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ab4923b194c5eedf4fe24861cc19ee641}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateButton@{CreateButton}}
+\index{CreateButton@{CreateButton}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ab4923b194c5eedf4fe24861cc19ee641}
+
+
+Creates a button within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the button. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 427 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a091ce1b3a1b9596c038bad6ce1cf0a91}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateCaption@{CreateCaption}}
+\index{CreateCaption@{CreateCaption}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a091ce1b3a1b9596c038bad6ce1cf0a91}
+
+
+Creates a caption within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created caption. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this caption. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the caption. \\
+\hline
+{\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
+\hline
+{\em Text} & Any text you want printed on the caption. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 575 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a073a30682c074b96d12975bc1fd9d1ea}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateCaption@{CreateCaption}}
+\index{CreateCaption@{CreateCaption}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a073a30682c074b96d12975bc1fd9d1ea}
+
+
+Creates a caption within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created caption. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this caption. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the caption. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & Any text you want printed on the caption. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 586 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2d65f8303b6214469f3bd081d2fcd767}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateCheckBox@{CreateCheckBox}}
+\index{CreateCheckBox@{CreateCheckBox}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateCheckBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CheckBox} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateCheckBox (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{LabelText}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2d65f8303b6214469f3bd081d2fcd767}
+
+
+Creates a \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox} within this widget. 
+
+The label uses the Markup Text class, and thus it's light markup text language. You can also pass in a blank string if you don't wish to have a label, you can create a label after construction. \begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox}. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the widget. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well. \\
+\hline
+{\em LabelText} & The text to display with the label. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 798 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a953791f485efc0a0f6e3a9393c6d610c}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateDropDownList@{CreateDropDownList}}
+\index{CreateDropDownList@{CreateDropDownList}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateDropDownList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf DropDownList} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateDropDownList (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf UI::ScrollbarStyle} \&}]{ScrollStyle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a953791f485efc0a0f6e3a9393c6d610c}
+
+
+Creates a drop down list within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1DropDownList}{DropDownList}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The Name for the \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget}. \\
+\hline
+{\em Rect} & The renderable rect representing the position and size of this widget. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well. \\
+\hline
+{\em ScrollStyle} & The style of the scrollbar you want for this List Box. See \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} class for more information. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 858 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6855ab02db180ce6fcb1ca8309ad4dea}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateListBox@{CreateListBox}}
+\index{CreateListBox@{CreateListBox}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateListBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateListBox (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf UI::ScrollbarStyle} \&}]{ScrollbarStyle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6855ab02db180ce6fcb1ca8309ad4dea}
+
+
+Creates a List Box within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created List Box. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the List Box. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the widget. \\
+\hline
+{\em ScrollbarStyle} & The style of scrollbar you want to create, see \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 810 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a7c70dd9a1404fd9ae3a95bc7e6613349}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateMarkupText@{CreateMarkupText}}
+\index{CreateMarkupText@{CreateMarkupText}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a7c70dd9a1404fd9ae3a95bc7e6613349}
+
+
+Creates a markup text within this widget. 
+
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. \begin{DoxyReturn}{Returns}
+Returns a pointer to the created markup text. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this markup text. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the markup text. \\
+\hline
+{\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
+\hline
+{\em Text} & Any text you want printed on the markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 652 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a42be1f21bd23eaca548243d94e25009b}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateMarkupText@{CreateMarkupText}}
+\index{CreateMarkupText@{CreateMarkupText}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a42be1f21bd23eaca548243d94e25009b}
+
+
+Creates a markup text within this widget. 
+
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. \begin{DoxyReturn}{Returns}
+Returns a pointer to the created markup text. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this markup text. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the markup text. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & Any text you want printed on the markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 664 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a304bcbffecb97c9f07ad3c21f112a9e9}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreatePagedCellGrid@{CreatePagedCellGrid}}
+\index{CreatePagedCellGrid@{CreatePagedCellGrid}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreatePagedCellGrid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PagedCellGrid} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreatePagedCellGrid (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf RenderableRect} \&}]{SpnRect, }
+\item[{const {\bf UI::SpinnerStyle} \&}]{SStyle, }
+\item[{const {\bf Real} \&}]{GlyphHeight}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a304bcbffecb97c9f07ad3c21f112a9e9}
+
+
+Creates a paged cell grid within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid}{PagedCellGrid}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the widget. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1CellGrid}{CellGrid}. \\
+\hline
+{\em SpnRect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner}. \\
+\hline
+{\em SStyle} & The style of spinner to create. \\
+\hline
+{\em GlyphHeight} & The desired lineheight of the glyphs to be used with the spinner. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 846 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a0c80f0949dbfd82e2120e737158c70fc}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateRectangle@{CreateRectangle}}
+\index{CreateRectangle@{CreateRectangle}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateRectangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateRectangle (
+\begin{DoxyParamCaption}
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a0c80f0949dbfd82e2120e737158c70fc}
+
+
+Creates a rectangle within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created rectangle. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Rect} & The Rect representing the position and size of the rectangle. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 535 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a15672e5bcb4d8ba8e5a1b083c90b0df8}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateScrollbar@{CreateScrollbar}}
+\index{CreateScrollbar@{CreateScrollbar}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateScrollbar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scrollbar} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateScrollbar (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf UI::ScrollbarStyle} \&}]{Style}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a15672e5bcb4d8ba8e5a1b083c90b0df8}
+
+
+Creates a \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar}. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the widget. \\
+\hline
+{\em Style} & The style of scrollbar you want to create, see \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 786 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_acd2c7557223fe1c4f070f59ecfaff53c}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateScrolledCellGrid@{CreateScrolledCellGrid}}
+\index{CreateScrolledCellGrid@{CreateScrolledCellGrid}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateScrolledCellGrid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ScrolledCellGrid} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateScrolledCellGrid (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{Thickness, }
+\item[{const {\bf UI::ScrollbarStyle} \&}]{Style}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_acd2c7557223fe1c4f070f59ecfaff53c}
+
+
+Creates a scrolled cell grid within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid}{ScrolledCellGrid}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the widget. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the widget. \\
+\hline
+{\em Thickness} & The width of the vertical scrollbar in relative units. The same amount of actual pixels is used to determine the height of the horizontal scrollbar. \\
+\hline
+{\em Style} & An enum value representing how you want your scrollbar constructed. See class details for more info. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 834 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a0afb9d45872dd11e1486ec6eb697fc94}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateSpinner@{CreateSpinner}}
+\index{CreateSpinner@{CreateSpinner}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateSpinner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spinner} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateSpinner (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf UI::SpinnerStyle} \&}]{SStyle, }
+\item[{const {\bf Real} \&}]{GlyphHeight}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a0afb9d45872dd11e1486ec6eb697fc94}
+
+
+Creates a \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner} within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The Name for the \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget}. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the widget. \\
+\hline
+{\em SStyle} & The layout of buttons this widget will have. See SpinnerStyle enum or class description for more details. \\
+\hline
+{\em GlyphHeight} & The desired relative height of the text you want. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 822 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa0ec24b4df0d3fd138f7b259fba1e30e}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateTabSet@{CreateTabSet}}
+\index{CreateTabSet@{CreateTabSet}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateTabSet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TabSet} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateTabSet (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{SetRect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa0ec24b4df0d3fd138f7b259fba1e30e}
+
+
+Creates a tabset within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created tabset. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The Name for the \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget}. \\
+\hline
+{\em SetRect} & The Rect representing the position and size of all the Renderable Sets generated by the tabset. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 495 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a8c5625278f0228bde4179b66ec933a65}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateTextButton@{CreateTextButton}}
+\index{CreateTextButton@{CreateTextButton}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateTextButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateTextButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{{\bf ConstString} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a8c5625278f0228bde4179b66ec933a65}
+
+
+Creates a text button within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the button. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & Any text you want printed on the button. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 462 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a7083c20a1b8e17c86f57265138f06ed9}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!CreateTextButton@{CreateTextButton}}
+\index{CreateTextButton@{CreateTextButton}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{CreateTextButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ Mezzanine::UI::RenderableContainerWidget::CreateTextButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{{\bf ConstString} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a7083c20a1b8e17c86f57265138f06ed9}
+
+
+Creates a text button within this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the button. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+{\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
+\hline
+{\em Text} & Any text you want printed on the button. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 444 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a190db65e0ffef0cd0239799038b8e082}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!DestroyButton@{DestroyButton}}
+\index{DestroyButton@{DestroyButton}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{DestroyButton}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::DestroyButton (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Button} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a190db65e0ffef0cd0239799038b8e082}
+
+
+Destroys a button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the button you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 522 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_afa2fcd8083709cebd768ab64e9fa6a5c}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!DestroyCaption@{DestroyCaption}}
+\index{DestroyCaption@{DestroyCaption}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{DestroyCaption}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::DestroyCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Caption} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_afa2fcd8083709cebd768ab64e9fa6a5c}
+
+
+Destroys a caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the caption you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 639 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_adc1447e4d57471119df261ef1689f085}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!DestroyMarkupText@{DestroyMarkupText}}
+\index{DestroyMarkupText@{DestroyMarkupText}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{DestroyMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::DestroyMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::MarkupText} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_adc1447e4d57471119df261ef1689f085}
+
+
+Destroys a markup text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the markup text you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 718 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_aea0493e6e52d3fbb0b195f9e5ecaab00}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!DestroyRectangle@{DestroyRectangle}}
+\index{DestroyRectangle@{DestroyRectangle}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{DestroyRectangle}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::DestroyRectangle (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Rectangle} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_aea0493e6e52d3fbb0b195f9e5ecaab00}
+
+
+Destroys a rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the rectangle you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 562 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a8b3ae9758380265ee2ca54edef9791ac}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!DestroyWidget@{DestroyWidget}}
+\index{DestroyWidget@{DestroyWidget}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{DestroyWidget}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::DestroyWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Widget} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a8b3ae9758380265ee2ca54edef9791ac}
+
+
+Destroys a widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the widget you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 773 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2569f8c7641efa475aba9ff8efad1ce2}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetButton@{GetButton}}
+\index{GetButton@{GetButton}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2569f8c7641efa475aba9ff8efad1ce2}
+
+
+Gets an already created button by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 480 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ae18a59c3a4eee8dcba28229e6ada33bc}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetButton@{GetButton}}
+\index{GetButton@{GetButton}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetButton (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ae18a59c3a4eee8dcba28229e6ada33bc}
+
+
+Gets an already created button by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 493 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa6c02feb49937d38bd265a2a808e6a57}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetCaption@{GetCaption}}
+\index{GetCaption@{GetCaption}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa6c02feb49937d38bd265a2a808e6a57}
+
+
+Gets an already created caption by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the caption of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 597 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_acdf3614fc900c3b33055f95cd9ba654c}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetCaption@{GetCaption}}
+\index{GetCaption@{GetCaption}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetCaption (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_acdf3614fc900c3b33055f95cd9ba654c}
+
+
+Gets an already created caption by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the caption at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 610 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a7454e3b8a2864d207d30d143eb198df1}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetMarkupText@{GetMarkupText}}
+\index{GetMarkupText@{GetMarkupText}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetMarkupText (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a7454e3b8a2864d207d30d143eb198df1}
+
+
+Gets an already created markup text by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the markup text at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 689 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ab37d9833f73a80cafc72d9b1b0a57c36}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetMarkupText@{GetMarkupText}}
+\index{GetMarkupText@{GetMarkupText}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ab37d9833f73a80cafc72d9b1b0a57c36}
+
+
+Gets an already created markup text by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the markup text of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 676 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2d8dcbeee8b5dd7c344efe7589a5f4a9}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetNumButtons@{GetNumButtons}}
+\index{GetNumButtons@{GetNumButtons}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetNumButtons}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::RenderableContainerWidget::GetNumButtons (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2d8dcbeee8b5dd7c344efe7589a5f4a9}
+
+
+Gets the number of buttons created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of buttons this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 517 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a3d2bed41ccc4e70cae464ec0c74de174}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetNumCaptions@{GetNumCaptions}}
+\index{GetNumCaptions@{GetNumCaptions}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetNumCaptions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::RenderableContainerWidget::GetNumCaptions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a3d2bed41ccc4e70cae464ec0c74de174}
+
+
+Gets the number of captions created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of captions this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 634 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_af3b4ffb256a6adbe900cc7a1d8c4f342}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetNumMarkupTexts@{GetNumMarkupTexts}}
+\index{GetNumMarkupTexts@{GetNumMarkupTexts}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetNumMarkupTexts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::RenderableContainerWidget::GetNumMarkupTexts (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_af3b4ffb256a6adbe900cc7a1d8c4f342}
+
+
+Gets the number of markup texts created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of markup texts this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 713 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac7f19ba0b9eb60e413f2f2d2c1fadd42}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetNumRectangles@{GetNumRectangles}}
+\index{GetNumRectangles@{GetNumRectangles}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetNumRectangles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::RenderableContainerWidget::GetNumRectangles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac7f19ba0b9eb60e413f2f2d2c1fadd42}
+
+
+Gets the number of rectangles created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of rectangles this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 557 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a0f37f929679f1472ef23c3cf8e4c38bc}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetNumWidgets@{GetNumWidgets}}
+\index{GetNumWidgets@{GetNumWidgets}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetNumWidgets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::RenderableContainerWidget::GetNumWidgets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a0f37f929679f1472ef23c3cf8e4c38bc}
+
+
+Gets the number of widgets created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of widgets this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 768 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ae04b7304acf969c7b5b11417268bf458}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetOffsetButtonInfo@{GetOffsetButtonInfo}}
+\index{GetOffsetButtonInfo@{GetOffsetButtonInfo}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetOffsetButtonInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf OffsetButtonInfo} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetOffsetButtonInfo (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ae04b7304acf969c7b5b11417268bf458}
+
+
+Gets the OffsetButtonInfo of an already created button by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to the button of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 498 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac4842f3ccc449a30397041556aebeaa5}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetOffsetButtonInfo@{GetOffsetButtonInfo}}
+\index{GetOffsetButtonInfo@{GetOffsetButtonInfo}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetOffsetButtonInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf OffsetButtonInfo} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetOffsetButtonInfo (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac4842f3ccc449a30397041556aebeaa5}
+
+
+Gets the OffsetButtonInfo of an already created button by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to the button at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 511 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6bb021b2eec02f089672f624ce4f0ffb}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetOffsetCaptionInfo@{GetOffsetCaptionInfo}}
+\index{GetOffsetCaptionInfo@{GetOffsetCaptionInfo}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetOffsetCaptionInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf OffsetCaptionInfo} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetOffsetCaptionInfo (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6bb021b2eec02f089672f624ce4f0ffb}
+
+
+Gets the OffsetCaptionInfo of an already created caption by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to the caption at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 628 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2de9ad86228863ce264137dcf0e98ec5}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetOffsetCaptionInfo@{GetOffsetCaptionInfo}}
+\index{GetOffsetCaptionInfo@{GetOffsetCaptionInfo}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetOffsetCaptionInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf OffsetCaptionInfo} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetOffsetCaptionInfo (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2de9ad86228863ce264137dcf0e98ec5}
+
+
+Gets the OffsetCaptionInfo of an already created caption by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to the caption of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 615 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac399e3b87cb416612916a83db872edbb}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetOffsetMarkupTextInfo@{GetOffsetMarkupTextInfo}}
+\index{GetOffsetMarkupTextInfo@{GetOffsetMarkupTextInfo}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetOffsetMarkupTextInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf OffsetMarkupTextInfo} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetOffsetMarkupTextInfo (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac399e3b87cb416612916a83db872edbb}
+
+
+Gets the OffsetMarkupTextInfo of an already created markup text by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to the markup text of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 694 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6e6cf9cca3582fe18e29e06005c4b100}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetOffsetMarkupTextInfo@{GetOffsetMarkupTextInfo}}
+\index{GetOffsetMarkupTextInfo@{GetOffsetMarkupTextInfo}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetOffsetMarkupTextInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf OffsetMarkupTextInfo} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetOffsetMarkupTextInfo (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a6e6cf9cca3582fe18e29e06005c4b100}
+
+
+Gets the OffsetMarkupTextInfo of an already created markup text by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to the markup text at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 707 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_aadbd42f96fcdd57ece45b945b7e647e8}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetOffsetRectangleInfo@{GetOffsetRectangleInfo}}
+\index{GetOffsetRectangleInfo@{GetOffsetRectangleInfo}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetOffsetRectangleInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf OffsetRectangleInfo} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetOffsetRectangleInfo (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_aadbd42f96fcdd57ece45b945b7e647e8}
+
+
+Gets the OffsetRectangleInfo of an already created rectangle by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to the rectangle at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 551 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac361c86ce02772e4206d20159fd4d49f}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetOffsetWidgetInfo@{GetOffsetWidgetInfo}}
+\index{GetOffsetWidgetInfo@{GetOffsetWidgetInfo}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetOffsetWidgetInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf OffsetWidgetInfo} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetOffsetWidgetInfo (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_ac361c86ce02772e4206d20159fd4d49f}
+
+
+Gets the OffsetWidgetInfo of an already created widget by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to the widget of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 749 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa06bf93fc0969e52b00d6b37d1ebd94f}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetOffsetWidgetInfo@{GetOffsetWidgetInfo}}
+\index{GetOffsetWidgetInfo@{GetOffsetWidgetInfo}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetOffsetWidgetInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf OffsetWidgetInfo} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetOffsetWidgetInfo (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_aa06bf93fc0969e52b00d6b37d1ebd94f}
+
+
+Gets the OffsetWidgetInfo of an already created widget by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to the widget at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 762 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a1334e1240c24338f64733200b17ec1b9}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetRectangle@{GetRectangle}}
+\index{GetRectangle@{GetRectangle}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetRectangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetRectangle (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a1334e1240c24338f64733200b17ec1b9}
+
+
+Gets an already created rectangle by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the rectangle at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 546 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a78b0efca881531555270c395736440dd}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetWidget@{GetWidget}}
+\index{GetWidget@{GetWidget}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetWidget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Widget} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetWidget (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a78b0efca881531555270c395736440dd}
+
+
+Gets an already created widget by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the widget at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 744 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a571b5ca8add99b46681e28c7f0dff94f}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetWidget@{GetWidget}}
+\index{GetWidget@{GetWidget}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetWidget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Widget} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a571b5ca8add99b46681e28c7f0dff94f}
+
+
+Gets an already created widget by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the widget of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 731 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2460c47cb84718ba7f23399ebc31a536}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!GetWidgetBack@{GetWidgetBack}}
+\index{GetWidgetBack@{GetWidgetBack}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{GetWidgetBack}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ Mezzanine::UI::RenderableContainerWidget::GetWidgetBack (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a2460c47cb84718ba7f23399ebc31a536}
+
+
+Gets the background object of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the rectangle that is the background for this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 422 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a40f37509c36c3d131cfa8a29db49fd1d}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a40f37509c36c3d131cfa8a29db49fd1d}
+
+
+Sets the pixel position of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the pixel position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_a860bd8baea24d61a9cd661e85831f981}{Mezzanine::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1Window_a79929aa37e9bb297ed3ae9c09ec42dee}{Mezzanine::UI::Window}.
+
+
+
+Definition at line 366 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a036b474eb0d08197ee5130954a1ea992}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a036b474eb0d08197ee5130954a1ea992}
+
+
+Sets the pixel size of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the pixel size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_acc8a472036872bbbfd0476f753c80ba4}{Mezzanine::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1Window_adda80dca776a0de7468c7937c4653eec}{Mezzanine::UI::Window}.
+
+
+
+Definition at line 379 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a169f11799bf2f3642ddfae70832dff59}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::SetPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a169f11799bf2f3642ddfae70832dff59}
+
+
+Sets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the relative position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_ac83b59db51a6717ad7b822007dde3576}{Mezzanine::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1Window_a8e25cd61721c2321f1117720e1af41a2}{Mezzanine::UI::Window}.
+
+
+
+Definition at line 359 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_a672008c2b0340b36ca3041b858b570bc}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::SetSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_a672008c2b0340b36ca3041b858b570bc}
+
+
+Sets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the relative size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_adf8b14ce6641d4ec12f6ff09814fc9ab}{Mezzanine::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1Window_a1816409c5c9d9f7bca38510270e340e3}{Mezzanine::UI::Window}.
+
+
+
+Definition at line 372 of file uirenderablecontainerwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1RenderableContainerWidget_acfea936d03f85a2e6d289e50844d6b11}{
+\index{Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!Mezzanine::UI::RenderableContainerWidget@{Mezzanine::UI::RenderableContainerWidget}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::RenderableContainerWidget::UpdateDimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1RenderableContainerWidget_acfea936d03f85a2e6d289e50844d6b11}
+
+
+Updates the dimensions of this widget to match those of the new screen size. 
+
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_af23f919f2912ac10230953a848c9889c}{Mezzanine::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a9100422fa989e3c3d41e9b22046773f7}{Mezzanine::UI::MenuWindow}, and \hyperlink{classMezzanine_1_1UI_1_1Window_a793c156e8de19f44b8c132b05ed4f7b6}{Mezzanine::UI::Window}.
+
+
+
+Definition at line 385 of file uirenderablecontainerwidget.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uirenderablecontainerwidget.h\item 
+uilayer.cpp\item 
+uirenderablecontainerwidget.cpp\end{DoxyCompactItemize}

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: eventcollision.cpp Source File</title>
+<title>MezzanineEngine: eventcollision.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -104,103 +104,132 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00040"></a>00040 <span class="preprocessor">#ifndef eventcollision_cpp</span>
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define eventcollision_cpp</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
-<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;actorcontainerbase.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;actormanager.h&quot;</span>
-<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;eventcollision.h&quot;</span>
-<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 <span class="preprocessor">#include &lt;memory&gt;</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;eventcollision.h&quot;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;actorcontainerbase.h&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;actormanager.h&quot;</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;<a class="code" href="actorbase_8h.html" title="The base class for all Actors is defined here.">actorbase.h</a>&quot;</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;stringtool.h&quot;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;world.h&quot;</span>
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="keyword">namespace </span>phys {
-<a name="l00051"></a><a class="code" href="classphys_1_1EventCollision.html#af44ef170326f56879e9e4608984a4196">00051</a>     <a class="code" href="classphys_1_1EventCollision.html#af44ef170326f56879e9e4608984a4196" title="Default Constructor.">EventCollision::EventCollision</a>()
-<a name="l00052"></a>00052     {
-<a name="l00053"></a>00053         <a class="code" href="classphys_1_1EventCollision.html#a2de905d0332c66293cbe990fe2dbbb07" title="The first Actor involved in the collision.">ActorA</a>=NULL;
-<a name="l00054"></a>00054         <a class="code" href="classphys_1_1EventCollision.html#a922fd42b74db6df7a59cb5fd54cbadbe" title="The second Actor invovled in the collision.">ActorB</a>=NULL;
-<a name="l00055"></a>00055         <a class="code" href="classphys_1_1EventCollision.html#a2fa146b8453d2f504abcd5055d2c2a90" title="The location in ActorA&amp;#39;s local space where the collision occured.">LocalALocation</a>=<a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0);
-<a name="l00056"></a>00056         <a class="code" href="classphys_1_1EventCollision.html#a50d6df6b25532530cd296353ac0b55c6" title="The location in ActorB&amp;#39;s local space where the collision occured.">LocalBLocation</a>=<a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0);
-<a name="l00057"></a>00057         <a class="code" href="classphys_1_1EventCollision.html#a8f8a80d921bfe1ec24171c5be3ed7641" title="The location in the world where the collision occured.">WorldLocation</a>=<a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0);
-<a name="l00058"></a>00058         <a class="code" href="classphys_1_1EventCollision.html#a577552db818f54a4092baccf597823a2" title="The amount of force of the collision.">Impulse</a>=0;
-<a name="l00059"></a>00059     }
-<a name="l00060"></a>00060 
-<a name="l00061"></a><a class="code" href="classphys_1_1EventCollision.html#a0f5a0862cde3b7db4482be6984434742">00061</a>     <a class="code" href="classphys_1_1EventCollision.html#af44ef170326f56879e9e4608984a4196" title="Default Constructor.">EventCollision::EventCollision</a>(<a class="code" href="classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* actora, <a class="code" href="classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* actorb, <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> localAlocation, <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> localBlocation, <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> worldlocation, <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> impulse)
-<a name="l00062"></a>00062     {
-<a name="l00063"></a>00063         <a class="code" href="classphys_1_1EventCollision.html#a2de905d0332c66293cbe990fe2dbbb07" title="The first Actor involved in the collision.">ActorA</a>=actora;
-<a name="l00064"></a>00064         <a class="code" href="classphys_1_1EventCollision.html#a922fd42b74db6df7a59cb5fd54cbadbe" title="The second Actor invovled in the collision.">ActorB</a>=actorb;
-<a name="l00065"></a>00065         <a class="code" href="classphys_1_1EventCollision.html#a2fa146b8453d2f504abcd5055d2c2a90" title="The location in ActorA&amp;#39;s local space where the collision occured.">LocalALocation</a>=localAlocation;
-<a name="l00066"></a>00066         <a class="code" href="classphys_1_1EventCollision.html#a50d6df6b25532530cd296353ac0b55c6" title="The location in ActorB&amp;#39;s local space where the collision occured.">LocalBLocation</a>=localBlocation;
-<a name="l00067"></a>00067         <a class="code" href="classphys_1_1EventCollision.html#a8f8a80d921bfe1ec24171c5be3ed7641" title="The location in the world where the collision occured.">WorldLocation</a>=worldlocation;
-<a name="l00068"></a>00068         <a class="code" href="classphys_1_1EventCollision.html#a577552db818f54a4092baccf597823a2" title="The amount of force of the collision.">Impulse</a>=impulse;
-<a name="l00069"></a>00069     }
-<a name="l00070"></a>00070 
-<a name="l00071"></a><a class="code" href="classphys_1_1EventCollision.html#a85c999154866380d232ddcdfd9534c85">00071</a>     <a class="code" href="classphys_1_1EventCollision.html#af44ef170326f56879e9e4608984a4196" title="Default Constructor.">EventCollision::EventCollision</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1EventCollision.html" title="This is an event class used to track collsions in the physics world.">EventCollision</a>&amp; Other)
-<a name="l00072"></a>00072     {
-<a name="l00073"></a>00073         <a class="code" href="classphys_1_1EventCollision.html#a2de905d0332c66293cbe990fe2dbbb07" title="The first Actor involved in the collision.">ActorA</a>=Other.<a class="code" href="classphys_1_1EventCollision.html#a2de905d0332c66293cbe990fe2dbbb07" title="The first Actor involved in the collision.">ActorA</a>;
-<a name="l00074"></a>00074         <a class="code" href="classphys_1_1EventCollision.html#a922fd42b74db6df7a59cb5fd54cbadbe" title="The second Actor invovled in the collision.">ActorB</a>=Other.<a class="code" href="classphys_1_1EventCollision.html#a922fd42b74db6df7a59cb5fd54cbadbe" title="The second Actor invovled in the collision.">ActorB</a>;
-<a name="l00075"></a>00075         <a class="code" href="classphys_1_1EventCollision.html#a2fa146b8453d2f504abcd5055d2c2a90" title="The location in ActorA&amp;#39;s local space where the collision occured.">LocalALocation</a>=Other.<a class="code" href="classphys_1_1EventCollision.html#a2fa146b8453d2f504abcd5055d2c2a90" title="The location in ActorA&amp;#39;s local space where the collision occured.">LocalALocation</a>;
-<a name="l00076"></a>00076         <a class="code" href="classphys_1_1EventCollision.html#a50d6df6b25532530cd296353ac0b55c6" title="The location in ActorB&amp;#39;s local space where the collision occured.">LocalBLocation</a>=Other.<a class="code" href="classphys_1_1EventCollision.html#a50d6df6b25532530cd296353ac0b55c6" title="The location in ActorB&amp;#39;s local space where the collision occured.">LocalBLocation</a>;
-<a name="l00077"></a>00077         <a class="code" href="classphys_1_1EventCollision.html#a8f8a80d921bfe1ec24171c5be3ed7641" title="The location in the world where the collision occured.">WorldLocation</a>=Other.<a class="code" href="classphys_1_1EventCollision.html#a8f8a80d921bfe1ec24171c5be3ed7641" title="The location in the world where the collision occured.">WorldLocation</a>;
-<a name="l00078"></a>00078         <a class="code" href="classphys_1_1EventCollision.html#a577552db818f54a4092baccf597823a2" title="The amount of force of the collision.">Impulse</a>=Other.<a class="code" href="classphys_1_1EventCollision.html#a577552db818f54a4092baccf597823a2" title="The amount of force of the collision.">Impulse</a>;
-<a name="l00079"></a>00079     }
-<a name="l00080"></a>00080 
-<a name="l00081"></a><a class="code" href="classphys_1_1EventCollision.html#afcbf057fc955ce6c05b21c08325b1822">00081</a>     <a class="code" href="classphys_1_1EventCollision.html#afcbf057fc955ce6c05b21c08325b1822" title="Class Destructor.">EventCollision::~EventCollision</a>()
-<a name="l00082"></a>00082     {
-<a name="l00083"></a>00083     }
-<a name="l00084"></a>00084 
-<a name="l00085"></a><a class="code" href="classphys_1_1EventCollision.html#a96c2809f1bbab78b9f2758cea15a9a36">00085</a>     <a class="code" href="classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> <a class="code" href="classphys_1_1EventCollision.html#a96c2809f1bbab78b9f2758cea15a9a36" title="This returns EventType::Collision.">EventCollision::GetType</a>()<span class="keyword"> const</span>
-<a name="l00086"></a>00086 <span class="keyword">    </span>{
-<a name="l00087"></a>00087         <span class="keywordflow">return</span> <a class="code" href="classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5">EventBase::Collision</a>;
-<a name="l00088"></a>00088     }
-<a name="l00089"></a>00089 }
-<a name="l00090"></a>00090 <span class="comment"></span>
-<a name="l00091"></a>00091 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00092"></a>00092 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
-<a name="l00093"></a>00093 <span class="preprocessor">#ifdef PHYSXML</span>
-<a name="l00094"></a>00094 <span class="preprocessor"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classphys_1_1EventCollision.html" title="This is an event class used to track collsions in the physics world.">phys::EventCollision</a>&amp; Ev)
-<a name="l00095"></a>00095 {
-<a name="l00096"></a>00096     stream  &lt;&lt; <span class="stringliteral">&quot;&lt;EventCollision Version=\&quot;1\&quot; Impulse=\&quot;&quot;</span> &lt;&lt; Ev.<a class="code" href="classphys_1_1EventCollision.html#a577552db818f54a4092baccf597823a2" title="The amount of force of the collision.">Impulse</a> &lt;&lt; <span class="stringliteral">&quot;\&quot; ActorA=\&quot;&quot;</span> &lt;&lt; Ev.<a class="code" href="classphys_1_1EventCollision.html#a2de905d0332c66293cbe990fe2dbbb07" title="The first Actor involved in the collision.">ActorA</a>-&gt;GetName() &lt;&lt; <span class="stringliteral">&quot;\&quot; ActorB=\&quot;&quot;</span> &lt;&lt; Ev.<a class="code" href="classphys_1_1EventCollision.html#a922fd42b74db6df7a59cb5fd54cbadbe" title="The second Actor invovled in the collision.">ActorB</a>-&gt;GetName() &lt;&lt; <span class="stringliteral">&quot;\&quot; &gt;&quot;</span>
-<a name="l00097"></a>00097             &lt;&lt;  Ev.<a class="code" href="classphys_1_1EventCollision.html#a8f8a80d921bfe1ec24171c5be3ed7641" title="The location in the world where the collision occured.">WorldLocation</a>
-<a name="l00098"></a>00098             &lt;&lt; <span class="stringliteral">&quot;&lt;/EventCollision&gt;&quot;</span>;
-<a name="l00099"></a>00099     <span class="keywordflow">return</span> stream;
-<a name="l00100"></a>00100 }
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 std::istream&amp; PHYS_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classphys_1_1EventCollision.html" title="This is an event class used to track collsions in the physics world.">phys::EventCollision</a>&amp; Ev)
-<a name="l00103"></a>00103 {
-<a name="l00104"></a>00104     <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a> OneTag( <a class="code" href="namespacephys_1_1xml.html#a2b175958ac1d39cc297c24e3f377739b" title="Gets the first tag out of the Stream and returns it as a String.">phys::xml::GetOneTag</a>(stream) );
-<a name="l00105"></a>00105     std::auto_ptr&lt;phys::xml::Document&gt; Doc( <a class="code" href="namespacephys_1_1xml.html#ab5e51b3ea3a6e61bf4c8368005232210" title="Perform a basic series of checks for extracting meaning from a single xml tag.">phys::xml::PreParseClassFromSingleTag</a>(<span class="stringliteral">&quot;phys::&quot;</span>, <span class="stringliteral">&quot;EventCollision&quot;</span>, OneTag) );
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107     Doc-&gt;GetFirstChild() &gt;&gt; Ev;
+<a name="l00050"></a>00050 <span class="preprocessor">#include &lt;btBulletDynamicsCommon.h&gt;</span>
+<a name="l00051"></a>00051 <span class="preprocessor">#include &lt;memory&gt;</span>
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053 <span class="keyword">namespace </span>Mezzanine
+<a name="l00054"></a>00054 {
+<a name="l00055"></a><a class="code" href="classMezzanine_1_1EventCollision.html#ae0813b544c1df94159e364b3a5720a6a">00055</a>     <a class="code" href="classMezzanine_1_1EventCollision.html#ae0813b544c1df94159e364b3a5720a6a" title="Default Constructor.">EventCollision::EventCollision</a>()
+<a name="l00056"></a>00056     {
+<a name="l00057"></a>00057         <a class="code" href="classMezzanine_1_1EventCollision.html#a9e076c11df8b6e16c357f0a5c373542a" title="The first Actor involved in the collision.">ActorA</a>=NULL;
+<a name="l00058"></a>00058         <a class="code" href="classMezzanine_1_1EventCollision.html#aca0535fa8e9e4fbbb0229c6342e05da4" title="The second Actor invovled in the collision.">ActorB</a>=NULL;
+<a name="l00059"></a>00059         <a class="code" href="classMezzanine_1_1EventCollision.html#a562c1ab56444569b478a7a613caef42c" title="The internal collision class this event is based on.">ObjectCollision</a>=NULL;
+<a name="l00060"></a>00060     }
+<a name="l00061"></a>00061 
+<a name="l00062"></a><a class="code" href="classMezzanine_1_1EventCollision.html#affa8e2d9f0d20d33e8131fa05348879c">00062</a>     <a class="code" href="classMezzanine_1_1EventCollision.html#ae0813b544c1df94159e364b3a5720a6a" title="Default Constructor.">EventCollision::EventCollision</a>(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* actora, <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* actorb, <a class="code" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Mezzanine::Collision</a>* Col)
+<a name="l00063"></a>00063     {
+<a name="l00064"></a>00064         <a class="code" href="classMezzanine_1_1EventCollision.html#a9e076c11df8b6e16c357f0a5c373542a" title="The first Actor involved in the collision.">ActorA</a>=actora;
+<a name="l00065"></a>00065         <a class="code" href="classMezzanine_1_1EventCollision.html#aca0535fa8e9e4fbbb0229c6342e05da4" title="The second Actor invovled in the collision.">ActorB</a>=actorb;
+<a name="l00066"></a>00066         <a class="code" href="classMezzanine_1_1EventCollision.html#a562c1ab56444569b478a7a613caef42c" title="The internal collision class this event is based on.">ObjectCollision</a>=Col;
+<a name="l00067"></a>00067     }
+<a name="l00068"></a>00068 
+<a name="l00069"></a><a class="code" href="classMezzanine_1_1EventCollision.html#ae6917514b805e00607ce88ae01f52780">00069</a>     <a class="code" href="classMezzanine_1_1EventCollision.html#ae0813b544c1df94159e364b3a5720a6a" title="Default Constructor.">EventCollision::EventCollision</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1EventCollision.html" title="This is an event class used to track collsions in the physics world.">EventCollision</a>&amp; Other)
+<a name="l00070"></a>00070     {
+<a name="l00071"></a>00071         <a class="code" href="classMezzanine_1_1EventCollision.html#a9e076c11df8b6e16c357f0a5c373542a" title="The first Actor involved in the collision.">ActorA</a>=Other.<a class="code" href="classMezzanine_1_1EventCollision.html#a9e076c11df8b6e16c357f0a5c373542a" title="The first Actor involved in the collision.">ActorA</a>;
+<a name="l00072"></a>00072         <a class="code" href="classMezzanine_1_1EventCollision.html#aca0535fa8e9e4fbbb0229c6342e05da4" title="The second Actor invovled in the collision.">ActorB</a>=Other.<a class="code" href="classMezzanine_1_1EventCollision.html#aca0535fa8e9e4fbbb0229c6342e05da4" title="The second Actor invovled in the collision.">ActorB</a>;
+<a name="l00073"></a>00073     }
+<a name="l00074"></a>00074 
+<a name="l00075"></a><a class="code" href="classMezzanine_1_1EventCollision.html#a72cabbfa2f7983d8b017755791e89632">00075</a>     <a class="code" href="classMezzanine_1_1EventCollision.html#a72cabbfa2f7983d8b017755791e89632" title="Class Destructor.">EventCollision::~EventCollision</a>()
+<a name="l00076"></a>00076     {
+<a name="l00077"></a>00077     }
+<a name="l00078"></a>00078 
+<a name="l00079"></a><a class="code" href="classMezzanine_1_1EventCollision.html#a90e9b3a89762db6a3c55aa262833bcd7">00079</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1EventCollision.html#a90e9b3a89762db6a3c55aa262833bcd7" title="Sets the first actor this collision applies to.">EventCollision::SetActorA</a>(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* A)
+<a name="l00080"></a>00080     {
+<a name="l00081"></a>00081         <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1EventCollision.html#a9e076c11df8b6e16c357f0a5c373542a" title="The first Actor involved in the collision.">ActorA</a>)
+<a name="l00082"></a>00082         {
+<a name="l00083"></a>00083             <a class="code" href="classMezzanine_1_1World.html#a8d714f7655aa563cd66cee8db59f9116" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Attepting to change Actor pointer Member in EventCollision.  This is not permitted.&quot;</span>);
+<a name="l00084"></a>00084         }<span class="keywordflow">else</span>{
+<a name="l00085"></a>00085             <a class="code" href="classMezzanine_1_1EventCollision.html#a9e076c11df8b6e16c357f0a5c373542a" title="The first Actor involved in the collision.">ActorA</a> = A;
+<a name="l00086"></a>00086         }
+<a name="l00087"></a>00087     }
+<a name="l00088"></a>00088 
+<a name="l00089"></a><a class="code" href="classMezzanine_1_1EventCollision.html#adb7943576f8033703f0afcbce43f56cc">00089</a>     <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="classMezzanine_1_1EventCollision.html#adb7943576f8033703f0afcbce43f56cc" title="Gets the first actor this collision applies to.">EventCollision::GetActorA</a>()<span class="keyword"> const</span>
+<a name="l00090"></a>00090 <span class="keyword">    </span>{
+<a name="l00091"></a>00091         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1EventCollision.html#a9e076c11df8b6e16c357f0a5c373542a" title="The first Actor involved in the collision.">ActorA</a>;
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093 
+<a name="l00094"></a><a class="code" href="classMezzanine_1_1EventCollision.html#aef6da3acdc9879b21990cb25fa285304">00094</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1EventCollision.html#aef6da3acdc9879b21990cb25fa285304" title="Sets the second actor this collision applies to.">EventCollision::SetActorB</a>(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* B)
+<a name="l00095"></a>00095     {
+<a name="l00096"></a>00096         <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1EventCollision.html#aca0535fa8e9e4fbbb0229c6342e05da4" title="The second Actor invovled in the collision.">ActorB</a>)
+<a name="l00097"></a>00097         {
+<a name="l00098"></a>00098             <a class="code" href="classMezzanine_1_1World.html#a8d714f7655aa563cd66cee8db59f9116" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Attepting to change Actor pointer Member in EventCollision.  This is not permitted.&quot;</span>);
+<a name="l00099"></a>00099         }<span class="keywordflow">else</span>{
+<a name="l00100"></a>00100             <a class="code" href="classMezzanine_1_1EventCollision.html#aca0535fa8e9e4fbbb0229c6342e05da4" title="The second Actor invovled in the collision.">ActorB</a> = B;
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102     }
+<a name="l00103"></a>00103 
+<a name="l00104"></a><a class="code" href="classMezzanine_1_1EventCollision.html#ad3d7b44e680425d33bb2556de4d9a056">00104</a>     <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="classMezzanine_1_1EventCollision.html#ad3d7b44e680425d33bb2556de4d9a056" title="Gets the second actor this collision applies to.">EventCollision::GetActorB</a>()<span class="keyword"> const</span>
+<a name="l00105"></a>00105 <span class="keyword">    </span>{
+<a name="l00106"></a>00106         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1EventCollision.html#aca0535fa8e9e4fbbb0229c6342e05da4" title="The second Actor invovled in the collision.">ActorB</a>;
+<a name="l00107"></a>00107     }
 <a name="l00108"></a>00108 
-<a name="l00109"></a>00109     <span class="keywordflow">return</span> stream;
-<a name="l00110"></a>00110 }
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112 <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="classphys_1_1EventCollision.html" title="This is an event class used to track collsions in the physics world.">phys::EventCollision</a>&amp; Ev)
-<a name="l00113"></a>00113 {
-<a name="l00114"></a>00114     <span class="keywordflow">if</span> ( <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>())==<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>(<span class="stringliteral">&quot;EventCollision&quot;</span>))
-<a name="l00115"></a>00115     {
-<a name="l00116"></a>00116         <span class="keywordflow">if</span>(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
-<a name="l00117"></a>00117         {
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119             Ev.<a class="code" href="classphys_1_1EventCollision.html#a2de905d0332c66293cbe990fe2dbbb07" title="The first Actor involved in the collision.">ActorA</a>=<a class="code" href="classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;GetActorManager()-&gt;GetActor(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;ActorA&quot;</span>).AsString());
-<a name="l00120"></a>00120             Ev.<a class="code" href="classphys_1_1EventCollision.html#a922fd42b74db6df7a59cb5fd54cbadbe" title="The second Actor invovled in the collision.">ActorB</a>=<a class="code" href="classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;GetActorManager()-&gt;GetActor(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;ActorB&quot;</span>).AsString());
-<a name="l00121"></a>00121             Ev.<a class="code" href="classphys_1_1EventCollision.html#a577552db818f54a4092baccf597823a2" title="The amount of force of the collision.">Impulse</a>=OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Impulse&quot;</span>).AsReal();
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123             <span class="keywordflow">if</span>(OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>())
-<a name="l00124"></a>00124             {
-<a name="l00125"></a>00125                 OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>() &gt;&gt; Ev.<a class="code" href="classphys_1_1EventCollision.html#a8f8a80d921bfe1ec24171c5be3ed7641" title="The location in the world where the collision occured.">WorldLocation</a>;
-<a name="l00126"></a>00126             }<span class="keywordflow">else</span>{
-<a name="l00127"></a>00127                 <span class="keywordflow">throw</span>(<a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<span class="stringliteral">&quot;Normal not found while parsing phys::EventCollision&quot;</span>));
-<a name="l00128"></a>00128             }
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130         }<span class="keywordflow">else</span>{
-<a name="l00131"></a>00131             <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<span class="stringliteral">&quot;Incompatible XML Version for EventCollision: Not Version 1&quot;</span>));
-<a name="l00132"></a>00132         }
-<a name="l00133"></a>00133     }<span class="keywordflow">else</span>{
-<a name="l00134"></a>00134         <span class="keywordflow">throw</span>( <a class="code" href="classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<a class="code" href="namespacephys.html#ae057253f75738c79bc5fdb5f1c5410de" title="Concatenates 2 Strings.">phys::StringCat</a>(<span class="stringliteral">&quot;Attempting to deserialize a EventCollision, found a &quot;</span>, OneNode.<a class="code" href="classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>())));
-<a name="l00135"></a>00135     }
-<a name="l00136"></a>00136 }
-<a name="l00137"></a>00137 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l00138"></a>00138 <span class="preprocessor"></span>
-<a name="l00139"></a>00139 <span class="preprocessor">#endif</span>
+<a name="l00109"></a><a class="code" href="classMezzanine_1_1EventCollision.html#af5d9f7eb0ee0ce22b0dd5dfbafc8f297">00109</a>     <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baef">EventBase::EventType</a> <a class="code" href="classMezzanine_1_1EventCollision.html#af5d9f7eb0ee0ce22b0dd5dfbafc8f297" title="This returns EventType::Collision.">EventCollision::GetType</a>()<span class="keyword"> const</span>
+<a name="l00110"></a>00110 <span class="keyword">    </span>{
+<a name="l00111"></a>00111         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefa43524066d608d6b89efed16d238049e9">EventBase::Collision</a>;
+<a name="l00112"></a>00112     }
+<a name="l00113"></a>00113 }
+<a name="l00114"></a>00114 <span class="comment"></span>
+<a name="l00115"></a>00115 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00116"></a>00116 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
+<a name="l00117"></a>00117 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l00118"></a>00118 <span class="preprocessor"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1EventCollision.html" title="This is an event class used to track collsions in the physics world.">Mezzanine::EventCollision</a>&amp; Ev)
+<a name="l00119"></a>00119 {
+<a name="l00120"></a>00120     stream  &lt;&lt; <span class="stringliteral">&quot;&lt;EventCollision Version=\&quot;1&quot;</span> <span class="comment">//Impulse=\&quot;&quot; &lt;&lt; Ev.Impulse</span>
+<a name="l00121"></a>00121             &lt;&lt; <span class="stringliteral">&quot;\&quot; ActorA=\&quot;&quot;</span> &lt;&lt; Ev.<a class="code" href="classMezzanine_1_1EventCollision.html#adb7943576f8033703f0afcbce43f56cc" title="Gets the first actor this collision applies to.">GetActorA</a>()-&gt;GetName()
+<a name="l00122"></a>00122             &lt;&lt; <span class="stringliteral">&quot;\&quot; ActorB=\&quot;&quot;</span> &lt;&lt; Ev.<a class="code" href="classMezzanine_1_1EventCollision.html#ad3d7b44e680425d33bb2556de4d9a056" title="Gets the second actor this collision applies to.">GetActorB</a>()-&gt;GetName()
+<a name="l00123"></a>00123             &lt;&lt; <span class="stringliteral">&quot;\&quot; &gt;&quot;</span>
+<a name="l00124"></a>00124             <span class="comment">//&lt;&lt;  Ev.WorldLocation</span>
+<a name="l00125"></a>00125             &lt;&lt; <span class="stringliteral">&quot;&lt;/EventCollision&gt;&quot;</span>;
+<a name="l00126"></a>00126     <span class="keywordflow">return</span> stream;
+<a name="l00127"></a>00127 }
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1EventCollision.html" title="This is an event class used to track collsions in the physics world.">Mezzanine::EventCollision</a>&amp; Ev)
+<a name="l00130"></a>00130 {
+<a name="l00131"></a>00131     <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> OneTag( Mezzanine::xml::GetOneTag(stream) );
+<a name="l00132"></a>00132     std::auto_ptr&lt;Mezzanine::xml::Document&gt; Doc( Mezzanine::xml::PreParseClassFromSingleTag(<span class="stringliteral">&quot;Mezzanine::&quot;</span>, <span class="stringliteral">&quot;EventCollision&quot;</span>, OneTag) );
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134     Doc-&gt;GetFirstChild() &gt;&gt; Ev;
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136     <span class="keywordflow">return</span> stream;
+<a name="l00137"></a>00137 }
+<a name="l00138"></a>00138 <span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment">/// @todo This whole thing needs to be updated, and have a serializer added.</span>
+<a name="l00140"></a>00140 <span class="comment"></span>
+<a name="l00141"></a>00141 <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1EventCollision.html" title="This is an event class used to track collsions in the physics world.">Mezzanine::EventCollision</a>&amp; Ev)
+<a name="l00142"></a>00142 {
+<a name="l00143"></a>00143     <span class="keywordflow">if</span> ( <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(OneNode.Name())==<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(<span class="stringliteral">&quot;EventCollision&quot;</span>))
+<a name="l00144"></a>00144     {
+<a name="l00145"></a>00145         <span class="keywordflow">if</span>(OneNode.GetAttribute(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
+<a name="l00146"></a>00146         {
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148             Ev.<a class="code" href="classMezzanine_1_1EventCollision.html#a90e9b3a89762db6a3c55aa262833bcd7" title="Sets the first actor this collision applies to.">SetActorA</a>(<a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Mezzanine::ActorManager::GetSingletonPtr</a>()-&gt;GetActor(OneNode.GetAttribute(<span class="stringliteral">&quot;ActorA&quot;</span>).AsString()));
+<a name="l00149"></a>00149             Ev.<a class="code" href="classMezzanine_1_1EventCollision.html#aef6da3acdc9879b21990cb25fa285304" title="Sets the second actor this collision applies to.">SetActorB</a>(<a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Mezzanine::ActorManager::GetSingletonPtr</a>()-&gt;GetActor(OneNode.GetAttribute(<span class="stringliteral">&quot;ActorB&quot;</span>).AsString()));
+<a name="l00150"></a>00150             <span class="comment">//Ev.Impulse=OneNode.GetAttribute(&quot;Impulse&quot;).AsReal();</span>
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152             <span class="comment">//if(OneNode.GetFirstChild())</span>
+<a name="l00153"></a>00153             <span class="comment">//{</span>
+<a name="l00154"></a>00154             <span class="comment">//    OneNode.GetFirstChild() &gt;&gt; Ev.WorldLocation;</span>
+<a name="l00155"></a>00155             <span class="comment">//}else{</span>
+<a name="l00156"></a>00156             <span class="comment">//    throw(Mezzanine::Exception(&quot;Normal not found while parsing Mezzanine::EventCollision&quot;));</span>
+<a name="l00157"></a>00157             <span class="comment">//}</span>
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159         }<span class="keywordflow">else</span>{
+<a name="l00160"></a>00160             <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<span class="stringliteral">&quot;Incompatible XML Version for EventCollision: Not Version 1&quot;</span>));
+<a name="l00161"></a>00161         }
+<a name="l00162"></a>00162     }<span class="keywordflow">else</span>{
+<a name="l00163"></a>00163         <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">Mezzanine::StringTool::StringCat</a>(<span class="stringliteral">&quot;Attempting to deserialize a EventCollision, found a &quot;</span>, OneNode.Name())));
+<a name="l00164"></a>00164     }
+<a name="l00165"></a>00165 }
+<a name="l00166"></a>00166 <span class="preprocessor">#endif // \MEZZXML</span>
+<a name="l00167"></a>00167 <span class="preprocessor"></span>
+<a name="l00168"></a>00168 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -208,7 +237,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -218,6 +247,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

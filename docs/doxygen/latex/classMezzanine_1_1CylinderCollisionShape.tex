@@ -1,0 +1,424 @@
+\hypertarget{classMezzanine_1_1CylinderCollisionShape}{
+\subsection{Mezzanine::CylinderCollisionShape Class Reference}
+\label{classMezzanine_1_1CylinderCollisionShape}\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+}
+
+
+A cylinder physics shape.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for Mezzanine::CylinderCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classMezzanine_1_1CylinderCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1CylinderCollisionShape_a78818b9e27ed8f144469e268c53dab52}{CylinderCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radius, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Height, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&UpAxis)
+\begin{DoxyCompactList}\small\item\em Verbose Vector Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CylinderCollisionShape_ad01053f772e3e121aa1e43252f43d3f6}{CylinderCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radius, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Height, \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} UpAxis)
+\begin{DoxyCompactList}\small\item\em Verbose Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CylinderCollisionShape_ab0bcf2460a915f1a0276ee451a563e56}{CylinderCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&HalfExtents, \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} UpAxis)
+\begin{DoxyCompactList}\small\item\em Terse Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CylinderCollisionShape_a5f1765f49d8c7f48df29264314bd8c5a}{CylinderCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, btCylinderShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CylinderCollisionShape_a541f91adac5f553466fc3e2d2445ed78}{CylinderCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&HalfExtents, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&UpAxis)
+\begin{DoxyCompactList}\small\item\em Terse Vector Constructor. \item\end{DoxyCompactList}\item 
+virtual btCylinderShape $\ast$ \hyperlink{classMezzanine_1_1CylinderCollisionShape_a7caaf49dfee6f543aaca4c1cf6fbf5c5}{GetBulletCylinderShape} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1CylinderCollisionShape_a4184b98934573f5dae1ed34578dc18c0}{GetHalfExtents} () const 
+\begin{DoxyCompactList}\small\item\em Gets the half extents used to construct this cylinder. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1CylinderCollisionShape_a9b16715071eaa8827162a8ea36132a23}{GetHalfExtentsWithMargin} () const 
+\begin{DoxyCompactList}\small\item\em Gets the half extents with padding. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1CylinderCollisionShape_a3f62cb0c30122784088e0f9cbbf3c798}{GetRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the cylinder. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{classMezzanine_1_1CylinderCollisionShape_a4feb07a9d71bda6ca4b6c82b745df8a0}{GetType} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1CylinderCollisionShape_a4c99a3d61ba0a4cbeb2df3d54e625541}{GetUpAxis} () const 
+\begin{DoxyCompactList}\small\item\em Gets which axis this cylinder is oriented along. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a6479b7afe2caab5b4682903ea6a1bee5}{
+virtual \hyperlink{classMezzanine_1_1CylinderCollisionShape_a6479b7afe2caab5b4682903ea6a1bee5}{$\sim$CylinderCollisionShape} ()}
+\label{classMezzanine_1_1CylinderCollisionShape_a6479b7afe2caab5b4682903ea6a1bee5}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1CylinderCollisionShape_af084233b246cdf7497ed2739d9ba361e}{CreateHalfExtents} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radius, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Height, \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} UpAxis)
+\begin{DoxyCompactList}\small\item\em A (very) simple way to create a \hyperlink{classMezzanine_1_1Vector3}{Vector3} containing the Half Extents of a Cylinder with given dimenions/. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMezzanine_1_1CylinderCollisionShape_ab7b1d796b02acd1a0ca35f1f609e8901}{Construct} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&HalfExtents, \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} UpAxis)
+\begin{DoxyCompactList}\small\item\em Does the initialization for a Cylinder. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CylinderCollisionShape_a34ed7408114b3863a14f2d8ff1b1b4d7}{Construct} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, btCylinderShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Does the initialization for a Cylinder. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A cylinder physics shape. A primitive cylinder shape. Like Capsules and Cones Cylinders can be aligned to any of the 3 linear axes(X, Y, or Z). 
+
+Definition at line 644 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a78818b9e27ed8f144469e268c53dab52}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!CylinderCollisionShape@{CylinderCollisionShape}}
+\index{CylinderCollisionShape@{CylinderCollisionShape}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{CylinderCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::CylinderCollisionShape::CylinderCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{const {\bf Vector3} \&}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a78818b9e27ed8f144469e268c53dab52}
+
+
+Verbose Vector Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the Cylinder. \\
+\hline
+{\em Height} & The height of the Cylinder, Height is indicated in the direction of the upAxis. \\
+\hline
+{\em UpAxis} & Which axis the cylinder is to be oriented along. Typical usage is for a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1109 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_ad01053f772e3e121aa1e43252f43d3f6}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!CylinderCollisionShape@{CylinderCollisionShape}}
+\index{CylinderCollisionShape@{CylinderCollisionShape}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{CylinderCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::CylinderCollisionShape::CylinderCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{{\bf StandardAxis}}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_ad01053f772e3e121aa1e43252f43d3f6}
+
+
+Verbose Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the Cylinder. \\
+\hline
+{\em Height} & The height of the Cylinder, Height is indicated in the direction of the upAxis. \\
+\hline
+{\em UpAxis} & Which StandardAxis the cylinder is to be oriented along. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1112 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a541f91adac5f553466fc3e2d2445ed78}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!CylinderCollisionShape@{CylinderCollisionShape}}
+\index{CylinderCollisionShape@{CylinderCollisionShape}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{CylinderCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::CylinderCollisionShape::CylinderCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Vector3} \&}]{HalfExtents, }
+\item[{const {\bf Vector3} \&}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a541f91adac5f553466fc3e2d2445ed78}
+
+
+Terse Vector Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em HalfExtents} & A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the Height of the cylinder on the axis corresponding to the UpAxis and the Radius store in the other two axis. \\
+\hline
+{\em UpAxis} & Which axis the cylinder is to be oriented along. Typical usage is for a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1115 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_ab0bcf2460a915f1a0276ee451a563e56}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!CylinderCollisionShape@{CylinderCollisionShape}}
+\index{CylinderCollisionShape@{CylinderCollisionShape}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{CylinderCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::CylinderCollisionShape::CylinderCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Vector3} \&}]{HalfExtents, }
+\item[{{\bf StandardAxis}}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_ab0bcf2460a915f1a0276ee451a563e56}
+
+
+Terse Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em HalfExtents} & A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the Height of the cylinder on the axis corresponding to the UpAxis and the Radius store in the other two axis. \\
+\hline
+{\em UpAxis} & Which StandardAxis the cylinder is to be oriented along. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1118 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a5f1765f49d8c7f48df29264314bd8c5a}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!CylinderCollisionShape@{CylinderCollisionShape}}
+\index{CylinderCollisionShape@{CylinderCollisionShape}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{CylinderCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::CylinderCollisionShape::CylinderCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btCylinderShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a5f1765f49d8c7f48df29264314bd8c5a}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1121 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_ab7b1d796b02acd1a0ca35f1f609e8901}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!Construct@{Construct}}
+\index{Construct@{Construct}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{Construct}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CylinderCollisionShape::Construct (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Vector3} \&}]{HalfExtents, }
+\item[{{\bf StandardAxis}}]{UpAxis}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_ab7b1d796b02acd1a0ca35f1f609e8901}
+
+
+Does the initialization for a Cylinder. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the shape to initialize \\
+\hline
+{\em HalfExtents} & This of the shape to initialize \\
+\hline
+{\em UpAxis} & which direction gets the flat 'top' of the cylinder perpendicular ot it. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1083 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a34ed7408114b3863a14f2d8ff1b1b4d7}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!Construct@{Construct}}
+\index{Construct@{Construct}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{Construct}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CylinderCollisionShape::Construct (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btCylinderShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a34ed7408114b3863a14f2d8ff1b1b4d7}
+
+
+Does the initialization for a Cylinder. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the shape to initialize \\
+\hline
+{\em BulletShape} & A pointer to a valid fully constructed internal \hyperlink{classMezzanine_1_1Collision}{Collision} shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1103 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_af084233b246cdf7497ed2739d9ba361e}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!CreateHalfExtents@{CreateHalfExtents}}
+\index{CreateHalfExtents@{CreateHalfExtents}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{CreateHalfExtents}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::CylinderCollisionShape::CreateHalfExtents (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{{\bf StandardAxis}}]{UpAxis}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_af084233b246cdf7497ed2739d9ba361e}
+
+
+A (very) simple way to create a \hyperlink{classMezzanine_1_1Vector3}{Vector3} containing the Half Extents of a Cylinder with given dimenions/. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Radius} & The radius of the Cylinder. \\
+\hline
+{\em Height} & The height of the Cylinder, Height is indicated in the direction of the upAxis. \\
+\hline
+{\em UpAxis} & Which StandardAxis the cylinder is to be oriented along. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1155 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a7caaf49dfee6f543aaca4c1cf6fbf5c5}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!GetBulletCylinderShape@{GetBulletCylinderShape}}
+\index{GetBulletCylinderShape@{GetBulletCylinderShape}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{GetBulletCylinderShape}]{\setlength{\rightskip}{0pt plus 5cm}btCylinderShape $\ast$ Mezzanine::CylinderCollisionShape::GetBulletCylinderShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a7caaf49dfee6f543aaca4c1cf6fbf5c5}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Definition at line 1187 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a4184b98934573f5dae1ed34578dc18c0}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!GetHalfExtents@{GetHalfExtents}}
+\index{GetHalfExtents@{GetHalfExtents}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{GetHalfExtents}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::CylinderCollisionShape::GetHalfExtents (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a4184b98934573f5dae1ed34578dc18c0}
+
+
+Gets the half extents used to construct this cylinder. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 containing the half extents of this cylinder. 
+\end{DoxyReturn}
+
+
+Definition at line 1166 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a9b16715071eaa8827162a8ea36132a23}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!GetHalfExtentsWithMargin@{GetHalfExtentsWithMargin}}
+\index{GetHalfExtentsWithMargin@{GetHalfExtentsWithMargin}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{GetHalfExtentsWithMargin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::CylinderCollisionShape::GetHalfExtentsWithMargin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a9b16715071eaa8827162a8ea36132a23}
+
+
+Gets the half extents with padding. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 containing the half extents with the margin added to each axis. 
+\end{DoxyReturn}
+
+
+Definition at line 1172 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a3f62cb0c30122784088e0f9cbbf3c798}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!GetRadius@{GetRadius}}
+\index{GetRadius@{GetRadius}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{GetRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::CylinderCollisionShape::GetRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a3f62cb0c30122784088e0f9cbbf3c798}
+
+
+Gets the radius of the cylinder. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the radius at the base of the cylinder. 
+\end{DoxyReturn}
+
+
+Definition at line 1178 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a4feb07a9d71bda6ca4b6c82b745df8a0}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} Mezzanine::CylinderCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a4feb07a9d71bda6ca4b6c82b745df8a0}
+Gets the type of \hyperlink{classMezzanine_1_1Collision}{Collision} shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ad3d4143a5640204b987e0b57eb24af41}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 1184 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CylinderCollisionShape_a4c99a3d61ba0a4cbeb2df3d54e625541}{
+\index{Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}!GetUpAxis@{GetUpAxis}}
+\index{GetUpAxis@{GetUpAxis}!Mezzanine::CylinderCollisionShape@{Mezzanine::CylinderCollisionShape}}
+\paragraph[{GetUpAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::CylinderCollisionShape::GetUpAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CylinderCollisionShape_a4c99a3d61ba0a4cbeb2df3d54e625541}
+
+
+Gets which axis this cylinder is oriented along. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing which local axis is oriented along the world up axis. 
+\end{DoxyReturn}
+
+
+Definition at line 1181 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

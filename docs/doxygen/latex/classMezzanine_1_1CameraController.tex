@@ -1,0 +1,548 @@
+\hypertarget{classMezzanine_1_1CameraController}{
+\subsection{Mezzanine::CameraController Class Reference}
+\label{classMezzanine_1_1CameraController}\index{Mezzanine::CameraController@{Mezzanine::CameraController}}
+}
+
+
+This is a simplified controller class for use with cameras.  
+
+
+
+
+{\ttfamily \#include $<$cameracontroller.h$>$}
+
+\subsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structMezzanine_1_1CameraController_1_1AngleLimits}{AngleLimits}
+\begin{DoxyCompactList}\small\item\em Boundaries for rotation on one axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286}{MovementMode} \{ \hyperlink{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286a0278660084281f11192f9350b17a0621}{CCM\_\-Fly}, 
+\hyperlink{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286a3e59766116db3f0d979787d66405d2fb}{CCM\_\-Walk}
+ \}
+\begin{DoxyCompactList}\small\item\em Possible options for determining how the camera should move relative to the world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1CameraController_aafdebc098fd01f7ac06ec58182eeaa40}{CameraController} (\hyperlink{classMezzanine_1_1Camera}{Camera} $\ast$ToBeControlled)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Camera}{Camera} $\ast$ \hyperlink{classMezzanine_1_1CameraController_ae1029438ae1587099439de7ba6bb1df8}{GetControlledCamera} () const 
+\begin{DoxyCompactList}\small\item\em Gets the camera this controller is controlling. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1CameraController_a1973ffb9895ec8ab6d856ed975eb00ad}{GetHoverHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the distance the camera hovers over terrain while in CCM\_\-Walk mode. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286}{MovementMode} \hyperlink{classMezzanine_1_1CameraController_a41981a1326cf06020c71f17674f82676}{GetMovementMode} () const 
+\begin{DoxyCompactList}\small\item\em Gets the currently set movement mode. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_a305107ca4e77609ecaa54b387db42acd}{MoveBackward} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera backward. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_a6d57bd3d51d3329d0c33be37df609a10}{MoveForward} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera forward. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CameraController_a04b2acb69f1085ca197ce8f7e19e17d5}{
+void \hyperlink{classMezzanine_1_1CameraController_a04b2acb69f1085ca197ce8f7e19e17d5}{RemovePitchLimits} ()}
+\label{classMezzanine_1_1CameraController_a04b2acb69f1085ca197ce8f7e19e17d5}
+
+\begin{DoxyCompactList}\small\item\em Clears any set limits on pitch(X axis) rotation. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CameraController_a37221936412f130ae6b4194f7ef7e543}{
+void \hyperlink{classMezzanine_1_1CameraController_a37221936412f130ae6b4194f7ef7e543}{RemoveRollLimits} ()}
+\label{classMezzanine_1_1CameraController_a37221936412f130ae6b4194f7ef7e543}
+
+\begin{DoxyCompactList}\small\item\em Clears any set limits on roll(Z axis) rotation. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CameraController_a646de446143f48b1867086fc5125f9ff}{
+void \hyperlink{classMezzanine_1_1CameraController_a646de446143f48b1867086fc5125f9ff}{RemoveYawLimits} ()}
+\label{classMezzanine_1_1CameraController_a646de446143f48b1867086fc5125f9ff}
+
+\begin{DoxyCompactList}\small\item\em Clears any set limits on yaw(Y axis) rotation. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_ace7eb6ddc365e71d7732aae7837aa61a}{Rotate} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Yaw, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Pitch, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Roll)
+\begin{DoxyCompactList}\small\item\em Rotates the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_a395fbee8538137d99c5c96118308e5ee}{Rotate6DOF} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Yaw, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Pitch, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Roll)
+\begin{DoxyCompactList}\small\item\em Rotates the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_a4919727ce339ca3baa6f03aff7082aba}{SetHoverHeight} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Hover)
+\begin{DoxyCompactList}\small\item\em Sets the hover distance for the camera while it's moving. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_a1c66be68f98702152fc2b59b30632d28}{SetMovementMode} (const \hyperlink{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286}{MovementMode} \&MoveMode)
+\begin{DoxyCompactList}\small\item\em Sets the movement mode for this camera/controller. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_afbf7f8b9b27f565e4002ea2944724b2f}{SetPitchLimits} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&UpperLimit, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LowerLimit)
+\begin{DoxyCompactList}\small\item\em Sets rotational limits on the X axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_aeda898e8a4e244eec905478b7f033c41}{SetRollLimits} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&UpperLimit, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LowerLimit)
+\begin{DoxyCompactList}\small\item\em Sets rotational limits on the Z axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_a99491e652e97e725ec058834c2d17b70}{SetYawLimits} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&UpperLimit, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LowerLimit)
+\begin{DoxyCompactList}\small\item\em Sets rotational limits on the Y axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_a6297e8a56f401bd2967032a6370c07b8}{StrafeLeft} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera to the left. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1CameraController_a37e9081283df3f3f7129879e01ee62ae}{StrafeRight} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera to the right. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CameraController_a2facf8224198fd2b820b24304abc42b4}{
+\hyperlink{classMezzanine_1_1CameraController_a2facf8224198fd2b820b24304abc42b4}{$\sim$CameraController} ()}
+\label{classMezzanine_1_1CameraController_a2facf8224198fd2b820b24304abc42b4}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1CameraController_ad4a3d8340a2fe13a43d7ccadd7ebbb85}{
+void {\bfseries CheckAllAngles} ()}
+\label{classMezzanine_1_1CameraController_ad4a3d8340a2fe13a43d7ccadd7ebbb85}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_aed976d035681c50978baad8b72d015ab}{
+void {\bfseries CheckAngleLimits} ()}
+\label{classMezzanine_1_1CameraController_aed976d035681c50978baad8b72d015ab}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_a3417a71680ade6b4db3067ea080ae8db}{
+void {\bfseries CheckAngleRollover} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Angle)}
+\label{classMezzanine_1_1CameraController_a3417a71680ade6b4db3067ea080ae8db}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_aa25f3cbe12c94a502f44dcd0c4cc1ae9}{
+void {\bfseries CheckHeight} ()}
+\label{classMezzanine_1_1CameraController_aa25f3cbe12c94a502f44dcd0c4cc1ae9}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_ad0c991a0259aeb6db11c1c458fb15c24}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries FindDistanceToGround} ()}
+\label{classMezzanine_1_1CameraController_ad0c991a0259aeb6db11c1c458fb15c24}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1CameraController_a14c14e447e88733b07f42ec5d6edb140}{
+\hyperlink{classMezzanine_1_1Camera}{Camera} $\ast$ {\bfseries Controlled}}
+\label{classMezzanine_1_1CameraController_a14c14e447e88733b07f42ec5d6edb140}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_ab599b6019ddaa0df5be1d76dc99e9a1c}{
+\hyperlink{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286}{MovementMode} {\bfseries CurrentMMode}}
+\label{classMezzanine_1_1CameraController_ab599b6019ddaa0df5be1d76dc99e9a1c}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_a09e23b8cd2f4c0b8cf697a5e17ecfb1a}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries HoverHeight}}
+\label{classMezzanine_1_1CameraController_a09e23b8cd2f4c0b8cf697a5e17ecfb1a}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_a777f7fda09b590aa0e8b12c6724a573d}{
+\hyperlink{structMezzanine_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries PitchLimits}}
+\label{classMezzanine_1_1CameraController_a777f7fda09b590aa0e8b12c6724a573d}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_a02ec5d68d9f03a69d08ce084b77741d8}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries PitchRad}}
+\label{classMezzanine_1_1CameraController_a02ec5d68d9f03a69d08ce084b77741d8}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_a63da9f71d765223ae73d3ede7b4e9119}{
+\hyperlink{structMezzanine_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries RollLimits}}
+\label{classMezzanine_1_1CameraController_a63da9f71d765223ae73d3ede7b4e9119}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_a6a11d437ac3b7d9ad3edae9eec7fc6eb}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries RollRad}}
+\label{classMezzanine_1_1CameraController_a6a11d437ac3b7d9ad3edae9eec7fc6eb}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_a370b16b449043a32c3b452396eba8f7c}{
+\hyperlink{structMezzanine_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries YawLimits}}
+\label{classMezzanine_1_1CameraController_a370b16b449043a32c3b452396eba8f7c}
+
+\item 
+\hypertarget{classMezzanine_1_1CameraController_a9227825438aa73bc29eac77cad2e8cfe}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries YawRad}}
+\label{classMezzanine_1_1CameraController_a9227825438aa73bc29eac77cad2e8cfe}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a simplified controller class for use with cameras. This class is useful for manipulating cameras to move around in simple ways, such as flying through a scene. 
+
+Definition at line 55 of file cameracontroller.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!MovementMode@{MovementMode}}
+\index{MovementMode@{MovementMode}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{MovementMode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::CameraController::MovementMode}}\hfill}
+\label{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286}
+
+
+Possible options for determining how the camera should move relative to the world. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{CCM\_\-Fly@{CCM\_\-Fly}!Mezzanine::CameraController@{Mezzanine::CameraController}}\index{Mezzanine::CameraController@{Mezzanine::CameraController}!CCM\_\-Fly@{CCM\_\-Fly}}\item[{\em 
+\hypertarget{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286a0278660084281f11192f9350b17a0621}{
+CCM\_\-Fly}
+\label{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286a0278660084281f11192f9350b17a0621}
+}]CCM\_\-Fly: This is the default option for every \hyperlink{classMezzanine_1_1Camera}{Camera} Controller. Allows the camera unrestrained movement throughout the scene. \index{CCM\_\-Walk@{CCM\_\-Walk}!Mezzanine::CameraController@{Mezzanine::CameraController}}\index{Mezzanine::CameraController@{Mezzanine::CameraController}!CCM\_\-Walk@{CCM\_\-Walk}}\item[{\em 
+\hypertarget{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286a3e59766116db3f0d979787d66405d2fb}{
+CCM\_\-Walk}
+\label{classMezzanine_1_1CameraController_a2e4a40630fb6c845b8073151dc36c286a3e59766116db3f0d979787d66405d2fb}
+}]CCM\_\-Walk: This forces the camera to be only a certain distance above the terrain. \end{description}
+\end{Desc}
+
+
+
+Definition at line 60 of file cameracontroller.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1CameraController_aafdebc098fd01f7ac06ec58182eeaa40}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!CameraController@{CameraController}}
+\index{CameraController@{CameraController}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{CameraController}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame Mezzanine src cameracontroller cpp home sqeaky physgame Mezzanine src cameracontroller cpp home sqeaky physgame Mezzanine src cameracontroller cpp home sqeaky physgame Mezzanine src cameracontroller cpp Mezzanine::CameraController::CameraController (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{ToBeControlled}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_aafdebc098fd01f7ac06ec58182eeaa40}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeControlled} & The camera this controller is controlling. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 57 of file cameracontroller.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1CameraController_ae1029438ae1587099439de7ba6bb1df8}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!GetControlledCamera@{GetControlledCamera}}
+\index{GetControlledCamera@{GetControlledCamera}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{GetControlledCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ Mezzanine::CameraController::GetControlledCamera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1CameraController_ae1029438ae1587099439de7ba6bb1df8}
+
+
+Gets the camera this controller is controlling. 
+
+\begin{DoxyReturn}{Returns}
+Returns a camera pointer for the camera this controller is applied to. 
+\end{DoxyReturn}
+
+
+Definition at line 152 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a1973ffb9895ec8ab6d856ed975eb00ad}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!GetHoverHeight@{GetHoverHeight}}
+\index{GetHoverHeight@{GetHoverHeight}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{GetHoverHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::CameraController::GetHoverHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1CameraController_a1973ffb9895ec8ab6d856ed975eb00ad}
+
+
+Gets the distance the camera hovers over terrain while in CCM\_\-Walk mode. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real represening the distance above terrain the camera is to hover, in world units. 
+\end{DoxyReturn}
+
+
+Definition at line 172 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a41981a1326cf06020c71f17674f82676}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!GetMovementMode@{GetMovementMode}}
+\index{GetMovementMode@{GetMovementMode}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{GetMovementMode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CameraController::MovementMode} Mezzanine::CameraController::GetMovementMode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1CameraController_a41981a1326cf06020c71f17674f82676}
+
+
+Gets the currently set movement mode. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the current movement mode. See MovementMode enum for more info. 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a305107ca4e77609ecaa54b387db42acd}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!MoveBackward@{MoveBackward}}
+\index{MoveBackward@{MoveBackward}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{MoveBackward}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::MoveBackward (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Units}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_a305107ca4e77609ecaa54b387db42acd}
+
+
+Moves the camera backward. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Units} & The distance to be moved in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 236 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a6d57bd3d51d3329d0c33be37df609a10}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!MoveForward@{MoveForward}}
+\index{MoveForward@{MoveForward}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{MoveForward}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::MoveForward (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Units}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_a6d57bd3d51d3329d0c33be37df609a10}
+
+
+Moves the camera forward. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Units} & The distance to be moved in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 228 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_ace7eb6ddc365e71d7732aae7837aa61a}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{Rotate}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::Rotate (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Yaw, }
+\item[{{\bf Real}}]{Pitch, }
+\item[{{\bf Real}}]{Roll}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_ace7eb6ddc365e71d7732aae7837aa61a}
+
+
+Rotates the camera. 
+
+This is a safer rotation method that applies all the checks and can lock behaviors such as roll if configured to do so. 
+\begin{DoxyParams}{Parameters}
+{\em Yaw} & The amount to rotate the camera on it's local Y axis in Radians. \\
+\hline
+{\em Pitch} & The amount to rotate the camera on it's local X axis in Radians. \\
+\hline
+{\em Roll} & The amount to rotate the camera on it's local Z axis in Radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 260 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a395fbee8538137d99c5c96118308e5ee}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!Rotate6DOF@{Rotate6DOF}}
+\index{Rotate6DOF@{Rotate6DOF}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{Rotate6DOF}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::Rotate6DOF (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Yaw, }
+\item[{{\bf Real}}]{Pitch, }
+\item[{{\bf Real}}]{Roll}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_a395fbee8538137d99c5c96118308e5ee}
+
+
+Rotates the camera. 
+
+This is a freeform rotation method that will apply the rotation desired to the camera without any checks. This is ideal for spacecraft style controls. 
+\begin{DoxyParams}{Parameters}
+{\em Yaw} & The amount to rotate the camera on it's local Y axis in Radians. \\
+\hline
+{\em Pitch} & The amount to rotate the camera on it's local X axis in Radians. \\
+\hline
+{\em Roll} & The amount to rotate the camera on it's local Z axis in Radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 287 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a4919727ce339ca3baa6f03aff7082aba}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!SetHoverHeight@{SetHoverHeight}}
+\index{SetHoverHeight@{SetHoverHeight}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{SetHoverHeight}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::SetHoverHeight (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Hover}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_a4919727ce339ca3baa6f03aff7082aba}
+
+
+Sets the hover distance for the camera while it's moving. 
+
+Hover is only applied in CCM\_\-Walk mode. Default: 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Hover} & The distance above the ground to hover, in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 167 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a1c66be68f98702152fc2b59b30632d28}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!SetMovementMode@{SetMovementMode}}
+\index{SetMovementMode@{SetMovementMode}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{SetMovementMode}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::SetMovementMode (
+\begin{DoxyParamCaption}
+\item[{const {\bf MovementMode} \&}]{MoveMode}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_a1c66be68f98702152fc2b59b30632d28}
+
+
+Sets the movement mode for this camera/controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MoveMode} & The MovementMode value for which mode you want applied. See MovementMode enum for more info. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 157 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_afbf7f8b9b27f565e4002ea2944724b2f}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!SetPitchLimits@{SetPitchLimits}}
+\index{SetPitchLimits@{SetPitchLimits}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{SetPitchLimits}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::SetPitchLimits (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{UpperLimit, }
+\item[{const {\bf Real} \&}]{LowerLimit}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_afbf7f8b9b27f565e4002ea2944724b2f}
+
+
+Sets rotational limits on the X axis. 
+
+The rotation range is from -\/Pi to Pi. 
+\begin{DoxyParams}{Parameters}
+{\em UpperLimit} & The allowed upper rotation limit in radians. \\
+\hline
+{\em LowerLimit} & The allowed upper rotation limit in radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_aeda898e8a4e244eec905478b7f033c41}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!SetRollLimits@{SetRollLimits}}
+\index{SetRollLimits@{SetRollLimits}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{SetRollLimits}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::SetRollLimits (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{UpperLimit, }
+\item[{const {\bf Real} \&}]{LowerLimit}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_aeda898e8a4e244eec905478b7f033c41}
+
+
+Sets rotational limits on the Z axis. 
+
+The rotation range is from -\/Pi to Pi. 
+\begin{DoxyParams}{Parameters}
+{\em UpperLimit} & The allowed upper rotation limit in radians. \\
+\hline
+{\em LowerLimit} & The allowed upper rotation limit in radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 211 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a99491e652e97e725ec058834c2d17b70}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!SetYawLimits@{SetYawLimits}}
+\index{SetYawLimits@{SetYawLimits}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{SetYawLimits}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::SetYawLimits (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{UpperLimit, }
+\item[{const {\bf Real} \&}]{LowerLimit}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_a99491e652e97e725ec058834c2d17b70}
+
+
+Sets rotational limits on the Y axis. 
+
+The rotation range is from -\/Pi to Pi. 
+\begin{DoxyParams}{Parameters}
+{\em UpperLimit} & The allowed upper rotation limit in radians. \\
+\hline
+{\em LowerLimit} & The allowed lower rotation limit in radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 177 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a6297e8a56f401bd2967032a6370c07b8}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!StrafeLeft@{StrafeLeft}}
+\index{StrafeLeft@{StrafeLeft}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{StrafeLeft}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::StrafeLeft (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Units}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_a6297e8a56f401bd2967032a6370c07b8}
+
+
+Moves the camera to the left. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Units} & The distance to be moved in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 244 of file cameracontroller.cpp.
+
+\hypertarget{classMezzanine_1_1CameraController_a37e9081283df3f3f7129879e01ee62ae}{
+\index{Mezzanine::CameraController@{Mezzanine::CameraController}!StrafeRight@{StrafeRight}}
+\index{StrafeRight@{StrafeRight}!Mezzanine::CameraController@{Mezzanine::CameraController}}
+\paragraph[{StrafeRight}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CameraController::StrafeRight (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Units}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CameraController_a37e9081283df3f3f7129879e01ee62ae}
+
+
+Moves the camera to the right. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Units} & The distance to be moved in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 252 of file cameracontroller.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+cameracontroller.h\item 
+cameracontroller.cpp\end{DoxyCompactItemize}

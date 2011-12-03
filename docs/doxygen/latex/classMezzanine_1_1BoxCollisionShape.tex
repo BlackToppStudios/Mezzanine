@@ -1,0 +1,243 @@
+\hypertarget{classMezzanine_1_1BoxCollisionShape}{
+\subsection{Mezzanine::BoxCollisionShape Class Reference}
+\label{classMezzanine_1_1BoxCollisionShape}\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+}
+
+
+A box physics shape.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for Mezzanine::BoxCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classMezzanine_1_1BoxCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1BoxCollisionShape_afcf359b8683bd158040963eca43ac670}{BoxCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&HalfExtents)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1BoxCollisionShape_ae715de5cb9f343f10973f06bf4f9acbb}{BoxCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, btBoxShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+virtual btBoxShape $\ast$ \hyperlink{classMezzanine_1_1BoxCollisionShape_a408a3b15bf4425d827c7cf4ee908efef}{GetBulletBoxShape} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1BoxCollisionShape_a5214ce314dc7d383ae81995e618f87cb}{GetCleanHalfExtents} () const 
+\begin{DoxyCompactList}\small\item\em Gets the half extents used to construct this box. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1BoxCollisionShape_a4e1193a0cfed37f268ae1730de7b8d08}{GetHalfExtents} () const 
+\begin{DoxyCompactList}\small\item\em Gets the current half extents used in collision checking. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1BoxCollisionShape_a198887a16d922effe302695ff69bcd88}{GetHalfExtentsWithMargin} () const 
+\begin{DoxyCompactList}\small\item\em Gets the half extents with padding, this is the size the shape will appear to be. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{classMezzanine_1_1BoxCollisionShape_ae2b4af7afa6cc37c51b062589048e26d}{GetType} () const 
+\item 
+virtual bool \hyperlink{classMezzanine_1_1BoxCollisionShape_a1902aa75d5c18ad4ce090952b6af0050}{IsInside} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Tolerance) const 
+\begin{DoxyCompactList}\small\item\em Checks to see if a point in local space is inside this shape. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1BoxCollisionShape_a3698d2ef0c9a0ab92809b2ff2ba62792}{
+virtual \hyperlink{classMezzanine_1_1BoxCollisionShape_a3698d2ef0c9a0ab92809b2ff2ba62792}{$\sim$BoxCollisionShape} ()}
+\label{classMezzanine_1_1BoxCollisionShape_a3698d2ef0c9a0ab92809b2ff2ba62792}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A box physics shape. This is exactly what it sounds like. A primitive shape of a box that is constructed by it's half extents. Half extents can't be negative, but otherwise can be any value. The margin value is subtracted from the total size rather than added for this shape. \begin{DoxyWarning}{Warning}
+This does not fully implement ProtoDeSerialize, this must be deserialized with the Appropriate Deserializer. 
+\end{DoxyWarning}
+
+
+Definition at line 344 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1BoxCollisionShape_afcf359b8683bd158040963eca43ac670}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!BoxCollisionShape@{BoxCollisionShape}}
+\index{BoxCollisionShape@{BoxCollisionShape}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{BoxCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::BoxCollisionShape::BoxCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Vector3} \&}]{HalfExtents}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_afcf359b8683bd158040963eca43ac670}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this shape. \\
+\hline
+{\em HalfExtents} & A vector3 representing half the shapes size on each axis. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 500 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_ae715de5cb9f343f10973f06bf4f9acbb}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!BoxCollisionShape@{BoxCollisionShape}}
+\index{BoxCollisionShape@{BoxCollisionShape}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{BoxCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::BoxCollisionShape::BoxCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btBoxShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_ae715de5cb9f343f10973f06bf4f9acbb}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 506 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1BoxCollisionShape_a408a3b15bf4425d827c7cf4ee908efef}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!GetBulletBoxShape@{GetBulletBoxShape}}
+\index{GetBulletBoxShape@{GetBulletBoxShape}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{GetBulletBoxShape}]{\setlength{\rightskip}{0pt plus 5cm}btBoxShape $\ast$ Mezzanine::BoxCollisionShape::GetBulletBoxShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_a408a3b15bf4425d827c7cf4ee908efef}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Definition at line 564 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_a5214ce314dc7d383ae81995e618f87cb}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!GetCleanHalfExtents@{GetCleanHalfExtents}}
+\index{GetCleanHalfExtents@{GetCleanHalfExtents}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{GetCleanHalfExtents}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::BoxCollisionShape::GetCleanHalfExtents (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_a5214ce314dc7d383ae81995e618f87cb}
+
+
+Gets the half extents used to construct this box. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 containing the half extents of this box, with no scaling or margin (Original value). 
+\end{DoxyReturn}
+
+
+Definition at line 539 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_a4e1193a0cfed37f268ae1730de7b8d08}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!GetHalfExtents@{GetHalfExtents}}
+\index{GetHalfExtents@{GetHalfExtents}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{GetHalfExtents}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::BoxCollisionShape::GetHalfExtents (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_a4e1193a0cfed37f268ae1730de7b8d08}
+
+
+Gets the current half extents used in collision checking. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 containing the half extents of this box, with scaling applied, minus the size of the margin(Original value $\ast$ Scaling -\/ margin). 
+\end{DoxyReturn}
+
+
+Definition at line 544 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_a198887a16d922effe302695ff69bcd88}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!GetHalfExtentsWithMargin@{GetHalfExtentsWithMargin}}
+\index{GetHalfExtentsWithMargin@{GetHalfExtentsWithMargin}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{GetHalfExtentsWithMargin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::BoxCollisionShape::GetHalfExtentsWithMargin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_a198887a16d922effe302695ff69bcd88}
+
+
+Gets the half extents with padding, this is the size the shape will appear to be. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 containing the half extents, with scaling applied, with the margin added to each axis (Original value $\ast$ Scaling). 
+\end{DoxyReturn}
+
+
+Definition at line 549 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_ae2b4af7afa6cc37c51b062589048e26d}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} Mezzanine::BoxCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_ae2b4af7afa6cc37c51b062589048e26d}
+Gets the type of \hyperlink{classMezzanine_1_1Collision}{Collision} shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ad3d4143a5640204b987e0b57eb24af41}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 559 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_a1902aa75d5c18ad4ce090952b6af0050}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!IsInside@{IsInside}}
+\index{IsInside@{IsInside}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{IsInside}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::BoxCollisionShape::IsInside (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location, }
+\item[{const {\bf Real} \&}]{Tolerance}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_a1902aa75d5c18ad4ce090952b6af0050}
+
+
+Checks to see if a point in local space is inside this shape. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not the specified point is inside the shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The specified point to perform the check. \\
+\hline
+{\em Tolerance} & The amount of leeway to give in the check. If the distance from the specified point is equal or less then the Tolerance provided then this will return true. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 554 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

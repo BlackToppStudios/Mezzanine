@@ -1,0 +1,1044 @@
+\hypertarget{classMezzanine_1_1UI_1_1Caption}{
+\subsection{Mezzanine::UI::Caption Class Reference}
+\label{classMezzanine_1_1UI_1_1Caption}\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+}
+
+
+This class is a helper class, specifically for use with text.  
+
+
+
+
+{\ttfamily \#include $<$uicaption.h$>$}
+
+Inheritance diagram for Mezzanine::UI::Caption:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1UI_1_1Caption}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1UI_1_1Caption_ad0dc49d641507e277174b4f2a3562a89}{Caption} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UI_1_1Caption_a1604f65f43a488ef3f24f59ce300aa9a}{Caption} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Caption_a57ece85ea6c97b542d62de245ddb82f1}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Caption_a1936b1cc9ac22eddc81d92f10fef314d}{GetActualPosition} () const 
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Caption_a4b64d9dea1b059fd136ea234b8044a9b}{GetActualSize} () const 
+\begin{DoxyCompactList}\small\item\em Gets the size of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Caption_a2b83af8d15b35ba37661157cc376910d}{GetAutoScaleText} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not text from this caption will automatically scale on a screen size change. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1Caption_a93da9adffc448e61d7fea14ab84c5421}{GetCursorOffset} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of pixels text should be offset from the side when rendering. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1Caption_a70275e20608116cce923106d3924781a}{GetGlyphIndex} ()
+\begin{DoxyCompactList}\small\item\em Gets the glyph index in use by this caption. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Caption_ac4dface89d5105741e38facd6efe7aed}{GetMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Caption_a232f175144378d1d8c0e2966dbcc4371}{GetPosition} () const 
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1UI_1_1Caption_a5c401e39f028e14426714197210e186a}{GetPrimaryAtlas} () const 
+\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \hyperlink{classMezzanine_1_1UI_1_1Caption_aadae4d2bb1e8db600864e0121a02e213}{GetRenderPriority} () const 
+\begin{DoxyCompactList}\small\item\em Gets the priority this caption should be rendered with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Caption_ad1b3bf8c12122089af1b5896a8da8253}{GetSize} () const 
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1UI_1_1Caption_a84706720c8bf07eede9bbeecbf235a79}{GetText} ()
+\begin{DoxyCompactList}\small\item\em Gets the text displayed within the caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1UI_1_1Caption_a7ef9a623d363094bafe9162d89cbcb2c}{GetTextColour} ()
+\begin{DoxyCompactList}\small\item\em Gets the colour for the text in this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1UI_1_1Caption_ad0bb9026c09e4b808c1a12f2546a76c5}{GetTextScale} ()
+\begin{DoxyCompactList}\small\item\em Gets the scaling currently being applied to the rendered text. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a765e0cb49905613c9971cae8369cdc4f}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a765e0cb49905613c9971cae8369cdc4f}{Hide} ()}
+\label{classMezzanine_1_1UI_1_1Caption_a765e0cb49905613c9971cae8369cdc4f}
+
+\begin{DoxyCompactList}\small\item\em Forces this caption to hide. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a5d2537a5d2e7b327a3ea36fdb75fd77c}{HorizontallyAlign} (const \hyperlink{namespaceMezzanine_1_1UI_aebbd46e62bb20d958f1915c1ec6cc549}{UI::TextHorizontalAlign} \&Align)
+\begin{DoxyCompactList}\small\item\em Aligns the text of the caption. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Caption_a5d6ed066e714024ce9b12b13a926e6c6}{IsVisible} () const 
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a7360c698bc7a0aaa365739ccb0100d8d}{SetActualPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the top left position of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_afef14a7641a40656b1bb6d3ae1c820ca}{SetActualSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the size of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a9f8c1df0391939b5a4b740515ebe0df8}{SetAutoScaleText} (bool Enable)
+\begin{DoxyCompactList}\small\item\em Enables or disables scaling the text automatically on a screen size change. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a31f8a3357f03f34bdd48bfcc51f705f5}{SetBackgroundColour} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Sets the background colour of the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a53cc8bf9234184c8f8b99b6640813b59}{SetBackgroundSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the caption from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a202400000fdf731d0b10712dfd814ee0}{SetBackgroundSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a93607a41a5d18e2a529c5893b6aae921}{SetCursorOffset} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Offset)
+\begin{DoxyCompactList}\small\item\em Sets the number of pixels text should be offset from the side when rendering. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a2cc9da9ae1e10cd5829117f0d473186a}{SetGlyphIndex} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&GlyphIndex)
+\begin{DoxyCompactList}\small\item\em Sets the glyph index to be used with this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_abe41befd65e977a1bb300427d0dd5936}{SetGlyphIndex} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&GlyphIndex, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the glyph index to be used with this caption from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a1db8c2388e76c0cf2d4c017ec44ce6b1}{SetPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a4794ffff86824830fc54fc0aa6feb710}{SetPrimaryAtlas} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_ad3e5d066b19d56616369632276d8fd38}{SetRenderPriority} (const \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \&Priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority this caption should be rendered with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a7ab0e51b3dba56d6a9612ff41a1df9e1}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_aa47e6ddbe4b6181d4d2e963360866a43}{SetText} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Text)
+\begin{DoxyCompactList}\small\item\em Sets the text displayed within the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_ad7a376cc999615e1a0b2b47bcf2b95de}{SetTextColour} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&TextColour)
+\begin{DoxyCompactList}\small\item\em Sets the colour for the text in this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a26b5af3af19440f274a7938806043ca7}{SetTextScale} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Scale)
+\begin{DoxyCompactList}\small\item\em Sets the scaling to be applied to the text being rendered. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a77ba9fb0b2b8298c19f856b4fb7c8d3d}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this caption. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a11703635ef146c294c7e04b73f38ea1f}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_a11703635ef146c294c7e04b73f38ea1f}{Show} ()}
+\label{classMezzanine_1_1UI_1_1Caption_a11703635ef146c294c7e04b73f38ea1f}
+
+\begin{DoxyCompactList}\small\item\em Forces this caption to be shown. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_ab6c528d41fb194d19b2ec426a9d95db7}{UpdateDimensions} ()
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this caption to match those of the new screen size. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Caption_aa6b18dfcd49114eee5e785971c1c9440}{VerticallyAlign} (const \hyperlink{namespaceMezzanine_1_1UI_ab35e3845e2541698245262cc17147ae9}{UI::TextVerticalAlign} \&Align)
+\begin{DoxyCompactList}\small\item\em Aligns the text of the caption. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a3b6b1682c67c591ee4e19ed9e9dded74}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1Caption_a3b6b1682c67c591ee4e19ed9e9dded74}{$\sim$Caption} ()}
+\label{classMezzanine_1_1UI_1_1Caption_a3b6b1682c67c591ee4e19ed9e9dded74}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a9315c9491485177f2189cebab864d950}{
+void {\bfseries ConstructCaption} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)}
+\label{classMezzanine_1_1UI_1_1Caption_a9315c9491485177f2189cebab864d950}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a0ffda39b536235d31d11d12b16ddc813}{
+bool {\bfseries AutoScaleText}}
+\label{classMezzanine_1_1UI_1_1Caption_a0ffda39b536235d31d11d12b16ddc813}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a7c6b5e3c7cf1bb908903986196e0dbde}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries Glyphs}}
+\label{classMezzanine_1_1UI_1_1Caption_a7c6b5e3c7cf1bb908903986196e0dbde}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_aab382d60acc2efb30bf2c5cb98a8f639}{
+Gorilla::Caption $\ast$ {\bfseries GorillaCaption}}
+\label{classMezzanine_1_1UI_1_1Caption_aab382d60acc2efb30bf2c5cb98a8f639}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_abb2b4971b8ea93700e5710d4091760b6}{
+Gorilla::Rectangle $\ast$ {\bfseries GorillaRectangle}}
+\label{classMezzanine_1_1UI_1_1Caption_abb2b4971b8ea93700e5710d4091760b6}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_abb181af71fe2a1f60cca76e5935974bd}{
+bool {\bfseries MouseHover}}
+\label{classMezzanine_1_1UI_1_1Caption_abb181af71fe2a1f60cca76e5935974bd}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a2c093e275b717f8e7f7d13d3a78078e1}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries RelLineHeight}}
+\label{classMezzanine_1_1UI_1_1Caption_a2c093e275b717f8e7f7d13d3a78078e1}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is a helper class, specifically for use with text. Unlike a button, this class cannot be interacted with by clicking. It is important to understand what you want your space to do when selecting the class to use. \par
+ \par
+ Markup Texts and Captions are similar in that they both display text messages that can be altered readily, the primary difference between the two is that Captions are meant for small simple messages with background functionality built in, where as Markup Texts have no background functionality, but they use a light markup language to accomplish special effects with the text. 
+
+Definition at line 73 of file uicaption.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1Caption_ad0dc49d641507e277174b4f2a3562a89}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!Caption@{Caption}}
+\index{Caption@{Caption}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{Caption}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::Caption::Caption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{const {\bf String} \&}]{Text, }
+\item[{{\bf Layer} $\ast$}]{PLayer}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_ad0dc49d641507e277174b4f2a3562a89}
+
+
+Internal constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this caption. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the caption. \\
+\hline
+{\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
+\hline
+{\em Text} & Any text you want printed on the caption. \\
+\hline
+{\em \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer}} & Pointer to the layer that created this caption. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 58 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a1604f65f43a488ef3f24f59ce300aa9a}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!Caption@{Caption}}
+\index{Caption@{Caption}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{Caption}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::Caption::Caption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{Text, }
+\item[{{\bf Layer} $\ast$}]{PLayer}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a1604f65f43a488ef3f24f59ce300aa9a}
+
+
+Internal constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this caption. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the caption. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & Any text you want printed on the caption. \\
+\hline
+{\em \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer}} & Pointer to the layer that created this caption. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 67 of file uicaption.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a57ece85ea6c97b542d62de245ddb82f1}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!CheckMouseHover@{CheckMouseHover}}
+\index{CheckMouseHover@{CheckMouseHover}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Caption::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a57ece85ea6c97b542d62de245ddb82f1}
+
+
+Determines whether the mouse is over this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether the mouse is over this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a1936b1cc9ac22eddc81d92f10fef314d}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Caption::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a1936b1cc9ac22eddc81d92f10fef314d}
+
+
+Gets the top left position of this caption in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this caption. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a7469e579a834b00bd90a87fd754d14af}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 289 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a4b64d9dea1b059fd136ea234b8044a9b}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Caption::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a4b64d9dea1b059fd136ea234b8044a9b}
+
+
+Gets the size of this caption in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this caption. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a14b2ff20cdf114c34cc23074d0b7fb5c}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 319 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a2b83af8d15b35ba37661157cc376910d}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetAutoScaleText@{GetAutoScaleText}}
+\index{GetAutoScaleText@{GetAutoScaleText}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetAutoScaleText}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Caption::GetAutoScaleText (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a2b83af8d15b35ba37661157cc376910d}
+
+
+Gets whether or not text from this caption will automatically scale on a screen size change. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not this caption will automatically scale it's text. 
+\end{DoxyReturn}
+
+
+Definition at line 381 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a93da9adffc448e61d7fea14ab84c5421}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetCursorOffset@{GetCursorOffset}}
+\index{GetCursorOffset@{GetCursorOffset}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetCursorOffset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::Caption::GetCursorOffset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a93da9adffc448e61d7fea14ab84c5421}
+
+
+Gets the number of pixels text should be offset from the side when rendering. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the number of pixels text is currently being offset from the side. 
+\end{DoxyReturn}
+
+
+Definition at line 203 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a70275e20608116cce923106d3924781a}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetGlyphIndex@{GetGlyphIndex}}
+\index{GetGlyphIndex@{GetGlyphIndex}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetGlyphIndex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::Caption::GetGlyphIndex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a70275e20608116cce923106d3924781a}
+
+
+Gets the glyph index in use by this caption. 
+
+The glyph index is defined in your gorilla file. 
+\begin{DoxyParams}{Parameters}
+{\em Returns} & a Whole representing the index of the glyph in use by this caption.. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 193 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_ac4dface89d5105741e38facd6efe7aed}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetMouseHover@{GetMouseHover}}
+\index{GetMouseHover@{GetMouseHover}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Caption::GetMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_ac4dface89d5105741e38facd6efe7aed}
+
+
+Gets the stored value of whether or not the mouse is over the caption. 
+
+This function does not perform any checks. If you want to do a manual check, call \hyperlink{classMezzanine_1_1UI_1_1Caption_a57ece85ea6c97b542d62de245ddb82f1}{CheckMouseHover()}. \begin{DoxyReturn}{Returns}
+Returns the stored value of whether or not the mouse is over the caption. 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a232f175144378d1d8c0e2966dbcc4371}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Caption::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a232f175144378d1d8c0e2966dbcc4371}
+
+
+Gets the relative top left position of this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this caption. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ab6aa1fb10dc7e9e412e7caac9133c9a6}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 275 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a5c401e39f028e14426714197210e186a}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetPrimaryAtlas@{GetPrimaryAtlas}}
+\index{GetPrimaryAtlas@{GetPrimaryAtlas}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetPrimaryAtlas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::UI::Caption::GetPrimaryAtlas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a5c401e39f028e14426714197210e186a}
+
+
+Gets the currently set primary atlas. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of the primary atlas that is set. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_abdb08ae3577da75762209b8cee486b24}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 371 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_aadae4d2bb1e8db600864e0121a02e213}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetRenderPriority@{GetRenderPriority}}
+\index{GetRenderPriority@{GetRenderPriority}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::RenderPriority} Mezzanine::UI::Caption::GetRenderPriority (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_aadae4d2bb1e8db600864e0121a02e213}
+
+
+Gets the priority this caption should be rendered with. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing this caption's priority level. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a3279ed466dfc69203467b2bb32cf89be}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 346 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_ad1b3bf8c12122089af1b5896a8da8253}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Caption::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_ad1b3bf8c12122089af1b5896a8da8253}
+
+
+Gets the relative size of this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this caption. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a6486ceae69273b990bfe19b88c29d328}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 305 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a84706720c8bf07eede9bbeecbf235a79}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetText@{GetText}}
+\index{GetText@{GetText}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::UI::Caption::GetText (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a84706720c8bf07eede9bbeecbf235a79}
+
+
+Gets the text displayed within the caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns the text being displayed. 
+\end{DoxyReturn}
+
+
+Definition at line 155 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a7ef9a623d363094bafe9162d89cbcb2c}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetTextColour@{GetTextColour}}
+\index{GetTextColour@{GetTextColour}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetTextColour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::UI::Caption::GetTextColour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a7ef9a623d363094bafe9162d89cbcb2c}
+
+
+Gets the colour for the text in this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a colourvalue representing the currently set colour of the text in this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 175 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_ad0bb9026c09e4b808c1a12f2546a76c5}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!GetTextScale@{GetTextScale}}
+\index{GetTextScale@{GetTextScale}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{GetTextScale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::UI::Caption::GetTextScale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_ad0bb9026c09e4b808c1a12f2546a76c5}
+
+
+Gets the scaling currently being applied to the rendered text. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real value representing the scale applied to the text in this caption. $<$1.0 means smaller, $>$1.0 means larger. 
+\end{DoxyReturn}
+
+
+Definition at line 165 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a5d2537a5d2e7b327a3ea36fdb75fd77c}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!HorizontallyAlign@{HorizontallyAlign}}
+\index{HorizontallyAlign@{HorizontallyAlign}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{HorizontallyAlign}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::HorizontallyAlign (
+\begin{DoxyParamCaption}
+\item[{const {\bf UI::TextHorizontalAlign} \&}]{Align}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a5d2537a5d2e7b327a3ea36fdb75fd77c}
+
+
+Aligns the text of the caption. 
+
+Default value for this is UI::Txt\_\-Middle. 
+\begin{DoxyParams}{Parameters}
+{\em Align} & The enum value representing the horizontal alignment to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 225 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a5d6ed066e714024ce9b12b13a926e6c6}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Caption::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a5d6ed066e714024ce9b12b13a926e6c6}
+
+
+Gets the visibility of this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this caption. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a443bdeb7d95e6b765a5548966d380ecf}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 114 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a7360c698bc7a0aaa365739ccb0100d8d}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a7360c698bc7a0aaa365739ccb0100d8d}
+
+
+Sets the top left position of this caption in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this caption. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a4741dde07f7eddddcc3d611d6c803fad}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 280 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_afef14a7641a40656b1bb6d3ae1c820ca}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_afef14a7641a40656b1bb6d3ae1c820ca}
+
+
+Sets the size of this caption in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the size of this caption. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a69c87db17cacc2980f68777258329531}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 310 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a9f8c1df0391939b5a4b740515ebe0df8}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetAutoScaleText@{SetAutoScaleText}}
+\index{SetAutoScaleText@{SetAutoScaleText}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetAutoScaleText}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetAutoScaleText (
+\begin{DoxyParamCaption}
+\item[{bool}]{Enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a9f8c1df0391939b5a4b740515ebe0df8}
+
+
+Enables or disables scaling the text automatically on a screen size change. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Enable} & Enables or disables automatic text scaling. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 376 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a31f8a3357f03f34bdd48bfcc51f705f5}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetBackgroundColour@{SetBackgroundColour}}
+\index{SetBackgroundColour@{SetBackgroundColour}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetBackgroundColour}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetBackgroundColour (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{Colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a31f8a3357f03f34bdd48bfcc51f705f5}
+
+
+Sets the background colour of the caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Colour} & A colour value representing the colour to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 208 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a202400000fdf731d0b10712dfd814ee0}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetBackgroundSprite@{SetBackgroundSprite}}
+\index{SetBackgroundSprite@{SetBackgroundSprite}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetBackgroundSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetBackgroundSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a202400000fdf731d0b10712dfd814ee0}
+
+
+Sets the background image(if provided in the atlas) of the caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the sprite to set as the background. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 213 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a53cc8bf9234184c8f8b99b6640813b59}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetBackgroundSprite@{SetBackgroundSprite}}
+\index{SetBackgroundSprite@{SetBackgroundSprite}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetBackgroundSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetBackgroundSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{Atlas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a53cc8bf9234184c8f8b99b6640813b59}
+
+
+Sets the background image(if provided in the atlas) of the caption from another atlas then the one currently set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the sprite to set as the background. \\
+\hline
+{\em Atlas} & The Atlas to load the sprite from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 219 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a93607a41a5d18e2a529c5893b6aae921}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetCursorOffset@{SetCursorOffset}}
+\index{SetCursorOffset@{SetCursorOffset}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetCursorOffset}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetCursorOffset (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a93607a41a5d18e2a529c5893b6aae921}
+
+
+Sets the number of pixels text should be offset from the side when rendering. 
+
+This doesn't apply when text is being rendered with a Middle alignment. 
+\begin{DoxyParams}{Parameters}
+{\em Offset} & The number of pixels from the side text should be offset. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 198 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_abe41befd65e977a1bb300427d0dd5936}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetGlyphIndex@{SetGlyphIndex}}
+\index{SetGlyphIndex@{SetGlyphIndex}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetGlyphIndex}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetGlyphIndex (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{GlyphIndex, }
+\item[{const {\bf String} \&}]{Atlas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_abe41befd65e977a1bb300427d0dd5936}
+
+
+Sets the glyph index to be used with this caption from another atlas then the one currently set. 
+
+The glyph index is defined in your gorilla file. 
+\begin{DoxyParams}{Parameters}
+{\em GlyphIndex} & The index of the glyph to use with this caption. \\
+\hline
+{\em Atlas} & The Atlas to load the glyphs from \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 187 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a2cc9da9ae1e10cd5829117f0d473186a}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetGlyphIndex@{SetGlyphIndex}}
+\index{SetGlyphIndex@{SetGlyphIndex}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetGlyphIndex}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetGlyphIndex (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{GlyphIndex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a2cc9da9ae1e10cd5829117f0d473186a}
+
+
+Sets the glyph index to be used with this caption. 
+
+The glyph index is defined in your gorilla file. 
+\begin{DoxyParams}{Parameters}
+{\em GlyphIndex} & The index of the glyph to use with this caption. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 181 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a1db8c2388e76c0cf2d4c017ec44ce6b1}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a1db8c2388e76c0cf2d4c017ec44ce6b1}
+
+
+Sets the relative top left position of this caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this caption. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_aab42dabeaeb7a56fb4b98ae8f7ab6afb}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 265 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a4794ffff86824830fc54fc0aa6feb710}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetPrimaryAtlas@{SetPrimaryAtlas}}
+\index{SetPrimaryAtlas@{SetPrimaryAtlas}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetPrimaryAtlas}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetPrimaryAtlas (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Atlas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a4794ffff86824830fc54fc0aa6feb710}
+
+
+Sets the Atlas to be assumed when one isn't provided for atlas related tasks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Atlas} & The name of the atlas to be used. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ab1195ccf1e8acf126aee6d06c1d9e93b}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 366 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_ad3e5d066b19d56616369632276d8fd38}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetRenderPriority@{SetRenderPriority}}
+\index{SetRenderPriority@{SetRenderPriority}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetRenderPriority (
+\begin{DoxyParamCaption}
+\item[{const {\bf UI::RenderPriority} \&}]{Priority}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_ad3e5d066b19d56616369632276d8fd38}
+
+
+Sets the priority this caption should be rendered with. 
+
+The default value for this is Medium. 
+\begin{DoxyParams}{Parameters}
+{\em Priority} & The priority level to be used when rendering this caption. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a05be25ff56fbd498841c33da0cfe5410}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 325 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a7ab0e51b3dba56d6a9612ff41a1df9e1}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a7ab0e51b3dba56d6a9612ff41a1df9e1}
+
+
+Sets the relative size of this caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the size of this caption. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ace14123b4a7bdb83e4e86275823f7b6e}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 295 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_aa47e6ddbe4b6181d4d2e963360866a43}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetText@{SetText}}
+\index{SetText@{SetText}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetText}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_aa47e6ddbe4b6181d4d2e963360866a43}
+
+
+Sets the text displayed within the caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Text} & The text to be displayed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 150 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_ad7a376cc999615e1a0b2b47bcf2b95de}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetTextColour@{SetTextColour}}
+\index{SetTextColour@{SetTextColour}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetTextColour}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetTextColour (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{TextColour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_ad7a376cc999615e1a0b2b47bcf2b95de}
+
+
+Sets the colour for the text in this caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TextColour} & A colourvalue representing the desired colour. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 170 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a26b5af3af19440f274a7938806043ca7}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetTextScale@{SetTextScale}}
+\index{SetTextScale@{SetTextScale}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetTextScale}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetTextScale (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a26b5af3af19440f274a7938806043ca7}
+
+
+Sets the scaling to be applied to the text being rendered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Scale} & A Real value representing the scale to be applied. $<$1.0 means smaller, $>$1.0 means larger. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 160 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_a77ba9fb0b2b8298c19f856b4fb7c8d3d}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{Visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_a77ba9fb0b2b8298c19f856b4fb7c8d3d}
+
+
+Sets the visibility of this caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Visible} & Bool determining whether or not this caption should be visible. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a3dd62b1390d4f3931cfc8d0188cdcc7c}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 108 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_ab6c528d41fb194d19b2ec426a9d95db7}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::UpdateDimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_ab6c528d41fb194d19b2ec426a9d95db7}
+
+
+Updates the dimensions of this caption to match those of the new screen size. 
+
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a446b43c6dde21c7f0c021ca6833f841d}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 386 of file uicaption.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Caption_aa6b18dfcd49114eee5e785971c1c9440}{
+\index{Mezzanine::UI::Caption@{Mezzanine::UI::Caption}!VerticallyAlign@{VerticallyAlign}}
+\index{VerticallyAlign@{VerticallyAlign}!Mezzanine::UI::Caption@{Mezzanine::UI::Caption}}
+\paragraph[{VerticallyAlign}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Caption::VerticallyAlign (
+\begin{DoxyParamCaption}
+\item[{const {\bf UI::TextVerticalAlign} \&}]{Align}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Caption_aa6b18dfcd49114eee5e785971c1c9440}
+
+
+Aligns the text of the caption. 
+
+Default value for this is UI::Txt\_\-Center. 
+\begin{DoxyParams}{Parameters}
+{\em Align} & The enum value representing the vertical alignment to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 245 of file uicaption.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uicaption.h\item 
+uicaption.cpp\end{DoxyCompactItemize}

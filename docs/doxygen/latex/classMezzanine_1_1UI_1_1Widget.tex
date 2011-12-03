@@ -1,0 +1,769 @@
+\hypertarget{classMezzanine_1_1UI_1_1Widget}{
+\subsection{Mezzanine::UI::Widget Class Reference}
+\label{classMezzanine_1_1UI_1_1Widget}\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+}
+
+
+This class is the base class for all widgets.  
+
+
+
+
+{\ttfamily \#include $<$uiwidget.h$>$}
+
+Inheritance diagram for Mezzanine::UI::Widget:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classMezzanine_1_1UI_1_1Widget}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries WidgetType} \{ \par
+{\bfseries W\_\-ButtonListBox}, 
+{\bfseries W\_\-Cell}, 
+{\bfseries W\_\-CellGrid}, 
+{\bfseries W\_\-CheckBox}, 
+\par
+{\bfseries W\_\-DropDownList}, 
+{\bfseries W\_\-DropDownMenu}, 
+{\bfseries W\_\-GenericWidgetContainer}, 
+{\bfseries W\_\-ListBox}, 
+\par
+{\bfseries W\_\-Menu}, 
+{\bfseries W\_\-MenuWindow}, 
+{\bfseries W\_\-RadioButton}, 
+{\bfseries W\_\-Scrollbar}, 
+\par
+{\bfseries W\_\-Spinner}, 
+{\bfseries W\_\-TabSet}, 
+{\bfseries W\_\-TextBox}, 
+{\bfseries W\_\-Window}
+ \}
+\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Widget_a66f1b21671530de8f7696185c7080d7b}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Widget_afa615f27b3b95d4f847f5d779371209a}{GetActualPosition} () const 
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Widget_acd8f1a20e80c7f4218c38fe961215469}{GetActualSize} () const 
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Widget_ad9ab22e33338ddb8e13bf663de0092f1}{GetHoveredButton} () const 
+\begin{DoxyCompactList}\small\item\em Gets the hovered button within this widget, if any. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Widget_a99615938f31dd6b5c6d8fa9d9dc96d3d}{GetHoveredSubWidget} () const 
+\begin{DoxyCompactList}\small\item\em Gets the hovered sub-\/widget within this widget, if any. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1InputCaptureData}{InputCaptureData} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Widget_a7aa4803d32b18d8f5d9550942b2acfe2}{GetInputCaptureData} () const 
+\begin{DoxyCompactList}\small\item\em Gets the data determining what input should be captured. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Widget_a33ff8bd7663738501c9ee895e08a236b}{GetLayer} () const 
+\begin{DoxyCompactList}\small\item\em Gets the layer this widget belongs to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1UI_1_1Widget_abcd2c0e80a7766524eeb63f6972baff7}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Widget_ab498fab9f2b18236a301faa0aed9cb0d}{GetPosition} () const 
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \hyperlink{classMezzanine_1_1UI_1_1Widget_a4a3de058cf3a274be9e8e1fb765da7e6}{GetRect} (bool Relative=true) const 
+\begin{DoxyCompactList}\small\item\em Gets this Widgets' Rect. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Widget_adb7eb8aae00798321f74d8174027d3c1}{GetSize} () const 
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual WidgetType \hyperlink{classMezzanine_1_1UI_1_1Widget_a9e1a01dc48630ce92e617cc0c6e9d31a}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em Gets the type of widget this is. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Widget_a2f4a364179d378fded57418571cdcfd0}{GetVisible} () const 
+\begin{DoxyCompactList}\small\item\em Gets the visibility setting of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ad6575e6720477274153924b316e5b1d4}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_ad6575e6720477274153924b316e5b1d4}{Hide} ()}
+\label{classMezzanine_1_1UI_1_1Widget_ad6575e6720477274153924b316e5b1d4}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Widget_aacf72f1145b139804f40d02fcac4ee93}{IsHovered} () const 
+\begin{DoxyCompactList}\small\item\em Gets the result of the last mouse hover check. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Widget_ad18ddb91597bc835d6a3678a2fbcd45d}{IsInputCaptureWidget} () const 
+\begin{DoxyCompactList}\small\item\em Checks if this is an input capturing widget. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Widget_a543fa0c3bdee98591fcd77eb75d25258}{IsVisible} () const 
+\begin{DoxyCompactList}\small\item\em Gets whether or not this widget is being drawn. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_a860bd8baea24d61a9cd661e85831f981}{SetActualPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_acc8a472036872bbbfd0476f753c80ba4}{SetActualSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)=0
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_ac83b59db51a6717ad7b822007dde3576}{SetPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)=0
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_aed66a04577944a3c76e628185aa7bb3e}{SetRect} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Sets the Rect(Position and Size) of this \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_adf8b14ce6641d4ec12f6ff09814fc9ab}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)=0
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_ad13df3d78b4e7cebfc566dc678706915}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_a7cab967bfe466c1f2796cc17559ca1f3}{SetWidgetCallback} (\hyperlink{classMezzanine_1_1UI_1_1WidgetCallback}{WidgetCallback} $\ast$CB)
+\begin{DoxyCompactList}\small\item\em Sets the callback to be used by this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a863195baafaee7ab8a0887c660525bf6}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_a863195baafaee7ab8a0887c660525bf6}{Show} ()}
+\label{classMezzanine_1_1UI_1_1Widget_a863195baafaee7ab8a0887c660525bf6}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_af23f919f2912ac10230953a848c9889c}{UpdateDimensions} ()=0
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UI_1_1Widget_add763ac9363712f608218244b6fa0111}{Widget} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ae5ef8e2cfe6330d11581f3f1b2a640a3}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1Widget_ae5ef8e2cfe6330d11581f3f1b2a640a3}{$\sim$Widget} ()}
+\label{classMezzanine_1_1UI_1_1Widget_ae5ef8e2cfe6330d11581f3f1b2a640a3}
+
+\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_adb2f2020d4a3bfef6c76e5ac0fdf26cb}{
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Widget_adb2f2020d4a3bfef6c76e5ac0fdf26cb}{CheckMouseHoverImpl} ()=0}
+\label{classMezzanine_1_1UI_1_1Widget_adb2f2020d4a3bfef6c76e5ac0fdf26cb}
+
+\begin{DoxyCompactList}\small\item\em Child specific mouse hover method. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ab4aadd7cef4beda4f13b4c4918209a5f}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_ab4aadd7cef4beda4f13b4c4918209a5f}{ProcessCapturedInputs} ()}
+\label{classMezzanine_1_1UI_1_1Widget_ab4aadd7cef4beda4f13b4c4918209a5f}
+
+\begin{DoxyCompactList}\small\item\em Processes the captured inputs. This is an empty function and should be overridden if making an input capturing widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a766e29f02a4d6640812462e4a8bdb272}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_a766e29f02a4d6640812462e4a8bdb272}{SetVisibleImpl} (bool visible)=0}
+\label{classMezzanine_1_1UI_1_1Widget_a766e29f02a4d6640812462e4a8bdb272}
+
+\begin{DoxyCompactList}\small\item\em Child specific visibility method. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_afc1b4bcc448e9ecf977a987c9b348547}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_afc1b4bcc448e9ecf977a987c9b348547}{SubWidgetFocusUpdate} (bool Force=false)}
+\label{classMezzanine_1_1UI_1_1Widget_afc1b4bcc448e9ecf977a987c9b348547}
+
+\begin{DoxyCompactList}\small\item\em For use with sub-\/widget update/automation when the mouse isn't hovered. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a3fb336cd36759be294dfb845be810d0a}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_a3fb336cd36759be294dfb845be810d0a}{SubWidgetUpdate} (bool Force=false)}
+\label{classMezzanine_1_1UI_1_1Widget_a3fb336cd36759be294dfb845be810d0a}
+
+\begin{DoxyCompactList}\small\item\em For use with sub-\/widget update/automation. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_aeb05b9fb68cdfc58fcff45d03e80dd39}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_aeb05b9fb68cdfc58fcff45d03e80dd39}{Update} (bool Force=false)}
+\label{classMezzanine_1_1UI_1_1Widget_aeb05b9fb68cdfc58fcff45d03e80dd39}
+
+\begin{DoxyCompactList}\small\item\em For use with widget update/automation. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_abe60b3fb3de99433fe4823b12a43ffb4}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Widget_abe60b3fb3de99433fe4823b12a43ffb4}{UpdateImpl} (bool Force=false)=0}
+\label{classMezzanine_1_1UI_1_1Widget_abe60b3fb3de99433fe4823b12a43ffb4}
+
+\begin{DoxyCompactList}\small\item\em Child specific update method. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a74f01da1c090e1ef641aea47118fc0e7}{
+\hyperlink{classMezzanine_1_1UI_1_1WidgetCallback}{UI::WidgetCallback} $\ast$ {\bfseries Callback}}
+\label{classMezzanine_1_1UI_1_1Widget_a74f01da1c090e1ef641aea47118fc0e7}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_afd2c29ea6220e04fa735a8a04755e3ed}{
+\hyperlink{classMezzanine_1_1UI_1_1InputCaptureData}{InputCaptureData} $\ast$ {\bfseries CaptureData}}
+\label{classMezzanine_1_1UI_1_1Widget_afd2c29ea6220e04fa735a8a04755e3ed}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a7e0f63e5b8e80e1b41c5e01dfd6460a7}{
+bool {\bfseries Hovered}}
+\label{classMezzanine_1_1UI_1_1Widget_a7e0f63e5b8e80e1b41c5e01dfd6460a7}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_abf4b85eca189d92e8c82bbf84e2df297}{
+\hyperlink{classMezzanine_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries HoveredButton}}
+\label{classMezzanine_1_1UI_1_1Widget_abf4b85eca189d92e8c82bbf84e2df297}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a88eebf5fd553b9fa34190eff3534eb59}{
+\hyperlink{classMezzanine_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries HoveredSubWidget}}
+\label{classMezzanine_1_1UI_1_1Widget_a88eebf5fd553b9fa34190eff3534eb59}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a123c72075cdd138d2b779cd93623b896}{
+\hyperlink{classMezzanine_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
+\label{classMezzanine_1_1UI_1_1Widget_a123c72075cdd138d2b779cd93623b896}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_aa7d2cc9c8ff7bdcee66c5de0ac112dc2}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} {\bfseries Name}}
+\label{classMezzanine_1_1UI_1_1Widget_aa7d2cc9c8ff7bdcee66c5de0ac112dc2}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a24139856045042bf7ae47304d6ac636b}{
+\hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
+\label{classMezzanine_1_1UI_1_1Widget_a24139856045042bf7ae47304d6ac636b}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a900aff3bdaae26330d3d1573069ed041}{
+\hyperlink{classMezzanine_1_1Vector2}{Vector2} {\bfseries RelPosition}}
+\label{classMezzanine_1_1UI_1_1Widget_a900aff3bdaae26330d3d1573069ed041}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ae65ab631aefe321b7635ae458c58c042}{
+\hyperlink{classMezzanine_1_1Vector2}{Vector2} {\bfseries RelSize}}
+\label{classMezzanine_1_1UI_1_1Widget_ae65ab631aefe321b7635ae458c58c042}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_aaab9e870c56a498ae0b74b66b85f1c84}{
+\hyperlink{classMezzanine_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries SubWidgetFocus}}
+\label{classMezzanine_1_1UI_1_1Widget_aaab9e870c56a498ae0b74b66b85f1c84}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a9a8e9cc0328a0e2f6849ed56920f6d07}{
+WidgetType {\bfseries Type}}
+\label{classMezzanine_1_1UI_1_1Widget_a9a8e9cc0328a0e2f6849ed56920f6d07}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a56ab9a181ed87ea151e9be04752494da}{
+bool {\bfseries Visible}}
+\label{classMezzanine_1_1UI_1_1Widget_a56ab9a181ed87ea151e9be04752494da}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ae6711b8bde3fabca2b5e61f955d3d13f}{
+class \hyperlink{classMezzanine_1_1UI_1_1Widget_ae6711b8bde3fabca2b5e61f955d3d13f}{Mezzanine::UIManager}}
+\label{classMezzanine_1_1UI_1_1Widget_ae6711b8bde3fabca2b5e61f955d3d13f}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is the base class for all widgets. 
+
+Definition at line 98 of file uiwidget.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1Widget_add763ac9363712f608218244b6fa0111}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!Widget@{Widget}}
+\index{Widget@{Widget}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{Widget}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::Widget::Widget (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{{\bf Layer} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_add763ac9363712f608218244b6fa0111}
+
+
+Standard initialization constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent layer that created this widget. \\
+\hline
+{\em name} & The Name for the \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 98 of file uiwidget.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a66f1b21671530de8f7696185c7080d7b}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!CheckMouseHover@{CheckMouseHover}}
+\index{CheckMouseHover@{CheckMouseHover}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Widget::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a66f1b21671530de8f7696185c7080d7b}
+
+
+Checks to see if the current mouse position is over this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool value, true if the mouse is over this widget, false if it's not. 
+\end{DoxyReturn}
+
+
+Definition at line 221 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_afa615f27b3b95d4f847f5d779371209a}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Widget::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_afa615f27b3b95d4f847f5d779371209a}
+
+
+Sets the pixel position of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel position of this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 267 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_acd8f1a20e80c7f4218c38fe961215469}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Widget::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_acd8f1a20e80c7f4218c38fe961215469}
+
+
+Sets the pixel size of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel size of this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 277 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ad9ab22e33338ddb8e13bf663de0092f1}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetHoveredButton@{GetHoveredButton}}
+\index{GetHoveredButton@{GetHoveredButton}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetHoveredButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::Widget::GetHoveredButton (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_ad9ab22e33338ddb8e13bf663de0092f1}
+
+
+Gets the hovered button within this widget, if any. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none. 
+\end{DoxyReturn}
+
+
+Definition at line 282 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a99615938f31dd6b5c6d8fa9d9dc96d3d}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetHoveredSubWidget@{GetHoveredSubWidget}}
+\index{GetHoveredSubWidget@{GetHoveredSubWidget}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetHoveredSubWidget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Widget} $\ast$ Mezzanine::UI::Widget::GetHoveredSubWidget (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a99615938f31dd6b5c6d8fa9d9dc96d3d}
+
+
+Gets the hovered sub-\/widget within this widget, if any. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the sub-\/widget within this widget the mouse is hovering over, or NULL if none. 
+\end{DoxyReturn}
+
+
+Definition at line 287 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a7aa4803d32b18d8f5d9550942b2acfe2}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetInputCaptureData@{GetInputCaptureData}}
+\index{GetInputCaptureData@{GetInputCaptureData}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetInputCaptureData}]{\setlength{\rightskip}{0pt plus 5cm}{\bf InputCaptureData} $\ast$ Mezzanine::UI::Widget::GetInputCaptureData (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a7aa4803d32b18d8f5d9550942b2acfe2}
+
+
+Gets the data determining what input should be captured. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the \hyperlink{classMezzanine_1_1UI_1_1InputCaptureData}{InputCaptureData}, or NULL if this widget doesn't capture data. 
+\end{DoxyReturn}
+
+
+Definition at line 297 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a33ff8bd7663738501c9ee895e08a236b}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetLayer@{GetLayer}}
+\index{GetLayer@{GetLayer}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetLayer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Layer} $\ast$ Mezzanine::UI::Widget::GetLayer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a33ff8bd7663738501c9ee895e08a236b}
+
+
+Gets the layer this widget belongs to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the layer this eidget belongs to. 
+\end{DoxyReturn}
+
+
+Definition at line 292 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_abcd2c0e80a7766524eeb63f6972baff7}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::UI::Widget::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_abcd2c0e80a7766524eeb63f6972baff7}
+
+
+Gets the name of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a String containing the name of this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ab498fab9f2b18236a301faa0aed9cb0d}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Widget::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_ab498fab9f2b18236a301faa0aed9cb0d}
+
+
+Gets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative position of this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 262 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a4a3de058cf3a274be9e8e1fb765da7e6}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetRect@{GetRect}}
+\index{GetRect@{GetRect}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetRect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf RenderableRect} Mezzanine::UI::Widget::GetRect (
+\begin{DoxyParamCaption}
+\item[{bool}]{Relative = {\ttfamily true}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a4a3de058cf3a274be9e8e1fb765da7e6}
+
+
+Gets this Widgets' Rect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Relative} & Whether or not you want the Rect to be populated with Relative values. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a Rect containing this Widgets' Position and Size. 
+\end{DoxyReturn}
+
+
+Definition at line 256 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_adb7eb8aae00798321f74d8174027d3c1}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Widget::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_adb7eb8aae00798321f74d8174027d3c1}
+
+
+Gets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative size of this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 272 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a9e1a01dc48630ce92e617cc0c6e9d31a}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}Widget::WidgetType Mezzanine::UI::Widget::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a9e1a01dc48630ce92e617cc0c6e9d31a}
+
+
+Gets the type of widget this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the type of widget this is. 
+\end{DoxyReturn}
+
+
+Definition at line 193 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a2f4a364179d378fded57418571cdcfd0}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!GetVisible@{GetVisible}}
+\index{GetVisible@{GetVisible}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{GetVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Widget::GetVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a2f4a364179d378fded57418571cdcfd0}
+
+
+Gets the visibility setting of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool that is the current visibility setting of this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 173 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_aacf72f1145b139804f40d02fcac4ee93}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!IsHovered@{IsHovered}}
+\index{IsHovered@{IsHovered}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{IsHovered}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Widget::IsHovered (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_aacf72f1145b139804f40d02fcac4ee93}
+
+
+Gets the result of the last mouse hover check. 
+
+\begin{DoxyReturn}{Returns}
+Returns whether or not the mouse was hovering over this widget during the last check. 
+\end{DoxyReturn}
+
+
+Definition at line 203 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ad18ddb91597bc835d6a3678a2fbcd45d}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!IsInputCaptureWidget@{IsInputCaptureWidget}}
+\index{IsInputCaptureWidget@{IsInputCaptureWidget}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{IsInputCaptureWidget}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Widget::IsInputCaptureWidget (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_ad18ddb91597bc835d6a3678a2fbcd45d}
+
+
+Checks if this is an input capturing widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not this widget will capture input. 
+\end{DoxyReturn}
+
+
+Definition at line 198 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a543fa0c3bdee98591fcd77eb75d25258}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Widget::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a543fa0c3bdee98591fcd77eb75d25258}
+
+
+Gets whether or not this widget is being drawn. 
+
+This function will check the visibility of all parent objects to see if it is being drawn. This will not tell you whether or not this widget has it's own visibility setting enabled. For that see: \hyperlink{classMezzanine_1_1UI_1_1Widget_a2f4a364179d378fded57418571cdcfd0}{GetVisible()}. \begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 178 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a860bd8baea24d61a9cd661e85831f981}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::Widget::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a860bd8baea24d61a9cd661e85831f981}
+
+
+Sets the pixel position of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the pixel position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Cell_ada818056ebb50413109b1c8d8a7fa3e0}{Mezzanine::UI::Cell}, \hyperlink{classMezzanine_1_1UI_1_1CellGrid_aec72d4eae4497e7ffa62f7697d4dc468}{Mezzanine::UI::CellGrid}, \hyperlink{classMezzanine_1_1UI_1_1CheckBox_afa566e7ad9bd33354a76e4ea964e85bf}{Mezzanine::UI::CheckBox}, \hyperlink{classMezzanine_1_1UI_1_1DropDownList_ab038f951f09d18eaa2dad6c4eff01b7b}{Mezzanine::UI::DropDownList}, \hyperlink{classMezzanine_1_1UI_1_1ListBox_a0bf39153416d2010e5bf36601873c73e}{Mezzanine::UI::ListBox}, \hyperlink{classMezzanine_1_1UI_1_1Menu_a0638a7f234bc62e4c7b7dc0253a5d68e}{Mezzanine::UI::Menu}, \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a40f37509c36c3d131cfa8a29db49fd1d}{Mezzanine::UI::RenderableContainerWidget}, \hyperlink{classMezzanine_1_1UI_1_1Scrollbar_a24034754316c9bc241e07fe4acbf6a62}{Mezzanine::UI::Scrollbar}, \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_a0daef581b08b9c5ca547bfc3db23a384}{Mezzanine::UI::ScrolledCellGrid}, \hyperlink{classMezzanine_1_1UI_1_1Spinner_ac90f7a00e8a9c2f14ddb3053f89ecd2c}{Mezzanine::UI::Spinner}, \hyperlink{classMezzanine_1_1UI_1_1TabSet_ac4cb545982397148d0df237eee062cb3}{Mezzanine::UI::TabSet}, and \hyperlink{classMezzanine_1_1UI_1_1Window_a79929aa37e9bb297ed3ae9c09ec42dee}{Mezzanine::UI::Window}.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_acc8a472036872bbbfd0476f753c80ba4}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::Widget::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_acc8a472036872bbbfd0476f753c80ba4}
+
+
+Sets the pixel size of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the pixel size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Cell_a4861322821bdd28429994ab49bea6083}{Mezzanine::UI::Cell}, \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a2ab8b9b913aaac889ea76e565eccdbc6}{Mezzanine::UI::CellGrid}, \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a063a9c0ab24ddc4332711a7045e2786d}{Mezzanine::UI::CheckBox}, \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a83f213b851c8336c064398fe21cea202}{Mezzanine::UI::DropDownList}, \hyperlink{classMezzanine_1_1UI_1_1ListBox_ad277b2268dd5439c05ce300addf31815}{Mezzanine::UI::ListBox}, \hyperlink{classMezzanine_1_1UI_1_1Menu_a639a1362c09b87855a8c574995c4af87}{Mezzanine::UI::Menu}, \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a036b474eb0d08197ee5130954a1ea992}{Mezzanine::UI::RenderableContainerWidget}, \hyperlink{classMezzanine_1_1UI_1_1Scrollbar_ac026591a6a40d0d6e0bf4c321dc57628}{Mezzanine::UI::Scrollbar}, \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_ae55c3df53dd4e40e51df62a08a2a2f69}{Mezzanine::UI::ScrolledCellGrid}, \hyperlink{classMezzanine_1_1UI_1_1Spinner_a4154b6a0c11891a0c1be3b1d03477ba1}{Mezzanine::UI::Spinner}, \hyperlink{classMezzanine_1_1UI_1_1TabSet_a1093eb0ab0b862665cfb567bb5d73341}{Mezzanine::UI::TabSet}, and \hyperlink{classMezzanine_1_1UI_1_1Window_adda80dca776a0de7468c7937c4653eec}{Mezzanine::UI::Window}.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ac83b59db51a6717ad7b822007dde3576}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::Widget::SetPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_ac83b59db51a6717ad7b822007dde3576}
+
+
+Sets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the relative position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Cell_a50efe6a1d981f4de5bfa4124ab9dd256}{Mezzanine::UI::Cell}, \hyperlink{classMezzanine_1_1UI_1_1CellGrid_ab6e210edb5ec0167f61c9dc2dafef108}{Mezzanine::UI::CellGrid}, \hyperlink{classMezzanine_1_1UI_1_1CheckBox_ab12deffc753623b224191ee294626a65}{Mezzanine::UI::CheckBox}, \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a480682783cfaf4ea18b90a058c958ea7}{Mezzanine::UI::DropDownList}, \hyperlink{classMezzanine_1_1UI_1_1ListBox_a7446cdc56d606fe52090e13ee8078124}{Mezzanine::UI::ListBox}, \hyperlink{classMezzanine_1_1UI_1_1Menu_ab15befd0341286dd2bcfc35e2046316a}{Mezzanine::UI::Menu}, \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a169f11799bf2f3642ddfae70832dff59}{Mezzanine::UI::RenderableContainerWidget}, \hyperlink{classMezzanine_1_1UI_1_1Scrollbar_a7c0f281e287500a52a735ded33d71fa6}{Mezzanine::UI::Scrollbar}, \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_ab4e8250c846990325c3a6ccfbf5b322a}{Mezzanine::UI::ScrolledCellGrid}, \hyperlink{classMezzanine_1_1UI_1_1Spinner_acb64ee82819e3fc46afd24926e18fc83}{Mezzanine::UI::Spinner}, \hyperlink{classMezzanine_1_1UI_1_1TabSet_a7474438cae418c74f192dc48ad5a4170}{Mezzanine::UI::TabSet}, and \hyperlink{classMezzanine_1_1UI_1_1Window_a8e25cd61721c2321f1117720e1af41a2}{Mezzanine::UI::Window}.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_aed66a04577944a3c76e628185aa7bb3e}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!SetRect@{SetRect}}
+\index{SetRect@{SetRect}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{SetRect}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Widget::SetRect (
+\begin{DoxyParamCaption}
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_aed66a04577944a3c76e628185aa7bb3e}
+
+
+Sets the Rect(Position and Size) of this \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rect} & The Rect to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 244 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_adf8b14ce6641d4ec12f6ff09814fc9ab}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::Widget::SetSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_adf8b14ce6641d4ec12f6ff09814fc9ab}
+
+
+Sets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the relative size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Cell_a07e76896846e18c9d7d72ba7b9c49ed3}{Mezzanine::UI::Cell}, \hyperlink{classMezzanine_1_1UI_1_1CellGrid_afcff9353be7ea7408aa2ea621efdaf99}{Mezzanine::UI::CellGrid}, \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a4fb7dc586245da0cdcfc789f8a1c83a3}{Mezzanine::UI::CheckBox}, \hyperlink{classMezzanine_1_1UI_1_1DropDownList_af9a2fa5e0631162995826326e66108ec}{Mezzanine::UI::DropDownList}, \hyperlink{classMezzanine_1_1UI_1_1ListBox_a69058a4d45eeb28da12993d17a878ce2}{Mezzanine::UI::ListBox}, \hyperlink{classMezzanine_1_1UI_1_1Menu_ab3e0d3ea65a0bb5e19639bdd283796d0}{Mezzanine::UI::Menu}, \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_a672008c2b0340b36ca3041b858b570bc}{Mezzanine::UI::RenderableContainerWidget}, \hyperlink{classMezzanine_1_1UI_1_1Scrollbar_a159e7f6c1493a30ec00da9001a04f8e9}{Mezzanine::UI::Scrollbar}, \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_ac924cf5c94e3eb52bffc7d984683f1e6}{Mezzanine::UI::ScrolledCellGrid}, \hyperlink{classMezzanine_1_1UI_1_1Spinner_a11b2783e59b585b30f4b5ae36cfd7f93}{Mezzanine::UI::Spinner}, \hyperlink{classMezzanine_1_1UI_1_1TabSet_ac125a2abc7b12d3c81969bdd407be883}{Mezzanine::UI::TabSet}, and \hyperlink{classMezzanine_1_1UI_1_1Window_a1816409c5c9d9f7bca38510270e340e3}{Mezzanine::UI::Window}.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_ad13df3d78b4e7cebfc566dc678706915}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Widget::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_ad13df3d78b4e7cebfc566dc678706915}
+
+
+Sets the visibility of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em visible} & Bool determining whether or not this widget should be visible. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 163 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_a7cab967bfe466c1f2796cc17559ca1f3}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!SetWidgetCallback@{SetWidgetCallback}}
+\index{SetWidgetCallback@{SetWidgetCallback}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{SetWidgetCallback}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Widget::SetWidgetCallback (
+\begin{DoxyParamCaption}
+\item[{{\bf WidgetCallback} $\ast$}]{CB}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_a7cab967bfe466c1f2796cc17559ca1f3}
+
+
+Sets the callback to be used by this widget. 
+
+\begin{DoxyRemark}{Remarks}
+You can pass in a NULL pointer to clear the existing callback. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em CB} & The callback to be set for this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 213 of file uiwidget.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Widget_af23f919f2912ac10230953a848c9889c}{
+\index{Mezzanine::UI::Widget@{Mezzanine::UI::Widget}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!Mezzanine::UI::Widget@{Mezzanine::UI::Widget}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::Widget::UpdateDimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Widget_af23f919f2912ac10230953a848c9889c}
+
+
+Updates the dimensions of this widget to match those of the new screen size. 
+
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Cell_a20af52a9a939d90b50a42b9c967c64d7}{Mezzanine::UI::Cell}, \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a11cda11f70cd331c9bd39daf0b0f24aa}{Mezzanine::UI::CellGrid}, \hyperlink{classMezzanine_1_1UI_1_1CheckBox_ac7754437c455f40aaf6d4bca4cb0c7a9}{Mezzanine::UI::CheckBox}, \hyperlink{classMezzanine_1_1UI_1_1DropDownList_aeb27e8fc8b99e7c627f53efbddcb4fb3}{Mezzanine::UI::DropDownList}, \hyperlink{classMezzanine_1_1UI_1_1ListBox_a7bad6cce9fa22e882cc74f62a51fabdb}{Mezzanine::UI::ListBox}, \hyperlink{classMezzanine_1_1UI_1_1Menu_a8d0e0169fb5e1c0f864670ad6d34e521}{Mezzanine::UI::Menu}, \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a9100422fa989e3c3d41e9b22046773f7}{Mezzanine::UI::MenuWindow}, \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a1ff79a778710a517abb5c55a13b6a273}{Mezzanine::UI::PagedCellGrid}, \hyperlink{classMezzanine_1_1UI_1_1RenderableContainerWidget_acfea936d03f85a2e6d289e50844d6b11}{Mezzanine::UI::RenderableContainerWidget}, \hyperlink{classMezzanine_1_1UI_1_1Scrollbar_ad9e54e999910371173280b827f80f504}{Mezzanine::UI::Scrollbar}, \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_abb580fbe187054004c6f3f0eadec8b7e}{Mezzanine::UI::ScrolledCellGrid}, \hyperlink{classMezzanine_1_1UI_1_1Spinner_a05358d8643601df5e552b687ce079899}{Mezzanine::UI::Spinner}, \hyperlink{classMezzanine_1_1UI_1_1TabSet_a191f67ec19fc80f63eb842305f8cfb05}{Mezzanine::UI::TabSet}, and \hyperlink{classMezzanine_1_1UI_1_1Window_a793c156e8de19f44b8c132b05ed4f7b6}{Mezzanine::UI::Window}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uiwidget.h\item 
+uiwidget.cpp\end{DoxyCompactItemize}

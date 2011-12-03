@@ -1,0 +1,1659 @@
+\hypertarget{classMezzanine_1_1Vector3}{
+\subsection{Mezzanine::Vector3 Class Reference}
+\label{classMezzanine_1_1Vector3}\index{Mezzanine::Vector3@{Mezzanine::Vector3}}
+}
+
+
+This is used to represent a point in space, or a vector through space.  
+
+
+
+
+{\ttfamily \#include $<$vector3.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_ad929fbbc2035229f84a3fc8946f7e6c3}{CrossProduct} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em This is used to calculate the crossproduct of this and another vector. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_a712b2063e6aa4c58002628ecf08b15fe}{Distance} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&OtherVec) const 
+\begin{DoxyCompactList}\small\item\em This return the distance between this point and another. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_ad49630dbeff2f1b63ce7c7e1d0faf4b8}{DotProduct} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em This is used to calculate the dotproduct of this and another vector. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Vector3_afc8fcb7fb9de94c05db4cc8a568363f9}{ExtractBulletVector3} (const btVector3 \&temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing Bullet vector3. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Vector3_a067981af0fe3fca1e3589de024473a61}{ExtractcAudioVector3} (const cAudio::cVector3 \&temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing cAudio vector3. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Vector3_a8458214b99c59a30d9d8cc2d9efd19bd}{ExtractOgreVector3} (const Ogre::Vector3 \&temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing Ogre vector3. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_a54db774dc4ee3cf620790c97b44f6d91}{GetAxisValue} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Axis) const 
+\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \& \hyperlink{classMezzanine_1_1Vector3_ab23f2a5d206ad5fff3fe422e64e569c1}{GetAxisValue} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Axis)
+\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \& \hyperlink{classMezzanine_1_1Vector3_a83ad1f8b0d517214cafb96beacd4af5a}{GetAxisValue} (\hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} Axis)
+\begin{DoxyCompactList}\small\item\em Get The value associate with a certain Axis in such a way that it can readily be assigned in this \hyperlink{classMezzanine_1_1Vector3}{Vector3}. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_a05edc8c1ba36c255eabe6a433b6618c4}{GetAxisValue} (\hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} Axis) const 
+\begin{DoxyCompactList}\small\item\em Get The value associate with a certain Axis. \item\end{DoxyCompactList}\item 
+btVector3 \hyperlink{classMezzanine_1_1Vector3_ab9fb84bdbfe3bed9fd210a6ad1cee8b7}{GetBulletVector3} () const 
+\begin{DoxyCompactList}\small\item\em Gets a Bullet vector3. \item\end{DoxyCompactList}\item 
+cAudio::cVector3 \hyperlink{classMezzanine_1_1Vector3_abc23c3ed5b31db10992744bf789eb390}{GetcAudioVector3} () const 
+\begin{DoxyCompactList}\small\item\em Gets a cAudio vector3. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a707fd0329426f74b38b58d081c585eae}{GetDirection} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Destination) const 
+\begin{DoxyCompactList}\small\item\em This will get the direction between two points. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a8683a3d640736b5dda63be4a656663a3}{GetNormal} () const 
+\begin{DoxyCompactList}\small\item\em This returns the normal for this relative to the origin. \item\end{DoxyCompactList}\item 
+Ogre::Vector3 \hyperlink{classMezzanine_1_1Vector3_a2948167508c456d64032acfc8c2f6fd8}{GetOgreVector3} () const 
+\begin{DoxyCompactList}\small\item\em Gets a Ogre vector3. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a99846b5e24df4d20391465cf321d3a6c}{Inverse} ()
+\begin{DoxyCompactList}\small\item\em This will inverse the reals in the vector. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} \hyperlink{classMezzanine_1_1Vector3_a854b61a98d10deacdfbcfea5a2ae68d8}{IsStandardUnitAxis} () const 
+\begin{DoxyCompactList}\small\item\em Get a Unit Vector along the given Axis. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanine_1_1Vector3_aa8705900b168f9d5234bf6de5e9564b1}{Normalize} ()
+\begin{DoxyCompactList}\small\item\em This will change this point into it's own normal relative to the origin. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Vector3_ab17e377c8178ed18adf453c6f55a2471}{operator!=} (const \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Vector3_a5553723899629247d1fd8031ede27c31}{operator!=} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Vector3_a719f34907dcd4872bde9558b9c61dc8b}{operator!=} (const Ogre::Vector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Vector3_a8888d70d5fb5d3a1aebb458d14da9ad1}{operator!=} (const cAudio::cVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a5d950bff38f35d01f31178b9a281bfca}{operator$\ast$} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Multiplaction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_ad7edefd69b1197070e01db7e6e744af6}{operator$\ast$} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Bullet Multiplication Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_ad72a28353c1aa60815050f803bc61ae0}{operator$\ast$} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&scalar) const 
+\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_ae6ab1b08614f2105a61584999c3f2339}{operator$\ast$} (const Ogre::Vector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Ogre Multiplication Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_ad9291ea4ef98128c77a2acdb98eade87}{operator$\ast$} (const cAudio::cVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em cAudio Multiplication Operator \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanine_1_1Vector3_a5e99a6ae8870ca12aa7e6e58bffef0c5}{operator$\ast$=} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_abaadfc0d5848107f4be81fd97eaa932b}{operator+} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Addition Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_ab9093d82a813c4c700daf6d01a66633b}{operator+} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Bullet Addition Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a1a11c416872d294739a505c04250d58d}{operator+} (const Ogre::Vector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Ogre Addition Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a1df3f5ceba13194dc744b551fb4ddbc2}{operator+} (const cAudio::cVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em cAudio Addition Operator \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_acccf60385ca5264212a53c4278918231}{operator-\/} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Subraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_aeed0db21c3c82f0a8bb83e8007afca6d}{operator-\/} ()
+\begin{DoxyCompactList}\small\item\em Additive Inverse Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_ad59d3f710c34350111076c7f0392a084}{operator-\/} (const Ogre::Vector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Ogre Subtraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a9306b274042f67be5023fad08e95ce44}{operator-\/} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Bullet Subtraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a538da2943b8c8a3dd7a6e60212fa244c}{operator-\/} (const cAudio::cVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em cAudio Subtraction Operator \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a18fdcebbb90b2e489d9f35d45ce6d808}{operator/} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Division Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a5984dc60bffd73e2a067fdb86f847319}{operator/} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Bullet Division Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a2a7b3c5d709832b532b2259e87a42efe}{operator/} (const cAudio::cVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em cAudio Division Operator \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a35627082486d972f282597c49eb75692}{operator/} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&scalar) const 
+\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a71faa730673d00224c8f8a3f994dbf79}{operator/} (const Ogre::Vector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Ogre Division Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanine_1_1Vector3_a802c948d8fe307bc90b9debedd8fb764}{operator/=} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanine_1_1Vector3_a3d9ad7ab10c631d23a7ded2e791de900}{operator=} (const btVector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Assignment operator to convert from Bullet Vectors. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanine_1_1Vector3_aa5f656c70691a0341ea7b25e70fcde90}{operator=} (const Ogre::Vector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Assignment operator to convert from Ogre Vectors. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanine_1_1Vector3_ace3b3905cba40297982822c2d5659506}{operator=} (const cAudio::cVector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Assignment operator to convert from cAudio Vectors. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Vector3_a528d444d3de6725449093ea205e37323}{operator==} (const cAudio::cVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Vector3_a1689523b98fe6ec2ffdda1a0f927945c}{operator==} (const btVector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Vector3_a5404f12b72f25712c37b20a302379ca4}{operator==} (const \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Vector3_a3dc4329b6936634d248210924a5f3d34}{operator==} (const Ogre::Vector3 \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \& \hyperlink{classMezzanine_1_1Vector3_a52d8bf3fe3a222aaf5d0d7d7cfa0665b}{operator\mbox{[}$\,$\mbox{]}} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Axis)
+\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_a32ec319d2fa708e9ef04b2456bab916f}{operator\mbox{[}$\,$\mbox{]}} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Axis) const 
+\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \& \hyperlink{classMezzanine_1_1Vector3_a5d05984d0b61a2e86449c0edd33ff301}{operator\mbox{[}$\,$\mbox{]}} (\hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} Axis)
+\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_a4f11de32d30935c57ddc033b334aa42c}{operator\mbox{[}$\,$\mbox{]}} (\hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} Axis) const 
+\item 
+\hyperlink{classMezzanine_1_1Vector3_a778d067a1845e7b5fd0a1751c3187901}{Vector3} (const \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} \&Vec)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3_a98311dcd61c647fbe0285ba3cef00164}{Vector3} (const btVector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Bullet Value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3_a55ef98afbd1e780c6d7dabf0ef7d006f}{Vector3} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3_ab6478bd78241583b76a112b6d2c4008f}{Vector3} (const cAudio::cVector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em cAudio Value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3_ac17ce0e1ce601a731abce0f6927e316d}{Vector3} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_aa858d9bc5ac5ad1b685b7088c94c05f6}{X}, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_a2303527e4ea4cd1659a23320627cd62c}{Y}, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_a9b887faced986921956f20f3e4cb8ddc}{Z})
+\begin{DoxyCompactList}\small\item\em Real value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3_a1044f4ea5fd3bddc6afb49209a14f4b9}{Vector3} (const Ogre::Vector3 \&Vec)
+\begin{DoxyCompactList}\small\item\em Ogre Value Constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a623e9d9270a10470adae238ff99c2047}{Neg\_\-Unit\_\-X} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the negative X unit of a vector. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_aa1d03a53c2243aea84cf36348185aa31}{Neg\_\-Unit\_\-Y} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the negative Y unit of a vector. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a455fbf24b646a69bebaf3b7aea0bde5b}{Neg\_\-Unit\_\-Z} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the negative Z unit of a vector. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_aa3d186d62631a38fe6cd553a1a92469a}{Unit\_\-X} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the X unit of a \hyperlink{classMezzanine_1_1Vector3}{Vector3}. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a62285c6842027aec46da54553c22bc61}{Unit\_\-Y} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the Y unit of a vector. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a6a70011d21182d44fd458458b1627ea1}{Unit\_\-Z} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector representing the Z unit of a vector. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Vector3_a3692a8fd777e4a30150b570d3fcba346}{UnitOnAxis} (\hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} Axis)
+\begin{DoxyCompactList}\small\item\em Get a Unit Vector along the given Axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Vector3_aa858d9bc5ac5ad1b685b7088c94c05f6}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_aa858d9bc5ac5ad1b685b7088c94c05f6}{X}}
+\label{classMezzanine_1_1Vector3_aa858d9bc5ac5ad1b685b7088c94c05f6}
+
+\begin{DoxyCompactList}\small\item\em Coordinate on the X vector. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Vector3_a2303527e4ea4cd1659a23320627cd62c}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_a2303527e4ea4cd1659a23320627cd62c}{Y}}
+\label{classMezzanine_1_1Vector3_a2303527e4ea4cd1659a23320627cd62c}
+
+\begin{DoxyCompactList}\small\item\em Coordinate on the Y vector. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Vector3_a9b887faced986921956f20f3e4cb8ddc}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Vector3_a9b887faced986921956f20f3e4cb8ddc}{Z}}
+\label{classMezzanine_1_1Vector3_a9b887faced986921956f20f3e4cb8ddc}
+
+\begin{DoxyCompactList}\small\item\em Coordinate on the Z vector. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is used to represent a point in space, or a vector through space. This contains an X, Y and a Z value used to represent coordinates. This also has a number of facilities to make converting from Physics subsystem vectors or graphics subsystems as easy as possible 
+
+Definition at line 68 of file vector3.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1Vector3_a55ef98afbd1e780c6d7dabf0ef7d006f}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a55ef98afbd1e780c6d7dabf0ef7d006f}
+
+
+Default Constructor. 
+
+Basic all zero initialization constructor. 
+
+Definition at line 102 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ac17ce0e1ce601a731abce0f6927e316d}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{X, }
+\item[{{\bf Real}}]{Y, }
+\item[{{\bf Real}}]{Z}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_ac17ce0e1ce601a731abce0f6927e316d}
+
+
+Real value Constructor. 
+
+Constructor that sets all three vectors. 
+\begin{DoxyParams}{Parameters}
+{\em X} & Coordinate on the X vector. \\
+\hline
+{\em Y} & Coordinate on the Y vector. \\
+\hline
+{\em Z} & Coordinate on the Z vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 109 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a1044f4ea5fd3bddc6afb49209a14f4b9}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{Vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_a1044f4ea5fd3bddc6afb49209a14f4b9}
+
+
+Ogre Value Constructor. 
+
+Constructor that sets all values to match the Ogre vector. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & The vector to be copied to make this vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 116 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a98311dcd61c647fbe0285ba3cef00164}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_a98311dcd61c647fbe0285ba3cef00164}
+
+
+Bullet Value Constructor. 
+
+Constructor that sets all values to match the Bullet vector. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & The vector to be copied to make this vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 119 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ab6478bd78241583b76a112b6d2c4008f}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+\item[{const cAudio::cVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_ab6478bd78241583b76a112b6d2c4008f}
+
+
+cAudio Value Constructor. 
+
+Constructor that sets all values to match the cAudio vector. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & The vector to be copied to make this vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 122 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a778d067a1845e7b5fd0a1751c3187901}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mezzanine::Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a778d067a1845e7b5fd0a1751c3187901}
+
+
+Copy Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vec} & The other \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} to copy to make this one. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 125 of file vector3.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Vector3_ad929fbbc2035229f84a3fc8946f7e6c3}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!CrossProduct@{CrossProduct}}
+\index{CrossProduct@{CrossProduct}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{CrossProduct}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::CrossProduct (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ad929fbbc2035229f84a3fc8946f7e6c3}
+
+
+This is used to calculate the crossproduct of this and another vector. 
+
+This creates a third vector, which should be on a line perpendicular to lines that contain the origin and the other vectors \par
+\par
+ Thanks to the guys at Ogre3d for the well written version of this function that we based this on. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & the Vector to work with to create the cross product \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This is the crossproduct of this vector and Vec 
+\end{DoxyReturn}
+
+
+Definition at line 326 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a712b2063e6aa4c58002628ecf08b15fe}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Distance@{Distance}}
+\index{Distance@{Distance}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Distance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Vector3::Distance (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{OtherVec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a712b2063e6aa4c58002628ecf08b15fe}
+
+
+This return the distance between this point and another. 
+
+This uses a 3d extension of pythagoras thereom to calculate the distance between This \hyperlink{classMezzanine_1_1Vector3}{Vector3} and another. 
+\begin{DoxyParams}{Parameters}
+{\em OtherVec} & this is the other point to measure against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a Real number which is the distance. 
+\end{DoxyReturn}
+
+
+Definition at line 432 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ad49630dbeff2f1b63ce7c7e1d0faf4b8}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!DotProduct@{DotProduct}}
+\index{DotProduct@{DotProduct}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{DotProduct}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Vector3::DotProduct (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ad49630dbeff2f1b63ce7c7e1d0faf4b8}
+
+
+This is used to calculate the dotproduct of this and another vector. 
+
+This calculates the sum of the products of X, Y and Z. \par
+\par
+ Thanks to the guys at Ogre3d for the well written version of this function that we based this on. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & The vector to work with to create the cross product \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This is the dotproduct of this vector and vec 
+\end{DoxyReturn}
+
+
+Definition at line 335 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_afc8fcb7fb9de94c05db4cc8a568363f9}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!ExtractBulletVector3@{ExtractBulletVector3}}
+\index{ExtractBulletVector3@{ExtractBulletVector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{ExtractBulletVector3}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Vector3::ExtractBulletVector3 (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{temp}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_afc8fcb7fb9de94c05db4cc8a568363f9}
+
+
+Copies an existing Bullet vector3. 
+
+This function will copy the values stored in an existing Bullet vector3 and set the values of this class to be the same. 
+\begin{DoxyParams}{Parameters}
+{\em temp} & The vector3 to be extracted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 393 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a067981af0fe3fca1e3589de024473a61}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!ExtractcAudioVector3@{ExtractcAudioVector3}}
+\index{ExtractcAudioVector3@{ExtractcAudioVector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{ExtractcAudioVector3}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Vector3::ExtractcAudioVector3 (
+\begin{DoxyParamCaption}
+\item[{const cAudio::cVector3 \&}]{temp}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a067981af0fe3fca1e3589de024473a61}
+
+
+Copies an existing cAudio vector3. 
+
+This function will copy the values stored in an existing cAudio vector3 and set the values of this class to be the same. 
+\begin{DoxyParams}{Parameters}
+{\em temp} & The vector3 to be extracted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 425 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a8458214b99c59a30d9d8cc2d9efd19bd}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!ExtractOgreVector3@{ExtractOgreVector3}}
+\index{ExtractOgreVector3@{ExtractOgreVector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{ExtractOgreVector3}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Vector3::ExtractOgreVector3 (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{temp}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a8458214b99c59a30d9d8cc2d9efd19bd}
+
+
+Copies an existing Ogre vector3. 
+
+This function will copy the values stored in an existing Ogre vector3 and set the values of this class to be the same. 
+\begin{DoxyParams}{Parameters}
+{\em temp} & The vector3 to be extracted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 409 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a54db774dc4ee3cf620790c97b44f6d91}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!GetAxisValue@{GetAxisValue}}
+\index{GetAxisValue@{GetAxisValue}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{GetAxisValue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Vector3::GetAxisValue (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{Axis}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a54db774dc4ee3cf620790c97b44f6d91}
+Get The value associate with a certain Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & Which axis to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either X, Y or Z as indicated by the value passed in. 
+\end{DoxyReturn}
+ 
+
+Definition at line 72 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ab23f2a5d206ad5fff3fe422e64e569c1}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!GetAxisValue@{GetAxisValue}}
+\index{GetAxisValue@{GetAxisValue}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{GetAxisValue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} \& Mezzanine::Vector3::GetAxisValue (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{Axis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_ab23f2a5d206ad5fff3fe422e64e569c1}
+Get The value associate with a certain Axis in such a way that it can readily be assigned in this \hyperlink{classMezzanine_1_1Vector3}{Vector3}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & Which axis to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either X, Y or Z as indicated by the value passed in. 
+\end{DoxyReturn}
+ 
+
+Definition at line 86 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a05edc8c1ba36c255eabe6a433b6618c4}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!GetAxisValue@{GetAxisValue}}
+\index{GetAxisValue@{GetAxisValue}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{GetAxisValue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Vector3::GetAxisValue (
+\begin{DoxyParamCaption}
+\item[{{\bf StandardAxis}}]{Axis}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a05edc8c1ba36c255eabe6a433b6618c4}
+
+
+Get The value associate with a certain Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & Which axis to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either X, Y or Z as indicated by the value passed in. 
+\end{DoxyReturn}
+
+
+Definition at line 61 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a83ad1f8b0d517214cafb96beacd4af5a}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!GetAxisValue@{GetAxisValue}}
+\index{GetAxisValue@{GetAxisValue}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{GetAxisValue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} \& Mezzanine::Vector3::GetAxisValue (
+\begin{DoxyParamCaption}
+\item[{{\bf StandardAxis}}]{Axis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a83ad1f8b0d517214cafb96beacd4af5a}
+
+
+Get The value associate with a certain Axis in such a way that it can readily be assigned in this \hyperlink{classMezzanine_1_1Vector3}{Vector3}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & Which axis to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either X, Y or Z as indicated by the value passed in. 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ab9fb84bdbfe3bed9fd210a6ad1cee8b7}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!GetBulletVector3@{GetBulletVector3}}
+\index{GetBulletVector3@{GetBulletVector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{GetBulletVector3}]{\setlength{\rightskip}{0pt plus 5cm}btVector3 Mezzanine::Vector3::GetBulletVector3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ab9fb84bdbfe3bed9fd210a6ad1cee8b7}
+
+
+Gets a Bullet vector3. 
+
+Creates a Bullet vector3 with values equal to this class and returns it. 
+
+Definition at line 383 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_abc23c3ed5b31db10992744bf789eb390}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!GetcAudioVector3@{GetcAudioVector3}}
+\index{GetcAudioVector3@{GetcAudioVector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{GetcAudioVector3}]{\setlength{\rightskip}{0pt plus 5cm}cAudio::cVector3 Mezzanine::Vector3::GetcAudioVector3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_abc23c3ed5b31db10992744bf789eb390}
+
+
+Gets a cAudio vector3. 
+
+Creates a cAudio vector3 with values equal to this class and returns it. 
+
+Definition at line 416 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a707fd0329426f74b38b58d081c585eae}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!GetDirection@{GetDirection}}
+\index{GetDirection@{GetDirection}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{GetDirection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::GetDirection (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Destination}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a707fd0329426f74b38b58d081c585eae}
+
+
+This will get the direction between two points. 
+
+This returns the direction expressed as a vector between this vector and another provided vector. The vector the results vector is relative to this vector. 
+\begin{DoxyParams}{Parameters}
+{\em Destination} & The point in space to determine the direction for. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 363 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a8683a3d640736b5dda63be4a656663a3}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!GetNormal@{GetNormal}}
+\index{GetNormal@{GetNormal}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{GetNormal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::GetNormal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a8683a3d640736b5dda63be4a656663a3}
+
+
+This returns the normal for this relative to the origin. 
+
+This will return a vector that is 1 unit in away from the origin, if a line were starting and the origin it would pass through both the normal and the original point. \begin{DoxyReturn}{Returns}
+At a vector3 that is the normal of this \hyperlink{classMezzanine_1_1Vector3}{Vector3} or 0,0,0 if the current Vector is all 0s 
+\end{DoxyReturn}
+
+
+Definition at line 352 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a2948167508c456d64032acfc8c2f6fd8}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!GetOgreVector3@{GetOgreVector3}}
+\index{GetOgreVector3@{GetOgreVector3}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{GetOgreVector3}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Vector3 Mezzanine::Vector3::GetOgreVector3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a2948167508c456d64032acfc8c2f6fd8}
+
+
+Gets a Ogre vector3. 
+
+Creates a Ogre vector3 with values equal to this class and returns it. 
+
+Definition at line 400 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a99846b5e24df4d20391465cf321d3a6c}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Inverse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::Inverse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a99846b5e24df4d20391465cf321d3a6c}
+
+
+This will inverse the reals in the vector. 
+
+This function will inverse all the reals in the vector. \begin{DoxyReturn}{Returns}
+A copy of of the current \hyperlink{classMezzanine_1_1Vector3}{Vector3} 
+\end{DoxyReturn}
+
+
+Definition at line 370 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a854b61a98d10deacdfbcfea5a2ae68d8}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!IsStandardUnitAxis@{IsStandardUnitAxis}}
+\index{IsStandardUnitAxis@{IsStandardUnitAxis}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{IsStandardUnitAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StandardAxis} Mezzanine::Vector3::IsStandardUnitAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a854b61a98d10deacdfbcfea5a2ae68d8}
+
+
+Get a Unit Vector along the given Axis. 
+
+\begin{DoxyReturn}{Returns}
+The Corresponding StandardAxis if a Vector equal to Unit\_\-X, Unit\_\-Y or Unit\_\-Z is passed in. 
+\end{DoxyReturn}
+
+
+Definition at line 165 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a623e9d9270a10470adae238ff99c2047}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Neg\_\-Unit\_\-X@{Neg\_\-Unit\_\-X}}
+\index{Neg\_\-Unit\_\-X@{Neg\_\-Unit\_\-X}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Neg\_\-Unit\_\-X}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::Neg\_\-Unit\_\-X (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_a623e9d9270a10470adae238ff99c2047}
+
+
+Gets a vector representing the negative X unit of a vector. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3}(-\/1,0,0). 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_aa1d03a53c2243aea84cf36348185aa31}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Neg\_\-Unit\_\-Y@{Neg\_\-Unit\_\-Y}}
+\index{Neg\_\-Unit\_\-Y@{Neg\_\-Unit\_\-Y}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Neg\_\-Unit\_\-Y}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::Neg\_\-Unit\_\-Y (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_aa1d03a53c2243aea84cf36348185aa31}
+
+
+Gets a vector representing the negative Y unit of a vector. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3}(0,-\/1,0). 
+\end{DoxyReturn}
+
+
+Definition at line 148 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a455fbf24b646a69bebaf3b7aea0bde5b}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Neg\_\-Unit\_\-Z@{Neg\_\-Unit\_\-Z}}
+\index{Neg\_\-Unit\_\-Z@{Neg\_\-Unit\_\-Z}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Neg\_\-Unit\_\-Z}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::Neg\_\-Unit\_\-Z (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_a455fbf24b646a69bebaf3b7aea0bde5b}
+
+
+Gets a vector representing the negative Z unit of a vector. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3}(0,0,-\/1). 
+\end{DoxyReturn}
+
+
+Definition at line 151 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_aa8705900b168f9d5234bf6de5e9564b1}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Normalize@{Normalize}}
+\index{Normalize@{Normalize}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Normalize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} \& Mezzanine::Vector3::Normalize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_aa8705900b168f9d5234bf6de5e9564b1}
+
+
+This will change this point into it's own normal relative to the origin. 
+
+This will change this vector into one that is the same direction from the origin, but only one unit a away. \begin{DoxyReturn}{Returns}
+Returns a reference to the normalized vector. 
+\end{DoxyReturn}
+
+
+Definition at line 340 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a8888d70d5fb5d3a1aebb458d14da9ad1}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Vector3::operator!= (
+\begin{DoxyParamCaption}
+\item[{const cAudio::cVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a8888d70d5fb5d3a1aebb458d14da9ad1}
+
+
+Inequality Comparison Operator. 
+
+Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is an cAudio::cVector3 that needs to be compared with this. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 260 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ab17e377c8178ed18adf453c6f55a2471}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Vector3::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mezzanine::Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ab17e377c8178ed18adf453c6f55a2471}
+
+
+Inequality Comparison Operator. 
+
+Returns true if X!=X, Y!=Y or Z!=Z. If all of those match this returns false. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the other \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 251 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a5553723899629247d1fd8031ede27c31}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Vector3::operator!= (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a5553723899629247d1fd8031ede27c31}
+
+
+Inequality Comparison Operator. 
+
+Returns true if X!=getX(), Y!=getY() or Z!=getZ(). If all of those match this returns false. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is an btVector3 that needs to be compared with this. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 254 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a719f34907dcd4872bde9558b9c61dc8b}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Vector3::operator!= (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a719f34907dcd4872bde9558b9c61dc8b}
+
+
+Inequality Comparison Operator. 
+
+Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is an Ogre::Vector3 that needs to be compared with this. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 257 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a5d950bff38f35d01f31178b9a281bfca}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a5d950bff38f35d01f31178b9a281bfca}
+
+
+Multiplaction Operator. 
+
+Allows for multiplaction from a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the other \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 272 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ad7edefd69b1197070e01db7e6e744af6}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ad7edefd69b1197070e01db7e6e744af6}
+
+
+Bullet Multiplication Operator. 
+
+Allows for multiplication between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a btVector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the btVector3 to be multiplied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 287 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ad72a28353c1aa60815050f803bc61ae0}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{scalar}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ad72a28353c1aa60815050f803bc61ae0}
+
+
+Scaling by multiplication. 
+
+This Multiplies X, Y and Z by scalar \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} that has been scaled 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & This is the amount to scale the \hyperlink{classMezzanine_1_1Vector3}{Vector3} by \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 212 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ae6ab1b08614f2105a61584999c3f2339}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ae6ab1b08614f2105a61584999c3f2339}
+
+
+Ogre Multiplication Operator. 
+
+Allows for multiplying between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a Ogre::Vector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the Ogre::Vector3 to be multiplied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 302 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ad9291ea4ef98128c77a2acdb98eade87}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const cAudio::cVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ad9291ea4ef98128c77a2acdb98eade87}
+
+
+cAudio Multiplication Operator 
+
+Allows for multiplying between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a cAudio::cVector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the cAudio::cVector3 to be multiplied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 317 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a5e99a6ae8870ca12aa7e6e58bffef0c5}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} \& Mezzanine::Vector3::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{scalar}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a5e99a6ae8870ca12aa7e6e58bffef0c5}
+
+
+Scaling by multiplication. 
+
+This Multiplies X, Y and Z by scalar and stores the changes in this \hyperlink{classMezzanine_1_1Vector3}{Vector3}. 
+\begin{DoxyParams}{Parameters}
+{\em scalar} & This is the amount to scale the \hyperlink{classMezzanine_1_1Vector3}{Vector3} by. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 220 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_abaadfc0d5848107f4be81fd97eaa932b}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator+@{operator+}}
+\index{operator+@{operator+}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_abaadfc0d5848107f4be81fd97eaa932b}
+
+
+Addition Operator. 
+
+Allows for addition from a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the other \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 266 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ab9093d82a813c4c700daf6d01a66633b}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator+@{operator+}}
+\index{operator+@{operator+}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator+ (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ab9093d82a813c4c700daf6d01a66633b}
+
+
+Bullet Addition Operator. 
+
+Allows for addition between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a btVector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the btVector3 to be added \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 281 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a1a11c416872d294739a505c04250d58d}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator+@{operator+}}
+\index{operator+@{operator+}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator+ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a1a11c416872d294739a505c04250d58d}
+
+
+Ogre Addition Operator. 
+
+Allows for addition between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a Ogre::Vector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the Ogre::Vector3 to be added \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 296 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a1df3f5ceba13194dc744b551fb4ddbc2}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator+@{operator+}}
+\index{operator+@{operator+}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator+ (
+\begin{DoxyParamCaption}
+\item[{const cAudio::cVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a1df3f5ceba13194dc744b551fb4ddbc2}
+
+
+cAudio Addition Operator 
+
+Allows for addition between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a cAudio::cVector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the cAudio::cVector3 to be added \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 311 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a538da2943b8c8a3dd7a6e60212fa244c}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const cAudio::cVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a538da2943b8c8a3dd7a6e60212fa244c}
+
+
+cAudio Subtraction Operator 
+
+Allows for subtraction between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a cAudio::cVector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the cAudio::cVector3 to be subtracted \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 314 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_acccf60385ca5264212a53c4278918231}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_acccf60385ca5264212a53c4278918231}
+
+
+Subraction Operator. 
+
+Allows for subtraction from a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the other \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 269 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a9306b274042f67be5023fad08e95ce44}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a9306b274042f67be5023fad08e95ce44}
+
+
+Bullet Subtraction Operator. 
+
+Allows for subtraction between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a btVector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the btVector3 to be subtracted \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 284 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_aeed0db21c3c82f0a8bb83e8007afca6d}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator-\/ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_aeed0db21c3c82f0a8bb83e8007afca6d}
+
+
+Additive Inverse Operator. 
+
+Returns the opposite \hyperlink{classMezzanine_1_1Vector3}{Vector3} relative to 0,0,0 
+
+Definition at line 207 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ad59d3f710c34350111076c7f0392a084}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_ad59d3f710c34350111076c7f0392a084}
+
+
+Ogre Subtraction Operator. 
+
+Allows for subtraction between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a Ogre::Vector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the Ogre::Vector3 to be subtracted \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 299 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a35627082486d972f282597c49eb75692}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{scalar}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a35627082486d972f282597c49eb75692}
+
+
+Scaling by Division. 
+
+This Diisionn X, Y and Z by scalar \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} that has been scaled 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & This is the amount to scale the \hyperlink{classMezzanine_1_1Vector3}{Vector3} by \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 215 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a18fdcebbb90b2e489d9f35d45ce6d808}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a18fdcebbb90b2e489d9f35d45ce6d808}
+
+
+Division Operator. 
+
+Allows for division from a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the other \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 275 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a71faa730673d00224c8f8a3f994dbf79}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a71faa730673d00224c8f8a3f994dbf79}
+
+
+Ogre Division Operator. 
+
+Allows for division between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a Ogre::Vector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the Ogre::Vector3 to be divided \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 305 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a2a7b3c5d709832b532b2259e87a42efe}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const cAudio::cVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a2a7b3c5d709832b532b2259e87a42efe}
+
+
+cAudio Division Operator 
+
+Allows for division between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a cAudio::cVector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the cAudio::cVector3 to be divided \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 320 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a5984dc60bffd73e2a067fdb86f847319}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a5984dc60bffd73e2a067fdb86f847319}
+
+
+Bullet Division Operator. 
+
+Allows for division between a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} and a btVector3 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the btVector3 to be divided \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 290 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a802c948d8fe307bc90b9debedd8fb764}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} \& Mezzanine::Vector3::operator/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{scalar}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a802c948d8fe307bc90b9debedd8fb764}
+
+
+Scaling by Division. 
+
+This Division X, Y and Z by scalar and and stores the changes in this \hyperlink{classMezzanine_1_1Vector3}{Vector3}. 
+\begin{DoxyParams}{Parameters}
+{\em scalar} & This is the amount to scale the \hyperlink{classMezzanine_1_1Vector3}{Vector3} by \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 228 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_ace3b3905cba40297982822c2d5659506}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} \& Mezzanine::Vector3::operator= (
+\begin{DoxyParamCaption}
+\item[{const cAudio::cVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_ace3b3905cba40297982822c2d5659506}
+
+
+Assignment operator to convert from cAudio Vectors. 
+
+This copies the x,y and z values from the bullet into this vector 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is a cAudio::cVector3 that will be copied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 198 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a3d9ad7ab10c631d23a7ded2e791de900}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} \& Mezzanine::Vector3::operator= (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a3d9ad7ab10c631d23a7ded2e791de900}
+
+
+Assignment operator to convert from Bullet Vectors. 
+
+This copies the x,y and z values from the bullet into this vector 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is a btVector3 that will be copied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 184 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_aa5f656c70691a0341ea7b25e70fcde90}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} \& Mezzanine::Vector3::operator= (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{Vec}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_aa5f656c70691a0341ea7b25e70fcde90}
+
+
+Assignment operator to convert from Ogre Vectors. 
+
+This copies the x,y and z values from the bullet into this vector 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is a Ogre::Vector3 that will be copied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 191 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a1689523b98fe6ec2ffdda1a0f927945c}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Vector3::operator== (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a1689523b98fe6ec2ffdda1a0f927945c}
+
+
+Equality Comparison Operator. 
+
+Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is an btVector3 that needs to be compared with this. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 241 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a528d444d3de6725449093ea205e37323}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Vector3::operator== (
+\begin{DoxyParamCaption}
+\item[{const cAudio::cVector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a528d444d3de6725449093ea205e37323}
+
+
+Equality Comparison Operator. 
+
+Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is an cAudio::cVector3 that needs to be compared with this. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 247 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a5404f12b72f25712c37b20a302379ca4}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Vector3::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mezzanine::Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a5404f12b72f25712c37b20a302379ca4}
+
+
+Equality Comparison Operator. 
+
+Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is the other \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 238 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a3dc4329b6936634d248210924a5f3d34}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Vector3::operator== (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a3dc4329b6936634d248210924a5f3d34}
+
+
+Equality Comparison Operator. 
+
+Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+{\em Vec} & This is an Ogre::Vector3 that needs to be compared with this. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 244 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a4f11de32d30935c57ddc033b334aa42c}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Vector3::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{{\bf StandardAxis}}]{Axis}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a4f11de32d30935c57ddc033b334aa42c}
+Get The value associate with a certain Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & Which axis to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either X, Y or Z as indicated by the value passed in. 
+\end{DoxyReturn}
+ 
+
+Definition at line 89 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a5d05984d0b61a2e86449c0edd33ff301}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} \& Mezzanine::Vector3::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{{\bf StandardAxis}}]{Axis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a5d05984d0b61a2e86449c0edd33ff301}
+Get The value associate with a certain Axis in such a way that it can readily be assigned in this \hyperlink{classMezzanine_1_1Vector3}{Vector3}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & Which axis to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either X, Y or Z as indicated by the value passed in. 
+\end{DoxyReturn}
+ 
+
+Definition at line 95 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a32ec319d2fa708e9ef04b2456bab916f}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Vector3::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{Axis}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector3_a32ec319d2fa708e9ef04b2456bab916f}
+Get The value associate with a certain Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & Which axis to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either X, Y or Z as indicated by the value passed in. 
+\end{DoxyReturn}
+ 
+
+Definition at line 92 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a52d8bf3fe3a222aaf5d0d7d7cfa0665b}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} \& Mezzanine::Vector3::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{Axis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector3_a52d8bf3fe3a222aaf5d0d7d7cfa0665b}
+Get The value associate with a certain Axis in such a way that it can readily be assigned in this \hyperlink{classMezzanine_1_1Vector3}{Vector3}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & Which axis to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either X, Y or Z as indicated by the value passed in. 
+\end{DoxyReturn}
+ 
+
+Definition at line 98 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_aa3d186d62631a38fe6cd553a1a92469a}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Unit\_\-X@{Unit\_\-X}}
+\index{Unit\_\-X@{Unit\_\-X}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Unit\_\-X}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::Unit\_\-X (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_aa3d186d62631a38fe6cd553a1a92469a}
+
+
+Gets a vector representing the X unit of a \hyperlink{classMezzanine_1_1Vector3}{Vector3}. 
+
+\begin{DoxyReturn}{Returns}
+A Vector3(1,0,0). 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a62285c6842027aec46da54553c22bc61}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Unit\_\-Y@{Unit\_\-Y}}
+\index{Unit\_\-Y@{Unit\_\-Y}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Unit\_\-Y}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::Unit\_\-Y (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_a62285c6842027aec46da54553c22bc61}
+
+
+Gets a vector representing the Y unit of a vector. 
+
+\begin{DoxyReturn}{Returns}
+A Vector3(0,1,0). 
+\end{DoxyReturn}
+
+
+Definition at line 139 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a6a70011d21182d44fd458458b1627ea1}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!Unit\_\-Z@{Unit\_\-Z}}
+\index{Unit\_\-Z@{Unit\_\-Z}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{Unit\_\-Z}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::Unit\_\-Z (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_a6a70011d21182d44fd458458b1627ea1}
+
+
+Gets a vector representing the Z unit of a vector. 
+
+\begin{DoxyReturn}{Returns}
+A Vector3(0,0,1). 
+\end{DoxyReturn}
+
+
+Definition at line 142 of file vector3.cpp.
+
+\hypertarget{classMezzanine_1_1Vector3_a3692a8fd777e4a30150b570d3fcba346}{
+\index{Mezzanine::Vector3@{Mezzanine::Vector3}!UnitOnAxis@{UnitOnAxis}}
+\index{UnitOnAxis@{UnitOnAxis}!Mezzanine::Vector3@{Mezzanine::Vector3}}
+\paragraph[{UnitOnAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Vector3::UnitOnAxis (
+\begin{DoxyParamCaption}
+\item[{{\bf StandardAxis}}]{Axis}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector3_a3692a8fd777e4a30150b570d3fcba346}
+
+
+Get a Unit Vector along the given Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & The StandardAxis correlating to the Unit Vector you are retrievinf \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector one unit in length along the Axis specified. 
+\end{DoxyReturn}
+
+
+Definition at line 154 of file vector3.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+vector3.h\item 
+vector3.cpp\end{DoxyCompactItemize}

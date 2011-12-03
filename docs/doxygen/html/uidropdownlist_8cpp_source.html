@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: uidropdownlist.cpp Source File</title>
+<title>MezzanineEngine: uidropdownlist.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -108,271 +108,245 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uilistbox.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;uicaption.h&quot;</span>
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;uibutton.h&quot;</span>
-<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
-<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
-<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
-<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;inputquerytool.h&quot;</span>
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="keyword">namespace </span>phys
-<a name="l00053"></a>00053 {
-<a name="l00054"></a>00054     <span class="keyword">namespace </span>UI
-<a name="l00055"></a>00055     {
-<a name="l00056"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a4646bc366b489a131747ea01629af428">00056</a>         <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a4646bc366b489a131747ea01629af428" title="Class constructor.">DropDownList::DropDownList</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; LineHeight, <span class="keyword">const</span> UI::ScrollbarStyle&amp; ScrollStyle, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent)
-<a name="l00057"></a>00057             : <a class="code" href="classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,parent),
-<a name="l00058"></a>00058               ToggleActivated(false)
-<a name="l00059"></a>00059         {
-<a name="l00060"></a>00060             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00061"></a>00061             std::pair&lt;Whole,Real&gt; Result;
-<a name="l00062"></a>00062             <span class="keywordflow">if</span>(Rect.Relative) Result = Manager-&gt;<a class="code" href="classphys_1_1UIManager.html#a9fff50f9a977e603e7c62a950b796a74" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>((<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(LineHeight * WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>),Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#a2e1c1929e23577e95d6226a58b7602da" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
-<a name="l00063"></a>00063             <span class="keywordflow">else</span> Result = Manager-&gt;<a class="code" href="classphys_1_1UIManager.html#a9fff50f9a977e603e7c62a950b796a74" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>((<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)LineHeight,Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#a2e1c1929e23577e95d6226a58b7602da" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065             <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a2e0988db883971424579bfc4b8536065" title="Internal construction function.">ConstructDropDownList</a>(Rect,Result.first,ScrollStyle);
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067             <span class="keywordflow">if</span>(1.f != Result.second)
-<a name="l00068"></a>00068             {
-<a name="l00069"></a>00069                 Selection-&gt;<a class="code" href="classphys_1_1UI_1_1Caption.html#a050347af6977e21804bac00fb208c18d" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
-<a name="l00070"></a>00070                 SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#a160bc4d74c99f544a4339a3ba050868a" title="Sets the text scale to be applied to all created Selections.">SetTemplateTextScale</a>(Result.second);
-<a name="l00071"></a>00071             }
-<a name="l00072"></a>00072         }
-<a name="l00073"></a>00073 
-<a name="l00074"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a9868ebcc629cf6b43a3913be5358e0b8">00074</a>         <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a4646bc366b489a131747ea01629af428" title="Class constructor.">DropDownList::DropDownList</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Glyph, <span class="keyword">const</span> UI::ScrollbarStyle&amp; ScrollStyle, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent)
-<a name="l00075"></a>00075             : <a class="code" href="classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,parent),
-<a name="l00076"></a>00076               ToggleActivated(false)
-<a name="l00077"></a>00077         {
-<a name="l00078"></a>00078             <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a2e0988db883971424579bfc4b8536065" title="Internal construction function.">ConstructDropDownList</a>(Rect,Glyph,ScrollStyle);
-<a name="l00079"></a>00079         }
-<a name="l00080"></a>00080 
-<a name="l00081"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#abef8eec322f0e2a6af99aac6bfc3a6eb">00081</a>         <a class="code" href="classphys_1_1UI_1_1DropDownList.html#abef8eec322f0e2a6af99aac6bfc3a6eb" title="Class destructor.">DropDownList::~DropDownList</a>()
-<a name="l00082"></a>00082         {
-<a name="l00083"></a>00083             <span class="keyword">delete</span> Selection;
-<a name="l00084"></a>00084             <span class="keyword">delete</span> ListToggle;
-<a name="l00085"></a>00085             <span class="keyword">delete</span> SelectionList;
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087 
-<a name="l00088"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a2e0988db883971424579bfc4b8536065">00088</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a2e0988db883971424579bfc4b8536065" title="Internal construction function.">DropDownList::ConstructDropDownList</a>(<span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Glyph, <span class="keyword">const</span> UI::ScrollbarStyle&amp; ScrollStyle)
-<a name="l00089"></a>00089         {
-<a name="l00090"></a>00090             Type = <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a4646bc366b489a131747ea01629af428" title="Class constructor.">Widget::DropDownList</a>;
-<a name="l00091"></a>00091             <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a> SelectionRect, ListToggleRect, SelectionListRect;
-<a name="l00092"></a>00092             <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> ScrollbarWidth;
-<a name="l00093"></a>00093             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00094"></a>00094             <span class="keywordflow">if</span>(Rect.Relative)
-<a name="l00095"></a>00095             {
-<a name="l00096"></a>00096                 RelPosition = Rect.Position;
-<a name="l00097"></a>00097                 RelSize = Rect.Size;
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099                 SelectionRect.Position = Rect.Position;
-<a name="l00100"></a>00100                 SelectionRect.Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> - ((Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00101"></a>00101                 SelectionRect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00102"></a>00102                 SelectionRect.Relative = Rect.Relative;
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104                 ListToggleRect.Position.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> = Rect.Position.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + SelectionRect.Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00105"></a>00105                 ListToggleRect.Position.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> = Rect.Position.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00106"></a>00106                 ListToggleRect.Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> = (Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00107"></a>00107                 ListToggleRect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00108"></a>00108                 ListToggleRect.Relative = Rect.Relative;
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110                 ScrollbarWidth = (Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00111"></a>00111             }<span class="keywordflow">else</span>{
-<a name="l00112"></a>00112                 RelPosition = Rect.Position / WinDim;
-<a name="l00113"></a>00113                 RelSize = Rect.Size / WinDim;
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115                 SelectionRect.Position = Rect.Position;
-<a name="l00116"></a>00116                 SelectionRect.Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> - Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00117"></a>00117                 SelectionRect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00118"></a>00118                 SelectionRect.Relative = Rect.Relative;
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120                 ListToggleRect.Position.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> = Rect.Position.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + SelectionRect.Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00121"></a>00121                 ListToggleRect.Position.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> = Rect.Position.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00122"></a>00122                 ListToggleRect.Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00123"></a>00123                 ListToggleRect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00124"></a>00124                 ListToggleRect.Relative = Rect.Relative;
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126                 ScrollbarWidth = Rect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00127"></a>00127             }
-<a name="l00128"></a>00128             SelectionListRect.Position.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> = Rect.Position.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00129"></a>00129             SelectionListRect.Position.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> = Rect.Position.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> + SelectionRect.Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00130"></a>00130             SelectionListRect.Size = SelectionRect.Size;
-<a name="l00131"></a>00131             SelectionListRect.Relative = Rect.Relative;
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133             Selection = <span class="keyword">new</span> <a class="code" href="classphys_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>(Name+<span class="stringliteral">&quot;Select&quot;</span>,SelectionRect,Glyph,<span class="stringliteral">&quot;&quot;</span>,Parent);
-<a name="l00134"></a>00134             ListToggle = <span class="keyword">new</span> <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(Name+<span class="stringliteral">&quot;Toggle&quot;</span>,ListToggleRect,Parent);
-<a name="l00135"></a>00135             SelectionList = <span class="keyword">new</span> <a class="code" href="classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>(Name+<span class="stringliteral">&quot;List&quot;</span>,SelectionListRect,ScrollStyle,Parent);
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137             SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#a4bce62d1cee20950c41897e439fb3d79" title="Sets the glyph index to be applied to all created Selections.">SetTemplateGlyphIndex</a>(Glyph);
-<a name="l00138"></a>00138         }
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;uirectangle.h&quot;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;uiscrollbar.h&quot;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
+<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
+<a name="l00051"></a>00051 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;uiviewportupdatetool.h&quot;</span>
+<a name="l00053"></a>00053 <span class="preprocessor">#include &quot;inputquerytool.h&quot;</span>
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 <span class="keyword">namespace </span>Mezzanine
+<a name="l00056"></a>00056 {
+<a name="l00057"></a>00057     <span class="keyword">namespace </span>UI
+<a name="l00058"></a>00058     {
+<a name="l00059"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a62db40919995b782f115b45e740eec76">00059</a>         <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a62db40919995b782f115b45e740eec76" title="Class constructor.">DropDownList::DropDownList</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; LineHeight, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763" title="Used by the scrollbar class to determine what styling should be used for the scrollbar.">UI::ScrollbarStyle</a>&amp; ScrollStyle, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent)
+<a name="l00060"></a>00060             : <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,parent),
+<a name="l00061"></a>00061               ToggleActivated(false)
+<a name="l00062"></a>00062         {
+<a name="l00063"></a>00063             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00064"></a>00064             std::pair&lt;Whole,Real&gt; Result;
+<a name="l00065"></a>00065             <span class="keywordflow">if</span>(Rect.Relative) Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>((<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(LineHeight * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>),Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
+<a name="l00066"></a>00066             <span class="keywordflow">else</span> Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>((<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)LineHeight,Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068             <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a7ff7ebd9f7779e72dcba7c84870fc074" title="Internal construction function.">ConstructDropDownList</a>(Rect,Result.first,ScrollStyle);
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070             <span class="keywordflow">if</span>(1.f != Result.second)
+<a name="l00071"></a>00071             {
+<a name="l00072"></a>00072                 Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a26b5af3af19440f274a7938806043ca7" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
+<a name="l00073"></a>00073                 SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a220465a3c68071ad7b168f98ac191cd3" title="Sets the text scale to be applied to all created Selections.">SetTemplateTextScale</a>(Result.second);
+<a name="l00074"></a>00074             }
+<a name="l00075"></a>00075         }
+<a name="l00076"></a>00076 
+<a name="l00077"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#af9e6380b4cc92d3e30a9e3c88449be75">00077</a>         <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a62db40919995b782f115b45e740eec76" title="Class constructor.">DropDownList::DropDownList</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Glyph, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763" title="Used by the scrollbar class to determine what styling should be used for the scrollbar.">UI::ScrollbarStyle</a>&amp; ScrollStyle, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent)
+<a name="l00078"></a>00078             : <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,parent),
+<a name="l00079"></a>00079               ToggleActivated(false)
+<a name="l00080"></a>00080         {
+<a name="l00081"></a>00081             <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a7ff7ebd9f7779e72dcba7c84870fc074" title="Internal construction function.">ConstructDropDownList</a>(Rect,Glyph,ScrollStyle);
+<a name="l00082"></a>00082         }
+<a name="l00083"></a>00083 
+<a name="l00084"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a236fbd4bb8f5f2e32653fdedceab4fb5">00084</a>         <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a236fbd4bb8f5f2e32653fdedceab4fb5" title="Class destructor.">DropDownList::~DropDownList</a>()
+<a name="l00085"></a>00085         {
+<a name="l00086"></a>00086             <span class="keyword">delete</span> Selection;
+<a name="l00087"></a>00087             <span class="keyword">delete</span> ListToggle;
+<a name="l00088"></a>00088             <span class="keyword">delete</span> SelectionList;
+<a name="l00089"></a>00089         }
+<a name="l00090"></a>00090 
+<a name="l00091"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a7ff7ebd9f7779e72dcba7c84870fc074">00091</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a7ff7ebd9f7779e72dcba7c84870fc074" title="Internal construction function.">DropDownList::ConstructDropDownList</a>(<span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Glyph, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763" title="Used by the scrollbar class to determine what styling should be used for the scrollbar.">UI::ScrollbarStyle</a>&amp; ScrollStyle)
+<a name="l00092"></a>00092         {
+<a name="l00093"></a>00093             Type = Widget::W_DropDownList;
+<a name="l00094"></a>00094             <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a> SelectionRect, ListToggleRect, SelectionListRect;
+<a name="l00095"></a>00095             <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> ScrollbarWidth;
+<a name="l00096"></a>00096             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00097"></a>00097             <span class="keywordflow">if</span>(Rect.Relative)
+<a name="l00098"></a>00098             {
+<a name="l00099"></a>00099                 RelPosition = Rect.Position;
+<a name="l00100"></a>00100                 RelSize = Rect.Size;
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102                 SelectionRect.Position = Rect.Position;
+<a name="l00103"></a>00103                 SelectionRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - ((Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00104"></a>00104                 SelectionRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00105"></a>00105                 SelectionRect.Relative = Rect.Relative;
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107                 ListToggleRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + SelectionRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00108"></a>00108                 ListToggleRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00109"></a>00109                 ListToggleRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = (Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00110"></a>00110                 ListToggleRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00111"></a>00111                 ListToggleRect.Relative = Rect.Relative;
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113                 ScrollbarWidth = (Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00114"></a>00114             }<span class="keywordflow">else</span>{
+<a name="l00115"></a>00115                 RelPosition = Rect.Position / WinDim;
+<a name="l00116"></a>00116                 RelSize = Rect.Size / WinDim;
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118                 SelectionRect.Position = Rect.Position;
+<a name="l00119"></a>00119                 SelectionRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00120"></a>00120                 SelectionRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00121"></a>00121                 SelectionRect.Relative = Rect.Relative;
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123                 ListToggleRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + SelectionRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00124"></a>00124                 ListToggleRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00125"></a>00125                 ListToggleRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00126"></a>00126                 ListToggleRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00127"></a>00127                 ListToggleRect.Relative = Rect.Relative;
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129                 ScrollbarWidth = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00130"></a>00130             }
+<a name="l00131"></a>00131             SelectionListRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00132"></a>00132             SelectionListRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + SelectionRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00133"></a>00133             SelectionListRect.Size = Rect.Size;
+<a name="l00134"></a>00134             SelectionListRect.Relative = Rect.Relative;
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136             Selection = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>(Name+<span class="stringliteral">&quot;Select&quot;</span>,SelectionRect,Glyph,<span class="stringliteral">&quot;&quot;</span>,Parent);
+<a name="l00137"></a>00137             ListToggle = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(Name+<span class="stringliteral">&quot;Toggle&quot;</span>,ListToggleRect,Parent);
+<a name="l00138"></a>00138             SelectionList = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>(Name+<span class="stringliteral">&quot;List&quot;</span>,SelectionListRect,ScrollStyle,Parent);
 <a name="l00139"></a>00139 
-<a name="l00140"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a1356da2f60b5ca6539f98a957b961d65">00140</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a1356da2f60b5ca6539f98a957b961d65" title="For use with widget update/automation.">DropDownList::Update</a>(<span class="keywordtype">bool</span> Force)
-<a name="l00141"></a>00141         {
-<a name="l00142"></a>00142             <span class="keywordflow">if</span>(!Force)
-<a name="l00143"></a>00143                 <a class="code" href="classphys_1_1UI_1_1Widget.html#a3472e5d0f8281e704d67d419980cd918" title="For use with sub-widget update/automation.">SubWidgetUpdate</a>();
-<a name="l00144"></a>00144             <a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> State = <a class="code" href="classphys_1_1InputQueryTool.html#a1ef8b70af163d8bc703fd16c3fcce22d" title="Gets the button state of the provided mouse button ID.">InputQueryTool::GetMouseButtonState</a>(1);
-<a name="l00145"></a>00145             <span class="keywordflow">if</span>(HoveredButton == ListToggle)
-<a name="l00146"></a>00146             {
-<a name="l00147"></a>00147                 <span class="keywordflow">if</span>(<a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d">MetaCode::BUTTON_PRESSING</a> == State)
-<a name="l00148"></a>00148                 {
-<a name="l00149"></a>00149                     <span class="keywordflow">if</span>(!ToggleActivated)
-<a name="l00150"></a>00150                     {
-<a name="l00151"></a>00151                         SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#add82890a307bc8fc984a0a029cfb88ae" title="Forces this List Box to be shown.">Show</a>();
-<a name="l00152"></a>00152                         ToggleActivated = <span class="keyword">true</span>;
-<a name="l00153"></a>00153                     }<span class="keywordflow">else</span>{
-<a name="l00154"></a>00154                         SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#a896220f2423ce6295ea3c8dc3a10d4b8" title="Forces this List Box to hide.">Hide</a>();
-<a name="l00155"></a>00155                         ToggleActivated = <span class="keyword">false</span>;
-<a name="l00156"></a>00156                     }
-<a name="l00157"></a>00157                 }
-<a name="l00158"></a>00158             }
-<a name="l00159"></a>00159             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(HoveredSubWidget)
-<a name="l00160"></a>00160             {
-<a name="l00161"></a>00161                 <span class="keywordflow">if</span>(<a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d">MetaCode::BUTTON_PRESSING</a> == State)
-<a name="l00162"></a>00162                 {
-<a name="l00163"></a>00163                     SubWidgetFocus = HoveredSubWidget;
-<a name="l00164"></a>00164                 }
-<a name="l00165"></a>00165             }
-<a name="l00166"></a>00166             <span class="keywordflow">if</span>(SubWidgetFocus &amp;&amp; (SubWidgetFocus != HoveredSubWidget))
-<a name="l00167"></a>00167             {
-<a name="l00168"></a>00168                 <a class="code" href="classphys_1_1UI_1_1Widget.html#a4a7e18c48a7cd230fd4a0aa274c6a654" title="For use with sub-widget update/automation when the mouse isn&amp;#39;t hovered.">SubWidgetFocusUpdate</a>(<span class="keyword">true</span>);
-<a name="l00169"></a>00169             }
-<a name="l00170"></a>00170             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a> == State &amp;&amp; Force)
-<a name="l00171"></a>00171             {
-<a name="l00172"></a>00172                 <a class="code" href="classphys_1_1UI_1_1Widget.html#a4a7e18c48a7cd230fd4a0aa274c6a654" title="For use with sub-widget update/automation when the mouse isn&amp;#39;t hovered.">SubWidgetFocusUpdate</a>(Force);
-<a name="l00173"></a>00173             }
-<a name="l00174"></a>00174             <span class="keywordflow">if</span>(<a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a6b5564408703517f36debd8c423e2dee">MetaCode::BUTTON_LIFTING</a> == State)
-<a name="l00175"></a>00175             {
-<a name="l00176"></a>00176                 SubWidgetFocus = NULL;
-<a name="l00177"></a>00177             }
-<a name="l00178"></a>00178         }
-<a name="l00179"></a>00179 
-<a name="l00180"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#ac86730fe238d990505667bb9a475fb77">00180</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#ac86730fe238d990505667bb9a475fb77" title="Sets the visibility of this widget.">DropDownList::SetVisible</a>(<span class="keywordtype">bool</span> visible)
-<a name="l00181"></a>00181         {
-<a name="l00182"></a>00182             <span class="keywordflow">if</span>(Visible==visible) <span class="keywordflow">return</span>;
-<a name="l00183"></a>00183             Selection-&gt;<a class="code" href="classphys_1_1UI_1_1Caption.html#afce46e42eb3ab522c29d5c13a5691065" title="Sets the visibility of this caption.">SetVisible</a>(visible);
-<a name="l00184"></a>00184             ListToggle-&gt;<a class="code" href="classphys_1_1UI_1_1Button.html#a293a0a5296778fb3d638c31c5d9d4c75" title="Sets the visibility of this button.">SetVisible</a>(visible);
-<a name="l00185"></a>00185             <span class="keywordflow">if</span>(ToggleActivated)
-<a name="l00186"></a>00186                 SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#abb3c87bf6669100296c1fa4f4913ea33" title="Sets the visibility of this List Box.">SetVisible</a>(visible);
-<a name="l00187"></a>00187             Visible = visible;
-<a name="l00188"></a>00188         }
-<a name="l00189"></a>00189 
-<a name="l00190"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#aa30bdfe138516a0f51efa2034cd9f595">00190</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#aa30bdfe138516a0f51efa2034cd9f595" title="Forces this widget to be shown.">DropDownList::Show</a>()
-<a name="l00191"></a>00191         {
-<a name="l00192"></a>00192             <span class="keywordflow">if</span>(Visible) <span class="keywordflow">return</span>;
-<a name="l00193"></a>00193             Selection-&gt;<a class="code" href="classphys_1_1UI_1_1Caption.html#a9801eaaadf70f7373b410995b255936e" title="Forces this caption to be shown.">Show</a>();
-<a name="l00194"></a>00194             ListToggle-&gt;<a class="code" href="classphys_1_1UI_1_1Button.html#aad25b9ec4b9c7cc232d419dcd68f420e" title="Forces this button to be shown.">Show</a>();
-<a name="l00195"></a>00195             <span class="keywordflow">if</span>(ToggleActivated)
-<a name="l00196"></a>00196                 SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#add82890a307bc8fc984a0a029cfb88ae" title="Forces this List Box to be shown.">Show</a>();
-<a name="l00197"></a>00197             Visible = <span class="keyword">true</span>;
-<a name="l00198"></a>00198         }
-<a name="l00199"></a>00199 
-<a name="l00200"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a919966f2143ad3fd967b6e17092891b3">00200</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a919966f2143ad3fd967b6e17092891b3" title="Forces this widget to hide.">DropDownList::Hide</a>()
-<a name="l00201"></a>00201         {
-<a name="l00202"></a>00202             <span class="keywordflow">if</span>(!Visible) <span class="keywordflow">return</span>;
-<a name="l00203"></a>00203             Selection-&gt;<a class="code" href="classphys_1_1UI_1_1Caption.html#a12e772b19e723334747fcf2ca009965c" title="Forces this caption to hide.">Hide</a>();
-<a name="l00204"></a>00204             ListToggle-&gt;<a class="code" href="classphys_1_1UI_1_1Button.html#a5a68803daf10281a85b4db1d4c18e412" title="Forces this button to hide.">Hide</a>();
-<a name="l00205"></a>00205             <span class="keywordflow">if</span>(ToggleActivated)
-<a name="l00206"></a>00206                 SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#a896220f2423ce6295ea3c8dc3a10d4b8" title="Forces this List Box to hide.">Hide</a>();
-<a name="l00207"></a>00207             Visible = <span class="keyword">false</span>;
-<a name="l00208"></a>00208         }
-<a name="l00209"></a>00209 
-<a name="l00210"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a2ac515cb3282a0f190d002417e509424">00210</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a2ac515cb3282a0f190d002417e509424" title="Checks to see if the current mouse position is over this widget.">DropDownList::CheckMouseHover</a>()
-<a name="l00211"></a>00211         {
-<a name="l00212"></a>00212             <span class="keywordflow">if</span>(!<a class="code" href="classphys_1_1UI_1_1Widget.html#ac9662d5cfef5b1861e85bff7b7ca90c4" title="Gets the visibility of this widget.">IsVisible</a>())
-<a name="l00213"></a>00213                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00214"></a>00214             <span class="keywordflow">if</span>(Selection-&gt;<a class="code" href="classphys_1_1UI_1_1Caption.html#a3dc84a08ea80de8d75e9614decbad605" title="Determines whether the mouse is over this caption.">CheckMouseHover</a>())
-<a name="l00215"></a>00215             {
-<a name="l00216"></a>00216                 HoveredSubWidget = NULL;
-<a name="l00217"></a>00217                 HoveredButton = NULL;
-<a name="l00218"></a>00218                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00219"></a>00219             }
-<a name="l00220"></a>00220             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ListToggle-&gt;<a class="code" href="classphys_1_1UI_1_1Button.html#a72d76501d15053e3fbd9e7eb933e22de" title="Determines whether the mouse is over this button.">CheckMouseHover</a>())
-<a name="l00221"></a>00221             {
-<a name="l00222"></a>00222                 HoveredSubWidget = NULL;
-<a name="l00223"></a>00223                 HoveredButton = ListToggle;
-<a name="l00224"></a>00224                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00225"></a>00225             }
-<a name="l00226"></a>00226             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#a789faeb98d98bb4d4d89cae8c53d4bc0" title="Checks to see if the current mouse position is over this List Box.">CheckMouseHover</a>())
-<a name="l00227"></a>00227             {
-<a name="l00228"></a>00228                 HoveredSubWidget = SelectionList;
-<a name="l00229"></a>00229                 HoveredButton = NULL;
-<a name="l00230"></a>00230                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00231"></a>00231             }
-<a name="l00232"></a>00232             HoveredSubWidget = NULL;
-<a name="l00233"></a>00233             HoveredButton = NULL;
-<a name="l00234"></a>00234             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00235"></a>00235         }
-<a name="l00236"></a>00236 
-<a name="l00237"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a91dbfd382be8c505021739602a7a64e6">00237</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a91dbfd382be8c505021739602a7a64e6" title="Sets the relative position of this widget.">DropDownList::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00238"></a>00238         {
-<a name="l00239"></a>00239             RelPosition = Position;
-<a name="l00240"></a>00240             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00241"></a>00241             Selection-&gt;<a class="code" href="classphys_1_1UI_1_1Caption.html#a1468264121aa579147799fec959ce579" title="Sets the relative top left position of this caption.">SetPosition</a>(Position);
-<a name="l00242"></a>00242             ListToggle-&gt;<a class="code" href="classphys_1_1UI_1_1Button.html#a68e1d9043a614e152c514a959be07d8c" title="Sets the relative top left position of this button.">SetPosition</a>(Position + <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(RelSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> - ((RelSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>),0));
-<a name="l00243"></a>00243             SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#a0c4c7141142caca342157ce4460b907d" title="Sets the relative position of this List Box.">SetPosition</a>(Position + <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,RelSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00244"></a>00244         }
-<a name="l00245"></a>00245 
-<a name="l00246"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a179dbf5e16fa6dd10ec8a72ae4349d3c">00246</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a179dbf5e16fa6dd10ec8a72ae4349d3c" title="Gets the relative position of this widget.">DropDownList::GetPosition</a>()
-<a name="l00247"></a>00247         {
-<a name="l00248"></a>00248             <span class="keywordflow">return</span> RelPosition;
-<a name="l00249"></a>00249         }
-<a name="l00250"></a>00250 
-<a name="l00251"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#af4d36a88b9629284d22d023bdcfd4074">00251</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#af4d36a88b9629284d22d023bdcfd4074" title="Sets the pixel position of this widget.">DropDownList::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00252"></a>00252         {
-<a name="l00253"></a>00253             RelPosition = Position / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00254"></a>00254             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrSize = <a class="code" href="classphys_1_1UI_1_1DropDownList.html#afa9ccaef200f9ee8f22be5f32ba1f0a3" title="Sets the pixel size of this widget.">GetActualSize</a>();
-<a name="l00255"></a>00255             Selection-&gt;<a class="code" href="classphys_1_1UI_1_1Caption.html#a2a95b13bc8c30197630b563d6e4443d3" title="Sets the top left position of this caption in pixels.">SetActualPosition</a>(Position);
-<a name="l00256"></a>00256             ListToggle-&gt;<a class="code" href="classphys_1_1UI_1_1Button.html#a50f175a9a9002b3270edc74154d4255b" title="Sets the top left position of this button in pixels.">SetActualPosition</a>(Position + <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(CurrSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> - CurrSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>,0));
-<a name="l00257"></a>00257             SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#a4bf1911c639429c783915ba8a543fec3" title="Sets the pixel position of this List Box.">SetActualPosition</a>(Position + <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,CurrSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00258"></a>00258         }
-<a name="l00259"></a>00259 
-<a name="l00260"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a2c3b3dc073aebecd9216fa48e7cc10f2">00260</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a2c3b3dc073aebecd9216fa48e7cc10f2" title="Sets the pixel position of this widget.">DropDownList::GetActualPosition</a>()
-<a name="l00261"></a>00261         {
-<a name="l00262"></a>00262             <span class="keywordflow">return</span> RelPosition / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00263"></a>00263         }
-<a name="l00264"></a>00264 
-<a name="l00265"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#aebcb4fe708e7d1af4609120039e276a6">00265</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#aebcb4fe708e7d1af4609120039e276a6" title="Sets the relative size of this widget.">DropDownList::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
-<a name="l00266"></a>00266         {
-<a name="l00267"></a>00267             RelSize = Size;
-<a name="l00268"></a>00268             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00269"></a>00269             Selection-&gt;<a class="code" href="classphys_1_1UI_1_1Caption.html#a4354cc59deb62b1e2b52a07f775c085e" title="Sets the relative size of this caption.">SetSize</a>(<a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> - ((Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>),Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00270"></a>00270             ListToggle-&gt;<a class="code" href="classphys_1_1UI_1_1Button.html#a956fe6caf82304cf1332a62b51b6b5de" title="Sets the relative size of this button.">SetSize</a>(<a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>((Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>,Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00271"></a>00271             SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#abe6281a6f885be920ba540b81df3cf59" title="Sets the size to be applied to all created Selections.">SetTemplateSize</a>(Size);
-<a name="l00272"></a>00272             <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a91dbfd382be8c505021739602a7a64e6" title="Sets the relative position of this widget.">SetPosition</a>(RelPosition);
-<a name="l00273"></a>00273         }
-<a name="l00274"></a>00274 
-<a name="l00275"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#ae47b0e9786a39a79fb613c2d1b1fcd38">00275</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#ae47b0e9786a39a79fb613c2d1b1fcd38" title="Gets the relative size of this widget.">DropDownList::GetSize</a>()
-<a name="l00276"></a>00276         {
-<a name="l00277"></a>00277             <span class="keywordflow">return</span> RelSize;
-<a name="l00278"></a>00278         }
-<a name="l00279"></a>00279 
-<a name="l00280"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#ad85c38f98f467565f2b895993ab92f96">00280</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#ad85c38f98f467565f2b895993ab92f96" title="Sets the pixel size of this widget.">DropDownList::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
-<a name="l00281"></a>00281         {
-<a name="l00282"></a>00282             RelSize = Size / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00283"></a>00283             Selection-&gt;<a class="code" href="classphys_1_1UI_1_1Caption.html#a4354cc59deb62b1e2b52a07f775c085e" title="Sets the relative size of this caption.">SetSize</a>(<a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> - Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>,Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00284"></a>00284             ListToggle-&gt;<a class="code" href="classphys_1_1UI_1_1Button.html#a956fe6caf82304cf1332a62b51b6b5de" title="Sets the relative size of this button.">SetSize</a>(<a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>,Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00285"></a>00285             SelectionList-&gt;<a class="code" href="classphys_1_1UI_1_1ListBox.html#abe6281a6f885be920ba540b81df3cf59" title="Sets the size to be applied to all created Selections.">SetTemplateSize</a>(Size,<span class="keyword">false</span>);
-<a name="l00286"></a>00286             <a class="code" href="classphys_1_1UI_1_1DropDownList.html#af4d36a88b9629284d22d023bdcfd4074" title="Sets the pixel position of this widget.">SetActualPosition</a>(<a class="code" href="classphys_1_1UI_1_1DropDownList.html#a2c3b3dc073aebecd9216fa48e7cc10f2" title="Sets the pixel position of this widget.">GetActualPosition</a>());
-<a name="l00287"></a>00287         }
-<a name="l00288"></a>00288 
-<a name="l00289"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#afa9ccaef200f9ee8f22be5f32ba1f0a3">00289</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1DropDownList.html#afa9ccaef200f9ee8f22be5f32ba1f0a3" title="Sets the pixel size of this widget.">DropDownList::GetActualSize</a>()
-<a name="l00290"></a>00290         {
-<a name="l00291"></a>00291             <span class="keywordflow">return</span> RelSize / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00292"></a>00292         }
-<a name="l00293"></a>00293 
-<a name="l00294"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a78b41941db0b3d8196249ab31d2b174a">00294</a>         <a class="code" href="classphys_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a78b41941db0b3d8196249ab31d2b174a" title="Gets the caption showing the current selection in this widget.">DropDownList::GetSelection</a>()
-<a name="l00295"></a>00295         {
-<a name="l00296"></a>00296             <span class="keywordflow">return</span> Selection;
-<a name="l00297"></a>00297         }
-<a name="l00298"></a>00298 
-<a name="l00299"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#abfbbeee72ba061a226f64c2ca93a36a9">00299</a>         <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="classphys_1_1UI_1_1DropDownList.html#abfbbeee72ba061a226f64c2ca93a36a9" title="Gets the button that toggles the appearance of the listbox in this widget.">DropDownList::GetListToggle</a>()
-<a name="l00300"></a>00300         {
-<a name="l00301"></a>00301             <span class="keywordflow">return</span> ListToggle;
-<a name="l00302"></a>00302         }
-<a name="l00303"></a>00303 
-<a name="l00304"></a><a class="code" href="classphys_1_1UI_1_1DropDownList.html#a3b89efdefadc83e7257d34954c0816a6">00304</a>         <a class="code" href="classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>* <a class="code" href="classphys_1_1UI_1_1DropDownList.html#a3b89efdefadc83e7257d34954c0816a6" title="Gets the listbox showing all the selections in this widget.">DropDownList::GetSelectionList</a>()
-<a name="l00305"></a>00305         {
-<a name="l00306"></a>00306             <span class="keywordflow">return</span> SelectionList;
-<a name="l00307"></a>00307         }
-<a name="l00308"></a>00308     }<span class="comment">//ui</span>
-<a name="l00309"></a>00309 }<span class="comment">//phys</span>
-<a name="l00310"></a>00310 
-<a name="l00311"></a>00311 <span class="preprocessor">#endif</span>
+<a name="l00140"></a>00140             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7aaf12f4ac3d15f059761646fc111b48" title="Sets the glyph index to be applied to all created Selections.">SetTemplateGlyphIndex</a>(Glyph);
+<a name="l00141"></a>00141             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ae4b5fd90298eaf10677011ecfaf7487c" title="Sets the render priority to be applied to all created Selections.">SetTemplateRenderPriority</a>(UI::RP_High);
+<a name="l00142"></a>00142             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4" title="Forces this widget to hide.">Hide</a>();
+<a name="l00143"></a>00143             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ac24fd38d4300b8788b3e42ba2a17c6f7" title="Gets the background of this List Box.">GetBoxBack</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a30985ea691f36eaafe5d6864eec8ae19" title="Sets the priority this button should be rendered with.">SetRenderPriority</a>(UI::RP_High);
+<a name="l00144"></a>00144             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a68873b3f128512572564ef11e9b48309" title="Gets the scrollbar used within this List Box.">GetVertScroll</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#ae5baca9bf557124425ee063cc0d5afc9" title="Gets the Scroller background within this widget.">GetScrollBack</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a30985ea691f36eaafe5d6864eec8ae19" title="Sets the priority this button should be rendered with.">SetRenderPriority</a>(UI::RP_High);
+<a name="l00145"></a>00145             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a68873b3f128512572564ef11e9b48309" title="Gets the scrollbar used within this List Box.">GetVertScroll</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#a959c0d66d71998f7a7bde333605f034a" title="Gets the Scroller button within this widget.">GetScroller</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#aebb9eb3fc42b2f6e77fe0a213c297450" title="Sets the priority this button should be rendered with.">SetRenderPriority</a>(UI::RP_High);
+<a name="l00146"></a>00146             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a68873b3f128512572564ef11e9b48309" title="Gets the scrollbar used within this List Box.">GetVertScroll</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#a269c72f430babb108dbce17b0918dc93" title="Gets the UpLeft button within this widget, if it was initialized.">GetUpLeftButton</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#aebb9eb3fc42b2f6e77fe0a213c297450" title="Sets the priority this button should be rendered with.">SetRenderPriority</a>(UI::RP_High);
+<a name="l00147"></a>00147             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a68873b3f128512572564ef11e9b48309" title="Gets the scrollbar used within this List Box.">GetVertScroll</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#a3bd3766aaa1fc8d5fa783b18de2061b7" title="Gets the DownRight button within this widget, if it was initialized.">GetDownRightButton</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#aebb9eb3fc42b2f6e77fe0a213c297450" title="Sets the priority this button should be rendered with.">SetRenderPriority</a>(UI::RP_High);
+<a name="l00148"></a>00148         }
+<a name="l00149"></a>00149 
+<a name="l00150"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a85dbc074287079d020b89b7544f7967b">00150</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a85dbc074287079d020b89b7544f7967b" title="Child specific update method.">DropDownList::UpdateImpl</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00151"></a>00151         {
+<a name="l00152"></a>00152             <a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> State = <a class="code" href="classMezzanine_1_1InputQueryTool.html#a7a97f853156573de3648f3315e2283bb" title="Gets the button state of the provided mouse button ID.">InputQueryTool::GetMouseButtonState</a>(1);
+<a name="l00153"></a>00153             <span class="keywordflow">if</span>(HoveredButton == ListToggle)
+<a name="l00154"></a>00154             {
+<a name="l00155"></a>00155                 <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0a9150dbdf88f3013383a72366904cb749">MetaCode::BUTTON_PRESSING</a> == State)
+<a name="l00156"></a>00156                 {
+<a name="l00157"></a>00157                     <span class="keywordflow">if</span>(!ToggleActivated)
+<a name="l00158"></a>00158                     {
+<a name="l00159"></a>00159                         SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a863195baafaee7ab8a0887c660525bf6" title="Forces this widget to be shown.">Show</a>();
+<a name="l00160"></a>00160                         ToggleActivated = <span class="keyword">true</span>;
+<a name="l00161"></a>00161                     }<span class="keywordflow">else</span>{
+<a name="l00162"></a>00162                         SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4" title="Forces this widget to hide.">Hide</a>();
+<a name="l00163"></a>00163                         ToggleActivated = <span class="keyword">false</span>;
+<a name="l00164"></a>00164                     }
+<a name="l00165"></a>00165                 }
+<a name="l00166"></a>00166             }
+<a name="l00167"></a>00167             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(HoveredSubWidget == SelectionList)
+<a name="l00168"></a>00168             {
+<a name="l00169"></a>00169                 <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0a9150dbdf88f3013383a72366904cb749">MetaCode::BUTTON_PRESSING</a> == State &amp;&amp; !SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a99615938f31dd6b5c6d8fa9d9dc96d3d" title="Gets the hovered sub-widget within this widget, if any.">GetHoveredSubWidget</a>())
+<a name="l00170"></a>00170                 {
+<a name="l00171"></a>00171                     Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa47e6ddbe4b6181d4d2e963360866a43" title="Sets the text displayed within the caption.">SetText</a>(SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ae2b97c85a09fd6d74f659c1dc9cd125c" title="Gets the currently selected caption.">GetSelected</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a84706720c8bf07eede9bbeecbf235a79" title="Gets the text displayed within the caption.">GetText</a>());
+<a name="l00172"></a>00172                     SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4" title="Forces this widget to hide.">Hide</a>();
+<a name="l00173"></a>00173                     ToggleActivated = <span class="keyword">false</span>;
+<a name="l00174"></a>00174                 }
+<a name="l00175"></a>00175             }
+<a name="l00176"></a>00176         }
+<a name="l00177"></a>00177 
+<a name="l00178"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a4987ac1e1b057ce320653ba01b70c468">00178</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a4987ac1e1b057ce320653ba01b70c468" title="Child specific visibility method.">DropDownList::SetVisibleImpl</a>(<span class="keywordtype">bool</span> visible)
+<a name="l00179"></a>00179         {
+<a name="l00180"></a>00180             Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a77ba9fb0b2b8298c19f856b4fb7c8d3d" title="Sets the visibility of this caption.">SetVisible</a>(visible);
+<a name="l00181"></a>00181             ListToggle-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a12840e06233a6feb88f61d88a0ce7e60" title="Sets the visibility of this button.">SetVisible</a>(visible);
+<a name="l00182"></a>00182             <span class="keywordflow">if</span>(ToggleActivated)
+<a name="l00183"></a>00183                 SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad13df3d78b4e7cebfc566dc678706915" title="Sets the visibility of this widget.">SetVisible</a>(visible);
+<a name="l00184"></a>00184         }
+<a name="l00185"></a>00185 
+<a name="l00186"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a4b11111a24d568251b37abef256ecce9">00186</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a4b11111a24d568251b37abef256ecce9" title="Child specific mouse hover method.">DropDownList::CheckMouseHoverImpl</a>()
+<a name="l00187"></a>00187         {
+<a name="l00188"></a>00188             <span class="keywordflow">if</span>(Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a57ece85ea6c97b542d62de245ddb82f1" title="Determines whether the mouse is over this caption.">CheckMouseHover</a>())
+<a name="l00189"></a>00189             {
+<a name="l00190"></a>00190                 HoveredSubWidget = NULL;
+<a name="l00191"></a>00191                 HoveredButton = NULL;
+<a name="l00192"></a>00192                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00193"></a>00193             }
+<a name="l00194"></a>00194             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ListToggle-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae35f5b685df6bb09626f3f53b41416bd" title="Determines whether the mouse is over this button.">CheckMouseHover</a>())
+<a name="l00195"></a>00195             {
+<a name="l00196"></a>00196                 HoveredSubWidget = NULL;
+<a name="l00197"></a>00197                 HoveredButton = ListToggle;
+<a name="l00198"></a>00198                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00199"></a>00199             }
+<a name="l00200"></a>00200             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a66f1b21671530de8f7696185c7080d7b" title="Checks to see if the current mouse position is over this widget.">CheckMouseHover</a>())
+<a name="l00201"></a>00201             {
+<a name="l00202"></a>00202                 HoveredSubWidget = SelectionList;
+<a name="l00203"></a>00203                 HoveredButton = SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad9ab22e33338ddb8e13bf663de0092f1" title="Gets the hovered button within this widget, if any.">GetHoveredButton</a>();
+<a name="l00204"></a>00204                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00205"></a>00205             }
+<a name="l00206"></a>00206             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00207"></a>00207         }
+<a name="l00208"></a>00208 
+<a name="l00209"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#aaeb03cbcb2e5a3c5bde4d4f513d70ed8">00209</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#aaeb03cbcb2e5a3c5bde4d4f513d70ed8" title="Manually sets a selection in the list as &amp;quot;selected&amp;quot;.">DropDownList::SetSelection</a>(<a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* ToBeSelected)
+<a name="l00210"></a>00210         {
+<a name="l00211"></a>00211             Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa47e6ddbe4b6181d4d2e963360866a43" title="Sets the text displayed within the caption.">SetText</a>(ToBeSelected-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a84706720c8bf07eede9bbeecbf235a79" title="Gets the text displayed within the caption.">GetText</a>());
+<a name="l00212"></a>00212             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a81ddebed01b1503478c2fa7b75ce4b24" title="Sets the selection within this list to be &amp;quot;selected&amp;quot;.">SetSelected</a>(ToBeSelected);
+<a name="l00213"></a>00213         }
+<a name="l00214"></a>00214 
+<a name="l00215"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#ae65a61e7a199b75b80805cbcd6fb979a">00215</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#aaeb03cbcb2e5a3c5bde4d4f513d70ed8" title="Manually sets a selection in the list as &amp;quot;selected&amp;quot;.">DropDownList::SetSelection</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; ToBeSelected)
+<a name="l00216"></a>00216         {
+<a name="l00217"></a>00217             <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#aaeb03cbcb2e5a3c5bde4d4f513d70ed8" title="Manually sets a selection in the list as &amp;quot;selected&amp;quot;.">SetSelection</a>(SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a793bd0f547a9f87ea74eb4204d591506" title="Gets a caption by name.">GetSelection</a>(ToBeSelected));
+<a name="l00218"></a>00218         }
+<a name="l00219"></a>00219 
+<a name="l00220"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a480682783cfaf4ea18b90a058c958ea7">00220</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a480682783cfaf4ea18b90a058c958ea7" title="Sets the relative position of this widget.">DropDownList::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
+<a name="l00221"></a>00221         {
+<a name="l00222"></a>00222             RelPosition = Position;
+<a name="l00223"></a>00223             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00224"></a>00224             Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a1db8c2388e76c0cf2d4c017ec44ce6b1" title="Sets the relative top left position of this caption.">SetPosition</a>(Position);
+<a name="l00225"></a>00225             ListToggle-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#aff2d96a45c88627098ac0b902059bfc3" title="Sets the relative top left position of this button.">SetPosition</a>(Position + <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - ((RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>),0));
+<a name="l00226"></a>00226             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7446cdc56d606fe52090e13ee8078124" title="Sets the relative position of this List Box.">SetPosition</a>(Position + <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00227"></a>00227         }
+<a name="l00228"></a>00228 
+<a name="l00229"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#ab038f951f09d18eaa2dad6c4eff01b7b">00229</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#ab038f951f09d18eaa2dad6c4eff01b7b" title="Sets the pixel position of this widget.">DropDownList::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
+<a name="l00230"></a>00230         {
+<a name="l00231"></a>00231             RelPosition = Position / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00232"></a>00232             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrSize = <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469" title="Sets the pixel size of this widget.">GetActualSize</a>();
+<a name="l00233"></a>00233             Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7360c698bc7a0aaa365739ccb0100d8d" title="Sets the top left position of this caption in pixels.">SetActualPosition</a>(Position);
+<a name="l00234"></a>00234             ListToggle-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad7218bce5dda1c0e0bf91a83feaae47e" title="Sets the top left position of this button in pixels.">SetActualPosition</a>(Position + <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(CurrSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - CurrSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,0));
+<a name="l00235"></a>00235             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a0bf39153416d2010e5bf36601873c73e" title="Sets the pixel position of this List Box.">SetActualPosition</a>(Position + <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,CurrSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00236"></a>00236         }
+<a name="l00237"></a>00237 
+<a name="l00238"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#af9a2fa5e0631162995826326e66108ec">00238</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#af9a2fa5e0631162995826326e66108ec" title="Sets the relative size of this widget.">DropDownList::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00239"></a>00239         {
+<a name="l00240"></a>00240             RelSize = Size;
+<a name="l00241"></a>00241             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00242"></a>00242             Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7ab0e51b3dba56d6a9612ff41a1df9e1" title="Sets the relative size of this caption.">SetSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - ((Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>),Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00243"></a>00243             ListToggle-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a2a654b05e925924d5842f36b2a486af5" title="Sets the relative size of this button.">SetSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>((Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00244"></a>00244             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#af96485460545e5c77ae3b8640c274f0a" title="Sets the size to be applied to all created Selections.">SetTemplateSize</a>(Size);
+<a name="l00245"></a>00245             <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a480682783cfaf4ea18b90a058c958ea7" title="Sets the relative position of this widget.">SetPosition</a>(RelPosition);
+<a name="l00246"></a>00246         }
+<a name="l00247"></a>00247 
+<a name="l00248"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a83f213b851c8336c064398fe21cea202">00248</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a83f213b851c8336c064398fe21cea202" title="Sets the pixel size of this widget.">DropDownList::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00249"></a>00249         {
+<a name="l00250"></a>00250             RelSize = Size / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00251"></a>00251             Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#afef14a7641a40656b1bb6d3ae1c820ca" title="Sets the size of this caption in pixels.">SetActualSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00252"></a>00252             ListToggle-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6a19f0e460a63e13f8c9bda3e18fcc96" title="Sets the size of this button in pixels.">SetActualSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00253"></a>00253             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#af96485460545e5c77ae3b8640c274f0a" title="Sets the size to be applied to all created Selections.">SetTemplateSize</a>(Size,<span class="keyword">false</span>);
+<a name="l00254"></a>00254             <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#ab038f951f09d18eaa2dad6c4eff01b7b" title="Sets the pixel position of this widget.">SetActualPosition</a>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a" title="Sets the pixel position of this widget.">GetActualPosition</a>());
+<a name="l00255"></a>00255         }
+<a name="l00256"></a>00256 
+<a name="l00257"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#aeb27e8fc8b99e7c627f53efbddcb4fb3">00257</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#aeb27e8fc8b99e7c627f53efbddcb4fb3" title="Updates the dimensions of this widget to match those of the new screen size.">DropDownList::UpdateDimensions</a>()
+<a name="l00258"></a>00258         {
+<a name="l00259"></a>00259             WidgetResult Result = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#af735913610e633fb127b08c146e7d16d" title="Updates a widgets position as needed.">ViewportUpdateTool::UpdateWidget</a>(<span class="keyword">this</span>);
+<a name="l00260"></a>00260             RelPosition = Result.first / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();
+<a name="l00261"></a>00261             RelSize = Result.second / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();
+<a name="l00262"></a>00262             Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7" title="Updates the dimensions of this caption to match those of the new screen size.">UpdateDimensions</a>();
+<a name="l00263"></a>00263             ListToggle-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a65764b075c03b2a6eb17039a73a260ce" title="Updates the dimensions of this button to match those of the new screen size.">UpdateDimensions</a>();
+<a name="l00264"></a>00264             SelectionList-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7bad6cce9fa22e882cc74f62a51fabdb" title="Updates the dimensions of this widget to match those of the new screen size.">UpdateDimensions</a>();
+<a name="l00265"></a>00265             <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a480682783cfaf4ea18b90a058c958ea7" title="Sets the relative position of this widget.">SetPosition</a>(RelPosition);
+<a name="l00266"></a>00266         }
+<a name="l00267"></a>00267 
+<a name="l00268"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#af70d48bd353cc533e123b0bc7c739632">00268</a>         <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#af70d48bd353cc533e123b0bc7c739632" title="Gets the caption showing the current selection in this widget.">DropDownList::GetSelection</a>()
+<a name="l00269"></a>00269         {
+<a name="l00270"></a>00270             <span class="keywordflow">return</span> Selection;
+<a name="l00271"></a>00271         }
+<a name="l00272"></a>00272 
+<a name="l00273"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a6b8b0d0ba15389eb8a0c9c2b29d6bde4">00273</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a6b8b0d0ba15389eb8a0c9c2b29d6bde4" title="Gets the button that toggles the appearance of the listbox in this widget.">DropDownList::GetListToggle</a>()
+<a name="l00274"></a>00274         {
+<a name="l00275"></a>00275             <span class="keywordflow">return</span> ListToggle;
+<a name="l00276"></a>00276         }
+<a name="l00277"></a>00277 
+<a name="l00278"></a><a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a5fe973285b5122fe0b74d0a81e8a26ca">00278</a>         <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>* <a class="code" href="classMezzanine_1_1UI_1_1DropDownList.html#a5fe973285b5122fe0b74d0a81e8a26ca" title="Gets the listbox showing all the selections in this widget.">DropDownList::GetSelectionList</a>()
+<a name="l00279"></a>00279         {
+<a name="l00280"></a>00280             <span class="keywordflow">return</span> SelectionList;
+<a name="l00281"></a>00281         }
+<a name="l00282"></a>00282     }<span class="comment">//ui</span>
+<a name="l00283"></a>00283 }<span class="comment">//Mezzanine</span>
+<a name="l00284"></a>00284 
+<a name="l00285"></a>00285 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -380,7 +354,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -390,6 +364,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -1,0 +1,154 @@
+\hypertarget{structMezzanine_1_1UI_1_1RenderableRect}{
+\subsection{Mezzanine::UI::RenderableRect Class Reference}
+\label{structMezzanine_1_1UI_1_1RenderableRect}\index{Mezzanine::UI::RenderableRect@{Mezzanine::UI::RenderableRect}}
+}
+
+
+This class contains all the utilities necessary for capturing input.  
+
+
+
+
+{\ttfamily \#include $<$uirenderablerect.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \& \hyperlink{structMezzanine_1_1UI_1_1RenderableRect_ab93ab3f67ab27f221fdda5730b959be0}{operator=} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Other)
+\begin{DoxyCompactList}\small\item\em Assignment Operator. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{structMezzanine_1_1UI_1_1RenderableRect_a2da1af5227c8958bc047f9d315c9b7cd}{operator==} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Other)
+\begin{DoxyCompactList}\small\item\em Comparison Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{structMezzanine_1_1UI_1_1RenderableRect_a92a23fe9e3de387d118b5350d31fe8be}{RenderableRect} ()
+\begin{DoxyCompactList}\small\item\em No Initialization Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{structMezzanine_1_1UI_1_1RenderableRect_a22e6469509e95787d02b16da0962de3a}{RenderableRect} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position, const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size, bool Relative)
+\begin{DoxyCompactList}\small\item\em Detailed Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{structMezzanine_1_1UI_1_1RenderableRect_ae8a333321b6939caa4d65d100faa8106}{
+virtual \hyperlink{structMezzanine_1_1UI_1_1RenderableRect_ae8a333321b6939caa4d65d100faa8106}{$\sim$RenderableRect} ()}
+\label{structMezzanine_1_1UI_1_1RenderableRect_ae8a333321b6939caa4d65d100faa8106}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structMezzanine_1_1UI_1_1RenderableRect_a55b018256a780565824f3d4841a7ef3c}{
+\hyperlink{classMezzanine_1_1Vector2}{Vector2} {\bfseries Position}}
+\label{structMezzanine_1_1UI_1_1RenderableRect_a55b018256a780565824f3d4841a7ef3c}
+
+\item 
+\hypertarget{structMezzanine_1_1UI_1_1RenderableRect_addd5a9d1a1756d4539437ef04750d3b9}{
+bool {\bfseries Relative}}
+\label{structMezzanine_1_1UI_1_1RenderableRect_addd5a9d1a1756d4539437ef04750d3b9}
+
+\item 
+\hypertarget{structMezzanine_1_1UI_1_1RenderableRect_a7f5573b6ceeebfcf92d3b8bf869dc903}{
+\hyperlink{classMezzanine_1_1Vector2}{Vector2} {\bfseries Size}}
+\label{structMezzanine_1_1UI_1_1RenderableRect_a7f5573b6ceeebfcf92d3b8bf869dc903}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class contains all the utilities necessary for capturing input. This is commonly used for Text-\/based widgets, such as TextBox's, Spinners, and InputBox's. 
+
+Definition at line 55 of file uirenderablerect.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{structMezzanine_1_1UI_1_1RenderableRect_a22e6469509e95787d02b16da0962de3a}{
+\index{Mezzanine::UI::RenderableRect@{Mezzanine::UI::RenderableRect}!RenderableRect@{RenderableRect}}
+\index{RenderableRect@{RenderableRect}!Mezzanine::UI::RenderableRect@{Mezzanine::UI::RenderableRect}}
+\paragraph[{RenderableRect}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::RenderableRect::RenderableRect (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf Vector2} \&}]{Size, }
+\item[{bool}]{Relative}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1UI_1_1RenderableRect_a22e6469509e95787d02b16da0962de3a}
+
+
+Detailed Constructor. 
+
+Sets all the data of the struct. 
+\begin{DoxyParams}{Parameters}
+{\em Position} & The position of the Renderable's Rect. \\
+\hline
+{\em Size} & The size of the Renderable's Rect. \\
+\hline
+{\em Relative} & Whether or not this Rect is using relative(0-\/1) or absolute units(Pixels). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file uirenderablerect.h.
+
+\hypertarget{structMezzanine_1_1UI_1_1RenderableRect_a92a23fe9e3de387d118b5350d31fe8be}{
+\index{Mezzanine::UI::RenderableRect@{Mezzanine::UI::RenderableRect}!RenderableRect@{RenderableRect}}
+\index{RenderableRect@{RenderableRect}!Mezzanine::UI::RenderableRect@{Mezzanine::UI::RenderableRect}}
+\paragraph[{RenderableRect}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::RenderableRect::RenderableRect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1UI_1_1RenderableRect_a92a23fe9e3de387d118b5350d31fe8be}
+
+
+No Initialization Constructor. 
+
+Sets all data members to zero's. 
+
+Definition at line 74 of file uirenderablerect.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{structMezzanine_1_1UI_1_1RenderableRect_ab93ab3f67ab27f221fdda5730b959be0}{
+\index{Mezzanine::UI::RenderableRect@{Mezzanine::UI::RenderableRect}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::UI::RenderableRect@{Mezzanine::UI::RenderableRect}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf RenderableRect}\& Mezzanine::UI::RenderableRect::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf RenderableRect} \&}]{Other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{structMezzanine_1_1UI_1_1RenderableRect_ab93ab3f67ab27f221fdda5730b959be0}
+
+
+Assignment Operator. 
+
+Copys the contents of a \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} to another. 
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} to copy from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 85 of file uirenderablerect.h.
+
+\hypertarget{structMezzanine_1_1UI_1_1RenderableRect_a2da1af5227c8958bc047f9d315c9b7cd}{
+\index{Mezzanine::UI::RenderableRect@{Mezzanine::UI::RenderableRect}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::UI::RenderableRect@{Mezzanine::UI::RenderableRect}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mezzanine::UI::RenderableRect::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf RenderableRect} \&}]{Other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{structMezzanine_1_1UI_1_1RenderableRect_a2da1af5227c8958bc047f9d315c9b7cd}
+
+
+Comparison Operator. 
+
+Checks to see if the two RenderableRects are equal. 
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} to compare against. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 95 of file uirenderablerect.h.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+uirenderablerect.h\end{DoxyCompactItemize}

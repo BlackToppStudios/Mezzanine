@@ -1,0 +1,465 @@
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable}{
+\subsection{Mezzanine::UI::BasicRenderable Class Reference}
+\label{classMezzanine_1_1UI_1_1BasicRenderable}\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+}
+Inheritance diagram for Mezzanine::UI::BasicRenderable:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.100000cm]{classMezzanine_1_1UI_1_1BasicRenderable}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_aace539a4a4bd0795543f152fd0f3d86c}{BasicRenderable} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a7469e579a834b00bd90a87fd754d14af}{GetActualPosition} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this renderable in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a14b2ff20cdf114c34cc23074d0b7fb5c}{GetActualSize} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the size of this renderable in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a1d3be8e827a562ade939383b4633ddb3}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of this renderable. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ab6aa1fb10dc7e9e412e7caac9133c9a6}{GetPosition} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this renderable. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_abdb08ae3577da75762209b8cee486b24}{GetPrimaryAtlas} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a3279ed466dfc69203467b2bb32cf89be}{GetRenderPriority} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a6486ceae69273b990bfe19b88c29d328}{GetSize} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this renderable. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a2728dec624ab5e1b9ce738b180b56e87}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a2728dec624ab5e1b9ce738b180b56e87}{Hide} ()=0}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a2728dec624ab5e1b9ce738b180b56e87}
+
+\begin{DoxyCompactList}\small\item\em Forces this renderable to hide. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a443bdeb7d95e6b765a5548966d380ecf}{IsVisible} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this renderable. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a4741dde07f7eddddcc3d611d6c803fad}{SetActualPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)=0
+\begin{DoxyCompactList}\small\item\em Sets the top left position of this renderable in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a69c87db17cacc2980f68777258329531}{SetActualSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)=0
+\begin{DoxyCompactList}\small\item\em Sets the size of this renderable in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_aab42dabeaeb7a56fb4b98ae8f7ab6afb}{SetPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)=0
+\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this renderable. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ab1195ccf1e8acf126aee6d06c1d9e93b}{SetPrimaryAtlas} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)=0
+\begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a05be25ff56fbd498841c33da0cfe5410}{SetRenderPriority} (const \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \&Priority)=0
+\begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ace14123b4a7bdb83e4e86275823f7b6e}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)=0
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this renderable. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a3dd62b1390d4f3931cfc8d0188cdcc7c}{SetVisible} (bool Visible)=0
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this renderable. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a122a5fe65efe74da68fa5998f07b31ef}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a122a5fe65efe74da68fa5998f07b31ef}{Show} ()=0}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a122a5fe65efe74da68fa5998f07b31ef}
+
+\begin{DoxyCompactList}\small\item\em Forces this renderable to be shown. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a446b43c6dde21c7f0c021ca6833f841d}{UpdateDimensions} ()=0
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this renderable to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_af7b5ef0dc231b3e233ad892ce4c89320}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_af7b5ef0dc231b3e233ad892ce4c89320}{$\sim$BasicRenderable} ()}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_af7b5ef0dc231b3e233ad892ce4c89320}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_ac5e51c5efe25911b3681deac71c970d0}{
+\hyperlink{classMezzanine_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_ac5e51c5efe25911b3681deac71c970d0}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_ae303a5be12bdaa01c8b27fb3993a17fa}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} {\bfseries Name}}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_ae303a5be12bdaa01c8b27fb3993a17fa}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a11733fbad1348e5a0dbcd70c5532106d}{
+\hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a11733fbad1348e5a0dbcd70c5532106d}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_affbc58e05c520c48a241083b2eb8dc24}{
+\hyperlink{classMezzanine_1_1Vector2}{Vector2} {\bfseries RelPosition}}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_affbc58e05c520c48a241083b2eb8dc24}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_af901597b0e3e08a4b0280a212465efa2}{
+\hyperlink{classMezzanine_1_1Vector2}{Vector2} {\bfseries RelSize}}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_af901597b0e3e08a4b0280a212465efa2}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+
+
+Definition at line 58 of file uibasicrenderable.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_aace539a4a4bd0795543f152fd0f3d86c}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!BasicRenderable@{BasicRenderable}}
+\index{BasicRenderable@{BasicRenderable}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{BasicRenderable}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::BasicRenderable::BasicRenderable (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{{\bf Layer} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_aace539a4a4bd0795543f152fd0f3d86c}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to be given to this widget. \\
+\hline
+{\em parent} & The parent layer that created this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 52 of file uibasicrenderable.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a7469e579a834b00bd90a87fd754d14af}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector2} Mezzanine::UI::BasicRenderable::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a7469e579a834b00bd90a87fd754d14af}
+
+
+Gets the top left position of this renderable in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this renderable. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_a5c1e8f0a8efe73d6d556f876a4c709f8}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a1936b1cc9ac22eddc81d92f10fef314d}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a43d868461d8cc3a230e13e97cd38d91d}{Mezzanine::UI::MarkupText}, and \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a642bbe279ac7c4473f8449e58f61ac31}{Mezzanine::UI::Rectangle}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a14b2ff20cdf114c34cc23074d0b7fb5c}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector2} Mezzanine::UI::BasicRenderable::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a14b2ff20cdf114c34cc23074d0b7fb5c}
+
+
+Gets the size of this renderable in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this renderable. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_a19adecf3f260923b07016347623dc33e}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a4b64d9dea1b059fd136ea234b8044a9b}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a5e54183333fc3e120da6383e319c436e}{Mezzanine::UI::MarkupText}, and \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a172e2725569b4d5c234349fe5b797d2b}{Mezzanine::UI::Rectangle}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a1d3be8e827a562ade939383b4633ddb3}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::UI::BasicRenderable::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a1d3be8e827a562ade939383b4633ddb3}
+
+
+Gets the name of this renderable. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of this renderable. 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file uibasicrenderable.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_ab6aa1fb10dc7e9e412e7caac9133c9a6}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector2} Mezzanine::UI::BasicRenderable::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_ab6aa1fb10dc7e9e412e7caac9133c9a6}
+
+
+Gets the relative top left position of this renderable. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this renderable. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_ab49077b4d05873f0a6d397720790ae49}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a232f175144378d1d8c0e2966dbcc4371}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a9fb5509afd9a1c1e3de3b470c8755bd0}{Mezzanine::UI::MarkupText}, and \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a8df1f5fbba85a0a6f252ae470ce93c07}{Mezzanine::UI::Rectangle}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_abdb08ae3577da75762209b8cee486b24}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!GetPrimaryAtlas@{GetPrimaryAtlas}}
+\index{GetPrimaryAtlas@{GetPrimaryAtlas}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{GetPrimaryAtlas}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf String} Mezzanine::UI::BasicRenderable::GetPrimaryAtlas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_abdb08ae3577da75762209b8cee486b24}
+
+
+Gets the currently set primary atlas. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of the primary atlas that is set, or an empty string if none. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_ab4dabfe9ce18dd255d2b8724f610058d}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a5c401e39f028e14426714197210e186a}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_afdb2415e459de43341b7dad687d2ae31}{Mezzanine::UI::MarkupText}, and \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a1ac92749826bce7b8f9b3d3e9d27a12f}{Mezzanine::UI::Rectangle}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a3279ed466dfc69203467b2bb32cf89be}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!GetRenderPriority@{GetRenderPriority}}
+\index{GetRenderPriority@{GetRenderPriority}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{GetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf UI::RenderPriority} Mezzanine::UI::BasicRenderable::GetRenderPriority (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a3279ed466dfc69203467b2bb32cf89be}
+
+
+Gets the priority this button should be rendered with. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing this button's priority level. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_ad2e567a12e059c612e474e96fd9cd5da}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_aadae4d2bb1e8db600864e0121a02e213}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_aaf0e1e55d5293f58b03c97d93ecffd9f}{Mezzanine::UI::MarkupText}, and \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a552cc0809a838c25f39248d16b591518}{Mezzanine::UI::Rectangle}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a6486ceae69273b990bfe19b88c29d328}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector2} Mezzanine::UI::BasicRenderable::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a6486ceae69273b990bfe19b88c29d328}
+
+
+Gets the relative size of this renderable. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this renderable. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_a6836b68da28da089584dd02547674286}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_ad1b3bf8c12122089af1b5896a8da8253}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_aac482cb90a223c4346103a8012c892c4}{Mezzanine::UI::MarkupText}, and \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a2deccb0b2e08116b01941afdd4eb7475}{Mezzanine::UI::Rectangle}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a443bdeb7d95e6b765a5548966d380ecf}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mezzanine::UI::BasicRenderable::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a443bdeb7d95e6b765a5548966d380ecf}
+
+
+Gets the visibility of this renderable. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this renderable. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_a8d8afe5870bcf5bf1de02ece187ab238}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a5d6ed066e714024ce9b12b13a926e6c6}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a7cbd2c77fa2a1da3845d72b030c104ae}{Mezzanine::UI::MarkupText}, and \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a71056f4bec912c0b4c9b3cc48ed34ec5}{Mezzanine::UI::Rectangle}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a4741dde07f7eddddcc3d611d6c803fad}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::BasicRenderable::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a4741dde07f7eddddcc3d611d6c803fad}
+
+
+Sets the top left position of this renderable in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this renderable. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_ad7218bce5dda1c0e0bf91a83feaae47e}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a7360c698bc7a0aaa365739ccb0100d8d}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a1050bf980ccf62f5688611cfb07d7155}{Mezzanine::UI::MarkupText}, \hyperlink{classMezzanine_1_1UI_1_1Rectangle_ae0fa331126efedd6517a0a7775bdbbcb}{Mezzanine::UI::Rectangle}, and \hyperlink{classMezzanine_1_1UI_1_1TextButton_adc3f524897031fffc7c25c4adc460d15}{Mezzanine::UI::TextButton}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a69c87db17cacc2980f68777258329531}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::BasicRenderable::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a69c87db17cacc2980f68777258329531}
+
+
+Sets the size of this renderable in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the size of this renderable. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_a6a19f0e460a63e13f8c9bda3e18fcc96}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_afef14a7641a40656b1bb6d3ae1c820ca}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_ab5e6b9c794dc7e98ba13c571287742da}{Mezzanine::UI::MarkupText}, \hyperlink{classMezzanine_1_1UI_1_1Rectangle_afa29e6cc6d4a180d2b4a718a237aa274}{Mezzanine::UI::Rectangle}, and \hyperlink{classMezzanine_1_1UI_1_1TextButton_a81171ff142c9e991daeec099bebfdc82}{Mezzanine::UI::TextButton}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_aab42dabeaeb7a56fb4b98ae8f7ab6afb}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::BasicRenderable::SetPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_aab42dabeaeb7a56fb4b98ae8f7ab6afb}
+
+
+Sets the relative top left position of this renderable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this renderable. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_aff2d96a45c88627098ac0b902059bfc3}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a1db8c2388e76c0cf2d4c017ec44ce6b1}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a6fddca4eef841a78dcafc742c425437f}{Mezzanine::UI::MarkupText}, \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a95511f0a8505f07892434bdc363a7674}{Mezzanine::UI::Rectangle}, and \hyperlink{classMezzanine_1_1UI_1_1TextButton_af91cf1040a11180eba704e054def6a7a}{Mezzanine::UI::TextButton}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_ab1195ccf1e8acf126aee6d06c1d9e93b}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!SetPrimaryAtlas@{SetPrimaryAtlas}}
+\index{SetPrimaryAtlas@{SetPrimaryAtlas}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{SetPrimaryAtlas}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::BasicRenderable::SetPrimaryAtlas (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Atlas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_ab1195ccf1e8acf126aee6d06c1d9e93b}
+
+
+Sets the Atlas to be assumed when one isn't provided for atlas related tasks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Atlas} & The name of the atlas to be used. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_af1248af0bf094b29f65547b1697c3c23}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a4794ffff86824830fc54fc0aa6feb710}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_afff82489ff0edfafcaa5c4f3642c929e}{Mezzanine::UI::MarkupText}, and \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a7be99336eb1a608b1cf96d6f7e63477e}{Mezzanine::UI::Rectangle}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a05be25ff56fbd498841c33da0cfe5410}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!SetRenderPriority@{SetRenderPriority}}
+\index{SetRenderPriority@{SetRenderPriority}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{SetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::BasicRenderable::SetRenderPriority (
+\begin{DoxyParamCaption}
+\item[{const {\bf UI::RenderPriority} \&}]{Priority}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a05be25ff56fbd498841c33da0cfe5410}
+
+
+Sets the priority this button should be rendered with. 
+
+The default value for this is Medium. 
+\begin{DoxyParams}{Parameters}
+{\em Priority} & The priority level to be used when rendering this button. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_aebb9eb3fc42b2f6e77fe0a213c297450}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_ad3e5d066b19d56616369632276d8fd38}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a2941663607cde5e9306673a321e8fed2}{Mezzanine::UI::MarkupText}, \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a30985ea691f36eaafe5d6864eec8ae19}{Mezzanine::UI::Rectangle}, and \hyperlink{classMezzanine_1_1UI_1_1TextButton_a546446b4b6394fb7e58bfa64d554ada3}{Mezzanine::UI::TextButton}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_ace14123b4a7bdb83e4e86275823f7b6e}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::BasicRenderable::SetSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_ace14123b4a7bdb83e4e86275823f7b6e}
+
+
+Sets the relative size of this renderable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the size of this renderable. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_a2a654b05e925924d5842f36b2a486af5}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a7ab0e51b3dba56d6a9612ff41a1df9e1}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_ab5ba11881937bea795c5431f0dfd7f4f}{Mezzanine::UI::MarkupText}, \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a1f7a9a5686063b03a254c26a420f458c}{Mezzanine::UI::Rectangle}, and \hyperlink{classMezzanine_1_1UI_1_1TextButton_a066e09081624a520a5e86f7cfd81ee5d}{Mezzanine::UI::TextButton}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a3dd62b1390d4f3931cfc8d0188cdcc7c}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::BasicRenderable::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{Visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a3dd62b1390d4f3931cfc8d0188cdcc7c}
+
+
+Sets the visibility of this renderable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Visible} & Bool determining whether or not this renderable should be visible. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_a12840e06233a6feb88f61d88a0ce7e60}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_a77ba9fb0b2b8298c19f856b4fb7c8d3d}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_acce9a32cef8911ef63a449fe877a2a3b}{Mezzanine::UI::MarkupText}, \hyperlink{classMezzanine_1_1UI_1_1Rectangle_adca7d64f834767ac6aa6440920920f36}{Mezzanine::UI::Rectangle}, and \hyperlink{classMezzanine_1_1UI_1_1TextButton_a0e7af5bb48039675e31ddcd1f72f5752}{Mezzanine::UI::TextButton}.
+
+\hypertarget{classMezzanine_1_1UI_1_1BasicRenderable_a446b43c6dde21c7f0c021ca6833f841d}{
+\index{Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!Mezzanine::UI::BasicRenderable@{Mezzanine::UI::BasicRenderable}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::UI::BasicRenderable::UpdateDimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1BasicRenderable_a446b43c6dde21c7f0c021ca6833f841d}
+
+
+Updates the dimensions of this renderable to match those of the new screen size. 
+
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
+
+Implemented in \hyperlink{classMezzanine_1_1UI_1_1Button_a65764b075c03b2a6eb17039a73a260ce}{Mezzanine::UI::Button}, \hyperlink{classMezzanine_1_1UI_1_1Caption_ab6c528d41fb194d19b2ec426a9d95db7}{Mezzanine::UI::Caption}, \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a3a7e102a8b5b3217526ce183465ed69e}{Mezzanine::UI::MarkupText}, \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a86d759d43ec0c1d429c572a782405e8c}{Mezzanine::UI::Rectangle}, and \hyperlink{classMezzanine_1_1UI_1_1TextButton_a06a5a6400dff268de5c91737de09fda9}{Mezzanine::UI::TextButton}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uibasicrenderable.h\item 
+uibasicrenderable.cpp\end{DoxyCompactItemize}

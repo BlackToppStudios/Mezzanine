@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: uirectangle.cpp Source File</title>
+<title>MezzanineEngine: uirectangle.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -109,67 +109,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
 <a name="l00047"></a>00047 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
-<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="preprocessor">#include &quot;internalGorilla.h.cpp&quot;</span>
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="keyword">namespace </span>phys
-<a name="l00054"></a>00054 {
-<a name="l00055"></a>00055     <span class="keyword">namespace </span>UI
-<a name="l00056"></a>00056     {
-<a name="l00057"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a6e6e88eb63cc8131da9c8de0fb691801">00057</a>         <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a6e6e88eb63cc8131da9c8de0fb691801" title="Class constructor.">Rectangle::Rectangle</a>(<span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
-<a name="l00058"></a>00058             : Parent(PLayer),
-<a name="l00059"></a>00059               MouseHover(false)
-<a name="l00060"></a>00060         {
-<a name="l00061"></a>00061             Manager = <a class="code" href="classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classphys_1_1World.html#ab7888bf9286df602490c30df6382fde9" title="This gets the UIManager from the manager list.">GetUIManager</a>();
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;uiviewportupdatetool.h&quot;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;internalGorilla.h.cpp&quot;</span>
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="keyword">namespace </span>Mezzanine
+<a name="l00055"></a>00055 {
+<a name="l00056"></a>00056     <span class="keyword">namespace </span>UI
+<a name="l00057"></a>00057     {
+<a name="l00058"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a2048370186db33f608584c9a33de71a1">00058</a>         <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a2048370186db33f608584c9a33de71a1" title="Class constructor.">Rectangle::Rectangle</a>(<span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
+<a name="l00059"></a>00059             : <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html">BasicRenderable</a>(<span class="stringliteral">&quot;Rectangle&quot;</span>,PLayer),
+<a name="l00060"></a>00060               MouseHover(false)
+<a name="l00061"></a>00061         {
 <a name="l00062"></a>00062             <span class="keywordflow">if</span>(Rect.Relative)
 <a name="l00063"></a>00063             {
 <a name="l00064"></a>00064                 RelPosition = Rect.Position;
 <a name="l00065"></a>00065                 RelSize = Rect.Size;
 <a name="l00066"></a>00066 
-<a name="l00067"></a>00067                 <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00068"></a>00068                 GRectangle = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a6528081453b4f2be4d7a4ad8878edbf0" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createRectangle((Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2());
+<a name="l00067"></a>00067                 <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00068"></a>00068                 GRectangle = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createRectangle((Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2());
 <a name="l00069"></a>00069             }<span class="keywordflow">else</span>{
-<a name="l00070"></a>00070                 RelPosition = Rect.Position / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00071"></a>00071                 RelSize = Rect.Size / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00070"></a>00070                 RelPosition = Rect.Position / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00071"></a>00071                 RelSize = Rect.Size / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
 <a name="l00072"></a>00072 
-<a name="l00073"></a>00073                 GRectangle = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a6528081453b4f2be4d7a4ad8878edbf0" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createRectangle(Rect.Position.<a class="code" href="classphys_1_1Vector2.html#adc6efedbdfdca596b719decc87ee2e4b" title="Gets a Ogre vector2.">GetOgreVector2</a>(),Rect.Size.<a class="code" href="classphys_1_1Vector2.html#adc6efedbdfdca596b719decc87ee2e4b" title="Gets a Ogre vector2.">GetOgreVector2</a>());
+<a name="l00073"></a>00073                 GRectangle = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createRectangle(Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>(),Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>());
 <a name="l00074"></a>00074             }
-<a name="l00075"></a>00075             GRectangle-&gt;SetNameFile(Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#a2e1c1929e23577e95d6226a58b7602da" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
+<a name="l00075"></a>00075             GRectangle-&gt;SetNameFile(Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
 <a name="l00076"></a>00076         }
 <a name="l00077"></a>00077 
-<a name="l00078"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a8862c7e04c2b8911eac4a2d3b6aff165">00078</a>         <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a8862c7e04c2b8911eac4a2d3b6aff165" title="Class destructor.">Rectangle::~Rectangle</a>()
+<a name="l00078"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a1c2a466100f36a45c7ed2f85f0a9e269">00078</a>         <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a1c2a466100f36a45c7ed2f85f0a9e269" title="Class destructor.">Rectangle::~Rectangle</a>()
 <a name="l00079"></a>00079         {
-<a name="l00080"></a>00080             Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a6528081453b4f2be4d7a4ad8878edbf0" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyRectangle(GRectangle);
+<a name="l00080"></a>00080             Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyRectangle(GRectangle);
 <a name="l00081"></a>00081         }
 <a name="l00082"></a>00082 
-<a name="l00083"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a4fa5021010e8cdaf9a9e35b3d4c82461">00083</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a4fa5021010e8cdaf9a9e35b3d4c82461" title="Sets the visibility of this rectangle.">Rectangle::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
+<a name="l00083"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#adca7d64f834767ac6aa6440920920f36">00083</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#adca7d64f834767ac6aa6440920920f36" title="Sets the visibility of this rectangle.">Rectangle::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
 <a name="l00084"></a>00084         {
 <a name="l00085"></a>00085             GRectangle-&gt;SetVisible(Visible);
 <a name="l00086"></a>00086         }
 <a name="l00087"></a>00087 
-<a name="l00088"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#aad47a2d9a7c9d8d9111b2edbf44541d5">00088</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#aad47a2d9a7c9d8d9111b2edbf44541d5" title="Gets the visibility of this rectangle.">Rectangle::IsVisible</a>()
-<a name="l00089"></a>00089         {
+<a name="l00088"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a71056f4bec912c0b4c9b3cc48ed34ec5">00088</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a71056f4bec912c0b4c9b3cc48ed34ec5" title="Gets the visibility of this rectangle.">Rectangle::IsVisible</a>()<span class="keyword"> const</span>
+<a name="l00089"></a>00089 <span class="keyword">        </span>{
 <a name="l00090"></a>00090             <span class="keywordflow">return</span> GRectangle-&gt;IsVisible();
 <a name="l00091"></a>00091         }
 <a name="l00092"></a>00092 
-<a name="l00093"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#ab408c7607150b24fbc4f70870705a121">00093</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#ab408c7607150b24fbc4f70870705a121" title="Forces this rectangle to be shown.">Rectangle::Show</a>()
+<a name="l00093"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a724c379dadc2743801c9495875d3a93c">00093</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a724c379dadc2743801c9495875d3a93c" title="Forces this rectangle to be shown.">Rectangle::Show</a>()
 <a name="l00094"></a>00094         {
 <a name="l00095"></a>00095             GRectangle-&gt;Show();
 <a name="l00096"></a>00096         }
 <a name="l00097"></a>00097 
-<a name="l00098"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a25bad72cff62c5c69b224bcb74304661">00098</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a25bad72cff62c5c69b224bcb74304661" title="Forces this rectangle to hide.">Rectangle::Hide</a>()
+<a name="l00098"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a95c50cd38af0f250ff5902d54b5f425e">00098</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a95c50cd38af0f250ff5902d54b5f425e" title="Forces this rectangle to hide.">Rectangle::Hide</a>()
 <a name="l00099"></a>00099         {
 <a name="l00100"></a>00100             GRectangle-&gt;Hide();
 <a name="l00101"></a>00101         }
 <a name="l00102"></a>00102 
-<a name="l00103"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a246070a93416c2c50d63720b354154d7">00103</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a246070a93416c2c50d63720b354154d7" title="Determines whether the mouse is over this rectangle.">Rectangle::CheckMouseHover</a>()
+<a name="l00103"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ad4d0f9a0e2a445acea1ef0a2d1edfc09">00103</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ad4d0f9a0e2a445acea1ef0a2d1edfc09" title="Determines whether the mouse is over this rectangle.">Rectangle::CheckMouseHover</a>()
 <a name="l00104"></a>00104         {
 <a name="l00105"></a>00105             <span class="keywordflow">if</span>(!GRectangle-&gt;IsVisible())
 <a name="l00106"></a>00106                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00107"></a>00107             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> MouseLoc = <a class="code" href="classphys_1_1InputQueryTool.html#affd9523f67b542b208e6d36c3395e72b" title="This gets a vector2 containing both X and Y coordinates of the mouse.">InputQueryTool::GetMouseCoordinates</a>();
-<a name="l00108"></a>00108             <span class="keywordflow">if</span>(GRectangle-&gt;intersects(MouseLoc.<a class="code" href="classphys_1_1Vector2.html#adc6efedbdfdca596b719decc87ee2e4b" title="Gets a Ogre vector2.">GetOgreVector2</a>()))
+<a name="l00107"></a>00107             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> MouseLoc = <a class="code" href="classMezzanine_1_1InputQueryTool.html#a89407a5b1e3c727809581d367a25cdaf" title="This gets a vector2 containing both X and Y coordinates of the mouse.">InputQueryTool::GetMouseCoordinates</a>();
+<a name="l00108"></a>00108             <span class="keywordflow">if</span>(GRectangle-&gt;intersects(MouseLoc.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>()))
 <a name="l00109"></a>00109             {
 <a name="l00110"></a>00110                 MouseHover = <span class="keyword">true</span>;
 <a name="l00111"></a>00111             }<span class="keywordflow">else</span>{
@@ -178,89 +178,89 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00114"></a>00114             <span class="keywordflow">return</span> MouseHover;
 <a name="l00115"></a>00115         }
 <a name="l00116"></a>00116 
-<a name="l00117"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a20903adb6d1b8650d73774190a2b9c57">00117</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a20903adb6d1b8650d73774190a2b9c57" title="Gets the stored value of whether or not the mouse is over the rectangle.">Rectangle::GetMouseHover</a>()
+<a name="l00117"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#aa55d6bb667692c4b94bbc8c749851e76">00117</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#aa55d6bb667692c4b94bbc8c749851e76" title="Gets the stored value of whether or not the mouse is over the rectangle.">Rectangle::GetMouseHover</a>()
 <a name="l00118"></a>00118         {
 <a name="l00119"></a>00119             <span class="keywordflow">return</span> MouseHover;
 <a name="l00120"></a>00120         }
 <a name="l00121"></a>00121 
-<a name="l00122"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a687b524b89e6a76bc102b60023d36abd">00122</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a687b524b89e6a76bc102b60023d36abd" title="Sets the background colour of the rectangle.">Rectangle::SetBackgroundColour</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
+<a name="l00122"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a11a3444ba78ad8c8f6303ccc73543c4b">00122</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a11a3444ba78ad8c8f6303ccc73543c4b" title="Sets the background colour of the rectangle.">Rectangle::SetBackgroundColour</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
 <a name="l00123"></a>00123         {
-<a name="l00124"></a>00124             GRectangle-&gt;background_colour(Colour.<a class="code" href="classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00124"></a>00124             GRectangle-&gt;background_colour(Colour.<a class="code" href="classMezzanine_1_1ColourValue.html#a7e0b3548fc11cdcbd89fab3ad53faaf1" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
 <a name="l00125"></a>00125         }
 <a name="l00126"></a>00126 
-<a name="l00127"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#ae9cc47125e075aaa9bfd397762de6e0c">00127</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#ae9cc47125e075aaa9bfd397762de6e0c" title="Sets the background image(if provided in the atlas) of the rectangle.">Rectangle::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
+<a name="l00127"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ada0a67a6718ce99a2e869ecb81ddcf35">00127</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ada0a67a6718ce99a2e869ecb81ddcf35" title="Sets the background image(if provided in the atlas) of the rectangle.">Rectangle::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)
 <a name="l00128"></a>00128         {
-<a name="l00129"></a>00129             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a6528081453b4f2be4d7a4ad8878edbf0" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,*GRectangle-&gt;GetNameFile());
+<a name="l00129"></a>00129             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,*GRectangle-&gt;GetNameFile());
 <a name="l00130"></a>00130             GRectangle-&gt;background_image(GSprite);
 <a name="l00131"></a>00131         }
 <a name="l00132"></a>00132 
-<a name="l00133"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#aa20172e511e24ed24e21e0bdac0e00c4">00133</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#ae9cc47125e075aaa9bfd397762de6e0c" title="Sets the background image(if provided in the atlas) of the rectangle.">Rectangle::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00133"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a9607ad557ba41738a2b6dc31abba6b5c">00133</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ada0a67a6718ce99a2e869ecb81ddcf35" title="Sets the background image(if provided in the atlas) of the rectangle.">Rectangle::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
 <a name="l00134"></a>00134         {
-<a name="l00135"></a>00135             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a6528081453b4f2be4d7a4ad8878edbf0" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,Atlas);
+<a name="l00135"></a>00135             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,Atlas);
 <a name="l00136"></a>00136             GRectangle-&gt;background_image(GSprite);
 <a name="l00137"></a>00137         }
 <a name="l00138"></a>00138 
-<a name="l00139"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#aaea6f9d5cd62b63a132c03c894a6d8de">00139</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#aaea6f9d5cd62b63a132c03c894a6d8de" title="Enables a border and sets it&amp;#39;s colour.">Rectangle::SetBorder</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Width, <span class="keyword">const</span> <a class="code" href="classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
+<a name="l00139"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a7a5309d467b85191c6f9ff82ab09a136">00139</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a7a5309d467b85191c6f9ff82ab09a136" title="Enables a border and sets it&amp;#39;s colour.">Rectangle::SetBorder</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Width, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
 <a name="l00140"></a>00140         {
-<a name="l00141"></a>00141             GRectangle-&gt;border(Width, Colour.<a class="code" href="classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00141"></a>00141             GRectangle-&gt;border(Width, Colour.<a class="code" href="classMezzanine_1_1ColourValue.html#a7e0b3548fc11cdcbd89fab3ad53faaf1" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
 <a name="l00142"></a>00142         }
 <a name="l00143"></a>00143 
-<a name="l00144"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#aebeea2052a72be49eb9dece731022c78">00144</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#aebeea2052a72be49eb9dece731022c78" title="Disables any border set on this rectangle if one is currently set.">Rectangle::NoBorder</a>()
+<a name="l00144"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ac6940d920a491fde80b9df599fab9daa">00144</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ac6940d920a491fde80b9df599fab9daa" title="Disables any border set on this rectangle if one is currently set.">Rectangle::NoBorder</a>()
 <a name="l00145"></a>00145         {
 <a name="l00146"></a>00146             GRectangle-&gt;no_border();
 <a name="l00147"></a>00147         }
 <a name="l00148"></a>00148 
-<a name="l00149"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a16fd918d53d0ae1f82af2574c0396b2c">00149</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a16fd918d53d0ae1f82af2574c0396b2c" title="Sets the relative top left position of this rectangle.">Rectangle::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
+<a name="l00149"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a95511f0a8505f07892434bdc363a7674">00149</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a95511f0a8505f07892434bdc363a7674" title="Sets the relative top left position of this rectangle.">Rectangle::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
 <a name="l00150"></a>00150         {
 <a name="l00151"></a>00151             RelPosition = Position;
-<a name="l00152"></a>00152             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00152"></a>00152             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
 <a name="l00153"></a>00153             GRectangle-&gt;position((WinDim * RelPosition).GetOgreVector2());
 <a name="l00154"></a>00154         }
 <a name="l00155"></a>00155 
-<a name="l00156"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#aa0e2d6170f0b2d5b1f915c705e7fca10">00156</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#aa0e2d6170f0b2d5b1f915c705e7fca10" title="Gets the relative top left position of this rectangle.">Rectangle::GetPosition</a>()
-<a name="l00157"></a>00157         {
+<a name="l00156"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a8df1f5fbba85a0a6f252ae470ce93c07">00156</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a8df1f5fbba85a0a6f252ae470ce93c07" title="Gets the relative top left position of this rectangle.">Rectangle::GetPosition</a>()<span class="keyword"> const</span>
+<a name="l00157"></a>00157 <span class="keyword">        </span>{
 <a name="l00158"></a>00158             <span class="keywordflow">return</span> RelPosition;
 <a name="l00159"></a>00159         }
 <a name="l00160"></a>00160 
-<a name="l00161"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a8a5af1cc3360196f793deb8a0db604e4">00161</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a8a5af1cc3360196f793deb8a0db604e4" title="Sets the top left position of this rectangle in pixels.">Rectangle::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
+<a name="l00161"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb">00161</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb" title="Sets the top left position of this rectangle in pixels.">Rectangle::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
 <a name="l00162"></a>00162         {
-<a name="l00163"></a>00163             RelPosition = Position / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00164"></a>00164             GRectangle-&gt;position(Position.<a class="code" href="classphys_1_1Vector2.html#adc6efedbdfdca596b719decc87ee2e4b" title="Gets a Ogre vector2.">GetOgreVector2</a>());
+<a name="l00163"></a>00163             RelPosition = Position / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00164"></a>00164             GRectangle-&gt;position(Position.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>());
 <a name="l00165"></a>00165         }
 <a name="l00166"></a>00166 
-<a name="l00167"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a976f977ee23e805b4a193fc0f9e8392f">00167</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a976f977ee23e805b4a193fc0f9e8392f" title="Gets the top left position of this rectangle in pixels.">Rectangle::GetActualPosition</a>()
-<a name="l00168"></a>00168         {
-<a name="l00169"></a>00169             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GRectangle-&gt;left(), GRectangle-&gt;top());
+<a name="l00167"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a642bbe279ac7c4473f8449e58f61ac31">00167</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a642bbe279ac7c4473f8449e58f61ac31" title="Gets the top left position of this rectangle in pixels.">Rectangle::GetActualPosition</a>()<span class="keyword"> const</span>
+<a name="l00168"></a>00168 <span class="keyword">        </span>{
+<a name="l00169"></a>00169             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GRectangle-&gt;left(), GRectangle-&gt;top());
 <a name="l00170"></a>00170             <span class="keywordflow">return</span> Pos;
 <a name="l00171"></a>00171         }
 <a name="l00172"></a>00172 
-<a name="l00173"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a5fa81c05e32b454c313f25609a03c58f">00173</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a5fa81c05e32b454c313f25609a03c58f" title="Sets the relative size of this rectangle.">Rectangle::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00173"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a1f7a9a5686063b03a254c26a420f458c">00173</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a1f7a9a5686063b03a254c26a420f458c" title="Sets the relative size of this rectangle.">Rectangle::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
 <a name="l00174"></a>00174         {
 <a name="l00175"></a>00175             RelSize = Size;
-<a name="l00176"></a>00176             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00177"></a>00177             GRectangle-&gt;width(WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00178"></a>00178             GRectangle-&gt;height(WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00176"></a>00176             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00177"></a>00177             GRectangle-&gt;width(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00178"></a>00178             GRectangle-&gt;height(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
 <a name="l00179"></a>00179         }
 <a name="l00180"></a>00180 
-<a name="l00181"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a5f54debc5c435cda9505b40ce82f4f24">00181</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a5f54debc5c435cda9505b40ce82f4f24" title="Gets the relative size of this rectangle.">Rectangle::GetSize</a>()
-<a name="l00182"></a>00182         {
+<a name="l00181"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a2deccb0b2e08116b01941afdd4eb7475">00181</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a2deccb0b2e08116b01941afdd4eb7475" title="Gets the relative size of this rectangle.">Rectangle::GetSize</a>()<span class="keyword"> const</span>
+<a name="l00182"></a>00182 <span class="keyword">        </span>{
 <a name="l00183"></a>00183             <span class="keywordflow">return</span> RelSize;
 <a name="l00184"></a>00184         }
 <a name="l00185"></a>00185 
-<a name="l00186"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#ab2afb04d539b2b1fc384fa1050b1ba21">00186</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#ab2afb04d539b2b1fc384fa1050b1ba21" title="Sets the size of this rectangle in pixels.">Rectangle::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00186"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274">00186</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274" title="Sets the size of this rectangle in pixels.">Rectangle::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
 <a name="l00187"></a>00187         {
-<a name="l00188"></a>00188             RelSize = Size / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00189"></a>00189             GRectangle-&gt;width(Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00190"></a>00190             GRectangle-&gt;height(Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00188"></a>00188             RelSize = Size / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00189"></a>00189             GRectangle-&gt;width(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00190"></a>00190             GRectangle-&gt;height(Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
 <a name="l00191"></a>00191         }
 <a name="l00192"></a>00192 
-<a name="l00193"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#ae29501765e3af7eac37d5ac581e77b24">00193</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#ae29501765e3af7eac37d5ac581e77b24" title="Gets the size of this rectangle in pixels.">Rectangle::GetActualSize</a>()
-<a name="l00194"></a>00194         {
-<a name="l00195"></a>00195             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GRectangle-&gt;width(), GRectangle-&gt;height());
+<a name="l00193"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a172e2725569b4d5c234349fe5b797d2b">00193</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a172e2725569b4d5c234349fe5b797d2b" title="Gets the size of this rectangle in pixels.">Rectangle::GetActualSize</a>()<span class="keyword"> const</span>
+<a name="l00194"></a>00194 <span class="keyword">        </span>{
+<a name="l00195"></a>00195             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GRectangle-&gt;width(), GRectangle-&gt;height());
 <a name="l00196"></a>00196             <span class="keywordflow">return</span> Pos;
 <a name="l00197"></a>00197         }
 <a name="l00198"></a>00198 
-<a name="l00199"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a79a98cac2cdd05d6ea6fa3865c9c4b6e">00199</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a79a98cac2cdd05d6ea6fa3865c9c4b6e" title="Sets the priority this button should be rendered with.">Rectangle::SetRenderPriority</a>(<span class="keyword">const</span> UI::RenderPriority&amp; Priority)
+<a name="l00199"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a30985ea691f36eaafe5d6864eec8ae19">00199</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a30985ea691f36eaafe5d6864eec8ae19" title="Sets the priority this button should be rendered with.">Rectangle::SetRenderPriority</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a>&amp; Priority)
 <a name="l00200"></a>00200         {
 <a name="l00201"></a>00201             Gorilla::RenderPriority RP;
 <a name="l00202"></a>00202             <span class="keywordflow">switch</span>(Priority)
@@ -280,8 +280,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00216"></a>00216             GRectangle-&gt;RenderPriority(RP);
 <a name="l00217"></a>00217         }
 <a name="l00218"></a>00218 
-<a name="l00219"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a8445b7d0dcb2c92f29aeadac305af420">00219</a>         UI::RenderPriority <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a8445b7d0dcb2c92f29aeadac305af420" title="Gets the priority this button should be rendered with.">Rectangle::GetRenderPriority</a>()
-<a name="l00220"></a>00220         {
+<a name="l00219"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a552cc0809a838c25f39248d16b591518">00219</a>         <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a552cc0809a838c25f39248d16b591518" title="Gets the priority this button should be rendered with.">Rectangle::GetRenderPriority</a>()<span class="keyword"> const</span>
+<a name="l00220"></a>00220 <span class="keyword">        </span>{
 <a name="l00221"></a>00221             Gorilla::RenderPriority RP = this-&gt;GRectangle-&gt;RenderPriority();
 <a name="l00222"></a>00222             <span class="keywordflow">switch</span>(RP)
 <a name="l00223"></a>00223             {
@@ -300,25 +300,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00236"></a>00236             <span class="keywordflow">return</span> UI::RP_Medium;
 <a name="l00237"></a>00237         }
 <a name="l00238"></a>00238 
-<a name="l00239"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a275a1495bdbb3829b5f94525d6caa9ed">00239</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a275a1495bdbb3829b5f94525d6caa9ed" title="Sets the Atlas to be assumed when one isn&amp;#39;t provided for atlas related tasks.">Rectangle::SetPrimaryAtlas</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00239"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a7be99336eb1a608b1cf96d6f7e63477e">00239</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a7be99336eb1a608b1cf96d6f7e63477e" title="Sets the Atlas to be assumed when one isn&amp;#39;t provided for atlas related tasks.">Rectangle::SetPrimaryAtlas</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
 <a name="l00240"></a>00240         {
 <a name="l00241"></a>00241             GRectangle-&gt;SetNameFile(Atlas);
 <a name="l00242"></a>00242         }
 <a name="l00243"></a>00243 
-<a name="l00244"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#ab4fe2f73e386c9735ad17789ce6cc51a">00244</a>         <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#ab4fe2f73e386c9735ad17789ce6cc51a" title="Gets the currently set primary atlas.">Rectangle::GetPrimaryAtlas</a>()
-<a name="l00245"></a>00245         {
+<a name="l00244"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a1ac92749826bce7b8f9b3d3e9d27a12f">00244</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a1ac92749826bce7b8f9b3d3e9d27a12f" title="Gets the currently set primary atlas.">Rectangle::GetPrimaryAtlas</a>()<span class="keyword"> const</span>
+<a name="l00245"></a>00245 <span class="keyword">        </span>{
 <a name="l00246"></a>00246             <span class="keywordflow">return</span> *GRectangle-&gt;GetNameFile();
 <a name="l00247"></a>00247         }
 <a name="l00248"></a>00248 
-<a name="l00249"></a><a class="code" href="classphys_1_1UI_1_1Rectangle.html#a090cfa5a1298c333335258d52d81c017">00249</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html#a090cfa5a1298c333335258d52d81c017" title="Updates the dimensions of this rectangle to match those of the new screen size.">Rectangle::UpdateDimensions</a>()
+<a name="l00249"></a><a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a86d759d43ec0c1d429c572a782405e8c">00249</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a86d759d43ec0c1d429c572a782405e8c" title="Updates the dimensions of this rectangle to match those of the new screen size.">Rectangle::UpdateDimensions</a>()
 <a name="l00250"></a>00250         {
-<a name="l00251"></a>00251             this-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#a8a5af1cc3360196f793deb8a0db604e4" title="Sets the top left position of this rectangle in pixels.">SetActualPosition</a>(RelPosition * Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>());
-<a name="l00252"></a>00252             this-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#ab2afb04d539b2b1fc384fa1050b1ba21" title="Sets the size of this rectangle in pixels.">SetActualSize</a>(RelSize * Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>());
-<a name="l00253"></a>00253         }
-<a name="l00254"></a>00254     }<span class="comment">//UI</span>
-<a name="l00255"></a>00255 }<span class="comment">//phys</span>
-<a name="l00256"></a>00256 
-<a name="l00257"></a>00257 <span class="preprocessor">#endif</span>
+<a name="l00251"></a>00251             <span class="comment">//this-&gt;SetActualPosition(RelPosition * Parent-&gt;GetParent()-&gt;GetViewportDimensions());</span>
+<a name="l00252"></a>00252             <span class="comment">//this-&gt;SetActualSize(RelSize * Parent-&gt;GetParent()-&gt;GetViewportDimensions());</span>
+<a name="l00253"></a>00253             <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a6b070131c2a4174788246b95517a6528" title="Updates a renderables size and position as needed.">ViewportUpdateTool::UpdateRenderable</a>(<span class="keyword">this</span>);
+<a name="l00254"></a>00254         }
+<a name="l00255"></a>00255     }<span class="comment">//UI</span>
+<a name="l00256"></a>00256 }<span class="comment">//Mezzanine</span>
+<a name="l00257"></a>00257 
+<a name="l00258"></a>00258 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -326,7 +327,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -336,6 +337,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

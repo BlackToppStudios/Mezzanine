@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: simpletimer.h Source File</title>
+<title>MezzanineEngine: simpletimer.h Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -106,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;timer.h&quot;</span>
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="keyword">namespace </span>phys
+<a name="l00045"></a>00045 <span class="keyword">namespace </span>Mezzanine
 <a name="l00046"></a>00046 {<span class="comment"></span>
 <a name="l00047"></a>00047 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00048"></a>00048 <span class="comment">    /// @class SimpleTimer</span>
@@ -115,59 +115,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00051"></a>00051 <span class="comment">    /// @details This timer class should be used only for shorter periods, such as tracking ability cooldowns or gun fire rates.</span>
 <a name="l00052"></a>00052 <span class="comment">    /// For longer periods of time look at the EnhancedTimer class.</span>
 <a name="l00053"></a>00053 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00054"></a><a class="code" href="classphys_1_1SimpleTimer.html">00054</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="classphys_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a> : <span class="keyword">public</span> <a class="code" href="classphys_1_1Timer.html" title="A base timer class for the different timers.">Timer</a>
+<a name="l00054"></a><a class="code" href="classMezzanine_1_1SimpleTimer.html">00054</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="classMezzanine_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Timer.html" title="A base timer class for the different timers.">Timer</a>
 <a name="l00055"></a>00055     {
 <a name="l00056"></a>00056         <span class="keyword">protected</span>:
-<a name="l00057"></a>00057             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentTime;
-<a name="l00058"></a>00058             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GoalTime;
-<a name="l00059"></a>00059             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> InitialTime;
-<a name="l00060"></a>00060             <span class="keyword">virtual</span> <span class="keywordtype">void</span> Update(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed);
-<a name="l00061"></a>00061             <span class="keyword">virtual</span> <span class="keywordtype">void</span> UpdateAsNormal(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed);
-<a name="l00062"></a>00062             <span class="keyword">virtual</span> <span class="keywordtype">void</span> UpdateAsStopWatch(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed);
-<a name="l00063"></a>00063             <span class="keyword">virtual</span> <span class="keywordtype">void</span> UpdateAsAlarm(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed);
+<a name="l00057"></a>00057             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentTime;
+<a name="l00058"></a>00058             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GoalTime;
+<a name="l00059"></a>00059             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> InitialTime;
+<a name="l00060"></a>00060             <span class="keyword">virtual</span> <span class="keywordtype">void</span> Update(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed);
+<a name="l00061"></a>00061             <span class="keyword">virtual</span> <span class="keywordtype">void</span> UpdateAsNormal(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed);
+<a name="l00062"></a>00062             <span class="keyword">virtual</span> <span class="keywordtype">void</span> UpdateAsStopWatch(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed);
+<a name="l00063"></a>00063             <span class="keyword">virtual</span> <span class="keywordtype">void</span> UpdateAsAlarm(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed);
 <a name="l00064"></a>00064             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> GoalReached();
 <a name="l00065"></a>00065         <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00066"></a>00066 <span class="comment">            /// @brief Standard Constructor.</span>
 <a name="l00067"></a>00067 <span class="comment">            /// @param Style The styling/type of timer to be constructed.</span>
-<a name="l00068"></a>00068 <span class="comment"></span>            <a class="code" href="classphys_1_1SimpleTimer.html#a3094be3aaf4cf65189604a413fa56f95" title="Standard Constructor.">SimpleTimer</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329" title="The style of timer to be used.">Timer::TimerStyle</a> style);<span class="comment"></span>
+<a name="l00068"></a>00068 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1SimpleTimer.html#a0487972b9181d90a38759449fc223452" title="Standard Constructor.">SimpleTimer</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Timer.html#a1db436d4e0d6f1676e41ba3cb2ea3aaa" title="The style of timer to be used.">Timer::TimerStyle</a> style);<span class="comment"></span>
 <a name="l00069"></a>00069 <span class="comment">            /// @brief Class destructor.</span>
-<a name="l00070"></a>00070 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1SimpleTimer.html#ae7ef0b3d2b00b97d9c8a69654d9f6d74" title="Class destructor.">~SimpleTimer</a>();<span class="comment"></span>
+<a name="l00070"></a>00070 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1SimpleTimer.html#ae865561febcb6e7ef2dfc99f5af0571a" title="Class destructor.">~SimpleTimer</a>();<span class="comment"></span>
 <a name="l00071"></a>00071 <span class="comment">            /// @brief Sets the current value to it&#39;s initial value.</span>
-<a name="l00072"></a>00072 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classphys_1_1SimpleTimer.html#adea8d8b608e5abb96460c83f7b47f94f" title="Sets the current value to it&amp;#39;s initial value.">Reset</a>();<span class="comment"></span>
+<a name="l00072"></a>00072 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1SimpleTimer.html#a334696cd09689fb26c4e545a76220522" title="Sets the current value to it&amp;#39;s initial value.">Reset</a>();<span class="comment"></span>
 <a name="l00073"></a>00073 <span class="comment">            /// @brief Sets whether or not the Timer should reset if it reaches it&#39;s goal.  @n</span>
 <a name="l00074"></a>00074 <span class="comment">            /// Ex. If a stopwatch reaches 0.</span>
 <a name="l00075"></a>00075 <span class="comment">            /// @return Returns a reference to this timer.</span>
-<a name="l00076"></a>00076 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>&amp; <a class="code" href="classphys_1_1SimpleTimer.html#a5a278c256d292a68ffbb35f8db9cb445" title="Sets whether or not the Timer should reset if it reaches it&amp;#39;s goal.   Ex. If a stopwatch reaches ...">SetAutoReset</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> AutoReset);<span class="comment"></span>
+<a name="l00076"></a>00076 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>&amp; <a class="code" href="classMezzanine_1_1SimpleTimer.html#affc02e33add5e8d49116997f94c6407f" title="Sets whether or not the Timer should reset if it reaches it&amp;#39;s goal.   Ex. If a stopwatch reaches ...">SetAutoReset</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> AutoReset);<span class="comment"></span>
 <a name="l00077"></a>00077 <span class="comment">            /// @brief Sets the current time in Microseconds.</span>
 <a name="l00078"></a>00078 <span class="comment">            /// @return Returns a reference to this timer.</span>
 <a name="l00079"></a>00079 <span class="comment">            /// @param Current The value to set as current time in Microseconds.</span>
-<a name="l00080"></a>00080 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>&amp; <a class="code" href="classphys_1_1SimpleTimer.html#a1c874c4e367d582ab0006e7cdb8be0d5" title="Sets the current time in Microseconds.">SetCurrentTime</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Current);<span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>&amp; <a class="code" href="classMezzanine_1_1SimpleTimer.html#aaa7df02f1192ec7a932cbcb7b3efdbb4" title="Sets the current time in Microseconds.">SetCurrentTime</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Current);<span class="comment"></span>
 <a name="l00081"></a>00081 <span class="comment">            /// @brief Sets the goal time in Microseconds.</span>
 <a name="l00082"></a>00082 <span class="comment">            /// @return Returns a reference to this timer.</span>
 <a name="l00083"></a>00083 <span class="comment">            /// @param Goal The value to set as goal time in Microseconds.</span>
-<a name="l00084"></a>00084 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>&amp; <a class="code" href="classphys_1_1SimpleTimer.html#a09ad426a36971257d2f800075f562eda" title="Sets the goal time in Microseconds.">SetGoalTime</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Goal);<span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>&amp; <a class="code" href="classMezzanine_1_1SimpleTimer.html#a2c34bfc917fa3ff5862dd12c2e31c1c6" title="Sets the goal time in Microseconds.">SetGoalTime</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Goal);<span class="comment"></span>
 <a name="l00085"></a>00085 <span class="comment">            /// @brief Sets the initial time in Microseconds. The time that resetting sets the timer to.</span>
 <a name="l00086"></a>00086 <span class="comment">            /// @return Returns a reference to this timer.</span>
 <a name="l00087"></a>00087 <span class="comment">            /// @param Initial The value to set as initial time in Microseconds.</span>
-<a name="l00088"></a>00088 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>&amp; <a class="code" href="classphys_1_1SimpleTimer.html#a00bf7f837c8ed515a65bd8dbf6d9d593" title="Sets the initial time in Microseconds. The time that resetting sets the timer to.">SetInitialTime</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Initial);<span class="comment"></span>
+<a name="l00088"></a>00088 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>&amp; <a class="code" href="classMezzanine_1_1SimpleTimer.html#a88f8a89917ab32aa409d6bab5bc4603a" title="Sets the initial time in Microseconds. The time that resetting sets the timer to.">SetInitialTime</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Initial);<span class="comment"></span>
 <a name="l00089"></a>00089 <span class="comment">            /// @brief Gets the Current time in Microseconds.</span>
 <a name="l00090"></a>00090 <span class="comment">            /// @return Returns a Whole representing the current time in Microseconds.</span>
-<a name="l00091"></a>00091 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1SimpleTimer.html#aa0cda0797bfb501240016177ff1450a5" title="Gets the Current time in Microseconds.">GetCurrentTime</a>();<span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1SimpleTimer.html#adfd244c4a9073eb5b0b1f5e2dffec55f" title="Gets the Current time in Microseconds.">GetCurrentTime</a>();<span class="comment"></span>
 <a name="l00092"></a>00092 <span class="comment">            /// @brief Gets the Goal time in Microseconds.</span>
 <a name="l00093"></a>00093 <span class="comment">            /// @return Returns a Whole representing the goal time in Microseconds.</span>
-<a name="l00094"></a>00094 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1SimpleTimer.html#a37b29b36164f5538988df955fd46e89b" title="Gets the Goal time in Microseconds.">GetGoalTime</a>();<span class="comment"></span>
+<a name="l00094"></a>00094 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1SimpleTimer.html#afa2889dc18b435749a64d704e400e382" title="Gets the Goal time in Microseconds.">GetGoalTime</a>();<span class="comment"></span>
 <a name="l00095"></a>00095 <span class="comment">            /// @brief Gets the Initial time in Microseconds.</span>
 <a name="l00096"></a>00096 <span class="comment">            /// @return Returns a Whole representing the initial time in Microseconds.</span>
-<a name="l00097"></a>00097 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1SimpleTimer.html#a6d56952c8b2f2e3405a1bc2cc3b8a833" title="Gets the Initial time in Microseconds.">GetInitialTime</a>();<span class="comment"></span>
+<a name="l00097"></a>00097 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1SimpleTimer.html#a526c7d66f76d12de1e604087c146f457" title="Gets the Initial time in Microseconds.">GetInitialTime</a>();<span class="comment"></span>
 <a name="l00098"></a>00098 <span class="comment">            /// @brief Gets the Current time in Milliseconds.</span>
 <a name="l00099"></a>00099 <span class="comment">            /// @return Returns a Whole representing the current time in Milliseconds.</span>
-<a name="l00100"></a>00100 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1SimpleTimer.html#a334e151fd080489c1704abd3039b1843" title="Gets the Current time in Milliseconds.">GetCurrentTimeInMilli</a>();<span class="comment"></span>
+<a name="l00100"></a>00100 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1SimpleTimer.html#a17038a95d208b1998ea7642a64c7b926" title="Gets the Current time in Milliseconds.">GetCurrentTimeInMilli</a>();<span class="comment"></span>
 <a name="l00101"></a>00101 <span class="comment">            /// @brief Gets the Goal time in Milliseconds.</span>
 <a name="l00102"></a>00102 <span class="comment">            /// @return Returns a Whole representing the goal time in Milliseconds.</span>
-<a name="l00103"></a>00103 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1SimpleTimer.html#a69b08da65148ea36b62d9d0f672e8325" title="Gets the Goal time in Milliseconds.">GetGoalTimeInMilli</a>();<span class="comment"></span>
+<a name="l00103"></a>00103 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1SimpleTimer.html#aa1b5e26e12e6931e8c24e5a9827ad3cd" title="Gets the Goal time in Milliseconds.">GetGoalTimeInMilli</a>();<span class="comment"></span>
 <a name="l00104"></a>00104 <span class="comment">            /// @brief Gets the Initial time in Milliseconds.</span>
 <a name="l00105"></a>00105 <span class="comment">            /// @return Returns a Whole representing the initial time in Milliseconds.</span>
-<a name="l00106"></a>00106 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1SimpleTimer.html#a6ff614afe79f0426c371f67dfe3016fc" title="Gets the Initial time in Milliseconds.">GetInitialTimeInMilli</a>();
+<a name="l00106"></a>00106 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1SimpleTimer.html#af5a5eefa23c2dc50f14936d45c556b53" title="Gets the Initial time in Milliseconds.">GetInitialTimeInMilli</a>();
 <a name="l00107"></a>00107     };
 <a name="l00108"></a>00108 }
 <a name="l00109"></a>00109 
@@ -179,7 +179,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -189,6 +189,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

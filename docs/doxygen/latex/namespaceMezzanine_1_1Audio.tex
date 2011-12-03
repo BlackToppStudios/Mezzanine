@@ -1,0 +1,72 @@
+\hypertarget{namespaceMezzanine_1_1Audio}{
+\subsection{Mezzanine::Audio Namespace Reference}
+\label{namespaceMezzanine_1_1Audio}\index{Mezzanine::Audio@{Mezzanine::Audio}}
+}
+
+
+This namespace is for all the classes belonging to the \hyperlink{namespaceMezzanine_1_1Audio}{Audio} Subsystem.  
+
+
+\subsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classMezzanine_1_1Audio_1_1Listener}{Listener}
+\item 
+class \hyperlink{classMezzanine_1_1Audio_1_1MusicPlayer}{MusicPlayer}
+\begin{DoxyCompactList}\small\item\em This is a convenience class for the playing of music in a game. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1Audio_1_1Playlist}{Playlist}
+\begin{DoxyCompactList}\small\item\em This class is a list of sounds with common playlist features. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1Audio_1_1Sound}{Sound}
+\begin{DoxyCompactList}\small\item\em This is an instance of a sound that can be played and manipulated. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1Audio_1_1SoundSet}{SoundSet}
+\begin{DoxyCompactList}\small\item\em This is a vector that stores sounds. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295e}{SoundType} \{ \hyperlink{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295ead2a032a407e097b7bb7d5a385653aad0}{ST\_\-Ambient}, 
+\hyperlink{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295eae976bb4e3c6ed427af5bfa77a579d2c5}{ST\_\-Dialog}, 
+\hyperlink{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295ea93feb4ba046a6f320ad48bf064efb939}{ST\_\-Effect}, 
+\hyperlink{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295ea8b58a4bf5a48652cdb9108e0227adc70}{ST\_\-Music}
+ \}
+\begin{DoxyCompactList}\small\item\em Used by the sound class to determine what type of sound it is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This namespace is for all the classes belonging to the \hyperlink{namespaceMezzanine_1_1Audio}{Audio} Subsystem. Our \hyperlink{namespaceMezzanine_1_1Audio}{Audio} subsystem is based on a heavily modified/forked version of cAudio, and as such uses a similiar structure of classes and interfaces. 
+
+\subsubsection{Enumeration Type Documentation}
+\hypertarget{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295e}{
+\index{Mezzanine::Audio@{Mezzanine::Audio}!SoundType@{SoundType}}
+\index{SoundType@{SoundType}!Mezzanine::Audio@{Mezzanine::Audio}}
+\paragraph[{SoundType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::Audio::SoundType}}\hfill}
+\label{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295e}
+
+
+Used by the sound class to determine what type of sound it is. 
+
+Classifying what type of sound a sound instance is allows it to be affected by functions that globally affect that pool. \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ST\_\-Ambient@{ST\_\-Ambient}!Mezzanine::Audio@{Mezzanine::Audio}}\index{Mezzanine::Audio@{Mezzanine::Audio}!ST\_\-Ambient@{ST\_\-Ambient}}\item[{\em 
+\hypertarget{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295ead2a032a407e097b7bb7d5a385653aad0}{
+ST\_\-Ambient}
+\label{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295ead2a032a407e097b7bb7d5a385653aad0}
+}]Environmental sounds. Bird's chirping, water washing against rocks, etc. \index{ST\_\-Dialog@{ST\_\-Dialog}!Mezzanine::Audio@{Mezzanine::Audio}}\index{Mezzanine::Audio@{Mezzanine::Audio}!ST\_\-Dialog@{ST\_\-Dialog}}\item[{\em 
+\hypertarget{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295eae976bb4e3c6ed427af5bfa77a579d2c5}{
+ST\_\-Dialog}
+\label{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295eae976bb4e3c6ed427af5bfa77a579d2c5}
+}]Character sounds and speech. \index{ST\_\-Effect@{ST\_\-Effect}!Mezzanine::Audio@{Mezzanine::Audio}}\index{Mezzanine::Audio@{Mezzanine::Audio}!ST\_\-Effect@{ST\_\-Effect}}\item[{\em 
+\hypertarget{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295ea93feb4ba046a6f320ad48bf064efb939}{
+ST\_\-Effect}
+\label{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295ea93feb4ba046a6f320ad48bf064efb939}
+}]Various effects such as objects colliding, explosions, guns firing, etc. \index{ST\_\-Music@{ST\_\-Music}!Mezzanine::Audio@{Mezzanine::Audio}}\index{Mezzanine::Audio@{Mezzanine::Audio}!ST\_\-Music@{ST\_\-Music}}\item[{\em 
+\hypertarget{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295ea8b58a4bf5a48652cdb9108e0227adc70}{
+ST\_\-Music}
+\label{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295ea8b58a4bf5a48652cdb9108e0227adc70}
+}]Self explanitory. The game SoundTrack. \end{description}
+\end{Desc}
+
+
+
+Definition at line 54 of file audioenumerations.h.
+

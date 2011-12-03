@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: actorterrain.cpp Source File</title>
+<title>MezzanineEngine: actorterrain.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -117,75 +117,80 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00053"></a>00053 <span class="preprocessor">#include &quot;internalmotionstate.h.cpp&quot;</span>
 <a name="l00054"></a>00054 <span class="preprocessor">#include &quot;internalmeshtools.h.cpp&quot;</span>
 <a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="keyword">namespace </span>phys
+<a name="l00056"></a>00056 <span class="keyword">namespace </span>Mezzanine
 <a name="l00057"></a>00057 {
-<a name="l00058"></a><a class="code" href="classphys_1_1ActorTerrain.html#af0d3b88d5ee409c5451bb13a20254176">00058</a>     <a class="code" href="classphys_1_1ActorTerrain.html#af0d3b88d5ee409c5451bb13a20254176" title="Class constructor.">ActorTerrain::ActorTerrain</a>(<a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> InitPosition, <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group)
-<a name="l00059"></a>00059         : <a class="code" href="classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>()
+<a name="l00058"></a><a class="code" href="classMezzanine_1_1ActorTerrain.html#aed127b452b96d0c2d75b8d6f0640608a">00058</a>     <a class="code" href="classMezzanine_1_1ActorTerrain.html#aed127b452b96d0c2d75b8d6f0640608a" title="Class constructor.">ActorTerrain::ActorTerrain</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> InitPosition, <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> group)
+<a name="l00059"></a>00059         : <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>()
 <a name="l00060"></a>00060     {
 <a name="l00061"></a>00061         <span class="comment">// this isn&#39;t required to operate, but it does allow the mesh manager to know what is loaded.</span>
-<a name="l00062"></a>00062         <a class="code" href="classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classphys_1_1World.html#a1f84e1eb14ef87edbbf7e7b44a4e142c" title="This gets the MeshManager from the manager list.">GetMeshManager</a>()-&gt;<a class="code" href="classphys_1_1MeshManager.html#aa35e2953c88b103c6fb3c39c2813f7ef" title="Loads a mesh file from disk and prepares it for use.">LoadMesh</a>(file,group);
+<a name="l00062"></a>00062         <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">MeshManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1MeshManager.html#a01fcda6b9f1363e99b6ac61e4afcb951" title="Loads a mesh file from disk and prepares it for use.">LoadMesh</a>(file,group);
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064         this-&gt;<a class="code" href="classphys_1_1ActorBase.html#a25f3811fa1b2206dbabfaa2d6eb97784" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a> = <a class="code" href="classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classphys_1_1World.html#a86a86a78851845837ccc43da8b3a3019" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="classphys_1_1SceneManager.html#aa6bfec6329ecfb7c6196f488e1499c3c" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createEntity(name, file, group);
-<a name="l00065"></a>00065         this-&gt;<a class="code" href="structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a> = <span class="keyword">new</span> <a class="code" href="classphys_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>(<span class="keyword">this</span>,<a class="code" href="classphys_1_1ActorBase.html#a25f3811fa1b2206dbabfaa2d6eb97784" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a>);
-<a name="l00066"></a>00066         this-&gt;<a class="code" href="classphys_1_1ActorBase.html#ab776527aa927b8787313c50530cc24ba" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a> = <span class="keyword">new</span> internal::PhysMotionState(<a class="code" href="classphys_1_1ActorBase.html#a7262c31023ff41a027206e47befc7417" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">GraphicsNode</a>);
-<a name="l00067"></a>00067         this-&gt;<a class="code" href="classphys_1_1ActorBase.html#ab776527aa927b8787313c50530cc24ba" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>-&gt;SetPosition(InitPosition);
-<a name="l00068"></a>00068         this-&gt;<a class="code" href="classphys_1_1ActorTerrain.html#a53c93c2330cb9950667232fbbfb88803" title="This class encapsulates physics specific configuration for this actor.">PhysicsSettings</a> = <span class="keyword">new</span> <a class="code" href="classphys_1_1ActorTerrainPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorRigid.">ActorTerrainPhysicsSettings</a>(<span class="keyword">this</span>,<a class="code" href="classphys_1_1ActorTerrain.html#a86b22aad61a7ffceb5c757ddcbca48c3" title="The physics data.">RigidBody</a>);
-<a name="l00069"></a>00069         <a class="code" href="classphys_1_1ActorTerrain.html#ade758919c0f2b58ad1fe4bfd388d79af" title="Uses value already passed into this to create the physics shapes.">CreateCollisionTerrain</a>();
-<a name="l00070"></a>00070         <a class="code" href="classphys_1_1ActorBase.html#a42baa3657656300eeefe3ed48f526a00" title="This variable stores the type of actor that this class is.">ActorType</a> = ActorBase::Actorterrain;
+<a name="l00064"></a>00064         this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#ab28b13559f01195a5f81768a445e5119" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a> = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">SceneManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createEntity(name, file, group);
+<a name="l00065"></a>00065         this-&gt;<a class="code" href="structMezzanine_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a> = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>(<span class="keyword">this</span>,<a class="code" href="classMezzanine_1_1ActorBase.html#ab28b13559f01195a5f81768a445e5119" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a>);
+<a name="l00066"></a>00066         this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a073d5307c4cb7a82f13133e8216f797b" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a> = <span class="keyword">new</span> internal::PhysMotionState(<a class="code" href="classMezzanine_1_1ActorBase.html#ac0a8cda5141e05df03a31f8b9b5908a6" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">GraphicsNode</a>);
+<a name="l00067"></a>00067         this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a073d5307c4cb7a82f13133e8216f797b" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>-&gt;SetPosition(InitPosition);
+<a name="l00068"></a>00068         <a class="code" href="classMezzanine_1_1ActorTerrain.html#a8abb8266335f414347a23c949bd53dfc" title="Uses value already passed into this to create the physics shapes.">CreateCollisionTerrain</a>();
+<a name="l00069"></a>00069         this-&gt;<a class="code" href="classMezzanine_1_1ActorTerrain.html#a2b116504be8548c2574e7b1ddef7467d" title="This class encapsulates physics specific configuration for this actor.">PhysicsSettings</a> = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1ActorTerrainPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorRigid.">ActorTerrainPhysicsSettings</a>(<span class="keyword">this</span>,<a class="code" href="classMezzanine_1_1ActorTerrain.html#a631d262f2f676474c19334d00d33eb12" title="The physics data.">RigidBody</a>);
+<a name="l00070"></a>00070         <a class="code" href="classMezzanine_1_1ActorBase.html#aac246ea33955e7aefe2b395e450967b6" title="This variable stores the type of actor that this class is.">ActorType</a> = ActorBase::Actorterrain;
 <a name="l00071"></a>00071     }
 <a name="l00072"></a>00072 
-<a name="l00073"></a><a class="code" href="classphys_1_1ActorTerrain.html#af6ef2e3694b7afe0b59cfa0909c0490c">00073</a>     <a class="code" href="classphys_1_1ActorTerrain.html#af6ef2e3694b7afe0b59cfa0909c0490c" title="Class destructor.">ActorTerrain::~ActorTerrain</a>()
+<a name="l00073"></a><a class="code" href="classMezzanine_1_1ActorTerrain.html#a602d36036eebb45501aabade1e1ec3e9">00073</a>     <a class="code" href="classMezzanine_1_1ActorTerrain.html#a602d36036eebb45501aabade1e1ec3e9" title="Class destructor.">ActorTerrain::~ActorTerrain</a>()
 <a name="l00074"></a>00074     {
 <a name="l00075"></a>00075     }
 <a name="l00076"></a>00076 
-<a name="l00077"></a><a class="code" href="classphys_1_1ActorTerrain.html#ade758919c0f2b58ad1fe4bfd388d79af">00077</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1ActorTerrain.html#ade758919c0f2b58ad1fe4bfd388d79af" title="Uses value already passed into this to create the physics shapes.">ActorTerrain::CreateCollisionTerrain</a>()
+<a name="l00077"></a><a class="code" href="classMezzanine_1_1ActorTerrain.html#a8abb8266335f414347a23c949bd53dfc">00077</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorTerrain.html#a8abb8266335f414347a23c949bd53dfc" title="Uses value already passed into this to create the physics shapes.">ActorTerrain::CreateCollisionTerrain</a>()
 <a name="l00078"></a>00078     {
 <a name="l00079"></a>00079         <span class="comment">//CollisionObject = new btCollisionObject();</span>
 <a name="l00080"></a>00080         btScalar mass = 0.f;
-<a name="l00081"></a>00081         <a class="code" href="classphys_1_1ActorTerrain.html#a86b22aad61a7ffceb5c757ddcbca48c3" title="The physics data.">RigidBody</a> = <span class="keyword">new</span> btRigidBody(mass, this-&gt;<a class="code" href="classphys_1_1ActorBase.html#ab776527aa927b8787313c50530cc24ba" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>, this-&gt;<a class="code" href="classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
-<a name="l00082"></a>00082         <a class="code" href="classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a> = <a class="code" href="classphys_1_1ActorTerrain.html#a86b22aad61a7ffceb5c757ddcbca48c3" title="The physics data.">RigidBody</a>;
-<a name="l00083"></a>00083         <a class="code" href="classphys_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>* ActorRef = <span class="keyword">new</span> <a class="code" href="classphys_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>(phys::WOT_ActorTerrain,<span class="keyword">this</span>);
+<a name="l00081"></a>00081         <a class="code" href="classMezzanine_1_1ActorTerrain.html#a631d262f2f676474c19334d00d33eb12" title="The physics data.">RigidBody</a> = <span class="keyword">new</span> btRigidBody(mass, this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a073d5307c4cb7a82f13133e8216f797b" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>, this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a51fdd84432cc14bebfe2d7bbc52cd4a0" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
+<a name="l00082"></a>00082         <a class="code" href="classMezzanine_1_1ActorBase.html#a453166e089f7a3821bf099e4404c3e43" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a> = <a class="code" href="classMezzanine_1_1ActorTerrain.html#a631d262f2f676474c19334d00d33eb12" title="The physics data.">RigidBody</a>;
+<a name="l00083"></a>00083         <a class="code" href="classMezzanine_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>* ActorRef = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>(Mezzanine::WOT_ActorTerrain,<span class="keyword">this</span>);
 <a name="l00084"></a>00084         Ogre::Any OgreRef(ActorRef);
-<a name="l00085"></a>00085         <a class="code" href="classphys_1_1ActorBase.html#a25f3811fa1b2206dbabfaa2d6eb97784" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a>-&gt;setUserAny(OgreRef);
-<a name="l00086"></a>00086         <a class="code" href="classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setUserPointer(ActorRef);
+<a name="l00085"></a>00085         <a class="code" href="classMezzanine_1_1ActorBase.html#ab28b13559f01195a5f81768a445e5119" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a>-&gt;setUserAny(OgreRef);
+<a name="l00086"></a>00086         <a class="code" href="classMezzanine_1_1ActorBase.html#a453166e089f7a3821bf099e4404c3e43" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setUserPointer(ActorRef);
 <a name="l00087"></a>00087     }
 <a name="l00088"></a>00088 
-<a name="l00089"></a><a class="code" href="classphys_1_1ActorTerrain.html#a37d0fb3d028ac1946e3553f7f0eef56d">00089</a>     <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1ActorTerrain.html#a37d0fb3d028ac1946e3553f7f0eef56d" title="Checks of the actor is static or kinematic.">ActorTerrain::IsStaticOrKinematic</a>()
+<a name="l00089"></a><a class="code" href="classMezzanine_1_1ActorTerrain.html#a73d23a9ab0f0eb2fd3238edbd226bd8a">00089</a>     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1ActorTerrain.html#a73d23a9ab0f0eb2fd3238edbd226bd8a" title="Checks of the actor is static or kinematic.">ActorTerrain::IsStaticOrKinematic</a>()
 <a name="l00090"></a>00090     {
-<a name="l00091"></a>00091         <span class="keywordflow">return</span> <a class="code" href="classphys_1_1ActorTerrain.html#a86b22aad61a7ffceb5c757ddcbca48c3" title="The physics data.">RigidBody</a>-&gt;isStaticOrKinematicObject();
+<a name="l00091"></a>00091         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ActorTerrain.html#a631d262f2f676474c19334d00d33eb12" title="The physics data.">RigidBody</a>-&gt;isStaticOrKinematicObject();
 <a name="l00092"></a>00092     }
 <a name="l00093"></a>00093 
-<a name="l00094"></a><a class="code" href="classphys_1_1ActorTerrain.html#a08f306ae189e55d780dcaa2c43d7b6eb">00094</a>     std::string <a class="code" href="classphys_1_1ActorTerrain.html#a08f306ae189e55d780dcaa2c43d7b6eb" title="Retrieves the name of the object.">ActorTerrain::GetName</a> ()<span class="keyword"> const</span>
+<a name="l00094"></a><a class="code" href="classMezzanine_1_1ActorTerrain.html#a072164c245d3ed761558f18e9106416a">00094</a>     std::string <a class="code" href="classMezzanine_1_1ActorTerrain.html#a072164c245d3ed761558f18e9106416a" title="Retrieves the name of the object.">ActorTerrain::GetName</a> ()<span class="keyword"> const</span>
 <a name="l00095"></a>00095 <span class="keyword">    </span>{
-<a name="l00096"></a>00096         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classphys_1_1ActorBase.html#a25f3811fa1b2206dbabfaa2d6eb97784" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a>-&gt;getName();
+<a name="l00096"></a>00096         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#ab28b13559f01195a5f81768a445e5119" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a>-&gt;getName();
 <a name="l00097"></a>00097     }
 <a name="l00098"></a>00098 
-<a name="l00099"></a><a class="code" href="classphys_1_1ActorTerrain.html#a5768f289e8abaf0805eae274fd215f3a">00099</a>     <a class="code" href="classphys_1_1ActorTerrainPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorRigid.">ActorTerrainPhysicsSettings</a>* <a class="code" href="classphys_1_1ActorTerrain.html#a5768f289e8abaf0805eae274fd215f3a" title="Gets the physics settings class associated with this actor.">ActorTerrain::GetPhysicsSettings</a>()
+<a name="l00099"></a><a class="code" href="classMezzanine_1_1ActorTerrain.html#a95e30dc1ab3daddc46357b3c421b644f">00099</a>     <a class="code" href="classMezzanine_1_1ActorTerrainPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorRigid.">ActorTerrainPhysicsSettings</a>* <a class="code" href="classMezzanine_1_1ActorTerrain.html#a95e30dc1ab3daddc46357b3c421b644f" title="Gets the physics settings class associated with this actor.">ActorTerrain::GetPhysicsSettings</a>()
 <a name="l00100"></a>00100     {
-<a name="l00101"></a>00101         <span class="keywordflow">return</span> <a class="code" href="classphys_1_1ActorTerrain.html#a53c93c2330cb9950667232fbbfb88803" title="This class encapsulates physics specific configuration for this actor.">PhysicsSettings</a>;
+<a name="l00101"></a>00101         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ActorTerrain.html#a2b116504be8548c2574e7b1ddef7467d" title="This class encapsulates physics specific configuration for this actor.">PhysicsSettings</a>;
 <a name="l00102"></a>00102     }
 <a name="l00103"></a>00103 
-<a name="l00104"></a><a class="code" href="classphys_1_1ActorTerrain.html#a890ee6f67fda30381bce9c949ae36566">00104</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1ActorTerrain.html#a890ee6f67fda30381bce9c949ae36566" title="Adds the actor to the physics world.">ActorTerrain::AddObjectToWorld</a> (<a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld)
+<a name="l00104"></a>00104     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorBase.html#a766dc0add62500689498a9c1d3f758ea" title="Adds the actor to the physics world.">ActorTerrain::AddObjectToWorld</a> (<a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld)
 <a name="l00105"></a>00105     {
-<a name="l00106"></a>00106         TargetWorld-&gt;<a class="code" href="classphys_1_1World.html#a1b9eb6206ee15c2ef49665a07de3d83c" title="This gets the PhysicsManager from the manager list.">GetPhysicsManager</a>()-&gt;<a class="code" href="classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;addCollisionObject(this-&gt;<a class="code" href="classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>);
+<a name="l00106"></a>00106         <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">PhysicsManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1PhysicsManager.html#ae8ba569b66769515c8efa8eba2131c14" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;addCollisionObject(this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a453166e089f7a3821bf099e4404c3e43" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>);
 <a name="l00107"></a>00107         <span class="comment">//TargetWorld-&gt;Physics-&gt;BulletDynamicsWorld-&gt;addRigidBody(this-&gt;CollisionObject);</span>
-<a name="l00108"></a>00108         this-&gt;<a class="code" href="classphys_1_1ActorBase.html#a45f190cb9b647bb3385d1298f9dab589" title="Makes the actor visable.">AttachToGraphics</a>();
+<a name="l00108"></a>00108         this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a040cc440d23400c7f129b318a8a84e97" title="Makes the actor visable.">AttachToGraphics</a>();
 <a name="l00109"></a>00109     }
 <a name="l00110"></a>00110 
-<a name="l00111"></a><a class="code" href="classphys_1_1ActorTerrain.html#aeded1fdabfc4dd407f81fcc5b97c1f77">00111</a>     <span class="keywordtype">void</span> <a class="code" href="classphys_1_1ActorTerrain.html#aeded1fdabfc4dd407f81fcc5b97c1f77" title="Removes the actor from the physics world.">ActorTerrain::RemoveObjectFromWorld</a>(<a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld)
+<a name="l00111"></a>00111     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorBase.html#a774050bfd7c75f2b639005d82dcd5085" title="Removes the actor from the physics world.">ActorTerrain::RemoveObjectFromWorld</a>(World* TargetWorld)
 <a name="l00112"></a>00112     {
-<a name="l00113"></a>00113         TargetWorld-&gt;<a class="code" href="classphys_1_1World.html#a1b9eb6206ee15c2ef49665a07de3d83c" title="This gets the PhysicsManager from the manager list.">GetPhysicsManager</a>()-&gt;<a class="code" href="classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;removeCollisionObject(this-&gt;<a class="code" href="classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>);
+<a name="l00113"></a>00113         <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">PhysicsManager::GetSingletonPtr</a>()-&gt;GetPhysicsWorldPointer()-&gt;removeCollisionObject(this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a453166e089f7a3821bf099e4404c3e43" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>);
 <a name="l00114"></a>00114         <span class="comment">//TargetWorld-&gt;Physics-&gt;BulletDynamicsWorld-&gt;removeRigidBody(this-&gt;CollisionObject);</span>
-<a name="l00115"></a>00115         this-&gt;<a class="code" href="classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec" title="Makes the actor invisable.">DetachFromGraphics</a>();
+<a name="l00115"></a>00115         this-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a957ed99e5f67ac3fca3ba8a9b025fe48" title="Makes the actor invisable.">DetachFromGraphics</a>();
 <a name="l00116"></a>00116     }
 <a name="l00117"></a>00117 
-<a name="l00118"></a><a class="code" href="classphys_1_1ActorTerrain.html#a1bed32f1b9afd1bd28c231b7505c267e">00118</a>     btRigidBody* <a class="code" href="classphys_1_1ActorTerrain.html#a1bed32f1b9afd1bd28c231b7505c267e" title="Get the Physics data raw from the physic subsystem.">ActorTerrain::GetBulletObject</a>()
+<a name="l00118"></a><a class="code" href="classMezzanine_1_1ActorTerrain.html#a89a10fcace9b67b58ca0ab46fb335a19">00118</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorTerrain.html#a89a10fcace9b67b58ca0ab46fb335a19" title="Utility function for altering or checking the actor every frame.">ActorTerrain::_Update</a>()
 <a name="l00119"></a>00119     {
-<a name="l00120"></a>00120         <span class="keywordflow">return</span> <a class="code" href="classphys_1_1ActorTerrain.html#a86b22aad61a7ffceb5c757ddcbca48c3" title="The physics data.">RigidBody</a>;
+<a name="l00120"></a>00120 
 <a name="l00121"></a>00121     }
-<a name="l00122"></a>00122 }
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="preprocessor">#endif</span>
+<a name="l00122"></a>00122 
+<a name="l00123"></a><a class="code" href="classMezzanine_1_1ActorTerrain.html#aea5093ccb329184502c0ac36d372683c">00123</a>     btRigidBody* <a class="code" href="classMezzanine_1_1ActorTerrain.html#aea5093ccb329184502c0ac36d372683c" title="Get the Physics data raw from the physic subsystem.">ActorTerrain::GetBulletObject</a>()
+<a name="l00124"></a>00124     {
+<a name="l00125"></a>00125         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ActorTerrain.html#a631d262f2f676474c19334d00d33eb12" title="The physics data.">RigidBody</a>;
+<a name="l00126"></a>00126     }
+<a name="l00127"></a>00127 }
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -193,7 +198,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -203,6 +208,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

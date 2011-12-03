@@ -1,0 +1,400 @@
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings}{
+\subsection{Mezzanine::ActorGraphicsSettings Class Reference}
+\label{classMezzanine_1_1ActorGraphicsSettings}\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+}
+
+
+This is a helper class for configuring graphics settings of an actor.  
+
+
+
+
+{\ttfamily \#include $<$actorgraphicssettings.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1ActorGraphicsSettings_ac9e5523fb884b7302e0e24a5d5f0e241}{ActorGraphicsSettings} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor, Ogre::Entity $\ast$GraphicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ActorGraphicsSettings_aa2e7c7e9fb2c50dd3d4470dbde7da9d2}{CloneMaterial} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&newName)
+\begin{DoxyCompactList}\small\item\em Creates a copy of the material script of the graphics object and places it in the same resource group. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a6763d4efae125b9094dab6064f9a07a4}{GetMaterialAmbient} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0) const 
+\begin{DoxyCompactList}\small\item\em Gets the Ambient colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a2ec82f733a81cf3f3ec3a6d1fbd9f62f}{GetMaterialDiffuse} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0) const 
+\begin{DoxyCompactList}\small\item\em Gets the Diffuse colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a96376827aab2abf489a7ae52bf2eba5b}{GetMaterialName} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0) const 
+\begin{DoxyCompactList}\small\item\em Gets the material name of the specified submesh. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a1a337f73e07c3c720b52e722877cba6f}{GetMaterialSpecular} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0) const 
+\begin{DoxyCompactList}\small\item\em Gets the Specular colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1ActorGraphicsSettings_ac88c62f93dbe77814b9046255fab668f}{GetMesh} () const 
+\begin{DoxyCompactList}\small\item\em Gets the mesh being used by this actor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1ActorGraphicsSettings_af68429600756a08611db19d3fb8af29d}{GetNumSubmeshes} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of submeshes in the mesh of the graphics ohject. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1ActorGraphicsSettings_aedc59d9af450d892c7f22eef4c3ff37a}{HasMaterialSet} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Gets whether or not the specified submesh has a material script assigned to it. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a79842ffb70e47691f25d12998e88be68}{SetMaterial} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} MatName, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the material of the specified submesh. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a62f9dcc3c2af046b5f64a2ef886fc4ae}{SetMaterialAmbient} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Ambient, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the Ambient colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a6b910a8c0f85df475baafc06dbd2d88a}{SetMaterialDiffuse} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Diffuse, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the Diffuse colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a6d828b04f1b88b711ff1ae3339eeaa51}{SetMaterialSpecular} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Specular, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the Specular colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a31e3f53faedd5f8e9f863f472eb9e7f9}{
+\hyperlink{classMezzanine_1_1ActorGraphicsSettings_a31e3f53faedd5f8e9f863f472eb9e7f9}{$\sim$ActorGraphicsSettings} ()}
+\label{classMezzanine_1_1ActorGraphicsSettings_a31e3f53faedd5f8e9f863f472eb9e7f9}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a984742dd8086b333772fc6385f5433f6}{
+Ogre::MaterialPtr \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a984742dd8086b333772fc6385f5433f6}{GetMaterial} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Submesh=0)}
+\label{classMezzanine_1_1ActorGraphicsSettings_a984742dd8086b333772fc6385f5433f6}
+
+\begin{DoxyCompactList}\small\item\em Material/textures for the actor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_af08131b13a21d6ab093435d8667e7c43}{
+\hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1ActorGraphicsSettings_af08131b13a21d6ab093435d8667e7c43}{ActorMesh}}
+\label{classMezzanine_1_1ActorGraphicsSettings_af08131b13a21d6ab093435d8667e7c43}
+
+\begin{DoxyCompactList}\small\item\em The mesh being used by the Actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a34adc6461ff0ac86785c497295ce2bb8}{
+\hyperlink{classMezzanine_1_1internal_1_1InternalActorGraphicsSettings}{internal::InternalActorGraphicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a34adc6461ff0ac86785c497295ce2bb8}{IAGS}}
+\label{classMezzanine_1_1ActorGraphicsSettings_a34adc6461ff0ac86785c497295ce2bb8}
+
+\begin{DoxyCompactList}\small\item\em Stores all the data to go with the. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a732df0cdf92958879669d122c782f267}{
+\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorGraphicsSettings_a732df0cdf92958879669d122c782f267}{Parent}}
+\label{classMezzanine_1_1ActorGraphicsSettings_a732df0cdf92958879669d122c782f267}
+
+\begin{DoxyCompactList}\small\item\em The Actor this belongs to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a helper class for configuring graphics settings of an actor. This class contains functions for the configuring of graphics specific settings of an actor. This class can only configure the actors graphics. For configuring actor physics, see \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. 
+
+Definition at line 70 of file actorgraphicssettings.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_ac9e5523fb884b7302e0e24a5d5f0e241}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!ActorGraphicsSettings@{ActorGraphicsSettings}}
+\index{ActorGraphicsSettings@{ActorGraphicsSettings}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{ActorGraphicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorGraphicsSettings::ActorGraphicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{Actor, }
+\item[{Ogre::Entity $\ast$}]{GraphicsObject}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_ac9e5523fb884b7302e0e24a5d5f0e241}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor this settings class configures. \\
+\hline
+{\em GraphicsObject} & The graphics object belonging to the actor this class configures. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 98 of file actorgraphicssettings.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_aa2e7c7e9fb2c50dd3d4470dbde7da9d2}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!CloneMaterial@{CloneMaterial}}
+\index{CloneMaterial@{CloneMaterial}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{CloneMaterial}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorGraphicsSettings::CloneMaterial (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{newName}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_aa2e7c7e9fb2c50dd3d4470dbde7da9d2}
+
+
+Creates a copy of the material script of the graphics object and places it in the same resource group. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em newName} & of the cloned material script. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 123 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a6763d4efae125b9094dab6064f9a07a4}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!GetMaterialAmbient@{GetMaterialAmbient}}
+\index{GetMaterialAmbient@{GetMaterialAmbient}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{GetMaterialAmbient}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::ActorGraphicsSettings::GetMaterialAmbient (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_a6763d4efae125b9094dab6064f9a07a4}
+
+
+Gets the Ambient colour value of the material belonging to the specified submesh. 
+
+If no Ambient colour was specified for a given submesh a default \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} is returned. 
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The colour that was as the material Ambient colour, OR a default colourvalue. 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a2ec82f733a81cf3f3ec3a6d1fbd9f62f}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!GetMaterialDiffuse@{GetMaterialDiffuse}}
+\index{GetMaterialDiffuse@{GetMaterialDiffuse}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{GetMaterialDiffuse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::ActorGraphicsSettings::GetMaterialDiffuse (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_a2ec82f733a81cf3f3ec3a6d1fbd9f62f}
+
+
+Gets the Diffuse colour value of the material belonging to the specified submesh. 
+
+If no Diffuse colour was specified for a given submesh a default \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} is returned. 
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The colour that was as the material Diffuse colour, OR a default colourvalue. 
+\end{DoxyReturn}
+
+
+Definition at line 170 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a96376827aab2abf489a7ae52bf2eba5b}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!GetMaterialName@{GetMaterialName}}
+\index{GetMaterialName@{GetMaterialName}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{GetMaterialName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::ActorGraphicsSettings::GetMaterialName (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_a96376827aab2abf489a7ae52bf2eba5b}
+
+
+Gets the material name of the specified submesh. 
+
+Note the returned name isn't of the .material file, but the material script. 
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh you want to get the material name from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a String containing the name of the material script in use. 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a1a337f73e07c3c720b52e722877cba6f}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!GetMaterialSpecular@{GetMaterialSpecular}}
+\index{GetMaterialSpecular@{GetMaterialSpecular}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{GetMaterialSpecular}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::ActorGraphicsSettings::GetMaterialSpecular (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_a1a337f73e07c3c720b52e722877cba6f}
+
+
+Gets the Specular colour value of the material belonging to the specified submesh. 
+
+If no Specular colour was specified for a given submesh a default \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} is returned. 
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The colour that was as the material Specular colour, OR a default colourvalue. 
+\end{DoxyReturn}
+
+
+Definition at line 167 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_ac88c62f93dbe77814b9046255fab668f}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!GetMesh@{GetMesh}}
+\index{GetMesh@{GetMesh}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{GetMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh}$\ast$ Mezzanine::ActorGraphicsSettings::GetMesh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_ac88c62f93dbe77814b9046255fab668f}
+
+
+Gets the mesh being used by this actor. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the mesh being used by this actor. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_af68429600756a08611db19d3fb8af29d}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!GetNumSubmeshes@{GetNumSubmeshes}}
+\index{GetNumSubmeshes@{GetNumSubmeshes}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{GetNumSubmeshes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::ActorGraphicsSettings::GetNumSubmeshes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_af68429600756a08611db19d3fb8af29d}
+
+
+Gets the number of submeshes in the mesh of the graphics ohject. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the number of submeshes in this objects mesh. 
+\end{DoxyReturn}
+
+
+Definition at line 138 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_aedc59d9af450d892c7f22eef4c3ff37a}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!HasMaterialSet@{HasMaterialSet}}
+\index{HasMaterialSet@{HasMaterialSet}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{HasMaterialSet}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ActorGraphicsSettings::HasMaterialSet (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_aedc59d9af450d892c7f22eef4c3ff37a}
+
+
+Gets whether or not the specified submesh has a material script assigned to it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether there is a material assigned to the specified submesh. 
+\end{DoxyReturn}
+
+
+Definition at line 133 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a79842ffb70e47691f25d12998e88be68}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!SetMaterial@{SetMaterial}}
+\index{SetMaterial@{SetMaterial}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{SetMaterial}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorGraphicsSettings::SetMaterial (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{MatName, }
+\item[{{\bf Whole}}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_a79842ffb70e47691f25d12998e88be68}
+
+
+Sets the material of the specified submesh. 
+
+The name of the material isn't the same as the name of the .material file. As a single material file can contain several material scripts. The name this function expects is the name of the material script inside a .material file. 
+\begin{DoxyParams}{Parameters}
+{\em MatName} & The name of the material to be applied. \\
+\hline
+{\em Submesh} & The submesh to apply the material to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 118 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a62f9dcc3c2af046b5f64a2ef886fc4ae}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!SetMaterialAmbient@{SetMaterialAmbient}}
+\index{SetMaterialAmbient@{SetMaterialAmbient}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{SetMaterialAmbient}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorGraphicsSettings::SetMaterialAmbient (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{Ambient, }
+\item[{{\bf Whole}}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_a62f9dcc3c2af046b5f64a2ef886fc4ae}
+
+
+Sets the Ambient colour value of the material belonging to the specified submesh. 
+
+The set value is applied to every technique of every pass in the material. 
+\begin{DoxyParams}{Parameters}
+{\em Ambient} & The colour you wish to set as the material Ambient. \\
+\hline
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 146 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a6b910a8c0f85df475baafc06dbd2d88a}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!SetMaterialDiffuse@{SetMaterialDiffuse}}
+\index{SetMaterialDiffuse@{SetMaterialDiffuse}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{SetMaterialDiffuse}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorGraphicsSettings::SetMaterialDiffuse (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{Diffuse, }
+\item[{{\bf Whole}}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_a6b910a8c0f85df475baafc06dbd2d88a}
+
+
+Sets the Diffuse colour value of the material belonging to the specified submesh. 
+
+The set value is applied to every technique of every pass in the material. 
+\begin{DoxyParams}{Parameters}
+{\em Diffuse} & The colour you wish to set as the material Diffuse. \\
+\hline
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 158 of file actorgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorGraphicsSettings_a6d828b04f1b88b711ff1ae3339eeaa51}{
+\index{Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}!SetMaterialSpecular@{SetMaterialSpecular}}
+\index{SetMaterialSpecular@{SetMaterialSpecular}!Mezzanine::ActorGraphicsSettings@{Mezzanine::ActorGraphicsSettings}}
+\paragraph[{SetMaterialSpecular}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorGraphicsSettings::SetMaterialSpecular (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{Specular, }
+\item[{{\bf Whole}}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorGraphicsSettings_a6d828b04f1b88b711ff1ae3339eeaa51}
+
+
+Sets the Specular colour value of the material belonging to the specified submesh. 
+
+The set value is applied to every technique of every pass in the material. 
+\begin{DoxyParams}{Parameters}
+{\em Specular} & The colour you wish to set as the material Specular. \\
+\hline
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 152 of file actorgraphicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorgraphicssettings.h\item 
+actorgraphicssettings.cpp\end{DoxyCompactItemize}

@@ -1,0 +1,146 @@
+\hypertarget{classMezzanine_1_1Mesh}{
+\subsection{Mezzanine::Mesh Class Reference}
+\label{classMezzanine_1_1Mesh}\index{Mezzanine::Mesh@{Mezzanine::Mesh}}
+}
+
+
+This class is used to check and modify the properties of a graphics mesh.  
+
+
+
+
+{\ttfamily \#include $<$mesh.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1Mesh_a80cbbce88eed766feee7cdf9f71d1039}{GetGroup} ()
+\begin{DoxyCompactList}\small\item\em Gets the resource group this mesh belongs to. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1Mesh_a47c1bc6949e55f122b4bef9d8b99ca6d}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the Name of this mesh. \item\end{DoxyCompactList}\item 
+Ogre::MeshPtr \hyperlink{classMezzanine_1_1Mesh_aee175d130655986fb4a4b2a3b92ec4bf}{GetOgreMesh} ()
+\begin{DoxyCompactList}\small\item\em Gets the internal Ogre \hyperlink{classMezzanine_1_1Mesh}{Mesh} pointer. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Mesh_a7f93137e60133fa0d35e83946adb5962}{Mesh} (Ogre::MeshPtr InternalMesh)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Mesh_ae27e49d18855b085a4b723b91026ec9b}{
+\hyperlink{classMezzanine_1_1Mesh_ae27e49d18855b085a4b723b91026ec9b}{Mesh} ()}
+\label{classMezzanine_1_1Mesh_ae27e49d18855b085a4b723b91026ec9b}
+
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Mesh_abaa019546b348487f6c703f366ebefa6}{
+\hyperlink{classMezzanine_1_1Mesh_abaa019546b348487f6c703f366ebefa6}{$\sim$Mesh} ()}
+\label{classMezzanine_1_1Mesh_abaa019546b348487f6c703f366ebefa6}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Mesh_a6fef320ea8d04492b4b8b8e9f4a213c9}{
+\hyperlink{classMezzanine_1_1InternalMeshData}{InternalMeshData} $\ast$ {\bfseries IMD}}
+\label{classMezzanine_1_1Mesh_a6fef320ea8d04492b4b8b8e9f4a213c9}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is used to check and modify the properties of a graphics mesh. 
+
+Definition at line 59 of file mesh.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1Mesh_a7f93137e60133fa0d35e83946adb5962}{
+\index{Mezzanine::Mesh@{Mezzanine::Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!Mezzanine::Mesh@{Mezzanine::Mesh}}
+\paragraph[{Mesh}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Mesh::Mesh (
+\begin{DoxyParamCaption}
+\item[{Ogre::MeshPtr}]{InternalMesh}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Mesh_a7f93137e60133fa0d35e83946adb5962}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em InternalMesh} & The internal mesh this mesh class is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 67 of file mesh.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Mesh_a80cbbce88eed766feee7cdf9f71d1039}{
+\index{Mezzanine::Mesh@{Mezzanine::Mesh}!GetGroup@{GetGroup}}
+\index{GetGroup@{GetGroup}!Mezzanine::Mesh@{Mezzanine::Mesh}}
+\paragraph[{GetGroup}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::Mesh::GetGroup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Mesh_a80cbbce88eed766feee7cdf9f71d1039}
+
+
+Gets the resource group this mesh belongs to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a const string reference containing the group this mesh belongs to. 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file mesh.cpp.
+
+\hypertarget{classMezzanine_1_1Mesh_a47c1bc6949e55f122b4bef9d8b99ca6d}{
+\index{Mezzanine::Mesh@{Mezzanine::Mesh}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::Mesh@{Mezzanine::Mesh}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::Mesh::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Mesh_a47c1bc6949e55f122b4bef9d8b99ca6d}
+
+
+Gets the Name of this mesh. 
+
+\begin{DoxyNote}{Note}
+If this mesh originated from a file, usually the name of the mesh will be the file name. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+Returns a const string reference containing the name of this mesh. 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file mesh.cpp.
+
+\hypertarget{classMezzanine_1_1Mesh_aee175d130655986fb4a4b2a3b92ec4bf}{
+\index{Mezzanine::Mesh@{Mezzanine::Mesh}!GetOgreMesh@{GetOgreMesh}}
+\index{GetOgreMesh@{GetOgreMesh}!Mezzanine::Mesh@{Mezzanine::Mesh}}
+\paragraph[{GetOgreMesh}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::MeshPtr Mezzanine::Mesh::GetOgreMesh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Mesh_aee175d130655986fb4a4b2a3b92ec4bf}
+
+
+Gets the internal Ogre \hyperlink{classMezzanine_1_1Mesh}{Mesh} pointer. 
+
+\begin{DoxyReturn}{Returns}
+Returns an Ogre shared pointer pointing to the internal Ogre \hyperlink{classMezzanine_1_1Mesh}{Mesh}. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file mesh.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+mesh.h\item 
+mesh.cpp\end{DoxyCompactItemize}

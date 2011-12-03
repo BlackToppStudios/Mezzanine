@@ -1,0 +1,481 @@
+\hypertarget{classMezzanine_1_1InputQueryTool}{
+\subsection{Mezzanine::InputQueryTool Class Reference}
+\label{classMezzanine_1_1InputQueryTool}\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+}
+
+
+This provides a number of utilities for getting input information.  
+
+
+
+
+{\ttfamily \#include $<$inputquerytool.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1InputQueryTool_ad339efbc61123c63ad1245dfc0320ff6}{InputQueryTool} ()
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1InputQueryTool_ae54b04ff1cffda1df2f25c3c01f616cd}{$\sim$InputQueryTool} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classMezzanine_1_1InputQueryTool_a1366792f45b0d341e92ad24f5f33680b}{GatherEvents} (bool ClearEventsFromEventMgr=false)
+\begin{DoxyCompactList}\small\item\em This gathers any user-\/input/event data that might be queryed. \item\end{DoxyCompactList}\item 
+static int \hyperlink{classMezzanine_1_1InputQueryTool_ab655d39e7623c3e17a9279028d450419}{GetJoystickAxis} (short unsigned int Axis)
+\begin{DoxyCompactList}\small\item\em This Gets the value of the given joystick axis. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0}{MetaCode::ButtonState} \hyperlink{classMezzanine_1_1InputQueryTool_ab8a1bfa3fd96ae73704084aa31e2bff5}{GetKeyboardButtonState} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&KeyboardButton)
+\begin{DoxyCompactList}\small\item\em Gets the button state of the provided keyboard button ID. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0}{MetaCode::ButtonState} \hyperlink{classMezzanine_1_1InputQueryTool_a0b0f4c52e677de65f320d9305ef64219}{GetMouseButtonState} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&MouseButton)
+\begin{DoxyCompactList}\small\item\em Gets the button state of the provided mouse button ID. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0}{MetaCode::ButtonState} \hyperlink{classMezzanine_1_1InputQueryTool_a7a97f853156573de3648f3315e2283bb}{GetMouseButtonState} (short unsigned int MouseButton)
+\begin{DoxyCompactList}\small\item\em Gets the button state of the provided mouse button ID. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1InputQueryTool_a89407a5b1e3c727809581d367a25cdaf}{GetMouseCoordinates} ()
+\begin{DoxyCompactList}\small\item\em This gets a vector2 containing both X and Y coordinates of the mouse. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1InputQueryTool_aeb184246219d3806f02f46acb1b7a719}{GetMousePrevFrameOffset} ()
+\begin{DoxyCompactList}\small\item\em This gets the offset location of the mouse since the previous frame. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ad}{MetaCode::DirectionalMotionState} \hyperlink{classMezzanine_1_1InputQueryTool_a9e48e986454ca65a43df76fd640defb4}{GetMouseWheelState} ()
+\begin{DoxyCompactList}\small\item\em Gets the current status of the mouse wheel. \item\end{DoxyCompactList}\item 
+static int \hyperlink{classMezzanine_1_1InputQueryTool_a2293a06cb2726b7f483c2b2c516071ba}{GetMouseX} ()
+\begin{DoxyCompactList}\small\item\em This gets the X coordinate of the mouse. \item\end{DoxyCompactList}\item 
+static int \hyperlink{classMezzanine_1_1InputQueryTool_a584fc35ad4333189f1e036c711c66fa7}{GetMouseY} ()
+\begin{DoxyCompactList}\small\item\em This gets the Y coordinate of the mouse. \item\end{DoxyCompactList}\item 
+static int \hyperlink{classMezzanine_1_1InputQueryTool_a19c32dc3e9bd02b7e5ea414ba34312b1}{GetRawMetaValue} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&AnyCode)
+\begin{DoxyCompactList}\small\item\em Get an unfiltered uninterpretted version of the value for an user input. \item\end{DoxyCompactList}\item 
+static bool \hyperlink{classMezzanine_1_1InputQueryTool_a2f526d90e7dbeb04569037de562cf8d9}{IsJoystickButtonPushed} (short unsigned int JoyStickButton)
+\begin{DoxyCompactList}\small\item\em Returns whether a specific Joystick button is pushed. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1InputQueryTool_a4276e9278048e6d01df454dadd3fd4eb}{
+static bool {\bfseries IsJoystickHatPushedInDirection} (\hyperlink{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ad}{MetaCode::DirectionalMotionState} WhichWay, bool IsVertical)}
+\label{classMezzanine_1_1InputQueryTool_a4276e9278048e6d01df454dadd3fd4eb}
+
+\item 
+static bool \hyperlink{classMezzanine_1_1InputQueryTool_a45df66eaaa0fb0da23c3c8b580a5d844}{IsKeyboardButtonPushed} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&KeyboardButton)
+\begin{DoxyCompactList}\small\item\em Returns whether a specific Keyboard button is pushed. \item\end{DoxyCompactList}\item 
+static bool \hyperlink{classMezzanine_1_1InputQueryTool_a80827ec8a5705b2ee6cfc3f0d913e236}{IsMouseButtonPushed} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&MouseButton)
+\begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\item 
+static bool \hyperlink{classMezzanine_1_1InputQueryTool_ac987ef5d3c7a6600be820d95a66f81e0}{IsMouseButtonPushed} (short unsigned int MouseButton)
+\begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std::vector$<$ int $>$ \hyperlink{classMezzanine_1_1InputQueryTool_aa4043f3a80269e7434b92b350bcefa4c}{CodeCache}
+\begin{DoxyCompactList}\small\item\em A place to store which keys and mouse buttons are pressed or not. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This provides a number of utilities for getting input information. This is useful for quickly and easily getting common input information. This does so by querying the event manager when \hyperlink{classMezzanine_1_1InputQueryTool_a1366792f45b0d341e92ad24f5f33680b}{GatherEvents()} is called, and storing all of the results in an vector, array or similar structure. All of the functions except \hyperlink{classMezzanine_1_1InputQueryTool_a1366792f45b0d341e92ad24f5f33680b}{GatherEvents()} run in constant time because of this. Having this remove the read events from the event manager can reduce time spent working on user input events to focus on other events. 
+
+Definition at line 63 of file inputquerytool.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1InputQueryTool_ad339efbc61123c63ad1245dfc0320ff6}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!InputQueryTool@{InputQueryTool}}
+\index{InputQueryTool@{InputQueryTool}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{InputQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::InputQueryTool::InputQueryTool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1InputQueryTool_ad339efbc61123c63ad1245dfc0320ff6}
+
+
+Basic Constructor. 
+
+This creates a \hyperlink{classMezzanine_1_1InputQueryTool}{InputQueryTool} ready to run queries on the input. 
+
+Definition at line 52 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_ae54b04ff1cffda1df2f25c3c01f616cd}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!$\sim$InputQueryTool@{$\sim$InputQueryTool}}
+\index{$\sim$InputQueryTool@{$\sim$InputQueryTool}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{$\sim$InputQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::InputQueryTool::$\sim$InputQueryTool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1InputQueryTool_ae54b04ff1cffda1df2f25c3c01f616cd}
+
+
+Destructor. 
+
+Deletes everything in the input query tool. 
+
+Definition at line 55 of file inputquerytool.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1InputQueryTool_a1366792f45b0d341e92ad24f5f33680b}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GatherEvents@{GatherEvents}}
+\index{GatherEvents@{GatherEvents}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GatherEvents}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::InputQueryTool::GatherEvents (
+\begin{DoxyParamCaption}
+\item[{bool}]{ClearEventsFromEventMgr = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a1366792f45b0d341e92ad24f5f33680b}
+
+
+This gathers any user-\/input/event data that might be queryed. 
+
+This should be called periodcally (ideally in the post user input callback) to allow this to gather data from the \hyperlink{classMezzanine_1_1World}{Mezzanine::World} 's event manager. When called this will drop prior event data and any relevant queries will come from this new data. At the caller's discretion this method can properly delete any events pulled from the event manager. \par
+ \par
+ This runs in linear time relative to the events in the event manager. This will usually be a trivial amount if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup) 
+\begin{DoxyParams}{Parameters}
+{\em ClearEventsFromEventMgr} & If set to true, This method will properly remove any events it pulls from the event manager. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 103 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_ab655d39e7623c3e17a9279028d450419}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetJoystickAxis@{GetJoystickAxis}}
+\index{GetJoystickAxis@{GetJoystickAxis}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetJoystickAxis}]{\setlength{\rightskip}{0pt plus 5cm}int Mezzanine::InputQueryTool::GetJoystickAxis (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{Axis}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_ab655d39e7623c3e17a9279028d450419}
+
+
+This Gets the value of the given joystick axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Axis} & The index of the axis that you want \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer with the Value of the joystick axis 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_ab8a1bfa3fd96ae73704084aa31e2bff5}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetKeyboardButtonState@{GetKeyboardButtonState}}
+\index{GetKeyboardButtonState@{GetKeyboardButtonState}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetKeyboardButtonState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::ButtonState} Mezzanine::InputQueryTool::GetKeyboardButtonState (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{KeyboardButton}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_ab8a1bfa3fd96ae73704084aa31e2bff5}
+
+
+Gets the button state of the provided keyboard button ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em KeyboardButton} & The Input code for the keyboard button you wish to query. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a button state enum representing the button state. 
+\end{DoxyReturn}
+
+
+Definition at line 97 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a0b0f4c52e677de65f320d9305ef64219}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetMouseButtonState@{GetMouseButtonState}}
+\index{GetMouseButtonState@{GetMouseButtonState}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetMouseButtonState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::ButtonState} Mezzanine::InputQueryTool::GetMouseButtonState (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{MouseButton}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a0b0f4c52e677de65f320d9305ef64219}
+
+
+Gets the button state of the provided mouse button ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MouseButton} & The mouse button ID(up to 16) you wish to query.\\
+\hline
+\end{DoxyParams}
+Far from all mice have 16 buttons, be sure you know how many buttons the mouse has As this function doesn't perform that check. \begin{DoxyReturn}{Returns}
+Returns a button state enum representing the button state. 
+\end{DoxyReturn}
+
+
+Definition at line 95 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a7a97f853156573de3648f3315e2283bb}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetMouseButtonState@{GetMouseButtonState}}
+\index{GetMouseButtonState@{GetMouseButtonState}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetMouseButtonState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::ButtonState} Mezzanine::InputQueryTool::GetMouseButtonState (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{MouseButton}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a7a97f853156573de3648f3315e2283bb}
+
+
+Gets the button state of the provided mouse button ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MouseButton} & The mouse button ID(up to 16) you wish to query.\\
+\hline
+\end{DoxyParams}
+Far from all mice have 16 buttons, be sure you know how many buttons the mouse has As this function doesn't perform that check. \begin{DoxyReturn}{Returns}
+Returns a button state enum representing the button state. 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a89407a5b1e3c727809581d367a25cdaf}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetMouseCoordinates@{GetMouseCoordinates}}
+\index{GetMouseCoordinates@{GetMouseCoordinates}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetMouseCoordinates}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::InputQueryTool::GetMouseCoordinates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a89407a5b1e3c727809581d367a25cdaf}
+
+
+This gets a vector2 containing both X and Y coordinates of the mouse. 
+
+If precision is important then you should use the individual coordinate fetching functions instead. \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} containing Reals to represent both mouse coordinates. 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_aeb184246219d3806f02f46acb1b7a719}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetMousePrevFrameOffset@{GetMousePrevFrameOffset}}
+\index{GetMousePrevFrameOffset@{GetMousePrevFrameOffset}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetMousePrevFrameOffset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::InputQueryTool::GetMousePrevFrameOffset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_aeb184246219d3806f02f46acb1b7a719}
+
+
+This gets the offset location of the mouse since the previous frame. 
+
+This \hyperlink{classMezzanine_1_1Vector2}{Vector2} is only accurate if this class gathers events every frame. Avoid calling this function otherwise. \begin{DoxyReturn}{Returns}
+This returns a vector2 that stores how the mouse has moved since the previous frame. 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a9e48e986454ca65a43df76fd640defb4}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetMouseWheelState@{GetMouseWheelState}}
+\index{GetMouseWheelState@{GetMouseWheelState}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetMouseWheelState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::DirectionalMotionState} Mezzanine::InputQueryTool::GetMouseWheelState (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a9e48e986454ca65a43df76fd640defb4}
+
+
+Gets the current status of the mouse wheel. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the current state of the mouse wheel. 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a2293a06cb2726b7f483c2b2c516071ba}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetMouseX@{GetMouseX}}
+\index{GetMouseX@{GetMouseX}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetMouseX}]{\setlength{\rightskip}{0pt plus 5cm}int Mezzanine::InputQueryTool::GetMouseX (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a2293a06cb2726b7f483c2b2c516071ba}
+
+
+This gets the X coordinate of the mouse. 
+
+\begin{DoxyReturn}{Returns}
+This returns a Whole number which represents the X coordinate of the mouse. 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a584fc35ad4333189f1e036c711c66fa7}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetMouseY@{GetMouseY}}
+\index{GetMouseY@{GetMouseY}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetMouseY}]{\setlength{\rightskip}{0pt plus 5cm}int Mezzanine::InputQueryTool::GetMouseY (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a584fc35ad4333189f1e036c711c66fa7}
+
+
+This gets the Y coordinate of the mouse. 
+
+\begin{DoxyReturn}{Returns}
+This returns a Whole number which represents the Y coordinate of the mouse. 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a19c32dc3e9bd02b7e5ea414ba34312b1}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!GetRawMetaValue@{GetRawMetaValue}}
+\index{GetRawMetaValue@{GetRawMetaValue}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{GetRawMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}int Mezzanine::InputQueryTool::GetRawMetaValue (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{AnyCode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a19c32dc3e9bd02b7e5ea414ba34312b1}
+
+
+Get an unfiltered uninterpretted version of the value for an user input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em AnyCode} & The InputCode to retrieve the value for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An int which may or may not correspond to a ButtonState, MouseWheelState, or some other Value. 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a2f526d90e7dbeb04569037de562cf8d9}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!IsJoystickButtonPushed@{IsJoystickButtonPushed}}
+\index{IsJoystickButtonPushed@{IsJoystickButtonPushed}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{IsJoystickButtonPushed}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::InputQueryTool::IsJoystickButtonPushed (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{JoyStickButton}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a2f526d90e7dbeb04569037de562cf8d9}
+
+
+Returns whether a specific Joystick button is pushed. 
+
+This runs in constant time and returns a true is the requested Joystick button is pressed. Buttons that are being pressed are considered pressed, and buttons that are being lifted are considered unpressed. 
+\begin{DoxyParams}{Parameters}
+{\em JoyStickButton} & This is the Joystick button that is being checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a45df66eaaa0fb0da23c3c8b580a5d844}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!IsKeyboardButtonPushed@{IsKeyboardButtonPushed}}
+\index{IsKeyboardButtonPushed@{IsKeyboardButtonPushed}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{IsKeyboardButtonPushed}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::InputQueryTool::IsKeyboardButtonPushed (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{KeyboardButton}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a45df66eaaa0fb0da23c3c8b580a5d844}
+
+
+Returns whether a specific Keyboard button is pushed. 
+
+This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed are considered pressed, and buttons that are being lifted are considered unpressed. 
+\begin{DoxyParams}{Parameters}
+{\em KeyboardButton} & This is the button that is being checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_a80827ec8a5705b2ee6cfc3f0d913e236}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!IsMouseButtonPushed@{IsMouseButtonPushed}}
+\index{IsMouseButtonPushed@{IsMouseButtonPushed}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{IsMouseButtonPushed}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::InputQueryTool::IsMouseButtonPushed (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{MouseButton}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_a80827ec8a5705b2ee6cfc3f0d913e236}
+
+
+Returns whether a specific Mouse button is pushed. 
+
+This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed are considered pressed, and buttons that are being lifted are considered unpressed. 
+\begin{DoxyParams}{Parameters}
+{\em MouseButton} & This is the mouse button that is being checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file inputquerytool.cpp.
+
+\hypertarget{classMezzanine_1_1InputQueryTool_ac987ef5d3c7a6600be820d95a66f81e0}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!IsMouseButtonPushed@{IsMouseButtonPushed}}
+\index{IsMouseButtonPushed@{IsMouseButtonPushed}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{IsMouseButtonPushed}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::InputQueryTool::IsMouseButtonPushed (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{MouseButton}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_ac987ef5d3c7a6600be820d95a66f81e0}
+
+
+Returns whether a specific Mouse button is pushed. 
+
+This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed are considered pressed, and buttons that are being lifted are considered unpressed. 
+\begin{DoxyParams}{Parameters}
+{\em MouseButton} & This is the mouse button that is being checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 74 of file inputquerytool.cpp.
+
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{classMezzanine_1_1InputQueryTool_aa4043f3a80269e7434b92b350bcefa4c}{
+\index{Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}!CodeCache@{CodeCache}}
+\index{CodeCache@{CodeCache}!Mezzanine::InputQueryTool@{Mezzanine::InputQueryTool}}
+\paragraph[{CodeCache}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ int $>$ {\bf Mezzanine::InputQueryTool::CodeCache}\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1InputQueryTool_aa4043f3a80269e7434b92b350bcefa4c}
+
+
+A place to store which keys and mouse buttons are pressed or not. 
+
+In the constructor we force the insertion INPUTEVENT\_\-LAST 
+
+Definition at line 69 of file inputquerytool.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+inputquerytool.h\item 
+inputquerytool.cpp\end{DoxyCompactItemize}

@@ -12,12 +12,12 @@ The defintion of the transform is stored in this file.
 \subsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classphys_1_1Transform}{phys::Transform}
+class \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform}
 \begin{DoxyCompactList}\small\item\em Stores information about relative location and rotation in 3d space. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-namespace \hyperlink{namespacephys}{phys}
+namespace \hyperlink{namespaceMezzanine}{Mezzanine}
 
 
 \begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
@@ -26,10 +26,10 @@ namespace \hyperlink{namespacephys}{phys}
 \subsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-btTransform \& \hyperlink{transform_8h_afe7f8a382cac81a489436b1f37301af0}{operator$<$$<$} (btTransform \&lhs, const \hyperlink{classphys_1_1Transform}{phys::Transform} \&rhs)
-\begin{DoxyCompactList}\small\item\em Overwrite the data in a btTransform with the data in a \hyperlink{classphys_1_1Transform}{phys::Transform} using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Transform}{phys::Transform} \& \hyperlink{transform_8h_a956a6518871f8f91c9006a2861cbf56e}{operator$<$$<$} (\hyperlink{classphys_1_1Transform}{phys::Transform} \&lhs, const btTransform \&rhs)
-\begin{DoxyCompactList}\small\item\em Overwrite the data in a \hyperlink{classphys_1_1Transform}{phys::Transform} with the data in a btTransform using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+btTransform \&MEZZ\_\-LIB \hyperlink{transform_8h_ad75aa38dd6fa149b3ba6ff53bd65ceda}{operator$<$$<$} (btTransform \&lhs, const \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} \&rhs)
+\begin{DoxyCompactList}\small\item\em Overwrite the data in a btTransform with the data in a \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} \&MEZZ\_\-LIB \hyperlink{transform_8h_ac55646a12b0e094db075c7e2665ef3b5}{operator$<$$<$} (\hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} \&lhs, const btTransform \&rhs)
+\begin{DoxyCompactList}\small\item\em Overwrite the data in a \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} with the data in a btTransform using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -40,19 +40,19 @@ Definition in file \hyperlink{transform_8h_source}{transform.h}.
 
 
 \subsubsection{Function Documentation}
-\hypertarget{transform_8h_afe7f8a382cac81a489436b1f37301af0}{
+\hypertarget{transform_8h_ad75aa38dd6fa149b3ba6ff53bd65ceda}{
 \index{transform.h@{transform.h}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!transform.h@{transform.h}}
-\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}btTransform\& operator$<$$<$ (
+\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}btTransform\& MEZZ\_\-LIB operator$<$$<$ (
 \begin{DoxyParamCaption}
 \item[{btTransform \&}]{lhs, }
-\item[{const {\bf phys::Transform} \&}]{rhs}
+\item[{const {\bf Mezzanine::Transform} \&}]{rhs}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{transform_8h_afe7f8a382cac81a489436b1f37301af0}
+\label{transform_8h_ad75aa38dd6fa149b3ba6ff53bd65ceda}
 
 
-Overwrite the data in a btTransform with the data in a \hyperlink{classphys_1_1Transform}{phys::Transform} using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). 
+Overwrite the data in a btTransform with the data in a \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). 
 
 
 \begin{DoxyParams}{Parameters}
@@ -66,21 +66,21 @@ This returns the original btTransform reference(with the new values) so furhter 
 \end{DoxyReturn}
 
 
-Definition at line 132 of file transform.cpp.
+Definition at line 133 of file transform.cpp.
 
-\hypertarget{transform_8h_a956a6518871f8f91c9006a2861cbf56e}{
+\hypertarget{transform_8h_ac55646a12b0e094db075c7e2665ef3b5}{
 \index{transform.h@{transform.h}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!transform.h@{transform.h}}
-\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::Transform}\& operator$<$$<$ (
+\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mezzanine::Transform}\& MEZZ\_\-LIB operator$<$$<$ (
 \begin{DoxyParamCaption}
-\item[{{\bf phys::Transform} \&}]{lhs, }
+\item[{{\bf Mezzanine::Transform} \&}]{lhs, }
 \item[{const btTransform \&}]{rhs}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{transform_8h_a956a6518871f8f91c9006a2861cbf56e}
+\label{transform_8h_ac55646a12b0e094db075c7e2665ef3b5}
 
 
-Overwrite the data in a \hyperlink{classphys_1_1Transform}{phys::Transform} with the data in a btTransform using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). 
+Overwrite the data in a \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} with the data in a btTransform using an intelligent assignment operator (in this case we really couldn't code the real assignment operator). 
 
 
 \begin{DoxyParams}{Parameters}
@@ -90,9 +90,9 @@ Overwrite the data in a \hyperlink{classphys_1_1Transform}{phys::Transform} with
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-This returns the original \hyperlink{classphys_1_1Transform}{phys::Transform} reference(with the new values) so furhter work can continue to be performed if required. 
+This returns the original \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform} reference(with the new values) so furhter work can continue to be performed if required. 
 \end{DoxyReturn}
 
 
-Definition at line 139 of file transform.cpp.
+Definition at line 140 of file transform.cpp.
 

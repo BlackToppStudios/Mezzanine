@@ -1,0 +1,125 @@
+\hypertarget{classMezzanine_1_1ActorTerrainPair}{
+\subsection{Mezzanine::ActorTerrainPair Class Reference}
+\label{classMezzanine_1_1ActorTerrainPair}\index{Mezzanine::ActorTerrainPair@{Mezzanine::ActorTerrainPair}}
+}
+
+
+This is a basic utility class for tracking pairs of actors.  
+
+
+
+
+{\ttfamily \#include $<$objectpair.h$>$}
+
+Inheritance diagram for Mezzanine::ActorTerrainPair:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ActorTerrainPair}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorTerrainPair_ac29e4e48fe90868c2116f8922ed55883}{
+\hyperlink{classMezzanine_1_1ActorTerrainPair_ac29e4e48fe90868c2116f8922ed55883}{ActorTerrainPair} ()}
+\label{classMezzanine_1_1ActorTerrainPair_ac29e4e48fe90868c2116f8922ed55883}
+
+\begin{DoxyCompactList}\small\item\em No initialization constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ActorTerrainPair_a357d70101ba07b28394d5ce38f9b106a}{ActorTerrainPair} (const \hyperlink{classMezzanine_1_1ActorTerrainPair}{ActorTerrainPair} \&OtherPair)
+\begin{DoxyCompactList}\small\item\em Reference copy constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ActorTerrainPair_a7200e72f9b183cda93d8cb298f65974f}{ActorTerrainPair} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$A, TerrainBase $\ast$B)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorTerrainPair_a17e34e9de45f6140891afdb797f49691}{
+\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorTerrainPair_a17e34e9de45f6140891afdb797f49691}{Actor}}
+\label{classMezzanine_1_1ActorTerrainPair_a17e34e9de45f6140891afdb797f49691}
+
+\begin{DoxyCompactList}\small\item\em The first actor in the pair. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorTerrainPair_a456cc4679e898267e2f5abf350c84d66}{
+TerrainBase $\ast$ \hyperlink{classMezzanine_1_1ActorTerrainPair_a456cc4679e898267e2f5abf350c84d66}{Terrain}}
+\label{classMezzanine_1_1ActorTerrainPair_a456cc4679e898267e2f5abf350c84d66}
+
+\begin{DoxyCompactList}\small\item\em The second actor in the pair. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorTerrainPair_a5d632e821b430f4593b9bcd5e69e1411}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorTerrainPair_a5d632e821b430f4593b9bcd5e69e1411}{GetCombinedName} () const }
+\label{classMezzanine_1_1ActorTerrainPair_a5d632e821b430f4593b9bcd5e69e1411}
+
+\begin{DoxyCompactList}\small\item\em Gets a string containing the combined names of the objects in this pair. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorTerrainPair_ae0d0ab968370bd5dfe2f5172a10da0c4}{
+void $\ast$ \hyperlink{classMezzanine_1_1ActorTerrainPair_ae0d0ab968370bd5dfe2f5172a10da0c4}{GetObjectA} () const }
+\label{classMezzanine_1_1ActorTerrainPair_ae0d0ab968370bd5dfe2f5172a10da0c4}
+
+\begin{DoxyCompactList}\small\item\em Gets a pointer to the first object in this pair. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorTerrainPair_ae67781a0abe613fffeaf15e1827a167b}{
+void $\ast$ \hyperlink{classMezzanine_1_1ActorTerrainPair_ae67781a0abe613fffeaf15e1827a167b}{GetObjectB} () const }
+\label{classMezzanine_1_1ActorTerrainPair_ae67781a0abe613fffeaf15e1827a167b}
+
+\begin{DoxyCompactList}\small\item\em Gets a pointer to the second object in this pair. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a basic utility class for tracking pairs of actors. Most commonly this class is used in collision tracking. 
+
+Definition at line 133 of file objectpair.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ActorTerrainPair_a7200e72f9b183cda93d8cb298f65974f}{
+\index{Mezzanine::ActorTerrainPair@{Mezzanine::ActorTerrainPair}!ActorTerrainPair@{ActorTerrainPair}}
+\index{ActorTerrainPair@{ActorTerrainPair}!Mezzanine::ActorTerrainPair@{Mezzanine::ActorTerrainPair}}
+\paragraph[{ActorTerrainPair}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorTerrainPair::ActorTerrainPair (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{A, }
+\item[{TerrainBase $\ast$}]{B}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorTerrainPair_a7200e72f9b183cda93d8cb298f65974f}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The first actor to be applied to this pair. \\
+\hline
+{\em B} & The second actor to be applied to this pair. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 125 of file objectpair.cpp.
+
+\hypertarget{classMezzanine_1_1ActorTerrainPair_a357d70101ba07b28394d5ce38f9b106a}{
+\index{Mezzanine::ActorTerrainPair@{Mezzanine::ActorTerrainPair}!ActorTerrainPair@{ActorTerrainPair}}
+\index{ActorTerrainPair@{ActorTerrainPair}!Mezzanine::ActorTerrainPair@{Mezzanine::ActorTerrainPair}}
+\paragraph[{ActorTerrainPair}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorTerrainPair::ActorTerrainPair (
+\begin{DoxyParamCaption}
+\item[{const {\bf ActorTerrainPair} \&}]{OtherPair}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorTerrainPair_a357d70101ba07b28394d5ce38f9b106a}
+
+
+Reference copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OtherPair} & The other pair to be copied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 130 of file objectpair.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+objectpair.h\item 
+objectpair.cpp\end{DoxyCompactItemize}

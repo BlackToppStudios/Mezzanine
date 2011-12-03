@@ -1,0 +1,276 @@
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape}{
+\subsection{Mezzanine::ConvexHullCollisionShape Class Reference}
+\label{classMezzanine_1_1ConvexHullCollisionShape}\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+}
+
+
+A simple convex shape built from a low number of points in local space.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for Mezzanine::ConvexHullCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classMezzanine_1_1ConvexHullCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a6e6f3da8515bfd2b1d33563e86f3ed1e}{AddPoint} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Point)
+\begin{DoxyCompactList}\small\item\em Adds a point to this shape. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a73119a35d5ba1e5cfebde7d58f894889}{ConvexHullCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const std::vector$<$ \hyperlink{classMezzanine_1_1Vector3}{Vector3} $>$ \&Points)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a100c6b3009ad46976a0484446a3d5da2}{ConvexHullCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, btConvexHullShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+virtual btConvexHullShape $\ast$ \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a35acc9fd0c3e990bcacf1caf6d65a094}{GetBulletHullShape} () const 
+\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a8eaf9dccce90a9366d37ab9112bc0f22}{GetNumPoints} () const 
+\begin{DoxyCompactList}\small\item\em Gets the total number of points being stored in this shape. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a7f769cdc76fb7c62060a28472277466d}{GetPoint} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets a stored point as it is scaled in this ConvexHull. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a73ccd6364f52a68a642a0fb55159f020}{GetType} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a28e1633a760562ceb8427c08232518d7}{GetUnscaledPoint} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets an unscaled stored point in this ConvexHull. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a6aa3c6afad74091dec9c933eef257301}{IsInside} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Tolerance) const 
+\begin{DoxyCompactList}\small\item\em Checks to see if a point in local space is inside this shape. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_ae6c30c38604747a2d2500b25d88de50e}{
+virtual \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_ae6c30c38604747a2d2500b25d88de50e}{$\sim$ConvexHullCollisionShape} ()}
+\label{classMezzanine_1_1ConvexHullCollisionShape_ae6c30c38604747a2d2500b25d88de50e}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A simple convex shape built from a low number of points in local space. A convex hull is commonly used to generate a simple approximation of another, and more complicated, shape. Usually the number of points in a convex hull doesn't exceed 32. \par
+ \par
+ When a convex hull is generated automatically from an algorithm, the best way to think of the resulting shape in relation to the original shape is if you were to wrap a rubber band around it on one plane. Then do this for all planes and all surfaces. The resulting shape looks and behaves similar to that. 
+
+Definition at line 582 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a73119a35d5ba1e5cfebde7d58f894889}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!ConvexHullCollisionShape@{ConvexHullCollisionShape}}
+\index{ConvexHullCollisionShape@{ConvexHullCollisionShape}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{ConvexHullCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ConvexHullCollisionShape::ConvexHullCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const std::vector$<$ {\bf Vector3} $>$ \&}]{Points}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a73119a35d5ba1e5cfebde7d58f894889}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Points} & A vector of vector3's containing all the points in local space to construct this shape from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 941 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a100c6b3009ad46976a0484446a3d5da2}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!ConvexHullCollisionShape@{ConvexHullCollisionShape}}
+\index{ConvexHullCollisionShape@{ConvexHullCollisionShape}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{ConvexHullCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ConvexHullCollisionShape::ConvexHullCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btConvexHullShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a100c6b3009ad46976a0484446a3d5da2}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 957 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a6e6f3da8515bfd2b1d33563e86f3ed1e}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!AddPoint@{AddPoint}}
+\index{AddPoint@{AddPoint}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{AddPoint}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ConvexHullCollisionShape::AddPoint (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a6e6f3da8515bfd2b1d33563e86f3ed1e}
+
+
+Adds a point to this shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Point} & The location in local space to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 988 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a35acc9fd0c3e990bcacf1caf6d65a094}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!GetBulletHullShape@{GetBulletHullShape}}
+\index{GetBulletHullShape@{GetBulletHullShape}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{GetBulletHullShape}]{\setlength{\rightskip}{0pt plus 5cm}btConvexHullShape $\ast$ Mezzanine::ConvexHullCollisionShape::GetBulletHullShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a35acc9fd0c3e990bcacf1caf6d65a094}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Definition at line 1019 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a8eaf9dccce90a9366d37ab9112bc0f22}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!GetNumPoints@{GetNumPoints}}
+\index{GetNumPoints@{GetNumPoints}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{GetNumPoints}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::ConvexHullCollisionShape::GetNumPoints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a8eaf9dccce90a9366d37ab9112bc0f22}
+
+
+Gets the total number of points being stored in this shape. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the current number of points in this shape. 
+\end{DoxyReturn}
+
+
+Definition at line 1004 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a7f769cdc76fb7c62060a28472277466d}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!GetPoint@{GetPoint}}
+\index{GetPoint@{GetPoint}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{GetPoint}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ConvexHullCollisionShape::GetPoint (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a7f769cdc76fb7c62060a28472277466d}
+
+
+Gets a stored point as it is scaled in this ConvexHull. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the scaled location in local space of the specified point. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the point desired. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 999 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a73ccd6364f52a68a642a0fb55159f020}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} Mezzanine::ConvexHullCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a73ccd6364f52a68a642a0fb55159f020}
+Gets the type of \hyperlink{classMezzanine_1_1Collision}{Collision} shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ad3d4143a5640204b987e0b57eb24af41}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 1014 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a28e1633a760562ceb8427c08232518d7}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!GetUnscaledPoint@{GetUnscaledPoint}}
+\index{GetUnscaledPoint@{GetUnscaledPoint}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{GetUnscaledPoint}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ConvexHullCollisionShape::GetUnscaledPoint (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a28e1633a760562ceb8427c08232518d7}
+
+
+Gets an unscaled stored point in this ConvexHull. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the unscaled location in local space of the specified point. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the point desired. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 993 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a6aa3c6afad74091dec9c933eef257301}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!IsInside@{IsInside}}
+\index{IsInside@{IsInside}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{IsInside}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ConvexHullCollisionShape::IsInside (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location, }
+\item[{const {\bf Real} \&}]{Tolerance}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a6aa3c6afad74091dec9c933eef257301}
+
+
+Checks to see if a point in local space is inside this shape. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not the specified point is inside the shape. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The specified point to perform the check. \\
+\hline
+{\em Tolerance} & The amount of leeway to give in the check. If the distance from the specified point is equal or less then the Tolorance provided then this will return true. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1009 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

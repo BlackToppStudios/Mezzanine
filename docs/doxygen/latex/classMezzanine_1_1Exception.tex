@@ -1,0 +1,111 @@
+\hypertarget{classMezzanine_1_1Exception}{
+\subsection{Mezzanine::Exception Class Reference}
+\label{classMezzanine_1_1Exception}\index{Mezzanine::Exception@{Mezzanine::Exception}}
+}
+
+
+This is the exception thrown by most \hyperlink{namespaceMezzanine}{Mezzanine} system that can throw exceptions.  
+
+
+
+
+{\ttfamily \#include $<$exception.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1Exception_ad8659eac607c0e9138be934281b4102d}{Exception} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Message=\char`\"{}\char`\"{}, bool Logged\_\-=false)
+\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Exception_a642c76c7148c92b09802a55600359d3c}{HasBeenLogged} ()
+\begin{DoxyCompactList}\small\item\em Has this exception been on a trip through the Logger? \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Exception_a574150adbe4f949a5668640a7225ca8c}{
+void \hyperlink{classMezzanine_1_1Exception_a574150adbe4f949a5668640a7225ca8c}{SetLogged} ()}
+\label{classMezzanine_1_1Exception_a574150adbe4f949a5668640a7225ca8c}
+
+\begin{DoxyCompactList}\small\item\em Set the logged bit. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1Exception_adfca1d69742135b428879136456e1126}{what} ()  throw ()
+\begin{DoxyCompactList}\small\item\em Retrieves the error message. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is the exception thrown by most \hyperlink{namespaceMezzanine}{Mezzanine} system that can throw exceptions. In general they work like std::exception, but also track whether they have been logged yet. 
+
+Definition at line 56 of file exception.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1Exception_ad8659eac607c0e9138be934281b4102d}{
+\index{Mezzanine::Exception@{Mezzanine::Exception}!Exception@{Exception}}
+\index{Exception@{Exception}!Mezzanine::Exception@{Mezzanine::Exception}}
+\paragraph[{Exception}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Exception::Exception (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Message = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{bool}]{Logged\_\- = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Exception_ad8659eac607c0e9138be934281b4102d}
+
+
+Simple Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Message} & The Error you want stored in the exception. \\
+\hline
+{\em Logged\_\-} & Has this exception already been sent to tthe logger \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 48 of file exception.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Exception_a642c76c7148c92b09802a55600359d3c}{
+\index{Mezzanine::Exception@{Mezzanine::Exception}!HasBeenLogged@{HasBeenLogged}}
+\index{HasBeenLogged@{HasBeenLogged}!Mezzanine::Exception@{Mezzanine::Exception}}
+\paragraph[{HasBeenLogged}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Exception::HasBeenLogged (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Exception_a642c76c7148c92b09802a55600359d3c}
+
+
+Has this exception been on a trip through the Logger? 
+
+\begin{DoxyReturn}{Returns}
+A bool storing true if it has and false if it has not. 
+\end{DoxyReturn}
+
+
+Definition at line 53 of file exception.cpp.
+
+\hypertarget{classMezzanine_1_1Exception_adfca1d69742135b428879136456e1126}{
+\index{Mezzanine::Exception@{Mezzanine::Exception}!what@{what}}
+\index{what@{what}!Mezzanine::Exception@{Mezzanine::Exception}}
+\paragraph[{what}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::Exception::what (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)  throw ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Exception_adfca1d69742135b428879136456e1126}
+
+
+Retrieves the error message. 
+
+\begin{DoxyReturn}{Returns}
+This returns a string that is the stored error message. 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file exception.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+exception.h\item 
+exception.cpp\end{DoxyCompactItemize}

@@ -1,0 +1,124 @@
+\hypertarget{classMezzanine_1_1Audio_1_1SoundSet}{
+\subsection{Mezzanine::Audio::SoundSet Class Reference}
+\label{classMezzanine_1_1Audio_1_1SoundSet}\index{Mezzanine::Audio::SoundSet@{Mezzanine::Audio::SoundSet}}
+}
+
+
+This is a vector that stores sounds.  
+
+
+
+
+{\ttfamily \#include $<$audiosoundset.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \& \hyperlink{classMezzanine_1_1Audio_1_1SoundSet_a98db3c1de2ec5aa26bfdb990df0a8de5}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Get the name of the \hyperlink{classMezzanine_1_1Audio_1_1SoundSet}{SoundSet}. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Audio_1_1SoundSet_adc57b4e4b9618f481b99d4df42fed9fa}{ProtoDeSerialize} (const xml::Node \&)
+\begin{DoxyCompactList}\small\item\em Create an xml::Node describing this. \item\end{DoxyCompactList}\item 
+xml::Node \hyperlink{classMezzanine_1_1Audio_1_1SoundSet_a6eb7cfc0fc2ee768fd9df36ede43d740}{ProtoSerialize} () const 
+\begin{DoxyCompactList}\small\item\em Create an xml::Node describing this. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Audio_1_1SoundSet_aa0a7e1e9f16d3bd264737b02b2e489cf}{
+\hyperlink{classMezzanine_1_1Audio_1_1SoundSet_aa0a7e1e9f16d3bd264737b02b2e489cf}{SoundSet} ()}
+\label{classMezzanine_1_1Audio_1_1SoundSet_aa0a7e1e9f16d3bd264737b02b2e489cf}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Audio_1_1SoundSet_a3a93d5bc85dd3f3883d9dc9f56353e0f}{
+\hyperlink{classMezzanine_1_1Audio_1_1SoundSet_a3a93d5bc85dd3f3883d9dc9f56353e0f}{SoundSet} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\_\-Name)}
+\label{classMezzanine_1_1Audio_1_1SoundSet_a3a93d5bc85dd3f3883d9dc9f56353e0f}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Audio_1_1SoundSet_a0eb68b7cb88dd5d4b23117e11caf3f51}{
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} {\bfseries SerializableName} ()}
+\label{classMezzanine_1_1Audio_1_1SoundSet_a0eb68b7cb88dd5d4b23117e11caf3f51}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Audio_1_1SoundSet_a5ad8cca8340f1bfb38d0cf6296dc7997}{
+static \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1Audio_1_1SoundSet_a5ad8cca8340f1bfb38d0cf6296dc7997}{UnnamedInstanceCount} = 0}
+\label{classMezzanine_1_1Audio_1_1SoundSet_a5ad8cca8340f1bfb38d0cf6296dc7997}
+
+\begin{DoxyCompactList}\small\item\em a Simple counter to insure unique names of soundsets \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a vector that stores sounds. This is a vector and can be use to store sounds that can be grouped together for similiar purposes or similiar content for easy tracking. 
+
+Definition at line 57 of file audiosoundset.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Audio_1_1SoundSet_a98db3c1de2ec5aa26bfdb990df0a8de5}{
+\index{Mezzanine::Audio::SoundSet@{Mezzanine::Audio::SoundSet}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::Audio::SoundSet@{Mezzanine::Audio::SoundSet}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf String} \& Mezzanine::Audio::SoundSet::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Audio_1_1SoundSet_a98db3c1de2ec5aa26bfdb990df0a8de5}
+
+
+Get the name of the \hyperlink{classMezzanine_1_1Audio_1_1SoundSet}{SoundSet}. 
+
+\begin{DoxyReturn}{Returns}
+The Name of this \hyperlink{classMezzanine_1_1Audio_1_1SoundSet}{SoundSet} 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file audiosoundset.cpp.
+
+\hypertarget{classMezzanine_1_1Audio_1_1SoundSet_adc57b4e4b9618f481b99d4df42fed9fa}{
+\index{Mezzanine::Audio::SoundSet@{Mezzanine::Audio::SoundSet}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::Audio::SoundSet@{Mezzanine::Audio::SoundSet}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Audio::SoundSet::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const xml::Node \&}]{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Audio_1_1SoundSet_adc57b4e4b9618f481b99d4df42fed9fa}
+
+
+Create an xml::Node describing this. 
+
+\begin{DoxyReturn}{Returns}
+An xml::Node 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file audiosoundset.cpp.
+
+\hypertarget{classMezzanine_1_1Audio_1_1SoundSet_a6eb7cfc0fc2ee768fd9df36ede43d740}{
+\index{Mezzanine::Audio::SoundSet@{Mezzanine::Audio::SoundSet}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::Audio::SoundSet@{Mezzanine::Audio::SoundSet}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}xml::Node Mezzanine::Audio::SoundSet::ProtoSerialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Audio_1_1SoundSet_a6eb7cfc0fc2ee768fd9df36ede43d740}
+
+
+Create an xml::Node describing this. 
+
+\begin{DoxyReturn}{Returns}
+An xml::Node 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file audiosoundset.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+audiosoundset.h\item 
+audiosoundset.cpp\end{DoxyCompactItemize}

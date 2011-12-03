@@ -1,0 +1,401 @@
+\hypertarget{classMezzanine_1_1Attachable}{
+\subsection{Mezzanine::Attachable Class Reference}
+\label{classMezzanine_1_1Attachable}\index{Mezzanine::Attachable@{Mezzanine::Attachable}}
+}
+
+
+This is just a base class to be used by elements that are attachable to worldnodes.  
+
+
+
+
+{\ttfamily \#include $<$attachable.h$>$}
+
+Inheritance diagram for Mezzanine::Attachable:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.374233cm]{classMezzanine_1_1Attachable}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{AttachableElement} \{ \par
+\hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea7bdda11851ee5269f96ed56c1759de24}{None} =  0, 
+\hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea6f00000af91736e964c4e9c5ef4089b0}{Camera} =  1, 
+\hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea0879ad765016bddb95723e99b1526cf4}{Entity} =  2, 
+\hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea1e169d7d694a091e31c6b59f18841e16}{Light} =  3, 
+\par
+\hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea34203e4c067e9f503fcf9d90a4171397}{ParticleEffect} =  4, 
+\hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea36319b21c1d23deab66b05906108b306}{WorldNode} =  5
+ \}
+\begin{DoxyCompactList}\small\item\em A list of possible types of this that could be attached to a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Attachable_a798ba9c0839bb66aa1346c40a3da05ff}{
+\hyperlink{classMezzanine_1_1Attachable_a798ba9c0839bb66aa1346c40a3da05ff}{Attachable} ()}
+\label{classMezzanine_1_1Attachable_a798ba9c0839bb66aa1346c40a3da05ff}
+
+\begin{DoxyCompactList}\small\item\em No initialization class constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Attachable_ad8ab615ca85dc29144176be933cb1071}{Attachable} (\hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} $\ast$AttachedToWorldNode)
+\begin{DoxyCompactList}\small\item\em Create this already attached. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Attachable_af0c5263fef659fbd00dcd7e3d7e2d4e8}{AttachTo} (\hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} $\ast$Target)
+\begin{DoxyCompactList}\small\item\em Attach this to a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode}. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Attachable_ae41d6e88cab4808e3658e38a64e1c12d}{
+virtual void \hyperlink{classMezzanine_1_1Attachable_ae41d6e88cab4808e3658e38a64e1c12d}{DetachFrom} ()}
+\label{classMezzanine_1_1Attachable_ae41d6e88cab4808e3658e38a64e1c12d}
+
+\begin{DoxyCompactList}\small\item\em Detach from the \hyperlink{classMezzanine_1_1WorldNode}{WorldNode}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} \hyperlink{classMezzanine_1_1Attachable_aeed457c614552bd753e7669cb7624b19}{GetAttachableData} () const =0
+\begin{DoxyCompactList}\small\item\em Gets pointers to the internal ogre structures for this attachable. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{Attachable::AttachableElement} \hyperlink{classMezzanine_1_1Attachable_aacb1a1958cca1f005c1313f14e3d098d}{GetAttachableType} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the type of element this is. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} $\ast$ \hyperlink{classMezzanine_1_1Attachable_afbb1f55b0ef23cfaa4aea248c1356224}{GetAttachedTo} () const 
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} this thinks it is attached to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Attachable_a1a8e18e5654c50f24bc049c228603d71}{GetLocation} () const =0
+\begin{DoxyCompactList}\small\item\em Get the location of the attachable object, relative to the Object is is attached to. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Attachable_a6a49ac8c2ddb2dd8ed7dd17f96ecafe5}{
+virtual \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1Attachable_a6a49ac8c2ddb2dd8ed7dd17f96ecafe5}{GetName} () const =0}
+\label{classMezzanine_1_1Attachable_a6a49ac8c2ddb2dd8ed7dd17f96ecafe5}
+
+\begin{DoxyCompactList}\small\item\em Gets the name of the attachable element. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1Attachable_ab3e094cbc373edb05866783290991e7d}{GetOrientation} () const =0
+\begin{DoxyCompactList}\small\item\em Get the orientation of the attachable object relative to the object it is attached to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Transform}{Transform} \hyperlink{classMezzanine_1_1Attachable_ad93bd4e039a8807f8e1bdc27668d2177}{GetTransform} () const 
+\begin{DoxyCompactList}\small\item\em Gets the position and orientation of this attachable as a transform. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Attachable_ae326a2b74e7187504de91106be64b956}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec)=0
+\begin{DoxyCompactList}\small\item\em Set the location of this attachable object relative to the object it is attached to. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Attachable_a4e987cfdaf8d261764504dbf2f009c74}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Ori)=0
+\begin{DoxyCompactList}\small\item\em Set the orientation of this attachable object relative to the object it is attached to. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Attachable_ae4e0dca08a02b26b93ae3da7ea8ccfe3}{SetTransform} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&Trans)
+\begin{DoxyCompactList}\small\item\em Sets the position and orientation of this attachable. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Attachable_a3528fbc8f6551a7a8ac1908a69fba32d}{
+virtual \hyperlink{classMezzanine_1_1Attachable_a3528fbc8f6551a7a8ac1908a69fba32d}{$\sim$Attachable} ()}
+\label{classMezzanine_1_1Attachable_a3528fbc8f6551a7a8ac1908a69fba32d}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Attachable_a8de3e7c2ba85b2b0dbf6d382c3682726}{
+virtual void \hyperlink{classMezzanine_1_1Attachable_a8de3e7c2ba85b2b0dbf6d382c3682726}{SetAttachedTo} (\hyperlink{classMezzanine_1_1Attachable}{Attachable} $\ast$Targeter, \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} $\ast$Target)}
+\label{classMezzanine_1_1Attachable_a8de3e7c2ba85b2b0dbf6d382c3682726}
+
+\begin{DoxyCompactList}\small\item\em This changes the \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} that this thinks it is attached to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Attachable_ac9ec5dc7a4e1b371762aa319dfae291f}{
+\hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} $\ast$ \hyperlink{classMezzanine_1_1Attachable_ac9ec5dc7a4e1b371762aa319dfae291f}{AttachedTo}}
+\label{classMezzanine_1_1Attachable_ac9ec5dc7a4e1b371762aa319dfae291f}
+
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} this is attached to or null if not attached. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Attachable_a3143653774c4c048fef4d1aa0fcc430b}{
+\hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{Attachable::AttachableElement} \hyperlink{classMezzanine_1_1Attachable_a3143653774c4c048fef4d1aa0fcc430b}{ElementType}}
+\label{classMezzanine_1_1Attachable_a3143653774c4c048fef4d1aa0fcc430b}
+
+\begin{DoxyCompactList}\small\item\em Enum value representing the type of element this is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Attachable_a1cacd07efb11226da49a7c80569b18e8}{
+class {\bfseries WorldNode}}
+\label{classMezzanine_1_1Attachable_a1cacd07efb11226da49a7c80569b18e8}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is just a base class to be used by elements that are attachable to worldnodes. This class is useless on it's own and should not be created manually. These can be created by the \hyperlink{classMezzanine_1_1SceneManager}{Mezzanine::SceneManager}. 
+
+Definition at line 66 of file attachable.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!AttachableElement@{AttachableElement}}
+\index{AttachableElement@{AttachableElement}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{AttachableElement}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::Attachable::AttachableElement}}\hfill}
+\label{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}
+
+
+A list of possible types of this that could be attached to a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode}. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{None@{None}!Mezzanine::Attachable@{Mezzanine::Attachable}}\index{Mezzanine::Attachable@{Mezzanine::Attachable}!None@{None}}\item[{\em 
+\hypertarget{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea7bdda11851ee5269f96ed56c1759de24}{
+None}
+\label{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea7bdda11851ee5269f96ed56c1759de24}
+}]This is no-\/type of object, only used in error conditions. \index{Camera@{Camera}!Mezzanine::Attachable@{Mezzanine::Attachable}}\index{Mezzanine::Attachable@{Mezzanine::Attachable}!Camera@{Camera}}\item[{\em 
+\hypertarget{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea6f00000af91736e964c4e9c5ef4089b0}{
+Camera}
+\label{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea6f00000af91736e964c4e9c5ef4089b0}
+}]This is a \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}. \index{Entity@{Entity}!Mezzanine::Attachable@{Mezzanine::Attachable}}\index{Mezzanine::Attachable@{Mezzanine::Attachable}!Entity@{Entity}}\item[{\em 
+\hypertarget{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea0879ad765016bddb95723e99b1526cf4}{
+Entity}
+\label{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea0879ad765016bddb95723e99b1526cf4}
+}]This is a \hyperlink{classMezzanine_1_1Entity}{Mezzanine::Entity}. \index{Light@{Light}!Mezzanine::Attachable@{Mezzanine::Attachable}}\index{Mezzanine::Attachable@{Mezzanine::Attachable}!Light@{Light}}\item[{\em 
+\hypertarget{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea1e169d7d694a091e31c6b59f18841e16}{
+Light}
+\label{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea1e169d7d694a091e31c6b59f18841e16}
+}]This is a \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light}. \index{ParticleEffect@{ParticleEffect}!Mezzanine::Attachable@{Mezzanine::Attachable}}\index{Mezzanine::Attachable@{Mezzanine::Attachable}!ParticleEffect@{ParticleEffect}}\item[{\em 
+\hypertarget{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea34203e4c067e9f503fcf9d90a4171397}{
+ParticleEffect}
+\label{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea34203e4c067e9f503fcf9d90a4171397}
+}]This is a \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect}. \index{WorldNode@{WorldNode}!Mezzanine::Attachable@{Mezzanine::Attachable}}\index{Mezzanine::Attachable@{Mezzanine::Attachable}!WorldNode@{WorldNode}}\item[{\em 
+\hypertarget{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea36319b21c1d23deab66b05906108b306}{
+WorldNode}
+\label{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea36319b21c1d23deab66b05906108b306}
+}]This is a \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode}. \end{description}
+\end{Desc}
+
+
+
+Definition at line 72 of file attachable.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1Attachable_ad8ab615ca85dc29144176be933cb1071}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!Attachable@{Attachable}}
+\index{Attachable@{Attachable}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{Attachable}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Attachable::Attachable (
+\begin{DoxyParamCaption}
+\item[{{\bf Mezzanine::WorldNode} $\ast$}]{AttachedToWorldNode}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Attachable_ad8ab615ca85dc29144176be933cb1071}
+
+
+Create this already attached. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \_\-AttachedToWorldNode} & The \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} that this is attached to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file attachable.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Attachable_af0c5263fef659fbd00dcd7e3d7e2d4e8}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!AttachTo@{AttachTo}}
+\index{AttachTo@{AttachTo}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{AttachTo}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Attachable::AttachTo (
+\begin{DoxyParamCaption}
+\item[{{\bf Mezzanine::WorldNode} $\ast$}]{Target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Attachable_af0c5263fef659fbd00dcd7e3d7e2d4e8}
+
+
+Attach this to a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Target} & the Target \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 78 of file attachable.cpp.
+
+\hypertarget{classMezzanine_1_1Attachable_aeed457c614552bd753e7669cb7624b19}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!GetAttachableData@{GetAttachableData}}
+\index{GetAttachableData@{GetAttachableData}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{GetAttachableData}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf AttachableData} Mezzanine::Attachable::GetAttachableData (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Attachable_aeed457c614552bd753e7669cb7624b19}
+
+
+Gets pointers to the internal ogre structures for this attachable. 
+
+\begin{DoxyReturn}{Returns}
+Returns an \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} struct with the internal data. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Camera_a9bbd0126f025996457c87fb8564cc38d}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_aba46f276ebfd6fcd29d2475c956f5ca8}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_aefbd732fe2b4a5b00cdb9d30dce2c5ce}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_afd4e4d0917450000348abe394c07e985}{Mezzanine::ParticleEffect}, and \hyperlink{classMezzanine_1_1WorldNode_a9bbabb7b15f63c40bd3d563d9dd277a2}{Mezzanine::WorldNode}.
+
+\hypertarget{classMezzanine_1_1Attachable_aacb1a1958cca1f005c1313f14e3d098d}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!GetAttachableType@{GetAttachableType}}
+\index{GetAttachableType@{GetAttachableType}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{GetAttachableType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Attachable::AttachableElement} Mezzanine::Attachable::GetAttachableType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Attachable_aacb1a1958cca1f005c1313f14e3d098d}
+
+
+Gets the type of element this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating what type of element this is. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Camera_a4a8523981c43ba8f4c5358b9ce7aef37}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_aa844898af2b3d97593a414c8999b7e02}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_a530d776b916f3d8164dc2b8583040f64}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_aa9beb1bdcebf98dd3ddced6a7310ed7b}{Mezzanine::ParticleEffect}, and \hyperlink{classMezzanine_1_1WorldNode_a98048b61fe6493bee14d247aab1c8a1f}{Mezzanine::WorldNode}.
+
+\hypertarget{classMezzanine_1_1Attachable_afbb1f55b0ef23cfaa4aea248c1356224}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!GetAttachedTo@{GetAttachedTo}}
+\index{GetAttachedTo@{GetAttachedTo}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{GetAttachedTo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ Mezzanine::Attachable::GetAttachedTo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Attachable_afbb1f55b0ef23cfaa4aea248c1356224}
+
+
+Gets the \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} this thinks it is attached to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} this is attached to or 0 if not attached 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file attachable.cpp.
+
+\hypertarget{classMezzanine_1_1Attachable_a1a8e18e5654c50f24bc049c228603d71}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!GetLocation@{GetLocation}}
+\index{GetLocation@{GetLocation}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} Mezzanine::Attachable::GetLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Attachable_a1a8e18e5654c50f24bc049c228603d71}
+
+
+Get the location of the attachable object, relative to the Object is is attached to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the location. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Camera_afb87a19855c4cd5361861e1e400d5481}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_abef3e9fd62085c0ebc0bcab8199f7ce7}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_a997d299abec130a6a9111b5659a6b0d2}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_a45174a2138b031322ddc57fe1be006de}{Mezzanine::ParticleEffect}, and \hyperlink{classMezzanine_1_1WorldNode_a7941d8f3347b810d31b511c3b59585f8}{Mezzanine::WorldNode}.
+
+\hypertarget{classMezzanine_1_1Attachable_ab3e094cbc373edb05866783290991e7d}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} Mezzanine::Attachable::GetOrientation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Attachable_ab3e094cbc373edb05866783290991e7d}
+
+
+Get the orientation of the attachable object relative to the object it is attached to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a quaternion with the orientation. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Camera_af693fe97c4f281940a33dc8087a80fcb}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_a3ffd4d4d16a5c3579201491af3363fc9}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_a08a415b00c94345ebb5155fa15819296}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_ac47f0c537dd4b789c502bb2a3af61a56}{Mezzanine::ParticleEffect}, and \hyperlink{classMezzanine_1_1WorldNode_ad250735dcbc77c3c96bd4d6b21e43867}{Mezzanine::WorldNode}.
+
+\hypertarget{classMezzanine_1_1Attachable_ad93bd4e039a8807f8e1bdc27668d2177}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!GetTransform@{GetTransform}}
+\index{GetTransform@{GetTransform}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{GetTransform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform} Mezzanine::Attachable::GetTransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Attachable_ad93bd4e039a8807f8e1bdc27668d2177}
+
+
+Gets the position and orientation of this attachable as a transform. 
+
+\begin{DoxyReturn}{Returns}
+Returns a transform with this attachables position and orientation. 
+\end{DoxyReturn}
+
+
+Definition at line 98 of file attachable.cpp.
+
+\hypertarget{classMezzanine_1_1Attachable_ae326a2b74e7187504de91106be64b956}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!SetLocation@{SetLocation}}
+\index{SetLocation@{SetLocation}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::Attachable::SetLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Attachable_ae326a2b74e7187504de91106be64b956}
+
+
+Set the location of this attachable object relative to the object it is attached to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vec} & The location. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Camera_afdc236c2c875035c8a11473350d0d17a}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_a7cb26c149bc32945dcf12f60b2216079}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_ac06da317651df700c2969cc81c3f8d3d}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_a1209e018087451e02eec73b52db31d2b}{Mezzanine::ParticleEffect}, and \hyperlink{classMezzanine_1_1WorldNode_a636852458b226f1c2f3089f17558e678}{Mezzanine::WorldNode}.
+
+\hypertarget{classMezzanine_1_1Attachable_a4e987cfdaf8d261764504dbf2f009c74}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::Attachable::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Ori}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Attachable_a4e987cfdaf8d261764504dbf2f009c74}
+
+
+Set the orientation of this attachable object relative to the object it is attached to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Ori} & The Orientation. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Camera_af502b9c47b1acce46e1482ce049320eb}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_ad498093c5a2b8ef3bfb9311aff719d67}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_aa2f3fe2b7cb7bf459f2526d2e5c234ed}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_a8e16be90e8c9d59b7c48b11a38179f76}{Mezzanine::ParticleEffect}, and \hyperlink{classMezzanine_1_1WorldNode_afe9db5c3abeb608bf2d589c2a61da546}{Mezzanine::WorldNode}.
+
+\hypertarget{classMezzanine_1_1Attachable_ae4e0dca08a02b26b93ae3da7ea8ccfe3}{
+\index{Mezzanine::Attachable@{Mezzanine::Attachable}!SetTransform@{SetTransform}}
+\index{SetTransform@{SetTransform}!Mezzanine::Attachable@{Mezzanine::Attachable}}
+\paragraph[{SetTransform}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Attachable::SetTransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{Trans}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Attachable_ae4e0dca08a02b26b93ae3da7ea8ccfe3}
+
+
+Sets the position and orientation of this attachable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Trans} & The transform to apply to this attachable. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 92 of file attachable.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{attachable_8h}{attachable.h}\item 
+\hyperlink{attachable_8cpp}{attachable.cpp}\end{DoxyCompactItemize}

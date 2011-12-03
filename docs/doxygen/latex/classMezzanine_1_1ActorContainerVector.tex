@@ -1,0 +1,609 @@
+\hypertarget{classMezzanine_1_1ActorContainerVector}{
+\subsection{Mezzanine::ActorContainerVector Class Reference}
+\label{classMezzanine_1_1ActorContainerVector}\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+}
+
+
+A simple Actor Container using a vector.  
+
+
+
+
+{\ttfamily \#include $<$actorcontainervector.h$>$}
+
+Inheritance diagram for Mezzanine::ActorContainerVector:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ActorContainerVector}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1ActorContainerVector_a1fcb63abbc8e5d30f3d274ba1798b604}{ActorContainerVector} ()
+\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_a1341d51fa9ed279301eed579a2de79b2}{AddActor} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)
+\begin{DoxyCompactList}\small\item\em This will add an Actor to this container and the world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_a2b09e4eac9bc6392f47dd81fb7592ce3}{CursorToFirst} ()
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the first item in the container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_ae80f9d94f009293528bf1b4251bc8ad0}{CursorToLast} ()
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the last item in the container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_a04cce1784a09023cb9db8cbc60a60d0c}{CursorToNext} ()
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the next item in the container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_abe0d1ce8c8f6a83a7ef3c340a605e767}{CursorToPrevious} ()
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the previous item in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorContainerVector_a0155ddbb599b1653c37bdfcb261355d2}{FindActor} (Ogre::SceneNode $\ast$GraphicsNode)
+\begin{DoxyCompactList}\small\item\em This finds an actor by searching for a graphics subsystem nodes. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorContainerVector_acc1507a3a9d464ff0c343786986bef98}{FindActor} (btCollisionObject $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em This finds an actor by searching for a physics subsystem object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorContainerVector_a09837c17229c0a17031e7ce5fa3f6fc6}{FindActor} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} Name)
+\begin{DoxyCompactList}\small\item\em This finds an actor based on its name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1ActorContainerVector_a9a4e61bb6597fb66906c779c1f27e051}{GetActorCount} () const 
+\begin{DoxyCompactList}\small\item\em Returns how many actors this stores. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorContainerVector_ac9efeefbc35033294723d33a8edd72c2}{GetAtCursor} () const 
+\begin{DoxyCompactList}\small\item\em This gets the actor at the cursor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorContainerVector_a22c7e6456504a7a7f93825936d2d2b8f}{GetContainerType} () const 
+\begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorContainerVector_ab39133337c950be6207e0ba46f151af9}{GetFirst} () const 
+\begin{DoxyCompactList}\small\item\em This gets the first actor in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1World}{World} $\ast$ \hyperlink{classMezzanine_1_1ActorContainerVector_afa1152c7bd84d8eba51bc4abe0500e51}{GetGameWorld} () const 
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classMezzanine_1_1World}{World} that this class is working with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorContainerVector_a1b42e0385132ded405dd1f9558216938}{GetLast} () const 
+\begin{DoxyCompactList}\small\item\em This gets the last actor in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorContainerVector_aaa354835e75bd28fb2fe7e51a8e73ca6}{LastActorAdded} ()
+\begin{DoxyCompactList}\small\item\em This provides an easy way to access the last Actor added to this container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_ab0f76ee775a4e92a55835e07edac0bce}{RemoveActor} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ActorToRemove)
+\begin{DoxyCompactList}\small\item\em Remove an Actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_a380140962919b31d8c2b23be6f69fbb0}{RemoveActorAtCursor} ()
+\begin{DoxyCompactList}\small\item\em Removes the current actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorContainerVector_ae34237a2ba5649f00c45e87b8d570097}{
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_ae34237a2ba5649f00c45e87b8d570097}{RemoveAllActors} ()}
+\label{classMezzanine_1_1ActorContainerVector_ae34237a2ba5649f00c45e87b8d570097}
+
+\begin{DoxyCompactList}\small\item\em Clears this container of all actors it is storing. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_ab974d2704bfc3d74e3f008250ed893d8}{SetGameWorld} (\hyperlink{classMezzanine_1_1World}{World} $\ast$GameWorld\_\-)
+\begin{DoxyCompactList}\small\item\em This safely move all the Actors out of or into a \hyperlink{classMezzanine_1_1World}{Mezzanine::World}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_a7011795fcc3c3eb51b981aaebff23fac}{SetGameWorld} (\hyperlink{classMezzanine_1_1World}{World} $\ast$GameWorld\_\-, bool AddToWorld, bool RemoveFromWorld)
+\begin{DoxyCompactList}\small\item\em Optionally move actors into or out of a world. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorContainerVector_a84a9f721addd5bdfbc611393913e68fd}{
+virtual \hyperlink{classMezzanine_1_1ActorContainerVector_a84a9f721addd5bdfbc611393913e68fd}{$\sim$ActorContainerVector} ()}
+\label{classMezzanine_1_1ActorContainerVector_a84a9f721addd5bdfbc611393913e68fd}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$::iterator \hyperlink{classMezzanine_1_1ActorContainerVector_ac359dee117cfe4829c656f7599ea9092}{cursor}
+\begin{DoxyCompactList}\small\item\em This is used to store information about the cursor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A simple Actor Container using a vector. This inherits from std::vector and our \hyperlink{classMezzanine_1_1ActorContainerBase}{Mezzanine::ActorContainerBase} to allow us to have access to a container through a standardized structure this way the Mezzanine::world doesn't need to worry about the details when accessing and storing actors 
+
+Definition at line 64 of file actorcontainervector.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ActorContainerVector_a1fcb63abbc8e5d30f3d274ba1798b604}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!ActorContainerVector@{ActorContainerVector}}
+\index{ActorContainerVector@{ActorContainerVector}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{ActorContainerVector}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame Mezzanine src actorcontainervector cpp Mezzanine::ActorContainerVector::ActorContainerVector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a1fcb63abbc8e5d30f3d274ba1798b604}
+
+
+Simple Constructor. 
+
+This creates and empty usable container based on std::vector. 
+
+Definition at line 49 of file actorcontainervector.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ActorContainerVector_a1341d51fa9ed279301eed579a2de79b2}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!AddActor@{AddActor}}
+\index{AddActor@{AddActor}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorContainerVector::AddActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ActorToAdd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a1341d51fa9ed279301eed579a2de79b2}
+
+
+This will add an Actor to this container and the world. 
+
+This will add an Actor to this container and the world, and handle the nitty gritty details of add this to physics subsystem and graphics subsystem. \par
+\par
+ This will not add the Actor to any specific location in the ordering of the container. \par
+\par
+ It is expected that any container implementing this method will take appropriate steps to insure That the actor involved is added to the Physics and graphics world. This method could be called from derived to accomplish that task 
+\begin{DoxyParams}{Parameters}
+{\em ActorToAdd} & This is a pointer to the actor to add. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_aba981ad61ed549531a22d520ba2a231c}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 59 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_a2b09e4eac9bc6392f47dd81fb7592ce3}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!CursorToFirst@{CursorToFirst}}
+\index{CursorToFirst@{CursorToFirst}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{CursorToFirst}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorContainerVector::CursorToFirst (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a2b09e4eac9bc6392f47dd81fb7592ce3}
+
+
+This moves the cursor to the first item in the container. 
+
+This moves the cursor to the first item in the container change or return anything else. An exception will be throw if there are no valid items to move to with the cursor. There must be atleast one item to use any cursor moving functions. 
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a7e26df0af80a28be01d0aaef7d350a65}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 90 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_ae80f9d94f009293528bf1b4251bc8ad0}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!CursorToLast@{CursorToLast}}
+\index{CursorToLast@{CursorToLast}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{CursorToLast}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorContainerVector::CursorToLast (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_ae80f9d94f009293528bf1b4251bc8ad0}
+
+
+This moves the cursor to the last item in the container. 
+
+This moves the cursor to the last item in the container change or return anything else. See \hyperlink{classMezzanine_1_1ActorContainerVector_a2b09e4eac9bc6392f47dd81fb7592ce3}{CursorToFirst()} for more details. 
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a3f90f7b919bb821389f1493c6c121cce}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 116 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_a04cce1784a09023cb9db8cbc60a60d0c}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!CursorToNext@{CursorToNext}}
+\index{CursorToNext@{CursorToNext}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{CursorToNext}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorContainerVector::CursorToNext (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a04cce1784a09023cb9db8cbc60a60d0c}
+
+
+This moves the cursor to the next item in the container. 
+
+This is the same as \hyperlink{classMezzanine_1_1ActorContainerVector_abe0d1ce8c8f6a83a7ef3c340a605e767}{CursorToPrevious()} except if you start from the begin you'll work your way to the end. If you are at the end, you'll stay their if you call this again 
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a906736a79fc92f45ae0cb73cfa2e7ed3}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 107 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_abe0d1ce8c8f6a83a7ef3c340a605e767}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!CursorToPrevious@{CursorToPrevious}}
+\index{CursorToPrevious@{CursorToPrevious}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{CursorToPrevious}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorContainerVector::CursorToPrevious (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_abe0d1ce8c8f6a83a7ef3c340a605e767}
+
+
+This moves the cursor to the previous item in the container. 
+
+This moves the cursor to the previous item in the container, and if you started at the last item, you will visit every item in a properly implemented container, except for items that may have bee added during your traversal. It is also posible this could visit the same actor twice or more. When called from the first item this does nothing. An exception will be throw if there are no valid items to move to with the cursor. There must be atleast one item to use any cursor moving functions. 
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a43c40059dc0c99742e99efa68c1acf52}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 98 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_a0155ddbb599b1653c37bdfcb261355d2}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!FindActor@{FindActor}}
+\index{FindActor@{FindActor}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::ActorContainerVector::FindActor (
+\begin{DoxyParamCaption}
+\item[{Ogre::SceneNode $\ast$}]{GraphicsNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a0155ddbb599b1653c37bdfcb261355d2}
+
+
+This finds an actor by searching for a graphics subsystem nodes. 
+
+This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time. \begin{DoxyReturn}{Returns}
+This returns a pointer to and \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} that has a matching node. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em GraphicsNode} & This is a pointer to a GraphicsNode that the Actor you want to find will have. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_ace7273ccf53bc37cca7defbd703880f9}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 152 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_acc1507a3a9d464ff0c343786986bef98}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!FindActor@{FindActor}}
+\index{FindActor@{FindActor}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::ActorContainerVector::FindActor (
+\begin{DoxyParamCaption}
+\item[{btCollisionObject $\ast$}]{PhysicsObject}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_acc1507a3a9d464ff0c343786986bef98}
+
+
+This finds an actor by searching for a physics subsystem object. 
+
+This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time. \begin{DoxyReturn}{Returns}
+This returns a pointer to and \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} that has a physics object. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em PhysicsObject} & This is a pointer to a physics object that the Actor you want to find will have. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a405caa151d3556786344be12ac0b6c2a}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 141 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_a09837c17229c0a17031e7ce5fa3f6fc6}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!FindActor@{FindActor}}
+\index{FindActor@{FindActor}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::ActorContainerVector::FindActor (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a09837c17229c0a17031e7ce5fa3f6fc6}
+
+
+This finds an actor based on its name. 
+
+This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time. \begin{DoxyReturn}{Returns}
+This returns a pointer to and \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} that has a matching name. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & This is the name of the Actor you want to find. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_aafa4b056aaa0161d3d814bfb56bd9ae9}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 163 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_a9a4e61bb6597fb66906c779c1f27e051}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!GetActorCount@{GetActorCount}}
+\index{GetActorCount@{GetActorCount}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{GetActorCount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::ActorContainerVector::GetActorCount (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a9a4e61bb6597fb66906c779c1f27e051}
+
+
+Returns how many actors this stores. 
+
+\begin{DoxyReturn}{Returns}
+This returns a Whole number with the count of actors 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a30b3c8d876a51510a8e29043a3c2b9de}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 87 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_ac9efeefbc35033294723d33a8edd72c2}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!GetAtCursor@{GetAtCursor}}
+\index{GetAtCursor@{GetAtCursor}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{GetAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::ActorContainerVector::GetAtCursor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_ac9efeefbc35033294723d33a8edd72c2}
+
+
+This gets the actor at the cursor. 
+
+This gets the actor at the cursor, and will not move the cursor. If the cursor has not be set to a location, any valid actor in the container could be returned. Will throw an exception when attempting to get from an empty container. \begin{DoxyReturn}{Returns}
+This returns a pointer to an \hyperlink{classMezzanine_1_1ActorBase}{ActorBase}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_ae339ced44550bc493685ab7e499a9e65}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 124 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_a22c7e6456504a7a7f93825936d2d2b8f}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!GetContainerType@{GetContainerType}}
+\index{GetContainerType@{GetContainerType}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{GetContainerType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::ActorContainerVector::GetContainerType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a22c7e6456504a7a7f93825936d2d2b8f}
+
+
+Which kind of container it this anyway. 
+
+Since this interface could be used with any type of containers and innumerable 3rd party container implemention this can be used to more safely cast this container to a more specific type. \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{Mezzanine::String} 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a3516835341b82c71bc50b0a23be85af2}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 138 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_ab39133337c950be6207e0ba46f151af9}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!GetFirst@{GetFirst}}
+\index{GetFirst@{GetFirst}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{GetFirst}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::ActorContainerVector::GetFirst (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_ab39133337c950be6207e0ba46f151af9}
+
+
+This gets the first actor in the container. 
+
+This and the actor the cursor points at after \hyperlink{classMezzanine_1_1ActorContainerVector_a2b09e4eac9bc6392f47dd81fb7592ce3}{CursorToFirst()} should match. \begin{DoxyReturn}{Returns}
+This returns a pointer to an \hyperlink{classMezzanine_1_1ActorBase}{ActorBase}. Will throw an exception when attempting to get from an empty container. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a886539e9b55e8033b05e7b1aff8d2c59}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 132 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_afa1152c7bd84d8eba51bc4abe0500e51}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!GetGameWorld@{GetGameWorld}}
+\index{GetGameWorld@{GetGameWorld}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{GetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} $\ast$ Mezzanine::ActorContainerVector::GetGameWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_afa1152c7bd84d8eba51bc4abe0500e51}
+
+
+This gets the \hyperlink{classMezzanine_1_1World}{World} that this class is working with. 
+
+This returns the gameworld that this container registers it's objects with. If this is not set, then this does not Register it's actors with any world. \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classMezzanine_1_1World}{Mezzanine::World}$\ast$ 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_ae8fe5e37e411504c4b0e044b336118e8}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 177 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_a1b42e0385132ded405dd1f9558216938}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!GetLast@{GetLast}}
+\index{GetLast@{GetLast}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{GetLast}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::ActorContainerVector::GetLast (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a1b42e0385132ded405dd1f9558216938}
+
+
+This gets the last actor in the container. 
+
+This and the actor the cursor points at after \hyperlink{classMezzanine_1_1ActorContainerVector_ae80f9d94f009293528bf1b4251bc8ad0}{CursorToLast()} should match. \begin{DoxyReturn}{Returns}
+This returns a pointer to an \hyperlink{classMezzanine_1_1ActorBase}{ActorBase}. Will throw an exception when attempting to get from an empty container. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_ad4fc923758bf4c15e8e6a0e0ad9e0de2}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 135 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_aaa354835e75bd28fb2fe7e51a8e73ca6}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!LastActorAdded@{LastActorAdded}}
+\index{LastActorAdded@{LastActorAdded}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{LastActorAdded}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::ActorContainerVector::LastActorAdded (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_aaa354835e75bd28fb2fe7e51a8e73ca6}
+
+
+This provides an easy way to access the last Actor added to this container. 
+
+For many containers this will simply return a pointer to the last actor. \begin{DoxyReturn}{Returns}
+This returns a pointer to the last Actor that was added. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_abccaf443a5acd1c96f7ae1a1cb751f16}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 65 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_ab0f76ee775a4e92a55835e07edac0bce}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!RemoveActor@{RemoveActor}}
+\index{RemoveActor@{RemoveActor}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{RemoveActor}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorContainerVector::RemoveActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ActorToRemove}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_ab0f76ee775a4e92a55835e07edac0bce}
+
+
+Remove an Actor. 
+
+Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove and no match could be found. 
+\begin{DoxyParams}{Parameters}
+{\em ActorToRemove} & A pointer to the actor to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+This will cause issues if used with a container attached to a valid \hyperlink{classMezzanine_1_1World}{Mezzanine::World}. Use World::RemoveActor instead. 
+\end{DoxyWarning}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a25052e0fc2dcf1eab9cfc909d68de60c}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 68 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_a380140962919b31d8c2b23be6f69fbb0}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!RemoveActorAtCursor@{RemoveActorAtCursor}}
+\index{RemoveActorAtCursor@{RemoveActorAtCursor}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{RemoveActorAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorContainerVector::RemoveActorAtCursor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a380140962919b31d8c2b23be6f69fbb0}
+
+
+Removes the current actor. 
+
+This removes the actor the cursor at. Will throw an exception when attempting to remove from an empty container. Where the cursor goes is implementation dependent. \begin{DoxyWarning}{Warning}
+This will cause issues if used with a container attached to a valid \hyperlink{classMezzanine_1_1World}{Mezzanine::World}. Use World::RemoveActor instead. 
+\end{DoxyWarning}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a00fa640707739e2a94b91a09873d7dcc}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 81 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_ab974d2704bfc3d74e3f008250ed893d8}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!SetGameWorld@{SetGameWorld}}
+\index{SetGameWorld@{SetGameWorld}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorContainerVector::SetGameWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{GameWorld\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_ab974d2704bfc3d74e3f008250ed893d8}
+
+
+This safely move all the Actors out of or into a \hyperlink{classMezzanine_1_1World}{Mezzanine::World}. 
+
+This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system if a \hyperlink{classMezzanine_1_1World}{Mezzanine::World} is present. Then this sets up all actors with the new \hyperlink{classMezzanine_1_1World}{World} unless it is NULL 
+\begin{DoxyParams}{Parameters}
+{\em GameWorld\_\-} & This is a pointer to the new \hyperlink{classMezzanine_1_1World}{Mezzanine::World} to work with. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_aed532e5416af4c896a85a78b707aeee9}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 180 of file actorcontainervector.cpp.
+
+\hypertarget{classMezzanine_1_1ActorContainerVector_a7011795fcc3c3eb51b981aaebff23fac}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!SetGameWorld@{SetGameWorld}}
+\index{SetGameWorld@{SetGameWorld}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorContainerVector::SetGameWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{GameWorld\_\-, }
+\item[{bool}]{AddToWorld, }
+\item[{bool}]{RemoveFromWorld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_a7011795fcc3c3eb51b981aaebff23fac}
+
+
+Optionally move actors into or out of a world. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GameWorld\_\-} & This is a pointer to the new \hyperlink{classMezzanine_1_1World}{Mezzanine::World} to work with. \\
+\hline
+{\em AddToWorld} & True to add AddActors if valid world pointer was supplied, false to not add \\
+\hline
+{\em RemoveFromWorld} & True to remove AddActors if valid world pointer was supplied, false to not remove \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorContainerBase_a5dd1ea660dbbcb39d36e702c4e393f30}{Mezzanine::ActorContainerBase}.
+
+
+
+Definition at line 183 of file actorcontainervector.cpp.
+
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{classMezzanine_1_1ActorContainerVector_ac359dee117cfe4829c656f7599ea9092}{
+\index{Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}!cursor@{cursor}}
+\index{cursor@{cursor}!Mezzanine::ActorContainerVector@{Mezzanine::ActorContainerVector}}
+\paragraph[{cursor}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf ActorBase}$\ast$$>$::iterator {\bf Mezzanine::ActorContainerVector::cursor}}\hfill}
+\label{classMezzanine_1_1ActorContainerVector_ac359dee117cfe4829c656f7599ea9092}
+
+
+This is used to store information about the cursor. 
+
+This implementation of \hyperlink{classMezzanine_1_1ActorContainerBase}{ActorContainerBase} will use this, and only this to access the cursor so feel free to use this instead. 
+
+Definition at line 125 of file actorcontainervector.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorcontainervector.h\item 
+actorcontainervector.cpp\end{DoxyCompactItemize}

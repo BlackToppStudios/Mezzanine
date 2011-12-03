@@ -1,0 +1,220 @@
+\hypertarget{classMezzanine_1_1Transform}{
+\subsection{Mezzanine::Transform Class Reference}
+\label{classMezzanine_1_1Transform}\index{Mezzanine::Transform@{Mezzanine::Transform}}
+}
+
+
+Stores information about relative location and rotation in 3d space.  
+
+
+
+
+{\ttfamily \#include $<$transform.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMezzanine_1_1Transform_ade790a95db2817427aea8b7a90f95925}{ExtractBulletTransform} (const btTransform \&temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing Bullet transform. \item\end{DoxyCompactList}\item 
+btTransform \hyperlink{classMezzanine_1_1Transform_ae1745852b61f7388a5374eeebdc893cd}{GetBulletTransform} () const 
+\begin{DoxyCompactList}\small\item\em Gets a Bullet \hyperlink{classMezzanine_1_1Transform}{Transform}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Transform}{Transform} \& \hyperlink{classMezzanine_1_1Transform_a4ea68563eacb2f69a4e83a0c28392b74}{operator=} (const btTransform \&rhs)
+\begin{DoxyCompactList}\small\item\em Set the values of this \hyperlink{classMezzanine_1_1Transform}{Transform} to match an existing btTransform. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Transform}{Transform} \& \hyperlink{classMezzanine_1_1Transform_aa21521163611bf58988caf99c085d067}{operator=} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&rhs)
+\begin{DoxyCompactList}\small\item\em Set the values of this \hyperlink{classMezzanine_1_1Transform}{Transform} to match an existing \hyperlink{classMezzanine_1_1Transform}{Transform}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Transform_ad4974a80bdb1625119e98b059e4e91e0}{Transform} (const btTransform \&Btt)
+\begin{DoxyCompactList}\small\item\em The Conversion Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Transform_a0949c0923e41e00af6c9537d5f9094b7}{Transform} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec=\hyperlink{classMezzanine_1_1Vector3}{Vector3}(), const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Quat=\hyperlink{classMezzanine_1_1Quaternion}{Quaternion}())
+\begin{DoxyCompactList}\small\item\em The multipurpose constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Transform_ad719d3280b8b94f27b5ba1ce3e8a9a59}{Transform} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TheOther)
+\begin{DoxyCompactList}\small\item\em The copy constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Transform_a93498c9bcba2298f199f9ab04671a944}{
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Transform_a93498c9bcba2298f199f9ab04671a944}{Location}}
+\label{classMezzanine_1_1Transform_a93498c9bcba2298f199f9ab04671a944}
+
+\begin{DoxyCompactList}\small\item\em The location or relative location is stored in a \hyperlink{classMezzanine_1_1Vector3}{Vector3}. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Transform_a4f41685c108f02fd4faad209b1a438ef}{
+\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1Transform_a4f41685c108f02fd4faad209b1a438ef}{Rotation}}
+\label{classMezzanine_1_1Transform_a4f41685c108f02fd4faad209b1a438ef}
+
+\begin{DoxyCompactList}\small\item\em The Rotation or relative rotation is stored in a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Stores information about relative location and rotation in 3d space. This is simple a pair of a vector 3 to store location and a quaternion to store rotation. This is communly used to interact with the physics system. This also has a few helper functions to make it more useful than an std::pair$<$Vector3,Quaternion$>$. 
+
+Definition at line 62 of file transform.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1Transform_a0949c0923e41e00af6c9537d5f9094b7}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Transform::Transform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec = {\ttfamily {\bf Vector3}()}, }
+\item[{const {\bf Quaternion} \&}]{Quat = {\ttfamily {\bf Quaternion}()}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Transform_a0949c0923e41e00af6c9537d5f9094b7}
+
+
+The multipurpose constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vec} & The starting Vector\#/Location you would like this transform to have. If not passed, a default \hyperlink{classMezzanine_1_1Vector3}{Vector3} is used. \\
+\hline
+{\em Quat} & The starting Quaternion/Rotation you would like this transform to have. If not passed, a default \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} is used. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 53 of file transform.cpp.
+
+\hypertarget{classMezzanine_1_1Transform_ad4974a80bdb1625119e98b059e4e91e0}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Transform::Transform (
+\begin{DoxyParamCaption}
+\item[{const btTransform \&}]{Btt}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Transform_ad4974a80bdb1625119e98b059e4e91e0}
+
+
+The Conversion Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Btt} & The btTransform from bullet physics. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 58 of file transform.cpp.
+
+\hypertarget{classMezzanine_1_1Transform_ad719d3280b8b94f27b5ba1ce3e8a9a59}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Transform::Transform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{TheOther}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Transform_ad719d3280b8b94f27b5ba1ce3e8a9a59}
+
+
+The copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TheOther} & Another \hyperlink{classMezzanine_1_1Transform}{Transform} to be copied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 61 of file transform.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Transform_ade790a95db2817427aea8b7a90f95925}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!ExtractBulletTransform@{ExtractBulletTransform}}
+\index{ExtractBulletTransform@{ExtractBulletTransform}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{ExtractBulletTransform}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Transform::ExtractBulletTransform (
+\begin{DoxyParamCaption}
+\item[{const btTransform \&}]{temp}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Transform_ade790a95db2817427aea8b7a90f95925}
+
+
+Copies an existing Bullet transform. 
+
+This function will copy the values stored in an existing Bullet transform and set the values of this class instance to be the same. 
+\begin{DoxyParams}{Parameters}
+{\em temp} & The btTransfrom to have its values extracted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 71 of file transform.cpp.
+
+\hypertarget{classMezzanine_1_1Transform_ae1745852b61f7388a5374eeebdc893cd}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!GetBulletTransform@{GetBulletTransform}}
+\index{GetBulletTransform@{GetBulletTransform}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{GetBulletTransform}]{\setlength{\rightskip}{0pt plus 5cm}btTransform Mezzanine::Transform::GetBulletTransform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Transform_ae1745852b61f7388a5374eeebdc893cd}
+
+
+Gets a Bullet \hyperlink{classMezzanine_1_1Transform}{Transform}. 
+
+Creates a Bullet \hyperlink{classMezzanine_1_1Transform}{Transform} with values equal to this class instance and returns it. 
+
+Definition at line 64 of file transform.cpp.
+
+\hypertarget{classMezzanine_1_1Transform_aa21521163611bf58988caf99c085d067}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform} \& Mezzanine::Transform::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} \&}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Transform_aa21521163611bf58988caf99c085d067}
+
+
+Set the values of this \hyperlink{classMezzanine_1_1Transform}{Transform} to match an existing \hyperlink{classMezzanine_1_1Transform}{Transform}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The item storing the values to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the freshly overwritten \hyperlink{classMezzanine_1_1Transform}{Transform}. 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file transform.cpp.
+
+\hypertarget{classMezzanine_1_1Transform_a4ea68563eacb2f69a4e83a0c28392b74}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform} \& Mezzanine::Transform::operator= (
+\begin{DoxyParamCaption}
+\item[{const btTransform \&}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Transform_a4ea68563eacb2f69a4e83a0c28392b74}
+
+
+Set the values of this \hyperlink{classMezzanine_1_1Transform}{Transform} to match an existing btTransform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The item storing the values to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the freshly overwritten \hyperlink{classMezzanine_1_1Transform}{Transform}. 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file transform.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{transform_8h}{transform.h}\item 
+transform.cpp\end{DoxyCompactItemize}
