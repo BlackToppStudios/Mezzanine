@@ -237,7 +237,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::EventGameWindo
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventGameWindow& Ev)
 {
     Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("phys::", "EventGameWindow", OneTag) );
+    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "EventGameWindow", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 

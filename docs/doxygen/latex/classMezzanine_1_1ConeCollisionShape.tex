@@ -1,0 +1,417 @@
+\hypertarget{classMezzanine_1_1ConeCollisionShape}{
+\subsection{Mezzanine::ConeCollisionShape Class Reference}
+\label{classMezzanine_1_1ConeCollisionShape}\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+}
+
+
+A cone physics shape.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for Mezzanine::ConeCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classMezzanine_1_1ConeCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1ConeCollisionShape_aec0129e435def8d4299a6a7df6ecfd82}{ConeCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radius, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Height, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&UpAxis)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ConeCollisionShape_a33a0f529da45a509f8961f4c9a490b3e}{ConeCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radius, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Height, \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} UpAxis)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ConeCollisionShape_ad80439a195cf4f2df8d2cd4b8ebaf062}{ConeCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, btConeShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+virtual btConeShape $\ast$ \hyperlink{classMezzanine_1_1ConeCollisionShape_aff8623fa14d66fce32738ff075c1cc7c}{GetBulletConeShape} () const 
+\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ConeCollisionShape_af52995ed04491df5ebbff26af6ecd816}{GetCleanHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the height of the cone, as originally passed in. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ConeCollisionShape_a24b59bbca0455e54cf7bb692ff46c080}{GetCleanRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the cone, as originally passed in. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ConeCollisionShape_a6247f2a72e298ada975a0fa840b12629}{GetHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the height of the cone, as used for collision checking. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ConeCollisionShape_aa3c48e845cb96783118d2cb9562246a9}{GetHeightScaling} () const 
+\begin{DoxyCompactList}\small\item\em Which axis is up defines which axis is used to scale height. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ConeCollisionShape_ae2d8ed139802999b4bec4fdac4814ef3}{GetRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the cone, as used for collision checking. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ConeCollisionShape_a6588a43aa775e0f33bc7d9741699fd3f}{GetRadiusScaling} () const 
+\begin{DoxyCompactList}\small\item\em Which axis is up defines which 2 axis are used to scale the radius. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{classMezzanine_1_1ConeCollisionShape_a874892f3aaba7e79200633691037a410}{GetType} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ConeCollisionShape_aed9f36553311ca8d20ccd0d7a01ec4ee}{GetUpAxis} () const 
+\begin{DoxyCompactList}\small\item\em Gets which axis this cone is oriented along. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} \hyperlink{classMezzanine_1_1ConeCollisionShape_aa17fc2f15ba313109ff40f1a66e088be}{GetUpStandardAxis} () const 
+\begin{DoxyCompactList}\small\item\em Gets which axis this cone is oriented along. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ConeCollisionShape_a49236a6396e87f22ec06251de6d3c1fe}{
+virtual \hyperlink{classMezzanine_1_1ConeCollisionShape_a49236a6396e87f22ec06251de6d3c1fe}{$\sim$ConeCollisionShape} ()}
+\label{classMezzanine_1_1ConeCollisionShape_a49236a6396e87f22ec06251de6d3c1fe}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMezzanine_1_1ConeCollisionShape_a5a29f404442602af52499c684c792310}{Construct} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radius, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Height, \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} UpAxis)
+\begin{DoxyCompactList}\small\item\em Performe shared contructor work. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ConeCollisionShape_aa4a1f1f839c3b6761b27b129b60c8e89}{GetAxisMathBS} () const 
+\begin{DoxyCompactList}\small\item\em Simulate some messed up the physics library does. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A cone physics shape. Keep in mind when building a cone shape, the provided radius is for the base of the cone, but the pivot point of the shape is still at it's center and not it's base. Like Capsules and Cylinders, Cones can be aligned to any of the 3 linear axes(X, Y, or Z). 
+
+Definition at line 488 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ConeCollisionShape_aec0129e435def8d4299a6a7df6ecfd82}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!ConeCollisionShape@{ConeCollisionShape}}
+\index{ConeCollisionShape@{ConeCollisionShape}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{ConeCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ConeCollisionShape::ConeCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{const {\bf Vector3} \&}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_aec0129e435def8d4299a6a7df6ecfd82}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the base of the Cone. \\
+\hline
+{\em Height} & The height of the Cone. \\
+\hline
+{\em UpAxis} & Which axis the Cone is to be oriented along. Typical usage is for a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 794 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_a33a0f529da45a509f8961f4c9a490b3e}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!ConeCollisionShape@{ConeCollisionShape}}
+\index{ConeCollisionShape@{ConeCollisionShape}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{ConeCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ConeCollisionShape::ConeCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{{\bf StandardAxis}}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_a33a0f529da45a509f8961f4c9a490b3e}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the base of the Cone. \\
+\hline
+{\em Height} & The height of the Cone. \\
+\hline
+{\em UpAxis} & Which axis the Cone is to be oriented along. Uses StandardAxis enum, Axis\_\-Y to make a vertical capsule \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 797 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_ad80439a195cf4f2df8d2cd4b8ebaf062}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!ConeCollisionShape@{ConeCollisionShape}}
+\index{ConeCollisionShape@{ConeCollisionShape}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{ConeCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ConeCollisionShape::ConeCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btConeShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_ad80439a195cf4f2df8d2cd4b8ebaf062}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 824 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ConeCollisionShape_a5a29f404442602af52499c684c792310}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!Construct@{Construct}}
+\index{Construct@{Construct}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{Construct}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ConeCollisionShape::Construct (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{{\bf StandardAxis}}]{UpAxis}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_a5a29f404442602af52499c684c792310}
+
+
+Performe shared contructor work. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the base of the Cone. \\
+\hline
+{\em Height} & The height of the Cone. \\
+\hline
+{\em UpAxis} & Which axis the Cone is to be oriented along. Uses StandardAxis enum, Axis\_\-Y to make a vertical capsule \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 755 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_aa4a1f1f839c3b6761b27b129b60c8e89}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetAxisMathBS@{GetAxisMathBS}}
+\index{GetAxisMathBS@{GetAxisMathBS}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetAxisMathBS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ConeCollisionShape::GetAxisMathBS (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_aa4a1f1f839c3b6761b27b129b60c8e89}
+
+
+Simulate some messed up the physics library does. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} containing some StandarAxis based on what needs to go where. 
+\end{DoxyReturn}
+
+
+Definition at line 767 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_aff8623fa14d66fce32738ff075c1cc7c}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetBulletConeShape@{GetBulletConeShape}}
+\index{GetBulletConeShape@{GetBulletConeShape}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetBulletConeShape}]{\setlength{\rightskip}{0pt plus 5cm}btConeShape $\ast$ Mezzanine::ConeCollisionShape::GetBulletConeShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_aff8623fa14d66fce32738ff075c1cc7c}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Definition at line 874 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_af52995ed04491df5ebbff26af6ecd816}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetCleanHeight@{GetCleanHeight}}
+\index{GetCleanHeight@{GetCleanHeight}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetCleanHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ConeCollisionShape::GetCleanHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_af52995ed04491df5ebbff26af6ecd816}
+
+
+Gets the height of the cone, as originally passed in. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing height of the cone. 
+\end{DoxyReturn}
+
+
+Definition at line 851 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_a24b59bbca0455e54cf7bb692ff46c080}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetCleanRadius@{GetCleanRadius}}
+\index{GetCleanRadius@{GetCleanRadius}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetCleanRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ConeCollisionShape::GetCleanRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_a24b59bbca0455e54cf7bb692ff46c080}
+
+
+Gets the radius of the cone, as originally passed in. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the radius at the base of the cone. 
+\end{DoxyReturn}
+
+
+Definition at line 846 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_a6247f2a72e298ada975a0fa840b12629}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetHeight@{GetHeight}}
+\index{GetHeight@{GetHeight}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ConeCollisionShape::GetHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_a6247f2a72e298ada975a0fa840b12629}
+
+
+Gets the height of the cone, as used for collision checking. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing height of the cone. 
+\end{DoxyReturn}
+
+
+Definition at line 841 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_aa3c48e845cb96783118d2cb9562246a9}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetHeightScaling@{GetHeightScaling}}
+\index{GetHeightScaling@{GetHeightScaling}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetHeightScaling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ConeCollisionShape::GetHeightScaling (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_aa3c48e845cb96783118d2cb9562246a9}
+
+
+Which axis is up defines which axis is used to scale height. 
+
+\begin{DoxyReturn}{Returns}
+A value that represent the scaling that only the height undergoes. 
+\end{DoxyReturn}
+
+
+Definition at line 859 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_ae2d8ed139802999b4bec4fdac4814ef3}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetRadius@{GetRadius}}
+\index{GetRadius@{GetRadius}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ConeCollisionShape::GetRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_ae2d8ed139802999b4bec4fdac4814ef3}
+
+
+Gets the radius of the cone, as used for collision checking. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the radius at the base of the cone. 
+\end{DoxyReturn}
+
+
+Definition at line 836 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_a6588a43aa775e0f33bc7d9741699fd3f}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetRadiusScaling@{GetRadiusScaling}}
+\index{GetRadiusScaling@{GetRadiusScaling}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetRadiusScaling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ConeCollisionShape::GetRadiusScaling (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_a6588a43aa775e0f33bc7d9741699fd3f}
+
+
+Which axis is up defines which 2 axis are used to scale the radius. 
+
+\begin{DoxyReturn}{Returns}
+A value that represent the scaling that only the radius undergoes. 
+\end{DoxyReturn}
+
+
+Definition at line 856 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_a874892f3aaba7e79200633691037a410}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} Mezzanine::ConeCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_a874892f3aaba7e79200633691037a410}
+Gets the type of \hyperlink{classMezzanine_1_1Collision}{Collision} shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ad3d4143a5640204b987e0b57eb24af41}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 869 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_aed9f36553311ca8d20ccd0d7a01ec4ee}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetUpAxis@{GetUpAxis}}
+\index{GetUpAxis@{GetUpAxis}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetUpAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ConeCollisionShape::GetUpAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_aed9f36553311ca8d20ccd0d7a01ec4ee}
+
+
+Gets which axis this cone is oriented along. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing which local axis is oriented along the world up axis. 
+\end{DoxyReturn}
+
+
+Definition at line 862 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConeCollisionShape_aa17fc2f15ba313109ff40f1a66e088be}{
+\index{Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}!GetUpStandardAxis@{GetUpStandardAxis}}
+\index{GetUpStandardAxis@{GetUpStandardAxis}!Mezzanine::ConeCollisionShape@{Mezzanine::ConeCollisionShape}}
+\paragraph[{GetUpStandardAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StandardAxis} Mezzanine::ConeCollisionShape::GetUpStandardAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConeCollisionShape_aa17fc2f15ba313109ff40f1a66e088be}
+
+
+Gets which axis this cone is oriented along. 
+
+\begin{DoxyReturn}{Returns}
+Returns a StandardAxis representing which local axis is oriented along the world up axis. 
+\end{DoxyReturn}
+
+
+Definition at line 865 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

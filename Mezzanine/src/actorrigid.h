@@ -61,7 +61,7 @@ namespace Mezzanine
         protected:
             friend class TypedConstraint;
             /// @brief Used to simulate the behavior of a btRigidBody
-            btRigidBody* physrigidbody;
+            btRigidBody* PhysicsRigidBody;
 
             /// @brief Creates a rigid object for the actor.
             /// @details Creates a rigid object to be placed in the physics world later. @n

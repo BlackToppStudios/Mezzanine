@@ -201,7 +201,7 @@ namespace Mezzanine
         {
             Mezzanine::LineGroup *myLine = this->WireFrames.back();
 
-            //Convert btVectors to PhysVector3s
+            //Convert btVectors to Vector3s
             Vector3 LineStart(from);
             Vector3 LineEnd(to);
 

@@ -984,7 +984,7 @@ namespace Mezzanine
     /// @brief Convert from a Bullet Collision Shape to a CollisionShape::ShapeType
     /// @param BulletShapeType The ShapeType to Convert
     /// @return The corresponding CollisionShape::ShapeType to the passed in bullet Shape Type if asuitable match exists
-    /// @throw The Mezzanine engine only uses a subset of Bullets shapes, a Phys::Exception with be thrown in the event an unsupported one is passed in.
+    /// @throw The Mezzanine engine only uses a subset of Bullets shapes, a Mezzanine::Exception with be thrown in the event an unsupported one is passed in.
     CollisionShape::ShapeType MEZZ_LIB BulletSapeTypeToShapeType(int BulletShapeType);
     /// @brief Get a string suitable for human eyes from a CollisionShape::ShapeType, may not be suitable for endusers.
     /// @param ShapeToConvert The kind of shape you want a string for.

@@ -1,0 +1,819 @@
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText}{
+\subsection{Mezzanine::UI::MarkupText Class Reference}
+\label{classMezzanine_1_1UI_1_1MarkupText}\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+}
+
+
+This is a helper class for use with specialized text display.  
+
+
+
+
+{\ttfamily \#include $<$uimarkuptext.h$>$}
+
+Inheritance diagram for Mezzanine::UI::MarkupText:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1UI_1_1MarkupText}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a43d868461d8cc3a230e13e97cd38d91d}{GetActualPosition} () const 
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this markup text in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a5e54183333fc3e120da6383e319c436e}{GetActualSize} () const 
+\begin{DoxyCompactList}\small\item\em Gets the size of this markup text in pixels. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a7ce89b8725dbb2ccecf1c363d61d048f}{GetAutoScaleText} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not text from this caption will automatically scale on a screen size change. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a15ad39e454825140090eb7a0bedd0c76}{GetDefaultGlyphIndex} ()
+\begin{DoxyCompactList}\small\item\em Gets the Default glyph index in use by this markup text. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a9fb5509afd9a1c1e3de3b470c8755bd0}{GetPosition} () const 
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this markup text. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1UI_1_1MarkupText_afdb2415e459de43341b7dad687d2ae31}{GetPrimaryAtlas} () const 
+\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \hyperlink{classMezzanine_1_1UI_1_1MarkupText_aaf0e1e55d5293f58b03c97d93ecffd9f}{GetRenderPriority} () const 
+\begin{DoxyCompactList}\small\item\em Gets the priority this markup text should be rendered with. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1MarkupText_aac482cb90a223c4346103a8012c892c4}{GetSize} () const 
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this markup text. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1UI_1_1MarkupText_ae04d70b952a2816e429b756b8d4f4ded}{GetText} ()
+\begin{DoxyCompactList}\small\item\em Gets the text displayed within the markup text. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a0d8c33512d2b434fd9f1a4f22cb76320}{GetTextScale} ()
+\begin{DoxyCompactList}\small\item\em Gets the scaling currently being applied to the rendered text. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a8dc4cd380e73e74b686fd367db5c40cb}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a8dc4cd380e73e74b686fd367db5c40cb}{Hide} ()}
+\label{classMezzanine_1_1UI_1_1MarkupText_a8dc4cd380e73e74b686fd367db5c40cb}
+
+\begin{DoxyCompactList}\small\item\em Forces this markup text to hide. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a7cbd2c77fa2a1da3845d72b030c104ae}{IsVisible} () const 
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this markup text. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UI_1_1MarkupText_a6cb716e035363adc93f2213b74c8fcb2}{MarkupText} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UI_1_1MarkupText_a98467ecf78d53e9497cb6aeb0da27edd}{MarkupText} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a1050bf980ccf62f5688611cfb07d7155}{SetActualPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the top left position of this markup text in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_ab5e6b9c794dc7e98ba13c571287742da}{SetActualSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the size of this markup text in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a3b605ec081d188cae19ed3e677f65072}{SetAutoScaleText} (bool Enable)
+\begin{DoxyCompactList}\small\item\em Enables or disables scaling the text automatically on a screen size change. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a6fcd1660b01937b93d916dcbf0353618}{SetBackgroundColour} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Sets the background colour of the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a9b6b97b8476de179430425f86aaefd57}{SetBackgroundSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the caption from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a6afd13748866d573edb97eb48c1309b1}{SetBackgroundSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a8455dbc85e8ed56f366c14f1cab24f49}{SetDefaultGlyphIndex} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&DefaultGlyphIndex)
+\begin{DoxyCompactList}\small\item\em Sets the Default glyph index to be used with this markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a6fddca4eef841a78dcafc742c425437f}{SetPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_afff82489ff0edfafcaa5c4f3642c929e}{SetPrimaryAtlas} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a2941663607cde5e9306673a321e8fed2}{SetRenderPriority} (const \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \&Priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority this markup text should be rendered with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_ab5ba11881937bea795c5431f0dfd7f4f}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_aaf712f1b14c1daa74493a7157d1ca789}{SetText} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Sets the text displayed within the markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a72af2f6757e01ede3cc6a19b3021c178}{SetTextScale} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Scale)
+\begin{DoxyCompactList}\small\item\em Sets the scaling to be applied to the text being rendered. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_acce9a32cef8911ef63a449fe877a2a3b}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this markup text. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a5dd10a957352d800c0c964eddecefeac}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a5dd10a957352d800c0c964eddecefeac}{Show} ()}
+\label{classMezzanine_1_1UI_1_1MarkupText_a5dd10a957352d800c0c964eddecefeac}
+
+\begin{DoxyCompactList}\small\item\em Forces this markup text to be shown. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a3a7e102a8b5b3217526ce183465ed69e}{UpdateDimensions} ()
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this markup text to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a4b67b1166278d87bb7b38fdfbc3577fe}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a4b67b1166278d87bb7b38fdfbc3577fe}{$\sim$MarkupText} ()}
+\label{classMezzanine_1_1UI_1_1MarkupText_a4b67b1166278d87bb7b38fdfbc3577fe}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a9121dbfc87e5ecb083e7bee70a857673}{
+void {\bfseries ConstructMarkupText} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)}
+\label{classMezzanine_1_1UI_1_1MarkupText_a9121dbfc87e5ecb083e7bee70a857673}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a679bf30c594e408d7366062cdbc963e0}{
+bool {\bfseries AutoScaleText}}
+\label{classMezzanine_1_1UI_1_1MarkupText_a679bf30c594e408d7366062cdbc963e0}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_ae33829acaa93aefe31015edb9e826eef}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries Glyphs}}
+\label{classMezzanine_1_1UI_1_1MarkupText_ae33829acaa93aefe31015edb9e826eef}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_abdd8b4a6e55e1987fcb87b9085b29bfa}{
+Gorilla::MarkupText $\ast$ {\bfseries GMarkup}}
+\label{classMezzanine_1_1UI_1_1MarkupText_abdd8b4a6e55e1987fcb87b9085b29bfa}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a2348b2d5bbad82bdc4aaf31839687272}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries RelLineHeight}}
+\label{classMezzanine_1_1UI_1_1MarkupText_a2348b2d5bbad82bdc4aaf31839687272}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a helper class for use with specialized text display. Markup Texts and Captions are similar in that they both display text messages that can be altered readily, the primary difference between the two is that Captions are meant for small simple messages with background functionality built in, where as Markup Texts have no background functionality, but they use a light markup language to accomplish special effects with the text. 
+
+Definition at line 69 of file uimarkuptext.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a6cb716e035363adc93f2213b74c8fcb2}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!MarkupText@{MarkupText}}
+\index{MarkupText@{MarkupText}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{MarkupText}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::MarkupText::MarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{const {\bf String} \&}]{Text, }
+\item[{{\bf Layer} $\ast$}]{PLayer}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a6cb716e035363adc93f2213b74c8fcb2}
+
+
+Internal constructor. 
+
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of this markup text. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the markup text. \\
+\hline
+{\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
+\hline
+{\em Text} & Any text you want printed on the markup text. \\
+\hline
+{\em \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer}} & Pointer to the layer that created this markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 56 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a98467ecf78d53e9497cb6aeb0da27edd}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!MarkupText@{MarkupText}}
+\index{MarkupText@{MarkupText}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{MarkupText}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::MarkupText::MarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{Text, }
+\item[{{\bf Layer} $\ast$}]{PLayer}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a98467ecf78d53e9497cb6aeb0da27edd}
+
+
+Internal constructor. 
+
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of this markup text. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the markup text. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & Any text you want printed on the markup text. \\
+\hline
+{\em \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer}} & Pointer to the layer that created this markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 64 of file uimarkuptext.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a43d868461d8cc3a230e13e97cd38d91d}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::MarkupText::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a43d868461d8cc3a230e13e97cd38d91d}
+
+
+Gets the top left position of this markup text in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this markup text. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a7469e579a834b00bd90a87fd754d14af}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 221 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a5e54183333fc3e120da6383e319c436e}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::MarkupText::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a5e54183333fc3e120da6383e319c436e}
+
+
+Gets the size of this markup text in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this markup text. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a14b2ff20cdf114c34cc23074d0b7fb5c}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 247 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a7ce89b8725dbb2ccecf1c363d61d048f}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetAutoScaleText@{GetAutoScaleText}}
+\index{GetAutoScaleText@{GetAutoScaleText}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetAutoScaleText}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::MarkupText::GetAutoScaleText (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a7ce89b8725dbb2ccecf1c363d61d048f}
+
+
+Gets whether or not text from this caption will automatically scale on a screen size change. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not this caption will automatically scale it's text. 
+\end{DoxyReturn}
+
+
+Definition at line 308 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a15ad39e454825140090eb7a0bedd0c76}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetDefaultGlyphIndex@{GetDefaultGlyphIndex}}
+\index{GetDefaultGlyphIndex@{GetDefaultGlyphIndex}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetDefaultGlyphIndex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::MarkupText::GetDefaultGlyphIndex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a15ad39e454825140090eb7a0bedd0c76}
+
+
+Gets the Default glyph index in use by this markup text. 
+
+The glyph index is defined in your gorilla file. \begin{DoxyReturn}{Returns}
+Returns a Whole representing the index of the glyph in use by this markup text. 
+\end{DoxyReturn}
+
+
+Definition at line 140 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a9fb5509afd9a1c1e3de3b470c8755bd0}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::MarkupText::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a9fb5509afd9a1c1e3de3b470c8755bd0}
+
+
+Gets the relative top left position of this markup text. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this markup text. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ab6aa1fb10dc7e9e412e7caac9133c9a6}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 210 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_afdb2415e459de43341b7dad687d2ae31}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetPrimaryAtlas@{GetPrimaryAtlas}}
+\index{GetPrimaryAtlas@{GetPrimaryAtlas}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetPrimaryAtlas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::UI::MarkupText::GetPrimaryAtlas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_afdb2415e459de43341b7dad687d2ae31}
+
+
+Gets the currently set primary atlas. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of the primary atlas that is set. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_abdb08ae3577da75762209b8cee486b24}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 298 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_aaf0e1e55d5293f58b03c97d93ecffd9f}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetRenderPriority@{GetRenderPriority}}
+\index{GetRenderPriority@{GetRenderPriority}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::RenderPriority} Mezzanine::UI::MarkupText::GetRenderPriority (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_aaf0e1e55d5293f58b03c97d93ecffd9f}
+
+
+Gets the priority this markup text should be rendered with. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing this markup text's priority level. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a3279ed466dfc69203467b2bb32cf89be}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 273 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_aac482cb90a223c4346103a8012c892c4}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::MarkupText::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_aac482cb90a223c4346103a8012c892c4}
+
+
+Gets the relative size of this markup text. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this markup text. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a6486ceae69273b990bfe19b88c29d328}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 235 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_ae04d70b952a2816e429b756b8d4f4ded}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetText@{GetText}}
+\index{GetText@{GetText}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::UI::MarkupText::GetText (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_ae04d70b952a2816e429b756b8d4f4ded}
+
+
+Gets the text displayed within the markup text. 
+
+\begin{DoxyReturn}{Returns}
+Returns the text being displayed. 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a0d8c33512d2b434fd9f1a4f22cb76320}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!GetTextScale@{GetTextScale}}
+\index{GetTextScale@{GetTextScale}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{GetTextScale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::UI::MarkupText::GetTextScale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a0d8c33512d2b434fd9f1a4f22cb76320}
+
+
+Gets the scaling currently being applied to the rendered text. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real value representing the scale applied to the text in this caption. $<$1.0 means smaller, $>$1.0 means larger. 
+\end{DoxyReturn}
+
+
+Definition at line 129 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a7cbd2c77fa2a1da3845d72b030c104ae}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::MarkupText::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a7cbd2c77fa2a1da3845d72b030c104ae}
+
+
+Gets the visibility of this markup text. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this markup text. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a443bdeb7d95e6b765a5548966d380ecf}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 99 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a1050bf980ccf62f5688611cfb07d7155}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a1050bf980ccf62f5688611cfb07d7155}
+
+
+Sets the top left position of this markup text in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a4741dde07f7eddddcc3d611d6c803fad}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 215 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_ab5e6b9c794dc7e98ba13c571287742da}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_ab5e6b9c794dc7e98ba13c571287742da}
+
+
+Sets the size of this markup text in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the size of this markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a69c87db17cacc2980f68777258329531}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 240 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a3b605ec081d188cae19ed3e677f65072}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetAutoScaleText@{SetAutoScaleText}}
+\index{SetAutoScaleText@{SetAutoScaleText}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetAutoScaleText}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetAutoScaleText (
+\begin{DoxyParamCaption}
+\item[{bool}]{Enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a3b605ec081d188cae19ed3e677f65072}
+
+
+Enables or disables scaling the text automatically on a screen size change. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Enable} & Enables or disables automatic text scaling. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 303 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a6fcd1660b01937b93d916dcbf0353618}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetBackgroundColour@{SetBackgroundColour}}
+\index{SetBackgroundColour@{SetBackgroundColour}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetBackgroundColour}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetBackgroundColour (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{Colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a6fcd1660b01937b93d916dcbf0353618}
+
+
+Sets the background colour of the caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Colour} & A colour value representing the colour to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 185 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a6afd13748866d573edb97eb48c1309b1}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetBackgroundSprite@{SetBackgroundSprite}}
+\index{SetBackgroundSprite@{SetBackgroundSprite}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetBackgroundSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetBackgroundSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a6afd13748866d573edb97eb48c1309b1}
+
+
+Sets the background image(if provided in the atlas) of the caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the sprite to set as the background. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 190 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a9b6b97b8476de179430425f86aaefd57}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetBackgroundSprite@{SetBackgroundSprite}}
+\index{SetBackgroundSprite@{SetBackgroundSprite}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetBackgroundSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetBackgroundSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{Atlas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a9b6b97b8476de179430425f86aaefd57}
+
+
+Sets the background image(if provided in the atlas) of the caption from another atlas then the one currently set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the sprite to set as the background. \\
+\hline
+{\em Atlas} & The Atlas to load the sprite from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 196 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a8455dbc85e8ed56f366c14f1cab24f49}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetDefaultGlyphIndex@{SetDefaultGlyphIndex}}
+\index{SetDefaultGlyphIndex@{SetDefaultGlyphIndex}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetDefaultGlyphIndex}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetDefaultGlyphIndex (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{DefaultGlyphIndex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a8455dbc85e8ed56f366c14f1cab24f49}
+
+
+Sets the Default glyph index to be used with this markup text. 
+
+The glyph index is defined in your gorilla file. This class can change which glyph is uses with it's markup language. This simply defines which to use when one isn't specified. 
+\begin{DoxyParams}{Parameters}
+{\em DefaultGlyphIndex} & The index of the glyph to use with this markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 134 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a6fddca4eef841a78dcafc742c425437f}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a6fddca4eef841a78dcafc742c425437f}
+
+
+Sets the relative top left position of this markup text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_aab42dabeaeb7a56fb4b98ae8f7ab6afb}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 202 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_afff82489ff0edfafcaa5c4f3642c929e}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetPrimaryAtlas@{SetPrimaryAtlas}}
+\index{SetPrimaryAtlas@{SetPrimaryAtlas}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetPrimaryAtlas}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetPrimaryAtlas (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Atlas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_afff82489ff0edfafcaa5c4f3642c929e}
+
+
+Sets the Atlas to be assumed when one isn't provided for atlas related tasks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Atlas} & The name of the atlas to be used. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ab1195ccf1e8acf126aee6d06c1d9e93b}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 293 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a2941663607cde5e9306673a321e8fed2}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetRenderPriority@{SetRenderPriority}}
+\index{SetRenderPriority@{SetRenderPriority}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetRenderPriority (
+\begin{DoxyParamCaption}
+\item[{const {\bf UI::RenderPriority} \&}]{Priority}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a2941663607cde5e9306673a321e8fed2}
+
+
+Sets the priority this markup text should be rendered with. 
+
+The default value for this is Medium. 
+\begin{DoxyParams}{Parameters}
+{\em Priority} & The priority level to be used when rendering this markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a05be25ff56fbd498841c33da0cfe5410}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 253 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_ab5ba11881937bea795c5431f0dfd7f4f}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_ab5ba11881937bea795c5431f0dfd7f4f}
+
+
+Sets the relative size of this markup text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the size of this markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ace14123b4a7bdb83e4e86275823f7b6e}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 227 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_aaf712f1b14c1daa74493a7157d1ca789}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetText@{SetText}}
+\index{SetText@{SetText}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetText}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetText (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_aaf712f1b14c1daa74493a7157d1ca789}
+
+
+Sets the text displayed within the markup text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Text} & The text to be displayed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 114 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a72af2f6757e01ede3cc6a19b3021c178}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetTextScale@{SetTextScale}}
+\index{SetTextScale@{SetTextScale}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetTextScale}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetTextScale (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a72af2f6757e01ede3cc6a19b3021c178}
+
+
+Sets the scaling to be applied to the text being rendered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Scale} & A Real value representing the scale to be applied. $<$1.0 means smaller, $>$1.0 means larger. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 124 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_acce9a32cef8911ef63a449fe877a2a3b}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{Visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_acce9a32cef8911ef63a449fe877a2a3b}
+
+
+Sets the visibility of this markup text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Visible} & Bool determining whether or not this markup text should be visible. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a3dd62b1390d4f3931cfc8d0188cdcc7c}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 94 of file uimarkuptext.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MarkupText_a3a7e102a8b5b3217526ce183465ed69e}{
+\index{Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!Mezzanine::UI::MarkupText@{Mezzanine::UI::MarkupText}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MarkupText::UpdateDimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MarkupText_a3a7e102a8b5b3217526ce183465ed69e}
+
+
+Updates the dimensions of this markup text to match those of the new screen size. 
+
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a446b43c6dde21c7f0c021ca6833f841d}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 313 of file uimarkuptext.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uimarkuptext.h\item 
+uimarkuptext.cpp\end{DoxyCompactItemize}

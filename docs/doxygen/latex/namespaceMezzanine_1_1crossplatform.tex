@@ -1,0 +1,192 @@
+\hypertarget{namespaceMezzanine_1_1crossplatform}{
+\subsection{Mezzanine::crossplatform Namespace Reference}
+\label{namespaceMezzanine_1_1crossplatform}\index{Mezzanine::crossplatform@{Mezzanine::crossplatform}}
+}
+
+
+All functionality that needs different implemenations per platform will go in here.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std::set$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} $>$ $\ast$ \hyperlink{namespaceMezzanine_1_1crossplatform_ac22e9390352c748b7ed557f3e565ee08}{GetDirContents} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Dir=\char`\"{}.\char`\"{})
+\begin{DoxyCompactList}\small\item\em Get a Listing of the files and subdirectories in a directory. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{namespaceMezzanine_1_1crossplatform_a8bd86d58f7ae4a67c31bdd667484a46e}{GetPlatform} ()
+\begin{DoxyCompactList}\small\item\em Gets the platform currently being run on. \item\end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{namespaceMezzanine_1_1crossplatform_ab5d3ddbc9ef81847b6dff94b3611458c}{GetSDLOgreBinder} (SDL\_\-Window $\ast$window, const size\_\-t \&winGlContext)
+\begin{DoxyCompactList}\small\item\em This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{namespaceMezzanine_1_1crossplatform_a9b2c4761a75c8c7dc4bf96a566a5f4b7}{GetWorkingDir} ()
+\begin{DoxyCompactList}\small\item\em Get the working directory as a \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{Mezzanine::String}. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespaceMezzanine_1_1crossplatform_ab1478e2a8ab7234204a0bc2b17018473}{RenderMezzWorld} ()
+\begin{DoxyCompactList}\small\item\em Renders the current world contents to the screen. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespaceMezzanine_1_1crossplatform_a339b18b40eced8ea2b3f6e177aa340d0}{SanitizeWindowedRes} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&ActualWidth, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&ActualHeight)
+\begin{DoxyCompactList}\small\item\em Gets cleaned dimensions for a game window. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespaceMezzanine_1_1crossplatform_aedff57a398f195dceb00081475239db4}{WaitMilliseconds} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&WaitTime)
+\begin{DoxyCompactList}\small\item\em Pauses the program for a given period of time. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+All functionality that needs different implemenations per platform will go in here. If we did our jobs right You not need to change anything to compile on different platforms exvept the build target. If you want, the platform can be manually defined in this section and this should be the only place that you need to change to compile this on a supported platform. Just remark all the lines that are not your platform using \char`\"{}//\char`\"{} and unremark your platform. \par
+\par
+ Should you choose to port this to your platform, make sure that all the required libraries are installed, then make sure to write an implementation for each of the functions in \hyperlink{crossplatform_8cpp_source}{crossplatform.cpp}, then you should get to the nitty gritty of making the minor platforms inconsistencies work. \par
+\par
+ For most games there will be no need to directly call these functions, however if you decide you game is an exception, there is one key thing to remember about all of these functions. All of these may perform/behave slightly differently. 
+
+\subsubsection{Function Documentation}
+\hypertarget{namespaceMezzanine_1_1crossplatform_ac22e9390352c748b7ed557f3e565ee08}{
+\index{Mezzanine::crossplatform@{Mezzanine::crossplatform}!GetDirContents@{GetDirContents}}
+\index{GetDirContents@{GetDirContents}!Mezzanine::crossplatform@{Mezzanine::crossplatform}}
+\paragraph[{GetDirContents}]{\setlength{\rightskip}{0pt plus 5cm}std::set$<$ {\bf String} $>$ $\ast$MEZZ\_\-LIB Mezzanine::crossplatform::GetDirContents (
+\begin{DoxyParamCaption}
+\item[{const String \&}]{Dir = {\ttfamily \char`\"{}.\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_1_1crossplatform_ac22e9390352c748b7ed557f3e565ee08}
+
+
+Get a Listing of the files and subdirectories in a directory. 
+
+This follows normal command line conventions, \char`\"{}.\char`\"{} is the current directory, \char`\"{}..\char`\"{} is the parent directory. To access the file system root you will need to use a leading \char`\"{}c:/\char`\"{}, \char`\"{}c:$\backslash$$\backslash$\char`\"{}, or \char`\"{}/\char`\"{} as appropriate for the operating system the software will run on. \begin{DoxyReturn}{Returns}
+this will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Dir} & The directory to check. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 193 of file crossplatform.cpp.
+
+\hypertarget{namespaceMezzanine_1_1crossplatform_a8bd86d58f7ae4a67c31bdd667484a46e}{
+\index{Mezzanine::crossplatform@{Mezzanine::crossplatform}!GetPlatform@{GetPlatform}}
+\index{GetPlatform@{GetPlatform}!Mezzanine::crossplatform@{Mezzanine::crossplatform}}
+\paragraph[{GetPlatform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} MEZZ\_\-LIB Mezzanine::crossplatform::GetPlatform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_1_1crossplatform_a8bd86d58f7ae4a67c31bdd667484a46e}
+
+
+Gets the platform currently being run on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string based on the platform. \char`\"{}Windows\char`\"{}, \char`\"{}Linux\char`\"{}, or \char`\"{}MacOSX\char`\"{}. 
+\end{DoxyReturn}
+
+
+Definition at line 154 of file crossplatform.cpp.
+
+\hypertarget{namespaceMezzanine_1_1crossplatform_ab5d3ddbc9ef81847b6dff94b3611458c}{
+\index{Mezzanine::crossplatform@{Mezzanine::crossplatform}!GetSDLOgreBinder@{GetSDLOgreBinder}}
+\index{GetSDLOgreBinder@{GetSDLOgreBinder}!Mezzanine::crossplatform@{Mezzanine::crossplatform}}
+\paragraph[{GetSDLOgreBinder}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ Mezzanine::crossplatform::GetSDLOgreBinder (
+\begin{DoxyParamCaption}
+\item[{SDL\_\-Window $\ast$}]{window, }
+\item[{const size\_\-t \&}]{winGlContext}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_1_1crossplatform_ab5d3ddbc9ef81847b6dff94b3611458c}
+
+
+This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) 
+
+This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) This returns a named parameter list with valid settings to use Ogre rendering on a pre-\/existing SDL context \begin{DoxyWarning}{Warning}
+This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish 
+\end{DoxyWarning}
+
+
+Definition at line 81 of file crossplatform.cpp.
+
+\hypertarget{namespaceMezzanine_1_1crossplatform_a9b2c4761a75c8c7dc4bf96a566a5f4b7}{
+\index{Mezzanine::crossplatform@{Mezzanine::crossplatform}!GetWorkingDir@{GetWorkingDir}}
+\index{GetWorkingDir@{GetWorkingDir}!Mezzanine::crossplatform@{Mezzanine::crossplatform}}
+\paragraph[{GetWorkingDir}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} MEZZ\_\-LIB Mezzanine::crossplatform::GetWorkingDir (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_1_1crossplatform_a9b2c4761a75c8c7dc4bf96a566a5f4b7}
+
+
+Get the working directory as a \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{Mezzanine::String}. 
+
+\begin{DoxyReturn}{Returns}
+The Directory the game was called from (not nescessarilly the location of the executable), as a \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{Mezzanine::String} 
+\end{DoxyReturn}
+
+
+Definition at line 181 of file crossplatform.cpp.
+
+\hypertarget{namespaceMezzanine_1_1crossplatform_ab1478e2a8ab7234204a0bc2b17018473}{
+\index{Mezzanine::crossplatform@{Mezzanine::crossplatform}!RenderMezzWorld@{RenderMezzWorld}}
+\index{RenderMezzWorld@{RenderMezzWorld}!Mezzanine::crossplatform@{Mezzanine::crossplatform}}
+\paragraph[{RenderMezzWorld}]{\setlength{\rightskip}{0pt plus 5cm}void MEZZ\_\-LIB Mezzanine::crossplatform::RenderMezzWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_1_1crossplatform_ab1478e2a8ab7234204a0bc2b17018473}
+
+
+Renders the current world contents to the screen. 
+
+This makes use of \hyperlink{classMezzanine_1_1World}{World} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Currently this references Ogre systems, that makes this internal Handles the actual cross platform swapping of graphics buffers. 
+
+Definition at line 119 of file crossplatform.cpp.
+
+\hypertarget{namespaceMezzanine_1_1crossplatform_a339b18b40eced8ea2b3f6e177aa340d0}{
+\index{Mezzanine::crossplatform@{Mezzanine::crossplatform}!SanitizeWindowedRes@{SanitizeWindowedRes}}
+\index{SanitizeWindowedRes@{SanitizeWindowedRes}!Mezzanine::crossplatform@{Mezzanine::crossplatform}}
+\paragraph[{SanitizeWindowedRes}]{\setlength{\rightskip}{0pt plus 5cm}void MEZZ\_\-LIB Mezzanine::crossplatform::SanitizeWindowedRes (
+\begin{DoxyParamCaption}
+\item[{const Whole \&}]{Width, }
+\item[{const Whole \&}]{Height, }
+\item[{Whole \&}]{ActualWidth, }
+\item[{Whole \&}]{ActualHeight}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_1_1crossplatform_a339b18b40eced8ea2b3f6e177aa340d0}
+
+
+Gets cleaned dimensions for a game window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Width} & The desired width of the window area. \\
+\hline
+{\em Height} & The desired height of the window area. \\
+\hline
+{\em ActualWidth} & The modified value of the rendering width, after window decorations have been taken into account. \\
+\hline
+{\em ActualHeight} & The modified value of the rendering height, after window decorations have been taken into account. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 167 of file crossplatform.cpp.
+
+\hypertarget{namespaceMezzanine_1_1crossplatform_aedff57a398f195dceb00081475239db4}{
+\index{Mezzanine::crossplatform@{Mezzanine::crossplatform}!WaitMilliseconds@{WaitMilliseconds}}
+\index{WaitMilliseconds@{WaitMilliseconds}!Mezzanine::crossplatform@{Mezzanine::crossplatform}}
+\paragraph[{WaitMilliseconds}]{\setlength{\rightskip}{0pt plus 5cm}void MEZZ\_\-LIB Mezzanine::crossplatform::WaitMilliseconds (
+\begin{DoxyParamCaption}
+\item[{const Whole \&}]{WaitTime}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_1_1crossplatform_aedff57a398f195dceb00081475239db4}
+
+
+Pauses the program for a given period of time. 
+
+Pauses the program for a given period of time. 
+\begin{DoxyParams}{Parameters}
+{\em WaitTime} & The amount of time in milliseconds to wait \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 110 of file crossplatform.cpp.
+

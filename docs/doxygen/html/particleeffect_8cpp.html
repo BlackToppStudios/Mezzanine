@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: particleeffect.cpp File Reference</title>
+<title>MezzanineEngine: particleeffect.cpp File Reference</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -62,8 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Defines</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Defines</a>  </div>
   <div class="headertitle">
 <h1>particleeffect.cpp File Reference</h1>  </div>
 </div>
@@ -73,8 +72,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#_details">More...</a></p>
 <div class="textblock"><code>#include &quot;particleeffect.h&quot;</code><br/>
 <code>#include &quot;scenemanager.h&quot;</code><br/>
+<code>#include &quot;stringtool.h&quot;</code><br/>
 <code>#include &quot;world.h&quot;</code><br/>
 <code>#include &quot;<a class="el" href="worldnode_8h_source.html">worldnode.h</a>&quot;</code><br/>
+<code>#include &quot;particleaffector.h&quot;</code><br/>
+<code>#include &quot;particleemitter.h&quot;</code><br/>
 <code>#include &lt;memory&gt;</code><br/>
 <code>#include &lt;Ogre.h&gt;</code><br/>
 </div>
@@ -82,163 +84,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structphys_1_1internal_1_1ParticleEffectInternalData.html">phys::internal::ParticleEffectInternalData</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">used to store internal data and functions for the <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a>;  <a href="structphys_1_1internal_1_1ParticleEffectInternalData.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1internal_1_1ParticleEffectInternalData.html">Mezzanine::internal::ParticleEffectInternalData</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">used to store internal data and functions for the <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a>;  <a href="structMezzanine_1_1internal_1_1ParticleEffectInternalData.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacephys.html">phys</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html">Mezzanine</a></td></tr>
 
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>The bulk of the engine components go in this namspace. </p>
 <br/></td></tr>
 </p>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacephys_1_1internal.html">phys::internal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1internal.html">Mezzanine::internal</a></td></tr>
 
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This namespace is used for internal helper classes, and in general it should be ignored by game developers. </p>
 <br/></td></tr>
 </p>
-<tr><td colspan="2"><h2><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="particleeffect_8cpp.html#a39b95b4085acdec3ee56fe08a46233b0">operator&lt;&lt;</a> (std::ostream &amp;stream, const <a class="el" href="classphys_1_1ParticleEffect.html">phys::ParticleEffect</a> &amp;Ev)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the passed <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a> to XML.  <a href="#a39b95b4085acdec3ee56fe08a46233b0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classphys_1_1xml_1_1Node.html">phys::xml::Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="particleeffect_8cpp.html#a9b8d81958f089fc3837208eccaebdc71">operator&gt;&gt;</a> (const <a class="el" href="classphys_1_1xml_1_1Node.html">phys::xml::Node</a> &amp;OneNode, <a class="el" href="classphys_1_1ParticleEffect.html">phys::ParticleEffect</a> &amp;Ev)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all values of a <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a> from parsed xml.  <a href="#a9b8d81958f089fc3837208eccaebdc71"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::istream &amp;PHYS_LIB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="particleeffect_8cpp.html#a3ee614deaea403f237367d9aa9a3b6d8">operator&gt;&gt;</a> (std::istream &amp;stream, <a class="el" href="classphys_1_1ParticleEffect.html">phys::ParticleEffect</a> &amp;Ev)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize a <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a>.  <a href="#a3ee614deaea403f237367d9aa9a3b6d8"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Contains the implemenation of the ParticleEffect class. </p>
 <p>Contains the declaration of the ParticleEffect class.</p>
 
 <p>Definition in file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
-</div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a39b95b4085acdec3ee56fe08a46233b0"></a><!-- doxytag: member="particleeffect.cpp::operator&lt;&lt;" ref="a39b95b4085acdec3ee56fe08a46233b0" args="(std::ostream &amp;stream, const phys::ParticleEffect &amp;Ev)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>stream</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1ParticleEffect.html">phys::ParticleEffect</a> &amp;&#160;</td>
-          <td class="paramname"><em>Ev</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Serializes the passed <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a> to XML. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">stream</td><td>The ostream to send the xml to. </td></tr>
-    <tr><td class="paramname">Ev</td><td>the <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a> to be serialized </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>this returns the ostream, now with the serialized data </dd></dl>
-
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00178">178</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9b8d81958f089fc3837208eccaebdc71"></a><!-- doxytag: member="particleeffect.cpp::operator&gt;&gt;" ref="a9b8d81958f089fc3837208eccaebdc71" args="(const phys::xml::Node &amp;OneNode, phys::ParticleEffect &amp;Ev)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classphys_1_1xml_1_1Node.html">phys::xml::Node</a>&amp; operator&gt;&gt; </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classphys_1_1xml_1_1Node.html">phys::xml::Node</a> &amp;&#160;</td>
-          <td class="paramname"><em>OneNode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classphys_1_1ParticleEffect.html">phys::ParticleEffect</a> &amp;&#160;</td>
-          <td class="paramname"><em>Ev</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Set all values of a <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a> from parsed xml. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">OneNode</td><td>The istream to get the xml from to (re)make the <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a>. </td></tr>
-    <tr><td class="paramname">Ev</td><td>the <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a> to be reset. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This returns thexml::Node that was passed in. </dd></dl>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>This does not attempt to de-serialize the name or template of the ParticleEffect. These is not currently changeable after the creation of a ParticleEffect. However, the ParticleEffectmanager will correctly create name ParticleEffect upon creation then deserialize the rest of the ParticleEffect. </dd>
-<dd>
-This does not throw an exception if the ParticleEffect could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second. </dd></dl>
-
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00201">201</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3ee614deaea403f237367d9aa9a3b6d8"></a><!-- doxytag: member="particleeffect.cpp::operator&gt;&gt;" ref="a3ee614deaea403f237367d9aa9a3b6d8" args="(std::istream &amp;stream, phys::ParticleEffect &amp;Ev)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::istream&amp; PHYS_LIB operator&gt;&gt; </td>
-          <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>stream</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classphys_1_1ParticleEffect.html">phys::ParticleEffect</a> &amp;&#160;</td>
-          <td class="paramname"><em>Ev</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Deserialize a <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a>. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">stream</td><td>The istream to get the xml from to (re)make the <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a>. </td></tr>
-    <tr><td class="paramname">Ev</td><td>the <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a> to be deserialized. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>this returns the ostream, advanced past the <a class="el" href="classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">phys::ParticleEffect</a> that was recreated onto Ev. </dd></dl>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>This does not the pointer to the scene manager. When a scene manager is serialized, this data is implicitly stored by the ParticleEffects location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. </dd></dl>
-
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00191">191</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
-
-</div>
-</div>
-</div>
+</div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -248,6 +120,6 @@ This does not throw an exception if the ParticleEffect could not be attached to 
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:27 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

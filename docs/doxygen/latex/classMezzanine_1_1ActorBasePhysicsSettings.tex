@@ -1,0 +1,654 @@
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings}{
+\subsection{Mezzanine::ActorBasePhysicsSettings Class Reference}
+\label{classMezzanine_1_1ActorBasePhysicsSettings}\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+}
+
+
+This is a base helper class for configuring physics settings of an actor.  
+
+
+
+
+{\ttfamily \#include $<$actorphysicssettings.h$>$}
+
+Inheritance diagram for Mezzanine::ActorBasePhysicsSettings:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.511471cm]{classMezzanine_1_1ActorBasePhysicsSettings}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a1dac5759986b246009f4fb0232a9f686}{ActorBasePhysicsSettings} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor, btCollisionObject $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a85a3db47b67b62792283964a5973fdd8}{DisableCollisionResponse} ()
+\begin{DoxyCompactList}\small\item\em Sets the actor to be unable to collide with other objects in the world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_aca5b3c97d1996632858680dff897db25}{EnableCollisionResponse} ()
+\begin{DoxyCompactList}\small\item\em Sets the actor to be able to collide with other objects in the world. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a752d573f0ccb7dac166a15a756dd0dbb}{ActorActivationState} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac8534af9b32dee2646c4b08941cc47bb}{GetActivationState} () const 
+\begin{DoxyCompactList}\small\item\em How activated or deactivated is the object. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ae43e2938e30b69ac11627b9648c43415}{GetBasePointer} ()
+\begin{DoxyCompactList}\small\item\em Get a pointer to this class of type \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}{GetCCDMotionThreshold} () const 
+\begin{DoxyCompactList}\small\item\em Gets the amount of motion needed to enable CCD for this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}{GetCCDSphereRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the embedded sphere used for CCD. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_af231c0c7f3cf41152bba1300821b0a59}{GetCollisionGroup} () const 
+\begin{DoxyCompactList}\small\item\em Gets the actors collision group. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ada732a441b7745646d7620fbf896ed77}{GetCollisionMask} () const 
+\begin{DoxyCompactList}\small\item\em Gets the actors collision mask. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a2a3e99a0b473cd77b6ed7648faca1f0f}{GetCollisionResponse} () const 
+\begin{DoxyCompactList}\small\item\em Will this respond to 3d collisions. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_af19829d769ba0723bb6c190e28b6184e}{GetCollisionShape} () const 
+\begin{DoxyCompactList}\small\item\em Gets the collision shape currently in use by this actor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac59b0dfaf123ddfb3b70e35284502f56}{GetFriction} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Actors' friction coefficient. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a4e648f892ff2b5a8d111ab312cec394b}{GetRestitution} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Actors' restitution coefficient. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a8f81dffa07cc4c0f036443659b67bdef}{IsActive} () const 
+\begin{DoxyCompactList}\small\item\em Checks if the object is active in the simulation. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a23aafa40b7ee6e4f0da2120cd8f166bc}{IsKinematic} () const 
+\begin{DoxyCompactList}\small\item\em Is the actir kinematic. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a0639616581641cd6ec2b68f611d4e05a}{IsStatic} () const 
+\begin{DoxyCompactList}\small\item\em Is the actor static. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac3e3e2f779e0ff0e30abb719d6461e2e}{IsStaticOrKinematic} () const 
+\begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_aed2d1a5dd0ac0fa290242146ef9b8aa0}{SetActivationState} (\hyperlink{namespaceMezzanine_a752d573f0ccb7dac166a15a756dd0dbb}{ActorActivationState} State, bool Force=false)
+\begin{DoxyCompactList}\small\item\em Sets the activation state of the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}{SetCCDParams} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&MotionThreshold, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&SweptSphereRadius=0)
+\begin{DoxyCompactList}\small\item\em Sets the parameters used for Continuous \hyperlink{classMezzanine_1_1Collision}{Collision} Detection. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a7755593c3c0f7bceecc6dfb6a7613000}{SetCollisionGroupAndMask} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Group, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Mask)
+\begin{DoxyCompactList}\small\item\em Set the collision group and mask for the actor to determine what it should collide with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a9aa6c07c9cb235a417d68f1ea417f834}{SetCollisionShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Sets the collision shape to be used. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a615c423b6d2da96b16b91ee644b8b81c}{SetFriction} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Friction)
+\begin{DoxyCompactList}\small\item\em Sets the Actors' friction coefficient. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}{SetKinematic} ()
+\begin{DoxyCompactList}\small\item\em Sets the state of the object to Kinematic. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac11357f16b6a30223d1794b4e4adf467}{SetRestitution} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Restitution)
+\begin{DoxyCompactList}\small\item\em Sets the Actors' restitution coefficient. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}{SetStatic} ()
+\begin{DoxyCompactList}\small\item\em Sets the state of the object to Static. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}{
+virtual \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}{$\sim$ActorBasePhysicsSettings} ()}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a2deb9db4baf307a34f11a147e265378a}{
+void {\bfseries AssignShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a2deb9db4baf307a34f11a147e265378a}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a47a08b77d0725be25ab2adfa50a0939e}{
+btCollisionObject $\ast$ \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a47a08b77d0725be25ab2adfa50a0939e}{ActorCO}}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a47a08b77d0725be25ab2adfa50a0939e}
+
+\begin{DoxyCompactList}\small\item\em Physics Object of the actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a00429bec7040c9cf83d334ed585c95ae}{
+\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a00429bec7040c9cf83d334ed585c95ae}{ActorShape}}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a00429bec7040c9cf83d334ed585c95ae}
+
+\begin{DoxyCompactList}\small\item\em The physics shape of the actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ab4535762610bac78d33101124b4bc213}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ab4535762610bac78d33101124b4bc213}{CollisionGroup}}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_ab4535762610bac78d33101124b4bc213}
+
+\begin{DoxyCompactList}\small\item\em A number of actors will use this in conjuction with the physics system. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a72bf0fb7bd68f354647de5160a115809}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a72bf0fb7bd68f354647de5160a115809}{CollisionMask}}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a72bf0fb7bd68f354647de5160a115809}
+
+\begin{DoxyCompactList}\small\item\em Stores the kind of actors that can collide with each other. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a559638e7d0fc9825d8caa1663a5510a8}{
+\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a559638e7d0fc9825d8caa1663a5510a8}{Parent}}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a559638e7d0fc9825d8caa1663a5510a8}
+
+\begin{DoxyCompactList}\small\item\em The Actor this belongs to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a base helper class for configuring physics settings of an actor. This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see \hyperlink{classMezzanine_1_1ActorGraphicsSettings}{ActorGraphicsSettings}. 
+
+Definition at line 84 of file actorphysicssettings.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a1dac5759986b246009f4fb0232a9f686}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!ActorBasePhysicsSettings@{ActorBasePhysicsSettings}}
+\index{ActorBasePhysicsSettings@{ActorBasePhysicsSettings}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{ActorBasePhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame Mezzanine src actorphysicssettings cpp home sqeaky physgame Mezzanine src actorphysicssettings cpp Mezzanine::ActorBasePhysicsSettings::ActorBasePhysicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{Actor, }
+\item[{btCollisionObject $\ast$}]{PhysicsObject}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a1dac5759986b246009f4fb0232a9f686}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor this settings class configures. \\
+\hline
+{\em PhysicsObject} & The physics object belonging to the actor this class configures. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 67 of file actorphysicssettings.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a85a3db47b67b62792283964a5973fdd8}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!DisableCollisionResponse@{DisableCollisionResponse}}
+\index{DisableCollisionResponse@{DisableCollisionResponse}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{DisableCollisionResponse}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::DisableCollisionResponse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a85a3db47b67b62792283964a5973fdd8}
+
+
+Sets the actor to be unable to collide with other objects in the world. 
+
+By default collision response is enabled. Be sure to reactivate collision response if you want your objects to collide again. 
+
+Definition at line 223 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_aca5b3c97d1996632858680dff897db25}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!EnableCollisionResponse@{EnableCollisionResponse}}
+\index{EnableCollisionResponse@{EnableCollisionResponse}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{EnableCollisionResponse}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::EnableCollisionResponse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_aca5b3c97d1996632858680dff897db25}
+
+
+Sets the actor to be able to collide with other objects in the world. 
+
+By default collision response is enabled. Only call this function if you have disabled collision response. 
+
+Definition at line 194 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac8534af9b32dee2646c4b08941cc47bb}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetActivationState@{GetActivationState}}
+\index{GetActivationState@{GetActivationState}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetActivationState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mezzanine::ActorActivationState} Mezzanine::ActorBasePhysicsSettings::GetActivationState (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_ac8534af9b32dee2646c4b08941cc47bb}
+
+
+How activated or deactivated is the object. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{namespaceMezzanine_a752d573f0ccb7dac166a15a756dd0dbb}{Mezzanine::ActorActivationState} that describes whether the actor is part of the calculated simulation or not. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ae43e2938e30b69ac11627b9648c43415}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetBasePointer@{GetBasePointer}}
+\index{GetBasePointer@{GetBasePointer}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetBasePointer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBasePhysicsSettings} $\ast$ Mezzanine::ActorBasePhysicsSettings::GetBasePointer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_ae43e2938e30b69ac11627b9648c43415}
+
+
+Get a pointer to this class of type \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. 
+
+\begin{DoxyReturn}{Returns}
+A pointer \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings} 
+\end{DoxyReturn}
+
+
+Definition at line 276 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCCDMotionThreshold@{GetCCDMotionThreshold}}
+\index{GetCCDMotionThreshold@{GetCCDMotionThreshold}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetCCDMotionThreshold}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorBasePhysicsSettings::GetCCDMotionThreshold (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}
+
+
+Gets the amount of motion needed to enable CCD for this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the required amount of motion to enable CCD, or zero if CCD is disabled. 
+\end{DoxyReturn}
+
+
+Definition at line 159 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCCDSphereRadius@{GetCCDSphereRadius}}
+\index{GetCCDSphereRadius@{GetCCDSphereRadius}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetCCDSphereRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorBasePhysicsSettings::GetCCDSphereRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}
+
+
+Gets the radius of the embedded sphere used for CCD. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the radius of the sphere embedded into the objects collision shape used for CCD. 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_af231c0c7f3cf41152bba1300821b0a59}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCollisionGroup@{GetCollisionGroup}}
+\index{GetCollisionGroup@{GetCollisionGroup}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetCollisionGroup}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::ActorBasePhysicsSettings::GetCollisionGroup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_af231c0c7f3cf41152bba1300821b0a59}
+
+
+Gets the actors collision group. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the collision group this actor is set to. 
+\end{DoxyReturn}
+
+
+Definition at line 106 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ada732a441b7745646d7620fbf896ed77}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCollisionMask@{GetCollisionMask}}
+\index{GetCollisionMask@{GetCollisionMask}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetCollisionMask}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::ActorBasePhysicsSettings::GetCollisionMask (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_ada732a441b7745646d7620fbf896ed77}
+
+
+Gets the actors collision mask. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing what other collision groups this actor should collide with. 
+\end{DoxyReturn}
+
+
+Definition at line 111 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a2a3e99a0b473cd77b6ed7648faca1f0f}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCollisionResponse@{GetCollisionResponse}}
+\index{GetCollisionResponse@{GetCollisionResponse}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetCollisionResponse}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ActorBasePhysicsSettings::GetCollisionResponse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a2a3e99a0b473cd77b6ed7648faca1f0f}
+
+
+Will this respond to 3d collisions. 
+
+\begin{DoxyReturn}{Returns}
+False is it does not respond to collisions, True if it will 
+\end{DoxyReturn}
+
+
+Definition at line 252 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_af19829d769ba0723bb6c190e28b6184e}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCollisionShape@{GetCollisionShape}}
+\index{GetCollisionShape@{GetCollisionShape}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape} $\ast$ Mezzanine::ActorBasePhysicsSettings::GetCollisionShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_af19829d769ba0723bb6c190e28b6184e}
+
+
+Gets the collision shape currently in use by this actor. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the collision shape being used. 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac59b0dfaf123ddfb3b70e35284502f56}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetFriction@{GetFriction}}
+\index{GetFriction@{GetFriction}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetFriction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorBasePhysicsSettings::GetFriction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_ac59b0dfaf123ddfb3b70e35284502f56}
+
+
+Gets the Actors' friction coefficient. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the actors' friction coefficient. 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a4e648f892ff2b5a8d111ab312cec394b}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetRestitution@{GetRestitution}}
+\index{GetRestitution@{GetRestitution}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{GetRestitution}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorBasePhysicsSettings::GetRestitution (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a4e648f892ff2b5a8d111ab312cec394b}
+
+
+Gets the Actors' restitution coefficient. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the actors' restitution coefficient. 
+\end{DoxyReturn}
+
+
+Definition at line 129 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a8f81dffa07cc4c0f036443659b67bdef}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!IsActive@{IsActive}}
+\index{IsActive@{IsActive}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{IsActive}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ActorBasePhysicsSettings::IsActive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a8f81dffa07cc4c0f036443659b67bdef}
+
+
+Checks if the object is active in the simulation. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the object is active, false if it's deactivated(at rest). 
+\end{DoxyReturn}
+
+
+Definition at line 257 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a23aafa40b7ee6e4f0da2120cd8f166bc}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!IsKinematic@{IsKinematic}}
+\index{IsKinematic@{IsKinematic}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{IsKinematic}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ActorBasePhysicsSettings::IsKinematic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a23aafa40b7ee6e4f0da2120cd8f166bc}
+
+
+Is the actir kinematic. 
+
+\begin{DoxyReturn}{Returns}
+True if the actor is kinematic false if it is not. 
+\end{DoxyReturn}
+
+
+Definition at line 174 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a0639616581641cd6ec2b68f611d4e05a}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!IsStatic@{IsStatic}}
+\index{IsStatic@{IsStatic}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{IsStatic}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ActorBasePhysicsSettings::IsStatic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a0639616581641cd6ec2b68f611d4e05a}
+
+
+Is the actor static. 
+
+\begin{DoxyReturn}{Returns}
+True if the actor is Static false if it is not. 
+\end{DoxyReturn}
+
+
+Definition at line 184 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac3e3e2f779e0ff0e30abb719d6461e2e}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!IsStaticOrKinematic@{IsStaticOrKinematic}}
+\index{IsStaticOrKinematic@{IsStaticOrKinematic}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{IsStaticOrKinematic}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ActorBasePhysicsSettings::IsStaticOrKinematic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_ac3e3e2f779e0ff0e30abb719d6461e2e}
+
+
+Checks of the actor is static or kinematic. 
+
+Checks of the actor is static or kinematic, returns true if it is either. \begin{DoxyReturn}{Returns}
+Returns true if the actor is static or kinematic. 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_aed2d1a5dd0ac0fa290242146ef9b8aa0}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetActivationState@{SetActivationState}}
+\index{SetActivationState@{SetActivationState}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{SetActivationState}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetActivationState (
+\begin{DoxyParamCaption}
+\item[{{\bf Mezzanine::ActorActivationState}}]{State, }
+\item[{bool}]{Force = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_aed2d1a5dd0ac0fa290242146ef9b8aa0}
+
+
+Sets the activation state of the actor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em State} & The activation state to set for the actor. See the ActorActivationState enum for more info. \\
+\hline
+{\em Force} & Whether or not you want to force the state. Some states may not apply based on the condition of the actor if this is set to false. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 268 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetCCDParams@{SetCCDParams}}
+\index{SetCCDParams@{SetCCDParams}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{SetCCDParams}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetCCDParams (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{MotionThreshold, }
+\item[{const {\bf Real} \&}]{SweptSphereRadius = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}
+
+
+Sets the parameters used for Continuous \hyperlink{classMezzanine_1_1Collision}{Collision} Detection. 
+
+If a Swept Sphere Radius is not provided, this function will attempt to find one for you using the currently set \hyperlink{classMezzanine_1_1Collision}{Collision} Shape. If this fails for any reason or a shape is not set, it will set the radius to 1. 
+\begin{DoxyParams}{Parameters}
+{\em MotionThreshold} & The speed at which the object has to be moving in order to enable CCD for the object. If set to zero CCD will be disabled. \\
+\hline
+{\em SweptSphereRadius} & The radius of the sphere to be used for CCD sweep tests. Essentially this should be the largest radius in which a sphere can fully fit inside your object. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 132 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a7755593c3c0f7bceecc6dfb6a7613000}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetCollisionGroupAndMask@{SetCollisionGroupAndMask}}
+\index{SetCollisionGroupAndMask@{SetCollisionGroupAndMask}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{SetCollisionGroupAndMask}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetCollisionGroupAndMask (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Group, }
+\item[{const {\bf Whole} \&}]{Mask}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a7755593c3c0f7bceecc6dfb6a7613000}
+
+
+Set the collision group and mask for the actor to determine what it should collide with. 
+
+These values are automatically calculated for you with some sane default values. Only edit these if you know what you are doing. 
+\begin{DoxyParams}{Parameters}
+{\em Group} & The group to which this actor belongs. \\
+\hline
+{\em Mask} & The other groups to which this actor should collide with. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 95 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a9aa6c07c9cb235a417d68f1ea417f834}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetCollisionShape@{SetCollisionShape}}
+\index{SetCollisionShape@{SetCollisionShape}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{SetCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetCollisionShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a9aa6c07c9cb235a417d68f1ea417f834}
+
+
+Sets the collision shape to be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shape} & The shape to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a7583e5afc93dedc8a4403ea156fa0413}{Mezzanine::ActorRigidPhysicsSettings}, \hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings_a4cbaf52fbdedf9c4e0328d3dd608207e}{Mezzanine::ActorSoftPhysicsSettings}, and \hyperlink{classMezzanine_1_1ActorTerrainPhysicsSettings_a0011fda184ee1e71ff9a2a5899eb10d2}{Mezzanine::ActorTerrainPhysicsSettings}.
+
+
+
+Definition at line 86 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a615c423b6d2da96b16b91ee644b8b81c}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetFriction@{SetFriction}}
+\index{SetFriction@{SetFriction}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{SetFriction}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetFriction (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Friction}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a615c423b6d2da96b16b91ee644b8b81c}
+
+
+Sets the Actors' friction coefficient. 
+
+Higher values will resist sliding across surfaces. This number is the coefficient of friction. Range is from 0.0 to 2.0. Behavior in this regard is determined by the friction of both colliding bodies. \par
+ Default: 0.5 
+\begin{DoxyParams}{Parameters}
+{\em Friction} & A Real that is the friction coefficient desired. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 116 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetKinematic@{SetKinematic}}
+\index{SetKinematic@{SetKinematic}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{SetKinematic}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetKinematic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}
+
+
+Sets the state of the object to Kinematic. 
+
+This function will set the object to a Kinematic Object. \par
+ Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
+
+Definition at line 169 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac11357f16b6a30223d1794b4e4adf467}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetRestitution@{SetRestitution}}
+\index{SetRestitution@{SetRestitution}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{SetRestitution}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetRestitution (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Restitution}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_ac11357f16b6a30223d1794b4e4adf467}
+
+
+Sets the Actors' restitution coefficient. 
+
+Restitution determines how much energy is left after a collision with an object. Range is from 0.0 to 1.0. Behavior in this regard is determined by the restitution of both colliding bodies. \par
+ Default: 0.0 
+\begin{DoxyParams}{Parameters}
+{\em Restitution} & A Real that is the restitution coefficient desired. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 126 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}{
+\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetStatic@{SetStatic}}
+\index{SetStatic@{SetStatic}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\paragraph[{SetStatic}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetStatic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}
+
+
+Sets the state of the object to Static. 
+
+This function will set the object to a Static Object. \par
+ Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
+
+Definition at line 179 of file actorphysicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorphysicssettings.h\item 
+actorphysicssettings.cpp\end{DoxyCompactItemize}

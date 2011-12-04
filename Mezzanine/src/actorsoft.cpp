@@ -63,13 +63,13 @@ namespace Mezzanine
     {
         CreateSoftObject(mass);
         this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
-        this->PhysicsSettings = new ActorSoftPhysicsSettings(this,physsoftbody);
+        this->PhysicsSettings = new ActorSoftPhysicsSettings(this,PhysicsSoftBody);
         BasePhysicsSettings = PhysicsSettings;
     }
 
     ActorSoft::~ActorSoft ()
     {
-        delete physsoftbody;
+        delete PhysicsSoftBody;
     }
 
     void ActorSoft::CreateSoftObject (Real mass)
@@ -82,17 +82,17 @@ namespace Mezzanine
         internal::MeshTools::GetMeshTextures(GraphicsObject,CurMesh);
         internal::MeshTools::GetOtherMeshInfo(GraphicsObject,CurMesh);
 
-        this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh(PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
-        PhysicsObject=physsoftbody;
+        this->PhysicsSoftBody = btSoftBodyHelpers::CreateFromTriMesh(PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
+        PhysicsObject=PhysicsSoftBody;
         ObjectReference* ActorRef = new ObjectReference(Mezzanine::WOT_ActorSoft,this);
         PhysicsObject->setUserPointer(ActorRef);
-        PhysicsShape = physsoftbody->getCollisionShape();
-        physsoftbody->setTotalMass(mass, true);
-        physsoftbody->m_cfg.collisions = /*btSoftBody::fCollision::CL_SS +*/ btSoftBody::fCollision::CL_RS;
-        physsoftbody->m_cfg.piterations = 5;
-        physsoftbody->randomizeConstraints();
-        physsoftbody->generateBendingConstraints(2);
-        physsoftbody->generateClusters(20);
+        PhysicsShape = PhysicsSoftBody->getCollisionShape();
+        PhysicsSoftBody->setTotalMass(mass, true);
+        PhysicsSoftBody->m_cfg.collisions = /*btSoftBody::fCollision::CL_SS +*/ btSoftBody::fCollision::CL_RS;
+        PhysicsSoftBody->m_cfg.piterations = 5;
+        PhysicsSoftBody->randomizeConstraints();
+        PhysicsSoftBody->generateBendingConstraints(2);
+        PhysicsSoftBody->generateClusters(20);
 
         CreateManualMesh(CurMesh);
 
@@ -100,7 +100,7 @@ namespace Mezzanine
         Ogre::Any OgreRef(ActorRef);
         GraphicsObject->setUserAny(OgreRef);
 
-        this->physsoftbody->m_clusters[0]->m_collide = true;
+        this->PhysicsSoftBody->m_clusters[0]->m_collide = true;
     }
 
     void ActorSoft::CreateManualMesh (internal::MeshInfo &TheMesh)
@@ -130,7 +130,7 @@ namespace Mezzanine
     {
         /*Vector3 tempv;
         Quaternion tempq;
-        btTransform temp = this->physsoftbody->m_clusters[0]->m_framexform;
+        btTransform temp = this->PhysicsSoftBody->m_clusters[0]->m_framexform;
         tempv.ExtractBulletVector3(temp.getOrigin());
         tempq.ExtractBulletQuaternion(temp.getRotation());
         this->GraphicsNode->setPosition(tempv.GetOgreVector3());
@@ -146,20 +146,20 @@ namespace Mezzanine
 
     void ActorSoft::SetBulletLocation (Vector3 Location)
     {
-        this->physsoftbody->m_clusters[0]->m_framexform.setOrigin(Location.GetBulletVector3());
+        this->PhysicsSoftBody->m_clusters[0]->m_framexform.setOrigin(Location.GetBulletVector3());
         ActorBase::SetBulletLocation(Location);
     }
 
     Vector3 ActorSoft::GetBulletLocation() const
     {
-        Vector3 temp(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin());
+        Vector3 temp(this->PhysicsSoftBody->m_clusters[0]->m_framexform.getOrigin());
         return temp;
         //return ActorBase::GetBulletLocation();
     }
 
     void ActorSoft::SetBulletOrientation (Quaternion Rotation)
     {
-        this->physsoftbody->m_clusters[0]->m_framexform.setRotation(Rotation.GetBulletQuaternion(true));
+        this->PhysicsSoftBody->m_clusters[0]->m_framexform.setRotation(Rotation.GetBulletQuaternion(true));
         ActorBase::SetBulletOrientation(Rotation);
     }
 
@@ -186,15 +186,15 @@ namespace Mezzanine
     {
         this->SetBulletLocation(Location);
         //ActorBase::SetBulletLocation(Location);
-        physsoftbody->translate(Location.GetBulletVector3());
-        this->physsoftbody->m_initialWorldTransform.setOrigin(Location.GetBulletVector3());
+        PhysicsSoftBody->translate(Location.GetBulletVector3());
+        this->PhysicsSoftBody->m_initialWorldTransform.setOrigin(Location.GetBulletVector3());
         //this->GraphicsNode->setPosition(Location.GetOgreVector3());
     }
 
     void ActorSoft::SetInitOrientation(Quaternion Orientation)
     {
         this->SetBulletOrientation(Orientation);
-        this->physsoftbody->m_initialWorldTransform.setRotation(Orientation.GetBulletQuaternion());
+        this->PhysicsSoftBody->m_initialWorldTransform.setRotation(Orientation.GetBulletQuaternion());
     }
 
     void ActorSoft::SetLocation (Real x, Real y, Real z)
@@ -228,13 +228,13 @@ namespace Mezzanine
 
     void ActorSoft::AddObjectToWorld()
     {
-        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
+        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addSoftBody(this->PhysicsSoftBody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
         this->AttachToGraphics();
     }
 
     void ActorSoft::RemoveObjectFromWorld()
     {
-        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody);
+        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->removeSoftBody(this->PhysicsSoftBody);
         this->DetachFromGraphics();
     }
 
@@ -250,24 +250,24 @@ namespace Mezzanine
         for (size_t j = 0; j < vertexData->vertexCount; j++ )
         {
             posElem->baseVertexPointerToElement(vertex, &pReal);
-            *pReal++ = this->physsoftbody->m_nodes[j].m_x.x();
-            *pReal++ = this->physsoftbody->m_nodes[j].m_x.y();
-            *pReal++ = this->physsoftbody->m_nodes[j].m_x.z();
+            *pReal++ = this->PhysicsSoftBody->m_nodes[j].m_x.x();
+            *pReal++ = this->PhysicsSoftBody->m_nodes[j].m_x.y();
+            *pReal++ = this->PhysicsSoftBody->m_nodes[j].m_x.z();
             vertex += vBuffer->getVertexSize();
         }
         vBuffer->unlock();// */
 
-        //btVector3 position = this->physsoftbody->getWorldTransform().getOrigin();
-        //btQuaternion rotation = this->physsoftbody->getWorldTransform().getRotation();
-        btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();
-        btQuaternion rotation = this->physsoftbody->m_clusters[0]->m_framexform.getRotation();
+        //btVector3 position = this->PhysicsSoftBody->getWorldTransform().getOrigin();
+        //btQuaternion rotation = this->PhysicsSoftBody->getWorldTransform().getRotation();
+        btVector3 position = this->PhysicsSoftBody->m_clusters[0]->m_framexform.getOrigin();
+        btQuaternion rotation = this->PhysicsSoftBody->m_clusters[0]->m_framexform.getRotation();
         this->GraphicsNode->setPosition(position.x(), position.y(), position.z());
         this->GraphicsNode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
     }
 
     btSoftBody* ActorSoft::GetBulletObject()
     {
-        return physsoftbody;
+        return PhysicsSoftBody;
     }
 }
 #endif

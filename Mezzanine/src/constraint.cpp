@@ -122,15 +122,15 @@ namespace Mezzanine
     {
         ActA = Act1;
         ActB = Act2;
-        BodyA = Act1->physrigidbody;
-        BodyB = Act2->physrigidbody;
+        BodyA = Act1->PhysicsRigidBody;
+        BodyB = Act2->PhysicsRigidBody;
     }
 
     void TypedConstraint::SetBodies(ActorRigid* Act1)
     {
         ActA = Act1;
         ActB = NULL;
-        BodyA = Act1->physrigidbody;
+        BodyA = Act1->PhysicsRigidBody;
         BodyB = NULL;
     }
 

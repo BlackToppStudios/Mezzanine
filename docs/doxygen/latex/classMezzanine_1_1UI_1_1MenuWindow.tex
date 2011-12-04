@@ -1,0 +1,590 @@
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow}{
+\subsection{Mezzanine::UI::MenuWindow Class Reference}
+\label{classMezzanine_1_1UI_1_1MenuWindow}\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+}
+
+
+This class is an extended version of the window class for use exclusively with the menu widget.  
+
+
+
+
+{\ttfamily \#include $<$uimenuwindow.h$>$}
+
+Inheritance diagram for Mezzanine::UI::MenuWindow:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classMezzanine_1_1UI_1_1MenuWindow}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a52aa67a7c69ed7ad7af746c3230e08f8}{CreateAccessorButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Creates a button to be used for accessing child windows. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a4520c4a2e0b680ac52c0669d92d2c4f5}{CreateAccessorButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a text button to be used for accessing child windows. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a559f35d54a23ebb211c8b47f8770f25b}{CreateAccessorButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a text button to be used for accessing child windows. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_ac03348abfea097331902ca8d34180138}{CreateBackButton} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Creates a back button for this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_aa47aabf83f375c872a3c4bbec473fc49}{CreateBackButton} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a back button that is a text button for this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_acda1808f25bde401d422367cebb8fda9}{CreateBackButton} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a back button that is a text button for this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_ad4159f0de7e84d177e326c37fadd4a9c}{CreateChildMenuWindow} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$Accessor)
+\begin{DoxyCompactList}\small\item\em Adds a child window to this window. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a9798a05738ab5977d32b06c7fdc0ea29}{DestroyChildMenuWindow} (\hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a menu window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_ae3121c7545f1a5c4f97cf1dbeb8d465b}{GetAccessorButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an Accessor button by name. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a22942d0517af60c97d39c8f1bead9bc4}{GetAutoHide} ()
+\begin{DoxyCompactList}\small\item\em Gets wether or not this window is set to auto hide when another window is added to the menu stack. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a32f4d1543e0e1b0fb129440dec15e0a5}{GetBackButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the back button of this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a14140441dfe2c63a56e6e6c002e5542d}{GetChildMenuWindow} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created menu window by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a453ef6af9762de3d29d705501398274a}{GetChildMenuWindow} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created menu window by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_aa6a04b93c0b65cb14941df11dade1a56}{GetNumChildMenuWindows} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of menu windows created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_ae112dc5c4a16e9d44f8dcb89e4ec73ec}{GetParentWindow} ()
+\begin{DoxyCompactList}\small\item\em Gets the parent window of this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a6c00a489b0752a9d0b2f61f383529aee}{GetWindowOfAccessButton} (\hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$Accessor)
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classMezzanine_1_1UI_1_1Window}{Window} corresponding to the access button. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UI_1_1MenuWindow_af5bf6ab9217583a5622ef32426184316}{MenuWindow} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classMezzanine_1_1UI_1_1Menu}{UI::Menu} $\ast$TheMenu, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_aea2caf3b37d645fca123611060ccfa4f}{SetAutoHide} (bool AutoHide)
+\begin{DoxyCompactList}\small\item\em Sets whether or not thie window should auto hide when another window is added to the menu stack. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a9100422fa989e3c3d41e9b22046773f7}{UpdateDimensions} ()
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this window to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a09f5f7ec50a29bce7b3b1b5e0f2c07db}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1MenuWindow_a09f5f7ec50a29bce7b3b1b5e0f2c07db}{$\sim$MenuWindow} ()}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a09f5f7ec50a29bce7b3b1b5e0f2c07db}
+
+\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a2b6ae12c79b59f95f441bbe938517ec6}{
+bool {\bfseries AutoHideWindow}}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a2b6ae12c79b59f95f441bbe938517ec6}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_abf02d5129945bc0a8b9cc2b28843cff5}{
+\hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ {\bfseries BackButton}}
+\label{classMezzanine_1_1UI_1_1MenuWindow_abf02d5129945bc0a8b9cc2b28843cff5}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_ab9c1010dd5bc91f3a09969d4ad33118b}{
+std::vector$<$ std::pair$<$ \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$, \hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ $>$ $>$ {\bfseries ChildWindows}}
+\label{classMezzanine_1_1UI_1_1MenuWindow_ab9c1010dd5bc91f3a09969d4ad33118b}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_ae0e9b3d5e3611a572d9dc321f8399f2a}{
+\hyperlink{classMezzanine_1_1UI_1_1Menu}{UI::Menu} $\ast$ {\bfseries MasterMenu}}
+\label{classMezzanine_1_1UI_1_1MenuWindow_ae0e9b3d5e3611a572d9dc321f8399f2a}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_af661be0bbaecc5e9975aae1664cd006a}{
+\hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ {\bfseries ParentWindow}}
+\label{classMezzanine_1_1UI_1_1MenuWindow_af661be0bbaecc5e9975aae1664cd006a}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is an extended version of the window class for use exclusively with the menu widget. 
+
+Definition at line 60 of file uimenuwindow.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_af5bf6ab9217583a5622ef32426184316}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!MenuWindow@{MenuWindow}}
+\index{MenuWindow@{MenuWindow}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{MenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::MenuWindow::MenuWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{{\bf UI::Menu} $\ast$}]{TheMenu, }
+\item[{{\bf Layer} $\ast$}]{PLayer}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_af5bf6ab9217583a5622ef32426184316}
+
+
+Standard initialization constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the window. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the window. \\
+\hline
+{\em TheMenu} & The menu this window belongs to. \\
+\hline
+{\em \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer}} & The parent layer this window belongs to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 53 of file uimenuwindow.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a52aa67a7c69ed7ad7af746c3230e08f8}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!CreateAccessorButton@{CreateAccessorButton}}
+\index{CreateAccessorButton@{CreateAccessorButton}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{CreateAccessorButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::MenuWindow::CreateAccessorButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a52aa67a7c69ed7ad7af746c3230e08f8}
+
+
+Creates a button to be used for accessing child windows. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the button. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 141 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a4520c4a2e0b680ac52c0669d92d2c4f5}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!CreateAccessorButton@{CreateAccessorButton}}
+\index{CreateAccessorButton@{CreateAccessorButton}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{CreateAccessorButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ Mezzanine::UI::MenuWindow::CreateAccessorButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a4520c4a2e0b680ac52c0669d92d2c4f5}
+
+
+Creates a text button to be used for accessing child windows. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created text button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the button. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+{\em Glyph} & The glyph set to use when generating the text for the button. \\
+\hline
+{\em Text} & The text to set for the button. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 154 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a559f35d54a23ebb211c8b47f8770f25b}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!CreateAccessorButton@{CreateAccessorButton}}
+\index{CreateAccessorButton@{CreateAccessorButton}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{CreateAccessorButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ Mezzanine::UI::MenuWindow::CreateAccessorButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a559f35d54a23ebb211c8b47f8770f25b}
+
+
+Creates a text button to be used for accessing child windows. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created text button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the button. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & The text to set for the button. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 167 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_ac03348abfea097331902ca8d34180138}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!CreateBackButton@{CreateBackButton}}
+\index{CreateBackButton@{CreateBackButton}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{CreateBackButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::MenuWindow::CreateBackButton (
+\begin{DoxyParamCaption}
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_ac03348abfea097331902ca8d34180138}
+
+
+Creates a back button for this window. 
+
+The name is autogenerated to be the name of the window + \char`\"{}back\char`\"{}. This function will do nothing if the back button has already been created. 
+\begin{DoxyParams}{Parameters}
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created Back \hyperlink{classMezzanine_1_1UI_1_1Button}{Button}. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_acda1808f25bde401d422367cebb8fda9}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!CreateBackButton@{CreateBackButton}}
+\index{CreateBackButton@{CreateBackButton}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{CreateBackButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ Mezzanine::UI::MenuWindow::CreateBackButton (
+\begin{DoxyParamCaption}
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_acda1808f25bde401d422367cebb8fda9}
+
+
+Creates a back button that is a text button for this window. 
+
+The name is autogenerated to be the name of the window + \char`\"{}back\char`\"{}. This function will do nothing if the back button has already been created. 
+\begin{DoxyParams}{Parameters}
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+{\em Glyph} & The glyph set to use when generating the text for the button. \\
+\hline
+{\em Text} & The text to set for the button. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created Back \hyperlink{classMezzanine_1_1UI_1_1Button}{Button}. 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_aa47aabf83f375c872a3c4bbec473fc49}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!CreateBackButton@{CreateBackButton}}
+\index{CreateBackButton@{CreateBackButton}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{CreateBackButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ Mezzanine::UI::MenuWindow::CreateBackButton (
+\begin{DoxyParamCaption}
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_aa47aabf83f375c872a3c4bbec473fc49}
+
+
+Creates a back button that is a text button for this window. 
+
+The name is autogenerated to be the name of the window + \char`\"{}back\char`\"{}. This function will do nothing if the back button has already been created. 
+\begin{DoxyParams}{Parameters}
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & The text to set for the button. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created Back \hyperlink{classMezzanine_1_1UI_1_1Button}{Button}. 
+\end{DoxyReturn}
+
+
+Definition at line 120 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_ad4159f0de7e84d177e326c37fadd4a9c}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!CreateChildMenuWindow@{CreateChildMenuWindow}}
+\index{CreateChildMenuWindow@{CreateChildMenuWindow}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{CreateChildMenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ Mezzanine::UI::MenuWindow::CreateChildMenuWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{{\bf Button} $\ast$}]{Accessor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_ad4159f0de7e84d177e326c37fadd4a9c}
+
+
+Adds a child window to this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created child window. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the window. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the window. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 206 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a9798a05738ab5977d32b06c7fdc0ea29}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!DestroyChildMenuWindow@{DestroyChildMenuWindow}}
+\index{DestroyChildMenuWindow@{DestroyChildMenuWindow}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{DestroyChildMenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MenuWindow::DestroyChildMenuWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf MenuWindow} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a9798a05738ab5977d32b06c7fdc0ea29}
+
+
+Destroys a menu window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the menu window you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 246 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_ae3121c7545f1a5c4f97cf1dbeb8d465b}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!GetAccessorButton@{GetAccessorButton}}
+\index{GetAccessorButton@{GetAccessorButton}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{GetAccessorButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::MenuWindow::GetAccessorButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_ae3121c7545f1a5c4f97cf1dbeb8d465b}
+
+
+Gets an Accessor button by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the named accessor button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the accessor button you want to find. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 180 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a22942d0517af60c97d39c8f1bead9bc4}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!GetAutoHide@{GetAutoHide}}
+\index{GetAutoHide@{GetAutoHide}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{GetAutoHide}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::MenuWindow::GetAutoHide (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a22942d0517af60c97d39c8f1bead9bc4}
+
+
+Gets wether or not this window is set to auto hide when another window is added to the menu stack. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not AutoHide is enabled on this menu window. 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a32f4d1543e0e1b0fb129440dec15e0a5}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!GetBackButton@{GetBackButton}}
+\index{GetBackButton@{GetBackButton}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{GetBackButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::MenuWindow::GetBackButton (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a32f4d1543e0e1b0fb129440dec15e0a5}
+
+
+Gets the back button of this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Back \hyperlink{classMezzanine_1_1UI_1_1Button}{Button}, or NULL if it hasn't been created. 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a453ef6af9762de3d29d705501398274a}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!GetChildMenuWindow@{GetChildMenuWindow}}
+\index{GetChildMenuWindow@{GetChildMenuWindow}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{GetChildMenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ Mezzanine::UI::MenuWindow::GetChildMenuWindow (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a453ef6af9762de3d29d705501398274a}
+
+
+Gets an already created menu window by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the menu window at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a14140441dfe2c63a56e6e6c002e5542d}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!GetChildMenuWindow@{GetChildMenuWindow}}
+\index{GetChildMenuWindow@{GetChildMenuWindow}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{GetChildMenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ Mezzanine::UI::MenuWindow::GetChildMenuWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a14140441dfe2c63a56e6e6c002e5542d}
+
+
+Gets an already created menu window by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the menu window of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 223 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_aa6a04b93c0b65cb14941df11dade1a56}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!GetNumChildMenuWindows@{GetNumChildMenuWindows}}
+\index{GetNumChildMenuWindows@{GetNumChildMenuWindows}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{GetNumChildMenuWindows}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::MenuWindow::GetNumChildMenuWindows (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_aa6a04b93c0b65cb14941df11dade1a56}
+
+
+Gets the number of menu windows created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of menu windows this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 241 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_ae112dc5c4a16e9d44f8dcb89e4ec73ec}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!GetParentWindow@{GetParentWindow}}
+\index{GetParentWindow@{GetParentWindow}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{GetParentWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ Mezzanine::UI::MenuWindow::GetParentWindow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_ae112dc5c4a16e9d44f8dcb89e4ec73ec}
+
+
+Gets the parent window of this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the parent window of this window, or NULL if this is the root window. 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a6c00a489b0752a9d0b2f61f383529aee}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!GetWindowOfAccessButton@{GetWindowOfAccessButton}}
+\index{GetWindowOfAccessButton@{GetWindowOfAccessButton}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{GetWindowOfAccessButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ Mezzanine::UI::MenuWindow::GetWindowOfAccessButton (
+\begin{DoxyParamCaption}
+\item[{{\bf Button} $\ast$}]{Accessor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a6c00a489b0752a9d0b2f61f383529aee}
+
+
+Gets the \hyperlink{classMezzanine_1_1UI_1_1Window}{Window} corresponding to the access button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Accessor} & Pointer to the \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} of which you want to get the window for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns A pointer to the \hyperlink{classMezzanine_1_1UI_1_1Menu}{Menu} window the button provided accesses. 
+\end{DoxyReturn}
+
+
+Definition at line 193 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_aea2caf3b37d645fca123611060ccfa4f}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!SetAutoHide@{SetAutoHide}}
+\index{SetAutoHide@{SetAutoHide}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{SetAutoHide}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MenuWindow::SetAutoHide (
+\begin{DoxyParamCaption}
+\item[{bool}]{AutoHide}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_aea2caf3b37d645fca123611060ccfa4f}
+
+
+Sets whether or not thie window should auto hide when another window is added to the menu stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em AutoHide} & whether or not to enable auto hiding for this menu window. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file uimenuwindow.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1MenuWindow_a9100422fa989e3c3d41e9b22046773f7}{
+\index{Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!Mezzanine::UI::MenuWindow@{Mezzanine::UI::MenuWindow}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::MenuWindow::UpdateDimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1MenuWindow_a9100422fa989e3c3d41e9b22046773f7}
+
+
+Updates the dimensions of this window to match those of the new screen size. 
+
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
+
+Reimplemented from \hyperlink{classMezzanine_1_1UI_1_1Window_a793c156e8de19f44b8c132b05ed4f7b6}{Mezzanine::UI::Window}.
+
+
+
+Definition at line 261 of file uimenuwindow.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uimenuwindow.h\item 
+uimenuwindow.cpp\end{DoxyCompactItemize}

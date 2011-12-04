@@ -1,0 +1,1446 @@
+\hypertarget{classMezzanine_1_1UI_1_1Layer}{
+\subsection{Mezzanine::UI::Layer Class Reference}
+\label{classMezzanine_1_1UI_1_1Layer}\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+}
+
+
+This class is the basic container class for \hyperlink{namespaceMezzanine_1_1UI}{UI} elements.  
+
+
+
+
+{\ttfamily \#include $<$uilayer.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_a930991c1e3d5906fc9d347ca281084ab}{AddWidget} (\hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ToAdd)
+\begin{DoxyCompactList}\small\item\em Adds a widget to this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a5f53df62a577dbbbb279248e8c9d1673}{CheckButtonMouseIsOver} ()
+\begin{DoxyCompactList}\small\item\em Gets the button the mouse is over if any. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_af3353560fdd740f172492807fff4b98f}{CheckWidgetMouseIsOver} ()
+\begin{DoxyCompactList}\small\item\em Gets the widget the mouse is over if any. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a15606e99cf9cf34cb991556d87f1c44e}{CreateButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Creates a button within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a3849f71d1ea5bf31c2a6a0773d5ac309}{CreateCaption} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a caption within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a9b7d6e9d2865a8e5ac03732888f22647}{CreateCaption} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a caption within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a04e2d1bff31f8c01063498ce87e3138a}{CreateCheckBox} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&LabelText)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox} within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1DropDownList}{DropDownList} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a6b0d315b69d28a29dddb3f19c22c8f8c}{CreateDropDownList} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&ScrollStyle)
+\begin{DoxyCompactList}\small\item\em Creates a drop down list within this layer. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a7dfff47a4e6791cd3dcf13d04374bd5c}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1LineList}{LineList} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a7dfff47a4e6791cd3dcf13d04374bd5c}{CreateLineList} ()}
+\label{classMezzanine_1_1UI_1_1Layer_a7dfff47a4e6791cd3dcf13d04374bd5c}
+
+\begin{DoxyCompactList}\small\item\em Creates a line list within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox}{ListBox} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a56fcefd3f12d19293ea23303c642c1b7}{CreateListBox} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&\hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{ScrollbarStyle})
+\begin{DoxyCompactList}\small\item\em Creates a List Box within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a0206ad6de1e6510cd04fbab9a468df8d}{CreateMarkupText} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a markup text within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a32aee6b1ea0d7550b096a0c4e4bb42db}{CreateMarkupText} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a markup text within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Menu}{Menu} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a1afed25c24527f926959083fa23a61ea}{CreateMenu} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1UI_1_1Menu}{Menu} within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid}{PagedCellGrid} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a10917135a026ca597f5f5313a6ec4e10}{CreatePagedCellGrid} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&SpnRect, const \hyperlink{namespaceMezzanine_1_1UI_a62462d4df783dcdda77e1590a96bc6d6}{UI::SpinnerStyle} \&SStyle, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&GlyphHeight)
+\begin{DoxyCompactList}\small\item\em Creates a paged cell grid within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a415a8cdf35364dff4948f22f42d81646}{CreateRectangle} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Creates a rectangle within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_afdb47f6623a52471ec85e06148afb451}{CreateScrollbar} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&Style)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid}{ScrolledCellGrid} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_af6e676e7aa1d918afabe3467c42dbfe8}{CreateScrolledCellGrid} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Thickness, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&Style)
+\begin{DoxyCompactList}\small\item\em Creates a scrolled cell grid within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a78a8ee333aee9ad5ce03228e41dbe3aa}{CreateSpinner} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_1_1UI_a62462d4df783dcdda77e1590a96bc6d6}{UI::SpinnerStyle} \&SStyle, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&GlyphHeight)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner} within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TabSet}{TabSet} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a1b153a3fa9ba59910ffa38118df07095}{CreateTabSet} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&SetRect)
+\begin{DoxyCompactList}\small\item\em Creates a tabset within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a47b0d4849e7a74c2f886d5618a8216e8}{CreateTextButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a text button within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a798fc69951c6d853fbebacd113221ec1}{CreateTextButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Text)
+\begin{DoxyCompactList}\small\item\em Creates a text button within this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Window}{Window} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a6616d0c480ac41748f10f77789eb52ee}{CreateWidgetWindow} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1UI_1_1Window}{Window} within this layer. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_adfc40e5ca5a41cc5ab76303432669e8c}{DestroyButton} (\hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_affc70067d7d58d342f3d81bae1b059af}{DestroyCaption} (\hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_a6886628b065bf846061b4dea1726ad57}{DestroyLineList} (\hyperlink{classMezzanine_1_1UI_1_1LineList}{LineList} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a line list. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_a7f53065d958576cda9322520c71be80f}{DestroyMarkupText} (\hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a markup text. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_a3ad9ddd61bb7bd8ae418f7df8bed1ff5}{DestroyRectangle} (\hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a rectangle. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_a249e2ed0a11581932464c576b9f763c1}{DestroyWidget} (\hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a35636ea8bbb02c7cbd7236db3ad48a7e}{GetButton} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created button by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_acfbea2afd6cf9a1509d72d39715ebf05}{GetButton} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created button by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a0e85f5557ad863eefa81dd42ca9eb45d}{GetCaption} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created caption by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_ad862a32c94f66dbc749575bb103fc0db}{GetCaption} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created caption by name. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a8874a9808f01e5db6e323c3010a5a076}{
+virtual Gorilla::Layer $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a8874a9808f01e5db6e323c3010a5a076}{GetGorillaLayer} ()}
+\label{classMezzanine_1_1UI_1_1Layer_a8874a9808f01e5db6e323c3010a5a076}
+
+\begin{DoxyCompactList}\small\item\em Gets the internal gorilla layer pointer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1LineList}{LineList} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a58684b937a96e2a5cb911fae520e4d1f}{GetLineList} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created line list by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a172322ba8c4c27d5c59aa8b077e9e150}{GetMarkupText} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created markup text by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a9d68b5d2587065884ec2796851e31166}{GetMarkupText} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created markup text by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \& \hyperlink{classMezzanine_1_1UI_1_1Layer_a2ceb695a51dd1e4619523e7f2e777ebc}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1Layer_ae339d1ec2ff0c141225ec86167be5e31}{GetNumButtons} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of buttons created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1Layer_a3aca1c34855d282faef5b5d4c3a5451f}{GetNumCaptions} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of captions created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1Layer_a4ca051b7cecc316730d0d375becf989f}{GetNumLineLists} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of line lists created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1Layer_aaa1a666c2c3520a8a39df5c5dea57941}{GetNumMarkupTexts} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of markup texts created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1Layer_a0832c18bb8c2459c899d14e9fcad8e85}{GetNumRectangles} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of rectangles created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1Layer_a474f60650b90f1bc2c17dfd8ea5b6304}{GetNumWidgets} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of widgets created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Screen}{Screen} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a73d54e2ed5c8c63ad8d7cac8d29007c9}{GetParent} ()
+\begin{DoxyCompactList}\small\item\em Gets the parent screen of this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_af68871cb8f544227caa25ccc5666c944}{GetRectangle} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created rectangle by index. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Layer_a172eccc6e183ac05d1cff453de757a0f}{GetVisible} () const 
+\begin{DoxyCompactList}\small\item\em Gets the visibility setting of this layer. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a2d0ad533ccb60047f5cd0d24f2e7e377}{GetWidget} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created widget by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Layer_a253eb9e18e213c2f1f9b3a9831e06a95}{GetWidget} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created widget by index. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_ada49384da792711c08d75736acc720f5}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_ada49384da792711c08d75736acc720f5}{Hide} ()}
+\label{classMezzanine_1_1UI_1_1Layer_ada49384da792711c08d75736acc720f5}
+
+\begin{DoxyCompactList}\small\item\em Forces the layer to hide. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1Layer_a8a9222e729f47a4cfec32325a03cf7f3}{IsVisible} () const 
+\begin{DoxyCompactList}\small\item\em Gets the layers' visability. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UI_1_1Layer_a89adbb39b0c8058635a9d7c73d8d61d5}{Layer} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, Gorilla::Layer $\ast$GLayer, \hyperlink{classMezzanine_1_1UI_1_1Screen}{Screen} $\ast$PScreen)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_a00b524742cf51db97b17e7d8f6e995cf}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the layers' visability. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a02f08145c60a66b441cd37313cdfa9df}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_a02f08145c60a66b441cd37313cdfa9df}{Show} ()}
+\label{classMezzanine_1_1UI_1_1Layer_a02f08145c60a66b441cd37313cdfa9df}
+
+\begin{DoxyCompactList}\small\item\em Forces the layer to be shown. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Layer_ae19b12ed20756cbf3bb666d7443e7b54}{ViewportUpdate} ()
+\begin{DoxyCompactList}\small\item\em Updates \hyperlink{namespaceMezzanine_1_1UI}{UI} elements positions and sizes after a change in the viewport size. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a8f900ee91964b4103ce369e82a7a0739}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1Layer_a8f900ee91964b4103ce369e82a7a0739}{$\sim$Layer} ()}
+\label{classMezzanine_1_1UI_1_1Layer_a8f900ee91964b4103ce369e82a7a0739}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a54ca5eb4af67d1714181eaf27a2318ad}{
+std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ $>$ {\bfseries Buttons}}
+\label{classMezzanine_1_1UI_1_1Layer_a54ca5eb4af67d1714181eaf27a2318ad}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a8396f3e08e84fdf13b04ce089d6a1381}{
+std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ $>$ {\bfseries Captions}}
+\label{classMezzanine_1_1UI_1_1Layer_a8396f3e08e84fdf13b04ce089d6a1381}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a607e4aede7623ef575cc90916744d2e8}{
+Gorilla::Layer $\ast$ {\bfseries GorillaLayer}}
+\label{classMezzanine_1_1UI_1_1Layer_a607e4aede7623ef575cc90916744d2e8}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_acbd08e52e9021e9f28f3f00c7fc46984}{
+std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1LineList}{LineList} $\ast$ $>$ {\bfseries LineLists}}
+\label{classMezzanine_1_1UI_1_1Layer_acbd08e52e9021e9f28f3f00c7fc46984}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a716157f49e0684981fede803cff4b56c}{
+\hyperlink{classMezzanine_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
+\label{classMezzanine_1_1UI_1_1Layer_a716157f49e0684981fede803cff4b56c}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a2a21792f4a79d6bde1b00e1f12771041}{
+std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1MarkupText}{MarkupText} $\ast$ $>$ {\bfseries MarkupTexts}}
+\label{classMezzanine_1_1UI_1_1Layer_a2a21792f4a79d6bde1b00e1f12771041}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_ad4af36f17ea5625a9018a4d1560badab}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} {\bfseries Name}}
+\label{classMezzanine_1_1UI_1_1Layer_ad4af36f17ea5625a9018a4d1560badab}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_ab1c2552446d199f2cc7a3786b6e61b92}{
+\hyperlink{classMezzanine_1_1UI_1_1Screen}{Screen} $\ast$ {\bfseries Parent}}
+\label{classMezzanine_1_1UI_1_1Layer_ab1c2552446d199f2cc7a3786b6e61b92}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_aba7b5efa4f000ca1f2377b2ccf1a15da}{
+std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ $>$ {\bfseries Rectangles}}
+\label{classMezzanine_1_1UI_1_1Layer_aba7b5efa4f000ca1f2377b2ccf1a15da}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a337dbba9d4f113d278313f4633ca6a7c}{
+std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ $>$ {\bfseries Widgets}}
+\label{classMezzanine_1_1UI_1_1Layer_a337dbba9d4f113d278313f4633ca6a7c}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is the basic container class for \hyperlink{namespaceMezzanine_1_1UI}{UI} elements. A layer is a container for widgets and other \hyperlink{namespaceMezzanine_1_1UI}{UI} elements that are visable. 
+
+Definition at line 85 of file uilayer.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a89adbb39b0c8058635a9d7c73d8d61d5}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!Layer@{Layer}}
+\index{Layer@{Layer}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{Layer}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::Layer::Layer (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{Gorilla::Layer $\ast$}]{GLayer, }
+\item[{{\bf Screen} $\ast$}]{PScreen}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a89adbb39b0c8058635a9d7c73d8d61d5}
+
+
+Internal constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of this layer. \\
+\hline
+{\em GLayer} & The Gorilla \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} this \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} is based on. \\
+\hline
+{\em PScreen} & The screen that created this layer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 72 of file uilayer.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a930991c1e3d5906fc9d347ca281084ab}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!AddWidget@{AddWidget}}
+\index{AddWidget@{AddWidget}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{AddWidget}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Layer::AddWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf Widget} $\ast$}]{ToAdd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a930991c1e3d5906fc9d347ca281084ab}
+
+
+Adds a widget to this layer. 
+
+This function is necessary when creating custom widgets in game logic. 
+\begin{DoxyParams}{Parameters}
+{\em ToAdd} & The widget to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 391 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a5f53df62a577dbbbb279248e8c9d1673}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CheckButtonMouseIsOver@{CheckButtonMouseIsOver}}
+\index{CheckButtonMouseIsOver@{CheckButtonMouseIsOver}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CheckButtonMouseIsOver}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::Layer::CheckButtonMouseIsOver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a5f53df62a577dbbbb279248e8c9d1673}
+
+
+Gets the button the mouse is over if any. 
+
+This function searches only the buttons contained in this layer. \begin{DoxyReturn}{Returns}
+Returns the button the mouse is over, or NULL if there are none. 
+\end{DoxyReturn}
+
+
+Definition at line 502 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_af3353560fdd740f172492807fff4b98f}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}}
+\index{CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CheckWidgetMouseIsOver}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Widget} $\ast$ Mezzanine::UI::Layer::CheckWidgetMouseIsOver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_af3353560fdd740f172492807fff4b98f}
+
+
+Gets the widget the mouse is over if any. 
+
+This function searches only the widgets contained in this layer. \begin{DoxyReturn}{Returns}
+Returns the widget the mouse is over, or NULL if there are none. 
+\end{DoxyReturn}
+
+
+Definition at line 523 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a15606e99cf9cf34cb991556d87f1c44e}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateButton@{CreateButton}}
+\index{CreateButton@{CreateButton}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::Layer::CreateButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a15606e99cf9cf34cb991556d87f1c44e}
+
+
+Creates a button within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the button. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 156 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a3849f71d1ea5bf31c2a6a0773d5ac309}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateCaption@{CreateCaption}}
+\index{CreateCaption@{CreateCaption}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ Mezzanine::UI::Layer::CreateCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a3849f71d1ea5bf31c2a6a0773d5ac309}
+
+
+Creates a caption within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created caption. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this caption. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the caption. \\
+\hline
+{\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
+\hline
+{\em Text} & Any text you want printed on the caption. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 261 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a9b7d6e9d2865a8e5ac03732888f22647}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateCaption@{CreateCaption}}
+\index{CreateCaption@{CreateCaption}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ Mezzanine::UI::Layer::CreateCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a9b7d6e9d2865a8e5ac03732888f22647}
+
+
+Creates a caption within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created caption. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this caption. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the caption. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & Any text you want printed on the caption. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 268 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a04e2d1bff31f8c01063498ce87e3138a}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateCheckBox@{CreateCheckBox}}
+\index{CreateCheckBox@{CreateCheckBox}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateCheckBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CheckBox} $\ast$ Mezzanine::UI::Layer::CreateCheckBox (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{LabelText}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a04e2d1bff31f8c01063498ce87e3138a}
+
+
+Creates a \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox} within this layer. 
+
+The label uses the Markup Text class, and thus it's light markup text language. You can also pass in a blank string if you don't wish to have a label, you can create a label after construction. \begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox}. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1CheckBox}{CheckBox}. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well. \\
+\hline
+{\em LabelText} & The text to display with the label. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 439 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a6b0d315b69d28a29dddb3f19c22c8f8c}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateDropDownList@{CreateDropDownList}}
+\index{CreateDropDownList@{CreateDropDownList}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateDropDownList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf DropDownList} $\ast$ Mezzanine::UI::Layer::CreateDropDownList (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf UI::ScrollbarStyle} \&}]{ScrollStyle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a6b0d315b69d28a29dddb3f19c22c8f8c}
+
+
+Creates a drop down list within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1DropDownList}{DropDownList}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The Name for the \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget}. \\
+\hline
+{\em Rect} & The renderable rect representing the position and size of this widget. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well. \\
+\hline
+{\em ScrollStyle} & The style of the scrollbar you want for this List Box. See \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} class for more information. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 488 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a56fcefd3f12d19293ea23303c642c1b7}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateListBox@{CreateListBox}}
+\index{CreateListBox@{CreateListBox}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateListBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListBox} $\ast$ Mezzanine::UI::Layer::CreateListBox (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf UI::ScrollbarStyle} \&}]{ScrollbarStyle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a56fcefd3f12d19293ea23303c642c1b7}
+
+
+Creates a List Box within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created List Box. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the List Box. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the List Box. \\
+\hline
+{\em ScrollbarStyle} & The style of scrollbar you want to create, see \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 446 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a32aee6b1ea0d7550b096a0c4e4bb42db}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateMarkupText@{CreateMarkupText}}
+\index{CreateMarkupText@{CreateMarkupText}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ Mezzanine::UI::Layer::CreateMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a32aee6b1ea0d7550b096a0c4e4bb42db}
+
+
+Creates a markup text within this layer. 
+
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. \begin{DoxyReturn}{Returns}
+Returns a pointer to the created markup text. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this markup text. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the markup text. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & Any text you want printed on the markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 318 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a0206ad6de1e6510cd04fbab9a468df8d}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateMarkupText@{CreateMarkupText}}
+\index{CreateMarkupText@{CreateMarkupText}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ Mezzanine::UI::Layer::CreateMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{const {\bf String} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a0206ad6de1e6510cd04fbab9a468df8d}
+
+
+Creates a markup text within this layer. 
+
+The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size. \begin{DoxyReturn}{Returns}
+Returns a pointer to the created markup text. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this markup text. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the markup text. \\
+\hline
+{\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
+\hline
+{\em Text} & Any text you want printed on the markup text. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 311 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a1afed25c24527f926959083fa23a61ea}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateMenu@{CreateMenu}}
+\index{CreateMenu@{CreateMenu}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateMenu}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Menu} $\ast$ Mezzanine::UI::Layer::CreateMenu (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a1afed25c24527f926959083fa23a61ea}
+
+
+Creates a \hyperlink{classMezzanine_1_1UI_1_1Menu}{Menu} within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1Menu}{Menu}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1UI_1_1Menu}{Menu}. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1Menu}{Menu}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 460 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a10917135a026ca597f5f5313a6ec4e10}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreatePagedCellGrid@{CreatePagedCellGrid}}
+\index{CreatePagedCellGrid@{CreatePagedCellGrid}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreatePagedCellGrid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PagedCellGrid} $\ast$ Mezzanine::UI::Layer::CreatePagedCellGrid (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf RenderableRect} \&}]{SpnRect, }
+\item[{const {\bf UI::SpinnerStyle} \&}]{SStyle, }
+\item[{const {\bf Real} \&}]{GlyphHeight}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a10917135a026ca597f5f5313a6ec4e10}
+
+
+Creates a paged cell grid within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid}{PagedCellGrid}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the widget. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid}{PagedCellGrid}. \\
+\hline
+{\em SpnRect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner}. \\
+\hline
+{\em SStyle} & The style of spinner to create. \\
+\hline
+{\em GlyphHeight} & The desired lineheight of the glyphs to be used with the spinner. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 481 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a415a8cdf35364dff4948f22f42d81646}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateRectangle@{CreateRectangle}}
+\index{CreateRectangle@{CreateRectangle}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateRectangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ Mezzanine::UI::Layer::CreateRectangle (
+\begin{DoxyParamCaption}
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a415a8cdf35364dff4948f22f42d81646}
+
+
+Creates a rectangle within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created rectangle. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Rect} & The Rect representing the position and size of the rectangle. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 231 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_afdb47f6623a52471ec85e06148afb451}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateScrollbar@{CreateScrollbar}}
+\index{CreateScrollbar@{CreateScrollbar}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateScrollbar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scrollbar} $\ast$ Mezzanine::UI::Layer::CreateScrollbar (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf UI::ScrollbarStyle} \&}]{Style}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_afdb47f6623a52471ec85e06148afb451}
+
+
+Creates a \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar}. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar}. \\
+\hline
+{\em Style} & The style of scrollbar you want to create, see \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 432 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_af6e676e7aa1d918afabe3467c42dbfe8}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateScrolledCellGrid@{CreateScrolledCellGrid}}
+\index{CreateScrolledCellGrid@{CreateScrolledCellGrid}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateScrolledCellGrid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ScrolledCellGrid} $\ast$ Mezzanine::UI::Layer::CreateScrolledCellGrid (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{Thickness, }
+\item[{const {\bf UI::ScrollbarStyle} \&}]{Style}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_af6e676e7aa1d918afabe3467c42dbfe8}
+
+
+Creates a scrolled cell grid within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid}{ScrolledCellGrid}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the widget. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid}{ScrolledCellGrid}. \\
+\hline
+{\em Thickness} & The width of the vertical scrollbar in relative units. The same amount of actual pixels is used to determine the height of the horizontal scrollbar. \\
+\hline
+{\em Style} & An enum value representing how you want your scrollbar constructed. See class details for more info. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 474 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a78a8ee333aee9ad5ce03228e41dbe3aa}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateSpinner@{CreateSpinner}}
+\index{CreateSpinner@{CreateSpinner}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateSpinner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spinner} $\ast$ Mezzanine::UI::Layer::CreateSpinner (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf UI::SpinnerStyle} \&}]{SStyle, }
+\item[{const {\bf Real} \&}]{GlyphHeight}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a78a8ee333aee9ad5ce03228e41dbe3aa}
+
+
+Creates a \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner} within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The Name for the \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget}. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1Spinner}{Spinner}. \\
+\hline
+{\em SStyle} & The layout of buttons this widget will have. See SpinnerStyle enum or class description for more details. \\
+\hline
+{\em GlyphHeight} & The desired relative height of the text you want. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 467 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a1b153a3fa9ba59910ffa38118df07095}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateTabSet@{CreateTabSet}}
+\index{CreateTabSet@{CreateTabSet}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateTabSet}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf TabSet}$\ast$ Mezzanine::UI::Layer::CreateTabSet (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{SetRect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a1b153a3fa9ba59910ffa38118df07095}
+
+
+Creates a tabset within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created tabset. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The Name for the \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget}. \\
+\hline
+{\em SetRect} & The Rect representing the position and size of all the Renderable Sets generated by the tabset. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a47b0d4849e7a74c2f886d5618a8216e8}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateTextButton@{CreateTextButton}}
+\index{CreateTextButton@{CreateTextButton}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateTextButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ Mezzanine::UI::Layer::CreateTextButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Whole} \&}]{Glyph, }
+\item[{{\bf ConstString} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a47b0d4849e7a74c2f886d5618a8216e8}
+
+
+Creates a text button within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the button. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+{\em Glyph} & One of the glyphs specified in your gorilla file. Must be valid. \\
+\hline
+{\em Text} & Any text you want printed on the button. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 169 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a798fc69951c6d853fbebacd113221ec1}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateTextButton@{CreateTextButton}}
+\index{CreateTextButton@{CreateTextButton}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateTextButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ Mezzanine::UI::Layer::CreateTextButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf Real} \&}]{LineHeight, }
+\item[{{\bf ConstString} \&}]{Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a798fc69951c6d853fbebacd113221ec1}
+
+
+Creates a text button within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the button. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the button. \\
+\hline
+{\em LineHeight} & The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. \\
+\hline
+{\em Text} & Any text you want printed on the button. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 182 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a6616d0c480ac41748f10f77789eb52ee}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!CreateWidgetWindow@{CreateWidgetWindow}}
+\index{CreateWidgetWindow@{CreateWidgetWindow}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{CreateWidgetWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Window} $\ast$ Mezzanine::UI::Layer::CreateWidgetWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf RenderableRect} \&}]{Rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a6616d0c480ac41748f10f77789eb52ee}
+
+
+Creates a \hyperlink{classMezzanine_1_1UI_1_1Window}{Window} within this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1UI_1_1Window}{Window}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1UI_1_1Window}{Window}. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the \hyperlink{classMezzanine_1_1UI_1_1Window}{Window}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 453 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_adfc40e5ca5a41cc5ab76303432669e8c}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!DestroyButton@{DestroyButton}}
+\index{DestroyButton@{DestroyButton}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{DestroyButton}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Layer::DestroyButton (
+\begin{DoxyParamCaption}
+\item[{{\bf Button} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_adfc40e5ca5a41cc5ab76303432669e8c}
+
+
+Destroys a button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the button you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 218 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_affc70067d7d58d342f3d81bae1b059af}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!DestroyCaption@{DestroyCaption}}
+\index{DestroyCaption@{DestroyCaption}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{DestroyCaption}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Layer::DestroyCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf Caption} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_affc70067d7d58d342f3d81bae1b059af}
+
+
+Destroys a caption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the caption you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 298 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a6886628b065bf846061b4dea1726ad57}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!DestroyLineList@{DestroyLineList}}
+\index{DestroyLineList@{DestroyLineList}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{DestroyLineList}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Layer::DestroyLineList (
+\begin{DoxyParamCaption}
+\item[{{\bf LineList} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a6886628b065bf846061b4dea1726ad57}
+
+
+Destroys a line list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the line list you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 378 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a7f53065d958576cda9322520c71be80f}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!DestroyMarkupText@{DestroyMarkupText}}
+\index{DestroyMarkupText@{DestroyMarkupText}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{DestroyMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Layer::DestroyMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf MarkupText} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a7f53065d958576cda9322520c71be80f}
+
+
+Destroys a markup text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the markup text you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 348 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a3ad9ddd61bb7bd8ae418f7df8bed1ff5}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!DestroyRectangle@{DestroyRectangle}}
+\index{DestroyRectangle@{DestroyRectangle}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{DestroyRectangle}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Layer::DestroyRectangle (
+\begin{DoxyParamCaption}
+\item[{{\bf Rectangle} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a3ad9ddd61bb7bd8ae418f7df8bed1ff5}
+
+
+Destroys a rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the rectangle you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 248 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a249e2ed0a11581932464c576b9f763c1}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!DestroyWidget@{DestroyWidget}}
+\index{DestroyWidget@{DestroyWidget}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{DestroyWidget}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Layer::DestroyWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf Widget} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a249e2ed0a11581932464c576b9f763c1}
+
+
+Destroys a widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & Pointer to the widget you want destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 419 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a35636ea8bbb02c7cbd7236db3ad48a7e}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetButton@{GetButton}}
+\index{GetButton@{GetButton}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::Layer::GetButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a35636ea8bbb02c7cbd7236db3ad48a7e}
+
+
+Gets an already created button by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 195 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_acfbea2afd6cf9a1509d72d39715ebf05}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetButton@{GetButton}}
+\index{GetButton@{GetButton}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ Mezzanine::UI::Layer::GetButton (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_acfbea2afd6cf9a1509d72d39715ebf05}
+
+
+Gets an already created button by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_ad862a32c94f66dbc749575bb103fc0db}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetCaption@{GetCaption}}
+\index{GetCaption@{GetCaption}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ Mezzanine::UI::Layer::GetCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_ad862a32c94f66dbc749575bb103fc0db}
+
+
+Gets an already created caption by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the caption of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 275 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a0e85f5557ad863eefa81dd42ca9eb45d}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetCaption@{GetCaption}}
+\index{GetCaption@{GetCaption}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ Mezzanine::UI::Layer::GetCaption (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a0e85f5557ad863eefa81dd42ca9eb45d}
+
+
+Gets an already created caption by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the caption at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 288 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a58684b937a96e2a5cb911fae520e4d1f}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetLineList@{GetLineList}}
+\index{GetLineList@{GetLineList}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetLineList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineList} $\ast$ Mezzanine::UI::Layer::GetLineList (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a58684b937a96e2a5cb911fae520e4d1f}
+
+
+Gets an already created line list by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the line list at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 368 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a172322ba8c4c27d5c59aa8b077e9e150}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetMarkupText@{GetMarkupText}}
+\index{GetMarkupText@{GetMarkupText}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ Mezzanine::UI::Layer::GetMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a172322ba8c4c27d5c59aa8b077e9e150}
+
+
+Gets an already created markup text by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the markup text of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 325 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a9d68b5d2587065884ec2796851e31166}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetMarkupText@{GetMarkupText}}
+\index{GetMarkupText@{GetMarkupText}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ Mezzanine::UI::Layer::GetMarkupText (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a9d68b5d2587065884ec2796851e31166}
+
+
+Gets an already created markup text by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the markup text at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 338 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a2ceb695a51dd1e4619523e7f2e777ebc}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& Mezzanine::UI::Layer::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a2ceb695a51dd1e4619523e7f2e777ebc}
+
+
+Gets the name of this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of this layer. 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_ae339d1ec2ff0c141225ec86167be5e31}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetNumButtons@{GetNumButtons}}
+\index{GetNumButtons@{GetNumButtons}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetNumButtons}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::Layer::GetNumButtons (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_ae339d1ec2ff0c141225ec86167be5e31}
+
+
+Gets the number of buttons created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of buttons this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 213 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a3aca1c34855d282faef5b5d4c3a5451f}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetNumCaptions@{GetNumCaptions}}
+\index{GetNumCaptions@{GetNumCaptions}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetNumCaptions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::Layer::GetNumCaptions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a3aca1c34855d282faef5b5d4c3a5451f}
+
+
+Gets the number of captions created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of captions this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 293 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a4ca051b7cecc316730d0d375becf989f}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetNumLineLists@{GetNumLineLists}}
+\index{GetNumLineLists@{GetNumLineLists}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetNumLineLists}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::Layer::GetNumLineLists (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a4ca051b7cecc316730d0d375becf989f}
+
+
+Gets the number of line lists created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of line lists this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 373 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_aaa1a666c2c3520a8a39df5c5dea57941}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetNumMarkupTexts@{GetNumMarkupTexts}}
+\index{GetNumMarkupTexts@{GetNumMarkupTexts}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetNumMarkupTexts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::Layer::GetNumMarkupTexts (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_aaa1a666c2c3520a8a39df5c5dea57941}
+
+
+Gets the number of markup texts created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of markup texts this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 343 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a0832c18bb8c2459c899d14e9fcad8e85}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetNumRectangles@{GetNumRectangles}}
+\index{GetNumRectangles@{GetNumRectangles}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetNumRectangles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::Layer::GetNumRectangles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a0832c18bb8c2459c899d14e9fcad8e85}
+
+
+Gets the number of rectangles created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of rectangles this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 243 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a474f60650b90f1bc2c17dfd8ea5b6304}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetNumWidgets@{GetNumWidgets}}
+\index{GetNumWidgets@{GetNumWidgets}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetNumWidgets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::UI::Layer::GetNumWidgets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a474f60650b90f1bc2c17dfd8ea5b6304}
+
+
+Gets the number of widgets created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of widgets this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 414 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a73d54e2ed5c8c63ad8d7cac8d29007c9}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetParent@{GetParent}}
+\index{GetParent@{GetParent}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetParent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Screen} $\ast$ Mezzanine::UI::Layer::GetParent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a73d54e2ed5c8c63ad8d7cac8d29007c9}
+
+
+Gets the parent screen of this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the screen that created this layer. 
+\end{DoxyReturn}
+
+
+Definition at line 126 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_af68871cb8f544227caa25ccc5666c944}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetRectangle@{GetRectangle}}
+\index{GetRectangle@{GetRectangle}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetRectangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ Mezzanine::UI::Layer::GetRectangle (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_af68871cb8f544227caa25ccc5666c944}
+
+
+Gets an already created rectangle by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the rectangle at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 238 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a172eccc6e183ac05d1cff453de757a0f}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetVisible@{GetVisible}}
+\index{GetVisible@{GetVisible}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Layer::GetVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a172eccc6e183ac05d1cff453de757a0f}
+
+
+Gets the visibility setting of this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool that is the current visibility setting of this layer. 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a253eb9e18e213c2f1f9b3a9831e06a95}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetWidget@{GetWidget}}
+\index{GetWidget@{GetWidget}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetWidget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Widget} $\ast$ Mezzanine::UI::Layer::GetWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a253eb9e18e213c2f1f9b3a9831e06a95}
+
+
+Gets an already created widget by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the widget at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 409 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a2d0ad533ccb60047f5cd0d24f2e7e377}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!GetWidget@{GetWidget}}
+\index{GetWidget@{GetWidget}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{GetWidget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Widget} $\ast$ Mezzanine::UI::Layer::GetWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a2d0ad533ccb60047f5cd0d24f2e7e377}
+
+
+Gets an already created widget by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the widget of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 396 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a8a9222e729f47a4cfec32325a03cf7f3}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Layer::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a8a9222e729f47a4cfec32325a03cf7f3}
+
+
+Gets the layers' visability. 
+
+This function will check the visibility of all parent objects to see if it is being drawn. This will not tell you whether or not this layer has it's own visibility setting enabled. For that see: \hyperlink{classMezzanine_1_1UI_1_1Layer_a172eccc6e183ac05d1cff453de757a0f}{GetVisible()}. \begin{DoxyReturn}{Returns}
+Returns a bool representing the visability of the layer. 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_a00b524742cf51db97b17e7d8f6e995cf}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Layer::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{Visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_a00b524742cf51db97b17e7d8f6e995cf}
+
+
+Sets the layers' visability. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Visable} & A bool representing the visability of the layer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 131 of file uilayer.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Layer_ae19b12ed20756cbf3bb666d7443e7b54}{
+\index{Mezzanine::UI::Layer@{Mezzanine::UI::Layer}!ViewportUpdate@{ViewportUpdate}}
+\index{ViewportUpdate@{ViewportUpdate}!Mezzanine::UI::Layer@{Mezzanine::UI::Layer}}
+\paragraph[{ViewportUpdate}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Layer::ViewportUpdate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Layer_ae19b12ed20756cbf3bb666d7443e7b54}
+
+
+Updates \hyperlink{namespaceMezzanine_1_1UI}{UI} elements positions and sizes after a change in the viewport size. 
+
+This function is called automatically, and shouldn't need to be called manually. 
+
+Definition at line 544 of file uilayer.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uilayer.h\item 
+uilayer.cpp\end{DoxyCompactItemize}

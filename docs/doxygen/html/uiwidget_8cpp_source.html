@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: uiwidget.cpp Source File</title>
+<title>MezzanineEngine: uiwidget.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -108,157 +108,280 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uibutton.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
-<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="keyword">namespace </span>phys
-<a name="l00050"></a>00050 {
-<a name="l00051"></a>00051     <span class="keyword">namespace </span>UI
-<a name="l00052"></a>00052     {
-<a name="l00053"></a><a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#a3880b8daa9662bc5c117343040661563">00053</a>         <a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#a3880b8daa9662bc5c117343040661563" title="Class constructor.">InputCaptureData::InputCaptureData</a>()
-<a name="l00054"></a>00054         {
-<a name="l00055"></a>00055         }
-<a name="l00056"></a>00056 
-<a name="l00057"></a><a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#a7bd115ce3c6ab7e3a886c26ea99407a5">00057</a>         <a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#a7bd115ce3c6ab7e3a886c26ea99407a5" title="Class destructor.">InputCaptureData::~InputCaptureData</a>()
-<a name="l00058"></a>00058         {
-<a name="l00059"></a>00059         }
-<a name="l00060"></a>00060 
-<a name="l00061"></a><a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#a46e7c734c74bbf8983ef0e87449dd931">00061</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#a46e7c734c74bbf8983ef0e87449dd931" title="Adds a single input code to the list of codes to be captured.">InputCaptureData::AddInput</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Code)
-<a name="l00062"></a>00062         {
-<a name="l00063"></a>00063             this-&gt;insert(Code);
-<a name="l00064"></a>00064         }
-<a name="l00065"></a>00065 
-<a name="l00066"></a><a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#af63178e71795b7a1a011c85e76c0e81d">00066</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#af63178e71795b7a1a011c85e76c0e81d" title="Adds a range of input codes to the list of codes to be captured.">InputCaptureData::AddInputRange</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Lower, <span class="keyword">const</span> <a class="code" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Upper)
-<a name="l00067"></a>00067         {
-<a name="l00068"></a>00068             <span class="keywordflow">for</span>( <a class="code" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> Code = Lower ; Code &gt; Upper ; Code + 1 )
-<a name="l00069"></a>00069                 this-&gt;insert(Code);
-<a name="l00070"></a>00070         }
-<a name="l00071"></a>00071 
-<a name="l00072"></a><a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#ac1cbd55bfa9a161f8f545679620491d8">00072</a>         <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#ac1cbd55bfa9a161f8f545679620491d8" title="Gets the number of input codes this class is currently set to capture.">InputCaptureData::GetNumCapturedInputs</a>()
-<a name="l00073"></a>00073         {
-<a name="l00074"></a>00074             <span class="keywordflow">return</span> this-&gt;size();
-<a name="l00075"></a>00075         }
-<a name="l00076"></a>00076 
-<a name="l00077"></a><a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#abe46fa1848ded1b019287da766cfda25">00077</a>         std::vector&lt;MetaCode::InputCode&gt;* <a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#abe46fa1848ded1b019287da766cfda25" title="Gets a vector of inputs that have been captured this frame.">InputCaptureData::GetCapturedInputs</a>()
-<a name="l00078"></a>00078         {
-<a name="l00079"></a>00079             <span class="keywordflow">return</span> &amp;CapturedCodes;
-<a name="l00080"></a>00080         }
-<a name="l00081"></a>00081 
-<a name="l00082"></a><a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#a2f22f9d9e8259b8687bfb5dfa8be960d">00082</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#a2f22f9d9e8259b8687bfb5dfa8be960d" title="Checks this class to see if the provided code is set to be captured.">InputCaptureData::IsInputToBeCaptured</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Code)
-<a name="l00083"></a>00083         {
-<a name="l00084"></a>00084             std::set&lt;MetaCode::InputCode&gt;::iterator it = this-&gt;find(Code);
-<a name="l00085"></a>00085             <span class="keywordflow">return</span> it != this-&gt;end();
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087 
-<a name="l00088"></a><a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#ac6ed81ccf6e1fc7ac8c86b71ef7ed6d0">00088</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1InputCaptureData.html#ac6ed81ccf6e1fc7ac8c86b71ef7ed6d0" title="Updates the list of captured inputs for the frame.">InputCaptureData::UpdateCapturedInputs</a>(std::vector&lt;MetaCode::InputCode&gt;&amp; InputCodes)
-<a name="l00089"></a>00089         {
-<a name="l00090"></a>00090             CapturedCodes.clear();
-<a name="l00091"></a>00091             CapturedCodes.swap(InputCodes);
-<a name="l00092"></a>00092         }
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094         <span class="comment">//-----------------------------------------------------</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;inputquerytool.h&quot;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="keyword">namespace </span>Mezzanine
+<a name="l00052"></a>00052 {
+<a name="l00053"></a>00053     <span class="keyword">namespace </span>UI
+<a name="l00054"></a>00054     {
+<a name="l00055"></a><a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a2207d5ca235a63a8ce76e99300984f20">00055</a>         <a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a2207d5ca235a63a8ce76e99300984f20" title="Class constructor.">InputCaptureData::InputCaptureData</a>()
+<a name="l00056"></a>00056         {
+<a name="l00057"></a>00057         }
+<a name="l00058"></a>00058 
+<a name="l00059"></a><a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a5af70301db449b037a56316ef7513f0a">00059</a>         <a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a5af70301db449b037a56316ef7513f0a" title="Class destructor.">InputCaptureData::~InputCaptureData</a>()
+<a name="l00060"></a>00060         {
+<a name="l00061"></a>00061         }
+<a name="l00062"></a>00062 
+<a name="l00063"></a><a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a9d82c38caa461a6b92fd91d0eadf2a2a">00063</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a9d82c38caa461a6b92fd91d0eadf2a2a" title="Adds a single input code to the list of codes to be captured.">InputCaptureData::AddInput</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Code)
+<a name="l00064"></a>00064         {
+<a name="l00065"></a>00065             this-&gt;insert(Code);
+<a name="l00066"></a>00066         }
+<a name="l00067"></a>00067 
+<a name="l00068"></a><a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a187f20c548df845953a8e067f0a3c9de">00068</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a187f20c548df845953a8e067f0a3c9de" title="Adds a range of input codes to the list of codes to be captured.">InputCaptureData::AddInputRange</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Lower, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Upper)
+<a name="l00069"></a>00069         {
+<a name="l00070"></a>00070             <span class="keywordflow">for</span>( <a class="code" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> Code = Lower ; Code &gt; Upper ; Code + 1 )
+<a name="l00071"></a>00071                 this-&gt;insert(Code);
+<a name="l00072"></a>00072         }
+<a name="l00073"></a>00073 
+<a name="l00074"></a><a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a2a509eb5ff2db0e83174be5c966fb753">00074</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a2a509eb5ff2db0e83174be5c966fb753" title="Gets the number of input codes this class is currently set to capture.">InputCaptureData::GetNumCapturedInputs</a>()
+<a name="l00075"></a>00075         {
+<a name="l00076"></a>00076             <span class="keywordflow">return</span> this-&gt;size();
+<a name="l00077"></a>00077         }
+<a name="l00078"></a>00078 
+<a name="l00079"></a><a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#ad34a3ed3c5072330b8d3ab3615060011">00079</a>         std::vector&lt;MetaCode::InputCode&gt;* <a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#ad34a3ed3c5072330b8d3ab3615060011" title="Gets a vector of inputs that have been captured this frame.">InputCaptureData::GetCapturedInputs</a>()
+<a name="l00080"></a>00080         {
+<a name="l00081"></a>00081             <span class="keywordflow">return</span> &amp;CapturedCodes;
+<a name="l00082"></a>00082         }
+<a name="l00083"></a>00083 
+<a name="l00084"></a><a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a7a98f65e0666098367faf7d186a82e7f">00084</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a7a98f65e0666098367faf7d186a82e7f" title="Checks this class to see if the provided code is set to be captured.">InputCaptureData::IsInputToBeCaptured</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Code)
+<a name="l00085"></a>00085         {
+<a name="l00086"></a>00086             std::set&lt;MetaCode::InputCode&gt;::iterator it = this-&gt;find(Code);
+<a name="l00087"></a>00087             <span class="keywordflow">return</span> it != this-&gt;end();
+<a name="l00088"></a>00088         }
+<a name="l00089"></a>00089 
+<a name="l00090"></a><a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a3a5e02a1c9606f4be323a40b6766f675">00090</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html#a3a5e02a1c9606f4be323a40b6766f675" title="Updates the list of captured inputs for the frame.">InputCaptureData::UpdateCapturedInputs</a>(std::vector&lt;MetaCode::InputCode&gt;&amp; InputCodes)
+<a name="l00091"></a>00091         {
+<a name="l00092"></a>00092             CapturedCodes.clear();
+<a name="l00093"></a>00093             CapturedCodes.swap(InputCodes);
+<a name="l00094"></a>00094         }
 <a name="l00095"></a>00095 
-<a name="l00096"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a7f992cc7513f1e41795b3569aa8faced">00096</a>         <a class="code" href="classphys_1_1UI_1_1Widget.html#a7f992cc7513f1e41795b3569aa8faced" title="Standard initialization constructor.">Widget::Widget</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent)
-<a name="l00097"></a>00097             : Parent(parent),
-<a name="l00098"></a>00098               HoveredButton(NULL),
-<a name="l00099"></a>00099               HoveredSubWidget(NULL),
-<a name="l00100"></a>00100               SubWidgetFocus(NULL),
-<a name="l00101"></a>00101               CaptureData(NULL),
-<a name="l00102"></a>00102               Visible(true),
-<a name="l00103"></a>00103               RelPosition(<a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
-<a name="l00104"></a>00104               RelSize(<a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
-<a name="l00105"></a>00105               Name(name)
-<a name="l00106"></a>00106         {
-<a name="l00107"></a>00107             Manager = <a class="code" href="classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classphys_1_1World.html#ab7888bf9286df602490c30df6382fde9" title="This gets the UIManager from the manager list.">GetUIManager</a>();
-<a name="l00108"></a>00108         }
-<a name="l00109"></a>00109 
-<a name="l00110"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a95bde61e93544334b376938274617d15">00110</a>         <a class="code" href="classphys_1_1UI_1_1Widget.html#a95bde61e93544334b376938274617d15" title="Standard destructor.">Widget::~Widget</a>()
-<a name="l00111"></a>00111         {
+<a name="l00096"></a>00096         <span class="comment">//-----------------------------------------------------</span>
+<a name="l00097"></a>00097 
+<a name="l00098"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#add763ac9363712f608218244b6fa0111">00098</a>         <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#add763ac9363712f608218244b6fa0111" title="Standard initialization constructor.">Widget::Widget</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent)
+<a name="l00099"></a>00099             : Parent(parent),
+<a name="l00100"></a>00100               HoveredButton(NULL),
+<a name="l00101"></a>00101               HoveredSubWidget(NULL),
+<a name="l00102"></a>00102               SubWidgetFocus(NULL),
+<a name="l00103"></a>00103               CaptureData(NULL),
+<a name="l00104"></a>00104               Callback(NULL),
+<a name="l00105"></a>00105               Visible(true),
+<a name="l00106"></a>00106               Hovered(false),
+<a name="l00107"></a>00107               RelPosition(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
+<a name="l00108"></a>00108               RelSize(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
+<a name="l00109"></a>00109               Name(name)
+<a name="l00110"></a>00110         {
+<a name="l00111"></a>00111             Manager = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">UIManager::GetSingletonPtr</a>();
 <a name="l00112"></a>00112         }
 <a name="l00113"></a>00113 
-<a name="l00114"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a3472e5d0f8281e704d67d419980cd918">00114</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Widget.html#a3472e5d0f8281e704d67d419980cd918" title="For use with sub-widget update/automation.">Widget::SubWidgetUpdate</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00114"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ae5ef8e2cfe6330d11581f3f1b2a640a3">00114</a>         <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ae5ef8e2cfe6330d11581f3f1b2a640a3" title="Standard destructor.">Widget::~Widget</a>()
 <a name="l00115"></a>00115         {
-<a name="l00116"></a>00116             <span class="keywordflow">if</span>(HoveredSubWidget)
-<a name="l00117"></a>00117                 HoveredSubWidget-&gt;<a class="code" href="classphys_1_1UI_1_1Widget.html#a1806425fcd684c2f0d50cd0ef4a6b0da" title="For use with widget update/automation.">Update</a>(Force);
-<a name="l00118"></a>00118         }
-<a name="l00119"></a>00119 
-<a name="l00120"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a4a7e18c48a7cd230fd4a0aa274c6a654">00120</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Widget.html#a4a7e18c48a7cd230fd4a0aa274c6a654" title="For use with sub-widget update/automation when the mouse isn&amp;#39;t hovered.">Widget::SubWidgetFocusUpdate</a>(<span class="keywordtype">bool</span> Force)
-<a name="l00121"></a>00121         {
-<a name="l00122"></a>00122             <span class="keywordflow">if</span>(SubWidgetFocus)
-<a name="l00123"></a>00123                 SubWidgetFocus-&gt;<a class="code" href="classphys_1_1UI_1_1Widget.html#a1806425fcd684c2f0d50cd0ef4a6b0da" title="For use with widget update/automation.">Update</a>(Force);
-<a name="l00124"></a>00124         }
-<a name="l00125"></a>00125 
-<a name="l00126"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#ac51b863fb1a9c5ebaef1386b77dbda99">00126</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Widget.html#ac51b863fb1a9c5ebaef1386b77dbda99" title="Processes the captured inputs. This is an empty function and should be overridden if making an input ...">Widget::ProcessCapturedInputs</a>()
-<a name="l00127"></a>00127         {
-<a name="l00128"></a>00128         }
-<a name="l00129"></a>00129 
-<a name="l00130"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#ac9662d5cfef5b1861e85bff7b7ca90c4">00130</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1Widget.html#ac9662d5cfef5b1861e85bff7b7ca90c4" title="Gets the visibility of this widget.">Widget::IsVisible</a>()
-<a name="l00131"></a>00131         {
-<a name="l00132"></a>00132             <span class="keywordflow">return</span> Visible &amp;&amp; Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a33f23515b8ac60adc2e99435574a2d9d" title="Gets the layers&amp;#39; visability.">IsVisible</a>() &amp;&amp; Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#a8dd7698cd4b0d8760c7af7eb835eef48" title="Gets the screens visability.">IsVisible</a>();
-<a name="l00133"></a>00133         }
-<a name="l00134"></a>00134 
-<a name="l00135"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a76337b279bd372ce225f94ab1da191ea">00135</a>         Widget::WidgetType <a class="code" href="classphys_1_1UI_1_1Widget.html#a76337b279bd372ce225f94ab1da191ea" title="Gets the type of widget this is.">Widget::GetType</a>()<span class="keyword"> const</span>
-<a name="l00136"></a>00136 <span class="keyword">        </span>{
-<a name="l00137"></a>00137             <span class="keywordflow">return</span> Type;
-<a name="l00138"></a>00138         }
-<a name="l00139"></a>00139 
-<a name="l00140"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#af8498cbe2d6cf37115cf8ade52e22557">00140</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1Widget.html#af8498cbe2d6cf37115cf8ade52e22557" title="Checks if this is an input capturing widget.">Widget::IsInputCaptureWidget</a>()
-<a name="l00141"></a>00141         {
-<a name="l00142"></a>00142             <span class="keywordflow">return</span> NULL != CaptureData;
-<a name="l00143"></a>00143         }
-<a name="l00144"></a>00144 
-<a name="l00145"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a35d6e7ce60a9b295d8659345627cf7e0">00145</a>         <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; <a class="code" href="classphys_1_1UI_1_1Widget.html#a35d6e7ce60a9b295d8659345627cf7e0" title="Gets the name of this widget.">Widget::GetName</a>()
-<a name="l00146"></a>00146         {
-<a name="l00147"></a>00147             <span class="keywordflow">return</span> Name;
-<a name="l00148"></a>00148         }
-<a name="l00149"></a>00149 
-<a name="l00150"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a5ef3d6feab24fd891b17780069e012e5">00150</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Widget.html#a5ef3d6feab24fd891b17780069e012e5" title="Sets the Rect(Position and Size) of this Widget.">Widget::SetRect</a>(<span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect)
-<a name="l00151"></a>00151         {
-<a name="l00152"></a>00152             <span class="keywordflow">if</span>(Rect.Relative)
-<a name="l00153"></a>00153             {
-<a name="l00154"></a>00154                 <a class="code" href="classphys_1_1UI_1_1Widget.html#a00f73c12583d25a75c089f944075b24d" title="Sets the relative size of this widget.">SetSize</a>(Rect.Size);
-<a name="l00155"></a>00155                 <a class="code" href="classphys_1_1UI_1_1Widget.html#a3ef894be2c0868105b2bf495ae944d00" title="Sets the relative position of this widget.">SetPosition</a>(Rect.Position);
-<a name="l00156"></a>00156             }<span class="keywordflow">else</span>{
-<a name="l00157"></a>00157                 <a class="code" href="classphys_1_1UI_1_1Widget.html#acda63a62fa158d5fe00c86f50e5c120d" title="Sets the pixel size of this widget.">SetActualSize</a>(Rect.Size);
-<a name="l00158"></a>00158                 <a class="code" href="classphys_1_1UI_1_1Widget.html#a77727351d98b10f1f4eb45048cb882e3" title="Sets the pixel position of this widget.">SetActualPosition</a>(Rect.Position);
-<a name="l00159"></a>00159             }
-<a name="l00160"></a>00160         }
-<a name="l00161"></a>00161 
-<a name="l00162"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a0a09859c063ac222d0e736af5050e556">00162</a>         <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a> <a class="code" href="classphys_1_1UI_1_1Widget.html#a0a09859c063ac222d0e736af5050e556" title="Gets this Widgets&amp;#39; Rect.">Widget::GetRect</a>(<span class="keywordtype">bool</span> Relative)
-<a name="l00163"></a>00163         {
-<a name="l00164"></a>00164             <span class="keywordflow">if</span>(Relative) <span class="keywordflow">return</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>(<a class="code" href="classphys_1_1UI_1_1Widget.html#a3e464b028b0d1b5755923b8790260c33" title="Gets the relative position of this widget.">GetPosition</a>(),<a class="code" href="classphys_1_1UI_1_1Widget.html#a07039c19e57de314147ce066417da0a2" title="Gets the relative size of this widget.">GetSize</a>(),Relative);
-<a name="l00165"></a>00165             <span class="keywordflow">else</span> <span class="keywordflow">return</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>(<a class="code" href="classphys_1_1UI_1_1Widget.html#a0a29fecff7f56d7909f65fd63b0990e7" title="Sets the pixel position of this widget.">GetActualPosition</a>(),<a class="code" href="classphys_1_1UI_1_1Widget.html#af3a685621ed220748c0940ea38c96ed2" title="Sets the pixel size of this widget.">GetActualSize</a>(),Relative);
-<a name="l00166"></a>00166         }
-<a name="l00167"></a>00167 
-<a name="l00168"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#acbda7003549c6caac46078c034657929">00168</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1Widget.html#acbda7003549c6caac46078c034657929" title="Updates the dimensions of this widget to match those of the new screen size.">Widget::UpdateDimensions</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; OldViewportSize)
-<a name="l00169"></a>00169         {
-<a name="l00170"></a>00170             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00171"></a>00171             this-&gt;<a class="code" href="classphys_1_1UI_1_1Widget.html#a77727351d98b10f1f4eb45048cb882e3" title="Sets the pixel position of this widget.">SetActualPosition</a>(RelPosition * WinDim);
-<a name="l00172"></a>00172             this-&gt;<a class="code" href="classphys_1_1UI_1_1Widget.html#acda63a62fa158d5fe00c86f50e5c120d" title="Sets the pixel size of this widget.">SetActualSize</a>(RelSize * WinDim);
-<a name="l00173"></a>00173         }
-<a name="l00174"></a>00174 
-<a name="l00175"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#ab563c13db418e4c3ff0a0dd766550251">00175</a>         <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="classphys_1_1UI_1_1Widget.html#ab563c13db418e4c3ff0a0dd766550251" title="Gets the hovered button within this widget, if any.">Widget::GetHoveredButton</a>()
-<a name="l00176"></a>00176         {
-<a name="l00177"></a>00177             <span class="keywordflow">return</span> HoveredButton;
-<a name="l00178"></a>00178         }
-<a name="l00179"></a>00179 
-<a name="l00180"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a38764b73bc6087e2611660735840ba3f">00180</a>         <a class="code" href="classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* <a class="code" href="classphys_1_1UI_1_1Widget.html#a38764b73bc6087e2611660735840ba3f" title="Gets the hovered sub-widget within this widget, if any.">Widget::GetHoveredSubWidget</a>()
-<a name="l00181"></a>00181         {
-<a name="l00182"></a>00182             <span class="keywordflow">return</span> HoveredSubWidget;
-<a name="l00183"></a>00183         }
-<a name="l00184"></a>00184 
-<a name="l00185"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a33f97d7da0ac48a35006cb71676e6c2e">00185</a>         <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classphys_1_1UI_1_1Widget.html#a33f97d7da0ac48a35006cb71676e6c2e" title="Gets the layer this widget belongs to.">Widget::GetLayer</a>()
-<a name="l00186"></a>00186         {
-<a name="l00187"></a>00187             <span class="keywordflow">return</span> Parent;
-<a name="l00188"></a>00188         }
-<a name="l00189"></a>00189 
-<a name="l00190"></a><a class="code" href="classphys_1_1UI_1_1Widget.html#a900184fbe7af51581d6bddafb45d953a">00190</a>         <a class="code" href="classphys_1_1UI_1_1InputCaptureData.html" title="This class contains all the utilities necessary for capturing input.">InputCaptureData</a>* <a class="code" href="classphys_1_1UI_1_1Widget.html#a900184fbe7af51581d6bddafb45d953a" title="Gets the data determining what input should be captured.">Widget::GetInputCaptureData</a>()
-<a name="l00191"></a>00191         {
-<a name="l00192"></a>00192             <span class="keywordflow">return</span> CaptureData;
-<a name="l00193"></a>00193         }
-<a name="l00194"></a>00194     }<span class="comment">//UI</span>
-<a name="l00195"></a>00195 }<span class="comment">//phys</span>
-<a name="l00196"></a>00196 
-<a name="l00197"></a>00197 <span class="preprocessor">#endif</span>
+<a name="l00116"></a>00116         }
+<a name="l00117"></a>00117 
+<a name="l00118"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#aeb05b9fb68cdfc58fcff45d03e80dd39">00118</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#aeb05b9fb68cdfc58fcff45d03e80dd39" title="For use with widget update/automation.">Widget::Update</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00119"></a>00119         {
+<a name="l00120"></a>00120             <span class="keywordflow">if</span>(Callback)
+<a name="l00121"></a>00121                 Callback-&gt;<a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#a2a5a9ed4a8bc31006d2d38d5c308999b" title="Performs callback items just before widget updates start.">DoPreUpdateItems</a>();
+<a name="l00122"></a>00122             <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a3fb336cd36759be294dfb845be810d0a" title="For use with sub-widget update/automation.">SubWidgetUpdate</a>(Force);
+<a name="l00123"></a>00123             <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#abe60b3fb3de99433fe4823b12a43ffb4" title="Child specific update method.">UpdateImpl</a>(Force);
+<a name="l00124"></a>00124             <span class="keywordflow">if</span>(Callback)
+<a name="l00125"></a>00125                 Callback-&gt;<a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#a62c3b86e1727b8ee98a2b1cc14e96c26" title="Performs callback items immediately after updates complete.">DoPostUpdateItems</a>();
+<a name="l00126"></a>00126         }
+<a name="l00127"></a>00127 
+<a name="l00128"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a3fb336cd36759be294dfb845be810d0a">00128</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a3fb336cd36759be294dfb845be810d0a" title="For use with sub-widget update/automation.">Widget::SubWidgetUpdate</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00129"></a>00129         {
+<a name="l00130"></a>00130             <a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> State = <a class="code" href="classMezzanine_1_1InputQueryTool.html#a7a97f853156573de3648f3315e2283bb" title="Gets the button state of the provided mouse button ID.">InputQueryTool::GetMouseButtonState</a>(1);
+<a name="l00131"></a>00131             <span class="keywordflow">if</span>(HoveredSubWidget)
+<a name="l00132"></a>00132             {
+<a name="l00133"></a>00133                 HoveredSubWidget-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#aeb05b9fb68cdfc58fcff45d03e80dd39" title="For use with widget update/automation.">Update</a>(Force);
+<a name="l00134"></a>00134                 <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0a9150dbdf88f3013383a72366904cb749">MetaCode::BUTTON_PRESSING</a> == State)
+<a name="l00135"></a>00135                 {
+<a name="l00136"></a>00136                     SubWidgetFocus = HoveredSubWidget;
+<a name="l00137"></a>00137                 }
+<a name="l00138"></a>00138             }
+<a name="l00139"></a>00139             <span class="keywordflow">if</span>(SubWidgetFocus &amp;&amp; (SubWidgetFocus != HoveredSubWidget))
+<a name="l00140"></a>00140             {
+<a name="l00141"></a>00141                 <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afc1b4bcc448e9ecf977a987c9b348547" title="For use with sub-widget update/automation when the mouse isn&amp;#39;t hovered.">SubWidgetFocusUpdate</a>(<span class="keyword">true</span>);
+<a name="l00142"></a>00142             }
+<a name="l00143"></a>00143             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0af66afc958f5eb62b8b836897d062b62b">MetaCode::BUTTON_DOWN</a> == State &amp;&amp; Force)
+<a name="l00144"></a>00144             {
+<a name="l00145"></a>00145                 <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afc1b4bcc448e9ecf977a987c9b348547" title="For use with sub-widget update/automation when the mouse isn&amp;#39;t hovered.">SubWidgetFocusUpdate</a>(Force);
+<a name="l00146"></a>00146             }
+<a name="l00147"></a>00147             <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0a07ca860b5b6b505052022d842f155080">MetaCode::BUTTON_LIFTING</a> == State)
+<a name="l00148"></a>00148             {
+<a name="l00149"></a>00149                 SubWidgetFocus = NULL;
+<a name="l00150"></a>00150             }
+<a name="l00151"></a>00151         }
+<a name="l00152"></a>00152 
+<a name="l00153"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afc1b4bcc448e9ecf977a987c9b348547">00153</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afc1b4bcc448e9ecf977a987c9b348547" title="For use with sub-widget update/automation when the mouse isn&amp;#39;t hovered.">Widget::SubWidgetFocusUpdate</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00154"></a>00154         {
+<a name="l00155"></a>00155             <span class="keywordflow">if</span>(SubWidgetFocus)
+<a name="l00156"></a>00156                 SubWidgetFocus-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#aeb05b9fb68cdfc58fcff45d03e80dd39" title="For use with widget update/automation.">Update</a>(Force);
+<a name="l00157"></a>00157         }
+<a name="l00158"></a>00158 
+<a name="l00159"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab4aadd7cef4beda4f13b4c4918209a5f">00159</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab4aadd7cef4beda4f13b4c4918209a5f" title="Processes the captured inputs. This is an empty function and should be overridden if making an input ...">Widget::ProcessCapturedInputs</a>()
+<a name="l00160"></a>00160         {
+<a name="l00161"></a>00161         }
+<a name="l00162"></a>00162 
+<a name="l00163"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad13df3d78b4e7cebfc566dc678706915">00163</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad13df3d78b4e7cebfc566dc678706915" title="Sets the visibility of this widget.">Widget::SetVisible</a>(<span class="keywordtype">bool</span> visible)
+<a name="l00164"></a>00164         {
+<a name="l00165"></a>00165             <span class="keywordflow">if</span>(this-&gt;Visible == visible)
+<a name="l00166"></a>00166                 <span class="keywordflow">return</span>;
+<a name="l00167"></a>00167             this-&gt;Visible = visible;
+<a name="l00168"></a>00168             <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a766e29f02a4d6640812462e4a8bdb272" title="Child specific visibility method.">SetVisibleImpl</a>(visible);
+<a name="l00169"></a>00169             <span class="keywordflow">if</span>(Callback)
+<a name="l00170"></a>00170                 Callback-&gt;<a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#a798717ddccdbb565c2284344b2ee0a63" title="Performs callback items immediately after widget visibility changes.">DoVisibilityChangeItems</a>();
+<a name="l00171"></a>00171         }
+<a name="l00172"></a>00172 
+<a name="l00173"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a2f4a364179d378fded57418571cdcfd0">00173</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a2f4a364179d378fded57418571cdcfd0" title="Gets the visibility setting of this widget.">Widget::GetVisible</a>()<span class="keyword"> const</span>
+<a name="l00174"></a>00174 <span class="keyword">        </span>{
+<a name="l00175"></a>00175             <span class="keywordflow">return</span> Visible;
+<a name="l00176"></a>00176         }
+<a name="l00177"></a>00177 
+<a name="l00178"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a543fa0c3bdee98591fcd77eb75d25258">00178</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a543fa0c3bdee98591fcd77eb75d25258" title="Gets whether or not this widget is being drawn.">Widget::IsVisible</a>()<span class="keyword"> const</span>
+<a name="l00179"></a>00179 <span class="keyword">        </span>{
+<a name="l00180"></a>00180             <span class="keywordflow">return</span> Visible &amp;&amp; Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8a9222e729f47a4cfec32325a03cf7f3" title="Gets the layers&amp;#39; visability.">IsVisible</a>() &amp;&amp; Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abe4941cec0c43850bafa4b76397944ae" title="Gets the screens visability.">IsVisible</a>();
+<a name="l00181"></a>00181         }
+<a name="l00182"></a>00182 
+<a name="l00183"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a863195baafaee7ab8a0887c660525bf6">00183</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a863195baafaee7ab8a0887c660525bf6" title="Forces this widget to be shown.">Widget::Show</a>()
+<a name="l00184"></a>00184         {
+<a name="l00185"></a>00185             <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad13df3d78b4e7cebfc566dc678706915" title="Sets the visibility of this widget.">SetVisible</a>(<span class="keyword">true</span>);
+<a name="l00186"></a>00186         }
+<a name="l00187"></a>00187 
+<a name="l00188"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4">00188</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4" title="Forces this widget to hide.">Widget::Hide</a>()
+<a name="l00189"></a>00189         {
+<a name="l00190"></a>00190             <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad13df3d78b4e7cebfc566dc678706915" title="Sets the visibility of this widget.">SetVisible</a>(<span class="keyword">false</span>);
+<a name="l00191"></a>00191         }
+<a name="l00192"></a>00192 
+<a name="l00193"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a9e1a01dc48630ce92e617cc0c6e9d31a">00193</a>         Widget::WidgetType <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a9e1a01dc48630ce92e617cc0c6e9d31a" title="Gets the type of widget this is.">Widget::GetType</a>()<span class="keyword"> const</span>
+<a name="l00194"></a>00194 <span class="keyword">        </span>{
+<a name="l00195"></a>00195             <span class="keywordflow">return</span> Type;
+<a name="l00196"></a>00196         }
+<a name="l00197"></a>00197 
+<a name="l00198"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad18ddb91597bc835d6a3678a2fbcd45d">00198</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad18ddb91597bc835d6a3678a2fbcd45d" title="Checks if this is an input capturing widget.">Widget::IsInputCaptureWidget</a>()<span class="keyword"> const</span>
+<a name="l00199"></a>00199 <span class="keyword">        </span>{
+<a name="l00200"></a>00200             <span class="keywordflow">return</span> NULL != CaptureData;
+<a name="l00201"></a>00201         }
+<a name="l00202"></a>00202 
+<a name="l00203"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#aacf72f1145b139804f40d02fcac4ee93">00203</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#aacf72f1145b139804f40d02fcac4ee93" title="Gets the result of the last mouse hover check.">Widget::IsHovered</a>()<span class="keyword"> const</span>
+<a name="l00204"></a>00204 <span class="keyword">        </span>{
+<a name="l00205"></a>00205             <span class="keywordflow">return</span> Hovered;
+<a name="l00206"></a>00206         }
+<a name="l00207"></a>00207 
+<a name="l00208"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#abcd2c0e80a7766524eeb63f6972baff7">00208</a>         <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#abcd2c0e80a7766524eeb63f6972baff7" title="Gets the name of this widget.">Widget::GetName</a>()<span class="keyword"> const</span>
+<a name="l00209"></a>00209 <span class="keyword">        </span>{
+<a name="l00210"></a>00210             <span class="keywordflow">return</span> Name;
+<a name="l00211"></a>00211         }
+<a name="l00212"></a>00212 
+<a name="l00213"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a7cab967bfe466c1f2796cc17559ca1f3">00213</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a7cab967bfe466c1f2796cc17559ca1f3" title="Sets the callback to be used by this widget.">Widget::SetWidgetCallback</a>(<a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html" title="This is a callback class for widgets.">WidgetCallback</a>* CB)
+<a name="l00214"></a>00214         {
+<a name="l00215"></a>00215             <span class="keywordflow">if</span>(Callback != CB &amp;&amp; Callback)
+<a name="l00216"></a>00216                 <span class="keyword">delete</span> Callback;
+<a name="l00217"></a>00217             CB-&gt;<a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#a3f3cc50759dfaff6c1af839595833a33" title="Sets the Widget this callback belongs to.">SetCaller</a>(<span class="keyword">this</span>);
+<a name="l00218"></a>00218             Callback = CB;
+<a name="l00219"></a>00219         }
+<a name="l00220"></a>00220 
+<a name="l00221"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a66f1b21671530de8f7696185c7080d7b">00221</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a66f1b21671530de8f7696185c7080d7b" title="Checks to see if the current mouse position is over this widget.">Widget::CheckMouseHover</a>()
+<a name="l00222"></a>00222         {
+<a name="l00223"></a>00223             <span class="keywordflow">if</span>(!<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a543fa0c3bdee98591fcd77eb75d25258" title="Gets whether or not this widget is being drawn.">IsVisible</a>())
+<a name="l00224"></a>00224             {
+<a name="l00225"></a>00225                 HoveredSubWidget = NULL;
+<a name="l00226"></a>00226                 HoveredButton = NULL;
+<a name="l00227"></a>00227                 Hovered = <span class="keyword">false</span>;
+<a name="l00228"></a>00228             }
+<a name="l00229"></a>00229             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#adb2f2020d4a3bfef6c76e5ac0fdf26cb" title="Child specific mouse hover method.">CheckMouseHoverImpl</a>())
+<a name="l00230"></a>00230             {
+<a name="l00231"></a>00231                 Hovered = <span class="keyword">true</span>;
+<a name="l00232"></a>00232             }
+<a name="l00233"></a>00233             <span class="keywordflow">else</span>
+<a name="l00234"></a>00234             {
+<a name="l00235"></a>00235                 HoveredSubWidget = NULL;
+<a name="l00236"></a>00236                 HoveredButton = NULL;
+<a name="l00237"></a>00237                 Hovered = <span class="keyword">false</span>;
+<a name="l00238"></a>00238             }
+<a name="l00239"></a>00239             <span class="keywordflow">if</span>(Callback)
+<a name="l00240"></a>00240                 Callback-&gt;<a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#ab0efad1230a035f7f03bbf385a48e783" title="Performs callback items immediately after hover checks complete.">DoHoverItems</a>();
+<a name="l00241"></a>00241             <span class="keywordflow">return</span> Hovered;
+<a name="l00242"></a>00242         }
+<a name="l00243"></a>00243 
+<a name="l00244"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#aed66a04577944a3c76e628185aa7bb3e">00244</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#aed66a04577944a3c76e628185aa7bb3e" title="Sets the Rect(Position and Size) of this Widget.">Widget::SetRect</a>(<span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect)
+<a name="l00245"></a>00245         {
+<a name="l00246"></a>00246             <span class="keywordflow">if</span>(Rect.Relative)
+<a name="l00247"></a>00247             {
+<a name="l00248"></a>00248                 <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#adf8b14ce6641d4ec12f6ff09814fc9ab" title="Sets the relative size of this widget.">SetSize</a>(Rect.Size);
+<a name="l00249"></a>00249                 <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ac83b59db51a6717ad7b822007dde3576" title="Sets the relative position of this widget.">SetPosition</a>(Rect.Position);
+<a name="l00250"></a>00250             }<span class="keywordflow">else</span>{
+<a name="l00251"></a>00251                 <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acc8a472036872bbbfd0476f753c80ba4" title="Sets the pixel size of this widget.">SetActualSize</a>(Rect.Size);
+<a name="l00252"></a>00252                 <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a860bd8baea24d61a9cd661e85831f981" title="Sets the pixel position of this widget.">SetActualPosition</a>(Rect.Position);
+<a name="l00253"></a>00253             }
+<a name="l00254"></a>00254         }
+<a name="l00255"></a>00255 
+<a name="l00256"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a4a3de058cf3a274be9e8e1fb765da7e6">00256</a>         <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a4a3de058cf3a274be9e8e1fb765da7e6" title="Gets this Widgets&amp;#39; Rect.">Widget::GetRect</a>(<span class="keywordtype">bool</span> Relative)<span class="keyword"> const</span>
+<a name="l00257"></a>00257 <span class="keyword">        </span>{
+<a name="l00258"></a>00258             <span class="keywordflow">if</span>(Relative) <span class="keywordflow">return</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab498fab9f2b18236a301faa0aed9cb0d" title="Gets the relative position of this widget.">GetPosition</a>(),<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#adb7eb8aae00798321f74d8174027d3c1" title="Gets the relative size of this widget.">GetSize</a>(),Relative);
+<a name="l00259"></a>00259             <span class="keywordflow">else</span> <span class="keywordflow">return</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a" title="Sets the pixel position of this widget.">GetActualPosition</a>(),<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469" title="Sets the pixel size of this widget.">GetActualSize</a>(),Relative);
+<a name="l00260"></a>00260         }
+<a name="l00261"></a>00261 
+<a name="l00262"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab498fab9f2b18236a301faa0aed9cb0d">00262</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab498fab9f2b18236a301faa0aed9cb0d" title="Gets the relative position of this widget.">Widget::GetPosition</a>()<span class="keyword"> const</span>
+<a name="l00263"></a>00263 <span class="keyword">        </span>{
+<a name="l00264"></a>00264             <span class="keywordflow">return</span> RelPosition;
+<a name="l00265"></a>00265         }
+<a name="l00266"></a>00266 
+<a name="l00267"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a">00267</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a" title="Sets the pixel position of this widget.">Widget::GetActualPosition</a>()<span class="keyword"> const</span>
+<a name="l00268"></a>00268 <span class="keyword">        </span>{
+<a name="l00269"></a>00269             <span class="keywordflow">return</span> RelPosition * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00270"></a>00270         }
+<a name="l00271"></a>00271 
+<a name="l00272"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#adb7eb8aae00798321f74d8174027d3c1">00272</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#adb7eb8aae00798321f74d8174027d3c1" title="Gets the relative size of this widget.">Widget::GetSize</a>()<span class="keyword"> const</span>
+<a name="l00273"></a>00273 <span class="keyword">        </span>{
+<a name="l00274"></a>00274             <span class="keywordflow">return</span> RelSize;
+<a name="l00275"></a>00275         }
+<a name="l00276"></a>00276 
+<a name="l00277"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469">00277</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469" title="Sets the pixel size of this widget.">Widget::GetActualSize</a>()<span class="keyword"> const</span>
+<a name="l00278"></a>00278 <span class="keyword">        </span>{
+<a name="l00279"></a>00279             <span class="keywordflow">return</span> RelSize * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00280"></a>00280         }
+<a name="l00281"></a>00281 
+<a name="l00282"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad9ab22e33338ddb8e13bf663de0092f1">00282</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad9ab22e33338ddb8e13bf663de0092f1" title="Gets the hovered button within this widget, if any.">Widget::GetHoveredButton</a>()<span class="keyword"> const</span>
+<a name="l00283"></a>00283 <span class="keyword">        </span>{
+<a name="l00284"></a>00284             <span class="keywordflow">return</span> HoveredButton;
+<a name="l00285"></a>00285         }
+<a name="l00286"></a>00286 
+<a name="l00287"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a99615938f31dd6b5c6d8fa9d9dc96d3d">00287</a>         <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a99615938f31dd6b5c6d8fa9d9dc96d3d" title="Gets the hovered sub-widget within this widget, if any.">Widget::GetHoveredSubWidget</a>()<span class="keyword"> const</span>
+<a name="l00288"></a>00288 <span class="keyword">        </span>{
+<a name="l00289"></a>00289             <span class="keywordflow">return</span> HoveredSubWidget;
+<a name="l00290"></a>00290         }
+<a name="l00291"></a>00291 
+<a name="l00292"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a33ff8bd7663738501c9ee895e08a236b">00292</a>         <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a33ff8bd7663738501c9ee895e08a236b" title="Gets the layer this widget belongs to.">Widget::GetLayer</a>()<span class="keyword"> const</span>
+<a name="l00293"></a>00293 <span class="keyword">        </span>{
+<a name="l00294"></a>00294             <span class="keywordflow">return</span> Parent;
+<a name="l00295"></a>00295         }
+<a name="l00296"></a>00296 
+<a name="l00297"></a><a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a7aa4803d32b18d8f5d9550942b2acfe2">00297</a>         <a class="code" href="classMezzanine_1_1UI_1_1InputCaptureData.html" title="This class contains all the utilities necessary for capturing input.">InputCaptureData</a>* <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a7aa4803d32b18d8f5d9550942b2acfe2" title="Gets the data determining what input should be captured.">Widget::GetInputCaptureData</a>()<span class="keyword"> const</span>
+<a name="l00298"></a>00298 <span class="keyword">        </span>{
+<a name="l00299"></a>00299             <span class="keywordflow">return</span> CaptureData;
+<a name="l00300"></a>00300         }
+<a name="l00301"></a>00301 
+<a name="l00302"></a>00302         <span class="comment">//-----------------------------------------------------</span>
+<a name="l00303"></a>00303 
+<a name="l00304"></a><a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#a7d42c424322e006792251a727bf7f2c7">00304</a>         <a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#a7d42c424322e006792251a727bf7f2c7" title="Class constructor.">WidgetCallback::WidgetCallback</a>()
+<a name="l00305"></a>00305             : Caller(NULL)
+<a name="l00306"></a>00306         {
+<a name="l00307"></a>00307         }
+<a name="l00308"></a>00308 
+<a name="l00309"></a><a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#ad0f5cbd659849f3f69e1b1637c63402a">00309</a>         <a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#ad0f5cbd659849f3f69e1b1637c63402a" title="Class destructor.">WidgetCallback::~WidgetCallback</a>()
+<a name="l00310"></a>00310         {
+<a name="l00311"></a>00311         }
+<a name="l00312"></a>00312 
+<a name="l00313"></a><a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#a3f3cc50759dfaff6c1af839595833a33">00313</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1WidgetCallback.html#a3f3cc50759dfaff6c1af839595833a33" title="Sets the Widget this callback belongs to.">WidgetCallback::SetCaller</a>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* Caller)
+<a name="l00314"></a>00314         {
+<a name="l00315"></a>00315             this-&gt;Caller = Caller;
+<a name="l00316"></a>00316         }
+<a name="l00317"></a>00317     }<span class="comment">//UI</span>
+<a name="l00318"></a>00318 }<span class="comment">//Mezzanine</span>
+<a name="l00319"></a>00319 
+<a name="l00320"></a>00320 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -266,7 +389,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -276,6 +399,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

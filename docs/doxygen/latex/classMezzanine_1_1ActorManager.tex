@@ -1,0 +1,307 @@
+\hypertarget{classMezzanine_1_1ActorManager}{
+\subsection{Mezzanine::ActorManager Class Reference}
+\label{classMezzanine_1_1ActorManager}\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+}
+
+
+A manager responsible for the storage and management of all actors in use.  
+
+
+
+
+{\ttfamily \#include $<$actormanager.h$>$}
+
+Inheritance diagram for Mezzanine::ActorManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ActorManager}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_aa9074e3c8dd87865e957c4d76fbc5e25}{
+\hyperlink{classMezzanine_1_1ActorManager_aa9074e3c8dd87865e957c4d76fbc5e25}{ActorManager} ()}
+\label{classMezzanine_1_1ActorManager_aa9074e3c8dd87865e957c4d76fbc5e25}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorManager_af801d07590853b3ae0c52574a340ea44}{AddActor} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor)
+\begin{DoxyCompactList}\small\item\em Adds a pre-\/created actor to the manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorManager_a7885890ba7a33c0d904728858379e201}{DestroyActor} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor)
+\begin{DoxyCompactList}\small\item\em Destroys an actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorManager_ac71886ad26a513d1b53f0e2d6049539c}{
+virtual void \hyperlink{classMezzanine_1_1ActorManager_ac71886ad26a513d1b53f0e2d6049539c}{DestroyAllActors} ()}
+\label{classMezzanine_1_1ActorManager_ac71886ad26a513d1b53f0e2d6049539c}
+
+\begin{DoxyCompactList}\small\item\em Destroys all actors currently within this manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorManager_a8b1907afd4804047c03ff4bb51c89caa}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Physics stepping during the main loop. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorManager_a9657cdc7c0cef46a172ad73f366e4199}{GetActor} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an Actor by Name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classMezzanine_1_1ActorManager_a71e61da8caf365ae03dd85090245b1ae}{GetActor} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an Actor by Index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorContainerBase}{ActorContainerBase} $\ast$ \hyperlink{classMezzanine_1_1ActorManager_a42747650597765759b5436ee468c511c}{GetActorContainer} ()
+\begin{DoxyCompactList}\small\item\em Gets the internal actor container storing all the actors. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1ActorManager_a92eabf039d7c8998533456da740682a8}{GetNumActors} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of actors stored in this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ManagerBase_a08cecf5169cad3e82be81a3a159b0b6e}{ManagerTypeName} \hyperlink{classMezzanine_1_1ActorManager_abfd167e1e15f32dffed05a2bd1b4ac70}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorManager_a3b5b383066473d09243d13ad702c4868}{
+virtual void \hyperlink{classMezzanine_1_1ActorManager_a3b5b383066473d09243d13ad702c4868}{Initialize} ()}
+\label{classMezzanine_1_1ActorManager_a3b5b383066473d09243d13ad702c4868}
+
+\begin{DoxyCompactList}\small\item\em Empty initializer that has been implemented from \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorManager_ada396c5f6299152348b2fdb00e476361}{RemoveActor} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor)
+\begin{DoxyCompactList}\small\item\em Removes an actor from this manager without destroying it. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorManager_a6ca8342617fa221b0548ff9bc6bf4477}{
+virtual void \hyperlink{classMezzanine_1_1ActorManager_a6ca8342617fa221b0548ff9bc6bf4477}{RemoveAllActors} ()}
+\label{classMezzanine_1_1ActorManager_a6ca8342617fa221b0548ff9bc6bf4477}
+
+\begin{DoxyCompactList}\small\item\em Removes all actors from this manager without destroying them. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorManager_acb09f9f1b4766dd2ca9e645bb505ac2f}{
+virtual \hyperlink{classMezzanine_1_1ActorManager_acb09f9f1b4766dd2ca9e645bb505ac2f}{$\sim$ActorManager} ()}
+\label{classMezzanine_1_1ActorManager_acb09f9f1b4766dd2ca9e645bb505ac2f}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_a3b5ef9469c6e000aa0735d9a7fbeda5f}{
+\hyperlink{classMezzanine_1_1ActorContainerBase}{ActorContainerBase} $\ast$ \hyperlink{classMezzanine_1_1ActorManager_a3b5ef9469c6e000aa0735d9a7fbeda5f}{Actors}}
+\label{classMezzanine_1_1ActorManager_a3b5ef9469c6e000aa0735d9a7fbeda5f}
+
+\begin{DoxyCompactList}\small\item\em The actual actor container. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorManager_a07fba4f64f1a9162d3a12916d6ef29bd}{
+std::vector$<$ ActorCharacter $\ast$ $>$ \hyperlink{classMezzanine_1_1ActorManager_a07fba4f64f1a9162d3a12916d6ef29bd}{CharacterActors}}
+\label{classMezzanine_1_1ActorManager_a07fba4f64f1a9162d3a12916d6ef29bd}
+
+\begin{DoxyCompactList}\small\item\em A Second listing of All the Character actors. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorManager_a1283d3955dc83831c7687573b6cff206}{
+std::vector$<$ \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ $>$ \hyperlink{classMezzanine_1_1ActorManager_a1283d3955dc83831c7687573b6cff206}{RigidActors}}
+\label{classMezzanine_1_1ActorManager_a1283d3955dc83831c7687573b6cff206}
+
+\begin{DoxyCompactList}\small\item\em A Second listing of All the Rigid actors. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorManager_ad3a985b2087fc1353f7d33485589207b}{
+std::vector$<$ \hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft} $\ast$ $>$ \hyperlink{classMezzanine_1_1ActorManager_ad3a985b2087fc1353f7d33485589207b}{SoftActors}}
+\label{classMezzanine_1_1ActorManager_ad3a985b2087fc1353f7d33485589207b}
+
+\begin{DoxyCompactList}\small\item\em A Second listing of All the Soft actors. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A manager responsible for the storage and management of all actors in use. More or less Management point for a container of actors to help keep them sorted. 
+
+Definition at line 60 of file actormanager.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ActorManager_af801d07590853b3ae0c52574a340ea44}{
+\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!AddActor@{AddActor}}
+\index{AddActor@{AddActor}!Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+\paragraph[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorManager::AddActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{Actor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorManager_af801d07590853b3ae0c52574a340ea44}
+
+
+Adds a pre-\/created actor to the manager. 
+
+In some cases you may want to add and remove an actor from the world without destroying it and do some special manipulations to it to achieve some special/unique affects. This function along with the \char`\"{}RemoveActor()\char`\"{} function facilitates this. \par
+ This function is also necessary for anyone inheriting from our actors to add their actors to the world. 
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor to be added to the manager. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 79 of file actormanager.cpp.
+
+\hypertarget{classMezzanine_1_1ActorManager_a7885890ba7a33c0d904728858379e201}{
+\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!DestroyActor@{DestroyActor}}
+\index{DestroyActor@{DestroyActor}!Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+\paragraph[{DestroyActor}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorManager::DestroyActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{Actor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorManager_a7885890ba7a33c0d904728858379e201}
+
+
+Destroys an actor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 109 of file actormanager.cpp.
+
+\hypertarget{classMezzanine_1_1ActorManager_a8b1907afd4804047c03ff4bb51c89caa}{
+\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+\paragraph[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorManager_a8b1907afd4804047c03ff4bb51c89caa}
+
+
+Physics stepping during the main loop. 
+
+This increments the the physics world the required amount to keep it in sync with the Graphics/Timing. 
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258d5cd2}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 144 of file actormanager.cpp.
+
+\hypertarget{classMezzanine_1_1ActorManager_a71e61da8caf365ae03dd85090245b1ae}{
+\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!GetActor@{GetActor}}
+\index{GetActor@{GetActor}!Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+\paragraph[{GetActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::ActorManager::GetActor (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorManager_a71e61da8caf365ae03dd85090245b1ae}
+
+
+Gets an Actor by Index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the actor you wish to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the actor at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file actormanager.cpp.
+
+\hypertarget{classMezzanine_1_1ActorManager_a9657cdc7c0cef46a172ad73f366e4199}{
+\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!GetActor@{GetActor}}
+\index{GetActor@{GetActor}!Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+\paragraph[{GetActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ Mezzanine::ActorManager::GetActor (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorManager_a9657cdc7c0cef46a172ad73f366e4199}
+
+
+Gets an Actor by Name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the actor you wish to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the actor of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 69 of file actormanager.cpp.
+
+\hypertarget{classMezzanine_1_1ActorManager_a42747650597765759b5436ee468c511c}{
+\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!GetActorContainer@{GetActorContainer}}
+\index{GetActorContainer@{GetActorContainer}!Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+\paragraph[{GetActorContainer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorContainerBase} $\ast$ Mezzanine::ActorManager::GetActorContainer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorManager_a42747650597765759b5436ee468c511c}
+
+
+Gets the internal actor container storing all the actors. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Actor container being used by this manager. 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file actormanager.cpp.
+
+\hypertarget{classMezzanine_1_1ActorManager_a92eabf039d7c8998533456da740682a8}{
+\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!GetNumActors@{GetNumActors}}
+\index{GetNumActors@{GetNumActors}!Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+\paragraph[{GetNumActors}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::ActorManager::GetNumActors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorManager_a92eabf039d7c8998533456da740682a8}
+
+
+Gets the number of actors stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the current actor count. 
+\end{DoxyReturn}
+
+
+Definition at line 74 of file actormanager.cpp.
+
+\hypertarget{classMezzanine_1_1ActorManager_abfd167e1e15f32dffed05a2bd1b4ac70}{
+\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} Mezzanine::ActorManager::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorManager_abfd167e1e15f32dffed05a2bd1b4ac70}
+
+
+This returns the type of this manager. 
+
+\begin{DoxyReturn}{Returns}
+This returns ManagerTypeName::PhysicsManager 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf76973}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 148 of file actormanager.cpp.
+
+\hypertarget{classMezzanine_1_1ActorManager_ada396c5f6299152348b2fdb00e476361}{
+\index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!RemoveActor@{RemoveActor}}
+\index{RemoveActor@{RemoveActor}!Mezzanine::ActorManager@{Mezzanine::ActorManager}}
+\paragraph[{RemoveActor}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorManager::RemoveActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{Actor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorManager_ada396c5f6299152348b2fdb00e476361}
+
+
+Removes an actor from this manager without destroying it. 
+
+In some cases you may want to add and remove an actor from the world without destroying it and do some special manipulations to it to achieve some special/unique affects. This function along with the \char`\"{}RemoveActor()\char`\"{} function facilitates this. \par
+ This function is also necessary for anyone inheriting from our actors to remove their actors from the world. 
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor to be removed from the manager. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 85 of file actormanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actormanager.h\item 
+actormanager.cpp\end{DoxyCompactItemize}

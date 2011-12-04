@@ -458,7 +458,7 @@ void CatchApp::CreateLoadingScreen()
     UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
     Load->SetBackgroundSprite("BTSBanner");
     //LoadScreen->RenderOnce();
-    crossplatform::RenderPhysWorld();
+    crossplatform::RenderMezzWorld();
     Load->SetBackgroundSprite("LoadingBackground");
 }
 
@@ -761,7 +761,7 @@ int CatchApp::GetCatchin()
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);
-        crossplatform::RenderPhysWorld();
+        crossplatform::RenderMezzWorld();
         //Actually Load the game stuff
         Loader->LoadLevel();
 

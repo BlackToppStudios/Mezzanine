@@ -1,0 +1,1324 @@
+\hypertarget{classMezzanine_1_1MetaCode}{
+\subsection{Mezzanine::MetaCode Class Reference}
+\label{classMezzanine_1_1MetaCode}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+}
+
+
+This Determines the kind of user input.  
+
+
+
+
+{\ttfamily \#include $<$metacode.h$>$}
+
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0}{ButtonState} \{ \hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0a07ca860b5b6b505052022d842f155080}{BUTTON\_\-LIFTING} =  -\/1, 
+\hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0a100e16dc4d4e866189e42ab81398f6e9}{BUTTON\_\-UP} =  0, 
+\hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0a9150dbdf88f3013383a72366904cb749}{BUTTON\_\-PRESSING} =  1, 
+\hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0af66afc958f5eb62b8b836897d062b62b}{BUTTON\_\-DOWN} =  2
+ \}
+\begin{DoxyCompactList}\small\item\em An Optional listing of value that can be used in a metacode to represent the information of a button press. \item\end{DoxyCompactList}\item 
+enum \hyperlink{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ad}{DirectionalMotionState} \{ \hyperlink{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104adaab0a7592ad86de4ba170afc0d3c99ead}{DIRECTIONALMOTION\_\-UPLEFT} =  1, 
+\hyperlink{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104adadd21933bb9cb8f213ed01ff59dd04f37}{DIRECTIONALMOTION\_\-UNCHANGED} =  0, 
+\hyperlink{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ada11a3bc63626fe380e329ea5983876753}{DIRECTIONALMOTION\_\-DOWNRIGHT} =  -\/1
+ \}
+\begin{DoxyCompactList}\small\item\em An Optional listing of values that can be used in a metacode Indicate spin, digital or binary travel in a directionl. \item\end{DoxyCompactList}\item 
+enum \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{InputCode} \{ \par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca1ccda5063e3d1e72a9eacd70b030342e}{KEY\_\-FIRST} =  0, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca9c3714a0de55dca42c122e5cbced974f}{KEY\_\-UNKNOWN} =  0, 
+{\bfseries KEY\_\-A} =  4, 
+{\bfseries KEY\_\-B} =  5, 
+\par
+{\bfseries KEY\_\-C} =  6, 
+{\bfseries KEY\_\-D} =  7, 
+{\bfseries KEY\_\-E} =  8, 
+{\bfseries KEY\_\-F} =  9, 
+\par
+{\bfseries KEY\_\-G} =  10, 
+{\bfseries KEY\_\-H} =  11, 
+{\bfseries KEY\_\-I} =  12, 
+{\bfseries KEY\_\-J} =  13, 
+\par
+{\bfseries KEY\_\-K} =  14, 
+{\bfseries KEY\_\-L} =  15, 
+{\bfseries KEY\_\-M} =  16, 
+{\bfseries KEY\_\-N} =  17, 
+\par
+{\bfseries KEY\_\-O} =  18, 
+{\bfseries KEY\_\-P} =  19, 
+{\bfseries KEY\_\-Q} =  20, 
+{\bfseries KEY\_\-R} =  21, 
+\par
+{\bfseries KEY\_\-S} =  22, 
+{\bfseries KEY\_\-T} =  23, 
+{\bfseries KEY\_\-U} =  24, 
+{\bfseries KEY\_\-V} =  25, 
+\par
+{\bfseries KEY\_\-W} =  26, 
+{\bfseries KEY\_\-X} =  27, 
+{\bfseries KEY\_\-Y} =  28, 
+{\bfseries KEY\_\-Z} =  29, 
+\par
+{\bfseries KEY\_\-1} =  30, 
+{\bfseries KEY\_\-2} =  31, 
+{\bfseries KEY\_\-3} =  32, 
+{\bfseries KEY\_\-4} =  33, 
+\par
+{\bfseries KEY\_\-5} =  34, 
+{\bfseries KEY\_\-6} =  35, 
+{\bfseries KEY\_\-7} =  36, 
+{\bfseries KEY\_\-8} =  37, 
+\par
+{\bfseries KEY\_\-9} =  38, 
+{\bfseries KEY\_\-0} =  39, 
+{\bfseries KEY\_\-RETURN} =  40, 
+{\bfseries KEY\_\-ESCAPE} =  41, 
+\par
+{\bfseries KEY\_\-BACKSPACE} =  42, 
+{\bfseries KEY\_\-TAB} =  43, 
+{\bfseries KEY\_\-SPACE} =  44, 
+{\bfseries KEY\_\-MINUS} =  45, 
+\par
+{\bfseries KEY\_\-EQUALS} =  46, 
+{\bfseries KEY\_\-LEFTBRACKET} =  47, 
+{\bfseries KEY\_\-RIGHTBRACKET} =  48, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caf280c1704fc6955d872b8ff7f91693c4}{KEY\_\-BACKSLASH} =  49, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cad905793c1a50f81dc4d779df8eba2964}{KEY\_\-NONUSHASH} =  50, 
+{\bfseries KEY\_\-SEMICOLON} =  51, 
+{\bfseries KEY\_\-APOSTROPHE} =  52, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cac09a9343ad1a7c1833450656a354b937}{KEY\_\-GRAVE} =  53, 
+\par
+{\bfseries KEY\_\-COMMA} =  54, 
+{\bfseries KEY\_\-PERIOD} =  55, 
+{\bfseries KEY\_\-SLASH} =  56, 
+{\bfseries KEY\_\-CAPSLOCK} =  57, 
+\par
+{\bfseries KEY\_\-F1} =  58, 
+{\bfseries KEY\_\-F2} =  59, 
+{\bfseries KEY\_\-F3} =  60, 
+{\bfseries KEY\_\-F4} =  61, 
+\par
+{\bfseries KEY\_\-F5} =  62, 
+{\bfseries KEY\_\-F6} =  63, 
+{\bfseries KEY\_\-F7} =  64, 
+{\bfseries KEY\_\-F8} =  65, 
+\par
+{\bfseries KEY\_\-F9} =  66, 
+{\bfseries KEY\_\-F10} =  67, 
+{\bfseries KEY\_\-F11} =  68, 
+{\bfseries KEY\_\-F12} =  69, 
+\par
+{\bfseries KEY\_\-PRINTSCREEN} =  70, 
+{\bfseries KEY\_\-SCROLLLOCK} =  71, 
+{\bfseries KEY\_\-PAUSE} =  72, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca68b4c9fab606ba7faec021605586da3c}{KEY\_\-INSERT} =  73, 
+\par
+{\bfseries KEY\_\-HOME} =  74, 
+{\bfseries KEY\_\-PAGEUP} =  75, 
+{\bfseries KEY\_\-DELETE} =  76, 
+{\bfseries KEY\_\-END} =  77, 
+\par
+{\bfseries KEY\_\-PAGEDOWN} =  78, 
+{\bfseries KEY\_\-RIGHT} =  79, 
+{\bfseries KEY\_\-LEFT} =  80, 
+{\bfseries KEY\_\-DOWN} =  81, 
+\par
+{\bfseries KEY\_\-UP} =  82, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7539840a607d5aa419425f2038170212}{KEY\_\-NUMLOCKCLEAR} =  83, 
+{\bfseries KEY\_\-KP\_\-DIVIDE} =  84, 
+{\bfseries KEY\_\-KP\_\-MULTIPLY} =  85, 
+\par
+{\bfseries KEY\_\-KP\_\-MINUS} =  86, 
+{\bfseries KEY\_\-KP\_\-PLUS} =  87, 
+{\bfseries KEY\_\-KP\_\-ENTER} =  88, 
+{\bfseries KEY\_\-KP\_\-1} =  89, 
+\par
+{\bfseries KEY\_\-KP\_\-2} =  90, 
+{\bfseries KEY\_\-KP\_\-3} =  91, 
+{\bfseries KEY\_\-KP\_\-4} =  92, 
+{\bfseries KEY\_\-KP\_\-5} =  93, 
+\par
+{\bfseries KEY\_\-KP\_\-6} =  94, 
+{\bfseries KEY\_\-KP\_\-7} =  95, 
+{\bfseries KEY\_\-KP\_\-8} =  96, 
+{\bfseries KEY\_\-KP\_\-9} =  97, 
+\par
+{\bfseries KEY\_\-KP\_\-0} =  98, 
+{\bfseries KEY\_\-KP\_\-PERIOD} =  99, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca6df6ef2f4f87cd863635313a7c73ded2}{KEY\_\-NONUSBACKSLASH} =  100, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cadf18e2b561df830d520652a79271f677}{KEY\_\-APPLICATION} =  101, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cabd172c9969297155e90ffc5f59f2d44a}{KEY\_\-POWER} =  102, 
+{\bfseries KEY\_\-KP\_\-EQUALS} =  103, 
+{\bfseries KEY\_\-F13} =  104, 
+{\bfseries KEY\_\-F14} =  105, 
+\par
+{\bfseries KEY\_\-F15} =  106, 
+{\bfseries KEY\_\-F16} =  107, 
+{\bfseries KEY\_\-F17} =  108, 
+{\bfseries KEY\_\-F18} =  109, 
+\par
+{\bfseries KEY\_\-F19} =  110, 
+{\bfseries KEY\_\-F20} =  111, 
+{\bfseries KEY\_\-F21} =  112, 
+{\bfseries KEY\_\-F22} =  113, 
+\par
+{\bfseries KEY\_\-F23} =  114, 
+{\bfseries KEY\_\-F24} =  115, 
+{\bfseries KEY\_\-EXECUTE} =  116, 
+{\bfseries KEY\_\-HELP} =  117, 
+\par
+{\bfseries KEY\_\-MENU} =  118, 
+{\bfseries KEY\_\-SELECT} =  119, 
+{\bfseries KEY\_\-STOP} =  120, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca47b284cca42343cfa4a022a696682900}{KEY\_\-AGAIN} =  121, 
+\par
+{\bfseries KEY\_\-UNDO} =  122, 
+{\bfseries KEY\_\-CUT} =  123, 
+{\bfseries KEY\_\-COPY} =  124, 
+{\bfseries KEY\_\-PASTE} =  125, 
+\par
+{\bfseries KEY\_\-FIND} =  126, 
+{\bfseries KEY\_\-MUTE} =  127, 
+{\bfseries KEY\_\-VOLUMEUP} =  128, 
+{\bfseries KEY\_\-VOLUMEDOWN} =  129, 
+\par
+{\bfseries KEY\_\-KP\_\-COMMA} =  133, 
+{\bfseries KEY\_\-KP\_\-EQUALSAS400} =  134, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca460281c06ac23cd946038278895f077f}{KEY\_\-INTERNATIONAL1} =  135, 
+{\bfseries KEY\_\-INTERNATIONAL2} =  136, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cac78818ced3df26bcfc297c36174551bc}{KEY\_\-INTERNATIONAL3} =  137, 
+{\bfseries KEY\_\-INTERNATIONAL4} =  138, 
+{\bfseries KEY\_\-INTERNATIONAL5} =  139, 
+{\bfseries KEY\_\-INTERNATIONAL6} =  140, 
+\par
+{\bfseries KEY\_\-INTERNATIONAL7} =  141, 
+{\bfseries KEY\_\-INTERNATIONAL8} =  142, 
+{\bfseries KEY\_\-INTERNATIONAL9} =  143, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca8ae55af750172568c66d8928d443c9a5}{KEY\_\-LANG1} =  144, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca56c52b32d2e23820f381c4a8e45407fe}{KEY\_\-LANG2} =  145, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cad5d372c19227a6b19ca1a2d86a4cdda6}{KEY\_\-LANG3} =  146, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca9ab5afd151e5819d606f715db47580d1}{KEY\_\-LANG4} =  147, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca5d3155958167fb5b036786f964087d7d}{KEY\_\-LANG5} =  148, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca3bb4ebd085e21731083f843a91909382}{KEY\_\-LANG6} =  149, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca59abbeb9fc2e7ac0e7ebc3b10b0c9f07}{KEY\_\-LANG7} =  150, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7e6061d23b720314f27b6606252d32df}{KEY\_\-LANG8} =  151, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cac8de0b01f0f17a1fac83b913494056cf}{KEY\_\-LANG9} =  152, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caff5cd2f8773410b53df6d0ddf47758e3}{KEY\_\-ALTERASE} =  153, 
+{\bfseries KEY\_\-SYSREQ} =  154, 
+{\bfseries KEY\_\-CANCEL} =  155, 
+{\bfseries KEY\_\-CLEAR} =  156, 
+\par
+{\bfseries KEY\_\-PRIOR} =  157, 
+{\bfseries KEY\_\-RETURN2} =  158, 
+{\bfseries KEY\_\-SEPARATOR} =  159, 
+{\bfseries KEY\_\-OUT} =  160, 
+\par
+{\bfseries KEY\_\-OPER} =  161, 
+{\bfseries KEY\_\-CLEARAGAIN} =  162, 
+{\bfseries KEY\_\-CRSEL} =  163, 
+{\bfseries KEY\_\-EXSEL} =  164, 
+\par
+{\bfseries KEY\_\-KP\_\-00} =  176, 
+{\bfseries KEY\_\-KP\_\-000} =  177, 
+{\bfseries KEY\_\-THOUSANDSSEPARATOR} =  178, 
+{\bfseries KEY\_\-DECIMALSEPARATOR} =  179, 
+\par
+{\bfseries KEY\_\-CURRENCYUNIT} =  180, 
+{\bfseries KEY\_\-CURRENCYSUBUNIT} =  181, 
+{\bfseries KEY\_\-KP\_\-LEFTPAREN} =  182, 
+{\bfseries KEY\_\-KP\_\-RIGHTPAREN} =  183, 
+\par
+{\bfseries KEY\_\-KP\_\-LEFTBRACE} =  184, 
+{\bfseries KEY\_\-KP\_\-RIGHTBRACE} =  185, 
+{\bfseries KEY\_\-KP\_\-TAB} =  186, 
+{\bfseries KEY\_\-KP\_\-BACKSPACE} =  187, 
+\par
+{\bfseries KEY\_\-KP\_\-A} =  188, 
+{\bfseries KEY\_\-KP\_\-B} =  189, 
+{\bfseries KEY\_\-KP\_\-C} =  190, 
+{\bfseries KEY\_\-KP\_\-D} =  191, 
+\par
+{\bfseries KEY\_\-KP\_\-E} =  192, 
+{\bfseries KEY\_\-KP\_\-F} =  193, 
+{\bfseries KEY\_\-KP\_\-XOR} =  194, 
+{\bfseries KEY\_\-KP\_\-POWER} =  195, 
+\par
+{\bfseries KEY\_\-KP\_\-PERCENT} =  196, 
+{\bfseries KEY\_\-KP\_\-LESS} =  197, 
+{\bfseries KEY\_\-KP\_\-GREATER} =  198, 
+{\bfseries KEY\_\-KP\_\-AMPERSAND} =  199, 
+\par
+{\bfseries KEY\_\-KP\_\-DBLAMPERSAND} =  200, 
+{\bfseries KEY\_\-KP\_\-VERTICALBAR} =  201, 
+{\bfseries KEY\_\-KP\_\-DBLVERTICALBAR} =  202, 
+{\bfseries KEY\_\-KP\_\-COLON} =  203, 
+\par
+{\bfseries KEY\_\-KP\_\-HASH} =  204, 
+{\bfseries KEY\_\-KP\_\-SPACE} =  205, 
+{\bfseries KEY\_\-KP\_\-AT} =  206, 
+{\bfseries KEY\_\-KP\_\-EXCLAM} =  207, 
+\par
+{\bfseries KEY\_\-KP\_\-MEMSTORE} =  208, 
+{\bfseries KEY\_\-KP\_\-MEMRECALL} =  209, 
+{\bfseries KEY\_\-KP\_\-MEMCLEAR} =  210, 
+{\bfseries KEY\_\-KP\_\-MEMADD} =  211, 
+\par
+{\bfseries KEY\_\-KP\_\-MEMSUBTRACT} =  212, 
+{\bfseries KEY\_\-KP\_\-MEMMULTIPLY} =  213, 
+{\bfseries KEY\_\-KP\_\-MEMDIVIDE} =  214, 
+{\bfseries KEY\_\-KP\_\-PLUSMINUS} =  215, 
+\par
+{\bfseries KEY\_\-KP\_\-CLEAR} =  216, 
+{\bfseries KEY\_\-KP\_\-CLEARENTRY} =  217, 
+{\bfseries KEY\_\-KP\_\-BINARY} =  218, 
+{\bfseries KEY\_\-KP\_\-OCTAL} =  219, 
+\par
+{\bfseries KEY\_\-KP\_\-DECIMAL} =  220, 
+{\bfseries KEY\_\-KP\_\-HEXADECIMAL} =  221, 
+{\bfseries KEY\_\-LCTRL} =  224, 
+{\bfseries KEY\_\-LSHIFT} =  225, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca0076a5c334ab65f0d387ce1c40f54942}{KEY\_\-LALT} =  226, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca53c3a88dbf5dc88491bc2f0773a547f7}{KEY\_\-LSUPER} =  227, 
+{\bfseries KEY\_\-RCTRL} =  228, 
+{\bfseries KEY\_\-RSHIFT} =  229, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca9e02ef0a2eaff8b2a5386fc6ecae647a}{KEY\_\-RALT} =  230, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca01e09d8de434e3fa0156286cd9937d5f}{KEY\_\-RSUPER} =  231, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca2f97b1036c201d417b8d7ba4a6ca9aea}{KEY\_\-MODE} =  257, 
+{\bfseries KEY\_\-AUDIONEXT} =  258, 
+\par
+{\bfseries KEY\_\-AUDIOPREV} =  259, 
+{\bfseries KEY\_\-AUDIOSTOP} =  260, 
+{\bfseries KEY\_\-AUDIOPLAY} =  261, 
+{\bfseries KEY\_\-AUDIOMUTE} =  262, 
+\par
+{\bfseries KEY\_\-MEDIASELECT} =  263, 
+{\bfseries KEY\_\-WWW} =  264, 
+{\bfseries KEY\_\-MAIL} =  265, 
+{\bfseries KEY\_\-CALCULATOR} =  266, 
+\par
+{\bfseries KEY\_\-COMPUTER} =  267, 
+{\bfseries KEY\_\-AC\_\-SEARCH} =  268, 
+{\bfseries KEY\_\-AC\_\-HOME} =  269, 
+{\bfseries KEY\_\-AC\_\-BACK} =  270, 
+\par
+{\bfseries KEY\_\-AC\_\-FORWARD} =  271, 
+{\bfseries KEY\_\-AC\_\-STOP} =  272, 
+{\bfseries KEY\_\-AC\_\-REFRESH} =  273, 
+{\bfseries KEY\_\-AC\_\-BOOKMARKS} =  274, 
+\par
+{\bfseries KEY\_\-BRIGHTNESSDOWN} =  275, 
+{\bfseries KEY\_\-BRIGHTNESSUP} =  276, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caaa1d5d0200c867dae3742208a71b54ed}{KEY\_\-DISPLAYSWITCH} =  277, 
+{\bfseries KEY\_\-KBDILLUMTOGGLE} =  278, 
+\par
+{\bfseries KEY\_\-KBDILLUMDOWN} =  279, 
+{\bfseries KEY\_\-KBDILLUMUP} =  280, 
+{\bfseries KEY\_\-EJECT} =  281, 
+{\bfseries KEY\_\-SLEEP} =  282, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca949efdf6fee761bb7ca41fbf37846d0a}{KEY\_\-LAST} =  379, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caa295a21932423dd5fc830060b73320a3}{MOUSE\_\-FIRST} =  380, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca37f08a3b97ecd62bb35b9f35d5d05d8e}{MOUSEBUTTON} =  380, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca6e16bc078f673e27b2dd4fbbaf81eb49}{MOUSEBUTTON\_\-FIRST} =  381, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cabb614dae4717d95dcdd3a6b7f22aa192}{MOUSEBUTTON\_\-1} =  381, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca20e84264ed0bfbf984d7e165b713743c}{MOUSEBUTTON\_\-2} =  382, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca8c9e9517a74f1ba2cb21f9b6ef11c0a3}{MOUSEBUTTON\_\-3} =  383, 
+{\bfseries MOUSEBUTTON\_\-4} =  384, 
+\par
+{\bfseries MOUSEBUTTON\_\-5} =  385, 
+{\bfseries MOUSEBUTTON\_\-6} =  386, 
+{\bfseries MOUSEBUTTON\_\-7} =  387, 
+{\bfseries MOUSEBUTTON\_\-8} =  388, 
+\par
+{\bfseries MOUSEBUTTON\_\-9} =  389, 
+{\bfseries MOUSEBUTTON\_\-10} =  390, 
+{\bfseries MOUSEBUTTON\_\-11} =  391, 
+{\bfseries MOUSEBUTTON\_\-12} =  392, 
+\par
+{\bfseries MOUSEBUTTON\_\-13} =  393, 
+{\bfseries MOUSEBUTTON\_\-14} =  394, 
+{\bfseries MOUSEBUTTON\_\-15} =  395, 
+{\bfseries MOUSEBUTTON\_\-16} =  396, 
+\par
+{\bfseries MOUSEBUTTON\_\-17} =  397, 
+{\bfseries MOUSEBUTTON\_\-18} =  398, 
+{\bfseries MOUSEBUTTON\_\-19} =  399, 
+{\bfseries MOUSEBUTTON\_\-20} =  400, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cafe382fb24be6c69c61306cbbabcfe951}{MOUSEBUTTON\_\-LAST} =  400, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cadc10438a6c168ceb32f8ec48147c1afe}{INPUTEVENT\_\-FIRST} =  401, 
+{\bfseries MOUSEABSOLUTEVERTICAL} =  402, 
+{\bfseries MOUSEABSOLUTEHORIZONTAL} =  403, 
+\par
+{\bfseries MOUSEVERTICAL} =  404, 
+{\bfseries MOUSEHORIZONTAL} =  405, 
+{\bfseries MOUSEWHEELVERTICAL} =  406, 
+{\bfseries MOUSEWHEELHORIZONTAL} =  407, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cae392d3b3b8fc8121444396b512af78b1}{MOUSE\_\-LAST} =  410, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca5ca5a4e1047107db16891a7b8e7c3e7f}{MOTION\_\-FIRST} =  420, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca4bb1bbeadf8a9ce608f145e84dfe2580}{MOTION\_\-LAST} =  429, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca47639df435a26add473a23149c4b03a4}{MULTITOUCH\_\-FIRST} =  440, 
+\par
+{\bfseries MULTITOUCH\_\-ACTION} =  441, 
+{\bfseries MULTITOUCH\_\-GESTURE} =  442, 
+{\bfseries MULTITOUCH\_\-PINCH} =  443, 
+{\bfseries MULTITOUCH\_\-STRETCH} =  444, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cadafb9bea21b5f011c41d7dc5d76a113a}{MULTITOUCH\_\-LAST} =  449, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca0ebb033c3b07eea557404351e66b5b20}{JOYSTICK\_\-FIRST} =  450, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca1ffe2801d9d442c9bc8984380c3f4c38}{JOYSTICKBUTTON} =  450, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7f8a70b6fb33213356b435d5983ab025}{JOYSTICKBUTTON\_\-FIRST} =  451, 
+\par
+{\bfseries JOYSTICKBUTTON\_\-1} =  451, 
+{\bfseries JOYSTICKBUTTON\_\-2} =  452, 
+{\bfseries JOYSTICKBUTTON\_\-3} =  453, 
+{\bfseries JOYSTICKBUTTON\_\-4} =  454, 
+\par
+{\bfseries JOYSTICKBUTTON\_\-5} =  455, 
+{\bfseries JOYSTICKBUTTON\_\-6} =  456, 
+{\bfseries JOYSTICKBUTTON\_\-7} =  457, 
+{\bfseries JOYSTICKBUTTON\_\-8} =  458, 
+\par
+{\bfseries JOYSTICKBUTTON\_\-9} =  459, 
+{\bfseries JOYSTICKBUTTON\_\-10} =  460, 
+{\bfseries JOYSTICKBUTTON\_\-11} =  461, 
+{\bfseries JOYSTICKBUTTON\_\-12} =  462, 
+\par
+{\bfseries JOYSTICKBUTTON\_\-13} =  463, 
+{\bfseries JOYSTICKBUTTON\_\-14} =  464, 
+{\bfseries JOYSTICKBUTTON\_\-15} =  465, 
+{\bfseries JOYSTICKBUTTON\_\-16} =  466, 
+\par
+{\bfseries JOYSTICKBUTTON\_\-17} =  467, 
+{\bfseries JOYSTICKBUTTON\_\-18} =  468, 
+{\bfseries JOYSTICKBUTTON\_\-19} =  469, 
+{\bfseries JOYSTICKBUTTON\_\-20} =  470, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7ea1e7f0467975d4d8165b3fd465c25d}{JOYSTICKBUTTON\_\-LAST} =  470, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca01cf4d6112f9a220857513c6cfb8284e}{JOYSTICKAXIS} =  480, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca5b234dac3606cc3158823d7162467efc}{JOYSTICKAXIS\_\-FIRST} =  481, 
+{\bfseries JOYSTICKAXIS\_\-1} =  481, 
+\par
+{\bfseries JOYSTICKAXIS\_\-2} =  482, 
+{\bfseries JOYSTICKAXIS\_\-3} =  483, 
+{\bfseries JOYSTICKAXIS\_\-4} =  484, 
+{\bfseries JOYSTICKAXIS\_\-5} =  485, 
+\par
+{\bfseries JOYSTICKAXIS\_\-6} =  486, 
+{\bfseries JOYSTICKAXIS\_\-7} =  487, 
+{\bfseries JOYSTICKAXIS\_\-8} =  488, 
+{\bfseries JOYSTICKAXIS\_\-9} =  489, 
+\par
+{\bfseries JOYSTICKAXIS\_\-10} =  490, 
+{\bfseries JOYSTICKAXIS\_\-11} =  491, 
+{\bfseries JOYSTICKAXIS\_\-12} =  492, 
+{\bfseries JOYSTICKAXIS\_\-13} =  493, 
+\par
+{\bfseries JOYSTICKAXIS\_\-14} =  494, 
+{\bfseries JOYSTICKAXIS\_\-15} =  495, 
+{\bfseries JOYSTICKAXIS\_\-16} =  496, 
+{\bfseries JOYSTICKAXIS\_\-17} =  497, 
+\par
+{\bfseries JOYSTICKAXIS\_\-18} =  498, 
+{\bfseries JOYSTICKAXIS\_\-19} =  499, 
+{\bfseries JOYSTICKAXIS\_\-20} =  500, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cab40cf570d496830a4e8fa2caa45f5ea1}{JOYSTICKAXIS\_\-LAST} =  500, 
+\par
+{\bfseries JOYSTICKBALL\_\-VERTICAL} =  501, 
+{\bfseries JOYSTICKBALL\_\-HORIZONTAL} =  502, 
+{\bfseries JOYSTICKHAT\_\-1\_\-VERTICAL} =  505, 
+{\bfseries JOYSTICKHAT\_\-1\_\-HORIZONTAL} =  506, 
+\par
+{\bfseries JOYSTICKHAT\_\-2\_\-VERTICAL} =  507, 
+{\bfseries JOYSTICKHAT\_\-2\_\-HORIZONTAL} =  508, 
+{\bfseries JOYSTICKHAT\_\-3\_\-VERTICAL} =  509, 
+{\bfseries JOYSTICKHAT\_\-3\_\-HORIZONTAL} =  510, 
+\par
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca57cc1b6b463688d23f8b08a80d8a4353}{JOYSTICK\_\-LAST} =  512, 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cabaac270b8aca6bcf32bf0f1e4d5158b9}{INPUTEVENT\_\-LAST} =  1024
+ \}
+\begin{DoxyCompactList}\small\item\em The InputCode enum defines all the posible types of inputs. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Usage page 0x0C}\par
+{\em These values are mapped from usage page 0x0C (USB consumer page). }\end{Indent}
+\begin{Indent}{\bf Walther keys}\par
+{\em These are values that Christian Walther added (for mac keyboard?). }\end{Indent}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \hyperlink{classMezzanine_1_1MetaCode_a83484f23e49db65d343d2ea75c9af66c}{GetCode} () const 
+\begin{DoxyCompactList}\small\item\em This Returns the Inputcode. \item\end{DoxyCompactList}\item 
+int \hyperlink{classMezzanine_1_1MetaCode_a650c4ae1fb698233516d978dd83dfca7}{GetMetaValue} () const 
+\begin{DoxyCompactList}\small\item\em This Returns the MetaValue. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0}{MetaCode::ButtonState} \hyperlink{classMezzanine_1_1MetaCode_a6b106f781c0f7be4442cf45c7696d339}{GetMetaValueAsButtonState} () const 
+\begin{DoxyCompactList}\small\item\em Get the MetaValue as a \hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0}{MetaCode::ButtonState}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ad}{MetaCode::DirectionalMotionState} \hyperlink{classMezzanine_1_1MetaCode_a03033262ac8632a8a7567f7ca0dc9975}{GetMetaValueAsDirectionalMotionState} () const 
+\begin{DoxyCompactList}\small\item\em Get the MetaValue as a \hyperlink{classMezzanine_1_1MetaCode}{MetaCode}:: \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_a330ca2c2cb69c7d0134a842753f6a397}{IsAltKey} () const 
+\begin{DoxyCompactList}\small\item\em Is this a left or right Alt key. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_af0328602a2dbcc082498f9049b8fd9c5}{IsCtrlKey} () const 
+\begin{DoxyCompactList}\small\item\em Is this a left or right Ctrl key. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_ab8d13132e795f34367ba3896bf05b5c2}{IsJoyStickEvent} () const 
+\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} Represent a state of a Joystick Event. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_aedca54cabda99b18c4186ceb3bfa0944}{IsKeyboardButton} () const 
+\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} Represent a state of a keyboard key. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_a4277faacd0e1633df7f30cbf7b8f5dd1}{IsMouseButton} () const 
+\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} Represent a state of a Mouse button. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_a88c99813475a4968c498da57ee1304b2}{IsOtherInputEvent} () const 
+\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} Represent some other (non-\/keyboard and non-\/mouse button) \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_a30c79f6b4fa991a6fa42226f4c255fe9}{IsPollable} () const 
+\begin{DoxyCompactList}\small\item\em Is this metacode a pollable event. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_a3af3c353b814482fa2c6c68238ced612}{IsShiftKey} () const 
+\begin{DoxyCompactList}\small\item\em Is this a left or right Shift key. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_a85c370eb28387758e4498d2da656915a}{IsSuperKey} () const 
+\begin{DoxyCompactList}\small\item\em Is this a left or right Super key (Windows logo key, Apple logo key, etc...) \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1MetaCode_abe2e7fa16bab17df5b1794c26bf191be}{MetaCode} (const \hyperlink{namespaceMezzanine_ae8d4c0ab783af89a250b0225b75753e5}{RawEvent} \&RawEvent\_\-)
+\begin{DoxyCompactList}\small\item\em The Heavy Lifting Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1MetaCode_a2d32eb008845b54c70b510450259404f}{MetaCode} (const int \&MetaValue\_\-, const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code\_\-)
+\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1MetaCode_a94dca88ec5dd3fc0c9c860bfa875a983}{MetaCode} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1MetaCode_a9766ecefce7d3e8a8e379c8e19fcf414}{operator==} (const \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} \&other) const 
+\begin{DoxyCompactList}\small\item\em Compares two MetaCodes for equality. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1MetaCode_a8c5fa366af24a273ea945aaa8cc7050c}{SetCode} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code\_\-)
+\begin{DoxyCompactList}\small\item\em This Sets The InputCode. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1MetaCode_aeec5b1c0411d1f7851945f4da69c28e2}{SetCode} (int Code\_\-)
+\begin{DoxyCompactList}\small\item\em This Sets The InputCode using an int. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1MetaCode_a6a98dad161c7e45a3f9154b2864db47b}{SetMetaValue} (const int \&MetaValue\_\-)
+\begin{DoxyCompactList}\small\item\em This Sets The MetaValue. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \hyperlink{classMezzanine_1_1MetaCode_ab8b87a3816659517a8307d510189f8f7}{GetJoystickAxisCode} (short unsigned int AxisNumber)
+\begin{DoxyCompactList}\small\item\em Accepts a int and returns the InputCode for the Corresponding Joystick Axis. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \hyperlink{classMezzanine_1_1MetaCode_aedfc7351865f96d3d354fcbfeb4e1fc1}{GetJoystickButtonCode} (short unsigned int ButtonNumber)
+\begin{DoxyCompactList}\small\item\em Accepts a int and returns the InputCode for the Corresponding Joystick button. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \hyperlink{classMezzanine_1_1MetaCode_af818525aa7815c16a7e82f7e432a321e}{GetMouseButtonCode} (short unsigned int ButtonNumber)
+\begin{DoxyCompactList}\small\item\em Accepts a int and returns the InputCode for the Corresponding Mouse button. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This Determines the kind of user input. A Metacode contains the data that is passed around with an input event. It stores one type of button press or analog representation (Mouse move, joystick tilt, wheel spin, etc...). If it is an analog representation it will also store how far or how it is pushed, pressed, rotated, or whatever. Several of these can be used in combination to represent button combinations, or complex input combinations (like portions of fighter game moves). 
+
+Definition at line 88 of file metacode.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!ButtonState@{ButtonState}}
+\index{ButtonState@{ButtonState}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{ButtonState}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::MetaCode::ButtonState}}\hfill}
+\label{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0}
+
+
+An Optional listing of value that can be used in a metacode to represent the information of a button press. 
+
+This is optional set of values that can make working with buttons easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{BUTTON\_\-LIFTING@{BUTTON\_\-LIFTING}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!BUTTON\_\-LIFTING@{BUTTON\_\-LIFTING}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0a07ca860b5b6b505052022d842f155080}{
+BUTTON\_\-LIFTING}
+\label{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0a07ca860b5b6b505052022d842f155080}
+}]Used when the key stops being pressed. \index{BUTTON\_\-UP@{BUTTON\_\-UP}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!BUTTON\_\-UP@{BUTTON\_\-UP}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0a100e16dc4d4e866189e42ab81398f6e9}{
+BUTTON\_\-UP}
+\label{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0a100e16dc4d4e866189e42ab81398f6e9}
+}]The default state of a key. \index{BUTTON\_\-PRESSING@{BUTTON\_\-PRESSING}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!BUTTON\_\-PRESSING@{BUTTON\_\-PRESSING}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0a9150dbdf88f3013383a72366904cb749}{
+BUTTON\_\-PRESSING}
+\label{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0a9150dbdf88f3013383a72366904cb749}
+}]This is used at the exact point in time that a key goes from unpressed to pressed. \index{BUTTON\_\-DOWN@{BUTTON\_\-DOWN}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!BUTTON\_\-DOWN@{BUTTON\_\-DOWN}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0af66afc958f5eb62b8b836897d062b62b}{
+BUTTON\_\-DOWN}
+\label{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0af66afc958f5eb62b8b836897d062b62b}
+}]This is used the entire time a key is down. \end{description}
+\end{Desc}
+
+
+
+Definition at line 552 of file metacode.h.
+
+\hypertarget{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ad}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!DirectionalMotionState@{DirectionalMotionState}}
+\index{DirectionalMotionState@{DirectionalMotionState}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{DirectionalMotionState}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::MetaCode::DirectionalMotionState}}\hfill}
+\label{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ad}
+
+
+An Optional listing of values that can be used in a metacode Indicate spin, digital or binary travel in a directionl. 
+
+This is optional set of values that can make working with the MouseWheel, Joystick hats and other items that can be moved along 1 axis in two dirctions easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{DIRECTIONALMOTION\_\-UPLEFT@{DIRECTIONALMOTION\_\-UPLEFT}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!DIRECTIONALMOTION\_\-UPLEFT@{DIRECTIONALMOTION\_\-UPLEFT}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104adaab0a7592ad86de4ba170afc0d3c99ead}{
+DIRECTIONALMOTION\_\-UPLEFT}
+\label{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104adaab0a7592ad86de4ba170afc0d3c99ead}
+}]Optionally Used when the device is spun/moved up or to the left as a MetaValue \index{DIRECTIONALMOTION\_\-UNCHANGED@{DIRECTIONALMOTION\_\-UNCHANGED}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!DIRECTIONALMOTION\_\-UNCHANGED@{DIRECTIONALMOTION\_\-UNCHANGED}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104adadd21933bb9cb8f213ed01ff59dd04f37}{
+DIRECTIONALMOTION\_\-UNCHANGED}
+\label{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104adadd21933bb9cb8f213ed01ff59dd04f37}
+}]This really isn't used in normal situations, but if a mousewheel or joyhat event is ever needed when the device is unmoved \index{DIRECTIONALMOTION\_\-DOWNRIGHT@{DIRECTIONALMOTION\_\-DOWNRIGHT}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!DIRECTIONALMOTION\_\-DOWNRIGHT@{DIRECTIONALMOTION\_\-DOWNRIGHT}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ada11a3bc63626fe380e329ea5983876753}{
+DIRECTIONALMOTION\_\-DOWNRIGHT}
+\label{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ada11a3bc63626fe380e329ea5983876753}
+}]Optionally Used when the MouseWheel/Joyhat is spun Down/Right as a Meta Code \end{description}
+\end{Desc}
+
+
+
+Definition at line 563 of file metacode.h.
+
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!InputCode@{InputCode}}
+\index{InputCode@{InputCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{InputCode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::MetaCode::InputCode}}\hfill}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}
+
+
+The InputCode enum defines all the posible types of inputs. 
+
+It has one entry for each key on a most keyboards. Then it has an entry for most mouse and joystick input methods. \begin{DoxyWarning}{Warning}
+Once upon a time, this partially matched with ascii. It doesn't anymore. 
+\end{DoxyWarning}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{KEY\_\-FIRST@{KEY\_\-FIRST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-FIRST@{KEY\_\-FIRST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca1ccda5063e3d1e72a9eacd70b030342e}{
+KEY\_\-FIRST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca1ccda5063e3d1e72a9eacd70b030342e}
+}]KEY\_\-FIRST Same Value as KEY\_\-UNKOWN, is Guaranteed to be the lowest value of any key. \index{KEY\_\-UNKNOWN@{KEY\_\-UNKNOWN}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-UNKNOWN@{KEY\_\-UNKNOWN}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca9c3714a0de55dca42c122e5cbced974f}{
+KEY\_\-UNKNOWN}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca9c3714a0de55dca42c122e5cbced974f}
+}]KEY\_\-UNKNOWN This is used for unsupported keys or keys that are not in Unicode. \index{KEY\_\-BACKSLASH@{KEY\_\-BACKSLASH}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-BACKSLASH@{KEY\_\-BACKSLASH}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caf280c1704fc6955d872b8ff7f91693c4}{
+KEY\_\-BACKSLASH}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caf280c1704fc6955d872b8ff7f91693c4}
+}]Located at the lower left of the return key on ISO keyboards and at the right end of the QWERTY row on ANSI keyboards. Produces REVERSE SOLIDUS (backslash) and VERTICAL LINE in a US layout, REVERSE SOLIDUS and VERTICAL LINE in a UK Mac layout, NUMBER SIGN and TILDE in a UK Windows layout, DOLLAR SIGN and POUND SIGN in a Swiss German layout, NUMBER SIGN and APOSTROPHE in a German layout, GRAVE ACCENT and POUND SIGN in a French Mac layout, and ASTERISK and MICRO SIGN in a French Windows layout. \index{KEY\_\-NONUSHASH@{KEY\_\-NONUSHASH}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-NONUSHASH@{KEY\_\-NONUSHASH}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cad905793c1a50f81dc4d779df8eba2964}{
+KEY\_\-NONUSHASH}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cad905793c1a50f81dc4d779df8eba2964}
+}]ISO USB keyboards actually use this code instead of 49 for the same key, but all OSes I've seen treat the two codes identically. So, as an implementor, unless your keyboard generates both of those codes and your OS treats them differently, you should generate KEY\_\-BACKSLASH instead of this code. As a user, you should not rely on this code because SDL will never generate it with most (all?) keyboards. \index{KEY\_\-GRAVE@{KEY\_\-GRAVE}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-GRAVE@{KEY\_\-GRAVE}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cac09a9343ad1a7c1833450656a354b937}{
+KEY\_\-GRAVE}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cac09a9343ad1a7c1833450656a354b937}
+}]Located in the top left corner (on both ANSI and ISO keyboards). Produces GRAVE ACCENT and TILDE in a US Windows layout and in US and UK Mac layouts on ANSI keyboards, GRAVE ACCENT and NOT SIGN in a UK Windows layout, SECTION SIGN and PLUS-\/MINUS SIGN in US and UK Mac layouts on ISO keyboards, SECTION SIGN and DEGREE SIGN in a Swiss German layout (Mac: only on ISO keyboards), CIRCUMFLEX ACCENT and DEGREE SIGN in a German layout (Mac: only on ISO keyboards), SUPERSCRIPT TWO and TILDE in a French Windows layout, COMMERCIAL AT and NUMBER SIGN in a French Mac layout on ISO keyboards, and LESS-\/THAN SIGN and GREATER-\/THAN SIGN in a Swiss German, German, or French Mac layout on ANSI keyboards. \index{KEY\_\-INSERT@{KEY\_\-INSERT}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-INSERT@{KEY\_\-INSERT}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca68b4c9fab606ba7faec021605586da3c}{
+KEY\_\-INSERT}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca68b4c9fab606ba7faec021605586da3c}
+}]insert on PC, help on some Mac keyboards (but does send code 73, not 117) \index{KEY\_\-NUMLOCKCLEAR@{KEY\_\-NUMLOCKCLEAR}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-NUMLOCKCLEAR@{KEY\_\-NUMLOCKCLEAR}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7539840a607d5aa419425f2038170212}{
+KEY\_\-NUMLOCKCLEAR}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7539840a607d5aa419425f2038170212}
+}]num lock on PC, clear on Mac keyboards \index{KEY\_\-NONUSBACKSLASH@{KEY\_\-NONUSBACKSLASH}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-NONUSBACKSLASH@{KEY\_\-NONUSBACKSLASH}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca6df6ef2f4f87cd863635313a7c73ded2}{
+KEY\_\-NONUSBACKSLASH}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca6df6ef2f4f87cd863635313a7c73ded2}
+}]This is the additional key that ISO keyboards have over ANSI ones, located between left shift and Y. Produces GRAVE ACCENT and TILDE in a US or UK Mac layout, REVERSE SOLIDUS (backslash) and VERTICAL LINE in a US or UK Windows layout, and LESS-\/THAN SIGN and GREATER-\/THAN SIGN in a Swiss German, German, or French layout. \index{KEY\_\-APPLICATION@{KEY\_\-APPLICATION}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-APPLICATION@{KEY\_\-APPLICATION}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cadf18e2b561df830d520652a79271f677}{
+KEY\_\-APPLICATION}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cadf18e2b561df830d520652a79271f677}
+}]windows contextual menu, compose \index{KEY\_\-POWER@{KEY\_\-POWER}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-POWER@{KEY\_\-POWER}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cabd172c9969297155e90ffc5f59f2d44a}{
+KEY\_\-POWER}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cabd172c9969297155e90ffc5f59f2d44a}
+}]The USB document says this is a status flag, not a physical key -\/ but some Mac keyboards do have a power key. \index{KEY\_\-AGAIN@{KEY\_\-AGAIN}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-AGAIN@{KEY\_\-AGAIN}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca47b284cca42343cfa4a022a696682900}{
+KEY\_\-AGAIN}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca47b284cca42343cfa4a022a696682900}
+}]redo \index{KEY\_\-INTERNATIONAL1@{KEY\_\-INTERNATIONAL1}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-INTERNATIONAL1@{KEY\_\-INTERNATIONAL1}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca460281c06ac23cd946038278895f077f}{
+KEY\_\-INTERNATIONAL1}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca460281c06ac23cd946038278895f077f}
+}]used on Asian keyboards, see footnotes in USB doc \index{KEY\_\-INTERNATIONAL3@{KEY\_\-INTERNATIONAL3}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-INTERNATIONAL3@{KEY\_\-INTERNATIONAL3}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cac78818ced3df26bcfc297c36174551bc}{
+KEY\_\-INTERNATIONAL3}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cac78818ced3df26bcfc297c36174551bc}
+}]Yen \index{KEY\_\-LANG1@{KEY\_\-LANG1}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LANG1@{KEY\_\-LANG1}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca8ae55af750172568c66d8928d443c9a5}{
+KEY\_\-LANG1}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca8ae55af750172568c66d8928d443c9a5}
+}]Hangul/English toggle \index{KEY\_\-LANG2@{KEY\_\-LANG2}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LANG2@{KEY\_\-LANG2}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca56c52b32d2e23820f381c4a8e45407fe}{
+KEY\_\-LANG2}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca56c52b32d2e23820f381c4a8e45407fe}
+}]Hanja conversion \index{KEY\_\-LANG3@{KEY\_\-LANG3}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LANG3@{KEY\_\-LANG3}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cad5d372c19227a6b19ca1a2d86a4cdda6}{
+KEY\_\-LANG3}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cad5d372c19227a6b19ca1a2d86a4cdda6}
+}]Katakana \index{KEY\_\-LANG4@{KEY\_\-LANG4}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LANG4@{KEY\_\-LANG4}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca9ab5afd151e5819d606f715db47580d1}{
+KEY\_\-LANG4}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca9ab5afd151e5819d606f715db47580d1}
+}]Hiragana \index{KEY\_\-LANG5@{KEY\_\-LANG5}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LANG5@{KEY\_\-LANG5}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca5d3155958167fb5b036786f964087d7d}{
+KEY\_\-LANG5}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca5d3155958167fb5b036786f964087d7d}
+}]Zenkaku/Hankaku \index{KEY\_\-LANG6@{KEY\_\-LANG6}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LANG6@{KEY\_\-LANG6}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca3bb4ebd085e21731083f843a91909382}{
+KEY\_\-LANG6}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca3bb4ebd085e21731083f843a91909382}
+}]reserved \index{KEY\_\-LANG7@{KEY\_\-LANG7}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LANG7@{KEY\_\-LANG7}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca59abbeb9fc2e7ac0e7ebc3b10b0c9f07}{
+KEY\_\-LANG7}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca59abbeb9fc2e7ac0e7ebc3b10b0c9f07}
+}]reserved \index{KEY\_\-LANG8@{KEY\_\-LANG8}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LANG8@{KEY\_\-LANG8}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7e6061d23b720314f27b6606252d32df}{
+KEY\_\-LANG8}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7e6061d23b720314f27b6606252d32df}
+}]reserved \index{KEY\_\-LANG9@{KEY\_\-LANG9}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LANG9@{KEY\_\-LANG9}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cac8de0b01f0f17a1fac83b913494056cf}{
+KEY\_\-LANG9}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cac8de0b01f0f17a1fac83b913494056cf}
+}]reserved \index{KEY\_\-ALTERASE@{KEY\_\-ALTERASE}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-ALTERASE@{KEY\_\-ALTERASE}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caff5cd2f8773410b53df6d0ddf47758e3}{
+KEY\_\-ALTERASE}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caff5cd2f8773410b53df6d0ddf47758e3}
+}]Erase-\/Eaze \index{KEY\_\-LALT@{KEY\_\-LALT}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LALT@{KEY\_\-LALT}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca0076a5c334ab65f0d387ce1c40f54942}{
+KEY\_\-LALT}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca0076a5c334ab65f0d387ce1c40f54942}
+}]alt, option \index{KEY\_\-LSUPER@{KEY\_\-LSUPER}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LSUPER@{KEY\_\-LSUPER}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca53c3a88dbf5dc88491bc2f0773a547f7}{
+KEY\_\-LSUPER}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca53c3a88dbf5dc88491bc2f0773a547f7}
+}]windows, command (apple), meta \index{KEY\_\-RALT@{KEY\_\-RALT}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-RALT@{KEY\_\-RALT}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca9e02ef0a2eaff8b2a5386fc6ecae647a}{
+KEY\_\-RALT}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca9e02ef0a2eaff8b2a5386fc6ecae647a}
+}]alt gr, option \index{KEY\_\-RSUPER@{KEY\_\-RSUPER}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-RSUPER@{KEY\_\-RSUPER}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca01e09d8de434e3fa0156286cd9937d5f}{
+KEY\_\-RSUPER}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca01e09d8de434e3fa0156286cd9937d5f}
+}]windows, command (apple), meta \index{KEY\_\-MODE@{KEY\_\-MODE}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-MODE@{KEY\_\-MODE}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca2f97b1036c201d417b8d7ba4a6ca9aea}{
+KEY\_\-MODE}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca2f97b1036c201d417b8d7ba4a6ca9aea}
+}]I'm not sure if this is really not covered by any of the above, but since there's a special KMOD\_\-MODE for it I'm adding it here \index{KEY\_\-DISPLAYSWITCH@{KEY\_\-DISPLAYSWITCH}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-DISPLAYSWITCH@{KEY\_\-DISPLAYSWITCH}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caaa1d5d0200c867dae3742208a71b54ed}{
+KEY\_\-DISPLAYSWITCH}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caaa1d5d0200c867dae3742208a71b54ed}
+}]display mirroring/dual display switch, video mode switch \index{KEY\_\-LAST@{KEY\_\-LAST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!KEY\_\-LAST@{KEY\_\-LAST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca949efdf6fee761bb7ca41fbf37846d0a}{
+KEY\_\-LAST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca949efdf6fee761bb7ca41fbf37846d0a}
+}]The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that. \index{MOUSE\_\-FIRST@{MOUSE\_\-FIRST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOUSE\_\-FIRST@{MOUSE\_\-FIRST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caa295a21932423dd5fc830060b73320a3}{
+MOUSE\_\-FIRST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563caa295a21932423dd5fc830060b73320a3}
+}]The First Mouse event, all Mouse Event values will be more than this. \index{MOUSEBUTTON@{MOUSEBUTTON}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOUSEBUTTON@{MOUSEBUTTON}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca37f08a3b97ecd62bb35b9f35d5d05d8e}{
+MOUSEBUTTON}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca37f08a3b97ecd62bb35b9f35d5d05d8e}
+}]This is the generic Some mouse button code. You can add the number of the mouse button to this and you will get the approriate code. Example (MOUSEBUTTON\_\-1 == MOUSEBUTTON + 1) \index{MOUSEBUTTON\_\-FIRST@{MOUSEBUTTON\_\-FIRST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOUSEBUTTON\_\-FIRST@{MOUSEBUTTON\_\-FIRST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca6e16bc078f673e27b2dd4fbbaf81eb49}{
+MOUSEBUTTON\_\-FIRST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca6e16bc078f673e27b2dd4fbbaf81eb49}
+}]This is the lowest mouse button value, all mice values will be larger of equal to this. \index{MOUSEBUTTON\_\-1@{MOUSEBUTTON\_\-1}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOUSEBUTTON\_\-1@{MOUSEBUTTON\_\-1}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cabb614dae4717d95dcdd3a6b7f22aa192}{
+MOUSEBUTTON\_\-1}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cabb614dae4717d95dcdd3a6b7f22aa192}
+}]Most commonly left click. \index{MOUSEBUTTON\_\-2@{MOUSEBUTTON\_\-2}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOUSEBUTTON\_\-2@{MOUSEBUTTON\_\-2}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca20e84264ed0bfbf984d7e165b713743c}{
+MOUSEBUTTON\_\-2}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca20e84264ed0bfbf984d7e165b713743c}
+}]Most Commonly Right click. \index{MOUSEBUTTON\_\-3@{MOUSEBUTTON\_\-3}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOUSEBUTTON\_\-3@{MOUSEBUTTON\_\-3}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca8c9e9517a74f1ba2cb21f9b6ef11c0a3}{
+MOUSEBUTTON\_\-3}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca8c9e9517a74f1ba2cb21f9b6ef11c0a3}
+}]Most commonly middle click. \index{MOUSEBUTTON\_\-LAST@{MOUSEBUTTON\_\-LAST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOUSEBUTTON\_\-LAST@{MOUSEBUTTON\_\-LAST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cafe382fb24be6c69c61306cbbabcfe951}{
+MOUSEBUTTON\_\-LAST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cafe382fb24be6c69c61306cbbabcfe951}
+}]The Last mouse button event, all mouse button event will be lower or equal to this. \index{INPUTEVENT\_\-FIRST@{INPUTEVENT\_\-FIRST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!INPUTEVENT\_\-FIRST@{INPUTEVENT\_\-FIRST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cadc10438a6c168ceb32f8ec48147c1afe}{
+INPUTEVENT\_\-FIRST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cadc10438a6c168ceb32f8ec48147c1afe}
+}]The First non-\/button event, all Mouse and keyboard button values will be Less than this. \index{MOUSE\_\-LAST@{MOUSE\_\-LAST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOUSE\_\-LAST@{MOUSE\_\-LAST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cae392d3b3b8fc8121444396b512af78b1}{
+MOUSE\_\-LAST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cae392d3b3b8fc8121444396b512af78b1}
+}]The last MouseEvent Code, all Mouse events will be less than this. \index{MOTION\_\-FIRST@{MOTION\_\-FIRST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOTION\_\-FIRST@{MOTION\_\-FIRST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca5ca5a4e1047107db16891a7b8e7c3e7f}{
+MOTION\_\-FIRST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca5ca5a4e1047107db16891a7b8e7c3e7f}
+}]The first Motion event. \index{MOTION\_\-LAST@{MOTION\_\-LAST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MOTION\_\-LAST@{MOTION\_\-LAST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca4bb1bbeadf8a9ce608f145e84dfe2580}{
+MOTION\_\-LAST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca4bb1bbeadf8a9ce608f145e84dfe2580}
+}]The last Motion event. \index{MULTITOUCH\_\-FIRST@{MULTITOUCH\_\-FIRST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MULTITOUCH\_\-FIRST@{MULTITOUCH\_\-FIRST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca47639df435a26add473a23149c4b03a4}{
+MULTITOUCH\_\-FIRST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca47639df435a26add473a23149c4b03a4}
+}]The first Multi Touch event. \index{MULTITOUCH\_\-LAST@{MULTITOUCH\_\-LAST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MULTITOUCH\_\-LAST@{MULTITOUCH\_\-LAST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cadafb9bea21b5f011c41d7dc5d76a113a}{
+MULTITOUCH\_\-LAST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cadafb9bea21b5f011c41d7dc5d76a113a}
+}]The last Multi Touch event. \index{JOYSTICK\_\-FIRST@{JOYSTICK\_\-FIRST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!JOYSTICK\_\-FIRST@{JOYSTICK\_\-FIRST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca0ebb033c3b07eea557404351e66b5b20}{
+JOYSTICK\_\-FIRST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca0ebb033c3b07eea557404351e66b5b20}
+}]The First JoyStick event, all Joystick Event values will be more than this. \index{JOYSTICKBUTTON@{JOYSTICKBUTTON}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!JOYSTICKBUTTON@{JOYSTICKBUTTON}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca1ffe2801d9d442c9bc8984380c3f4c38}{
+JOYSTICKBUTTON}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca1ffe2801d9d442c9bc8984380c3f4c38}
+}]This is the generic Some stickbutton button code. You can add the number of the jpystick button to this and you will get the approriate code. Example (JOYSTICKBUTTON\_\-1 == JOYSTICKBUTTON + 1) \index{JOYSTICKBUTTON\_\-FIRST@{JOYSTICKBUTTON\_\-FIRST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!JOYSTICKBUTTON\_\-FIRST@{JOYSTICKBUTTON\_\-FIRST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7f8a70b6fb33213356b435d5983ab025}{
+JOYSTICKBUTTON\_\-FIRST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7f8a70b6fb33213356b435d5983ab025}
+}]This is the lowest Joystick button value, all joystickbutton values will be larger of equal to this. \index{JOYSTICKBUTTON\_\-LAST@{JOYSTICKBUTTON\_\-LAST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!JOYSTICKBUTTON\_\-LAST@{JOYSTICKBUTTON\_\-LAST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7ea1e7f0467975d4d8165b3fd465c25d}{
+JOYSTICKBUTTON\_\-LAST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca7ea1e7f0467975d4d8165b3fd465c25d}
+}]The Last Joystick button event, all joystick button event will be lower or equal to this. \index{JOYSTICKAXIS@{JOYSTICKAXIS}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!JOYSTICKAXIS@{JOYSTICKAXIS}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca01cf4d6112f9a220857513c6cfb8284e}{
+JOYSTICKAXIS}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca01cf4d6112f9a220857513c6cfb8284e}
+}]This is the generic joystick axis code. You can add the number of the joystick axis to this and you will get the approriate code. Example (JOYSTICKAXIS\_\-1 == JOYSTICKAXIS + 1) \index{JOYSTICKAXIS\_\-FIRST@{JOYSTICKAXIS\_\-FIRST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!JOYSTICKAXIS\_\-FIRST@{JOYSTICKAXIS\_\-FIRST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca5b234dac3606cc3158823d7162467efc}{
+JOYSTICKAXIS\_\-FIRST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca5b234dac3606cc3158823d7162467efc}
+}]This is the lowest Joystick axis value, all jpystick values will be larger of equal to this. \index{JOYSTICKAXIS\_\-LAST@{JOYSTICKAXIS\_\-LAST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!JOYSTICKAXIS\_\-LAST@{JOYSTICKAXIS\_\-LAST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cab40cf570d496830a4e8fa2caa45f5ea1}{
+JOYSTICKAXIS\_\-LAST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cab40cf570d496830a4e8fa2caa45f5ea1}
+}]The Last Joystick axis event, all joystick axis event will be lower or equal to this. \index{JOYSTICK\_\-LAST@{JOYSTICK\_\-LAST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!JOYSTICK\_\-LAST@{JOYSTICK\_\-LAST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca57cc1b6b463688d23f8b08a80d8a4353}{
+JOYSTICK\_\-LAST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca57cc1b6b463688d23f8b08a80d8a4353}
+}]The last JoyStick Input Code, all JoyStick events will be less than this. \index{INPUTEVENT\_\-LAST@{INPUTEVENT\_\-LAST}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!INPUTEVENT\_\-LAST@{INPUTEVENT\_\-LAST}}\item[{\em 
+\hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cabaac270b8aca6bcf32bf0f1e4d5158b9}{
+INPUTEVENT\_\-LAST}
+\label{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563cabaac270b8aca6bcf32bf0f1e4d5158b9}
+}]The last Input Code, all event codes will be less than this. \end{description}
+\end{Desc}
+
+
+
+Definition at line 97 of file metacode.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1MetaCode_a94dca88ec5dd3fc0c9c860bfa875a983}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MetaCode@{MetaCode}}
+\index{MetaCode@{MetaCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::MetaCode::MetaCode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1MetaCode_a94dca88ec5dd3fc0c9c860bfa875a983}
+
+
+Default constructor. 
+
+This sets nothing on the \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} and leaves it completely unassigned. Accessing a data member could cause problems 
+
+Definition at line 71 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a2d32eb008845b54c70b510450259404f}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MetaCode@{MetaCode}}
+\index{MetaCode@{MetaCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::MetaCode::MetaCode (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{MetaValue\_\-, }
+\item[{const {\bf MetaCode::InputCode} \&}]{Code\_\-}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1MetaCode_a2d32eb008845b54c70b510450259404f}
+
+
+Descriptive Constructor. 
+
+This sets all values in the \hyperlink{classMezzanine_1_1MetaCode}{MetaCode}, leaving it in completely ready state. This is the ideal constructor for simulating user input. 
+\begin{DoxyParams}{Parameters}
+{\em MetaValue\_\-} & How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed. \\
+\hline
+{\em Code\_\-} & Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 74 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_abe2e7fa16bab17df5b1794c26bf191be}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!MetaCode@{MetaCode}}
+\index{MetaCode@{MetaCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::MetaCode::MetaCode (
+\begin{DoxyParamCaption}
+\item[{const {\bf RawEvent} \&}]{RawEvent\_\-}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1MetaCode_abe2e7fa16bab17df5b1794c26bf191be}
+
+
+The Heavy Lifting Constructor. 
+
+This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \par
+ This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the User input subsystem, this could be all RawEvents, or even just some RawEvents. 
+\begin{DoxyExceptions}{Exceptions}
+{\em RawEvent which creates Multiple Metacodes inserted into Metacode} & -\/ Thrown when passed a certain (system dependant) incorrect type of RawEvent. \\
+\hline
+{\em Unknown User Input Inserted into Metacode} & -\/ Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyWarning}{Warning}
+We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In that event you would have to recompile your application to get it working with a new version of \hyperlink{namespaceMezzanine}{Mezzanine}. Using this function in Game code removes any gaurantees of Game Code Portability. 
+\end{DoxyWarning}
+
+
+Definition at line 79 of file metacode.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1MetaCode_a83484f23e49db65d343d2ea75c9af66c}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!GetCode@{GetCode}}
+\index{GetCode@{GetCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{GetCode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::InputCode} Mezzanine::MetaCode::GetCode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a83484f23e49db65d343d2ea75c9af66c}
+
+
+This Returns the Inputcode. 
+
+This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with \hyperlink{classMezzanine_1_1MetaCode_a8c5fa366af24a273ea945aaa8cc7050c}{SetCode} . \begin{DoxyReturn}{Returns}
+This returns the input code for this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_ab8b87a3816659517a8307d510189f8f7}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!GetJoystickAxisCode@{GetJoystickAxisCode}}
+\index{GetJoystickAxisCode@{GetJoystickAxisCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{GetJoystickAxisCode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::InputCode} Mezzanine::MetaCode::GetJoystickAxisCode (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{AxisNumber}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MetaCode_ab8b87a3816659517a8307d510189f8f7}
+
+
+Accepts a int and returns the InputCode for the Corresponding Joystick Axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em AxisNumber} & The number of the button you want the code for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+When passed 0 this returns \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca01cf4d6112f9a220857513c6cfb8284e}{MetaCode::JOYSTICKAXIS}, otherwise this returns MetaCode::JOYSTICKAXIS\_\-X where X is the number that was passed in 
+\end{DoxyReturn}
+
+
+Definition at line 227 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_aedfc7351865f96d3d354fcbfeb4e1fc1}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!GetJoystickButtonCode@{GetJoystickButtonCode}}
+\index{GetJoystickButtonCode@{GetJoystickButtonCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{GetJoystickButtonCode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::InputCode} Mezzanine::MetaCode::GetJoystickButtonCode (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{ButtonNumber}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MetaCode_aedfc7351865f96d3d354fcbfeb4e1fc1}
+
+
+Accepts a int and returns the InputCode for the Corresponding Joystick button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ButtonerNumber} & The number of the button you want the code for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+When passed 0 this returns \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca1ffe2801d9d442c9bc8984380c3f4c38}{MetaCode::JOYSTICKBUTTON}, otherwise this returns MetaCode::JOYSTICKBUTTON\_\-X where X is the number that was passed in 
+\end{DoxyReturn}
+
+
+Definition at line 219 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a650c4ae1fb698233516d978dd83dfca7}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!GetMetaValue@{GetMetaValue}}
+\index{GetMetaValue@{GetMetaValue}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{GetMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}int Mezzanine::MetaCode::GetMetaValue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a650c4ae1fb698233516d978dd83dfca7}
+
+
+This Returns the MetaValue. 
+
+The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. This value can be set with \hyperlink{classMezzanine_1_1MetaCode_a6a98dad161c7e45a3f9154b2864db47b}{SetMetaValue} . \begin{DoxyReturn}{Returns}
+This returns the input code for this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode}. This could return any number inside a range (depending on hardware and configuration) to represent how tilted a joystick or how much a mouse moved. 
+\end{DoxyReturn}
+
+
+Definition at line 186 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a6b106f781c0f7be4442cf45c7696d339}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!GetMetaValueAsButtonState@{GetMetaValueAsButtonState}}
+\index{GetMetaValueAsButtonState@{GetMetaValueAsButtonState}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{GetMetaValueAsButtonState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::ButtonState} Mezzanine::MetaCode::GetMetaValueAsButtonState (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a6b106f781c0f7be4442cf45c7696d339}
+
+
+Get the MetaValue as a \hyperlink{classMezzanine_1_1MetaCode_a65b6d86ef846369bd8f3fd944a455fd0}{MetaCode::ButtonState}. 
+
+\begin{DoxyReturn}{Returns}
+This returns the appropriate button state or throws an \hyperlink{classMezzanine_1_1Exception}{Mezzanine::Exception} if an invalid button state is stored in the MetaValue 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em This} & throws a \hyperlink{classMezzanine_1_1Exception}{Mezzanine::Exception} if the MetaValue is less than BUTTON\_\-LIFTING or greater than BUTTON\_\-DOWN. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 164 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a03033262ac8632a8a7567f7ca0dc9975}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!GetMetaValueAsDirectionalMotionState@{GetMetaValueAsDirectionalMotionState}}
+\index{GetMetaValueAsDirectionalMotionState@{GetMetaValueAsDirectionalMotionState}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{GetMetaValueAsDirectionalMotionState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::DirectionalMotionState} Mezzanine::MetaCode::GetMetaValueAsDirectionalMotionState (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a03033262ac8632a8a7567f7ca0dc9975}
+
+
+Get the MetaValue as a \hyperlink{classMezzanine_1_1MetaCode}{MetaCode}:: 
+
+\begin{DoxyReturn}{Returns}
+This returns the appropriate MouseWheel state or throws an \hyperlink{classMezzanine_1_1Exception}{Mezzanine::Exception} if an invalid state is stored in the MetaValue 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em This} & throws a \hyperlink{classMezzanine_1_1Exception}{Mezzanine::Exception} if the MetaValue is less than MOUSEWHEEL\_\-DOWN or greater than MOUSEWHEEL\_\-UP. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 174 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_af818525aa7815c16a7e82f7e432a321e}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!GetMouseButtonCode@{GetMouseButtonCode}}
+\index{GetMouseButtonCode@{GetMouseButtonCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{GetMouseButtonCode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::InputCode} Mezzanine::MetaCode::GetMouseButtonCode (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{ButtonNumber}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MetaCode_af818525aa7815c16a7e82f7e432a321e}
+
+
+Accepts a int and returns the InputCode for the Corresponding Mouse button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ButtonerNumber} & The number of the button you want the code for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+When passed 0 this returns \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563ca37f08a3b97ecd62bb35b9f35d5d05d8e}{MetaCode::MOUSEBUTTON}, otherwise this returns MetaCode::MOUSEBUTTON\_\-X where X is the number that was passed in 
+\end{DoxyReturn}
+
+
+Definition at line 211 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a330ca2c2cb69c7d0134a842753f6a397}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!IsAltKey@{IsAltKey}}
+\index{IsAltKey@{IsAltKey}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{IsAltKey}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::IsAltKey (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a330ca2c2cb69c7d0134a842753f6a397}
+
+
+Is this a left or right Alt key. 
+
+Returns true if this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} pertains to a either keyboard Alt key. \begin{DoxyReturn}{Returns}
+This returns a bool which will be true if this is a left or right Alt key. 
+\end{DoxyReturn}
+
+
+Definition at line 238 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_af0328602a2dbcc082498f9049b8fd9c5}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!IsCtrlKey@{IsCtrlKey}}
+\index{IsCtrlKey@{IsCtrlKey}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{IsCtrlKey}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::IsCtrlKey (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_af0328602a2dbcc082498f9049b8fd9c5}
+
+
+Is this a left or right Ctrl key. 
+
+Returns true if this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} pertains to a either keyboard Ctrl key. \begin{DoxyReturn}{Returns}
+This returns a bool which will be true if this is a left or right Ctrl key. 
+\end{DoxyReturn}
+
+
+Definition at line 241 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_ab8d13132e795f34367ba3896bf05b5c2}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!IsJoyStickEvent@{IsJoyStickEvent}}
+\index{IsJoyStickEvent@{IsJoyStickEvent}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{IsJoyStickEvent}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::IsJoyStickEvent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_ab8d13132e795f34367ba3896bf05b5c2}
+
+
+Does this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} Represent a state of a Joystick Event. 
+
+Returns true if this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} pertains to a joystick button being twisted, tilted, up, polled, down, pressed, or lifted, or whatever else you can do to a joystick. \begin{DoxyReturn}{Returns}
+This returns a bool which will be true if this is between JOYSTICK\_\-FIRST and JOYSTICK\_\-LAST. 
+\end{DoxyReturn}
+
+
+Definition at line 256 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_aedca54cabda99b18c4186ceb3bfa0944}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!IsKeyboardButton@{IsKeyboardButton}}
+\index{IsKeyboardButton@{IsKeyboardButton}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{IsKeyboardButton}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::IsKeyboardButton (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_aedca54cabda99b18c4186ceb3bfa0944}
+
+
+Does this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} Represent a state of a keyboard key. 
+
+Returns true if this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} pertains to a keyboard key being up, polled, down, pressed, or lifted. \begin{DoxyReturn}{Returns}
+This returns a bool which will be true if this is keyboard event. 
+\end{DoxyReturn}
+
+
+Definition at line 235 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a4277faacd0e1633df7f30cbf7b8f5dd1}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!IsMouseButton@{IsMouseButton}}
+\index{IsMouseButton@{IsMouseButton}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{IsMouseButton}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::IsMouseButton (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a4277faacd0e1633df7f30cbf7b8f5dd1}
+
+
+Does this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} Represent a state of a Mouse button. 
+
+Returns true if this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} pertains to a mouse button being up, polled, down, pressed, or lifted. \begin{DoxyReturn}{Returns}
+This returns a bool which will be true if this is MOUSEBUTTON\_\-X event. 
+\end{DoxyReturn}
+
+
+Definition at line 250 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a88c99813475a4968c498da57ee1304b2}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!IsOtherInputEvent@{IsOtherInputEvent}}
+\index{IsOtherInputEvent@{IsOtherInputEvent}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{IsOtherInputEvent}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::IsOtherInputEvent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a88c99813475a4968c498da57ee1304b2}
+
+
+Does this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} Represent some other (non-\/keyboard and non-\/mouse button) 
+
+Returns true if this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} pertains to any being up, polled, down, pressed, or lifted. \begin{DoxyReturn}{Returns}
+This returns a bool which will be true if this is between INPUTEVENT\_\-FIRST and INPUTEVENT\_\-LAST. 
+\end{DoxyReturn}
+
+
+Definition at line 259 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a30c79f6b4fa991a6fa42226f4c255fe9}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!IsPollable@{IsPollable}}
+\index{IsPollable@{IsPollable}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{IsPollable}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::IsPollable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a30c79f6b4fa991a6fa42226f4c255fe9}
+
+
+Is this metacode a pollable event. 
+
+\begin{DoxyReturn}{Returns}
+if this metacode stores a Keyboard button, Mouse Button or joystick button, then this is a pollable event 
+\end{DoxyReturn}
+
+
+Definition at line 253 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a3af3c353b814482fa2c6c68238ced612}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!IsShiftKey@{IsShiftKey}}
+\index{IsShiftKey@{IsShiftKey}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{IsShiftKey}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::IsShiftKey (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a3af3c353b814482fa2c6c68238ced612}
+
+
+Is this a left or right Shift key. 
+
+Returns true if this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} pertains to a either keyboard Shift key. \begin{DoxyReturn}{Returns}
+This returns a bool which will be true if this is a left or right Shift key. 
+\end{DoxyReturn}
+
+
+Definition at line 244 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a85c370eb28387758e4498d2da656915a}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!IsSuperKey@{IsSuperKey}}
+\index{IsSuperKey@{IsSuperKey}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{IsSuperKey}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::IsSuperKey (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a85c370eb28387758e4498d2da656915a}
+
+
+Is this a left or right Super key (Windows logo key, Apple logo key, etc...) 
+
+Returns true if this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} pertains to a either keyboard Super key. \begin{DoxyReturn}{Returns}
+This returns a bool which will be true if this is a left or right Super key. 
+\end{DoxyReturn}
+
+
+Definition at line 247 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a9766ecefce7d3e8a8e379c8e19fcf414}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MetaCode::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode} \&}]{other}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a9766ecefce7d3e8a8e379c8e19fcf414}
+
+
+Compares two MetaCodes for equality. 
+
+This returns true if the MetaValue and Code are the Same, this ignores ID. 
+
+Definition at line 265 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_aeec5b1c0411d1f7851945f4da69c28e2}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!SetCode@{SetCode}}
+\index{SetCode@{SetCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{SetCode}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::MetaCode::SetCode (
+\begin{DoxyParamCaption}
+\item[{int}]{Code\_\-}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1MetaCode_aeec5b1c0411d1f7851945f4da69c28e2}
+
+
+This Sets The InputCode using an int. 
+
+This will cast an int into an InputCode. Be careful, it is possible to put impossible or ridiculous values, in with this. For example Accidentally stuffing in the result of MOUSEBUTTON + 22 looks like it would give you MOUSEBUTTON\_\-22. But that Doesn't exist, at the time of this writing you would get MOUSEABSOLUTEVERTICAL. Be careful, or skip this alltogether and use one of the provided functions that do the math for you like 
+\begin{DoxyParams}{Parameters}
+{\em Code\_\-} & The value you want the stored code to become. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 206 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a8c5fa366af24a273ea945aaa8cc7050c}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!SetCode@{SetCode}}
+\index{SetCode@{SetCode}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{SetCode}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::MetaCode::SetCode (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{Code\_\-}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1MetaCode_a8c5fa366af24a273ea945aaa8cc7050c}
+
+
+This Sets The InputCode. 
+
+See \hyperlink{classMezzanine_1_1MetaCode_a83484f23e49db65d343d2ea75c9af66c}{GetCode} to see exactly what the Code is. This will Set the code stored in this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMezzanine_1_1MetaCode_a83484f23e49db65d343d2ea75c9af66c}{GetCode} . 
+\begin{DoxyParams}{Parameters}
+{\em Code\_\-} & The value you want the stored code to become. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 201 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a6a98dad161c7e45a3f9154b2864db47b}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!SetMetaValue@{SetMetaValue}}
+\index{SetMetaValue@{SetMetaValue}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{SetMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::MetaCode::SetMetaValue (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{MetaValue\_\-}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1MetaCode_a6a98dad161c7e45a3f9154b2864db47b}
+
+
+This Sets The MetaValue. 
+
+See \hyperlink{classMezzanine_1_1MetaCode_a650c4ae1fb698233516d978dd83dfca7}{GetMetaValue} to see exactly what the MetaValue is. This will set the MetaValue stored in this \hyperlink{classMezzanine_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMezzanine_1_1MetaCode_a650c4ae1fb698233516d978dd83dfca7}{GetMetaValue} . 
+\begin{DoxyParams}{Parameters}
+{\em MetaValue\_\-} & The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 196 of file metacode.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+metacode.h\item 
+metacode.cpp\end{DoxyCompactItemize}

@@ -1,0 +1,122 @@
+\hypertarget{classMezzanine_1_1ResourceInputStream}{
+\subsection{Mezzanine::ResourceInputStream Class Reference}
+\label{classMezzanine_1_1ResourceInputStream}\index{Mezzanine::ResourceInputStream@{Mezzanine::ResourceInputStream}}
+}
+
+
+A stream from a file, can read from zip files as well.  
+
+
+
+
+{\ttfamily \#include $<$resourceinputstream.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ResourceInputStream_a241faad0fdcadeca6288a3f49797c05d}{
+{\footnotesize template$<$class T $>$ }\\\hyperlink{classMezzanine_1_1ResourceInputStream}{ResourceInputStream} \& {\bfseries operator$>$$>$} (T \&Data)}
+\label{classMezzanine_1_1ResourceInputStream_a241faad0fdcadeca6288a3f49797c05d}
+
+\item 
+bool \hyperlink{classMezzanine_1_1ResourceInputStream_a1a09cf1e237b4344df907b799af52e96}{Readable} ()
+\begin{DoxyCompactList}\small\item\em Can this be read from. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ResourceInputStream_a03a7bc47014d7d27cf0db3c0fff68715}{ResourceInputStream} (std::streambuf $\ast$InputBuffer, \hyperlink{classMezzanine_1_1ResourceManager}{ResourceManager} $\ast$ResourceManager\_\-)
+\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1ResourceInputStream_ae2fa58b048fedc97126184a72ccb7689}{Writeable} ()
+\begin{DoxyCompactList}\small\item\em Can this be written to. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ResourceInputStream_ac99716411e0277ffd97b2db98003fc54}{
+virtual \hyperlink{classMezzanine_1_1ResourceInputStream_ac99716411e0277ffd97b2db98003fc54}{$\sim$ResourceInputStream} ()}
+\label{classMezzanine_1_1ResourceInputStream_ac99716411e0277ffd97b2db98003fc54}
+
+\begin{DoxyCompactList}\small\item\em Tears down the Stream, and Delete the Buffer Passed in. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A stream from a file, can read from zip files as well. \begin{DoxyWarning}{Warning}
+This currently only supports reading from the stream, and does not support any pointer navigation, or any other non-\/reading functions 
+\end{DoxyWarning}
+
+
+Definition at line 63 of file resourceinputstream.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ResourceInputStream_a03a7bc47014d7d27cf0db3c0fff68715}{
+\index{Mezzanine::ResourceInputStream@{Mezzanine::ResourceInputStream}!ResourceInputStream@{ResourceInputStream}}
+\index{ResourceInputStream@{ResourceInputStream}!Mezzanine::ResourceInputStream@{Mezzanine::ResourceInputStream}}
+\paragraph[{ResourceInputStream}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ResourceInputStream::ResourceInputStream (
+\begin{DoxyParamCaption}
+\item[{std::streambuf $\ast$}]{InputBuffer, }
+\item[{{\bf ResourceManager} $\ast$}]{ResourceManager\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ResourceInputStream_a03a7bc47014d7d27cf0db3c0fff68715}
+
+
+Descriptive Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em InputBuffer} & A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it. \\
+\hline
+{\em ResourceManager\_\-} & Currently unused, future functionality may tuse this. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Do not delete the InputBuffer you pass in, this class will assume owner ship and delete it on it's own 
+\end{DoxyWarning}
+
+
+Definition at line 82 of file resourceinputstream.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ResourceInputStream_a1a09cf1e237b4344df907b799af52e96}{
+\index{Mezzanine::ResourceInputStream@{Mezzanine::ResourceInputStream}!Readable@{Readable}}
+\index{Readable@{Readable}!Mezzanine::ResourceInputStream@{Mezzanine::ResourceInputStream}}
+\paragraph[{Readable}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ResourceInputStream::Readable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ResourceInputStream_a1a09cf1e237b4344df907b799af52e96}
+
+
+Can this be read from. 
+
+\begin{DoxyReturn}{Returns}
+A bool true if it can be read from 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file resourceinputstream.cpp.
+
+\hypertarget{classMezzanine_1_1ResourceInputStream_ae2fa58b048fedc97126184a72ccb7689}{
+\index{Mezzanine::ResourceInputStream@{Mezzanine::ResourceInputStream}!Writeable@{Writeable}}
+\index{Writeable@{Writeable}!Mezzanine::ResourceInputStream@{Mezzanine::ResourceInputStream}}
+\paragraph[{Writeable}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ResourceInputStream::Writeable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ResourceInputStream_ae2fa58b048fedc97126184a72ccb7689}
+
+
+Can this be written to. 
+
+\begin{DoxyReturn}{Returns}
+A bool true if it can be written to 
+\end{DoxyReturn}
+
+
+Definition at line 81 of file resourceinputstream.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+resourceinputstream.h\item 
+resourceinputstream.cpp\end{DoxyCompactItemize}

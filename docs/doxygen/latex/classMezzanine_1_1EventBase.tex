@@ -1,0 +1,110 @@
+\hypertarget{classMezzanine_1_1EventBase}{
+\subsection{Mezzanine::EventBase Class Reference}
+\label{classMezzanine_1_1EventBase}\index{Mezzanine::EventBase@{Mezzanine::EventBase}}
+}
+
+
+The base class for all events.  
+
+
+
+
+{\ttfamily \#include $<$eventbase.h$>$}
+
+Inheritance diagram for Mezzanine::EventBase:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.148718cm]{classMezzanine_1_1EventBase}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baef}{EventType} \{ \par
+\hyperlink{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefa43524066d608d6b89efed16d238049e9}{Collision}, 
+\hyperlink{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefa90dad901adb5d77f267cd946a852b8c3}{GameWindow}, 
+\hyperlink{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefae4ae51b0b870fc7229b52f636d30d19c}{QuitMessage}, 
+\hyperlink{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefadd50d906767833b4676aa2cb2e232de2}{RenderTime}, 
+\par
+\hyperlink{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefacfd86eef72e950cce84662d8a1a121cd}{UserInput}, 
+{\bfseries Other}
+ \}
+\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baef}{EventBase::EventType} \hyperlink{classMezzanine_1_1EventBase_aea900262a74d27e3b5df68a9deb18543}{GetType} () const =0
+\begin{DoxyCompactList}\small\item\em This will aid in identifying all classes that inherit from this class. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+The base class for all events. All Events used in the Event Manager, will inherit from this. While not absolutely required by the game programmer to write their own events, it it could be useful. Instances of this class cannot be made, and all classes that inherit from this are expected to implement getEventType(). 
+
+Definition at line 62 of file eventbase.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baef}{
+\index{Mezzanine::EventBase@{Mezzanine::EventBase}!EventType@{EventType}}
+\index{EventType@{EventType}!Mezzanine::EventBase@{Mezzanine::EventBase}}
+\paragraph[{EventType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::EventBase::EventType}}\hfill}
+\label{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baef}
+A listing of values that can be used to identify Events. \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{Collision@{Collision}!Mezzanine::EventBase@{Mezzanine::EventBase}}\index{Mezzanine::EventBase@{Mezzanine::EventBase}!Collision@{Collision}}\item[{\em 
+\hypertarget{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefa43524066d608d6b89efed16d238049e9}{
+Collision}
+\label{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefa43524066d608d6b89efed16d238049e9}
+}]Indicates the Event is a Physics \hyperlink{classMezzanine_1_1Collision}{Collision} Event \index{GameWindow@{GameWindow}!Mezzanine::EventBase@{Mezzanine::EventBase}}\index{Mezzanine::EventBase@{Mezzanine::EventBase}!GameWindow@{GameWindow}}\item[{\em 
+\hypertarget{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefa90dad901adb5d77f267cd946a852b8c3}{
+GameWindow}
+\label{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefa90dad901adb5d77f267cd946a852b8c3}
+}]Indicates the Event is a Game Window Management Event \index{QuitMessage@{QuitMessage}!Mezzanine::EventBase@{Mezzanine::EventBase}}\index{Mezzanine::EventBase@{Mezzanine::EventBase}!QuitMessage@{QuitMessage}}\item[{\em 
+\hypertarget{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefae4ae51b0b870fc7229b52f636d30d19c}{
+QuitMessage}
+\label{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefae4ae51b0b870fc7229b52f636d30d19c}
+}]Indicates the Event is a \hyperlink{classMezzanine_1_1EventQuit}{Mezzanine::EventQuit} \index{RenderTime@{RenderTime}!Mezzanine::EventBase@{Mezzanine::EventBase}}\index{Mezzanine::EventBase@{Mezzanine::EventBase}!RenderTime@{RenderTime}}\item[{\em 
+\hypertarget{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefadd50d906767833b4676aa2cb2e232de2}{
+RenderTime}
+\label{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefadd50d906767833b4676aa2cb2e232de2}
+}]Indicates the Event is a \hyperlink{classMezzanine_1_1EventRenderTime}{EventRenderTime} \index{UserInput@{UserInput}!Mezzanine::EventBase@{Mezzanine::EventBase}}\index{Mezzanine::EventBase@{Mezzanine::EventBase}!UserInput@{UserInput}}\item[{\em 
+\hypertarget{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefacfd86eef72e950cce84662d8a1a121cd}{
+UserInput}
+\label{classMezzanine_1_1EventBase_ab85e31e97753b7e7ecb098f82526baefacfd86eef72e950cce84662d8a1a121cd}
+}]Indicates the Event is a \hyperlink{classMezzanine_1_1EventUserInput}{EventUserInput} \end{description}
+\end{Desc}
+
+
+
+Definition at line 68 of file eventbase.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1EventBase_aea900262a74d27e3b5df68a9deb18543}{
+\index{Mezzanine::EventBase@{Mezzanine::EventBase}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::EventBase@{Mezzanine::EventBase}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf EventBase::EventType} Mezzanine::EventBase::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1EventBase_aea900262a74d27e3b5df68a9deb18543}
+
+
+This will aid in identifying all classes that inherit from this class. 
+
+All Classes derived form this calls will return an Event::EventType that correspond the the data/class type they actually are. \begin{DoxyReturn}{Returns}
+This returns an eventype that will correspend with the actual event type. This can be used on all \hyperlink{namespaceMezzanine}{Mezzanine} provided class to safely cast a pointer to the correct event type. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1EventCollision_af5d9f7eb0ee0ce22b0dd5dfbafc8f297}{Mezzanine::EventCollision}, \hyperlink{classMezzanine_1_1EventGameWindow_a6658ffa68d0d39e2718214fb7a7da3d7}{Mezzanine::EventGameWindow}, \hyperlink{classMezzanine_1_1EventQuit_adffd297e6d7ca09cfde8df0f08da5e31}{Mezzanine::EventQuit}, \hyperlink{classMezzanine_1_1EventRenderTime_a2c1c6c5c8c77492bc9c74c6529d49681}{Mezzanine::EventRenderTime}, and \hyperlink{classMezzanine_1_1EventUserInput_aeb02733446620bd7ff43b449ce5ce98a}{Mezzanine::EventUserInput}.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+eventbase.h\end{DoxyCompactItemize}

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: linegroup.h Source File</title>
+<title>MezzanineEngine: linegroup.h Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -108,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;vector3.h&quot;</span>
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="keyword">namespace </span>phys
+<a name="l00047"></a>00047 <span class="keyword">namespace </span>Mezzanine
 <a name="l00048"></a>00048 {
 <a name="l00049"></a>00049     <span class="comment">// Just a few forward declarations to make wrapping some functionality to engine internals easier.</span>
 <a name="l00050"></a>00050     <span class="keyword">class </span>World;
@@ -123,40 +123,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00059"></a>00059 <span class="comment">    /// @brief This is a group of consectutive line segments to be rendered together.</span>
 <a name="l00060"></a>00060 <span class="comment">    /// @details This class stores a listing of points and renders thems as one</span>
 <a name="l00061"></a>00061 <span class="comment">    /// object into the world provided.</span>
-<a name="l00062"></a><a class="code" href="classphys_1_1LineGroup.html">00062</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>
+<a name="l00062"></a><a class="code" href="classMezzanine_1_1LineGroup.html">00062</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>
 <a name="l00063"></a>00063     {<span class="comment"></span>
 <a name="l00064"></a>00064 <span class="comment">        /// @todo TODO: This class really should support rotation, the underlying implementation does.</span>
 <a name="l00065"></a>00065 <span class="comment"></span>        <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00066"></a>00066 <span class="comment">            /// @brief Basic Constructor</span>
 <a name="l00067"></a>00067 <span class="comment">            /// @details This creates a basic, empty, LineGroup.</span>
 <a name="l00068"></a>00068 <span class="comment">            /// @param Parent_ This is a pointer to the world to render to.</span>
-<a name="l00069"></a>00069 <span class="comment"></span>            <a class="code" href="classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>(<a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent_);
+<a name="l00069"></a>00069 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>(<a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent_);
 <a name="l00070"></a>00070 <span class="comment"></span>
 <a name="l00071"></a>00071 <span class="comment">            /// @brief Default Destructor</span>
 <a name="l00072"></a>00072 <span class="comment">            /// @details This safely tears down, and removes from the graphics system the LineGroup</span>
-<a name="l00073"></a>00073 <span class="comment"></span>            ~<a class="code" href="classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>(<span class="keywordtype">void</span>);
+<a name="l00073"></a>00073 <span class="comment"></span>            ~<a class="code" href="classMezzanine_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>(<span class="keywordtype">void</span>);
 <a name="l00074"></a>00074 <span class="comment"></span>
 <a name="l00075"></a>00075 <span class="comment">            /// @brief This add Either a start pointing, or a line segment to the next point</span>
 <a name="l00076"></a>00076 <span class="comment">            /// @details This adds a point that will be rendered as the endpoint of a line</span>
 <a name="l00077"></a>00077 <span class="comment">            /// @param p The Point to be added.</span>
-<a name="l00078"></a>00078 <span class="comment"></span>            <span class="keywordtype">void</span> addPoint(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;p);
+<a name="l00078"></a>00078 <span class="comment"></span>            <span class="keywordtype">void</span> addPoint(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;p);
 <a name="l00079"></a>00079 <span class="comment"></span>
 <a name="l00080"></a>00080 <span class="comment">            /// @brief Access points by order they were added.</span>
 <a name="l00081"></a>00081 <span class="comment">            /// @details This returns the point indicated by index. They start at 0, and increment from there</span>
 <a name="l00082"></a>00082 <span class="comment">            /// @param index A Whole number which indicates which point to retrieve.</span>
-<a name="l00083"></a>00083 <span class="comment"></span>            <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> getPoint(<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index) <span class="keyword">const</span>;
+<a name="l00083"></a>00083 <span class="comment"></span>            <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> getPoint(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> index) <span class="keyword">const</span>;
 <a name="l00084"></a>00084 <span class="comment"></span>
 <a name="l00085"></a>00085 <span class="comment">            /// @brief Get the amount of points used to define Line Segments</span>
 <a name="l00086"></a>00086 <span class="comment">            /// @details This return the amount of points and therefore line segments. There will always be one more point</span>
 <a name="l00087"></a>00087 <span class="comment">            /// Than line segments.</span>
 <a name="l00088"></a>00088 <span class="comment">            /// @return A Whole Number which indicates the amount of points.</span>
-<a name="l00089"></a>00089 <span class="comment"></span>            <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> getNumPoints(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00089"></a>00089 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> getNumPoints(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
 <a name="l00090"></a>00090 <span class="comment"></span>
 <a name="l00091"></a>00091 <span class="comment">            /// @brief This changes a specific point</span>
 <a name="l00092"></a>00092 <span class="comment">            /// @details This replaces a point specified by index with a new point</span>
 <a name="l00093"></a>00093 <span class="comment">            /// @param index The index of the point to replace.</span>
 <a name="l00094"></a>00094 <span class="comment">            /// @param value A point to replace the existing point with</span>
-<a name="l00095"></a>00095 <span class="comment"></span>            <span class="keywordtype">void</span> updatePoint(<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;value);
+<a name="l00095"></a>00095 <span class="comment"></span>            <span class="keywordtype">void</span> updatePoint(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;value);
 <a name="l00096"></a>00096 <span class="comment"></span>
 <a name="l00097"></a>00097 <span class="comment">            /// @brief This adds Two points to the list</span>
 <a name="l00098"></a>00098 <span class="comment">            /// @details This could add 2 line segments, be it simply adds two lines to the list, but if you don&#39;t care then this is an</span>
@@ -164,7 +164,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00100"></a>00100 <span class="comment">            /// @todo TODO: In the future we will add a break in the line segment chain when this is called.</span>
 <a name="l00101"></a>00101 <span class="comment">            /// @param start The first point to be added</span>
 <a name="l00102"></a>00102 <span class="comment">            /// @param end The first point to be added</span>
-<a name="l00103"></a>00103 <span class="comment"></span>            <span class="keywordtype">void</span> drawLine(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;end);
+<a name="l00103"></a>00103 <span class="comment"></span>            <span class="keywordtype">void</span> drawLine(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;end);
 <a name="l00104"></a>00104 <span class="comment"></span>
 <a name="l00105"></a>00105 <span class="comment">            /// @brief Renders the line segment chain.</span>
 <a name="l00106"></a>00106 <span class="comment">            /// @details This send the Line segment information to the rending subsystem. PrepareForRendering() should be called first</span>
@@ -180,14 +180,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00116"></a>00116 <span class="comment">            /// @brief How big would a circle need to be to encapsulate this</span>
 <a name="l00117"></a>00117 <span class="comment">            /// @details This returns the radius the a circle would need to have to surround this line group.</span>
 <a name="l00118"></a>00118 <span class="comment">            /// @return This returns a real number which indicates the radius.</span>
-<a name="l00119"></a>00119 <span class="comment"></span>            <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> getBoundingRadius(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00119"></a>00119 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> getBoundingRadius(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
 <a name="l00120"></a>00120 
 <a name="l00121"></a>00121         <span class="keyword">private</span>:<span class="comment"></span>
 <a name="l00122"></a>00122 <span class="comment">            /// @brief A pointer to the world that this LineGroup will render to.</span>
-<a name="l00123"></a>00123 <span class="comment"></span>            <a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent;
+<a name="l00123"></a>00123 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent;
 <a name="l00124"></a>00124 <span class="comment"></span>
 <a name="l00125"></a>00125 <span class="comment">            /// @brief A Pointer to the internal class that actually does the work.</span>
-<a name="l00126"></a>00126 <span class="comment"></span>            <a class="code" href="classphys_1_1internal_1_1Line3D.html" title="Does the bulk of the work that that the phys::LineGroup performs.">internal::Line3D</a> *LineData;
+<a name="l00126"></a>00126 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1internal_1_1Line3D.html" title="Does the bulk of the work that that the Mezzanine::LineGroup performs.">internal::Line3D</a> *LineData;
 <a name="l00127"></a>00127     };
 <a name="l00128"></a>00128 }
 <a name="l00129"></a>00129 
@@ -199,7 +199,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -209,6 +209,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

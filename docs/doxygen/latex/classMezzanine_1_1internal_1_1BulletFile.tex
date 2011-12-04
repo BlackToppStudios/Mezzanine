@@ -1,0 +1,400 @@
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile}{
+\subsection{Mezzanine::internal::BulletFile Class Reference}
+\label{classMezzanine_1_1internal_1_1BulletFile}\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+}
+
+
+This is an internal resource class that allows the integration of the .bullet file format into the Ogre resource system.  
+
+
+
+
+{\ttfamily \#include $<$internalbulletfile.h.cpp$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1internal_1_1BulletFile_a6949f735118a623a291fe104e57e331a}{BulletFile} (Ogre::ResourceManager $\ast$creator, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, Ogre::ResourceHandle handle, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&group, bool isManual=false, Ogre::ManualResourceLoader $\ast$loader=0)
+\begin{DoxyCompactList}\small\item\em Resource Constructor. \item\end{DoxyCompactList}\item 
+btOptimizedBvh $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_a2dde44110919e77dc30f1d9bcb67f72c}{GetBVH} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets a physics acceleration structure by index. \item\end{DoxyCompactList}\item 
+btOptimizedBvh $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_ad65aa0b36affe887059183273892509e}{GetBVH} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} Name)
+\begin{DoxyCompactList}\small\item\em Gets a physics acceleration structure by name. \item\end{DoxyCompactList}\item 
+btTypedConstraint $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_a19c9af33b87c133841c6e6e23959f201}{GetConstraint} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} Name)
+\begin{DoxyCompactList}\small\item\em Gets a physics constraint by name. \item\end{DoxyCompactList}\item 
+btTypedConstraint $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_a36ae70fd657b6c0293b252abf52694a5}{GetConstraint} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets a physics constraint by index. \item\end{DoxyCompactList}\item 
+btCollisionObject $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_a72b2b29170c96646926467452ba913c6}{GetRigidBody} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets a physics body by index. \item\end{DoxyCompactList}\item 
+btCollisionObject $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_a5c09e492abf00a82ccf82755968e7a5c}{GetRigidBody} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} Name)
+\begin{DoxyCompactList}\small\item\em Gets a physics body by name. \item\end{DoxyCompactList}\item 
+btCollisionShape $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_a6f110baeb460957da0410153617440c1}{GetShape} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} Name)
+\begin{DoxyCompactList}\small\item\em Gets a physics shape by name. \item\end{DoxyCompactList}\item 
+btCollisionShape $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_a27882635bb94ec384fc1a02619f31d74}{GetShape} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets a physics shape by index. \item\end{DoxyCompactList}\item 
+btTriangleInfoMap $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_a0b9b5a30adf8cc2066a288d9dd387523}{GetTriangleInfoMap} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} Name)
+\begin{DoxyCompactList}\small\item\em Gets a physics triangle info map by name. \item\end{DoxyCompactList}\item 
+btTriangleInfoMap $\ast$ \hyperlink{classMezzanine_1_1internal_1_1BulletFile_ae59979e178ed8804e85a3e53502fbc6f}{GetTriangleInfoMap} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets a physics triangle info map by index. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a421e96fa997cf967859f3f44f268638e}{
+virtual \hyperlink{classMezzanine_1_1internal_1_1BulletFile_a421e96fa997cf967859f3f44f268638e}{$\sim$BulletFile} ()}
+\label{classMezzanine_1_1internal_1_1BulletFile_a421e96fa997cf967859f3f44f268638e}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a2068f2fa6d6b1e83a192708614766a17}{
+size\_\-t {\bfseries calculateSize} () const }
+\label{classMezzanine_1_1internal_1_1BulletFile_a2068f2fa6d6b1e83a192708614766a17}
+
+\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_aba5bff7301a8acdc43c193b218000b09}{
+void {\bfseries loadImpl} ()}
+\label{classMezzanine_1_1internal_1_1BulletFile_aba5bff7301a8acdc43c193b218000b09}
+
+\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a1e0dc5cc56b6337c01ee7317935998ee}{
+void {\bfseries unloadImpl} ()}
+\label{classMezzanine_1_1internal_1_1BulletFile_a1e0dc5cc56b6337c01ee7317935998ee}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_ae1adef25a761f0095a7d084b62af3b06}{
+std::vector$<$ std::pair$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, btCollisionObject $\ast$ $>$ $>$ {\bfseries BulletBodies}}
+\label{classMezzanine_1_1internal_1_1BulletFile_ae1adef25a761f0095a7d084b62af3b06}
+
+\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a20a8642d594264bcb9bc6a2b3922050d}{
+std::vector$<$ std::pair$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, btOptimizedBvh $\ast$ $>$ $>$ {\bfseries BulletBVHs}}
+\label{classMezzanine_1_1internal_1_1BulletFile_a20a8642d594264bcb9bc6a2b3922050d}
+
+\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_af26354729e26b5084b9dd684fa47f407}{
+std::vector$<$ std::pair$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, btTypedConstraint $\ast$ $>$ $>$ {\bfseries BulletConstraints}}
+\label{classMezzanine_1_1internal_1_1BulletFile_af26354729e26b5084b9dd684fa47f407}
+
+\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a9a80fe5006d24cd8a5b97b3624d6d82f}{
+std::vector$<$ std::pair$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, btCollisionShape $\ast$ $>$ $>$ {\bfseries BulletShapes}}
+\label{classMezzanine_1_1internal_1_1BulletFile_a9a80fe5006d24cd8a5b97b3624d6d82f}
+
+\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a6c96e26328b771a398248300563a91e2}{
+std::vector$<$ std::pair$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, btTriangleInfoMap $\ast$ $>$ $>$ {\bfseries BulletTriangleInfoMaps}}
+\label{classMezzanine_1_1internal_1_1BulletFile_a6c96e26328b771a398248300563a91e2}
+
+\item 
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a5ccd75fe33de6bb066d63be23fd46927}{
+size\_\-t {\bfseries KnownFileSize}}
+\label{classMezzanine_1_1internal_1_1BulletFile_a5ccd75fe33de6bb066d63be23fd46927}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is an internal resource class that allows the integration of the .bullet file format into the Ogre resource system. Using this class (and it's accompanying manager), it should be possible to enable .bullet files to be loaded in the background through Ogre's resource system. 
+
+Definition at line 60 of file internalbulletfile.h.cpp.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a6949f735118a623a291fe104e57e331a}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!BulletFile@{BulletFile}}
+\index{BulletFile@{BulletFile}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{BulletFile}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::internal::BulletFile::BulletFile (
+\begin{DoxyParamCaption}
+\item[{Ogre::ResourceManager $\ast$}]{creator, }
+\item[{const {\bf String} \&}]{name, }
+\item[{Ogre::ResourceHandle}]{handle, }
+\item[{const {\bf String} \&}]{group, }
+\item[{bool}]{isManual = {\ttfamily false}, }
+\item[{Ogre::ManualResourceLoader $\ast$}]{loader = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_a6949f735118a623a291fe104e57e331a}
+
+
+Resource Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em creator} & The Resource Manager that created this Resource. \\
+\hline
+{\em name} & The Name of this Resource. \\
+\hline
+{\em handle} & The unique resource identifier belonging to this resource. \\
+\hline
+{\em group} & The name of the group this resource can be found. \\
+\hline
+{\em isManual} & Whether or not this resource should be loaded with a manual loader. \\
+\hline
+{\em loader} & If \char`\"{}isManual\char`\"{} is true, this is a pointer to the manual loader that will be used to load this resource. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file internalbulletfile.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a2dde44110919e77dc30f1d9bcb67f72c}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetBVH@{GetBVH}}
+\index{GetBVH@{GetBVH}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetBVH}]{\setlength{\rightskip}{0pt plus 5cm}btOptimizedBvh $\ast$ Mezzanine::internal::BulletFile::GetBVH (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_a2dde44110919e77dc30f1d9bcb67f72c}
+
+
+Gets a physics acceleration structure by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the physics acceleration structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics acceleration structure. 
+\end{DoxyReturn}
+
+
+Definition at line 158 of file internalbulletfile.cpp.
+
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_ad65aa0b36affe887059183273892509e}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetBVH@{GetBVH}}
+\index{GetBVH@{GetBVH}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetBVH}]{\setlength{\rightskip}{0pt plus 5cm}btOptimizedBvh $\ast$ Mezzanine::internal::BulletFile::GetBVH (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_ad65aa0b36affe887059183273892509e}
+
+
+Gets a physics acceleration structure by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the physics acceleration structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics acceleration structure. 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file internalbulletfile.cpp.
+
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a19c9af33b87c133841c6e6e23959f201}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetConstraint@{GetConstraint}}
+\index{GetConstraint@{GetConstraint}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetConstraint}]{\setlength{\rightskip}{0pt plus 5cm}btTypedConstraint $\ast$ Mezzanine::internal::BulletFile::GetConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_a19c9af33b87c133841c6e6e23959f201}
+
+
+Gets a physics constraint by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the physics constraint. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics constraint. 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file internalbulletfile.cpp.
+
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a36ae70fd657b6c0293b252abf52694a5}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetConstraint@{GetConstraint}}
+\index{GetConstraint@{GetConstraint}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetConstraint}]{\setlength{\rightskip}{0pt plus 5cm}btTypedConstraint $\ast$ Mezzanine::internal::BulletFile::GetConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_a36ae70fd657b6c0293b252abf52694a5}
+
+
+Gets a physics constraint by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the physics constraint. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics constraint. 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file internalbulletfile.cpp.
+
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a72b2b29170c96646926467452ba913c6}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetRigidBody@{GetRigidBody}}
+\index{GetRigidBody@{GetRigidBody}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetRigidBody}]{\setlength{\rightskip}{0pt plus 5cm}btCollisionObject $\ast$ Mezzanine::internal::BulletFile::GetRigidBody (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_a72b2b29170c96646926467452ba913c6}
+
+
+Gets a physics body by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the physics body. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics body. 
+\end{DoxyReturn}
+
+
+Definition at line 130 of file internalbulletfile.cpp.
+
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a5c09e492abf00a82ccf82755968e7a5c}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetRigidBody@{GetRigidBody}}
+\index{GetRigidBody@{GetRigidBody}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetRigidBody}]{\setlength{\rightskip}{0pt plus 5cm}btCollisionObject $\ast$ Mezzanine::internal::BulletFile::GetRigidBody (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_a5c09e492abf00a82ccf82755968e7a5c}
+
+
+Gets a physics body by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the physics body. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics body. 
+\end{DoxyReturn}
+
+
+Definition at line 135 of file internalbulletfile.cpp.
+
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a27882635bb94ec384fc1a02619f31d74}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetShape@{GetShape}}
+\index{GetShape@{GetShape}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetShape}]{\setlength{\rightskip}{0pt plus 5cm}btCollisionShape $\ast$ Mezzanine::internal::BulletFile::GetShape (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_a27882635bb94ec384fc1a02619f31d74}
+
+
+Gets a physics shape by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the physics shape. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics shape. 
+\end{DoxyReturn}
+
+
+Definition at line 116 of file internalbulletfile.cpp.
+
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a6f110baeb460957da0410153617440c1}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetShape@{GetShape}}
+\index{GetShape@{GetShape}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetShape}]{\setlength{\rightskip}{0pt plus 5cm}btCollisionShape $\ast$ Mezzanine::internal::BulletFile::GetShape (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_a6f110baeb460957da0410153617440c1}
+
+
+Gets a physics shape by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the physics shape. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics shape. 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file internalbulletfile.cpp.
+
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_a0b9b5a30adf8cc2066a288d9dd387523}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetTriangleInfoMap@{GetTriangleInfoMap}}
+\index{GetTriangleInfoMap@{GetTriangleInfoMap}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetTriangleInfoMap}]{\setlength{\rightskip}{0pt plus 5cm}btTriangleInfoMap $\ast$ Mezzanine::internal::BulletFile::GetTriangleInfoMap (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_a0b9b5a30adf8cc2066a288d9dd387523}
+
+
+Gets a physics triangle info map by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the physics triangle info map. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics triangle info map. 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file internalbulletfile.cpp.
+
+\hypertarget{classMezzanine_1_1internal_1_1BulletFile_ae59979e178ed8804e85a3e53502fbc6f}{
+\index{Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}!GetTriangleInfoMap@{GetTriangleInfoMap}}
+\index{GetTriangleInfoMap@{GetTriangleInfoMap}!Mezzanine::internal::BulletFile@{Mezzanine::internal::BulletFile}}
+\paragraph[{GetTriangleInfoMap}]{\setlength{\rightskip}{0pt plus 5cm}btTriangleInfoMap $\ast$ Mezzanine::internal::BulletFile::GetTriangleInfoMap (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1internal_1_1BulletFile_ae59979e178ed8804e85a3e53502fbc6f}
+
+
+Gets a physics triangle info map by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the physics triangle info map. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified physics triangle info map. 
+\end{DoxyReturn}
+
+
+Definition at line 172 of file internalbulletfile.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+internalbulletfile.h.cpp\item 
+internalbulletfile.cpp\end{DoxyCompactItemize}

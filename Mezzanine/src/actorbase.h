@@ -128,7 +128,7 @@ namespace Mezzanine
             virtual Vector3 GetOgreLocation() const;
 
             /// @brief Sets the orientation of the graphical body.
-            /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n
+            /// @details This will take a Quaternion and set the orientation of the actor within the graphical world. @n
             /// This function is called on by the SetOrientation function, and shouldn't be called manually.
             /// @param Rotation The quaternion representing the rotation of the actor.
             virtual void SetOgreOrientation(const Quaternion& Rotation);

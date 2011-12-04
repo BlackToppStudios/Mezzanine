@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: internalbulletfile.cpp Source File</title>
+<title>MezzanineEngine: internalbulletfile.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -107,147 +107,148 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;internalbulletfile.h.cpp&quot;</span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &lt;btBulletWorldImporter.h&gt;</span>
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="keyword">namespace </span>phys{
-<a name="l00047"></a>00047     <span class="keyword">namespace </span>internal
-<a name="l00048"></a>00048     {
-<a name="l00049"></a>00049         <a class="code" href="classphys_1_1internal_1_1BulletFile.html#aaedaa8c74984b1bdcd315eec9d592fbc" title="Resource Constructor.">BulletFile::BulletFile</a>(Ogre::ResourceManager* creator, <span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, Ogre::ResourceHandle handle, <span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; group, <span class="keywordtype">bool</span> isManual, Ogre::ManualResourceLoader* loader)
-<a name="l00050"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#aaedaa8c74984b1bdcd315eec9d592fbc">00050</a>             : Ogre::Resource(creator, name, handle, group, isManual, loader),
-<a name="l00051"></a>00051               KnownFileSize(0)
-<a name="l00052"></a>00052         {
-<a name="l00053"></a>00053             createParamDictionary(<span class="stringliteral">&quot;BulletFile&quot;</span>);
-<a name="l00054"></a>00054         }
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056         <a class="code" href="classphys_1_1internal_1_1BulletFile.html#a0ef76dc36736fccd81b6d94bef69671f" title="Class Destructor.">BulletFile::~BulletFile</a>()
-<a name="l00057"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#a0ef76dc36736fccd81b6d94bef69671f">00057</a>         {
-<a name="l00058"></a>00058             unload();
-<a name="l00059"></a>00059         }
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061         <span class="keywordtype">void</span> BulletFile::loadImpl()
-<a name="l00062"></a>00062         {
-<a name="l00063"></a>00063             btBulletWorldImporter* Importer = <span class="keyword">new</span> btBulletWorldImporter();
-<a name="l00064"></a>00064             Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(mName, mGroup, <span class="keyword">true</span>, <span class="keyword">this</span>);
-<a name="l00065"></a>00065             KnownFileSize = Stream-&gt;size();
-<a name="l00066"></a>00066             assert(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>)==1);
-<a name="l00067"></a>00067             <span class="keywordtype">char</span>* buffer = <span class="keyword">new</span> <span class="keywordtype">char</span>[KnownFileSize];
-<a name="l00068"></a>00068             Stream-&gt;read((<span class="keywordtype">void</span>*)buffer, KnownFileSize);
-<a name="l00069"></a>00069             <span class="keywordflow">if</span>(Importer-&gt;loadFileFromMemory(buffer, KnownFileSize))
-<a name="l00070"></a>00070             {
-<a name="l00071"></a>00071                 <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumCollisionShapes() ; X++ )
-<a name="l00072"></a>00072                 {
-<a name="l00073"></a>00073                     btCollisionShape* Shape = Importer-&gt;getCollisionShapeByIndex(X);
-<a name="l00074"></a>00074                     BulletShapes.push_back(std::pair&lt;String,btCollisionShape*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)Shape),Shape));
-<a name="l00075"></a>00075                 }
-<a name="l00076"></a>00076                 <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumRigidBodies() ; X++ )
-<a name="l00077"></a>00077                 {
-<a name="l00078"></a>00078                     btCollisionObject* Body = Importer-&gt;getRigidBodyByIndex(X);
-<a name="l00079"></a>00079                     BulletBodies.push_back(std::pair&lt;String,btCollisionObject*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)Body),Body));
-<a name="l00080"></a>00080                 }
-<a name="l00081"></a>00081                 <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumConstraints() ; X++ )
-<a name="l00082"></a>00082                 {
-<a name="l00083"></a>00083                     btTypedConstraint* Constraint = Importer-&gt;getConstraintByIndex(X);
-<a name="l00084"></a>00084                     BulletConstraints.push_back(std::pair&lt;String,btTypedConstraint*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)Constraint),Constraint));
-<a name="l00085"></a>00085                 }
-<a name="l00086"></a>00086                 <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumBvhs() ; X++ )
-<a name="l00087"></a>00087                 {
-<a name="l00088"></a>00088                     btOptimizedBvh* BVH = Importer-&gt;getBvhByIndex(X);
-<a name="l00089"></a>00089                     BulletBVHs.push_back(std::pair&lt;String,btOptimizedBvh*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)BVH),BVH));
-<a name="l00090"></a>00090                 }
-<a name="l00091"></a>00091                 <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumTriangleInfoMaps() ; X++ )
-<a name="l00092"></a>00092                 {
-<a name="l00093"></a>00093                     btTriangleInfoMap* TriInfoMap = Importer-&gt;getTriangleInfoMapByIndex(X);
-<a name="l00094"></a>00094                     BulletTriangleInfoMaps.push_back(std::pair&lt;String,btTriangleInfoMap*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)TriInfoMap),TriInfoMap));
-<a name="l00095"></a>00095                 }
-<a name="l00096"></a>00096             }<span class="keywordflow">else</span>{
-<a name="l00097"></a>00097             }
-<a name="l00098"></a>00098         }
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100         <span class="keywordtype">void</span> BulletFile::unloadImpl()
-<a name="l00101"></a>00101         {
-<a name="l00102"></a>00102             BulletShapes.clear();
-<a name="l00103"></a>00103             BulletBodies.clear();
-<a name="l00104"></a>00104             BulletConstraints.clear();
-<a name="l00105"></a>00105             BulletBVHs.clear();
-<a name="l00106"></a>00106             BulletTriangleInfoMaps.clear();
-<a name="l00107"></a>00107         }
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109         <span class="keywordtype">size_t</span> BulletFile::calculateSize()<span class="keyword"> const</span>
-<a name="l00110"></a>00110 <span class="keyword">        </span>{
-<a name="l00111"></a>00111             <span class="keywordflow">return</span> KnownFileSize;
-<a name="l00112"></a>00112         }
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114         btCollisionShape* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#ad98701ff57511b91d065ce30cc0c8db7" title="Gets a physics shape by index.">BulletFile::GetShape</a>(<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00115"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#ad98701ff57511b91d065ce30cc0c8db7">00115</a>         {
-<a name="l00116"></a>00116             <span class="keywordflow">return</span> BulletShapes[Index].second;
-<a name="l00117"></a>00117         }
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119         btCollisionShape* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#ad98701ff57511b91d065ce30cc0c8db7" title="Gets a physics shape by index.">BulletFile::GetShape</a>(<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name)
-<a name="l00120"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#a9786392b58a7c591bfa58f74dde4b914">00120</a>         {
-<a name="l00121"></a>00121             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btCollisionShape*&gt; &gt;::iterator CSI = BulletShapes.begin() ; CSI != BulletShapes.end() ; CSI++ )
-<a name="l00122"></a>00122             {
-<a name="l00123"></a>00123                 <span class="keywordflow">if</span>( Name == (*CSI).first )
-<a name="l00124"></a>00124                     <span class="keywordflow">return</span> (*CSI).second;
-<a name="l00125"></a>00125             }
-<a name="l00126"></a>00126         }
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128         btCollisionObject* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#a4c489fe604a139dcba9048b7b38ca385" title="Gets a physics body by index.">BulletFile::GetRigidBody</a>(<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00129"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#a4c489fe604a139dcba9048b7b38ca385">00129</a>         {
-<a name="l00130"></a>00130             <span class="keywordflow">return</span> BulletBodies[Index].second;
-<a name="l00131"></a>00131         }
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133         btCollisionObject* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#a4c489fe604a139dcba9048b7b38ca385" title="Gets a physics body by index.">BulletFile::GetRigidBody</a>(<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name)
-<a name="l00134"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#a0eaf586c53e740d31e9cad0cac8d5f6d">00134</a>         {
-<a name="l00135"></a>00135             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btCollisionObject*&gt; &gt;::iterator RBI = BulletBodies.begin() ; RBI != BulletBodies.end() ; RBI++ )
-<a name="l00136"></a>00136             {
-<a name="l00137"></a>00137                 <span class="keywordflow">if</span>( Name == (*RBI).first )
-<a name="l00138"></a>00138                     <span class="keywordflow">return</span> (*RBI).second;
-<a name="l00139"></a>00139             }
-<a name="l00140"></a>00140         }
-<a name="l00141"></a>00141 
-<a name="l00142"></a>00142         btTypedConstraint* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#afa7216bc72f6e7cddca7817f26b9b642" title="Gets a physics constraint by index.">BulletFile::GetConstraint</a>(<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00143"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#afa7216bc72f6e7cddca7817f26b9b642">00143</a>         {
-<a name="l00144"></a>00144             <span class="keywordflow">return</span> BulletConstraints[Index].second;
-<a name="l00145"></a>00145         }
-<a name="l00146"></a>00146 
-<a name="l00147"></a>00147         btTypedConstraint* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#afa7216bc72f6e7cddca7817f26b9b642" title="Gets a physics constraint by index.">BulletFile::GetConstraint</a>(<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name)
-<a name="l00148"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#a6c0da3d085e5dddaa7f6fe3e916eacb4">00148</a>         {
-<a name="l00149"></a>00149             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btTypedConstraint*&gt; &gt;::iterator TCI = BulletConstraints.begin() ; TCI != BulletConstraints.end() ; TCI++ )
-<a name="l00150"></a>00150             {
-<a name="l00151"></a>00151                 <span class="keywordflow">if</span>( Name == (*TCI).first )
-<a name="l00152"></a>00152                     <span class="keywordflow">return</span> (*TCI).second;
-<a name="l00153"></a>00153             }
-<a name="l00154"></a>00154         }
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156         btOptimizedBvh* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#a11b7d008dd86c69dda2caff4182efd0e" title="Gets a physics acceleration structure by index.">BulletFile::GetBVH</a>(<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00157"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#a11b7d008dd86c69dda2caff4182efd0e">00157</a>         {
-<a name="l00158"></a>00158             <span class="keywordflow">return</span> BulletBVHs[Index].second;
-<a name="l00159"></a>00159         }
-<a name="l00160"></a>00160 
-<a name="l00161"></a>00161         btOptimizedBvh* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#a11b7d008dd86c69dda2caff4182efd0e" title="Gets a physics acceleration structure by index.">BulletFile::GetBVH</a>(<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name)
-<a name="l00162"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#a844ffb0876061c003b1f633f05de009a">00162</a>         {
-<a name="l00163"></a>00163             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btOptimizedBvh*&gt; &gt;::iterator BVHI = BulletBVHs.begin() ; BVHI != BulletBVHs.end() ; BVHI++ )
-<a name="l00164"></a>00164             {
-<a name="l00165"></a>00165                 <span class="keywordflow">if</span>( Name == (*BVHI).first )
-<a name="l00166"></a>00166                     <span class="keywordflow">return</span> (*BVHI).second;
-<a name="l00167"></a>00167             }
-<a name="l00168"></a>00168         }
-<a name="l00169"></a>00169 
-<a name="l00170"></a>00170         btTriangleInfoMap* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#a1aeafb312ef9d91d9136b4db7acf1d40" title="Gets a physics triangle info map by index.">BulletFile::GetTriangleInfoMap</a>(<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00171"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#a1aeafb312ef9d91d9136b4db7acf1d40">00171</a>         {
-<a name="l00172"></a>00172             <span class="keywordflow">return</span> BulletTriangleInfoMaps[Index].second;
-<a name="l00173"></a>00173         }
-<a name="l00174"></a>00174 
-<a name="l00175"></a>00175         btTriangleInfoMap* <a class="code" href="classphys_1_1internal_1_1BulletFile.html#a1aeafb312ef9d91d9136b4db7acf1d40" title="Gets a physics triangle info map by index.">BulletFile::GetTriangleInfoMap</a>(<a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name)
-<a name="l00176"></a><a class="code" href="classphys_1_1internal_1_1BulletFile.html#ae7e01fa7e3fd93d42e905de5876d1062">00176</a>         {
-<a name="l00177"></a>00177             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btTriangleInfoMap*&gt; &gt;::iterator TIMI = BulletTriangleInfoMaps.begin() ; TIMI != BulletTriangleInfoMaps.end() ; TIMI++ )
-<a name="l00178"></a>00178             {
-<a name="l00179"></a>00179                 <span class="keywordflow">if</span>( Name == (*TIMI).first )
-<a name="l00180"></a>00180                     <span class="keywordflow">return</span> (*TIMI).second;
-<a name="l00181"></a>00181             }
-<a name="l00182"></a>00182         }
-<a name="l00183"></a>00183     }<span class="comment">//internal</span>
-<a name="l00184"></a>00184 }<span class="comment">//phys</span>
-<a name="l00185"></a>00185 
-<a name="l00186"></a>00186 <span class="preprocessor">#endif</span>
+<a name="l00046"></a>00046 <span class="keyword">namespace </span>Mezzanine
+<a name="l00047"></a>00047 {
+<a name="l00048"></a>00048     <span class="keyword">namespace </span>internal
+<a name="l00049"></a>00049     {
+<a name="l00050"></a>00050         <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a6949f735118a623a291fe104e57e331a" title="Resource Constructor.">BulletFile::BulletFile</a>(Ogre::ResourceManager* creator, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, Ogre::ResourceHandle handle, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; group, <span class="keywordtype">bool</span> isManual, Ogre::ManualResourceLoader* loader)
+<a name="l00051"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a6949f735118a623a291fe104e57e331a">00051</a>             : Ogre::Resource(creator, name, handle, group, isManual, loader),
+<a name="l00052"></a>00052               KnownFileSize(0)
+<a name="l00053"></a>00053         {
+<a name="l00054"></a>00054             createParamDictionary(<span class="stringliteral">&quot;BulletFile&quot;</span>);
+<a name="l00055"></a>00055         }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057         <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a421e96fa997cf967859f3f44f268638e" title="Class Destructor.">BulletFile::~BulletFile</a>()
+<a name="l00058"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a421e96fa997cf967859f3f44f268638e">00058</a>         {
+<a name="l00059"></a>00059             unload();
+<a name="l00060"></a>00060         }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062         <span class="keywordtype">void</span> BulletFile::loadImpl()
+<a name="l00063"></a>00063         {
+<a name="l00064"></a>00064             btBulletWorldImporter* Importer = <span class="keyword">new</span> btBulletWorldImporter();
+<a name="l00065"></a>00065             Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(mName, mGroup, <span class="keyword">true</span>, <span class="keyword">this</span>);
+<a name="l00066"></a>00066             KnownFileSize = Stream-&gt;size();
+<a name="l00067"></a>00067             assert(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>)==1);
+<a name="l00068"></a>00068             <span class="keywordtype">char</span>* buffer = <span class="keyword">new</span> <span class="keywordtype">char</span>[KnownFileSize];
+<a name="l00069"></a>00069             Stream-&gt;read((<span class="keywordtype">void</span>*)buffer, KnownFileSize);
+<a name="l00070"></a>00070             <span class="keywordflow">if</span>(Importer-&gt;loadFileFromMemory(buffer, KnownFileSize))
+<a name="l00071"></a>00071             {
+<a name="l00072"></a>00072                 <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumCollisionShapes() ; X++ )
+<a name="l00073"></a>00073                 {
+<a name="l00074"></a>00074                     btCollisionShape* Shape = Importer-&gt;getCollisionShapeByIndex(X);
+<a name="l00075"></a>00075                     BulletShapes.push_back(std::pair&lt;String,btCollisionShape*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)Shape),Shape));
+<a name="l00076"></a>00076                 }
+<a name="l00077"></a>00077                 <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumRigidBodies() ; X++ )
+<a name="l00078"></a>00078                 {
+<a name="l00079"></a>00079                     btCollisionObject* Body = Importer-&gt;getRigidBodyByIndex(X);
+<a name="l00080"></a>00080                     BulletBodies.push_back(std::pair&lt;String,btCollisionObject*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)Body),Body));
+<a name="l00081"></a>00081                 }
+<a name="l00082"></a>00082                 <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumConstraints() ; X++ )
+<a name="l00083"></a>00083                 {
+<a name="l00084"></a>00084                     btTypedConstraint* Constraint = Importer-&gt;getConstraintByIndex(X);
+<a name="l00085"></a>00085                     BulletConstraints.push_back(std::pair&lt;String,btTypedConstraint*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)Constraint),Constraint));
+<a name="l00086"></a>00086                 }
+<a name="l00087"></a>00087                 <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumBvhs() ; X++ )
+<a name="l00088"></a>00088                 {
+<a name="l00089"></a>00089                     btOptimizedBvh* BVH = Importer-&gt;getBvhByIndex(X);
+<a name="l00090"></a>00090                     BulletBVHs.push_back(std::pair&lt;String,btOptimizedBvh*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)BVH),BVH));
+<a name="l00091"></a>00091                 }
+<a name="l00092"></a>00092                 <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; Importer-&gt;getNumTriangleInfoMaps() ; X++ )
+<a name="l00093"></a>00093                 {
+<a name="l00094"></a>00094                     btTriangleInfoMap* TriInfoMap = Importer-&gt;getTriangleInfoMapByIndex(X);
+<a name="l00095"></a>00095                     BulletTriangleInfoMaps.push_back(std::pair&lt;String,btTriangleInfoMap*&gt;(Importer-&gt;getNameForPointer((<span class="keywordtype">void</span>*)TriInfoMap),TriInfoMap));
+<a name="l00096"></a>00096                 }
+<a name="l00097"></a>00097             }<span class="keywordflow">else</span>{
+<a name="l00098"></a>00098             }
+<a name="l00099"></a>00099         }
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101         <span class="keywordtype">void</span> BulletFile::unloadImpl()
+<a name="l00102"></a>00102         {
+<a name="l00103"></a>00103             BulletShapes.clear();
+<a name="l00104"></a>00104             BulletBodies.clear();
+<a name="l00105"></a>00105             BulletConstraints.clear();
+<a name="l00106"></a>00106             BulletBVHs.clear();
+<a name="l00107"></a>00107             BulletTriangleInfoMaps.clear();
+<a name="l00108"></a>00108         }
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110         <span class="keywordtype">size_t</span> BulletFile::calculateSize()<span class="keyword"> const</span>
+<a name="l00111"></a>00111 <span class="keyword">        </span>{
+<a name="l00112"></a>00112             <span class="keywordflow">return</span> KnownFileSize;
+<a name="l00113"></a>00113         }
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115         btCollisionShape* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a27882635bb94ec384fc1a02619f31d74" title="Gets a physics shape by index.">BulletFile::GetShape</a>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00116"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a27882635bb94ec384fc1a02619f31d74">00116</a>         {
+<a name="l00117"></a>00117             <span class="keywordflow">return</span> BulletShapes[Index].second;
+<a name="l00118"></a>00118         }
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120         btCollisionShape* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a27882635bb94ec384fc1a02619f31d74" title="Gets a physics shape by index.">BulletFile::GetShape</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name)
+<a name="l00121"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a6f110baeb460957da0410153617440c1">00121</a>         {
+<a name="l00122"></a>00122             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btCollisionShape*&gt; &gt;::iterator CSI = BulletShapes.begin() ; CSI != BulletShapes.end() ; CSI++ )
+<a name="l00123"></a>00123             {
+<a name="l00124"></a>00124                 <span class="keywordflow">if</span>( Name == (*CSI).first )
+<a name="l00125"></a>00125                     <span class="keywordflow">return</span> (*CSI).second;
+<a name="l00126"></a>00126             }
+<a name="l00127"></a>00127         }
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129         btCollisionObject* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a72b2b29170c96646926467452ba913c6" title="Gets a physics body by index.">BulletFile::GetRigidBody</a>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00130"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a72b2b29170c96646926467452ba913c6">00130</a>         {
+<a name="l00131"></a>00131             <span class="keywordflow">return</span> BulletBodies[Index].second;
+<a name="l00132"></a>00132         }
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134         btCollisionObject* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a72b2b29170c96646926467452ba913c6" title="Gets a physics body by index.">BulletFile::GetRigidBody</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name)
+<a name="l00135"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a5c09e492abf00a82ccf82755968e7a5c">00135</a>         {
+<a name="l00136"></a>00136             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btCollisionObject*&gt; &gt;::iterator RBI = BulletBodies.begin() ; RBI != BulletBodies.end() ; RBI++ )
+<a name="l00137"></a>00137             {
+<a name="l00138"></a>00138                 <span class="keywordflow">if</span>( Name == (*RBI).first )
+<a name="l00139"></a>00139                     <span class="keywordflow">return</span> (*RBI).second;
+<a name="l00140"></a>00140             }
+<a name="l00141"></a>00141         }
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143         btTypedConstraint* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a36ae70fd657b6c0293b252abf52694a5" title="Gets a physics constraint by index.">BulletFile::GetConstraint</a>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00144"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a36ae70fd657b6c0293b252abf52694a5">00144</a>         {
+<a name="l00145"></a>00145             <span class="keywordflow">return</span> BulletConstraints[Index].second;
+<a name="l00146"></a>00146         }
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148         btTypedConstraint* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a36ae70fd657b6c0293b252abf52694a5" title="Gets a physics constraint by index.">BulletFile::GetConstraint</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name)
+<a name="l00149"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a19c9af33b87c133841c6e6e23959f201">00149</a>         {
+<a name="l00150"></a>00150             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btTypedConstraint*&gt; &gt;::iterator TCI = BulletConstraints.begin() ; TCI != BulletConstraints.end() ; TCI++ )
+<a name="l00151"></a>00151             {
+<a name="l00152"></a>00152                 <span class="keywordflow">if</span>( Name == (*TCI).first )
+<a name="l00153"></a>00153                     <span class="keywordflow">return</span> (*TCI).second;
+<a name="l00154"></a>00154             }
+<a name="l00155"></a>00155         }
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157         btOptimizedBvh* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a2dde44110919e77dc30f1d9bcb67f72c" title="Gets a physics acceleration structure by index.">BulletFile::GetBVH</a>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00158"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a2dde44110919e77dc30f1d9bcb67f72c">00158</a>         {
+<a name="l00159"></a>00159             <span class="keywordflow">return</span> BulletBVHs[Index].second;
+<a name="l00160"></a>00160         }
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162         btOptimizedBvh* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a2dde44110919e77dc30f1d9bcb67f72c" title="Gets a physics acceleration structure by index.">BulletFile::GetBVH</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name)
+<a name="l00163"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#ad65aa0b36affe887059183273892509e">00163</a>         {
+<a name="l00164"></a>00164             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btOptimizedBvh*&gt; &gt;::iterator BVHI = BulletBVHs.begin() ; BVHI != BulletBVHs.end() ; BVHI++ )
+<a name="l00165"></a>00165             {
+<a name="l00166"></a>00166                 <span class="keywordflow">if</span>( Name == (*BVHI).first )
+<a name="l00167"></a>00167                     <span class="keywordflow">return</span> (*BVHI).second;
+<a name="l00168"></a>00168             }
+<a name="l00169"></a>00169         }
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171         btTriangleInfoMap* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#ae59979e178ed8804e85a3e53502fbc6f" title="Gets a physics triangle info map by index.">BulletFile::GetTriangleInfoMap</a>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00172"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#ae59979e178ed8804e85a3e53502fbc6f">00172</a>         {
+<a name="l00173"></a>00173             <span class="keywordflow">return</span> BulletTriangleInfoMaps[Index].second;
+<a name="l00174"></a>00174         }
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176         btTriangleInfoMap* <a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#ae59979e178ed8804e85a3e53502fbc6f" title="Gets a physics triangle info map by index.">BulletFile::GetTriangleInfoMap</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name)
+<a name="l00177"></a><a class="code" href="classMezzanine_1_1internal_1_1BulletFile.html#a0b9b5a30adf8cc2066a288d9dd387523">00177</a>         {
+<a name="l00178"></a>00178             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;String,btTriangleInfoMap*&gt; &gt;::iterator TIMI = BulletTriangleInfoMaps.begin() ; TIMI != BulletTriangleInfoMaps.end() ; TIMI++ )
+<a name="l00179"></a>00179             {
+<a name="l00180"></a>00180                 <span class="keywordflow">if</span>( Name == (*TIMI).first )
+<a name="l00181"></a>00181                     <span class="keywordflow">return</span> (*TIMI).second;
+<a name="l00182"></a>00182             }
+<a name="l00183"></a>00183         }
+<a name="l00184"></a>00184     }<span class="comment">//internal</span>
+<a name="l00185"></a>00185 }<span class="comment">//Mezzanine</span>
+<a name="l00186"></a>00186 
+<a name="l00187"></a>00187 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -255,7 +256,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -265,6 +266,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -9,7 +9,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "gamebase.h"       //Game Include
-#include <physgame.h>       //Physgame include
+#include <mezzanine.h>      //Mezzanine include
 #include <sstream>          //STL includes
 
 #include <string>
@@ -17,7 +17,7 @@
 #include <fstream>            //Only used for testing
 
 
-using namespace phys;
+using namespace Mezzanine;
 using namespace std;
 
 //Create the World.... Globally! and set it to hold some actors
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
     //TheWorld->SetLoggingFrequency(World::LogOncePerXSeconds,5);
     //TheWorld->SetLoggingFrequency(World::LogNever);
 
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("World Created:");
     TheWorld->Log(PlaneOfPlay);
     #endif
@@ -58,13 +58,13 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetPreMainLoopItems(&PrePhysics);
     TheWorld->GetPhysicsManager()->SetPostMainLoopItems(&PostPhysics);
     TheWorld->GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("Managers Created");
     #endif
 
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("Initialized games");
     #endif
 
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
     // Set the Title
     TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("Catch!... The Game!");
     TheWorld->SetTargetFrameRate(60);
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("Framerate and Title set");
     #endif
 
@@ -192,7 +192,7 @@ bool PostRender()
         {
             Welcome->Play2d(false);
         }
-        #ifdef PHYSDEBUG
+        #ifdef MEZZDEBUG
         TheWorld->Log("Played Welcome Fun:");
         #endif
 
@@ -274,7 +274,7 @@ bool PostInput()
     static InputQueryTool* InputQueryer = new InputQueryTool();
 
     //Queryer.GatherEvents();
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("Mouse location From WorldQueryTool X/Y: ");
     TheWorld->LogStream << InputQueryer->GetMouseX() << ", " << InputQueryer->GetMouseY() << endl
                         << InputQueryer->GetRawMetaValue(MetaCode::MOUSEABSOLUTEHORIZONTAL) << ", " << InputQueryer->GetRawMetaValue(MetaCode::MOUSEABSOLUTEVERTICAL) << endl
@@ -426,7 +426,7 @@ bool PostInput()
                 return false;
             }
         }else{
-            #ifdef PHYSDEBUG
+            #ifdef MEZZDEBUG
             TheWorld->Log("Gamebase CLICK:");
             TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetGlobalLocation() << endl;
             #endif
@@ -435,8 +435,8 @@ bool PostInput()
             // *MouseRay *= 1000;
             //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
-            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,phys::WOT_ActorRigid);
-            #ifdef PHYSDEBUG
+            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WOT_ActorRigid);
+            #ifdef MEZZDEBUG
             TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
             #endif
 
@@ -445,11 +445,11 @@ bool PostInput()
             bool firstframe=false;
             if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
             {
-                #ifdef PHYSDEBUG
+                #ifdef MEZZDEBUG
                 TheWorld->Log("No Actor Clicked on");
                 #endif
             }else{
-                #ifdef PHYSDEBUG
+                #ifdef MEZZDEBUG
                 TheWorld->Log("Actor Clicked on"); TheWorld->Log(*ClickOnActor);
                 TheWorld->Log("MouseRay"); TheWorld->Log(*MouseRay);
                 TheWorld->Log("PlaneOfPlay"); TheWorld->Log(PlaneOfPlay);
@@ -463,7 +463,7 @@ bool PostInput()
                         {
                             Vector3 LocalPivot = ClickOnActor->Vector;
                             ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                            rigid->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
+                            rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::AAS_DisableDeactivation);
                             //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                             Dragger = new Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
@@ -476,13 +476,13 @@ bool PostInput()
                             Dragger->SetParam(Con_Stop_ERP,0.1,0); Dragger->SetParam(Con_Stop_ERP,0.1,1); Dragger->SetParam(Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
                             firstframe=true;
                         }else{  // since we don't
-                            #ifdef PHYSDEBUG
+                            #ifdef MEZZDEBUG
                             TheWorld->Log("Actor is not an ActorRigid.  Aborting.");
                             #endif
                         }
                     }
                 }else{
-                    #ifdef PHYSDEBUG
+                    #ifdef MEZZDEBUG
                     TheWorld->Log("Actor is Static/Kinematic.  Aborting.");
                     #endif
                 }
@@ -492,13 +492,13 @@ bool PostInput()
             Vector3 *DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
             if (0 == DragTo)
             {
-                #ifdef PHYSDEBUG
+                #ifdef MEZZDEBUG
                 TheWorld->Log("PlaneOfPlay Not Clicked on");
                 #endif
             }else{
                 if(Dragger && !firstframe)
                 {
-                    #ifdef PHYSDEBUG
+                    #ifdef MEZZDEBUG
                     TheWorld->Log("Dragged To");
                     TheWorld->Log(*DragTo);
                     #endif
@@ -519,7 +519,7 @@ bool PostInput()
             TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
-            Act->GetPhysicsSettings()->SetActivationState(phys::AAS_Active);
+            Act->GetPhysicsSettings()->SetActivationState(Mezzanine::AAS_Active);
         }
     }
     return true;
@@ -529,7 +529,7 @@ bool PostInput()
 //Non-Callbacks
 bool CheckForStuff()
 {
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     stringstream XMLforEventMGR;
     XMLforEventMGR << *(TheWorld->GetEventManager());
     TheWorld->Log("Event Manager");
@@ -549,14 +549,14 @@ bool CheckForStuff()
     //We check each Event
     while(0 != OneInput)
     {
-        #ifdef PHYSDEBUG
+        #ifdef MEZZDEBUG
         TheWorld->LogStream << "Input Events Processed (Escape is " << MetaCode::KEY_ESCAPE << ") : " << endl;
         #endif
 
         if(OneInput->GetType()!=EventBase::UserInput)
             { TheWorld->LogAndThrow("Trying to process a non-EventUserInput as an EventUserInput."); }
 
-        #ifdef PHYSDEBUG
+        #ifdef MEZZDEBUG
         TheWorld->Log(*OneInput);
         EventUserInput ASecondInput;
         stringstream UserInputXML;
@@ -577,7 +577,7 @@ bool CheckForStuff()
         OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
     }
 
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("All Game Window Changes This Frame");
     #endif
     EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
@@ -614,7 +614,7 @@ bool CheckForStuff()
         OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
     }
 
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("All Collisions This Frame");
     #endif
     EventCollision* OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
@@ -624,7 +624,7 @@ bool CheckForStuff()
         if(OneCollision->GetType() != EventBase::Collision)
             { TheWorld->LogAndThrow("Trying to process a non-EventCollision as an EventCollision."); }
 
-        #ifdef PHYSDEBUG
+        #ifdef MEZZDEBUG
         TheWorld->Log(*OneCollision);
         #endif
 
@@ -644,9 +644,9 @@ void LoadContent()
 {
     //TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
     TheWorld->GetSceneManager()->SetAmbientLight(0.10,0.10,0.10,0.10);
-    /*phys::Light *TorchR=TheWorld->GetSceneManager()->CreateLight("Redtorch");
-    phys::Light *TorchG=TheWorld->GetSceneManager()->CreateLight("Greentorch");
-    phys::Light *TorchToStream=TheWorld->GetSceneManager()->CreateLight("TempLightToBeDestroyed");
+    /*Mezzanine::Light *TorchR=TheWorld->GetSceneManager()->CreateLight("Redtorch");
+    Mezzanine::Light *TorchG=TheWorld->GetSceneManager()->CreateLight("Greentorch");
+    Mezzanine::Light *TorchToStream=TheWorld->GetSceneManager()->CreateLight("TempLightToBeDestroyed");
 
     Vector3 RedBase(70,70,100);
     ColourValue RTorchLight(0.8,0.1,0.3,1.0);
@@ -746,7 +746,7 @@ void LoadContent()
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
     //Test the Resource input stream here
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("Getting Working Directory.");
     TheWorld->Log(crossplatform::GetWorkingDir());
     TheWorld->Log("Trying to open test.xml and test.txt");
@@ -755,12 +755,12 @@ void LoadContent()
     #endif
     //stringstream Torchstream;
     //Torchstream << *TorchToStream;
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("Default Torch that should be green");
     //TheWorld->Log(*TorchG);
     #endif
     //Torchstream >>*TorchG;
-    #ifdef PHYSDEBUG
+    #ifdef MEZZDEBUG
     TheWorld->Log("Default Torch that is now be green and no longer default");
     //TheWorld->Log(*TorchG);
     #endif
@@ -800,7 +800,7 @@ void LoadContent()
         String StreamExtractionTest;
         TestFile >> StreamExtractionTest;
 
-        #ifdef PHYSDEBUG
+        #ifdef MEZZDEBUG
         TheWorld->LogStream << "ShouldHaveXML: " << endl << ShouldHaveXML << endl
                             << "ZippedFileContents: " << endl << ZippedFileContents << endl
                             << "File read from fstream: " << endl << TestFileString << endl ;
@@ -838,7 +838,7 @@ void LoadContent()
     }
 
     {
-        #ifdef PHYSDEBUG
+        #ifdef MEZZDEBUG
         TheWorld->Log("Testing streaming on test.xml and zipped test.txt, Making fresh set of stream pointers");
         #endif
 
@@ -867,14 +867,14 @@ void LoadContent()
         delete XMLptr;
         delete Zippedptr;
 
-        #ifdef PHYSDEBUG
+        #ifdef MEZZDEBUG
         TheWorld->Log("End streaming test2");
         #endif
     }
 
     {
-        #ifdef PHYSDEBUG
-        TheWorld->Log("Testing streaming on test.xml with phys::xml::Document");
+        #ifdef MEZZDEBUG
+        TheWorld->Log("Testing streaming on test.xml with Mezzanine::xml::Document");
         #endif
 
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
@@ -992,7 +992,7 @@ void LoadContent()
         TheWorld->Log(AColour);
 
 
-        #ifdef PHYSDEBUG
+        #ifdef MEZZDEBUG
         TheWorld->Log("End of testing XML and Streaming test 3");
         #endif
     }

@@ -1,0 +1,304 @@
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer}{
+\subsection{Mezzanine::debug::InternalDebugDrawer Class Reference}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer}\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+}
+
+
+This is used to draw wireframse for the Physics subsystem.  
+
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_aaec96d2b633e9890ac4d4bd28816e7b6}{draw3dText} (const btVector3 \&location, const char $\ast$textString)
+\begin{DoxyCompactList}\small\item\em Currently Unused. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_aab7fbeabbd7ddb67d5388fdd5673c005}{drawContactPoint} (const btVector3 \&PointOnB, const btVector3 \&normalOnB, btScalar distance, int lifeTime, const btVector3 \&color)
+\begin{DoxyCompactList}\small\item\em Currently Unused. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_af557ecfa759edf32dfc3c8dd3dc15a0b}{drawLine} (const btVector3 \&from, const btVector3 \&to, const btVector3 \&color)
+\begin{DoxyCompactList}\small\item\em This will prepare a line segment for being drawn. \item\end{DoxyCompactList}\item 
+virtual int \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a988d8362fbfd5e45032010334777d02d}{getDebugMode} () const 
+\begin{DoxyCompactList}\small\item\em This will return the current debug mode. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a2d747dbcc3fb7d0c18fc21c8df2c57ef}{GetWireFrameCount} ()
+\begin{DoxyCompactList}\small\item\em This returns the amount of wireframes to be drawn. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_afba37710a312f272859fecbe01b9f643}{InternalDebugDrawer} (\hyperlink{classMezzanine_1_1World}{Mezzanine::World} $\ast$ParentWorld\_\-, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} WireFrameCount\_\-=2)
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a4600feca2ea7570300e80b4daa49a41b}{PrepareForRendering} ()
+\begin{DoxyCompactList}\small\item\em This add all the rendering information to the graphics subsystem. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a263870f8b8e6099d3bd200ccc283ff25}{reportErrorWarning} (const char $\ast$warningString)
+\begin{DoxyCompactList}\small\item\em Used by the physics subsystem to report errors using the renderer. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a3a678f0ac120893bd32351a138211cc4}{setDebugMode} (int debugMode)
+\begin{DoxyCompactList}\small\item\em This is used to decide how much the debug render should draw. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a90fdd352bf1b49a62653a9aa4878f49a}{SetWireFrameCount} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} WireFrameCount\_\-)
+\begin{DoxyCompactList}\small\item\em Sets the amount of previous wireframes to leave visible. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a93dd964d454dbc3b34e3535e6eab2822}{$\sim$InternalDebugDrawer} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is used to draw wireframse for the Physics subsystem. 
+
+Definition at line 81 of file physicsmanager.cpp.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_afba37710a312f272859fecbe01b9f643}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!InternalDebugDrawer@{InternalDebugDrawer}}
+\index{InternalDebugDrawer@{InternalDebugDrawer}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{InternalDebugDrawer}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::debug::InternalDebugDrawer::InternalDebugDrawer (
+\begin{DoxyParamCaption}
+\item[{{\bf Mezzanine::World} $\ast$}]{ParentWorld\_\-, }
+\item[{{\bf Whole}}]{WireFrameCount\_\- = {\ttfamily 2}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_afba37710a312f272859fecbe01b9f643}
+
+
+Basic Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ParentWorld\_\-} & This is a Pointer to the world to be rendered \\
+\hline
+{\em WireFrameCount\_\-} & This sets the amount of previous Wireframes to be rendered, see \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a90fdd352bf1b49a62653a9aa4878f49a}{InternalDebugDrawer::SetWireFrameCount} for details.\\
+\hline
+\end{DoxyParams}
+This creates a basic Debug Drawer which works with the \hyperlink{classMezzanine_1_1World}{Mezzanine::World} that was passed. With a new 
+
+Definition at line 180 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_a93dd964d454dbc3b34e3535e6eab2822}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!$\sim$InternalDebugDrawer@{$\sim$InternalDebugDrawer}}
+\index{$\sim$InternalDebugDrawer@{$\sim$InternalDebugDrawer}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{$\sim$InternalDebugDrawer}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::debug::InternalDebugDrawer::$\sim$InternalDebugDrawer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_a93dd964d454dbc3b34e3535e6eab2822}
+
+
+Destructor. 
+
+This deletes all the Wireframes and will stop wireframe rendering 
+
+Definition at line 191 of file physicsmanager.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_aaec96d2b633e9890ac4d4bd28816e7b6}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!draw3dText@{draw3dText}}
+\index{draw3dText@{draw3dText}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{draw3dText}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::debug::InternalDebugDrawer::draw3dText (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{location, }
+\item[{const char $\ast$}]{textString}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_aaec96d2b633e9890ac4d4bd28816e7b6}
+
+
+Currently Unused. 
+
+Currently Unused 
+\begin{DoxyParams}{Parameters}
+{\em location} & Currently Unused \\
+\hline
+{\em textString} & Currently Unused \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 223 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_aab7fbeabbd7ddb67d5388fdd5673c005}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!drawContactPoint@{drawContactPoint}}
+\index{drawContactPoint@{drawContactPoint}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{drawContactPoint}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::debug::InternalDebugDrawer::drawContactPoint (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{PointOnB, }
+\item[{const btVector3 \&}]{normalOnB, }
+\item[{btScalar}]{distance, }
+\item[{int}]{lifeTime, }
+\item[{const btVector3 \&}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_aab7fbeabbd7ddb67d5388fdd5673c005}
+
+
+Currently Unused. 
+
+Currently Unused 
+\begin{DoxyParams}{Parameters}
+{\em PointOnB} & Currently Unused \\
+\hline
+{\em normalOnB} & Currently Unused \\
+\hline
+{\em distance} & Currently Unused \\
+\hline
+{\em lifeTime} & Currently Unused \\
+\hline
+{\em color} & Currently Unused \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 212 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_af557ecfa759edf32dfc3c8dd3dc15a0b}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!drawLine@{drawLine}}
+\index{drawLine@{drawLine}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{drawLine}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::debug::InternalDebugDrawer::drawLine (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{from, }
+\item[{const btVector3 \&}]{to, }
+\item[{const btVector3 \&}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_af557ecfa759edf32dfc3c8dd3dc15a0b}
+
+
+This will prepare a line segment for being drawn. 
+
+This adds the points for a line to the internal list of points to be rendered. 
+\begin{DoxyParams}{Parameters}
+{\em from} & The first point of the line \\
+\hline
+{\em to} & The second point of the line \\
+\hline
+{\em color} & Currently ignored \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 200 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_a988d8362fbfd5e45032010334777d02d}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!getDebugMode@{getDebugMode}}
+\index{getDebugMode@{getDebugMode}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{getDebugMode}]{\setlength{\rightskip}{0pt plus 5cm}int Mezzanine::debug::InternalDebugDrawer::getDebugMode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_a988d8362fbfd5e45032010334777d02d}
+
+
+This will return the current debug mode. 
+
+Currently this can only return btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe \begin{DoxyReturn}{Returns}
+Returns the Current debug mode, currently either btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe 
+\end{DoxyReturn}
+
+
+Definition at line 231 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_a2d747dbcc3fb7d0c18fc21c8df2c57ef}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!GetWireFrameCount@{GetWireFrameCount}}
+\index{GetWireFrameCount@{GetWireFrameCount}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{GetWireFrameCount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::debug::InternalDebugDrawer::GetWireFrameCount (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_a2d747dbcc3fb7d0c18fc21c8df2c57ef}
+
+
+This returns the amount of wireframes to be drawn. 
+
+This returns either 2 or the amount last set by \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a90fdd352bf1b49a62653a9aa4878f49a}{InternalDebugDrawer::SetWireFrameCount} . \begin{DoxyReturn}{Returns}
+This returns a whole number with the wireframe limit. 
+\end{DoxyReturn}
+
+
+Definition at line 260 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_a4600feca2ea7570300e80b4daa49a41b}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!PrepareForRendering@{PrepareForRendering}}
+\index{PrepareForRendering@{PrepareForRendering}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{PrepareForRendering}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::debug::InternalDebugDrawer::PrepareForRendering (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_a4600feca2ea7570300e80b4daa49a41b}
+
+
+This add all the rendering information to the graphics subsystem. 
+
+This sends all the points in the list of lines to the rendering subsystem(currently ogre), where they will stay until deleted 
+
+Definition at line 236 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_a263870f8b8e6099d3bd200ccc283ff25}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!reportErrorWarning@{reportErrorWarning}}
+\index{reportErrorWarning@{reportErrorWarning}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{reportErrorWarning}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::debug::InternalDebugDrawer::reportErrorWarning (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{warningString}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_a263870f8b8e6099d3bd200ccc283ff25}
+
+
+Used by the physics subsystem to report errors using the renderer. 
+
+We $\ast$Believe$\ast$ that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we Have redirected all input from this function to the \hyperlink{classMezzanine_1_1World_a693eea2a435e55618283e94f4cbaba64}{World::Log} function. 
+\begin{DoxyParams}{Parameters}
+{\em warningString} & We $\ast$Believe$\ast$ These are messagesfrom the physics subsystem, and that this should not directly called otherwise \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 217 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_a3a678f0ac120893bd32351a138211cc4}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!setDebugMode@{setDebugMode}}
+\index{setDebugMode@{setDebugMode}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{setDebugMode}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::debug::InternalDebugDrawer::setDebugMode (
+\begin{DoxyParamCaption}
+\item[{int}]{debugMode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_a3a678f0ac120893bd32351a138211cc4}
+
+
+This is used to decide how much the debug render should draw. 
+
+Currently this accepts btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe and setting these will either start or stop Wireframe rendering. All other btIDebugDraw values are ignored. 
+\begin{DoxyParams}{Parameters}
+{\em debugMode} & An Int which contains either btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 226 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1debug_1_1InternalDebugDrawer_a90fdd352bf1b49a62653a9aa4878f49a}{
+\index{Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}!SetWireFrameCount@{SetWireFrameCount}}
+\index{SetWireFrameCount@{SetWireFrameCount}!Mezzanine::debug::InternalDebugDrawer@{Mezzanine::debug::InternalDebugDrawer}}
+\paragraph[{SetWireFrameCount}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::debug::InternalDebugDrawer::SetWireFrameCount (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{WireFrameCount\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1debug_1_1InternalDebugDrawer_a90fdd352bf1b49a62653a9aa4878f49a}
+
+
+Sets the amount of previous wireframes to leave visible. 
+
+This will limit the amount of previous wireframes drawn. Setting this will cause all the extra wireframes to be deleted \hyperlink{classMezzanine_1_1debug_1_1InternalDebugDrawer_a4600feca2ea7570300e80b4daa49a41b}{InternalDebugDrawer::PrepareForRendering()} is next called, which should happen just before everything is rendered. 
+\begin{DoxyParams}{Parameters}
+{\em WireFrameCount\_\-} & This is a whole number which is limit. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 255 of file physicsmanager.cpp.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+physicsmanager.cpp\end{DoxyCompactItemize}

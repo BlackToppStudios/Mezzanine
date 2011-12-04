@@ -1,0 +1,114 @@
+\hypertarget{classMezzanine_1_1ActorTerrainPhysicsSettings}{
+\subsection{Mezzanine::ActorTerrainPhysicsSettings Class Reference}
+\label{classMezzanine_1_1ActorTerrainPhysicsSettings}\index{Mezzanine::ActorTerrainPhysicsSettings@{Mezzanine::ActorTerrainPhysicsSettings}}
+}
+
+
+This is a helper class for configuring physics settings of an \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid}.  
+
+
+
+
+{\ttfamily \#include $<$actorphysicssettings.h$>$}
+
+Inheritance diagram for Mezzanine::ActorTerrainPhysicsSettings:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ActorTerrainPhysicsSettings}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1ActorTerrainPhysicsSettings_ae7094b388ba2ac846aa269d6e35becda}{ActorTerrainPhysicsSettings} (\hyperlink{classMezzanine_1_1ActorTerrain}{ActorTerrain} $\ast$Actor, btRigidBody $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorTerrainPhysicsSettings_a0011fda184ee1e71ff9a2a5899eb10d2}{SetCollisionShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Sets the collision shape to be used. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorTerrainPhysicsSettings_a949b7ccf0866adbdb396a68ef4e7b551}{
+virtual \hyperlink{classMezzanine_1_1ActorTerrainPhysicsSettings_a949b7ccf0866adbdb396a68ef4e7b551}{$\sim$ActorTerrainPhysicsSettings} ()}
+\label{classMezzanine_1_1ActorTerrainPhysicsSettings_a949b7ccf0866adbdb396a68ef4e7b551}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorTerrainPhysicsSettings_a00d8b336e7444b6d3cfbc12798249503}{
+btRigidBody $\ast$ \hyperlink{classMezzanine_1_1ActorTerrainPhysicsSettings_a00d8b336e7444b6d3cfbc12798249503}{ActorRB}}
+\label{classMezzanine_1_1ActorTerrainPhysicsSettings_a00d8b336e7444b6d3cfbc12798249503}
+
+\begin{DoxyCompactList}\small\item\em Physics Object of the actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorTerrainPhysicsSettings_af06a01b6f14c0a1ea1f96e3c56c0280e}{
+\hyperlink{classMezzanine_1_1ActorTerrain}{ActorTerrain} $\ast$ \hyperlink{classMezzanine_1_1ActorTerrainPhysicsSettings_af06a01b6f14c0a1ea1f96e3c56c0280e}{TerrainParent}}
+\label{classMezzanine_1_1ActorTerrainPhysicsSettings_af06a01b6f14c0a1ea1f96e3c56c0280e}
+
+\begin{DoxyCompactList}\small\item\em The Actor this belongs to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a helper class for configuring physics settings of an \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid}. This class contains functions for the configuring of physics specific settings of an \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid}. This class can only configure the ActorRigids physics. For configuring actor graphics, see \hyperlink{classMezzanine_1_1ActorGraphicsSettings}{ActorGraphicsSettings}. 
+
+Definition at line 405 of file actorphysicssettings.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ActorTerrainPhysicsSettings_ae7094b388ba2ac846aa269d6e35becda}{
+\index{Mezzanine::ActorTerrainPhysicsSettings@{Mezzanine::ActorTerrainPhysicsSettings}!ActorTerrainPhysicsSettings@{ActorTerrainPhysicsSettings}}
+\index{ActorTerrainPhysicsSettings@{ActorTerrainPhysicsSettings}!Mezzanine::ActorTerrainPhysicsSettings@{Mezzanine::ActorTerrainPhysicsSettings}}
+\paragraph[{ActorTerrainPhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorTerrainPhysicsSettings::ActorTerrainPhysicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorTerrain} $\ast$}]{Actor, }
+\item[{btRigidBody $\ast$}]{PhysicsObject}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorTerrainPhysicsSettings_ae7094b388ba2ac846aa269d6e35becda}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor this settings class configures. \\
+\hline
+{\em PhysicsObject} & The physics object belonging to the actor this class configures. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 684 of file actorphysicssettings.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ActorTerrainPhysicsSettings_a0011fda184ee1e71ff9a2a5899eb10d2}{
+\index{Mezzanine::ActorTerrainPhysicsSettings@{Mezzanine::ActorTerrainPhysicsSettings}!SetCollisionShape@{SetCollisionShape}}
+\index{SetCollisionShape@{SetCollisionShape}!Mezzanine::ActorTerrainPhysicsSettings@{Mezzanine::ActorTerrainPhysicsSettings}}
+\paragraph[{SetCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorTerrainPhysicsSettings::SetCollisionShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorTerrainPhysicsSettings_a0011fda184ee1e71ff9a2a5899eb10d2}
+
+
+Sets the collision shape to be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shape} & The shape to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a9aa6c07c9cb235a417d68f1ea417f834}{Mezzanine::ActorBasePhysicsSettings}.
+
+
+
+Definition at line 697 of file actorphysicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorphysicssettings.h\item 
+actorphysicssettings.cpp\end{DoxyCompactItemize}

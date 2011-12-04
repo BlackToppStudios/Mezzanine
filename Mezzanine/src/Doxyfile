@@ -4,9 +4,9 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = PhysGameEngine
+PROJECT_NAME           = MezzanineEngine
 PROJECT_NUMBER         = "September 8, 2011"
-PROJECT_BRIEF          = A Game "Engine" Designed to ease the creation of cross platform games with 3d physics, 3d graphics and 3d Sound.
+PROJECT_BRIEF          = A Game Engine Designed to ease the creation of cross platform games with 3d physics, 3d graphics and 3d Sound.
 PROJECT_LOGO           = doxyfiles/logogreen100pxtall.png
 OUTPUT_DIRECTORY       = ../../docs/doxygen
 CREATE_SUBDIRS         = NO
@@ -232,7 +232,7 @@ EXPAND_ONLY_PREDEF     = NO
 SEARCH_INCLUDES        = YES
 INCLUDE_PATH           =
 INCLUDE_FILE_PATTERNS  =
-PREDEFINED             = PHYSXML 	
+PREDEFINED             = MEZZ_XML, MEZZ_LUA
 EXPAND_AS_DEFINED      =
 SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------

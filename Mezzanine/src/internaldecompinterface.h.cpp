@@ -50,9 +50,9 @@ namespace Mezzanine
 {
     namespace internal
     {
-        class PhysConvexDecomposition : public ConvexDecomposition::ConvexDecompInterface {
+        class MezzConvexDecomposition : public ConvexDecomposition::ConvexDecompInterface {
             public:
-                PhysConvexDecomposition();
+                MezzConvexDecomposition();
                 btAlignedObjectArray<btConvexHullShape*> m_convexShapes;
                 btAlignedObjectArray<btVector3> m_convexCentroids;
                 int mBaseCount;

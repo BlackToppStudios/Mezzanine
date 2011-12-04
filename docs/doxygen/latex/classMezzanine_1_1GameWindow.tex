@@ -1,0 +1,713 @@
+\hypertarget{classMezzanine_1_1GameWindow}{
+\subsection{Mezzanine::GameWindow Class Reference}
+\label{classMezzanine_1_1GameWindow}\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+}
+
+
+This class is for creating and managing game windows.  
+
+
+
+
+{\ttfamily \#include $<$gamewindow.h$>$}
+
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMezzanine_1_1GameWindow_ac31ba18e78ad8c6e749019726a0dbe6f}{WindowFlags} \{ \par
+{\bfseries WF\_\-Fullscreen} =  1, 
+{\bfseries WF\_\-Hidden} =  2, 
+{\bfseries WF\_\-VsyncEnabled} =  4, 
+{\bfseries WF\_\-FSAA\_\-2} =  8, 
+\par
+{\bfseries WF\_\-FSAA\_\-4} =  16, 
+{\bfseries WF\_\-FSAA\_\-8} =  32, 
+{\bfseries WF\_\-FSAA\_\-16} =  64, 
+{\bfseries WF\_\-Resizeable} =  128, 
+\par
+{\bfseries WF\_\-Minimized} =  256, 
+{\bfseries WF\_\-Maximized} =  512, 
+{\bfseries WF\_\-Borderless} =  1024
+ \}
+\begin{DoxyCompactList}\small\item\em A listing of potential options for configuring a game window during construction. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$ \hyperlink{classMezzanine_1_1GameWindow_a9a5c31130d7d2970d1c0141173bcdce3}{CreateViewport} (\hyperlink{classMezzanine_1_1Camera}{Camera} $\ast$ViewportCamera, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&ZOrder=0)
+\begin{DoxyCompactList}\small\item\em Creates an additional \hyperlink{classMezzanine_1_1Viewport}{Viewport} within a created render window. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GameWindow_a810561a4b96667bf88be137722d44407}{DestroyViewport} (\hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a viewport within this window. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1GameWindow_aebf4352707c9c1a7d8ca8d1f2a562ccd}{GameWindow} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&WindowCaption, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Flags)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1GameWindow_ad6dcba20b92b4881a35a872ba36037d5}{GetAverageFPS} ()
+\begin{DoxyCompactList}\small\item\em Gets the Average FPS. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1GameWindow_a366478a0038149d243d0ef19eacea696}{GetBestFPS} ()
+\begin{DoxyCompactList}\small\item\em Gets the Best FPS. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1GameWindow_add46a3048c8eb963dae0758c47316bc4}{GetBestFrameTime} ()
+\begin{DoxyCompactList}\small\item\em Gets the shortest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1GameWindow_a221263d2fe846eeaefe18b6817642dd8}{GetFSAALevel} () const 
+\begin{DoxyCompactList}\small\item\em Gets the current level of Anti-\/Aliasing enabled on this Window. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1GameWindow_a44e2caa0a6300c5365deb287c79c0153}{getFullscreen} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Fullscreen Setting. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1GameWindow_af298623981d66effc33760484c6b11d7}{GetLastFPS} ()
+\begin{DoxyCompactList}\small\item\em Gets the FPS based on the last frame rendered. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1GameWindow_a69e900fe0f1cb85cd1723991ebf808c5}{GetNumViewports} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of viewports within this window. \item\end{DoxyCompactList}\item 
+Ogre::RenderWindow $\ast$ \hyperlink{classMezzanine_1_1GameWindow_aade1ad28994653f9a8bca94d0c30cd5c}{GetOgreWindowPointer} ()
+\begin{DoxyCompactList}\small\item\em This will get a pointer to the Ogre RenderWindow. \item\end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classMezzanine_1_1GameWindow_afa4d53d324199329435946b652f27950}{GetRenderContext} ()
+\begin{DoxyCompactList}\small\item\em Gets the render context being used by this window. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1GameWindow_a4df354cf07173e21e9c2802882424c4d}{getRenderHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Height of the Rendering Area. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1GameWindow_ae25f20216007a5aff15115d908e8e711}{getRenderWidth} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Width of the Rendering Area. \item\end{DoxyCompactList}\item 
+SDL\_\-Window $\ast$ \hyperlink{classMezzanine_1_1GameWindow_a9d0fdf6e26f5ef499707fb590e9f3da0}{GetSDLWindowPointer} ()
+\begin{DoxyCompactList}\small\item\em This will get a pointer to the SDL Window. \item\end{DoxyCompactList}\item 
+const \hyperlink{structMezzanine_1_1GraphicsSettings}{GraphicsSettings} \& \hyperlink{classMezzanine_1_1GameWindow_af16dfa28de1dfadc0c921e05a0ccd9e7}{GetSettings} ()
+\begin{DoxyCompactList}\small\item\em Gets the current window settings. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$ \hyperlink{classMezzanine_1_1GameWindow_ac3ae0f2e4cee0238ae4c158adea1422e}{GetViewport} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets a viewport by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1GameWindow_afd5af20c62dfc0e9ab52fe689f5e8bc8}{GetWorstFPS} ()
+\begin{DoxyCompactList}\small\item\em Gets the Worst FPS. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1GameWindow_ae07e3a1d5e1ceef524ce29e0c255c78b}{GetWorstFrameTime} ()
+\begin{DoxyCompactList}\small\item\em Gets the longest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GameWindow_a874b538cd9735478f32329c06e832360}{setFullscreen} (const bool \&Fullscreen)
+\begin{DoxyCompactList}\small\item\em Set the Fullscreen Setting. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GameWindow_a485f45b9265b6fb9d6baae88171b8c74}{setRenderHeight} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height)
+\begin{DoxyCompactList}\small\item\em Sets the Height. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GameWindow_a89368aaeda12eb454ee951a44a65cb8b}{setRenderOptions} (const \hyperlink{structMezzanine_1_1GraphicsSettings}{GraphicsSettings} \&NewSettings)
+\begin{DoxyCompactList}\small\item\em Changes the X Resolution, Y Resolution, and fullscreen at the same time. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GameWindow_abf4ede4f1d14639017d8cd4da7490b44}{setRenderResolution} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height)
+\begin{DoxyCompactList}\small\item\em Changes the X and Y Resolution at the same time. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GameWindow_a9228766fbdf9fc77b104647e49226a0d}{setRenderWidth} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width)
+\begin{DoxyCompactList}\small\item\em Sets the Width. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GameWindow_ab115ae2f4af6e3136208bb6d20433b97}{SetWindowCaption} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&NewCaption)
+\begin{DoxyCompactList}\small\item\em This can set the the Text in the titlebar. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1GameWindow_a39986f43fb1370d6458b20958a915535}{
+\hyperlink{classMezzanine_1_1GameWindow_a39986f43fb1370d6458b20958a915535}{$\sim$GameWindow} ()}
+\label{classMezzanine_1_1GameWindow_a39986f43fb1370d6458b20958a915535}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1GameWindow_a3455efef5fb6a145649ecf4eb088f318}{
+void {\bfseries CorrectViewportAndCamera} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)}
+\label{classMezzanine_1_1GameWindow_a3455efef5fb6a145649ecf4eb088f318}
+
+\item 
+\hypertarget{classMezzanine_1_1GameWindow_acc55f88a63f67c381ea51a8918061aa5}{
+void {\bfseries CreateGameWindow} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&WindowCaption, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Flags)}
+\label{classMezzanine_1_1GameWindow_acc55f88a63f67c381ea51a8918061aa5}
+
+\item 
+\hypertarget{classMezzanine_1_1GameWindow_ad2c84a47e063186c5f47213153cc3e85}{
+int {\bfseries IsLargerThenDesktop} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height)}
+\label{classMezzanine_1_1GameWindow_ad2c84a47e063186c5f47213153cc3e85}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1GameWindow_a4a5a12e111d0dd55eb1244f542961cf6}{
+\hyperlink{classMezzanine_1_1GraphicsManager}{GraphicsManager} $\ast$ {\bfseries Manager}}
+\label{classMezzanine_1_1GameWindow_a4a5a12e111d0dd55eb1244f542961cf6}
+
+\item 
+\hypertarget{classMezzanine_1_1GameWindow_a7b15c357c655b229d21d53a10b158fc3}{
+Ogre::RenderWindow $\ast$ {\bfseries OgreWindow}}
+\label{classMezzanine_1_1GameWindow_a7b15c357c655b229d21d53a10b158fc3}
+
+\item 
+\hypertarget{classMezzanine_1_1GameWindow_a667278373bc7429151159e09b0191a8c}{
+SDL\_\-Window $\ast$ {\bfseries SDLWindow}}
+\label{classMezzanine_1_1GameWindow_a667278373bc7429151159e09b0191a8c}
+
+\item 
+\hypertarget{classMezzanine_1_1GameWindow_aa9356c86569b749ba370118aa5226395}{
+\hyperlink{structMezzanine_1_1GraphicsSettings}{GraphicsSettings} {\bfseries Settings}}
+\label{classMezzanine_1_1GameWindow_aa9356c86569b749ba370118aa5226395}
+
+\item 
+\hypertarget{classMezzanine_1_1GameWindow_a4c88924904cd902d350433cdc1115b54}{
+std::vector$<$ \hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$ $>$ {\bfseries Viewports}}
+\label{classMezzanine_1_1GameWindow_a4c88924904cd902d350433cdc1115b54}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is for creating and managing game windows. 
+
+Definition at line 63 of file gamewindow.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classMezzanine_1_1GameWindow_ac31ba18e78ad8c6e749019726a0dbe6f}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!WindowFlags@{WindowFlags}}
+\index{WindowFlags@{WindowFlags}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{WindowFlags}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::GameWindow::WindowFlags}}\hfill}
+\label{classMezzanine_1_1GameWindow_ac31ba18e78ad8c6e749019726a0dbe6f}
+
+
+A listing of potential options for configuring a game window during construction. 
+
+Brief descriptions of the values are as follows: \par
+ WF\_\-Fullscreen: This enables fullscreen on the window. \par
+ WF\_\-Hidden: This hides the window so that it isn't visible. \par
+ WF\_\-VsyncEnabled: This enables vsync for the window. \par
+ WF\_\-FSAA\_\-2: Enables Fullscreen Anti-\/Aliasing level 2 for the window. \par
+ WF\_\-FSAA\_\-4: Enables Fullscreen Anti-\/Aliasing level 4 for the window. \par
+ WF\_\-FSAA\_\-8: Enables Fullscreen Anti-\/Aliasing level 8 for the window. \par
+ WF\_\-FSAA\_\-16: Enables Fullscreen Anti-\/Aliasing level 16 for the window. \par
+ WF\_\-Resizeable: Creates a window with resizable borders, otherwise it is fixed size. \par
+ WF\_\-Minimized: Minimizes the window to the task bar immediately after construction. \par
+ WF\_\-Maximized: Maximizes the window immediately after construction. \par
+ WF\_\-Borderless: Removes all window decorations from the window(titlebar, borders, etc.). \par
+ 
+
+Definition at line 80 of file gamewindow.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1GameWindow_aebf4352707c9c1a7d8ca8d1f2a562ccd}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GameWindow@{GameWindow}}
+\index{GameWindow@{GameWindow}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GameWindow}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame Mezzanine src gamewindow cpp Mezzanine::GameWindow::GameWindow (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{WindowCaption, }
+\item[{const {\bf Whole} \&}]{Width, }
+\item[{const {\bf Whole} \&}]{Height, }
+\item[{const {\bf Whole} \&}]{Flags}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_aebf4352707c9c1a7d8ca8d1f2a562ccd}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em WindowCaption} & The caption to be set in the window titlebar. \\
+\hline
+{\em Width} & The desired width in pixels. \\
+\hline
+{\em Height} & The desired height in pixels. \\
+\hline
+{\em Flags} & Additional misc parameters, see WindowFlags enum for more info. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 65 of file gamewindow.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1GameWindow_a9a5c31130d7d2970d1c0141173bcdce3}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!CreateViewport@{CreateViewport}}
+\index{CreateViewport@{CreateViewport}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{CreateViewport}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Viewport} $\ast$ Mezzanine::GameWindow::CreateViewport (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{ViewportCamera, }
+\item[{const {\bf Whole} \&}]{ZOrder = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_a9a5c31130d7d2970d1c0141173bcdce3}
+
+
+Creates an additional \hyperlink{classMezzanine_1_1Viewport}{Viewport} within a created render window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em VeiwportCamera} & The camera that is to be attached to this \hyperlink{classMezzanine_1_1Viewport}{Viewport}. \\
+\hline
+{\em ZOrder} & The render order of this viewport relative to other viewports in this window. 0 means it'll use the current viewport count to determine the ZOrder. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 200 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a810561a4b96667bf88be137722d44407}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!DestroyViewport@{DestroyViewport}}
+\index{DestroyViewport@{DestroyViewport}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{DestroyViewport}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GameWindow::DestroyViewport (
+\begin{DoxyParamCaption}
+\item[{{\bf Viewport} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_a810561a4b96667bf88be137722d44407}
+
+
+Destroys a viewport within this window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & The viewport that will be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 218 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_ad6dcba20b92b4881a35a872ba36037d5}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetAverageFPS@{GetAverageFPS}}
+\index{GetAverageFPS@{GetAverageFPS}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetAverageFPS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::GameWindow::GetAverageFPS (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_ad6dcba20b92b4881a35a872ba36037d5}
+
+
+Gets the Average FPS. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the average framerate. 
+\end{DoxyReturn}
+
+
+Definition at line 375 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a366478a0038149d243d0ef19eacea696}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetBestFPS@{GetBestFPS}}
+\index{GetBestFPS@{GetBestFPS}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetBestFPS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::GameWindow::GetBestFPS (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_a366478a0038149d243d0ef19eacea696}
+
+
+Gets the Best FPS. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the best framerate. 
+\end{DoxyReturn}
+
+
+Definition at line 380 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_add46a3048c8eb963dae0758c47316bc4}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetBestFrameTime@{GetBestFrameTime}}
+\index{GetBestFrameTime@{GetBestFrameTime}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetBestFrameTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::GameWindow::GetBestFrameTime (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_add46a3048c8eb963dae0758c47316bc4}
+
+
+Gets the shortest amount of time it's taken to render a frame. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the best time for rendering a frame. 
+\end{DoxyReturn}
+
+
+Definition at line 390 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a221263d2fe846eeaefe18b6817642dd8}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetFSAALevel@{GetFSAALevel}}
+\index{GetFSAALevel@{GetFSAALevel}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetFSAALevel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::GameWindow::GetFSAALevel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1GameWindow_a221263d2fe846eeaefe18b6817642dd8}
+
+
+Gets the current level of Anti-\/Aliasing enabled on this Window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole indicating which level of AA is enabled on this window, or 0 if AA is disabled. 
+\end{DoxyReturn}
+
+
+Definition at line 363 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a44e2caa0a6300c5365deb287c79c0153}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!getFullscreen@{getFullscreen}}
+\index{getFullscreen@{getFullscreen}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{getFullscreen}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::GameWindow::getFullscreen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1GameWindow_a44e2caa0a6300c5365deb287c79c0153}
+
+
+Gets the Fullscreen Setting. 
+
+Gets the Fullscreen Setting \begin{DoxyReturn}{Returns}
+This returns a bool, true if fullscreen is set, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 239 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_af298623981d66effc33760484c6b11d7}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetLastFPS@{GetLastFPS}}
+\index{GetLastFPS@{GetLastFPS}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetLastFPS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::GameWindow::GetLastFPS (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_af298623981d66effc33760484c6b11d7}
+
+
+Gets the FPS based on the last frame rendered. 
+
+This essentially determines how many frames could be rendered if all frames within a second rendered at the same speed. \begin{DoxyReturn}{Returns}
+Returns a Real representing the framerate. 
+\end{DoxyReturn}
+
+
+Definition at line 370 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a69e900fe0f1cb85cd1723991ebf808c5}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetNumViewports@{GetNumViewports}}
+\index{GetNumViewports@{GetNumViewports}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetNumViewports}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::GameWindow::GetNumViewports (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_a69e900fe0f1cb85cd1723991ebf808c5}
+
+
+Gets the number of viewports within this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the number of viewports within this window. 
+\end{DoxyReturn}
+
+
+Definition at line 213 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_aade1ad28994653f9a8bca94d0c30cd5c}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetOgreWindowPointer@{GetOgreWindowPointer}}
+\index{GetOgreWindowPointer@{GetOgreWindowPointer}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetOgreWindowPointer}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::RenderWindow $\ast$ Mezzanine::GameWindow::GetOgreWindowPointer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_aade1ad28994653f9a8bca94d0c30cd5c}
+
+
+This will get a pointer to the Ogre RenderWindow. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Ogre RenderWindow class in use. 
+\end{DoxyReturn}
+
+
+Definition at line 405 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_afa4d53d324199329435946b652f27950}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetRenderContext@{GetRenderContext}}
+\index{GetRenderContext@{GetRenderContext}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetRenderContext}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ Mezzanine::GameWindow::GetRenderContext (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_afa4d53d324199329435946b652f27950}
+
+
+Gets the render context being used by this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a size\_\-t that identifies the render context being used by this window. 
+\end{DoxyReturn}
+
+
+Definition at line 400 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a4df354cf07173e21e9c2802882424c4d}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!getRenderHeight@{getRenderHeight}}
+\index{getRenderHeight@{getRenderHeight}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{getRenderHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::GameWindow::getRenderHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1GameWindow_a4df354cf07173e21e9c2802882424c4d}
+
+
+Gets the Height of the Rendering Area. 
+
+Gets the Height of the Rendering Area \begin{DoxyReturn}{Returns}
+This returns the Height of the Rendering Area 
+\end{DoxyReturn}
+
+
+Definition at line 289 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_ae25f20216007a5aff15115d908e8e711}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!getRenderWidth@{getRenderWidth}}
+\index{getRenderWidth@{getRenderWidth}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{getRenderWidth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::GameWindow::getRenderWidth (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1GameWindow_ae25f20216007a5aff15115d908e8e711}
+
+
+Gets the Width of the Rendering Area. 
+
+Gets the Width of the Rendering Area \begin{DoxyReturn}{Returns}
+This returns the Width of the Rendering Area 
+\end{DoxyReturn}
+
+
+Definition at line 294 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a9d0fdf6e26f5ef499707fb590e9f3da0}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetSDLWindowPointer@{GetSDLWindowPointer}}
+\index{GetSDLWindowPointer@{GetSDLWindowPointer}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetSDLWindowPointer}]{\setlength{\rightskip}{0pt plus 5cm}SDL\_\-Window $\ast$ Mezzanine::GameWindow::GetSDLWindowPointer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_a9d0fdf6e26f5ef499707fb590e9f3da0}
+
+
+This will get a pointer to the SDL Window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the SDL Window class in use. 
+\end{DoxyReturn}
+
+
+Definition at line 410 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_af16dfa28de1dfadc0c921e05a0ccd9e7}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetSettings@{GetSettings}}
+\index{GetSettings@{GetSettings}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetSettings}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf GraphicsSettings} \& Mezzanine::GameWindow::GetSettings (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_af16dfa28de1dfadc0c921e05a0ccd9e7}
+
+
+Gets the current window settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Returns} & a \hyperlink{structMezzanine_1_1GraphicsSettings}{GraphicsSettings} struct with the current window settings. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 231 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_ac3ae0f2e4cee0238ae4c158adea1422e}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetViewport@{GetViewport}}
+\index{GetViewport@{GetViewport}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetViewport}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Viewport} $\ast$ Mezzanine::GameWindow::GetViewport (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_ac3ae0f2e4cee0238ae4c158adea1422e}
+
+
+Gets a viewport by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the viewport requested. 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_afd5af20c62dfc0e9ab52fe689f5e8bc8}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetWorstFPS@{GetWorstFPS}}
+\index{GetWorstFPS@{GetWorstFPS}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetWorstFPS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::GameWindow::GetWorstFPS (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_afd5af20c62dfc0e9ab52fe689f5e8bc8}
+
+
+Gets the Worst FPS. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the worst framerate. 
+\end{DoxyReturn}
+
+
+Definition at line 385 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_ae07e3a1d5e1ceef524ce29e0c255c78b}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!GetWorstFrameTime@{GetWorstFrameTime}}
+\index{GetWorstFrameTime@{GetWorstFrameTime}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{GetWorstFrameTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::GameWindow::GetWorstFrameTime (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_ae07e3a1d5e1ceef524ce29e0c255c78b}
+
+
+Gets the longest amount of time it's taken to render a frame. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the worst time for rendering a frame. 
+\end{DoxyReturn}
+
+
+Definition at line 395 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a874b538cd9735478f32329c06e832360}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!setFullscreen@{setFullscreen}}
+\index{setFullscreen@{setFullscreen}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{setFullscreen}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GameWindow::setFullscreen (
+\begin{DoxyParamCaption}
+\item[{const bool \&}]{Fullscreen}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_a874b538cd9735478f32329c06e832360}
+
+
+Set the Fullscreen Setting. 
+
+Set the Fullscreen Setting 
+\begin{DoxyParams}{Parameters}
+{\em Fullscreen} & This accepts a bool. True for fullscreen, false for windowed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 245 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a485f45b9265b6fb9d6baae88171b8c74}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!setRenderHeight@{setRenderHeight}}
+\index{setRenderHeight@{setRenderHeight}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{setRenderHeight}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GameWindow::setRenderHeight (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Height}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_a485f45b9265b6fb9d6baae88171b8c74}
+
+
+Sets the Height. 
+
+Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen 
+\begin{DoxyParams}{Parameters}
+{\em Height} & This accepts a Whole. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 299 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a89368aaeda12eb454ee951a44a65cb8b}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!setRenderOptions@{setRenderOptions}}
+\index{setRenderOptions@{setRenderOptions}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{setRenderOptions}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GameWindow::setRenderOptions (
+\begin{DoxyParamCaption}
+\item[{const {\bf GraphicsSettings} \&}]{NewSettings}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_a89368aaeda12eb454ee951a44a65cb8b}
+
+
+Changes the X Resolution, Y Resolution, and fullscreen at the same time. 
+
+This should be useful in situations where it is not possible to update all of the options separately. 
+
+Definition at line 357 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_abf4ede4f1d14639017d8cd4da7490b44}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!setRenderResolution@{setRenderResolution}}
+\index{setRenderResolution@{setRenderResolution}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{setRenderResolution}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GameWindow::setRenderResolution (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Width, }
+\item[{const {\bf Whole} \&}]{Height}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_abf4ede4f1d14639017d8cd4da7490b44}
+
+
+Changes the X and Y Resolution at the same time. 
+
+This should be useful in situations where it is not possible to update the width and height separately. 
+\begin{DoxyParams}{Parameters}
+{\em Width} & The new desired Width for the rendering area as a whole number \\
+\hline
+{\em Height} & The new desired Width for the rendering area as a whole number \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 315 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_a9228766fbdf9fc77b104647e49226a0d}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!setRenderWidth@{setRenderWidth}}
+\index{setRenderWidth@{setRenderWidth}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{setRenderWidth}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GameWindow::setRenderWidth (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Width}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_a9228766fbdf9fc77b104647e49226a0d}
+
+
+Sets the Width. 
+
+Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen 
+\begin{DoxyParams}{Parameters}
+{\em Width} & This accepts a Whole. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 307 of file gamewindow.cpp.
+
+\hypertarget{classMezzanine_1_1GameWindow_ab115ae2f4af6e3136208bb6d20433b97}{
+\index{Mezzanine::GameWindow@{Mezzanine::GameWindow}!SetWindowCaption@{SetWindowCaption}}
+\index{SetWindowCaption@{SetWindowCaption}!Mezzanine::GameWindow@{Mezzanine::GameWindow}}
+\paragraph[{SetWindowCaption}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GameWindow::SetWindowCaption (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{NewCaption}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GameWindow_ab115ae2f4af6e3136208bb6d20433b97}
+
+
+This can set the the Text in the titlebar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em NewName} & This is the new text to be used in the titlebar. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 195 of file gamewindow.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+gamewindow.h\item 
+gamewindow.cpp\end{DoxyCompactItemize}

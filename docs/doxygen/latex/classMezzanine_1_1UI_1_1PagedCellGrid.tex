@@ -1,0 +1,292 @@
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid}{
+\subsection{Mezzanine::UI::PagedCellGrid Class Reference}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid}\index{Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}}
+}
+
+
+This is a specialization of the cell grid that allows you to use a spinner to navigate through pages of cells on the grid.  
+
+
+
+
+{\ttfamily \#include $<$uipagedcellgrid.h$>$}
+
+Inheritance diagram for Mezzanine::UI::PagedCellGrid:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classMezzanine_1_1UI_1_1PagedCellGrid}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1Spinner}{UI::Spinner} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a0478eb61f08e9bdea6a239175b52b0dc}{GetPageSpinner} ()
+\begin{DoxyCompactList}\small\item\em Gets the spinner in use by this widget. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_ac30a2ae0f11685a54682c5ee00a0c36e}{PagedCellGrid} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&SpnRect, const \hyperlink{namespaceMezzanine_1_1UI_a62462d4df783dcdda77e1590a96bc6d6}{UI::SpinnerStyle} \&SStyle, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&GlyphHeight, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_aadf28fcff9f6ebab1ab86ecbbdb73159}{SetCellSpacing} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Spacing)
+\begin{DoxyCompactList}\small\item\em Sets the spacing from each cell around any given cell there should be. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a79b32a3ab8f2df66be181730710e76ae}{SetEdgeSpacing} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Spacing)
+\begin{DoxyCompactList}\small\item\em Sets the spacing from the edge of the entire grid area that no cell should overlap. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a32cdd1fc050fb926db8bdd03d419841e}{SetFixedCellSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&FixedSize)
+\begin{DoxyCompactList}\small\item\em Sets the fixed size cells in this grid are to have. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_ad5cf298943ad2e8517d7660bffbe5744}{SetWorkAreaLimits} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&AreaLimit)
+\begin{DoxyCompactList}\small\item\em Sets the limits of the grid, to determine when and where objects need to be wrapped. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a1ff79a778710a517abb5c55a13b6a273}{UpdateDimensions} ()
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a2ca41cf2126edae60b2528c50befa2dd}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a2ca41cf2126edae60b2528c50befa2dd}{$\sim$PagedCellGrid} ()}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a2ca41cf2126edae60b2528c50befa2dd}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a963656bbfd00228a235df28f50ab528b}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a963656bbfd00228a235df28f50ab528b}{CalculateCellsPerPage} ()}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a963656bbfd00228a235df28f50ab528b}
+
+\begin{DoxyCompactList}\small\item\em Calculates the cells per page with existing parameters. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a6536a6e39be46f0fa0e33230b8939219}{
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a6536a6e39be46f0fa0e33230b8939219}{CheckMouseHoverImpl} ()}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a6536a6e39be46f0fa0e33230b8939219}
+
+\begin{DoxyCompactList}\small\item\em Child specific mouse hover method. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a329535201d348049ed163c4ac3b1b614}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a329535201d348049ed163c4ac3b1b614}{DrawGrid} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&WinDim)}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a329535201d348049ed163c4ac3b1b614}
+
+\begin{DoxyCompactList}\small\item\em Draws the grid, used for updating after any change. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a069d11ca87a55a208cc2edf936af2190}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a069d11ca87a55a208cc2edf936af2190}{DrawGrid} ()}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a069d11ca87a55a208cc2edf936af2190}
+
+\begin{DoxyCompactList}\small\item\em Draws the grid, used for updating after any change. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a53f378817ddfbc318fa41b91b60995dc}{
+virtual std::pair$<$ \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole}, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} $>$ \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a53f378817ddfbc318fa41b91b60995dc}{FindTopLeftOfPage} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Page)}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a53f378817ddfbc318fa41b91b60995dc}
+
+\begin{DoxyCompactList}\small\item\em Finds the top left of the passed in page. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a0a7bc7804b428773c4337b437c71661a}{
+virtual bool \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a0a7bc7804b428773c4337b437c71661a}{GridNeedsRedraw} ()}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a0a7bc7804b428773c4337b437c71661a}
+
+\begin{DoxyCompactList}\small\item\em Determines whether or not the grid needs to be redrawn. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a7a8a1e76b9c46a534ecc6d8458658431}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a7a8a1e76b9c46a534ecc6d8458658431}{SetVisibleImpl} (bool visible)}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a7a8a1e76b9c46a534ecc6d8458658431}
+
+\begin{DoxyCompactList}\small\item\em Child specific visibility method. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a40f0c33a1833836041e58973f14fcaf1}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries CurrentPage}}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a40f0c33a1833836041e58973f14fcaf1}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_ab82907ff74c468fb82eae9567f72aec5}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries MaxPages}}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_ab82907ff74c468fb82eae9567f72aec5}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_ab9d77a0431ed263599778fc2f8e036ee}{
+\hyperlink{classMezzanine_1_1UI_1_1Spinner}{UI::Spinner} $\ast$ {\bfseries PageSpinner}}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_ab9d77a0431ed263599778fc2f8e036ee}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_ae8bb0ce9e234195fac3de9668fd2e1a8}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries XCellsPerPage}}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_ae8bb0ce9e234195fac3de9668fd2e1a8}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_accc431f0479bf16764c73d1f1cff8c85}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries YCellsPerPage}}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_accc431f0479bf16764c73d1f1cff8c85}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a specialization of the cell grid that allows you to use a spinner to navigate through pages of cells on the grid. Unlike scrollbars, the location of a spinner that refers to this widget can be anywhere 
+
+Definition at line 57 of file uipagedcellgrid.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_ac30a2ae0f11685a54682c5ee00a0c36e}{
+\index{Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}!PagedCellGrid@{PagedCellGrid}}
+\index{PagedCellGrid@{PagedCellGrid}!Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}}
+\paragraph[{PagedCellGrid}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::PagedCellGrid::PagedCellGrid (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf RenderableRect} \&}]{Rect, }
+\item[{const {\bf RenderableRect} \&}]{SpnRect, }
+\item[{const {\bf UI::SpinnerStyle} \&}]{SStyle, }
+\item[{const {\bf Real} \&}]{GlyphHeight, }
+\item[{{\bf Layer} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_ac30a2ae0f11685a54682c5ee00a0c36e}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the widget. \\
+\hline
+{\em Rect} & The Rect representing the position and size of the widget. \\
+\hline
+{\em SpnRect} & The Rect representing the position and size of the spinner to be created alonhside this widget. \\
+\hline
+{\em SStyle} & The style of spinner to create. \\
+\hline
+{\em GlyphHeight} & The desired lineheight of the glyphs to be used with the spinner. \\
+\hline
+{\em parent} & The parent layer this widget belongs to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 56 of file uipagedcellgrid.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a0478eb61f08e9bdea6a239175b52b0dc}{
+\index{Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}!GetPageSpinner@{GetPageSpinner}}
+\index{GetPageSpinner@{GetPageSpinner}!Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}}
+\paragraph[{GetPageSpinner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Spinner} $\ast$ Mezzanine::UI::PagedCellGrid::GetPageSpinner (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a0478eb61f08e9bdea6a239175b52b0dc}
+
+
+Gets the spinner in use by this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the spinner being used by this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 328 of file uipagedcellgrid.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_aadf28fcff9f6ebab1ab86ecbbdb73159}{
+\index{Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}!SetCellSpacing@{SetCellSpacing}}
+\index{SetCellSpacing@{SetCellSpacing}!Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}}
+\paragraph[{SetCellSpacing}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::PagedCellGrid::SetCellSpacing (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Spacing}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_aadf28fcff9f6ebab1ab86ecbbdb73159}
+
+
+Sets the spacing from each cell around any given cell there should be. 
+
+Default 0.01,0.01. 
+\begin{DoxyParams}{Parameters}
+{\em Spacing} & The minimum amount of space (in relative units) from each cell a given cell should be. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 312 of file uipagedcellgrid.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a79b32a3ab8f2df66be181730710e76ae}{
+\index{Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}!SetEdgeSpacing@{SetEdgeSpacing}}
+\index{SetEdgeSpacing@{SetEdgeSpacing}!Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}}
+\paragraph[{SetEdgeSpacing}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::PagedCellGrid::SetEdgeSpacing (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Spacing}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a79b32a3ab8f2df66be181730710e76ae}
+
+
+Sets the spacing from the edge of the entire grid area that no cell should overlap. 
+
+Default: 0,0. 
+\begin{DoxyParams}{Parameters}
+{\em Spacing} & The minimum amount of space (in relative units) from the edge Cells should be. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 306 of file uipagedcellgrid.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a32cdd1fc050fb926db8bdd03d419841e}{
+\index{Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}!SetFixedCellSize@{SetFixedCellSize}}
+\index{SetFixedCellSize@{SetFixedCellSize}!Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}}
+\paragraph[{SetFixedCellSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::PagedCellGrid::SetFixedCellSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{FixedSize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a32cdd1fc050fb926db8bdd03d419841e}
+
+
+Sets the fixed size cells in this grid are to have. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FixedSize} & The fixed size to apply to cells. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 294 of file uipagedcellgrid.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_ad5cf298943ad2e8517d7660bffbe5744}{
+\index{Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}!SetWorkAreaLimits@{SetWorkAreaLimits}}
+\index{SetWorkAreaLimits@{SetWorkAreaLimits}!Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}}
+\paragraph[{SetWorkAreaLimits}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::PagedCellGrid::SetWorkAreaLimits (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{AreaLimit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_ad5cf298943ad2e8517d7660bffbe5744}
+
+
+Sets the limits of the grid, to determine when and where objects need to be wrapped. 
+
+This does not alter the actual size of the widget, just the logical area the widget has to work with. 
+\begin{DoxyParams}{Parameters}
+{\em Area} & The new limits to the grid. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 300 of file uipagedcellgrid.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1PagedCellGrid_a1ff79a778710a517abb5c55a13b6a273}{
+\index{Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!Mezzanine::UI::PagedCellGrid@{Mezzanine::UI::PagedCellGrid}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::PagedCellGrid::UpdateDimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1PagedCellGrid_a1ff79a778710a517abb5c55a13b6a273}
+
+
+Updates the dimensions of this widget to match those of the new screen size. 
+
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
+
+Reimplemented from \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a11cda11f70cd331c9bd39daf0b0f24aa}{Mezzanine::UI::CellGrid}.
+
+
+
+Definition at line 318 of file uipagedcellgrid.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uipagedcellgrid.h\item 
+uipagedcellgrid.cpp\end{DoxyCompactItemize}

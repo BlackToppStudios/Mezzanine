@@ -1,0 +1,571 @@
+\hypertarget{classMezzanine_1_1ParticleEffect}{
+\subsection{Mezzanine::ParticleEffect Class Reference}
+\label{classMezzanine_1_1ParticleEffect}\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+}
+
+
+This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.  
+
+
+
+
+{\ttfamily \#include $<$particleeffect.h$>$}
+
+Inheritance diagram for Mezzanine::ParticleEffect:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ParticleEffect}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMezzanine_1_1ParticleEffect_a404d1a6fa07ea2fc5937854ea05702f0}{AddToWorld} ()
+\begin{DoxyCompactList}\small\item\em Adds this particle effect to the world, allowing it to render. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ParticleEffect_a17d3cf19370d74b724fcbb737c8ff30e}{DestroyAffector} (const \hyperlink{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{UInt16} \&Index)
+\begin{DoxyCompactList}\small\item\em Destroy's an Affector in use by this particle effect. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ParticleEffect_a11b8d00124844fc531ca4018b0b5d49f}{
+void \hyperlink{classMezzanine_1_1ParticleEffect_a11b8d00124844fc531ca4018b0b5d49f}{DestroyAllAffectors} ()}
+\label{classMezzanine_1_1ParticleEffect_a11b8d00124844fc531ca4018b0b5d49f}
+
+\begin{DoxyCompactList}\small\item\em Destroy's all Affectors in use by this particle effect. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ParticleEffect_aa94e64c4b3355cd470c362ea24b907e7}{
+void \hyperlink{classMezzanine_1_1ParticleEffect_aa94e64c4b3355cd470c362ea24b907e7}{DestroyAllEmitters} ()}
+\label{classMezzanine_1_1ParticleEffect_aa94e64c4b3355cd470c362ea24b907e7}
+
+\begin{DoxyCompactList}\small\item\em Destroy's all Emitters in use by this particle effect. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ParticleEffect_a00195054c7c949038a083be943876e28}{DestroyEmitter} (const \hyperlink{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{UInt16} \&Index)
+\begin{DoxyCompactList}\small\item\em Destroy's an Emitter in use by this particle effect. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ParticleAffector}{ParticleAffector} $\ast$ \hyperlink{classMezzanine_1_1ParticleEffect_a401836904a0426be484bcecb33447b6c}{GetAffector} (const \hyperlink{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{UInt16} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets the Affector at the specified index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} \hyperlink{classMezzanine_1_1ParticleEffect_afd4e4d0917450000348abe394c07e985}{GetAttachableData} () const 
+\begin{DoxyCompactList}\small\item\em Gets pointers to the internal ogre structures for this attachable. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{Attachable::AttachableElement} \hyperlink{classMezzanine_1_1ParticleEffect_aa9beb1bdcebf98dd3ddced6a7310ed7b}{GetAttachableType} () const 
+\item 
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ParticleEffect_adce2efc1c8e866459db8438454483dc4}{GetCustomParam} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name) const 
+\begin{DoxyCompactList}\small\item\em Gets a custom parameter of a particle effect. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ParticleEmitter}{ParticleEmitter} $\ast$ \hyperlink{classMezzanine_1_1ParticleEffect_ada183314f9c8ed055fee5901b1d30739}{GetEmitter} (const \hyperlink{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{UInt16} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets the Emitter at the specified index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ParticleEffect_a45174a2138b031322ddc57fe1be006de}{GetLocation} () const 
+\item 
+\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1ParticleEffect_a43176eb1ad80019bc2a839e597141dd7}{GetName} () const 
+\item 
+\hyperlink{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{UInt16} \hyperlink{classMezzanine_1_1ParticleEffect_aac2469d149a5509d0f9f1486b4ca036f}{GetNumAffectors} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of Affectors in use by this particle effect. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{UInt16} \hyperlink{classMezzanine_1_1ParticleEffect_a7c3d466cfef8a41a63b03d3935e64f1b}{GetNumEmitters} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of Emitters in use by this particle effect. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1ParticleEffect_ac47f0c537dd4b789c502bb2a3af61a56}{GetOrientation} () const 
+\item 
+\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1ParticleEffect_ad39ed422ad277f93a6040ad27b8b4951}{GetTemplate} () const 
+\begin{DoxyCompactList}\small\item\em The name of the template used to create this. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1ParticleEffect_a6ad8b80cbe06d818a78dcff6e1069183}{IsInWorld} () const 
+\begin{DoxyCompactList}\small\item\em Gets whether or not this effect is in the world. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ParticleEffect_a6ce060bf2f66ed82fb828ef01dcf2416}{ParticleEffect} (Ogre::ParticleSystem $\ast$System, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Template, \hyperlink{classMezzanine_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ParticleEffect_abbc04839c173b33d1851b8061bd2b0f9}{ParticleEffect} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Template, \hyperlink{classMezzanine_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ParticleEffect_ac7786808910f8adcf08f2363a12ee6bd}{RemoveFromWorld} ()
+\begin{DoxyCompactList}\small\item\em Removes this particle effect from the world, preventing it from rendering. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ParticleEffect_a8e320ef29d8eafd48e818326b4bc43b9}{SetCustomParam} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Value)
+\begin{DoxyCompactList}\small\item\em Sets a custom parameter of a particle effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ParticleEffect_a1209e018087451e02eec73b52db31d2b}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec)
+\item 
+virtual void \hyperlink{classMezzanine_1_1ParticleEffect_a8e16be90e8c9d59b7c48b11a38179f76}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation)
+\item 
+\hypertarget{classMezzanine_1_1ParticleEffect_add57951cee55189c780c4b5bb7cc752a}{
+virtual \hyperlink{classMezzanine_1_1ParticleEffect_add57951cee55189c780c4b5bb7cc752a}{$\sim$ParticleEffect} ()}
+\label{classMezzanine_1_1ParticleEffect_add57951cee55189c780c4b5bb7cc752a}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. Particle effects are loaded from particle scripts which are contained in particle files($\ast$.particle). \par
+ All particle effects are created attached to a world node. The world Node provides the Nagivation functionality of for this 
+
+Definition at line 74 of file particleeffect.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ParticleEffect_abbc04839c173b33d1851b8061bd2b0f9}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!ParticleEffect@{ParticleEffect}}
+\index{ParticleEffect@{ParticleEffect}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ParticleEffect::ParticleEffect (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{Template, }
+\item[{{\bf SceneManager} $\ast$}]{manager}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ParticleEffect_abbc04839c173b33d1851b8061bd2b0f9}
+
+
+Standard initialization constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this particle effect. \\
+\hline
+{\em Template} & Name of the particle script to be used in creating this particle effect. \\
+\hline
+{\em manager} & Pointer to the manager that this particle effect is to be used in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 108 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a6ce060bf2f66ed82fb828ef01dcf2416}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!ParticleEffect@{ParticleEffect}}
+\index{ParticleEffect@{ParticleEffect}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ParticleEffect::ParticleEffect (
+\begin{DoxyParamCaption}
+\item[{Ogre::ParticleSystem $\ast$}]{System, }
+\item[{const {\bf String} \&}]{Template, }
+\item[{{\bf SceneManager} $\ast$}]{manager}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a6ce060bf2f66ed82fb828ef01dcf2416}
+
+
+Internal constructor. 
+
+This constructor should not be called on manually. 
+\begin{DoxyParams}{Parameters}
+{\em System} & Pointer to the Ogre ParticleSystem this class is based on. \\
+\hline
+{\em Template} & Name of the particle script to be used in creating this particle effect. \\
+\hline
+{\em manager} & Pointer to the manager that this particle effect is to be used in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 128 of file particleeffect.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ParticleEffect_a404d1a6fa07ea2fc5937854ea05702f0}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!AddToWorld@{AddToWorld}}
+\index{AddToWorld@{AddToWorld}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{AddToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ParticleEffect::AddToWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a404d1a6fa07ea2fc5937854ea05702f0}
+
+
+Adds this particle effect to the world, allowing it to render. 
+
+If the Effect is already in the world, this does nothing. 
+
+Definition at line 233 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a17d3cf19370d74b724fcbb737c8ff30e}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!DestroyAffector@{DestroyAffector}}
+\index{DestroyAffector@{DestroyAffector}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{DestroyAffector}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ParticleEffect::DestroyAffector (
+\begin{DoxyParamCaption}
+\item[{const {\bf UInt16} \&}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a17d3cf19370d74b724fcbb737c8ff30e}
+
+
+Destroy's an Affector in use by this particle effect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index to destroy. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 214 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a00195054c7c949038a083be943876e28}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!DestroyEmitter@{DestroyEmitter}}
+\index{DestroyEmitter@{DestroyEmitter}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{DestroyEmitter}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ParticleEffect::DestroyEmitter (
+\begin{DoxyParamCaption}
+\item[{const {\bf UInt16} \&}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a00195054c7c949038a083be943876e28}
+
+
+Destroy's an Emitter in use by this particle effect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index to destroy. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 185 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a401836904a0426be484bcecb33447b6c}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetAffector@{GetAffector}}
+\index{GetAffector@{GetAffector}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetAffector}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParticleAffector} $\ast$ Mezzanine::ParticleEffect::GetAffector (
+\begin{DoxyParamCaption}
+\item[{const {\bf UInt16} \&}]{Index}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a401836904a0426be484bcecb33447b6c}
+
+
+Gets the Affector at the specified index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the Affector to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Affector at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 204 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_afd4e4d0917450000348abe394c07e985}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetAttachableData@{GetAttachableData}}
+\index{GetAttachableData@{GetAttachableData}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetAttachableData}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AttachableData} Mezzanine::ParticleEffect::GetAttachableData (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ParticleEffect_afd4e4d0917450000348abe394c07e985}
+
+
+Gets pointers to the internal ogre structures for this attachable. 
+
+\begin{DoxyReturn}{Returns}
+Returns an \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} struct with the internal data. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1Attachable_aeed457c614552bd753e7669cb7624b19}{Mezzanine::Attachable}.
+
+
+
+Definition at line 260 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_aa9beb1bdcebf98dd3ddced6a7310ed7b}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetAttachableType@{GetAttachableType}}
+\index{GetAttachableType@{GetAttachableType}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetAttachableType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attachable::AttachableElement} Mezzanine::ParticleEffect::GetAttachableType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ParticleEffect_aa9beb1bdcebf98dd3ddced6a7310ed7b}
+Gets the type of element this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating what type of element this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Attachable_aacb1a1958cca1f005c1313f14e3d098d}{Mezzanine::Attachable}.
+
+
+
+Definition at line 157 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_adce2efc1c8e866459db8438454483dc4}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetCustomParam@{GetCustomParam}}
+\index{GetCustomParam@{GetCustomParam}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetCustomParam}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::ParticleEffect::GetCustomParam (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ParticleEffect_adce2efc1c8e866459db8438454483dc4}
+
+
+Gets a custom parameter of a particle effect. 
+
+\begin{DoxyRemark}{Remarks}
+The params available to change depends on the internal particle system used. You should check your particle script where possible to ensure the particle has the param you are looking for. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the parameter to fetch. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 254 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_ada183314f9c8ed055fee5901b1d30739}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetEmitter@{GetEmitter}}
+\index{GetEmitter@{GetEmitter}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetEmitter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParticleEmitter} $\ast$ Mezzanine::ParticleEffect::GetEmitter (
+\begin{DoxyParamCaption}
+\item[{const {\bf UInt16} \&}]{Index}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ParticleEffect_ada183314f9c8ed055fee5901b1d30739}
+
+
+Gets the Emitter at the specified index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the Emitter to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Emitter at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 175 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a45174a2138b031322ddc57fe1be006de}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetLocation@{GetLocation}}
+\index{GetLocation@{GetLocation}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ParticleEffect::GetLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a45174a2138b031322ddc57fe1be006de}
+Get the location of the attachable object, relative to the Object is is attached to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the location. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Attachable_a1a8e18e5654c50f24bc049c228603d71}{Mezzanine::Attachable}.
+
+
+
+Definition at line 163 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a43176eb1ad80019bc2a839e597141dd7}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::ParticleEffect::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a43176eb1ad80019bc2a839e597141dd7}
+Gets the name of the attachable element.  
+
+Implements \hyperlink{classMezzanine_1_1Attachable_a6a49ac8c2ddb2dd8ed7dd17f96ecafe5}{Mezzanine::Attachable}.
+
+
+
+Definition at line 154 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_aac2469d149a5509d0f9f1486b4ca036f}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetNumAffectors@{GetNumAffectors}}
+\index{GetNumAffectors@{GetNumAffectors}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetNumAffectors}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt16} Mezzanine::ParticleEffect::GetNumAffectors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ParticleEffect_aac2469d149a5509d0f9f1486b4ca036f}
+
+
+Gets the number of Affectors in use by this particle effect. 
+
+\begin{DoxyReturn}{Returns}
+Returns a UInt16 representing the number of Affectors in this particle effect. 
+\end{DoxyReturn}
+
+
+Definition at line 209 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a7c3d466cfef8a41a63b03d3935e64f1b}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetNumEmitters@{GetNumEmitters}}
+\index{GetNumEmitters@{GetNumEmitters}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetNumEmitters}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt16} Mezzanine::ParticleEffect::GetNumEmitters (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a7c3d466cfef8a41a63b03d3935e64f1b}
+
+
+Gets the number of Emitters in use by this particle effect. 
+
+\begin{DoxyReturn}{Returns}
+Returns a UInt16 representing the number of Emitters in this particle effect. 
+\end{DoxyReturn}
+
+
+Definition at line 180 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_ac47f0c537dd4b789c502bb2a3af61a56}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} Mezzanine::ParticleEffect::GetOrientation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ParticleEffect_ac47f0c537dd4b789c502bb2a3af61a56}
+Get the orientation of the attachable object relative to the object it is attached to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a quaternion with the orientation. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Attachable_ab3e094cbc373edb05866783290991e7d}{Mezzanine::Attachable}.
+
+
+
+Definition at line 169 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_ad39ed422ad277f93a6040ad27b8b4951}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!GetTemplate@{GetTemplate}}
+\index{GetTemplate@{GetTemplate}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{GetTemplate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::ParticleEffect::GetTemplate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ParticleEffect_ad39ed422ad277f93a6040ad27b8b4951}
+
+
+The name of the template used to create this. 
+
+\begin{DoxyReturn}{Returns}
+A reaference to a ConstString that has the name. 
+\end{DoxyReturn}
+
+
+Definition at line 248 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a6ad8b80cbe06d818a78dcff6e1069183}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!IsInWorld@{IsInWorld}}
+\index{IsInWorld@{IsInWorld}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{IsInWorld}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ParticleEffect::IsInWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a6ad8b80cbe06d818a78dcff6e1069183}
+
+
+Gets whether or not this effect is in the world. 
+
+\begin{DoxyReturn}{Returns}
+True if in the world, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 245 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_ac7786808910f8adcf08f2363a12ee6bd}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!RemoveFromWorld@{RemoveFromWorld}}
+\index{RemoveFromWorld@{RemoveFromWorld}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{RemoveFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ParticleEffect::RemoveFromWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ParticleEffect_ac7786808910f8adcf08f2363a12ee6bd}
+
+
+Removes this particle effect from the world, preventing it from rendering. 
+
+If the Effect is not in the world, this does nothing 
+
+Definition at line 239 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a8e320ef29d8eafd48e818326b4bc43b9}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!SetCustomParam@{SetCustomParam}}
+\index{SetCustomParam@{SetCustomParam}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{SetCustomParam}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ParticleEffect::SetCustomParam (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{Value}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a8e320ef29d8eafd48e818326b4bc43b9}
+
+
+Sets a custom parameter of a particle effect. 
+
+\begin{DoxyRemark}{Remarks}
+The params available to change depends on the internal particle system used. You should check your particle script where possible to ensure particles you are changing are the type you expect. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the parameter to alter. \\
+\hline
+{\em Value} & The new value to set for the named parameter. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 251 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a1209e018087451e02eec73b52db31d2b}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!SetLocation@{SetLocation}}
+\index{SetLocation@{SetLocation}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ParticleEffect::SetLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a1209e018087451e02eec73b52db31d2b}
+Set the location of this attachable object relative to the object it is attached to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vec} & The location. \\
+\hline
+\end{DoxyParams}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Attachable_ae326a2b74e7187504de91106be64b956}{Mezzanine::Attachable}.
+
+
+
+Definition at line 160 of file particleeffect.cpp.
+
+\hypertarget{classMezzanine_1_1ParticleEffect_a8e16be90e8c9d59b7c48b11a38179f76}{
+\index{Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!Mezzanine::ParticleEffect@{Mezzanine::ParticleEffect}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ParticleEffect::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Orientation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ParticleEffect_a8e16be90e8c9d59b7c48b11a38179f76}
+Set the orientation of this attachable object relative to the object it is attached to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Ori} & The Orientation. \\
+\hline
+\end{DoxyParams}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Attachable_a4e987cfdaf8d261764504dbf2f009c74}{Mezzanine::Attachable}.
+
+
+
+Definition at line 166 of file particleeffect.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+particleeffect.h\item 
+\hyperlink{particleeffect_8cpp}{particleeffect.cpp}\end{DoxyCompactItemize}

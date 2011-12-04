@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: graphicssettings.h Source File</title>
+<title>MezzanineEngine: graphicssettings.h Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -106,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="keyword">namespace </span>phys
+<a name="l00045"></a>00045 <span class="keyword">namespace </span>Mezzanine
 <a name="l00046"></a>00046 {<span class="comment"></span>
 <a name="l00047"></a>00047 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00048"></a>00048 <span class="comment">    /// @class GraphicsSettings</span>
@@ -116,31 +116,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00052"></a>00052 <span class="comment">    /// additionally one can be created and passed into the manager to set all the configuration</span>
 <a name="l00053"></a>00053 <span class="comment">    /// options at once.</span>
 <a name="l00054"></a>00054 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00055"></a><a class="code" href="structphys_1_1GraphicsSettings.html">00055</a> <span class="comment"></span>    <span class="keyword">struct </span>PHYS_LIB <a class="code" href="structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a>
+<a name="l00055"></a><a class="code" href="structMezzanine_1_1GraphicsSettings.html">00055</a> <span class="comment"></span>    <span class="keyword">struct </span>MEZZ_LIB <a class="code" href="structMezzanine_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a>
 <a name="l00056"></a>00056     {<span class="comment"></span>
 <a name="l00057"></a>00057 <span class="comment">        /// @brief This stores the Height of the renderwindow.</span>
-<a name="l00058"></a><a class="code" href="structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265">00058</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a>;<span class="comment"></span>
+<a name="l00058"></a><a class="code" href="structMezzanine_1_1GraphicsSettings.html#ac92f261b9753141847ff0464e136c435">00058</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="structMezzanine_1_1GraphicsSettings.html#ac92f261b9753141847ff0464e136c435" title="This stores the Height of the renderwindow.">RenderHeight</a>;<span class="comment"></span>
 <a name="l00059"></a>00059 <span class="comment">        /// @brief This stores the Width of the renderwindow.</span>
-<a name="l00060"></a><a class="code" href="structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239">00060</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a>;<span class="comment"></span>
+<a name="l00060"></a><a class="code" href="structMezzanine_1_1GraphicsSettings.html#a52d46790a4a475a45ee5a803768b74a9">00060</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="structMezzanine_1_1GraphicsSettings.html#a52d46790a4a475a45ee5a803768b74a9" title="This stores the Width of the renderwindow.">RenderWidth</a>;<span class="comment"></span>
 <a name="l00061"></a>00061 <span class="comment">        /// @brief This stores the device refresh rate in Hz.</span>
-<a name="l00062"></a><a class="code" href="structphys_1_1GraphicsSettings.html#a510b666656f7d50532e9e8b37c3c429e">00062</a> <span class="comment"></span>        <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="structphys_1_1GraphicsSettings.html#a510b666656f7d50532e9e8b37c3c429e" title="This stores the device refresh rate in Hz.">RefreshRate</a>;<span class="comment"></span>
+<a name="l00062"></a><a class="code" href="structMezzanine_1_1GraphicsSettings.html#a1e78c0bc59906c727b50b5cb08054e6f">00062</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="structMezzanine_1_1GraphicsSettings.html#a1e78c0bc59906c727b50b5cb08054e6f" title="This stores the device refresh rate in Hz.">RefreshRate</a>;<span class="comment"></span>
 <a name="l00063"></a>00063 <span class="comment">        /// @brief This is the desired state of whether the window is fullscreen or not.</span>
-<a name="l00064"></a><a class="code" href="structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e">00064</a> <span class="comment"></span>        <span class="keywordtype">bool</span> <a class="code" href="structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a>;<span class="comment"></span>
+<a name="l00064"></a><a class="code" href="structMezzanine_1_1GraphicsSettings.html#a7d3aaf3759f1644be96f66ecc56206c8">00064</a> <span class="comment"></span>        <span class="keywordtype">bool</span> <a class="code" href="structMezzanine_1_1GraphicsSettings.html#a7d3aaf3759f1644be96f66ecc56206c8" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a>;<span class="comment"></span>
 <a name="l00065"></a>00065 <span class="comment">        /// @brief This is the desired state of whether to enable VSync or not.</span>
-<a name="l00066"></a><a class="code" href="structphys_1_1GraphicsSettings.html#ade8df051b7da492f0b48014edfca532a">00066</a> <span class="comment"></span>        <span class="keywordtype">bool</span> <a class="code" href="structphys_1_1GraphicsSettings.html#ade8df051b7da492f0b48014edfca532a" title="This is the desired state of whether to enable VSync or not.">VSync</a>;<span class="comment"></span>
+<a name="l00066"></a><a class="code" href="structMezzanine_1_1GraphicsSettings.html#a4c9fa45eb140eef087302bc0f55b18b1">00066</a> <span class="comment"></span>        <span class="keywordtype">bool</span> <a class="code" href="structMezzanine_1_1GraphicsSettings.html#a4c9fa45eb140eef087302bc0f55b18b1" title="This is the desired state of whether to enable VSync or not.">VSync</a>;<span class="comment"></span>
 <a name="l00067"></a>00067 <span class="comment">        /// @brief Struct Constructor</span>
-<a name="l00068"></a><a class="code" href="structphys_1_1GraphicsSettings.html#aceaaf53585413067adbf271e2c1e48fa">00068</a> <span class="comment"></span>        <a class="code" href="structphys_1_1GraphicsSettings.html#aceaaf53585413067adbf271e2c1e48fa" title="Struct Constructor.">GraphicsSettings</a>() : RenderHeight(0),RenderWidth(0),RefreshRate(0),Fullscreen(false),VSync(false) {}
-<a name="l00069"></a>00069         <a class="code" href="structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a> &amp;GS)
+<a name="l00068"></a><a class="code" href="structMezzanine_1_1GraphicsSettings.html#a17434ba9ce22836d37baa6f77dbe1c85">00068</a> <span class="comment"></span>        <a class="code" href="structMezzanine_1_1GraphicsSettings.html#a17434ba9ce22836d37baa6f77dbe1c85" title="Struct Constructor.">GraphicsSettings</a>() : RenderHeight(0),RenderWidth(0),RefreshRate(0),Fullscreen(false),VSync(false) {}
+<a name="l00069"></a>00069         <a class="code" href="structMezzanine_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="structMezzanine_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a> &amp;GS)
 <a name="l00070"></a>00070         {
-<a name="l00071"></a>00071             this-&gt;RenderHeight = GS.<a class="code" href="structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a>;
-<a name="l00072"></a>00072             this-&gt;RenderWidth = GS.<a class="code" href="structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a>;
-<a name="l00073"></a>00073             this-&gt;RefreshRate = GS.<a class="code" href="structphys_1_1GraphicsSettings.html#a510b666656f7d50532e9e8b37c3c429e" title="This stores the device refresh rate in Hz.">RefreshRate</a>;
-<a name="l00074"></a>00074             this-&gt;Fullscreen = GS.<a class="code" href="structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a>;
-<a name="l00075"></a>00075             this-&gt;VSync = GS.<a class="code" href="structphys_1_1GraphicsSettings.html#ade8df051b7da492f0b48014edfca532a" title="This is the desired state of whether to enable VSync or not.">VSync</a>;
+<a name="l00071"></a>00071             this-&gt;RenderHeight = GS.<a class="code" href="structMezzanine_1_1GraphicsSettings.html#ac92f261b9753141847ff0464e136c435" title="This stores the Height of the renderwindow.">RenderHeight</a>;
+<a name="l00072"></a>00072             this-&gt;RenderWidth = GS.<a class="code" href="structMezzanine_1_1GraphicsSettings.html#a52d46790a4a475a45ee5a803768b74a9" title="This stores the Width of the renderwindow.">RenderWidth</a>;
+<a name="l00073"></a>00073             this-&gt;RefreshRate = GS.<a class="code" href="structMezzanine_1_1GraphicsSettings.html#a1e78c0bc59906c727b50b5cb08054e6f" title="This stores the device refresh rate in Hz.">RefreshRate</a>;
+<a name="l00074"></a>00074             this-&gt;Fullscreen = GS.<a class="code" href="structMezzanine_1_1GraphicsSettings.html#a7d3aaf3759f1644be96f66ecc56206c8" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a>;
+<a name="l00075"></a>00075             this-&gt;VSync = GS.<a class="code" href="structMezzanine_1_1GraphicsSettings.html#a4c9fa45eb140eef087302bc0f55b18b1" title="This is the desired state of whether to enable VSync or not.">VSync</a>;
 <a name="l00076"></a>00076             <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00077"></a>00077         }
 <a name="l00078"></a>00078     };<span class="comment">//graphicssettings</span>
-<a name="l00079"></a>00079 }<span class="comment">//phys</span>
+<a name="l00079"></a>00079 }<span class="comment">//Mezzanine</span>
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081 <span class="preprocessor">#endif</span>
 </pre></div></div>
@@ -150,7 +150,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -160,6 +160,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

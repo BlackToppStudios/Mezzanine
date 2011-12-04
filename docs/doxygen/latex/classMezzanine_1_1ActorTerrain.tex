@@ -1,0 +1,218 @@
+\hypertarget{classMezzanine_1_1ActorTerrain}{
+\subsection{Mezzanine::ActorTerrain Class Reference}
+\label{classMezzanine_1_1ActorTerrain}\index{Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}}
+}
+
+
+This is actor class for terrain.  
+
+
+
+
+{\ttfamily \#include $<$actorterrain.h$>$}
+
+Inheritance diagram for Mezzanine::ActorTerrain:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ActorTerrain}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorTerrain_a89a10fcace9b67b58ca0ab46fb335a19}{
+virtual void \hyperlink{classMezzanine_1_1ActorTerrain_a89a10fcace9b67b58ca0ab46fb335a19}{\_\-Update} ()}
+\label{classMezzanine_1_1ActorTerrain_a89a10fcace9b67b58ca0ab46fb335a19}
+
+\begin{DoxyCompactList}\small\item\em Utility function for altering or checking the actor every frame. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ActorTerrain_aed127b452b96d0c2d75b8d6f0640608a}{ActorTerrain} (\hyperlink{classMezzanine_1_1Vector3}{Vector3} InitPosition, \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} name, \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} file, \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} group)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorTerrain_a4f072287040387d4484b0be5ab861ab6}{
+virtual void {\bfseries AddObjectToWorld} (\hyperlink{classMezzanine_1_1World}{World} $\ast$TargetWorld)}
+\label{classMezzanine_1_1ActorTerrain_a4f072287040387d4484b0be5ab861ab6}
+
+\item 
+virtual btRigidBody $\ast$ \hyperlink{classMezzanine_1_1ActorTerrain_aea5093ccb329184502c0ac36d372683c}{GetBulletObject} ()
+\begin{DoxyCompactList}\small\item\em Get the Physics data raw from the physic subsystem. \item\end{DoxyCompactList}\item 
+std::string \hyperlink{classMezzanine_1_1ActorTerrain_a072164c245d3ed761558f18e9106416a}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Retrieves the name of the object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorTerrainPhysicsSettings}{ActorTerrainPhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorTerrain_a95e30dc1ab3daddc46357b3c421b644f}{GetPhysicsSettings} ()
+\begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this actor. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1ActorTerrain_a73d23a9ab0f0eb2fd3238edbd226bd8a}{IsStaticOrKinematic} ()
+\begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorTerrain_a40396ea4921f3a911a5cedae001efc1b}{
+virtual void {\bfseries RemoveObjectFromWorld} (\hyperlink{classMezzanine_1_1World}{World} $\ast$TargetWorld)}
+\label{classMezzanine_1_1ActorTerrain_a40396ea4921f3a911a5cedae001efc1b}
+
+\item 
+virtual \hyperlink{classMezzanine_1_1ActorTerrain_a602d36036eebb45501aabade1e1ec3e9}{$\sim$ActorTerrain} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorTerrain_a8abb8266335f414347a23c949bd53dfc}{
+void \hyperlink{classMezzanine_1_1ActorTerrain_a8abb8266335f414347a23c949bd53dfc}{CreateCollisionTerrain} ()}
+\label{classMezzanine_1_1ActorTerrain_a8abb8266335f414347a23c949bd53dfc}
+
+\begin{DoxyCompactList}\small\item\em Uses value already passed into this to create the physics shapes. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorTerrain_a2b116504be8548c2574e7b1ddef7467d}{
+\hyperlink{classMezzanine_1_1ActorTerrainPhysicsSettings}{ActorTerrainPhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorTerrain_a2b116504be8548c2574e7b1ddef7467d}{PhysicsSettings}}
+\label{classMezzanine_1_1ActorTerrain_a2b116504be8548c2574e7b1ddef7467d}
+
+\begin{DoxyCompactList}\small\item\em This class encapsulates physics specific configuration for this actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorTerrain_a631d262f2f676474c19334d00d33eb12}{
+btRigidBody $\ast$ \hyperlink{classMezzanine_1_1ActorTerrain_a631d262f2f676474c19334d00d33eb12}{RigidBody}}
+\label{classMezzanine_1_1ActorTerrain_a631d262f2f676474c19334d00d33eb12}
+
+\begin{DoxyCompactList}\small\item\em The physics data. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is actor class for terrain. This class is intended to be used for terrain. This class uses sub-\/classes with fewer features, but still more then enough features for static terrain. This helps reduce the memory footprint of the class as well as processing speed. 
+
+Definition at line 57 of file actorterrain.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ActorTerrain_aed127b452b96d0c2d75b8d6f0640608a}{
+\index{Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}!ActorTerrain@{ActorTerrain}}
+\index{ActorTerrain@{ActorTerrain}!Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}}
+\paragraph[{ActorTerrain}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorTerrain::ActorTerrain (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{InitPosition, }
+\item[{{\bf String}}]{name, }
+\item[{{\bf String}}]{file, }
+\item[{{\bf String}}]{group}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorTerrain_aed127b452b96d0c2d75b8d6f0640608a}
+
+
+Class constructor. 
+
+The class constructor. 
+\begin{DoxyParams}{Parameters}
+{\em InitPosition} & The location for this terrain. \\
+\hline
+{\em name} & The name of the actor. \\
+\hline
+{\em file} & The 3d mesh file that contains the 3d model the actor will use. \\
+\hline
+{\em group} & The resource group where the 3d mesh and other related files can be found. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 58 of file actorterrain.cpp.
+
+\hypertarget{classMezzanine_1_1ActorTerrain_a602d36036eebb45501aabade1e1ec3e9}{
+\index{Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}!$\sim$ActorTerrain@{$\sim$ActorTerrain}}
+\index{$\sim$ActorTerrain@{$\sim$ActorTerrain}!Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}}
+\paragraph[{$\sim$ActorTerrain}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorTerrain::$\sim$ActorTerrain (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorTerrain_a602d36036eebb45501aabade1e1ec3e9}
+
+
+Class destructor. 
+
+The class destructor. 
+
+Definition at line 73 of file actorterrain.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ActorTerrain_aea5093ccb329184502c0ac36d372683c}{
+\index{Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}!GetBulletObject@{GetBulletObject}}
+\index{GetBulletObject@{GetBulletObject}!Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}}
+\paragraph[{GetBulletObject}]{\setlength{\rightskip}{0pt plus 5cm}btRigidBody $\ast$ Mezzanine::ActorTerrain::GetBulletObject (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorTerrain_aea5093ccb329184502c0ac36d372683c}
+
+
+Get the Physics data raw from the physic subsystem. 
+
+\begin{DoxyReturn}{Returns}
+Currently this returns a pointer to a btSoftBody. 
+\end{DoxyReturn}
+
+
+Definition at line 123 of file actorterrain.cpp.
+
+\hypertarget{classMezzanine_1_1ActorTerrain_a072164c245d3ed761558f18e9106416a}{
+\index{Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}std::string Mezzanine::ActorTerrain::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorTerrain_a072164c245d3ed761558f18e9106416a}
+
+
+Retrieves the name of the object. 
+
+This function will retrieve the name of the object, 
+
+Implements \hyperlink{classMezzanine_1_1ActorBase_a01e16da200911fdff659bfb78bafff1d}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 94 of file actorterrain.cpp.
+
+\hypertarget{classMezzanine_1_1ActorTerrain_a95e30dc1ab3daddc46357b3c421b644f}{
+\index{Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}!GetPhysicsSettings@{GetPhysicsSettings}}
+\index{GetPhysicsSettings@{GetPhysicsSettings}!Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}}
+\paragraph[{GetPhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorTerrainPhysicsSettings} $\ast$ Mezzanine::ActorTerrain::GetPhysicsSettings (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorTerrain_a95e30dc1ab3daddc46357b3c421b644f}
+
+
+Gets the physics settings class associated with this actor. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the physics settings class in use by this actor. 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file actorterrain.cpp.
+
+\hypertarget{classMezzanine_1_1ActorTerrain_a73d23a9ab0f0eb2fd3238edbd226bd8a}{
+\index{Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}!IsStaticOrKinematic@{IsStaticOrKinematic}}
+\index{IsStaticOrKinematic@{IsStaticOrKinematic}!Mezzanine::ActorTerrain@{Mezzanine::ActorTerrain}}
+\paragraph[{IsStaticOrKinematic}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ActorTerrain::IsStaticOrKinematic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorTerrain_a73d23a9ab0f0eb2fd3238edbd226bd8a}
+
+
+Checks of the actor is static or kinematic. 
+
+Checks of the actor is static or kinematic, returns true if it is either. \begin{DoxyReturn}{Returns}
+Returns true if the actor is static or kinematic. 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file actorterrain.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorterrain.h\item 
+actorterrain.cpp\end{DoxyCompactItemize}

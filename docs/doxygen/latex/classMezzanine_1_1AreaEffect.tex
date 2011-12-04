@@ -1,0 +1,655 @@
+\hypertarget{classMezzanine_1_1AreaEffect}{
+\subsection{Mezzanine::AreaEffect Class Reference}
+\label{classMezzanine_1_1AreaEffect}\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+}
+
+
+This class is used to define area's in the world that have unique effects.  
+
+
+
+
+{\ttfamily \#include $<$areaeffect.h$>$}
+
+Inheritance diagram for Mezzanine::AreaEffect:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.717791cm]{classMezzanine_1_1AreaEffect}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_a988cd958e49d65331a059951af3c2884}{ApplyEffect} ()=0
+\begin{DoxyCompactList}\small\item\em Defines and applies the effect of the field. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1AreaEffect_a2b2699c0baff3ed6eb6e19f2e7d23d7c}{AreaEffect} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
+virtual std::vector$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classMezzanine_1_1AreaEffect_ac349f091e923cbb92740aaa35f2f5c2e}{GetAddedActors} ()
+\begin{DoxyCompactList}\small\item\em Gets the list of actors that have been added to the list since the last simulation step. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1AreaEffect_a1406441f5c12072dc0a6178a2690f3a6}{GetFieldMesh} () const 
+\begin{DoxyCompactList}\small\item\em Gets the mesh being used by this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classMezzanine_1_1AreaEffect_a2204a7b0f004778bb27f38d65fa9e4df}{GetFieldShape} () const 
+\begin{DoxyCompactList}\small\item\em Gets the current shape of the \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1AreaEffect_a7e80ddc1cb411012d80a99859bb865f7}{GetFieldShapeScale} () const 
+\begin{DoxyCompactList}\small\item\em Gets the scale of the shape of the field. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1AreaEffect_a37d04f8e6d6e8451348ee60fd083968b}{GetLocation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the origin for the area effect. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1AreaEffect_ae0205e57786da97300357d7ac1afd180}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Area Effects name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1AreaEffect_a658d69036a307f232b88aafcab3d02c1}{GetOrientation} ()
+\begin{DoxyCompactList}\small\item\em Gets the orientation of the area effect. \item\end{DoxyCompactList}\item 
+virtual std::list$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classMezzanine_1_1AreaEffect_a69f19ed2d67dca2623df6e6331b31462}{GetOverlappingActors} ()
+\begin{DoxyCompactList}\small\item\em Gets the list of actors within this field. \item\end{DoxyCompactList}\item 
+virtual std::vector$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classMezzanine_1_1AreaEffect_ac657b565ca47198c6fd900c8a588948b}{GetRemovedActors} ()
+\begin{DoxyCompactList}\small\item\em Gets the list of actors that have been removed from the list since the last simulation step. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1AreaEffect_aee16d398d7788f6e0fd5e597bcdbd106}{IsInWorld} () const 
+\begin{DoxyCompactList}\small\item\em Checks to see if the ghost object is currently in the world. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1AreaEffect_a9b2c07dd426285aff44d5faaca4b3356}{IsStatic} () const 
+\begin{DoxyCompactList}\small\item\em Gets whether or not this AR is static. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_aac92fc4ba682d509f6385e999f68c75d}{ScaleFieldShape} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scale)
+\begin{DoxyCompactList}\small\item\em Sets the scale of the shape of the field. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_aa9e8a5e1ffee5aa11ab4958373b06f09}{SetFieldMesh} (\hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$\hyperlink{classMezzanine_1_1AreaEffect_a5ca3984a40d2678b786f518667fde27f}{FieldMesh})
+\begin{DoxyCompactList}\small\item\em Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_a5e2902749c630af5272d2dc89678392c}{SetFieldMesh} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group)
+\begin{DoxyCompactList}\small\item\em Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_a759a0a5f4becf94c87aff85b0681f663}{SetFieldShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$\hyperlink{classMezzanine_1_1AreaEffect_a54f08718bc742934f2ef6b4bd978c9d2}{FieldShape})
+\begin{DoxyCompactList}\small\item\em Sets the shape of this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_a4dd22757bc627242de169e31a1717139}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Sets the origin for the area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_a62bcda0a0c2a95b8f1ccdfe2cd3d1018}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_adfecf112bad175a57cdf147cb0d0aaa8}{SetStatic} (bool Static)
+\begin{DoxyCompactList}\small\item\em Sets(or un-\/sets) this AE as a static object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_aee19befcb794b85f13da4e427c2be42d}{UpdateActorList} ()
+\begin{DoxyCompactList}\small\item\em Updates the actors listed as within the field. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1AreaEffect_a1e825ce1dcb2d78c190b17d7bff7306c}{$\sim$AreaEffect} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a4a81d9d5920f375aa9a5ff27c1de97e0}{
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_a4a81d9d5920f375aa9a5ff27c1de97e0}{AddActorToList} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor)}
+\label{classMezzanine_1_1AreaEffect_a4a81d9d5920f375aa9a5ff27c1de97e0}
+
+\begin{DoxyCompactList}\small\item\em Helper function for adding actors to relevant lists. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_a198ad58cec706d508785cbd8e319ba54}{CreateGhostObject} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Constructor Function. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_ae6d32d28fbe74eec48eaf3f7b5550c1c}{
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_ae6d32d28fbe74eec48eaf3f7b5550c1c}{PreGraphicsMeshCreate} ()}
+\label{classMezzanine_1_1AreaEffect_ae6d32d28fbe74eec48eaf3f7b5550c1c}
+
+\begin{DoxyCompactList}\small\item\em Convenience function for the common starting steps in making a graphics object. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a676a36ba3fb8b0d7ced951f1b5010852}{
+virtual void \hyperlink{classMezzanine_1_1AreaEffect_a676a36ba3fb8b0d7ced951f1b5010852}{RemoveActorFromList} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor)}
+\label{classMezzanine_1_1AreaEffect_a676a36ba3fb8b0d7ced951f1b5010852}
+
+\begin{DoxyCompactList}\small\item\em Helper function for adding actors to relevant lists. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a9a7e333c5e52fd5d7ae892f4691dbc16}{
+std::vector$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$ \hyperlink{classMezzanine_1_1AreaEffect_a9a7e333c5e52fd5d7ae892f4691dbc16}{AddedActors}}
+\label{classMezzanine_1_1AreaEffect_a9a7e333c5e52fd5d7ae892f4691dbc16}
+
+\begin{DoxyCompactList}\small\item\em Container of actors that have been added since last frame. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a5ca3984a40d2678b786f518667fde27f}{
+\hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1AreaEffect_a5ca3984a40d2678b786f518667fde27f}{FieldMesh}}
+\label{classMezzanine_1_1AreaEffect_a5ca3984a40d2678b786f518667fde27f}
+
+\begin{DoxyCompactList}\small\item\em Stores the mesh of the AR field. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a54f08718bc742934f2ef6b4bd978c9d2}{
+\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classMezzanine_1_1AreaEffect_a54f08718bc742934f2ef6b4bd978c9d2}{FieldShape}}
+\label{classMezzanine_1_1AreaEffect_a54f08718bc742934f2ef6b4bd978c9d2}
+
+\begin{DoxyCompactList}\small\item\em Stores the shape of the AE field. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a16427c9805ea4c87faa84715ec04f97d}{
+btPairCachingGhostObject $\ast$ \hyperlink{classMezzanine_1_1AreaEffect_a16427c9805ea4c87faa84715ec04f97d}{Ghost}}
+\label{classMezzanine_1_1AreaEffect_a16427c9805ea4c87faa84715ec04f97d}
+
+\begin{DoxyCompactList}\small\item\em The object representing the AE field itself. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a6f025b9cd2ff505618eeaf6640319ab9}{
+Ogre::SceneNode $\ast$ \hyperlink{classMezzanine_1_1AreaEffect_a6f025b9cd2ff505618eeaf6640319ab9}{GraphicsNode}}
+\label{classMezzanine_1_1AreaEffect_a6f025b9cd2ff505618eeaf6640319ab9}
+
+\begin{DoxyCompactList}\small\item\em Ogre node required to adding a graohical representation to the scene graph. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a673167414883d918da6fb57f340e850e}{
+Ogre::Entity $\ast$ \hyperlink{classMezzanine_1_1AreaEffect_a673167414883d918da6fb57f340e850e}{GraphicsObject}}
+\label{classMezzanine_1_1AreaEffect_a673167414883d918da6fb57f340e850e}
+
+\begin{DoxyCompactList}\small\item\em The Ogre object being added to the scene graph. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_ad2b27c925a2eaa40fe03db4205f3de39}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1AreaEffect_ad2b27c925a2eaa40fe03db4205f3de39}{Name}}
+\label{classMezzanine_1_1AreaEffect_ad2b27c925a2eaa40fe03db4205f3de39}
+
+\begin{DoxyCompactList}\small\item\em The name of the Area Effect. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a9a1dbe79efda62adad5f56b5f93813ca}{
+std::list$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$ \hyperlink{classMezzanine_1_1AreaEffect_a9a1dbe79efda62adad5f56b5f93813ca}{OverlappingActors}}
+\label{classMezzanine_1_1AreaEffect_a9a1dbe79efda62adad5f56b5f93813ca}
+
+\begin{DoxyCompactList}\small\item\em Container for actors within the field area. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_adaab6a94b9c4a9cfdb917ff4ce3fcabf}{
+std::vector$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$ \hyperlink{classMezzanine_1_1AreaEffect_adaab6a94b9c4a9cfdb917ff4ce3fcabf}{RemovedActors}}
+\label{classMezzanine_1_1AreaEffect_adaab6a94b9c4a9cfdb917ff4ce3fcabf}
+
+\begin{DoxyCompactList}\small\item\em Container of actors that have been removed since last frame. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AreaEffect_acefbfa896daea1dfa41fb31fa65db01d}{
+\hyperlink{classMezzanine_1_1World}{World} $\ast$ \hyperlink{classMezzanine_1_1AreaEffect_acefbfa896daea1dfa41fb31fa65db01d}{TheWorld}}
+\label{classMezzanine_1_1AreaEffect_acefbfa896daea1dfa41fb31fa65db01d}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMezzanine_1_1World}{World} pointer simply to enable the effects of this class to be as diverse as the engine features. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1AreaEffect_a139cf05ac01161b7071c8a037c841683}{
+class {\bfseries PhysicsManager}}
+\label{classMezzanine_1_1AreaEffect_a139cf05ac01161b7071c8a037c841683}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is used to define area's in the world that have unique effects. Common uses for this class are for gravity fields, and explosions. But can be made to do more. \par
+ Note: This is a base class intended to be derived from. This class cannot be created itself. To make an \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect} class that does what you want it to, simple inherit from this class with an AE class of your own, and define the \hyperlink{classMezzanine_1_1AreaEffect_a988cd958e49d65331a059951af3c2884}{ApplyEffect()} function to do what you want your effect to do. 
+
+Definition at line 77 of file areaeffect.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1AreaEffect_a2b2699c0baff3ed6eb6e19f2e7d23d7c}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!AreaEffect@{AreaEffect}}
+\index{AreaEffect@{AreaEffect}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{AreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame Mezzanine src areaeffect cpp Mezzanine::AreaEffect::AreaEffect (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1AreaEffect_a2b2699c0baff3ed6eb6e19f2e7d23d7c}
+
+
+Constructor. 
+
+Basic initialization constructor. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the field. \\
+\hline
+{\em Location} & The location of the AE field. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a1e825ce1dcb2d78c190b17d7bff7306c}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!$\sim$AreaEffect@{$\sim$AreaEffect}}
+\index{$\sim$AreaEffect@{$\sim$AreaEffect}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{$\sim$AreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::AreaEffect::$\sim$AreaEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a1e825ce1dcb2d78c190b17d7bff7306c}
+
+
+Destructor. 
+
+Class destructor. 
+
+Definition at line 77 of file areaeffect.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1AreaEffect_a988cd958e49d65331a059951af3c2884}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!ApplyEffect@{ApplyEffect}}
+\index{ApplyEffect@{ApplyEffect}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{ApplyEffect}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::AreaEffect::ApplyEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a988cd958e49d65331a059951af3c2884}
+
+
+Defines and applies the effect of the field. 
+
+When inheriting this class, this function is what defines the effect the field has. \par
+ This function will be called on by the physics manager and shouldn't be called manually. 
+
+Implemented in \hyperlink{classMezzanine_1_1TestAE_a647737a517fb6c87489afc93b9daa91c}{Mezzanine::TestAE}, \hyperlink{classMezzanine_1_1GravityField_a53aee6679088fb6151e5cb6e82a09fb7}{Mezzanine::GravityField}, \hyperlink{classMezzanine_1_1GravityWell_a193e1683edaf80bb1a37979f196abf6e}{Mezzanine::GravityWell}, and \hyperlink{classMezzanine_1_1FieldOfForce_ae82e9a45515d40513ad1ac2e606c627b}{Mezzanine::FieldOfForce}.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a198ad58cec706d508785cbd8e319ba54}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!CreateGhostObject@{CreateGhostObject}}
+\index{CreateGhostObject@{CreateGhostObject}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{CreateGhostObject}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::AreaEffect::CreateGhostObject (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a198ad58cec706d508785cbd8e319ba54}
+
+
+Constructor Function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The location of the AE field. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 84 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_ac349f091e923cbb92740aaa35f2f5c2e}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetAddedActors@{GetAddedActors}}
+\index{GetAddedActors@{GetAddedActors}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{GetAddedActors}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ {\bf ActorBase} $\ast$ $>$ \& Mezzanine::AreaEffect::GetAddedActors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_ac349f091e923cbb92740aaa35f2f5c2e}
+
+
+Gets the list of actors that have been added to the list since the last simulation step. 
+
+\begin{DoxyReturn}{Returns}
+Returns the vector storing all the actors that have been added to the list since the last simulation step. 
+\end{DoxyReturn}
+
+
+Definition at line 450 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a1406441f5c12072dc0a6178a2690f3a6}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetFieldMesh@{GetFieldMesh}}
+\index{GetFieldMesh@{GetFieldMesh}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{GetFieldMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ Mezzanine::AreaEffect::GetFieldMesh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a1406441f5c12072dc0a6178a2690f3a6}
+
+
+Gets the mesh being used by this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the mesh being used by this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}, or NULL if none. 
+\end{DoxyReturn}
+
+
+Definition at line 440 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a2204a7b0f004778bb27f38d65fa9e4df}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetFieldShape@{GetFieldShape}}
+\index{GetFieldShape@{GetFieldShape}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{GetFieldShape}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape} $\ast$ Mezzanine::AreaEffect::GetFieldShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a2204a7b0f004778bb27f38d65fa9e4df}
+
+
+Gets the current shape of the \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the shape currently being used by this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. 
+\end{DoxyReturn}
+
+
+Definition at line 344 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a7e80ddc1cb411012d80a99859bb865f7}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetFieldShapeScale@{GetFieldShapeScale}}
+\index{GetFieldShapeScale@{GetFieldShapeScale}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{GetFieldShapeScale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::AreaEffect::GetFieldShapeScale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a7e80ddc1cb411012d80a99859bb865f7}
+
+
+Gets the scale of the shape of the field. 
+
+The default scale is 1.0. \begin{DoxyReturn}{Returns}
+Returns the current scale applied to the fields shape. 
+\end{DoxyReturn}
+
+
+Definition at line 354 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a37d04f8e6d6e8451348ee60fd083968b}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetLocation@{GetLocation}}
+\index{GetLocation@{GetLocation}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::AreaEffect::GetLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a37d04f8e6d6e8451348ee60fd083968b}
+
+
+Gets the origin for the area effect. 
+
+This function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location. \begin{DoxyReturn}{Returns}
+Returns the vector3 representing the location of the area effect. 
+\end{DoxyReturn}
+
+
+Definition at line 367 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_ae0205e57786da97300357d7ac1afd180}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::AreaEffect::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_ae0205e57786da97300357d7ac1afd180}
+
+
+Gets the Area Effects name. 
+
+\begin{DoxyReturn}{Returns}
+Returns the name of the Area Effect. 
+\end{DoxyReturn}
+
+
+Definition at line 386 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a658d69036a307f232b88aafcab3d02c1}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} Mezzanine::AreaEffect::GetOrientation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a658d69036a307f232b88aafcab3d02c1}
+
+
+Gets the orientation of the area effect. 
+
+\begin{DoxyReturn}{Returns}
+Returns a quaternion representing the rotation of the area effect. 
+\end{DoxyReturn}
+
+
+Definition at line 380 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a69f19ed2d67dca2623df6e6331b31462}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetOverlappingActors@{GetOverlappingActors}}
+\index{GetOverlappingActors@{GetOverlappingActors}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{GetOverlappingActors}]{\setlength{\rightskip}{0pt plus 5cm}std::list$<$ {\bf ActorBase} $\ast$ $>$ \& Mezzanine::AreaEffect::GetOverlappingActors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a69f19ed2d67dca2623df6e6331b31462}
+
+
+Gets the list of actors within this field. 
+
+\begin{DoxyReturn}{Returns}
+Returns the list of actors contained within this field. 
+\end{DoxyReturn}
+
+
+Definition at line 445 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_ac657b565ca47198c6fd900c8a588948b}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetRemovedActors@{GetRemovedActors}}
+\index{GetRemovedActors@{GetRemovedActors}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{GetRemovedActors}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ {\bf ActorBase} $\ast$ $>$ \& Mezzanine::AreaEffect::GetRemovedActors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_ac657b565ca47198c6fd900c8a588948b}
+
+
+Gets the list of actors that have been removed from the list since the last simulation step. 
+
+\begin{DoxyReturn}{Returns}
+Returns the vector storing all the actors that have been removed from the list since the last simulation step. 
+\end{DoxyReturn}
+
+
+Definition at line 455 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_aee16d398d7788f6e0fd5e597bcdbd106}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!IsInWorld@{IsInWorld}}
+\index{IsInWorld@{IsInWorld}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{IsInWorld}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::AreaEffect::IsInWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_aee16d398d7788f6e0fd5e597bcdbd106}
+
+
+Checks to see if the ghost object is currently in the world. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indication whether or not this object is currently in the world. 
+\end{DoxyReturn}
+
+
+Definition at line 391 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a9b2c07dd426285aff44d5faaca4b3356}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!IsStatic@{IsStatic}}
+\index{IsStatic@{IsStatic}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{IsStatic}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::AreaEffect::IsStatic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a9b2c07dd426285aff44d5faaca4b3356}
+
+
+Gets whether or not this AR is static. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating if this object is static. 
+\end{DoxyReturn}
+
+
+Definition at line 410 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_aac92fc4ba682d509f6385e999f68c75d}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!ScaleFieldShape@{ScaleFieldShape}}
+\index{ScaleFieldShape@{ScaleFieldShape}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{ScaleFieldShape}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::AreaEffect::ScaleFieldShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_aac92fc4ba682d509f6385e999f68c75d}
+
+
+Sets the scale of the shape of the field. 
+
+The default scale is 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Scale} & The vector3 representing the scale you wish to apply to each axis of the field shape. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 349 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a5e2902749c630af5272d2dc89678392c}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetFieldMesh@{SetFieldMesh}}
+\index{SetFieldMesh@{SetFieldMesh}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{SetFieldMesh}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::AreaEffect::SetFieldMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{Group}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a5e2902749c630af5272d2dc89678392c}
+
+
+Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. 
+
+\begin{DoxyNote}{Note}
+By default, there is no mesh used by an \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}, as it doesn't require one for it's operation. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name of the mesh to apply to this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. \\
+\hline
+{\em Group} & The resource group to which the mesh belongs. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 434 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_aa9e8a5e1ffee5aa11ab4958373b06f09}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetFieldMesh@{SetFieldMesh}}
+\index{SetFieldMesh@{SetFieldMesh}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{SetFieldMesh}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::AreaEffect::SetFieldMesh (
+\begin{DoxyParamCaption}
+\item[{{\bf Mesh} $\ast$}]{FieldMesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_aa9e8a5e1ffee5aa11ab4958373b06f09}
+
+
+Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. 
+
+\begin{DoxyNote}{Note}
+By default, there is no mesh used by an \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}, as it doesn't require one for it's operation. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{classMezzanine_1_1Mesh}{Mesh}} & The mesh to apply to this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 415 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a759a0a5f4becf94c87aff85b0681f663}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetFieldShape@{SetFieldShape}}
+\index{SetFieldShape@{SetFieldShape}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{SetFieldShape}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::AreaEffect::SetFieldShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{FieldShape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a759a0a5f4becf94c87aff85b0681f663}
+
+
+Sets the shape of this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FieldShape} & The shape to be applied to this field. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 337 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a4dd22757bc627242de169e31a1717139}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetLocation@{SetLocation}}
+\index{SetLocation@{SetLocation}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::AreaEffect::SetLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a4dd22757bc627242de169e31a1717139}
+
+
+Sets the origin for the area effect. 
+
+In most cases you won't want to call this, with the exception of when you want a field to follow/track an actor. 
+\begin{DoxyParams}{Parameters}
+{\em Location} & The updated location of the origin for the field. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 360 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_a62bcda0a0c2a95b8f1ccdfe2cd3d1018}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::AreaEffect::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_a62bcda0a0c2a95b8f1ccdfe2cd3d1018}
+
+
+Sets the orientation of the area effect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} representing the Rotation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 373 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_adfecf112bad175a57cdf147cb0d0aaa8}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetStatic@{SetStatic}}
+\index{SetStatic@{SetStatic}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{SetStatic}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::AreaEffect::SetStatic (
+\begin{DoxyParamCaption}
+\item[{bool}]{Static}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_adfecf112bad175a57cdf147cb0d0aaa8}
+
+
+Sets(or un-\/sets) this AE as a static object. 
+
+Default: true. 
+\begin{DoxyParams}{Parameters}
+{\em Static} & Whether or not to set this as static. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 396 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1AreaEffect_aee19befcb794b85f13da4e427c2be42d}{
+\index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!UpdateActorList@{UpdateActorList}}
+\index{UpdateActorList@{UpdateActorList}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
+\paragraph[{UpdateActorList}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::AreaEffect::UpdateActorList (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AreaEffect_aee19befcb794b85f13da4e427c2be42d}
+
+
+Updates the actors listed as within the field. 
+
+This function is automatically called once every simulation step. This shouldn't be called manually unless your usage of this class requires more then one update per step. 
+
+New-\/ish way using the dispatcher. Gives inconsistent results at startup.
+
+Old way, checks AABB's only...as it turns out. 
+
+
+
+Definition at line 126 of file areaeffect.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+areaeffect.h\item 
+areaeffect.cpp\end{DoxyCompactItemize}

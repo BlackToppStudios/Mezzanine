@@ -1,0 +1,625 @@
+\hypertarget{classMezzanine_1_1ActorSoft}{
+\subsection{Mezzanine::ActorSoft Class Reference}
+\label{classMezzanine_1_1ActorSoft}\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+}
+
+
+This is the actor class for Soft Objects.  
+
+
+
+
+{\ttfamily \#include $<$actorsoft.h$>$}
+
+Inheritance diagram for Mezzanine::ActorSoft:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ActorSoft}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_a1f255e52f48a9fec2cfe2f91664fb350}{\_\-Update} ()
+\item 
+\hyperlink{classMezzanine_1_1ActorSoft_a3ab7c4cb45c0308a1b398069095d81b2}{ActorSoft} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} mass, \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} name, \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} file, \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} group)
+\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_a22e089e98fe83eeb379d399945a10fe9}{AddObjectToWorld} ()
+\item 
+virtual btSoftBody $\ast$ \hyperlink{classMezzanine_1_1ActorSoft_ab0ddf931ccde766dc5e040077f1a3ec4}{GetBulletObject} ()
+\begin{DoxyCompactList}\small\item\em Get the Physics data raw from the physic subsystem. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorSoft_a0192b3889eaf2786352d75ca03fcae4a}{GetLocation} () const 
+\begin{DoxyCompactList}\small\item\em Retrieves the location of the object. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorSoft_a733138429fccf93f626e44ee9056e102}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Retrieves the name of the object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings}{ActorSoftPhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorSoft_a9d2960eee35ecfefe76fce2dde3ea18e}{GetPhysicsSettings} ()
+\begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_a11cb2b406639b1dac2f9e396741f8f44}{RemoveObjectFromWorld} ()
+\item 
+void \hyperlink{classMezzanine_1_1ActorSoft_ab76bcb0d227374ef5d69878783c7f89b}{SetActorScaling} (\hyperlink{classMezzanine_1_1Vector3}{Vector3} scale)
+\begin{DoxyCompactList}\small\item\em Sets the scale of the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_a45178fcaf06a81e75d7d81b8fc90fc9e}{SetInitLocation} (\hyperlink{classMezzanine_1_1Vector3}{Vector3} Location)
+\begin{DoxyCompactList}\small\item\em Sets the starting location of the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_a8ee3cce8eb7578cdeb2af771f16ab240}{SetInitOrientation} (\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} Orientation)
+\begin{DoxyCompactList}\small\item\em Sets the starting orientation of the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_a9c96f61e8a39fc6b35eb35c03b8e0e42}{SetLocation} (\hyperlink{classMezzanine_1_1Vector3}{Vector3} Place)
+\begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_aad9c559bae769ac44d437a0612934bc2}{SetLocation} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} x, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} y, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} z)
+\begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_a3490444768316d69b5560d3500550a4f}{SetOrientation} (\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} Rotation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_aa203dd4d6bde54f4551673e2690f20b8}{SetOrientation} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} x, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} y, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} z, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} w)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorSoft_a4701cb3e90164c828247a43ff098f69b}{$\sim$ActorSoft} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_af2e618dd176d910834f146c62efe8f19}{AttachToGraphics} ()
+\begin{DoxyCompactList}\small\item\em Makes the actor visable. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ActorSoft_ad725517ab3a22ef8953e3e003d11551c}{CreateManualMesh} (internal::MeshInfo \&TheMesh)
+\begin{DoxyCompactList}\small\item\em Creates and configures a manual object for rendering. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ActorSoft_ab0ee1ceadedb3d92295cce649749cb7a}{CreateSoftObject} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} mass)
+\begin{DoxyCompactList}\small\item\em Creates a soft object for the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_a3ec90b87480ba28553656eb10552f6d6}{DetachFromGraphics} ()
+\begin{DoxyCompactList}\small\item\em Makes the actor invisable. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorSoft_a7d6f49acc1bf286fd46fb33a8c2798e4}{GetBulletLocation} () const 
+\begin{DoxyCompactList}\small\item\em Retrieves the location of the physics body. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_a65115824bacb62ad58a68cf3d7fc8840}{SetBulletLocation} (\hyperlink{classMezzanine_1_1Vector3}{Vector3} Location)
+\begin{DoxyCompactList}\small\item\em Sets the location of the physics body. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoft_abe282473ccb1f02c273be6efd620d83c}{SetBulletOrientation} (\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} Rotation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the physics body. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorSoft_ab7ea9b20786fbd7505f836135c890434}{
+\hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings}{ActorSoftPhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorSoft_ab7ea9b20786fbd7505f836135c890434}{PhysicsSettings}}
+\label{classMezzanine_1_1ActorSoft_ab7ea9b20786fbd7505f836135c890434}
+
+\begin{DoxyCompactList}\small\item\em This class encapsulates physics specific configuration for this actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorSoft_a4eb4bcfe665df0c4741f5c17ff268c88}{
+btSoftBody $\ast$ \hyperlink{classMezzanine_1_1ActorSoft_a4eb4bcfe665df0c4741f5c17ff268c88}{PhysicsSoftBody}}
+\label{classMezzanine_1_1ActorSoft_a4eb4bcfe665df0c4741f5c17ff268c88}
+
+\begin{DoxyCompactList}\small\item\em Used to simulate the functionality of a btSoftBody for use with the physics subsystem. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is the actor class for Soft Objects. This class should be used to make any soft object that, like \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid}, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. \begin{DoxyWarning}{Warning}
+Currently this is not fully implemented and will likely cause errors if used. 
+\end{DoxyWarning}
+
+
+Definition at line 79 of file actorsoft.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ActorSoft_a3ab7c4cb45c0308a1b398069095d81b2}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!ActorSoft@{ActorSoft}}
+\index{ActorSoft@{ActorSoft}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{ActorSoft}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorSoft::ActorSoft (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{mass, }
+\item[{{\bf String}}]{name, }
+\item[{{\bf String}}]{file, }
+\item[{{\bf String}}]{group}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorSoft_a3ab7c4cb45c0308a1b398069095d81b2}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mass} & The mass of the soft body. \\
+\hline
+{\em name} & Name of the object \\
+\hline
+{\em file} & \hyperlink{classMezzanine_1_1Mesh}{Mesh} the soft body is stored in \\
+\hline
+{\em group} & The Resource group the mesh can be found in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 62 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a4701cb3e90164c828247a43ff098f69b}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!$\sim$ActorSoft@{$\sim$ActorSoft}}
+\index{$\sim$ActorSoft@{$\sim$ActorSoft}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{$\sim$ActorSoft}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorSoft::$\sim$ActorSoft (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a4701cb3e90164c828247a43ff098f69b}
+
+
+Destructor. 
+
+The class destructor. 
+
+Definition at line 72 of file actorsoft.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ActorSoft_a1f255e52f48a9fec2cfe2f91664fb350}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!\_\-Update@{\_\-Update}}
+\index{\_\-Update@{\_\-Update}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{\_\-Update}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::\_\-Update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a1f255e52f48a9fec2cfe2f91664fb350}
+Utility function for altering or checking the actor every frame.  
+
+Implements \hyperlink{classMezzanine_1_1ActorBase_a8f5a36a6981f1249dbabab318531afd0}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 243 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a22e089e98fe83eeb379d399945a10fe9}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!AddObjectToWorld@{AddObjectToWorld}}
+\index{AddObjectToWorld@{AddObjectToWorld}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::AddObjectToWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a22e089e98fe83eeb379d399945a10fe9}
+Adds the actor to the physics world.  
+
+Implements \hyperlink{classMezzanine_1_1ActorBase_a766dc0add62500689498a9c1d3f758ea}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 231 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_af2e618dd176d910834f146c62efe8f19}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!AttachToGraphics@{AttachToGraphics}}
+\index{AttachToGraphics@{AttachToGraphics}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{AttachToGraphics}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::AttachToGraphics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_af2e618dd176d910834f146c62efe8f19}
+
+
+Makes the actor visable. 
+
+Adds the actor to all the nessessary graphics elements to make it visable on screen. \par
+ This is automaticly called by the Worlds AddActor function and shouldn't ever need to be called manually. 
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBase_a040cc440d23400c7f129b318a8a84e97}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 131 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_ad725517ab3a22ef8953e3e003d11551c}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!CreateManualMesh@{CreateManualMesh}}
+\index{CreateManualMesh@{CreateManualMesh}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{CreateManualMesh}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::CreateManualMesh (
+\begin{DoxyParamCaption}
+\item[{internal::MeshInfo \&}]{TheMesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_ad725517ab3a22ef8953e3e003d11551c}
+
+
+Creates and configures a manual object for rendering. 
+
+This function will create and configure an Ogre manual object based on the mesh provided, that will be updateable each frame. 
+\begin{DoxyParams}{Parameters}
+{\em TheMesh} & The struct with all the appropriate mesh information to base the manual object on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 108 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_ab0ee1ceadedb3d92295cce649749cb7a}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!CreateSoftObject@{CreateSoftObject}}
+\index{CreateSoftObject@{CreateSoftObject}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{CreateSoftObject}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::CreateSoftObject (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{mass}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_ab0ee1ceadedb3d92295cce649749cb7a}
+
+
+Creates a soft object for the actor. 
+
+Creates a soft object to be placed in the physics world later. \par
+ This is automatically called by the Constructor and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+{\em mass} & The desired total mass of the soft object. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 77 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a3ec90b87480ba28553656eb10552f6d6}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!DetachFromGraphics@{DetachFromGraphics}}
+\index{DetachFromGraphics@{DetachFromGraphics}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{DetachFromGraphics}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::DetachFromGraphics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a3ec90b87480ba28553656eb10552f6d6}
+
+
+Makes the actor invisable. 
+
+This is the inverse of the AttachToGraphics function. This will effectively remove the object from the graphics world and make it no longer visable. \par
+ This is automaticly called by the Worlds RemoveActor function and shouldn't ever need to be called manually. 
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBase_a957ed99e5f67ac3fca3ba8a9b025fe48}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 144 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a7d6f49acc1bf286fd46fb33a8c2798e4}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!GetBulletLocation@{GetBulletLocation}}
+\index{GetBulletLocation@{GetBulletLocation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{GetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorSoft::GetBulletLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a7d6f49acc1bf286fd46fb33a8c2798e4}
+
+
+Retrieves the location of the physics body. 
+
+This function will retrieve the location of the object within the physics world. \begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the location in the physics system. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBase_a9f110d013ed871809258dfc55f8b7276}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 155 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_ab0ddf931ccde766dc5e040077f1a3ec4}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!GetBulletObject@{GetBulletObject}}
+\index{GetBulletObject@{GetBulletObject}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{GetBulletObject}]{\setlength{\rightskip}{0pt plus 5cm}btSoftBody $\ast$ Mezzanine::ActorSoft::GetBulletObject (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_ab0ddf931ccde766dc5e040077f1a3ec4}
+
+
+Get the Physics data raw from the physic subsystem. 
+
+\begin{DoxyReturn}{Returns}
+Currently this returns a pointer to a btSoftBody. 
+\end{DoxyReturn}
+
+
+Definition at line 270 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a0192b3889eaf2786352d75ca03fcae4a}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!GetLocation@{GetLocation}}
+\index{GetLocation@{GetLocation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorSoft::GetLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a0192b3889eaf2786352d75ca03fcae4a}
+
+
+Retrieves the location of the object. 
+
+This function will retrieve the location of the object within the world. \begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the actual locaiton of this Actor. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBase_ab1706a379bf86d020e64e4b560cdeb73}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 214 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a733138429fccf93f626e44ee9056e102}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}std::string Mezzanine::ActorSoft::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a733138429fccf93f626e44ee9056e102}
+
+
+Retrieves the name of the object. 
+
+\begin{DoxyReturn}{Returns}
+A String with the name of this Actor 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ActorBase_a01e16da200911fdff659bfb78bafff1d}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 171 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a9d2960eee35ecfefe76fce2dde3ea18e}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!GetPhysicsSettings@{GetPhysicsSettings}}
+\index{GetPhysicsSettings@{GetPhysicsSettings}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{GetPhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorSoftPhysicsSettings} $\ast$ Mezzanine::ActorSoft::GetPhysicsSettings (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a9d2960eee35ecfefe76fce2dde3ea18e}
+
+
+Gets the physics settings class associated with this actor. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the physics settings class in use by this actor. 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a11cb2b406639b1dac2f9e396741f8f44}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
+\index{RemoveObjectFromWorld@{RemoveObjectFromWorld}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::RemoveObjectFromWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a11cb2b406639b1dac2f9e396741f8f44}
+Removes the actor from the physics world.  
+
+Implements \hyperlink{classMezzanine_1_1ActorBase_a774050bfd7c75f2b639005d82dcd5085}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 237 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_ab76bcb0d227374ef5d69878783c7f89b}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!SetActorScaling@{SetActorScaling}}
+\index{SetActorScaling@{SetActorScaling}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{SetActorScaling}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::SetActorScaling (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{scale}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorSoft_ab76bcb0d227374ef5d69878783c7f89b}
+
+
+Sets the scale of the actor. 
+
+This function will alter the scaling/size of the actor with the given vector3. 
+\begin{DoxyParams}{Parameters}
+{\em scale} & The vector3 by which to apply the scale. Will scale each axis' accordingly. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 181 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a65115824bacb62ad58a68cf3d7fc8840}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!SetBulletLocation@{SetBulletLocation}}
+\index{SetBulletLocation@{SetBulletLocation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{SetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::SetBulletLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a65115824bacb62ad58a68cf3d7fc8840}
+
+
+Sets the location of the physics body. 
+
+This will take a \hyperlink{classMezzanine_1_1Vector3}{Vector3} and set the location of the actor within the physics world. \par
+ This function is called on by the SetLocation function, and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+{\em Location} & The \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the location. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 149 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_abe282473ccb1f02c273be6efd620d83c}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!SetBulletOrientation@{SetBulletOrientation}}
+\index{SetBulletOrientation@{SetBulletOrientation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{SetBulletOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::SetBulletOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Quaternion}}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_abe282473ccb1f02c273be6efd620d83c}
+
+
+Sets the orientation of the physics body. 
+
+This will take a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} and set the orientation of the actor within the physics world. \par
+ This function is called on by the SetOrientation function, and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The quaternion representing the rotation of the actor. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 162 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a45178fcaf06a81e75d7d81b8fc90fc9e}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!SetInitLocation@{SetInitLocation}}
+\index{SetInitLocation@{SetInitLocation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{SetInitLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::SetInitLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a45178fcaf06a81e75d7d81b8fc90fc9e}
+
+
+Sets the starting location of the actor. 
+
+Calling this function after adding it to the \hyperlink{classMezzanine_1_1World}{World} will have no effect. \par
+ This function will set where the actor will be located in the \hyperlink{classMezzanine_1_1World}{World} when it is first placed inside the world. 
+\begin{DoxyParams}{Parameters}
+{\em Location} & The \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the location. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 187 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a8ee3cce8eb7578cdeb2af771f16ab240}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!SetInitOrientation@{SetInitOrientation}}
+\index{SetInitOrientation@{SetInitOrientation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{SetInitOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::SetInitOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Quaternion}}]{Orientation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a8ee3cce8eb7578cdeb2af771f16ab240}
+
+
+Sets the starting orientation of the actor. 
+
+Calling this function after adding it to the \hyperlink{classMezzanine_1_1World}{World} will have no effect. \par
+ This function will set where the actor is facing in the \hyperlink{classMezzanine_1_1World}{World} when it is first placed inside the world. 
+\begin{DoxyParams}{Parameters}
+{\em Orientation} & The \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} representing the Orientation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 196 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a9c96f61e8a39fc6b35eb35c03b8e0e42}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!SetLocation@{SetLocation}}
+\index{SetLocation@{SetLocation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::SetLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{Place}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a9c96f61e8a39fc6b35eb35c03b8e0e42}
+
+
+Manually sets the location of the actor. 
+
+Calling this function prior to adding it to the \hyperlink{classMezzanine_1_1World}{World} will have no effect. \par
+ In most situations you won't want to use this function, and instead produce movement through physics functions. 
+\begin{DoxyParams}{Parameters}
+{\em Place} & The \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the location. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 208 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_aad9c559bae769ac44d437a0612934bc2}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!SetLocation@{SetLocation}}
+\index{SetLocation@{SetLocation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::SetLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{x, }
+\item[{{\bf Real}}]{y, }
+\item[{{\bf Real}}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_aad9c559bae769ac44d437a0612934bc2}
+
+
+Manually sets the location of the actor. 
+
+Calling this function prior to adding it to the \hyperlink{classMezzanine_1_1World}{World} will have no effect. \par
+ In most situations you won't want to use this function, and instead produce movement through physics functions. 
+\begin{DoxyParams}{Parameters}
+{\em x} & Location on the X vector. \\
+\hline
+{\em y} & Location on the Y vector. \\
+\hline
+{\em z} & Location on the Z vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 202 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_a3490444768316d69b5560d3500550a4f}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Quaternion}}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_a3490444768316d69b5560d3500550a4f}
+
+
+Sets the orientation of the actor. 
+
+Sets the orientation of the actor via a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion}. 
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} representing the Rotation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 225 of file actorsoft.cpp.
+
+\hypertarget{classMezzanine_1_1ActorSoft_aa203dd4d6bde54f4551673e2690f20b8}{
+\index{Mezzanine::ActorSoft@{Mezzanine::ActorSoft}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!Mezzanine::ActorSoft@{Mezzanine::ActorSoft}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoft::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{x, }
+\item[{{\bf Real}}]{y, }
+\item[{{\bf Real}}]{z, }
+\item[{{\bf Real}}]{w}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoft_aa203dd4d6bde54f4551673e2690f20b8}
+
+
+Sets the orientation of the actor. 
+
+Sets the orientation of the actor via \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} parameters. 
+\begin{DoxyParams}{Parameters}
+{\em x} & Where the X vector is rotated about. \\
+\hline
+{\em y} & Where the Y vector is rotated about. \\
+\hline
+{\em z} & Where the Z vector is rotated about. \\
+\hline
+{\em w} & How much to about the x, y, z. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 219 of file actorsoft.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorsoft.h\item 
+actorsoft.cpp\end{DoxyCompactItemize}

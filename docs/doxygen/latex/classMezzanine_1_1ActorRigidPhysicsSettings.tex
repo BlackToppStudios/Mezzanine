@@ -1,0 +1,566 @@
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings}{
+\subsection{Mezzanine::ActorRigidPhysicsSettings Class Reference}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings}\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+}
+
+
+This is a helper class for configuring physics settings of an \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid}.  
+
+
+
+
+{\ttfamily \#include $<$actorphysicssettings.h$>$}
+
+Inheritance diagram for Mezzanine::ActorRigidPhysicsSettings:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ActorRigidPhysicsSettings}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a01aac76583a043e4917546ab6fabe160}{ActorRigidPhysicsSettings} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$Actor, btRigidBody $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_aafa276832f06cc6a72f8ff0b8ccea155}{ApplyForce} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Force)
+\begin{DoxyCompactList}\small\item\em Push/Apply force to an object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a431d7e6e6f8a62d1ff626d2ccf5d7a6d}{ApplyTorque} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Torque)
+\begin{DoxyCompactList}\small\item\em Spin/Apply Torque to an object. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a6a5f7320087dc36d235ed9551bba193a}{
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a6a5f7320087dc36d235ed9551bba193a}{ClearStickyContacts} ()}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a6a5f7320087dc36d235ed9551bba193a}
+
+\begin{DoxyCompactList}\small\item\em Removes all the constraints currently active on this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_afadd3d7e1cee938622fc3781543489eb}{GetAngularDamping} () const 
+\begin{DoxyCompactList}\small\item\em Get the Angular damping. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a5b078e767c73636afbabc0434f7af8c7}{GetAngularVelocity} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Angular Velocity of this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_af5b4641d041c0dcbba8ef0a28566ca87}{GetForce} () const 
+\begin{DoxyCompactList}\small\item\em Get the total Force/Movement on the actor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_aec9ec4d94326545b60056043c65bdb49}{GetIndividualGravity} () const 
+\begin{DoxyCompactList}\small\item\em Gets the gravity being applied to this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_ac5cb8f2aa589e7c76d39fee38e8fb5e2}{GetLinearDamping} () const 
+\begin{DoxyCompactList}\small\item\em Get the linear damping. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_ad238bf0f6d19a65a79a7b8bc0fb552bd}{GetLinearVelocity} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Linear Velocity of this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a71fae7a868e31ce14612336292bc0fca}{GetLocalInertia} () const 
+\begin{DoxyCompactList}\small\item\em Get the current intertia of the Actor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a6426940001f8d8e112763f6619278874}{GetMass} () const 
+\begin{DoxyCompactList}\small\item\em Get the total Mass of the actor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{structMezzanine_1_1StickyData}{StickyData} $\ast$ \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_af3b11efb413c1e6a80e4fd5cd3f44715}{GetStickyData} () const 
+\begin{DoxyCompactList}\small\item\em Gets the struct storing the data related to sticky behavior. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_ae7406aca16a67e3ef959ff9cb76a0f44}{GetTorque} () const 
+\begin{DoxyCompactList}\small\item\em Get the Torque/Rotation. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a0e5b8a968b6f41dfeebd0fcfc01c6458}{SetAngularVelocity} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AngVel)
+\begin{DoxyCompactList}\small\item\em Sets the Angular Velocity of this object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a7583e5afc93dedc8a4403ea156fa0413}{SetCollisionShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Sets the collision shape to be used. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a9342e7ff1f485ddf99930f24e081084a}{SetDamping} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LinDamping, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&AngDamping)
+\begin{DoxyCompactList}\small\item\em Sets the Damping for this object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_ad1280574ff86c008c46c10a7133ca274}{SetIndividualGravity} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Gravity)
+\begin{DoxyCompactList}\small\item\em Sets the gravity for only this object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a861a7cf22d838cbbe108cd7daad59e76}{SetLinearVelocity} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&LinVel)
+\begin{DoxyCompactList}\small\item\em Sets the Linear Velocity of this object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a8c2a5d88f76478a1d1ba4c194ad5d886}{SetMass} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} NewMass, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&NewInertia)
+\begin{DoxyCompactList}\small\item\em Change the mass of the object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a9b2ed9808e7b4a7c8874f33c51fb8ca1}{SetMass} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} NewMass)
+\begin{DoxyCompactList}\small\item\em Change the mass of the object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a2c090930426361a573ba939ac9580bce}{SetStickyData} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&MaxNumContacts)
+\begin{DoxyCompactList}\small\item\em Sets the basic parameters for enabling sticky behavior with this actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a56d106b78dfa0ea5415c7928491e4fa7}{
+virtual \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a56d106b78dfa0ea5415c7928491e4fa7}{$\sim$ActorRigidPhysicsSettings} ()}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a56d106b78dfa0ea5415c7928491e4fa7}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a6b8383d096105187418886ac0f28daf3}{
+btRigidBody $\ast$ \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a6b8383d096105187418886ac0f28daf3}{ActorRB}}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a6b8383d096105187418886ac0f28daf3}
+
+\begin{DoxyCompactList}\small\item\em Physics Object of the actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_ac83840161a9a88ecdcbacfa3c204bd6e}{
+\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_ac83840161a9a88ecdcbacfa3c204bd6e}{RigidParent}}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_ac83840161a9a88ecdcbacfa3c204bd6e}
+
+\begin{DoxyCompactList}\small\item\em The Actor this belongs to. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a8ddca7ae371cae162657763543f970bb}{
+\hyperlink{structMezzanine_1_1StickyData}{StickyData} $\ast$ \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a8ddca7ae371cae162657763543f970bb}{StickyContacts}}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a8ddca7ae371cae162657763543f970bb}
+
+\begin{DoxyCompactList}\small\item\em Data related to sticky behavior, if any is enabled. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a helper class for configuring physics settings of an \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid}. This class contains functions for the configuring of physics specific settings of an \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid}. This class can only configure the ActorRigids physics. For configuring actor graphics, see \hyperlink{classMezzanine_1_1ActorGraphicsSettings}{ActorGraphicsSettings}. 
+
+Definition at line 253 of file actorphysicssettings.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a01aac76583a043e4917546ab6fabe160}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!ActorRigidPhysicsSettings@{ActorRigidPhysicsSettings}}
+\index{ActorRigidPhysicsSettings@{ActorRigidPhysicsSettings}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{ActorRigidPhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorRigidPhysicsSettings::ActorRigidPhysicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{Actor, }
+\item[{btRigidBody $\ast$}]{PhysicsObject}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a01aac76583a043e4917546ab6fabe160}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor this settings class configures. \\
+\hline
+{\em PhysicsObject} & The physics object belonging to the actor this class configures. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 387 of file actorphysicssettings.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_aafa276832f06cc6a72f8ff0b8ccea155}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!ApplyForce@{ApplyForce}}
+\index{ApplyForce@{ApplyForce}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{ApplyForce}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::ApplyForce (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Force}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_aafa276832f06cc6a72f8ff0b8ccea155}
+
+
+Push/Apply force to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Force} & The amount and direction of the force in a \hyperlink{classMezzanine_1_1Vector3}{Vector3} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 487 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a431d7e6e6f8a62d1ff626d2ccf5d7a6d}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!ApplyTorque@{ApplyTorque}}
+\index{ApplyTorque@{ApplyTorque}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{ApplyTorque}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::ApplyTorque (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Torque}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a431d7e6e6f8a62d1ff626d2ccf5d7a6d}
+
+
+Spin/Apply Torque to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Torque} & The amount and direction of the torque in a \hyperlink{classMezzanine_1_1Vector3}{Vector3} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 490 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_afadd3d7e1cee938622fc3781543489eb}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetAngularDamping@{GetAngularDamping}}
+\index{GetAngularDamping@{GetAngularDamping}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetAngularDamping}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorRigidPhysicsSettings::GetAngularDamping (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_afadd3d7e1cee938622fc3781543489eb}
+
+
+Get the Angular damping. 
+
+\begin{DoxyReturn}{Returns}
+A Real that has the Angular damping. 
+\end{DoxyReturn}
+
+
+Definition at line 460 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a5b078e767c73636afbabc0434f7af8c7}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetAngularVelocity@{GetAngularVelocity}}
+\index{GetAngularVelocity@{GetAngularVelocity}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorRigidPhysicsSettings::GetAngularVelocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a5b078e767c73636afbabc0434f7af8c7}
+
+
+Gets the Angular Velocity of this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns the currently set Angular Velocity of this object. 
+\end{DoxyReturn}
+
+
+Definition at line 472 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_af5b4641d041c0dcbba8ef0a28566ca87}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetForce@{GetForce}}
+\index{GetForce@{GetForce}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetForce}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorRigidPhysicsSettings::GetForce (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_af5b4641d041c0dcbba8ef0a28566ca87}
+
+
+Get the total Force/Movement on the actor. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the force of the entire Actor 
+\end{DoxyReturn}
+
+
+Definition at line 481 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_aec9ec4d94326545b60056043c65bdb49}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetIndividualGravity@{GetIndividualGravity}}
+\index{GetIndividualGravity@{GetIndividualGravity}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetIndividualGravity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorRigidPhysicsSettings::GetIndividualGravity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_aec9ec4d94326545b60056043c65bdb49}
+
+
+Gets the gravity being applied to this object. 
+
+This is the gravity applied to this object, which may or may not be the same as the world gravity. \begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the gravity currently being applied to this object. 
+\end{DoxyReturn}
+
+
+Definition at line 478 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_ac5cb8f2aa589e7c76d39fee38e8fb5e2}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetLinearDamping@{GetLinearDamping}}
+\index{GetLinearDamping@{GetLinearDamping}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetLinearDamping}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorRigidPhysicsSettings::GetLinearDamping (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_ac5cb8f2aa589e7c76d39fee38e8fb5e2}
+
+
+Get the linear damping. 
+
+\begin{DoxyReturn}{Returns}
+A Real that has the Linear damping. 
+\end{DoxyReturn}
+
+
+Definition at line 457 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_ad238bf0f6d19a65a79a7b8bc0fb552bd}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetLinearVelocity@{GetLinearVelocity}}
+\index{GetLinearVelocity@{GetLinearVelocity}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorRigidPhysicsSettings::GetLinearVelocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_ad238bf0f6d19a65a79a7b8bc0fb552bd}
+
+
+Gets the Linear Velocity of this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns the currently set Linear Velocity of this object. 
+\end{DoxyReturn}
+
+
+Definition at line 466 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a71fae7a868e31ce14612336292bc0fca}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetLocalInertia@{GetLocalInertia}}
+\index{GetLocalInertia@{GetLocalInertia}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetLocalInertia}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorRigidPhysicsSettings::GetLocalInertia (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a71fae7a868e31ce14612336292bc0fca}
+
+
+Get the current intertia of the Actor. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the Inertia 
+\end{DoxyReturn}
+
+
+Definition at line 496 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a6426940001f8d8e112763f6619278874}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetMass@{GetMass}}
+\index{GetMass@{GetMass}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetMass}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorRigidPhysicsSettings::GetMass (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a6426940001f8d8e112763f6619278874}
+
+
+Get the total Mass of the actor. 
+
+\begin{DoxyReturn}{Returns}
+A Real with the Mass of the Actor 
+\end{DoxyReturn}
+
+
+Definition at line 493 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_af3b11efb413c1e6a80e4fd5cd3f44715}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetStickyData@{GetStickyData}}
+\index{GetStickyData@{GetStickyData}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetStickyData}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StickyData} $\ast$ Mezzanine::ActorRigidPhysicsSettings::GetStickyData (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_af3b11efb413c1e6a80e4fd5cd3f44715}
+
+
+Gets the struct storing the data related to sticky behavior. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the struct storing the sticky data for this actor. 
+\end{DoxyReturn}
+
+
+Definition at line 451 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_ae7406aca16a67e3ef959ff9cb76a0f44}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!GetTorque@{GetTorque}}
+\index{GetTorque@{GetTorque}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{GetTorque}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorRigidPhysicsSettings::GetTorque (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_ae7406aca16a67e3ef959ff9cb76a0f44}
+
+
+Get the Torque/Rotation. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the Torque 
+\end{DoxyReturn}
+
+
+Definition at line 484 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a0e5b8a968b6f41dfeebd0fcfc01c6458}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!SetAngularVelocity@{SetAngularVelocity}}
+\index{SetAngularVelocity@{SetAngularVelocity}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{SetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::SetAngularVelocity (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{AngVel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a0e5b8a968b6f41dfeebd0fcfc01c6458}
+
+
+Sets the Angular Velocity of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em AngVel} & \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the Angular Velocity to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 469 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a7583e5afc93dedc8a4403ea156fa0413}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!SetCollisionShape@{SetCollisionShape}}
+\index{SetCollisionShape@{SetCollisionShape}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{SetCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::SetCollisionShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a7583e5afc93dedc8a4403ea156fa0413}
+
+
+Sets the collision shape to be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shape} & The shape to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a9aa6c07c9cb235a417d68f1ea417f834}{Mezzanine::ActorBasePhysicsSettings}.
+
+
+
+Definition at line 407 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a9342e7ff1f485ddf99930f24e081084a}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!SetDamping@{SetDamping}}
+\index{SetDamping@{SetDamping}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{SetDamping}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::SetDamping (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{LinDamping, }
+\item[{const {\bf Real} \&}]{AngDamping}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a9342e7ff1f485ddf99930f24e081084a}
+
+
+Sets the Damping for this object. 
+
+Both of Linear Damping and Angular Damping default to zero. This is useful if you wish to simulate something like air resistance. Values can range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em LinDamping} & Real representing the amount of Linear Damping(Movement) to be applied. \\
+\hline
+{\em AngDamping} & Real representing the amount of Angular Damping(Rotation) to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 454 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_ad1280574ff86c008c46c10a7133ca274}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!SetIndividualGravity@{SetIndividualGravity}}
+\index{SetIndividualGravity@{SetIndividualGravity}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{SetIndividualGravity}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::SetIndividualGravity (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Gravity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_ad1280574ff86c008c46c10a7133ca274}
+
+
+Sets the gravity for only this object. 
+
+This value will override the world gravity. Should be called after adding to the world. When the object is added to the world the world gravity is applied to it. 
+\begin{DoxyParams}{Parameters}
+{\em Gravity} & \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the direction and strength of gravity to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 475 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a861a7cf22d838cbbe108cd7daad59e76}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!SetLinearVelocity@{SetLinearVelocity}}
+\index{SetLinearVelocity@{SetLinearVelocity}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{SetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::SetLinearVelocity (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{LinVel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a861a7cf22d838cbbe108cd7daad59e76}
+
+
+Sets the Linear Velocity of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em LinVel} & \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the Linear Velocity to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 463 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a9b2ed9808e7b4a7c8874f33c51fb8ca1}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!SetMass@{SetMass}}
+\index{SetMass@{SetMass}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{SetMass}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::SetMass (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{NewMass}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a9b2ed9808e7b4a7c8874f33c51fb8ca1}
+
+
+Change the mass of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em NewMass} & The amount of mass this should have. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 499 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a8c2a5d88f76478a1d1ba4c194ad5d886}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!SetMass@{SetMass}}
+\index{SetMass@{SetMass}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{SetMass}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::SetMass (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{NewMass, }
+\item[{const {\bf Vector3} \&}]{NewInertia}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a8c2a5d88f76478a1d1ba4c194ad5d886}
+
+
+Change the mass of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em NewMass} & The amount of mass this should have. \\
+\hline
+{\em NewInertia} & The new inertia the object has. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 502 of file actorphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigidPhysicsSettings_a2c090930426361a573ba939ac9580bce}{
+\index{Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}!SetStickyData@{SetStickyData}}
+\index{SetStickyData@{SetStickyData}!Mezzanine::ActorRigidPhysicsSettings@{Mezzanine::ActorRigidPhysicsSettings}}
+\paragraph[{SetStickyData}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigidPhysicsSettings::SetStickyData (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{MaxNumContacts}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigidPhysicsSettings_a2c090930426361a573ba939ac9580bce}
+
+
+Sets the basic parameters for enabling sticky behavior with this actor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MaxNumContacts} & The maximum number of object this object can stick to or have stuck to it. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 426 of file actorphysicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorphysicssettings.h\item 
+actorphysicssettings.cpp\end{DoxyCompactItemize}

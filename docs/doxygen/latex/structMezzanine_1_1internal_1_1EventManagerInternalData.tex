@@ -1,0 +1,284 @@
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData}{
+\subsection{Mezzanine::internal::EventManagerInternalData Struct Reference}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData}\index{Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}}
+}
+
+
+Used to increase encapsulation, just a bit.  
+
+
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_a0e7ecff8902c7881b006e63584f639b4}{
+typedef std::map$<$ \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode}, \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} $>$::iterator \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a0e7ecff8902c7881b006e63584f639b4}{ManualCheckIterator}}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_a0e7ecff8902c7881b006e63584f639b4}
+
+\begin{DoxyCompactList}\small\item\em an Iterator suitable for use with internal structures that correlate polling type and metacodes \item\end{DoxyCompactList}\item 
+enum \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} \{ {\bfseries Polling} = 1, 
+{\bfseries Keypress} = 2, 
+{\bfseries PollingKeyPress} =  Polling$|$Keypress
+ \}
+\begin{DoxyCompactList}\small\item\em The kinds of data that can be stored in Manual Check. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a0d72b807c1a1bd14194d173fcffa8d29}{AddInputCodesToManualCheck} (int OneCode, int \_\-PollingCheck)
+\begin{DoxyCompactList}\small\item\em Adds one type of polling check where the data is only available as Ints. \item\end{DoxyCompactList}\item 
+void \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_af1374a760ac44ce1b0a9e391f352a666}{AddInputCodeToManualCheck} (\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} OneCode, \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} \_\-PollingCheck)
+\begin{DoxyCompactList}\small\item\em Adds one type of polling check. \item\end{DoxyCompactList}\item 
+void \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_addd6a9dad9a429a59633014e2ecb2caa}{AddMetaCodesToManualCheck} (vector$<$ \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} $>$ Transport, \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} \_\-PollingCheck)
+\begin{DoxyCompactList}\small\item\em Used to insert Codes into the list of items to be manually checked. \item\end{DoxyCompactList}\item 
+void \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a19c57d0654711e2b3abeadb42bcaaa47}{AddMetaCodesToManualCheck} (const \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} \&OneCode, \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} \_\-PollingCheck)
+\begin{DoxyCompactList}\small\item\em Adds one type of polling check where the data is only available as Ints. \item\end{DoxyCompactList}\item 
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_aa1da2f0cd037bfb5013a1e7ca5844ca0}{
+void \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_aa1da2f0cd037bfb5013a1e7ca5844ca0}{DropAllKeyPresses} ()}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_aa1da2f0cd037bfb5013a1e7ca5844ca0}
+
+\begin{DoxyCompactList}\small\item\em Drops all keypresses from the list of items to be perpetuated each frame. \item\end{DoxyCompactList}\item 
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_a8ac76b5f7da9f44b5bb962ab9df125ad}{
+\hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a8ac76b5f7da9f44b5bb962ab9df125ad}{EventManagerInternalData} ()}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_a8ac76b5f7da9f44b5bb962ab9df125ad}
+
+\begin{DoxyCompactList}\small\item\em Constructor, it only inits pointers to 0. \item\end{DoxyCompactList}\item 
+void \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a2efd493359f7abd3eef0ba90de5c4897}{RemoveInputCodeToManualCheck} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&OneCode, \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} \_\-PollingCheck)
+\begin{DoxyCompactList}\small\item\em Removes one type of polling check. \item\end{DoxyCompactList}\item 
+void \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a9c1d7a9cd1a896dc37e2d4971ea8dc97}{RemoveMetaCodesToManualCheck} (vector$<$ \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} $>$ Transport, \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} \_\-PollingCheck)
+\begin{DoxyCompactList}\small\item\em Remove Items form the internal manual check list. \item\end{DoxyCompactList}\item 
+void \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_ae80f07727a2a0d335bd03bf0e07dd1e4}{RemoveMetaCodesToManualCheck} (const \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} \&OneCode, \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} \_\-PollingCheck)
+\begin{DoxyCompactList}\small\item\em Removes one type of polling check. \item\end{DoxyCompactList}\item 
+void \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a031eec688cb8a7381f958772441af3a9}{RemovePollingCheck} (\hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a0e7ecff8902c7881b006e63584f639b4}{ManualCheckIterator} Reduce, \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} \_\-PollingCheck)
+\begin{DoxyCompactList}\small\item\em Remove a kind polling check from an item or remove item if that is the last check. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_a06c1ceeb1eab29373035ac1d600c254b}{
+std::list$<$ \hyperlink{classMezzanine_1_1EventBase}{EventBase} $\ast$ $>$ \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a06c1ceeb1eab29373035ac1d600c254b}{EventQ}}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_a06c1ceeb1eab29373035ac1d600c254b}
+
+\begin{DoxyCompactList}\small\item\em The Queue that all the events get stored in. \item\end{DoxyCompactList}\item 
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_aa33f83018102633dbdbf41bdb0c80d5b}{
+vector$<$ SDL\_\-Joystick $\ast$ $>$ \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_aa33f83018102633dbdbf41bdb0c80d5b}{Joysticks}}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_aa33f83018102633dbdbf41bdb0c80d5b}
+
+\begin{DoxyCompactList}\small\item\em This will identify the Joysticks. \item\end{DoxyCompactList}\item 
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_abb08d07076ca96a92742bc5d1da61856}{
+std::map$<$ \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode}, \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_a4179a167c7f67babd5aa4902dc279027}{PollingType} $>$ \hyperlink{structMezzanine_1_1internal_1_1EventManagerInternalData_abb08d07076ca96a92742bc5d1da61856}{ManualCheck}}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_abb08d07076ca96a92742bc5d1da61856}
+
+\begin{DoxyCompactList}\small\item\em A unified polling and event repeater the Inputcode is the kind of event to check for each frame. The PollingType is used to control what can turn on and off the pollingcheck check. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Used to increase encapsulation, just a bit. 
+
+Definition at line 113 of file eventmanager.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_a0d72b807c1a1bd14194d173fcffa8d29}{
+\index{Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}!AddInputCodesToManualCheck@{AddInputCodesToManualCheck}}
+\index{AddInputCodesToManualCheck@{AddInputCodesToManualCheck}!Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}}
+\paragraph[{AddInputCodesToManualCheck}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::internal::EventManagerInternalData::AddInputCodesToManualCheck (
+\begin{DoxyParamCaption}
+\item[{int}]{OneCode, }
+\item[{int}]{\_\-PollingCheck}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_a0d72b807c1a1bd14194d173fcffa8d29}
+
+
+Adds one type of polling check where the data is only available as Ints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneCode} & The code that will be check for each frame, under the new condition \\
+\hline
+{\em \_\-PollingCheck} & This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 156 of file eventmanager.cpp.
+
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_af1374a760ac44ce1b0a9e391f352a666}{
+\index{Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}!AddInputCodeToManualCheck@{AddInputCodeToManualCheck}}
+\index{AddInputCodeToManualCheck@{AddInputCodeToManualCheck}!Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}}
+\paragraph[{AddInputCodeToManualCheck}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::internal::EventManagerInternalData::AddInputCodeToManualCheck (
+\begin{DoxyParamCaption}
+\item[{{\bf MetaCode::InputCode}}]{OneCode, }
+\item[{{\bf PollingType}}]{\_\-PollingCheck}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_af1374a760ac44ce1b0a9e391f352a666}
+
+
+Adds one type of polling check. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneCode} & The code that will be check for each frame, under the new condition \\
+\hline
+{\em \_\-PollingCheck} & This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 141 of file eventmanager.cpp.
+
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_addd6a9dad9a429a59633014e2ecb2caa}{
+\index{Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}!AddMetaCodesToManualCheck@{AddMetaCodesToManualCheck}}
+\index{AddMetaCodesToManualCheck@{AddMetaCodesToManualCheck}!Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}}
+\paragraph[{AddMetaCodesToManualCheck}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::internal::EventManagerInternalData::AddMetaCodesToManualCheck (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf MetaCode} $>$}]{Transport, }
+\item[{{\bf PollingType}}]{\_\-PollingCheck}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_addd6a9dad9a429a59633014e2ecb2caa}
+
+
+Used to insert Codes into the list of items to be manually checked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Transport} & A vector of every Meta that may need to be added to the list \\
+\hline
+{\em \_\-PollingCheck} & This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 175 of file eventmanager.cpp.
+
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_a19c57d0654711e2b3abeadb42bcaaa47}{
+\index{Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}!AddMetaCodesToManualCheck@{AddMetaCodesToManualCheck}}
+\index{AddMetaCodesToManualCheck@{AddMetaCodesToManualCheck}!Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}}
+\paragraph[{AddMetaCodesToManualCheck}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::internal::EventManagerInternalData::AddMetaCodesToManualCheck (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode} \&}]{OneCode, }
+\item[{{\bf PollingType}}]{\_\-PollingCheck}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_a19c57d0654711e2b3abeadb42bcaaa47}
+
+
+Adds one type of polling check where the data is only available as Ints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneCode} & The metacode that contains the input that will be checked for each frame \\
+\hline
+{\em \_\-PollingCheck} & This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 168 of file eventmanager.cpp.
+
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_a2efd493359f7abd3eef0ba90de5c4897}{
+\index{Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}!RemoveInputCodeToManualCheck@{RemoveInputCodeToManualCheck}}
+\index{RemoveInputCodeToManualCheck@{RemoveInputCodeToManualCheck}!Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}}
+\paragraph[{RemoveInputCodeToManualCheck}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::internal::EventManagerInternalData::RemoveInputCodeToManualCheck (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{OneCode, }
+\item[{{\bf PollingType}}]{\_\-PollingCheck}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_a2efd493359f7abd3eef0ba90de5c4897}
+
+
+Removes one type of polling check. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneCode} & The code that will no longer be checked each frame, under the given condition \\
+\hline
+{\em \_\-PollingCheck} & If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 203 of file eventmanager.cpp.
+
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_a9c1d7a9cd1a896dc37e2d4971ea8dc97}{
+\index{Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}!RemoveMetaCodesToManualCheck@{RemoveMetaCodesToManualCheck}}
+\index{RemoveMetaCodesToManualCheck@{RemoveMetaCodesToManualCheck}!Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}}
+\paragraph[{RemoveMetaCodesToManualCheck}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::internal::EventManagerInternalData::RemoveMetaCodesToManualCheck (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf MetaCode} $>$}]{Transport, }
+\item[{{\bf PollingType}}]{\_\-PollingCheck}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_a9c1d7a9cd1a896dc37e2d4971ea8dc97}
+
+
+Remove Items form the internal manual check list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Transport} & A vector of every \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} that may need to be removed to the list \\
+\hline
+{\em \_\-PollingCheck} & If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 220 of file eventmanager.cpp.
+
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_ae80f07727a2a0d335bd03bf0e07dd1e4}{
+\index{Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}!RemoveMetaCodesToManualCheck@{RemoveMetaCodesToManualCheck}}
+\index{RemoveMetaCodesToManualCheck@{RemoveMetaCodesToManualCheck}!Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}}
+\paragraph[{RemoveMetaCodesToManualCheck}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::internal::EventManagerInternalData::RemoveMetaCodesToManualCheck (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode} \&}]{OneCode, }
+\item[{{\bf PollingType}}]{\_\-PollingCheck}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_ae80f07727a2a0d335bd03bf0e07dd1e4}
+
+
+Removes one type of polling check. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneCode} & A metacode that contains the the inputcode to remove \\
+\hline
+{\em \_\-PollingCheck} & If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 213 of file eventmanager.cpp.
+
+\hypertarget{structMezzanine_1_1internal_1_1EventManagerInternalData_a031eec688cb8a7381f958772441af3a9}{
+\index{Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}!RemovePollingCheck@{RemovePollingCheck}}
+\index{RemovePollingCheck@{RemovePollingCheck}!Mezzanine::internal::EventManagerInternalData@{Mezzanine::internal::EventManagerInternalData}}
+\paragraph[{RemovePollingCheck}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::internal::EventManagerInternalData::RemovePollingCheck (
+\begin{DoxyParamCaption}
+\item[{{\bf ManualCheckIterator}}]{Reduce, }
+\item[{{\bf PollingType}}]{\_\-PollingCheck}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{structMezzanine_1_1internal_1_1EventManagerInternalData_a031eec688cb8a7381f958772441af3a9}
+
+
+Remove a kind polling check from an item or remove item if that is the last check. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reduce} & An Iterator Referencing an item in manual check \\
+\hline
+{\em \_\-PollingCheck} & What kind of Polling Type to Remove. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 188 of file eventmanager.cpp.
+
+
+
+The documentation for this struct was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+eventmanager.cpp\end{DoxyCompactItemize}

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: uicellgrid.cpp Source File</title>
+<title>MezzanineEngine: uicellgrid.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -110,532 +110,478 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
 <a name="l00047"></a>00047 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
 <a name="l00048"></a>00048 <span class="preprocessor">#include &quot;uiscrollbar.h&quot;</span>
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;metacode.h&quot;</span>
-<a name="l00051"></a>00051 <span class="preprocessor">#include &quot;inputquerytool.h&quot;</span>
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="keyword">namespace </span>phys
-<a name="l00054"></a>00054 {
-<a name="l00055"></a>00055     <span class="keyword">namespace </span>UI
-<a name="l00056"></a>00056     {<span class="comment"></span>
-<a name="l00057"></a>00057 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00058"></a>00058 <span class="comment">        /// @internal</span>
-<a name="l00059"></a>00059 <span class="comment">        /// @struct CellPrioritySorter</span>
-<a name="l00060"></a>00060 <span class="comment">        /// @headerfile uicellgrid.h</span>
-<a name="l00061"></a>00061 <span class="comment">        /// @brief This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surface.</span>
-<a name="l00062"></a>00062 <span class="comment">        /// @details</span>
-<a name="l00063"></a>00063 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00064"></a><a class="code" href="structphys_1_1UI_1_1CellPrioritySorter.html">00064</a> <span class="comment"></span>        <span class="keyword">struct </span><a class="code" href="structphys_1_1UI_1_1CellPrioritySorter.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellPrioritySorter</a>
-<a name="l00065"></a>00065         {
-<a name="l00066"></a>00066             <span class="keywordtype">bool</span> operator()(<a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a>* First, <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a>* Second)
-<a name="l00067"></a>00067             {
-<a name="l00068"></a>00068                 <span class="keywordflow">return</span> First-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#abb2a0c04c89df4a25cb5298c1a23e522" title="Gets the currently set priority of this Cell.">GetPriority</a>() &lt; Second-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#abb2a0c04c89df4a25cb5298c1a23e522" title="Gets the currently set priority of this Cell.">GetPriority</a>();
-<a name="l00069"></a>00069             }
-<a name="l00070"></a>00070         };
-<a name="l00071"></a>00071 
-<a name="l00072"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#adabf84eb8411de0bcf9b57f648ca5810">00072</a>         <a class="code" href="classphys_1_1UI_1_1CellGrid.html#adabf84eb8411de0bcf9b57f648ca5810" title="Class constructor.">CellGrid::CellGrid</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent)
-<a name="l00073"></a>00073             : <a class="code" href="classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,parent),
-<a name="l00074"></a>00074               EdgeSpacing(<a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
-<a name="l00075"></a>00075               CellSpacing(<a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0.01,0.01)),
-<a name="l00076"></a>00076               FixedCellSize(<a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0.1,0.1)),
-<a name="l00077"></a>00077               Ordering(<a class="code" href="classphys_1_1UI_1_1CellGrid.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellGrid</a>::CG_Horizontal_Vertical_Ascending),
-<a name="l00078"></a>00078               GridDirty(false),
-<a name="l00079"></a>00079               Selected(NULL)
-<a name="l00080"></a>00080         {
-<a name="l00081"></a>00081             Type = <a class="code" href="classphys_1_1UI_1_1CellGrid.html#adabf84eb8411de0bcf9b57f648ca5810" title="Class constructor.">Widget::CellGrid</a>;
-<a name="l00082"></a>00082             <span class="keywordflow">if</span>(Rect.Relative)
-<a name="l00083"></a>00083             {
-<a name="l00084"></a>00084                 RelPosition = Rect.Position;
-<a name="l00085"></a>00085                 RelSize = Rect.Size;
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087                 WorkAreaLimits = Rect.Size * Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00088"></a>00088             }<span class="keywordflow">else</span>{
-<a name="l00089"></a>00089                 RelPosition = Rect.Position / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00090"></a>00090                 RelSize = Rect.Size / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092                 WorkAreaLimits = Rect.Size;
-<a name="l00093"></a>00093             }
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095             GridBack = <span class="keyword">new</span> <a class="code" href="classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>(Rect,Parent);
-<a name="l00096"></a>00096             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#af4f183946fb12cb9150b337c17343c31" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
-<a name="l00097"></a>00097         }
-<a name="l00098"></a>00098 
-<a name="l00099"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ac1abc38620bbb790afb01443cb2d6853">00099</a>         <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ac1abc38620bbb790afb01443cb2d6853" title="Class destructor.">CellGrid::~CellGrid</a>()
-<a name="l00100"></a>00100         {
-<a name="l00101"></a>00101             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a12736adff3718820b4915cbe9961c66f" title="Destroys all Cells currently stored within this widget.">DestroyAllCells</a>();
-<a name="l00102"></a>00102             <span class="keywordflow">for</span>( <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; TheGrid.size() ; X++ )
-<a name="l00103"></a>00103                 <span class="keyword">delete</span> TheGrid[X];
-<a name="l00104"></a>00104             TheGrid.clear();
-<a name="l00105"></a>00105             <span class="keyword">delete</span> GridBack;
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107 
-<a name="l00108"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ab031e5d26dcb8b2617533e284816b5ed">00108</a>         <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ab031e5d26dcb8b2617533e284816b5ed" title="Gets the max number of rows in the grid.">CellGrid::GetMaxRows</a>()
-<a name="l00109"></a>00109         {
-<a name="l00110"></a>00110             <span class="keywordflow">return</span> TheGrid.size();
-<a name="l00111"></a>00111         }
-<a name="l00112"></a>00112 
-<a name="l00113"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ac7338fc2ba7cc9575c9f47d70d998574">00113</a>         <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ac7338fc2ba7cc9575c9f47d70d998574" title="Gest the max number of columns in the grid.">CellGrid::GetMaxColumns</a>()
-<a name="l00114"></a>00114         {
-<a name="l00115"></a>00115             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentBest = 0;
-<a name="l00116"></a>00116             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
-<a name="l00117"></a>00117             {
-<a name="l00118"></a>00118                 <span class="keywordflow">if</span>(CurrentBest &lt; (*it)-&gt;size())
-<a name="l00119"></a>00119                     CurrentBest = (*it)-&gt;size();
-<a name="l00120"></a>00120             }
-<a name="l00121"></a>00121             <span class="keywordflow">return</span> CurrentBest;
-<a name="l00122"></a>00122         }
-<a name="l00123"></a>00123 
-<a name="l00124"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae2970e94e9f4e79520ff93bb0c3238b0">00124</a>         <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae2970e94e9f4e79520ff93bb0c3238b0" title="Finds the Tallest cell in a row.">CellGrid::FindTallestInRow</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; RowIndex)
-<a name="l00125"></a>00125         {
-<a name="l00126"></a>00126             <span class="keywordflow">if</span>(TheGrid.size() &lt; RowIndex)
-<a name="l00127"></a>00127                 <span class="keywordflow">return</span> 0;
-<a name="l00128"></a>00128             <span class="keywordflow">if</span>(TheGrid.at(RowIndex)-&gt;empty())
-<a name="l00129"></a>00129                 <span class="keywordflow">return</span> 0;
-<a name="l00130"></a>00130             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentBest = 0;
-<a name="l00131"></a>00131             <span class="keywordflow">for</span>( CellVector::iterator Cit = TheGrid.at(RowIndex)-&gt;begin() ; Cit != TheGrid.at(RowIndex)-&gt;end() ; Cit++ )
-<a name="l00132"></a>00132             {
-<a name="l00133"></a>00133                 <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CellHeight = (*Cit)-&gt;GetActualSize().Y;
-<a name="l00134"></a>00134                 <span class="keywordflow">if</span>(CellHeight &gt; CurrentBest)
-<a name="l00135"></a>00135                     CurrentBest = CellHeight;
-<a name="l00136"></a>00136             }
-<a name="l00137"></a>00137             <span class="keywordflow">return</span> CurrentBest;
-<a name="l00138"></a>00138         }
-<a name="l00139"></a>00139 
-<a name="l00140"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#af659299b53bb143d6593c6ac84ef45a3">00140</a>         <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#af659299b53bb143d6593c6ac84ef45a3" title="Finds the Widest cell in a column.">CellGrid::FindWidestInColumn</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; ColumnIndex)
-<a name="l00141"></a>00141         {
-<a name="l00142"></a>00142             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentBest = 0;
-<a name="l00143"></a>00143             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
-<a name="l00144"></a>00144             {
-<a name="l00145"></a>00145                 <span class="keywordflow">if</span>((*it)-&gt;size() &gt;= ColumnIndex)
-<a name="l00146"></a>00146                 {
-<a name="l00147"></a>00147                     <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* CurrCell = (*it)-&gt;at(ColumnIndex);
-<a name="l00148"></a>00148                     <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CellWidth = CurrCell-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#a6301ce41a7a44a97de36fb54388ad430" title="Sets the pixel size of this widget.">GetActualSize</a>().<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00149"></a>00149                     <span class="keywordflow">if</span>(CellWidth &gt; CurrentBest)
-<a name="l00150"></a>00150                         CurrentBest = CellWidth;
-<a name="l00151"></a>00151                 }
-<a name="l00152"></a>00152             }
-<a name="l00153"></a>00153             <span class="keywordflow">return</span> CurrentBest;
-<a name="l00154"></a>00154         }
-<a name="l00155"></a>00155 
-<a name="l00156"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#af4f183946fb12cb9150b337c17343c31">00156</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#af4f183946fb12cb9150b337c17343c31" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CellGrid::CreateOrDestroyRow</a>(CellVector* ToDestroy)
-<a name="l00157"></a>00157         {
-<a name="l00158"></a>00158             <span class="keywordflow">if</span>(!ToDestroy)
-<a name="l00159"></a>00159             {
-<a name="l00160"></a>00160                 TheGrid.push_back(<span class="keyword">new</span> CellVector());
-<a name="l00161"></a>00161                 <span class="keywordflow">return</span>;
-<a name="l00162"></a>00162             }
-<a name="l00163"></a>00163             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
-<a name="l00164"></a>00164             {
-<a name="l00165"></a>00165                 <span class="keywordflow">if</span>(ToDestroy == (*it))
-<a name="l00166"></a>00166                 {
-<a name="l00167"></a>00167                     <span class="keywordflow">for</span>( CellVector::iterator Cit = (*it)-&gt;begin() ; Cit != (*it)-&gt;end() ; Cit++ )
-<a name="l00168"></a>00168                         <span class="keyword">delete</span> (*Cit);
-<a name="l00169"></a>00169                     (*it)-&gt;clear();
-<a name="l00170"></a>00170                     <span class="keyword">delete</span> ToDestroy;
-<a name="l00171"></a>00171                     TheGrid.erase(it);
-<a name="l00172"></a>00172                     <span class="keywordflow">return</span>;
-<a name="l00173"></a>00173                 }
-<a name="l00174"></a>00174             }
-<a name="l00175"></a>00175         }
-<a name="l00176"></a>00176 
-<a name="l00177"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a62025df19045011c3ef7958c253f8f3c">00177</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a62025df19045011c3ef7958c253f8f3c" title="Removes all Cells from the grid.">CellGrid::ClearGrid</a>()
-<a name="l00178"></a>00178         {
-<a name="l00179"></a>00179             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
-<a name="l00180"></a>00180                 (*it)-&gt;clear();
-<a name="l00181"></a>00181         }
-<a name="l00182"></a>00182 
-<a name="l00183"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a1fecbe653e802df38b5bb416a73efda9">00183</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a1fecbe653e802df38b5bb416a73efda9" title="Re-populates the grid and the positions of it&amp;#39;s elements.">CellGrid::RegenerateGrid</a>()
-<a name="l00184"></a>00184         {
-<a name="l00185"></a>00185             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00186"></a>00186             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a1fecbe653e802df38b5bb416a73efda9" title="Re-populates the grid and the positions of it&amp;#39;s elements.">RegenerateGrid</a>(WinDim);
-<a name="l00187"></a>00187         }
-<a name="l00188"></a>00188 
-<a name="l00189"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ab426bff9fe6c637aa4438fd00cdde71b">00189</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a1fecbe653e802df38b5bb416a73efda9" title="Re-populates the grid and the positions of it&amp;#39;s elements.">CellGrid::RegenerateGrid</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim)
-<a name="l00190"></a>00190         {
-<a name="l00191"></a>00191             <span class="keywordflow">if</span>(!GridDirty)
-<a name="l00192"></a>00192                 <span class="keywordflow">return</span>;
-<a name="l00193"></a>00193             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a62025df19045011c3ef7958c253f8f3c" title="Removes all Cells from the grid.">ClearGrid</a>();
-<a name="l00194"></a>00194             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ActPos = GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#a976f977ee23e805b4a193fc0f9e8392f" title="Gets the top left position of this rectangle in pixels.">GetActualPosition</a>();
-<a name="l00195"></a>00195             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ActEdge = EdgeSpacing * WinDim;
-<a name="l00196"></a>00196             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ActCell = CellSpacing * WinDim;
-<a name="l00197"></a>00197             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ActFixedSize = FixedCellSize * WinDim;
-<a name="l00198"></a>00198 
-<a name="l00199"></a>00199             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentColumn = 0;
-<a name="l00200"></a>00200             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentRow = 0;
-<a name="l00201"></a>00201             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentXposition = (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)ActPos.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(ActEdge.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00202"></a>00202             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentYposition = (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)ActPos.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> + (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(ActEdge.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00203"></a>00203             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> StartXposition = CurrentXposition;
-<a name="l00204"></a>00204             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> StartYposition = CurrentYposition;
-<a name="l00205"></a>00205             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> RowLimit = (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)((ActPos.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + WorkAreaLimits.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>) - ActEdge.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * 2);
-<a name="l00206"></a>00206             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> ColumnLimit = (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)((ActPos.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> + WorkAreaLimits.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>) - ActEdge.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * 2);
+<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;uiviewportupdatetool.h&quot;</span>
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="preprocessor">#include &quot;metacode.h&quot;</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;inputquerytool.h&quot;</span>
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="keyword">namespace </span>Mezzanine
+<a name="l00055"></a>00055 {
+<a name="l00056"></a>00056     <span class="keyword">namespace </span>UI
+<a name="l00057"></a>00057     {<span class="comment"></span>
+<a name="l00058"></a>00058 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00059"></a>00059 <span class="comment">        /// @internal</span>
+<a name="l00060"></a>00060 <span class="comment">        /// @struct CellPrioritySorter</span>
+<a name="l00061"></a>00061 <span class="comment">        /// @headerfile uicellgrid.h</span>
+<a name="l00062"></a>00062 <span class="comment">        /// @brief This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surface.</span>
+<a name="l00063"></a>00063 <span class="comment">        /// @details</span>
+<a name="l00064"></a>00064 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00065"></a><a class="code" href="structMezzanine_1_1UI_1_1CellPrioritySorter.html">00065</a> <span class="comment"></span>        <span class="keyword">struct </span><a class="code" href="structMezzanine_1_1UI_1_1CellPrioritySorter.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellPrioritySorter</a>
+<a name="l00066"></a>00066         {
+<a name="l00067"></a>00067             <span class="keywordtype">bool</span> operator()(<a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a>* First, <a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a>* Second)
+<a name="l00068"></a>00068             {
+<a name="l00069"></a>00069                 <span class="keywordflow">return</span> First-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Cell.html#a6e45a4910d845723cd7ce136efc69fdf" title="Gets the currently set priority of this Cell.">GetPriority</a>() &lt; Second-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Cell.html#a6e45a4910d845723cd7ce136efc69fdf" title="Gets the currently set priority of this Cell.">GetPriority</a>();
+<a name="l00070"></a>00070             }
+<a name="l00071"></a>00071         };
+<a name="l00072"></a>00072 
+<a name="l00073"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a198dfab3b71fbd9f89b7aa76c43881bb">00073</a>         <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a198dfab3b71fbd9f89b7aa76c43881bb" title="Class constructor.">CellGrid::CellGrid</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent)
+<a name="l00074"></a>00074             : <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,parent),
+<a name="l00075"></a>00075               EdgeSpacing(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
+<a name="l00076"></a>00076               CellSpacing(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(10.0,10.0)),
+<a name="l00077"></a>00077               FixedCellSize(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(100.0,100.0)),
+<a name="l00078"></a>00078               Ordering(<a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellGrid</a>::CG_Horizontal_Vertical_Ascending),
+<a name="l00079"></a>00079               GridDirty(false),
+<a name="l00080"></a>00080               Selected(NULL)
+<a name="l00081"></a>00081         {
+<a name="l00082"></a>00082             Type = Widget::W_CellGrid;
+<a name="l00083"></a>00083             <span class="keywordflow">if</span>(Rect.Relative)
+<a name="l00084"></a>00084             {
+<a name="l00085"></a>00085                 RelPosition = Rect.Position;
+<a name="l00086"></a>00086                 RelSize = Rect.Size;
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088                 WorkAreaLimits = Rect.Size * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00089"></a>00089             }<span class="keywordflow">else</span>{
+<a name="l00090"></a>00090                 RelPosition = Rect.Position / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00091"></a>00091                 RelSize = Rect.Size / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093                 WorkAreaLimits = Rect.Size;
+<a name="l00094"></a>00094             }
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096             GridBack = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>(Rect,Parent);
+<a name="l00097"></a>00097             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a4f4f640eda426025bf0b805b493c4db7" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
+<a name="l00098"></a>00098         }
+<a name="l00099"></a>00099 
+<a name="l00100"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a4ffeba2ec2e555c80f7224efcf886e42">00100</a>         <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a4ffeba2ec2e555c80f7224efcf886e42" title="Class destructor.">CellGrid::~CellGrid</a>()
+<a name="l00101"></a>00101         {
+<a name="l00102"></a>00102             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ad820c686b028dd5daeed8548b2f8918a" title="Destroys all Cells currently stored within this widget.">DestroyAllCells</a>();
+<a name="l00103"></a>00103             <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; TheGrid.size() ; X++ )
+<a name="l00104"></a>00104                 <span class="keyword">delete</span> TheGrid[X];
+<a name="l00105"></a>00105             TheGrid.clear();
+<a name="l00106"></a>00106             <span class="keyword">delete</span> GridBack;
+<a name="l00107"></a>00107         }
+<a name="l00108"></a>00108 
+<a name="l00109"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a6e415f61475b3b9f783584698f0a2dc2">00109</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a6e415f61475b3b9f783584698f0a2dc2" title="Gets the max number of rows in the grid.">CellGrid::GetMaxRows</a>()
+<a name="l00110"></a>00110         {
+<a name="l00111"></a>00111             <span class="keywordflow">return</span> TheGrid.size();
+<a name="l00112"></a>00112         }
+<a name="l00113"></a>00113 
+<a name="l00114"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ac5d76972d021f3b78961219443ad5b5c">00114</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ac5d76972d021f3b78961219443ad5b5c" title="Gest the max number of columns in the grid.">CellGrid::GetMaxColumns</a>()
+<a name="l00115"></a>00115         {
+<a name="l00116"></a>00116             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentBest = 0;
+<a name="l00117"></a>00117             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
+<a name="l00118"></a>00118             {
+<a name="l00119"></a>00119                 <span class="keywordflow">if</span>(CurrentBest &lt; (*it)-&gt;size())
+<a name="l00120"></a>00120                     CurrentBest = (*it)-&gt;size();
+<a name="l00121"></a>00121             }
+<a name="l00122"></a>00122             <span class="keywordflow">return</span> CurrentBest;
+<a name="l00123"></a>00123         }
+<a name="l00124"></a>00124 
+<a name="l00125"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a6a151cdcda0a044003696b32ec0f50b3">00125</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a6a151cdcda0a044003696b32ec0f50b3" title="Finds the Tallest cell in a row.">CellGrid::FindTallestInRow</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; RowIndex)
+<a name="l00126"></a>00126         {
+<a name="l00127"></a>00127             <span class="keywordflow">if</span>(TheGrid.size() &lt; RowIndex)
+<a name="l00128"></a>00128                 <span class="keywordflow">return</span> 0;
+<a name="l00129"></a>00129             <span class="keywordflow">if</span>(TheGrid.at(RowIndex)-&gt;empty())
+<a name="l00130"></a>00130                 <span class="keywordflow">return</span> 0;
+<a name="l00131"></a>00131             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentBest = 0;
+<a name="l00132"></a>00132             <span class="keywordflow">for</span>( CellVector::iterator Cit = TheGrid.at(RowIndex)-&gt;begin() ; Cit != TheGrid.at(RowIndex)-&gt;end() ; Cit++ )
+<a name="l00133"></a>00133             {
+<a name="l00134"></a>00134                 <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CellHeight = (*Cit)-&gt;GetActualSize().Y;
+<a name="l00135"></a>00135                 <span class="keywordflow">if</span>(CellHeight &gt; CurrentBest)
+<a name="l00136"></a>00136                     CurrentBest = CellHeight;
+<a name="l00137"></a>00137             }
+<a name="l00138"></a>00138             <span class="keywordflow">return</span> CurrentBest;
+<a name="l00139"></a>00139         }
+<a name="l00140"></a>00140 
+<a name="l00141"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#af72a0421cd05d091c44a85460c10ebdd">00141</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#af72a0421cd05d091c44a85460c10ebdd" title="Finds the Widest cell in a column.">CellGrid::FindWidestInColumn</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; ColumnIndex)
+<a name="l00142"></a>00142         {
+<a name="l00143"></a>00143             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentBest = 0;
+<a name="l00144"></a>00144             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
+<a name="l00145"></a>00145             {
+<a name="l00146"></a>00146                 <span class="keywordflow">if</span>((*it)-&gt;size() &gt;= ColumnIndex)
+<a name="l00147"></a>00147                 {
+<a name="l00148"></a>00148                     <a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* CurrCell = (*it)-&gt;at(ColumnIndex);
+<a name="l00149"></a>00149                     <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CellWidth = CurrCell-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469" title="Sets the pixel size of this widget.">GetActualSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00150"></a>00150                     <span class="keywordflow">if</span>(CellWidth &gt; CurrentBest)
+<a name="l00151"></a>00151                         CurrentBest = CellWidth;
+<a name="l00152"></a>00152                 }
+<a name="l00153"></a>00153             }
+<a name="l00154"></a>00154             <span class="keywordflow">return</span> CurrentBest;
+<a name="l00155"></a>00155         }
+<a name="l00156"></a>00156 
+<a name="l00157"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a4f4f640eda426025bf0b805b493c4db7">00157</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a4f4f640eda426025bf0b805b493c4db7" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CellGrid::CreateOrDestroyRow</a>(CellVector* ToDestroy)
+<a name="l00158"></a>00158         {
+<a name="l00159"></a>00159             <span class="keywordflow">if</span>(!ToDestroy)
+<a name="l00160"></a>00160             {
+<a name="l00161"></a>00161                 TheGrid.push_back(<span class="keyword">new</span> CellVector());
+<a name="l00162"></a>00162                 <span class="keywordflow">return</span>;
+<a name="l00163"></a>00163             }
+<a name="l00164"></a>00164             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
+<a name="l00165"></a>00165             {
+<a name="l00166"></a>00166                 <span class="keywordflow">if</span>(ToDestroy == (*it))
+<a name="l00167"></a>00167                 {
+<a name="l00168"></a>00168                     <span class="keywordflow">for</span>( CellVector::iterator Cit = (*it)-&gt;begin() ; Cit != (*it)-&gt;end() ; Cit++ )
+<a name="l00169"></a>00169                         <span class="keyword">delete</span> (*Cit);
+<a name="l00170"></a>00170                     (*it)-&gt;clear();
+<a name="l00171"></a>00171                     <span class="keyword">delete</span> ToDestroy;
+<a name="l00172"></a>00172                     TheGrid.erase(it);
+<a name="l00173"></a>00173                     <span class="keywordflow">return</span>;
+<a name="l00174"></a>00174                 }
+<a name="l00175"></a>00175             }
+<a name="l00176"></a>00176         }
+<a name="l00177"></a>00177 
+<a name="l00178"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a700671c77d5693a51fa2e91cbe0fe83b">00178</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a700671c77d5693a51fa2e91cbe0fe83b" title="Removes all Cells from the grid.">CellGrid::ClearGrid</a>()
+<a name="l00179"></a>00179         {
+<a name="l00180"></a>00180             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
+<a name="l00181"></a>00181                 (*it)-&gt;clear();
+<a name="l00182"></a>00182         }
+<a name="l00183"></a>00183 
+<a name="l00184"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#abcb31dfb70ef304585a4969d762a0dca">00184</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#abcb31dfb70ef304585a4969d762a0dca" title="Re-populates the grid and the positions of it&amp;#39;s elements.">CellGrid::RegenerateGrid</a>()
+<a name="l00185"></a>00185         {
+<a name="l00186"></a>00186             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00187"></a>00187             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#abcb31dfb70ef304585a4969d762a0dca" title="Re-populates the grid and the positions of it&amp;#39;s elements.">RegenerateGrid</a>(WinDim);
+<a name="l00188"></a>00188         }
+<a name="l00189"></a>00189 
+<a name="l00190"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a487e46795d13bb222a4f94cd83b7cac4">00190</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#abcb31dfb70ef304585a4969d762a0dca" title="Re-populates the grid and the positions of it&amp;#39;s elements.">CellGrid::RegenerateGrid</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim)
+<a name="l00191"></a>00191         {
+<a name="l00192"></a>00192             <span class="keywordflow">if</span>(!GridDirty)
+<a name="l00193"></a>00193                 <span class="keywordflow">return</span>;
+<a name="l00194"></a>00194             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a700671c77d5693a51fa2e91cbe0fe83b" title="Removes all Cells from the grid.">ClearGrid</a>();
+<a name="l00195"></a>00195             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ActPos = GridBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a642bbe279ac7c4473f8449e58f61ac31" title="Gets the top left position of this rectangle in pixels.">GetActualPosition</a>();
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentColumn = 0;
+<a name="l00198"></a>00198             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentRow = 0;
+<a name="l00199"></a>00199             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentXposition = (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)ActPos.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(EdgeSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00200"></a>00200             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> CurrentYposition = (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)ActPos.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(EdgeSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00201"></a>00201             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> StartXposition = CurrentXposition;
+<a name="l00202"></a>00202             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> StartYposition = CurrentYposition;
+<a name="l00203"></a>00203             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> RowLimit = (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)((ActPos.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + WorkAreaLimits.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>) - EdgeSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * 2);
+<a name="l00204"></a>00204             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> ColumnLimit = (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)((ActPos.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + WorkAreaLimits.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) - EdgeSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * 2);
+<a name="l00205"></a>00205 
+<a name="l00206"></a>00206             <a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* CurrCell = NULL;
 <a name="l00207"></a>00207 
-<a name="l00208"></a>00208             <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* CurrCell = NULL;
-<a name="l00209"></a>00209 
-<a name="l00210"></a>00210             <span class="keywordflow">if</span>( <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a4b77ef63082513fc9f845537d104496ba40efb4a2512c8f3129eaf967522c9b30" title="--- Objects on the grid will be ordered based on their priority from left to right, top to bottom, in increasing order.">CellGrid::CG_Horizontal_Vertical_Ascending</a> == Ordering || <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a4b77ef63082513fc9f845537d104496badecf0f97dbc2c5f4df2ac84b1c063de6" title="--- Objects on the grid will be ordered based on their priority from left to right, top to bottom, in decreasing order.">CellGrid::CG_Horizontal_Vertical_Decending</a> == Ordering )
-<a name="l00211"></a>00211             {
-<a name="l00212"></a>00212                 <span class="keywordflow">for</span>( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
-<a name="l00213"></a>00213                 {
-<a name="l00214"></a>00214                     CurrCell = (*it);
-<a name="l00215"></a>00215                     <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CellSize = CurrCell-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#a6301ce41a7a44a97de36fb54388ad430" title="Sets the pixel size of this widget.">GetActualSize</a>();
-<a name="l00216"></a>00216                     <span class="keywordflow">if</span>(RowLimit &gt;= CurrentXposition + (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(CellSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>))
-<a name="l00217"></a>00217                     {
-<a name="l00218"></a>00218                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
-<a name="l00219"></a>00219                         CurrentXposition+=CellSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00220"></a>00220                         CurrentColumn++;
-<a name="l00221"></a>00221                     }
-<a name="l00222"></a>00222                     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(RowLimit &gt;= CurrentXposition + (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)CellSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>)
-<a name="l00223"></a>00223                     {
-<a name="l00224"></a>00224                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
-<a name="l00225"></a>00225                         CurrentXposition+=CellSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00226"></a>00226                         CurrentColumn++;
-<a name="l00227"></a>00227                     }
-<a name="l00228"></a>00228                     <span class="keywordflow">else</span>
-<a name="l00229"></a>00229                     {
-<a name="l00230"></a>00230                         <span class="keywordflow">if</span>(ColumnLimit &lt; CurrentYposition + (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(CellSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>))
-<a name="l00231"></a>00231                             <span class="keywordflow">break</span>;
-<a name="l00232"></a>00232                         CurrentXposition = StartXposition;
-<a name="l00233"></a>00233                         CurrentColumn = 0;
-<a name="l00234"></a>00234                         CurrentYposition+=(<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(ActFixedSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00235"></a>00235                         CurrentRow++;
-<a name="l00236"></a>00236                         <span class="keywordflow">if</span>(CurrentRow &gt;= TheGrid.size())
-<a name="l00237"></a>00237                             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#af4f183946fb12cb9150b337c17343c31" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
-<a name="l00238"></a>00238 
-<a name="l00239"></a>00239                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
-<a name="l00240"></a>00240                         CurrentXposition+=CellSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00241"></a>00241                         CurrentColumn++;
-<a name="l00242"></a>00242                     }
-<a name="l00243"></a>00243                 }
-<a name="l00244"></a>00244             }
-<a name="l00245"></a>00245             <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a4b77ef63082513fc9f845537d104496ba6114116f4ee36620ca28d2ca052d6839" title="--- Objects on the grid will be ordered based on their priority from top to bottom, left to right, in increasing order.">CellGrid::CG_Vertical_Horizontal_Ascending</a> == Ordering || <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a4b77ef63082513fc9f845537d104496bab220567598ddaadfe133b9fef6f14b43" title="--- Objects on the grid will be ordered based on their priority from top to bottom, left to right, in decreasing order.">CellGrid::CG_Vertical_Horizontal_Decending</a> == Ordering )
-<a name="l00246"></a>00246             {
-<a name="l00247"></a>00247                 <span class="keywordflow">for</span>( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
-<a name="l00248"></a>00248                 {
-<a name="l00249"></a>00249                     CurrCell = (*it);
-<a name="l00250"></a>00250                     <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CellSize = CurrCell-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#a6301ce41a7a44a97de36fb54388ad430" title="Sets the pixel size of this widget.">GetActualSize</a>();
-<a name="l00251"></a>00251                     <span class="keywordflow">if</span>(ColumnLimit &gt;= CurrentYposition + (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(CellSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>))
-<a name="l00252"></a>00252                     {
-<a name="l00253"></a>00253                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
-<a name="l00254"></a>00254                         CurrentYposition+=CellSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00255"></a>00255                         CurrentRow++;
-<a name="l00256"></a>00256                         <span class="keywordflow">if</span>(CurrentRow &gt;= TheGrid.size())
-<a name="l00257"></a>00257                             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#af4f183946fb12cb9150b337c17343c31" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
-<a name="l00258"></a>00258                     }
-<a name="l00259"></a>00259                     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ColumnLimit &gt;= CurrentYposition + (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)CellSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>)
-<a name="l00260"></a>00260                     {
-<a name="l00261"></a>00261                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
-<a name="l00262"></a>00262                         CurrentYposition+=CellSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00263"></a>00263                         CurrentRow++;
-<a name="l00264"></a>00264                         <span class="keywordflow">if</span>(CurrentRow &gt;= TheGrid.size())
-<a name="l00265"></a>00265                             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#af4f183946fb12cb9150b337c17343c31" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
-<a name="l00266"></a>00266                     }
-<a name="l00267"></a>00267                     <span class="keywordflow">else</span>
-<a name="l00268"></a>00268                     {
-<a name="l00269"></a>00269                         <span class="keywordflow">if</span>(RowLimit &lt; CurrentXposition + (<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(CellSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>))
-<a name="l00270"></a>00270                             <span class="keywordflow">break</span>;
-<a name="l00271"></a>00271                         CurrentYposition = StartYposition;
-<a name="l00272"></a>00272                         CurrentRow = 0;
-<a name="l00273"></a>00273                         CurrentXposition+=(<a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(ActFixedSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> + ActCell.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00274"></a>00274                         CurrentColumn++;
-<a name="l00275"></a>00275 
-<a name="l00276"></a>00276                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
-<a name="l00277"></a>00277                         CurrentRow++;
-<a name="l00278"></a>00278                         <span class="keywordflow">if</span>(CurrentRow &gt;= TheGrid.size())
-<a name="l00279"></a>00279                             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#af4f183946fb12cb9150b337c17343c31" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
-<a name="l00280"></a>00280                     }
-<a name="l00281"></a>00281                 }
-<a name="l00282"></a>00282             }
-<a name="l00283"></a>00283             GridDirty = <span class="keyword">false</span>;
-<a name="l00284"></a>00284         }
-<a name="l00285"></a>00285 
-<a name="l00286"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae72ca5a4a8924596df199c66e64c136f">00286</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae72ca5a4a8924596df199c66e64c136f" title="For use with widget update/automation.">CellGrid::Update</a>(<span class="keywordtype">bool</span> Force)
-<a name="l00287"></a>00287         {
-<a name="l00288"></a>00288             <span class="keywordflow">if</span>(!Force)
-<a name="l00289"></a>00289                 <a class="code" href="classphys_1_1UI_1_1Widget.html#a3472e5d0f8281e704d67d419980cd918" title="For use with sub-widget update/automation.">SubWidgetUpdate</a>();
-<a name="l00290"></a>00290             <a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> State = <a class="code" href="classphys_1_1InputQueryTool.html#a1ef8b70af163d8bc703fd16c3fcce22d" title="Gets the button state of the provided mouse button ID.">InputQueryTool::GetMouseButtonState</a>(1);
-<a name="l00291"></a>00291             <span class="keywordflow">if</span>(HoveredSubWidget)
-<a name="l00292"></a>00292             {
-<a name="l00293"></a>00293                 <span class="keywordflow">if</span>(<a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d">MetaCode::BUTTON_PRESSING</a> == State)
-<a name="l00294"></a>00294                 {
-<a name="l00295"></a>00295                     SubWidgetFocus = HoveredSubWidget;
-<a name="l00296"></a>00296                 }
-<a name="l00297"></a>00297                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a6b5564408703517f36debd8c423e2dee">MetaCode::BUTTON_LIFTING</a> == State)
-<a name="l00298"></a>00298                 {
-<a name="l00299"></a>00299                     <span class="keywordflow">if</span>(Widget::Cell == HoveredSubWidget-&gt;<a class="code" href="classphys_1_1UI_1_1Widget.html#a76337b279bd372ce225f94ab1da191ea" title="Gets the type of widget this is.">GetType</a>() &amp;&amp; HoveredSubWidget != Selected)
-<a name="l00300"></a>00300                     {
-<a name="l00301"></a>00301                         <span class="keywordflow">if</span>(Selected)
-<a name="l00302"></a>00302                         {
-<a name="l00303"></a>00303                             Selected-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#abb516a7a4fa2abe00ff037987beea745" title="Sets whether or not this Cell is currently selected.">SetSelected</a>(<span class="keyword">false</span>);
-<a name="l00304"></a>00304                             Selected = NULL;
-<a name="l00305"></a>00305                         }
-<a name="l00306"></a>00306                         Selected = <span class="keyword">static_cast&lt;</span><a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>*<span class="keyword">&gt;</span>(HoveredSubWidget);
-<a name="l00307"></a>00307                         Selected-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#abb516a7a4fa2abe00ff037987beea745" title="Sets whether or not this Cell is currently selected.">SetSelected</a>(<span class="keyword">true</span>);
-<a name="l00308"></a>00308                     }
-<a name="l00309"></a>00309                 }
-<a name="l00310"></a>00310             }
-<a name="l00311"></a>00311             <span class="keywordflow">if</span>(SubWidgetFocus &amp;&amp; (SubWidgetFocus != HoveredSubWidget))
-<a name="l00312"></a>00312             {
-<a name="l00313"></a>00313                 <a class="code" href="classphys_1_1UI_1_1Widget.html#a4a7e18c48a7cd230fd4a0aa274c6a654" title="For use with sub-widget update/automation when the mouse isn&amp;#39;t hovered.">SubWidgetFocusUpdate</a>(<span class="keyword">true</span>);
-<a name="l00314"></a>00314             }
-<a name="l00315"></a>00315             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a> == State &amp;&amp; Force)
-<a name="l00316"></a>00316             {
-<a name="l00317"></a>00317                 <a class="code" href="classphys_1_1UI_1_1Widget.html#a4a7e18c48a7cd230fd4a0aa274c6a654" title="For use with sub-widget update/automation when the mouse isn&amp;#39;t hovered.">SubWidgetFocusUpdate</a>(Force);
-<a name="l00318"></a>00318             }
-<a name="l00319"></a>00319             <span class="keywordflow">if</span>(<a class="code" href="classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a6b5564408703517f36debd8c423e2dee">MetaCode::BUTTON_LIFTING</a> == State)
-<a name="l00320"></a>00320             {
-<a name="l00321"></a>00321                 SubWidgetFocus = NULL;
-<a name="l00322"></a>00322             }
-<a name="l00323"></a>00323             <span class="keywordflow">if</span>(<a class="code" href="classphys_1_1UI_1_1CellGrid.html#aa4c2f8c2c5f11ce5cffa1b8a1c44d57d" title="Determines whether or not the grid needs to be redrawn.">GridNeedsRedraw</a>())
-<a name="l00324"></a>00324                 <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ada5c15ae1b0372277d1bde05e348ccfd" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
-<a name="l00325"></a>00325         }
-<a name="l00326"></a>00326 
-<a name="l00327"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#abd1b3b422680a8b549c1c897b300da5d">00327</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#abd1b3b422680a8b549c1c897b300da5d" title="Sets the visibility of this widget.">CellGrid::SetVisible</a>(<span class="keywordtype">bool</span> visible)
-<a name="l00328"></a>00328         {
-<a name="l00329"></a>00329             GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#a4fa5021010e8cdaf9a9e35b3d4c82461" title="Sets the visibility of this rectangle.">SetVisible</a>(visible);
-<a name="l00330"></a>00330             <span class="keywordflow">for</span>( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
+<a name="l00208"></a>00208             <span class="keywordflow">if</span>( <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237ac80523a0d2eb73945ca37ec2084201cc" title="--- Objects on the grid will be ordered based on their priority from left to right, top to bottom, in increasing order.">CellGrid::CG_Horizontal_Vertical_Ascending</a> == Ordering || <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237acb397ae997902c7ee87ee9d4baf5a272" title="--- Objects on the grid will be ordered based on their priority from left to right, top to bottom, in decreasing order.">CellGrid::CG_Horizontal_Vertical_Decending</a> == Ordering )
+<a name="l00209"></a>00209             {
+<a name="l00210"></a>00210                 <span class="keywordflow">for</span>( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
+<a name="l00211"></a>00211                 {
+<a name="l00212"></a>00212                     CurrCell = (*it);
+<a name="l00213"></a>00213                     <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CellSize = CurrCell-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469" title="Sets the pixel size of this widget.">GetActualSize</a>();
+<a name="l00214"></a>00214                     <span class="keywordflow">if</span>(RowLimit &gt;= CurrentXposition + (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>))
+<a name="l00215"></a>00215                     {
+<a name="l00216"></a>00216                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
+<a name="l00217"></a>00217                         CurrentXposition+=CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00218"></a>00218                         CurrentColumn++;
+<a name="l00219"></a>00219                     }
+<a name="l00220"></a>00220                     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(RowLimit &gt;= CurrentXposition + (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>)
+<a name="l00221"></a>00221                     {
+<a name="l00222"></a>00222                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
+<a name="l00223"></a>00223                         CurrentXposition+=CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00224"></a>00224                         CurrentColumn++;
+<a name="l00225"></a>00225                     }
+<a name="l00226"></a>00226                     <span class="keywordflow">else</span>
+<a name="l00227"></a>00227                     {
+<a name="l00228"></a>00228                         <span class="keywordflow">if</span>(ColumnLimit &lt; CurrentYposition + (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>))
+<a name="l00229"></a>00229                             <span class="keywordflow">break</span>;
+<a name="l00230"></a>00230                         CurrentXposition = StartXposition;
+<a name="l00231"></a>00231                         CurrentColumn = 0;
+<a name="l00232"></a>00232                         CurrentYposition+=(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(FixedCellSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00233"></a>00233                         CurrentRow++;
+<a name="l00234"></a>00234                         <span class="keywordflow">if</span>(CurrentRow &gt;= TheGrid.size())
+<a name="l00235"></a>00235                             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a4f4f640eda426025bf0b805b493c4db7" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
+<a name="l00236"></a>00236 
+<a name="l00237"></a>00237                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
+<a name="l00238"></a>00238                         CurrentXposition+=CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00239"></a>00239                         CurrentColumn++;
+<a name="l00240"></a>00240                     }
+<a name="l00241"></a>00241                 }
+<a name="l00242"></a>00242             }
+<a name="l00243"></a>00243             <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237ac5d880b4c91e25fa0c6d669d539fc405" title="--- Objects on the grid will be ordered based on their priority from top to bottom, left to right, in increasing order.">CellGrid::CG_Vertical_Horizontal_Ascending</a> == Ordering || <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237a3553f31f94893fccd483e229ddeb7065" title="--- Objects on the grid will be ordered based on their priority from top to bottom, left to right, in decreasing order.">CellGrid::CG_Vertical_Horizontal_Decending</a> == Ordering )
+<a name="l00244"></a>00244             {
+<a name="l00245"></a>00245                 <span class="keywordflow">for</span>( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
+<a name="l00246"></a>00246                 {
+<a name="l00247"></a>00247                     CurrCell = (*it);
+<a name="l00248"></a>00248                     <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CellSize = CurrCell-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469" title="Sets the pixel size of this widget.">GetActualSize</a>();
+<a name="l00249"></a>00249                     <span class="keywordflow">if</span>(ColumnLimit &gt;= CurrentYposition + (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>))
+<a name="l00250"></a>00250                     {
+<a name="l00251"></a>00251                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
+<a name="l00252"></a>00252                         CurrentYposition+=CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00253"></a>00253                         CurrentRow++;
+<a name="l00254"></a>00254                         <span class="keywordflow">if</span>(CurrentRow &gt;= TheGrid.size())
+<a name="l00255"></a>00255                             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a4f4f640eda426025bf0b805b493c4db7" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
+<a name="l00256"></a>00256                     }
+<a name="l00257"></a>00257                     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ColumnLimit &gt;= CurrentYposition + (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>)
+<a name="l00258"></a>00258                     {
+<a name="l00259"></a>00259                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
+<a name="l00260"></a>00260                         CurrentYposition+=CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00261"></a>00261                         CurrentRow++;
+<a name="l00262"></a>00262                         <span class="keywordflow">if</span>(CurrentRow &gt;= TheGrid.size())
+<a name="l00263"></a>00263                             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a4f4f640eda426025bf0b805b493c4db7" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
+<a name="l00264"></a>00264                     }
+<a name="l00265"></a>00265                     <span class="keywordflow">else</span>
+<a name="l00266"></a>00266                     {
+<a name="l00267"></a>00267                         <span class="keywordflow">if</span>(RowLimit &lt; CurrentXposition + (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(CellSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>))
+<a name="l00268"></a>00268                             <span class="keywordflow">break</span>;
+<a name="l00269"></a>00269                         CurrentYposition = StartYposition;
+<a name="l00270"></a>00270                         CurrentRow = 0;
+<a name="l00271"></a>00271                         CurrentXposition+=(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(FixedCellSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + CellSpacing.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00272"></a>00272                         CurrentColumn++;
+<a name="l00273"></a>00273 
+<a name="l00274"></a>00274                         TheGrid.at(CurrentRow)-&gt;push_back(CurrCell);
+<a name="l00275"></a>00275                         CurrentRow++;
+<a name="l00276"></a>00276                         <span class="keywordflow">if</span>(CurrentRow &gt;= TheGrid.size())
+<a name="l00277"></a>00277                             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a4f4f640eda426025bf0b805b493c4db7" title="Creates(if null) or destroys(if pointer is valid) a CellVector.">CreateOrDestroyRow</a>(0);
+<a name="l00278"></a>00278                     }
+<a name="l00279"></a>00279                 }
+<a name="l00280"></a>00280             }
+<a name="l00281"></a>00281             GridDirty = <span class="keyword">false</span>;
+<a name="l00282"></a>00282         }
+<a name="l00283"></a>00283 
+<a name="l00284"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a59d468d25f8de9de38b0a14a0b6ee218">00284</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a59d468d25f8de9de38b0a14a0b6ee218" title="Child specific update method.">CellGrid::UpdateImpl</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00285"></a>00285         {
+<a name="l00286"></a>00286             <a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> State = <a class="code" href="classMezzanine_1_1InputQueryTool.html#a7a97f853156573de3648f3315e2283bb" title="Gets the button state of the provided mouse button ID.">InputQueryTool::GetMouseButtonState</a>(1);
+<a name="l00287"></a>00287             <span class="keywordflow">if</span>(HoveredSubWidget)
+<a name="l00288"></a>00288             {
+<a name="l00289"></a>00289                 <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0a07ca860b5b6b505052022d842f155080">MetaCode::BUTTON_LIFTING</a> == State)
+<a name="l00290"></a>00290                 {
+<a name="l00291"></a>00291                     <span class="keywordflow">if</span>(Widget::W_Cell == HoveredSubWidget-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a9e1a01dc48630ce92e617cc0c6e9d31a" title="Gets the type of widget this is.">GetType</a>() &amp;&amp; HoveredSubWidget != Selected)
+<a name="l00292"></a>00292                     {
+<a name="l00293"></a>00293                         <span class="keywordflow">if</span>(Selected)
+<a name="l00294"></a>00294                         {
+<a name="l00295"></a>00295                             Selected-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Cell.html#ace3c3a5b3dc357ec8db0d164ff1ac50c" title="Sets whether or not this Cell is currently selected.">SetSelected</a>(<span class="keyword">false</span>);
+<a name="l00296"></a>00296                             Selected = NULL;
+<a name="l00297"></a>00297                         }
+<a name="l00298"></a>00298                         Selected = <span class="keyword">static_cast&lt;</span><a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>*<span class="keyword">&gt;</span>(HoveredSubWidget);
+<a name="l00299"></a>00299                         Selected-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Cell.html#ace3c3a5b3dc357ec8db0d164ff1ac50c" title="Sets whether or not this Cell is currently selected.">SetSelected</a>(<span class="keyword">true</span>);
+<a name="l00300"></a>00300                     }
+<a name="l00301"></a>00301                 }
+<a name="l00302"></a>00302             }
+<a name="l00303"></a>00303             <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#acb276910ecadf24d10b079a47997c0b2" title="Determines whether or not the grid needs to be redrawn.">GridNeedsRedraw</a>())
+<a name="l00304"></a>00304                 <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a1ad33a244734039541f3514b2d1c2570" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
+<a name="l00305"></a>00305         }
+<a name="l00306"></a>00306 
+<a name="l00307"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#afae01490b4223a6a6095732b640014b1">00307</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#afae01490b4223a6a6095732b640014b1" title="Child specific visibility method.">CellGrid::SetVisibleImpl</a>(<span class="keywordtype">bool</span> visible)
+<a name="l00308"></a>00308         {
+<a name="l00309"></a>00309             GridBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#adca7d64f834767ac6aa6440920920f36" title="Sets the visibility of this rectangle.">SetVisible</a>(visible);
+<a name="l00310"></a>00310             <span class="keywordflow">for</span>( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
+<a name="l00311"></a>00311             {
+<a name="l00312"></a>00312                 (*it)-&gt;SetVisible(visible);
+<a name="l00313"></a>00313             }
+<a name="l00314"></a>00314         }
+<a name="l00315"></a>00315 
+<a name="l00316"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#afa0f32da1b7d071b39ff67de54a64433">00316</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#afa0f32da1b7d071b39ff67de54a64433" title="Child specific mouse hover method.">CellGrid::CheckMouseHoverImpl</a>()
+<a name="l00317"></a>00317         {
+<a name="l00318"></a>00318             <span class="keywordflow">for</span>( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
+<a name="l00319"></a>00319             {
+<a name="l00320"></a>00320                 <span class="keywordflow">if</span>((*it)-&gt;IsVisible())
+<a name="l00321"></a>00321                 {
+<a name="l00322"></a>00322                     <span class="keywordflow">if</span>((*it)-&gt;CheckMouseHover())
+<a name="l00323"></a>00323                     {
+<a name="l00324"></a>00324                         HoveredSubWidget = (*it);
+<a name="l00325"></a>00325                         HoveredButton = HoveredSubWidget-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad9ab22e33338ddb8e13bf663de0092f1" title="Gets the hovered button within this widget, if any.">GetHoveredButton</a>();
+<a name="l00326"></a>00326                         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00327"></a>00327                     }
+<a name="l00328"></a>00328                 }
+<a name="l00329"></a>00329             }
+<a name="l00330"></a>00330             <span class="keywordflow">if</span>(GridBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ad4d0f9a0e2a445acea1ef0a2d1edfc09" title="Determines whether the mouse is over this rectangle.">CheckMouseHover</a>())
 <a name="l00331"></a>00331             {
-<a name="l00332"></a>00332                 (*it)-&gt;SetVisible(visible);
-<a name="l00333"></a>00333             }
-<a name="l00334"></a>00334             Visible = visible;
-<a name="l00335"></a>00335         }
-<a name="l00336"></a>00336 
-<a name="l00337"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a772ea260724d009cfe6241e8dac5585b">00337</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a772ea260724d009cfe6241e8dac5585b" title="Forces this widget to be shown.">CellGrid::Show</a>()
-<a name="l00338"></a>00338         {
-<a name="l00339"></a>00339             GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#ab408c7607150b24fbc4f70870705a121" title="Forces this rectangle to be shown.">Show</a>();
-<a name="l00340"></a>00340             <span class="keywordflow">for</span>( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
-<a name="l00341"></a>00341             {
-<a name="l00342"></a>00342                 (*it)-&gt;Show();
-<a name="l00343"></a>00343             }
-<a name="l00344"></a>00344             Visible = <span class="keyword">true</span>;
-<a name="l00345"></a>00345         }
-<a name="l00346"></a>00346 
-<a name="l00347"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a8f1ea23b55724f3346a6c32c87f4eabc">00347</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a8f1ea23b55724f3346a6c32c87f4eabc" title="Forces this widget to hide.">CellGrid::Hide</a>()
-<a name="l00348"></a>00348         {
-<a name="l00349"></a>00349             GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#a25bad72cff62c5c69b224bcb74304661" title="Forces this rectangle to hide.">Hide</a>();
-<a name="l00350"></a>00350             <span class="keywordflow">for</span>( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
-<a name="l00351"></a>00351             {
-<a name="l00352"></a>00352                 (*it)-&gt;Hide();
-<a name="l00353"></a>00353             }
-<a name="l00354"></a>00354             Visible = <span class="keyword">false</span>;
-<a name="l00355"></a>00355         }
-<a name="l00356"></a>00356 
-<a name="l00357"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ad8a6d111b1906b0eb165fcedc0917452">00357</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ad8a6d111b1906b0eb165fcedc0917452" title="Sets the fixed size cells in this grid are to have.">CellGrid::SetFixedCellSize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; FixedSize)
-<a name="l00358"></a>00358         {
-<a name="l00359"></a>00359             FixedCellSize = FixedSize;
-<a name="l00360"></a>00360         }
-<a name="l00361"></a>00361 
-<a name="l00362"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a7106972be4c03ac453894fcb7ef4782f">00362</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a7106972be4c03ac453894fcb7ef4782f" title="Gets the currently set fixed size applied to all cells in this widget.">CellGrid::GetFixedCellSize</a>()
-<a name="l00363"></a>00363         {
-<a name="l00364"></a>00364             <span class="keywordflow">return</span> FixedCellSize;
-<a name="l00365"></a>00365         }
-<a name="l00366"></a>00366 
-<a name="l00367"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ac4f29519b3e2bca1fa146b2a9a20ec61">00367</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ac4f29519b3e2bca1fa146b2a9a20ec61" title="Addes a Cell to this widget that will be rendered.">CellGrid::AddCell</a>(<a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* ToBeAdded)
-<a name="l00368"></a>00368         {
-<a name="l00369"></a>00369             ToBeAdded-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#a59075a5ae35c2080876fcc78a97e5b31" title="Sets the relative size of this widget.">SetSize</a>(FixedCellSize);
-<a name="l00370"></a>00370             ToBeAdded-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#a73b4c96e986bbd0f28cc542bcc4c8d7c" title="Forces this widget to hide.">Hide</a>();
-<a name="l00371"></a>00371             Cells.push_back(ToBeAdded);
-<a name="l00372"></a>00372             GridDirty = <span class="keyword">true</span>;
-<a name="l00373"></a>00373         }
-<a name="l00374"></a>00374 
-<a name="l00375"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a563d2fcfdb017579633727094a3176f3">00375</a>         <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a563d2fcfdb017579633727094a3176f3" title="Gets a Cell on the grid by name.">CellGrid::GetCell</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00376"></a>00376         {
-<a name="l00377"></a>00377             <span class="keywordflow">if</span>(Cells.empty())
-<a name="l00378"></a>00378                 <span class="keywordflow">return</span> 0;
-<a name="l00379"></a>00379             <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* CurrCell = NULL;
-<a name="l00380"></a>00380             <span class="keywordflow">for</span>( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
-<a name="l00381"></a>00381             {
-<a name="l00382"></a>00382                 CurrCell = (*it);
-<a name="l00383"></a>00383                 <span class="keywordflow">if</span>(Name == CurrCell-&gt;<a class="code" href="classphys_1_1UI_1_1Widget.html#a35d6e7ce60a9b295d8659345627cf7e0" title="Gets the name of this widget.">GetName</a>())
-<a name="l00384"></a>00384                     <span class="keywordflow">return</span> CurrCell;
-<a name="l00385"></a>00385             }
-<a name="l00386"></a>00386             <span class="keywordflow">return</span> 0;
-<a name="l00387"></a>00387         }
-<a name="l00388"></a>00388 
-<a name="l00389"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a6a39785b673abb8cffc8bbd0b8837208">00389</a>         <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a563d2fcfdb017579633727094a3176f3" title="Gets a Cell on the grid by name.">CellGrid::GetCell</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Row, <span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Column)
-<a name="l00390"></a>00390         {
-<a name="l00391"></a>00391             <span class="keywordflow">if</span>(Row &gt;= TheGrid.size())
-<a name="l00392"></a>00392                 <span class="keywordflow">return</span> 0;
-<a name="l00393"></a>00393 
-<a name="l00394"></a>00394             CellVector* CellRow = TheGrid.at(Row);
-<a name="l00395"></a>00395 
-<a name="l00396"></a>00396             <span class="keywordflow">if</span>(Column &gt;= CellRow-&gt;size())
-<a name="l00397"></a>00397                 <span class="keywordflow">return</span> 0;
-<a name="l00398"></a>00398 
-<a name="l00399"></a>00399             <span class="keywordflow">return</span> CellRow-&gt;at(Column);
-<a name="l00400"></a>00400         }
-<a name="l00401"></a>00401 
-<a name="l00402"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#af7ff6b201aa24939c82ee34e96e67a32">00402</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#af7ff6b201aa24939c82ee34e96e67a32" title="Removes a Cell from this widget.">CellGrid::RemoveCell</a>(<a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* ToBeRemoved)
-<a name="l00403"></a>00403         {
-<a name="l00404"></a>00404             GridDirty = <span class="keyword">true</span>;
-<a name="l00405"></a>00405         }
-<a name="l00406"></a>00406 
-<a name="l00407"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a12736adff3718820b4915cbe9961c66f">00407</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a12736adff3718820b4915cbe9961c66f" title="Destroys all Cells currently stored within this widget.">CellGrid::DestroyAllCells</a>()
-<a name="l00408"></a>00408         {
-<a name="l00409"></a>00409             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
-<a name="l00410"></a>00410             {
-<a name="l00411"></a>00411                 <span class="keywordflow">for</span>( CellVector::iterator Cit = (*it)-&gt;begin() ; Cit != (*it)-&gt;end() ; Cit++ )
-<a name="l00412"></a>00412                     <span class="keyword">delete</span> (*Cit);
-<a name="l00413"></a>00413                 (*it)-&gt;clear();
-<a name="l00414"></a>00414             }
-<a name="l00415"></a>00415             GridDirty = <span class="keyword">true</span>;
-<a name="l00416"></a>00416         }
-<a name="l00417"></a>00417 
-<a name="l00418"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a7a990cd514b6c02ea8f7747b0b058c93">00418</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a7a990cd514b6c02ea8f7747b0b058c93" title="Forces a reconstruction of the grid.">CellGrid::GenerateGrid</a>()
-<a name="l00419"></a>00419         {
-<a name="l00420"></a>00420             <span class="keywordflow">if</span>(!GridDirty)
-<a name="l00421"></a>00421                 <span class="keywordflow">return</span>;
-<a name="l00422"></a>00422             <span class="comment">//RegenerateGrid();</span>
-<a name="l00423"></a>00423             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ada5c15ae1b0372277d1bde05e348ccfd" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
+<a name="l00332"></a>00332                 HoveredSubWidget = NULL;
+<a name="l00333"></a>00333                 HoveredButton = NULL;
+<a name="l00334"></a>00334                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00335"></a>00335             }
+<a name="l00336"></a>00336             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00337"></a>00337         }
+<a name="l00338"></a>00338 
+<a name="l00339"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#aae3aa4503b5673470a83dd9edd445e77">00339</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#aae3aa4503b5673470a83dd9edd445e77" title="Sets the fixed size cells in this grid are to have.">CellGrid::SetFixedCellSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; FixedSize, <span class="keywordtype">bool</span> Relative)
+<a name="l00340"></a>00340         {
+<a name="l00341"></a>00341             <span class="keywordflow">if</span>(Relative) FixedCellSize = FixedSize * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00342"></a>00342             <span class="keywordflow">else</span> FixedCellSize = FixedSize;
+<a name="l00343"></a>00343         }
+<a name="l00344"></a>00344 
+<a name="l00345"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a24a055d77eaf9a73a5d9b1b778847807">00345</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a24a055d77eaf9a73a5d9b1b778847807" title="Gets the currently set fixed size applied to all cells in this widget.">CellGrid::GetFixedCellSize</a>()
+<a name="l00346"></a>00346         {
+<a name="l00347"></a>00347             <span class="keywordflow">return</span> FixedCellSize;
+<a name="l00348"></a>00348         }
+<a name="l00349"></a>00349 
+<a name="l00350"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab162c701a9c24dde35709d71edf53972">00350</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab162c701a9c24dde35709d71edf53972" title="Addes a Cell to this widget that will be rendered.">CellGrid::AddCell</a>(<a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* ToBeAdded)
+<a name="l00351"></a>00351         {
+<a name="l00352"></a>00352             ToBeAdded-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Cell.html#a4861322821bdd28429994ab49bea6083" title="Sets the pixel size of this widget.">SetActualSize</a>(FixedCellSize);
+<a name="l00353"></a>00353             ToBeAdded-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4" title="Forces this widget to hide.">Hide</a>();
+<a name="l00354"></a>00354             Cells.push_back(ToBeAdded);
+<a name="l00355"></a>00355             GridDirty = <span class="keyword">true</span>;
+<a name="l00356"></a>00356         }
+<a name="l00357"></a>00357 
+<a name="l00358"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a5d6f3a71557437f087b83698e4cdc69c">00358</a>         <a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a5d6f3a71557437f087b83698e4cdc69c" title="Gets a Cell on the grid by name.">CellGrid::GetCell</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)
+<a name="l00359"></a>00359         {
+<a name="l00360"></a>00360             <span class="keywordflow">if</span>(Cells.empty())
+<a name="l00361"></a>00361                 <span class="keywordflow">return</span> 0;
+<a name="l00362"></a>00362             <a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* CurrCell = NULL;
+<a name="l00363"></a>00363             <span class="keywordflow">for</span>( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
+<a name="l00364"></a>00364             {
+<a name="l00365"></a>00365                 CurrCell = (*it);
+<a name="l00366"></a>00366                 <span class="keywordflow">if</span>(Name == CurrCell-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#abcd2c0e80a7766524eeb63f6972baff7" title="Gets the name of this widget.">GetName</a>())
+<a name="l00367"></a>00367                     <span class="keywordflow">return</span> CurrCell;
+<a name="l00368"></a>00368             }
+<a name="l00369"></a>00369             <span class="keywordflow">return</span> 0;
+<a name="l00370"></a>00370         }
+<a name="l00371"></a>00371 
+<a name="l00372"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab53b9ca40c4c7a2133f9cc6511842caf">00372</a>         <a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a5d6f3a71557437f087b83698e4cdc69c" title="Gets a Cell on the grid by name.">CellGrid::GetCell</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Row, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Column)
+<a name="l00373"></a>00373         {
+<a name="l00374"></a>00374             <span class="keywordflow">if</span>(Row &gt;= TheGrid.size())
+<a name="l00375"></a>00375                 <span class="keywordflow">return</span> 0;
+<a name="l00376"></a>00376 
+<a name="l00377"></a>00377             CellVector* CellRow = TheGrid.at(Row);
+<a name="l00378"></a>00378 
+<a name="l00379"></a>00379             <span class="keywordflow">if</span>(Column &gt;= CellRow-&gt;size())
+<a name="l00380"></a>00380                 <span class="keywordflow">return</span> 0;
+<a name="l00381"></a>00381 
+<a name="l00382"></a>00382             <span class="keywordflow">return</span> CellRow-&gt;at(Column);
+<a name="l00383"></a>00383         }
+<a name="l00384"></a>00384 
+<a name="l00385"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab3b93eb4e588899e51e68fbd4bf6b84e">00385</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab3b93eb4e588899e51e68fbd4bf6b84e" title="Removes a Cell from this widget.">CellGrid::RemoveCell</a>(<a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* ToBeRemoved)
+<a name="l00386"></a>00386         {
+<a name="l00387"></a>00387             GridDirty = <span class="keyword">true</span>;
+<a name="l00388"></a>00388         }
+<a name="l00389"></a>00389 
+<a name="l00390"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ad820c686b028dd5daeed8548b2f8918a">00390</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ad820c686b028dd5daeed8548b2f8918a" title="Destroys all Cells currently stored within this widget.">CellGrid::DestroyAllCells</a>()
+<a name="l00391"></a>00391         {
+<a name="l00392"></a>00392             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
+<a name="l00393"></a>00393             {
+<a name="l00394"></a>00394                 <span class="keywordflow">for</span>( CellVector::iterator Cit = (*it)-&gt;begin() ; Cit != (*it)-&gt;end() ; Cit++ )
+<a name="l00395"></a>00395                     <span class="keyword">delete</span> (*Cit);
+<a name="l00396"></a>00396                 (*it)-&gt;clear();
+<a name="l00397"></a>00397             }
+<a name="l00398"></a>00398             GridDirty = <span class="keyword">true</span>;
+<a name="l00399"></a>00399         }
+<a name="l00400"></a>00400 
+<a name="l00401"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a92b5d5a1d709c9e7419c51c6db5a3724">00401</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a92b5d5a1d709c9e7419c51c6db5a3724" title="Forces a reconstruction of the grid.">CellGrid::GenerateGrid</a>()
+<a name="l00402"></a>00402         {
+<a name="l00403"></a>00403             <span class="keywordflow">if</span>(!GridDirty)
+<a name="l00404"></a>00404                 <span class="keywordflow">return</span>;
+<a name="l00405"></a>00405             <span class="comment">//RegenerateGrid();</span>
+<a name="l00406"></a>00406             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a1ad33a244734039541f3514b2d1c2570" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
+<a name="l00407"></a>00407         }
+<a name="l00408"></a>00408 
+<a name="l00409"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#af3de91eb3de30b73cf2b8c6f0c7f266f">00409</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#af3de91eb3de30b73cf2b8c6f0c7f266f" title="Sets the limits of the grid, to determine when and where objects need to be wrapped.">CellGrid::SetWorkAreaLimits</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; AreaLimit, <span class="keywordtype">bool</span> Relative)
+<a name="l00410"></a>00410         {
+<a name="l00411"></a>00411             <span class="keywordflow">if</span>(Relative) WorkAreaLimits = AreaLimit * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00412"></a>00412             <span class="keywordflow">else</span> WorkAreaLimits = AreaLimit;
+<a name="l00413"></a>00413         }
+<a name="l00414"></a>00414 
+<a name="l00415"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#acd18bf256b34033a7c53424d559b6dba">00415</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#acd18bf256b34033a7c53424d559b6dba" title="Gets the currently set logical limits for the grid.">CellGrid::GetWorkAreaLimits</a>()
+<a name="l00416"></a>00416         {
+<a name="l00417"></a>00417             <span class="keywordflow">return</span> WorkAreaLimits;
+<a name="l00418"></a>00418         }
+<a name="l00419"></a>00419 
+<a name="l00420"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a9b086636cf3b6830db5948a24380ee1a">00420</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a9b086636cf3b6830db5948a24380ee1a" title="Sets the spacing from the edge of the entire grid area that no cell should overlap.">CellGrid::SetEdgeSpacing</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Spacing, <span class="keywordtype">bool</span> Relative)
+<a name="l00421"></a>00421         {
+<a name="l00422"></a>00422             <span class="keywordflow">if</span>(Relative) EdgeSpacing = Spacing * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00423"></a>00423             <span class="keywordflow">else</span> EdgeSpacing = Spacing;
 <a name="l00424"></a>00424         }
 <a name="l00425"></a>00425 
-<a name="l00426"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a785a41fd3e38dbd5a58d9a4f72f06a26">00426</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a785a41fd3e38dbd5a58d9a4f72f06a26" title="Sets the limits of the grid, to determine when and where objects need to be wrapped.">CellGrid::SetWorkAreaLimits</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; AreaLimit)
+<a name="l00426"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a400ab7ea328f722413bb276e5dead944">00426</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a400ab7ea328f722413bb276e5dead944" title="Gets the currently set edge spacing.">CellGrid::GetEdgeSpacing</a>()
 <a name="l00427"></a>00427         {
-<a name="l00428"></a>00428             WorkAreaLimits = AreaLimit;
+<a name="l00428"></a>00428             <span class="keywordflow">return</span> EdgeSpacing;
 <a name="l00429"></a>00429         }
 <a name="l00430"></a>00430 
-<a name="l00431"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a328392c90b93da93354756607e328e0c">00431</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a328392c90b93da93354756607e328e0c" title="Gets the currently set logical limits for the grid.">CellGrid::GetWorkAreaLimits</a>()
+<a name="l00431"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a02fe0c290a43950565fc5b9dc4285212">00431</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a02fe0c290a43950565fc5b9dc4285212" title="Sets the spacing from each cell around any given cell there should be.">CellGrid::SetCellSpacing</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Spacing, <span class="keywordtype">bool</span> Relative)
 <a name="l00432"></a>00432         {
-<a name="l00433"></a>00433             <span class="keywordflow">return</span> WorkAreaLimits;
-<a name="l00434"></a>00434         }
-<a name="l00435"></a>00435 
-<a name="l00436"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#aa55c328e2d222570d5c72bb50a48f8a5">00436</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#aa55c328e2d222570d5c72bb50a48f8a5" title="Sets the spacing from the edge of the entire grid area that no cell should overlap.">CellGrid::SetEdgeSpacing</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Spacing)
-<a name="l00437"></a>00437         {
-<a name="l00438"></a>00438             EdgeSpacing = Spacing;
-<a name="l00439"></a>00439         }
-<a name="l00440"></a>00440 
-<a name="l00441"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#afcf2689f1cc38acb157deb8ee5717906">00441</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#afcf2689f1cc38acb157deb8ee5717906" title="Gets the currently set edge spacing.">CellGrid::GetEdgeSpacing</a>()
-<a name="l00442"></a>00442         {
-<a name="l00443"></a>00443             <span class="keywordflow">return</span> EdgeSpacing;
-<a name="l00444"></a>00444         }
-<a name="l00445"></a>00445 
-<a name="l00446"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ac62bf02320f381012d22941d07ae62a2">00446</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ac62bf02320f381012d22941d07ae62a2" title="Sets the spacing from each cell around any given cell there should be.">CellGrid::SetCellSpacing</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Spacing)
-<a name="l00447"></a>00447         {
-<a name="l00448"></a>00448             CellSpacing = Spacing;
-<a name="l00449"></a>00449         }
-<a name="l00450"></a>00450 
-<a name="l00451"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a232260f23808cd7099f2f9a15850a14e">00451</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a232260f23808cd7099f2f9a15850a14e" title="Gets the currently set cell spacing.">CellGrid::GetCellSpacing</a>()
-<a name="l00452"></a>00452         {
-<a name="l00453"></a>00453             <span class="keywordflow">return</span> CellSpacing;
-<a name="l00454"></a>00454         }
-<a name="l00455"></a>00455 
-<a name="l00456"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae901b18d90b8ed0d16da25ccfa91e84e">00456</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae901b18d90b8ed0d16da25ccfa91e84e" title="Checks to see if there are any remaining cells that aren&amp;#39;t on the grid due to a lack of space...">CellGrid::CellsOffGrid</a>()
-<a name="l00457"></a>00457         {
-<a name="l00458"></a>00458             <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GridCount = 0;
-<a name="l00459"></a>00459             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
-<a name="l00460"></a>00460                 GridCount+=(*it)-&gt;size();
-<a name="l00461"></a>00461             <span class="keywordflow">return</span> GridCount &lt; Cells.size();
-<a name="l00462"></a>00462         }
-<a name="l00463"></a>00463 
-<a name="l00464"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae539f6b21c3ed84852df37153ae2aebf">00464</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae539f6b21c3ed84852df37153ae2aebf" title="Sorts the grid based on the priority set in the cells.">CellGrid::SortGrid</a>()
-<a name="l00465"></a>00465         {
-<a name="l00466"></a>00466             Cells.sort(<a class="code" href="structphys_1_1UI_1_1CellPrioritySorter.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellPrioritySorter</a>());
-<a name="l00467"></a>00467             <span class="keywordflow">if</span>( <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a4b77ef63082513fc9f845537d104496badecf0f97dbc2c5f4df2ac84b1c063de6" title="--- Objects on the grid will be ordered based on their priority from left to right, top to bottom, in decreasing order.">CellGrid::CG_Horizontal_Vertical_Decending</a> == Ordering || <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a4b77ef63082513fc9f845537d104496bab220567598ddaadfe133b9fef6f14b43" title="--- Objects on the grid will be ordered based on their priority from top to bottom, left to right, in decreasing order.">CellGrid::CG_Vertical_Horizontal_Decending</a> == Ordering )
-<a name="l00468"></a>00468                 Cells.reverse();
-<a name="l00469"></a>00469         }
-<a name="l00470"></a>00470 
-<a name="l00471"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae2ad049f3e426c8a26cca6c59fb853aa">00471</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ae2ad049f3e426c8a26cca6c59fb853aa" title="Sets the selected pointer to NULL, so no cells are selected.">CellGrid::ClearSelected</a>()
-<a name="l00472"></a>00472         {
-<a name="l00473"></a>00473             Selected-&gt;<a class="code" href="classphys_1_1UI_1_1Cell.html#abb516a7a4fa2abe00ff037987beea745" title="Sets whether or not this Cell is currently selected.">SetSelected</a>(<span class="keyword">false</span>);
-<a name="l00474"></a>00474             Selected = NULL;
+<a name="l00433"></a>00433             <span class="keywordflow">if</span>(Relative) CellSpacing = Spacing * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00434"></a>00434             <span class="keywordflow">else</span> CellSpacing = Spacing;
+<a name="l00435"></a>00435         }
+<a name="l00436"></a>00436 
+<a name="l00437"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a23d22d0dc36a1dc021a1a832e86d5337">00437</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a23d22d0dc36a1dc021a1a832e86d5337" title="Gets the currently set cell spacing.">CellGrid::GetCellSpacing</a>()
+<a name="l00438"></a>00438         {
+<a name="l00439"></a>00439             <span class="keywordflow">return</span> CellSpacing;
+<a name="l00440"></a>00440         }
+<a name="l00441"></a>00441 
+<a name="l00442"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a98a6713c4723fd6021a167380c92d716">00442</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a98a6713c4723fd6021a167380c92d716" title="Checks to see if there are any remaining cells that aren&amp;#39;t on the grid due to a lack of space...">CellGrid::CellsOffGrid</a>()
+<a name="l00443"></a>00443         {
+<a name="l00444"></a>00444             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GridCount = 0;
+<a name="l00445"></a>00445             <span class="keywordflow">for</span>( std::vector&lt;CellVector*&gt;::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
+<a name="l00446"></a>00446                 GridCount+=(*it)-&gt;size();
+<a name="l00447"></a>00447             <span class="keywordflow">return</span> GridCount &lt; Cells.size();
+<a name="l00448"></a>00448         }
+<a name="l00449"></a>00449 
+<a name="l00450"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a276e97c0b2c8b8e1ed6a979708b445ef">00450</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a276e97c0b2c8b8e1ed6a979708b445ef" title="Sorts the grid based on the priority set in the cells.">CellGrid::SortGrid</a>()
+<a name="l00451"></a>00451         {
+<a name="l00452"></a>00452             Cells.sort(<a class="code" href="structMezzanine_1_1UI_1_1CellPrioritySorter.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">CellPrioritySorter</a>());
+<a name="l00453"></a>00453             <span class="keywordflow">if</span>( <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237acb397ae997902c7ee87ee9d4baf5a272" title="--- Objects on the grid will be ordered based on their priority from left to right, top to bottom, in decreasing order.">CellGrid::CG_Horizontal_Vertical_Decending</a> == Ordering || <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237a3553f31f94893fccd483e229ddeb7065" title="--- Objects on the grid will be ordered based on their priority from top to bottom, left to right, in decreasing order.">CellGrid::CG_Vertical_Horizontal_Decending</a> == Ordering )
+<a name="l00454"></a>00454                 Cells.reverse();
+<a name="l00455"></a>00455         }
+<a name="l00456"></a>00456 
+<a name="l00457"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a11e4c5d524ed68823a61011e75bbaddb">00457</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a11e4c5d524ed68823a61011e75bbaddb" title="Sets the selected pointer to NULL, so no cells are selected.">CellGrid::ClearSelected</a>()
+<a name="l00458"></a>00458         {
+<a name="l00459"></a>00459             Selected-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Cell.html#ace3c3a5b3dc357ec8db0d164ff1ac50c" title="Sets whether or not this Cell is currently selected.">SetSelected</a>(<span class="keyword">false</span>);
+<a name="l00460"></a>00460             Selected = NULL;
+<a name="l00461"></a>00461         }
+<a name="l00462"></a>00462 
+<a name="l00463"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab6e210edb5ec0167f61c9dc2dafef108">00463</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab6e210edb5ec0167f61c9dc2dafef108" title="Sets the relative position of this widget.">CellGrid::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
+<a name="l00464"></a>00464         {
+<a name="l00465"></a>00465             RelPosition = Position;
+<a name="l00466"></a>00466             GridBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a95511f0a8505f07892434bdc363a7674" title="Sets the relative top left position of this rectangle.">SetPosition</a>(Position);
+<a name="l00467"></a>00467             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a1ad33a244734039541f3514b2d1c2570" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
+<a name="l00468"></a>00468         }
+<a name="l00469"></a>00469 
+<a name="l00470"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#aec72d4eae4497e7ffa62f7697d4dc468">00470</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#aec72d4eae4497e7ffa62f7697d4dc468" title="Sets the pixel position of this widget.">CellGrid::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
+<a name="l00471"></a>00471         {
+<a name="l00472"></a>00472             RelPosition = Position / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00473"></a>00473             GridBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb" title="Sets the top left position of this rectangle in pixels.">SetActualPosition</a>(Position);
+<a name="l00474"></a>00474             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a1ad33a244734039541f3514b2d1c2570" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
 <a name="l00475"></a>00475         }
 <a name="l00476"></a>00476 
-<a name="l00477"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a9c5f899c7db6c24d9aa2b03e59e5f0f0">00477</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a9c5f899c7db6c24d9aa2b03e59e5f0f0" title="Checks to see if the current mouse position is over this widget.">CellGrid::CheckMouseHover</a>()
+<a name="l00477"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#afcff9353be7ea7408aa2ea621efdaf99">00477</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#afcff9353be7ea7408aa2ea621efdaf99" title="Sets the relative size of this widget.">CellGrid::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
 <a name="l00478"></a>00478         {
-<a name="l00479"></a>00479             <span class="keywordflow">if</span>(!<a class="code" href="classphys_1_1UI_1_1Widget.html#ac9662d5cfef5b1861e85bff7b7ca90c4" title="Gets the visibility of this widget.">IsVisible</a>())
-<a name="l00480"></a>00480                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00481"></a>00481             <span class="keywordflow">for</span>( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
-<a name="l00482"></a>00482             {
-<a name="l00483"></a>00483                 <span class="keywordflow">if</span>((*it)-&gt;IsVisible())
-<a name="l00484"></a>00484                 {
-<a name="l00485"></a>00485                     <span class="keywordflow">if</span>((*it)-&gt;CheckMouseHover())
-<a name="l00486"></a>00486                     {
-<a name="l00487"></a>00487                         HoveredSubWidget = (*it);
-<a name="l00488"></a>00488                         HoveredButton = HoveredSubWidget-&gt;<a class="code" href="classphys_1_1UI_1_1Widget.html#ab563c13db418e4c3ff0a0dd766550251" title="Gets the hovered button within this widget, if any.">GetHoveredButton</a>();
-<a name="l00489"></a>00489                         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00490"></a>00490                     }
-<a name="l00491"></a>00491                 }
-<a name="l00492"></a>00492             }
-<a name="l00493"></a>00493             <span class="keywordflow">if</span>(GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#a246070a93416c2c50d63720b354154d7" title="Determines whether the mouse is over this rectangle.">CheckMouseHover</a>())
-<a name="l00494"></a>00494             {
-<a name="l00495"></a>00495                 HoveredSubWidget = NULL;
-<a name="l00496"></a>00496                 HoveredButton = NULL;
-<a name="l00497"></a>00497                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00498"></a>00498             }
-<a name="l00499"></a>00499             HoveredSubWidget = NULL;
-<a name="l00500"></a>00500             HoveredButton = NULL;
-<a name="l00501"></a>00501             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00502"></a>00502         }
-<a name="l00503"></a>00503 
-<a name="l00504"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#abf0552ebbe369f6b695f91fdaa220c20">00504</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#abf0552ebbe369f6b695f91fdaa220c20" title="Sets the relative position of this widget.">CellGrid::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00505"></a>00505         {
-<a name="l00506"></a>00506             RelPosition = Position;
-<a name="l00507"></a>00507             GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#a16fd918d53d0ae1f82af2574c0396b2c" title="Sets the relative top left position of this rectangle.">SetPosition</a>(Position);
-<a name="l00508"></a>00508             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ada5c15ae1b0372277d1bde05e348ccfd" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
-<a name="l00509"></a>00509         }
-<a name="l00510"></a>00510 
-<a name="l00511"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a6b7fcbfd8a965e69c6e3e92d474f121f">00511</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a6b7fcbfd8a965e69c6e3e92d474f121f" title="Gets the relative position of this widget.">CellGrid::GetPosition</a>()
-<a name="l00512"></a>00512         {
-<a name="l00513"></a>00513             <span class="keywordflow">return</span> RelPosition;
-<a name="l00514"></a>00514         }
-<a name="l00515"></a>00515 
-<a name="l00516"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a911ce43c124ca7ac9f02ba7d8e08d919">00516</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a911ce43c124ca7ac9f02ba7d8e08d919" title="Sets the pixel position of this widget.">CellGrid::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00517"></a>00517         {
-<a name="l00518"></a>00518             RelPosition = Position / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00519"></a>00519             GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#a8a5af1cc3360196f793deb8a0db604e4" title="Sets the top left position of this rectangle in pixels.">SetActualPosition</a>(Position);
-<a name="l00520"></a>00520             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ada5c15ae1b0372277d1bde05e348ccfd" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
-<a name="l00521"></a>00521         }
-<a name="l00522"></a>00522 
-<a name="l00523"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a1ead8b427b5989ec137aa0ca8e017f73">00523</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a1ead8b427b5989ec137aa0ca8e017f73" title="Sets the pixel position of this widget.">CellGrid::GetActualPosition</a>()
-<a name="l00524"></a>00524         {
-<a name="l00525"></a>00525             <span class="keywordflow">return</span> RelPosition * Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00526"></a>00526         }
-<a name="l00527"></a>00527 
-<a name="l00528"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a83de47589cb02ce49882f795e9281f57">00528</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a83de47589cb02ce49882f795e9281f57" title="Sets the relative size of this widget.">CellGrid::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
-<a name="l00529"></a>00529         {
-<a name="l00530"></a>00530             RelSize = Size;
-<a name="l00531"></a>00531             GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#a5fa81c05e32b454c313f25609a03c58f" title="Sets the relative size of this rectangle.">SetSize</a>(Size);
-<a name="l00532"></a>00532             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ada5c15ae1b0372277d1bde05e348ccfd" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
-<a name="l00533"></a>00533         }
-<a name="l00534"></a>00534 
-<a name="l00535"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#aa0ad4f1e0159f8c6ca3928595dffd837">00535</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#aa0ad4f1e0159f8c6ca3928595dffd837" title="Gets the relative size of this widget.">CellGrid::GetSize</a>()
-<a name="l00536"></a>00536         {
-<a name="l00537"></a>00537             <span class="keywordflow">return</span> RelSize;
-<a name="l00538"></a>00538         }
-<a name="l00539"></a>00539 
-<a name="l00540"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a86a0ff7a5a916278d901bae05df01847">00540</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a86a0ff7a5a916278d901bae05df01847" title="Sets the pixel size of this widget.">CellGrid::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
-<a name="l00541"></a>00541         {
-<a name="l00542"></a>00542             RelSize = Size / Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00543"></a>00543             GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#ab2afb04d539b2b1fc384fa1050b1ba21" title="Sets the size of this rectangle in pixels.">SetActualSize</a>(Size);
-<a name="l00544"></a>00544             <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ada5c15ae1b0372277d1bde05e348ccfd" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
-<a name="l00545"></a>00545         }
-<a name="l00546"></a>00546 
-<a name="l00547"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#ad0ea7915446ba7821212e6a43aede7e1">00547</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#ad0ea7915446ba7821212e6a43aede7e1" title="Sets the pixel size of this widget.">CellGrid::GetActualSize</a>()
-<a name="l00548"></a>00548         {
-<a name="l00549"></a>00549             <span class="keywordflow">return</span> RelSize * Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00550"></a>00550         }
-<a name="l00551"></a>00551 
-<a name="l00552"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#addbc1338b3b321018cbaf3ff787837e5">00552</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1CellGrid.html#addbc1338b3b321018cbaf3ff787837e5" title="Updates the dimensions of this widget to match those of the new screen size.">CellGrid::UpdateDimensions</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; OldViewportSize)
-<a name="l00553"></a>00553         {
-<a name="l00554"></a>00554             GridBack-&gt;<a class="code" href="classphys_1_1UI_1_1Rectangle.html#a090cfa5a1298c333335258d52d81c017" title="Updates the dimensions of this rectangle to match those of the new screen size.">UpdateDimensions</a>();
-<a name="l00555"></a>00555             WorkAreaLimits = (WorkAreaLimits / OldViewportSize) * Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00556"></a>00556             <span class="keywordflow">for</span>( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
-<a name="l00557"></a>00557             {
-<a name="l00558"></a>00558                 (*it)-&gt;UpdateDimensions(OldViewportSize);
-<a name="l00559"></a>00559             }
-<a name="l00560"></a>00560         }
-<a name="l00561"></a>00561 
-<a name="l00562"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a25796d285052da2f0d833e6c8694edd1">00562</a>         <a class="code" href="classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a25796d285052da2f0d833e6c8694edd1" title="Gets the background to this Grid.">CellGrid::GetGridBack</a>()
-<a name="l00563"></a>00563         {
-<a name="l00564"></a>00564             <span class="keywordflow">return</span> GridBack;
-<a name="l00565"></a>00565         }
-<a name="l00566"></a>00566 
-<a name="l00567"></a><a class="code" href="classphys_1_1UI_1_1CellGrid.html#a4c68b88de0b02ef66ee192db430435ee">00567</a>         <a class="code" href="classphys_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* <a class="code" href="classphys_1_1UI_1_1CellGrid.html#a4c68b88de0b02ef66ee192db430435ee" title="Gets the currently selected Cell.">CellGrid::GetSelected</a>()
-<a name="l00568"></a>00568         {
-<a name="l00569"></a>00569             <span class="keywordflow">return</span> Selected;
-<a name="l00570"></a>00570         }
-<a name="l00571"></a>00571     }<span class="comment">//ui</span>
-<a name="l00572"></a>00572 }<span class="comment">//phys</span>
-<a name="l00573"></a>00573 
-<a name="l00574"></a>00574 <span class="preprocessor">#endif</span>
+<a name="l00479"></a>00479             RelSize = Size;
+<a name="l00480"></a>00480             GridBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a1f7a9a5686063b03a254c26a420f458c" title="Sets the relative size of this rectangle.">SetSize</a>(Size);
+<a name="l00481"></a>00481             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a1ad33a244734039541f3514b2d1c2570" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
+<a name="l00482"></a>00482         }
+<a name="l00483"></a>00483 
+<a name="l00484"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a2ab8b9b913aaac889ea76e565eccdbc6">00484</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a2ab8b9b913aaac889ea76e565eccdbc6" title="Sets the pixel size of this widget.">CellGrid::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00485"></a>00485         {
+<a name="l00486"></a>00486             RelSize = Size / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00487"></a>00487             GridBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274" title="Sets the size of this rectangle in pixels.">SetActualSize</a>(Size);
+<a name="l00488"></a>00488             <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a1ad33a244734039541f3514b2d1c2570" title="Draws the grid, used for updating after any change.">DrawGrid</a>();
+<a name="l00489"></a>00489         }
+<a name="l00490"></a>00490 
+<a name="l00491"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a11cda11f70cd331c9bd39daf0b0f24aa">00491</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a11cda11f70cd331c9bd39daf0b0f24aa" title="Updates the dimensions of this widget to match those of the new screen size.">CellGrid::UpdateDimensions</a>()
+<a name="l00492"></a>00492         {
+<a name="l00493"></a>00493             WidgetResult Result = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#af735913610e633fb127b08c146e7d16d" title="Updates a widgets position as needed.">ViewportUpdateTool::UpdateWidget</a>(<span class="keyword">this</span>);
+<a name="l00494"></a>00494             RelPosition = Result.first / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();
+<a name="l00495"></a>00495             RelSize = Result.second / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();
+<a name="l00496"></a>00496             <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Scale = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a52e8cfef8e1e4054a7b281c2b42df50e" title="Gets the previous size of the viewport prior to this update.">ViewportUpdateTool::GetOldSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00497"></a>00497             GridBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a86d759d43ec0c1d429c572a782405e8c" title="Updates the dimensions of this rectangle to match those of the new screen size.">UpdateDimensions</a>();
+<a name="l00498"></a>00498             WorkAreaLimits*=Scale;
+<a name="l00499"></a>00499             FixedCellSize*=Scale;
+<a name="l00500"></a>00500             EdgeSpacing*=Scale;
+<a name="l00501"></a>00501             CellSpacing*=Scale;
+<a name="l00502"></a>00502             <span class="keywordflow">for</span>( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
+<a name="l00503"></a>00503             {
+<a name="l00504"></a>00504                 (*it)-&gt;UpdateDimensions();
+<a name="l00505"></a>00505             }
+<a name="l00506"></a>00506         }
+<a name="l00507"></a>00507 
+<a name="l00508"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a56d852192197e405ccc4b12a4b7fe2ce">00508</a>         <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#a56d852192197e405ccc4b12a4b7fe2ce" title="Gets the background to this Grid.">CellGrid::GetGridBack</a>()
+<a name="l00509"></a>00509         {
+<a name="l00510"></a>00510             <span class="keywordflow">return</span> GridBack;
+<a name="l00511"></a>00511         }
+<a name="l00512"></a>00512 
+<a name="l00513"></a><a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab2ba8fdab8c52b374291d0bb89bb9cc7">00513</a>         <a class="code" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">UI::Cell</a>* <a class="code" href="classMezzanine_1_1UI_1_1CellGrid.html#ab2ba8fdab8c52b374291d0bb89bb9cc7" title="Gets the currently selected Cell.">CellGrid::GetSelected</a>()
+<a name="l00514"></a>00514         {
+<a name="l00515"></a>00515             <span class="keywordflow">return</span> Selected;
+<a name="l00516"></a>00516         }
+<a name="l00517"></a>00517     }<span class="comment">//ui</span>
+<a name="l00518"></a>00518 }<span class="comment">//Mezzanine</span>
+<a name="l00519"></a>00519 
+<a name="l00520"></a>00520 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -643,7 +589,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -653,6 +599,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

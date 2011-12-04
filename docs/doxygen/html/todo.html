@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: Todo List</title>
+<title>MezzanineEngine: Todo List</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -57,89 +57,86 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Todo List </h1>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="_todo000033"></a> </p>
+<div class="textblock"><p><a class="anchor" id="_todo000029"></a> </p>
 <dl>
 <dt>Page <a class="el" href="mainloop1.html">Main Loop Structure and Flow</a>  </dt>
 <dd>create a lighting manager and put this in there </dd>
 </dl>
+<p><a class="anchor" id="_todo000030"></a> </p>
+<dl>
+<dt>page <a class="el" href="index.html">Mezzanine</a>  </dt>
+<dd>Fill out the Simple Data Types with all the enumerations.</dd>
+</dl>
 <p><a class="anchor" id="_todo000002"></a> </p>
 <dl>
-<dt>Class <a class="el" href="classphys_1_1Camera.html">phys::Camera</a>  </dt>
+<dt>Class <a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a>  </dt>
 <dd>Fix all the extra occurences of the word Camera in Function names on the camera. </dd>
-</dl>
-<p><a class="anchor" id="_todo000005"></a> </p>
-<dl>
-<dt>Member <a class="el" href="namespacephys_1_1crossplatform.html#a7c0ef3957423db484714c3356603c09d">phys::crossplatform::RenderPhysWorld</a> () </dt>
-<dd>TODO: RenderPhysWorld needs the context on non-windows builds </dd>
-</dl>
-<p><a class="anchor" id="_todo000007"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1EventManager.html#a018b36588bf2a2e90536e64be060d6fc">phys::EventManager::EventManager</a> () </dt>
-<dd>TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd>
-</dl>
-<p><a class="anchor" id="_todo000008"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1GameWindow.html#a92e705ba782ff87dacd9ce487141fcab">phys::GameWindow::setRenderHeight</a> (const Whole &amp;Height) </dt>
-<dd>TODO: Need to attempt to update resolution here </dd>
-</dl>
-<p><a class="anchor" id="_todo000010"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1GameWindow.html#a35ecbf1cb77037d33671e0f879f46a30">phys::GameWindow::setRenderResolution</a> (const Whole &amp;Width, const Whole &amp;Height) </dt>
-<dd>TODO: Need to attempt to update resolution here </dd>
-</dl>
-<p><a class="anchor" id="_todo000009"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1GameWindow.html#a4a6087112f5a958d153fc74bc03897ba">phys::GameWindow::setRenderWidth</a> (const Whole &amp;Width) </dt>
-<dd>TODO: Need to attempt to update resolution here </dd>
-</dl>
-<p><a class="anchor" id="_todo000011"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1internal_1_1Line3D.html#a31bf19dc06547cbe042e1ddfbcf672f3">phys::internal::Line3D::drawLine</a> (const Vector3 &amp;start, const Vector3 &amp;end) </dt>
-<dd>TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen </dd>
-</dl>
-<p><a class="anchor" id="_todo000013"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1LineGroup.html#a141db62ea17d94b9bce421e5df5a8d89">phys::LineGroup::drawLine</a> (const Vector3 &amp;start, const Vector3 &amp;end) </dt>
-<dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd>
-</dl>
-<p><a class="anchor" id="_todo000014"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1LineGroup.html#ade1bb4f8e1164e1b8d7aeabbc970b79d">phys::LineGroup::drawLines</a> (void) </dt>
-<dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd>
-</dl>
-<p><a class="anchor" id="_todo000012"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76">phys::LineGroup::LineGroup</a> (World *Parent_) </dt>
-<dd>TODO: This class really should support rotation, the underlying implementation does. </dd>
-</dl>
-<p><a class="anchor" id="_todo000015"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1MeshManager.html#a54baf240a29b9f9e5d83ae1e8ffdcff4">phys::MeshManager::CreateCylinderMesh</a> (const String &amp;MeshName, const String &amp;MaterialName, const Vector3 &amp;HalfExtents, const Vector3 &amp;AxisOrientation, const Whole &amp;CircleRes=16, const Whole &amp;Segments=1) </dt>
-<dd>These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed. </dd>
-</dl>
-<p><a class="anchor" id="_todo000016"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1PhysicsManager.html#ad363d6683a0276395eeb2c42a56f95fc">phys::PhysicsManager::DoMainLoopItems</a> (const Real &amp;TimeElapsed) </dt>
-<dd>This chunk of code won't take the upcoming terrain system into account, and should be modified accordingly </dd>
 </dl>
 <p><a class="anchor" id="_todo000004"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1Point2PointConstraint.html#a556c4610b62c075efaa9d246cf3d2dc2">phys::Point2PointConstraint::SetTAU</a> (Real TAU) </dt>
+<dt>Member <a class="el" href="namespaceMezzanine.html#ac7be2623357ff699de474212404a4227">Mezzanine::CreateShape</a> (xml::Node OneNode) </dt>
+<dd><p class="startdd">Complete CreateShape function once DynamicMeshCollisionShape can be deserialized </p>
+<p>Complete CreateShape function once ActorSoftCollisionShape can be deserialized </p>
+<p>Complete CreateShape function once StaticMeshCollisionShape can be deserialized </p>
+<p>Complete CreateShape function once ActorSoftCollisionShape can be deserialized </p>
+<p class="enddd">Complete CreateShape function once StaticMeshCollisionShape can be deserialized </p>
+</dd>
+</dl>
+<p><a class="anchor" id="_todo000010"></a> </p>
+<dl>
+<dt>Member <a class="el" href="classMezzanine_1_1EventManager.html#a95ce9d2d865b0d8d9468448969b0ade2">Mezzanine::EventManager::EventManager</a> () </dt>
+<dd>TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd>
+</dl>
+<p><a class="anchor" id="_todo000009"></a> </p>
+<dl>
+<dt>Member <a class="el" href="namespaceMezzanine.html#acbb048ee99aa07566d5a6eb33f5a2c2d">Mezzanine::Int8</a>  </dt>
+<dd><p class="startdd">Verify that these "fixed-width" type-defs work on mobiles and tablets.</p>
+<p class="enddd"></p>
+</dd>
+</dl>
+<p><a class="anchor" id="_todo000012"></a> </p>
+<dl>
+<dt>Member <a class="el" href="classMezzanine_1_1internal_1_1Line3D.html#a17264ad5672bef8807ce6b4a8366e573">Mezzanine::internal::Line3D::drawLine</a> (const Vector3 &amp;start, const Vector3 &amp;end) </dt>
+<dd>TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen </dd>
+</dl>
+<p><a class="anchor" id="_todo000014"></a> </p>
+<dl>
+<dt>Member <a class="el" href="classMezzanine_1_1LineGroup.html#acadb6f8ccbe70828b094f07a11f276ac">Mezzanine::LineGroup::drawLine</a> (const Vector3 &amp;start, const Vector3 &amp;end) </dt>
+<dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd>
+</dl>
+<p><a class="anchor" id="_todo000015"></a> </p>
+<dl>
+<dt>Member <a class="el" href="classMezzanine_1_1LineGroup.html#a85da1685525915f1e07d685b98f79f23">Mezzanine::LineGroup::drawLines</a> (void) </dt>
+<dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd>
+</dl>
+<p><a class="anchor" id="_todo000013"></a> </p>
+<dl>
+<dt>Member <a class="el" href="classMezzanine_1_1LineGroup.html#a8789254da1d3e930681b793165fedeca">Mezzanine::LineGroup::LineGroup</a> (World *Parent_) </dt>
+<dd>TODO: This class really should support rotation, the underlying implementation does. </dd>
+</dl>
+<p><a class="anchor" id="_todo000016"></a> </p>
+<dl>
+<dt>Member <a class="el" href="classMezzanine_1_1MeshManager.html#a6de2e01b43302a9439dc01c1dcc90f4c">Mezzanine::MeshManager::CreateCylinderMesh</a> (const String &amp;MeshName, const String &amp;MaterialName, const Vector3 &amp;HalfExtents, const Vector3 &amp;AxisOrientation, const Whole &amp;CircleRes=16, const Whole &amp;Segments=1) </dt>
+<dd>These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed. </dd>
+</dl>
+<p><a class="anchor" id="_todo000007"></a> </p>
+<dl>
+<dt>Member <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a9eba349fe0f12483330b9c309e305168">Mezzanine::Point2PointConstraint::SetTAU</a> (Real TAU) </dt>
 <dd>Research this more carefully </dd>
 </dl>
 <p><a class="anchor" id="_todo000017"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1Quaternion.html#a9246247b7b28f19839148415a7ddeb96">phys::Quaternion::Quaternion</a> (const Real &amp;Angle, const Vector3 &amp;Axis) </dt>
+<dt>Member <a class="el" href="classMezzanine_1_1Quaternion.html#a86a46d0ce78a6ce83cc40ed2d03349d4">Mezzanine::Quaternion::Quaternion</a> (const Real &amp;Angle, const Vector3 &amp;Axis) </dt>
 <dd>Need to find a clean way to wrap sin and cos functions. Also may want to make a radian class/datatype. </dd>
 </dl>
 <p><a class="anchor" id="_todo000018"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba">phys::Ray::GetNormal</a> () const  </dt>
+<dt>Member <a class="el" href="classMezzanine_1_1Ray.html#a7164d929caf75bcebceed9149e9a3540">Mezzanine::Ray::GetNormal</a> () const  </dt>
 <dd>discuss the merits throwing an error here. </dd>
 </dl>
 <p><a class="anchor" id="_todo000019"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1RayQueryTool.html#af4bba2ed8f201d4b0e9a05728d8bd1b6">phys::RayQueryTool::GetFirstActorOnRayByAABB</a> (Ray ActorRay, Whole ObjectFlags) </dt>
+<dt>Member <a class="el" href="classMezzanine_1_1RayQueryTool.html#a9ded1647755a523d3dbda297a0e73eba">Mezzanine::RayQueryTool::GetFirstActorOnRayByAABB</a> (Ray ActorRay, Whole ObjectFlags) </dt>
 <dd><p class="startdd">TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. </p>
 <p>TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested </p>
 <p class="enddd">TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account </p>
@@ -147,154 +144,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </dl>
 <p><a class="anchor" id="_todo000022"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1ResourceManager.html#afa5d686ad3b4c863580050994169cb6b">phys::ResourceManager::DestroyResourceGroup</a> (const String &amp;GroupName) </dt>
+<dt>Member <a class="el" href="classMezzanine_1_1ResourceManager.html#aa827efdad18698b7d7319dab35864bbe">Mezzanine::ResourceManager::DestroyResourceGroup</a> (const String &amp;GroupName) </dt>
 <dd>This is a bit of a hack, but needs to be here until we can upgrade our resource system. </dd>
 </dl>
 <p><a class="anchor" id="_todo000023"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1SceneManager.html#a5a2d68ab38308f9c6ac4b659cae36dee">phys::SceneManager::DestroyNode</a> (WorldNode *node) </dt>
+<dt>Member <a class="el" href="classMezzanine_1_1SceneManager.html#ab6123477f052d34a357db85a8284c8be">Mezzanine::SceneManager::DestroyNode</a> (WorldNode *ToBeDestroyed) </dt>
 <dd>TODO: create SceneManager::GetNumFreeNodes </dd>
 </dl>
 <p><a class="anchor" id="_todo000003"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1StaticMeshCollisionShape.html#a1de8ba7849a90368dd601d10917c1a0c">phys::StaticMeshCollisionShape::StaticMeshCollisionShape</a> (const String &amp;Name, btBvhTriangleMeshShape *BulletShape) </dt>
+<dt>Member <a class="el" href="classMezzanine_1_1StaticMeshCollisionShape.html#a1c565cc4d62ab7a0cd5cf55254905f05">Mezzanine::StaticMeshCollisionShape::StaticMeshCollisionShape</a> (const String &amp;Name, btBvhTriangleMeshShape *BulletShape) </dt>
 <dd>May need to create a btScaledBvhTriangleMeshShape for scaling this shape appropriately. </dd>
 </dl>
 <p><a class="anchor" id="_todo000024"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1UI_1_1Button.html#a3b51fa981fdf869240bff082bafb56a9">phys::UI::Button::BindActivationKeyOrButton</a> (const MetaCode::InputCode &amp;Code) </dt>
+<dt>Member <a class="el" href="classMezzanine_1_1UI_1_1Button.html#aae0a7f6a07f79856ed6da8b8b3bc5ecd">Mezzanine::UI::Button::BindActivationKeyOrButton</a> (const MetaCode::InputCode &amp;Code) </dt>
 <dd>Throw an error? </dd>
 </dl>
 <p><a class="anchor" id="_todo000025"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#a43ac98232280969a8ce2641d36658808">phys::UI::ButtonListBox::ButtonListBox</a> (ConstString &amp;name, const RenderableRect &amp;Rect, const Real &amp;ScrollbarWidth, const UI::ScrollbarStyle &amp;ScrollStyle, Layer *PLayer) </dt>
-<dd>Fourth instance of needing to include the namespace in the declaration seemingly needlessly. </dd>
+<dt>Member <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a60130f372bc78fbb20f28270bbed8cf2">Mezzanine::UI::ListBox::ListBox</a> (ConstString &amp;name, const RenderableRect &amp;Rect, const UI::ScrollbarStyle &amp;ScrollStyle, Layer *PLayer) </dt>
+<dd>Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. </dd>
 </dl>
 <p><a class="anchor" id="_todo000026"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1UI_1_1ButtonListBox.html#aa47d94d75c58e3408a97766eace2c20e">phys::UI::ButtonListBox::VertScroll</a>  </dt>
-<dd>Third instance of needing to include the namespace in the declaration seemingly needlessly. </dd>
+<dt>Member <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a81ddebed01b1503478c2fa7b75ce4b24">Mezzanine::UI::ListBox::SetSelected</a> (Caption *ToBeSelected) </dt>
+<dd>Maybe add a checker to verify the caption belongs to this widget? </dd>
 </dl>
 <p><a class="anchor" id="_todo000027"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1UI_1_1CheckBox.html#a7b670d93f119193283ec78b94f842429">phys::UI::CheckBox::UncheckedSet</a>  </dt>
-<dd>Fix the issue with all strings being const, so we can resume use of typedefs here. </dd>
+<dt>Member <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a4c7471ee8b43649a5eab8c43e28f31b7">Mezzanine::UI::Screen::CreateLayer</a> (const String &amp;Name, Whole Zorder) </dt>
+<dd>add an exception here or maybe log entry, some notification it failed. </dd>
 </dl>
 <p><a class="anchor" id="_todo000028"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1UI_1_1ListBox.html#a2c61aa8ff40ff66eb45388a4e6cca5b2">phys::UI::ListBox::ListBox</a> (ConstString &amp;name, const RenderableRect &amp;Rect, const UI::ScrollbarStyle &amp;ScrollStyle, Layer *PLayer) </dt>
-<dd><p class="startdd">Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. </p>
-<p class="enddd">Fourth instance of needing to include the namespace in the declaration seemingly needlessly. </p>
-</dd>
-</dl>
-<p><a class="anchor" id="_todo000030"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1UI_1_1ListBox.html#ab2b012b345ff4bb1a5b228fef88d895c">phys::UI::ListBox::VertScroll</a>  </dt>
-<dd>Third instance of needing to include the namespace in the declaration seemingly needlessly. </dd>
+<dt>Member <a class="el" href="classMezzanine_1_1UI_1_1ScrolledCellGrid.html#a259a2f007e7afc5b2fa967c02b0d5627">Mezzanine::UI::ScrolledCellGrid::SetVisibleImpl</a> (bool visible) </dt>
+<dd>Currently this disregards auto-hides. Something should be implemented to account for that. </dd>
 </dl>
 <p><a class="anchor" id="_todo000031"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1UI_1_1Screen.html#ad3b73f039f840fd2b2dc20219c428e9d">phys::UI::Screen::CreateLayer</a> (const String &amp;Name, Whole Zorder) </dt>
-<dd>add an exception here or maybe log entry, some notification it failed. </dd>
-</dl>
-<p><a class="anchor" id="_todo000032"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1UI_1_1ScrolledCellGrid.html#af75c87ada3a1bac3dda208485ebc5f94">phys::UI::ScrolledCellGrid::Show</a> () </dt>
-<dd>Currently this and SetVisible disregard auto-hides. Something should be implemented to account for that. </dd>
-</dl>
-<p><a class="anchor" id="_todo000035"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1WorldNode.html#a3c8447cd6de0af06a6004cdd968671f0">phys::WorldNode::SetAutoTracking</a> (WorldNode *node, Vector3 Offset=Vector3()) </dt>
+<dt>Member <a class="el" href="classMezzanine_1_1WorldNode.html#accb11fd94c98482d5d1b28894a1f4d9b">Mezzanine::WorldNode::SetAutoTracking</a> (WorldNode *node, Vector3 Offset=Vector3()) </dt>
 <dd>TODO: The WorldNode Does not Correctly Serialize AutoTracking. </dd>
 </dl>
-<p><a class="anchor" id="_todo000046"></a> </p>
+<p><a class="anchor" id="_todo000008"></a> </p>
 <dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#a467ae167d5407ae3293a22b8873cb43a">phys::xml::Attribute::AsDouble</a> () const  </dt>
-<dd>Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd>
-</dl>
-<p><a class="anchor" id="_todo000047"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#aad74f805b9318735011d698ee39113aa">phys::xml::Attribute::AsFloat</a> () const  </dt>
-<dd>Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd>
-</dl>
-<p><a class="anchor" id="_todo000044"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#ada1f2e45ce636ad8482972263364e7fa">phys::xml::Attribute::AsInt</a> () const  </dt>
-<dd>Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd>
-</dl>
-<p><a class="anchor" id="_todo000045"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#ad00ec5857fc4afcda892a0057419a9a0">phys::xml::Attribute::AsUint</a> () const  </dt>
-<dd>Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd>
-</dl>
-<p><a class="anchor" id="_todo000036"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa">phys::xml::Attribute::SetValue</a> (const char_t *rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow. </p>
-</dd>
-</dl>
-<p><a class="anchor" id="_todo000040"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#a6df4cf0f083482e69e4e6e94599a1d82">phys::xml::Attribute::SetValue</a> (bool rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow. </p>
-</dd>
-</dl>
-<p><a class="anchor" id="_todo000038"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#a289ac36b218f3912224fd904ccade1ed">phys::xml::Attribute::SetValue</a> (unsigned int rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow. </p>
-</dd>
-</dl>
-<p><a class="anchor" id="_todo000037"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#a693f7bd8015866c3c4979101c343ce50">phys::xml::Attribute::SetValue</a> (int rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow. </p>
-</dd>
-</dl>
-<p><a class="anchor" id="_todo000039"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#a919034671f61ee408d616409a49dafca">phys::xml::Attribute::SetValue</a> (double rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow. </p>
-</dd>
-</dl>
-<p><a class="anchor" id="_todo000041"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Attribute.html#af9b12723a227b833d7f8986a524b0e48">phys::xml::Attribute::SetValue</a> (T rhs) </dt>
-<dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd>
-</dl>
-<p><a class="anchor" id="_todo000050"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Node.html#af2a9ac5c4e3252dca0e17720de093a9a">phys::xml::Node::FirstElementByPath</a> (const char_t *Path, char_t delimiter= '/') const  </dt>
-<dd>Investigate this more deeply. </dd>
-</dl>
-<p><a class="anchor" id="_todo000048"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Node.html#affc4d9cc0ea7c89bac58d91a432af2ef">phys::xml::Node::InsertChildAfter</a> (NodeType Type, const Node &amp;node) </dt>
-<dd><p class="startdd">Not all nodes can be added to other nodes, we need to figure it out and put it here. </p>
-<p class="enddd">Not all nodes can be added to other nodes, we need to figure it out and put it here. </p>
-</dd>
-</dl>
-<p><a class="anchor" id="_todo000043"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Node.html#a691684896ab5d29a634415e745aaec7a">phys::xml::Node::InsertChildBefore</a> (NodeType Type, const Node &amp;node) </dt>
-<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
-</dl>
-<p><a class="anchor" id="_todo000042"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1xml_1_1Node.html#a50ff9948dac721339561ed3442fb7034">phys::xml::Node::SetValue</a> (const char_t *rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow. </p>
-</dd>
-</dl>
-<p><a class="anchor" id="_todo000034"></a> </p>
-<dl>
-<dt>page <a class="el" href="index.html">Physgame</a>  </dt>
-<dd>Fill out the Simple Data Types with all the enumerations.</dd>
+<dt>Namespace <a class="el" href="namespacestd.html">std</a>  </dt>
+<dd>Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this. </dd>
 </dl>
 </div></div>
 <!--- window showing the filter options -->
@@ -302,7 +198,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -312,6 +208,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:27 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

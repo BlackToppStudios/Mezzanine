@@ -1,0 +1,351 @@
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape}{
+\subsection{Mezzanine::CapsuleCollisionShape Class Reference}
+\label{classMezzanine_1_1CapsuleCollisionShape}\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+}
+
+
+A capsule physics shape.  
+
+
+
+
+{\ttfamily \#include $<$collisionshape.h$>$}
+
+Inheritance diagram for Mezzanine::CapsuleCollisionShape:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classMezzanine_1_1CapsuleCollisionShape}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1CapsuleCollisionShape_a8709e48065ef7698506c9854d41afe8e}{CapsuleCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radius, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Height, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&UpAxis)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CapsuleCollisionShape_abe6eb6dffc5f40d424974b4f0801cf28}{CapsuleCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radius, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Height, \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} UpAxis)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CapsuleCollisionShape_a5391a125678d98b509abc8f60cb475be}{CapsuleCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, btCapsuleShape $\ast$BulletShape)
+\begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+virtual btCapsuleShape $\ast$ \hyperlink{classMezzanine_1_1CapsuleCollisionShape_ad9505b15fdcbd88231714992e5b3fc06}{GetBulletCapsuleShape} () const 
+\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a531d88a3599327c7ed2a038190fe73e3}{GetCleanHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the height of the capsule, as the original value passed, without scaling and margin applied. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1CapsuleCollisionShape_ad1a0ca094872f1e9f403475165cc455b}{GetCleanRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the capsule, as the original value passed, without scaling and margin applied. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a8913f5ead449383b519a682fb837d6e2}{GetHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the height of the capsule, as used in collision checking, with scaling and margin subtracted. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a2b49207a067b52d65bd0129711c7f85a}{GetRadius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the capsule, as used in collision checking, with scaling and margin subtracted. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a2773853a924c2a97838546d96d851ba5}{GetType} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a0e81e4ffde066d7673ea008024823644}{GetUpAxis} () const 
+\begin{DoxyCompactList}\small\item\em Gets which axis this capsule is oriented along. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} \hyperlink{classMezzanine_1_1CapsuleCollisionShape_ab00e0b036ef4de6d1c663625d0408a4e}{GetUpStandardAxis} () const 
+\begin{DoxyCompactList}\small\item\em Gets which axis this capsule is oriented along. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_a197e7425d126ff8b6e7f6da27e0d978c}{
+virtual \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a197e7425d126ff8b6e7f6da27e0d978c}{$\sim$CapsuleCollisionShape} ()}
+\label{classMezzanine_1_1CapsuleCollisionShape_a197e7425d126ff8b6e7f6da27e0d978c}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a0e4e4f63188053bf72a12ff6a3eef177}{Construct} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radius, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Height, \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} UpAxis)
+\begin{DoxyCompactList}\small\item\em Performed share contructor work. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A capsule physics shape. This shape is commonly used for characters. Keep in mind the total height of any capsule is height+2$\ast$radius, since the height provided only applies to the cylinder portion of the capsule. Like Cones and Cylinders, Capsules can be aligned to any of the 3 linear axes(X, Y, or Z). 
+
+Definition at line 403 of file collisionshape.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_a8709e48065ef7698506c9854d41afe8e}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!CapsuleCollisionShape@{CapsuleCollisionShape}}
+\index{CapsuleCollisionShape@{CapsuleCollisionShape}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{CapsuleCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::CapsuleCollisionShape::CapsuleCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{const {\bf Vector3} \&}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_a8709e48065ef7698506c9854d41afe8e}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the capsule. \\
+\hline
+{\em Height} & The height of the cylindrical portion of the capsule. Total height would be Height+2$\ast$radius. \\
+\hline
+{\em UpAxis} & Which axis the Capsule is to be oriented along. Typical usage is for a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 623 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_abe6eb6dffc5f40d424974b4f0801cf28}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!CapsuleCollisionShape@{CapsuleCollisionShape}}
+\index{CapsuleCollisionShape@{CapsuleCollisionShape}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{CapsuleCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::CapsuleCollisionShape::CapsuleCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{{\bf StandardAxis}}]{UpAxis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_abe6eb6dffc5f40d424974b4f0801cf28}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the capsule. \\
+\hline
+{\em Height} & The height of the cylindrical portion of the capsule. Total height would be Height+2$\ast$radius. \\
+\hline
+{\em UpAxis} & Which axis the Capsule is to be oriented along. Uses StandardAxis enum, Axis\_\-Y to make a vertical capsule \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 626 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_a5391a125678d98b509abc8f60cb475be}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!CapsuleCollisionShape@{CapsuleCollisionShape}}
+\index{CapsuleCollisionShape@{CapsuleCollisionShape}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{CapsuleCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::CapsuleCollisionShape::CapsuleCollisionShape (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{btCapsuleShape $\ast$}]{BulletShape}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_a5391a125678d98b509abc8f60cb475be}
+
+
+Internal Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em BulletShape} & The internal shape this shape is based on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 658 of file collisionshape.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_a0e4e4f63188053bf72a12ff6a3eef177}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!Construct@{Construct}}
+\index{Construct@{Construct}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{Construct}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CapsuleCollisionShape::Construct (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf Real} \&}]{Radius, }
+\item[{const {\bf Real} \&}]{Height, }
+\item[{{\bf StandardAxis}}]{UpAxis}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_a0e4e4f63188053bf72a12ff6a3eef177}
+
+
+Performed share contructor work. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this Shape. \\
+\hline
+{\em Radius} & The radius of the capsule. \\
+\hline
+{\em Height} & The height of the cylindrical portion of the capsule. Total height would be Height+2$\ast$radius. \\
+\hline
+{\em UpAxis} & Which axis the Capsule is to be oriented along. Typical usage is for a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 612 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_ad9505b15fdcbd88231714992e5b3fc06}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!GetBulletCapsuleShape@{GetBulletCapsuleShape}}
+\index{GetBulletCapsuleShape@{GetBulletCapsuleShape}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{GetBulletCapsuleShape}]{\setlength{\rightskip}{0pt plus 5cm}btCapsuleShape $\ast$ Mezzanine::CapsuleCollisionShape::GetBulletCapsuleShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_ad9505b15fdcbd88231714992e5b3fc06}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Definition at line 694 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_a531d88a3599327c7ed2a038190fe73e3}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!GetCleanHeight@{GetCleanHeight}}
+\index{GetCleanHeight@{GetCleanHeight}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{GetCleanHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::CapsuleCollisionShape::GetCleanHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_a531d88a3599327c7ed2a038190fe73e3}
+
+
+Gets the height of the capsule, as the original value passed, without scaling and margin applied. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the length of the cylindrical portion of the capsule. 
+\end{DoxyReturn}
+
+
+Definition at line 677 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_ad1a0ca094872f1e9f403475165cc455b}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!GetCleanRadius@{GetCleanRadius}}
+\index{GetCleanRadius@{GetCleanRadius}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{GetCleanRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::CapsuleCollisionShape::GetCleanRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_ad1a0ca094872f1e9f403475165cc455b}
+
+
+Gets the radius of the capsule, as the original value passed, without scaling and margin applied. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the radius of the capsule. 
+\end{DoxyReturn}
+
+
+Definition at line 674 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_a8913f5ead449383b519a682fb837d6e2}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!GetHeight@{GetHeight}}
+\index{GetHeight@{GetHeight}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{GetHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::CapsuleCollisionShape::GetHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_a8913f5ead449383b519a682fb837d6e2}
+
+
+Gets the height of the capsule, as used in collision checking, with scaling and margin subtracted. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the length of the cylindrical portion of the capsule. 
+\end{DoxyReturn}
+
+
+Definition at line 671 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_a2b49207a067b52d65bd0129711c7f85a}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!GetRadius@{GetRadius}}
+\index{GetRadius@{GetRadius}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{GetRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::CapsuleCollisionShape::GetRadius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_a2b49207a067b52d65bd0129711c7f85a}
+
+
+Gets the radius of the capsule, as used in collision checking, with scaling and margin subtracted. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the radius of the capsule. 
+\end{DoxyReturn}
+
+
+Definition at line 669 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_a2773853a924c2a97838546d96d851ba5}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape::ShapeType} Mezzanine::CapsuleCollisionShape::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_a2773853a924c2a97838546d96d851ba5}
+Gets the type of \hyperlink{classMezzanine_1_1Collision}{Collision} shape this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value indicating the type of collision shape this is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ad3d4143a5640204b987e0b57eb24af41}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 689 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_a0e81e4ffde066d7673ea008024823644}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!GetUpAxis@{GetUpAxis}}
+\index{GetUpAxis@{GetUpAxis}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{GetUpAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::CapsuleCollisionShape::GetUpAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_a0e81e4ffde066d7673ea008024823644}
+
+
+Gets which axis this capsule is oriented along. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing which local axis is oriented along the world up axis. 
+\end{DoxyReturn}
+
+
+Definition at line 683 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CapsuleCollisionShape_ab00e0b036ef4de6d1c663625d0408a4e}{
+\index{Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}!GetUpStandardAxis@{GetUpStandardAxis}}
+\index{GetUpStandardAxis@{GetUpStandardAxis}!Mezzanine::CapsuleCollisionShape@{Mezzanine::CapsuleCollisionShape}}
+\paragraph[{GetUpStandardAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StandardAxis} Mezzanine::CapsuleCollisionShape::GetUpStandardAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CapsuleCollisionShape_ab00e0b036ef4de6d1c663625d0408a4e}
+
+
+Gets which axis this capsule is oriented along. 
+
+\begin{DoxyReturn}{Returns}
+Returns a StandardAxis representing which local axis is oriented along the world up axis. 
+\end{DoxyReturn}
+
+
+Definition at line 686 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

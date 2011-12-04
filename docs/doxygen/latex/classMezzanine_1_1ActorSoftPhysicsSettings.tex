@@ -1,0 +1,114 @@
+\hypertarget{classMezzanine_1_1ActorSoftPhysicsSettings}{
+\subsection{Mezzanine::ActorSoftPhysicsSettings Class Reference}
+\label{classMezzanine_1_1ActorSoftPhysicsSettings}\index{Mezzanine::ActorSoftPhysicsSettings@{Mezzanine::ActorSoftPhysicsSettings}}
+}
+
+
+This is a helper class for configuring physics settings of an \hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft}.  
+
+
+
+
+{\ttfamily \#include $<$actorphysicssettings.h$>$}
+
+Inheritance diagram for Mezzanine::ActorSoftPhysicsSettings:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ActorSoftPhysicsSettings}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings_a1dbdd3a7b8af36cb8353a1af90102073}{ActorSoftPhysicsSettings} (\hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft} $\ast$Actor, btSoftBody $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings_a4cbaf52fbdedf9c4e0328d3dd608207e}{SetCollisionShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Sets the collision shape to be used. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorSoftPhysicsSettings_a9bd95e4279191ab50e5d60ad4ec07817}{
+virtual \hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings_a9bd95e4279191ab50e5d60ad4ec07817}{$\sim$ActorSoftPhysicsSettings} ()}
+\label{classMezzanine_1_1ActorSoftPhysicsSettings_a9bd95e4279191ab50e5d60ad4ec07817}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorSoftPhysicsSettings_a44408487d6458ee64320be6d1283c1c0}{
+btSoftBody $\ast$ \hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings_a44408487d6458ee64320be6d1283c1c0}{ActorSB}}
+\label{classMezzanine_1_1ActorSoftPhysicsSettings_a44408487d6458ee64320be6d1283c1c0}
+
+\begin{DoxyCompactList}\small\item\em Physics Object of the actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorSoftPhysicsSettings_aa895658bc511f318b4a31234823d3e5c}{
+\hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft} $\ast$ \hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings_aa895658bc511f318b4a31234823d3e5c}{SoftParent}}
+\label{classMezzanine_1_1ActorSoftPhysicsSettings_aa895658bc511f318b4a31234823d3e5c}
+
+\begin{DoxyCompactList}\small\item\em The Actor this belongs to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a helper class for configuring physics settings of an \hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft}. This class contains functions for the configuring of physics specific settings of an \hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft}. This class can only configure the ActorSofts physics. For configuring actor graphics, see \hyperlink{classMezzanine_1_1ActorGraphicsSettings}{ActorGraphicsSettings}. 
+
+Definition at line 376 of file actorphysicssettings.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ActorSoftPhysicsSettings_a1dbdd3a7b8af36cb8353a1af90102073}{
+\index{Mezzanine::ActorSoftPhysicsSettings@{Mezzanine::ActorSoftPhysicsSettings}!ActorSoftPhysicsSettings@{ActorSoftPhysicsSettings}}
+\index{ActorSoftPhysicsSettings@{ActorSoftPhysicsSettings}!Mezzanine::ActorSoftPhysicsSettings@{Mezzanine::ActorSoftPhysicsSettings}}
+\paragraph[{ActorSoftPhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorSoftPhysicsSettings::ActorSoftPhysicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorSoft} $\ast$}]{Actor, }
+\item[{btSoftBody $\ast$}]{PhysicsObject}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ActorSoftPhysicsSettings_a1dbdd3a7b8af36cb8353a1af90102073}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor this settings class configures. \\
+\hline
+{\em PhysicsObject} & The physics object belonging to the actor this class configures. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 666 of file actorphysicssettings.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ActorSoftPhysicsSettings_a4cbaf52fbdedf9c4e0328d3dd608207e}{
+\index{Mezzanine::ActorSoftPhysicsSettings@{Mezzanine::ActorSoftPhysicsSettings}!SetCollisionShape@{SetCollisionShape}}
+\index{SetCollisionShape@{SetCollisionShape}!Mezzanine::ActorSoftPhysicsSettings@{Mezzanine::ActorSoftPhysicsSettings}}
+\paragraph[{SetCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorSoftPhysicsSettings::SetCollisionShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorSoftPhysicsSettings_a4cbaf52fbdedf9c4e0328d3dd608207e}
+
+
+Sets the collision shape to be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shape} & The shape to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a9aa6c07c9cb235a417d68f1ea417f834}{Mezzanine::ActorBasePhysicsSettings}.
+
+
+
+Definition at line 679 of file actorphysicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorphysicssettings.h\item 
+actorphysicssettings.cpp\end{DoxyCompactItemize}

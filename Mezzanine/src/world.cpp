@@ -65,7 +65,7 @@ namespace Mezzanine
     World* World::TheRealWorld = 0;
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Physworld constructors
+    // Mezzanine constructors
     World::World()
     {
         PhysicsConstructionInfo PhysicsInfo;

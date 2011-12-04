@@ -565,7 +565,7 @@ namespace Mezzanine
         desc.mMaxVertices  = maxv;
         desc.mSkinWidth    = skinWidth;
 
-        internal::PhysConvexDecomposition decomp;
+        internal::MezzConvexDecomposition decomp;
         desc.mCallback = &decomp;
 
         ConvexBuilder cb(desc.mCallback);

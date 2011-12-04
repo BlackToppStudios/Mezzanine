@@ -1,0 +1,542 @@
+\hypertarget{classMezzanine_1_1ExtendedTimer}{
+\subsection{Mezzanine::ExtendedTimer Class Reference}
+\label{classMezzanine_1_1ExtendedTimer}\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+}
+
+
+An enhanced timer class that can store and track many units of time.  
+
+
+
+
+{\ttfamily \#include $<$extendedtimer.h$>$}
+
+Inheritance diagram for Mezzanine::ExtendedTimer:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ExtendedTimer}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{TimeStruct} \{ \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{Current}, 
+\hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61afd99677d1774c80bfaa92b6dba36c2ba}{Goal}, 
+\hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61addcde9da9ed25254cd4919c1d6fb7172}{Initial}
+ \}
+\begin{DoxyCompactList}\small\item\em The internal time struct to be used... \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1ExtendedTimer_a782923da6f5e37bf9c1b9552b81cd979}{ExtendedTimer} (const \hyperlink{classMezzanine_1_1Timer_a1db436d4e0d6f1676e41ba3cb2ea3aaa}{Timer::TimerStyle} style)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} \hyperlink{classMezzanine_1_1ExtendedTimer_a293364cf175ba95addaa06bbb43d1d3b}{GetDays} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Day count. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} \hyperlink{classMezzanine_1_1ExtendedTimer_a8e4f14bee3434fd93a6df6a4798165a9}{GetHours} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Hour count. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} \hyperlink{classMezzanine_1_1ExtendedTimer_ab2c087c96c4c0bc4bbe3bb6e029fa88e}{GetMilliseconds} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Millisecond count. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} \hyperlink{classMezzanine_1_1ExtendedTimer_af70a43d4735bcc7d05401607c1f63784}{GetMinutes} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Minute count. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} \hyperlink{classMezzanine_1_1ExtendedTimer_aa7fb648a0807f7102cb72983d6e9038f}{GetSeconds} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Gets the current internal Second count. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_ac2781423c8f7d888e05443aeb5244e0a}{
+virtual void \hyperlink{classMezzanine_1_1ExtendedTimer_ac2781423c8f7d888e05443aeb5244e0a}{Reset} ()}
+\label{classMezzanine_1_1ExtendedTimer_ac2781423c8f7d888e05443aeb5244e0a}
+
+\begin{DoxyCompactList}\small\item\em Sets the current values to their initial values. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classMezzanine_1_1ExtendedTimer_ac0e2fcf76c0fe1445ff36b07131a1657}{SetAutoReset} (const bool AutoReset)
+\begin{DoxyCompactList}\small\item\em Sets whether or not the \hyperlink{classMezzanine_1_1Timer}{Timer} should reset if it reaches it's goal. \par
+ Ex. If a stopwatch reaches 0. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classMezzanine_1_1ExtendedTimer_aadc09173ecb481cbe7e2c3703e1ef34d}{SetDays} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Day, const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Sets the value for Days of the specified struct. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classMezzanine_1_1ExtendedTimer_a57d6151f99b75a45433bf919dd218b64}{SetHours} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Hr, const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Sets the value for Hours of the specified struct. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classMezzanine_1_1ExtendedTimer_abf97ea669cc7c816a94fb8162e575575}{SetMicroseconds} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} MS, const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Sets the value for Microseconds of the specified struct. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classMezzanine_1_1ExtendedTimer_aa0aa81de0f595c5c59525fb8bfe57696}{SetMilliseconds} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} MS, const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Sets the value for Milliseconds of the specified struct. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classMezzanine_1_1ExtendedTimer_a7779f8dcba1a632ef3dd1bc5b89570c6}{SetMinutes} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Min, const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Sets the value for Minutes of the specified struct. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ExtendedTimer}{ExtendedTimer} \& \hyperlink{classMezzanine_1_1ExtendedTimer_af367348e4289284749a5174672dd18a8}{SetSeconds} (\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Sec, const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct=ExtendedTimer::Current)
+\begin{DoxyCompactList}\small\item\em Sets the value for Seconds of the specified struct. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_ab628823999966c35b86e26bfd15d0240}{
+virtual \hyperlink{classMezzanine_1_1ExtendedTimer_ab628823999966c35b86e26bfd15d0240}{$\sim$ExtendedTimer} ()}
+\label{classMezzanine_1_1ExtendedTimer_ab628823999966c35b86e26bfd15d0240}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_affee9db7f13803b957e9369031997147}{
+virtual bool {\bfseries CheckAll} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct)}
+\label{classMezzanine_1_1ExtendedTimer_affee9db7f13803b957e9369031997147}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a7111899f1af64dcc5355db632b8632d0}{
+virtual bool {\bfseries CheckDays} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct)}
+\label{classMezzanine_1_1ExtendedTimer_a7111899f1af64dcc5355db632b8632d0}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a90740ae9d6b66c29b75ccc44967a97b9}{
+virtual bool {\bfseries CheckHours} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct)}
+\label{classMezzanine_1_1ExtendedTimer_a90740ae9d6b66c29b75ccc44967a97b9}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_aae842ab012d875eb71f7cf92d47ade79}{
+virtual bool {\bfseries CheckMicroSeconds} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct)}
+\label{classMezzanine_1_1ExtendedTimer_aae842ab012d875eb71f7cf92d47ade79}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a696fd5b73f681b97a991c5d028145720}{
+virtual bool {\bfseries CheckMilliSeconds} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct)}
+\label{classMezzanine_1_1ExtendedTimer_a696fd5b73f681b97a991c5d028145720}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_acd37990cdb9c25a3ce738b5c062fd78c}{
+virtual bool {\bfseries CheckMinutes} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct)}
+\label{classMezzanine_1_1ExtendedTimer_acd37990cdb9c25a3ce738b5c062fd78c}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a14b36dde56ab4f89e9d98b8ba8302495}{
+virtual bool {\bfseries CheckSeconds} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct)}
+\label{classMezzanine_1_1ExtendedTimer_a14b36dde56ab4f89e9d98b8ba8302495}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a0ec0f675c3bf946a2d732cd2916d8c4a}{
+virtual bool {\bfseries CompareCurrentAndGoal} (const \hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Current, const \hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} Goal)}
+\label{classMezzanine_1_1ExtendedTimer_a0ec0f675c3bf946a2d732cd2916d8c4a}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_ae9ff83ca2cb8082578c548edb6a6f3bf}{
+virtual \hyperlink{structMezzanine_1_1Time}{Time} \& {\bfseries GetStruct} (const \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{ExtendedTimer::TimeStruct} Struct)}
+\label{classMezzanine_1_1ExtendedTimer_ae9ff83ca2cb8082578c548edb6a6f3bf}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a99040c65bdb611e5b58fe185f3715083}{
+virtual bool {\bfseries GoalReached} ()}
+\label{classMezzanine_1_1ExtendedTimer_a99040c65bdb611e5b58fe185f3715083}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a5d09b15c9c98e55023b58a71044a8831}{
+virtual void {\bfseries Update} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} MicroSecondsElapsed)}
+\label{classMezzanine_1_1ExtendedTimer_a5d09b15c9c98e55023b58a71044a8831}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_aa8c5facae695e3c413d614fc7fe2b54e}{
+virtual void {\bfseries UpdateAsNormal} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} MicroSecondsElapsed)}
+\label{classMezzanine_1_1ExtendedTimer_aa8c5facae695e3c413d614fc7fe2b54e}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a4885f96441ab5f248a986545265e0afd}{
+virtual void {\bfseries UpdateAsStopWatch} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} MicroSecondsElapsed)}
+\label{classMezzanine_1_1ExtendedTimer_a4885f96441ab5f248a986545265e0afd}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_ae69f409f004bac0f61a36701c4148962}{
+\hyperlink{structMezzanine_1_1Time}{Time} {\bfseries CurrentTime}}
+\label{classMezzanine_1_1ExtendedTimer_ae69f409f004bac0f61a36701c4148962}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a4701b9a55e5e3429a34f448af8b9a183}{
+\hyperlink{structMezzanine_1_1Time}{Time} {\bfseries GoalTime}}
+\label{classMezzanine_1_1ExtendedTimer_a4701b9a55e5e3429a34f448af8b9a183}
+
+\item 
+\hypertarget{classMezzanine_1_1ExtendedTimer_ab77a055c94642679c83ce37214daff4b}{
+\hyperlink{structMezzanine_1_1Time}{Time} {\bfseries InitialTime}}
+\label{classMezzanine_1_1ExtendedTimer_ab77a055c94642679c83ce37214daff4b}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+An enhanced timer class that can store and track many units of time. This timer class should be used only for longer periods, such as tracking game uptime. For shorter periods of time look at the \hyperlink{classMezzanine_1_1SimpleTimer}{SimpleTimer} class. 
+
+Definition at line 72 of file extendedtimer.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!TimeStruct@{TimeStruct}}
+\index{TimeStruct@{TimeStruct}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{TimeStruct}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::ExtendedTimer::TimeStruct}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61}
+
+
+The internal time struct to be used... 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{Current@{Current}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!Current@{Current}}\item[{\em 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{
+Current}
+\label{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}
+}]Current description. \index{Goal@{Goal}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!Goal@{Goal}}\item[{\em 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61afd99677d1774c80bfaa92b6dba36c2ba}{
+Goal}
+\label{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61afd99677d1774c80bfaa92b6dba36c2ba}
+}]Goal description. \index{Initial@{Initial}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!Initial@{Initial}}\item[{\em 
+\hypertarget{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61addcde9da9ed25254cd4919c1d6fb7172}{
+Initial}
+\label{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61addcde9da9ed25254cd4919c1d6fb7172}
+}]Initial description. \end{description}
+\end{Desc}
+
+
+
+Definition at line 76 of file extendedtimer.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ExtendedTimer_a782923da6f5e37bf9c1b9552b81cd979}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!ExtendedTimer@{ExtendedTimer}}
+\index{ExtendedTimer@{ExtendedTimer}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{ExtendedTimer}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame Mezzanine src extendedtimer cpp Mezzanine::ExtendedTimer::ExtendedTimer (
+\begin{DoxyParamCaption}
+\item[{const {\bf Timer::TimerStyle}}]{style}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_a782923da6f5e37bf9c1b9552b81cd979}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em style} & The styling/type of timer to be constructed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 49 of file extendedtimer.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ExtendedTimer_a293364cf175ba95addaa06bbb43d1d3b}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!GetDays@{GetDays}}
+\index{GetDays@{GetDays}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{GetDays}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Integer} Mezzanine::ExtendedTimer::GetDays (
+\begin{DoxyParamCaption}
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_a293364cf175ba95addaa06bbb43d1d3b}
+
+
+Gets the current internal Day count. 
+
+\begin{DoxyReturn}{Returns}
+Returns an Integer representing the current Day count of this \hyperlink{classMezzanine_1_1Timer}{Timer}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 366 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_a8e4f14bee3434fd93a6df6a4798165a9}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!GetHours@{GetHours}}
+\index{GetHours@{GetHours}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{GetHours}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Integer} Mezzanine::ExtendedTimer::GetHours (
+\begin{DoxyParamCaption}
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_a8e4f14bee3434fd93a6df6a4798165a9}
+
+
+Gets the current internal Hour count. 
+
+\begin{DoxyReturn}{Returns}
+Returns an Integer representing the current Hour count of this \hyperlink{classMezzanine_1_1Timer}{Timer}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 361 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_ab2c087c96c4c0bc4bbe3bb6e029fa88e}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!GetMilliseconds@{GetMilliseconds}}
+\index{GetMilliseconds@{GetMilliseconds}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{GetMilliseconds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Integer} Mezzanine::ExtendedTimer::GetMilliseconds (
+\begin{DoxyParamCaption}
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_ab2c087c96c4c0bc4bbe3bb6e029fa88e}
+
+
+Gets the current internal Millisecond count. 
+
+\begin{DoxyReturn}{Returns}
+Returns an Integer representing the current Millisecond count of this \hyperlink{classMezzanine_1_1Timer}{Timer}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 346 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_af70a43d4735bcc7d05401607c1f63784}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!GetMinutes@{GetMinutes}}
+\index{GetMinutes@{GetMinutes}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{GetMinutes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Integer} Mezzanine::ExtendedTimer::GetMinutes (
+\begin{DoxyParamCaption}
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_af70a43d4735bcc7d05401607c1f63784}
+
+
+Gets the current internal Minute count. 
+
+\begin{DoxyReturn}{Returns}
+Returns an Integer representing the current Minute count of this \hyperlink{classMezzanine_1_1Timer}{Timer}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 356 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_aa7fb648a0807f7102cb72983d6e9038f}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!GetSeconds@{GetSeconds}}
+\index{GetSeconds@{GetSeconds}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{GetSeconds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Integer} Mezzanine::ExtendedTimer::GetSeconds (
+\begin{DoxyParamCaption}
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_aa7fb648a0807f7102cb72983d6e9038f}
+
+
+Gets the current internal Second count. 
+
+\begin{DoxyReturn}{Returns}
+Returns an Integer representing the current Second count of this \hyperlink{classMezzanine_1_1Timer}{Timer}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 351 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_ac0e2fcf76c0fe1445ff36b07131a1657}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!SetAutoReset@{SetAutoReset}}
+\index{SetAutoReset@{SetAutoReset}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{SetAutoReset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ExtendedTimer} \& Mezzanine::ExtendedTimer::SetAutoReset (
+\begin{DoxyParamCaption}
+\item[{const bool}]{AutoReset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_ac0e2fcf76c0fe1445ff36b07131a1657}
+
+
+Sets whether or not the \hyperlink{classMezzanine_1_1Timer}{Timer} should reset if it reaches it's goal. \par
+ Ex. If a stopwatch reaches 0. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to this timer. 
+\end{DoxyReturn}
+
+
+Definition at line 293 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_aadc09173ecb481cbe7e2c3703e1ef34d}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!SetDays@{SetDays}}
+\index{SetDays@{SetDays}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{SetDays}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ExtendedTimer} \& Mezzanine::ExtendedTimer::SetDays (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{Day, }
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_aadc09173ecb481cbe7e2c3703e1ef34d}
+
+
+Sets the value for Days of the specified struct. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to this timer. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Day} & The number of Days to set. \\
+\hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 340 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_a57d6151f99b75a45433bf919dd218b64}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!SetHours@{SetHours}}
+\index{SetHours@{SetHours}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{SetHours}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ExtendedTimer} \& Mezzanine::ExtendedTimer::SetHours (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{Hr, }
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_a57d6151f99b75a45433bf919dd218b64}
+
+
+Sets the value for Hours of the specified struct. 
+
+If a number greater then 23 is passed in, it will be reduced to 23. \begin{DoxyReturn}{Returns}
+Returns a reference to this timer. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Hr} & The number of Hours to set. \\
+\hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 333 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_abf97ea669cc7c816a94fb8162e575575}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!SetMicroseconds@{SetMicroseconds}}
+\index{SetMicroseconds@{SetMicroseconds}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{SetMicroseconds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ExtendedTimer} \& Mezzanine::ExtendedTimer::SetMicroseconds (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{MS, }
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_abf97ea669cc7c816a94fb8162e575575}
+
+
+Sets the value for Microseconds of the specified struct. 
+
+If a number greater then 999 is passed in, it will be reduced to 999. \begin{DoxyReturn}{Returns}
+Returns a reference to this timer. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MS} & The number of Microseconds to set. \\
+\hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 299 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_aa0aa81de0f595c5c59525fb8bfe57696}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!SetMilliseconds@{SetMilliseconds}}
+\index{SetMilliseconds@{SetMilliseconds}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{SetMilliseconds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ExtendedTimer} \& Mezzanine::ExtendedTimer::SetMilliseconds (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{MS, }
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_aa0aa81de0f595c5c59525fb8bfe57696}
+
+
+Sets the value for Milliseconds of the specified struct. 
+
+If a number greater then 999 is passed in, it will be reduced to 999. \begin{DoxyReturn}{Returns}
+Returns a reference to this timer. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MS} & The number of Milliseconds to set. \\
+\hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 306 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_a7779f8dcba1a632ef3dd1bc5b89570c6}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!SetMinutes@{SetMinutes}}
+\index{SetMinutes@{SetMinutes}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{SetMinutes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ExtendedTimer} \& Mezzanine::ExtendedTimer::SetMinutes (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{Min, }
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_a7779f8dcba1a632ef3dd1bc5b89570c6}
+
+
+Sets the value for Minutes of the specified struct. 
+
+If a number greater then 59 is passed in, it will be reduced to 59. \begin{DoxyReturn}{Returns}
+Returns a reference to this timer. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Min} & The number of Minutes to set. \\
+\hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 325 of file extendedtimer.cpp.
+
+\hypertarget{classMezzanine_1_1ExtendedTimer_af367348e4289284749a5174672dd18a8}{
+\index{Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}!SetSeconds@{SetSeconds}}
+\index{SetSeconds@{SetSeconds}!Mezzanine::ExtendedTimer@{Mezzanine::ExtendedTimer}}
+\paragraph[{SetSeconds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ExtendedTimer} \& Mezzanine::ExtendedTimer::SetSeconds (
+\begin{DoxyParamCaption}
+\item[{{\bf Integer}}]{Sec, }
+\item[{const {\bf ExtendedTimer::TimeStruct}}]{Struct = {\ttfamily ExtendedTimer::Current}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ExtendedTimer_af367348e4289284749a5174672dd18a8}
+
+
+Sets the value for Seconds of the specified struct. 
+
+If a number greater then 59 is passed in, it will be reduced to 59. \begin{DoxyReturn}{Returns}
+Returns a reference to this timer. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Sec} & The number of Seconds to set. \\
+\hline
+{\em Struct} & The Kind of TimeStructure this timer should use, defaults to \hyperlink{classMezzanine_1_1ExtendedTimer_a52119e2da54ea7ae5da0dc1f921a3b61ab66b80ae57d622d3555bdd2828b5dfff}{ExtendedTimer::Current} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 316 of file extendedtimer.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+extendedtimer.h\item 
+extendedtimer.cpp\end{DoxyCompactItemize}

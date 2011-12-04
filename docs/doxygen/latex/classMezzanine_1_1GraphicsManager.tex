@@ -1,0 +1,577 @@
+\hypertarget{classMezzanine_1_1GraphicsManager}{
+\subsection{Mezzanine::GraphicsManager Class Reference}
+\label{classMezzanine_1_1GraphicsManager}\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+}
+
+
+This is intended to store basic graphics setting for the user.  
+
+
+
+
+{\ttfamily \#include $<$graphicsmanager.h$>$}
+
+Inheritance diagram for Mezzanine::GraphicsManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1GraphicsManager}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classMezzanine_1_1GraphicsManager_a6d5efb7e23d2274bc5d49dd37763e645}{CreateGameWindow} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&WindowCaption, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Flags)
+\begin{DoxyCompactList}\small\item\em Creates a new game window to be rendered to. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GraphicsManager_a9ff5f5d4ed74f97e61fe3e6f170fa0c9}{DestroyAllGameWindows} (bool ExcludePrimary=true)
+\begin{DoxyCompactList}\small\item\em Destroys every game window created. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GraphicsManager_a0f03feff9d284100bdf7715ec504474c}{DestroyGameWindow} (\hyperlink{classMezzanine_1_1GameWindow}{GameWindow} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a created game window by index. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1GraphicsManager_ae940c81cd1401fda34abc6fd53ede45a}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em This is where the rendering takes place. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a1bb0347c37954bc71c4344e4b55c729a}{Mezzanine::RenderSystem} \hyperlink{classMezzanine_1_1GraphicsManager_a9592364a2ecc1b24a2ce50ce88095ffd}{GetCurrRenderSystem} ()
+\begin{DoxyCompactList}\small\item\em Gets the current rendersystem being used. \item\end{DoxyCompactList}\item 
+const \hyperlink{structMezzanine_1_1GraphicsSettings}{GraphicsSettings} \& \hyperlink{classMezzanine_1_1GraphicsManager_aba36bc3b2e611eb3c3d47fab001805ab}{GetDefaultSettings} ()
+\begin{DoxyCompactList}\small\item\em Gets the default settings for windows this manager initialized with. \item\end{DoxyCompactList}\item 
+const \hyperlink{structMezzanine_1_1GraphicsSettings}{GraphicsSettings} \& \hyperlink{classMezzanine_1_1GraphicsManager_ab1a5df9df45a309ef4ce485a36bc9327}{GetDesktopSettings} ()
+\begin{DoxyCompactList}\small\item\em Gets the desktop display settings. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classMezzanine_1_1GraphicsManager_a68e71521280ae7261982c98642740c03}{GetGameWindow} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets a game window by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1GraphicsManager_ab7d1b160ed4990dfb11687b2d17c2fda}{GetNumGameWindows} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of game windows within this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classMezzanine_1_1GraphicsManager_ae6f11a5938b22f75a9721083e53b1307}{GetPrimaryGameWindow} ()
+\begin{DoxyCompactList}\small\item\em Gets the primary(first) game window. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1GraphicsManager_af3ed012f12d5eac824cde585c982792f}{GetRenderSystemName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the render system in current use. \item\end{DoxyCompactList}\item 
+const std::vector$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} $>$ $\ast$ \hyperlink{classMezzanine_1_1GraphicsManager_a0cff2e9eaa6164de34c0fb1042f65014}{GetSupportedDevices} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector containing all the devices supported by this render system on the current hardware. \item\end{DoxyCompactList}\item 
+const std::vector$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} $>$ $\ast$ \hyperlink{classMezzanine_1_1GraphicsManager_a88383aa6cdfe9bd8aec1bc4955568388}{GetSupportedResolutions} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector containing all the resolutions supported by this render system on the current hardware. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ManagerBase_a08cecf5169cad3e82be81a3a159b0b6e}{ManagerTypeName} \hyperlink{classMezzanine_1_1GraphicsManager_a4a036b7a4623e9f568310a90d5e34e46}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1GraphicsManager_ab7637d879d3180218dc2d04744b19991}{GraphicsManager} ()
+\begin{DoxyCompactList}\small\item\em Basic constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1GraphicsManager_a66b3bd12fa240451893755008dc4d045}{GraphicsManager} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height, const bool \&FullScreen)
+\begin{DoxyCompactList}\small\item\em Versatile Constructor. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1GraphicsManager_ad440eb301b479b7b1e387dc08e7d5444}{HasOgreBeenInitialized} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not Ogre has been started. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1GraphicsManager_a952bc45c1efc78c2508e81f38fe5527d}{HasSDLBeenInitialized} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not SDL has been started. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1GraphicsManager_a4f76a6a37be800b1fc13195aa11cfd7a}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1GraphicsManager_a73d12091631749914d4a1025c45d68b4}{PostMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em This is derived from and uses the \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1GraphicsManager_adf7b2ba6879fdde8d00d3a6899b32fcc}{ResetRenderTimer} ()
+\begin{DoxyCompactList}\small\item\em Resets the Render timer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1GraphicsManager_ae110dcf1ddad03c6ef14b2cc2d06f5b8}{SetRenderSystem} (const \hyperlink{namespaceMezzanine_a1bb0347c37954bc71c4344e4b55c729a}{Mezzanine::RenderSystem} \&RenderSys)
+\begin{DoxyCompactList}\small\item\em Sets the render system to be used. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1GraphicsManager_ac100c1868c93e0cbb5f8395de5f21687}{
+\hyperlink{classMezzanine_1_1GraphicsManager_ac100c1868c93e0cbb5f8395de5f21687}{$\sim$GraphicsManager} ()}
+\label{classMezzanine_1_1GraphicsManager_ac100c1868c93e0cbb5f8395de5f21687}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1GraphicsManager_a72f662e43e6fa4d44fe32ddabd7cc34b}{
+static void \hyperlink{classMezzanine_1_1GraphicsManager_a72f662e43e6fa4d44fe32ddabd7cc34b}{InitSDL} ()}
+\label{classMezzanine_1_1GraphicsManager_a72f662e43e6fa4d44fe32ddabd7cc34b}
+
+\begin{DoxyCompactList}\small\item\em SDL is used for use input, and must be initialized prior to use. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is intended to store basic graphics setting for the user. This stores x/y resolution, fullscreen and in the future other settings. This is intended to make it easy for developers to pass/move around complex graphics settings. We hope to eventually include other items like shader settings, rendering API, and maybe other settings too. 
+
+Definition at line 70 of file graphicsmanager.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1GraphicsManager_ab7637d879d3180218dc2d04744b19991}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GraphicsManager@{GraphicsManager}}
+\index{GraphicsManager@{GraphicsManager}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GraphicsManager}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::GraphicsManager::GraphicsManager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_ab7637d879d3180218dc2d04744b19991}
+
+
+Basic constructor. 
+
+This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false 
+
+Definition at line 71 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a66b3bd12fa240451893755008dc4d045}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GraphicsManager@{GraphicsManager}}
+\index{GraphicsManager@{GraphicsManager}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GraphicsManager}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::GraphicsManager::GraphicsManager (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Width, }
+\item[{const {\bf Whole} \&}]{Height, }
+\item[{const bool \&}]{FullScreen}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a66b3bd12fa240451893755008dc4d045}
+
+
+Versatile Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Width} & The desired width. \\
+\hline
+{\em Height} & The desired height. \\
+\hline
+{\em FullScreen} & True if fullscreen, false if not.\\
+\hline
+\end{DoxyParams}
+This creates a Graphics Settings with resolution and fullscreen passed into to it that will be used when creating the primary window if one isn't already created when this manager in initialized. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
+
+Definition at line 78 of file graphicsmanager.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1GraphicsManager_a6d5efb7e23d2274bc5d49dd37763e645}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!CreateGameWindow@{CreateGameWindow}}
+\index{CreateGameWindow@{CreateGameWindow}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{CreateGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GameWindow} $\ast$ Mezzanine::GraphicsManager::CreateGameWindow (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{WindowCaption, }
+\item[{const {\bf Whole} \&}]{Width, }
+\item[{const {\bf Whole} \&}]{Height, }
+\item[{const {\bf Whole} \&}]{Flags}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a6d5efb7e23d2274bc5d49dd37763e645}
+
+
+Creates a new game window to be rendered to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em WindowCaption} & The caption to be set in the window titlebar. \\
+\hline
+{\em Width} & The desired width in pixels. \\
+\hline
+{\em Height} & The desired height in pixels. \\
+\hline
+{\em Flags} & Additional misc parameters, see \hyperlink{classMezzanine_1_1GameWindow}{GameWindow} class for more info. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 191 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a9ff5f5d4ed74f97e61fe3e6f170fa0c9}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!DestroyAllGameWindows@{DestroyAllGameWindows}}
+\index{DestroyAllGameWindows@{DestroyAllGameWindows}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{DestroyAllGameWindows}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GraphicsManager::DestroyAllGameWindows (
+\begin{DoxyParamCaption}
+\item[{bool}]{ExcludePrimary = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a9ff5f5d4ed74f97e61fe3e6f170fa0c9}
+
+
+Destroys every game window created. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ExcludePrimary} & Whether or not you want to spare the primary window created. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 231 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a0f03feff9d284100bdf7715ec504474c}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!DestroyGameWindow@{DestroyGameWindow}}
+\index{DestroyGameWindow@{DestroyGameWindow}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{DestroyGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GraphicsManager::DestroyGameWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf GameWindow} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a0f03feff9d284100bdf7715ec504474c}
+
+
+Destroys a created game window by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em WindowIndex} & The index of the window to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 218 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_ae940c81cd1401fda34abc6fd53ede45a}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GraphicsManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1GraphicsManager_ae940c81cd1401fda34abc6fd53ede45a}
+
+
+This is where the rendering takes place. 
+
+This does the rendering for the game using all the actors in the actormanager. 
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258d5cd2}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 331 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a9592364a2ecc1b24a2ce50ce88095ffd}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetCurrRenderSystem@{GetCurrRenderSystem}}
+\index{GetCurrRenderSystem@{GetCurrRenderSystem}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetCurrRenderSystem}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mezzanine::RenderSystem} Mezzanine::GraphicsManager::GetCurrRenderSystem (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a9592364a2ecc1b24a2ce50ce88095ffd}
+
+
+Gets the current rendersystem being used. 
+
+\begin{DoxyRemark}{Remarks}
+This does not return a pointer or any other kind of accessor to the actual rendersystem structure. If you need that, then we're doing something wrong. 
+\end{DoxyRemark}
+\begin{DoxyReturn}{Returns}
+Returns an enum value coresponding to the render system being used. 
+\end{DoxyReturn}
+
+
+Definition at line 275 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_aba36bc3b2e611eb3c3d47fab001805ab}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetDefaultSettings@{GetDefaultSettings}}
+\index{GetDefaultSettings@{GetDefaultSettings}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetDefaultSettings}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf GraphicsSettings} \& Mezzanine::GraphicsManager::GetDefaultSettings (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_aba36bc3b2e611eb3c3d47fab001805ab}
+
+
+Gets the default settings for windows this manager initialized with. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Returns} & a \hyperlink{structMezzanine_1_1GraphicsSettings}{GraphicsSettings} struct with the default display settings. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 254 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_ab1a5df9df45a309ef4ce485a36bc9327}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetDesktopSettings@{GetDesktopSettings}}
+\index{GetDesktopSettings@{GetDesktopSettings}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetDesktopSettings}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf GraphicsSettings} \& Mezzanine::GraphicsManager::GetDesktopSettings (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_ab1a5df9df45a309ef4ce485a36bc9327}
+
+
+Gets the desktop display settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Returns} & a \hyperlink{structMezzanine_1_1GraphicsSettings}{GraphicsSettings} struct with the desktop display settings. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 249 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a68e71521280ae7261982c98642740c03}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetGameWindow@{GetGameWindow}}
+\index{GetGameWindow@{GetGameWindow}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GameWindow} $\ast$ Mezzanine::GraphicsManager::GetGameWindow (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a68e71521280ae7261982c98642740c03}
+
+
+Gets a game window by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the game window requested. 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_ab7d1b160ed4990dfb11687b2d17c2fda}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetNumGameWindows@{GetNumGameWindows}}
+\index{GetNumGameWindows@{GetNumGameWindows}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetNumGameWindows}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::GraphicsManager::GetNumGameWindows (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_ab7d1b160ed4990dfb11687b2d17c2fda}
+
+
+Gets the number of game windows within this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the number of game windows within this manager. 
+\end{DoxyReturn}
+
+
+Definition at line 213 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_ae6f11a5938b22f75a9721083e53b1307}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetPrimaryGameWindow@{GetPrimaryGameWindow}}
+\index{GetPrimaryGameWindow@{GetPrimaryGameWindow}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetPrimaryGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GameWindow} $\ast$ Mezzanine::GraphicsManager::GetPrimaryGameWindow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_ae6f11a5938b22f75a9721083e53b1307}
+
+
+Gets the primary(first) game window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the primary game window. 
+\end{DoxyReturn}
+
+
+Definition at line 244 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_af3ed012f12d5eac824cde585c982792f}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetRenderSystemName@{GetRenderSystemName}}
+\index{GetRenderSystemName@{GetRenderSystemName}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetRenderSystemName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::GraphicsManager::GetRenderSystemName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_af3ed012f12d5eac824cde585c982792f}
+
+
+Gets the name of the render system in current use. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of the current render system. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a0cff2e9eaa6164de34c0fb1042f65014}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetSupportedDevices@{GetSupportedDevices}}
+\index{GetSupportedDevices@{GetSupportedDevices}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetSupportedDevices}]{\setlength{\rightskip}{0pt plus 5cm}const std::vector$<$ {\bf String} $>$ $\ast$ Mezzanine::GraphicsManager::GetSupportedDevices (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a0cff2e9eaa6164de34c0fb1042f65014}
+
+
+Gets a vector containing all the devices supported by this render system on the current hardware. 
+
+This vector is populated when the manager gets initialized. Calling on it before then will give you an empty vector. \begin{DoxyReturn}{Returns}
+Returns a Const Pointer to the vector storing all the supported devices. 
+\end{DoxyReturn}
+
+
+Definition at line 293 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a88383aa6cdfe9bd8aec1bc4955568388}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetSupportedResolutions@{GetSupportedResolutions}}
+\index{GetSupportedResolutions@{GetSupportedResolutions}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetSupportedResolutions}]{\setlength{\rightskip}{0pt plus 5cm}const std::vector$<$ {\bf String} $>$ $\ast$ Mezzanine::GraphicsManager::GetSupportedResolutions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a88383aa6cdfe9bd8aec1bc4955568388}
+
+
+Gets a vector containing all the resolutions supported by this render system on the current hardware. 
+
+This vector is populated when the manager gets initialized. Calling on it before then will give you an empty vector. \begin{DoxyReturn}{Returns}
+Returns a Const Pointer to the vector storing all the supported resolutions. 
+\end{DoxyReturn}
+
+
+Definition at line 288 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a4a036b7a4623e9f568310a90d5e34e46}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} Mezzanine::GraphicsManager::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a4a036b7a4623e9f568310a90d5e34e46}
+
+
+This returns the type of this manager. 
+
+\begin{DoxyReturn}{Returns}
+This returns ManagerTypeName::GraphicsManager 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf76973}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 352 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_ad440eb301b479b7b1e387dc08e7d5444}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!HasOgreBeenInitialized@{HasOgreBeenInitialized}}
+\index{HasOgreBeenInitialized@{HasOgreBeenInitialized}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{HasOgreBeenInitialized}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::GraphicsManager::HasOgreBeenInitialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_ad440eb301b479b7b1e387dc08e7d5444}
+
+
+Gets whether or not Ogre has been started. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not Ogre has been initialized yet. 
+\end{DoxyReturn}
+
+
+Definition at line 264 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a952bc45c1efc78c2508e81f38fe5527d}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!HasSDLBeenInitialized@{HasSDLBeenInitialized}}
+\index{HasSDLBeenInitialized@{HasSDLBeenInitialized}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{HasSDLBeenInitialized}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::GraphicsManager::HasSDLBeenInitialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a952bc45c1efc78c2508e81f38fe5527d}
+
+
+Gets whether or not SDL has been started. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not SDL has been initialized yet. 
+\end{DoxyReturn}
+
+
+Definition at line 259 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a4f76a6a37be800b1fc13195aa11cfd7a}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GraphicsManager::Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a4f76a6a37be800b1fc13195aa11cfd7a}
+
+
+Empty Initializor. 
+
+This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason 
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a864e3cac11928a602c1db28fa2d52ee2}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 304 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_a73d12091631749914d4a1025c45d68b4}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!PostMainLoopItems@{PostMainLoopItems}}
+\index{PostMainLoopItems@{PostMainLoopItems}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{PostMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::GraphicsManager::PostMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1GraphicsManager_a73d12091631749914d4a1025c45d68b4}
+
+
+This is derived from and uses the \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. 
+
+\begin{DoxyReturn}{Returns}
+This returns a true or false depending on what the callback returns 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ManagerBase_a2a1bfb2a137c6013a8a5e5fae4c4bb85}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 355 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_adf7b2ba6879fdde8d00d3a6899b32fcc}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!ResetRenderTimer@{ResetRenderTimer}}
+\index{ResetRenderTimer@{ResetRenderTimer}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{ResetRenderTimer}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GraphicsManager::ResetRenderTimer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1GraphicsManager_adf7b2ba6879fdde8d00d3a6899b32fcc}
+
+
+Resets the Render timer. 
+
+This function should not be called unless you know exactly what you are doing. This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop. 
+
+Definition at line 298 of file graphicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1GraphicsManager_ae110dcf1ddad03c6ef14b2cc2d06f5b8}{
+\index{Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}!SetRenderSystem@{SetRenderSystem}}
+\index{SetRenderSystem@{SetRenderSystem}!Mezzanine::GraphicsManager@{Mezzanine::GraphicsManager}}
+\paragraph[{SetRenderSystem}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::GraphicsManager::SetRenderSystem (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mezzanine::RenderSystem} \&}]{RenderSys}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1GraphicsManager_ae110dcf1ddad03c6ef14b2cc2d06f5b8}
+
+
+Sets the render system to be used. 
+
+\begin{DoxyRemark}{Remarks}
+This will only work prior to a window being created/graphics manager being initialized. The internal structures to be built need to know what rendersystem to build for. Additionally this cannot be swapped/changed at runtime. If called after a window has been made this will throw an exception. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em RenderSys} & The Render system to be used. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 269 of file graphicsmanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+graphicsmanager.h\item 
+graphicsmanager.cpp\end{DoxyCompactItemize}

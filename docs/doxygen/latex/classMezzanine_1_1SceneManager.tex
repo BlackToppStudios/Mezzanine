@@ -1,0 +1,1873 @@
+\hypertarget{classMezzanine_1_1SceneManager}{
+\subsection{Mezzanine::SceneManager Class Reference}
+\label{classMezzanine_1_1SceneManager}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+}
+
+
+This class contains utilities and functions to allow the manipulation of the Graphical scene, rather then the physics inside, or the object inside.  
+
+
+
+
+{\ttfamily \#include $<$scenemanager.h$>$}
+
+Inheritance diagram for Mezzanine::SceneManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1SceneManager}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1SceneManager_a4fb46d68331a77da9036a3f704f7ee40}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1Entity}{Entity} $\ast$ $>$::const\_\-iterator \hyperlink{classMezzanine_1_1SceneManager_a4fb46d68331a77da9036a3f704f7ee40}{ConstEntityIterator}}
+\label{classMezzanine_1_1SceneManager_a4fb46d68331a77da9036a3f704f7ee40}
+
+\begin{DoxyCompactList}\small\item\em Used to make working with the Entities easier, and avoid the risk of accidentally changing them. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_ad4f4649f45b71ddc0d728e64facd03c3}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1Light}{Light} $\ast$ $>$::const\_\-iterator \hyperlink{classMezzanine_1_1SceneManager_ad4f4649f45b71ddc0d728e64facd03c3}{ConstLightIterator}}
+\label{classMezzanine_1_1SceneManager_ad4f4649f45b71ddc0d728e64facd03c3}
+
+\begin{DoxyCompactList}\small\item\em Used to make working with the Lights easier, and avoid the risk of accidentally changing them. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_aa99ab0f491a991bda63127519b40b04f}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1ParticleEffect}{ParticleEffect} $\ast$ $>$::const\_\-iterator \hyperlink{classMezzanine_1_1SceneManager_aa99ab0f491a991bda63127519b40b04f}{ConstParticleEffectIterator}}
+\label{classMezzanine_1_1SceneManager_aa99ab0f491a991bda63127519b40b04f}
+
+\begin{DoxyCompactList}\small\item\em Used to make working with the Particle Effects easier, and avoid the risk of accidentally changing them. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a39bddd192e396e2e7cf92bca33b4d03c}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ $>$::const\_\-iterator \hyperlink{classMezzanine_1_1SceneManager_a39bddd192e396e2e7cf92bca33b4d03c}{ConstWorldNodeIterator}}
+\label{classMezzanine_1_1SceneManager_a39bddd192e396e2e7cf92bca33b4d03c}
+
+\begin{DoxyCompactList}\small\item\em Used to make working with the WorldNodes easier, and avoid the risk of accidentally changing them. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a870dd323419dc7efe957cacc19a1391c}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1Entity}{Entity} $\ast$ $>$::iterator \hyperlink{classMezzanine_1_1SceneManager_a870dd323419dc7efe957cacc19a1391c}{EntityIterator}}
+\label{classMezzanine_1_1SceneManager_a870dd323419dc7efe957cacc19a1391c}
+
+\begin{DoxyCompactList}\small\item\em Used to make working with the Entities easier. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a5c5a83086e8b63d21bcfcf38b0888101}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1Light}{Light} $\ast$ $>$::iterator \hyperlink{classMezzanine_1_1SceneManager_a5c5a83086e8b63d21bcfcf38b0888101}{LightIterator}}
+\label{classMezzanine_1_1SceneManager_a5c5a83086e8b63d21bcfcf38b0888101}
+
+\begin{DoxyCompactList}\small\item\em Used to make working with the Lights easier. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a68a1a1ddc03cee28204759224405d40c}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1ParticleEffect}{ParticleEffect} $\ast$ $>$::iterator \hyperlink{classMezzanine_1_1SceneManager_a68a1a1ddc03cee28204759224405d40c}{ParticleEffectIterator}}
+\label{classMezzanine_1_1SceneManager_a68a1a1ddc03cee28204759224405d40c}
+
+\begin{DoxyCompactList}\small\item\em Used to make working with the Particle Effects easier. \item\end{DoxyCompactList}\item 
+enum \hyperlink{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274}{SceneManagerType} \{ \hyperlink{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a6cd584c01715ad16c076728aea716607}{Generic} =  0, 
+\hyperlink{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a3cc51919e031a43bf4588dac5b693d0e}{Exterior} =  1, 
+\hyperlink{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a22b864e95238f8719579e4112b99e349}{ExteriorRealFar} =  2, 
+\hyperlink{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a1cd5d84d522f7a4692d8c524ace547fe}{Interior} =  3
+ \}
+\begin{DoxyCompactList}\small\item\em Needs to be documented. \item\end{DoxyCompactList}\item 
+enum \hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6}{SceneShadowTechnique} \{ \par
+\hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6aeedc28307131c43b9ae0bff12c8b1cda}{SST\_\-None} =  0, 
+\hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6a616375ae458dbd612ff9745895d7e1f1}{SST\_\-Stencil\_\-Modulative} =  1, 
+\hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6a216c1b4f5e8b891ae9e74abf48790ec8}{SST\_\-Stencil\_\-Additive} =  2, 
+\hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6acfa2f5f4596184169e9a6495273fe6c7}{SST\_\-Texture\_\-Modulative} =  11, 
+\par
+\hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6a966cfba4dd29dd9248c6283ec37e3d8f}{SST\_\-Texture\_\-Additive} =  12, 
+\hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6ae673066d535f340debfa4a6210d6b0ce}{SST\_\-Texture\_\-Additive\_\-Integrated} =  13, 
+\hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6ab4ff7a97c53ca46f7628541c9e39309c}{SST\_\-Texture\_\-Modulative\_\-Integrated} =  14
+ \}
+\begin{DoxyCompactList}\small\item\em needs to be documented \item\end{DoxyCompactList}\item 
+enum \hyperlink{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470e}{SkyMethod} \{ \hyperlink{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470ead62543178728c0bcd4e92d463860e571}{SkyNone} =  0, 
+\hyperlink{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470ea95a4503b6f35da0286b384931cb484b8}{SkyPlane} =  1, 
+\hyperlink{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470ea4c80b5621b7b8c3decfc687561b8adf4}{SkyBox} =  2, 
+\hyperlink{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470eaa0c0e7a37ae3ab8ff27a9b7012eaf7fe}{SkyDome} =  3
+ \}
+\begin{DoxyCompactList}\small\item\em Used to help identify which method is used to draw the sky, if any. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_aa58ecf1d7d283a576509b71133064a27}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ $>$::iterator \hyperlink{classMezzanine_1_1SceneManager_aa58ecf1d7d283a576509b71133064a27}{WorldNodeIterator}}
+\label{classMezzanine_1_1SceneManager_aa58ecf1d7d283a576509b71133064a27}
+
+\begin{DoxyCompactList}\small\item\em Used to make working with the WorldNodes easier. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1SceneManager_a870dd323419dc7efe957cacc19a1391c}{EntityIterator} \hyperlink{classMezzanine_1_1SceneManager_abc6dd9387dac2ae2aef9502d01d1ec35}{BeginEntity} ()
+\begin{DoxyCompactList}\small\item\em Get an EntityIterator to the first Entity$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a4fb46d68331a77da9036a3f704f7ee40}{ConstEntityIterator} \hyperlink{classMezzanine_1_1SceneManager_a016bbb0dfd8a03e838d13131f298499f}{BeginEntity} () const 
+\begin{DoxyCompactList}\small\item\em Get a ConstEntityIterator to the first Entity$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_ad4f4649f45b71ddc0d728e64facd03c3}{ConstLightIterator} \hyperlink{classMezzanine_1_1SceneManager_a5a50580c0389d0881dc8c1fb787370b2}{BeginLight} () const 
+\begin{DoxyCompactList}\small\item\em Get a ConstLightIterator to the first Light$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a5c5a83086e8b63d21bcfcf38b0888101}{LightIterator} \hyperlink{classMezzanine_1_1SceneManager_a1571d4ee6e74d8f1be76c99281740221}{BeginLight} ()
+\begin{DoxyCompactList}\small\item\em Get a LightIterator to the first Light$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a68a1a1ddc03cee28204759224405d40c}{ParticleEffectIterator} \hyperlink{classMezzanine_1_1SceneManager_a97940bd86436528fdbdad5992bad4e0c}{BeginParticleEffect} ()
+\begin{DoxyCompactList}\small\item\em Get a ParticleEffectIterator to the first ParticleEffect$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_aa99ab0f491a991bda63127519b40b04f}{ConstParticleEffectIterator} \hyperlink{classMezzanine_1_1SceneManager_ac9e454fc20bdb1e1f118754994ff39e0}{BeginParticleEffect} () const 
+\begin{DoxyCompactList}\small\item\em Get a ConstParticleEffectIterator to the first ParticleEffect$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_aa58ecf1d7d283a576509b71133064a27}{WorldNodeIterator} \hyperlink{classMezzanine_1_1SceneManager_a6b3844dcb5e3e4df4e50b47fb6158960}{BeginWorldNode} ()
+\begin{DoxyCompactList}\small\item\em Get a WorldNodeIterator to the first WorldNode$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a39bddd192e396e2e7cf92bca33b4d03c}{ConstWorldNodeIterator} \hyperlink{classMezzanine_1_1SceneManager_a0d374c51309d155a1e49fd033e863111}{BeginWorldNode} () const 
+\begin{DoxyCompactList}\small\item\em Get a ConstWorldNodeIterator to the first WorldNode$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Entity}{Entity} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a3bb0d7b70e9a01090602c9caa005325a}{CreateEntity} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&EntName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group)
+\begin{DoxyCompactList}\small\item\em Creates an entity. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a7d200b747b15bba75833244a0bc8c25a}{CreateFreeNode} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, \hyperlink{classMezzanine_1_1Vector3}{Vector3} LookAt, \hyperlink{classMezzanine_1_1Vector3}{Vector3} Location)
+\begin{DoxyCompactList}\small\item\em Creates a freely moveable node that will look at a location. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Light}{Light} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a33a91afe11a91a778d9b0139a06f3d0a}{CreateLight} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Creates a dynamic light. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a227c6534ea2c4fb51a3174635e09eb58}{CreateOrbitingNode} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, \hyperlink{classMezzanine_1_1Vector3}{Vector3} Target, \hyperlink{classMezzanine_1_1Vector3}{Vector3} RelativeLoc, bool AutoTrack)
+\begin{DoxyCompactList}\small\item\em Creates a node that will orbit around a point. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ParticleEffect}{ParticleEffect} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a7c7e0b3f993c531bcdd9a6dd9135178d}{CreateParticleEffect} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Template)
+\begin{DoxyCompactList}\small\item\em Creates a particle effect. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_aaa3c4b8d15aa74c767a21d725de25ec7}{CreateSkyBox} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Material, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Distance, bool DrawFirst=true, \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} Orientation=\hyperlink{classMezzanine_1_1Quaternion}{Quaternion}())
+\begin{DoxyCompactList}\small\item\em Creates a skybox for use in making a sky. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_a5862eefa87c9fcda9fdba7fa69efd6cf}{CreateSkyDome} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Material, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Distance, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Curvature=10.0, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Tiling=8.0, bool DrawFirst=true, \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} Orientation=\hyperlink{classMezzanine_1_1Quaternion}{Quaternion}(), int XSegments=16, int YSegments=16)
+\begin{DoxyCompactList}\small\item\em Creates a skydome for use in making a sky. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_a6cea438ed9b13cf613b07e2dd6467c4e}{CreateSkyPlane} (const \hyperlink{classMezzanine_1_1Plane}{Plane} \&SkyPlane\_\-, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Material, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Scale=1000.0, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Tiling=10.0, bool DrawFirst=true, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Bow=0, int XSegments=1, int YSegments=1)
+\begin{DoxyCompactList}\small\item\em Creates a skyplane for use in making a sky. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a9c2288d7b82f59fad7213f9b21c1b4b6}{CreateStandNode} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, \hyperlink{classMezzanine_1_1Vector3}{Vector3} LookAt, \hyperlink{classMezzanine_1_1Vector3}{Vector3} Location)
+\begin{DoxyCompactList}\small\item\em Creates a stationary node that will look at a location. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a7c2637be3ad7af57f2cc194f305e87ff}{
+void \hyperlink{classMezzanine_1_1SceneManager_a7c2637be3ad7af57f2cc194f305e87ff}{DestroyAllEntities} ()}
+\label{classMezzanine_1_1SceneManager_a7c2637be3ad7af57f2cc194f305e87ff}
+
+\begin{DoxyCompactList}\small\item\em Destroys all entities currently in the manager. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a4dbe2f8c34aef587c263dd99a6d65e61}{
+void \hyperlink{classMezzanine_1_1SceneManager_a4dbe2f8c34aef587c263dd99a6d65e61}{DestroyAllLights} ()}
+\label{classMezzanine_1_1SceneManager_a4dbe2f8c34aef587c263dd99a6d65e61}
+
+\begin{DoxyCompactList}\small\item\em Destroys all lights currently in the manager. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a4c54c954577f43a57c5164a0fb7e31cc}{
+void \hyperlink{classMezzanine_1_1SceneManager_a4c54c954577f43a57c5164a0fb7e31cc}{DestroyAllParticleEffects} ()}
+\label{classMezzanine_1_1SceneManager_a4c54c954577f43a57c5164a0fb7e31cc}
+
+\begin{DoxyCompactList}\small\item\em Destroys all particle effects currently in the manager. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_af30ec6d5ad5260dd9eb986305afe9181}{
+void \hyperlink{classMezzanine_1_1SceneManager_af30ec6d5ad5260dd9eb986305afe9181}{DestroyAllWorldNodes} ()}
+\label{classMezzanine_1_1SceneManager_af30ec6d5ad5260dd9eb986305afe9181}
+
+\begin{DoxyCompactList}\small\item\em Destroys all world nodes currently in the manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_a87d26a862306dcf859ff0dee2e8a6834}{DestroyEntity} (\hyperlink{classMezzanine_1_1Entity}{Entity} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Deletes an entity and removes all trace of it from the manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_ad05338bb291dc8535b8f691378682851}{DestroyLight} (\hyperlink{classMezzanine_1_1Light}{Light} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Deletes a light and removes all trace of it from the manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_ab6123477f052d34a357db85a8284c8be}{DestroyNode} (\hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Deletes a node and removes all trace of it from the manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_ad91db10c13517ff6a31be64739ca2f27}{DestroyParticleEffect} (\hyperlink{classMezzanine_1_1ParticleEffect}{ParticleEffect} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Deletes a particle effect and removes all trace of it from the manager. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a167309912093d3a2fc438cab5686e2ce}{
+void \hyperlink{classMezzanine_1_1SceneManager_a167309912093d3a2fc438cab5686e2ce}{DisableSky} ()}
+\label{classMezzanine_1_1SceneManager_a167309912093d3a2fc438cab5686e2ce}
+
+\begin{DoxyCompactList}\small\item\em If any sky is active, disable it. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_afda2cf0379dbfb7ca1f53950c489cdae}{DisableSkyBox} ()
+\begin{DoxyCompactList}\small\item\em Disables the currently active skybox. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_a505c371bfe64cd5a07cecd6ece4c8ed8}{DisableSkyDome} ()
+\begin{DoxyCompactList}\small\item\em Disables the currently active skydome. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_ac60ecdd9745803cf7d99af3a87fa6a36}{DisableSkyPlane} ()
+\begin{DoxyCompactList}\small\item\em Disables the currently active skyplane. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_ae75aa9deb4bbc8ee1f979e240070309f}{
+void \hyperlink{classMezzanine_1_1SceneManager_ae75aa9deb4bbc8ee1f979e240070309f}{DoMainLoopItems} ()}
+\label{classMezzanine_1_1SceneManager_ae75aa9deb4bbc8ee1f979e240070309f}
+
+\begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a870dd323419dc7efe957cacc19a1391c}{EntityIterator} \hyperlink{classMezzanine_1_1SceneManager_a9e9325351566464d9009d1d6ce299f75}{EndEntity} ()
+\begin{DoxyCompactList}\small\item\em Get a EntityIterator to one past the last Entity$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a4fb46d68331a77da9036a3f704f7ee40}{ConstEntityIterator} \hyperlink{classMezzanine_1_1SceneManager_ad7b6c9cc55e92941f51429ec3cb5f5c6}{EndEntity} () const 
+\begin{DoxyCompactList}\small\item\em Get a ConstEntityIterator to one past the last Entity$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_ad4f4649f45b71ddc0d728e64facd03c3}{ConstLightIterator} \hyperlink{classMezzanine_1_1SceneManager_ae51e93a3fdf6d996adc9806bb25d8ca6}{EndLight} () const 
+\begin{DoxyCompactList}\small\item\em Get a ConstLightIterator to one past the last Light$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a5c5a83086e8b63d21bcfcf38b0888101}{LightIterator} \hyperlink{classMezzanine_1_1SceneManager_a08baa4f2d539cf1b6d54fce558858081}{EndLight} ()
+\begin{DoxyCompactList}\small\item\em Get a LightIterator to one past the last Light$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a68a1a1ddc03cee28204759224405d40c}{ParticleEffectIterator} \hyperlink{classMezzanine_1_1SceneManager_a9fa8eca256c321e1eaa10e935c89feb1}{EndParticleEffect} ()
+\begin{DoxyCompactList}\small\item\em Get a ParticleEffectIterator to one past the last ParticleEffect$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_aa99ab0f491a991bda63127519b40b04f}{ConstParticleEffectIterator} \hyperlink{classMezzanine_1_1SceneManager_a27b7aab28a19e1ff92f09828b731877e}{EndParticleEffect} () const 
+\begin{DoxyCompactList}\small\item\em Get a ConstParticleEffectIterator to one past the last ParticleEffect$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_aa58ecf1d7d283a576509b71133064a27}{WorldNodeIterator} \hyperlink{classMezzanine_1_1SceneManager_a659a0804a38a84627b3d8bec1021e6e3}{EndWorldNode} ()
+\begin{DoxyCompactList}\small\item\em Get a WorldNodeIterator to one past the last WorldNode$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a39bddd192e396e2e7cf92bca33b4d03c}{ConstWorldNodeIterator} \hyperlink{classMezzanine_1_1SceneManager_a603612da0ee539bb489184c2895431d8}{EndWorldNode} () const 
+\begin{DoxyCompactList}\small\item\em Get a ConstWorldNodeIterator to one past the last WorldNode$\ast$. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1SceneManager_ab23edaf46108b6cd00e64d4338bfc993}{GetAmbientLight} () const 
+\begin{DoxyCompactList}\small\item\em Retrieve the level of the ambient light. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Entity}{Entity} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a7701c34c00ff4de64e81249953178003}{GetEntity} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name) const 
+\begin{DoxyCompactList}\small\item\em Gets an already created entity by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Entity}{Entity} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a9ac227854187f7c3e6ecd5acd171888d}{GetEntity} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets an already created entity by index. \item\end{DoxyCompactList}\item 
+Ogre::SceneManager $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a3156d3ec1b514e295368bfa4b94d4adc}{GetGraphicsWorldPointer} () const 
+\begin{DoxyCompactList}\small\item\em Gets the internal Ogre Scene Manager pointer. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Light}{Light} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_ad28337e68dac694721cbb798dedd151f}{GetLight} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name) const 
+\begin{DoxyCompactList}\small\item\em Gets an already created light by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Light}{Light} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a38b93841cb86bd2cb9cf4b7431946f8e}{GetLight} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets an already created light by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1SceneManager_ae28b426f75094bad85a2e4c737e2719f}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a8bc6cd34431d1059d3e30fa20ec3c94f}{GetNode} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets an already created node by index. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a35fb2ab086d5cce5c7554d27e4d5a800}{GetNode} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name) const 
+\begin{DoxyCompactList}\small\item\em Gets an already created node by name. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1SceneManager_a409f664d4383b33700cba40f7ab99bbb}{GetNumEntities} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of entities created and stored in this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1SceneManager_aa1cafdcd750fda2452db42cb3ddf365c}{GetNumLights} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of lights created and stored in this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1SceneManager_ae78bda0af2b0f11f32d283d5cf83086f}{GetNumNodes} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of nodes created and stored in this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1SceneManager_a4ad0850722dd634dddf4c00d2810be49}{GetNumOrbitNodes} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of orbit type nodes created and stored in this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1SceneManager_a730f48b359f0028d7db491facd95d95d}{GetNumParticleEffects} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of particle effects created and stored in this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1SceneManager_a54c1f5986486dc64e18475f84f49f9f0}{GetNumStandNodes} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of stand type nodes created and stored in this manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ParticleEffect}{ParticleEffect} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a2e23ffc9c81b105ebf476e81dbcde74d}{GetParticleEffect} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index) const 
+\begin{DoxyCompactList}\small\item\em Gets an already created particle effect by index. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ParticleEffect}{ParticleEffect} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a3a6f2b9e9b442fdee17fd4d934d08d85}{GetParticleEffect} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name) const 
+\begin{DoxyCompactList}\small\item\em Gets an already created particle effect by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1internal_1_1SceneManagerData}{internal::SceneManagerData} $\ast$ \hyperlink{classMezzanine_1_1SceneManager_a1acfb4dbc4005a3bd3f673534b6edec8}{GetRawInternalDataPointer} () const 
+\begin{DoxyCompactList}\small\item\em Gets the raw internal internal data. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6}{SceneShadowTechnique} \hyperlink{classMezzanine_1_1SceneManager_a87b4d1dabaf1acffc55b95609d14817e}{GetSceneShadowTechnique} () const 
+\begin{DoxyCompactList}\small\item\em Gets the currently set shadow technique. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1SceneManager_aeaba5d32f77249821ec4ec85cecb1522}{GetShadowColour} () const 
+\begin{DoxyCompactList}\small\item\em Gets the colour being used when casting shadows. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1SceneManager_a244de596b02c103c4b2cb2417bd8fdbb}{GetShadowFarDistance} () const 
+\begin{DoxyCompactList}\small\item\em Gets the maximum distance from the camera that shadows will be visible. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1SceneManager_aa863b17f316b6b29592b4be50136b543}{GetShadowTextureCount} () const 
+\begin{DoxyCompactList}\small\item\em Gets the currently set number of textures being used to make texture shadows. \item\end{DoxyCompactList}\item 
+unsigned short \hyperlink{classMezzanine_1_1SceneManager_aece91693b0d176d0c6ec80f3384ee834}{GetShadowTextureSize} () const 
+\begin{DoxyCompactList}\small\item\em Retrieve the size of textures. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ManagerBase_a08cecf5169cad3e82be81a3a159b0b6e}{ManagerBase::ManagerTypeName} \hyperlink{classMezzanine_1_1SceneManager_ad10c4317af4a2c6fbbfc151e8c609570}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em Gets the type of manager that this manager is. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a8a3b5cb55a06669d0fe64510c1b1a854}{
+void \hyperlink{classMezzanine_1_1SceneManager_a8a3b5cb55a06669d0fe64510c1b1a854}{Initialize} ()}
+\label{classMezzanine_1_1SceneManager_a8a3b5cb55a06669d0fe64510c1b1a854}
+
+\begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a5f26c1c9b6714b48ad486e289eca16d0}{SceneManager} (\hyperlink{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274}{SceneManager::SceneManagerType} ManagerType)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_ae4b889a919e490edcc3a7d0c32135a82}{SetAmbientLight} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Red=1.0, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Green=1.0, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Blue=1.0, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Alpha=1.0)
+\begin{DoxyCompactList}\small\item\em Sets the ambient light for the scene. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_a887c8fb632f4e64b5aec59900ec545aa}{SetAmbientLight} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&LightColor)
+\begin{DoxyCompactList}\small\item\em Sets the ambient light for the scene, in a single value. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_ae487633b59779be0bd63de98c4656f6d}{SetSceneShadowTechnique} (\hyperlink{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6}{SceneShadowTechnique} Shadows)
+\begin{DoxyCompactList}\small\item\em Sets the type of shadows to be used when rendering the scene. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_a8bc4a68f885b85a3a023d632d932de65}{SetShadowColour} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&ShadowColour)
+\begin{DoxyCompactList}\small\item\em Sets the colour to be used when casting shadows. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_a79b5c4f2edd3301134a6a2513b4deaa1}{SetShadowFarDistance} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&FarDist)
+\begin{DoxyCompactList}\small\item\em Sets the maximum distance from the camera that shadows will be visible. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_a9d959f0128e2aa14aeb9d425cd9631d2}{SetShadowTextureCount} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Count)
+\begin{DoxyCompactList}\small\item\em Sets the number of textures to be alloted for creating shadows. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1SceneManager_a303b871aa1475605d2711239d4d088ac}{SetShadowTextureSize} (unsigned short Size)
+\begin{DoxyCompactList}\small\item\em Sets the size of all texture based shadows. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470e}{SkyMethod} \hyperlink{classMezzanine_1_1SceneManager_a53459adabe43b627fae6c1cdad5094f6}{WhichSky} () const 
+\begin{DoxyCompactList}\small\item\em get the kind of sy in use \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1SceneManager_a8becb78de62a9e5c66c213066e7a421b}{$\sim$SceneManager} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1SceneManager_afd99b7352531d06ff6ec3784ab0c3532}{
+std::vector$<$ \hyperlink{classMezzanine_1_1Entity}{Entity} $\ast$ $>$ \hyperlink{classMezzanine_1_1SceneManager_afd99b7352531d06ff6ec3784ab0c3532}{Entities}}
+\label{classMezzanine_1_1SceneManager_afd99b7352531d06ff6ec3784ab0c3532}
+
+\begin{DoxyCompactList}\small\item\em Vector storing all the entities in use by this class. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_ae6617e5a9daa666e657f01ce25a8d1ec}{
+std::vector$<$ \hyperlink{classMezzanine_1_1Light}{Light} $\ast$ $>$ \hyperlink{classMezzanine_1_1SceneManager_ae6617e5a9daa666e657f01ce25a8d1ec}{Lights}}
+\label{classMezzanine_1_1SceneManager_ae6617e5a9daa666e657f01ce25a8d1ec}
+
+\begin{DoxyCompactList}\small\item\em Vector storing all the lights in use by this class. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_af30c9b895cf2c991892d71aa481a82a1}{
+std::vector$<$ \hyperlink{classMezzanine_1_1ParticleEffect}{ParticleEffect} $\ast$ $>$ \hyperlink{classMezzanine_1_1SceneManager_af30c9b895cf2c991892d71aa481a82a1}{Particles}}
+\label{classMezzanine_1_1SceneManager_af30c9b895cf2c991892d71aa481a82a1}
+
+\begin{DoxyCompactList}\small\item\em Vector storing all the particle effects in use by this class. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SceneManager_a0bbe199bc6b6e41d23428712dd3a3d23}{
+std::vector$<$ \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ $>$ \hyperlink{classMezzanine_1_1SceneManager_a0bbe199bc6b6e41d23428712dd3a3d23}{WorldNodes}}
+\label{classMezzanine_1_1SceneManager_a0bbe199bc6b6e41d23428712dd3a3d23}
+
+\begin{DoxyCompactList}\small\item\em Vector storing all the nodes in use by this class. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class contains utilities and functions to allow the manipulation of the Graphical scene, rather then the physics inside, or the object inside. This class contains functions that allow the manipulation of lighting, skyboxes, internal scenemanager types, and more. 
+
+Definition at line 77 of file scenemanager.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SceneManagerType@{SceneManagerType}}
+\index{SceneManagerType@{SceneManagerType}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SceneManagerType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::SceneManager::SceneManagerType}}\hfill}
+\label{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274}
+
+
+Needs to be documented. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{Generic@{Generic}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!Generic@{Generic}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a6cd584c01715ad16c076728aea716607}{
+Generic}
+\label{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a6cd584c01715ad16c076728aea716607}
+}]Documentation Required. \index{Exterior@{Exterior}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!Exterior@{Exterior}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a3cc51919e031a43bf4588dac5b693d0e}{
+Exterior}
+\label{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a3cc51919e031a43bf4588dac5b693d0e}
+}]Documentation Required. \index{ExteriorRealFar@{ExteriorRealFar}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!ExteriorRealFar@{ExteriorRealFar}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a22b864e95238f8719579e4112b99e349}{
+ExteriorRealFar}
+\label{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a22b864e95238f8719579e4112b99e349}
+}]Documentation Required. \index{Interior@{Interior}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!Interior@{Interior}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a1cd5d84d522f7a4692d8c524ace547fe}{
+Interior}
+\label{classMezzanine_1_1SceneManager_ad6e20c08b97a230314abda3e5826f274a1cd5d84d522f7a4692d8c524ace547fe}
+}]Documentation Required. \end{description}
+\end{Desc}
+
+
+
+Definition at line 81 of file scenemanager.h.
+
+\hypertarget{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SceneShadowTechnique@{SceneShadowTechnique}}
+\index{SceneShadowTechnique@{SceneShadowTechnique}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SceneShadowTechnique}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::SceneManager::SceneShadowTechnique}}\hfill}
+\label{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6}
+
+
+needs to be documented 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{SST\_\-None@{SST\_\-None}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SST\_\-None@{SST\_\-None}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6aeedc28307131c43b9ae0bff12c8b1cda}{
+SST\_\-None}
+\label{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6aeedc28307131c43b9ae0bff12c8b1cda}
+}]No shadows. \index{SST\_\-Stencil\_\-Modulative@{SST\_\-Stencil\_\-Modulative}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SST\_\-Stencil\_\-Modulative@{SST\_\-Stencil\_\-Modulative}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6a616375ae458dbd612ff9745895d7e1f1}{
+SST\_\-Stencil\_\-Modulative}
+\label{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6a616375ae458dbd612ff9745895d7e1f1}
+}]Stencil shadow technique which renders all shadow volumes as a modulation after all the non-\/transparent areas have been rendered. \index{SST\_\-Stencil\_\-Additive@{SST\_\-Stencil\_\-Additive}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SST\_\-Stencil\_\-Additive@{SST\_\-Stencil\_\-Additive}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6a216c1b4f5e8b891ae9e74abf48790ec8}{
+SST\_\-Stencil\_\-Additive}
+\label{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6a216c1b4f5e8b891ae9e74abf48790ec8}
+}]Stencil shadow technique which renders each light as a separate additive pass to the scene. \index{SST\_\-Texture\_\-Modulative@{SST\_\-Texture\_\-Modulative}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SST\_\-Texture\_\-Modulative@{SST\_\-Texture\_\-Modulative}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6acfa2f5f4596184169e9a6495273fe6c7}{
+SST\_\-Texture\_\-Modulative}
+\label{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6acfa2f5f4596184169e9a6495273fe6c7}
+}]Texture-\/based shadow technique which involves a monochrome render-\/to-\/texture of the shadow caster and a projection of that texture onto the shadow receivers as a modulative pass. \index{SST\_\-Texture\_\-Additive@{SST\_\-Texture\_\-Additive}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SST\_\-Texture\_\-Additive@{SST\_\-Texture\_\-Additive}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6a966cfba4dd29dd9248c6283ec37e3d8f}{
+SST\_\-Texture\_\-Additive}
+\label{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6a966cfba4dd29dd9248c6283ec37e3d8f}
+}]Texture-\/based shadow technique which involves a render-\/to-\/texture of the shadow caster and a projection of that texture onto the shadow receivers, built up per light as additive passes. \index{SST\_\-Texture\_\-Additive\_\-Integrated@{SST\_\-Texture\_\-Additive\_\-Integrated}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SST\_\-Texture\_\-Additive\_\-Integrated@{SST\_\-Texture\_\-Additive\_\-Integrated}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6ae673066d535f340debfa4a6210d6b0ce}{
+SST\_\-Texture\_\-Additive\_\-Integrated}
+\label{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6ae673066d535f340debfa4a6210d6b0ce}
+}]Texture-\/based shadow technique which involves a render-\/to-\/texture of the shadow caster and a projection of that texture on to the shadow receivers, with the usage of those shadow textures completely controlled by the materials of the receivers. \index{SST\_\-Texture\_\-Modulative\_\-Integrated@{SST\_\-Texture\_\-Modulative\_\-Integrated}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SST\_\-Texture\_\-Modulative\_\-Integrated@{SST\_\-Texture\_\-Modulative\_\-Integrated}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6ab4ff7a97c53ca46f7628541c9e39309c}{
+SST\_\-Texture\_\-Modulative\_\-Integrated}
+\label{classMezzanine_1_1SceneManager_a8149cd1ec188e0d57935d71c6a7134c6ab4ff7a97c53ca46f7628541c9e39309c}
+}]Texture-\/based shadow technique which involves a render-\/to-\/texture of the shadow caster and a projection of that texture on to the shadow receivers, with the usage of those shadow textures completely controlled by the materials of the receivers. \end{description}
+\end{Desc}
+
+
+
+Definition at line 90 of file scenemanager.h.
+
+\hypertarget{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470e}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SkyMethod@{SkyMethod}}
+\index{SkyMethod@{SkyMethod}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SkyMethod}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::SceneManager::SkyMethod}}\hfill}
+\label{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470e}
+
+
+Used to help identify which method is used to draw the sky, if any. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{SkyNone@{SkyNone}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SkyNone@{SkyNone}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470ead62543178728c0bcd4e92d463860e571}{
+SkyNone}
+\label{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470ead62543178728c0bcd4e92d463860e571}
+}]No Sky rendering at all. \index{SkyPlane@{SkyPlane}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SkyPlane@{SkyPlane}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470ea95a4503b6f35da0286b384931cb484b8}{
+SkyPlane}
+\label{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470ea95a4503b6f35da0286b384931cb484b8}
+}]A flat plane use to draw the sky. \index{SkyBox@{SkyBox}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SkyBox@{SkyBox}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470ea4c80b5621b7b8c3decfc687561b8adf4}{
+SkyBox}
+\label{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470ea4c80b5621b7b8c3decfc687561b8adf4}
+}]A box using 5 Rectangles to draw the sky. \index{SkyDome@{SkyDome}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SkyDome@{SkyDome}}\item[{\em 
+\hypertarget{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470eaa0c0e7a37ae3ab8ff27a9b7012eaf7fe}{
+SkyDome}
+\label{classMezzanine_1_1SceneManager_a80fac0c0b67191cb5450bddde74b470eaa0c0e7a37ae3ab8ff27a9b7012eaf7fe}
+}]A multifaceted hemispherical dome, the most sophisticated sky background. \end{description}
+\end{Desc}
+
+
+
+Definition at line 102 of file scenemanager.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1SceneManager_a5f26c1c9b6714b48ad486e289eca16d0}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SceneManager@{SceneManager}}
+\index{SceneManager@{SceneManager}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SceneManager}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::SceneManager::SceneManager (
+\begin{DoxyParamCaption}
+\item[{{\bf SceneManager::SceneManagerType}}]{ManagerType}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a5f26c1c9b6714b48ad486e289eca16d0}
+
+
+Class Constructor. 
+
+Standard class initialization constructor. 
+\begin{DoxyParams}{Parameters}
+{\em ManagerType} & Type of Scene Manager to be created.\\
+\hline
+\end{DoxyParams}
+Construction 
+
+Definition at line 180 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a8becb78de62a9e5c66c213066e7a421b}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!$\sim$SceneManager@{$\sim$SceneManager}}
+\index{$\sim$SceneManager@{$\sim$SceneManager}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{$\sim$SceneManager}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::SceneManager::$\sim$SceneManager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a8becb78de62a9e5c66c213066e7a421b}
+
+
+Class Destructor. 
+
+The class destructor. 
+
+Definition at line 207 of file scenemanager.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1SceneManager_abc6dd9387dac2ae2aef9502d01d1ec35}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!BeginEntity@{BeginEntity}}
+\index{BeginEntity@{BeginEntity}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{BeginEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::EntityIterator} Mezzanine::SceneManager::BeginEntity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_abc6dd9387dac2ae2aef9502d01d1ec35}
+
+
+Get an EntityIterator to the first Entity$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+An EntityIterator to the first Entity$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 562 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a016bbb0dfd8a03e838d13131f298499f}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!BeginEntity@{BeginEntity}}
+\index{BeginEntity@{BeginEntity}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{BeginEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ConstEntityIterator} Mezzanine::SceneManager::BeginEntity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a016bbb0dfd8a03e838d13131f298499f}
+
+
+Get a ConstEntityIterator to the first Entity$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ConstEntityIterator to the first Entity$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 568 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a1571d4ee6e74d8f1be76c99281740221}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!BeginLight@{BeginLight}}
+\index{BeginLight@{BeginLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{BeginLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::LightIterator} Mezzanine::SceneManager::BeginLight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a1571d4ee6e74d8f1be76c99281740221}
+
+
+Get a LightIterator to the first Light$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A LightIterator to the first Light$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 426 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a5a50580c0389d0881dc8c1fb787370b2}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!BeginLight@{BeginLight}}
+\index{BeginLight@{BeginLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{BeginLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ConstLightIterator} Mezzanine::SceneManager::BeginLight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a5a50580c0389d0881dc8c1fb787370b2}
+
+
+Get a ConstLightIterator to the first Light$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ConstLightIterator to the first Light$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 432 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a97940bd86436528fdbdad5992bad4e0c}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!BeginParticleEffect@{BeginParticleEffect}}
+\index{BeginParticleEffect@{BeginParticleEffect}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{BeginParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ParticleEffectIterator} Mezzanine::SceneManager::BeginParticleEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a97940bd86436528fdbdad5992bad4e0c}
+
+
+Get a ParticleEffectIterator to the first ParticleEffect$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ParticleEffectIterator to the first ParticleEffect$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 494 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ac9e454fc20bdb1e1f118754994ff39e0}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!BeginParticleEffect@{BeginParticleEffect}}
+\index{BeginParticleEffect@{BeginParticleEffect}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{BeginParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ConstParticleEffectIterator} Mezzanine::SceneManager::BeginParticleEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_ac9e454fc20bdb1e1f118754994ff39e0}
+
+
+Get a ConstParticleEffectIterator to the first ParticleEffect$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ConstParticleEffectIterator to the first ParticleEffect$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 500 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a0d374c51309d155a1e49fd033e863111}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!BeginWorldNode@{BeginWorldNode}}
+\index{BeginWorldNode@{BeginWorldNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{BeginWorldNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ConstWorldNodeIterator} Mezzanine::SceneManager::BeginWorldNode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a0d374c51309d155a1e49fd033e863111}
+
+
+Get a ConstWorldNodeIterator to the first WorldNode$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ConstWorldNodeIterator to the first WorldNode$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 702 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a6b3844dcb5e3e4df4e50b47fb6158960}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!BeginWorldNode@{BeginWorldNode}}
+\index{BeginWorldNode@{BeginWorldNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{BeginWorldNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::WorldNodeIterator} Mezzanine::SceneManager::BeginWorldNode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a6b3844dcb5e3e4df4e50b47fb6158960}
+
+
+Get a WorldNodeIterator to the first WorldNode$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A WorldNodeIterator to the first WorldNode$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 696 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a3bb0d7b70e9a01090602c9caa005325a}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!CreateEntity@{CreateEntity}}
+\index{CreateEntity@{CreateEntity}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{CreateEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Entity} $\ast$ Mezzanine::SceneManager::CreateEntity (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{EntName, }
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{Group}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a3bb0d7b70e9a01090602c9caa005325a}
+
+
+Creates an entity. 
+
+Entities are objects that have zero physical representation, they are essentially meshes in world space. 
+\begin{DoxyParams}{Parameters}
+{\em EntName} & The name to be given to this entity. \\
+\hline
+{\em MeshName} & The name of the mesh to construct this entity from. \\
+\hline
+{\em Group} & The resource group to find the mesh. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the entity class which was created by this function. 
+\end{DoxyReturn}
+
+
+Definition at line 509 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a7d200b747b15bba75833244a0bc8c25a}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!CreateFreeNode@{CreateFreeNode}}
+\index{CreateFreeNode@{CreateFreeNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{CreateFreeNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ Mezzanine::SceneManager::CreateFreeNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{{\bf Vector3}}]{LookAt, }
+\item[{{\bf Vector3}}]{Location}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a7d200b747b15bba75833244a0bc8c25a}
+
+
+Creates a freely moveable node that will look at a location. 
+
+This will create a node that can be freely moved. When created it will look at one location that you specify. This node can then have lights, particle effects or other attachables attached to it. 
+\begin{DoxyParams}{Parameters}
+{\em LookAt} & The location you want the node to look at. Automatically handles orientation. \\
+\hline
+{\em Location} & The location of the node itself. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 607 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a33a91afe11a91a778d9b0139a06f3d0a}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!CreateLight@{CreateLight}}
+\index{CreateLight@{CreateLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{CreateLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light} $\ast$ Mezzanine::SceneManager::CreateLight (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a33a91afe11a91a778d9b0139a06f3d0a}
+
+
+Creates a dynamic light. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to be given to this light. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the light class which was created by this function. 
+\end{DoxyReturn}
+
+
+Definition at line 373 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a227c6534ea2c4fb51a3174635e09eb58}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!CreateOrbitingNode@{CreateOrbitingNode}}
+\index{CreateOrbitingNode@{CreateOrbitingNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{CreateOrbitingNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ Mezzanine::SceneManager::CreateOrbitingNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{{\bf Vector3}}]{Target, }
+\item[{{\bf Vector3}}]{RelativeLoc, }
+\item[{bool}]{AutoTrack}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a227c6534ea2c4fb51a3174635e09eb58}
+
+
+Creates a node that will orbit around a point. 
+
+This will create 2 nodes in the scene, the first being the point in the world you want to orbit the second node around. The second being the node that does the orbiting. You can then attach a light, particle effect, or ribbon trail to the orbiting node . 
+\begin{DoxyParams}{Parameters}
+{\em Target} & The location of the first node which you will be orbiting around. \\
+\hline
+{\em RelativeLoc} & The location of the node that will be in orbit relative to the first node. Assume the first node is at Origin (0,0,0). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 577 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a7c7e0b3f993c531bcdd9a6dd9135178d}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!CreateParticleEffect@{CreateParticleEffect}}
+\index{CreateParticleEffect@{CreateParticleEffect}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{CreateParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParticleEffect} $\ast$ Mezzanine::SceneManager::CreateParticleEffect (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{Template}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a7c7e0b3f993c531bcdd9a6dd9135178d}
+
+
+Creates a particle effect. 
+
+Particle effects are useful when trying to create visual effects for rain, smoke, explosions, fireworks, etc.. 
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name to be given to this particle effect. \\
+\hline
+{\em Template} & The particle script (from a .particle file) to base this particle effect on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the particle effect class which was created by this function. 
+\end{DoxyReturn}
+
+
+Definition at line 441 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_aaa3c4b8d15aa74c767a21d725de25ec7}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!CreateSkyBox@{CreateSkyBox}}
+\index{CreateSkyBox@{CreateSkyBox}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{CreateSkyBox}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::CreateSkyBox (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Material, }
+\item[{const {\bf String} \&}]{Group, }
+\item[{{\bf Real}}]{Distance, }
+\item[{bool}]{DrawFirst = {\ttfamily true}, }
+\item[{{\bf Quaternion}}]{Orientation = {\ttfamily {\bf Quaternion}()}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_aaa3c4b8d15aa74c767a21d725de25ec7}
+
+
+Creates a skybox for use in making a sky. 
+
+Like skyplanes, only one can exist per scene. Unlike skyplanes, skyboxes will be applied individually to each camera in the scene. The skybox will move with the camera, so as a result the camera will never be able to \char`\"{}touch\char`\"{} the sky. Skyboxes are more performance intensive then skyplanes. 
+\begin{DoxyParams}{Parameters}
+{\em Material} & The name of the material to be applied to the skybox. Note: This is not referring to the filename, but the specific material script within the file. \\
+\hline
+{\em Group} & The resource group where the material can be found. \\
+\hline
+{\em Distance} & The distance from the camera where the skybox is found. This is in world units. \\
+\hline
+{\em DrawFirst} & Whether or not the skybox should be the first thing rendered in the scene. Usually you will want this to be true as it'll ensure all other objects are rendered on top of it. \\
+\hline
+{\em Orientation} & Optional quaternion to rotate the orientation of the skybox. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 320 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a5862eefa87c9fcda9fdba7fa69efd6cf}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!CreateSkyDome@{CreateSkyDome}}
+\index{CreateSkyDome@{CreateSkyDome}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{CreateSkyDome}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::CreateSkyDome (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Material, }
+\item[{const {\bf String} \&}]{Group, }
+\item[{{\bf Real}}]{Distance, }
+\item[{{\bf Real}}]{Curvature = {\ttfamily 10.0}, }
+\item[{{\bf Real}}]{Tiling = {\ttfamily 8.0}, }
+\item[{bool}]{DrawFirst = {\ttfamily true}, }
+\item[{{\bf Quaternion}}]{Orientation = {\ttfamily {\bf Quaternion}()}, }
+\item[{int}]{XSegments = {\ttfamily 16}, }
+\item[{int}]{YSegments = {\ttfamily 16}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a5862eefa87c9fcda9fdba7fa69efd6cf}
+
+
+Creates a skydome for use in making a sky. 
+
+Like the other two types of sky's, their can be only one skydome per scene. Skydomes much like skyboxes, except they have 5 sides(the bottom side is missing), and they bow each of the sides to make the dome. In all other respects they are the same. 
+\begin{DoxyParams}{Parameters}
+{\em Material} & The name of the material to be applied to the skydome. Note: This is not referring to the filename, but the specific material script within the file. \\
+\hline
+{\em Group} & The resource group where the material can be found. \\
+\hline
+{\em Distance} & The distance from the camera where the skydome is found. This is in world units. \\
+\hline
+{\em Curvature} & Curvature of the dome. Usually you want this value to be between 2 and 65. \\
+\hline
+{\em Tiling} & The number of times to tile the texture or textures listed in the material script across the skydome. \\
+\hline
+{\em DrawFirst} & Whether or not the skybox should be the first thing rendered in the scene. Usually you will want this to be true as it'll ensure all other objects are rendered on top of it. \\
+\hline
+{\em Orientation} & Optional quaternion to rotate the orientation of the skydome. \\
+\hline
+{\em XSegments} & The number of segments, or boxes, the skydome consists of on the dome's X axis. \\
+\hline
+{\em YSegments} & The number of segments, or boxes, the skydome consists of on the dome's Y axis. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 332 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a6cea438ed9b13cf613b07e2dd6467c4e}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!CreateSkyPlane@{CreateSkyPlane}}
+\index{CreateSkyPlane@{CreateSkyPlane}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{CreateSkyPlane}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::CreateSkyPlane (
+\begin{DoxyParamCaption}
+\item[{const {\bf Plane} \&}]{SkyPlane\_\-, }
+\item[{const {\bf String} \&}]{Material, }
+\item[{const {\bf String} \&}]{Group, }
+\item[{{\bf Real}}]{Scale = {\ttfamily 1000.0}, }
+\item[{{\bf Real}}]{Tiling = {\ttfamily 10.0}, }
+\item[{bool}]{DrawFirst = {\ttfamily true}, }
+\item[{{\bf Real}}]{Bow = {\ttfamily 0}, }
+\item[{int}]{XSegments = {\ttfamily 1}, }
+\item[{int}]{YSegments = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a6cea438ed9b13cf613b07e2dd6467c4e}
+
+
+Creates a skyplane for use in making a sky. 
+
+Only one skyplane can exist in a scene. Making a new one will remove the old one. Skyplanes are flat planes that face in one direction. They are ideal for levels with surrounding mountains or anything where the horizon is not visable. 
+\begin{DoxyParams}{Parameters}
+{\em SkyPlane} & The plane that will become the sky. \\
+\hline
+{\em Material} & The name of the material to be applied to the skyplane. Note: This is not referring to the filename, but the specific material script within the file. \\
+\hline
+{\em Group} & The resource group where the material can be found. \\
+\hline
+{\em Scale} & The scaling to be applied to the skyplane. This may need to be tweaked based on how high you set the plane off the ground. \\
+\hline
+{\em Tiling} & The number of times to tile the texture or textures listed in the material script across the skyplane. \\
+\hline
+{\em DrawFirst} & Whether or not the skyplane should be the first thing rendered in the scene. Usually you will want this to be true as it'll ensure all other objects are rendered on top of it. \\
+\hline
+{\em Bow} & This will add curvature to the skyplane if set above zero. Note: Use small numbers. A bow of 1.5 should be noticable. \\
+\hline
+{\em XSegments} & The number of segments, or boxes, the skyplane consists of on the planes X axis. This is usful when giving the skyplane a bow. By default the skyplane is just one massive box. \\
+\hline
+{\em YSegments} & The number of segments, or boxes, the skyplane consists of on the planes Y axis. This is usful when giving the skyplane a bow. By default the skyplane is just one massive box. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 308 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a9c2288d7b82f59fad7213f9b21c1b4b6}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!CreateStandNode@{CreateStandNode}}
+\index{CreateStandNode@{CreateStandNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{CreateStandNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ Mezzanine::SceneManager::CreateStandNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{{\bf Vector3}}]{LookAt, }
+\item[{{\bf Vector3}}]{Location}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a9c2288d7b82f59fad7213f9b21c1b4b6}
+
+
+Creates a stationary node that will look at a location. 
+
+This will create a node that doesn't move, and will look at one location that you specify. This node can then have lights, particle effects, or ribbon trails attached to it. 
+\begin{DoxyParams}{Parameters}
+{\em LookAt} & The location you want the node to look at. Automatically handles orientation. \\
+\hline
+{\em Location} & The location of the node itself. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 595 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a87d26a862306dcf859ff0dee2e8a6834}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!DestroyEntity@{DestroyEntity}}
+\index{DestroyEntity@{DestroyEntity}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{DestroyEntity}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::DestroyEntity (
+\begin{DoxyParamCaption}
+\item[{{\bf Entity} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a87d26a862306dcf859ff0dee2e8a6834}
+
+
+Deletes an entity and removes all trace of it from the manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & The entity to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 540 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ad05338bb291dc8535b8f691378682851}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!DestroyLight@{DestroyLight}}
+\index{DestroyLight@{DestroyLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{DestroyLight}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::DestroyLight (
+\begin{DoxyParamCaption}
+\item[{{\bf Light} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_ad05338bb291dc8535b8f691378682851}
+
+
+Deletes a light and removes all trace of it from the manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & The light to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 404 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ab6123477f052d34a357db85a8284c8be}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!DestroyNode@{DestroyNode}}
+\index{DestroyNode@{DestroyNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{DestroyNode}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::DestroyNode (
+\begin{DoxyParamCaption}
+\item[{{\bf WorldNode} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_ab6123477f052d34a357db85a8284c8be}
+
+
+Deletes a node and removes all trace of it from the manager. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000023}{Todo}]TODO: create SceneManager::GetNumFreeNodes \end{Desc}
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & The node to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 674 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ad91db10c13517ff6a31be64739ca2f27}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!DestroyParticleEffect@{DestroyParticleEffect}}
+\index{DestroyParticleEffect@{DestroyParticleEffect}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{DestroyParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::DestroyParticleEffect (
+\begin{DoxyParamCaption}
+\item[{{\bf ParticleEffect} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_ad91db10c13517ff6a31be64739ca2f27}
+
+
+Deletes a particle effect and removes all trace of it from the manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeDestroyed} & The particle effect to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 472 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_afda2cf0379dbfb7ca1f53950c489cdae}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!DisableSkyBox@{DisableSkyBox}}
+\index{DisableSkyBox@{DisableSkyBox}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{DisableSkyBox}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::DisableSkyBox (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_afda2cf0379dbfb7ca1f53950c489cdae}
+
+
+Disables the currently active skybox. 
+
+Using this function effectively deletes the skybox, so you will have to provide a new set of parameters if you wish to re-\/create the skybox. 
+
+Definition at line 327 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a505c371bfe64cd5a07cecd6ece4c8ed8}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!DisableSkyDome@{DisableSkyDome}}
+\index{DisableSkyDome@{DisableSkyDome}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{DisableSkyDome}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::DisableSkyDome (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a505c371bfe64cd5a07cecd6ece4c8ed8}
+
+
+Disables the currently active skydome. 
+
+Using this function effectively deletes the skydome, so you will have to provide a new set of parameters if you wish to re-\/create the skydome. 
+
+Definition at line 340 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ac60ecdd9745803cf7d99af3a87fa6a36}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!DisableSkyPlane@{DisableSkyPlane}}
+\index{DisableSkyPlane@{DisableSkyPlane}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{DisableSkyPlane}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::DisableSkyPlane (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_ac60ecdd9745803cf7d99af3a87fa6a36}
+
+
+Disables the currently active skyplane. 
+
+Using this function effectively deletes the skyplane, so you will have to provide a new set of parameters if you wish to re-\/create the skyplane. 
+
+Definition at line 315 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a9e9325351566464d9009d1d6ce299f75}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!EndEntity@{EndEntity}}
+\index{EndEntity@{EndEntity}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{EndEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::EntityIterator} Mezzanine::SceneManager::EndEntity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a9e9325351566464d9009d1d6ce299f75}
+
+
+Get a EntityIterator to one past the last Entity$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A EntityIterator to one past the last Entity$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 565 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ad7b6c9cc55e92941f51429ec3cb5f5c6}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!EndEntity@{EndEntity}}
+\index{EndEntity@{EndEntity}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{EndEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ConstEntityIterator} Mezzanine::SceneManager::EndEntity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_ad7b6c9cc55e92941f51429ec3cb5f5c6}
+
+
+Get a ConstEntityIterator to one past the last Entity$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ConstEntityIterator to one past the last Entity$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 571 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a08baa4f2d539cf1b6d54fce558858081}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!EndLight@{EndLight}}
+\index{EndLight@{EndLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{EndLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::LightIterator} Mezzanine::SceneManager::EndLight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a08baa4f2d539cf1b6d54fce558858081}
+
+
+Get a LightIterator to one past the last Light$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A LightIterator to one past the last Light$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 429 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ae51e93a3fdf6d996adc9806bb25d8ca6}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!EndLight@{EndLight}}
+\index{EndLight@{EndLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{EndLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ConstLightIterator} Mezzanine::SceneManager::EndLight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_ae51e93a3fdf6d996adc9806bb25d8ca6}
+
+
+Get a ConstLightIterator to one past the last Light$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ConstLightIterator to one past the last Light$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 435 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a9fa8eca256c321e1eaa10e935c89feb1}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!EndParticleEffect@{EndParticleEffect}}
+\index{EndParticleEffect@{EndParticleEffect}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{EndParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ParticleEffectIterator} Mezzanine::SceneManager::EndParticleEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a9fa8eca256c321e1eaa10e935c89feb1}
+
+
+Get a ParticleEffectIterator to one past the last ParticleEffect$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ParticleEffectIterator to one past the last ParticleEffect$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 497 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a27b7aab28a19e1ff92f09828b731877e}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!EndParticleEffect@{EndParticleEffect}}
+\index{EndParticleEffect@{EndParticleEffect}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{EndParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ConstParticleEffectIterator} Mezzanine::SceneManager::EndParticleEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a27b7aab28a19e1ff92f09828b731877e}
+
+
+Get a ConstParticleEffectIterator to one past the last ParticleEffect$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ConstParticleEffectIterator to one past the last ParticleEffect$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 503 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a603612da0ee539bb489184c2895431d8}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!EndWorldNode@{EndWorldNode}}
+\index{EndWorldNode@{EndWorldNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{EndWorldNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::ConstWorldNodeIterator} Mezzanine::SceneManager::EndWorldNode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a603612da0ee539bb489184c2895431d8}
+
+
+Get a ConstWorldNodeIterator to one past the last WorldNode$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A ConstWorldNodeIterator to one past the last WorldNode$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 705 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a659a0804a38a84627b3d8bec1021e6e3}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!EndWorldNode@{EndWorldNode}}
+\index{EndWorldNode@{EndWorldNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{EndWorldNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::WorldNodeIterator} Mezzanine::SceneManager::EndWorldNode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a659a0804a38a84627b3d8bec1021e6e3}
+
+
+Get a WorldNodeIterator to one past the last WorldNode$\ast$. 
+
+\begin{DoxyReturn}{Returns}
+A WorldNodeIterator to one past the last WorldNode$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 699 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ab23edaf46108b6cd00e64d4338bfc993}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetAmbientLight@{GetAmbientLight}}
+\index{GetAmbientLight@{GetAmbientLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetAmbientLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::SceneManager::GetAmbientLight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_ab23edaf46108b6cd00e64d4338bfc993}
+
+
+Retrieve the level of the ambient light. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} with the ambient light levels 
+\end{DoxyReturn}
+
+
+Definition at line 367 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a7701c34c00ff4de64e81249953178003}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetEntity@{GetEntity}}
+\index{GetEntity@{GetEntity}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Entity} $\ast$ Mezzanine::SceneManager::GetEntity (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a7701c34c00ff4de64e81249953178003}
+
+
+Gets an already created entity by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the entity of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 516 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a9ac227854187f7c3e6ecd5acd171888d}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetEntity@{GetEntity}}
+\index{GetEntity@{GetEntity}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Entity} $\ast$ Mezzanine::SceneManager::GetEntity (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a9ac227854187f7c3e6ecd5acd171888d}
+
+
+Gets an already created entity by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the entity at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 530 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a3156d3ec1b514e295368bfa4b94d4adc}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetGraphicsWorldPointer@{GetGraphicsWorldPointer}}
+\index{GetGraphicsWorldPointer@{GetGraphicsWorldPointer}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetGraphicsWorldPointer}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::SceneManager $\ast$ Mezzanine::SceneManager::GetGraphicsWorldPointer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a3156d3ec1b514e295368bfa4b94d4adc}
+
+
+Gets the internal Ogre Scene Manager pointer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the ogre Scene Manager. 
+\end{DoxyReturn}
+
+
+Definition at line 724 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ad28337e68dac694721cbb798dedd151f}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetLight@{GetLight}}
+\index{GetLight@{GetLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light} $\ast$ Mezzanine::SceneManager::GetLight (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_ad28337e68dac694721cbb798dedd151f}
+
+
+Gets an already created light by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the light of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 380 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a38b93841cb86bd2cb9cf4b7431946f8e}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetLight@{GetLight}}
+\index{GetLight@{GetLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetLight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light} $\ast$ Mezzanine::SceneManager::GetLight (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a38b93841cb86bd2cb9cf4b7431946f8e}
+
+
+Gets an already created light by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the light at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 394 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ae28b426f75094bad85a2e4c737e2719f}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::SceneManager::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_ae28b426f75094bad85a2e4c737e2719f}
+
+
+Gets the name of this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns the name of this manager. 
+\end{DoxyReturn}
+
+
+Definition at line 712 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a35fb2ab086d5cce5c7554d27e4d5a800}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ Mezzanine::SceneManager::GetNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a35fb2ab086d5cce5c7554d27e4d5a800}
+
+
+Gets an already created node by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the node of the specified name, or 0 if no matching \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} could be Found.
+\end{DoxyReturn}
+This runs in Linear time 
+
+Definition at line 619 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a8bc6cd34431d1059d3e30fa20ec3c94f}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ Mezzanine::SceneManager::GetNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a8bc6cd34431d1059d3e30fa20ec3c94f}
+
+
+Gets an already created node by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the node at the specified index.
+\end{DoxyReturn}
+This runs in constant time. 
+
+Definition at line 634 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a409f664d4383b33700cba40f7ab99bbb}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetNumEntities@{GetNumEntities}}
+\index{GetNumEntities@{GetNumEntities}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetNumEntities}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::SceneManager::GetNumEntities (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a409f664d4383b33700cba40f7ab99bbb}
+
+
+Gets the number of entities created and stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of entities this manager is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 535 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_aa1cafdcd750fda2452db42cb3ddf365c}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetNumLights@{GetNumLights}}
+\index{GetNumLights@{GetNumLights}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetNumLights}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::SceneManager::GetNumLights (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_aa1cafdcd750fda2452db42cb3ddf365c}
+
+
+Gets the number of lights created and stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of lights this manager is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 399 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ae78bda0af2b0f11f32d283d5cf83086f}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetNumNodes@{GetNumNodes}}
+\index{GetNumNodes@{GetNumNodes}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetNumNodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::SceneManager::GetNumNodes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_ae78bda0af2b0f11f32d283d5cf83086f}
+
+
+Gets the number of nodes created and stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of nodes this manager is storing.
+\end{DoxyReturn}
+This runs in constant time, this data is cached constantly. 
+
+Definition at line 639 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a4ad0850722dd634dddf4c00d2810be49}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetNumOrbitNodes@{GetNumOrbitNodes}}
+\index{GetNumOrbitNodes@{GetNumOrbitNodes}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetNumOrbitNodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::SceneManager::GetNumOrbitNodes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a4ad0850722dd634dddf4c00d2810be49}
+
+
+Gets the number of orbit type nodes created and stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of orbit type nodes this manager is storing.
+\end{DoxyReturn}
+This runs in linear time, Nodes are counter every time this is called. 
+
+Definition at line 659 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a730f48b359f0028d7db491facd95d95d}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetNumParticleEffects@{GetNumParticleEffects}}
+\index{GetNumParticleEffects@{GetNumParticleEffects}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetNumParticleEffects}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::SceneManager::GetNumParticleEffects (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a730f48b359f0028d7db491facd95d95d}
+
+
+Gets the number of particle effects created and stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of particle effects this manager is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 467 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a54c1f5986486dc64e18475f84f49f9f0}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetNumStandNodes@{GetNumStandNodes}}
+\index{GetNumStandNodes@{GetNumStandNodes}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetNumStandNodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::SceneManager::GetNumStandNodes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a54c1f5986486dc64e18475f84f49f9f0}
+
+
+Gets the number of stand type nodes created and stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of stand type nodes this manager is storing.
+\end{DoxyReturn}
+This runs in linear time, Nodes are counter every time this is called. 
+
+Definition at line 644 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a3a6f2b9e9b442fdee17fd4d934d08d85}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetParticleEffect@{GetParticleEffect}}
+\index{GetParticleEffect@{GetParticleEffect}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParticleEffect} $\ast$ Mezzanine::SceneManager::GetParticleEffect (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a3a6f2b9e9b442fdee17fd4d934d08d85}
+
+
+Gets an already created particle effect by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the particle effect of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 448 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a2e23ffc9c81b105ebf476e81dbcde74d}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetParticleEffect@{GetParticleEffect}}
+\index{GetParticleEffect@{GetParticleEffect}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParticleEffect} $\ast$ Mezzanine::SceneManager::GetParticleEffect (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a2e23ffc9c81b105ebf476e81dbcde74d}
+
+
+Gets an already created particle effect by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the particle effect at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 462 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a1acfb4dbc4005a3bd3f673534b6edec8}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetRawInternalDataPointer@{GetRawInternalDataPointer}}
+\index{GetRawInternalDataPointer@{GetRawInternalDataPointer}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetRawInternalDataPointer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf internal::SceneManagerData} $\ast$ Mezzanine::SceneManager::GetRawInternalDataPointer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a1acfb4dbc4005a3bd3f673534b6edec8}
+
+
+Gets the raw internal internal data. 
+
+\begin{DoxyReturn}{Returns}
+Returns a to the raw internal data. 
+\end{DoxyReturn}
+
+
+Definition at line 727 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a87b4d1dabaf1acffc55b95609d14817e}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetSceneShadowTechnique@{GetSceneShadowTechnique}}
+\index{GetSceneShadowTechnique@{GetSceneShadowTechnique}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetSceneShadowTechnique}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::SceneShadowTechnique} Mezzanine::SceneManager::GetSceneShadowTechnique (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a87b4d1dabaf1acffc55b95609d14817e}
+
+
+Gets the currently set shadow technique. 
+
+\begin{DoxyReturn}{Returns}
+Returns a SceneShadowTechnique enum value representing the currently set shadow technique. 
+\end{DoxyReturn}
+
+
+Definition at line 247 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_aeaba5d32f77249821ec4ec85cecb1522}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetShadowColour@{GetShadowColour}}
+\index{GetShadowColour@{GetShadowColour}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetShadowColour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::SceneManager::GetShadowColour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_aeaba5d32f77249821ec4ec85cecb1522}
+
+
+Gets the colour being used when casting shadows. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} representing the colour used when casting shadows. 
+\end{DoxyReturn}
+
+
+Definition at line 299 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a244de596b02c103c4b2cb2417bd8fdbb}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetShadowFarDistance@{GetShadowFarDistance}}
+\index{GetShadowFarDistance@{GetShadowFarDistance}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetShadowFarDistance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::SceneManager::GetShadowFarDistance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a244de596b02c103c4b2cb2417bd8fdbb}
+
+
+Gets the maximum distance from the camera that shadows will be visible. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the maximum distance from the camera shadows will be rendered. 
+\end{DoxyReturn}
+
+
+Definition at line 293 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_aa863b17f316b6b29592b4be50136b543}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetShadowTextureCount@{GetShadowTextureCount}}
+\index{GetShadowTextureCount@{GetShadowTextureCount}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetShadowTextureCount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::SceneManager::GetShadowTextureCount (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_aa863b17f316b6b29592b4be50136b543}
+
+
+Gets the currently set number of textures being used to make texture shadows. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole indicating the number of textures used to make texture shadows. 
+\end{DoxyReturn}
+
+
+Definition at line 278 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_aece91693b0d176d0c6ec80f3384ee834}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetShadowTextureSize@{GetShadowTextureSize}}
+\index{GetShadowTextureSize@{GetShadowTextureSize}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetShadowTextureSize}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short Mezzanine::SceneManager::GetShadowTextureSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_aece91693b0d176d0c6ec80f3384ee834}
+
+
+Retrieve the size of textures. 
+
+\begin{DoxyReturn}{Returns}
+An unsigned short which is the size of the textures. 
+\end{DoxyReturn}
+
+
+Definition at line 287 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ad10c4317af4a2c6fbbfc151e8c609570}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} Mezzanine::SceneManager::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1SceneManager_ad10c4317af4a2c6fbbfc151e8c609570}
+
+
+Gets the type of manager that this manager is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the type of manager that this manager is. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf76973}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 721 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a887c8fb632f4e64b5aec59900ec545aa}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SetAmbientLight@{SetAmbientLight}}
+\index{SetAmbientLight@{SetAmbientLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SetAmbientLight}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::SetAmbientLight (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{LightColor}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a887c8fb632f4e64b5aec59900ec545aa}
+
+
+Sets the ambient light for the scene, in a single value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Red} & The value representing the amount of red color in the ambient light. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 362 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ae4b889a919e490edcc3a7d0c32135a82}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SetAmbientLight@{SetAmbientLight}}
+\index{SetAmbientLight@{SetAmbientLight}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SetAmbientLight}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::SetAmbientLight (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Red = {\ttfamily 1.0}, }
+\item[{{\bf Real}}]{Green = {\ttfamily 1.0}, }
+\item[{{\bf Real}}]{Blue = {\ttfamily 1.0}, }
+\item[{{\bf Real}}]{Alpha = {\ttfamily 1.0}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_ae4b889a919e490edcc3a7d0c32135a82}
+
+
+Sets the ambient light for the scene. 
+
+Not all scene's will need ambient light. Ambient light is light that hits all objects from all directions. 
+\begin{DoxyParams}{Parameters}
+{\em Red} & The value representing the amount of red color in the ambient light. \\
+\hline
+{\em Green} & The value representing the amount of green color in the ambient light. \\
+\hline
+{\em Blue} & The value representing the amount of blue color in the ambient light. \\
+\hline
+{\em Alpha} & The value representing the transparency of the color in the ambient light. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 357 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_ae487633b59779be0bd63de98c4656f6d}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SetSceneShadowTechnique@{SetSceneShadowTechnique}}
+\index{SetSceneShadowTechnique@{SetSceneShadowTechnique}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SetSceneShadowTechnique}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::SetSceneShadowTechnique (
+\begin{DoxyParamCaption}
+\item[{{\bf SceneShadowTechnique}}]{Shadows}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_ae487633b59779be0bd63de98c4656f6d}
+
+
+Sets the type of shadows to be used when rendering the scene. 
+
+The scene manager defaults to no shadows. 
+\begin{DoxyParams}{Parameters}
+{\em Shadows} & The technique to be applied, see SceneShadowTechnique enum for more info. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 218 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a8bc4a68f885b85a3a023d632d932de65}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SetShadowColour@{SetShadowColour}}
+\index{SetShadowColour@{SetShadowColour}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SetShadowColour}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::SetShadowColour (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ShadowColour}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a8bc4a68f885b85a3a023d632d932de65}
+
+
+Sets the colour to be used when casting shadows. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ShadowColour} & The colour desired to be used when rendering shadows. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 296 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a79b5c4f2edd3301134a6a2513b4deaa1}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SetShadowFarDistance@{SetShadowFarDistance}}
+\index{SetShadowFarDistance@{SetShadowFarDistance}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SetShadowFarDistance}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::SetShadowFarDistance (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{FarDist}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a79b5c4f2edd3301134a6a2513b4deaa1}
+
+
+Sets the maximum distance from the camera that shadows will be visible. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FarDist} & The maximum distance from the camera shadows will be rendered. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 290 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a9d959f0128e2aa14aeb9d425cd9631d2}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SetShadowTextureCount@{SetShadowTextureCount}}
+\index{SetShadowTextureCount@{SetShadowTextureCount}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SetShadowTextureCount}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::SetShadowTextureCount (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Count}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a9d959f0128e2aa14aeb9d425cd9631d2}
+
+
+Sets the number of textures to be alloted for creating shadows. 
+
+Defaults to 1. 
+\begin{DoxyParams}{Parameters}
+{\em Count} & The amount of textures to be used for creating texture-\/based shadows. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 275 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a303b871aa1475605d2711239d4d088ac}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!SetShadowTextureSize@{SetShadowTextureSize}}
+\index{SetShadowTextureSize@{SetShadowTextureSize}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{SetShadowTextureSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SceneManager::SetShadowTextureSize (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{Size}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1SceneManager_a303b871aa1475605d2711239d4d088ac}
+
+
+Sets the size of all texture based shadows. 
+
+This defaults to 512. Sizes must be a power of 2. 
+\begin{DoxyParams}{Parameters}
+{\em Size} & The size of all textures to be used with shadows, in KB(?). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 281 of file scenemanager.cpp.
+
+\hypertarget{classMezzanine_1_1SceneManager_a53459adabe43b627fae6c1cdad5094f6}{
+\index{Mezzanine::SceneManager@{Mezzanine::SceneManager}!WhichSky@{WhichSky}}
+\index{WhichSky@{WhichSky}!Mezzanine::SceneManager@{Mezzanine::SceneManager}}
+\paragraph[{WhichSky}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager::SkyMethod} Mezzanine::SceneManager::WhichSky (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1SceneManager_a53459adabe43b627fae6c1cdad5094f6}
+
+
+get the kind of sy in use 
+
+\begin{DoxyReturn}{Returns}
+The kind of sky in use 
+\end{DoxyReturn}
+
+
+Definition at line 351 of file scenemanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+scenemanager.h\item 
+scenemanager.cpp\end{DoxyCompactItemize}

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: uitextbutton.cpp Source File</title>
+<title>MezzanineEngine: uitextbutton.cpp Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -110,107 +110,107 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
 <a name="l00047"></a>00047 <span class="preprocessor">#include &quot;internalGorilla.h.cpp&quot;</span>
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="keyword">namespace </span>phys
+<a name="l00049"></a>00049 <span class="keyword">namespace </span>Mezzanine
 <a name="l00050"></a>00050 {
 <a name="l00051"></a>00051     <span class="keyword">namespace </span>UI
 <a name="l00052"></a>00052     {
-<a name="l00053"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a0ac20e0541794bbc6d708fe3be6acb26">00053</a>         <a class="code" href="classphys_1_1UI_1_1TextButton.html#a0ac20e0541794bbc6d708fe3be6acb26" title="Internal constructor.">TextButton::TextButton</a>(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Glyph, <span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Text, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
-<a name="l00054"></a>00054             : <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(name,Rect,PLayer)
+<a name="l00053"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#af4fe4056a7c4c2714638165a24b5a706">00053</a>         <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#af4fe4056a7c4c2714638165a24b5a706" title="Internal constructor.">TextButton::TextButton</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Glyph, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Text, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
+<a name="l00054"></a>00054             : <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(name,Rect,PLayer)
 <a name="l00055"></a>00055         {
 <a name="l00056"></a>00056             AutoScaleText = <span class="keyword">false</span>;
 <a name="l00057"></a>00057             RelLineHeight = 0.0;
-<a name="l00058"></a>00058             GorillaButton = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a6528081453b4f2be4d7a4ad8878edbf0" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createCaption(Glyph,GorillaRectangle-&gt;left(),GorillaRectangle-&gt;top(),Text,*GorillaRectangle-&gt;GetNameFile());
-<a name="l00059"></a>00059             GorillaButton-&gt;size(GorillaRectangle-&gt;width(),GorillaRectangle-&gt;height());
-<a name="l00060"></a>00060             GorillaButton-&gt;background(Ogre::ColourValue(0,0,0,0));
+<a name="l00058"></a>00058             GorillaButton = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createCaption(Glyph,Ogre::Vector2(GorillaRectangle-&gt;left(),GorillaRectangle-&gt;top()),Ogre::Vector2(GorillaRectangle-&gt;width(),GorillaRectangle-&gt;height()),Text,*GorillaRectangle-&gt;GetNameFile());
+<a name="l00059"></a>00059             <span class="comment">//GorillaButton-&gt;size(GorillaRectangle-&gt;width(),GorillaRectangle-&gt;height());</span>
+<a name="l00060"></a>00060             GorillaButton-&gt;background_colour(Ogre::ColourValue(0,0,0,0));
 <a name="l00061"></a>00061             GorillaButton-&gt;align(Gorilla::TextAlign_Centre);
 <a name="l00062"></a>00062             GorillaButton-&gt;vertical_align(Gorilla::VerticalAlign_Middle);
 <a name="l00063"></a>00063         }
 <a name="l00064"></a>00064 
-<a name="l00065"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#aa7cf2c89310ead3a15413ca1a278253e">00065</a>         <a class="code" href="classphys_1_1UI_1_1TextButton.html#a0ac20e0541794bbc6d708fe3be6acb26" title="Internal constructor.">TextButton::TextButton</a>(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structphys_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; LineHeight, <span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Text, <a class="code" href="classphys_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
-<a name="l00066"></a>00066             : <a class="code" href="classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(name,Rect,PLayer)
+<a name="l00065"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#afe8633509682d805d21b388bb25441b9">00065</a>         <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#af4fe4056a7c4c2714638165a24b5a706" title="Internal constructor.">TextButton::TextButton</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; LineHeight, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Text, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
+<a name="l00066"></a>00066             : <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(name,Rect,PLayer)
 <a name="l00067"></a>00067         {
 <a name="l00068"></a>00068             AutoScaleText = <span class="keyword">true</span>;
 <a name="l00069"></a>00069             RelLineHeight = LineHeight;
-<a name="l00070"></a>00070             std::pair&lt;Whole,Real&gt; Result = Manager-&gt;<a class="code" href="classphys_1_1UIManager.html#a9fff50f9a977e603e7c62a950b796a74" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>(LineHeight * Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>().<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>,*GorillaRectangle-&gt;GetNameFile());
-<a name="l00071"></a>00071             GorillaButton = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a6528081453b4f2be4d7a4ad8878edbf0" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createCaption(Result.first,GorillaRectangle-&gt;left(),GorillaRectangle-&gt;top(),Text,*GorillaRectangle-&gt;GetNameFile());
-<a name="l00072"></a>00072             GorillaButton-&gt;size(GorillaRectangle-&gt;width(),GorillaRectangle-&gt;height());
-<a name="l00073"></a>00073             GorillaButton-&gt;background(Ogre::ColourValue(0,0,0,0));
+<a name="l00070"></a>00070             std::pair&lt;Whole,Real&gt; Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>(LineHeight * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,*GorillaRectangle-&gt;GetNameFile());
+<a name="l00071"></a>00071             GorillaButton = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createCaption(Result.first,Ogre::Vector2(GorillaRectangle-&gt;left(),GorillaRectangle-&gt;top()),Ogre::Vector2(GorillaRectangle-&gt;width(),GorillaRectangle-&gt;height()),Text,*GorillaRectangle-&gt;GetNameFile());
+<a name="l00072"></a>00072             <span class="comment">//GorillaButton-&gt;size(GorillaRectangle-&gt;width(),GorillaRectangle-&gt;height());</span>
+<a name="l00073"></a>00073             GorillaButton-&gt;background_colour(Ogre::ColourValue(0,0,0,0));
 <a name="l00074"></a>00074             GorillaButton-&gt;align(Gorilla::TextAlign_Centre);
 <a name="l00075"></a>00075             GorillaButton-&gt;vertical_align(Gorilla::VerticalAlign_Middle);
-<a name="l00076"></a>00076             <a class="code" href="classphys_1_1UI_1_1TextButton.html#aa02f940e49a66417fa58cf335bd48f46" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
+<a name="l00076"></a>00076             <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ad9265dea19c5e84e2dd29bc40e4d8351" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
 <a name="l00077"></a>00077         }
 <a name="l00078"></a>00078 
-<a name="l00079"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a1f28489fee45ee8ce7e1b0aea0f249a1">00079</a>         <a class="code" href="classphys_1_1UI_1_1TextButton.html#a1f28489fee45ee8ce7e1b0aea0f249a1" title="Class destructor.">TextButton::~TextButton</a>()
+<a name="l00079"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a25c5727451d8dac8919c098b030c5bb8">00079</a>         <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a25c5727451d8dac8919c098b030c5bb8" title="Class destructor.">TextButton::~TextButton</a>()
 <a name="l00080"></a>00080         {
-<a name="l00081"></a>00081             Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a6528081453b4f2be4d7a4ad8878edbf0" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyCaption(GorillaButton);
+<a name="l00081"></a>00081             Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyCaption(GorillaButton);
 <a name="l00082"></a>00082         }
 <a name="l00083"></a>00083 
-<a name="l00084"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a07e030ef92f314b1eff663cbc1712d42">00084</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a07e030ef92f314b1eff663cbc1712d42" title="Sets the visibility of this button.">TextButton::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
+<a name="l00084"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a0e7af5bb48039675e31ddcd1f72f5752">00084</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a0e7af5bb48039675e31ddcd1f72f5752" title="Sets the visibility of this button.">TextButton::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
 <a name="l00085"></a>00085         {
 <a name="l00086"></a>00086             GorillaRectangle-&gt;SetVisible(Visible);
 <a name="l00087"></a>00087             GorillaButton-&gt;SetVisible(Visible);
 <a name="l00088"></a>00088         }
 <a name="l00089"></a>00089 
-<a name="l00090"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a505167a00d343d704df1f759cd12ed1e">00090</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a505167a00d343d704df1f759cd12ed1e" title="Gets the visibility of this button.">TextButton::IsVisible</a>()
+<a name="l00090"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab2b5f433ca97162e5b75e8cf02164740">00090</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab2b5f433ca97162e5b75e8cf02164740" title="Gets the visibility of this button.">TextButton::IsVisible</a>()
 <a name="l00091"></a>00091         {
 <a name="l00092"></a>00092             <span class="keywordflow">return</span> GorillaRectangle-&gt;IsVisible();
 <a name="l00093"></a>00093         }
 <a name="l00094"></a>00094 
-<a name="l00095"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#add95c812af6ef7584a2d515a33bac72b">00095</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#add95c812af6ef7584a2d515a33bac72b" title="Forces this button to be shown.">TextButton::Show</a>()
+<a name="l00095"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#af6c3fdd8f3bf8797497f95bfd47db117">00095</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#af6c3fdd8f3bf8797497f95bfd47db117" title="Forces this button to be shown.">TextButton::Show</a>()
 <a name="l00096"></a>00096         {
 <a name="l00097"></a>00097             GorillaRectangle-&gt;Show();
 <a name="l00098"></a>00098             GorillaButton-&gt;Show();
 <a name="l00099"></a>00099         }
 <a name="l00100"></a>00100 
-<a name="l00101"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#aef823890ba8c829183f1b618473c1bac">00101</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#aef823890ba8c829183f1b618473c1bac" title="Forces this button to hide.">TextButton::Hide</a>()
+<a name="l00101"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab406636b7f397fd5513cbb59a73c1928">00101</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab406636b7f397fd5513cbb59a73c1928" title="Forces this button to hide.">TextButton::Hide</a>()
 <a name="l00102"></a>00102         {
 <a name="l00103"></a>00103             GorillaRectangle-&gt;Hide();
 <a name="l00104"></a>00104             GorillaButton-&gt;Hide();
 <a name="l00105"></a>00105         }
 <a name="l00106"></a>00106 
-<a name="l00107"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#ad3d493189347077db92e609e47f837f5">00107</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#ad3d493189347077db92e609e47f837f5" title="Gets whether this is a text button.">TextButton::IsTextButton</a>()
+<a name="l00107"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ad4cab393b8c00c43c1b8bfb878c73073">00107</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ad4cab393b8c00c43c1b8bfb878c73073" title="Gets whether this is a text button.">TextButton::IsTextButton</a>()
 <a name="l00108"></a>00108         {
 <a name="l00109"></a>00109             <span class="keywordflow">return</span> <span class="keyword">true</span>;
 <a name="l00110"></a>00110         }
 <a name="l00111"></a>00111 
-<a name="l00112"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#ae66f149489c4215963dc5b853c838c50">00112</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#ae66f149489c4215963dc5b853c838c50" title="Sets the text displayed within the button.">TextButton::SetText</a>(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Text)
+<a name="l00112"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a8e3d1d82b3e50cacd6189361eb7ea058">00112</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a8e3d1d82b3e50cacd6189361eb7ea058" title="Sets the text displayed within the button.">TextButton::SetText</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Text)
 <a name="l00113"></a>00113         {
 <a name="l00114"></a>00114             GorillaButton-&gt;text(Text);
 <a name="l00115"></a>00115         }
 <a name="l00116"></a>00116 
-<a name="l00117"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a8dc28f2fa610dc9bb72e5886613996bd">00117</a>         <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a8dc28f2fa610dc9bb72e5886613996bd" title="Gets the text displayed within the button.">TextButton::GetText</a>()
+<a name="l00117"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#abe0c6b3e64217fa05f38437f692d5e64">00117</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#abe0c6b3e64217fa05f38437f692d5e64" title="Gets the text displayed within the button.">TextButton::GetText</a>()
 <a name="l00118"></a>00118         {
 <a name="l00119"></a>00119             <span class="keywordflow">return</span> GorillaButton-&gt;text();
 <a name="l00120"></a>00120         }
 <a name="l00121"></a>00121 
-<a name="l00122"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#aa02f940e49a66417fa58cf335bd48f46">00122</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#aa02f940e49a66417fa58cf335bd48f46" title="Sets the scaling to be applied to the text being rendered.">TextButton::SetTextScale</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Scale)
+<a name="l00122"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ad9265dea19c5e84e2dd29bc40e4d8351">00122</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ad9265dea19c5e84e2dd29bc40e4d8351" title="Sets the scaling to be applied to the text being rendered.">TextButton::SetTextScale</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Scale)
 <a name="l00123"></a>00123         {
 <a name="l00124"></a>00124             GorillaButton-&gt;SetCharScaling(Scale);
 <a name="l00125"></a>00125         }
 <a name="l00126"></a>00126 
-<a name="l00127"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a5cc3750a8565b91d4b4bc91e953f8401">00127</a>         <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a5cc3750a8565b91d4b4bc91e953f8401" title="Gets the scaling currently being applied to the rendered text.">TextButton::GetTextScale</a>()
+<a name="l00127"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a77298d3cf8be433b010a000ae49961a2">00127</a>         <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a77298d3cf8be433b010a000ae49961a2" title="Gets the scaling currently being applied to the rendered text.">TextButton::GetTextScale</a>()
 <a name="l00128"></a>00128         {
 <a name="l00129"></a>00129             <span class="keywordflow">return</span> GorillaButton-&gt;GetCharScaling();
 <a name="l00130"></a>00130         }
 <a name="l00131"></a>00131 
-<a name="l00132"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#af421f9558333657e0d2d81c33fbf9eb3">00132</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#af421f9558333657e0d2d81c33fbf9eb3" title="Sets the glyph index to be used with this button.">TextButton::SetGlyphIndex</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; GlyphIndex)
+<a name="l00132"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab81057cd97a96390ae23c12cc729a07b">00132</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab81057cd97a96390ae23c12cc729a07b" title="Sets the glyph index to be used with this button.">TextButton::SetGlyphIndex</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; GlyphIndex)
 <a name="l00133"></a>00133         {
 <a name="l00134"></a>00134             Glyphs = GlyphIndex;
 <a name="l00135"></a>00135             GorillaButton-&gt;font(GlyphIndex,*GorillaButton-&gt;GetNameFile());
 <a name="l00136"></a>00136         }
 <a name="l00137"></a>00137 
-<a name="l00138"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a731b313c31cea79f92180e18ab1ad783">00138</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#af421f9558333657e0d2d81c33fbf9eb3" title="Sets the glyph index to be used with this button.">TextButton::SetGlyphIndex</a>(<span class="keyword">const</span> <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; GlyphIndex, <span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00138"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a472deffab04ac63c4938cc928d24f11e">00138</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab81057cd97a96390ae23c12cc729a07b" title="Sets the glyph index to be used with this button.">TextButton::SetGlyphIndex</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; GlyphIndex, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
 <a name="l00139"></a>00139         {
 <a name="l00140"></a>00140             Glyphs = GlyphIndex;
 <a name="l00141"></a>00141             GorillaButton-&gt;font(GlyphIndex,Atlas);
 <a name="l00142"></a>00142         }
 <a name="l00143"></a>00143 
-<a name="l00144"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a93f53557fcea98ea2426b798628e310f">00144</a>         <a class="code" href="namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a93f53557fcea98ea2426b798628e310f" title="Gets the glyph index in use by this button.">TextButton::GetGlyphIndex</a>()
+<a name="l00144"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab3fc0a2d331b30364c175ba47ab83cfc">00144</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab3fc0a2d331b30364c175ba47ab83cfc" title="Gets the glyph index in use by this button.">TextButton::GetGlyphIndex</a>()
 <a name="l00145"></a>00145         {
 <a name="l00146"></a>00146             <span class="keywordflow">return</span> Glyphs;
 <a name="l00147"></a>00147         }
 <a name="l00148"></a>00148 
-<a name="l00149"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#ae64641f1a7c54e869a44adbe6b0d9c0a">00149</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#ae64641f1a7c54e869a44adbe6b0d9c0a" title="Aligns the text of the button.">TextButton::HorizontallyAlign</a>(<span class="keyword">const</span> UI::TextHorizontalAlign&amp; Align)
+<a name="l00149"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a8bcaeb3e5d43fe6f180fa425c7d51384">00149</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a8bcaeb3e5d43fe6f180fa425c7d51384" title="Aligns the text of the button.">TextButton::HorizontallyAlign</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#aebbd46e62bb20d958f1915c1ec6cc549" title="Used by UI classes to determine the placement of text within a given area.">UI::TextHorizontalAlign</a>&amp; Align)
 <a name="l00150"></a>00150         {
 <a name="l00151"></a>00151             Gorilla::TextAlignment HA;
 <a name="l00152"></a>00152             <span class="keywordflow">switch</span> (Align)
@@ -230,7 +230,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00166"></a>00166             GorillaButton-&gt;align(HA);
 <a name="l00167"></a>00167         }
 <a name="l00168"></a>00168 
-<a name="l00169"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#adbd6f7c69f78dfcba1054591e3afb838">00169</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#adbd6f7c69f78dfcba1054591e3afb838" title="Aligns the text of the button.">TextButton::VerticallyAlign</a>(<span class="keyword">const</span> UI::TextVerticalAlign&amp; Align)
+<a name="l00169"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#aa3f101b72211c2296c0709c183edc6db">00169</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#aa3f101b72211c2296c0709c183edc6db" title="Aligns the text of the button.">TextButton::VerticallyAlign</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ab35e3845e2541698245262cc17147ae9" title="Used by UI classes to determine the placement of text within a given area.">UI::TextVerticalAlign</a>&amp; Align)
 <a name="l00170"></a>00170         {
 <a name="l00171"></a>00171             Gorilla::VerticalAlignment VA;
 <a name="l00172"></a>00172             <span class="keywordflow">switch</span> (Align)
@@ -250,65 +250,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00186"></a>00186             GorillaButton-&gt;vertical_align(VA);
 <a name="l00187"></a>00187         }
 <a name="l00188"></a>00188 
-<a name="l00189"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a52230b17c81743438bc0cd08eb49a5c5">00189</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a52230b17c81743438bc0cd08eb49a5c5" title="Sets the relative top left position of this button.">TextButton::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
+<a name="l00189"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#af91cf1040a11180eba704e054def6a7a">00189</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#af91cf1040a11180eba704e054def6a7a" title="Sets the relative top left position of this button.">TextButton::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
 <a name="l00190"></a>00190         {
 <a name="l00191"></a>00191             RelPosition = Position;
-<a name="l00192"></a>00192             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00193"></a>00193             GorillaButton-&gt;left(WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * RelPosition.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00194"></a>00194             GorillaButton-&gt;top(WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * RelPosition.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00195"></a>00195             GorillaRectangle-&gt;left(WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * RelPosition.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00196"></a>00196             GorillaRectangle-&gt;top(WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * RelPosition.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00192"></a>00192             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00193"></a>00193             GorillaButton-&gt;left(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00194"></a>00194             GorillaButton-&gt;top(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00195"></a>00195             GorillaRectangle-&gt;left(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00196"></a>00196             GorillaRectangle-&gt;top(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
 <a name="l00197"></a>00197         }
 <a name="l00198"></a>00198 
-<a name="l00199"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a09768e0666a109b7d35fd8b78240cfd3">00199</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a09768e0666a109b7d35fd8b78240cfd3" title="Gets the relative top left position of this button.">TextButton::GetPosition</a>()
+<a name="l00199"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#afb56b44e000d5dbf5afa09b14e2fb283">00199</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#afb56b44e000d5dbf5afa09b14e2fb283" title="Gets the relative top left position of this button.">TextButton::GetPosition</a>()
 <a name="l00200"></a>00200         {
 <a name="l00201"></a>00201             <span class="keywordflow">return</span> RelPosition;
 <a name="l00202"></a>00202         }
 <a name="l00203"></a>00203 
-<a name="l00204"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#aa82c174bba5db127a5a9977b9fdf1384">00204</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#aa82c174bba5db127a5a9977b9fdf1384" title="Sets the top left position of this button in pixels.">TextButton::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
+<a name="l00204"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#adc3f524897031fffc7c25c4adc460d15">00204</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#adc3f524897031fffc7c25c4adc460d15" title="Sets the top left position of this button in pixels.">TextButton::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
 <a name="l00205"></a>00205         {
-<a name="l00206"></a>00206             GorillaButton-&gt;left(Position.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00207"></a>00207             GorillaButton-&gt;top(Position.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00208"></a>00208             GorillaRectangle-&gt;left(Position.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00209"></a>00209             GorillaRectangle-&gt;top(Position.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00206"></a>00206             GorillaButton-&gt;left(Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00207"></a>00207             GorillaButton-&gt;top(Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00208"></a>00208             GorillaRectangle-&gt;left(Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00209"></a>00209             GorillaRectangle-&gt;top(Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
 <a name="l00210"></a>00210         }
 <a name="l00211"></a>00211 
-<a name="l00212"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#ab406bec58bf6244c3e867fefd19d4d7f">00212</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1TextButton.html#ab406bec58bf6244c3e867fefd19d4d7f" title="Gets the top left position of this button in pixels.">TextButton::GetActualPosition</a>()
+<a name="l00212"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a09d9245ae384209c3c108daa2a3d1b23">00212</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a09d9245ae384209c3c108daa2a3d1b23" title="Gets the top left position of this button in pixels.">TextButton::GetActualPosition</a>()
 <a name="l00213"></a>00213         {
-<a name="l00214"></a>00214             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GorillaButton-&gt;left(), GorillaButton-&gt;top());
+<a name="l00214"></a>00214             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GorillaButton-&gt;left(), GorillaButton-&gt;top());
 <a name="l00215"></a>00215             <span class="keywordflow">return</span> Pos;
 <a name="l00216"></a>00216         }
 <a name="l00217"></a>00217 
-<a name="l00218"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#abceee9ffe1dd12e0e593a84f57d9b279">00218</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#abceee9ffe1dd12e0e593a84f57d9b279" title="Sets the relative size of this button.">TextButton::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00218"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a066e09081624a520a5e86f7cfd81ee5d">00218</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a066e09081624a520a5e86f7cfd81ee5d" title="Sets the relative size of this button.">TextButton::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
 <a name="l00219"></a>00219         {
 <a name="l00220"></a>00220             RelSize = Size;
-<a name="l00221"></a>00221             <span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00222"></a>00222             GorillaButton-&gt;left(WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00223"></a>00223             GorillaButton-&gt;top(WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00224"></a>00224             GorillaRectangle-&gt;left(WinDim.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00225"></a>00225             GorillaRectangle-&gt;top(WinDim.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00221"></a>00221             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00222"></a>00222             GorillaButton-&gt;left(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00223"></a>00223             GorillaButton-&gt;top(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00224"></a>00224             GorillaRectangle-&gt;left(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00225"></a>00225             GorillaRectangle-&gt;top(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
 <a name="l00226"></a>00226         }
 <a name="l00227"></a>00227 
-<a name="l00228"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a21f1ff24070711e5a42eae4eb54d02d6">00228</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a21f1ff24070711e5a42eae4eb54d02d6" title="Gets the relative size of this button.">TextButton::GetSize</a>()
+<a name="l00228"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#aa09e523dd72046551be9837f11886c60">00228</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#aa09e523dd72046551be9837f11886c60" title="Gets the relative size of this button.">TextButton::GetSize</a>()
 <a name="l00229"></a>00229         {
 <a name="l00230"></a>00230             <span class="keywordflow">return</span> RelSize;
 <a name="l00231"></a>00231         }
 <a name="l00232"></a>00232 
-<a name="l00233"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a768d203a323cca2054fa355c25fab9ef">00233</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a768d203a323cca2054fa355c25fab9ef" title="Sets the size of this button in pixels.">TextButton::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00233"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a81171ff142c9e991daeec099bebfdc82">00233</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a81171ff142c9e991daeec099bebfdc82" title="Sets the size of this button in pixels.">TextButton::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
 <a name="l00234"></a>00234         {
-<a name="l00235"></a>00235             GorillaButton-&gt;width(Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00236"></a>00236             GorillaButton-&gt;height(Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00237"></a>00237             GorillaRectangle-&gt;width(Size.<a class="code" href="classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00238"></a>00238             GorillaRectangle-&gt;height(Size.<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00235"></a>00235             GorillaButton-&gt;width(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00236"></a>00236             GorillaButton-&gt;height(Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00237"></a>00237             GorillaRectangle-&gt;width(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
+<a name="l00238"></a>00238             GorillaRectangle-&gt;height(Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
 <a name="l00239"></a>00239         }
 <a name="l00240"></a>00240 
-<a name="l00241"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a062b31c199f875d4f825f6be1d11fb55">00241</a>         <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a062b31c199f875d4f825f6be1d11fb55" title="Gets the size of this button in pixels.">TextButton::GetActualSize</a>()
+<a name="l00241"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a01a6f88cf4ee64aec91aab711ffdec6d">00241</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a01a6f88cf4ee64aec91aab711ffdec6d" title="Gets the size of this button in pixels.">TextButton::GetActualSize</a>()
 <a name="l00242"></a>00242         {
-<a name="l00243"></a>00243             <a class="code" href="classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GorillaButton-&gt;width(), GorillaButton-&gt;height());
+<a name="l00243"></a>00243             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GorillaButton-&gt;width(), GorillaButton-&gt;height());
 <a name="l00244"></a>00244             <span class="keywordflow">return</span> Pos;
 <a name="l00245"></a>00245         }
 <a name="l00246"></a>00246 
-<a name="l00247"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a60b433a61f163f275e3fd834d74d9092">00247</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a60b433a61f163f275e3fd834d74d9092" title="Sets the priority this button should be rendered with.">TextButton::SetRenderPriority</a>(<span class="keyword">const</span> UI::RenderPriority&amp; Priority)
+<a name="l00247"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a546446b4b6394fb7e58bfa64d554ada3">00247</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a546446b4b6394fb7e58bfa64d554ada3" title="Sets the priority this button should be rendered with.">TextButton::SetRenderPriority</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a>&amp; Priority)
 <a name="l00248"></a>00248         {
 <a name="l00249"></a>00249             Gorilla::RenderPriority RP;
 <a name="l00250"></a>00250             <span class="keywordflow">switch</span>(Priority)
@@ -329,7 +329,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00265"></a>00265             GorillaRectangle-&gt;RenderPriority(RP);
 <a name="l00266"></a>00266         }
 <a name="l00267"></a>00267 
-<a name="l00268"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#ad339621af6e73ff9702c0dd4cdadbb73">00268</a>         UI::RenderPriority <a class="code" href="classphys_1_1UI_1_1TextButton.html#ad339621af6e73ff9702c0dd4cdadbb73" title="Gets the priority this button should be rendered with.">TextButton::GetRenderPriority</a>()
+<a name="l00268"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a0253c0ad5729c0a62a8b83c4512ece99">00268</a>         <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a0253c0ad5729c0a62a8b83c4512ece99" title="Gets the priority this button should be rendered with.">TextButton::GetRenderPriority</a>()
 <a name="l00269"></a>00269         {
 <a name="l00270"></a>00270             Gorilla::RenderPriority RP = this-&gt;GorillaRectangle-&gt;RenderPriority();
 <a name="l00271"></a>00271             <span class="keywordflow">switch</span>(RP)
@@ -349,24 +349,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00285"></a>00285             <span class="keywordflow">return</span> UI::RP_Medium;
 <a name="l00286"></a>00286         }
 <a name="l00287"></a>00287 
-<a name="l00288"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#afa1fd7dea37485b0b364328e62154a4f">00288</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#afa1fd7dea37485b0b364328e62154a4f" title="Enables or disables scaling the text automatically on a screen size change.">TextButton::SetAutoScaleText</a>(<span class="keywordtype">bool</span> Enable)
+<a name="l00288"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a80e8ce555469e1f5f5c2fd6134571a40">00288</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a80e8ce555469e1f5f5c2fd6134571a40" title="Enables or disables scaling the text automatically on a screen size change.">TextButton::SetAutoScaleText</a>(<span class="keywordtype">bool</span> Enable)
 <a name="l00289"></a>00289         {
 <a name="l00290"></a>00290             AutoScaleText = Enable;
 <a name="l00291"></a>00291         }
 <a name="l00292"></a>00292 
-<a name="l00293"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a0fed05cef1c311aa1b08c8f1a6830988">00293</a>         <span class="keywordtype">bool</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a0fed05cef1c311aa1b08c8f1a6830988" title="Gets whether or not text from this caption will automatically scale on a screen size change...">TextButton::GetAutoScaleText</a>()
+<a name="l00293"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a56d50b33b0fe2bf25c420dc70bf10d1c">00293</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a56d50b33b0fe2bf25c420dc70bf10d1c" title="Gets whether or not text from this caption will automatically scale on a screen size change...">TextButton::GetAutoScaleText</a>()
 <a name="l00294"></a>00294         {
 <a name="l00295"></a>00295             <span class="keywordflow">return</span> AutoScaleText;
 <a name="l00296"></a>00296         }
 <a name="l00297"></a>00297 
-<a name="l00298"></a><a class="code" href="classphys_1_1UI_1_1TextButton.html#a5099be328baf55b9925227d11128c328">00298</a>         <span class="keywordtype">void</span> <a class="code" href="classphys_1_1UI_1_1TextButton.html#a5099be328baf55b9925227d11128c328" title="Updates the dimensions of this caption to match those of the new screen size.">TextButton::UpdateDimensions</a>()
+<a name="l00298"></a><a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a06a5a6400dff268de5c91737de09fda9">00298</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a06a5a6400dff268de5c91737de09fda9" title="Updates the dimensions of this caption to match those of the new screen size.">TextButton::UpdateDimensions</a>()
 <a name="l00299"></a>00299         {
-<a name="l00300"></a>00300             <a class="code" href="classphys_1_1UI_1_1TextButton.html#a5099be328baf55b9925227d11128c328" title="Updates the dimensions of this caption to match those of the new screen size.">Button::UpdateDimensions</a>();
+<a name="l00300"></a>00300             <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#a06a5a6400dff268de5c91737de09fda9" title="Updates the dimensions of this caption to match those of the new screen size.">Button::UpdateDimensions</a>();
 <a name="l00301"></a>00301             <span class="keywordflow">if</span>(AutoScaleText)
 <a name="l00302"></a>00302             {
-<a name="l00303"></a>00303                 std::pair&lt;Whole,Real&gt; Result = Manager-&gt;<a class="code" href="classphys_1_1UIManager.html#a9fff50f9a977e603e7c62a950b796a74" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>(RelLineHeight * Parent-&gt;<a class="code" href="classphys_1_1UI_1_1Layer.html#a484d10cf74177dea47d00ad7ddef8527" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classphys_1_1UI_1_1Screen.html#aacfe41413e7a2fedaa54fb7068d1b1c3" title="Gets the current viewport dimensions.">GetViewportDimensions</a>().<a class="code" href="classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>,<a class="code" href="classphys_1_1UI_1_1Button.html#a8aad3cb0e33a2bfc4fc4913bf19396a5" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
-<a name="l00304"></a>00304                 <a class="code" href="classphys_1_1UI_1_1TextButton.html#af421f9558333657e0d2d81c33fbf9eb3" title="Sets the glyph index to be used with this button.">SetGlyphIndex</a>(Result.first);
-<a name="l00305"></a>00305                 <a class="code" href="classphys_1_1UI_1_1TextButton.html#aa02f940e49a66417fa58cf335bd48f46" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
+<a name="l00303"></a>00303                 std::pair&lt;Whole,Real&gt; Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>(RelLineHeight * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,<a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab4dabfe9ce18dd255d2b8724f610058d" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
+<a name="l00304"></a>00304                 <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ab81057cd97a96390ae23c12cc729a07b" title="Sets the glyph index to be used with this button.">SetGlyphIndex</a>(Result.first);
+<a name="l00305"></a>00305                 <a class="code" href="classMezzanine_1_1UI_1_1TextButton.html#ad9265dea19c5e84e2dd29bc40e4d8351" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
 <a name="l00306"></a>00306             }
 <a name="l00307"></a>00307         }
 <a name="l00308"></a>00308     }
@@ -380,7 +380,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -390,6 +390,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:26 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

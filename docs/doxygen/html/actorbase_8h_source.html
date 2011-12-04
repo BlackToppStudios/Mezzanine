@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysGameEngine: actorbase.h Source File</title>
+<title>MezzanineEngine: actorbase.h Source File</title>
 <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -16,7 +16,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>PhysGameEngine&#160;<span id="projectnumber">September 8, 2011</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">Dec 2, 2011</span></div>
   </td>
  </tr>
  </tbody>
@@ -63,25 +63,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <a href="actorbase_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
+<a name="l00002"></a>00002 <span class="comment">/* This file is part of The Mezzanine Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
-<a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00004"></a>00004 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
 <a name="l00005"></a>00005 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
 <a name="l00006"></a>00006 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
 <a name="l00007"></a>00007 <span class="comment">    (at your option) any later version.</span>
 <a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    The PhysGame Engine is distributed in the hope that it will be useful,</span>
+<a name="l00009"></a>00009 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
 <a name="l00010"></a>00010 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00011"></a>00011 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00015"></a>00015 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -101,366 +101,388 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00037"></a>00037 <span class="comment">   Joseph Toppi - toppij@gmail.com</span>
 <a name="l00038"></a>00038 <span class="comment">   John Blackwood - makoenergy02@gmail.com</span>
 <a name="l00039"></a>00039 <span class="comment">*/</span>
-<a name="l00040"></a>00040 <span class="preprocessor">#ifndef _physactorbase_h</span>
-<a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _physactorbase_h</span>
+<a name="l00040"></a>00040 <span class="preprocessor">#ifndef _actorbase_h</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _actorbase_h</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;<a class="code" href="crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s...">crossplatformexport.h</a>&quot;</span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;<a class="code" href="worldnode_8h.html" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment.">worldnode.h</a>&quot;</span>
-<a name="l00045"></a>00045 <span class="comment"></span>
-<a name="l00046"></a>00046 <span class="comment">/// @file</span>
-<a name="l00047"></a>00047 <span class="comment">/// @brief The base class for all Actors is defined here</span>
-<a name="l00048"></a>00048 <span class="comment"></span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;collision.h&quot;</span>
+<a name="l00046"></a>00046 <span class="comment"></span>
+<a name="l00047"></a>00047 <span class="comment">/// @file</span>
+<a name="l00048"></a>00048 <span class="comment">/// @brief The base class for all Actors is defined here</span>
 <a name="l00049"></a>00049 <span class="comment"></span>
-<a name="l00050"></a>00050 <span class="comment">///////////////////////////////////</span>
-<a name="l00051"></a>00051 <span class="comment"></span><span class="comment">// Forward Declares</span>
-<a name="l00052"></a>00052 <span class="keyword">class </span>btRigidBody;
-<a name="l00053"></a>00053 <span class="keyword">class </span>btCollisionShape;
-<a name="l00054"></a>00054 <span class="keyword">class </span>btCollisionObject;
-<a name="l00055"></a>00055 <span class="keyword">class </span>btTriangleMesh;
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="keyword">namespace </span>Ogre
-<a name="l00058"></a>00058 {
-<a name="l00059"></a>00059     <span class="keyword">class </span>AnimationState;
-<a name="l00060"></a>00060     <span class="keyword">class </span>Entity;
-<a name="l00061"></a>00061     <span class="keyword">class </span>SceneNode;
-<a name="l00062"></a>00062     <span class="keyword">class </span>Vector3;
-<a name="l00063"></a>00063     <span class="keyword">class </span>ResourceGroupManager;
-<a name="l00064"></a>00064 }
-<a name="l00065"></a>00065 <span class="comment"></span>
-<a name="l00066"></a>00066 <span class="comment">///////////////////////////////////</span>
-<a name="l00067"></a>00067 <span class="comment"></span><span class="comment">// Actual code</span>
-<a name="l00068"></a>00068 <span class="keyword">namespace </span>phys
-<a name="l00069"></a>00069 {
-<a name="l00070"></a>00070     <span class="keyword">class </span>ActorContainerBase;
-<a name="l00071"></a>00071     <span class="keyword">class </span>World;
-<a name="l00072"></a>00072     <span class="keyword">class </span>ActorGraphicsSettings;
-<a name="l00073"></a>00073     <span class="keyword">class </span>ActorBasePhysicsSettings;
-<a name="l00074"></a>00074     <span class="keyword">class </span>SoundSet;
+<a name="l00050"></a>00050 <span class="comment"></span>
+<a name="l00051"></a>00051 <span class="comment">///////////////////////////////////</span>
+<a name="l00052"></a>00052 <span class="comment"></span><span class="comment">// Forward Declares</span>
+<a name="l00053"></a>00053 <span class="keyword">class </span>btRigidBody;
+<a name="l00054"></a>00054 <span class="keyword">class </span>btCollisionShape;
+<a name="l00055"></a>00055 <span class="keyword">class </span>btCollisionObject;
+<a name="l00056"></a>00056 <span class="keyword">class </span>btTriangleMesh;
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="keyword">namespace </span>Ogre
+<a name="l00059"></a>00059 {
+<a name="l00060"></a>00060     <span class="keyword">class </span>AnimationState;
+<a name="l00061"></a>00061     <span class="keyword">class </span>Entity;
+<a name="l00062"></a>00062     <span class="keyword">class </span>SceneNode;
+<a name="l00063"></a>00063     <span class="keyword">class </span>Vector3;
+<a name="l00064"></a>00064     <span class="keyword">class </span>ResourceGroupManager;
+<a name="l00065"></a>00065 }
+<a name="l00066"></a>00066 <span class="comment"></span>
+<a name="l00067"></a>00067 <span class="comment">///////////////////////////////////</span>
+<a name="l00068"></a>00068 <span class="comment"></span><span class="comment">// Actual code</span>
+<a name="l00069"></a>00069 <span class="keyword">namespace </span>Mezzanine
+<a name="l00070"></a>00070 {
+<a name="l00071"></a>00071     <span class="keyword">class </span>ActorContainerBase;
+<a name="l00072"></a>00072     <span class="keyword">class </span>World;
+<a name="l00073"></a>00073     <span class="keyword">class </span>ActorGraphicsSettings;
+<a name="l00074"></a>00074     <span class="keyword">class </span>ActorBasePhysicsSettings;
 <a name="l00075"></a>00075 
-<a name="l00076"></a><a class="code" href="namespacephys_1_1internal.html">00076</a>     <span class="keyword">namespace </span>internal
+<a name="l00076"></a><a class="code" href="namespaceMezzanine_1_1Audio.html">00076</a>     <span class="keyword">namespace </span>Audio
 <a name="l00077"></a>00077     {
-<a name="l00078"></a>00078         <span class="keyword">class </span>PhysMotionState;
-<a name="l00079"></a>00079         <span class="keyword">struct </span>MeshInfo;
-<a name="l00080"></a>00080     }<span class="comment"></span>
-<a name="l00081"></a>00081 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00082"></a>00082 <span class="comment">    /// @class ActorBase</span>
-<a name="l00083"></a>00083 <span class="comment">    /// @headerfile actorbase.h</span>
-<a name="l00084"></a>00084 <span class="comment">    /// @brief This is the base class from which all the actors inherit.</span>
-<a name="l00085"></a>00085 <span class="comment">    /// @details The actor classes store and manage all the relevant data regarding</span>
-<a name="l00086"></a>00086 <span class="comment">    /// objects inside the World.  They serve as a binder between the physics and</span>
-<a name="l00087"></a>00087 <span class="comment">    /// graphics for objects and have functions that allow the manipulation of objects</span>
-<a name="l00088"></a>00088 <span class="comment">    /// loaded into the World.  Currently there are 5 actor classes: ActorBase,</span>
-<a name="l00089"></a>00089 <span class="comment">    /// ActorRigid, ActorSoft, ActorTerrain, ActorCharacter. @n</span>
-<a name="l00090"></a>00090 <span class="comment">    /// ActorBase is a base class that serves as a template for the other four actor classes. @n</span>
-<a name="l00091"></a>00091 <span class="comment">    /// ActorBase should never be created, as it lacks the functionality needed for most objects.</span>
-<a name="l00092"></a>00092 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00093"></a><a class="code" href="classphys_1_1ActorBase.html">00093</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> {
-<a name="l00094"></a>00094         <span class="keyword">private</span>:
-<a name="l00095"></a>00095             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classphys_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a>;
-<a name="l00096"></a>00096             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classphys_1_1ActorContainerBase.html" title="A base class to unify the interface for different kinds of containers for holding actors...">ActorContainerBase</a>;
-<a name="l00097"></a>00097             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>;
-<a name="l00098"></a>00098             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classphys_1_1ResourceManager.html" title="This is the manager responsible for the loading and unloading of files.">ResourceManager</a>;
-<a name="l00099"></a>00099             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classphys_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>;
-<a name="l00100"></a>00100             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classphys_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>;
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00103"></a>00103 <span class="comment">            /// @enum ActorTypeName</span>
-<a name="l00104"></a>00104 <span class="comment">            /// @brief A listing of Actor TypeNames</span>
-<a name="l00105"></a>00105 <span class="comment">            /// @details These will be returned by ActorBase::GetType(), and will allow</span>
-<a name="l00106"></a>00106 <span class="comment">            /// code using this to determine what type of Actor class they are working with</span>
-<a name="l00107"></a>00107 <span class="comment">            /// and use this information to more safely cast to the correct Actor if needed.</span>
-<a name="l00108"></a><a class="code" href="classphys_1_1ActorBase.html#aff3a7c464e8ce82576073f8f891434b7">00108</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="classphys_1_1ActorBase.html#aff3a7c464e8ce82576073f8f891434b7" title="A listing of Actor TypeNames.">ActorTypeName</a>
-<a name="l00109"></a>00109             {
-<a name="l00110"></a>00110                 Actorbase,
-<a name="l00111"></a>00111                 Actorcharacter,
-<a name="l00112"></a>00112                 Actorrigid,
-<a name="l00113"></a>00113                 Actorsoft,
-<a name="l00114"></a>00114                 Actorterrain
-<a name="l00115"></a>00115             };
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117         <span class="keyword">protected</span>:
-<a name="l00118"></a>00118             <span class="comment">// @brief A pointer to the World the actor will reside.</span>
-<a name="l00119"></a>00119             <span class="comment">//World* GameWorld;</span>
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121             <span class="comment">//abstraction for other libraries</span><span class="comment"></span>
-<a name="l00122"></a>00122 <span class="comment">            /// @brief This class encapsulates the functionality of the Ogre::Entity using this</span>
-<a name="l00123"></a><a class="code" href="classphys_1_1ActorBase.html#a25f3811fa1b2206dbabfaa2d6eb97784">00123</a> <span class="comment"></span>            Ogre::Entity* <a class="code" href="classphys_1_1ActorBase.html#a25f3811fa1b2206dbabfaa2d6eb97784" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a>;
-<a name="l00124"></a>00124 <span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">            /// @brief This class encapsulates the functionality of the Ogre::SceneNode using this</span>
-<a name="l00126"></a><a class="code" href="classphys_1_1ActorBase.html#a7262c31023ff41a027206e47befc7417">00126</a> <span class="comment"></span>            Ogre::SceneNode* <a class="code" href="classphys_1_1ActorBase.html#a7262c31023ff41a027206e47befc7417" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">GraphicsNode</a>;
-<a name="l00127"></a>00127 <span class="comment"></span>
-<a name="l00128"></a>00128 <span class="comment">            /// @brief This class encapsulates the functionality of the Ogre::AnimationState using this</span>
-<a name="l00129"></a><a class="code" href="classphys_1_1ActorBase.html#aed2853b0a97e12aa73f6167aa572e5f3">00129</a> <span class="comment"></span>            Ogre::AnimationState* <a class="code" href="classphys_1_1ActorBase.html#aed2853b0a97e12aa73f6167aa572e5f3" title="This class encapsulates the functionality of the Ogre::AnimationState using this.">Animation</a>;
-<a name="l00130"></a>00130 <span class="comment"></span>
-<a name="l00131"></a>00131 <span class="comment">            /// @brief This class encapsulates the functionality of the btCollisionShape using this</span>
-<a name="l00132"></a><a class="code" href="classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69">00132</a> <span class="comment"></span>            btCollisionShape* <a class="code" href="classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;
-<a name="l00133"></a>00133 <span class="comment"></span>
-<a name="l00134"></a>00134 <span class="comment">            /// @brief This class encapsulates the functionality of the btCollisionObject using this</span>
-<a name="l00135"></a><a class="code" href="classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429">00135</a> <span class="comment"></span>            btCollisionObject* <a class="code" href="classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>;
-<a name="l00136"></a>00136 <span class="comment"></span>
-<a name="l00137"></a>00137 <span class="comment">            /// @brief This class encapsulates the functionality of the PhysMotionState using this</span>
-<a name="l00138"></a><a class="code" href="classphys_1_1ActorBase.html#ab776527aa927b8787313c50530cc24ba">00138</a> <span class="comment"></span>            internal::PhysMotionState* <a class="code" href="classphys_1_1ActorBase.html#ab776527aa927b8787313c50530cc24ba" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>;
-<a name="l00139"></a>00139 <span class="comment"></span>
-<a name="l00140"></a>00140 <span class="comment">            /// @brief This class excapsulates the functionality of the Ogre::SceneNode.</span>
-<a name="l00141"></a><a class="code" href="classphys_1_1ActorBase.html#aca423ad9c3d92bb66a624c95b0de8b85">00141</a> <span class="comment"></span>            <a class="code" href="classphys_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a>* <a class="code" href="classphys_1_1ActorBase.html#aca423ad9c3d92bb66a624c95b0de8b85" title="This class excapsulates the functionality of the Ogre::SceneNode.">ActorWorldNode</a>;
-<a name="l00142"></a>00142 <span class="comment"></span>
-<a name="l00143"></a>00143 <span class="comment">            /// @brief This class encapsulates graphics specific configuration for this actor.</span>
-<a name="l00144"></a><a class="code" href="classphys_1_1ActorBase.html#acc34ec92179b9ebe392bb0ae98ce5d3a">00144</a> <span class="comment"></span>            <a class="code" href="classphys_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>* <a class="code" href="classphys_1_1ActorBase.html#acc34ec92179b9ebe392bb0ae98ce5d3a" title="This class encapsulates graphics specific configuration for this actor.">GraphicsSettings</a>;
-<a name="l00145"></a>00145 <span class="comment"></span>
-<a name="l00146"></a>00146 <span class="comment">            /// @brief This class encapsulates physics specific configuration for this actor.</span>
-<a name="l00147"></a><a class="code" href="classphys_1_1ActorBase.html#a07daafcbc37e64936b2eac7c9582c89f">00147</a> <span class="comment"></span>            <a class="code" href="classphys_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>* <a class="code" href="classphys_1_1ActorBase.html#a07daafcbc37e64936b2eac7c9582c89f" title="This class encapsulates physics specific configuration for this actor.">BasePhysicsSettings</a>;
-<a name="l00148"></a>00148 <span class="comment"></span>
-<a name="l00149"></a>00149 <span class="comment">            /// @brief This variable stores the type of actor that this class is.</span>
-<a name="l00150"></a><a class="code" href="classphys_1_1ActorBase.html#a42baa3657656300eeefe3ed48f526a00">00150</a> <span class="comment"></span>            <a class="code" href="classphys_1_1ActorBase.html#aff3a7c464e8ce82576073f8f891434b7" title="A listing of Actor TypeNames.">ActorTypeName</a> <a class="code" href="classphys_1_1ActorBase.html#a42baa3657656300eeefe3ed48f526a00" title="This variable stores the type of actor that this class is.">ActorType</a>;
-<a name="l00151"></a>00151 <span class="comment"></span>
-<a name="l00152"></a>00152 <span class="comment">//////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00153"></a>00153 <span class="comment"></span><span class="comment">// Ogre Management Functions</span><span class="comment"></span>
-<a name="l00154"></a>00154 <span class="comment">///////////////////////////////////////</span>
-<a name="l00155"></a>00155 <span class="comment">            /// @brief Sets the location of the graphical body.</span>
-<a name="l00156"></a>00156 <span class="comment">            /// @details This will take a Vector3 and set the location of the actor within the graphical world. @n</span>
-<a name="l00157"></a>00157 <span class="comment">            /// This function is called on by the SetLocation function, and shouldn&#39;t be called manually.</span>
-<a name="l00158"></a>00158 <span class="comment">            /// @param Place The Vector3 representing the location.</span>
-<a name="l00159"></a>00159 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetOgreLocation(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Place);
-<a name="l00160"></a>00160 <span class="comment"></span>
-<a name="l00161"></a>00161 <span class="comment">            /// @brief Retrieves the location of the graphical body.</span>
-<a name="l00162"></a>00162 <span class="comment">            /// @details This function will retrieve the location of the object within the graphical world. This should always match the physics world.</span>
-<a name="l00163"></a>00163 <span class="comment">            /// @return This returns a phys::Vector3 with the location of the graphics.</span>
-<a name="l00164"></a>00164 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetOgreLocation() <span class="keyword">const</span>;
-<a name="l00165"></a>00165 <span class="comment"></span>
-<a name="l00166"></a>00166 <span class="comment">            /// @brief Sets the orientation of the graphical body.</span>
-<a name="l00167"></a>00167 <span class="comment">            /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n</span>
-<a name="l00168"></a>00168 <span class="comment">            /// This function is called on by the SetOrientation function, and shouldn&#39;t be called manually.</span>
-<a name="l00169"></a>00169 <span class="comment">            /// @param Rotation The quaternion representing the rotation of the actor.</span>
-<a name="l00170"></a>00170 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetOgreOrientation(<span class="keyword">const</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Rotation);
-<a name="l00171"></a>00171 <span class="comment"></span>
-<a name="l00172"></a>00172 <span class="comment">            /// @brief Gets the orientation of the graphical body.</span>
-<a name="l00173"></a>00173 <span class="comment">            /// @return Returns a quaternion representing the rotation of the actor.</span>
-<a name="l00174"></a>00174 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetOgreOrientation() <span class="keyword">const</span>;
-<a name="l00175"></a>00175 <span class="comment"></span>
-<a name="l00176"></a>00176 <span class="comment">//////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00177"></a>00177 <span class="comment"></span><span class="comment">// Bullet Management Functions</span><span class="comment"></span>
-<a name="l00178"></a>00178 <span class="comment">///////////////////////////////////////</span>
-<a name="l00179"></a>00179 <span class="comment">            /// @brief Sets the location of the physics body.</span>
-<a name="l00180"></a>00180 <span class="comment">            /// @details This will take a Vector3 and set the location of the actor within the physics world. @n</span>
-<a name="l00181"></a>00181 <span class="comment">            /// This function is called on by the SetLocation function, and shouldn&#39;t be called manually.</span>
-<a name="l00182"></a>00182 <span class="comment">            /// @param Location The Vector3 representing the location.</span>
-<a name="l00183"></a>00183 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetBulletLocation (<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location);
-<a name="l00184"></a>00184 <span class="comment"></span>
-<a name="l00185"></a>00185 <span class="comment">            /// @brief Retrieves the location of the physics body.</span>
-<a name="l00186"></a>00186 <span class="comment">            /// @details This function will retrieve the location of the object within the physics world.</span>
-<a name="l00187"></a>00187 <span class="comment">            /// @return a phys::Vector3.</span>
-<a name="l00188"></a>00188 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetBulletLocation() <span class="keyword">const</span>;
-<a name="l00189"></a>00189 <span class="comment"></span>
-<a name="l00190"></a>00190 <span class="comment">            /// @brief Sets the orientation of the physics body.</span>
-<a name="l00191"></a>00191 <span class="comment">            /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n</span>
-<a name="l00192"></a>00192 <span class="comment">            /// This function is called on by the SetOrientation function, and shouldn&#39;t be called manually.</span>
-<a name="l00193"></a>00193 <span class="comment">            /// @param Rotation The quaternion representing the rotation of the actor.</span>
-<a name="l00194"></a>00194 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetBulletOrientation (<span class="keyword">const</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Rotation);
-<a name="l00195"></a>00195 <span class="comment"></span>
-<a name="l00196"></a>00196 <span class="comment">            /// @brief Gets the orientation of the graphical body.</span>
-<a name="l00197"></a>00197 <span class="comment">            /// @return Returns a quaternion representing the rotation of the actor.</span>
-<a name="l00198"></a>00198 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetBulletOrientation() <span class="keyword">const</span>;
-<a name="l00199"></a>00199 <span class="comment"></span>
-<a name="l00200"></a>00200 <span class="comment">//////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00201"></a>00201 <span class="comment"></span><span class="comment">// Other Management Functions</span><span class="comment"></span>
-<a name="l00202"></a>00202 <span class="comment">///////////////////////////////////////</span>
-<a name="l00203"></a>00203 <span class="comment">            /// @brief Makes the actor visable.</span>
-<a name="l00204"></a>00204 <span class="comment">            /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n</span>
-<a name="l00205"></a>00205 <span class="comment">            /// This is automaticly called by the PhysWorlds AddActor function and shouldn&#39;t ever need to be called manually.</span>
-<a name="l00206"></a>00206 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> AttachToGraphics();
-<a name="l00207"></a>00207 <span class="comment"></span>
-<a name="l00208"></a>00208 <span class="comment">            /// @brief Makes the actor invisable.</span>
-<a name="l00209"></a>00209 <span class="comment">            /// @details This is the inverse of the AttachToGraphics function.  This will effectively remove the object from the graphics world and make it no longer visable. @n</span>
-<a name="l00210"></a>00210 <span class="comment">            /// This is automaticly called by the PhysWorlds RemoveActor function and shouldn&#39;t ever need to be called manually.</span>
-<a name="l00211"></a>00211 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DetachFromGraphics();
-<a name="l00212"></a>00212 
-<a name="l00213"></a>00213         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00214"></a>00214 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00215"></a>00215 <span class="comment"></span><span class="comment">// Creation, Destruction and Initialization</span><span class="comment"></span>
-<a name="l00216"></a>00216 <span class="comment">///////////////////////////////////////</span>
-<a name="l00217"></a>00217 <span class="comment">            /// @brief Constructor.</span>
-<a name="l00218"></a>00218 <span class="comment">            /// @details This constructor contains the basic information needed to make an actor.</span>
-<a name="l00219"></a>00219 <span class="comment"></span>            <span class="comment">// @param name The name of the actor.</span>
-<a name="l00220"></a>00220             <span class="comment">// @param file The 3d mesh file that contains the 3d model the actor will use.</span>
-<a name="l00221"></a>00221             <span class="comment">// @param group The resource group where the 3d mesh and other related files can be found.</span>
-<a name="l00222"></a>00222             <a class="code" href="classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> ();
-<a name="l00223"></a>00223 <span class="comment"></span>
-<a name="l00224"></a>00224 <span class="comment">            /// @brief Destructor.</span>
-<a name="l00225"></a>00225 <span class="comment">            /// @details The class destructor.</span>
-<a name="l00226"></a>00226 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> ();
-<a name="l00227"></a>00227 <span class="comment"></span>
-<a name="l00228"></a>00228 <span class="comment">            /// @brief Retrieves the name of the object.</span>
-<a name="l00229"></a>00229 <span class="comment">            /// @details This function will retrieve the name of the object.</span>
-<a name="l00230"></a>00230 <span class="comment">            /// @return This should return a String containing the Name</span>
-<a name="l00231"></a>00231 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> GetName() <span class="keyword">const</span> = 0;
-<a name="l00232"></a>00232 <span class="comment"></span>
-<a name="l00233"></a>00233 <span class="comment">            /// @brief Manually sets the location of the actor.</span>
-<a name="l00234"></a>00234 <span class="comment">            /// @details Calling this function prior to adding it to the World will have no effect. @n</span>
-<a name="l00235"></a>00235 <span class="comment">            /// In most situations you won&#39;t want to use this function, and instead produce movement through physics functions.</span>
-<a name="l00236"></a>00236 <span class="comment">            /// @param x Location on the X vector.</span>
-<a name="l00237"></a>00237 <span class="comment">            /// @param y Location on the Y vector.</span>
-<a name="l00238"></a>00238 <span class="comment">            /// @param z Location on the Z vector.</span>
-<a name="l00239"></a>00239 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLocation(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; x, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; y, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; z);
-<a name="l00240"></a>00240 <span class="comment"></span>
-<a name="l00241"></a>00241 <span class="comment">            /// @brief Manually sets the location of the actor.</span>
-<a name="l00242"></a>00242 <span class="comment">            /// @details Calling this function prior to adding it to the World will have no effect. @n</span>
-<a name="l00243"></a>00243 <span class="comment">            /// In most situations you won&#39;t want to use this function, and instead produce movement through physics functions.</span>
-<a name="l00244"></a>00244 <span class="comment">            /// @param Place The Vector3 representing the location.</span>
-<a name="l00245"></a>00245 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLocation(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Place);
-<a name="l00246"></a>00246 <span class="comment"></span>
-<a name="l00247"></a>00247 <span class="comment">            /// @brief Retrieves the location of the object.</span>
-<a name="l00248"></a>00248 <span class="comment">            /// @details This function will retrieve the location of the object within the world.</span>
-<a name="l00249"></a>00249 <span class="comment">            /// @return A phys::Vector3 containing the location.</span>
-<a name="l00250"></a>00250 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetLocation() <span class="keyword">const</span>;
-<a name="l00251"></a>00251 <span class="comment"></span>
-<a name="l00252"></a>00252 <span class="comment">            /// @brief Sets the orientation of the actor.</span>
-<a name="l00253"></a>00253 <span class="comment">            /// @details Sets the orientation of the actor via Quaternion parameters.</span>
-<a name="l00254"></a>00254 <span class="comment">            /// @param x Where the X vector is rotated about.</span>
-<a name="l00255"></a>00255 <span class="comment">            /// @param y Where the Y vector is rotated about.</span>
-<a name="l00256"></a>00256 <span class="comment">            /// @param z Where the Z vector is rotated about.</span>
-<a name="l00257"></a>00257 <span class="comment">            /// @param w How much to about the x, y, z.</span>
-<a name="l00258"></a>00258 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetOrientation(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; x, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; y, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; z, <span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; w);
-<a name="l00259"></a>00259 <span class="comment"></span>
-<a name="l00260"></a>00260 <span class="comment">            /// @brief Sets the orientation of the actor.</span>
-<a name="l00261"></a>00261 <span class="comment">            /// @details Sets the orientation of the actor via a Quaternion.</span>
-<a name="l00262"></a>00262 <span class="comment">            /// @param Rotation The Quaternion representing the Rotation.</span>
-<a name="l00263"></a>00263 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetOrientation(<span class="keyword">const</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Rotation);
-<a name="l00264"></a>00264 <span class="comment"></span>
-<a name="l00265"></a>00265 <span class="comment">            /// @brief Gets the orientation of the actor.</span>
-<a name="l00266"></a>00266 <span class="comment">            /// @return Returns a quaternion representing the rotation of the actor.</span>
-<a name="l00267"></a>00267 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetOrientation() <span class="keyword">const</span>;
-<a name="l00268"></a>00268 <span class="comment"></span>
-<a name="l00269"></a>00269 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00270"></a>00270 <span class="comment"></span><span class="comment">// Utility and Configuration</span><span class="comment"></span>
-<a name="l00271"></a>00271 <span class="comment">///////////////////////////////////////</span>
-<a name="l00272"></a>00272 <span class="comment">            ///@brief This is a collection of sounds for use with this actor.</span>
-<a name="l00273"></a><a class="code" href="classphys_1_1ActorBase.html#a2d56e2b3470bfc7dfc6d9ce8c4158d81">00273</a> <span class="comment"></span>            <a class="code" href="classphys_1_1SoundSet.html" title="This is a vector that stores sounds.">SoundSet</a>* <a class="code" href="classphys_1_1ActorBase.html#a2d56e2b3470bfc7dfc6d9ce8c4158d81" title="This is a collection of sounds for use with this actor.">ActorSounds</a>;
-<a name="l00274"></a>00274 <span class="comment"></span>
-<a name="l00275"></a>00275 <span class="comment">            /// @brief Gets the type of actor this class is.</span>
-<a name="l00276"></a>00276 <span class="comment">            /// @details This function will get the type of class that you are working with for checking and casting.</span>
-<a name="l00277"></a>00277 <span class="comment">            /// @return ActorTypeName The type of actor that this is.</span>
-<a name="l00278"></a>00278 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">int</span> GetType() <span class="keyword">const</span>;
-<a name="l00279"></a>00279 <span class="comment"></span>
-<a name="l00280"></a>00280 <span class="comment">            /// @brief Gets a WorldNode representing the position and orientation of this actor.</span>
-<a name="l00281"></a>00281 <span class="comment">            /// @details The WorldNode returned by this function is not stored in the scene manasger.</span>
-<a name="l00282"></a>00282 <span class="comment">            /// @return Returns a WorldNode pointer pointing to this actor&#39;s world node.</span>
-<a name="l00283"></a>00283 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a>* GetActorNode() <span class="keyword">const</span>;
-<a name="l00284"></a>00284 <span class="comment"></span>
-<a name="l00285"></a>00285 <span class="comment">            /// @brief Gets whether or not this object is currently in the world.</span>
-<a name="l00286"></a>00286 <span class="comment">            /// @return Returns a bool indicating if this object has been added to the world.</span>
-<a name="l00287"></a>00287 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsInWorld() <span class="keyword">const</span>;
-<a name="l00288"></a>00288 <span class="comment"></span>
-<a name="l00289"></a>00289 <span class="comment">            /// @brief Checks of the actor is static or kinematic.</span>
-<a name="l00290"></a>00290 <span class="comment">            /// @details Checks of the actor is static or kinematic, returns true if it is either.</span>
-<a name="l00291"></a>00291 <span class="comment">            /// @return Returns true if the actor is static or kinematic.</span>
-<a name="l00292"></a>00292 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsStaticOrKinematic() <span class="keyword">const</span>;
-<a name="l00293"></a>00293 <span class="comment"></span>
-<a name="l00294"></a>00294 <span class="comment">            /// @brief Sets the animation for this object.</span>
-<a name="l00295"></a>00295 <span class="comment">            /// @details This function will get the specified animation for this object stored in the mesh file, and will loop the</span>
-<a name="l00296"></a>00296 <span class="comment">            /// animation if specified.</span>
-<a name="l00297"></a>00297 <span class="comment">            /// @param AnimationName Name of the stored animation to be loaded.</span>
-<a name="l00298"></a>00298 <span class="comment">            /// @param Loop Whether or not you want the animation to loop.  For example, you would want an idle animation to loop,</span>
-<a name="l00299"></a>00299 <span class="comment">            /// but not a death animation.</span>
-<a name="l00300"></a>00300 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetAnimation(<a class="code" href="namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; AnimationName, <span class="keywordtype">bool</span> Loop);
-<a name="l00301"></a>00301 <span class="comment"></span>
-<a name="l00302"></a>00302 <span class="comment">            /// @brief Enables the animation if one is set.</span>
-<a name="l00303"></a>00303 <span class="comment">            /// @details This function will enable the animation if passed true, making the object animate.  If passed false will</span>
-<a name="l00304"></a>00304 <span class="comment">            /// disable the animation.</span>
-<a name="l00305"></a>00305 <span class="comment">            /// @param Enable True to enable the animation or false to disable the animation.</span>
-<a name="l00306"></a>00306 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> EnableAnimation(<span class="keywordtype">bool</span> Enable);
-<a name="l00307"></a>00307 <span class="comment"></span>
-<a name="l00308"></a>00308 <span class="comment">            /// @brief Tells whether this actor is animated or not.</span>
-<a name="l00309"></a>00309 <span class="comment">            /// @details This function will return true if the actor has an animation set and it is enabled.</span>
-<a name="l00310"></a>00310 <span class="comment">            /// @return Returns true if an animation is set and enabled.</span>
-<a name="l00311"></a>00311 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsAnimated() <span class="keyword">const</span>;
-<a name="l00312"></a>00312 <span class="comment"></span>
-<a name="l00313"></a>00313 <span class="comment">            /// @brief Advances the animation, making it animate.</span>
-<a name="l00314"></a>00314 <span class="comment">            /// @param Time The amount of time to advance the animation.</span>
-<a name="l00315"></a>00315 <span class="comment">            /// @details You need to call this every frame while the actor is to be animated, otherwise even with the animation</span>
-<a name="l00316"></a>00316 <span class="comment">            /// enabled you will see no change in the animation.</span>
-<a name="l00317"></a>00317 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> AdvanceAnimation(<span class="keyword">const</span> <a class="code" href="namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>&amp; <a class="code" href="structphys_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a>);
-<a name="l00318"></a>00318 <span class="comment"></span>
-<a name="l00319"></a>00319 <span class="comment">            /// @brief Unloads a loaded animation.</span>
-<a name="l00320"></a>00320 <span class="comment">            /// @details This function will remove the existing set animation.</span>
-<a name="l00321"></a>00321 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveSetAnimation();
-<a name="l00322"></a>00322 <span class="comment"></span>
-<a name="l00323"></a>00323 <span class="comment">            /// @brief Sets the scale of the actor.</span>
-<a name="l00324"></a>00324 <span class="comment">            /// @details This function will alter the scaling/size of the actor with the given vector3.</span>
-<a name="l00325"></a>00325 <span class="comment">            /// @param scale The vector3 by which to apply the scale.  Will scale each axis&#39; accordingly.</span>
-<a name="l00326"></a>00326 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActorScaling(<span class="keyword">const</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; scale);
-<a name="l00327"></a>00327 <span class="comment"></span>
-<a name="l00328"></a>00328 <span class="comment">            /// @brief Gets the current scaling being applied to the actor.</span>
-<a name="l00329"></a>00329 <span class="comment">            /// @return Returns a vector3 representing the scaling being applied on all axes of this actor.</span>
-<a name="l00330"></a>00330 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetActorScaling() <span class="keyword">const</span>;
-<a name="l00331"></a>00331 <span class="comment"></span>
-<a name="l00332"></a>00332 <span class="comment">            /// @brief Gets the graphics settings class associated with this actor.</span>
-<a name="l00333"></a>00333 <span class="comment">            /// @return Returns a pointer to the graphics settings class in use by this actor.</span>
-<a name="l00334"></a>00334 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>* GetGraphicsSettings() <span class="keyword">const</span>;
-<a name="l00335"></a>00335 <span class="comment"></span>
-<a name="l00336"></a>00336 <span class="comment">            /// @brief Gets the physics settings class associated with this actor.</span>
-<a name="l00337"></a>00337 <span class="comment">            /// @return Returns a pointer to the physics settings class in use by this actor.</span>
-<a name="l00338"></a>00338 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classphys_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>* GetPhysicsSettings() <span class="keyword">const</span>;
-<a name="l00339"></a>00339 <span class="comment"></span>
-<a name="l00340"></a>00340 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00341"></a>00341 <span class="comment"></span><span class="comment">// Working with the World</span><span class="comment"></span>
-<a name="l00342"></a>00342 <span class="comment">///////////////////////////////////////</span>
-<a name="l00343"></a>00343 <span class="comment">            /// @brief Adds the actor to the physics world.</span>
-<a name="l00344"></a>00344 <span class="comment">            /// @details Adds the actor to the physics world. @n</span>
-<a name="l00345"></a>00345 <span class="comment">            /// This is automatically called by the phys::Actors::AddActor function and Doesn&#39;t neet to be called manually.</span>
-<a name="l00346"></a>00346 <span class="comment">            /// @param TargetWorld Pointer to the World class.</span>
-<a name="l00347"></a>00347 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddObjectToWorld(<a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld) = 0;
-<a name="l00348"></a>00348 <span class="comment"></span>
-<a name="l00349"></a>00349 <span class="comment">            /// @brief Removes the actor from the physics world.</span>
-<a name="l00350"></a>00350 <span class="comment">            /// @details Removes the actor from the physics world. @n</span>
-<a name="l00351"></a>00351 <span class="comment">            /// This is automatically called by the phys::Actors::AddActor function and Doesn&#39;t neet to be called manually.</span>
-<a name="l00352"></a>00352 <span class="comment">            /// @param TargetWorld Pointer to the World class.</span>
-<a name="l00353"></a>00353 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveObjectFromWorld(<a class="code" href="classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld) = 0;
-<a name="l00354"></a>00354 <span class="comment"></span>
-<a name="l00355"></a>00355 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00356"></a>00356 <span class="comment"></span><span class="comment">// Internal Object Access functions</span><span class="comment"></span>
-<a name="l00357"></a>00357 <span class="comment">///////////////////////////////////////</span>
-<a name="l00358"></a>00358 <span class="comment">            /// @internal</span>
-<a name="l00359"></a>00359 <span class="comment">            /// @brief Gets the internal physics object this actor is based on.</span>
-<a name="l00360"></a>00360 <span class="comment">            /// @return Returns a pointer to the internal Bullet object.</span>
-<a name="l00361"></a>00361 <span class="comment"></span>            <span class="keyword">virtual</span> btCollisionObject* GetBaseBulletObject() <span class="keyword">const</span>;
-<a name="l00362"></a>00362 <span class="comment"></span>
-<a name="l00363"></a>00363 <span class="comment">            /// @internal</span>
-<a name="l00364"></a>00364 <span class="comment">            /// @brief Gets the internal graphics object this actor is based on.</span>
-<a name="l00365"></a>00365 <span class="comment">            /// @return Returns a pointer to the internal graphics object.</span>
-<a name="l00366"></a>00366 <span class="comment"></span>            <span class="keyword">virtual</span> Ogre::Entity* GetOgreObject() <span class="keyword">const</span>;
-<a name="l00367"></a>00367 <span class="comment"></span>
-<a name="l00368"></a>00368 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00369"></a>00369 <span class="comment"></span><span class="comment">// Serialization</span><span class="comment"></span>
-<a name="l00370"></a>00370 <span class="comment">///////////////////////////////////////</span>
-<a name="l00371"></a>00371 <span class="comment"></span><span class="preprocessor">#ifdef PHYSXML</span>
-<a name="l00372"></a>00372 <span class="preprocessor"></span>        <span class="keyword">protected</span>:<span class="comment"></span>
-<a name="l00373"></a>00373 <span class="comment">            /// @internal</span>
-<a name="l00374"></a>00374 <span class="comment">            /// @brief a Helper function that assembles strings and throws an exception</span>
-<a name="l00375"></a>00375 <span class="comment">            /// @param Fail The item that failed.</span>
-<a name="l00376"></a>00376 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ThrowSerialError(<span class="keyword">const</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Fail) <span class="keyword">const</span>;
-<a name="l00377"></a>00377 
-<a name="l00378"></a>00378         <span class="keyword">public</span>:
-<a name="l00379"></a>00379             <span class="comment">// Serializable</span><span class="comment"></span>
-<a name="l00380"></a>00380 <span class="comment">            /// @brief Convert this class to an xml::Node ready for serialization</span>
-<a name="l00381"></a>00381 <span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.</span>
-<a name="l00382"></a>00382 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(<a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; CurrentRoot) <span class="keyword">const</span>;
-<a name="l00383"></a>00383 
-<a name="l00384"></a>00384             <span class="comment">// DeSerializable</span><span class="comment"></span>
-<a name="l00385"></a>00385 <span class="comment">            /// @brief Take the data stored in an XML and overwrite this instance of this object with it</span>
-<a name="l00386"></a>00386 <span class="comment">            /// @param OneNode and xml::Node containing the data.</span>
-<a name="l00387"></a>00387 <span class="comment">            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.</span>
-<a name="l00388"></a>00388 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoDeSerialize(<span class="keyword">const</span> <a class="code" href="classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; OneNode);
-<a name="l00389"></a>00389 <span class="comment"></span>
-<a name="l00390"></a>00390 <span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
-<a name="l00391"></a>00391 <span class="comment">            /// @return A string containing &quot;Point2PointConstraint&quot;</span>
-<a name="l00392"></a>00392 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> SerializableName();
-<a name="l00393"></a>00393 <span class="preprocessor">#endif</span>
-<a name="l00394"></a>00394 <span class="preprocessor"></span>    };
-<a name="l00395"></a>00395 
-<a name="l00396"></a>00396 } <span class="comment">// /phys</span>
-<a name="l00397"></a>00397 
-<a name="l00398"></a>00398 
-<a name="l00399"></a>00399 <span class="preprocessor">#endif</span>
+<a name="l00078"></a>00078         <span class="keyword">class </span><a class="code" href="classMezzanine_1_1Audio_1_1SoundSet.html" title="This is a vector that stores sounds.">SoundSet</a>;
+<a name="l00079"></a>00079     }
+<a name="l00080"></a>00080 
+<a name="l00081"></a><a class="code" href="namespaceMezzanine_1_1internal.html">00081</a>     <span class="keyword">namespace </span>internal
+<a name="l00082"></a>00082     {
+<a name="l00083"></a>00083         <span class="keyword">class </span>PhysMotionState;
+<a name="l00084"></a>00084         <span class="keyword">struct </span>MeshInfo;
+<a name="l00085"></a>00085     }<span class="comment"></span>
+<a name="l00086"></a>00086 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00087"></a>00087 <span class="comment">    /// @class ActorBase</span>
+<a name="l00088"></a>00088 <span class="comment">    /// @headerfile actorbase.h</span>
+<a name="l00089"></a>00089 <span class="comment">    /// @brief This is the base class from which all the actors inherit.</span>
+<a name="l00090"></a>00090 <span class="comment">    /// @details The actor classes store and manage all the relevant data regarding</span>
+<a name="l00091"></a>00091 <span class="comment">    /// objects inside the World.  They serve as a binder between the physics and</span>
+<a name="l00092"></a>00092 <span class="comment">    /// graphics for objects and have functions that allow the manipulation of objects</span>
+<a name="l00093"></a>00093 <span class="comment">    /// loaded into the World.  Currently there are 5 actor classes: ActorBase,</span>
+<a name="l00094"></a>00094 <span class="comment">    /// ActorRigid, ActorSoft, ActorTerrain, ActorCharacter. @n</span>
+<a name="l00095"></a>00095 <span class="comment">    /// ActorBase is a base class that serves as a template for the other four actor classes. @n</span>
+<a name="l00096"></a>00096 <span class="comment">    /// ActorBase should never be created, as it lacks the functionality needed for most objects.</span>
+<a name="l00097"></a>00097 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00098"></a><a class="code" href="classMezzanine_1_1ActorBase.html">00098</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> {
+<a name="l00099"></a>00099         <span class="keyword">private</span>:
+<a name="l00100"></a>00100             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a>;
+<a name="l00101"></a>00101             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classMezzanine_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>;
+<a name="l00102"></a>00102             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">            /// @enum ActorTypeName</span>
+<a name="l00106"></a>00106 <span class="comment">            /// @brief A listing of Actor TypeNames</span>
+<a name="l00107"></a>00107 <span class="comment">            /// @details These will be returned by ActorBase::GetType(), and will allow</span>
+<a name="l00108"></a>00108 <span class="comment">            /// code using this to determine what type of Actor class they are working with</span>
+<a name="l00109"></a>00109 <span class="comment">            /// and use this information to more safely cast to the correct Actor if needed.</span>
+<a name="l00110"></a><a class="code" href="classMezzanine_1_1ActorBase.html#a98e1b66ce4973b01abb6d9b858398eb6">00110</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="classMezzanine_1_1ActorBase.html#a98e1b66ce4973b01abb6d9b858398eb6" title="A listing of Actor TypeNames.">ActorTypeName</a>
+<a name="l00111"></a>00111             {
+<a name="l00112"></a>00112                 Actorbase,
+<a name="l00113"></a>00113                 Actorcharacter,
+<a name="l00114"></a>00114                 Actorrigid,
+<a name="l00115"></a>00115                 Actorsoft,
+<a name="l00116"></a>00116                 Actorterrain
+<a name="l00117"></a>00117             };
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119         <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">            /// @brief This class encapsulates the functionality of the Ogre::Entity using this</span>
+<a name="l00121"></a><a class="code" href="classMezzanine_1_1ActorBase.html#ab28b13559f01195a5f81768a445e5119">00121</a> <span class="comment"></span>            Ogre::Entity* <a class="code" href="classMezzanine_1_1ActorBase.html#ab28b13559f01195a5f81768a445e5119" title="This class encapsulates the functionality of the Ogre::Entity using this.">GraphicsObject</a>;
+<a name="l00122"></a>00122 <span class="comment"></span>
+<a name="l00123"></a>00123 <span class="comment">            /// @brief This class encapsulates the functionality of the Ogre::SceneNode using this</span>
+<a name="l00124"></a><a class="code" href="classMezzanine_1_1ActorBase.html#ac0a8cda5141e05df03a31f8b9b5908a6">00124</a> <span class="comment"></span>            Ogre::SceneNode* <a class="code" href="classMezzanine_1_1ActorBase.html#ac0a8cda5141e05df03a31f8b9b5908a6" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">GraphicsNode</a>;
+<a name="l00125"></a>00125 <span class="comment"></span>
+<a name="l00126"></a>00126 <span class="comment">            /// @brief This class encapsulates the functionality of the Ogre::AnimationState using this</span>
+<a name="l00127"></a><a class="code" href="classMezzanine_1_1ActorBase.html#ae71259b98aed5a9c269e0758344d36a7">00127</a> <span class="comment"></span>            Ogre::AnimationState* <a class="code" href="classMezzanine_1_1ActorBase.html#ae71259b98aed5a9c269e0758344d36a7" title="This class encapsulates the functionality of the Ogre::AnimationState using this.">Animation</a>;
+<a name="l00128"></a>00128 <span class="comment"></span>
+<a name="l00129"></a>00129 <span class="comment">            /// @brief This class encapsulates the functionality of the btCollisionShape using this</span>
+<a name="l00130"></a><a class="code" href="classMezzanine_1_1ActorBase.html#a51fdd84432cc14bebfe2d7bbc52cd4a0">00130</a> <span class="comment"></span>            btCollisionShape* <a class="code" href="classMezzanine_1_1ActorBase.html#a51fdd84432cc14bebfe2d7bbc52cd4a0" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;
+<a name="l00131"></a>00131 <span class="comment"></span>
+<a name="l00132"></a>00132 <span class="comment">            /// @brief This class encapsulates the functionality of the btCollisionObject using this</span>
+<a name="l00133"></a><a class="code" href="classMezzanine_1_1ActorBase.html#a453166e089f7a3821bf099e4404c3e43">00133</a> <span class="comment"></span>            btCollisionObject* <a class="code" href="classMezzanine_1_1ActorBase.html#a453166e089f7a3821bf099e4404c3e43" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>;
+<a name="l00134"></a>00134 <span class="comment"></span>
+<a name="l00135"></a>00135 <span class="comment">            /// @brief This class encapsulates the functionality of the PhysMotionState using this</span>
+<a name="l00136"></a><a class="code" href="classMezzanine_1_1ActorBase.html#a073d5307c4cb7a82f13133e8216f797b">00136</a> <span class="comment"></span>            internal::PhysMotionState* <a class="code" href="classMezzanine_1_1ActorBase.html#a073d5307c4cb7a82f13133e8216f797b" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>;
+<a name="l00137"></a>00137 <span class="comment"></span>
+<a name="l00138"></a>00138 <span class="comment">            /// @brief This class excapsulates the functionality of the Ogre::SceneNode.</span>
+<a name="l00139"></a><a class="code" href="classMezzanine_1_1ActorBase.html#a6dbfa117e36ab443af4509399b6c4fc9">00139</a> <span class="comment"></span>            <a class="code" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a>* <a class="code" href="classMezzanine_1_1ActorBase.html#a6dbfa117e36ab443af4509399b6c4fc9" title="This class excapsulates the functionality of the Ogre::SceneNode.">ActorWorldNode</a>;
+<a name="l00140"></a>00140 <span class="comment"></span>
+<a name="l00141"></a>00141 <span class="comment">            /// @brief This class encapsulates graphics specific configuration for this actor.</span>
+<a name="l00142"></a><a class="code" href="classMezzanine_1_1ActorBase.html#ae0bd045c27c10a959a11895b3cd6e73c">00142</a> <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>* <a class="code" href="classMezzanine_1_1ActorBase.html#ae0bd045c27c10a959a11895b3cd6e73c" title="This class encapsulates graphics specific configuration for this actor.">GraphicsSettings</a>;
+<a name="l00143"></a>00143 <span class="comment"></span>
+<a name="l00144"></a>00144 <span class="comment">            /// @brief This class encapsulates physics specific configuration for this actor.</span>
+<a name="l00145"></a><a class="code" href="classMezzanine_1_1ActorBase.html#a6171cd6b5d94263d0c339bf5e299fa26">00145</a> <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>* <a class="code" href="classMezzanine_1_1ActorBase.html#a6171cd6b5d94263d0c339bf5e299fa26" title="This class encapsulates physics specific configuration for this actor.">BasePhysicsSettings</a>;
+<a name="l00146"></a>00146 <span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">            /// @brief This variable stores the type of actor that this class is.</span>
+<a name="l00148"></a><a class="code" href="classMezzanine_1_1ActorBase.html#aac246ea33955e7aefe2b395e450967b6">00148</a> <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorBase.html#a98e1b66ce4973b01abb6d9b858398eb6" title="A listing of Actor TypeNames.">ActorTypeName</a> <a class="code" href="classMezzanine_1_1ActorBase.html#aac246ea33955e7aefe2b395e450967b6" title="This variable stores the type of actor that this class is.">ActorType</a>;
+<a name="l00149"></a>00149 <span class="comment"></span>
+<a name="l00150"></a>00150 <span class="comment">            /// @brief This member stores all existing collision events referencing this actor.</span>
+<a name="l00151"></a><a class="code" href="classMezzanine_1_1ActorBase.html#a5673816f3372d3ea8313687ad2529d08">00151</a> <span class="comment"></span>            std::set&lt;Collision*&gt; <a class="code" href="classMezzanine_1_1ActorBase.html#a5673816f3372d3ea8313687ad2529d08" title="This member stores all existing collision events referencing this actor.">CurrentCollisions</a>;
+<a name="l00152"></a>00152 <span class="comment"></span>
+<a name="l00153"></a>00153 <span class="comment">//////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00154"></a>00154 <span class="comment"></span><span class="comment">// Ogre Management Functions</span><span class="comment"></span>
+<a name="l00155"></a>00155 <span class="comment">///////////////////////////////////////</span>
+<a name="l00156"></a>00156 <span class="comment">            /// @brief Sets the location of the graphical body.</span>
+<a name="l00157"></a>00157 <span class="comment">            /// @details This will take a Vector3 and set the location of the actor within the graphical world. @n</span>
+<a name="l00158"></a>00158 <span class="comment">            /// This function is called on by the SetLocation function, and shouldn&#39;t be called manually.</span>
+<a name="l00159"></a>00159 <span class="comment">            /// @param Place The Vector3 representing the location.</span>
+<a name="l00160"></a>00160 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetOgreLocation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Place);
+<a name="l00161"></a>00161 <span class="comment"></span>
+<a name="l00162"></a>00162 <span class="comment">            /// @brief Retrieves the location of the graphical body.</span>
+<a name="l00163"></a>00163 <span class="comment">            /// @details This function will retrieve the location of the object within the graphical world. This should always match the physics world.</span>
+<a name="l00164"></a>00164 <span class="comment">            /// @return This returns a Mezzanine::Vector3 with the location of the graphics.</span>
+<a name="l00165"></a>00165 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetOgreLocation() <span class="keyword">const</span>;
+<a name="l00166"></a>00166 <span class="comment"></span>
+<a name="l00167"></a>00167 <span class="comment">            /// @brief Sets the orientation of the graphical body.</span>
+<a name="l00168"></a>00168 <span class="comment">            /// @details This will take a Quaternion and set the orientation of the actor within the graphical world. @n</span>
+<a name="l00169"></a>00169 <span class="comment">            /// This function is called on by the SetOrientation function, and shouldn&#39;t be called manually.</span>
+<a name="l00170"></a>00170 <span class="comment">            /// @param Rotation The quaternion representing the rotation of the actor.</span>
+<a name="l00171"></a>00171 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetOgreOrientation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Rotation);
+<a name="l00172"></a>00172 <span class="comment"></span>
+<a name="l00173"></a>00173 <span class="comment">            /// @brief Gets the orientation of the graphical body.</span>
+<a name="l00174"></a>00174 <span class="comment">            /// @return Returns a quaternion representing the rotation of the actor.</span>
+<a name="l00175"></a>00175 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetOgreOrientation() <span class="keyword">const</span>;
+<a name="l00176"></a>00176 <span class="comment"></span>
+<a name="l00177"></a>00177 <span class="comment">//////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00178"></a>00178 <span class="comment"></span><span class="comment">// Bullet Management Functions</span><span class="comment"></span>
+<a name="l00179"></a>00179 <span class="comment">///////////////////////////////////////</span>
+<a name="l00180"></a>00180 <span class="comment">            /// @brief Sets the location of the physics body.</span>
+<a name="l00181"></a>00181 <span class="comment">            /// @details This will take a Vector3 and set the location of the actor within the physics world. @n</span>
+<a name="l00182"></a>00182 <span class="comment">            /// This function is called on by the SetLocation function, and shouldn&#39;t be called manually.</span>
+<a name="l00183"></a>00183 <span class="comment">            /// @param Location The Vector3 representing the location.</span>
+<a name="l00184"></a>00184 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetBulletLocation (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location);
+<a name="l00185"></a>00185 <span class="comment"></span>
+<a name="l00186"></a>00186 <span class="comment">            /// @brief Retrieves the location of the physics body.</span>
+<a name="l00187"></a>00187 <span class="comment">            /// @details This function will retrieve the location of the object within the physics world.</span>
+<a name="l00188"></a>00188 <span class="comment">            /// @return a Mezzanine::Vector3.</span>
+<a name="l00189"></a>00189 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetBulletLocation() <span class="keyword">const</span>;
+<a name="l00190"></a>00190 <span class="comment"></span>
+<a name="l00191"></a>00191 <span class="comment">            /// @brief Sets the orientation of the physics body.</span>
+<a name="l00192"></a>00192 <span class="comment">            /// @details This will take a Quaternion and set the orientation of the actor within the physics world. @n</span>
+<a name="l00193"></a>00193 <span class="comment">            /// This function is called on by the SetOrientation function, and shouldn&#39;t be called manually.</span>
+<a name="l00194"></a>00194 <span class="comment">            /// @param Rotation The quaternion representing the rotation of the actor.</span>
+<a name="l00195"></a>00195 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetBulletOrientation (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Rotation);
+<a name="l00196"></a>00196 <span class="comment"></span>
+<a name="l00197"></a>00197 <span class="comment">            /// @brief Gets the orientation of the graphical body.</span>
+<a name="l00198"></a>00198 <span class="comment">            /// @return Returns a quaternion representing the rotation of the actor.</span>
+<a name="l00199"></a>00199 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetBulletOrientation() <span class="keyword">const</span>;
+<a name="l00200"></a>00200 <span class="comment"></span>
+<a name="l00201"></a>00201 <span class="comment">//////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00202"></a>00202 <span class="comment"></span><span class="comment">// Other Management Functions</span><span class="comment"></span>
+<a name="l00203"></a>00203 <span class="comment">///////////////////////////////////////</span>
+<a name="l00204"></a>00204 <span class="comment">            /// @brief Makes the actor visable.</span>
+<a name="l00205"></a>00205 <span class="comment">            /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n</span>
+<a name="l00206"></a>00206 <span class="comment">            /// This is automaticly called by the Worlds AddActor function and shouldn&#39;t ever need to be called manually.</span>
+<a name="l00207"></a>00207 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> AttachToGraphics();
+<a name="l00208"></a>00208 <span class="comment"></span>
+<a name="l00209"></a>00209 <span class="comment">            /// @brief Makes the actor invisable.</span>
+<a name="l00210"></a>00210 <span class="comment">            /// @details This is the inverse of the AttachToGraphics function.  This will effectively remove the object from the graphics world and make it no longer visable. @n</span>
+<a name="l00211"></a>00211 <span class="comment">            /// This is automaticly called by the Worlds RemoveActor function and shouldn&#39;t ever need to be called manually.</span>
+<a name="l00212"></a>00212 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DetachFromGraphics();
+<a name="l00213"></a>00213 
+<a name="l00214"></a>00214         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00215"></a>00215 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00216"></a>00216 <span class="comment"></span><span class="comment">// Creation, Destruction and Initialization</span><span class="comment"></span>
+<a name="l00217"></a>00217 <span class="comment">///////////////////////////////////////</span>
+<a name="l00218"></a>00218 <span class="comment">            /// @brief Constructor.</span>
+<a name="l00219"></a>00219 <span class="comment">            /// @details This constructor contains the basic information needed to make an actor.</span>
+<a name="l00220"></a>00220 <span class="comment"></span>            <span class="comment">// @param name The name of the actor.</span>
+<a name="l00221"></a>00221             <span class="comment">// @param file The 3d mesh file that contains the 3d model the actor will use.</span>
+<a name="l00222"></a>00222             <span class="comment">// @param group The resource group where the 3d mesh and other related files can be found.</span>
+<a name="l00223"></a>00223             <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> ();
+<a name="l00224"></a>00224 <span class="comment"></span>
+<a name="l00225"></a>00225 <span class="comment">            /// @brief Destructor.</span>
+<a name="l00226"></a>00226 <span class="comment">            /// @details The class destructor.</span>
+<a name="l00227"></a>00227 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> ();
+<a name="l00228"></a>00228 <span class="comment"></span>
+<a name="l00229"></a>00229 <span class="comment">            /// @brief Retrieves the name of the object.</span>
+<a name="l00230"></a>00230 <span class="comment">            /// @details This function will retrieve the name of the object.</span>
+<a name="l00231"></a>00231 <span class="comment">            /// @return This should return a String containing the Name</span>
+<a name="l00232"></a>00232 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GetName() <span class="keyword">const</span> = 0;
+<a name="l00233"></a>00233 <span class="comment"></span>
+<a name="l00234"></a>00234 <span class="comment">            /// @brief Manually sets the location of the actor.</span>
+<a name="l00235"></a>00235 <span class="comment">            /// @details Calling this function prior to adding it to the World will have no effect. @n</span>
+<a name="l00236"></a>00236 <span class="comment">            /// In most situations you won&#39;t want to use this function, and instead produce movement through physics functions.</span>
+<a name="l00237"></a>00237 <span class="comment">            /// @param x Location on the X vector.</span>
+<a name="l00238"></a>00238 <span class="comment">            /// @param y Location on the Y vector.</span>
+<a name="l00239"></a>00239 <span class="comment">            /// @param z Location on the Z vector.</span>
+<a name="l00240"></a>00240 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLocation(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; x, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; y, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; z);
+<a name="l00241"></a>00241 <span class="comment"></span>
+<a name="l00242"></a>00242 <span class="comment">            /// @brief Manually sets the location of the actor.</span>
+<a name="l00243"></a>00243 <span class="comment">            /// @details Calling this function prior to adding it to the World will have no effect. @n</span>
+<a name="l00244"></a>00244 <span class="comment">            /// In most situations you won&#39;t want to use this function, and instead produce movement through physics functions.</span>
+<a name="l00245"></a>00245 <span class="comment">            /// @param Place The Vector3 representing the location.</span>
+<a name="l00246"></a>00246 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLocation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Place);
+<a name="l00247"></a>00247 <span class="comment"></span>
+<a name="l00248"></a>00248 <span class="comment">            /// @brief Retrieves the location of the object.</span>
+<a name="l00249"></a>00249 <span class="comment">            /// @details This function will retrieve the location of the object within the world.</span>
+<a name="l00250"></a>00250 <span class="comment">            /// @return A Mezzanine::Vector3 containing the location.</span>
+<a name="l00251"></a>00251 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetLocation() <span class="keyword">const</span>;
+<a name="l00252"></a>00252 <span class="comment"></span>
+<a name="l00253"></a>00253 <span class="comment">            /// @brief Sets the orientation of the actor.</span>
+<a name="l00254"></a>00254 <span class="comment">            /// @details Sets the orientation of the actor via Quaternion parameters.</span>
+<a name="l00255"></a>00255 <span class="comment">            /// @param x Where the X vector is rotated about.</span>
+<a name="l00256"></a>00256 <span class="comment">            /// @param y Where the Y vector is rotated about.</span>
+<a name="l00257"></a>00257 <span class="comment">            /// @param z Where the Z vector is rotated about.</span>
+<a name="l00258"></a>00258 <span class="comment">            /// @param w How much to about the x, y, z.</span>
+<a name="l00259"></a>00259 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetOrientation(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; x, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; y, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; z, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; w);
+<a name="l00260"></a>00260 <span class="comment"></span>
+<a name="l00261"></a>00261 <span class="comment">            /// @brief Sets the orientation of the actor.</span>
+<a name="l00262"></a>00262 <span class="comment">            /// @details Sets the orientation of the actor via a Quaternion.</span>
+<a name="l00263"></a>00263 <span class="comment">            /// @param Rotation The Quaternion representing the Rotation.</span>
+<a name="l00264"></a>00264 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetOrientation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Rotation);
+<a name="l00265"></a>00265 <span class="comment"></span>
+<a name="l00266"></a>00266 <span class="comment">            /// @brief Gets the orientation of the actor.</span>
+<a name="l00267"></a>00267 <span class="comment">            /// @return Returns a quaternion representing the rotation of the actor.</span>
+<a name="l00268"></a>00268 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetOrientation() <span class="keyword">const</span>;
+<a name="l00269"></a>00269 <span class="comment"></span>
+<a name="l00270"></a>00270 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00271"></a>00271 <span class="comment"></span><span class="comment">// Utility and Configuration</span><span class="comment"></span>
+<a name="l00272"></a>00272 <span class="comment">///////////////////////////////////////</span>
+<a name="l00273"></a>00273 <span class="comment">            ///@brief This is a collection of sounds for use with this actor.</span>
+<a name="l00274"></a><a class="code" href="classMezzanine_1_1ActorBase.html#a55fc2cfb5d2754657fdb9a821504f9bf">00274</a> <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Audio_1_1SoundSet.html" title="This is a vector that stores sounds.">Audio::SoundSet</a>* <a class="code" href="classMezzanine_1_1ActorBase.html#a55fc2cfb5d2754657fdb9a821504f9bf" title="This is a collection of sounds for use with this actor.">ActorSounds</a>;
+<a name="l00275"></a>00275 <span class="comment"></span>
+<a name="l00276"></a>00276 <span class="comment">            /// @brief Gets the type of actor this class is.</span>
+<a name="l00277"></a>00277 <span class="comment">            /// @details This function will get the type of class that you are working with for checking and casting.</span>
+<a name="l00278"></a>00278 <span class="comment">            /// @return ActorTypeName The type of actor that this is.</span>
+<a name="l00279"></a>00279 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">int</span> GetType() <span class="keyword">const</span>;
+<a name="l00280"></a>00280 <span class="comment"></span>
+<a name="l00281"></a>00281 <span class="comment">            /// @brief Gets a WorldNode representing the position and orientation of this actor.</span>
+<a name="l00282"></a>00282 <span class="comment">            /// @details The WorldNode returned by this function is not stored in the scene manasger.</span>
+<a name="l00283"></a>00283 <span class="comment">            /// @return Returns a WorldNode pointer pointing to this actor&#39;s world node.</span>
+<a name="l00284"></a>00284 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a>* GetActorNode() <span class="keyword">const</span>;
+<a name="l00285"></a>00285 <span class="comment"></span>
+<a name="l00286"></a>00286 <span class="comment">            /// @brief Gets whether or not this object is currently in the world.</span>
+<a name="l00287"></a>00287 <span class="comment">            /// @return Returns a bool indicating if this object has been added to the world.</span>
+<a name="l00288"></a>00288 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsInWorld() <span class="keyword">const</span>;
+<a name="l00289"></a>00289 <span class="comment"></span>
+<a name="l00290"></a>00290 <span class="comment">            /// @brief Checks of the actor is static or kinematic.</span>
+<a name="l00291"></a>00291 <span class="comment">            /// @details Checks of the actor is static or kinematic, returns true if it is either.</span>
+<a name="l00292"></a>00292 <span class="comment">            /// @return Returns true if the actor is static or kinematic.</span>
+<a name="l00293"></a>00293 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsStaticOrKinematic() <span class="keyword">const</span>;
+<a name="l00294"></a>00294 <span class="comment"></span>
+<a name="l00295"></a>00295 <span class="comment">            /// @brief Sets the animation for this object.</span>
+<a name="l00296"></a>00296 <span class="comment">            /// @details This function will get the specified animation for this object stored in the mesh file, and will loop the</span>
+<a name="l00297"></a>00297 <span class="comment">            /// animation if specified.</span>
+<a name="l00298"></a>00298 <span class="comment">            /// @param AnimationName Name of the stored animation to be loaded.</span>
+<a name="l00299"></a>00299 <span class="comment">            /// @param Loop Whether or not you want the animation to loop.  For example, you would want an idle animation to loop,</span>
+<a name="l00300"></a>00300 <span class="comment">            /// but not a death animation.</span>
+<a name="l00301"></a>00301 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetAnimation(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; AnimationName, <span class="keywordtype">bool</span> Loop);
+<a name="l00302"></a>00302 <span class="comment"></span>
+<a name="l00303"></a>00303 <span class="comment">            /// @brief Enables the animation if one is set.</span>
+<a name="l00304"></a>00304 <span class="comment">            /// @details This function will enable the animation if passed true, making the object animate.  If passed false will</span>
+<a name="l00305"></a>00305 <span class="comment">            /// disable the animation.</span>
+<a name="l00306"></a>00306 <span class="comment">            /// @param Enable True to enable the animation or false to disable the animation.</span>
+<a name="l00307"></a>00307 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> EnableAnimation(<span class="keywordtype">bool</span> Enable);
+<a name="l00308"></a>00308 <span class="comment"></span>
+<a name="l00309"></a>00309 <span class="comment">            /// @brief Tells whether this actor is animated or not.</span>
+<a name="l00310"></a>00310 <span class="comment">            /// @details This function will return true if the actor has an animation set and it is enabled.</span>
+<a name="l00311"></a>00311 <span class="comment">            /// @return Returns true if an animation is set and enabled.</span>
+<a name="l00312"></a>00312 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsAnimated() <span class="keyword">const</span>;
+<a name="l00313"></a>00313 <span class="comment"></span>
+<a name="l00314"></a>00314 <span class="comment">            /// @brief Advances the animation, making it animate.</span>
+<a name="l00315"></a>00315 <span class="comment">            /// @param Time The amount of time to advance the animation.</span>
+<a name="l00316"></a>00316 <span class="comment">            /// @details You need to call this every frame while the actor is to be animated, otherwise even with the animation</span>
+<a name="l00317"></a>00317 <span class="comment">            /// enabled you will see no change in the animation.</span>
+<a name="l00318"></a>00318 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> AdvanceAnimation(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; <a class="code" href="structMezzanine_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a>);
+<a name="l00319"></a>00319 <span class="comment"></span>
+<a name="l00320"></a>00320 <span class="comment">            /// @brief Unloads a loaded animation.</span>
+<a name="l00321"></a>00321 <span class="comment">            /// @details This function will remove the existing set animation.</span>
+<a name="l00322"></a>00322 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveSetAnimation();
+<a name="l00323"></a>00323 <span class="comment"></span>
+<a name="l00324"></a>00324 <span class="comment">            /// @brief Sets the scale of the actor.</span>
+<a name="l00325"></a>00325 <span class="comment">            /// @details This function will alter the scaling/size of the actor with the given vector3.</span>
+<a name="l00326"></a>00326 <span class="comment">            /// @param scale The vector3 by which to apply the scale.  Will scale each axis&#39; accordingly.</span>
+<a name="l00327"></a>00327 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActorScaling(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; scale);
+<a name="l00328"></a>00328 <span class="comment"></span>
+<a name="l00329"></a>00329 <span class="comment">            /// @brief Gets the current scaling being applied to the actor.</span>
+<a name="l00330"></a>00330 <span class="comment">            /// @return Returns a vector3 representing the scaling being applied on all axes of this actor.</span>
+<a name="l00331"></a>00331 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetActorScaling() <span class="keyword">const</span>;
+<a name="l00332"></a>00332 <span class="comment"></span>
+<a name="l00333"></a>00333 <span class="comment">            /// @brief Gets all current collisions that apply to this actor.</span>
+<a name="l00334"></a>00334 <span class="comment">            /// @return Returns a const reference to a set containing all collisions events containing this actor.</span>
+<a name="l00335"></a>00335 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keyword">const</span> std::set&lt;Collision*&gt;&amp; GetCurrentCollisions();
+<a name="l00336"></a>00336 <span class="comment"></span>
+<a name="l00337"></a>00337 <span class="comment">            /// @brief Gets the graphics settings class associated with this actor.</span>
+<a name="l00338"></a>00338 <span class="comment">            /// @return Returns a pointer to the graphics settings class in use by this actor.</span>
+<a name="l00339"></a>00339 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>* GetGraphicsSettings() <span class="keyword">const</span>;
+<a name="l00340"></a>00340 <span class="comment"></span>
+<a name="l00341"></a>00341 <span class="comment">            /// @brief Gets the physics settings class associated with this actor.</span>
+<a name="l00342"></a>00342 <span class="comment">            /// @return Returns a pointer to the physics settings class in use by this actor.</span>
+<a name="l00343"></a>00343 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>* GetPhysicsSettings() <span class="keyword">const</span>;
+<a name="l00344"></a>00344 <span class="comment"></span>
+<a name="l00345"></a>00345 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00346"></a>00346 <span class="comment"></span><span class="comment">// Working with the World</span><span class="comment"></span>
+<a name="l00347"></a>00347 <span class="comment">///////////////////////////////////////</span>
+<a name="l00348"></a>00348 <span class="comment">            /// @brief Adds the actor to the physics world.</span>
+<a name="l00349"></a>00349 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddObjectToWorld() = 0;
+<a name="l00350"></a>00350 <span class="comment"></span>
+<a name="l00351"></a>00351 <span class="comment">            /// @brief Removes the actor from the physics world.</span>
+<a name="l00352"></a>00352 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveObjectFromWorld() = 0;
+<a name="l00353"></a>00353 <span class="comment"></span>
+<a name="l00354"></a>00354 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00355"></a>00355 <span class="comment"></span><span class="comment">// Internal Object functions</span><span class="comment"></span>
+<a name="l00356"></a>00356 <span class="comment">///////////////////////////////////////</span>
+<a name="l00357"></a>00357 <span class="comment">            /// @internal</span>
+<a name="l00358"></a>00358 <span class="comment">            /// @brief Utility function for altering or checking the actor every frame.</span>
+<a name="l00359"></a>00359 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> _Update() = 0;
+<a name="l00360"></a>00360 <span class="comment"></span>
+<a name="l00361"></a>00361 <span class="comment">            /// @internal</span>
+<a name="l00362"></a>00362 <span class="comment">            /// @brief Notifies this actor of a collision that is occuring with it.</span>
+<a name="l00363"></a>00363 <span class="comment">            /// @param Col A pointer to the collision pertaining to this actor.</span>
+<a name="l00364"></a>00364 <span class="comment">            /// @param State The state of the collision pertaining to this actor.</span>
+<a name="l00365"></a>00365 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> _NotifyCollisionState(<a class="code" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>* Col, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Collision.html#a24094c597061743dcd571f36077f4d19" title="Enum specifying the state change occuring in the collision.">Collision::CollisionState</a>&amp; State);
+<a name="l00366"></a>00366 <span class="comment"></span>
+<a name="l00367"></a>00367 <span class="comment">            /// @internal</span>
+<a name="l00368"></a>00368 <span class="comment">            /// @brief Gets the internal physics object this actor is based on.</span>
+<a name="l00369"></a>00369 <span class="comment">            /// @return Returns a pointer to the internal Bullet object.</span>
+<a name="l00370"></a>00370 <span class="comment"></span>            <span class="keyword">virtual</span> btCollisionObject* _GetBasePhysicsObject() <span class="keyword">const</span>;
+<a name="l00371"></a>00371 <span class="comment"></span>
+<a name="l00372"></a>00372 <span class="comment">            /// @internal</span>
+<a name="l00373"></a>00373 <span class="comment">            /// @brief Gets the internal graphics object this actor is based on.</span>
+<a name="l00374"></a>00374 <span class="comment">            /// @return Returns a pointer to the internal graphics object.</span>
+<a name="l00375"></a>00375 <span class="comment"></span>            <span class="keyword">virtual</span> Ogre::Entity* _GetGraphicsObject() <span class="keyword">const</span>;
+<a name="l00376"></a>00376 <span class="comment"></span>
+<a name="l00377"></a>00377 <span class="comment">            /// @internal</span>
+<a name="l00378"></a>00378 <span class="comment">            /// @brief Gets the internal graphics node this actor uses for it&#39;s graphics transform.</span>
+<a name="l00379"></a>00379 <span class="comment">            /// @return Returns a pointer to the internal graphics node.</span>
+<a name="l00380"></a>00380 <span class="comment"></span>            <span class="keyword">virtual</span> Ogre::SceneNode* _GetGraphicsNode() <span class="keyword">const</span>;
+<a name="l00381"></a>00381 <span class="comment"></span>
+<a name="l00382"></a>00382 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00383"></a>00383 <span class="comment"></span><span class="comment">// Serialization</span><span class="comment"></span>
+<a name="l00384"></a>00384 <span class="comment">///////////////////////////////////////</span>
+<a name="l00385"></a>00385 <span class="comment"></span><span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l00386"></a>00386 <span class="preprocessor"></span>        <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l00387"></a>00387 <span class="comment">            /// @internal</span>
+<a name="l00388"></a>00388 <span class="comment">            /// @brief a Helper function that assembles strings and throws an exception</span>
+<a name="l00389"></a>00389 <span class="comment">            /// @param Fail The item that failed.</span>
+<a name="l00390"></a>00390 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ThrowSerialError(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Fail) <span class="keyword">const</span>;
+<a name="l00391"></a>00391 
+<a name="l00392"></a>00392         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00393"></a>00393 <span class="comment">            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings.</span>
+<a name="l00394"></a>00394 <span class="comment">            /// @return A string containing name of the serialized graphics settings.</span>
+<a name="l00395"></a>00395 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GraphicsSettingsSerializableName() <span class="keyword">const</span> = 0;
+<a name="l00396"></a>00396 <span class="comment"></span>
+<a name="l00397"></a>00397 <span class="comment">            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized s settings.</span>
+<a name="l00398"></a>00398 <span class="comment">            /// @return A string containing name of the serialized graphics settings.</span>
+<a name="l00399"></a>00399 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> PhysicsSettingsSerializableName() <span class="keyword">const</span> = 0;
+<a name="l00400"></a>00400 
+<a name="l00401"></a>00401             <span class="comment">// Serializable</span><span class="comment"></span>
+<a name="l00402"></a>00402 <span class="comment">            /// @brief Convert this class to an xml::Node ready for serialization</span>
+<a name="l00403"></a>00403 <span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.</span>
+<a name="l00404"></a>00404 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(xml::Node&amp; CurrentRoot) <span class="keyword">const</span>;
+<a name="l00405"></a>00405 
+<a name="l00406"></a>00406             <span class="comment">// DeSerializable</span><span class="comment"></span>
+<a name="l00407"></a>00407 <span class="comment">            /// @brief Take the data stored in an XML and overwrite this instance of this object with it</span>
+<a name="l00408"></a>00408 <span class="comment">            /// @param OneNode and xml::Node containing the data.</span>
+<a name="l00409"></a>00409 <span class="comment">            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.</span>
+<a name="l00410"></a>00410 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoDeSerialize(<span class="keyword">const</span> xml::Node&amp; OneNode);
+<a name="l00411"></a>00411 <span class="comment"></span>
+<a name="l00412"></a>00412 <span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span>
+<a name="l00413"></a>00413 <span class="comment">            /// @return A string containing &quot;Point2PointConstraint&quot;</span>
+<a name="l00414"></a>00414 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> SerializableName();
+<a name="l00415"></a>00415 <span class="preprocessor">#endif</span>
+<a name="l00416"></a>00416 <span class="preprocessor"></span>    };
+<a name="l00417"></a>00417 
+<a name="l00418"></a>00418 } <span class="comment">// /phys</span>
+<a name="l00419"></a>00419 
+<a name="l00420"></a>00420 
+<a name="l00421"></a>00421 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -468,7 +490,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -478,6 +500,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 8 2011 12:45:25 for PhysGameEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sat Dec 3 2011 02:39:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>
