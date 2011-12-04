@@ -412,10 +412,8 @@ namespace Mezzanine
 
             /// @copydoc Mezzanine::ManagerBase::Initialize()
             virtual void Initialize();
-
             /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
-
             /// @copydoc Mezzanine::ManagerBase::GetType()
             virtual ManagerBase::ManagerTypeName GetType() const;
     };//physics manager

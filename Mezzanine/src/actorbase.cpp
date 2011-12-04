@@ -48,9 +48,7 @@
 
 #include "actorbase.h"
 #include "actorrigid.h"
-#include "actorterrain.h"
 #include "actorsoft.h"
-#include "actorgraphicssettings.h"
 #include "actorphysicssettings.h"
 #include "serialization.h"
 #include "audiomanager.h"
@@ -69,14 +67,10 @@ namespace Mezzanine
     ///////////////////////////////////
     // ActorBase class fuctions
     ActorBase::ActorBase()
-        : GraphicsObject(NULL),
-          GraphicsSettings(NULL),
-          Shape(NULL),
-          BasePhysicsSettings(NULL),
+        : BasePhysicsSettings(NULL),
           MotionState(NULL),
           ActorSounds(NULL),
-          Animation(NULL),
-          ActorType(ActorBase::Actorbase)
+          Animation(NULL)
     {
         //this->GameWorld = World::GetWorldPointer();
         this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
@@ -92,7 +86,7 @@ namespace Mezzanine
         delete MotionState;
         //delete GraphicsObject;
         SceneMan->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
-        delete CollisionObject;
+        delete PhysicsObject;
 
         if (SceneMan)
         {
@@ -133,42 +127,25 @@ namespace Mezzanine
     void ActorBase::SetBulletLocation(const Vector3& Location)
     {
         //btTransform* temp = this->CollisionObject->getWorldTransform();
-        this->CollisionObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        this->CollisionObject->getInterpolationWorldTransform().setOrigin(Location.GetBulletVector3());
+        this->PhysicsObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
+        this->PhysicsObject->getInterpolationWorldTransform().setOrigin(Location.GetBulletVector3());
     }
 
     Vector3 ActorBase::GetBulletLocation() const
     {
-        Vector3 temp(this->CollisionObject->getWorldTransform().getOrigin());
+        Vector3 temp(this->PhysicsObject->getWorldTransform().getOrigin());
         return temp;
     }
 
     void ActorBase::SetBulletOrientation(const Quaternion& Rotation)
     {
-        this->CollisionObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
+        this->PhysicsObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
     }
 
     Quaternion ActorBase::GetBulletOrientation() const
     {
-        Quaternion temp(CollisionObject->getWorldTransform().getRotation());
+        Quaternion temp(PhysicsObject->getWorldTransform().getRotation());
         return temp;
-    }
-
-    ///////////////////////////////////
-    // Other Management Functions
-
-    void ActorBase::AttachToGraphics()
-    {
-        Vector3 tempv(CollisionObject->getWorldTransform().getOrigin());
-        Quaternion tempq(CollisionObject->getWorldTransform().getRotation());
-        this->GraphicsNode->setPosition(tempv.GetOgreVector3());
-        this->GraphicsNode->setOrientation(tempq.GetOgreQuaternion());
-        this->GraphicsNode->attachObject(this->GraphicsObject);
-    }
-
-    void ActorBase::DetachFromGraphics()
-    {
-        this->GraphicsNode->detachObject(this->GraphicsObject);
     }
 
     ///////////////////////////////////
@@ -211,19 +188,9 @@ namespace Mezzanine
     ///////////////////////////////////
     // Utility and Configuration
 
-    int ActorBase::GetType() const
-    {
-        return this->ActorType;
-    }
-
     WorldNode* ActorBase::GetActorNode() const
     {
         return ActorWorldNode;
-    }
-
-    bool ActorBase::IsInWorld() const
-    {
-        return CollisionObject->getBroadphaseHandle() != 0;
     }
 
     bool ActorBase::IsStaticOrKinematic() const
@@ -279,59 +246,18 @@ namespace Mezzanine
     void ActorBase::SetActorScaling(const Vector3& scaling)
     {
         this->GraphicsNode->setScale(scaling.GetOgreVector3());
-        this->Shape->setLocalScaling(scaling.GetBulletVector3());
+        this->PhysicsShape->setLocalScaling(scaling.GetBulletVector3());
     }
 
     Vector3 ActorBase::GetActorScaling() const
     {
-        Vector3 Scale(this->Shape->getLocalScaling());
+        Vector3 Scale(this->PhysicsShape->getLocalScaling());
         return Scale;
-    }
-
-    const std::set<Collision*>& ActorBase::GetCurrentCollisions()
-    {
-        return CurrentCollisions;
-    }
-
-    ActorGraphicsSettings* ActorBase::GetGraphicsSettings() const
-    {
-        return GraphicsSettings;
     }
 
     ActorBasePhysicsSettings* ActorBase::GetPhysicsSettings() const
     {
         return BasePhysicsSettings;
-    }
-
-    ///////////////////////////////////
-    // Internal Object Access functions
-
-    void ActorBase::_NotifyCollisionState(Collision* Col, const Collision::CollisionState& State)
-    {
-        if(Collision::Col_Begin == State)
-        {
-            CurrentCollisions.insert(Col);
-        }
-        else if(Collision::Col_End == State)
-        {
-            std::set<Collision*>::iterator ColIt = CurrentCollisions.find(Col);
-            if( ColIt != CurrentCollisions.end() ) CurrentCollisions.erase(ColIt);
-        }
-    }
-
-    btCollisionObject* ActorBase::_GetBasePhysicsObject() const
-    {
-        return CollisionObject;
-    }
-
-    Ogre::Entity* ActorBase::_GetGraphicsObject() const
-    {
-        return GraphicsObject;
-    }
-
-    Ogre::SceneNode* ActorBase::_GetGraphicsNode() const
-    {
-        return GraphicsNode;
     }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -428,9 +354,9 @@ namespace Mezzanine
                 if( this->IsInWorld() != OneNode.GetAttribute("IsInWorld").AsBool() )
                 {
                     if(this->IsInWorld())
-                        { this->RemoveObjectFromWorld(); }
+                        { this->RemoveFromWorld(); }
                     else
-                        { this->AddObjectToWorld(); }
+                        { this->AddToWorld(); }
                 }
 
                 if( 0!=OneNode.GetAttribute("SoundSet") && ""!=OneNode.GetAttribute("SoundSet").AsString())

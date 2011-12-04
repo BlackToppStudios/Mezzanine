@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,40 +37,39 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _objectreference_h
-#define _objectreference_h
+#ifndef _terrainbase_cpp
+#define _terrainbase_cpp
 
-#include "enumerations.h"
+#include "terrainbase.h"
 
 namespace Mezzanine
 {
-    class WorldObject;
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ObjectReference
-    /// @headerfile objectreference.h
-    /// @brief This is a small class used to store a reference to a world object.
-    /// @details This class is primarily used with internal structures.
-    ///////////////////////////////////////
-    class ObjectReference
+    ///////////////////////////////////
+    // TerrainBase class fuctions
+    TerrainBase::TerrainBase()
+        : GraphicsObject(NULL),
+          Shape(NULL),
+          CollisionObject(NULL),
+          TerrainType(TerrainBase::Terrainbase)
     {
-        protected:
-            WorldObjectType Type;
-            WorldObject* Object;
-        public:
-            /// @brief Class constructor.
-            /// @param TheType The type of object this class is storing.
-            /// @param TheObject The object to be stored.
-            ObjectReference(const WorldObjectType& TheType, WorldObject* TheObject)
-                : Type(TheType), Object(TheObject) {};
-            /// @brief Class destructor.
-            ~ObjectReference() {};
-            /// @brief Gets the type of object this class references.
-            /// @return Returns an enum value indicating what type of object this class references.
-            WorldObjectType GetType() { return Type; };
-            /// @brief Gets the object this class references.
-            /// @return Returns a WorldObject pointer pointing to the object this class references.
-            WorldObject* GetObject() { return Object; };
-    };
-}
+        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+    }
 
-#endif
+    TerrainBase::~TerrainBase()
+    {
+    }
+
+    TerrainBase::TerrainTypeName TerrainBase::GetTerrainType()
+    {
+        return this->GetType();
+    }
+
+    String TerrainBase::GetTerrainName()
+    {
+        return this->Name;
+    }
+
+}// /Mezzanine
+
+#endif // _terrainbase_cpp
+

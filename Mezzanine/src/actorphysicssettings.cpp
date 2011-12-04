@@ -44,7 +44,6 @@
 #include "actorbase.h"
 #include "actorrigid.h"
 #include "actorsoft.h"
-#include "actorterrain.h"
 #include "collisionshape.h"
 #include "collisionshapemanager.h"
 #include "constraint.h"
@@ -73,42 +72,6 @@ namespace Mezzanine
 
     ActorBasePhysicsSettings::~ActorBasePhysicsSettings()
     {
-    }
-
-    void ActorBasePhysicsSettings::AssignShape(CollisionShape* Shape)
-    {
-        this->ActorShape = Shape;
-        Parent->Shape = Shape->GetBulletShape();
-    }
-
-    void ActorBasePhysicsSettings::SetCollisionShape(CollisionShape* Shape)
-    {
-    }
-
-    CollisionShape* ActorBasePhysicsSettings::GetCollisionShape() const
-    {
-        return ActorShape;
-    }
-
-    void ActorBasePhysicsSettings::SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask)
-    {
-        CollisionGroup = Group;
-        CollisionMask = Mask;
-        if(Parent->IsInWorld())
-        {
-            Parent->RemoveObjectFromWorld();
-            Parent->AddObjectToWorld();
-        }
-    }
-
-    Whole ActorBasePhysicsSettings::GetCollisionGroup() const
-    {
-        return CollisionGroup;
-    }
-
-    Whole ActorBasePhysicsSettings::GetCollisionMask() const
-    {
-        return CollisionMask;
     }
 
     void ActorBasePhysicsSettings::SetFriction(const Real& Friction)
@@ -169,114 +132,13 @@ namespace Mezzanine
         ActorCO->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
     }
 
-    bool ActorBasePhysicsSettings::IsKinematic() const
-    {
-        return ActorCO->isKinematicObject();
-    }
-
     void ActorBasePhysicsSettings::SetStatic()
     {
         ActorCO->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
     }
 
-    bool ActorBasePhysicsSettings::IsStatic() const
-    {
-        return ActorCO->isStaticObject();
-    }
-
-    bool ActorBasePhysicsSettings::IsStaticOrKinematic() const
-    {
-        return ActorCO->isStaticOrKinematicObject();
-    }
-
-    void ActorBasePhysicsSettings::EnableCollisionResponse()
-    {
-        World* GameWorld = World::GetWorldPointer();
-        switch (Parent->GetType())
-        {
-            case ActorBase::Actorrigid:
-            case ActorBase::Actorsoft:
-            case ActorBase::Actorterrain:
-            {
-                /*if(Parent->IsInWorld())
-                {
-                    Parent->RemoveObjectFromWorld(GameWorld);
-                    ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                    Parent->AddObjectToWorld(GameWorld);
-                }else{*/
-                    ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                //}
-                break;
-            }
-            case ActorBase::Actorcharacter:
-            {
-                return;
-                break;
-            }
-            default:
-                return;
-        }
-    }
-
-    void ActorBasePhysicsSettings::DisableCollisionResponse()
-    {
-        World* GameWorld = World::GetWorldPointer();
-        switch (Parent->GetType())
-        {
-            case ActorBase::Actorrigid:
-            case ActorBase::Actorsoft:
-            case ActorBase::Actorterrain:
-            {
-                /*if(Parent->IsInWorld())
-                {
-                    Parent->RemoveObjectFromWorld(GameWorld);
-                    ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                    Parent->AddObjectToWorld(GameWorld);
-                }else{*/
-                    ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                //}
-                break;
-            }
-            case ActorBase::Actorcharacter:
-            {
-                return;
-                break;
-            }
-            default:
-                return;
-        }
-    }
-
-    bool ActorBasePhysicsSettings::GetCollisionResponse() const
-    {
-        return !(ActorCO->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
-    }
-
-    bool ActorBasePhysicsSettings::IsActive() const
-    {
-        int Activation = ActorCO->getActivationState();
-        if( ACTIVE_TAG == Activation )
-        {
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    void ActorBasePhysicsSettings::SetActivationState(Mezzanine::ActorActivationState State, bool Force)
-    {
-        if(Force)
-            ActorCO->forceActivationState(State);
-        else
-            ActorCO->setActivationState(State);
-    }
-
     ActorBasePhysicsSettings* ActorBasePhysicsSettings::GetBasePointer()
         { return dynamic_cast<ActorBasePhysicsSettings*>(this); }
-
-
-    Mezzanine::ActorActivationState ActorBasePhysicsSettings::GetActivationState() const
-        { return (Mezzanine::ActorActivationState)ActorCO->getActivationState(); }
 
 #ifdef MEZZXML
         // Serializable
@@ -291,11 +153,6 @@ namespace Mezzanine
                 { SerializeError("Create Version Attribute", SerializableName()); }
             Version.SetValue(1);
 
-            Mezzanine::xml::Attribute CollisionShape = BaseNode.AppendAttribute("CollisionShape");
-            if (!CollisionShape)
-                { SerializeError("Create CollisionShape Attribute", SerializableName()); }
-            CollisionShape.SetValue(this->GetCollisionShape()->GetName());
-
             Mezzanine::xml::Attribute Friction = BaseNode.AppendAttribute("Friction");
             if (!Friction)
                 { SerializeError("Create Friction Attribute", SerializableName()); }
@@ -305,36 +162,6 @@ namespace Mezzanine
             if (!Restitution)
                 { SerializeError("Create Restitution Attribute", SerializableName()); }
             Restitution.SetValue(this->GetRestitution());
-
-            Mezzanine::xml::Attribute Kinematic = BaseNode.AppendAttribute("Kinematic");
-            if (!Kinematic)
-                { SerializeError("Create Kinematic Attribute", SerializableName()); }
-            Kinematic.SetValue(this->IsKinematic());
-
-            Mezzanine::xml::Attribute Static = BaseNode.AppendAttribute("Static");
-            if (!Static)
-                { SerializeError("Create Static Attribute", SerializableName()); }
-            Static.SetValue(this->IsStatic());
-
-            Mezzanine::xml::Attribute CollisionResponse = BaseNode.AppendAttribute("CollisionResponse");
-            if (!CollisionResponse)
-                { SerializeError("Create CollisionResponse Attribute", SerializableName()); }
-            CollisionResponse.SetValue(this->GetCollisionResponse());
-
-            Mezzanine::xml::Attribute CollisionGroup = BaseNode.AppendAttribute("CollisionGroup");
-            if (!CollisionGroup)
-                { SerializeError("Create CollisionGroup Attribute", SerializableName()); }
-            CollisionGroup.SetValue(this->GetCollisionGroup());
-
-            Mezzanine::xml::Attribute CollisionMask = BaseNode.AppendAttribute("CollisionMask");
-            if (!CollisionMask)
-                { SerializeError("Create CollisionMask Attribute", SerializableName()); }
-            CollisionMask.SetValue(this->GetCollisionMask());
-
-            Mezzanine::xml::Attribute ActivationState = BaseNode.AppendAttribute("ActivationState");
-            if (!ActivationState)
-                { SerializeError("Create ActivationState Attribute", SerializableName()); }
-            ActivationState.SetValue(this->GetActivationState());
 
             Mezzanine::xml::Attribute CCDMotionThreshold = BaseNode.AppendAttribute("CCDMotionThreshold");
             if (!CCDMotionThreshold)
@@ -354,18 +181,8 @@ namespace Mezzanine
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    CollisionShape* Shapeptr = Mezzanine::CollisionShapeManager::GetSingletonPtr()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
-                    if(!Shapeptr)
-                        { DeSerializeError("Find the correct Collision Shape",this->ActorBasePhysicsSettings::SerializableName()); }
-                    this->SetCollisionShape( Shapeptr );
                     this->SetFriction(OneNode.GetAttribute("Friction").AsReal());
                     this->SetRestitution(OneNode.GetAttribute("Restitution").AsReal());
-                    if (OneNode.GetAttribute("Kinematic").AsBool())
-                        { this->SetKinematic(); }
-                    if (OneNode.GetAttribute("Static").AsBool())
-                        { this->SetStatic(); }
-                    this->SetCollisionGroupAndMask(OneNode.GetAttribute("CollisionGroup").AsWhole(),OneNode.GetAttribute("CollisionMask").AsWhole());
-                    this->SetActivationState((Mezzanine::ActorActivationState)OneNode.GetAttribute("ActivationState").AsInt());
                     this->SetCCDParams(OneNode.GetAttribute("CCDMotionThreshold").AsReal(),OneNode.GetAttribute("CCDSphereRadius").AsReal());
                 }else{
                     throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->ActorBasePhysicsSettings::SerializableName() + ": Not Version 1"));
@@ -679,37 +496,6 @@ namespace Mezzanine
         // do nothing, cause soft bodies get unique custom shapes.
     }
 
-    ActorTerrainPhysicsSettings::ActorTerrainPhysicsSettings(ActorTerrain* Actor, btRigidBody* PhysicsObject)
-        : ActorBasePhysicsSettings(Actor,PhysicsObject),
-          TerrainParent(Actor),
-          ActorRB(PhysicsObject)
-    {
-        CollisionGroup = Mezzanine::CF_StaticFilter;
-        CollisionMask = Mezzanine::CF_AllFilter ^ Mezzanine::CF_StaticFilter;
-    }
-
-    ActorTerrainPhysicsSettings::~ActorTerrainPhysicsSettings()
-    {
-    }
-
-    void ActorTerrainPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
-    {
-        AssignShape(Shape);
-        if(CollisionShape::ST_StaticTriMesh != Shape->GetType())
-        {
-            btScalar mass = this->ActorRB->getInvMass();
-            if(0 != mass)
-                mass=1/mass;
-            btVector3 inertia(0,0,0);
-            Shape->GetBulletShape()->calculateLocalInertia(mass, inertia);
-            this->ActorRB->setMassProps(mass,inertia);
-            this->ActorRB->updateInertiaTensor();
-        }
-        this->ActorRB->setCollisionShape(Shape->GetBulletShape());
-        CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
-    }
-}
-
 #ifdef MEZZXML
 std::ostream& operator<< (std::ostream& stream, const Mezzanine::ActorBasePhysicsSettings& Ev)
     { return Serialize(stream, Ev); }
@@ -730,6 +516,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorRigidP
 void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorRigidPhysicsSettings& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
 #endif // \MEZZXML
-
+}
 
 #endif

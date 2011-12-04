@@ -71,9 +71,9 @@ namespace Mezzanine
                 if( Results->IsInWorld() != OneNode.GetChild(ActorBase::SerializableName()).GetAttribute("IsInWorld").AsBool() )
                 {
                     if(Results->IsInWorld())
-                        { Results->RemoveObjectFromWorld(); }
+                        { Results->RemoveFromWorld(); }
                     else
-                        { Results->AddObjectToWorld(); }
+                        { Results->AddToWorld(); }
                 }
 
                 Vector3 tempvec;

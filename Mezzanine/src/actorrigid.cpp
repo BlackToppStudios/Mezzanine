@@ -50,7 +50,6 @@
 #include "objectreference.h"
 #include "collision.h"
 #include "constraint.h"
-#include "actorgraphicssettings.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internalmeshtools.h.cpp"
 #include "serialization.h"
@@ -69,36 +68,32 @@ namespace Mezzanine
         this->GraphicsObject = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
-        this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
+        this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
         BasePhysicsSettings = new ActorRigidPhysicsSettings(this,physrigidbody);
-        ActorType=ActorBase::Actorrigid;
     }
 
     ActorRigid::~ActorRigid()
     {
         delete physrigidbody;
-        CollisionObject = NULL;
+        PhysicsObject = NULL;
     }
 
     void ActorRigid::CreateRigidObject(const Real& pmass)
     {
         btScalar bmass=pmass;
-        this->physrigidbody = new btRigidBody(bmass, this->MotionState, this->Shape);
-        CollisionObject=physrigidbody;
+        this->physrigidbody = new btRigidBody(bmass, this->MotionState, this->PhysicsShape);
+        PhysicsObject=physrigidbody;
         ObjectReference* ActorRef = new ObjectReference(Mezzanine::WOT_ActorRigid,this);
         Ogre::Any OgreRef(ActorRef);
         GraphicsObject->setUserAny(OgreRef);
-        CollisionObject->setUserPointer(ActorRef);
+        PhysicsObject->setUserPointer(ActorRef);
         if(0.0 == bmass)
         {
-            CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+            PhysicsObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
         }else{
-            CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT));
+            PhysicsObject->setCollisionFlags(PhysicsObject->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT));
         }
     }
-
-    String ActorRigid::GetName() const
-        { return String(this->GraphicsObject->getName()); }
 
     ActorRigidPhysicsSettings* ActorRigid::GetPhysicsSettings() const
         { return static_cast<ActorRigidPhysicsSettings*>(this->BasePhysicsSettings); }
@@ -115,13 +110,16 @@ namespace Mezzanine
     Vector3 ActorRigid::GetAngularMovementFactor() const
         { return Vector3(this->physrigidbody->getAngularFactor()); }
 
-    void ActorRigid::AddObjectToWorld()
+    WorldObjectType ActorRigid::GetType() const
+        { return Mezzanine::WOT_ActorRigid; }
+
+    void ActorRigid::AddToWorld()
     {
         PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
-    void ActorRigid::RemoveObjectFromWorld()
+    void ActorRigid::RemoveFromWorld()
     {
         PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
         btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();

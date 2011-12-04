@@ -184,7 +184,7 @@ namespace Mezzanine
         if (RemoveFromWorld && World::GetWorldPointer() != NULL)
         {
             for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
-                { (*c)->RemoveObjectFromWorld(); }
+                { (*c)->RemoveFromWorld(); }
         }
 
         this->GameWorld = GameWorld_;
@@ -192,7 +192,7 @@ namespace Mezzanine
         if (AddToWorld && this->GameWorld != NULL)
         {
             for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
-                { (*c)->AddObjectToWorld(); }
+                { (*c)->AddToWorld(); }
         }
     }
 }

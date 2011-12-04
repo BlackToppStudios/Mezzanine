@@ -45,17 +45,6 @@
 
 namespace Mezzanine
 {
-    /// @enum ActorActivationState
-    /// @brief This is used by all the actors to monitor and set their physics activation.
-    enum ActorActivationState
-    {
-        AAS_Active = 1,
-        AAS_Island_Sleeping = 2,
-        AAS_Wants_Deactivation = 3,
-        AAS_DisableDeactivation = 4,
-        AAS_DisableSimulation = 5
-    };
-
     /// @enum AspectRatio
     /// @brief This is used primarily by the GraphicsManager to keep track of the supported
     /// and currently used aspect ratios.
@@ -122,6 +111,26 @@ namespace Mezzanine
         RS_OpenGLES2
     };
 
+    /// @brief Used to identify different Axis in a 3d coordinate system.
+    /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.
+    enum StandardAxis
+    {
+        Axis_X         = 0,    ///< X axis
+        Axis_Y         = 1,    ///< Y axis
+        Axis_Z         = 2,    ///< Z axis
+    };
+
+    /// @enum WorldObjectActivationState
+    /// @brief This is used by all the world objects to monitor and set their physics activation.
+    enum WorldObjectActivationState
+    {
+        WOAS_Active = 1,
+        WOAS_Island_Sleeping = 2,
+        WOAS_Wants_Deactivation = 3,
+        WOAS_DisableDeactivation = 4,
+        WOAS_DisableSimulation = 5
+    };
+
     /// @enum WorldObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This is mostly used internally for casting void pointers.
@@ -137,7 +146,7 @@ namespace Mezzanine
 
         // Terrains go here
         WOT_TerrainFirst = 16,
-        WOT_ActorTerrain = 16, //should rename to Mesh Terrain
+        WOT_MeshTerrain = 16,
         WOT_UnimplementedTerrain1 = 32, // should rename to Heightfield terrain
         WOT_UnimplementedTerrain2 = 64, // should rename to Vectorfield terrain
         WOT_UnimplementedTerrain3 = 128, // should rename to Voxel Terrain
@@ -146,28 +155,13 @@ namespace Mezzanine
 
         // AE Fields
         WOT_AEFirst = 512,
-        WOT_AEGravityField = 1024,
-        WOT_AEGravityWell = 2048,
-        WOT_AEFieldOfForce = 4096,
-        WOT_AEPlaceHolder1 = 8192,
-        WOT_AEPlaceHolder2 = 16384,
-        WOT_AEUnknown = 32768,
-        WOT_AELast = 32768,
-
-        // Scene Objects
-        WOT_SceneFirst = 65536,
-        WOT_Light = 65536,
-        WOT_ParticleEffect = 131072,
-        WOT_Camera = 262144,
-        WOT_SceneLast = 262144,
-    };
-
-    /// @brief Used to identify different Axis in a 3d coordinate system.
-    /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.
-    enum StandardAxis {
-        Axis_X         = 0,    ///< X axis
-        Axis_Y         = 1,    ///< Y axis
-        Axis_Z         = 2,    ///< Z axis
+        WOT_AEGravityField = 512,
+        WOT_AEGravityWell = 1024,
+        WOT_AEFieldOfForce = 2048,
+        WOT_AEPlaceHolder1 = 4096,
+        WOT_AEPlaceHolder2 = 8192,
+        WOT_AEUnknown = 16384,
+        WOT_AELast = 16384,
     };
 }
 

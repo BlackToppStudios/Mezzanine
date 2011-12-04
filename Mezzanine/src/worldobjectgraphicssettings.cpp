@@ -37,11 +37,12 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorgraphicssettings_cpp
-#define _actorgraphicssettings_cpp
+#ifndef _worldobjectgraphicssettings_cpp
+#define _worldobjectgraphicssettings_cpp
 
-#include "actorgraphicssettings.h"
+#include "worldobjectgraphicssettings.h"
 #include "actorbase.h"
+#include "worldobject.h"
 #include "mesh.h"
 #include "datatypes.h"
 #include "serialization.h"
@@ -60,14 +61,14 @@ namespace Mezzanine
     namespace internal
     {
         /// @internal
-        /// @brief Used to store internal data about an actors.
-        class InternalActorGraphicsSettings
+        /// @brief Used to store internal data about an world objects.
+        class InternalWorldObjectGraphicsSettings
         {
         public:
 
             /// @internal
-            /// @brief Graphics Object of the actor.
-            Ogre::Entity* ActorEnt;
+            /// @brief Graphics Object of the world object.
+            Ogre::Entity* WorldObjectEnt;
 
             /// @internal
             /// @brief Used for tracking ambient color on sub-meshes
@@ -81,8 +82,8 @@ namespace Mezzanine
             /// @brief Used for tracking Specular color on sub-meshes
             std::map<Whole, ColourValue> Specular;
 
-            InternalActorGraphicsSettings(Ogre::Entity* GraphicsObject)
-              : ActorEnt(GraphicsObject)
+            InternalWorldObjectGraphicsSettings(Ogre::Entity* GraphicsObject)
+              : WorldObjectEnt(GraphicsObject)
             {
             }
 
@@ -92,86 +93,86 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Construction
 
-    ActorGraphicsSettings::ActorGraphicsSettings(ActorBase* Actor, Ogre::Entity* GraphicsObject)
-        : Parent(Actor)
+    WorldObjectGraphicsSettings::WorldObjectGraphicsSettings(WorldObject* WO, Ogre::Entity* GraphicsObject)
+        : Parent(WO)
     {
-        this->IAGS = new internal::InternalActorGraphicsSettings(GraphicsObject);
-        ActorMesh = MeshManager::GetSingletonPtr()->GetMesh(GraphicsObject->getMesh()->getName());
+        this->IWOGS = new internal::InternalWorldObjectGraphicsSettings(GraphicsObject);
+        WorldObjectMesh = MeshManager::GetSingletonPtr()->GetMesh(GraphicsObject->getMesh()->getName());
     }
 
-    ActorGraphicsSettings::~ActorGraphicsSettings()
+    WorldObjectGraphicsSettings::~WorldObjectGraphicsSettings()
     {
-        delete this->IAGS;
+        delete this->IWOGS;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Material Management
 
-    Ogre::MaterialPtr ActorGraphicsSettings::GetMaterial(Whole Submesh)
+    Ogre::MaterialPtr WorldObjectGraphicsSettings::GetMaterial(const Whole& Submesh)
     {
         return static_cast<Ogre::MaterialPtr>(Ogre::MaterialManager::getSingleton().getByName(GetMaterialName(Submesh)));
     }
 
-    void ActorGraphicsSettings::SetMaterial(String MatName, Whole Submesh)
+    void WorldObjectGraphicsSettings::SetMaterial(const String& MatName, const Whole& Submesh)
     {
-        this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->setMaterialName(MatName);
+        this->IWOGS->WorldObjectEnt->getMesh()->getSubMesh(Submesh)->setMaterialName(MatName);
     }
 
-    void ActorGraphicsSettings::CloneMaterial(const String& newName)
+    void WorldObjectGraphicsSettings::CloneMaterial(const String& NewName)
     {
-         this->GetMaterial()->clone(newName);
+         this->GetMaterial()->clone(NewName);
     }
 
-    ConstString& ActorGraphicsSettings::GetMaterialName(Whole Submesh) const
+    ConstString& WorldObjectGraphicsSettings::GetMaterialName(const Whole& Submesh) const
     {
-        return this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->getMaterialName();
+        return this->IWOGS->WorldObjectEnt->getMesh()->getSubMesh(Submesh)->getMaterialName();
     }
 
-    bool ActorGraphicsSettings::HasMaterialSet(Whole Submesh)
+    bool WorldObjectGraphicsSettings::HasMaterialSet(const Whole& Submesh)
     {
-        return this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->isMatInitialised();
+        return this->IWOGS->WorldObjectEnt->getMesh()->getSubMesh(Submesh)->isMatInitialised();
     }
 
-    Whole ActorGraphicsSettings::GetNumSubmeshes() const
+    Whole WorldObjectGraphicsSettings::GetNumSubmeshes() const
     {
-        return this->IAGS->ActorEnt->getMesh()->getNumSubMeshes();
+        return this->IWOGS->WorldObjectEnt->getMesh()->getNumSubMeshes();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Material Colors
 
-    void ActorGraphicsSettings::SetMaterialAmbient(const ColourValue& Ambient, Whole Submesh)
+    void WorldObjectGraphicsSettings::SetMaterialAmbient(const ColourValue& Ambient, const Whole& Submesh)
     {
-        this->IAGS->Ambient[Submesh] = Ambient;
+        this->IWOGS->Ambient[Submesh] = Ambient;
         GetMaterial(Submesh)->setAmbient(Ambient.GetOgreColourValue());
     }
 
-    void ActorGraphicsSettings::SetMaterialSpecular(const ColourValue& Specular, Whole Submesh)
+    void WorldObjectGraphicsSettings::SetMaterialSpecular(const ColourValue& Specular, const Whole& Submesh)
     {
-        this->IAGS->Specular[Submesh] = Specular;
+        this->IWOGS->Specular[Submesh] = Specular;
         GetMaterial(Submesh)->setSpecular(Specular.GetOgreColourValue());
     }
 
-    void ActorGraphicsSettings::SetMaterialDiffuse(const ColourValue& Diffuse, Whole Submesh)
+    void WorldObjectGraphicsSettings::SetMaterialDiffuse(const ColourValue& Diffuse, const Whole& Submesh)
     {
-        this->IAGS->Diffuse[Submesh] = Diffuse;
+        this->IWOGS->Diffuse[Submesh] = Diffuse;
         GetMaterial(Submesh)->setDiffuse(Diffuse.GetOgreColourValue());
     }
 
-    ColourValue ActorGraphicsSettings::GetMaterialAmbient(Whole Submesh) const
-        { return this->IAGS->Ambient[Submesh]; }
+    ColourValue WorldObjectGraphicsSettings::GetMaterialAmbient(const Whole& Submesh) const
+        { return this->IWOGS->Ambient[Submesh]; }
 
-    ColourValue ActorGraphicsSettings::GetMaterialSpecular(Whole Submesh) const
-        { return this->IAGS->Specular[Submesh]; }
+    ColourValue WorldObjectGraphicsSettings::GetMaterialSpecular(const Whole& Submesh) const
+        { return this->IWOGS->Specular[Submesh]; }
 
-    ColourValue ActorGraphicsSettings::GetMaterialDiffuse(Whole Submesh) const
-        { return this->IAGS->Diffuse[Submesh]; }
+    ColourValue WorldObjectGraphicsSettings::GetMaterialDiffuse(const Whole& Submesh) const
+        { return this->IWOGS->Diffuse[Submesh]; }
 
 #ifdef MEZZXML
         // Serializable
-        void ActorGraphicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
+        void WorldObjectGraphicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
         {
-            xml::Node BaseNode = CurrentRoot.AppendChild(this->ActorGraphicsSettings::SerializableName());
+            xml::Node BaseNode = CurrentRoot.AppendChild(this->WorldObjectGraphicsSettings::SerializableName());
             if (!BaseNode)
                 { SerializeError("Create BaseNode", SerializableName()); }
 
@@ -231,9 +232,9 @@ namespace Mezzanine
         }
 
         // DeSerializable
-        void ActorGraphicsSettings::ProtoDeSerialize(const xml::Node& OneNode)
+        void WorldObjectGraphicsSettings::ProtoDeSerialize(const xml::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->ActorGraphicsSettings::SerializableName() )
+            if ( Mezzanine::String(OneNode.Name())==this->WorldObjectGraphicsSettings::SerializableName() )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
@@ -257,7 +258,7 @@ namespace Mezzanine
                                     Child.GetFirstChild() >> TempColour;
                                     this->SetMaterialAmbient(TempColour, Child.GetAttribute("Submesh").AsWhole());
                                 }else{
-                                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element A-\"",Name,"\"")) );
+                                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element A-\"",Name,"\"")) );
                                 }
                                 break;
                             case 'S':   //fDiffuseColour
@@ -266,7 +267,7 @@ namespace Mezzanine
                                     Child.GetFirstChild() >> TempColour;
                                     this->SetMaterialSpecular(TempColour, Child.GetAttribute("Submesh").AsWhole());
                                 }else{
-                                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element S-\"",Name,"\"")) );
+                                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element S-\"",Name,"\"")) );
                                 }
                                 break;
                             case 'D':   //fDiffuseColour
@@ -275,36 +276,36 @@ namespace Mezzanine
                                     Child.GetFirstChild() >> TempColour;
                                     this->SetMaterialDiffuse(TempColour, Child.GetAttribute("Submesh").AsWhole());
                                 }else{
-                                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element D-\"",Name,"\"")) );
+                                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element D-\"",Name,"\"")) );
                                 }
                                 break;
                             default:
-                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element default-\"",Name,"\"")) );
+                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element default-\"",Name,"\"")) );
                                 break;
                         }
                     }
                 }else{
-                    throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->ActorGraphicsSettings::SerializableName() + ": Not Version 1"));
+                    throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->WorldObjectGraphicsSettings::SerializableName() + ": Not Version 1"));
                 }
             }else{
-                throw( Mezzanine::Exception(StringTool::StringCat("Attempting to deserialize a ", this->ActorGraphicsSettings::SerializableName(),", found a ", OneNode.Name())));
+                throw( Mezzanine::Exception(StringTool::StringCat("Attempting to deserialize a ", this->WorldObjectGraphicsSettings::SerializableName(),", found a ", OneNode.Name())));
             }
         }
 
-        String ActorGraphicsSettings::SerializableName()
-            { return String("ActorGraphicsSettings"); }
+        String WorldObjectGraphicsSettings::SerializableName()
+            { return String("WorldObjectGraphicsSettings"); }
 #endif
 }
 
 
 #ifdef MEZZXML
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::ActorGraphicsSettings& Ev)
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::WorldObjectGraphicsSettings& Ev)
     { return Serialize(stream, Ev); }
 
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorGraphicsSettings& Ev)
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::WorldObjectGraphicsSettings& Ev)
     { return DeSerialize(stream,Ev); }
 
-Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorGraphicsSettings& Ev)
+Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::WorldObjectGraphicsSettings& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
 
 

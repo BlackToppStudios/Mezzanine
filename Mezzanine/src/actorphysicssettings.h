@@ -40,9 +40,9 @@
 #ifndef _actorphysicssettings_h
 #define _actorphysicssettings_h
 
-#include "datatypes.h"
 #include "vector3.h"
 #include "enumerations.h"
+#include "worldobjectphysicssettings.h"
 
 #ifdef MEZZXML
 #include "xml.h"
@@ -81,26 +81,8 @@ namespace Mezzanine
     /// @details This class contains functions for the configuring of physics specific settings of an actor.
     /// This class can only configure the actors physics.  For configuring actor graphics, see ActorGraphicsSettings.
     ///////////////////////////////////////
-    class MEZZ_LIB ActorBasePhysicsSettings
+    class MEZZ_LIB ActorBasePhysicsSettings : public WorldObjectPhysicsSettings
     {
-        protected:
-            /// @internal
-            /// @brief Physics Object of the actor.
-            btCollisionObject* ActorCO;
-            /// @brief The Actor this belongs to.
-            ActorBase* Parent;
-            /// @brief The physics shape of the actor.
-            CollisionShape* ActorShape;
-
-            /// @internal
-            /// @brief A number of actors will use this in conjuction with the physics system
-            Whole CollisionGroup;
-
-            /// @internal
-            /// @brief Stores the kind of actors that can collide with each other.
-            Whole CollisionMask;
-
-            void AssignShape(CollisionShape* Shape);
         public:
             /// @brief Standard Constructor.
             /// @param Actor The actor this settings class configures.
@@ -109,28 +91,6 @@ namespace Mezzanine
 
             /// @brief Class destructor.
             virtual ~ActorBasePhysicsSettings();
-
-            /// @brief Sets the collision shape to be used.
-            /// @param Shape The shape to be applied.
-            virtual void SetCollisionShape(CollisionShape* Shape);
-
-            /// @brief Gets the collision shape currently in use by this actor.
-            /// @return Returns a pointer to the collision shape being used.
-            virtual CollisionShape* GetCollisionShape() const;
-
-            /// @brief Set the collision group and mask for the actor to determine what it should collide with.
-            /// @details These values are automatically calculated for you with some sane default values.  Only edit these if you know what you are doing.
-            /// @param Group The group to which this actor belongs.
-            /// @param Mask The other groups to which this actor should collide with.
-            virtual void SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask);
-
-            /// @brief Gets the actors collision group.
-            /// @return Returns a Whole representing the collision group this actor is set to.
-            virtual Whole GetCollisionGroup() const;
-
-            /// @brief Gets the actors collision mask.
-            /// @return Returns a Whole representing what other collision groups this actor should collide with.
-            virtual Whole GetCollisionMask() const;
 
             /// @brief Sets the Actors' friction coefficient.
             /// @details Higher values will resist sliding across surfaces.  This number is the
@@ -174,48 +134,10 @@ namespace Mezzanine
             /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.
             virtual void SetKinematic();
 
-            /// @brief Is the actir kinematic
-            /// @return True if the actor is kinematic false if it is not.
-            virtual bool IsKinematic() const;
-
             /// @brief Sets the state of the object to Static.
             /// @details This function will set the object to a Static Object. @n
             /// Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects.
             virtual void SetStatic();
-
-            /// @brief Is the actor static
-            /// @return True if the actor is Static false if it is not.
-            virtual bool IsStatic() const;
-
-            /// @brief Checks of the actor is static or kinematic.
-            /// @details Checks of the actor is static or kinematic, returns true if it is either.
-            /// @return Returns true if the actor is static or kinematic.
-            virtual bool IsStaticOrKinematic() const;
-
-            /// @brief Sets the actor to be able to collide with other objects in the world.
-            /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
-            virtual void EnableCollisionResponse();
-
-            /// @brief Sets the actor to be unable to collide with other objects in the world.
-            /// @details By default collision response is enabled.  Be sure to reactivate collision response if you want your objects to collide again.
-            virtual void DisableCollisionResponse();
-
-            /// @brief Will this respond to 3d collisions.
-            /// @return False is it does not respond to collisions, True if it will
-            virtual bool GetCollisionResponse() const;
-
-            /// @brief Checks if the object is active in the simulation.
-            /// @return Returns true if the object is active, false if it's deactivated(at rest).
-            virtual bool IsActive() const;
-
-            /// @brief Sets the activation state of the actor.
-            /// @param State The activation state to set for the actor.  See the ActorActivationState enum for more info.
-            /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the actor if this is set to false.
-            virtual void SetActivationState(ActorActivationState State, bool Force = false);
-
-            /// @brief How activated or deactivated is the object.
-            /// @return A Mezzanine::ActorActivationState that describes whether the actor is part of the calculated simulation or not.
-            virtual ActorActivationState GetActivationState() const;
 
             /// @internal
             /// @brief Get a pointer to this class of type ActorBasePhysicsSettings
@@ -394,35 +316,6 @@ namespace Mezzanine
             /// @param Shape The shape to be applied.
             virtual void SetCollisionShape(CollisionShape* Shape);
     };//actorsoftphysicssettings
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorTerrainPhysicsSettings
-    /// @headerfile actorphysicssettings.h
-    /// @brief This is a helper class for configuring physics settings of an ActorRigid.
-    /// @details This class contains functions for the configuring of physics specific settings of an ActorRigid.
-    /// This class can only configure the ActorRigids physics.  For configuring actor graphics, see ActorGraphicsSettings.
-    ///////////////////////////////////////
-    class MEZZ_LIB ActorTerrainPhysicsSettings : public ActorBasePhysicsSettings
-    {
-        protected:
-            /// @internal
-            /// @brief Physics Object of the actor.
-            btRigidBody* ActorRB;
-            /// @brief The Actor this belongs to.
-            ActorTerrain* TerrainParent;
-        public:
-            /// @brief Standard Constructor.
-            /// @param Actor The actor this settings class configures.
-            /// @param PhysicsObject The physics object belonging to the actor this class configures.
-            ActorTerrainPhysicsSettings(ActorTerrain* Actor, btRigidBody* PhysicsObject);
-
-            /// @brief Class destructor.
-            virtual ~ActorTerrainPhysicsSettings();
-
-            /// @brief Sets the collision shape to be used.
-            /// @param Shape The shape to be applied.
-            virtual void SetCollisionShape(CollisionShape* Shape);
-    };//actorterrainphysicssettings
 }//Mezzanine
 
 #ifdef MEZZXML

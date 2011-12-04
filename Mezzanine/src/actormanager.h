@@ -50,7 +50,6 @@ namespace Mezzanine
     class ActorRigid;
     class ActorSoft;
     class ActorCharacter;
-    class ActorContainerBase;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorManager
     /// @headerfile actormanager.h
@@ -61,7 +60,7 @@ namespace Mezzanine
     {
         protected:
             /// @brief The actual actor container
-            ActorContainerBase* Actors;
+            std::vector<ActorBase*> Actors;
 
             /// @brief A Second listing of All the Rigid actors
             std::vector<ActorRigid*> RigidActors;
@@ -90,7 +89,7 @@ namespace Mezzanine
             virtual ActorBase* GetActor(const String& Name);
             /// @brief Gets the number of actors stored in this manager.
             /// @return Returns a whole representing the current actor count.
-            virtual Whole GetNumActors();
+            virtual Whole GetNumActors() const;
             /// @brief Adds a pre-created actor to the manager.
             /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
             /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
@@ -103,13 +102,23 @@ namespace Mezzanine
             /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
             /// function facilitates this. @n
             /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
-            /// @param Actor The actor to be removed from the manager.
-            virtual void RemoveActor(ActorBase* Actor);
+            /// @param Index The index at which to remove the actor.
+            virtual void RemoveActor(const Whole& Index);
+            /// @brief Removes an actor from this manager without destroying it.
+            /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
+            /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
+            /// function facilitates this. @n
+            /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
+            /// @param ToBeRemoved The actor to be removed from the manager.
+            virtual void RemoveActor(ActorBase* ToBeRemoved);
             /// @brief Removes all actors from this manager without destroying them.
             virtual void RemoveAllActors();
+            /// @brief Destroys an actor at the specified index.
+            /// @param Index The index at which to destroy the actor.
+            virtual void DestroyActor(const Whole& Index);
             /// @brief Destroys an actor.
-            /// @param Actor The actor to be destroyed.
-            virtual void DestroyActor(ActorBase* Actor);
+            /// @param ToBeDestroyed The actor to be destroyed.
+            virtual void DestroyActor(ActorBase* ToBeDestroyed);
             /// @brief Destroys all actors currently within this manager.
             virtual void DestroyAllActors();
 
@@ -124,10 +133,6 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
-
-            /// @brief Gets the internal actor container storing all the actors.
-            /// @return Returns a pointer to the Actor container being used by this manager.
-            virtual ActorContainerBase* GetActorContainer();
 
             //Inherited from ManagerBase
             /// @brief Empty initializer that has been implemented from ManagerBase.

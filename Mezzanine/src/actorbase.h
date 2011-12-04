@@ -40,8 +40,8 @@
 #ifndef _actorbase_h
 #define _actorbase_h
 
-#include "crossplatformexport.h"
 #include "worldnode.h"
+#include "worldobject.h"
 #include "collision.h"
 
 /// @file
@@ -70,7 +70,6 @@ namespace Mezzanine
 {
     class ActorContainerBase;
     class World;
-    class ActorGraphicsSettings;
     class ActorBasePhysicsSettings;
 
     namespace Audio
@@ -95,42 +94,15 @@ namespace Mezzanine
     /// ActorBase is a base class that serves as a template for the other four actor classes. @n
     /// ActorBase should never be created, as it lacks the functionality needed for most objects.
     ///////////////////////////////////////
-    class MEZZ_LIB ActorBase {
+    class MEZZ_LIB ActorBase : public WorldObject
+    {
         private:
             friend class WorldNode;
             friend class ActorGraphicsSettings;
             friend class ActorBasePhysicsSettings;
-
-        public:
-            /// @enum ActorTypeName
-            /// @brief A listing of Actor TypeNames
-            /// @details These will be returned by ActorBase::GetType(), and will allow
-            /// code using this to determine what type of Actor class they are working with
-            /// and use this information to more safely cast to the correct Actor if needed.
-            enum ActorTypeName
-            {
-                Actorbase,
-                Actorcharacter,
-                Actorrigid,
-                Actorsoft,
-                Actorterrain
-            };
-
         protected:
-            /// @brief This class encapsulates the functionality of the Ogre::Entity using this
-            Ogre::Entity* GraphicsObject;
-
-            /// @brief This class encapsulates the functionality of the Ogre::SceneNode using this
-            Ogre::SceneNode* GraphicsNode;
-
             /// @brief This class encapsulates the functionality of the Ogre::AnimationState using this
             Ogre::AnimationState* Animation;
-
-            /// @brief This class encapsulates the functionality of the btCollisionShape using this
-            btCollisionShape* Shape;
-
-            /// @brief This class encapsulates the functionality of the btCollisionObject using this
-            btCollisionObject* CollisionObject;
 
             /// @brief This class encapsulates the functionality of the PhysMotionState using this
             internal::PhysMotionState* MotionState;
@@ -138,17 +110,8 @@ namespace Mezzanine
             /// @brief This class excapsulates the functionality of the Ogre::SceneNode.
             WorldNode* ActorWorldNode;
 
-            /// @brief This class encapsulates graphics specific configuration for this actor.
-            ActorGraphicsSettings* GraphicsSettings;
-
             /// @brief This class encapsulates physics specific configuration for this actor.
             ActorBasePhysicsSettings* BasePhysicsSettings;
-
-            /// @brief This variable stores the type of actor that this class is.
-            ActorTypeName ActorType;
-
-            /// @brief This member stores all existing collision events referencing this actor.
-            std::set<Collision*> CurrentCollisions;
 
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
@@ -197,24 +160,10 @@ namespace Mezzanine
             /// @brief Gets the orientation of the graphical body.
             /// @return Returns a quaternion representing the rotation of the actor.
             virtual Quaternion GetBulletOrientation() const;
-
-//////////////////////////////////////////////////////////////////////////////
-// Other Management Functions
-///////////////////////////////////////
-            /// @brief Makes the actor visable.
-            /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n
-            /// This is automaticly called by the Worlds AddActor function and shouldn't ever need to be called manually.
-            virtual void AttachToGraphics();
-
-            /// @brief Makes the actor invisable.
-            /// @details This is the inverse of the AttachToGraphics function.  This will effectively remove the object from the graphics world and make it no longer visable. @n
-            /// This is automaticly called by the Worlds RemoveActor function and shouldn't ever need to be called manually.
-            virtual void DetachFromGraphics();
-
         public:
-///////////////////////////////////////////////////////////////////////////////
-// Creation, Destruction and Initialization
-///////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////
+            // Creation, Destruction and Initialization
+            ///////////////////////////////////////
             /// @brief Constructor.
             /// @details This constructor contains the basic information needed to make an actor.
             // @param name The name of the actor.
@@ -225,11 +174,6 @@ namespace Mezzanine
             /// @brief Destructor.
             /// @details The class destructor.
             virtual ~ActorBase ();
-
-            /// @brief Retrieves the name of the object.
-            /// @details This function will retrieve the name of the object.
-            /// @return This should return a String containing the Name
-            virtual String GetName() const = 0;
 
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
@@ -267,25 +211,19 @@ namespace Mezzanine
             /// @return Returns a quaternion representing the rotation of the actor.
             virtual Quaternion GetOrientation() const;
 
-///////////////////////////////////////////////////////////////////////////////
-// Utility and Configuration
-///////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility and Configuration
+            ///////////////////////////////////////
             ///@brief This is a collection of sounds for use with this actor.
             Audio::SoundSet* ActorSounds;
 
-            /// @brief Gets the type of actor this class is.
-            /// @details This function will get the type of class that you are working with for checking and casting.
-            /// @return ActorTypeName The type of actor that this is.
-            virtual int GetType() const;
+            /// @copydoc WorldObject::GetType()
+            virtual WorldObjectType GetType() const = 0;
 
             /// @brief Gets a WorldNode representing the position and orientation of this actor.
             /// @details The WorldNode returned by this function is not stored in the scene manasger.
             /// @return Returns a WorldNode pointer pointing to this actor's world node.
             virtual WorldNode* GetActorNode() const;
-
-            /// @brief Gets whether or not this object is currently in the world.
-            /// @return Returns a bool indicating if this object has been added to the world.
-            virtual bool IsInWorld() const;
 
             /// @brief Checks of the actor is static or kinematic.
             /// @details Checks of the actor is static or kinematic, returns true if it is either.
@@ -330,58 +268,29 @@ namespace Mezzanine
             /// @return Returns a vector3 representing the scaling being applied on all axes of this actor.
             virtual Vector3 GetActorScaling() const;
 
-            /// @brief Gets all current collisions that apply to this actor.
-            /// @return Returns a const reference to a set containing all collisions events containing this actor.
-            virtual const std::set<Collision*>& GetCurrentCollisions();
-
-            /// @brief Gets the graphics settings class associated with this actor.
-            /// @return Returns a pointer to the graphics settings class in use by this actor.
-            virtual ActorGraphicsSettings* GetGraphicsSettings() const;
-
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.
             virtual ActorBasePhysicsSettings* GetPhysicsSettings() const;
 
-///////////////////////////////////////////////////////////////////////////////
-// Working with the World
-///////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////
+            // Working with the World
+            ///////////////////////////////////////
             /// @brief Adds the actor to the physics world.
-            virtual void AddObjectToWorld() = 0;
+            virtual void AddToWorld() = 0;
 
             /// @brief Removes the actor from the physics world.
-            virtual void RemoveObjectFromWorld() = 0;
+            virtual void RemoveFromWorld() = 0;
 
-///////////////////////////////////////////////////////////////////////////////
-// Internal Object functions
-///////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Object functions
+            ///////////////////////////////////////
             /// @internal
             /// @brief Utility function for altering or checking the actor every frame.
             virtual void _Update() = 0;
 
-            /// @internal
-            /// @brief Notifies this actor of a collision that is occuring with it.
-            /// @param Col A pointer to the collision pertaining to this actor.
-            /// @param State The state of the collision pertaining to this actor.
-            virtual void _NotifyCollisionState(Collision* Col, const Collision::CollisionState& State);
-
-            /// @internal
-            /// @brief Gets the internal physics object this actor is based on.
-            /// @return Returns a pointer to the internal Bullet object.
-            virtual btCollisionObject* _GetBasePhysicsObject() const;
-
-            /// @internal
-            /// @brief Gets the internal graphics object this actor is based on.
-            /// @return Returns a pointer to the internal graphics object.
-            virtual Ogre::Entity* _GetGraphicsObject() const;
-
-            /// @internal
-            /// @brief Gets the internal graphics node this actor uses for it's graphics transform.
-            /// @return Returns a pointer to the internal graphics node.
-            virtual Ogre::SceneNode* _GetGraphicsNode() const;
-
-///////////////////////////////////////////////////////////////////////////////
-// Serialization
-///////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+            ///////////////////////////////////////
 #ifdef MEZZXML
         protected:
             /// @internal

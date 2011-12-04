@@ -41,7 +41,7 @@
 #define actormanager_cpp
 
 #include "actormanager.h"
-#include "actorcontainervector.h"
+#include "actorbase.h"
 
 #include <sstream>
 
@@ -52,87 +52,106 @@ namespace Mezzanine
     ActorManager::ActorManager()
     {
         Priority = -25;
-        Actors = new ActorContainerVector();
     }
 
     ActorManager::~ActorManager()
     {
-        delete Actors;
+        DestroyAllActors();
     }
 
     ActorBase* ActorManager::GetActor(const Whole& Index)
     {
-        return 0;
+        return Actors.at(Index);
     }
 
     ActorBase* ActorManager::GetActor(const String& Name)
     {
-        return Actors->FindActor(Name);
+        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        {
+            if(Name == (*it)->GetName())
+                return (*it);
+        }
+        return NULL;
     }
 
-    Whole ActorManager::GetNumActors()
+    Whole ActorManager::GetNumActors() const
     {
-        return Actors->GetActorCount();
+        return Actors.size();
     }
 
     void ActorManager::AddActor(ActorBase* Actor)
     {
-        Actors->AddActor(Actor);
-        Actor->AddObjectToWorld();
+        Actors.push_back(Actor);
+        Actor->AddToWorld();
     }
 
-    void ActorManager::RemoveActor(ActorBase* Actor)
+    void ActorManager::RemoveActor(const Whole& Index)
     {
-        Actors->RemoveActor(Actor);
-        Actor->RemoveObjectFromWorld();
+        std::vector<ActorBase*>::iterator it = Actors.begin() + Index;
+        (*it)->RemoveFromWorld();
+        Actors.erase(it);
+    }
+
+    void ActorManager::RemoveActor(ActorBase* ToBeRemoved)
+    {
+        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        {
+            if(ToBeRemoved == (*it))
+            {
+                (*it)->RemoveFromWorld();
+                Actors.erase(it);
+                return;
+            }
+        }
     }
 
     void ActorManager::RemoveAllActors()
     {
-        if( 0 == Actors->GetActorCount() )
+        if( Actors.empty() )
             return;
-        ActorBase* Act = NULL;
-        Actors->CursorToFirst();
-        for( Whole ActCur = 0 ; ActCur < Actors->GetActorCount() ; ActCur++ )
-        {
-            Act = Actors->GetAtCursor();
-            Act->RemoveObjectFromWorld();
-            Actors->CursorToNext();
-        }
-        Actors->RemoveAllActors();
+        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
+            (*it)->RemoveFromWorld();
+        Actors.clear();
         RigidActors.clear();
         SoftActors.clear();
         CharacterActors.clear();
     }
 
-    void ActorManager::DestroyActor(ActorBase* Actor)
+    void ActorManager::DestroyActor(const Whole& Index)
     {
-        RemoveActor(Actor);
-        delete Actor;
+        std::vector<ActorBase*>::iterator it = Actors.begin() + Index;
+        (*it)->RemoveFromWorld();
+        delete (*it);
+        Actors.erase(it);
+    }
+
+    void ActorManager::DestroyActor(ActorBase* ToBeDestroyed)
+    {
+        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        {
+            if(ToBeDestroyed == (*it))
+            {
+                (*it)->RemoveFromWorld();
+                delete (*it);
+                Actors.erase(it);
+                return;
+            }
+        }
     }
 
     void ActorManager::DestroyAllActors()
     {
-        if( 0 == Actors->GetActorCount() )
+        if( Actors.empty() )
             return;
-        ActorBase* Act = NULL;
-        Actors->CursorToFirst();
-        for( Whole ActCur = 0 ; ActCur < Actors->GetActorCount() ; ActCur++ )
+        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
         {
-            Act = Actors->GetAtCursor();
-            Act->RemoveObjectFromWorld();
-            delete Act;
-            Actors->CursorToNext();
+            (*it)->RemoveFromWorld();
+            delete (*it);
         }
-        Actors->RemoveAllActors();
+        Actors.clear();
         RigidActors.clear();
         SoftActors.clear();
         CharacterActors.clear();
-    }
-
-    ActorContainerBase* ActorManager::GetActorContainer()
-    {
-        return Actors;
     }
 
     //Inherited From ManagerBase

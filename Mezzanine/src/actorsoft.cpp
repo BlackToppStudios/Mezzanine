@@ -50,7 +50,6 @@
 
 #include "internalmeshtools.h.cpp"
 #include "objectreference.h"
-#include "actorgraphicssettings.h"
 #include "world.h"
 #include "physicsmanager.h"
 #include "actorsoft.h"
@@ -63,10 +62,9 @@ namespace Mezzanine
         : ActorBase ()
     {
         CreateSoftObject(mass);
-        this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
+        this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
         this->PhysicsSettings = new ActorSoftPhysicsSettings(this,physsoftbody);
         BasePhysicsSettings = PhysicsSettings;
-        ActorType=ActorBase::Actorsoft;
     }
 
     ActorSoft::~ActorSoft ()
@@ -85,10 +83,10 @@ namespace Mezzanine
         internal::MeshTools::GetOtherMeshInfo(GraphicsObject,CurMesh);
 
         this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh(PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
-        CollisionObject=physsoftbody;
+        PhysicsObject=physsoftbody;
         ObjectReference* ActorRef = new ObjectReference(Mezzanine::WOT_ActorSoft,this);
-        CollisionObject->setUserPointer(ActorRef);
-        Shape = physsoftbody->getCollisionShape();
+        PhysicsObject->setUserPointer(ActorRef);
+        PhysicsShape = physsoftbody->getCollisionShape();
         physsoftbody->setTotalMass(mass, true);
         physsoftbody->m_cfg.collisions = /*btSoftBody::fCollision::CL_SS +*/ btSoftBody::fCollision::CL_RS;
         physsoftbody->m_cfg.piterations = 5;
@@ -181,7 +179,7 @@ namespace Mezzanine
     void ActorSoft::SetActorScaling(Vector3 scaling)
     {
         this->GraphicsNode->setScale(scaling.GetOgreVector3());
-        this->Shape->setLocalScaling(scaling.GetBulletVector3());
+        this->PhysicsShape->setLocalScaling(scaling.GetBulletVector3());
     }
 
     void ActorSoft::SetInitLocation(Vector3 Location)

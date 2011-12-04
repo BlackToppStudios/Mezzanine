@@ -55,13 +55,11 @@
 #include "actorcharacter.h"
 #include "actorcontainerbase.h"
 #include "actorcontainervector.h"
-#include "actorgraphicssettings.h"      // done
 #include "actormanager.h"
 #include "actorphysicssettings.h"       // done
 #include "actorrigid.h"                 // Serializes
 #include "actorserializer.h"            // nothing to do
 #include "actorsoft.h"
-#include "actorterrain.h"
 #include "areaeffect.h"
 #include "attachable.h"                 // Target for output only
 #include "audio.h"
@@ -125,6 +123,9 @@
 #include "world.h"
 #include "worldgetset.h"
 #include "worldnode.h"                  // done
+#include "worldobject.h"
+#include "worldobjectgraphicssettings.h"// done
+#include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
 #include "xml.h"                        // nothing to do
 #include "xmldoc.h"                     // nothing to do

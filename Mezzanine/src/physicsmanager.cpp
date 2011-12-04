@@ -1066,7 +1066,8 @@ namespace Mezzanine
         return this->BulletDynamicsWorld;
     }
 
-    //Inherited From ManagerBase
+    ///////////////////////////////////////////////////////////////////////////////
+    // Inherited from Managerbase
     void PhysicsManager::Initialize()
     {
         // This came from the Game init function, and may need to go to a game init.

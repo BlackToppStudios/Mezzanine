@@ -82,10 +82,6 @@ namespace Mezzanine
             /// @details The class destructor.
             virtual ~ActorRigid();
 
-            /// @brief Retrieves the name of the object.
-            /// @return This function will return the name of the object in a String
-            virtual String GetName() const;
-
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.
             virtual ActorRigidPhysicsSettings* GetPhysicsSettings() const;
@@ -109,15 +105,17 @@ namespace Mezzanine
             virtual Vector3 GetAngularMovementFactor() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from ActorBase
+            // Inherited from WorldObject
             ///////////////////////////////////////
-            /// @copydoc ActorBase::AddObjectToWorld()
-            virtual void AddObjectToWorld();
-            /// @copydoc ActorBase::RemoveObjectFromWorld()
-            virtual void RemoveObjectFromWorld();
-            /// @copydoc ActorBase::_Update()
+            /// @copydoc WorldObject::GetType()
+            virtual WorldObjectType GetType() const;
+            /// @copydoc WorldObject::AddObjectToWorld()
+            virtual void AddToWorld();
+            /// @copydoc WorldObject::RemoveObjectFromWorld()
+            virtual void RemoveFromWorld();
+            /// @copydoc WorldObject::_Update()
             virtual void _Update();
-            /// @copydoc ActorBase::_NotifyCollisionState(Collision* Col)
+            /// @copydoc WorldObject::_NotifyCollisionState(Collision* Col)
             virtual void _NotifyCollisionState(Collision* Col, const Collision::CollisionState& State);
 
             /// @internal

@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorgraphicssettings_h
-#define _actorgraphicssettings_h
+#ifndef _worldobjectgraphicssettings_h
+#define _worldobjectgraphicssettings_h
 
 #include "datatypes.h"
 #include "colourvalue.h"
@@ -56,53 +56,54 @@ namespace Mezzanine
 {
     namespace internal
     {
-        class InternalActorGraphicsSettings;
+        class InternalWorldObjectGraphicsSettings;
     }
     class ActorBase;
+    class WorldObject;
     class Mesh;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorGraphicsSettings
-    /// @headerfile actorgraphicssettings.h
-    /// @brief This is a helper class for configuring graphics settings of an actor.
+    /// @class WorldObjectGraphicsSettings
+    /// @headerfile worldobjectgraphicssettings.h
+    /// @brief This is a helper class for configuring graphics settings of a World Object.
     /// @details This class contains functions for the configuring of graphics specific settings of an actor.
-    /// This class can only configure the actors graphics.  For configuring actor physics, see ActorBasePhysicsSettings.
+    /// This class can only configure the actors graphics.  For configuring World Object physics, see ActorBasePhysicsSettings.
     ///////////////////////////////////////
-    class MEZZ_LIB ActorGraphicsSettings
+    class MEZZ_LIB WorldObjectGraphicsSettings
     {
         protected:
             /// @internal
             /// @brief Stores all the data to go with the
-            internal::InternalActorGraphicsSettings* IAGS;
+            internal::InternalWorldObjectGraphicsSettings* IWOGS;
 
             /// @internal
-            /// @brief The Actor this belongs to.
-            ActorBase* Parent;
+            /// @brief The World Object this belongs to.
+            WorldObject* Parent;
 
             /// @internal
-            /// @brief The mesh being used by the Actor.
-            Mesh* ActorMesh;
+            /// @brief The mesh being used by the World Object.
+            Mesh* WorldObjectMesh;
 
             ///@internal
-            /// @brief Material/textures for the actor
-            Ogre::MaterialPtr GetMaterial(Whole Submesh = 0);
+            /// @brief Material/textures for the World Object.
+            virtual Ogre::MaterialPtr GetMaterial(const Whole& Submesh = 0);
         public:
 
             ///////////////////////////////////////////////////////////////////////////////
             // Construction
 
             /// @brief Standard Constructor.
-            /// @param Actor The actor this settings class configures.
-            /// @param GraphicsObject The graphics object belonging to the actor this class configures.
-            ActorGraphicsSettings(ActorBase* Actor, Ogre::Entity* GraphicsObject);
+            /// @param WO The World Object this settings class configures.
+            /// @param GraphicsObject The graphics object belonging to the World Object this class configures.
+            WorldObjectGraphicsSettings(WorldObject* WO, Ogre::Entity* GraphicsObject);
             /// @brief Class destructor.
-            ~ActorGraphicsSettings();
+            virtual ~WorldObjectGraphicsSettings();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Mesh Management
 
-            /// @brief Gets the mesh being used by this actor.
-            /// @return Returns a pointer to the mesh being used by this actor.
-            Mesh* GetMesh() const;
+            /// @brief Gets the mesh being used by this World Object.
+            /// @return Returns a pointer to the mesh being used by this World Object.
+            virtual Mesh* GetMesh() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Material Management
@@ -113,22 +114,22 @@ namespace Mezzanine
             /// expects is the name of the material script inside a .material file.
             /// @param MatName The name of the material to be applied.
             /// @param Submesh The submesh to apply the material to.
-            void SetMaterial(String MatName, Whole Submesh = 0);
+            virtual void SetMaterial(const String& MatName, const Whole& Submesh = 0);
             /// @brief Gets the material name of the specified submesh.
             /// @details Note the returned name isn't of the .material file, but the material script.
             /// @param Submesh The submesh you want to get the material name from.
             /// @return Returns a String containing the name of the material script in use.
-            ConstString& GetMaterialName(Whole Submesh = 0) const;
+            virtual ConstString& GetMaterialName(const Whole& Submesh = 0) const;
             /// @brief Gets whether or not the specified submesh has a material script assigned to it.
             /// @param Submesh The submesh to check.
             /// @return Returns a bool indicating whether there is a material assigned to the specified submesh.
-            bool HasMaterialSet(Whole Submesh = 0);
+            virtual bool HasMaterialSet(const Whole& Submesh = 0);
             /// @brief Gets the number of submeshes in the mesh of the graphics ohject.
             /// @return Returns a whole representing the number of submeshes in this objects mesh.
-            Whole GetNumSubmeshes() const;
+            virtual Whole GetNumSubmeshes() const;
             /// @brief Creates a copy of the material script of the graphics object and places it in the same resource group.
-            /// @param newName of the cloned material script.
-            void CloneMaterial(const String& newName);
+            /// @param NewName of the cloned material script.
+            virtual void CloneMaterial(const String& NewName);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Material Colors
@@ -137,39 +138,38 @@ namespace Mezzanine
             /// @details The set value is applied to every technique of every pass in the material.
             /// @param Ambient The colour you wish to set as the material Ambient.
             /// @param Submesh The submesh you want to alter the material of.
-            void SetMaterialAmbient(const ColourValue& Ambient, Whole Submesh = 0);
+            virtual void SetMaterialAmbient(const ColourValue& Ambient, const Whole& Submesh = 0);
             /// @brief Sets the Specular colour value of the material belonging to the specified submesh.
             /// @details The set value is applied to every technique of every pass in the material.
             /// @param Specular The colour you wish to set as the material Specular.
             /// @param Submesh The submesh you want to alter the material of.
-            void SetMaterialSpecular(const ColourValue& Specular, Whole Submesh = 0);
+            virtual void SetMaterialSpecular(const ColourValue& Specular, const Whole& Submesh = 0);
             /// @brief Sets the Diffuse colour value of the material belonging to the specified submesh.
             /// @details The set value is applied to every technique of every pass in the material.
             /// @param Diffuse The colour you wish to set as the material Diffuse.
             /// @param Submesh The submesh you want to alter the material of.
-            void SetMaterialDiffuse(const ColourValue& Diffuse, Whole Submesh = 0);
+            virtual void SetMaterialDiffuse(const ColourValue& Diffuse, const Whole& Submesh = 0);
 
             /// @brief Gets the Ambient colour value of the material belonging to the specified submesh.
             /// @details If no Ambient colour was specified for a given submesh a default ColourValue is returned.
             /// @param Submesh The submesh you want to alter the material of.
             /// @return The colour that was as the material Ambient colour, OR a default colourvalue.
-            ColourValue GetMaterialAmbient(Whole Submesh = 0) const;
+            virtual ColourValue GetMaterialAmbient(const Whole& Submesh = 0) const;
             /// @brief Gets the Specular colour value of the material belonging to the specified submesh.
             /// @details If no Specular colour was specified for a given submesh a default ColourValue is returned.
             /// @param Submesh The submesh you want to alter the material of.
             /// @return The colour that was as the material Specular colour, OR a default colourvalue.
-            ColourValue GetMaterialSpecular(Whole Submesh = 0) const;
+            virtual ColourValue GetMaterialSpecular(const Whole& Submesh = 0) const;
             /// @brief Gets the Diffuse colour value of the material belonging to the specified submesh.
             /// @details If no Diffuse colour was specified for a given submesh a default ColourValue is returned.
             /// @param Submesh The submesh you want to alter the material of.
             /// @return The colour that was as the material Diffuse colour, OR a default colourvalue.
-            ColourValue GetMaterialDiffuse(Whole Submesh = 0) const;
+            virtual ColourValue GetMaterialDiffuse(const Whole& Submesh = 0) const;
 
 #ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            // Serializable
             /// @brief Convert this class to an xml::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
             virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
@@ -183,28 +183,28 @@ namespace Mezzanine
             /// @return A string containing "ActorGraphicsSettings"
             static String SerializableName();
 #endif
-    };//actorgraphicssettings
+    };//worldobjectgraphicssettings
 }//Mezzanine
 
 #ifdef MEZZXML
 
-/// @brief Serializes the passed Mezzanine::ActorGraphicsSettings to XML
+/// @brief Serializes the passed Mezzanine::WorldObjectGraphicsSettings to XML
 /// @param stream The ostream to send the xml to.
-/// @param Ev the Mezzanine::ActorGraphicsSettings to be serialized
+/// @param Ev the Mezzanine::WorldObjectGraphicsSettings to be serialized
 /// @return this returns the ostream, now with the serialized data
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::ActorGraphicsSettings& Ev);
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::WorldObjectGraphicsSettings& Ev);
 
-/// @brief Deserialize a Mezzanine::ActorGraphicsSettings
+/// @brief Deserialize a Mezzanine::WorldObjectGraphicsSettings
 /// @param stream The istream to get the xml from to (re)make the Mezzanine::ActorGraphicsSettings.
-/// @param Ev the Mezzanine::ActorGraphicsSettings to be deserialized.
+/// @param Ev the Mezzanine::WorldObjectGraphicsSettings to be deserialized.
 /// @return this returns the ostream, advanced past the Mezzanine::ActorGraphicsSettings that was recreated onto Ev.
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorGraphicsSettings& Ev);
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::WorldObjectGraphicsSettings& Ev);
 
-/// @brief Set all values of a Mezzanine::ActorGraphicsSettings from parsed xml.
+/// @brief Set all values of a Mezzanine::WorldObjectGraphicsSettings from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::ActorGraphicsSettings.
-/// @param Ev the Mezzanine::ActorGraphicsSettings to be reset.
+/// @param Ev the Mezzanine::WorldObjectGraphicsSettings to be reset.
 /// @return This returns thexml::Node that was passed in.
-Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorGraphicsSettings& Ev);
+Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::WorldObjectGraphicsSettings& Ev);
 
 #endif // \MEZZXML
 
