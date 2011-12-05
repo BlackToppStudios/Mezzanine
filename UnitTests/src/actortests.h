@@ -157,7 +157,7 @@ class ActorTests : public UnitTestGroup
                     object1->GetPhysicsSettings()->SetIndividualGravity(Mezzanine::Vector3(0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetFriction(0.00);
                     object1->GetPhysicsSettings()->SetCCDParams(0.00,0.00);
-                    object1->GetActorNode()->SetLocation(Vector3(10.0,11.0,12.0));
+                    object1->GetObjectNode()->SetLocation(Vector3(10.0,11.0,12.0));
 
                     SerializeTestA1 >> *(object1->GetGraphicsSettings());
                     std::stringstream DeSerializeTestA1;
@@ -189,7 +189,7 @@ class ActorTests : public UnitTestGroup
                     object1->GetPhysicsSettings()->SetIndividualGravity(Mezzanine::Vector3(0.0,0.0,0.0));
                     object1->GetPhysicsSettings()->SetFriction(0.00);
                     object1->GetPhysicsSettings()->SetCCDParams(0.00,0.00);
-                    object1->GetActorNode()->SetLocation(Vector3(10.0,11.0,12.0));
+                    object1->GetObjectNode()->SetLocation(Vector3(10.0,11.0,12.0));
 
                     SerializeTestP1 >> *(object1->GetPhysicsSettings());
                     std::stringstream DeSerializeTestP1;
