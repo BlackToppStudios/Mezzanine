@@ -62,11 +62,7 @@
 namespace Mezzanine
 {
     ActorBasePhysicsSettings::ActorBasePhysicsSettings(ActorBase* Actor, btCollisionObject* PhysicsObject)
-        : Parent(Actor),
-          ActorShape(NULL),
-          ActorCO(PhysicsObject),
-          CollisionGroup(0),
-          CollisionMask(0)
+        : NonTriggerPhysicsSettings(Actor,PhysicsObject)
     {
     }
 
@@ -74,67 +70,51 @@ namespace Mezzanine
     {
     }
 
-    void ActorBasePhysicsSettings::SetFriction(const Real& Friction)
-    {
-        ActorCO->setFriction(Friction);
-    }
-
-    Real ActorBasePhysicsSettings::GetFriction() const
-    {
-        return ActorCO->getFriction();
-    }
-
-    void ActorBasePhysicsSettings::SetRestitution(const Real& Restitution)
-        { ActorCO->setRestitution(Restitution); }
-
-    Real ActorBasePhysicsSettings::GetRestitution() const
-        { return ActorCO->getRestitution(); }
-
     void ActorBasePhysicsSettings::SetCCDParams(const Real& MotionThreshold, const Real& SweptSphereRadius)
     {
         if(0==MotionThreshold)
         {
-            ActorCO->setCcdMotionThreshold(MotionThreshold);
-            ActorCO->setCcdSweptSphereRadius(MotionThreshold);
+            WorldObjectCO->setCcdMotionThreshold(MotionThreshold);
+            WorldObjectCO->setCcdSweptSphereRadius(MotionThreshold);
         }else{
-            ActorCO->setCcdMotionThreshold(MotionThreshold);
+            WorldObjectCO->setCcdMotionThreshold(MotionThreshold);
             if(0==SweptSphereRadius)
             {
-                if(ActorShape)
+                if(WorldObjectShape)
                 {
                     btTransform Trans;
                     btVector3 AABBmin, AABBmax, AABBsize;
-                    ActorShape->GetBulletShape()->getAabb(Trans,AABBmin,AABBmax);
+                    WorldObjectShape->GetBulletShape()->getAabb(Trans,AABBmin,AABBmax);
                     AABBsize = AABBmax - AABBmin;
                     Real ResultRadius = AABBsize.getX() < AABBsize.getY() ? (AABBsize.getX() < AABBsize.getZ() ? AABBsize.getX() : AABBsize.getZ()) : (AABBsize.getY() < AABBsize.getZ() ? AABBsize.getY() : AABBsize.getZ());
-                    ActorCO->setCcdSweptSphereRadius(ResultRadius*0.2);
+                    WorldObjectCO->setCcdSweptSphereRadius(ResultRadius*0.2);
                 }else{
-                    ActorCO->setCcdSweptSphereRadius(1);
+                    WorldObjectCO->setCcdSweptSphereRadius(1);
                 }
             }else{
-                ActorCO->setCcdSweptSphereRadius(SweptSphereRadius);
+                WorldObjectCO->setCcdSweptSphereRadius(SweptSphereRadius);
             }
         }
     }
 
     Real ActorBasePhysicsSettings::GetCCDMotionThreshold() const
     {
-        return ActorCO->getCcdMotionThreshold();
+        return WorldObjectCO->getCcdMotionThreshold();
     }
 
     Real ActorBasePhysicsSettings::GetCCDSphereRadius() const
     {
-        return ActorCO->getCcdSweptSphereRadius();
+        return WorldObjectCO->getCcdSweptSphereRadius();
     }
 
     void ActorBasePhysicsSettings::SetKinematic()
     {
-        ActorCO->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
+        WorldObjectCO->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
     }
 
     void ActorBasePhysicsSettings::SetStatic()
     {
-        ActorCO->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+        WorldObjectCO->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
     }
 
     ActorBasePhysicsSettings* ActorBasePhysicsSettings::GetBasePointer()
@@ -153,16 +133,6 @@ namespace Mezzanine
                 { SerializeError("Create Version Attribute", SerializableName()); }
             Version.SetValue(1);
 
-            Mezzanine::xml::Attribute Friction = BaseNode.AppendAttribute("Friction");
-            if (!Friction)
-                { SerializeError("Create Friction Attribute", SerializableName()); }
-            Friction.SetValue(this->GetFriction());
-
-            Mezzanine::xml::Attribute Restitution = BaseNode.AppendAttribute("Restitution");
-            if (!Restitution)
-                { SerializeError("Create Restitution Attribute", SerializableName()); }
-            Restitution.SetValue(this->GetRestitution());
-
             Mezzanine::xml::Attribute CCDMotionThreshold = BaseNode.AppendAttribute("CCDMotionThreshold");
             if (!CCDMotionThreshold)
                 { SerializeError("Create CCDMotionThreshold Attribute", SerializableName()); }
@@ -172,6 +142,8 @@ namespace Mezzanine
             if (!CCDSphereRadius)
                 { SerializeError("Create CCDSphereRadius Attribute", SerializableName()); }
             CCDSphereRadius.SetValue(this->GetCCDSphereRadius());
+
+            NonTriggerPhysicsSettings::ProtoSerialize(BaseNode);
         }
 
         // DeSerializable
@@ -181,8 +153,8 @@ namespace Mezzanine
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    this->SetFriction(OneNode.GetAttribute("Friction").AsReal());
-                    this->SetRestitution(OneNode.GetAttribute("Restitution").AsReal());
+                    NonTriggerPhysicsSettings::ProtoDeSerialize(OneNode.GetChild(this->NonTriggerPhysicsSettings::SerializableName()));
+
                     this->SetCCDParams(OneNode.GetAttribute("CCDMotionThreshold").AsReal(),OneNode.GetAttribute("CCDSphereRadius").AsReal());
                 }else{
                     throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->ActorBasePhysicsSettings::SerializableName() + ": Not Version 1"));

@@ -524,7 +524,7 @@ namespace Mezzanine
         {
             for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
             {
-                (*AE)->UpdateActorList();
+                (*AE)->_Update();
                 (*AE)->ApplyEffect();
             }
         }
@@ -629,7 +629,7 @@ namespace Mezzanine
 
     void PhysicsManager::SetIndividualGravity(ActorBase* Actor, const Vector3& igrav)
     {
-        if (ActorBase::Actorrigid==Actor->GetType())
+        if (Mezzanine::WOT_ActorRigid==Actor->GetType())
         {
             btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->_GetBasePhysicsObject());
             Rigid->setGravity(igrav.GetBulletVector3());
@@ -677,10 +677,8 @@ namespace Mezzanine
 
     void PhysicsManager::AddAreaEffect(AreaEffect* AE)
     {
+        AE->AddToWorld();
         this->AreaEffects.push_back(AE);
-        short CollisionGroup = btBroadphaseProxy::SensorTrigger;
-        short CollisionMask = AE->IsStatic() ? btBroadphaseProxy::AllFilter ^ (btBroadphaseProxy::SensorTrigger|btBroadphaseProxy::StaticFilter) : btBroadphaseProxy::AllFilter ^ btBroadphaseProxy::SensorTrigger;
-        this->BulletDynamicsWorld->addCollisionObject(AE->Ghost,CollisionGroup,CollisionMask);
     }
 
     AreaEffect* PhysicsManager::GetAreaEffect(const String& Name)
@@ -707,7 +705,7 @@ namespace Mezzanine
 
     void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
     {
-        this->BulletDynamicsWorld->removeCollisionObject(AE->Ghost);
+        AE->RemoveFromWorld();
         for( vector<AreaEffect*>::iterator c = AreaEffects.begin() ; c != AreaEffects.end() ; c++ )
         {
             if ( AE == *c )

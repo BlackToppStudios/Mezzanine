@@ -41,8 +41,6 @@
 #define _collision_h
 
 #include "vector3.h"
-#include "actorbase.h"
-#include "datatypes.h"
 #include "xml.h"
 
 class btPersistentManifold;
@@ -52,6 +50,8 @@ class btManifoldPoint;
 
 namespace Mezzanine
 {
+    class WorldObject;
+    class ActorBase;
     class CollisionDispatcher;
     struct CollisionInternalData;
     ///////////////////////////////////////////////////////////////////////////////

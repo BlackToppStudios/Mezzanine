@@ -14,6 +14,7 @@ class LevelZone : public AreaEffect
         virtual void ApplyEffect() = 0;
         virtual bool IsInside(ActorBase* Actor);
         virtual bool IsEmpty();
+        Mezzanine::WorldObjectType GetType() const;
 };//LevelZone
 
 class StartArea : public LevelZone

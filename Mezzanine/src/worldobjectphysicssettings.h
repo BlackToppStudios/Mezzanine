@@ -41,6 +41,8 @@
 #define _worldobjectphysicssettings_h
 
 #include "datatypes.h"
+#include "enumerations.h"
+#include "xml.h"
 
 class btCollisionObject;
 class btRigidBody;
@@ -123,11 +125,6 @@ namespace Mezzanine
             /// @return Returns true if the actor is static or kinematic.
             virtual bool IsStaticOrKinematic() const;
 
-            /// @brief Sets the actor to be able to collide with other objects in the world.
-            /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
-            /// @param Enable Whether or not to enable collision response.
-            virtual void SetCollisionResponse(bool Enable);
-
             /// @brief Will this respond to 3d collisions.
             /// @return False is it does not respond to collisions, True if it will
             virtual bool GetCollisionResponse() const;
@@ -163,6 +160,70 @@ namespace Mezzanine
             static String SerializableName();
 #endif
     };//WorldObjectPhysicsSettings
-}
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class NonTriggerPhysicsSettings
+    /// @headerfile worldobjectphysicssettings.h
+    /// @brief This is an extension of the basic WorldObjectPhysicsSettings class for non-trigger objects(I.E not AreaEffects).
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB NonTriggerPhysicsSettings : public WorldObjectPhysicsSettings
+    {
+        protected:
+        public:
+            /// @brief Class constructor.
+            /// @param WO The World Object this settings class configures.
+            /// @param PhysicsObject The physics object belonging to the World Object this class configures.
+            NonTriggerPhysicsSettings(WorldObject* WO, btCollisionObject* PhysicsObject);
+            /// @brief Class destructor.
+            virtual ~NonTriggerPhysicsSettings();
+
+            /// @brief Sets the World Object to be able to collide with other objects in the world.
+            /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
+            /// @param Enable Whether or not to enable collision response.
+            virtual void SetCollisionResponse(bool Enable);
+
+            /// @brief Sets the World Object friction coefficient.
+            /// @details Higher values will resist sliding across surfaces.  This number is the
+            /// coefficient of friction.  Range is from 0.0 to 2.0.  Behavior in this regard is determined by the friction of both
+            /// colliding bodies.  @n Default: 0.5
+            /// @param Friction A Real that is the friction coefficient desired.
+            virtual void SetFriction(const Real& Friction);
+
+            /// @brief Gets the World Object friction coefficient.
+            /// @return Returns a Real representing the World Object friction coefficient.
+            virtual Real GetFriction() const;
+
+            /// @brief Sets the World Object restitution coefficient.
+            /// @details Restitution determines how much energy is left after a collision with an object.
+            /// Range is from 0.0 to 1.0.  Behavior in this regard is determined by the restitution of both colliding bodies.
+            /// @n Default: 0.0
+            /// @param Restitution A Real that is the restitution coefficient desired.
+            virtual void SetRestitution(const Real& Restitution);
+
+            /// @brief Gets the World Object restitution coefficient.
+            /// @return Returns a Real representing the World Object restitution coefficient.
+            virtual Real GetRestitution() const;
+
+#ifdef MEZZXML
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "ActorBasePhysicsSettings"
+            static String SerializableName();
+#endif
+    };//NonTriggerPhysicsSettings
+}//Mezzanine
 
 #endif

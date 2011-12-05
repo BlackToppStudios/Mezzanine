@@ -64,7 +64,7 @@ namespace Mezzanine
         CreateSoftObject(mass);
         this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
         this->PhysicsSettings = new ActorSoftPhysicsSettings(this,PhysicsSoftBody);
-        BasePhysicsSettings = PhysicsSettings;
+        PhysicsSettings = PhysicsSettings;
     }
 
     ActorSoft::~ActorSoft ()
@@ -147,7 +147,7 @@ namespace Mezzanine
     void ActorSoft::SetBulletLocation (Vector3 Location)
     {
         this->PhysicsSoftBody->m_clusters[0]->m_framexform.setOrigin(Location.GetBulletVector3());
-        ActorBase::SetBulletLocation(Location);
+        //ActorBase::SetBulletLocation(Location);
     }
 
     Vector3 ActorSoft::GetBulletLocation() const
@@ -160,7 +160,7 @@ namespace Mezzanine
     void ActorSoft::SetBulletOrientation (Quaternion Rotation)
     {
         this->PhysicsSoftBody->m_clusters[0]->m_framexform.setRotation(Rotation.GetBulletQuaternion(true));
-        ActorBase::SetBulletOrientation(Rotation);
+        //ActorBase::SetBulletOrientation(Rotation);
     }
 
     ///////////////////////////////////////
@@ -206,7 +206,7 @@ namespace Mezzanine
     void ActorSoft::SetLocation (Vector3 Place)
     {
         this->SetBulletLocation(Place);
-        this->SetOgreLocation(Place);
+        //this->SetOgreLocation(Place);
     }
 
     Vector3 ActorSoft::GetLocation() const
@@ -223,7 +223,7 @@ namespace Mezzanine
     void ActorSoft::SetOrientation (Quaternion Rotation)
     {
         this->SetBulletOrientation(Rotation);
-        this->SetOgreOrientation(Rotation);
+        //this->SetOgreOrientation(Rotation);
     }
 
     void ActorSoft::AddObjectToWorld()

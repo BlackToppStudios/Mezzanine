@@ -41,17 +41,28 @@
 #define _worldobject_cpp
 
 #include "worldobject.h"
+#include "serialization.h"
+#include "audiomanager.h"
+#include "audiosoundset.h"
+#include "physicsmanager.h"
+#include "worldnode.h"
+#include "world.h"
 
 #include <Ogre.h>
+#include "btBulletDynamicsCommon.h"
+#include <sstream>
+#include <memory>
 
 namespace Mezzanine
 {
     WorldObject::WorldObject()
         : GraphicsObject(NULL),
           GraphicsNode(NULL),
-          CollisionObject(NULL),
-          Shape(NULL),
-          GraphicsSettings(NULL)
+          PhysicsObject(NULL),
+          PhysicsShape(NULL),
+          GraphicsSettings(NULL),
+          PhysicsSettings(NULL),
+          ObjectSounds(NULL)
     {
     }
 
@@ -63,12 +74,10 @@ namespace Mezzanine
     {
         if(GraphicsNode && GraphicsObject)
         {
-            Ogre::Vector3 tempv;
-            tempv << CollisionObject->getWorldTransform().getOrigin();
-            Ogre::Quaternion tempq
-            tempq << CollisionObject->getWorldTransform().getRotation();
-            this->GraphicsNode->setPosition(tempv);
-            this->GraphicsNode->setOrientation(tempq);
+            Vector3 tempv(PhysicsObject->getWorldTransform().getOrigin());
+            Quaternion tempq(PhysicsObject->getWorldTransform().getRotation());
+            this->GraphicsNode->setPosition(tempv.GetOgreVector3());
+            this->GraphicsNode->setOrientation(tempq.GetOgreQuaternion());
             this->GraphicsNode->attachObject(this->GraphicsObject);
         }
     }
@@ -77,6 +86,27 @@ namespace Mezzanine
     {
         if(GraphicsNode && GraphicsObject)
             this->GraphicsNode->detachObject(this->GraphicsObject);
+    }
+
+    void WorldObject::SetLocation(const Real& x, const Real& y, const Real& z)
+    {
+        Vector3 temp(x,y,z);
+        this->SetLocation(temp);
+    }
+
+    void WorldObject::SetLocation(const Vector3& Location)
+    {
+        //Bullet
+        this->PhysicsObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
+        this->PhysicsObject->getInterpolationWorldTransform().setOrigin(Location.GetBulletVector3());
+        //Ogre
+        this->GraphicsNode->setPosition(Location.GetOgreVector3());
+    }
+
+    Vector3 WorldObject::GetLocation() const
+    {
+        Vector3 temp(this->PhysicsObject->getWorldTransform().getOrigin());
+        return temp;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -88,9 +118,46 @@ namespace Mezzanine
         return Name;
     }
 
+    bool WorldObject::IsStaticOrKinematic() const
+    {
+        return PhysicsSettings->IsStaticOrKinematic();
+    }
+
     bool WorldObject::IsInWorld() const
     {
-        return CollisionObject->getBroadphaseHandle() != 0;
+        return PhysicsObject->getBroadphaseHandle() != 0;
+    }
+
+    void WorldObject::SetScaling(const Vector3& Scale)
+    {
+        this->GraphicsNode->setScale(Scale.GetOgreVector3());
+        this->PhysicsShape->setLocalScaling(Scale.GetBulletVector3());
+    }
+
+    Vector3 WorldObject::GetScaling() const
+    {
+        Vector3 Scale(this->PhysicsShape->getLocalScaling());
+        return Scale;
+    }
+
+    WorldObjectGraphicsSettings* WorldObject::GetGraphicsSettings() const
+    {
+        return GraphicsSettings;
+    }
+
+    WorldObjectPhysicsSettings* WorldObject::GetPhysicsSettings() const
+    {
+        return PhysicsSettings;
+    }
+
+    void WorldObject::SetSounds(Audio::SoundSet* Sounds)
+    {
+        ObjectSounds = Sounds;
+    }
+
+    Audio::SoundSet* WorldObject::GetSounds() const
+    {
+        return ObjectSounds;
     }
 
     ///////////////////////////////////
@@ -111,7 +178,7 @@ namespace Mezzanine
 
     btCollisionObject* WorldObject::_GetBasePhysicsObject() const
     {
-        return CollisionObject;
+        return PhysicsObject;
     }
 
     Ogre::Entity* WorldObject::_GetGraphicsObject() const
@@ -130,8 +197,211 @@ namespace Mezzanine
     void WorldObject::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
 
+    void WorldObject::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node WorldObjectNode = CurrentRoot.AppendChild("WorldObject");
+        if (!WorldObjectNode) { ThrowSerialError("create WorldObjectNode");}
+
+        xml::Node LocationNode = WorldObjectNode.AppendChild("Location");
+        if (!LocationNode) { ThrowSerialError("create LocationNode"); }
+        this->GetLocation().ProtoSerialize(LocationNode);
+
+        xml::Node ScalingNode = WorldObjectNode.AppendChild("Scaling");
+        if (!ScalingNode) { ThrowSerialError("create ScalingNode"); }
+        this->GetScaling().ProtoSerialize(ScalingNode);
+
+        this->GetGraphicsSettings()->ProtoSerialize(WorldObjectNode);
+        this->GetPhysicsSettings()->ProtoSerialize(WorldObjectNode);
+
+        xml::Attribute WorldObjectName = WorldObjectNode.AppendAttribute("Name");
+            WorldObjectName.SetValue(this->GetName());
+        xml::Attribute WorldObjectVersion = WorldObjectNode.AppendAttribute("Version");
+            WorldObjectVersion.SetValue(1);
+        xml::Attribute WorldObjectIsInWorld = WorldObjectNode.AppendAttribute("IsInWorld");
+            WorldObjectIsInWorld.SetValue(this->IsInWorld());
+        if ( !(WorldObjectName && WorldObjectVersion && WorldObjectIsInWorld) )
+            { ThrowSerialError("create WorldObjectNode Attributes"); }
+
+        xml::Attribute WorldObjectSoundSetName = WorldObjectNode.AppendAttribute("SoundSet");
+        if(this->GetSounds())
+        {
+            WorldObjectSoundSetName.SetValue(this->GetSounds()->GetName());
+        }else{
+            WorldObjectSoundSetName.SetValue("");
+        }
+    }
+
+    void WorldObject::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( Mezzanine::String(OneNode.Name())==this->WorldObject::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                Vector3 TempVec;
+                xml::Node LocationNode = OneNode.GetChild("Location").GetFirstChild();
+                if(!LocationNode)
+                    { DeSerializeError("locate Location node",SerializableName()); }
+                TempVec.ProtoDeSerialize(LocationNode);
+                this->SetLocation(TempVec);
+
+                xml::Node GraphicsSettingsNode = OneNode.GetChild(this->GraphicsSettingsSerializableName());
+                if(!GraphicsSettingsNode)
+                    { DeSerializeError("locate Graphics Settings node",SerializableName()); }
+                this->GetGraphicsSettings()->ProtoDeSerialize(GraphicsSettingsNode);
+
+                xml::Node PhysicsSettingsNode = OneNode.GetChild(this->PhysicsSettingsSerializableName());
+                if(!PhysicsSettingsNode)
+                    { DeSerializeError(String("locate Physics Settings node, ")+this->PhysicsSettingsSerializableName()+", ",SerializableName()); }
+                this->GetPhysicsSettings()->ProtoDeSerialize(PhysicsSettingsNode);
+
+                xml::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
+                if(!ScalingNode)
+                    { DeSerializeError("locate Scaling node",SerializableName()); }
+                TempVec.ProtoDeSerialize(ScalingNode);
+                this->SetScaling(TempVec);
+
+                if( this->IsInWorld() != OneNode.GetAttribute("IsInWorld").AsBool() )
+                {
+                    if(this->IsInWorld())
+                        { this->RemoveFromWorld(); }
+                    else
+                        { this->AddToWorld(); }
+                }
+
+                if( 0!=OneNode.GetAttribute("SoundSet") && ""!=OneNode.GetAttribute("SoundSet").AsString())
+                    { this->ObjectSounds = AudioManager::GetSingletonPtr()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
+                else
+                    { this->ObjectSounds = 0; }
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
     String WorldObject::SerializableName()
         {   return String("WorldObject"); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // NonStaticWorldObject functions
+    ///////////////////////////////////////
+
+    NonStaticWorldObject::NonStaticWorldObject()
+        : ObjectWorldNode(NULL)
+    {
+        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        this->ObjectWorldNode = new WorldNode(GraphicsNode,SceneManager::GetSingletonPtr());
+    }
+
+    NonStaticWorldObject::~NonStaticWorldObject()
+    {
+        SceneManager* SceneMan = SceneManager::GetSingletonPtr();
+        if (SceneMan)
+        {
+            if (0!=this->ObjectWorldNode && !SceneMan->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+            { delete this->ObjectWorldNode; }
+        } else
+            { delete this->ObjectWorldNode; }
+    }
+
+    void NonStaticWorldObject::SetOrientation(const Real& x, const Real& y, const Real& z, const Real& w)
+    {
+        Quaternion temp(x,y,z,w);
+        this->SetOrientation(temp);
+    }
+
+    void NonStaticWorldObject::SetOrientation(const Quaternion& Rotation)
+    {
+        //Bullet
+        this->PhysicsObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
+        this->PhysicsObject->getInterpolationWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
+        //Ogre
+        this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
+    }
+
+    Quaternion NonStaticWorldObject::GetOrientation() const
+    {
+        Quaternion temp(PhysicsObject->getWorldTransform().getRotation());
+        return temp;
+    }
+
+    WorldNode* NonStaticWorldObject::GetObjectNode() const
+    {
+        return ObjectWorldNode;
+    }
+
+    void NonStaticWorldObject::ThrowSerialError(const String& Fail) const
+        { SerializeError(Fail, SerializableName()); }
+
+    void NonStaticWorldObject::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node NonStaticWorldObjectNode = CurrentRoot.AppendChild("NonStaticWorldObject");
+        if (!NonStaticWorldObjectNode) { ThrowSerialError("create NonStaticWorldObjectNode");}
+
+        xml::Node OrientationNode = NonStaticWorldObjectNode.AppendChild("Orientation");
+        if(!OrientationNode)  { ThrowSerialError("create OrientationNode"); }
+
+        this->GetOrientation().ProtoSerialize(OrientationNode);
+
+        // if actor node is in scenemanager just save a name
+        if( SceneManager::GetSingletonPtr()->GetNode( this->ObjectWorldNode->GetName() ) )
+        {
+            xml::Attribute NonStaticWorldObjectNodeAttrib = NonStaticWorldObjectNode.AppendAttribute("WorldNode");
+            if(!NonStaticWorldObjectNodeAttrib.SetValue(this->ObjectWorldNode->GetName()))
+                {ThrowSerialError("store WorldNode Name");}
+        }else{
+            SloppyProtoSerialize( *(this->ObjectWorldNode),NonStaticWorldObjectNode);                                   //Serialization performed in older style
+        }
+
+        WorldObject::ProtoSerialize(NonStaticWorldObjectNode);
+    }
+
+    void NonStaticWorldObject::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( Mezzanine::String(OneNode.Name())==this->NonStaticWorldObject::SerializableName() )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                this->WorldObject::ProtoDeSerialize(OneNode.GetChild(this->WorldObject::SerializableName()));
+
+                Quaternion TempQuat;
+                xml::Node OrientationNode = OneNode.GetChild("Orientation").GetFirstChild();
+                if(!OrientationNode)
+                    { DeSerializeError("locate Orientation node",SerializableName()); }
+                TempQuat.ProtoDeSerialize(OrientationNode);
+                this->SetOrientation(TempQuat);
+
+                if(0==OneNode.GetAttribute("WorldNode"))         // Are we dealing with a WorldNode Node or WorldNode Attribute.
+                {
+                    //Since the Attribute didn't exist we must have a node
+                    xml::Node ObjectWorldNode = OneNode.GetChild("WorldNode");                               // Assumption made base on old style serialization
+                    if(!ObjectWorldNode)
+                        { DeSerializeError("locate ObjectWorldNode node",SerializableName()); }
+                    if (0!=this->ObjectWorldNode && !SceneManager::GetSingletonPtr()->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+                        { delete this->ObjectWorldNode; }
+                    this->ObjectWorldNode = new WorldNode(ObjectWorldNode.GetAttribute("Name").AsString(),0);
+                    ObjectWorldNode >> *(this->ObjectWorldNode);                                              // Deserialized with old style serialization
+                }else{
+                    WorldNode *TempWorldNode = SceneManager::GetSingletonPtr()->GetNode(OneNode.GetAttribute("WorldNode").AsString());
+                    if( TempWorldNode == this->ObjectWorldNode )
+                        { return; }                                                                         //This already has the correct node we are done
+                    if (0!=this->ObjectWorldNode && !SceneManager::GetSingletonPtr()->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+                        { delete this->ObjectWorldNode; }
+                    this->ObjectWorldNode = TempWorldNode;                                                   // The old node has bee cleaned up and the new node is in place
+                    if (0==this->ObjectWorldNode)
+                        { DeSerializeError("locate ObjectWorldNode attribute",SerializableName()); }
+                }
+            }else{
+                DeSerializeError("find usable serialization version",SerializableName());
+            }
+        }else{
+            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+        }
+    }
+
+    String NonStaticWorldObject::SerializableName()
+        { return String("NonStaticWorldObject"); }
 #endif
 }//Mezzanine
 

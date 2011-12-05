@@ -43,18 +43,18 @@
 #include "worldobjectgraphicssettings.h"
 #include "actorbase.h"
 #include "worldobject.h"
+#include "objectreference.h"
 #include "mesh.h"
-#include "datatypes.h"
 #include "serialization.h"
 #include "world.h"
 #include "meshmanager.h"
 #include "stringtool.h"
 
 #include <map>
-
 #include <memory>
 
 #include <Ogre.h>
+#include "btBulletDynamicsCommon.h"
 
 namespace Mezzanine
 {
@@ -97,12 +97,51 @@ namespace Mezzanine
         : Parent(WO)
     {
         this->IWOGS = new internal::InternalWorldObjectGraphicsSettings(GraphicsObject);
-        WorldObjectMesh = MeshManager::GetSingletonPtr()->GetMesh(GraphicsObject->getMesh()->getName());
+        if(IWOGS->WorldObjectEnt)
+            WorldObjectMesh = MeshManager::GetSingletonPtr()->GetMesh(GraphicsObject->getMesh()->getName());
     }
 
     WorldObjectGraphicsSettings::~WorldObjectGraphicsSettings()
     {
         delete this->IWOGS;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Mesh Management
+
+    void WorldObjectGraphicsSettings::SetMesh(Mesh* ObjectMesh)
+    {
+        Ogre::SceneManager* OgreManager = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer();
+        if(IWOGS->WorldObjectEnt)
+        {
+            OgreManager->destroyEntity(IWOGS->WorldObjectEnt);
+            IWOGS->WorldObjectEnt = NULL;
+        }
+        this->WorldObjectMesh = ObjectMesh;
+
+        if(!ObjectMesh)
+            return;
+
+        IWOGS->WorldObjectEnt = OgreManager->createEntity(Parent->Name,ObjectMesh->GetName(),ObjectMesh->GetGroup());
+        Parent->GraphicsNode->setPosition((Parent->GetLocation()).GetOgreVector3());
+        //Parent->GraphicsNode->attachObject(IWOGS->WorldObjectEnt);
+
+        ObjectReference* AERef = (ObjectReference*)Parent->PhysicsObject->getUserPointer();
+        Ogre::Any OgreRef(AERef);
+        IWOGS->WorldObjectEnt->setUserAny(OgreRef);
+
+        Parent->GraphicsObject = IWOGS->WorldObjectEnt;
+    }
+
+    void WorldObjectGraphicsSettings::SetMesh(const String& MeshName, const String& Group)
+    {
+        Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
+        this->SetMesh(TheMesh);
+    }
+
+    Mesh* WorldObjectGraphicsSettings::GetMesh() const
+    {
+        return WorldObjectMesh;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -115,26 +154,36 @@ namespace Mezzanine
 
     void WorldObjectGraphicsSettings::SetMaterial(const String& MatName, const Whole& Submesh)
     {
+        if(!IWOGS->WorldObjectEnt)
+            return;
         this->IWOGS->WorldObjectEnt->getMesh()->getSubMesh(Submesh)->setMaterialName(MatName);
     }
 
     void WorldObjectGraphicsSettings::CloneMaterial(const String& NewName)
     {
-         this->GetMaterial()->clone(NewName);
+        if(!IWOGS->WorldObjectEnt)
+            return;
+        this->GetMaterial()->clone(NewName);
     }
 
-    ConstString& WorldObjectGraphicsSettings::GetMaterialName(const Whole& Submesh) const
+    ConstString WorldObjectGraphicsSettings::GetMaterialName(const Whole& Submesh) const
     {
+        if(!IWOGS->WorldObjectEnt)
+            return "";
         return this->IWOGS->WorldObjectEnt->getMesh()->getSubMesh(Submesh)->getMaterialName();
     }
 
     bool WorldObjectGraphicsSettings::HasMaterialSet(const Whole& Submesh)
     {
+        if(!IWOGS->WorldObjectEnt)
+            return false;
         return this->IWOGS->WorldObjectEnt->getMesh()->getSubMesh(Submesh)->isMatInitialised();
     }
 
     Whole WorldObjectGraphicsSettings::GetNumSubmeshes() const
     {
+        if(!IWOGS->WorldObjectEnt)
+            return 0;
         return this->IWOGS->WorldObjectEnt->getMesh()->getNumSubMeshes();
     }
 
@@ -143,30 +192,48 @@ namespace Mezzanine
 
     void WorldObjectGraphicsSettings::SetMaterialAmbient(const ColourValue& Ambient, const Whole& Submesh)
     {
+        if(!IWOGS->WorldObjectEnt)
+            return;
         this->IWOGS->Ambient[Submesh] = Ambient;
         GetMaterial(Submesh)->setAmbient(Ambient.GetOgreColourValue());
     }
 
     void WorldObjectGraphicsSettings::SetMaterialSpecular(const ColourValue& Specular, const Whole& Submesh)
     {
+        if(!IWOGS->WorldObjectEnt)
+            return;
         this->IWOGS->Specular[Submesh] = Specular;
         GetMaterial(Submesh)->setSpecular(Specular.GetOgreColourValue());
     }
 
     void WorldObjectGraphicsSettings::SetMaterialDiffuse(const ColourValue& Diffuse, const Whole& Submesh)
     {
+        if(!IWOGS->WorldObjectEnt)
+            return;
         this->IWOGS->Diffuse[Submesh] = Diffuse;
         GetMaterial(Submesh)->setDiffuse(Diffuse.GetOgreColourValue());
     }
 
     ColourValue WorldObjectGraphicsSettings::GetMaterialAmbient(const Whole& Submesh) const
-        { return this->IWOGS->Ambient[Submesh]; }
+    {
+        if(!IWOGS->WorldObjectEnt)
+            return ColourValue::Transparent();
+        return this->IWOGS->Ambient[Submesh];
+    }
 
     ColourValue WorldObjectGraphicsSettings::GetMaterialSpecular(const Whole& Submesh) const
-        { return this->IWOGS->Specular[Submesh]; }
+    {
+        if(!IWOGS->WorldObjectEnt)
+            return ColourValue::Transparent();
+        return this->IWOGS->Specular[Submesh];
+    }
 
     ColourValue WorldObjectGraphicsSettings::GetMaterialDiffuse(const Whole& Submesh) const
-        { return this->IWOGS->Diffuse[Submesh]; }
+    {
+        if(!IWOGS->WorldObjectEnt)
+            return ColourValue::Transparent();
+        return this->IWOGS->Diffuse[Submesh];
+    }
 
 #ifdef MEZZXML
         // Serializable
