@@ -266,7 +266,7 @@ if(${UseCatchArchices})
 endif(${UseCatchArchices})
 
 #Ogre stuff
-CopyFilesDuringBuild( data/${BuildPlatform}/plugins.cfg ${PluginDir}plugins.cfg)
+CopyFilesDuringBuild( data/${BuildPlatform}/plugins${OgresD}.cfg ${PluginDir}plugins.cfg)
 
 CopyFilesFromMezzanineDuringBuild( ${OgreLibFileName} ${GameDir}${OgreLibFileName})
 CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginCGPM} ${PluginDir}${OgrePluginCGPM} )

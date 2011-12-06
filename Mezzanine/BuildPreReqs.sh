@@ -41,6 +41,8 @@
 # This will build ogre and SDL and make sure their files wind up were CMake Expects them to be
 # This will not copy files to the data directory. That is up to you or to cmake.
 
+# This relies on the following tar, uname, pwd, which, make(and the other autotools), and cmake
+
 #########################################################
 # Functions
 function Usage {
@@ -66,6 +68,14 @@ BinaryRecievingDir="data/"
 
 #########################################################
 # Work with values gathered from the system so this script knows what is going on.
+if [ "Darwin" = "$SystemName" ]
+then
+	echo "System Detected: Mac OS X"
+	MacOSX=1
+	DetectedPlatform=1
+	PlatformDirName="macosx"
+fi
+
 if [ "Linux" = "$SystemName" ]
 then
 	echo "System Detected: Linux"
@@ -178,9 +188,10 @@ SDLOutputDir="$OutputDir/SDLBuild"
 SDLCompileDir="$OutputDir/SDLBuild/SDL"
 SDLRelOutputDir=".."
 echo "Preparing SDL source Files in: \"$SDLOutputDir\""
-cd $WorkingDir
+cd $WorkingDir			#next line needs to be executed from the working dir or it could fail if the user entered a relative path
 mkdir -p $SDLOutputDir
-cp -a libincludes/common/sdlsrc/SDL/ $SDLOutputDir/
+cd $SDLOutputDir
+tar xf $WorkingDir/libincludes/common/sdlsrc/SDL.tar.gz
 
 cd $SDLCompileDir
 
@@ -206,6 +217,7 @@ then
 	cp -a $SDLCompileDir/build/libSDLmain.a $WorkingDir/$BinaryRecievingDir/sdl/
 fi
 
+
 ########################################################
 # Prepare Ogre Library
 CMakeOutput="CodeBlocks - Unix Makefiles"
@@ -227,8 +239,9 @@ fi
 echo "Preparing Ogre source Files in: \"$OgreOutputDir\""
 cd $WorkingDir
 mkdir -p $OgreOutputDir
-cp -a libincludes/common/ogresrc/ogre/ $OgreOutputDir/
-
+#cp -a libincludes/common/ogresrc/ogre/ $OgreOutputDir/
+cd $OgreOutputDir
+tar xf $WorkingDir/libincludes/common/ogresrc/ogre.tar.gz
 cd $OgreCompileDir
 
 echo "Configuring Ogre3d, putting output in: $OgreOutputDir/Configurelog.txt"
