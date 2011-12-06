@@ -862,12 +862,16 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @class HeightfieldCollisionShape
     /// @headerfile collisionshape.h
-    /// @brief
-    /// @details
+    /// @brief A series of values that store hieght in a grid like fashion
+    /// @details A fast terrain implementation that comes at the cost of
+    /// overhangs and fine detail. This can be worked around by adding actors for
+    /// additional terrain.
     ///////////////////////////////////////
     class MEZZ_LIB HeightfieldCollisionShape : public FieldCollisionShape
     {
         protected:
+            /// @internal
+            /// @brief The internal implementation.
             btHeightfieldTerrainShape* HeightfieldShape;
         public:
             /// @brief Class Constructor.
@@ -886,9 +890,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class PlaneCollisionShape
-    /// @headerfile collisionshape.h
-    /// @brief
-    /// @details
+    /// @brief A Flat wall/floor of limitless size
     ///////////////////////////////////////
     class MEZZ_LIB PlaneCollisionShape : public FieldCollisionShape
     {
@@ -940,7 +942,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class StaticMeshCollisionShape
-    /// @headerfile collisionshape.h
     /// @brief A triangle mesh collsion shape based on a graphics mesh.
     /// @details As the name suggests, this is a TriMesh shape intended for static objects.  If this
     /// shape is used in a dynamic object, it will simply not provide any collisions with other objects. @n @n
@@ -997,7 +998,8 @@ namespace Mezzanine
     CollisionShape::ShapeType MEZZ_LIB StringToShapeType(const String& TypeName);
 
     ///////////////////////////////////////////////////////////////////////////////
-    // CollisionShapeDeSerializer
+    /// @class CollisionShapeDeSerializer
+    /// @brief A tool to aid in deserialization for the specific instances that DeSerialization CollisionShapes other ways does not make sense
     ///////////////////////////////////////
     class MEZZ_LIB CollisionShapeDeSerializer : public DeSerializer <CollisionShape>
     {

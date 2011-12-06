@@ -193,7 +193,7 @@ namespace Mezzanine
             ActorAreaEffectPair(const ActorAreaEffectPair& OtherPair);
     };//ActorPair
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorPair
+    /// @class AreaEffectTerrainPair
     /// @headerfile objectpair.h
     /// @brief This is a basic utility class for tracking pairs of actors.
     /// @details Most commonly this class is used in collision tracking.

@@ -66,7 +66,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
@@ -76,7 +75,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Mezzanine::ActorBase Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::ActorBase" -->
+<!-- doxytag: class="Mezzanine::ActorBase" --><!-- doxytag: inherits="Mezzanine::WorldObject" -->
 <p>This is the base class from which all the actors inherit.  
 <a href="#_details">More...</a></p>
 
@@ -87,44 +86,23 @@ Inheritance diagram for Mezzanine::ActorBase:</div>
  <div class="center">
   <img src="classMezzanine_1_1ActorBase.png" usemap="#Mezzanine::ActorBase_map" alt=""/>
   <map id="Mezzanine::ActorBase_map" name="Mezzanine::ActorBase_map">
-<area href="classMezzanine_1_1ActorRigid.html" alt="Mezzanine::ActorRigid" shape="rect" coords="0,56,151,80"/>
-<area href="classMezzanine_1_1ActorSoft.html" alt="Mezzanine::ActorSoft" shape="rect" coords="161,56,312,80"/>
-<area href="classMezzanine_1_1ActorTerrain.html" alt="Mezzanine::ActorTerrain" shape="rect" coords="322,56,473,80"/>
+<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="79,0,228,24"/>
+<area href="classMezzanine_1_1ActorRigid.html" alt="Mezzanine::ActorRigid" shape="rect" coords="0,112,149,136"/>
+<area href="classMezzanine_1_1ActorSoft.html" alt="Mezzanine::ActorSoft" shape="rect" coords="159,112,308,136"/>
 </map>
  </div></div>
 
 <p><a href="classMezzanine_1_1ActorBase-members.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a98e1b66ce4973b01abb6d9b858398eb6">ActorTypeName</a> { <br/>
-&#160;&#160;<b>Actorbase</b>, 
-<b>Actorcharacter</b>, 
-<b>Actorrigid</b>, 
-<b>Actorsoft</b>, 
-<br/>
-&#160;&#160;<b>Actorterrain</b>
-<br/>
- }</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>A listing of Actor TypeNames. </p>
- <a href="classMezzanine_1_1ActorBase.html#a98e1b66ce4973b01abb6d9b858398eb6">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a6f8b107522665d5ecee1f10f4a49464d">_GetBasePhysicsObject</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the internal physics object this actor is based on.  <a href="#a6f8b107522665d5ecee1f10f4a49464d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual Ogre::SceneNode *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a060b9a1c42de39c0bcaa9535a5606ffa">_GetGraphicsNode</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the internal graphics node this actor uses for it's graphics transform.  <a href="#a060b9a1c42de39c0bcaa9535a5606ffa"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual Ogre::Entity *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ae4a2cc51ec188f7cfbab462f2cd76f8f">_GetGraphicsObject</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the internal graphics object this actor is based on.  <a href="#ae4a2cc51ec188f7cfbab462f2cd76f8f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a5426eb2e8abd1d64a8880adad8e5f73c">_NotifyCollisionState</a> (<a class="el" href="classMezzanine_1_1Collision.html">Collision</a> *Col, const <a class="el" href="classMezzanine_1_1Collision.html#a24094c597061743dcd571f36077f4d19">Collision::CollisionState</a> &amp;State)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies this actor of a collision that is occuring with it.  <a href="#a5426eb2e8abd1d64a8880adad8e5f73c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f5a36a6981f1249dbabab318531afd0"></a><!-- doxytag: member="Mezzanine::ActorBase::_Update" ref="a8f5a36a6981f1249dbabab318531afd0" args="()=0" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a8f5a36a6981f1249dbabab318531afd0">_Update</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function for altering or checking the actor every frame. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#aa9cc2fce1ff708a96d4a879b87054f18">ActorBase</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#aa9cc2fce1ff708a96d4a879b87054f18"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a766dc0add62500689498a9c1d3f758ea"></a><!-- doxytag: member="Mezzanine::ActorBase::AddObjectToWorld" ref="a766dc0add62500689498a9c1d3f758ea" args="()=0" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a766dc0add62500689498a9c1d3f758ea">AddObjectToWorld</a> ()=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe739a46f248a7ba257becfb560d9aa5"></a><!-- doxytag: member="Mezzanine::ActorBase::AddToWorld" ref="abe739a46f248a7ba257becfb560d9aa5" args="()=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#abe739a46f248a7ba257becfb560d9aa5">AddToWorld</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the actor to the physics world. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ab245d50e649ec7335bbfcba86d9dc889">AdvanceAnimation</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;<a class="el" href="structMezzanine_1_1Time.html">Time</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the animation, making it animate.  <a href="#ab245d50e649ec7335bbfcba86d9dc889"></a><br/></td></tr>
@@ -134,29 +112,19 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a> representing the position and orientation of this actor.  <a href="#a79803eb3d00e1e3722104fce473be085"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a9255b5af0827d02505b7662486d8dd17">GetActorScaling</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current scaling being applied to the actor.  <a href="#a9255b5af0827d02505b7662486d8dd17"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual const std::set<br class="typebreak"/>
-&lt; <a class="el" href="classMezzanine_1_1Collision.html">Collision</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#acb4f52d4033918be75ecc09485547bc4">GetCurrentCollisions</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all current collisions that apply to this actor.  <a href="#acb4f52d4033918be75ecc09485547bc4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ActorGraphicsSettings.html">ActorGraphicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ae57a1a39b5f9483c949f6e3651aa163f">GetGraphicsSettings</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the graphics settings class associated with this actor.  <a href="#ae57a1a39b5f9483c949f6e3651aa163f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ab1706a379bf86d020e64e4b560cdeb73">GetLocation</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the location of the object.  <a href="#ab1706a379bf86d020e64e4b560cdeb73"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a01e16da200911fdff659bfb78bafff1d">GetName</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the name of the object.  <a href="#a01e16da200911fdff659bfb78bafff1d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ac04f313c7e1272c519d0284bc98148a4">GetOrientation</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the orientation of the actor.  <a href="#ac04f313c7e1272c519d0284bc98148a4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html">ActorBasePhysicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a08c975572f1ab5cde651e1a6e5d9bb6a">GetPhysicsSettings</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the physics settings class associated with this actor.  <a href="#a08c975572f1ab5cde651e1a6e5d9bb6a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ac9a208af008d628e6442079c2ec80fa9">GetType</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of actor this class is.  <a href="#ac9a208af008d628e6442079c2ec80fa9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a6e9cce7e660471cc0f9b9df019663f8d">GetType</a> () const =0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ade1c3e7a2e24df64a79d2acb8d6fc084">IsAnimated</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells whether this actor is animated or not.  <a href="#ade1c3e7a2e24df64a79d2acb8d6fc084"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#aa2ab7ee3bc4d268d3363de0923426c72">IsInWorld</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently in the world.  <a href="#aa2ab7ee3bc4d268d3363de0923426c72"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#aae73855e5f3cded86c71955cc855026a">IsStaticOrKinematic</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks of the actor is static or kinematic.  <a href="#aae73855e5f3cded86c71955cc855026a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a774050bfd7c75f2b639005d82dcd5085"></a><!-- doxytag: member="Mezzanine::ActorBase::RemoveObjectFromWorld" ref="a774050bfd7c75f2b639005d82dcd5085" args="()=0" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a774050bfd7c75f2b639005d82dcd5085">RemoveObjectFromWorld</a> ()=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30910dd0351bc29b2bf88cb3dc8d83db"></a><!-- doxytag: member="Mezzanine::ActorBase::RemoveFromWorld" ref="a30910dd0351bc29b2bf88cb3dc8d83db" args="()=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a30910dd0351bc29b2bf88cb3dc8d83db">RemoveFromWorld</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the actor from the physics world. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a148df02e486650cba1aa384faf85975f">RemoveSetAnimation</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Unloads a loaded animation.  <a href="#a148df02e486650cba1aa384faf85975f"></a><br/></td></tr>
@@ -181,10 +149,6 @@ Public Attributes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a collection of sounds for use with this actor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a040cc440d23400c7f129b318a8a84e97">AttachToGraphics</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the actor visable.  <a href="#a040cc440d23400c7f129b318a8a84e97"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a957ed99e5f67ac3fca3ba8a9b025fe48">DetachFromGraphics</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the actor invisable.  <a href="#a957ed99e5f67ac3fca3ba8a9b025fe48"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a9f110d013ed871809258dfc55f8b7276">GetBulletLocation</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the location of the physics body.  <a href="#a9f110d013ed871809258dfc55f8b7276"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a32fc60215d8bcd3151b3158d481ce0ef">GetBulletOrientation</a> () const </td></tr>
@@ -203,9 +167,6 @@ Protected Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the orientation of the graphical body.  <a href="#a5958552c8b356775b5447c0bd6448102"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac246ea33955e7aefe2b395e450967b6"></a><!-- doxytag: member="Mezzanine::ActorBase::ActorType" ref="aac246ea33955e7aefe2b395e450967b6" args="" -->
-<a class="el" href="classMezzanine_1_1ActorBase.html#a98e1b66ce4973b01abb6d9b858398eb6">ActorTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#aac246ea33955e7aefe2b395e450967b6">ActorType</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This variable stores the type of actor that this class is. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dbfa117e36ab443af4509399b6c4fc9"></a><!-- doxytag: member="Mezzanine::ActorBase::ActorWorldNode" ref="a6dbfa117e36ab443af4509399b6c4fc9" args="" -->
 <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a6dbfa117e36ab443af4509399b6c4fc9">ActorWorldNode</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class excapsulates the functionality of the Ogre::SceneNode. <br/></td></tr>
@@ -215,27 +176,9 @@ Ogre::AnimationState *&#160;</td><td class="memItemRight" valign="bottom"><a cla
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6171cd6b5d94263d0c339bf5e299fa26"></a><!-- doxytag: member="Mezzanine::ActorBase::BasePhysicsSettings" ref="a6171cd6b5d94263d0c339bf5e299fa26" args="" -->
 <a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html">ActorBasePhysicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a6171cd6b5d94263d0c339bf5e299fa26">BasePhysicsSettings</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates physics specific configuration for this actor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a453166e089f7a3821bf099e4404c3e43"></a><!-- doxytag: member="Mezzanine::ActorBase::CollisionObject" ref="a453166e089f7a3821bf099e4404c3e43" args="" -->
-btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a453166e089f7a3821bf099e4404c3e43">CollisionObject</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates the functionality of the btCollisionObject using this. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5673816f3372d3ea8313687ad2529d08"></a><!-- doxytag: member="Mezzanine::ActorBase::CurrentCollisions" ref="a5673816f3372d3ea8313687ad2529d08" args="" -->
-std::set&lt; <a class="el" href="classMezzanine_1_1Collision.html">Collision</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a5673816f3372d3ea8313687ad2529d08">CurrentCollisions</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This member stores all existing collision events referencing this actor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0a8cda5141e05df03a31f8b9b5908a6"></a><!-- doxytag: member="Mezzanine::ActorBase::GraphicsNode" ref="ac0a8cda5141e05df03a31f8b9b5908a6" args="" -->
-Ogre::SceneNode *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ac0a8cda5141e05df03a31f8b9b5908a6">GraphicsNode</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates the functionality of the Ogre::SceneNode using this. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab28b13559f01195a5f81768a445e5119"></a><!-- doxytag: member="Mezzanine::ActorBase::GraphicsObject" ref="ab28b13559f01195a5f81768a445e5119" args="" -->
-Ogre::Entity *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ab28b13559f01195a5f81768a445e5119">GraphicsObject</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates the functionality of the Ogre::Entity using this. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0bd045c27c10a959a11895b3cd6e73c"></a><!-- doxytag: member="Mezzanine::ActorBase::GraphicsSettings" ref="ae0bd045c27c10a959a11895b3cd6e73c" args="" -->
-<a class="el" href="classMezzanine_1_1ActorGraphicsSettings.html">ActorGraphicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#ae0bd045c27c10a959a11895b3cd6e73c">GraphicsSettings</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates graphics specific configuration for this actor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a073d5307c4cb7a82f13133e8216f797b"></a><!-- doxytag: member="Mezzanine::ActorBase::MotionState" ref="a073d5307c4cb7a82f13133e8216f797b" args="" -->
 internal::PhysMotionState *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a073d5307c4cb7a82f13133e8216f797b">MotionState</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates the functionality of the PhysMotionState using this. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51fdd84432cc14bebfe2d7bbc52cd4a0"></a><!-- doxytag: member="Mezzanine::ActorBase::Shape" ref="a51fdd84432cc14bebfe2d7bbc52cd4a0" args="" -->
-btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBase.html#a51fdd84432cc14bebfe2d7bbc52cd4a0">Shape</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class encapsulates the functionality of the btCollisionShape using this. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad56afa2bffce8b552583041f21297874"></a><!-- doxytag: member="Mezzanine::ActorBase::ActorBasePhysicsSettings" ref="ad56afa2bffce8b552583041f21297874" args="" -->
@@ -247,31 +190,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is the base class from which all the actors inherit. </p>
-<p>The actor classes store and manage all the relevant data regarding objects inside the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>. Currently there are 5 actor classes: <a class="el" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>, <a class="el" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>, <a class="el" href="classMezzanine_1_1ActorSoft.html" title="This is the actor class for Soft Objects.">ActorSoft</a>, <a class="el" href="classMezzanine_1_1ActorTerrain.html" title="This is actor class for terrain.">ActorTerrain</a>, ActorCharacter. <br/>
+<p>The actor classes store and manage all the relevant data regarding objects inside the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>. Currently there are 5 actor classes: <a class="el" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>, <a class="el" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>, <a class="el" href="classMezzanine_1_1ActorSoft.html" title="This is the actor class for Soft Objects.">ActorSoft</a>, ActorTerrain, ActorCharacter. <br/>
  <a class="el" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> is a base class that serves as a template for the other four actor classes. <br/>
  <a class="el" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> should never be created, as it lacks the functionality needed for most objects. </p>
 
-<p>Definition at line <a class="el" href="actorbase_8h_source.html#l00098">98</a> of file <a class="el" href="actorbase_8h_source.html">actorbase.h</a>.</p>
-</div><hr/><h2>Member Enumeration Documentation</h2>
-<a class="anchor" id="a98e1b66ce4973b01abb6d9b858398eb6"></a><!-- doxytag: member="Mezzanine::ActorBase::ActorTypeName" ref="a98e1b66ce4973b01abb6d9b858398eb6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="classMezzanine_1_1ActorBase.html#a98e1b66ce4973b01abb6d9b858398eb6">Mezzanine::ActorBase::ActorTypeName</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>A listing of Actor TypeNames. </p>
-<p>These will be returned by <a class="el" href="classMezzanine_1_1ActorBase.html#ac9a208af008d628e6442079c2ec80fa9" title="Gets the type of actor this class is.">ActorBase::GetType()</a>, and will allow code using this to determine what type of Actor class they are working with and use this information to more safely cast to the correct Actor if needed. </p>
-
-<p>Definition at line <a class="el" href="actorbase_8h_source.html#l00110">110</a> of file <a class="el" href="actorbase_8h_source.html">actorbase.h</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<p>Definition at line <a class="el" href="actorbase_8h_source.html#l00097">97</a> of file <a class="el" href="actorbase_8h_source.html">actorbase.h</a>.</p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa9cc2fce1ff708a96d4a879b87054f18"></a><!-- doxytag: member="Mezzanine::ActorBase::ActorBase" ref="aa9cc2fce1ff708a96d4a879b87054f18" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +213,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Constructor. </p>
 <p>This constructor contains the basic information needed to make an actor. </p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00071">71</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00069">69</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -310,114 +234,11 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00086">86</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00080">80</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a6f8b107522665d5ecee1f10f4a49464d"></a><!-- doxytag: member="Mezzanine::ActorBase::_GetBasePhysicsObject" ref="a6f8b107522665d5ecee1f10f4a49464d" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">btCollisionObject * Mezzanine::ActorBase::_GetBasePhysicsObject </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the internal physics object this actor is based on. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the internal Bullet object. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00322">322</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a060b9a1c42de39c0bcaa9535a5606ffa"></a><!-- doxytag: member="Mezzanine::ActorBase::_GetGraphicsNode" ref="a060b9a1c42de39c0bcaa9535a5606ffa" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Ogre::SceneNode * Mezzanine::ActorBase::_GetGraphicsNode </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the internal graphics node this actor uses for it's graphics transform. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the internal graphics node. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00332">332</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae4a2cc51ec188f7cfbab462f2cd76f8f"></a><!-- doxytag: member="Mezzanine::ActorBase::_GetGraphicsObject" ref="ae4a2cc51ec188f7cfbab462f2cd76f8f" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Ogre::Entity * Mezzanine::ActorBase::_GetGraphicsObject </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the internal graphics object this actor is based on. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the internal graphics object. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00327">327</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5426eb2e8abd1d64a8880adad8e5f73c"></a><!-- doxytag: member="Mezzanine::ActorBase::_NotifyCollisionState" ref="a5426eb2e8abd1d64a8880adad8e5f73c" args="(Collision *Col, const Collision::CollisionState &amp;State)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBase::_NotifyCollisionState </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Collision.html">Collision</a> *&#160;</td>
-          <td class="paramname"><em>Col</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Collision.html#a24094c597061743dcd571f36077f4d19">Collision::CollisionState</a> &amp;&#160;</td>
-          <td class="paramname"><em>State</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Notifies this actor of a collision that is occuring with it. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Col</td><td>A pointer to the collision pertaining to this actor. </td></tr>
-    <tr><td class="paramname">State</td><td>The state of the collision pertaining to this actor. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorRigid.html#a68827280395bc3b9e0266710ec44247d">Mezzanine::ActorRigid</a>.</p>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00309">309</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ab245d50e649ec7335bbfcba86d9dc889"></a><!-- doxytag: member="Mezzanine::ActorBase::AdvanceAnimation" ref="ab245d50e649ec7335bbfcba86d9dc889" args="(const Real &amp;Time)" -->
 <div class="memitem">
 <div class="memproto">
@@ -442,55 +263,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 </dl>
 <p>You need to call this every frame while the actor is to be animated, otherwise even with the animation enabled you will see no change in the animation. </p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00262">262</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a040cc440d23400c7f129b318a8a84e97"></a><!-- doxytag: member="Mezzanine::ActorBase::AttachToGraphics" ref="a040cc440d23400c7f129b318a8a84e97" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBase::AttachToGraphics </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [protected, virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Makes the actor visable. </p>
-<p>Adds the actor to all the nessessary graphics elements to make it visable on screen. <br/>
- This is automaticly called by the Worlds AddActor function and shouldn't ever need to be called manually. </p>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorSoft.html#af2e618dd176d910834f146c62efe8f19">Mezzanine::ActorSoft</a>.</p>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00160">160</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a957ed99e5f67ac3fca3ba8a9b025fe48"></a><!-- doxytag: member="Mezzanine::ActorBase::DetachFromGraphics" ref="a957ed99e5f67ac3fca3ba8a9b025fe48" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBase::DetachFromGraphics </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [protected, virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Makes the actor invisable. </p>
-<p>This is the inverse of the AttachToGraphics function. This will effectively remove the object from the graphics world and make it no longer visable. <br/>
- This is automaticly called by the Worlds RemoveActor function and shouldn't ever need to be called manually. </p>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorSoft.html#a3ec90b87480ba28553656eb10552f6d6">Mezzanine::ActorSoft</a>.</p>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00169">169</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00229">229</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -518,7 +291,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00244">244</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00211">211</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -540,7 +313,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>The <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a> returned by this function is not stored in the scene manasger. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a> pointer pointing to this actor's world node. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00219">219</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00191">191</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -561,7 +334,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the current scaling being applied to the actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the scaling being applied on all axes of this actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00285">285</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00252">252</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -585,7 +358,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorSoft.html#a7d6f49acc1bf286fd46fb33a8c2798e4">Mezzanine::ActorSoft</a>.</p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00140">140</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00134">134</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -606,49 +379,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the orientation of the graphical body. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the rotation of the actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00151">151</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acb4f52d4033918be75ecc09485547bc4"></a><!-- doxytag: member="Mezzanine::ActorBase::GetCurrentCollisions" ref="acb4f52d4033918be75ecc09485547bc4" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::set&lt; <a class="el" href="classMezzanine_1_1Collision.html">Collision</a> * &gt; &amp; Mezzanine::ActorBase::GetCurrentCollisions </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets all current collisions that apply to this actor. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a const reference to a set containing all collisions events containing this actor. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00291">291</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae57a1a39b5f9483c949f6e3651aa163f"></a><!-- doxytag: member="Mezzanine::ActorBase::GetGraphicsSettings" ref="ae57a1a39b5f9483c949f6e3651aa163f" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1ActorGraphicsSettings.html">ActorGraphicsSettings</a> * Mezzanine::ActorBase::GetGraphicsSettings </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the graphics settings class associated with this actor. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the graphics settings class in use by this actor. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00296">296</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00145">145</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -672,29 +403,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorSoft.html#a0192b3889eaf2786352d75ca03fcae4a">Mezzanine::ActorSoft</a>.</p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00189">189</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a01e16da200911fdff659bfb78bafff1d"></a><!-- doxytag: member="Mezzanine::ActorBase::GetName" ref="a01e16da200911fdff659bfb78bafff1d" args="() const =0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::ActorBase::GetName </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Retrieves the name of the object. </p>
-<p>This function will retrieve the name of the object. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This should return a String containing the Name </dd></dl>
-
-<p>Implemented in <a class="el" href="classMezzanine_1_1ActorRigid.html#a4b186910ca3556654affb10cfdd023eb">Mezzanine::ActorRigid</a>, <a class="el" href="classMezzanine_1_1ActorSoft.html#a733138429fccf93f626e44ee9056e102">Mezzanine::ActorSoft</a>, and <a class="el" href="classMezzanine_1_1ActorTerrain.html#a072164c245d3ed761558f18e9106416a">Mezzanine::ActorTerrain</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00166">166</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -716,7 +425,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>This function will retrieve the location of the object within the graphical world. This should always match the physics world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Mezzanine::Vector3</a> with the location of the graphics. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00113">113</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00107">107</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -737,7 +446,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the orientation of the graphical body. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the rotation of the actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00124">124</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00118">118</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -758,7 +467,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Gets the orientation of the actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the rotation of the actor. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00206">206</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00183">183</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -781,29 +490,29 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorRigid.html#a6ed901638c88e4b9e09605152e11d56e">Mezzanine::ActorRigid</a>.</p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00301">301</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00258">258</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac9a208af008d628e6442079c2ec80fa9"></a><!-- doxytag: member="Mezzanine::ActorBase::GetType" ref="ac9a208af008d628e6442079c2ec80fa9" args="() const " -->
+<a class="anchor" id="a6e9cce7e660471cc0f9b9df019663f8d"></a><!-- doxytag: member="Mezzanine::ActorBase::GetType" ref="a6e9cce7e660471cc0f9b9df019663f8d" args="() const =0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Mezzanine::ActorBase::GetType </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a> Mezzanine::ActorBase::GetType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
+          <td> const<code> [pure virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Gets the type of the terrain instance. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of the terrain instance </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1WorldObject.html#a88b76eaad3ea97b3540e5f23cbc50f73">Mezzanine::WorldObject</a>.</p>
 
-<p>Gets the type of actor this class is. </p>
-<p>This function will get the type of class that you are working with for checking and casting. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>ActorTypeName The type of actor that this is. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00214">214</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1ActorRigid.html#a1369a0e640a8f0c5af9e2c2efc715121">Mezzanine::ActorRigid</a>.</p>
 
 </div>
 </div>
@@ -825,28 +534,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>This function will return true if the actor has an animation set and it is enabled. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if an animation is set and enabled. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00252">252</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa2ab7ee3bc4d268d3363de0923426c72"></a><!-- doxytag: member="Mezzanine::ActorBase::IsInWorld" ref="aa2ab7ee3bc4d268d3363de0923426c72" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::ActorBase::IsInWorld </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets whether or not this object is currently in the world. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating if this object has been added to the world. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00224">224</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00219">219</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -868,7 +556,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Checks of the actor is static or kinematic, returns true if it is either. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the actor is static or kinematic. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00229">229</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00196">196</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -889,7 +577,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 <p>Unloads a loaded animation. </p>
 <p>This function will remove the existing set animation. </p>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00270">270</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00237">237</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -917,7 +605,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00279">279</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00246">246</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -956,7 +644,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00234">234</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00201">201</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -985,7 +673,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00133">133</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00127">127</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1014,7 +702,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00146">146</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00140">140</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1043,7 +731,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00183">183</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00160">160</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1090,7 +778,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00177">177</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00154">154</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1119,7 +807,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00108">108</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00102">102</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1148,7 +836,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00119">119</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00113">113</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1201,7 +889,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00194">194</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00171">171</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1229,7 +917,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00200">200</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorbase_8cpp_source.html#l00177">177</a> of file <a class="el" href="actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -1253,6 +941,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b></td></
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

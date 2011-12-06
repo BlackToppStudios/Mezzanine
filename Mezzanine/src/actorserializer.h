@@ -46,7 +46,7 @@
 #include "serialization.h"
 #include "xmldoc.h"
 
-/// @file
+/// @file actorserializer.h
 /// @brief This is where the declarations of any Serializers or DeSerializers for actors will go.
 
 

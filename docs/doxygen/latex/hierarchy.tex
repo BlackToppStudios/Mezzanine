@@ -1,22 +1,9 @@
 \subsection{Class Hierarchy}
 This inheritance list is sorted roughly, but not completely, alphabetically:\begin{DoxyCompactList}
-\item \contentsline{section}{Mezzanine::ActorBase}{\pageref{classMezzanine_1_1ActorBase}}{}
-\begin{DoxyCompactList}
-\item \contentsline{section}{Mezzanine::ActorRigid}{\pageref{classMezzanine_1_1ActorRigid}}{}
-\item \contentsline{section}{Mezzanine::ActorSoft}{\pageref{classMezzanine_1_1ActorSoft}}{}
-\item \contentsline{section}{Mezzanine::ActorTerrain}{\pageref{classMezzanine_1_1ActorTerrain}}{}
-\end{DoxyCompactList}
-\item \contentsline{section}{Mezzanine::ActorBasePhysicsSettings}{\pageref{classMezzanine_1_1ActorBasePhysicsSettings}}{}
-\begin{DoxyCompactList}
-\item \contentsline{section}{Mezzanine::ActorRigidPhysicsSettings}{\pageref{classMezzanine_1_1ActorRigidPhysicsSettings}}{}
-\item \contentsline{section}{Mezzanine::ActorSoftPhysicsSettings}{\pageref{classMezzanine_1_1ActorSoftPhysicsSettings}}{}
-\item \contentsline{section}{Mezzanine::ActorTerrainPhysicsSettings}{\pageref{classMezzanine_1_1ActorTerrainPhysicsSettings}}{}
-\end{DoxyCompactList}
 \item \contentsline{section}{Mezzanine::ActorContainerBase}{\pageref{classMezzanine_1_1ActorContainerBase}}{}
 \begin{DoxyCompactList}
 \item \contentsline{section}{Mezzanine::ActorContainerVector}{\pageref{classMezzanine_1_1ActorContainerVector}}{}
 \end{DoxyCompactList}
-\item \contentsline{section}{Mezzanine::ActorGraphicsSettings}{\pageref{classMezzanine_1_1ActorGraphicsSettings}}{}
 \item \contentsline{section}{Mezzanine::ActorRigidDeSerializer}{\pageref{classMezzanine_1_1ActorRigidDeSerializer}}{}
 \item \contentsline{section}{Mezzanine::AreaEffect}{\pageref{classMezzanine_1_1AreaEffect}}{}
 \begin{DoxyCompactList}
@@ -90,7 +77,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{Mezzanine::internal::BulletFilePtr}{\pageref{classMezzanine_1_1internal_1_1BulletFilePtr}}{}
 \item \contentsline{section}{Mezzanine::internal::EntityInternalData}{\pageref{structMezzanine_1_1internal_1_1EntityInternalData}}{}
 \item \contentsline{section}{Mezzanine::internal::EventManagerInternalData}{\pageref{structMezzanine_1_1internal_1_1EventManagerInternalData}}{}
-\item \contentsline{section}{Mezzanine::internal::InternalActorGraphicsSettings}{\pageref{classMezzanine_1_1internal_1_1InternalActorGraphicsSettings}}{}
+\item \contentsline{section}{Mezzanine::internal::InternalWorldObjectGraphicsSettings}{\pageref{classMezzanine_1_1internal_1_1InternalWorldObjectGraphicsSettings}}{}
 \item \contentsline{section}{Mezzanine::internal::Line3D}{\pageref{classMezzanine_1_1internal_1_1Line3D}}{}
 \item \contentsline{section}{Mezzanine::internal::ParticleEffectInternalData}{\pageref{structMezzanine_1_1internal_1_1ParticleEffectInternalData}}{}
 \item \contentsline{section}{Mezzanine::internal::SceneManagerData}{\pageref{classMezzanine_1_1internal_1_1SceneManagerData}}{}
@@ -108,6 +95,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{Mezzanine::PhysicsManager}{\pageref{classMezzanine_1_1PhysicsManager}}{}
 \item \contentsline{section}{Mezzanine::ResourceManager}{\pageref{classMezzanine_1_1ResourceManager}}{}
 \item \contentsline{section}{Mezzanine::SceneManager}{\pageref{classMezzanine_1_1SceneManager}}{}
+\item \contentsline{section}{Mezzanine::TerrainManager}{\pageref{classMezzanine_1_1TerrainManager}}{}
 \item \contentsline{section}{Mezzanine::TimerManager}{\pageref{classMezzanine_1_1TimerManager}}{}
 \item \contentsline{section}{Mezzanine::UIManager}{\pageref{classMezzanine_1_1UIManager}}{}
 \end{DoxyCompactList}
@@ -212,7 +200,26 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{Mezzanine::Viewport}{\pageref{classMezzanine_1_1Viewport}}{}
 \item \contentsline{section}{Mezzanine::World}{\pageref{classMezzanine_1_1World}}{}
 \item \contentsline{section}{Mezzanine::WorldGetSet}{\pageref{classMezzanine_1_1WorldGetSet}}{}
+\item \contentsline{section}{Mezzanine::WorldObject}{\pageref{classMezzanine_1_1WorldObject}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Mezzanine::ActorBase}{\pageref{classMezzanine_1_1ActorBase}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Mezzanine::ActorRigid}{\pageref{classMezzanine_1_1ActorRigid}}{}
+\item \contentsline{section}{Mezzanine::ActorSoft}{\pageref{classMezzanine_1_1ActorSoft}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Mezzanine::TerrainBase}{\pageref{classMezzanine_1_1TerrainBase}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Mezzanine::WorldObjectGraphicsSettings}{\pageref{classMezzanine_1_1WorldObjectGraphicsSettings}}{}
+\item \contentsline{section}{Mezzanine::WorldObjectPhysicsSettings}{\pageref{classMezzanine_1_1WorldObjectPhysicsSettings}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Mezzanine::ActorBasePhysicsSettings}{\pageref{classMezzanine_1_1ActorBasePhysicsSettings}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Mezzanine::ActorRigidPhysicsSettings}{\pageref{classMezzanine_1_1ActorRigidPhysicsSettings}}{}
+\item \contentsline{section}{Mezzanine::ActorSoftPhysicsSettings}{\pageref{classMezzanine_1_1ActorSoftPhysicsSettings}}{}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
 \item \contentsline{section}{Mezzanine::WorldTrigger}{\pageref{classMezzanine_1_1WorldTrigger}}{}
+\item \contentsline{section}{phys::MeshTerrain}{\pageref{classphys_1_1MeshTerrain}}{}
 \item \contentsline{section}{Mezzanine::Singleton$<$ ActorManager $>$}{\pageref{classMezzanine_1_1Singleton}}{}
 \begin{DoxyCompactList}
 \item \contentsline{section}{Mezzanine::ActorManager}{\pageref{classMezzanine_1_1ActorManager}}{}
@@ -253,6 +260,10 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \begin{DoxyCompactList}
 \item \contentsline{section}{Mezzanine::SceneManager}{\pageref{classMezzanine_1_1SceneManager}}{}
 \end{DoxyCompactList}
+\item \contentsline{section}{Mezzanine::Singleton$<$ TerrainManager $>$}{\pageref{classMezzanine_1_1Singleton}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Mezzanine::TerrainManager}{\pageref{classMezzanine_1_1TerrainManager}}{}
+\end{DoxyCompactList}
 \item \contentsline{section}{Mezzanine::Singleton$<$ TimerManager $>$}{\pageref{classMezzanine_1_1Singleton}}{}
 \begin{DoxyCompactList}
 \item \contentsline{section}{Mezzanine::TimerManager}{\pageref{classMezzanine_1_1TimerManager}}{}
@@ -261,5 +272,4 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \begin{DoxyCompactList}
 \item \contentsline{section}{Mezzanine::UIManager}{\pageref{classMezzanine_1_1UIManager}}{}
 \end{DoxyCompactList}
-\item \contentsline{section}{SoundListener}{\pageref{classSoundListener}}{}
 \end{DoxyCompactList}

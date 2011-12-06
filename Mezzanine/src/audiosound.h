@@ -56,7 +56,6 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Sound
-        /// @headerfile sound.h
         /// @brief This is an instance of a sound that can be played and manipulated.
         /// @details This is a an instance of a sound that can be played, have effects
         /// applied to it, paused, stopped, triggered and other such crazyness.

@@ -2,6 +2,15 @@
 \subsection{Mezzanine::AreaEffectTerrainPair Class Reference}
 \label{classMezzanine_1_1AreaEffectTerrainPair}\index{Mezzanine::AreaEffectTerrainPair@{Mezzanine::AreaEffectTerrainPair}}
 }
+
+
+This is a basic utility class for tracking pairs of actors.  
+
+
+
+
+{\ttfamily \#include $<$objectpair.h$>$}
+
 Inheritance diagram for Mezzanine::AreaEffectTerrainPair:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,7 +27,7 @@ Inheritance diagram for Mezzanine::AreaEffectTerrainPair:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em No initialization constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1AreaEffectTerrainPair_a64791bc5ed36c7bb9c95ab4d7e4a08d1}{AreaEffectTerrainPair} (const \hyperlink{classMezzanine_1_1AreaEffectTerrainPair}{AreaEffectTerrainPair} \&OtherPair)
 \begin{DoxyCompactList}\small\item\em Reference copy constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1AreaEffectTerrainPair_ad3fe92b0fd4fb4478b5a75781eb67e6b}{AreaEffectTerrainPair} (\hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect} $\ast$A, TerrainBase $\ast$B)
+\hyperlink{classMezzanine_1_1AreaEffectTerrainPair_ad3fe92b0fd4fb4478b5a75781eb67e6b}{AreaEffectTerrainPair} (\hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect} $\ast$A, \hyperlink{classMezzanine_1_1TerrainBase}{TerrainBase} $\ast$B)
 \begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -29,7 +38,7 @@ Inheritance diagram for Mezzanine::AreaEffectTerrainPair:\begin{figure}[H]
 
 \begin{DoxyCompactList}\small\item\em The first actor in the pair. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1AreaEffectTerrainPair_a2f133a7ea36e75d119cec86dc71c6c0e}{
-TerrainBase $\ast$ \hyperlink{classMezzanine_1_1AreaEffectTerrainPair_a2f133a7ea36e75d119cec86dc71c6c0e}{Terrain}}
+\hyperlink{classMezzanine_1_1TerrainBase}{TerrainBase} $\ast$ \hyperlink{classMezzanine_1_1AreaEffectTerrainPair_a2f133a7ea36e75d119cec86dc71c6c0e}{Terrain}}
 \label{classMezzanine_1_1AreaEffectTerrainPair_a2f133a7ea36e75d119cec86dc71c6c0e}
 
 \begin{DoxyCompactList}\small\item\em The second actor in the pair. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -54,7 +63,7 @@ void $\ast$ \hyperlink{classMezzanine_1_1AreaEffectTerrainPair_af1e5b08b6ac9567c
 
 
 \subsubsection{Detailed Description}
-
+This is a basic utility class for tracking pairs of actors. Most commonly this class is used in collision tracking. 
 
 Definition at line 201 of file objectpair.h.
 
@@ -67,7 +76,7 @@ Definition at line 201 of file objectpair.h.
 \paragraph[{AreaEffectTerrainPair}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::AreaEffectTerrainPair::AreaEffectTerrainPair (
 \begin{DoxyParamCaption}
 \item[{{\bf AreaEffect} $\ast$}]{A, }
-\item[{TerrainBase $\ast$}]{B}
+\item[{{\bf TerrainBase} $\ast$}]{B}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{classMezzanine_1_1AreaEffectTerrainPair_ad3fe92b0fd4fb4478b5a75781eb67e6b}

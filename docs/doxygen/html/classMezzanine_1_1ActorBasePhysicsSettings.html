@@ -66,14 +66,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
+<a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::ActorBasePhysicsSettings Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::ActorBasePhysicsSettings" -->
+<!-- doxytag: class="Mezzanine::ActorBasePhysicsSettings" --><!-- doxytag: inherits="Mezzanine::WorldObjectPhysicsSettings" -->
 <p>This is a base helper class for configuring physics settings of an actor.  
 <a href="#_details">More...</a></p>
 
@@ -84,9 +82,9 @@ Inheritance diagram for Mezzanine::ActorBasePhysicsSettings:</div>
  <div class="center">
   <img src="classMezzanine_1_1ActorBasePhysicsSettings.png" usemap="#Mezzanine::ActorBasePhysicsSettings_map" alt=""/>
   <map id="Mezzanine::ActorBasePhysicsSettings_map" name="Mezzanine::ActorBasePhysicsSettings_map">
-<area href="classMezzanine_1_1ActorRigidPhysicsSettings.html" alt="Mezzanine::ActorRigidPhysicsSettings" shape="rect" coords="0,56,239,80"/>
-<area href="classMezzanine_1_1ActorSoftPhysicsSettings.html" alt="Mezzanine::ActorSoftPhysicsSettings" shape="rect" coords="249,56,488,80"/>
-<area href="classMezzanine_1_1ActorTerrainPhysicsSettings.html" alt="Mezzanine::ActorTerrainPhysicsSettings" shape="rect" coords="498,56,737,80"/>
+<area href="classMezzanine_1_1WorldObjectPhysicsSettings.html" alt="Mezzanine::WorldObjectPhysicsSettings" shape="rect" coords="123,0,360,24"/>
+<area href="classMezzanine_1_1ActorRigidPhysicsSettings.html" alt="Mezzanine::ActorRigidPhysicsSettings" shape="rect" coords="0,112,237,136"/>
+<area href="classMezzanine_1_1ActorSoftPhysicsSettings.html" alt="Mezzanine::ActorSoftPhysicsSettings" shape="rect" coords="247,112,484,136"/>
 </map>
  </div></div>
 
@@ -94,48 +92,20 @@ Inheritance diagram for Mezzanine::ActorBasePhysicsSettings:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a1dac5759986b246009f4fb0232a9f686">ActorBasePhysicsSettings</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor, btCollisionObject *PhysicsObject)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a1dac5759986b246009f4fb0232a9f686"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a85a3db47b67b62792283964a5973fdd8">DisableCollisionResponse</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the actor to be unable to collide with other objects in the world.  <a href="#a85a3db47b67b62792283964a5973fdd8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#aca5b3c97d1996632858680dff897db25">EnableCollisionResponse</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the actor to be able to collide with other objects in the world.  <a href="#aca5b3c97d1996632858680dff897db25"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a752d573f0ccb7dac166a15a756dd0dbb">ActorActivationState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ac8534af9b32dee2646c4b08941cc47bb">GetActivationState</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">How activated or deactivated is the object.  <a href="#ac8534af9b32dee2646c4b08941cc47bb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a3f8d93a77d1d9a61314ef350a1c3394a">ActorBasePhysicsSettings</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor, btCollisionObject *PhysicsObject)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a3f8d93a77d1d9a61314ef350a1c3394a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html">ActorBasePhysicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ae43e2938e30b69ac11627b9648c43415">GetBasePointer</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to this class of type <a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>.  <a href="#ae43e2938e30b69ac11627b9648c43415"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a804941eb77d960dd3c73d331c47c891c">GetCCDMotionThreshold</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the amount of motion needed to enable CCD for this object.  <a href="#a804941eb77d960dd3c73d331c47c891c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a3729e8ee88bc2d8892d921016aa4a4c0">GetCCDSphereRadius</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the radius of the embedded sphere used for CCD.  <a href="#a3729e8ee88bc2d8892d921016aa4a4c0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#af231c0c7f3cf41152bba1300821b0a59">GetCollisionGroup</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the actors collision group.  <a href="#af231c0c7f3cf41152bba1300821b0a59"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ada732a441b7745646d7620fbf896ed77">GetCollisionMask</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the actors collision mask.  <a href="#ada732a441b7745646d7620fbf896ed77"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a2a3e99a0b473cd77b6ed7648faca1f0f">GetCollisionResponse</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will this respond to 3d collisions.  <a href="#a2a3e99a0b473cd77b6ed7648faca1f0f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#af19829d769ba0723bb6c190e28b6184e">GetCollisionShape</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the collision shape currently in use by this actor.  <a href="#af19829d769ba0723bb6c190e28b6184e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ac59b0dfaf123ddfb3b70e35284502f56">GetFriction</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Actors' friction coefficient.  <a href="#ac59b0dfaf123ddfb3b70e35284502f56"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a4e648f892ff2b5a8d111ab312cec394b">GetRestitution</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Actors' restitution coefficient.  <a href="#a4e648f892ff2b5a8d111ab312cec394b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a8f81dffa07cc4c0f036443659b67bdef">IsActive</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the object is active in the simulation.  <a href="#a8f81dffa07cc4c0f036443659b67bdef"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a23aafa40b7ee6e4f0da2120cd8f166bc">IsKinematic</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the actir kinematic.  <a href="#a23aafa40b7ee6e4f0da2120cd8f166bc"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a0639616581641cd6ec2b68f611d4e05a">IsStatic</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the actor static.  <a href="#a0639616581641cd6ec2b68f611d4e05a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ac3e3e2f779e0ff0e30abb719d6461e2e">IsStaticOrKinematic</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks of the actor is static or kinematic.  <a href="#ac3e3e2f779e0ff0e30abb719d6461e2e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#aed2d1a5dd0ac0fa290242146ef9b8aa0">SetActivationState</a> (<a class="el" href="namespaceMezzanine.html#a752d573f0ccb7dac166a15a756dd0dbb">ActorActivationState</a> State, bool Force=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the activation state of the actor.  <a href="#aed2d1a5dd0ac0fa290242146ef9b8aa0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a702a20cfb7d87dbc2a7d44ba9260ead2">SetCCDParams</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;MotionThreshold, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;SweptSphereRadius=0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters used for Continuous <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> Detection.  <a href="#a702a20cfb7d87dbc2a7d44ba9260ead2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a7755593c3c0f7bceecc6dfb6a7613000">SetCollisionGroupAndMask</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Group, const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Mask)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the collision group and mask for the actor to determine what it should collide with.  <a href="#a7755593c3c0f7bceecc6dfb6a7613000"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a9aa6c07c9cb235a417d68f1ea417f834">SetCollisionShape</a> (<a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *Shape)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collision shape to be used.  <a href="#a9aa6c07c9cb235a417d68f1ea417f834"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a615c423b6d2da96b16b91ee644b8b81c">SetFriction</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Friction)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Actors' friction coefficient.  <a href="#a615c423b6d2da96b16b91ee644b8b81c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a3b01243f038e30eb39b04f8e38fb8a14">SetKinematic</a> ()</td></tr>
@@ -147,40 +117,19 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6273131ed9e51182abde28d5af4ded83"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::~ActorBasePhysicsSettings" ref="a6273131ed9e51182abde28d5af4ded83" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a6273131ed9e51182abde28d5af4ded83">~ActorBasePhysicsSettings</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
-<tr><td colspan="2"><h2><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2deb9db4baf307a34f11a147e265378a"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::AssignShape" ref="a2deb9db4baf307a34f11a147e265378a" args="(CollisionShape *Shape)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AssignShape</b> (<a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *Shape)</td></tr>
-<tr><td colspan="2"><h2><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47a08b77d0725be25ab2adfa50a0939e"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::ActorCO" ref="a47a08b77d0725be25ab2adfa50a0939e" args="" -->
-btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a47a08b77d0725be25ab2adfa50a0939e">ActorCO</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Physics Object of the actor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00429bec7040c9cf83d334ed585c95ae"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::ActorShape" ref="a00429bec7040c9cf83d334ed585c95ae" args="" -->
-<a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a00429bec7040c9cf83d334ed585c95ae">ActorShape</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The physics shape of the actor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4535762610bac78d33101124b4bc213"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::CollisionGroup" ref="ab4535762610bac78d33101124b4bc213" args="" -->
-<a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ab4535762610bac78d33101124b4bc213">CollisionGroup</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A number of actors will use this in conjuction with the physics system. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72bf0fb7bd68f354647de5160a115809"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::CollisionMask" ref="a72bf0fb7bd68f354647de5160a115809" args="" -->
-<a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a72bf0fb7bd68f354647de5160a115809">CollisionMask</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the kind of actors that can collide with each other. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a559638e7d0fc9825d8caa1663a5510a8"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::Parent" ref="a559638e7d0fc9825d8caa1663a5510a8" args="" -->
-<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a559638e7d0fc9825d8caa1663a5510a8">Parent</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Actor this belongs to. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is a base helper class for configuring physics settings of an actor. </p>
-<p>This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see <a class="el" href="classMezzanine_1_1ActorGraphicsSettings.html" title="This is a helper class for configuring graphics settings of an actor.">ActorGraphicsSettings</a>. </p>
+<p>This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see ActorGraphicsSettings. </p>
 
 <p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00084">84</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a1dac5759986b246009f4fb0232a9f686"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::ActorBasePhysicsSettings" ref="a1dac5759986b246009f4fb0232a9f686" args="(ActorBase *Actor, btCollisionObject *PhysicsObject)" -->
+<a class="anchor" id="a3f8d93a77d1d9a61314ef350a1c3394a"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::ActorBasePhysicsSettings" ref="a3f8d93a77d1d9a61314ef350a1c3394a" args="(ActorBase *Actor, btCollisionObject *PhysicsObject)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">home sqeaky physgame Mezzanine src actorphysicssettings cpp home sqeaky physgame Mezzanine src actorphysicssettings cpp Mezzanine::ActorBasePhysicsSettings::ActorBasePhysicsSettings </td>
+          <td class="memname">home sqeaky Mezzanine Mezzanine src actorphysicssettings cpp home sqeaky Mezzanine Mezzanine src actorphysicssettings cpp home sqeaky Mezzanine Mezzanine src actorphysicssettings cpp Mezzanine::ActorBasePhysicsSettings::ActorBasePhysicsSettings </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *&#160;</td>
           <td class="paramname"><em>Actor</em>, </td>
@@ -214,69 +163,6 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a85a3db47b67b62792283964a5973fdd8"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::DisableCollisionResponse" ref="a85a3db47b67b62792283964a5973fdd8" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBasePhysicsSettings::DisableCollisionResponse </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the actor to be unable to collide with other objects in the world. </p>
-<p>By default collision response is enabled. Be sure to reactivate collision response if you want your objects to collide again. </p>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00223">223</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aca5b3c97d1996632858680dff897db25"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::EnableCollisionResponse" ref="aca5b3c97d1996632858680dff897db25" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBasePhysicsSettings::EnableCollisionResponse </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the actor to be able to collide with other objects in the world. </p>
-<p>By default collision response is enabled. Only call this function if you have disabled collision response. </p>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00194">194</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac8534af9b32dee2646c4b08941cc47bb"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::GetActivationState" ref="ac8534af9b32dee2646c4b08941cc47bb" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a752d573f0ccb7dac166a15a756dd0dbb">Mezzanine::ActorActivationState</a> Mezzanine::ActorBasePhysicsSettings::GetActivationState </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>How activated or deactivated is the object. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="namespaceMezzanine.html#a752d573f0ccb7dac166a15a756dd0dbb" title="This is used by all the actors to monitor and set their physics activation.">Mezzanine::ActorActivationState</a> that describes whether the actor is part of the calculated simulation or not. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00280">280</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ae43e2938e30b69ac11627b9648c43415"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::GetBasePointer" ref="ae43e2938e30b69ac11627b9648c43415" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -294,7 +180,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Get a pointer to this class of type <a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer <a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00276">276</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00143">143</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,7 +201,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Gets the amount of motion needed to enable CCD for this object. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the required amount of motion to enable CCD, or zero if CCD is disabled. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00159">159</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00123">123</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -336,91 +222,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Gets the radius of the embedded sphere used for CCD. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the radius of the sphere embedded into the objects collision shape used for CCD. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00164">164</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af231c0c7f3cf41152bba1300821b0a59"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::GetCollisionGroup" ref="af231c0c7f3cf41152bba1300821b0a59" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::ActorBasePhysicsSettings::GetCollisionGroup </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the actors collision group. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Whole representing the collision group this actor is set to. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00106">106</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ada732a441b7745646d7620fbf896ed77"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::GetCollisionMask" ref="ada732a441b7745646d7620fbf896ed77" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::ActorBasePhysicsSettings::GetCollisionMask </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the actors collision mask. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Whole representing what other collision groups this actor should collide with. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00111">111</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2a3e99a0b473cd77b6ed7648faca1f0f"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::GetCollisionResponse" ref="a2a3e99a0b473cd77b6ed7648faca1f0f" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::ActorBasePhysicsSettings::GetCollisionResponse </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Will this respond to 3d collisions. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>False is it does not respond to collisions, True if it will </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00252">252</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af19829d769ba0723bb6c190e28b6184e"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::GetCollisionShape" ref="af19829d769ba0723bb6c190e28b6184e" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> * Mezzanine::ActorBasePhysicsSettings::GetCollisionShape </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the collision shape currently in use by this actor. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the collision shape being used. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00090">90</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00128">128</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -441,7 +243,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Gets the Actors' friction coefficient. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the actors' friction coefficient. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00121">121</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00085">85</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -462,130 +264,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Gets the Actors' restitution coefficient. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the actors' restitution coefficient. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00129">129</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8f81dffa07cc4c0f036443659b67bdef"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::IsActive" ref="a8f81dffa07cc4c0f036443659b67bdef" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::ActorBasePhysicsSettings::IsActive </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Checks if the object is active in the simulation. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the object is active, false if it's deactivated(at rest). </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00257">257</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a23aafa40b7ee6e4f0da2120cd8f166bc"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::IsKinematic" ref="a23aafa40b7ee6e4f0da2120cd8f166bc" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::ActorBasePhysicsSettings::IsKinematic </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Is the actir kinematic. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True if the actor is kinematic false if it is not. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00174">174</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0639616581641cd6ec2b68f611d4e05a"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::IsStatic" ref="a0639616581641cd6ec2b68f611d4e05a" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::ActorBasePhysicsSettings::IsStatic </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Is the actor static. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True if the actor is Static false if it is not. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00184">184</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac3e3e2f779e0ff0e30abb719d6461e2e"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::IsStaticOrKinematic" ref="ac3e3e2f779e0ff0e30abb719d6461e2e" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::ActorBasePhysicsSettings::IsStaticOrKinematic </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Checks of the actor is static or kinematic. </p>
-<p>Checks of the actor is static or kinematic, returns true if it is either. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the actor is static or kinematic. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00189">189</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aed2d1a5dd0ac0fa290242146ef9b8aa0"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::SetActivationState" ref="aed2d1a5dd0ac0fa290242146ef9b8aa0" args="(ActorActivationState State, bool Force=false)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBasePhysicsSettings::SetActivationState </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a752d573f0ccb7dac166a15a756dd0dbb">Mezzanine::ActorActivationState</a>&#160;</td>
-          <td class="paramname"><em>State</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>Force</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the activation state of the actor. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">State</td><td>The activation state to set for the actor. See the ActorActivationState enum for more info. </td></tr>
-    <tr><td class="paramname">Force</td><td>Whether or not you want to force the state. Some states may not apply based on the condition of the actor if this is set to false. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00268">268</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00093">93</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -624,75 +303,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00132">132</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7755593c3c0f7bceecc6dfb6a7613000"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::SetCollisionGroupAndMask" ref="a7755593c3c0f7bceecc6dfb6a7613000" args="(const Whole &amp;Group, const Whole &amp;Mask)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBasePhysicsSettings::SetCollisionGroupAndMask </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;&#160;</td>
-          <td class="paramname"><em>Group</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;&#160;</td>
-          <td class="paramname"><em>Mask</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Set the collision group and mask for the actor to determine what it should collide with. </p>
-<p>These values are automatically calculated for you with some sane default values. Only edit these if you know what you are doing. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Group</td><td>The group to which this actor belongs. </td></tr>
-    <tr><td class="paramname">Mask</td><td>The other groups to which this actor should collide with. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00095">95</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9aa6c07c9cb235a417d68f1ea417f834"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::SetCollisionShape" ref="a9aa6c07c9cb235a417d68f1ea417f834" args="(CollisionShape *Shape)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBasePhysicsSettings::SetCollisionShape </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td>
-          <td class="paramname"><em>Shape</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the collision shape to be used. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Shape</td><td>The shape to be applied. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorRigidPhysicsSettings.html#a7583e5afc93dedc8a4403ea156fa0413">Mezzanine::ActorRigidPhysicsSettings</a>, <a class="el" href="classMezzanine_1_1ActorSoftPhysicsSettings.html#a4cbaf52fbdedf9c4e0328d3dd608207e">Mezzanine::ActorSoftPhysicsSettings</a>, and <a class="el" href="classMezzanine_1_1ActorTerrainPhysicsSettings.html#a0011fda184ee1e71ff9a2a5899eb10d2">Mezzanine::ActorTerrainPhysicsSettings</a>.</p>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00086">86</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00096">96</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -721,7 +332,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00116">116</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00080">80</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -743,7 +354,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>This function will set the object to a Kinematic Object. <br/>
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00169">169</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00133">133</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -772,7 +383,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00126">126</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00090">90</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -794,7 +405,7 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>This function will set the object to a Static Object. <br/>
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00179">179</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00138">138</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -818,6 +429,6 @@ btCollisionObject *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

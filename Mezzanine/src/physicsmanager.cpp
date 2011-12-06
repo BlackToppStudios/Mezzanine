@@ -300,6 +300,8 @@ namespace Mezzanine
             }
     }// */
 
+    /// @internal
+    /// @brief Used to provide better reporting of collisions
     class CollisionDispatcher : public btCollisionDispatcher
     {
         public:

@@ -85,7 +85,8 @@ Inheritance diagram for Mezzanine::ActorRigid:</div>
  <div class="center">
   <img src="classMezzanine_1_1ActorRigid.png" usemap="#Mezzanine::ActorRigid_map" alt=""/>
   <map id="Mezzanine::ActorRigid_map" name="Mezzanine::ActorRigid_map">
-<area href="classMezzanine_1_1ActorBase.html" alt="Mezzanine::ActorBase" shape="rect" coords="0,0,138,24"/>
+<area href="classMezzanine_1_1ActorBase.html" alt="Mezzanine::ActorBase" shape="rect" coords="0,56,149,80"/>
+<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="0,0,149,24"/>
 </map>
  </div></div>
 
@@ -95,20 +96,19 @@ Inheritance diagram for Mezzanine::ActorRigid:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#a68827280395bc3b9e0266710ec44247d">_NotifyCollisionState</a> (<a class="el" href="classMezzanine_1_1Collision.html">Collision</a> *Col, const <a class="el" href="classMezzanine_1_1Collision.html#a24094c597061743dcd571f36077f4d19">Collision::CollisionState</a> &amp;State)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#a714d836a18ddb4de65bec5afdfdbb81c">_Update</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#a3afd611b08d805b9f3261ede834f6709">ActorRigid</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;mass, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;file, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;group)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive constructor.  <a href="#a3afd611b08d805b9f3261ede834f6709"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#acb6027d5447427d1199b7b9e6ccaaad4">AddObjectToWorld</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#ad528a1f2c563dc121e38524f5412e182">ActorRigid</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;mass, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;file, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;group)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive constructor.  <a href="#ad528a1f2c563dc121e38524f5412e182"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#a5934a8751b9ec19dd2cd9327ce651d59">AddToWorld</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#ac2b338b867bfd7d2e322a834e308a957">GetAngularMovementFactor</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current angular factors being applied to this actor.  <a href="#ac2b338b867bfd7d2e322a834e308a957"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#aec84029880e2cebf3cc154ada813a372">GetBulletObject</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Physics data raw from the physic subsystem.  <a href="#aec84029880e2cebf3cc154ada813a372"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#ac2577cc9bff31ad343d5e179acc95257">GetLinearMovementFactor</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current linear factors being applied to this actor.  <a href="#ac2577cc9bff31ad343d5e179acc95257"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#a4b186910ca3556654affb10cfdd023eb">GetName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the name of the object.  <a href="#a4b186910ca3556654affb10cfdd023eb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ActorRigidPhysicsSettings.html">ActorRigidPhysicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#a6ed901638c88e4b9e09605152e11d56e">GetPhysicsSettings</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the physics settings class associated with this actor.  <a href="#a6ed901638c88e4b9e09605152e11d56e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#adeae1a23dce34590c459aa1348cde96c">RemoveObjectFromWorld</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#a1369a0e640a8f0c5af9e2c2efc715121">GetType</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#a5017e2809d6dc2516b3675748ce80b2e">RemoveFromWorld</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#ab68facc031fc3212f4169d2b93a72378">SetAngularMovementFactor</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Factor)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Restricts movement on the axis or axies of your choice.  <a href="#ab68facc031fc3212f4169d2b93a72378"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigid.html#a0dc1820d0fa2d1128b03149da025f40f">SetLinearMovementFactor</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Factor)</td></tr>
@@ -135,12 +135,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 
 <p>Definition at line <a class="el" href="actorrigid_8h_source.html#l00059">59</a> of file <a class="el" href="actorrigid_8h_source.html">actorrigid.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a3afd611b08d805b9f3261ede834f6709"></a><!-- doxytag: member="Mezzanine::ActorRigid::ActorRigid" ref="a3afd611b08d805b9f3261ede834f6709" args="(const Real &amp;mass, const String &amp;name, const String &amp;file, const String &amp;group)" -->
+<a class="anchor" id="ad528a1f2c563dc121e38524f5412e182"></a><!-- doxytag: member="Mezzanine::ActorRigid::ActorRigid" ref="ad528a1f2c563dc121e38524f5412e182" args="(const Real &amp;mass, const String &amp;name, const String &amp;file, const String &amp;group)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">home sqeaky physgame Mezzanine src actorrigid cpp Mezzanine::ActorRigid::ActorRigid </td>
+          <td class="memname">home sqeaky Mezzanine Mezzanine src actorrigid cpp home sqeaky Mezzanine Mezzanine src actorrigid cpp Mezzanine::ActorRigid::ActorRigid </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>mass</em>, </td>
@@ -206,7 +206,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00078">78</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00077">77</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -236,9 +236,9 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 </div>
 <div class="memdoc">
  
-<p>Reimplemented from <a class="el" href="classMezzanine_1_1ActorBase.html#a5426eb2e8abd1d64a8880adad8e5f73c">Mezzanine::ActorBase</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1WorldObject.html#aacf9e82bfb2f25ee309a1871a2032030">Mezzanine::WorldObject</a>.</p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00141">141</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00140">140</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -259,16 +259,16 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
  
 <p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#a8f5a36a6981f1249dbabab318531afd0">Mezzanine::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00138">138</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00137">137</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acb6027d5447427d1199b7b9e6ccaaad4"></a><!-- doxytag: member="Mezzanine::ActorRigid::AddObjectToWorld" ref="acb6027d5447427d1199b7b9e6ccaaad4" args="()" -->
+<a class="anchor" id="a5934a8751b9ec19dd2cd9327ce651d59"></a><!-- doxytag: member="Mezzanine::ActorRigid::AddToWorld" ref="a5934a8751b9ec19dd2cd9327ce651d59" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::ActorRigid::AddObjectToWorld </td>
+          <td class="memname">void Mezzanine::ActorRigid::AddToWorld </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [virtual]</code></td>
@@ -276,11 +276,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
       </table>
 </div>
 <div class="memdoc">
-<p>Adds the actor to the physics world. </p>
  
-<p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#a766dc0add62500689498a9c1d3f758ea">Mezzanine::ActorBase</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#abe739a46f248a7ba257becfb560d9aa5">Mezzanine::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00119">119</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00118">118</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -309,7 +308,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00084">84</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00083">83</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -330,7 +329,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Gets the current angular factors being applied to this actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the factors on the 3 angular axes. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00116">116</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00112">112</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -351,7 +350,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Get the Physics data raw from the physic subsystem. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Currently this returns a pointer to a btRigidBody. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00176">176</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00175">175</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,30 +371,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 <p>Gets the current linear factors being applied to this actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the factors on the 3 linear axes. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00110">110</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4b186910ca3556654affb10cfdd023eb"></a><!-- doxytag: member="Mezzanine::ActorRigid::GetName" ref="a4b186910ca3556654affb10cfdd023eb" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::ActorRigid::GetName </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Retrieves the name of the object. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This function will return the name of the object in a String </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#a01e16da200911fdff659bfb78bafff1d">Mezzanine::ActorBase</a>.</p>
-
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00101">101</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00106">106</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,16 +394,38 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1ActorBase.html#a08c975572f1ab5cde651e1a6e5d9bb6a">Mezzanine::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00104">104</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00100">100</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="adeae1a23dce34590c459aa1348cde96c"></a><!-- doxytag: member="Mezzanine::ActorRigid::RemoveObjectFromWorld" ref="adeae1a23dce34590c459aa1348cde96c" args="()" -->
+<a class="anchor" id="a1369a0e640a8f0c5af9e2c2efc715121"></a><!-- doxytag: member="Mezzanine::ActorRigid::GetType" ref="a1369a0e640a8f0c5af9e2c2efc715121" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::ActorRigid::RemoveObjectFromWorld </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a> Mezzanine::ActorRigid::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the type of the terrain instance. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of the terrain instance </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#a6e9cce7e660471cc0f9b9df019663f8d">Mezzanine::ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00115">115</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5017e2809d6dc2516b3675748ce80b2e"></a><!-- doxytag: member="Mezzanine::ActorRigid::RemoveFromWorld" ref="a5017e2809d6dc2516b3675748ce80b2e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ActorRigid::RemoveFromWorld </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [virtual]</code></td>
@@ -435,11 +433,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
       </table>
 </div>
 <div class="memdoc">
-<p>Removes the actor from the physics world. </p>
  
-<p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#a774050bfd7c75f2b639005d82dcd5085">Mezzanine::ActorBase</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#a30910dd0351bc29b2bf88cb3dc8d83db">Mezzanine::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00125">125</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00124">124</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +464,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00113">113</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00109">109</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -495,7 +492,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00107">107</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorrigid_8cpp_source.html#l00103">103</a> of file <a class="el" href="actorrigid_8cpp_source.html">actorrigid.cpp</a>.</p>
 
 </div>
 </div>
@@ -519,6 +516,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b><
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:19 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

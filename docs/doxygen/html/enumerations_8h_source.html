@@ -109,133 +109,127 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00045"></a>00045 <span class="comment"></span>
 <a name="l00046"></a>00046 <span class="keyword">namespace </span>Mezzanine
 <a name="l00047"></a>00047 {<span class="comment"></span>
-<a name="l00048"></a>00048 <span class="comment">    /// @enum ActorActivationState</span>
-<a name="l00049"></a>00049 <span class="comment">    /// @brief This is used by all the actors to monitor and set their physics activation.</span>
-<a name="l00050"></a><a class="code" href="namespaceMezzanine.html#a752d573f0ccb7dac166a15a756dd0dbb">00050</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a752d573f0ccb7dac166a15a756dd0dbb" title="This is used by all the actors to monitor and set their physics activation.">ActorActivationState</a>
-<a name="l00051"></a>00051     {
-<a name="l00052"></a>00052         AAS_Active = 1,
-<a name="l00053"></a>00053         AAS_Island_Sleeping = 2,
-<a name="l00054"></a>00054         AAS_Wants_Deactivation = 3,
-<a name="l00055"></a>00055         AAS_DisableDeactivation = 4,
-<a name="l00056"></a>00056         AAS_DisableSimulation = 5
-<a name="l00057"></a>00057     };
-<a name="l00058"></a>00058 <span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">    /// @enum AspectRatio</span>
-<a name="l00060"></a>00060 <span class="comment">    /// @brief This is used primarily by the GraphicsManager to keep track of the supported</span>
-<a name="l00061"></a>00061 <span class="comment">    /// and currently used aspect ratios.</span>
-<a name="l00062"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eaf">00062</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eaf" title="This is used primarily by the GraphicsManager to keep track of the supported and currently used aspec...">AspectRatio</a>
-<a name="l00063"></a>00063     {
-<a name="l00064"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa4f3ca4673d11774b77de4b1c51be122b">00064</a>         <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa4f3ca4673d11774b77de4b1c51be122b" title="1.5">AR_3_By_2</a>,     <span class="comment">///&lt; 1.5</span>
-<a name="l00065"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaa7ca7a1749373d75bec977396ea8af3c">00065</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaa7ca7a1749373d75bec977396ea8af3c" title="1.334">AR_4_By_3</a>,     <span class="comment">///&lt; 1.334</span>
-<a name="l00066"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaac26ee01f52f68b3a67beccc4ee4f950">00066</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaac26ee01f52f68b3a67beccc4ee4f950" title="1.667">AR_5_By_3</a>,     <span class="comment">///&lt; 1.667</span>
-<a name="l00067"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafae7297c6f8720aa5453ea9cbc270ec149">00067</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafae7297c6f8720aa5453ea9cbc270ec149" title="1.25">AR_5_By_4</a>,     <span class="comment">///&lt; 1.25</span>
-<a name="l00068"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaad0586105b44a5d1b093a8d072d3e297">00068</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaad0586105b44a5d1b093a8d072d3e297" title="1.6">AR_8_By_5</a>,     <span class="comment">///&lt; 1.6</span>
-<a name="l00069"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafabd1801766c3dd81470e785a604fb8db2">00069</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafabd1801766c3dd81470e785a604fb8db2" title="1.778">AR_16_By_9</a>,    <span class="comment">///&lt; 1.778</span>
-<a name="l00070"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa037068693e5a954da062e4f6122d1ad7">00070</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa037068693e5a954da062e4f6122d1ad7" title="1.889">AR_17_By_9</a>,    <span class="comment">///&lt; 1.889</span>
-<a name="l00071"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa14073edea666339eb6fdaa3ca23e946d">00071</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa14073edea666339eb6fdaa3ca23e946d" title="1.85">AR_1_85_By_1</a>,  <span class="comment">///&lt; 1.85</span>
-<a name="l00072"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaa95e86e3db402a75a3de756247da4b29">00072</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaa95e86e3db402a75a3de756247da4b29" title="2.39">AR_2_39_By_1</a>   <span class="comment">///&lt; 2.39</span>
-<a name="l00073"></a>00073 <span class="comment"></span>    };
-<a name="l00074"></a>00074 <span class="comment"></span>
-<a name="l00075"></a>00075 <span class="comment">    /// @enum AttenuationStyle</span>
-<a name="l00076"></a>00076 <span class="comment">    /// @brief These values represent the kind of attenuation applied to the field strength</span>
-<a name="l00077"></a>00077 <span class="comment">    /// over a distance.</span>
-<a name="l00078"></a>00078 <span class="comment">    /// @details None is the default, where the force is constant in all area&#39;s of the</span>
-<a name="l00079"></a>00079 <span class="comment">    /// field.  Linear is where the force applied drops by the attenuation value times the distance</span>
-<a name="l00080"></a>00080 <span class="comment">    /// (strength - (attenuation amount * distance to AE center)).  Quadratic is where the force</span>
-<a name="l00081"></a>00081 <span class="comment">    /// applied drops by the attenuation value times the distance squared (strength -</span>
-<a name="l00082"></a>00082 <span class="comment">    /// (attenuation amount * distance to AE center * distance to AE center)).</span>
-<a name="l00083"></a><a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa">00083</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa" title="These values represent the kind of attenuation applied to the field strength over a distance...">AttenuationStyle</a>
+<a name="l00048"></a>00048 <span class="comment">    /// @enum AspectRatio</span>
+<a name="l00049"></a>00049 <span class="comment">    /// @brief This is used primarily by the GraphicsManager to keep track of the supported</span>
+<a name="l00050"></a>00050 <span class="comment">    /// and currently used aspect ratios.</span>
+<a name="l00051"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eaf">00051</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eaf" title="This is used primarily by the GraphicsManager to keep track of the supported and currently used aspec...">AspectRatio</a>
+<a name="l00052"></a>00052     {
+<a name="l00053"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa4f3ca4673d11774b77de4b1c51be122b">00053</a>         <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa4f3ca4673d11774b77de4b1c51be122b" title="1.5">AR_3_By_2</a>,     <span class="comment">///&lt; 1.5</span>
+<a name="l00054"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaa7ca7a1749373d75bec977396ea8af3c">00054</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaa7ca7a1749373d75bec977396ea8af3c" title="1.334">AR_4_By_3</a>,     <span class="comment">///&lt; 1.334</span>
+<a name="l00055"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaac26ee01f52f68b3a67beccc4ee4f950">00055</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaac26ee01f52f68b3a67beccc4ee4f950" title="1.667">AR_5_By_3</a>,     <span class="comment">///&lt; 1.667</span>
+<a name="l00056"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafae7297c6f8720aa5453ea9cbc270ec149">00056</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafae7297c6f8720aa5453ea9cbc270ec149" title="1.25">AR_5_By_4</a>,     <span class="comment">///&lt; 1.25</span>
+<a name="l00057"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaad0586105b44a5d1b093a8d072d3e297">00057</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaad0586105b44a5d1b093a8d072d3e297" title="1.6">AR_8_By_5</a>,     <span class="comment">///&lt; 1.6</span>
+<a name="l00058"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafabd1801766c3dd81470e785a604fb8db2">00058</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafabd1801766c3dd81470e785a604fb8db2" title="1.778">AR_16_By_9</a>,    <span class="comment">///&lt; 1.778</span>
+<a name="l00059"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa037068693e5a954da062e4f6122d1ad7">00059</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa037068693e5a954da062e4f6122d1ad7" title="1.889">AR_17_By_9</a>,    <span class="comment">///&lt; 1.889</span>
+<a name="l00060"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa14073edea666339eb6fdaa3ca23e946d">00060</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafa14073edea666339eb6fdaa3ca23e946d" title="1.85">AR_1_85_By_1</a>,  <span class="comment">///&lt; 1.85</span>
+<a name="l00061"></a><a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaa95e86e3db402a75a3de756247da4b29">00061</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eafaa95e86e3db402a75a3de756247da4b29" title="2.39">AR_2_39_By_1</a>   <span class="comment">///&lt; 2.39</span>
+<a name="l00062"></a>00062 <span class="comment"></span>    };
+<a name="l00063"></a>00063 <span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">    /// @enum AttenuationStyle</span>
+<a name="l00065"></a>00065 <span class="comment">    /// @brief These values represent the kind of attenuation applied to the field strength</span>
+<a name="l00066"></a>00066 <span class="comment">    /// over a distance.</span>
+<a name="l00067"></a>00067 <span class="comment">    /// @details None is the default, where the force is constant in all area&#39;s of the</span>
+<a name="l00068"></a>00068 <span class="comment">    /// field.  Linear is where the force applied drops by the attenuation value times the distance</span>
+<a name="l00069"></a>00069 <span class="comment">    /// (strength - (attenuation amount * distance to AE center)).  Quadratic is where the force</span>
+<a name="l00070"></a>00070 <span class="comment">    /// applied drops by the attenuation value times the distance squared (strength -</span>
+<a name="l00071"></a>00071 <span class="comment">    /// (attenuation amount * distance to AE center * distance to AE center)).</span>
+<a name="l00072"></a><a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa">00072</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa" title="These values represent the kind of attenuation applied to the field strength over a distance...">AttenuationStyle</a>
+<a name="l00073"></a>00073     {
+<a name="l00074"></a><a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa548ff9c1d108b12ea6323d39c41856f5">00074</a>         <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa548ff9c1d108b12ea6323d39c41856f5" title="No Attentuation, Equal strength through.">Att_None</a>,        <span class="comment">///&lt; No Attentuation, Equal strength through.</span>
+<a name="l00075"></a><a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faaaecc4b0547a61e5b2abd5401182c9470">00075</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faaaecc4b0547a61e5b2abd5401182c9470" title="Linear attentuation, Strength weaker farther from center.">Att_Linear</a>,      <span class="comment">///&lt; Linear attentuation, Strength weaker farther from center.</span>
+<a name="l00076"></a><a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa7f0c2854461a843af7eb21c036375e83">00076</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa7f0c2854461a843af7eb21c036375e83" title="Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the c...">Att_Quadratic</a>    <span class="comment">///&lt; Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.</span>
+<a name="l00077"></a>00077 <span class="comment"></span>    };
+<a name="l00078"></a>00078 <span class="comment"></span>
+<a name="l00079"></a>00079 <span class="comment">    /// @enum CollisionFilter</span>
+<a name="l00080"></a>00080 <span class="comment">    /// @brief These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with.</span>
+<a name="l00081"></a>00081 <span class="comment">    /// @details You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with</span>
+<a name="l00082"></a>00082 <span class="comment">    /// any of the existing groups defined here.  Simply pass in the Whole where appropriate.</span>
+<a name="l00083"></a><a class="code" href="namespaceMezzanine.html#a475283a31c5df11f18e059953f32ace2">00083</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a475283a31c5df11f18e059953f32ace2" title="These are the various filters that can be applied to all physics accelerated world objects to limit w...">CollisionFilter</a>
 <a name="l00084"></a>00084     {
-<a name="l00085"></a><a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa548ff9c1d108b12ea6323d39c41856f5">00085</a>         <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa548ff9c1d108b12ea6323d39c41856f5" title="No Attentuation, Equal strength through.">Att_None</a>,        <span class="comment">///&lt; No Attentuation, Equal strength through.</span>
-<a name="l00086"></a><a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faaaecc4b0547a61e5b2abd5401182c9470">00086</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faaaecc4b0547a61e5b2abd5401182c9470" title="Linear attentuation, Strength weaker farther from center.">Att_Linear</a>,      <span class="comment">///&lt; Linear attentuation, Strength weaker farther from center.</span>
-<a name="l00087"></a><a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa7f0c2854461a843af7eb21c036375e83">00087</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa7f0c2854461a843af7eb21c036375e83" title="Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the c...">Att_Quadratic</a>    <span class="comment">///&lt; Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.</span>
-<a name="l00088"></a>00088 <span class="comment"></span>    };
-<a name="l00089"></a>00089 <span class="comment"></span>
-<a name="l00090"></a>00090 <span class="comment">    /// @enum CollisionFilter</span>
-<a name="l00091"></a>00091 <span class="comment">    /// @brief These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with.</span>
-<a name="l00092"></a>00092 <span class="comment">    /// @details You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with</span>
-<a name="l00093"></a>00093 <span class="comment">    /// any of the existing groups defined here.  Simply pass in the Whole where appropriate.</span>
-<a name="l00094"></a><a class="code" href="namespaceMezzanine.html#a475283a31c5df11f18e059953f32ace2">00094</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a475283a31c5df11f18e059953f32ace2" title="These are the various filters that can be applied to all physics accelerated world objects to limit w...">CollisionFilter</a>
-<a name="l00095"></a>00095     {
-<a name="l00096"></a>00096         <span class="comment">// Standard base filters</span>
-<a name="l00097"></a>00097         CF_GenericFilter = 1,
-<a name="l00098"></a>00098         CF_StaticFilter = 2,
-<a name="l00099"></a>00099         CF_KinematicFilter = 4,
-<a name="l00100"></a>00100         CF_DebrisFilter = 8,
-<a name="l00101"></a>00101         CF_SensorFilter = 16,
-<a name="l00102"></a>00102         CF_CharacterFilter = 32,
-<a name="l00103"></a>00103         CF_AllFilter = -1,
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105         <span class="comment">// Non-Standard Filters</span>
-<a name="l00106"></a>00106         CF_UserFilter1 = 64,
-<a name="l00107"></a>00107         CF_UserFilter2 = 128
-<a name="l00108"></a>00108     };
-<a name="l00109"></a>00109 <span class="comment"></span>
-<a name="l00110"></a>00110 <span class="comment">    /// @enum RenderSystem</span>
-<a name="l00111"></a>00111 <span class="comment">    /// @brief Used primarily by the graphics manager class during initialization.</span>
-<a name="l00112"></a>00112 <span class="comment">    /// @details This enum specifies which Rendersystem is to be used for rendering.</span>
-<a name="l00113"></a><a class="code" href="namespaceMezzanine.html#a1bb0347c37954bc71c4344e4b55c729a">00113</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a1bb0347c37954bc71c4344e4b55c729a" title="Used primarily by the graphics manager class during initialization.">RenderSystem</a>
-<a name="l00114"></a>00114     {
-<a name="l00115"></a>00115         RS_DirectX9,
-<a name="l00116"></a>00116         RS_DirectX10,
-<a name="l00117"></a>00117         RS_DirectX11,
-<a name="l00118"></a>00118         RS_OpenGL2,
-<a name="l00119"></a>00119         RS_OpenGL3,
-<a name="l00120"></a>00120         RS_OpenGL4,
-<a name="l00121"></a>00121         RS_OpenGLES1,
-<a name="l00122"></a>00122         RS_OpenGLES2
-<a name="l00123"></a>00123     };
-<a name="l00124"></a>00124 <span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">    /// @enum WorldObjectType</span>
-<a name="l00126"></a>00126 <span class="comment">    /// @brief Used by various classes to help identify what class an object is.</span>
-<a name="l00127"></a>00127 <span class="comment">    /// @details This is mostly used internally for casting void pointers.</span>
-<a name="l00128"></a><a class="code" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">00128</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c" title="Used by various classes to help identify what class an object is.">WorldObjectType</a>
-<a name="l00129"></a>00129     {
-<a name="l00130"></a>00130         <span class="comment">// Actors</span>
-<a name="l00131"></a>00131         WOT_ActorFirst = 1,
-<a name="l00132"></a>00132         WOT_ActorRigid = 1,
-<a name="l00133"></a>00133         WOT_ActorSoft = 2,
-<a name="l00134"></a>00134         WOT_ActorCharacter = 4,
-<a name="l00135"></a>00135         WOT_ActorUnknown = 8,
-<a name="l00136"></a>00136         WOT_ActorLast = 8,
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138         <span class="comment">// Terrains go here</span>
-<a name="l00139"></a>00139         WOT_TerrainFirst = 16,
-<a name="l00140"></a>00140         WOT_ActorTerrain = 16, <span class="comment">//should rename to Mesh Terrain</span>
-<a name="l00141"></a>00141         WOT_UnimplementedTerrain1 = 32, <span class="comment">// should rename to Heightfield terrain</span>
-<a name="l00142"></a>00142         WOT_UnimplementedTerrain2 = 64, <span class="comment">// should rename to Vectorfield terrain</span>
-<a name="l00143"></a>00143         WOT_UnimplementedTerrain3 = 128, <span class="comment">// should rename to Voxel Terrain</span>
-<a name="l00144"></a>00144         WOT_UnknownTerrain = 256,
-<a name="l00145"></a>00145         WOT_TerrainLast = 256,
+<a name="l00085"></a>00085         <span class="comment">// Standard base filters</span>
+<a name="l00086"></a>00086         CF_GenericFilter = 1,
+<a name="l00087"></a>00087         CF_StaticFilter = 2,
+<a name="l00088"></a>00088         CF_KinematicFilter = 4,
+<a name="l00089"></a>00089         CF_DebrisFilter = 8,
+<a name="l00090"></a>00090         CF_SensorFilter = 16,
+<a name="l00091"></a>00091         CF_CharacterFilter = 32,
+<a name="l00092"></a>00092         CF_AllFilter = -1,
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094         <span class="comment">// Non-Standard Filters</span>
+<a name="l00095"></a>00095         CF_UserFilter1 = 64,
+<a name="l00096"></a>00096         CF_UserFilter2 = 128
+<a name="l00097"></a>00097     };
+<a name="l00098"></a>00098 <span class="comment"></span>
+<a name="l00099"></a>00099 <span class="comment">    /// @enum RenderSystem</span>
+<a name="l00100"></a>00100 <span class="comment">    /// @brief Used primarily by the graphics manager class during initialization.</span>
+<a name="l00101"></a>00101 <span class="comment">    /// @details This enum specifies which Rendersystem is to be used for rendering.</span>
+<a name="l00102"></a><a class="code" href="namespaceMezzanine.html#a1bb0347c37954bc71c4344e4b55c729a">00102</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a1bb0347c37954bc71c4344e4b55c729a" title="Used primarily by the graphics manager class during initialization.">RenderSystem</a>
+<a name="l00103"></a>00103     {
+<a name="l00104"></a>00104         RS_DirectX9,
+<a name="l00105"></a>00105         RS_DirectX10,
+<a name="l00106"></a>00106         RS_DirectX11,
+<a name="l00107"></a>00107         RS_OpenGL2,
+<a name="l00108"></a>00108         RS_OpenGL3,
+<a name="l00109"></a>00109         RS_OpenGL4,
+<a name="l00110"></a>00110         RS_OpenGLES1,
+<a name="l00111"></a>00111         RS_OpenGLES2
+<a name="l00112"></a>00112     };
+<a name="l00113"></a>00113 <span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">    /// @brief Used to identify different Axis in a 3d coordinate system.</span>
+<a name="l00115"></a>00115 <span class="comment">    /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.</span>
+<a name="l00116"></a><a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1">00116</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1" title="Used to identify different Axis in a 3d coordinate system.">StandardAxis</a>
+<a name="l00117"></a>00117     {
+<a name="l00118"></a><a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126">00118</a>         <a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126" title="X axis.">Axis_X</a>         = 0,    <span class="comment">///&lt; X axis</span>
+<a name="l00119"></a><a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a935c7afe0104697553cf85e9214fb3fb">00119</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a935c7afe0104697553cf85e9214fb3fb" title="Y axis.">Axis_Y</a>         = 1,    <span class="comment">///&lt; Y axis</span>
+<a name="l00120"></a><a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a6af6621383cc7da1fe11a86ba6de37c0">00120</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a6af6621383cc7da1fe11a86ba6de37c0" title="Z axis.">Axis_Z</a>         = 2,    <span class="comment">///&lt; Z axis</span>
+<a name="l00121"></a>00121 <span class="comment"></span>    };
+<a name="l00122"></a>00122 <span class="comment"></span>
+<a name="l00123"></a>00123 <span class="comment">    /// @enum WorldObjectActivationState</span>
+<a name="l00124"></a>00124 <span class="comment">    /// @brief This is used by all the world objects to monitor and set their physics activation.</span>
+<a name="l00125"></a><a class="code" href="namespaceMezzanine.html#ac4d9d4570b1963390325ad6a083108e1">00125</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#ac4d9d4570b1963390325ad6a083108e1" title="This is used by all the world objects to monitor and set their physics activation.">WorldObjectActivationState</a>
+<a name="l00126"></a>00126     {
+<a name="l00127"></a>00127         WOAS_Active = 1,
+<a name="l00128"></a>00128         WOAS_Island_Sleeping = 2,
+<a name="l00129"></a>00129         WOAS_Wants_Deactivation = 3,
+<a name="l00130"></a>00130         WOAS_DisableDeactivation = 4,
+<a name="l00131"></a>00131         WOAS_DisableSimulation = 5
+<a name="l00132"></a>00132     };
+<a name="l00133"></a>00133 <span class="comment"></span>
+<a name="l00134"></a>00134 <span class="comment">    /// @enum WorldObjectType</span>
+<a name="l00135"></a>00135 <span class="comment">    /// @brief Used by various classes to help identify what class an object is.</span>
+<a name="l00136"></a>00136 <span class="comment">    /// @details This is mostly used internally for casting void pointers.</span>
+<a name="l00137"></a><a class="code" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">00137</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c" title="Used by various classes to help identify what class an object is.">WorldObjectType</a>
+<a name="l00138"></a>00138     {
+<a name="l00139"></a>00139         <span class="comment">// Actors</span>
+<a name="l00140"></a>00140         WOT_ActorFirst = 1,
+<a name="l00141"></a>00141         WOT_ActorRigid = 1,
+<a name="l00142"></a>00142         WOT_ActorSoft = 2,
+<a name="l00143"></a>00143         WOT_ActorCharacter = 4,
+<a name="l00144"></a>00144         WOT_ActorUnknown = 8,
+<a name="l00145"></a>00145         WOT_ActorLast = 8,
 <a name="l00146"></a>00146 
-<a name="l00147"></a>00147         <span class="comment">// AE Fields</span>
-<a name="l00148"></a>00148         WOT_AEFirst = 512,
-<a name="l00149"></a>00149         WOT_AEGravityField = 1024,
-<a name="l00150"></a>00150         WOT_AEGravityWell = 2048,
-<a name="l00151"></a>00151         WOT_AEFieldOfForce = 4096,
-<a name="l00152"></a>00152         WOT_AEPlaceHolder1 = 8192,
-<a name="l00153"></a>00153         WOT_AEPlaceHolder2 = 16384,
-<a name="l00154"></a>00154         WOT_AEUnknown = 32768,
-<a name="l00155"></a>00155         WOT_AELast = 32768,
-<a name="l00156"></a>00156 
-<a name="l00157"></a>00157         <span class="comment">// Scene Objects</span>
-<a name="l00158"></a>00158         WOT_SceneFirst = 65536,
-<a name="l00159"></a>00159         WOT_Light = 65536,
-<a name="l00160"></a>00160         WOT_ParticleEffect = 131072,
-<a name="l00161"></a>00161         WOT_Camera = 262144,
-<a name="l00162"></a>00162         WOT_SceneLast = 262144,
-<a name="l00163"></a>00163     };
-<a name="l00164"></a>00164 <span class="comment"></span>
-<a name="l00165"></a>00165 <span class="comment">    /// @brief Used to identify different Axis in a 3d coordinate system.</span>
-<a name="l00166"></a>00166 <span class="comment">    /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.</span>
-<a name="l00167"></a><a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1">00167</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1" title="Used to identify different Axis in a 3d coordinate system.">StandardAxis</a> {
-<a name="l00168"></a><a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126">00168</a>         <a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126" title="X axis.">Axis_X</a>         = 0,    <span class="comment">///&lt; X axis</span>
-<a name="l00169"></a><a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a935c7afe0104697553cf85e9214fb3fb">00169</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a935c7afe0104697553cf85e9214fb3fb" title="Y axis.">Axis_Y</a>         = 1,    <span class="comment">///&lt; Y axis</span>
-<a name="l00170"></a><a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a6af6621383cc7da1fe11a86ba6de37c0">00170</a> <span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a6af6621383cc7da1fe11a86ba6de37c0" title="Z axis.">Axis_Z</a>         = 2,    <span class="comment">///&lt; Z axis</span>
-<a name="l00171"></a>00171 <span class="comment"></span>    };
-<a name="l00172"></a>00172 }
-<a name="l00173"></a>00173 
-<a name="l00174"></a>00174 <span class="preprocessor">#endif</span>
+<a name="l00147"></a>00147         <span class="comment">// Terrains go here</span>
+<a name="l00148"></a>00148         WOT_TerrainFirst = 16,
+<a name="l00149"></a>00149         WOT_MeshTerrain = 16,
+<a name="l00150"></a>00150         WOT_UnimplementedTerrain1 = 32, <span class="comment">// should rename to Heightfield terrain</span>
+<a name="l00151"></a>00151         WOT_UnimplementedTerrain2 = 64, <span class="comment">// should rename to Vectorfield terrain</span>
+<a name="l00152"></a>00152         WOT_UnimplementedTerrain3 = 128, <span class="comment">// should rename to Voxel Terrain</span>
+<a name="l00153"></a>00153         WOT_UnknownTerrain = 256,
+<a name="l00154"></a>00154         WOT_TerrainLast = 256,
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156         <span class="comment">// AE Fields</span>
+<a name="l00157"></a>00157         WOT_AEFirst = 512,
+<a name="l00158"></a>00158         WOT_AEGravityField = 512,
+<a name="l00159"></a>00159         WOT_AEGravityWell = 1024,
+<a name="l00160"></a>00160         WOT_AEFieldOfForce = 2048,
+<a name="l00161"></a>00161         WOT_AEPlaceHolder1 = 4096,
+<a name="l00162"></a>00162         WOT_AEPlaceHolder2 = 8192,
+<a name="l00163"></a>00163         WOT_AEUnknown = 16384,
+<a name="l00164"></a>00164         WOT_AELast = 16384,
+<a name="l00165"></a>00165     };
+<a name="l00166"></a>00166 }
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -253,6 +247,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>
