@@ -926,313 +926,315 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00862"></a>00862 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00863"></a>00863 <span class="comment">    /// @class HeightfieldCollisionShape</span>
 <a name="l00864"></a>00864 <span class="comment">    /// @headerfile collisionshape.h</span>
-<a name="l00865"></a>00865 <span class="comment">    /// @brief</span>
-<a name="l00866"></a>00866 <span class="comment">    /// @details</span>
-<a name="l00867"></a>00867 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00868"></a><a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html">00868</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html">HeightfieldCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">FieldCollisionShape</a>
-<a name="l00869"></a>00869     {
-<a name="l00870"></a>00870         <span class="keyword">protected</span>:
-<a name="l00871"></a>00871             btHeightfieldTerrainShape* HeightfieldShape;
-<a name="l00872"></a>00872         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00873"></a>00873 <span class="comment">            /// @brief Class Constructor.</span>
-<a name="l00874"></a>00874 <span class="comment">            /// @param Name The name of this Shape.</span>
-<a name="l00875"></a>00875 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html">HeightfieldCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
-<a name="l00876"></a>00876 <span class="comment">            /// @internal</span>
-<a name="l00877"></a>00877 <span class="comment">            /// @brief Internal Constructor.</span>
+<a name="l00865"></a>00865 <span class="comment">    /// @brief A series of values that store hieght in a grid like fashion</span>
+<a name="l00866"></a>00866 <span class="comment">    /// @details A fast terrain implementation that comes at the cost of</span>
+<a name="l00867"></a>00867 <span class="comment">    /// overhangs and fine detail. This can be worked around by adding actors for</span>
+<a name="l00868"></a>00868 <span class="comment">    /// additional terrain.</span>
+<a name="l00869"></a>00869 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00870"></a><a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html">00870</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion.">HeightfieldCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">FieldCollisionShape</a>
+<a name="l00871"></a>00871     {
+<a name="l00872"></a>00872         <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l00873"></a>00873 <span class="comment">            /// @internal</span>
+<a name="l00874"></a>00874 <span class="comment">            /// @brief The internal implementation.</span>
+<a name="l00875"></a><a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html#a326d019561da25f1eddeb7fb59748f9c">00875</a> <span class="comment"></span>            btHeightfieldTerrainShape* <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html#a326d019561da25f1eddeb7fb59748f9c" title="The internal implementation.">HeightfieldShape</a>;
+<a name="l00876"></a>00876         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00877"></a>00877 <span class="comment">            /// @brief Class Constructor.</span>
 <a name="l00878"></a>00878 <span class="comment">            /// @param Name The name of this Shape.</span>
-<a name="l00879"></a>00879 <span class="comment">            /// @param BulletShape The internal shape this shape is based on.</span>
-<a name="l00880"></a>00880 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html">HeightfieldCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, btHeightfieldTerrainShape* BulletShape);<span class="comment"></span>
-<a name="l00881"></a>00881 <span class="comment">            /// @brief Class Destructor.</span>
-<a name="l00882"></a>00882 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html">HeightfieldCollisionShape</a>();<span class="comment"></span>
-<a name="l00883"></a>00883 <span class="comment">            /// @copydoc CollisionShape::GetType()</span>
-<a name="l00884"></a>00884 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> GetType() <span class="keyword">const</span>;
-<a name="l00885"></a>00885     };<span class="comment">//heightfieldcollisionshape</span>
-<a name="l00886"></a>00886 <span class="comment"></span>
-<a name="l00887"></a>00887 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00888"></a>00888 <span class="comment">    /// @class PlaneCollisionShape</span>
-<a name="l00889"></a>00889 <span class="comment">    /// @headerfile collisionshape.h</span>
-<a name="l00890"></a>00890 <span class="comment">    /// @brief</span>
-<a name="l00891"></a>00891 <span class="comment">    /// @details</span>
-<a name="l00892"></a>00892 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00893"></a><a class="code" href="classMezzanine_1_1PlaneCollisionShape.html">00893</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html">PlaneCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">FieldCollisionShape</a>
-<a name="l00894"></a>00894     {
-<a name="l00895"></a>00895         <span class="keyword">protected</span>:
-<a name="l00896"></a>00896             btStaticPlaneShape* PlaneShape;
-<a name="l00897"></a>00897         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00898"></a>00898 <span class="comment">            /// @brief Class Constructor.</span>
-<a name="l00899"></a>00899 <span class="comment">            /// @param Name The name of this Shape.</span>
-<a name="l00900"></a>00900 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html">PlaneCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
-<a name="l00901"></a>00901 <span class="comment">            /// @internal</span>
-<a name="l00902"></a>00902 <span class="comment">            /// @brief Internal Constructor.</span>
-<a name="l00903"></a>00903 <span class="comment">            /// @param Name The name of this Shape.</span>
-<a name="l00904"></a>00904 <span class="comment">            /// @param BulletShape The internal shape this shape is based on.</span>
-<a name="l00905"></a>00905 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html">PlaneCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, btStaticPlaneShape* BulletShape);<span class="comment"></span>
-<a name="l00906"></a>00906 <span class="comment">            /// @brief Class Destructor.</span>
-<a name="l00907"></a>00907 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1PlaneCollisionShape.html">PlaneCollisionShape</a>();<span class="comment"></span>
-<a name="l00908"></a>00908 <span class="comment">            /// @copydoc CollisionShape::GetType()</span>
-<a name="l00909"></a>00909 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> GetType() <span class="keyword">const</span>;
-<a name="l00910"></a>00910     };<span class="comment">//planecollisionshape</span>
-<a name="l00911"></a>00911 <span class="comment"></span>
-<a name="l00912"></a>00912 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00913"></a>00913 <span class="comment">    /// @class ActorSoftCollisionShape</span>
-<a name="l00914"></a>00914 <span class="comment">    /// @headerfile collisionshape.h</span>
-<a name="l00915"></a>00915 <span class="comment">    /// @brief A collision shape for soft actors.</span>
-<a name="l00916"></a>00916 <span class="comment">    /// @details This collision shape is different from all the other collision shapes because it&#39;s</span>
-<a name="l00917"></a>00917 <span class="comment">    /// meant to be used for only one type of object: ActorSoft&#39;s.  This shape doesn&#39;t use triangles</span>
-<a name="l00918"></a>00918 <span class="comment">    /// in the traditional manner other mesh shapes do, but rather it uses the individual internal</span>
-<a name="l00919"></a>00919 <span class="comment">    /// nodes that make the ActorSoft as points for building triangles to process collisions with.  As</span>
-<a name="l00920"></a>00920 <span class="comment">    /// a result a SoftBodyCollisionShape should never be reused and should be kept unique to the Actor</span>
-<a name="l00921"></a>00921 <span class="comment">    /// it applies to. @n @n</span>
-<a name="l00922"></a>00922 <span class="comment">    /// Normally the ActorSoft will be responsible for the creation of it&#39;s own collision shape, so</span>
-<a name="l00923"></a>00923 <span class="comment">    /// the user should never have to.  So there are no non-internal constructors provided for this class.</span>
-<a name="l00924"></a>00924 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00925"></a><a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html">00925</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">MeshCollisionShape</a>
-<a name="l00926"></a>00926     {
-<a name="l00927"></a>00927         <span class="keyword">protected</span>:
-<a name="l00928"></a>00928             btSoftBodyCollisionShape* ActorSoftShape;
-<a name="l00929"></a>00929         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00930"></a>00930 <span class="comment">            /// @internal</span>
-<a name="l00931"></a>00931 <span class="comment">            /// @brief Internal Constructor.</span>
-<a name="l00932"></a>00932 <span class="comment">            /// @param Name The name of this Shape.</span>
-<a name="l00933"></a>00933 <span class="comment">            /// @param BulletShape The internal shape this shape is based on.</span>
-<a name="l00934"></a>00934 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, btSoftBodyCollisionShape* BulletShape);<span class="comment"></span>
-<a name="l00935"></a>00935 <span class="comment">            /// @brief Class Destructor.</span>
-<a name="l00936"></a>00936 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a>();<span class="comment"></span>
-<a name="l00937"></a>00937 <span class="comment">            /// @copydoc CollisionShape::GetType()</span>
-<a name="l00938"></a>00938 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> GetType() <span class="keyword">const</span>;
-<a name="l00939"></a>00939     };<span class="comment">//softbodycollisionshape</span>
-<a name="l00940"></a>00940 <span class="comment"></span>
-<a name="l00941"></a>00941 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00942"></a>00942 <span class="comment">    /// @class StaticMeshCollisionShape</span>
-<a name="l00943"></a>00943 <span class="comment">    /// @headerfile collisionshape.h</span>
-<a name="l00944"></a>00944 <span class="comment">    /// @brief A triangle mesh collsion shape based on a graphics mesh.</span>
-<a name="l00945"></a>00945 <span class="comment">    /// @details As the name suggests, this is a TriMesh shape intended for static objects.  If this</span>
-<a name="l00946"></a>00946 <span class="comment">    /// shape is used in a dynamic object, it will simply not provide any collisions with other objects. @n @n</span>
-<a name="l00947"></a>00947 <span class="comment">    /// This shape will provide &quot;pixel-perfect&quot; collisions like the DynamicMeshCollisionShape class, but</span>
-<a name="l00948"></a>00948 <span class="comment">    /// is much more performant at the cost of only being usable on static objects.</span>
-<a name="l00949"></a>00949 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00950"></a><a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html">00950</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">MeshCollisionShape</a>
-<a name="l00951"></a>00951     {
-<a name="l00952"></a>00952         <span class="keyword">protected</span>:
-<a name="l00953"></a>00953             btBvhTriangleMeshShape* BvhShape;
-<a name="l00954"></a>00954         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00955"></a>00955 <span class="comment">            /// @internal</span>
-<a name="l00956"></a>00956 <span class="comment">            /// @brief Internal Constructor.</span>
-<a name="l00957"></a>00957 <span class="comment">            /// @param Name The name of this Shape.</span>
-<a name="l00958"></a>00958 <span class="comment">            /// @param BulletShape The internal shape this shape is based on.</span>
-<a name="l00959"></a>00959 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, btBvhTriangleMeshShape* BulletShape);<span class="comment"></span>
-<a name="l00960"></a>00960 <span class="comment">            /// @brief Class Destructor.</span>
-<a name="l00961"></a>00961 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a>();<span class="comment"></span>
-<a name="l00962"></a>00962 <span class="comment">            /// @copydoc CollisionShape::GetType()</span>
-<a name="l00963"></a>00963 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> GetType() <span class="keyword">const</span>;
-<a name="l00964"></a>00964     };<span class="comment">//trimeshcollisionshape</span>
-<a name="l00965"></a>00965 <span class="comment"></span>
-<a name="l00966"></a>00966 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00967"></a>00967 <span class="comment"></span>    <span class="comment">// Utility Functions</span><span class="comment"></span>
-<a name="l00968"></a>00968 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00969"></a>00969 <span class="comment">    /// @internal</span>
-<a name="l00970"></a>00970 <span class="comment">    /// @brief Create A shape of a type and optionally model it after an example.</span>
-<a name="l00971"></a>00971 <span class="comment">    /// @param ShapeToCreate The Type of Shape to create.</span>
-<a name="l00972"></a>00972 <span class="comment">    /// @param Name the name of the new shape.</span>
-<a name="l00973"></a>00973 <span class="comment">    /// @param ShapeToModel An optional pointer to a bullet shape to include instead of creating one.</span>
-<a name="l00974"></a>00974 <span class="comment">    /// @return A new Mezzanine::CollisionShape with either default Values or the values of the bullet shape if one is provided.</span>
-<a name="l00975"></a>00975 <span class="comment">    /// @warning The only checking done on the bullet shape is to verify it is not a null pointer. If the Bullet shape fails to be of the appropriate kind correlating to ShapeToCreate then *undefined behavior* will occur.</span>
-<a name="l00976"></a>00976 <span class="comment"></span>    <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* MEZZ_LIB <a class="code" href="namespaceMezzanine.html#a945376a411966f62fad3f13e14550d74" title="Create A shape of a type and optionally model it after an example.">CreateShape</a>(<a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> ShapeToCreate, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name_, btCollisionShape* ShapeToModel);
-<a name="l00977"></a>00977 <span class="preprocessor">#ifdef MEZZXML</span>
-<a name="l00978"></a>00978 <span class="preprocessor"></span><span class="comment">    /// @brief Create a CollisionShape from a snippet of xml</span>
-<a name="l00979"></a>00979 <span class="comment"></span><span class="comment">    /// @param OneNode A Node for any Collision Shape that can be instanstiated</span>
-<a name="l00980"></a>00980 <span class="comment"></span><span class="comment">    /// @return A pointer to a CollisionShape of the Correct Type with the values stored in the XML.</span>
-<a name="l00981"></a>00981 <span class="comment"></span>    <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* MEZZ_LIB <a class="code" href="namespaceMezzanine.html#a945376a411966f62fad3f13e14550d74" title="Create A shape of a type and optionally model it after an example.">CreateShape</a>(xml::Node OneNode);
-<a name="l00982"></a>00982 <span class="preprocessor">#endif  // \mezzxml</span>
-<a name="l00983"></a>00983 <span class="preprocessor"></span><span class="comment">    /// @internal</span>
-<a name="l00984"></a>00984 <span class="comment"></span><span class="comment">    /// @brief Convert from a Bullet Collision Shape to a CollisionShape::ShapeType</span>
-<a name="l00985"></a>00985 <span class="comment"></span><span class="comment">    /// @param BulletShapeType The ShapeType to Convert</span>
-<a name="l00986"></a>00986 <span class="comment"></span><span class="comment">    /// @return The corresponding CollisionShape::ShapeType to the passed in bullet Shape Type if asuitable match exists</span>
-<a name="l00987"></a>00987 <span class="comment"></span><span class="comment">    /// @throw The Mezzanine engine only uses a subset of Bullets shapes, a Mezzanine::Exception with be thrown in the event an unsupported one is passed in.</span>
-<a name="l00988"></a>00988 <span class="comment"></span>    <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> MEZZ_LIB <a class="code" href="namespaceMezzanine.html#af007af1ad839d251e61e95488ab78876" title="Convert from a Bullet Collision Shape to a CollisionShape::ShapeType.">BulletSapeTypeToShapeType</a>(<span class="keywordtype">int</span> BulletShapeType);<span class="comment"></span>
-<a name="l00989"></a>00989 <span class="comment">    /// @brief Get a string suitable for human eyes from a CollisionShape::ShapeType, may not be suitable for endusers.</span>
-<a name="l00990"></a>00990 <span class="comment">    /// @param ShapeToConvert The kind of shape you want a string for.</span>
-<a name="l00991"></a>00991 <span class="comment">    /// @return A String with human readable contents corresponding to the passed in type.</span>
-<a name="l00992"></a>00992 <span class="comment"></span>    <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> MEZZ_LIB <a class="code" href="namespaceMezzanine.html#a52369c62b87ecdbfbc6b82a572f21651" title="Get a string suitable for human eyes from a CollisionShape::ShapeType, may not be suitable for enduse...">ShapeTypeToString</a>(<a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> ShapeToConvert);<span class="comment"></span>
-<a name="l00993"></a>00993 <span class="comment">    /// @brief Convert a human readable string (as provided by ShapeTypeToString()) and convert it to a CollisionShape::ShapeType</span>
-<a name="l00994"></a>00994 <span class="comment">    /// @param TypeName A String that matches exactly what returns from ShapeTypeToString().</span>
-<a name="l00995"></a>00995 <span class="comment">    /// @return A valid CollisionShape::ShapeType if possible</span>
-<a name="l00996"></a>00996 <span class="comment">    /// @throw This throws a Mezzanine::Exception in the event of a gibberish name.</span>
-<a name="l00997"></a>00997 <span class="comment"></span>    <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> MEZZ_LIB <a class="code" href="namespaceMezzanine.html#acae3fd66fbd56ed04a8d61bebee11769" title="Convert a human readable string (as provided by ShapeTypeToString()) and convert it to a CollisionSha...">StringToShapeType</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; TypeName);
-<a name="l00998"></a>00998 <span class="comment"></span>
-<a name="l00999"></a>00999 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01000"></a>01000 <span class="comment"></span>    <span class="comment">// CollisionShapeDeSerializer</span><span class="comment"></span>
-<a name="l01001"></a>01001 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l01002"></a><a class="code" href="classMezzanine_1_1CollisionShapeDeSerializer.html">01002</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1CollisionShapeDeSerializer.html">CollisionShapeDeSerializer</a> : <span class="keyword">public</span> DeSerializer &lt;CollisionShape&gt;
-<a name="l01003"></a>01003     {
-<a name="l01004"></a>01004 <span class="preprocessor">#ifdef MEZZXML</span>
-<a name="l01005"></a>01005 <span class="preprocessor"></span>        <span class="keyword">protected</span>:<span class="comment"></span>
-<a name="l01006"></a>01006 <span class="comment">            /// @internal</span>
-<a name="l01007"></a>01007 <span class="comment">            /// @brief This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do</span>
-<a name="l01008"></a>01008 <span class="comment">            /// @param Stream the stream to deserialize from.</span>
-<a name="l01009"></a>01009 <span class="comment">            /// @return a pointer to the shape just created, this may or may not be added to the collision shape manager depending on implementation details</span>
-<a name="l01010"></a>01010 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* PerformDeSerialization(std::istream&amp; Stream);
-<a name="l01011"></a>01011         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l01012"></a>01012 <span class="comment">            /// @brief Convert An XML Node containing and one collision shape into a CollisionShape of the corresponding type</span>
-<a name="l01013"></a>01013 <span class="comment">            /// @param OneNode A reference to the XML node to reconstitute into a live class instance.</span>
-<a name="l01014"></a>01014 <span class="comment">            /// @details All items deserialized here will be added to the collision shape manager.</span>
-<a name="l01015"></a>01015 <span class="comment">            /// @return A pointer to the freshly deserialized and created class instance.</span>
-<a name="l01016"></a>01016 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* ProtoDeSerialize(<span class="keyword">const</span> xml::Node&amp; OneNode);<span class="comment"></span>
-<a name="l01017"></a>01017 <span class="comment">            /// @brief Create a collision shape from the serialized version in a stream.</span>
-<a name="l01018"></a>01018 <span class="comment">            /// @param Stream The std::istream to get the data from.</span>
-<a name="l01019"></a>01019 <span class="comment">            /// @details This performs less checking than the original to allow for DeSerialization of multiple kinds</span>
-<a name="l01020"></a>01020 <span class="comment">            /// of xml elements. Rather all the specific checking is done closer to the actual instantion of classes.</span>
-<a name="l01021"></a>01021 <span class="comment">            /// This add the DeSerialized shape to the collsion shape manager.</span>
-<a name="l01022"></a>01022 <span class="comment">            /// @return This returns the input stream after the xml document has been extracted from it.</span>
-<a name="l01023"></a>01023 <span class="comment"></span>            <span class="keyword">virtual</span> std::istream&amp; DeSerialize(std::istream&amp; Stream);<span class="comment"></span>
-<a name="l01024"></a>01024 <span class="comment">            /// @brief Create a collision shape from the serialized version in a stream.</span>
-<a name="l01025"></a>01025 <span class="comment">            /// @param Stream The std::istream to get the data from.</span>
-<a name="l01026"></a>01026 <span class="comment">            /// @details This adds the DeSerialized shape to the collsion shape manager.</span>
-<a name="l01027"></a>01027 <span class="comment">            /// @return This returns a pointer to the freshly created collsion shape</span>
-<a name="l01028"></a>01028 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* DeSerializeAndRetrieve(std::istream&amp; Stream);<span class="comment"></span>
-<a name="l01029"></a>01029 <span class="comment">            /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized</span>
-<a name="l01030"></a>01030 <span class="comment">            /// @return A String containing &quot;Shapes&quot;</span>
-<a name="l01031"></a>01031 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ContainerName() <span class="keyword">const</span>;
-<a name="l01032"></a>01032 <span class="preprocessor">#endif // \mezzxml</span>
-<a name="l01033"></a>01033 <span class="preprocessor"></span>    };
-<a name="l01034"></a>01034 
-<a name="l01035"></a>01035 }<span class="comment">//Mezzanine</span>
+<a name="l00879"></a>00879 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion.">HeightfieldCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
+<a name="l00880"></a>00880 <span class="comment">            /// @internal</span>
+<a name="l00881"></a>00881 <span class="comment">            /// @brief Internal Constructor.</span>
+<a name="l00882"></a>00882 <span class="comment">            /// @param Name The name of this Shape.</span>
+<a name="l00883"></a>00883 <span class="comment">            /// @param BulletShape The internal shape this shape is based on.</span>
+<a name="l00884"></a>00884 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion.">HeightfieldCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, btHeightfieldTerrainShape* BulletShape);<span class="comment"></span>
+<a name="l00885"></a>00885 <span class="comment">            /// @brief Class Destructor.</span>
+<a name="l00886"></a>00886 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion.">HeightfieldCollisionShape</a>();<span class="comment"></span>
+<a name="l00887"></a>00887 <span class="comment">            /// @copydoc CollisionShape::GetType()</span>
+<a name="l00888"></a>00888 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> GetType() <span class="keyword">const</span>;
+<a name="l00889"></a>00889     };<span class="comment">//heightfieldcollisionshape</span>
+<a name="l00890"></a>00890 <span class="comment"></span>
+<a name="l00891"></a>00891 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00892"></a>00892 <span class="comment">    /// @class PlaneCollisionShape</span>
+<a name="l00893"></a>00893 <span class="comment">    /// @brief A Flat wall/floor of limitless size</span>
+<a name="l00894"></a>00894 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00895"></a><a class="code" href="classMezzanine_1_1PlaneCollisionShape.html">00895</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size.">PlaneCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">FieldCollisionShape</a>
+<a name="l00896"></a>00896     {
+<a name="l00897"></a>00897         <span class="keyword">protected</span>:
+<a name="l00898"></a>00898             btStaticPlaneShape* PlaneShape;
+<a name="l00899"></a>00899         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00900"></a>00900 <span class="comment">            /// @brief Class Constructor.</span>
+<a name="l00901"></a>00901 <span class="comment">            /// @param Name The name of this Shape.</span>
+<a name="l00902"></a>00902 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size.">PlaneCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
+<a name="l00903"></a>00903 <span class="comment">            /// @internal</span>
+<a name="l00904"></a>00904 <span class="comment">            /// @brief Internal Constructor.</span>
+<a name="l00905"></a>00905 <span class="comment">            /// @param Name The name of this Shape.</span>
+<a name="l00906"></a>00906 <span class="comment">            /// @param BulletShape The internal shape this shape is based on.</span>
+<a name="l00907"></a>00907 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size.">PlaneCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, btStaticPlaneShape* BulletShape);<span class="comment"></span>
+<a name="l00908"></a>00908 <span class="comment">            /// @brief Class Destructor.</span>
+<a name="l00909"></a>00909 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size.">PlaneCollisionShape</a>();<span class="comment"></span>
+<a name="l00910"></a>00910 <span class="comment">            /// @copydoc CollisionShape::GetType()</span>
+<a name="l00911"></a>00911 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> GetType() <span class="keyword">const</span>;
+<a name="l00912"></a>00912     };<span class="comment">//planecollisionshape</span>
+<a name="l00913"></a>00913 <span class="comment"></span>
+<a name="l00914"></a>00914 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00915"></a>00915 <span class="comment">    /// @class ActorSoftCollisionShape</span>
+<a name="l00916"></a>00916 <span class="comment">    /// @headerfile collisionshape.h</span>
+<a name="l00917"></a>00917 <span class="comment">    /// @brief A collision shape for soft actors.</span>
+<a name="l00918"></a>00918 <span class="comment">    /// @details This collision shape is different from all the other collision shapes because it&#39;s</span>
+<a name="l00919"></a>00919 <span class="comment">    /// meant to be used for only one type of object: ActorSoft&#39;s.  This shape doesn&#39;t use triangles</span>
+<a name="l00920"></a>00920 <span class="comment">    /// in the traditional manner other mesh shapes do, but rather it uses the individual internal</span>
+<a name="l00921"></a>00921 <span class="comment">    /// nodes that make the ActorSoft as points for building triangles to process collisions with.  As</span>
+<a name="l00922"></a>00922 <span class="comment">    /// a result a SoftBodyCollisionShape should never be reused and should be kept unique to the Actor</span>
+<a name="l00923"></a>00923 <span class="comment">    /// it applies to. @n @n</span>
+<a name="l00924"></a>00924 <span class="comment">    /// Normally the ActorSoft will be responsible for the creation of it&#39;s own collision shape, so</span>
+<a name="l00925"></a>00925 <span class="comment">    /// the user should never have to.  So there are no non-internal constructors provided for this class.</span>
+<a name="l00926"></a>00926 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00927"></a><a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html">00927</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">MeshCollisionShape</a>
+<a name="l00928"></a>00928     {
+<a name="l00929"></a>00929         <span class="keyword">protected</span>:
+<a name="l00930"></a>00930             btSoftBodyCollisionShape* ActorSoftShape;
+<a name="l00931"></a>00931         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00932"></a>00932 <span class="comment">            /// @internal</span>
+<a name="l00933"></a>00933 <span class="comment">            /// @brief Internal Constructor.</span>
+<a name="l00934"></a>00934 <span class="comment">            /// @param Name The name of this Shape.</span>
+<a name="l00935"></a>00935 <span class="comment">            /// @param BulletShape The internal shape this shape is based on.</span>
+<a name="l00936"></a>00936 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, btSoftBodyCollisionShape* BulletShape);<span class="comment"></span>
+<a name="l00937"></a>00937 <span class="comment">            /// @brief Class Destructor.</span>
+<a name="l00938"></a>00938 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a>();<span class="comment"></span>
+<a name="l00939"></a>00939 <span class="comment">            /// @copydoc CollisionShape::GetType()</span>
+<a name="l00940"></a>00940 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> GetType() <span class="keyword">const</span>;
+<a name="l00941"></a>00941     };<span class="comment">//softbodycollisionshape</span>
+<a name="l00942"></a>00942 <span class="comment"></span>
+<a name="l00943"></a>00943 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00944"></a>00944 <span class="comment">    /// @class StaticMeshCollisionShape</span>
+<a name="l00945"></a>00945 <span class="comment">    /// @brief A triangle mesh collsion shape based on a graphics mesh.</span>
+<a name="l00946"></a>00946 <span class="comment">    /// @details As the name suggests, this is a TriMesh shape intended for static objects.  If this</span>
+<a name="l00947"></a>00947 <span class="comment">    /// shape is used in a dynamic object, it will simply not provide any collisions with other objects. @n @n</span>
+<a name="l00948"></a>00948 <span class="comment">    /// This shape will provide &quot;pixel-perfect&quot; collisions like the DynamicMeshCollisionShape class, but</span>
+<a name="l00949"></a>00949 <span class="comment">    /// is much more performant at the cost of only being usable on static objects.</span>
+<a name="l00950"></a>00950 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00951"></a><a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html">00951</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">MeshCollisionShape</a>
+<a name="l00952"></a>00952     {
+<a name="l00953"></a>00953         <span class="keyword">protected</span>:
+<a name="l00954"></a>00954             btBvhTriangleMeshShape* BvhShape;
+<a name="l00955"></a>00955         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00956"></a>00956 <span class="comment">            /// @internal</span>
+<a name="l00957"></a>00957 <span class="comment">            /// @brief Internal Constructor.</span>
+<a name="l00958"></a>00958 <span class="comment">            /// @param Name The name of this Shape.</span>
+<a name="l00959"></a>00959 <span class="comment">            /// @param BulletShape The internal shape this shape is based on.</span>
+<a name="l00960"></a>00960 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, btBvhTriangleMeshShape* BulletShape);<span class="comment"></span>
+<a name="l00961"></a>00961 <span class="comment">            /// @brief Class Destructor.</span>
+<a name="l00962"></a>00962 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a>();<span class="comment"></span>
+<a name="l00963"></a>00963 <span class="comment">            /// @copydoc CollisionShape::GetType()</span>
+<a name="l00964"></a>00964 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> GetType() <span class="keyword">const</span>;
+<a name="l00965"></a>00965     };<span class="comment">//trimeshcollisionshape</span>
+<a name="l00966"></a>00966 <span class="comment"></span>
+<a name="l00967"></a>00967 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00968"></a>00968 <span class="comment"></span>    <span class="comment">// Utility Functions</span><span class="comment"></span>
+<a name="l00969"></a>00969 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00970"></a>00970 <span class="comment">    /// @internal</span>
+<a name="l00971"></a>00971 <span class="comment">    /// @brief Create A shape of a type and optionally model it after an example.</span>
+<a name="l00972"></a>00972 <span class="comment">    /// @param ShapeToCreate The Type of Shape to create.</span>
+<a name="l00973"></a>00973 <span class="comment">    /// @param Name the name of the new shape.</span>
+<a name="l00974"></a>00974 <span class="comment">    /// @param ShapeToModel An optional pointer to a bullet shape to include instead of creating one.</span>
+<a name="l00975"></a>00975 <span class="comment">    /// @return A new Mezzanine::CollisionShape with either default Values or the values of the bullet shape if one is provided.</span>
+<a name="l00976"></a>00976 <span class="comment">    /// @warning The only checking done on the bullet shape is to verify it is not a null pointer. If the Bullet shape fails to be of the appropriate kind correlating to ShapeToCreate then *undefined behavior* will occur.</span>
+<a name="l00977"></a>00977 <span class="comment"></span>    <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* MEZZ_LIB <a class="code" href="namespaceMezzanine.html#a945376a411966f62fad3f13e14550d74" title="Create A shape of a type and optionally model it after an example.">CreateShape</a>(<a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> ShapeToCreate, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name_, btCollisionShape* ShapeToModel);
+<a name="l00978"></a>00978 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l00979"></a>00979 <span class="preprocessor"></span><span class="comment">    /// @brief Create a CollisionShape from a snippet of xml</span>
+<a name="l00980"></a>00980 <span class="comment"></span><span class="comment">    /// @param OneNode A Node for any Collision Shape that can be instanstiated</span>
+<a name="l00981"></a>00981 <span class="comment"></span><span class="comment">    /// @return A pointer to a CollisionShape of the Correct Type with the values stored in the XML.</span>
+<a name="l00982"></a>00982 <span class="comment"></span>    <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* MEZZ_LIB <a class="code" href="namespaceMezzanine.html#a945376a411966f62fad3f13e14550d74" title="Create A shape of a type and optionally model it after an example.">CreateShape</a>(xml::Node OneNode);
+<a name="l00983"></a>00983 <span class="preprocessor">#endif  // \mezzxml</span>
+<a name="l00984"></a>00984 <span class="preprocessor"></span><span class="comment">    /// @internal</span>
+<a name="l00985"></a>00985 <span class="comment"></span><span class="comment">    /// @brief Convert from a Bullet Collision Shape to a CollisionShape::ShapeType</span>
+<a name="l00986"></a>00986 <span class="comment"></span><span class="comment">    /// @param BulletShapeType The ShapeType to Convert</span>
+<a name="l00987"></a>00987 <span class="comment"></span><span class="comment">    /// @return The corresponding CollisionShape::ShapeType to the passed in bullet Shape Type if asuitable match exists</span>
+<a name="l00988"></a>00988 <span class="comment"></span><span class="comment">    /// @throw The Mezzanine engine only uses a subset of Bullets shapes, a Mezzanine::Exception with be thrown in the event an unsupported one is passed in.</span>
+<a name="l00989"></a>00989 <span class="comment"></span>    <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> MEZZ_LIB <a class="code" href="namespaceMezzanine.html#af007af1ad839d251e61e95488ab78876" title="Convert from a Bullet Collision Shape to a CollisionShape::ShapeType.">BulletSapeTypeToShapeType</a>(<span class="keywordtype">int</span> BulletShapeType);<span class="comment"></span>
+<a name="l00990"></a>00990 <span class="comment">    /// @brief Get a string suitable for human eyes from a CollisionShape::ShapeType, may not be suitable for endusers.</span>
+<a name="l00991"></a>00991 <span class="comment">    /// @param ShapeToConvert The kind of shape you want a string for.</span>
+<a name="l00992"></a>00992 <span class="comment">    /// @return A String with human readable contents corresponding to the passed in type.</span>
+<a name="l00993"></a>00993 <span class="comment"></span>    <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> MEZZ_LIB <a class="code" href="namespaceMezzanine.html#a52369c62b87ecdbfbc6b82a572f21651" title="Get a string suitable for human eyes from a CollisionShape::ShapeType, may not be suitable for enduse...">ShapeTypeToString</a>(<a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> ShapeToConvert);<span class="comment"></span>
+<a name="l00994"></a>00994 <span class="comment">    /// @brief Convert a human readable string (as provided by ShapeTypeToString()) and convert it to a CollisionShape::ShapeType</span>
+<a name="l00995"></a>00995 <span class="comment">    /// @param TypeName A String that matches exactly what returns from ShapeTypeToString().</span>
+<a name="l00996"></a>00996 <span class="comment">    /// @return A valid CollisionShape::ShapeType if possible</span>
+<a name="l00997"></a>00997 <span class="comment">    /// @throw This throws a Mezzanine::Exception in the event of a gibberish name.</span>
+<a name="l00998"></a>00998 <span class="comment"></span>    <a class="code" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> MEZZ_LIB <a class="code" href="namespaceMezzanine.html#acae3fd66fbd56ed04a8d61bebee11769" title="Convert a human readable string (as provided by ShapeTypeToString()) and convert it to a CollisionSha...">StringToShapeType</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; TypeName);
+<a name="l00999"></a>00999 <span class="comment"></span>
+<a name="l01000"></a>01000 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01001"></a>01001 <span class="comment">    /// @class CollisionShapeDeSerializer</span>
+<a name="l01002"></a>01002 <span class="comment">    /// @brief A tool to aid in deserialization for the specific instances that DeSerialization CollisionShapes other ways does not make sense</span>
+<a name="l01003"></a>01003 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l01004"></a><a class="code" href="classMezzanine_1_1CollisionShapeDeSerializer.html">01004</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1CollisionShapeDeSerializer.html" title="A tool to aid in deserialization for the specific instances that DeSerialization CollisionShapes othe...">CollisionShapeDeSerializer</a> : <span class="keyword">public</span> DeSerializer &lt;CollisionShape&gt;
+<a name="l01005"></a>01005     {
+<a name="l01006"></a>01006 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l01007"></a>01007 <span class="preprocessor"></span>        <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l01008"></a>01008 <span class="comment">            /// @internal</span>
+<a name="l01009"></a>01009 <span class="comment">            /// @brief This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do</span>
+<a name="l01010"></a>01010 <span class="comment">            /// @param Stream the stream to deserialize from.</span>
+<a name="l01011"></a>01011 <span class="comment">            /// @return a pointer to the shape just created, this may or may not be added to the collision shape manager depending on implementation details</span>
+<a name="l01012"></a>01012 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* PerformDeSerialization(std::istream&amp; Stream);
+<a name="l01013"></a>01013         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l01014"></a>01014 <span class="comment">            /// @brief Convert An XML Node containing and one collision shape into a CollisionShape of the corresponding type</span>
+<a name="l01015"></a>01015 <span class="comment">            /// @param OneNode A reference to the XML node to reconstitute into a live class instance.</span>
+<a name="l01016"></a>01016 <span class="comment">            /// @details All items deserialized here will be added to the collision shape manager.</span>
+<a name="l01017"></a>01017 <span class="comment">            /// @return A pointer to the freshly deserialized and created class instance.</span>
+<a name="l01018"></a>01018 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* ProtoDeSerialize(<span class="keyword">const</span> xml::Node&amp; OneNode);<span class="comment"></span>
+<a name="l01019"></a>01019 <span class="comment">            /// @brief Create a collision shape from the serialized version in a stream.</span>
+<a name="l01020"></a>01020 <span class="comment">            /// @param Stream The std::istream to get the data from.</span>
+<a name="l01021"></a>01021 <span class="comment">            /// @details This performs less checking than the original to allow for DeSerialization of multiple kinds</span>
+<a name="l01022"></a>01022 <span class="comment">            /// of xml elements. Rather all the specific checking is done closer to the actual instantion of classes.</span>
+<a name="l01023"></a>01023 <span class="comment">            /// This add the DeSerialized shape to the collsion shape manager.</span>
+<a name="l01024"></a>01024 <span class="comment">            /// @return This returns the input stream after the xml document has been extracted from it.</span>
+<a name="l01025"></a>01025 <span class="comment"></span>            <span class="keyword">virtual</span> std::istream&amp; DeSerialize(std::istream&amp; Stream);<span class="comment"></span>
+<a name="l01026"></a>01026 <span class="comment">            /// @brief Create a collision shape from the serialized version in a stream.</span>
+<a name="l01027"></a>01027 <span class="comment">            /// @param Stream The std::istream to get the data from.</span>
+<a name="l01028"></a>01028 <span class="comment">            /// @details This adds the DeSerialized shape to the collsion shape manager.</span>
+<a name="l01029"></a>01029 <span class="comment">            /// @return This returns a pointer to the freshly created collsion shape</span>
+<a name="l01030"></a>01030 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* DeSerializeAndRetrieve(std::istream&amp; Stream);<span class="comment"></span>
+<a name="l01031"></a>01031 <span class="comment">            /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized</span>
+<a name="l01032"></a>01032 <span class="comment">            /// @return A String containing &quot;Shapes&quot;</span>
+<a name="l01033"></a>01033 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ContainerName() <span class="keyword">const</span>;
+<a name="l01034"></a>01034 <span class="preprocessor">#endif // \mezzxml</span>
+<a name="l01035"></a>01035 <span class="preprocessor"></span>    };
 <a name="l01036"></a>01036 
-<a name="l01037"></a>01037 
-<a name="l01038"></a>01038 <span class="preprocessor">#ifdef MEZZXML</span>
-<a name="l01039"></a>01039 <span class="preprocessor"></span><span class="comment">    /// @brief Serialize an CollisionShape and send it to a stream</span>
-<a name="l01040"></a>01040 <span class="comment"></span><span class="comment">    /// @param ShapeToSerialize The CollisionShape serialize</span>
-<a name="l01041"></a>01041 <span class="comment"></span><span class="comment">    /// @param stream the std::ostream to send the CollisionShape xml to.</span>
-<a name="l01042"></a>01042 <span class="comment"></span><span class="comment">    /// @return The ostream after the new data has been inserted.</span>
-<a name="l01043"></a>01043 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">Mezzanine::CollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01044"></a>01044 <span class="comment">    /// @brief Get an actor from an XML stream.</span>
-<a name="l01045"></a>01045 <span class="comment">    /// @param stream The stream to get it out of.</span>
-<a name="l01046"></a>01046 <span class="comment">    /// @param x The it you will get out of the stream.</span>
-<a name="l01047"></a>01047 <span class="comment">    /// @return This returns the input stream to allow operator chaining.</span>
-<a name="l01048"></a>01048 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">Mezzanine::CollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01049"></a>01049 <span class="comment">    /// @brief Converts an XML Node into a functional in memory construct.</span>
-<a name="l01050"></a>01050 <span class="comment">    /// @param OneNode The xml node that contains the deserialize class instance.</span>
-<a name="l01051"></a>01051 <span class="comment">    /// @param x The class instance to overwrite witht the proto serialized version in the node.</span>
-<a name="l01052"></a>01052 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">Mezzanine::CollisionShape</a>&amp; x);
-<a name="l01053"></a>01053 <span class="comment"></span>
-<a name="l01054"></a>01054 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01055"></a>01055 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes.">Mezzanine::PrimitiveCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01056"></a>01056 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01057"></a>01057 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes.">Mezzanine::PrimitiveCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01058"></a>01058 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01059"></a>01059 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes.">Mezzanine::PrimitiveCollisionShape</a>&amp; x);
-<a name="l01060"></a>01060 <span class="comment"></span>
-<a name="l01061"></a>01061 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01062"></a>01062 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">Mezzanine::FieldCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01063"></a>01063 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01064"></a>01064 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">Mezzanine::FieldCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01065"></a>01065 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01066"></a>01066 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">Mezzanine::FieldCollisionShape</a>&amp; x);
-<a name="l01067"></a>01067 <span class="comment"></span>
-<a name="l01068"></a>01068 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01069"></a>01069 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">Mezzanine::MeshCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01070"></a>01070 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01071"></a>01071 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">Mezzanine::MeshCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01072"></a>01072 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01073"></a>01073 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">Mezzanine::MeshCollisionShape</a>&amp; x);
-<a name="l01074"></a>01074 <span class="comment"></span>
-<a name="l01075"></a>01075 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01076"></a>01076 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1BoxCollisionShape.html" title="A box physics shape.">Mezzanine::BoxCollisionShape</a>&amp; ShapeToSerialize);
-<a name="l01077"></a>01077     <span class="comment">/* /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01078"></a>01078 <span class="comment">    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, Mezzanine::BoxCollisionShape&amp; x);</span><span class="comment"></span>
-<a name="l01079"></a>01079 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01080"></a>01080 <span class="comment"></span>    void operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::BoxCollisionShape&amp; x);*/
-<a name="l01081"></a>01081 <span class="comment"></span>
-<a name="l01082"></a>01082 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01083"></a>01083 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1CapsuleCollisionShape.html" title="A capsule physics shape.">Mezzanine::CapsuleCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01084"></a>01084 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01085"></a>01085 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1CapsuleCollisionShape.html" title="A capsule physics shape.">Mezzanine::CapsuleCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01086"></a>01086 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01087"></a>01087 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1CapsuleCollisionShape.html" title="A capsule physics shape.">Mezzanine::CapsuleCollisionShape</a>&amp; x);
-<a name="l01088"></a>01088 <span class="comment"></span>
-<a name="l01089"></a>01089 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01090"></a>01090 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1CompoundCollisionShape.html" title="A collision shape composed of many other collision shapes placed and oriented in local space...">Mezzanine::CompoundCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01091"></a>01091 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01092"></a>01092 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1CompoundCollisionShape.html" title="A collision shape composed of many other collision shapes placed and oriented in local space...">Mezzanine::CompoundCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01093"></a>01093 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01094"></a>01094 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1CompoundCollisionShape.html" title="A collision shape composed of many other collision shapes placed and oriented in local space...">Mezzanine::CompoundCollisionShape</a>&amp; x);
-<a name="l01095"></a>01095 <span class="comment"></span>
-<a name="l01096"></a>01096 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01097"></a>01097 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ConeCollisionShape.html" title="A cone physics shape.">Mezzanine::ConeCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01098"></a>01098 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01099"></a>01099 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ConeCollisionShape.html" title="A cone physics shape.">Mezzanine::ConeCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01100"></a>01100 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01101"></a>01101 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1ConeCollisionShape.html" title="A cone physics shape.">Mezzanine::ConeCollisionShape</a>&amp; x);
-<a name="l01102"></a>01102 <span class="comment"></span>
-<a name="l01103"></a>01103 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01104"></a>01104 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ConvexHullCollisionShape.html" title="A simple convex shape built from a low number of points in local space.">Mezzanine::ConvexHullCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01105"></a>01105 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01106"></a>01106 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ConvexHullCollisionShape.html" title="A simple convex shape built from a low number of points in local space.">Mezzanine::ConvexHullCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01107"></a>01107 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01108"></a>01108 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1ConvexHullCollisionShape.html" title="A simple convex shape built from a low number of points in local space.">Mezzanine::ConvexHullCollisionShape</a>&amp; x);
-<a name="l01109"></a>01109 <span class="comment"></span>
-<a name="l01110"></a>01110 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01111"></a>01111 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1CylinderCollisionShape.html" title="A cylinder physics shape.">Mezzanine::CylinderCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01112"></a>01112 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01113"></a>01113 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1CylinderCollisionShape.html" title="A cylinder physics shape.">Mezzanine::CylinderCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01114"></a>01114 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01115"></a>01115 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1CylinderCollisionShape.html" title="A cylinder physics shape.">Mezzanine::CylinderCollisionShape</a>&amp; x);
-<a name="l01116"></a>01116 <span class="comment"></span>
-<a name="l01117"></a>01117 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01118"></a>01118 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MultiSphereCollisionShape.html" title="A physics shape comprised of multiple sphere&amp;#39;s placed in local space.">Mezzanine::MultiSphereCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01119"></a>01119 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01120"></a>01120 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1MultiSphereCollisionShape.html" title="A physics shape comprised of multiple sphere&amp;#39;s placed in local space.">Mezzanine::MultiSphereCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01121"></a>01121 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01122"></a>01122 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1MultiSphereCollisionShape.html" title="A physics shape comprised of multiple sphere&amp;#39;s placed in local space.">Mezzanine::MultiSphereCollisionShape</a>&amp; x);
-<a name="l01123"></a>01123 <span class="comment"></span>
-<a name="l01124"></a>01124 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01125"></a>01125 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1SphereCollisionShape.html" title="A sphere physics shape.">Mezzanine::SphereCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01126"></a>01126 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01127"></a>01127 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1SphereCollisionShape.html" title="A sphere physics shape.">Mezzanine::SphereCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01128"></a>01128 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01129"></a>01129 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1SphereCollisionShape.html" title="A sphere physics shape.">Mezzanine::SphereCollisionShape</a>&amp; x);
-<a name="l01130"></a>01130 <span class="comment"></span>
-<a name="l01131"></a>01131 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01132"></a>01132 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::DynamicMeshCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01133"></a>01133 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01134"></a>01134 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::DynamicMeshCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01135"></a>01135 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01136"></a>01136 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::DynamicMeshCollisionShape</a>&amp; x);
-<a name="l01137"></a>01137 <span class="comment"></span>
-<a name="l01138"></a>01138 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01139"></a>01139 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html">Mezzanine::HeightfieldCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01140"></a>01140 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01141"></a>01141 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html">Mezzanine::HeightfieldCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01142"></a>01142 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01143"></a>01143 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html">Mezzanine::HeightfieldCollisionShape</a>&amp; x);
-<a name="l01144"></a>01144 <span class="comment"></span>
-<a name="l01145"></a>01145 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01146"></a>01146 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html">Mezzanine::PlaneCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01147"></a>01147 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01148"></a>01148 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html">Mezzanine::PlaneCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01149"></a>01149 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01150"></a>01150 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html">Mezzanine::PlaneCollisionShape</a>&amp; x);
-<a name="l01151"></a>01151 <span class="comment"></span>
-<a name="l01152"></a>01152 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01153"></a>01153 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::ActorSoftCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01154"></a>01154 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01155"></a>01155 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::ActorSoftCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01156"></a>01156 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01157"></a>01157 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::ActorSoftCollisionShape</a>&amp; x);
-<a name="l01158"></a>01158 <span class="comment"></span>
-<a name="l01159"></a>01159 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
-<a name="l01160"></a>01160 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::StaticMeshCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
-<a name="l01161"></a>01161 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01162"></a>01162 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::StaticMeshCollisionShape</a>&amp; x);<span class="comment"></span>
-<a name="l01163"></a>01163 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
-<a name="l01164"></a>01164 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::StaticMeshCollisionShape</a>&amp; x);
-<a name="l01165"></a>01165 <span class="preprocessor">#endif  // \mezzxml</span>
-<a name="l01166"></a>01166 <span class="preprocessor"></span>
-<a name="l01167"></a>01167 
-<a name="l01168"></a>01168 
+<a name="l01037"></a>01037 }<span class="comment">//Mezzanine</span>
+<a name="l01038"></a>01038 
+<a name="l01039"></a>01039 
+<a name="l01040"></a>01040 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l01041"></a>01041 <span class="preprocessor"></span><span class="comment">    /// @brief Serialize an CollisionShape and send it to a stream</span>
+<a name="l01042"></a>01042 <span class="comment"></span><span class="comment">    /// @param ShapeToSerialize The CollisionShape serialize</span>
+<a name="l01043"></a>01043 <span class="comment"></span><span class="comment">    /// @param stream the std::ostream to send the CollisionShape xml to.</span>
+<a name="l01044"></a>01044 <span class="comment"></span><span class="comment">    /// @return The ostream after the new data has been inserted.</span>
+<a name="l01045"></a>01045 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">Mezzanine::CollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01046"></a>01046 <span class="comment">    /// @brief Get an actor from an XML stream.</span>
+<a name="l01047"></a>01047 <span class="comment">    /// @param stream The stream to get it out of.</span>
+<a name="l01048"></a>01048 <span class="comment">    /// @param x The it you will get out of the stream.</span>
+<a name="l01049"></a>01049 <span class="comment">    /// @return This returns the input stream to allow operator chaining.</span>
+<a name="l01050"></a>01050 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">Mezzanine::CollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01051"></a>01051 <span class="comment">    /// @brief Converts an XML Node into a functional in memory construct.</span>
+<a name="l01052"></a>01052 <span class="comment">    /// @param OneNode The xml node that contains the deserialize class instance.</span>
+<a name="l01053"></a>01053 <span class="comment">    /// @param x The class instance to overwrite witht the proto serialized version in the node.</span>
+<a name="l01054"></a>01054 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">Mezzanine::CollisionShape</a>&amp; x);
+<a name="l01055"></a>01055 <span class="comment"></span>
+<a name="l01056"></a>01056 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01057"></a>01057 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes.">Mezzanine::PrimitiveCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01058"></a>01058 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01059"></a>01059 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes.">Mezzanine::PrimitiveCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01060"></a>01060 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01061"></a>01061 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes.">Mezzanine::PrimitiveCollisionShape</a>&amp; x);
+<a name="l01062"></a>01062 <span class="comment"></span>
+<a name="l01063"></a>01063 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01064"></a>01064 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">Mezzanine::FieldCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01065"></a>01065 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01066"></a>01066 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">Mezzanine::FieldCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01067"></a>01067 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01068"></a>01068 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes.">Mezzanine::FieldCollisionShape</a>&amp; x);
+<a name="l01069"></a>01069 <span class="comment"></span>
+<a name="l01070"></a>01070 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01071"></a>01071 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">Mezzanine::MeshCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01072"></a>01072 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01073"></a>01073 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">Mezzanine::MeshCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01074"></a>01074 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01075"></a>01075 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">Mezzanine::MeshCollisionShape</a>&amp; x);
+<a name="l01076"></a>01076 <span class="comment"></span>
+<a name="l01077"></a>01077 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01078"></a>01078 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1BoxCollisionShape.html" title="A box physics shape.">Mezzanine::BoxCollisionShape</a>&amp; ShapeToSerialize);
+<a name="l01079"></a>01079     <span class="comment">/* /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01080"></a>01080 <span class="comment">    std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, Mezzanine::BoxCollisionShape&amp; x);</span><span class="comment"></span>
+<a name="l01081"></a>01081 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01082"></a>01082 <span class="comment"></span>    void operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::BoxCollisionShape&amp; x);*/
+<a name="l01083"></a>01083 <span class="comment"></span>
+<a name="l01084"></a>01084 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01085"></a>01085 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1CapsuleCollisionShape.html" title="A capsule physics shape.">Mezzanine::CapsuleCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01086"></a>01086 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01087"></a>01087 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1CapsuleCollisionShape.html" title="A capsule physics shape.">Mezzanine::CapsuleCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01088"></a>01088 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01089"></a>01089 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1CapsuleCollisionShape.html" title="A capsule physics shape.">Mezzanine::CapsuleCollisionShape</a>&amp; x);
+<a name="l01090"></a>01090 <span class="comment"></span>
+<a name="l01091"></a>01091 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01092"></a>01092 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1CompoundCollisionShape.html" title="A collision shape composed of many other collision shapes placed and oriented in local space...">Mezzanine::CompoundCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01093"></a>01093 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01094"></a>01094 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1CompoundCollisionShape.html" title="A collision shape composed of many other collision shapes placed and oriented in local space...">Mezzanine::CompoundCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01095"></a>01095 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01096"></a>01096 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1CompoundCollisionShape.html" title="A collision shape composed of many other collision shapes placed and oriented in local space...">Mezzanine::CompoundCollisionShape</a>&amp; x);
+<a name="l01097"></a>01097 <span class="comment"></span>
+<a name="l01098"></a>01098 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01099"></a>01099 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ConeCollisionShape.html" title="A cone physics shape.">Mezzanine::ConeCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01100"></a>01100 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01101"></a>01101 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ConeCollisionShape.html" title="A cone physics shape.">Mezzanine::ConeCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01102"></a>01102 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01103"></a>01103 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1ConeCollisionShape.html" title="A cone physics shape.">Mezzanine::ConeCollisionShape</a>&amp; x);
+<a name="l01104"></a>01104 <span class="comment"></span>
+<a name="l01105"></a>01105 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01106"></a>01106 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ConvexHullCollisionShape.html" title="A simple convex shape built from a low number of points in local space.">Mezzanine::ConvexHullCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01107"></a>01107 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01108"></a>01108 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ConvexHullCollisionShape.html" title="A simple convex shape built from a low number of points in local space.">Mezzanine::ConvexHullCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01109"></a>01109 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01110"></a>01110 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1ConvexHullCollisionShape.html" title="A simple convex shape built from a low number of points in local space.">Mezzanine::ConvexHullCollisionShape</a>&amp; x);
+<a name="l01111"></a>01111 <span class="comment"></span>
+<a name="l01112"></a>01112 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01113"></a>01113 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1CylinderCollisionShape.html" title="A cylinder physics shape.">Mezzanine::CylinderCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01114"></a>01114 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01115"></a>01115 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1CylinderCollisionShape.html" title="A cylinder physics shape.">Mezzanine::CylinderCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01116"></a>01116 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01117"></a>01117 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1CylinderCollisionShape.html" title="A cylinder physics shape.">Mezzanine::CylinderCollisionShape</a>&amp; x);
+<a name="l01118"></a>01118 <span class="comment"></span>
+<a name="l01119"></a>01119 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01120"></a>01120 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MultiSphereCollisionShape.html" title="A physics shape comprised of multiple sphere&amp;#39;s placed in local space.">Mezzanine::MultiSphereCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01121"></a>01121 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01122"></a>01122 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1MultiSphereCollisionShape.html" title="A physics shape comprised of multiple sphere&amp;#39;s placed in local space.">Mezzanine::MultiSphereCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01123"></a>01123 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01124"></a>01124 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1MultiSphereCollisionShape.html" title="A physics shape comprised of multiple sphere&amp;#39;s placed in local space.">Mezzanine::MultiSphereCollisionShape</a>&amp; x);
+<a name="l01125"></a>01125 <span class="comment"></span>
+<a name="l01126"></a>01126 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01127"></a>01127 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1SphereCollisionShape.html" title="A sphere physics shape.">Mezzanine::SphereCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01128"></a>01128 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01129"></a>01129 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1SphereCollisionShape.html" title="A sphere physics shape.">Mezzanine::SphereCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01130"></a>01130 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01131"></a>01131 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1SphereCollisionShape.html" title="A sphere physics shape.">Mezzanine::SphereCollisionShape</a>&amp; x);
+<a name="l01132"></a>01132 <span class="comment"></span>
+<a name="l01133"></a>01133 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01134"></a>01134 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::DynamicMeshCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01135"></a>01135 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01136"></a>01136 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::DynamicMeshCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01137"></a>01137 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01138"></a>01138 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::DynamicMeshCollisionShape</a>&amp; x);
+<a name="l01139"></a>01139 <span class="comment"></span>
+<a name="l01140"></a>01140 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01141"></a>01141 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion.">Mezzanine::HeightfieldCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01142"></a>01142 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01143"></a>01143 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion.">Mezzanine::HeightfieldCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01144"></a>01144 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01145"></a>01145 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion.">Mezzanine::HeightfieldCollisionShape</a>&amp; x);
+<a name="l01146"></a>01146 <span class="comment"></span>
+<a name="l01147"></a>01147 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01148"></a>01148 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size.">Mezzanine::PlaneCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01149"></a>01149 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01150"></a>01150 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size.">Mezzanine::PlaneCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01151"></a>01151 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01152"></a>01152 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size.">Mezzanine::PlaneCollisionShape</a>&amp; x);
+<a name="l01153"></a>01153 <span class="comment"></span>
+<a name="l01154"></a>01154 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01155"></a>01155 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::ActorSoftCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01156"></a>01156 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01157"></a>01157 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::ActorSoftCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01158"></a>01158 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01159"></a>01159 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::ActorSoftCollisionShape</a>&amp; x);
+<a name="l01160"></a>01160 <span class="comment"></span>
+<a name="l01161"></a>01161 <span class="comment">    /// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::CollisionShape&amp; ShapeToSerialize)</span>
+<a name="l01162"></a>01162 <span class="comment"></span>    std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::StaticMeshCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span>
+<a name="l01163"></a>01163 <span class="comment">    /// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01164"></a>01164 <span class="comment"></span>    std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::StaticMeshCollisionShape</a>&amp; x);<span class="comment"></span>
+<a name="l01165"></a>01165 <span class="comment">    /// @copydoc operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::CollisionShape&amp; x)</span>
+<a name="l01166"></a>01166 <span class="comment"></span>    <span class="keywordtype">void</span> MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">Mezzanine::StaticMeshCollisionShape</a>&amp; x);
+<a name="l01167"></a>01167 <span class="preprocessor">#endif  // \mezzxml</span>
+<a name="l01168"></a>01168 <span class="preprocessor"></span>
 <a name="l01169"></a>01169 
 <a name="l01170"></a>01170 
-<a name="l01171"></a>01171 <span class="preprocessor">#endif</span>
+<a name="l01171"></a>01171 
+<a name="l01172"></a>01172 
+<a name="l01173"></a>01173 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -1250,6 +1252,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

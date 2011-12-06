@@ -126,9 +126,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00062"></a>00062 <span class="preprocessor"></span>
 <a name="l00063"></a>00063 <span class="keyword">namespace </span>Mezzanine
 <a name="l00064"></a>00064 {
-<a name="l00065"></a>00065     <a class="code" href="classMezzanine_1_1AreaEffect.html#a2b2699c0baff3ed6eb6e19f2e7d23d7c" title="Constructor.">AreaEffect::AreaEffect</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;name, <span class="keyword">const</span> Vector3&amp; Location)
-<a name="l00066"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a2b2699c0baff3ed6eb6e19f2e7d23d7c">00066</a>         : Name(name),
-<a name="l00067"></a>00067           FieldShape(NULL),
+<a name="l00065"></a>00065     <a class="code" href="classMezzanine_1_1AreaEffect.html#a58cc7fb0725297113bbc32d619e57705" title="Constructor.">AreaEffect::AreaEffect</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;name, <span class="keyword">const</span> Vector3&amp; Location)
+<a name="l00066"></a>00066         : Name(name),
+<a name="l00067"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a58cc7fb0725297113bbc32d619e57705">00067</a>           FieldShape(NULL),
 <a name="l00068"></a>00068           FieldMesh(NULL),
 <a name="l00069"></a>00069           GraphicsNode(NULL),
 <a name="l00070"></a>00070           GraphicsObject(NULL)
@@ -138,15 +138,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00074"></a>00074     }
 <a name="l00075"></a>00075 
 <a name="l00076"></a>00076     <a class="code" href="classMezzanine_1_1AreaEffect.html#a1e825ce1dcb2d78c190b17d7bff7306c" title="Destructor.">AreaEffect::~AreaEffect</a>()
-<a name="l00077"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a1e825ce1dcb2d78c190b17d7bff7306c">00077</a>     {
-<a name="l00078"></a>00078         <span class="keyword">delete</span> (<a class="code" href="classMezzanine_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>*)<a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getUserPointer();
+<a name="l00077"></a>00077     {
+<a name="l00078"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a1e825ce1dcb2d78c190b17d7bff7306c">00078</a>         <span class="keyword">delete</span> (<a class="code" href="classMezzanine_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>*)<a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getUserPointer();
 <a name="l00079"></a>00079         <span class="keyword">delete</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>;
 <a name="l00080"></a>00080         <a class="code" href="classMezzanine_1_1AreaEffect.html#ae6d32d28fbe74eec48eaf3f7b5550c1c" title="Convenience function for the common starting steps in making a graphics object.">PreGraphicsMeshCreate</a>();
 <a name="l00081"></a>00081     }
 <a name="l00082"></a>00082 
 <a name="l00083"></a>00083     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a198ad58cec706d508785cbd8e319ba54" title="Constructor Function.">AreaEffect::CreateGhostObject</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location)
-<a name="l00084"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a198ad58cec706d508785cbd8e319ba54">00084</a>     {
-<a name="l00085"></a>00085         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a> = <span class="keyword">new</span> btPairCachingGhostObject();
+<a name="l00084"></a>00084     {
+<a name="l00085"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a198ad58cec706d508785cbd8e319ba54">00085</a>         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a> = <span class="keyword">new</span> btPairCachingGhostObject();
 <a name="l00086"></a>00086         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;setCollisionFlags(<a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 <a name="l00087"></a>00087         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().setOrigin(Location.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>());
 <a name="l00088"></a>00088         <a class="code" href="classMezzanine_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>* ActorRef = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>(Mezzanine::WOT_AEUnknown,<span class="keyword">this</span>);
@@ -154,8 +154,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00090"></a>00090     }
 <a name="l00091"></a>00091 
 <a name="l00092"></a>00092     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#ae6d32d28fbe74eec48eaf3f7b5550c1c" title="Convenience function for the common starting steps in making a graphics object.">AreaEffect::PreGraphicsMeshCreate</a>()
-<a name="l00093"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#ae6d32d28fbe74eec48eaf3f7b5550c1c">00093</a>     {
-<a name="l00094"></a>00094         Ogre::SceneManager* OgreManager = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">SceneManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>();
+<a name="l00093"></a>00093     {
+<a name="l00094"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#ae6d32d28fbe74eec48eaf3f7b5550c1c">00094</a>         Ogre::SceneManager* OgreManager = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">SceneManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>();
 <a name="l00095"></a>00095         <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1AreaEffect.html#a673167414883d918da6fb57f340e850e" title="The Ogre object being added to the scene graph.">GraphicsObject</a>)
 <a name="l00096"></a>00096         {
 <a name="l00097"></a>00097             OgreManager-&gt;destroyEntity(<a class="code" href="classMezzanine_1_1AreaEffect.html#a673167414883d918da6fb57f340e850e" title="The Ogre object being added to the scene graph.">GraphicsObject</a>);
@@ -168,15 +168,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00104"></a>00104         }
 <a name="l00105"></a>00105     }
 <a name="l00106"></a>00106 
-<a name="l00107"></a>00107     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a4a81d9d5920f375aa9a5ff27c1de97e0" title="Helper function for adding actors to relevant lists.">AreaEffect::AddActorToList</a>(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor)
-<a name="l00108"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a4a81d9d5920f375aa9a5ff27c1de97e0">00108</a>     {
-<a name="l00109"></a>00109         <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a7e333c5e52fd5d7ae892f4691dbc16" title="Container of actors that have been added since last frame.">AddedActors</a>.push_back(Actor);
+<a name="l00107"></a>00107     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a4a81d9d5920f375aa9a5ff27c1de97e0" title="Helper function for adding actors to relevant lists.">AreaEffect::AddActorToList</a>(ActorBase* Actor)
+<a name="l00108"></a>00108     {
+<a name="l00109"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a4a81d9d5920f375aa9a5ff27c1de97e0">00109</a>         <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a7e333c5e52fd5d7ae892f4691dbc16" title="Container of actors that have been added since last frame.">AddedActors</a>.push_back(Actor);
 <a name="l00110"></a>00110         <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca" title="Container for actors within the field area.">OverlappingActors</a>.push_back(Actor);
 <a name="l00111"></a>00111     }
 <a name="l00112"></a>00112 
 <a name="l00113"></a>00113     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a676a36ba3fb8b0d7ced951f1b5010852" title="Helper function for adding actors to relevant lists.">AreaEffect::RemoveActorFromList</a>(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor)
-<a name="l00114"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a676a36ba3fb8b0d7ced951f1b5010852">00114</a>     {
-<a name="l00115"></a>00115         <a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>.push_back(Actor);
+<a name="l00114"></a>00114     {
+<a name="l00115"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a676a36ba3fb8b0d7ced951f1b5010852">00115</a>         <a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>.push_back(Actor);
 <a name="l00116"></a>00116         <span class="keywordflow">for</span>( std::list&lt;ActorBase*&gt;::iterator c=<a class="code" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca" title="Container for actors within the field area.">OverlappingActors</a>.begin(); c!=<a class="code" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca" title="Container for actors within the field area.">OverlappingActors</a>.end(); c++)
 <a name="l00117"></a>00117         {
 <a name="l00118"></a>00118             <span class="keywordflow">if</span> ( Actor == (*c) )
@@ -187,8 +187,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00123"></a>00123     }
 <a name="l00124"></a>00124 
 <a name="l00125"></a>00125     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#aee19befcb794b85f13da4e427c2be42d" title="Updates the actors listed as within the field.">AreaEffect::UpdateActorList</a>()
-<a name="l00126"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#aee19befcb794b85f13da4e427c2be42d">00126</a>     {
-<a name="l00127"></a>00127         <span class="keywordflow">if</span> ( !<a class="code" href="classMezzanine_1_1AreaEffect.html#a9a7e333c5e52fd5d7ae892f4691dbc16" title="Container of actors that have been added since last frame.">AddedActors</a>.empty() )
+<a name="l00126"></a>00126     {
+<a name="l00127"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#aee19befcb794b85f13da4e427c2be42d">00127</a>         <span class="keywordflow">if</span> ( !<a class="code" href="classMezzanine_1_1AreaEffect.html#a9a7e333c5e52fd5d7ae892f4691dbc16" title="Container of actors that have been added since last frame.">AddedActors</a>.empty() )
 <a name="l00128"></a>00128             <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a7e333c5e52fd5d7ae892f4691dbc16" title="Container of actors that have been added since last frame.">AddedActors</a>.clear();
 <a name="l00129"></a>00129         <span class="keywordflow">if</span> ( !<a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>.empty() )
 <a name="l00130"></a>00130             <a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>.clear();
@@ -230,7 +230,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00166"></a>00166                     <a class="code" href="classMezzanine_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>* ActorRef = (<a class="code" href="classMezzanine_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>*)(ColObj-&gt;getUserPointer());
 <a name="l00167"></a>00167                     <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor = NULL;
 <a name="l00168"></a>00168                     <span class="keywordflow">if</span>(Mezzanine::WOT_TerrainFirst &gt; ActorRef-&gt;<a class="code" href="classMezzanine_1_1ObjectReference.html#af7bca8f5979bf073eb96aa80508973e4" title="Gets the type of object this class references.">GetType</a>())
-<a name="l00169"></a>00169                         Actor = (<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>*)ActorRef-&gt;<a class="code" href="classMezzanine_1_1ObjectReference.html#a0e4981f938a3a5dadf3697a649ef3e70" title="Gets the object this class references.">GetObject</a>();
+<a name="l00169"></a>00169                         Actor = (<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>*)ActorRef-&gt;<a class="code" href="classMezzanine_1_1ObjectReference.html#ad0be2b6ed910bbf8d68f2de89af64973" title="Gets the object this class references.">GetObject</a>();
 <a name="l00170"></a>00170                     <span class="keywordflow">else</span>
 <a name="l00171"></a>00171                         <span class="keywordflow">continue</span>;
 <a name="l00172"></a>00172                     <span class="comment">// Check list for the actor in the pair.</span>
@@ -260,7 +260,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00196"></a>00196                 <span class="keywordflow">if</span> ( (*bit) == false )
 <a name="l00197"></a>00197                 {
 <a name="l00198"></a>00198                     bit = Tracker.erase(bit);
-<a name="l00199"></a>00199                     <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Act = (*sit);
+<a name="l00199"></a>00199                     ActorBase* Act = (*sit);
 <a name="l00200"></a>00200                     <a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>.push_back(Act);
 <a name="l00201"></a>00201                     sit = <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca" title="Container for actors within the field area.">OverlappingActors</a>.erase(sit);
 <a name="l00202"></a>00202                 }<span class="keywordflow">else</span>{
@@ -397,68 +397,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00333"></a>00333 <span class="comment">        }// */</span>
 <a name="l00334"></a>00334     }
 <a name="l00335"></a>00335 
-<a name="l00336"></a>00336     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a759a0a5f4becf94c87aff85b0681f663" title="Sets the shape of this AreaEffect.">AreaEffect::SetFieldShape</a>(<a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* FieldShape)
-<a name="l00337"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a759a0a5f4becf94c87aff85b0681f663">00337</a>     {
-<a name="l00338"></a>00338         this-&gt;FieldShape = <a class="code" href="classMezzanine_1_1AreaEffect.html#a54f08718bc742934f2ef6b4bd978c9d2" title="Stores the shape of the AE field.">FieldShape</a>;
-<a name="l00339"></a>00339         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;setCollisionShape(this-&gt;FieldShape-&gt;<a class="code" href="classMezzanine_1_1CollisionShape.html#a0a5d6eb69c26665051ebb2b9d8004802" title="Gets the internal shape pointer this collision shape is based on.">GetBulletShape</a>());
+<a name="l00336"></a>00336     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a759a0a5f4becf94c87aff85b0681f663" title="Sets the shape of this AreaEffect.">AreaEffect::SetFieldShape</a>(CollisionShape* FieldShape)
+<a name="l00337"></a>00337     {
+<a name="l00338"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a759a0a5f4becf94c87aff85b0681f663">00338</a>         this-&gt;FieldShape = <a class="code" href="classMezzanine_1_1AreaEffect.html#a54f08718bc742934f2ef6b4bd978c9d2" title="Stores the shape of the AE field.">FieldShape</a>;
+<a name="l00339"></a>00339         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;setCollisionShape(this-&gt;FieldShape-&gt;GetBulletShape());
 <a name="l00340"></a>00340         <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">CollisionShapeManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1CollisionShapeManager.html#a9873202c93a5d70327219cc700948908" title="Stores a pre-made shape in this manager.">StoreShape</a>(this-&gt;FieldShape);
 <a name="l00341"></a>00341     }
 <a name="l00342"></a>00342 
 <a name="l00343"></a>00343     <a class="code" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a>* <a class="code" href="classMezzanine_1_1AreaEffect.html#a2204a7b0f004778bb27f38d65fa9e4df" title="Gets the current shape of the AreaEffect.">AreaEffect::GetFieldShape</a>()<span class="keyword"> const</span>
-<a name="l00344"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a2204a7b0f004778bb27f38d65fa9e4df">00344</a> <span class="keyword">    </span>{
-<a name="l00345"></a>00345         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a54f08718bc742934f2ef6b4bd978c9d2" title="Stores the shape of the AE field.">FieldShape</a>;
+<a name="l00344"></a>00344 <span class="keyword">    </span>{
+<a name="l00345"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a2204a7b0f004778bb27f38d65fa9e4df">00345</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a54f08718bc742934f2ef6b4bd978c9d2" title="Stores the shape of the AE field.">FieldShape</a>;
 <a name="l00346"></a>00346     }
 <a name="l00347"></a>00347 
 <a name="l00348"></a>00348     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#aac92fc4ba682d509f6385e999f68c75d" title="Sets the scale of the shape of the field.">AreaEffect::ScaleFieldShape</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Scale)
-<a name="l00349"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#aac92fc4ba682d509f6385e999f68c75d">00349</a>     {
-<a name="l00350"></a>00350         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getCollisionShape()-&gt;setLocalScaling(Scale.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00349"></a>00349     {
+<a name="l00350"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#aac92fc4ba682d509f6385e999f68c75d">00350</a>         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getCollisionShape()-&gt;setLocalScaling(Scale.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>());
 <a name="l00351"></a>00351     }
 <a name="l00352"></a>00352 
 <a name="l00353"></a>00353     <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1AreaEffect.html#a7e80ddc1cb411012d80a99859bb865f7" title="Gets the scale of the shape of the field.">AreaEffect::GetFieldShapeScale</a>()<span class="keyword"> const</span>
-<a name="l00354"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a7e80ddc1cb411012d80a99859bb865f7">00354</a> <span class="keyword">    </span>{
-<a name="l00355"></a>00355         <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Scale(<a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getCollisionShape()-&gt;getLocalScaling());
+<a name="l00354"></a>00354 <span class="keyword">    </span>{
+<a name="l00355"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a7e80ddc1cb411012d80a99859bb865f7">00355</a>         <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Scale(<a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getCollisionShape()-&gt;getLocalScaling());
 <a name="l00356"></a>00356         <span class="keywordflow">return</span> Scale;
 <a name="l00357"></a>00357     }
 <a name="l00358"></a>00358 
 <a name="l00359"></a>00359     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a4dd22757bc627242de169e31a1717139" title="Sets the origin for the area effect.">AreaEffect::SetLocation</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location)
-<a name="l00360"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a4dd22757bc627242de169e31a1717139">00360</a>     {
-<a name="l00361"></a>00361         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().setOrigin(Location.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00360"></a>00360     {
+<a name="l00361"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a4dd22757bc627242de169e31a1717139">00361</a>         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().setOrigin(Location.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>());
 <a name="l00362"></a>00362         <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1AreaEffect.html#a6f025b9cd2ff505618eeaf6640319ab9" title="Ogre node required to adding a graohical representation to the scene graph.">GraphicsNode</a>)
 <a name="l00363"></a>00363             <a class="code" href="classMezzanine_1_1AreaEffect.html#a6f025b9cd2ff505618eeaf6640319ab9" title="Ogre node required to adding a graohical representation to the scene graph.">GraphicsNode</a>-&gt;setPosition(Location.<a class="code" href="classMezzanine_1_1Vector3.html#a2948167508c456d64032acfc8c2f6fd8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
 <a name="l00364"></a>00364     }
 <a name="l00365"></a>00365 
 <a name="l00366"></a>00366     <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1AreaEffect.html#a37d04f8e6d6e8451348ee60fd083968b" title="Gets the origin for the area effect.">AreaEffect::GetLocation</a>()<span class="keyword"> const</span>
-<a name="l00367"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a37d04f8e6d6e8451348ee60fd083968b">00367</a> <span class="keyword">    </span>{
-<a name="l00368"></a>00368         <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Loc(<a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().getOrigin());
+<a name="l00367"></a>00367 <span class="keyword">    </span>{
+<a name="l00368"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a37d04f8e6d6e8451348ee60fd083968b">00368</a>         <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Loc(<a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().getOrigin());
 <a name="l00369"></a>00369         <span class="keywordflow">return</span> Loc;
 <a name="l00370"></a>00370     }
 <a name="l00371"></a>00371 
 <a name="l00372"></a>00372     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a62bcda0a0c2a95b8f1ccdfe2cd3d1018" title="Sets the orientation of the area effect.">AreaEffect::SetOrientation</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Rotation)
-<a name="l00373"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a62bcda0a0c2a95b8f1ccdfe2cd3d1018">00373</a>     {
-<a name="l00374"></a>00374         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().setRotation(Rotation.<a class="code" href="classMezzanine_1_1Quaternion.html#a6d6b23f7ca6e8521873cd7c6198d7613" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>());
+<a name="l00373"></a>00373     {
+<a name="l00374"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a62bcda0a0c2a95b8f1ccdfe2cd3d1018">00374</a>         <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().setRotation(Rotation.<a class="code" href="classMezzanine_1_1Quaternion.html#a6d6b23f7ca6e8521873cd7c6198d7613" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>());
 <a name="l00375"></a>00375         <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1AreaEffect.html#a6f025b9cd2ff505618eeaf6640319ab9" title="Ogre node required to adding a graohical representation to the scene graph.">GraphicsNode</a>)
 <a name="l00376"></a>00376             <a class="code" href="classMezzanine_1_1AreaEffect.html#a6f025b9cd2ff505618eeaf6640319ab9" title="Ogre node required to adding a graohical representation to the scene graph.">GraphicsNode</a>-&gt;setOrientation(Rotation.<a class="code" href="classMezzanine_1_1Quaternion.html#a152abb6ccfe1c9dfb22218fd54b84863" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>());
 <a name="l00377"></a>00377     }
 <a name="l00378"></a>00378 
 <a name="l00379"></a>00379     <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> <a class="code" href="classMezzanine_1_1AreaEffect.html#a658d69036a307f232b88aafcab3d02c1" title="Gets the orientation of the area effect.">AreaEffect::GetOrientation</a>()
-<a name="l00380"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a658d69036a307f232b88aafcab3d02c1">00380</a>     {
-<a name="l00381"></a>00381         <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rot(<a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().getRotation());
+<a name="l00380"></a>00380     {
+<a name="l00381"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a658d69036a307f232b88aafcab3d02c1">00381</a>         <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rot(<a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().getRotation());
 <a name="l00382"></a>00382         <span class="keywordflow">return</span> Rot;
 <a name="l00383"></a>00383     }
 <a name="l00384"></a>00384 
 <a name="l00385"></a>00385     <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="classMezzanine_1_1AreaEffect.html#ae0205e57786da97300357d7ac1afd180" title="Gets the Area Effects name.">AreaEffect::GetName</a>()<span class="keyword"> const</span>
-<a name="l00386"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#ae0205e57786da97300357d7ac1afd180">00386</a> <span class="keyword">    </span>{
-<a name="l00387"></a>00387         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#ad2b27c925a2eaa40fe03db4205f3de39" title="The name of the Area Effect.">Name</a>;
+<a name="l00386"></a>00386 <span class="keyword">    </span>{
+<a name="l00387"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#ae0205e57786da97300357d7ac1afd180">00387</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#ad2b27c925a2eaa40fe03db4205f3de39" title="The name of the Area Effect.">Name</a>;
 <a name="l00388"></a>00388     }
 <a name="l00389"></a>00389 
 <a name="l00390"></a>00390     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#aee16d398d7788f6e0fd5e597bcdbd106" title="Checks to see if the ghost object is currently in the world.">AreaEffect::IsInWorld</a>()<span class="keyword"> const</span>
-<a name="l00391"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#aee16d398d7788f6e0fd5e597bcdbd106">00391</a> <span class="keyword">    </span>{
-<a name="l00392"></a>00392         <span class="keywordflow">return</span> 0 != <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getBroadphaseHandle();
+<a name="l00391"></a>00391 <span class="keyword">    </span>{
+<a name="l00392"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#aee16d398d7788f6e0fd5e597bcdbd106">00392</a>         <span class="keywordflow">return</span> 0 != <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getBroadphaseHandle();
 <a name="l00393"></a>00393     }
 <a name="l00394"></a>00394 
 <a name="l00395"></a>00395     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#adfecf112bad175a57cdf147cb0d0aaa8" title="Sets(or un-sets) this AE as a static object.">AreaEffect::SetStatic</a>(<span class="keywordtype">bool</span> Static)
-<a name="l00396"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#adfecf112bad175a57cdf147cb0d0aaa8">00396</a>     {
-<a name="l00397"></a>00397         <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1AreaEffect.html#aee16d398d7788f6e0fd5e597bcdbd106" title="Checks to see if the ghost object is currently in the world.">IsInWorld</a>())
+<a name="l00396"></a>00396     {
+<a name="l00397"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#adfecf112bad175a57cdf147cb0d0aaa8">00397</a>         <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1AreaEffect.html#aee16d398d7788f6e0fd5e597bcdbd106" title="Checks to see if the ghost object is currently in the world.">IsInWorld</a>())
 <a name="l00398"></a>00398         {
 <a name="l00399"></a>00399             <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">PhysicsManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1PhysicsManager.html#afb424692ede644ccef8327aae1ea9674" title="Removes an area effect from the world.">RemoveAreaEffect</a>(<span class="keyword">this</span>);
 <a name="l00400"></a>00400             <span class="keywordtype">short</span> flags = Static ? btCollisionObject::CF_STATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE : btCollisionObject::CF_NO_CONTACT_RESPONSE;
@@ -471,13 +471,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00407"></a>00407     }
 <a name="l00408"></a>00408 
 <a name="l00409"></a>00409     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a9b2c07dd426285aff44d5faaca4b3356" title="Gets whether or not this AR is static.">AreaEffect::IsStatic</a>()<span class="keyword"> const</span>
-<a name="l00410"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a9b2c07dd426285aff44d5faaca4b3356">00410</a> <span class="keyword">    </span>{
-<a name="l00411"></a>00411         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getCollisionFlags() &amp; btCollisionObject::CF_STATIC_OBJECT;
+<a name="l00410"></a>00410 <span class="keyword">    </span>{
+<a name="l00411"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a9b2c07dd426285aff44d5faaca4b3356">00411</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d" title="The object representing the AE field itself.">Ghost</a>-&gt;getCollisionFlags() &amp; btCollisionObject::CF_STATIC_OBJECT;
 <a name="l00412"></a>00412     }
 <a name="l00413"></a>00413 
 <a name="l00414"></a>00414     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#aa9e8a5e1ffee5aa11ab4958373b06f09" title="Sets the mesh to be used along with this AreaEffect.">AreaEffect::SetFieldMesh</a>(<a class="code" href="classMezzanine_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Mesh</a>* FieldMesh)
-<a name="l00415"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#aa9e8a5e1ffee5aa11ab4958373b06f09">00415</a>     {
-<a name="l00416"></a>00416         <a class="code" href="classMezzanine_1_1AreaEffect.html#ae6d32d28fbe74eec48eaf3f7b5550c1c" title="Convenience function for the common starting steps in making a graphics object.">PreGraphicsMeshCreate</a>();
+<a name="l00415"></a>00415     {
+<a name="l00416"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#aa9e8a5e1ffee5aa11ab4958373b06f09">00416</a>         <a class="code" href="classMezzanine_1_1AreaEffect.html#ae6d32d28fbe74eec48eaf3f7b5550c1c" title="Convenience function for the common starting steps in making a graphics object.">PreGraphicsMeshCreate</a>();
 <a name="l00417"></a>00417         this-&gt;FieldMesh = <a class="code" href="classMezzanine_1_1AreaEffect.html#a5ca3984a40d2678b786f518667fde27f" title="Stores the mesh of the AR field.">FieldMesh</a>;
 <a name="l00418"></a>00418 
 <a name="l00419"></a>00419         <span class="keywordflow">if</span>(!FieldMesh)
@@ -495,45 +495,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00431"></a>00431     }
 <a name="l00432"></a>00432 
 <a name="l00433"></a>00433     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#aa9e8a5e1ffee5aa11ab4958373b06f09" title="Sets the mesh to be used along with this AreaEffect.">AreaEffect::SetFieldMesh</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; MeshName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Group)
-<a name="l00434"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a5e2902749c630af5272d2dc89678392c">00434</a>     {
-<a name="l00435"></a>00435         <a class="code" href="classMezzanine_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Mesh</a>* TheMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">MeshManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1MeshManager.html#a01fcda6b9f1363e99b6ac61e4afcb951" title="Loads a mesh file from disk and prepares it for use.">LoadMesh</a>(MeshName,Group);
+<a name="l00434"></a>00434     {
+<a name="l00435"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a5e2902749c630af5272d2dc89678392c">00435</a>         <a class="code" href="classMezzanine_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Mesh</a>* TheMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">MeshManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1MeshManager.html#a01fcda6b9f1363e99b6ac61e4afcb951" title="Loads a mesh file from disk and prepares it for use.">LoadMesh</a>(MeshName,Group);
 <a name="l00436"></a>00436         this-&gt;<a class="code" href="classMezzanine_1_1AreaEffect.html#aa9e8a5e1ffee5aa11ab4958373b06f09" title="Sets the mesh to be used along with this AreaEffect.">SetFieldMesh</a>(TheMesh);
 <a name="l00437"></a>00437     }
 <a name="l00438"></a>00438 
 <a name="l00439"></a>00439     <a class="code" href="classMezzanine_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Mesh</a>* <a class="code" href="classMezzanine_1_1AreaEffect.html#a1406441f5c12072dc0a6178a2690f3a6" title="Gets the mesh being used by this AreaEffect.">AreaEffect::GetFieldMesh</a>()<span class="keyword"> const</span>
-<a name="l00440"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a1406441f5c12072dc0a6178a2690f3a6">00440</a> <span class="keyword">    </span>{
-<a name="l00441"></a>00441         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a5ca3984a40d2678b786f518667fde27f" title="Stores the mesh of the AR field.">FieldMesh</a>;
+<a name="l00440"></a>00440 <span class="keyword">    </span>{
+<a name="l00441"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a1406441f5c12072dc0a6178a2690f3a6">00441</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a5ca3984a40d2678b786f518667fde27f" title="Stores the mesh of the AR field.">FieldMesh</a>;
 <a name="l00442"></a>00442     }
 <a name="l00443"></a>00443 
 <a name="l00444"></a>00444     std::list&lt;ActorBase*&gt;&amp; <a class="code" href="classMezzanine_1_1AreaEffect.html#a69f19ed2d67dca2623df6e6331b31462" title="Gets the list of actors within this field.">AreaEffect::GetOverlappingActors</a>()
-<a name="l00445"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a69f19ed2d67dca2623df6e6331b31462">00445</a>     {
-<a name="l00446"></a>00446         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca" title="Container for actors within the field area.">OverlappingActors</a>;
+<a name="l00445"></a>00445     {
+<a name="l00446"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#a69f19ed2d67dca2623df6e6331b31462">00446</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca" title="Container for actors within the field area.">OverlappingActors</a>;
 <a name="l00447"></a>00447     }
 <a name="l00448"></a>00448 
 <a name="l00449"></a>00449     std::vector&lt;ActorBase*&gt;&amp; <a class="code" href="classMezzanine_1_1AreaEffect.html#ac349f091e923cbb92740aaa35f2f5c2e" title="Gets the list of actors that have been added to the list since the last simulation step...">AreaEffect::GetAddedActors</a>()
-<a name="l00450"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#ac349f091e923cbb92740aaa35f2f5c2e">00450</a>     {
-<a name="l00451"></a>00451         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a7e333c5e52fd5d7ae892f4691dbc16" title="Container of actors that have been added since last frame.">AddedActors</a>;
+<a name="l00450"></a>00450     {
+<a name="l00451"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#ac349f091e923cbb92740aaa35f2f5c2e">00451</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a7e333c5e52fd5d7ae892f4691dbc16" title="Container of actors that have been added since last frame.">AddedActors</a>;
 <a name="l00452"></a>00452     }
 <a name="l00453"></a>00453 
 <a name="l00454"></a>00454     std::vector&lt;ActorBase*&gt;&amp; <a class="code" href="classMezzanine_1_1AreaEffect.html#ac657b565ca47198c6fd900c8a588948b" title="Gets the list of actors that have been removed from the list since the last simulation step...">AreaEffect::GetRemovedActors</a>()
-<a name="l00455"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#ac657b565ca47198c6fd900c8a588948b">00455</a>     {
-<a name="l00456"></a>00456         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>;
+<a name="l00455"></a>00455     {
+<a name="l00456"></a><a class="code" href="classMezzanine_1_1AreaEffect.html#ac657b565ca47198c6fd900c8a588948b">00456</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>;
 <a name="l00457"></a>00457     }
 <a name="l00458"></a>00458 <span class="comment"></span>
 <a name="l00459"></a>00459 <span class="comment">    ///////////////////////////////////</span>
 <a name="l00460"></a>00460 <span class="comment"></span>    <span class="comment">// TestAE functions</span>
 <a name="l00461"></a>00461 
 <a name="l00462"></a>00462     <a class="code" href="classMezzanine_1_1TestAE.html#a19ed2bafef2c0d835bbf01efdda3e241" title="Constructor.">TestAE::TestAE</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location) : <a class="code" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>(name, Location)
-<a name="l00463"></a><a class="code" href="classMezzanine_1_1TestAE.html#a19ed2bafef2c0d835bbf01efdda3e241">00463</a>     {
-<a name="l00464"></a>00464     }
+<a name="l00463"></a>00463     {
+<a name="l00464"></a><a class="code" href="classMezzanine_1_1TestAE.html#a19ed2bafef2c0d835bbf01efdda3e241">00464</a>     }
 <a name="l00465"></a>00465 
 <a name="l00466"></a>00466     <a class="code" href="classMezzanine_1_1TestAE.html#adb985f43d40500de7f18041a4f7807d7" title="Destructor.">TestAE::~TestAE</a>()
-<a name="l00467"></a><a class="code" href="classMezzanine_1_1TestAE.html#adb985f43d40500de7f18041a4f7807d7">00467</a>     {
-<a name="l00468"></a>00468     }
+<a name="l00467"></a>00467     {
+<a name="l00468"></a><a class="code" href="classMezzanine_1_1TestAE.html#adb985f43d40500de7f18041a4f7807d7">00468</a>     }
 <a name="l00469"></a>00469 
 <a name="l00470"></a>00470     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1TestAE.html#a647737a517fb6c87489afc93b9daa91c" title="Applies the effect this field has to object inside.">TestAE::ApplyEffect</a>()
-<a name="l00471"></a><a class="code" href="classMezzanine_1_1TestAE.html#a647737a517fb6c87489afc93b9daa91c">00471</a>     {
-<a name="l00472"></a>00472         std::vector&lt;ActorBase*&gt;::iterator AaRIt;
+<a name="l00471"></a>00471     {
+<a name="l00472"></a><a class="code" href="classMezzanine_1_1TestAE.html#a647737a517fb6c87489afc93b9daa91c">00472</a>         std::vector&lt;ActorBase*&gt;::iterator AaRIt;
 <a name="l00473"></a>00473         std::list&lt;ActorBase*&gt;::iterator CurrIt;
 <a name="l00474"></a>00474         <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Act = NULL;
 <a name="l00475"></a>00475 
@@ -557,11 +557,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00493"></a>00493         }
 <a name="l00494"></a>00494         <span class="keywordflow">if</span> ( !<a class="code" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca" title="Container for actors within the field area.">OverlappingActors</a>.empty() )
 <a name="l00495"></a>00495         {
-<a name="l00496"></a>00496             <a class="code" href="classMezzanine_1_1AreaEffect.html#acefbfa896daea1dfa41fb31fa65db01d" title="World pointer simply to enable the effects of this class to be as diverse as the engine features...">TheWorld</a>-&gt;<a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Actors Currently in field this frame:&quot;</span>);
+<a name="l00496"></a>00496             <a class="code" href="classMezzanine_1_1AreaEffect.html#acefbfa896daea1dfa41fb31fa65db01d" title="World pointer simply to enable the effects of this class to be as diverse as the engine features...">TheWorld</a>-&gt;Log(<span class="stringliteral">&quot;Actors Currently in field this frame:&quot;</span>);
 <a name="l00497"></a>00497             <span class="keywordflow">for</span> ( CurrIt = <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca" title="Container for actors within the field area.">OverlappingActors</a>.begin() ; CurrIt != <a class="code" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca" title="Container for actors within the field area.">OverlappingActors</a>.end() ; CurrIt++ )
 <a name="l00498"></a>00498             {
 <a name="l00499"></a>00499                 Act = (*CurrIt);
-<a name="l00500"></a>00500                 <a class="code" href="classMezzanine_1_1AreaEffect.html#acefbfa896daea1dfa41fb31fa65db01d" title="World pointer simply to enable the effects of this class to be as diverse as the engine features...">TheWorld</a>-&gt;<a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64" title="Runtime event and message logging.">Log</a>(Act);
+<a name="l00500"></a>00500                 <a class="code" href="classMezzanine_1_1AreaEffect.html#acefbfa896daea1dfa41fb31fa65db01d" title="World pointer simply to enable the effects of this class to be as diverse as the engine features...">TheWorld</a>-&gt;Log(Act);
 <a name="l00501"></a>00501             }
 <a name="l00502"></a>00502         }
 <a name="l00503"></a>00503     }
@@ -569,17 +569,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00505"></a>00505 <span class="comment">    ///////////////////////////////////</span>
 <a name="l00506"></a>00506 <span class="comment"></span>    <span class="comment">// GravityField functions</span>
 <a name="l00507"></a>00507 
-<a name="l00508"></a>00508     <a class="code" href="classMezzanine_1_1GravityField.html#aff8a73a59ad999b49f39c4bfb564fed3" title="Constructor.">GravityField::GravityField</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;name, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location) : <a class="code" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>(name, Location)
-<a name="l00509"></a><a class="code" href="classMezzanine_1_1GravityField.html#aff8a73a59ad999b49f39c4bfb564fed3">00509</a>     {
-<a name="l00510"></a>00510     }
+<a name="l00508"></a>00508     <a class="code" href="classMezzanine_1_1GravityField.html#aff8a73a59ad999b49f39c4bfb564fed3" title="Constructor.">GravityField::GravityField</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;name, <span class="keyword">const</span> Vector3&amp; Location) : AreaEffect(name, Location)
+<a name="l00509"></a>00509     {
+<a name="l00510"></a><a class="code" href="classMezzanine_1_1GravityField.html#aff8a73a59ad999b49f39c4bfb564fed3">00510</a>     }
 <a name="l00511"></a>00511 
 <a name="l00512"></a>00512     <a class="code" href="classMezzanine_1_1GravityField.html#a53fe69bb37458dce9fca8df1215d739e" title="Destructor.">GravityField::~GravityField</a>()
-<a name="l00513"></a><a class="code" href="classMezzanine_1_1GravityField.html#a53fe69bb37458dce9fca8df1215d739e">00513</a>     {
-<a name="l00514"></a>00514     }
+<a name="l00513"></a>00513     {
+<a name="l00514"></a><a class="code" href="classMezzanine_1_1GravityField.html#a53fe69bb37458dce9fca8df1215d739e">00514</a>     }
 <a name="l00515"></a>00515 
 <a name="l00516"></a>00516     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1GravityField.html#a53aee6679088fb6151e5cb6e82a09fb7" title="Applies the effect this field has to object inside.">GravityField::ApplyEffect</a>()
-<a name="l00517"></a><a class="code" href="classMezzanine_1_1GravityField.html#a53aee6679088fb6151e5cb6e82a09fb7">00517</a>     {
-<a name="l00518"></a>00518         std::vector&lt;ActorBase*&gt;::iterator It;
+<a name="l00517"></a>00517     {
+<a name="l00518"></a><a class="code" href="classMezzanine_1_1GravityField.html#a53aee6679088fb6151e5cb6e82a09fb7">00518</a>         std::vector&lt;ActorBase*&gt;::iterator It;
 <a name="l00519"></a>00519         <a class="code" href="classMezzanine_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>* Physics = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">PhysicsManager::GetSingletonPtr</a>();
 <a name="l00520"></a>00520         <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Act = NULL;
 <a name="l00521"></a>00521 
@@ -601,22 +601,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00537"></a>00537         }
 <a name="l00538"></a>00538     }
 <a name="l00539"></a>00539 
-<a name="l00540"></a>00540     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1GravityField.html#a426b69dcfd3476029ebadea1ee4e0ea3" title="Sets the gravity force for this field.">GravityField::SetFieldGravity</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Gravity)
-<a name="l00541"></a><a class="code" href="classMezzanine_1_1GravityField.html#a426b69dcfd3476029ebadea1ee4e0ea3">00541</a>     {
-<a name="l00542"></a>00542         <a class="code" href="classMezzanine_1_1GravityField.html#ae8cd8fe1f5430a6ca6e73c37c72e9e52" title="The stored value for this fields gravity.">Grav</a> = Gravity;
+<a name="l00540"></a>00540     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1GravityField.html#a426b69dcfd3476029ebadea1ee4e0ea3" title="Sets the gravity force for this field.">GravityField::SetFieldGravity</a>(<span class="keyword">const</span> Vector3&amp; Gravity)
+<a name="l00541"></a>00541     {
+<a name="l00542"></a><a class="code" href="classMezzanine_1_1GravityField.html#a426b69dcfd3476029ebadea1ee4e0ea3">00542</a>         <a class="code" href="classMezzanine_1_1GravityField.html#ae8cd8fe1f5430a6ca6e73c37c72e9e52" title="The stored value for this fields gravity.">Grav</a> = Gravity;
 <a name="l00543"></a>00543     }
 <a name="l00544"></a>00544 
 <a name="l00545"></a>00545     <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1GravityField.html#ad37d2c94bdabf0412e35ed59ad74e8c9" title="Gets the gravity of this field.">GravityField::GetFieldGravity</a>()<span class="keyword"> const</span>
-<a name="l00546"></a><a class="code" href="classMezzanine_1_1GravityField.html#ad37d2c94bdabf0412e35ed59ad74e8c9">00546</a> <span class="keyword">    </span>{
-<a name="l00547"></a>00547         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityField.html#ae8cd8fe1f5430a6ca6e73c37c72e9e52" title="The stored value for this fields gravity.">Grav</a>;
+<a name="l00546"></a>00546 <span class="keyword">    </span>{
+<a name="l00547"></a><a class="code" href="classMezzanine_1_1GravityField.html#ad37d2c94bdabf0412e35ed59ad74e8c9">00547</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityField.html#ae8cd8fe1f5430a6ca6e73c37c72e9e52" title="The stored value for this fields gravity.">Grav</a>;
 <a name="l00548"></a>00548     }
 <a name="l00549"></a>00549 <span class="comment"></span>
 <a name="l00550"></a>00550 <span class="comment">    ///////////////////////////////////</span>
 <a name="l00551"></a>00551 <span class="comment"></span>    <span class="comment">// GravityWell functions</span>
 <a name="l00552"></a>00552 
 <a name="l00553"></a>00553     <a class="code" href="classMezzanine_1_1GravityWell.html#a4f89751efb62bd71164a2864923dc149" title="Constructor.">GravityWell::GravityWell</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;name, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location)
-<a name="l00554"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a4f89751efb62bd71164a2864923dc149">00554</a>         : <a class="code" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>(name, Location),
-<a name="l00555"></a>00555           AllowWorldGrav(true),
+<a name="l00554"></a>00554         : <a class="code" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>(name, Location),
+<a name="l00555"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a4f89751efb62bd71164a2864923dc149">00555</a>           AllowWorldGrav(true),
 <a name="l00556"></a>00556           Strength(0),
 <a name="l00557"></a>00557           AttenAmount(0),
 <a name="l00558"></a>00558           AttenStyle(Mezzanine::<a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa548ff9c1d108b12ea6323d39c41856f5" title="No Attentuation, Equal strength through.">Att_None</a>)
@@ -624,12 +624,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00560"></a>00560     }
 <a name="l00561"></a>00561 
 <a name="l00562"></a>00562     <a class="code" href="classMezzanine_1_1GravityWell.html#affc992ad5e1edafd654d16d6a13840d0" title="Destructor.">GravityWell::~GravityWell</a>()
-<a name="l00563"></a><a class="code" href="classMezzanine_1_1GravityWell.html#affc992ad5e1edafd654d16d6a13840d0">00563</a>     {
-<a name="l00564"></a>00564     }
+<a name="l00563"></a>00563     {
+<a name="l00564"></a><a class="code" href="classMezzanine_1_1GravityWell.html#affc992ad5e1edafd654d16d6a13840d0">00564</a>     }
 <a name="l00565"></a>00565 
 <a name="l00566"></a>00566     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1GravityWell.html#a193e1683edaf80bb1a37979f196abf6e" title="Applies the effect this field has to object inside.">GravityWell::ApplyEffect</a>()
-<a name="l00567"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a193e1683edaf80bb1a37979f196abf6e">00567</a>     {
-<a name="l00568"></a>00568         <span class="keywordflow">if</span>(0 == <a class="code" href="classMezzanine_1_1GravityWell.html#a2ed7c1e6618618ddd990e1466e9471c5" title="The amount of force exerted on other objects.">Strength</a>)
+<a name="l00567"></a>00567     {
+<a name="l00568"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a193e1683edaf80bb1a37979f196abf6e">00568</a>         <span class="keywordflow">if</span>(0 == <a class="code" href="classMezzanine_1_1GravityWell.html#a2ed7c1e6618618ddd990e1466e9471c5" title="The amount of force exerted on other objects.">Strength</a>)
 <a name="l00569"></a>00569             <span class="keywordflow">return</span>;
 <a name="l00570"></a>00570         <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Act = NULL;
 <a name="l00571"></a>00571         <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActRig = NULL;
@@ -668,7 +668,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00604"></a>00604                         AppliedStrength = <a class="code" href="classMezzanine_1_1GravityWell.html#a2ed7c1e6618618ddd990e1466e9471c5" title="The amount of force exerted on other objects.">Strength</a>;
 <a name="l00605"></a>00605                         <span class="keywordflow">break</span>;
 <a name="l00606"></a>00606                 }
-<a name="l00607"></a>00607                 ActRig = <span class="keyword">static_cast&lt;</span><a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>*<span class="keyword">&gt;</span>(*OA);
+<a name="l00607"></a>00607                 ActRig = <span class="keyword">static_cast&lt;</span>ActorRigid*<span class="keyword">&gt;</span>(*OA);
 <a name="l00608"></a>00608                 InvMass = ActRig-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#aec84029880e2cebf3cc154ada813a372" title="Get the Physics data raw from the physic subsystem.">GetBulletObject</a>()-&gt;getInvMass();
 <a name="l00609"></a>00609                 <span class="keywordflow">if</span>(0 != InvMass)
 <a name="l00610"></a>00610                     AppliedStrength *= (1 / ActRig-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#aec84029880e2cebf3cc154ada813a372" title="Get the Physics data raw from the physic subsystem.">GetBulletObject</a>()-&gt;getInvMass());
@@ -682,59 +682,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00618"></a>00618         }
 <a name="l00619"></a>00619         <span class="keywordflow">if</span>(!<a class="code" href="classMezzanine_1_1GravityWell.html#a869ff5ef7c317e642e2b366e18d4f818" title="Should world gravity ne ignored.">AllowWorldGrav</a> &amp;&amp; !<a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>.empty())
 <a name="l00620"></a>00620         {
-<a name="l00621"></a>00621             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> WorldGrav = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">PhysicsManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1PhysicsManager.html#aaad40d1888caa36c158dc6e94d63c068" title="Gets the gravity.">GetGravity</a>();
+<a name="l00621"></a>00621             Vector3 WorldGrav = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">PhysicsManager::GetSingletonPtr</a>()-&gt;GetGravity();
 <a name="l00622"></a>00622             <span class="keywordflow">for</span> ( std::vector&lt;ActorBase*&gt;::iterator RA = <a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>.begin() ; RA != <a class="code" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf" title="Container of actors that have been removed since last frame.">RemovedActors</a>.end() ; RA++ )
 <a name="l00623"></a>00623             {
 <a name="l00624"></a>00624                 <span class="keywordflow">if</span>(ActorBase::Actorrigid != (*RA)-&gt;GetType())
 <a name="l00625"></a>00625                     <span class="keywordflow">continue</span>;
-<a name="l00626"></a>00626                 ActRig = <span class="keyword">dynamic_cast&lt;</span><a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>*<span class="keyword">&gt;</span>(*RA);
-<a name="l00627"></a>00627                 ActRig-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#a6ed901638c88e4b9e09605152e11d56e" title="Gets the physics settings class associated with this actor.">GetPhysicsSettings</a>()-&gt;<a class="code" href="classMezzanine_1_1ActorRigidPhysicsSettings.html#ad1280574ff86c008c46c10a7133ca274" title="Sets the gravity for only this object.">SetIndividualGravity</a>(WorldGrav);
+<a name="l00626"></a>00626                 ActRig = <span class="keyword">dynamic_cast&lt;</span>ActorRigid*<span class="keyword">&gt;</span>(*RA);
+<a name="l00627"></a>00627                 ActRig-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#a6ed901638c88e4b9e09605152e11d56e" title="Gets the physics settings class associated with this actor.">GetPhysicsSettings</a>()-&gt;SetIndividualGravity(WorldGrav);
 <a name="l00628"></a>00628             }
 <a name="l00629"></a>00629         }
 <a name="l00630"></a>00630     }
 <a name="l00631"></a>00631 
 <a name="l00632"></a>00632     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1GravityWell.html#a596a662feae83e04e4c299a8aaf8b862" title="Sets the strenth of the field.">GravityWell::SetFieldStrength</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; FieldStrength)
-<a name="l00633"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a596a662feae83e04e4c299a8aaf8b862">00633</a>     {
-<a name="l00634"></a>00634         <a class="code" href="classMezzanine_1_1GravityWell.html#a2ed7c1e6618618ddd990e1466e9471c5" title="The amount of force exerted on other objects.">Strength</a> = FieldStrength;
+<a name="l00633"></a>00633     {
+<a name="l00634"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a596a662feae83e04e4c299a8aaf8b862">00634</a>         <a class="code" href="classMezzanine_1_1GravityWell.html#a2ed7c1e6618618ddd990e1466e9471c5" title="The amount of force exerted on other objects.">Strength</a> = FieldStrength;
 <a name="l00635"></a>00635     }
 <a name="l00636"></a>00636 
 <a name="l00637"></a>00637     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1GravityWell.html#a8fe42eeeb7483c35f1dfae170c2b2ec9" title="Gets the strength of the field.">GravityWell::GetFieldStrength</a>()<span class="keyword"> const</span>
-<a name="l00638"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a8fe42eeeb7483c35f1dfae170c2b2ec9">00638</a> <span class="keyword">    </span>{
-<a name="l00639"></a>00639         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityWell.html#a2ed7c1e6618618ddd990e1466e9471c5" title="The amount of force exerted on other objects.">Strength</a>;
+<a name="l00638"></a>00638 <span class="keyword">    </span>{
+<a name="l00639"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a8fe42eeeb7483c35f1dfae170c2b2ec9">00639</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityWell.html#a2ed7c1e6618618ddd990e1466e9471c5" title="The amount of force exerted on other objects.">Strength</a>;
 <a name="l00640"></a>00640     }
 <a name="l00641"></a>00641 
 <a name="l00642"></a>00642     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1GravityWell.html#a80837168a132c3bffcefb839e1669a63" title="Sets whether or not world gravity should be removed for objects in this field.">GravityWell::SetAllowWorldGravity</a>(<span class="keywordtype">bool</span> WorldGravity)
-<a name="l00643"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a80837168a132c3bffcefb839e1669a63">00643</a>     {
-<a name="l00644"></a>00644         <a class="code" href="classMezzanine_1_1GravityWell.html#a869ff5ef7c317e642e2b366e18d4f818" title="Should world gravity ne ignored.">AllowWorldGrav</a> = WorldGravity;
+<a name="l00643"></a>00643     {
+<a name="l00644"></a><a class="code" href="classMezzanine_1_1GravityWell.html#a80837168a132c3bffcefb839e1669a63">00644</a>         <a class="code" href="classMezzanine_1_1GravityWell.html#a869ff5ef7c317e642e2b366e18d4f818" title="Should world gravity ne ignored.">AllowWorldGrav</a> = WorldGravity;
 <a name="l00645"></a>00645     }
 <a name="l00646"></a>00646 
 <a name="l00647"></a>00647     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1GravityWell.html#afa34a6efc22c6d8875be96cfce90c013" title="Gets whether or not world gravity is is removed for objects inside this field.">GravityWell::GetAllowWorldGravity</a>()<span class="keyword"> const</span>
-<a name="l00648"></a><a class="code" href="classMezzanine_1_1GravityWell.html#afa34a6efc22c6d8875be96cfce90c013">00648</a> <span class="keyword">    </span>{
-<a name="l00649"></a>00649         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityWell.html#a869ff5ef7c317e642e2b366e18d4f818" title="Should world gravity ne ignored.">AllowWorldGrav</a>;
+<a name="l00648"></a>00648 <span class="keyword">    </span>{
+<a name="l00649"></a><a class="code" href="classMezzanine_1_1GravityWell.html#afa34a6efc22c6d8875be96cfce90c013">00649</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityWell.html#a869ff5ef7c317e642e2b366e18d4f818" title="Should world gravity ne ignored.">AllowWorldGrav</a>;
 <a name="l00650"></a>00650     }
 <a name="l00651"></a>00651 
 <a name="l00652"></a>00652     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1GravityWell.html#ab7668c7c5c1c7c25a40315803efb0790" title="Sets the attenuation for this field.">GravityWell::SetAttenuation</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Amount, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa" title="These values represent the kind of attenuation applied to the field strength over a distance...">Mezzanine::AttenuationStyle</a>&amp; Style)
-<a name="l00653"></a><a class="code" href="classMezzanine_1_1GravityWell.html#ab7668c7c5c1c7c25a40315803efb0790">00653</a>     {
-<a name="l00654"></a>00654         <a class="code" href="classMezzanine_1_1GravityWell.html#a82bf415225d76850cc832128077be947" title="how much does the Gravity attenuate.">AttenAmount</a> = Amount;
+<a name="l00653"></a>00653     {
+<a name="l00654"></a><a class="code" href="classMezzanine_1_1GravityWell.html#ab7668c7c5c1c7c25a40315803efb0790">00654</a>         <a class="code" href="classMezzanine_1_1GravityWell.html#a82bf415225d76850cc832128077be947" title="how much does the Gravity attenuate.">AttenAmount</a> = Amount;
 <a name="l00655"></a>00655         <a class="code" href="classMezzanine_1_1GravityWell.html#ae1ceea5a9065775ea1b54e676fea9ed0" title="How does gravity.">AttenStyle</a> = Style;
 <a name="l00656"></a>00656     }
 <a name="l00657"></a>00657 
 <a name="l00658"></a>00658     <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa" title="These values represent the kind of attenuation applied to the field strength over a distance...">Mezzanine::AttenuationStyle</a> <a class="code" href="classMezzanine_1_1GravityWell.html#ad26c5b44056826e55dac112d0e0600a7" title="Gets the Style of attenuation applied.">GravityWell::GetAttenuationStyle</a>()<span class="keyword"> const</span>
-<a name="l00659"></a><a class="code" href="classMezzanine_1_1GravityWell.html#ad26c5b44056826e55dac112d0e0600a7">00659</a> <span class="keyword">    </span>{
-<a name="l00660"></a>00660         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityWell.html#ae1ceea5a9065775ea1b54e676fea9ed0" title="How does gravity.">AttenStyle</a>;
+<a name="l00659"></a>00659 <span class="keyword">    </span>{
+<a name="l00660"></a><a class="code" href="classMezzanine_1_1GravityWell.html#ad26c5b44056826e55dac112d0e0600a7">00660</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityWell.html#ae1ceea5a9065775ea1b54e676fea9ed0" title="How does gravity.">AttenStyle</a>;
 <a name="l00661"></a>00661     }
 <a name="l00662"></a>00662 
 <a name="l00663"></a>00663     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1GravityWell.html#aa077b3ef75a442b97f34bb578a7354eb" title="Gets the amount force is attenuated over distance.">GravityWell::GetAttenuationAmount</a>()<span class="keyword"> const</span>
-<a name="l00664"></a><a class="code" href="classMezzanine_1_1GravityWell.html#aa077b3ef75a442b97f34bb578a7354eb">00664</a> <span class="keyword">    </span>{
-<a name="l00665"></a>00665         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityWell.html#a82bf415225d76850cc832128077be947" title="how much does the Gravity attenuate.">AttenAmount</a>;
+<a name="l00664"></a>00664 <span class="keyword">    </span>{
+<a name="l00665"></a><a class="code" href="classMezzanine_1_1GravityWell.html#aa077b3ef75a442b97f34bb578a7354eb">00665</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1GravityWell.html#a82bf415225d76850cc832128077be947" title="how much does the Gravity attenuate.">AttenAmount</a>;
 <a name="l00666"></a>00666     }
 <a name="l00667"></a>00667 <span class="comment"></span>
 <a name="l00668"></a>00668 <span class="comment">    ///////////////////////////////////</span>
 <a name="l00669"></a>00669 <span class="comment"></span>    <span class="comment">// FieldOfForce functions</span>
 <a name="l00670"></a>00670 
 <a name="l00671"></a>00671     <a class="code" href="classMezzanine_1_1FieldOfForce.html#aa212c5cde10986e1d511a3843af9428c" title="Class Constructor.">FieldOfForce::FieldOfForce</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;name, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location)
-<a name="l00672"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#aa212c5cde10986e1d511a3843af9428c">00672</a>         : <a class="code" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>(name, Location),
-<a name="l00673"></a>00673           Strength(0),
+<a name="l00672"></a>00672         : <a class="code" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>(name, Location),
+<a name="l00673"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#aa212c5cde10986e1d511a3843af9428c">00673</a>           Strength(0),
 <a name="l00674"></a>00674           AttenAmount(0),
 <a name="l00675"></a>00675           AttenStyle(Mezzanine::<a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa548ff9c1d108b12ea6323d39c41856f5" title="No Attentuation, Equal strength through.">Att_None</a>),
 <a name="l00676"></a>00676           AttenSource(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0)),
@@ -743,12 +743,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00679"></a>00679     }
 <a name="l00680"></a>00680 
 <a name="l00681"></a>00681     <a class="code" href="classMezzanine_1_1FieldOfForce.html#ae9d68bc47f8598fd764b4ed9ae28a89c" title="Class Destructor.">FieldOfForce::~FieldOfForce</a>()
-<a name="l00682"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#ae9d68bc47f8598fd764b4ed9ae28a89c">00682</a>     {
-<a name="l00683"></a>00683     }
+<a name="l00682"></a>00682     {
+<a name="l00683"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#ae9d68bc47f8598fd764b4ed9ae28a89c">00683</a>     }
 <a name="l00684"></a>00684 
 <a name="l00685"></a>00685     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#ae82e9a45515d40513ad1ac2e606c627b" title="Applies the effect this field has to object inside.">FieldOfForce::ApplyEffect</a>()
-<a name="l00686"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#ae82e9a45515d40513ad1ac2e606c627b">00686</a>     {
-<a name="l00687"></a>00687         <span class="keywordflow">if</span>(0 == <a class="code" href="classMezzanine_1_1FieldOfForce.html#a8d95bfda05f7eb1ec2e0256ec917d38b" title="The amount of force exerted on other objects.">Strength</a>)
+<a name="l00686"></a>00686     {
+<a name="l00687"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#ae82e9a45515d40513ad1ac2e606c627b">00687</a>         <span class="keywordflow">if</span>(0 == <a class="code" href="classMezzanine_1_1FieldOfForce.html#a8d95bfda05f7eb1ec2e0256ec917d38b" title="The amount of force exerted on other objects.">Strength</a>)
 <a name="l00688"></a>00688             <span class="keywordflow">return</span>;
 <a name="l00689"></a>00689         <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Act = NULL;
 <a name="l00690"></a>00690         <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActRig = NULL;
@@ -791,52 +791,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00727"></a>00727                 <span class="keywordflow">if</span>(0 &gt; AppliedStrength)
 <a name="l00728"></a>00728                     AppliedStrength = 0;
 <a name="l00729"></a>00729                 <span class="comment">//Apply the Force</span>
-<a name="l00730"></a>00730                 ActRig-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#aec84029880e2cebf3cc154ada813a372" title="Get the Physics data raw from the physic subsystem.">GetBulletObject</a>()-&gt;applyCentralForce((<a class="code" href="classMezzanine_1_1FieldOfForce.html#a58db238eb7b943ce9585b8bb9a751906" title="The direction the force is applied.">Direction</a> * AppliedStrength).GetBulletVector3());
+<a name="l00730"></a>00730                 ActRig-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#aec84029880e2cebf3cc154ada813a372" title="Get the Physics data raw from the physic subsystem.">GetBulletObject</a>()-&gt;applyCentralForce((Direction * AppliedStrength).GetBulletVector3());
 <a name="l00731"></a>00731                 <span class="comment">//ActRig-&gt;GetBulletObject()-&gt;applyCentralImpulse((Direction * AppliedStrength).GetBulletVector3());</span>
 <a name="l00732"></a>00732             }
 <a name="l00733"></a>00733         }
 <a name="l00734"></a>00734     }
 <a name="l00735"></a>00735 
 <a name="l00736"></a>00736     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#abef745957f95ac58f756d84f00fbf549" title="Sets the strenth of the field.">FieldOfForce::SetFieldStrength</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; FieldStrength)
-<a name="l00737"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#abef745957f95ac58f756d84f00fbf549">00737</a>     {
-<a name="l00738"></a>00738         <a class="code" href="classMezzanine_1_1FieldOfForce.html#a8d95bfda05f7eb1ec2e0256ec917d38b" title="The amount of force exerted on other objects.">Strength</a> = FieldStrength;
+<a name="l00737"></a>00737     {
+<a name="l00738"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#abef745957f95ac58f756d84f00fbf549">00738</a>         <a class="code" href="classMezzanine_1_1FieldOfForce.html#a8d95bfda05f7eb1ec2e0256ec917d38b" title="The amount of force exerted on other objects.">Strength</a> = FieldStrength;
 <a name="l00739"></a>00739     }
 <a name="l00740"></a>00740 
 <a name="l00741"></a>00741     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1FieldOfForce.html#ae8071fe3ad4397b57cff5f3816d72e02" title="Gets the strength of the field.">FieldOfForce::GetFieldStrength</a>()<span class="keyword"> const</span>
-<a name="l00742"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#ae8071fe3ad4397b57cff5f3816d72e02">00742</a> <span class="keyword">    </span>{
-<a name="l00743"></a>00743         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a8d95bfda05f7eb1ec2e0256ec917d38b" title="The amount of force exerted on other objects.">Strength</a>;
+<a name="l00742"></a>00742 <span class="keyword">    </span>{
+<a name="l00743"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#ae8071fe3ad4397b57cff5f3816d72e02">00743</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a8d95bfda05f7eb1ec2e0256ec917d38b" title="The amount of force exerted on other objects.">Strength</a>;
 <a name="l00744"></a>00744     }
 <a name="l00745"></a>00745 
 <a name="l00746"></a>00746     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#aaa4df06c275221b2b7c313a7d45ec71a" title="Sets the direction force is to be applied within this field.">FieldOfForce::SetDirectionOfForce</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; ForceDirection)
-<a name="l00747"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#aaa4df06c275221b2b7c313a7d45ec71a">00747</a>     {
-<a name="l00748"></a>00748         <a class="code" href="classMezzanine_1_1FieldOfForce.html#a58db238eb7b943ce9585b8bb9a751906" title="The direction the force is applied.">Direction</a> = ForceDirection;
+<a name="l00747"></a>00747     {
+<a name="l00748"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#aaa4df06c275221b2b7c313a7d45ec71a">00748</a>         Direction = ForceDirection;
 <a name="l00749"></a>00749     }
 <a name="l00750"></a>00750 
 <a name="l00751"></a>00751     <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1FieldOfForce.html#aa38710cbe67fad1b0be2e0a414d8e55c" title="Gets the currenly set direction force is to be applied.">FieldOfForce::GetDirectionOfForce</a>()
-<a name="l00752"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#aa38710cbe67fad1b0be2e0a414d8e55c">00752</a>     {
-<a name="l00753"></a>00753         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a58db238eb7b943ce9585b8bb9a751906" title="The direction the force is applied.">Direction</a>;
+<a name="l00752"></a>00752     {
+<a name="l00753"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#aa38710cbe67fad1b0be2e0a414d8e55c">00753</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a58db238eb7b943ce9585b8bb9a751906" title="The direction the force is applied.">Direction</a>;
 <a name="l00754"></a>00754     }
 <a name="l00755"></a>00755 
 <a name="l00756"></a>00756     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#aa2ba435821f4abc4c59b0ca99f077759" title="Sets the attenuation for this field.">FieldOfForce::SetAttenuation</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Amount, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa" title="These values represent the kind of attenuation applied to the field strength over a distance...">Mezzanine::AttenuationStyle</a>&amp; Style, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Source)
-<a name="l00757"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#aa2ba435821f4abc4c59b0ca99f077759">00757</a>     {
-<a name="l00758"></a>00758         <a class="code" href="classMezzanine_1_1FieldOfForce.html#abd6f3200dd4d0014d65f43e4565119fe" title="How much the Gravity weakens over distance.">AttenAmount</a> = Amount;
+<a name="l00757"></a>00757     {
+<a name="l00758"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#aa2ba435821f4abc4c59b0ca99f077759">00758</a>         <a class="code" href="classMezzanine_1_1FieldOfForce.html#abd6f3200dd4d0014d65f43e4565119fe" title="How much the Gravity weakens over distance.">AttenAmount</a> = Amount;
 <a name="l00759"></a>00759         <a class="code" href="classMezzanine_1_1FieldOfForce.html#a0c0f4d1bdf91efa07bb6460fd68d8a74" title="How gravity weakens over distance, if at all.">AttenStyle</a> = Style;
 <a name="l00760"></a>00760         <a class="code" href="classMezzanine_1_1FieldOfForce.html#a86ef3fe03d4a8604bc659bf462d22025" title="The user defined source if enabled.">AttenSource</a> = Source;
 <a name="l00761"></a>00761     }
 <a name="l00762"></a>00762 
 <a name="l00763"></a>00763     <a class="code" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa" title="These values represent the kind of attenuation applied to the field strength over a distance...">Mezzanine::AttenuationStyle</a> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a45f3ea5f8a48ff4a7dbe135d5003d267" title="Gets the Style of attenuation applied.">FieldOfForce::GetAttenuationStyle</a>()<span class="keyword"> const</span>
-<a name="l00764"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#a45f3ea5f8a48ff4a7dbe135d5003d267">00764</a> <span class="keyword">    </span>{
-<a name="l00765"></a>00765         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a0c0f4d1bdf91efa07bb6460fd68d8a74" title="How gravity weakens over distance, if at all.">AttenStyle</a>;
+<a name="l00764"></a>00764 <span class="keyword">    </span>{
+<a name="l00765"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#a45f3ea5f8a48ff4a7dbe135d5003d267">00765</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a0c0f4d1bdf91efa07bb6460fd68d8a74" title="How gravity weakens over distance, if at all.">AttenStyle</a>;
 <a name="l00766"></a>00766     }
 <a name="l00767"></a>00767 
 <a name="l00768"></a>00768     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a0f5340224f7cec6e9086d49a3d51ae07" title="Gets the amount force is attenuated over distance.">FieldOfForce::GetAttenuationAmount</a>()<span class="keyword"> const</span>
-<a name="l00769"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#a0f5340224f7cec6e9086d49a3d51ae07">00769</a> <span class="keyword">    </span>{
-<a name="l00770"></a>00770         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#abd6f3200dd4d0014d65f43e4565119fe" title="How much the Gravity weakens over distance.">AttenAmount</a>;
+<a name="l00769"></a>00769 <span class="keyword">    </span>{
+<a name="l00770"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#a0f5340224f7cec6e9086d49a3d51ae07">00770</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#abd6f3200dd4d0014d65f43e4565119fe" title="How much the Gravity weakens over distance.">AttenAmount</a>;
 <a name="l00771"></a>00771     }
 <a name="l00772"></a>00772 
 <a name="l00773"></a>00773     <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a0f1232162d04d967907a55e8c9bc8661" title="Gets the source of the force for calculating attenuation.">FieldOfForce::GetAttenuationSource</a>()<span class="keyword"> const</span>
-<a name="l00774"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#a0f1232162d04d967907a55e8c9bc8661">00774</a> <span class="keyword">    </span>{
-<a name="l00775"></a>00775         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a86ef3fe03d4a8604bc659bf462d22025" title="The user defined source if enabled.">AttenSource</a>;
+<a name="l00774"></a>00774 <span class="keyword">    </span>{
+<a name="l00775"></a><a class="code" href="classMezzanine_1_1FieldOfForce.html#a0f1232162d04d967907a55e8c9bc8661">00775</a>         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1FieldOfForce.html#a86ef3fe03d4a8604bc659bf462d22025" title="The user defined source if enabled.">AttenSource</a>;
 <a name="l00776"></a>00776     }
 <a name="l00777"></a>00777 }
 <a name="l00778"></a>00778 
@@ -858,6 +858,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

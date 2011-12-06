@@ -54,14 +54,14 @@ namespace Mezzanine
     {
         class AudioManager;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class SoundListener
-        /// @headerfile soundlistener.h
+        /// @class Listener
         /// @brief This is the listener class used for 3D sound.
         /// @details This is the listener class used for determining how 3D sound is played.
         ///////////////////////////////////////////////////////////////////////////////
         class MEZZ_LIB Listener
         {
             protected:
+                /// @brief The internal implementation of the Audio Listener
                 cAudio::IListener* AudioListener;
             public:
                 /// @brief Class constructor.  Internal use only.

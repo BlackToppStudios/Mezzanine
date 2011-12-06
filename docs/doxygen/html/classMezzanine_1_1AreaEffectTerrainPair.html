@@ -73,7 +73,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Mezzanine::AreaEffectTerrainPair Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::AreaEffectTerrainPair" --><!-- doxytag: inherits="Mezzanine::ObjectPair" --><div class="dynheader">
+<!-- doxytag: class="Mezzanine::AreaEffectTerrainPair" --><!-- doxytag: inherits="Mezzanine::ObjectPair" -->
+<p>This is a basic utility class for tracking pairs of actors.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="objectpair_8h_source.html">objectpair.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for Mezzanine::AreaEffectTerrainPair:</div>
 <div class="dyncontent">
  <div class="center">
@@ -92,7 +97,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">No initialization constructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectTerrainPair.html#a64791bc5ed36c7bb9c95ab4d7e4a08d1">AreaEffectTerrainPair</a> (const <a class="el" href="classMezzanine_1_1AreaEffectTerrainPair.html">AreaEffectTerrainPair</a> &amp;OtherPair)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference copy constructor.  <a href="#a64791bc5ed36c7bb9c95ab4d7e4a08d1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectTerrainPair.html#ad3fe92b0fd4fb4478b5a75781eb67e6b">AreaEffectTerrainPair</a> (<a class="el" href="classMezzanine_1_1AreaEffect.html">AreaEffect</a> *A, TerrainBase *B)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectTerrainPair.html#ad3fe92b0fd4fb4478b5a75781eb67e6b">AreaEffectTerrainPair</a> (<a class="el" href="classMezzanine_1_1AreaEffect.html">AreaEffect</a> *A, <a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainBase</a> *B)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="#ad3fe92b0fd4fb4478b5a75781eb67e6b"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -100,7 +105,7 @@ Public Attributes</h2></td></tr>
 <a class="el" href="classMezzanine_1_1AreaEffect.html">AreaEffect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectTerrainPair.html#a4c237a024e3308daff69eeba776bef3e">AE</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The first actor in the pair. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f133a7ea36e75d119cec86dc71c6c0e"></a><!-- doxytag: member="Mezzanine::AreaEffectTerrainPair::Terrain" ref="a2f133a7ea36e75d119cec86dc71c6c0e" args="" -->
-TerrainBase *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectTerrainPair.html#a2f133a7ea36e75d119cec86dc71c6c0e">Terrain</a></td></tr>
+<a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectTerrainPair.html#a2f133a7ea36e75d119cec86dc71c6c0e">Terrain</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The second actor in the pair. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -115,7 +120,9 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a pointer to the second object in this pair. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock">
+<div class="textblock"><p>This is a basic utility class for tracking pairs of actors. </p>
+<p>Most commonly this class is used in collision tracking. </p>
+
 <p>Definition at line <a class="el" href="objectpair_8h_source.html#l00201">201</a> of file <a class="el" href="objectpair_8h_source.html">objectpair.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad3fe92b0fd4fb4478b5a75781eb67e6b"></a><!-- doxytag: member="Mezzanine::AreaEffectTerrainPair::AreaEffectTerrainPair" ref="ad3fe92b0fd4fb4478b5a75781eb67e6b" args="(AreaEffect *A, TerrainBase *B)" -->
@@ -131,7 +138,7 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TerrainBase *&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainBase</a> *&#160;</td>
           <td class="paramname"><em>B</em>&#160;</td>
         </tr>
         <tr>
@@ -203,6 +210,6 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:20 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -50,7 +50,7 @@
  keeping it up to date, and have a plan for upgrading each component we have brought in.
 
  This is no simple way to guarantee access to the most up to date libraries, this means there will meaningful work on integration. Many linux distributions try
- to keep the most up to date shared libraries around, but what about when they don't ship what you need, or ship a broken copy or an older library. What about
+ to keep the most up to date shared libraries around, but what about when they don't ship what you need, ship something broken or an older library. What about
  Windows and Mac OS X which make no attempt to keep these kinds of software up to date. What if you do manage to get and stay up to date, then you still have to
  work on a confusing compiler and linker options, Code::Blocks or Visual Studio aren't going to set that up for you. The Mezzanine Engine project depends on a dozen
  or more libaries, so would your project if it had high performance 3d graphics, easy to use 3d physics integrated with the graphics and 3d positional audio ready
@@ -66,11 +66,57 @@
  codebase. When we are done with "Catch!" We want it to have one codebase (with no messy \#IFDEFs in game code for compatibility), and downloadable in the Iphone
  app store, in the Android Marketplace, on the PS3, Wii, downloadable on Steam, and in a variety of linux repositories.
 
- To get the latest news on development checkout: http://www.blacktoppstudios.com
+ @section What can I expect here
+ This is the Doxygen API documentation for the Mezzanine Engine. This is a document for programmers to use as reference. With just a few clicks this should allow
+ a technically oriented person find
+
+ If you want to know more about doxygen please see: http://www.stack.nl/~dimitri/doxygen/
+ To get the latest news on development or more information that isn't technical checkout: http://www.blacktoppstudios.com
 
  Here we will detail the engine structure and different classes and datatypes, but some of these need an update.
 
  @section Engine Structure
+  The engine is laid out in a variety of classes. Some classes are focal points for functionality and internally unify a number of components to do what they do, these
+  managers sometimes conceal a large amount of complexity. Managers generally have a very rigid in the structure of the engine and these are generally managed by the
+  world and are rarely manaully created. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?"
+  or "how do you detect if to objects are colliding?". In general there is only one of each manager and it inherits from the @ref Singleton class.
+
+  Other classes are more similar to data, things like the @ref Vector3 and the @ref Quaternion. You can create these things whenever you like and generally have good
+  support for integrating into a variety of system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more
+  sophisticated classes for a variety of reasons.
+
+  There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled
+  and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Light or @ref ActorRigid are present inside the game
+  simulation as well as having a presence as
+
+  some utility classes Other class that really are just convient places to put functions, things like the @ref ActorRigidDeSerializer and the @ref StringTool are good
+  examples of these logical grouping of functions. Finally, there are few
+
+  @subsection Managers
+
+   A manager is simply a logical grouping of functionality. A number of them exist covering all the major functionality that a game using the the Mezzanine engine would
+   need in most situations.
+
+   All Managers inherit from ManagerBase. They all support the basic callback and priority functionality because of this.
+
+   @subsubsection A list of managers
+    Here is a list of managers in the engine:
+    - @ref ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton
+    - @ref AudioManager - Play, stop and otherwise work with sound and music.
+    - @ref CameraManager - Add/remove Multiple camera's from the world
+    - @ref CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection
+    - @ref EventManager - Get messages and events from the operating system (and user, but that will change)
+    - @ref GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.
+    - @ref MeshManager - Manage Meshes that can be rendered to the the screen.
+    - @ref PhysicsManager - Control settings that have to do with the physics simulation.
+    - @ref ResourceManager - Loads Files and locate them in an efficient way.
+    - @ref SceneManager - Control Lighting, skyboxes, particle effects etc...
+    - @ref TimerManager - Create and delete a variety of timers.
+    - @ref TerrainManager - Work with terrain components like height maps.
+    - @ref UIManager - Create and manage buttons, scrollbars and other widgets.
+
+    @subsubsection The World, A manager of managers
+
   @subpage mainloop1 "Main Loop Flow"
 
   @ref Mezzanine::World "World - It integrates everything"

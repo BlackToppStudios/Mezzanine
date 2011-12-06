@@ -22,7 +22,7 @@ Inheritance diagram for Mezzanine::AreaEffect:\begin{figure}[H]
 \item 
 virtual void \hyperlink{classMezzanine_1_1AreaEffect_a988cd958e49d65331a059951af3c2884}{ApplyEffect} ()=0
 \begin{DoxyCompactList}\small\item\em Defines and applies the effect of the field. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1AreaEffect_a2b2699c0baff3ed6eb6e19f2e7d23d7c}{AreaEffect} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\hyperlink{classMezzanine_1_1AreaEffect_a58cc7fb0725297113bbc32d619e57705}{AreaEffect} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
 \begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
 virtual std::vector$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classMezzanine_1_1AreaEffect_ac349f091e923cbb92740aaa35f2f5c2e}{GetAddedActors} ()
 \begin{DoxyCompactList}\small\item\em Gets the list of actors that have been added to the list since the last simulation step. \item\end{DoxyCompactList}\item 
@@ -156,16 +156,16 @@ Definition at line 77 of file areaeffect.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classMezzanine_1_1AreaEffect_a2b2699c0baff3ed6eb6e19f2e7d23d7c}{
+\hypertarget{classMezzanine_1_1AreaEffect_a58cc7fb0725297113bbc32d619e57705}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!AreaEffect@{AreaEffect}}
 \index{AreaEffect@{AreaEffect}!Mezzanine::AreaEffect@{Mezzanine::AreaEffect}}
-\paragraph[{AreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame Mezzanine src areaeffect cpp Mezzanine::AreaEffect::AreaEffect (
+\paragraph[{AreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky Mezzanine Mezzanine src areaeffect cpp home sqeaky Mezzanine Mezzanine src areaeffect cpp Mezzanine::AreaEffect::AreaEffect (
 \begin{DoxyParamCaption}
 \item[{const {\bf String} \&}]{name, }
 \item[{const {\bf Vector3} \&}]{Location}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1AreaEffect_a2b2699c0baff3ed6eb6e19f2e7d23d7c}
+\label{classMezzanine_1_1AreaEffect_a58cc7fb0725297113bbc32d619e57705}
 
 
 Constructor. 
@@ -179,7 +179,7 @@ Basic initialization constructor.
 \end{DoxyParams}
 
 
-Definition at line 66 of file areaeffect.cpp.
+Definition at line 67 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a1e825ce1dcb2d78c190b17d7bff7306c}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!$\sim$AreaEffect@{$\sim$AreaEffect}}
@@ -196,7 +196,7 @@ Destructor.
 
 Class destructor. 
 
-Definition at line 77 of file areaeffect.cpp.
+Definition at line 78 of file areaeffect.cpp.
 
 
 
@@ -239,7 +239,7 @@ Constructor Function.
 \end{DoxyParams}
 
 
-Definition at line 84 of file areaeffect.cpp.
+Definition at line 85 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_ac349f091e923cbb92740aaa35f2f5c2e}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetAddedActors@{GetAddedActors}}
@@ -259,7 +259,7 @@ Returns the vector storing all the actors that have been added to the list since
 \end{DoxyReturn}
 
 
-Definition at line 450 of file areaeffect.cpp.
+Definition at line 451 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a1406441f5c12072dc0a6178a2690f3a6}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetFieldMesh@{GetFieldMesh}}
@@ -279,7 +279,7 @@ Returns a pointer to the mesh being used by this \hyperlink{classMezzanine_1_1Ar
 \end{DoxyReturn}
 
 
-Definition at line 440 of file areaeffect.cpp.
+Definition at line 441 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a2204a7b0f004778bb27f38d65fa9e4df}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetFieldShape@{GetFieldShape}}
@@ -299,7 +299,7 @@ Returns a pointer to the shape currently being used by this \hyperlink{classMezz
 \end{DoxyReturn}
 
 
-Definition at line 344 of file areaeffect.cpp.
+Definition at line 345 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a7e80ddc1cb411012d80a99859bb865f7}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetFieldShapeScale@{GetFieldShapeScale}}
@@ -319,7 +319,7 @@ Returns the current scale applied to the fields shape.
 \end{DoxyReturn}
 
 
-Definition at line 354 of file areaeffect.cpp.
+Definition at line 355 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a37d04f8e6d6e8451348ee60fd083968b}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetLocation@{GetLocation}}
@@ -339,7 +339,7 @@ Returns the vector3 representing the location of the area effect.
 \end{DoxyReturn}
 
 
-Definition at line 367 of file areaeffect.cpp.
+Definition at line 368 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_ae0205e57786da97300357d7ac1afd180}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetName@{GetName}}
@@ -359,7 +359,7 @@ Returns the name of the Area Effect.
 \end{DoxyReturn}
 
 
-Definition at line 386 of file areaeffect.cpp.
+Definition at line 387 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a658d69036a307f232b88aafcab3d02c1}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetOrientation@{GetOrientation}}
@@ -379,7 +379,7 @@ Returns a quaternion representing the rotation of the area effect.
 \end{DoxyReturn}
 
 
-Definition at line 380 of file areaeffect.cpp.
+Definition at line 381 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a69f19ed2d67dca2623df6e6331b31462}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetOverlappingActors@{GetOverlappingActors}}
@@ -399,7 +399,7 @@ Returns the list of actors contained within this field.
 \end{DoxyReturn}
 
 
-Definition at line 445 of file areaeffect.cpp.
+Definition at line 446 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_ac657b565ca47198c6fd900c8a588948b}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!GetRemovedActors@{GetRemovedActors}}
@@ -419,7 +419,7 @@ Returns the vector storing all the actors that have been removed from the list s
 \end{DoxyReturn}
 
 
-Definition at line 455 of file areaeffect.cpp.
+Definition at line 456 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_aee16d398d7788f6e0fd5e597bcdbd106}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!IsInWorld@{IsInWorld}}
@@ -439,7 +439,7 @@ Returns a bool indication whether or not this object is currently in the world.
 \end{DoxyReturn}
 
 
-Definition at line 391 of file areaeffect.cpp.
+Definition at line 392 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a9b2c07dd426285aff44d5faaca4b3356}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!IsStatic@{IsStatic}}
@@ -459,7 +459,7 @@ Returns a bool indicating if this object is static.
 \end{DoxyReturn}
 
 
-Definition at line 410 of file areaeffect.cpp.
+Definition at line 411 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_aac92fc4ba682d509f6385e999f68c75d}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!ScaleFieldShape@{ScaleFieldShape}}
@@ -481,7 +481,7 @@ The default scale is 1.0.
 \end{DoxyParams}
 
 
-Definition at line 349 of file areaeffect.cpp.
+Definition at line 350 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a5e2902749c630af5272d2dc89678392c}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetFieldMesh@{SetFieldMesh}}
@@ -509,7 +509,7 @@ By default, there is no mesh used by an \hyperlink{classMezzanine_1_1AreaEffect}
 \end{DoxyParams}
 
 
-Definition at line 434 of file areaeffect.cpp.
+Definition at line 435 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_aa9e8a5e1ffee5aa11ab4958373b06f09}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetFieldMesh@{SetFieldMesh}}
@@ -534,7 +534,7 @@ By default, there is no mesh used by an \hyperlink{classMezzanine_1_1AreaEffect}
 \end{DoxyParams}
 
 
-Definition at line 415 of file areaeffect.cpp.
+Definition at line 416 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a759a0a5f4becf94c87aff85b0681f663}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetFieldShape@{SetFieldShape}}
@@ -556,7 +556,7 @@ Sets the shape of this \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}.
 \end{DoxyParams}
 
 
-Definition at line 337 of file areaeffect.cpp.
+Definition at line 338 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a4dd22757bc627242de169e31a1717139}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetLocation@{SetLocation}}
@@ -578,7 +578,7 @@ In most cases you won't want to call this, with the exception of when you want a
 \end{DoxyParams}
 
 
-Definition at line 360 of file areaeffect.cpp.
+Definition at line 361 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_a62bcda0a0c2a95b8f1ccdfe2cd3d1018}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetOrientation@{SetOrientation}}
@@ -600,7 +600,7 @@ Sets the orientation of the area effect.
 \end{DoxyParams}
 
 
-Definition at line 373 of file areaeffect.cpp.
+Definition at line 374 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_adfecf112bad175a57cdf147cb0d0aaa8}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!SetStatic@{SetStatic}}
@@ -622,7 +622,7 @@ Default: true.
 \end{DoxyParams}
 
 
-Definition at line 396 of file areaeffect.cpp.
+Definition at line 397 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1AreaEffect_aee19befcb794b85f13da4e427c2be42d}{
 \index{Mezzanine::AreaEffect@{Mezzanine::AreaEffect}!UpdateActorList@{UpdateActorList}}
@@ -645,7 +645,7 @@ Old way, checks AABB's only...as it turns out.
 
 
 
-Definition at line 126 of file areaeffect.cpp.
+Definition at line 127 of file areaeffect.cpp.
 
 
 

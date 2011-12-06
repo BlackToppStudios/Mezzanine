@@ -97,8 +97,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#af801d07590853b3ae0c52574a340ea44">AddActor</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a pre-created actor to the manager.  <a href="#af801d07590853b3ae0c52574a340ea44"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a7885890ba7a33c0d904728858379e201">DestroyActor</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys an actor.  <a href="#a7885890ba7a33c0d904728858379e201"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a5e4daba372199d0d140fd590a4d0f501">DestroyActor</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys an actor at the specified index.  <a href="#a5e4daba372199d0d140fd590a4d0f501"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a39d628c0ee0eaa225df741835f1061e7">DestroyActor</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *ToBeDestroyed)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys an actor.  <a href="#a39d628c0ee0eaa225df741835f1061e7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac71886ad26a513d1b53f0e2d6049539c"></a><!-- doxytag: member="Mezzanine::ActorManager::DestroyAllActors" ref="ac71886ad26a513d1b53f0e2d6049539c" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#ac71886ad26a513d1b53f0e2d6049539c">DestroyAllActors</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all actors currently within this manager. <br/></td></tr>
@@ -108,17 +110,17 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an Actor by Name.  <a href="#a9657cdc7c0cef46a172ad73f366e4199"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a71e61da8caf365ae03dd85090245b1ae">GetActor</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an Actor by Index.  <a href="#a71e61da8caf365ae03dd85090245b1ae"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ActorContainerBase.html">ActorContainerBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a42747650597765759b5436ee468c511c">GetActorContainer</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the internal actor container storing all the actors.  <a href="#a42747650597765759b5436ee468c511c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a92eabf039d7c8998533456da740682a8">GetNumActors</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of actors stored in this manager.  <a href="#a92eabf039d7c8998533456da740682a8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#ab5bee94dfa8c103b2bb9ace4f9ab20fc">GetNumActors</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of actors stored in this manager.  <a href="#ab5bee94dfa8c103b2bb9ace4f9ab20fc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e">ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#abfd167e1e15f32dffed05a2bd1b4ac70">GetType</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the type of this manager.  <a href="#abfd167e1e15f32dffed05a2bd1b4ac70"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b5b383066473d09243d13ad702c4868"></a><!-- doxytag: member="Mezzanine::ActorManager::Initialize" ref="a3b5b383066473d09243d13ad702c4868" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a3b5b383066473d09243d13ad702c4868">Initialize</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty initializer that has been implemented from <a class="el" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#ada396c5f6299152348b2fdb00e476361">RemoveActor</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an actor from this manager without destroying it.  <a href="#ada396c5f6299152348b2fdb00e476361"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a5c28bea0eb64822ce94ce38762aedc1e">RemoveActor</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *ToBeRemoved)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an actor from this manager without destroying it.  <a href="#a5c28bea0eb64822ce94ce38762aedc1e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#ac74758ad6d5c03b20105d641f0e37de3">RemoveActor</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an actor from this manager without destroying it.  <a href="#ac74758ad6d5c03b20105d641f0e37de3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ca8342617fa221b0548ff9bc6bf4477"></a><!-- doxytag: member="Mezzanine::ActorManager::RemoveAllActors" ref="a6ca8342617fa221b0548ff9bc6bf4477" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a6ca8342617fa221b0548ff9bc6bf4477">RemoveAllActors</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all actors from this manager without destroying them. <br/></td></tr>
@@ -127,8 +129,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b5ef9469c6e000aa0735d9a7fbeda5f"></a><!-- doxytag: member="Mezzanine::ActorManager::Actors" ref="a3b5ef9469c6e000aa0735d9a7fbeda5f" args="" -->
-<a class="el" href="classMezzanine_1_1ActorContainerBase.html">ActorContainerBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a3b5ef9469c6e000aa0735d9a7fbeda5f">Actors</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12a65a58aab87b083e6718cb8fa3aa2c"></a><!-- doxytag: member="Mezzanine::ActorManager::Actors" ref="a12a65a58aab87b083e6718cb8fa3aa2c" args="" -->
+std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a12a65a58aab87b083e6718cb8fa3aa2c">Actors</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual actor container. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07fba4f64f1a9162d3a12916d6ef29bd"></a><!-- doxytag: member="Mezzanine::ActorManager::CharacterActors" ref="a07fba4f64f1a9162d3a12916d6ef29bd" args="" -->
 std::vector&lt; ActorCharacter * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorManager.html#a07fba4f64f1a9162d3a12916d6ef29bd">CharacterActors</a></td></tr>
@@ -144,7 +146,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
 <div class="textblock"><p>A manager responsible for the storage and management of all actors in use. </p>
 <p>More or less Management point for a container of actors to help keep them sorted. </p>
 
-<p>Definition at line <a class="el" href="actormanager_8h_source.html#l00060">60</a> of file <a class="el" href="actormanager_8h_source.html">actormanager.h</a>.</p>
+<p>Definition at line <a class="el" href="actormanager_8h_source.html#l00059">59</a> of file <a class="el" href="actormanager_8h_source.html">actormanager.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="af801d07590853b3ae0c52574a340ea44"></a><!-- doxytag: member="Mezzanine::ActorManager::AddActor" ref="af801d07590853b3ae0c52574a340ea44" args="(ActorBase *Actor)" -->
 <div class="memitem">
@@ -171,11 +173,38 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00079">79</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00083">83</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7885890ba7a33c0d904728858379e201"></a><!-- doxytag: member="Mezzanine::ActorManager::DestroyActor" ref="a7885890ba7a33c0d904728858379e201" args="(ActorBase *Actor)" -->
+<a class="anchor" id="a5e4daba372199d0d140fd590a4d0f501"></a><!-- doxytag: member="Mezzanine::ActorManager::DestroyActor" ref="a5e4daba372199d0d140fd590a4d0f501" args="(const Whole &amp;Index)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ActorManager::DestroyActor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;&#160;</td>
+          <td class="paramname"><em>Index</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Destroys an actor at the specified index. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Index</td><td>The index at which to destroy the actor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00121">121</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a39d628c0ee0eaa225df741835f1061e7"></a><!-- doxytag: member="Mezzanine::ActorManager::DestroyActor" ref="a39d628c0ee0eaa225df741835f1061e7" args="(ActorBase *ToBeDestroyed)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -183,7 +212,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
           <td class="memname">void Mezzanine::ActorManager::DestroyActor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *&#160;</td>
-          <td class="paramname"><em>Actor</em></td><td>)</td>
+          <td class="paramname"><em>ToBeDestroyed</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
@@ -193,12 +222,12 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
 <p>Destroys an actor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Actor</td><td>The actor to be destroyed. </td></tr>
+    <tr><td class="paramname">ToBeDestroyed</td><td>The actor to be destroyed. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00109">109</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00129">129</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -221,35 +250,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a4ee29e4baf6c4b9a3bfec1b2258d5cd2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00144">144</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a71e61da8caf365ae03dd85090245b1ae"></a><!-- doxytag: member="Mezzanine::ActorManager::GetActor" ref="a71e61da8caf365ae03dd85090245b1ae" args="(const Whole &amp;Index)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * Mezzanine::ActorManager::GetActor </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;&#160;</td>
-          <td class="paramname"><em>Index</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets an Actor by Index. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Index</td><td>The index of the actor you wish to retrieve. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the actor at the specified index. </dd></dl>
-
-<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00064">64</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00163">163</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,32 +278,39 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the actor of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00069">69</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00068">68</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a42747650597765759b5436ee468c511c"></a><!-- doxytag: member="Mezzanine::ActorManager::GetActorContainer" ref="a42747650597765759b5436ee468c511c" args="()" -->
+<a class="anchor" id="a71e61da8caf365ae03dd85090245b1ae"></a><!-- doxytag: member="Mezzanine::ActorManager::GetActor" ref="a71e61da8caf365ae03dd85090245b1ae" args="(const Whole &amp;Index)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1ActorContainerBase.html">ActorContainerBase</a> * Mezzanine::ActorManager::GetActorContainer </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * Mezzanine::ActorManager::GetActor </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;&#160;</td>
+          <td class="paramname"><em>Index</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Gets the internal actor container storing all the actors. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the Actor container being used by this manager. </dd></dl>
+<p>Gets an Actor by Index. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Index</td><td>The index of the actor you wish to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the actor at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00134">134</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00063">63</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a92eabf039d7c8998533456da740682a8"></a><!-- doxytag: member="Mezzanine::ActorManager::GetNumActors" ref="a92eabf039d7c8998533456da740682a8" args="()" -->
+<a class="anchor" id="ab5bee94dfa8c103b2bb9ace4f9ab20fc"></a><!-- doxytag: member="Mezzanine::ActorManager::GetNumActors" ref="ab5bee94dfa8c103b2bb9ace4f9ab20fc" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -310,7 +318,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
           <td class="memname"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::ActorManager::GetNumActors </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -319,7 +327,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
 <p>Gets the number of actors stored in this manager. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a whole representing the current actor count. </dd></dl>
 
-<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00074">74</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00078">78</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -342,11 +350,11 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a6fbfe9e847156915b195b6de1cf76973">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00148">148</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00167">167</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ada396c5f6299152348b2fdb00e476361"></a><!-- doxytag: member="Mezzanine::ActorManager::RemoveActor" ref="ada396c5f6299152348b2fdb00e476361" args="(ActorBase *Actor)" -->
+<a class="anchor" id="a5c28bea0eb64822ce94ce38762aedc1e"></a><!-- doxytag: member="Mezzanine::ActorManager::RemoveActor" ref="a5c28bea0eb64822ce94ce38762aedc1e" args="(ActorBase *ToBeRemoved)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -354,7 +362,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
           <td class="memname">void Mezzanine::ActorManager::RemoveActor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *&#160;</td>
-          <td class="paramname"><em>Actor</em></td><td>)</td>
+          <td class="paramname"><em>ToBeRemoved</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
@@ -366,12 +374,41 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
  This function is also necessary for anyone inheriting from our actors to remove their actors from the world. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Actor</td><td>The actor to be removed from the manager. </td></tr>
+    <tr><td class="paramname">ToBeRemoved</td><td>The actor to be removed from the manager. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00085">85</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00096">96</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac74758ad6d5c03b20105d641f0e37de3"></a><!-- doxytag: member="Mezzanine::ActorManager::RemoveActor" ref="ac74758ad6d5c03b20105d641f0e37de3" args="(const Whole &amp;Index)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ActorManager::RemoveActor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;&#160;</td>
+          <td class="paramname"><em>Index</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes an actor from this manager without destroying it. </p>
+<p>In some cases you may want to add and remove an actor from the world without destroying it and do some special manipulations to it to achieve some special/unique affects. This function along with the "RemoveActor()" function facilitates this. <br/>
+ This function is also necessary for anyone inheriting from our actors to remove their actors from the world. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Index</td><td>The index at which to remove the actor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="actormanager_8cpp_source.html#l00089">89</a> of file <a class="el" href="actormanager_8cpp_source.html">actormanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -395,6 +432,6 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft<
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

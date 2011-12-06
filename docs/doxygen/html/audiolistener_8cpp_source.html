@@ -111,9 +111,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00047"></a>00047 {
 <a name="l00048"></a>00048     <span class="keyword">namespace </span>Audio
 <a name="l00049"></a>00049     {
-<a name="l00050"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a31804de89544d687005f4e8aa7373f79">00050</a>         <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a31804de89544d687005f4e8aa7373f79" title="Class constructor. Internal use only.">Listener::Listener</a>(cAudio::IListener* <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html">Listener</a>)
+<a name="l00050"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a31804de89544d687005f4e8aa7373f79">00050</a>         <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a31804de89544d687005f4e8aa7373f79" title="Class constructor. Internal use only.">Listener::Listener</a>(cAudio::IListener* <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html" title="This is the listener class used for 3D sound.">Listener</a>)
 <a name="l00051"></a>00051         {
-<a name="l00052"></a>00052             AudioListener = <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a31804de89544d687005f4e8aa7373f79" title="Class constructor. Internal use only.">Listener</a>;
+<a name="l00052"></a>00052             <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a> = <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a31804de89544d687005f4e8aa7373f79" title="Class constructor. Internal use only.">Listener</a>;
 <a name="l00053"></a>00053         }
 <a name="l00054"></a>00054 
 <a name="l00055"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a443af89e23007cb1c96acb1fe297ff9c">00055</a>         <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a443af89e23007cb1c96acb1fe297ff9c" title="Class destructor.">Listener::~Listener</a>()
@@ -122,61 +122,61 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00058"></a>00058 
 <a name="l00059"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a88176e6cc43ba46337f445a58d1985a9">00059</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a88176e6cc43ba46337f445a58d1985a9" title="Sets the listener position.">Listener::SetPosition</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Position)
 <a name="l00060"></a>00060         {
-<a name="l00061"></a>00061             AudioListener-&gt;setPosition(Position.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
+<a name="l00061"></a>00061             <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;setPosition(Position.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
 <a name="l00062"></a>00062         }
 <a name="l00063"></a>00063 
 <a name="l00064"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#aad69b1999d6b81e84b7ac6aa8905a574">00064</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#aad69b1999d6b81e84b7ac6aa8905a574" title="Sets the direction the listener is facing.">Listener::SetDirection</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Direction)
 <a name="l00065"></a>00065         {
-<a name="l00066"></a>00066             AudioListener-&gt;setDirection(Direction.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
+<a name="l00066"></a>00066             <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;setDirection(Direction.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
 <a name="l00067"></a>00067         }
 <a name="l00068"></a>00068 
 <a name="l00069"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a0164474c3a9e10be3b040314e257bbc8">00069</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a0164474c3a9e10be3b040314e257bbc8" title="Sets the up direction for the listener.">Listener::SetUpVector</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Up)
 <a name="l00070"></a>00070         {
-<a name="l00071"></a>00071             AudioListener-&gt;setUpVector(Up.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
+<a name="l00071"></a>00071             <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;setUpVector(Up.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
 <a name="l00072"></a>00072         }
 <a name="l00073"></a>00073 
 <a name="l00074"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#abe15a6e98f8d04ecc82af40264a63170">00074</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#abe15a6e98f8d04ecc82af40264a63170" title="Sets the velocity of the listener.">Listener::SetVelocity</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Velocity)
 <a name="l00075"></a>00075         {
-<a name="l00076"></a>00076             AudioListener-&gt;setVelocity(Velocity.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
+<a name="l00076"></a>00076             <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;setVelocity(Velocity.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
 <a name="l00077"></a>00077         }
 <a name="l00078"></a>00078 
 <a name="l00079"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a7c99b492e90de19622734d2e7552841c">00079</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a7c99b492e90de19622734d2e7552841c" title="Sets the master volume for all sources heard by this listener.">Listener::SetMasterVolume</a>(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Volume)
 <a name="l00080"></a>00080         {
-<a name="l00081"></a>00081             AudioListener-&gt;setMasterVolume(Volume);
+<a name="l00081"></a>00081             <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;setMasterVolume(Volume);
 <a name="l00082"></a>00082         }
 <a name="l00083"></a>00083 
 <a name="l00084"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a9b87e62d1375016ebf4d93b6acc850e0">00084</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a9b87e62d1375016ebf4d93b6acc850e0" title="Moves the listener to a new location.">Listener::Move</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Position)
 <a name="l00085"></a>00085         {
-<a name="l00086"></a>00086             AudioListener-&gt;move(Position.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
+<a name="l00086"></a>00086             <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;move(Position.<a class="code" href="classMezzanine_1_1Vector3.html#abc23c3ed5b31db10992744bf789eb390" title="Gets a cAudio vector3.">GetcAudioVector3</a>());
 <a name="l00087"></a>00087         }
 <a name="l00088"></a>00088 
 <a name="l00089"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#ac1a707dd38254dc1d84b82350ac37127">00089</a>         <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#ac1a707dd38254dc1d84b82350ac37127" title="Gets the current position of the listener.">Listener::GetPosition</a>()
 <a name="l00090"></a>00090         {
-<a name="l00091"></a>00091             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Position(AudioListener-&gt;getPosition());
+<a name="l00091"></a>00091             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Position(<a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;getPosition());
 <a name="l00092"></a>00092             <span class="keywordflow">return</span> Position;
 <a name="l00093"></a>00093         }
 <a name="l00094"></a>00094 
 <a name="l00095"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a62979c5c6eb31f2c98b5c8d56cece662">00095</a>         <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a62979c5c6eb31f2c98b5c8d56cece662" title="Gets the current direction of the listener.">Listener::GetDirection</a>()
 <a name="l00096"></a>00096         {
-<a name="l00097"></a>00097             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Direction(AudioListener-&gt;getDirection());
+<a name="l00097"></a>00097             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Direction(<a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;getDirection());
 <a name="l00098"></a>00098             <span class="keywordflow">return</span> Direction;
 <a name="l00099"></a>00099         }
 <a name="l00100"></a>00100 
 <a name="l00101"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a715f525d05b60b01850e8d46f26640a4">00101</a>         <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a715f525d05b60b01850e8d46f26640a4" title="Sets the upward orientation of the listener.">Listener::GetUpVector</a>()
 <a name="l00102"></a>00102         {
-<a name="l00103"></a>00103             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Up(AudioListener-&gt;getUpVector());
+<a name="l00103"></a>00103             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Up(<a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;getUpVector());
 <a name="l00104"></a>00104             <span class="keywordflow">return</span> Up;
 <a name="l00105"></a>00105         }
 <a name="l00106"></a>00106 
 <a name="l00107"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a37849fe42431d7a65b57ffffd465bdf0">00107</a>         <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a37849fe42431d7a65b57ffffd465bdf0" title="Gets the current velocity of the listener.">Listener::GetVelocity</a>()
 <a name="l00108"></a>00108         {
-<a name="l00109"></a>00109             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Velocity(AudioListener-&gt;getVelocity());
+<a name="l00109"></a>00109             <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Velocity(<a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;getVelocity());
 <a name="l00110"></a>00110             <span class="keywordflow">return</span> Velocity;
 <a name="l00111"></a>00111         }
 <a name="l00112"></a>00112 
 <a name="l00113"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a9eab36fdf62509af37a4b7cb7286e302">00113</a>         <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a9eab36fdf62509af37a4b7cb7286e302" title="Gets the master volume used to scale sound sources.">Listener::GetMasterVolume</a>()
 <a name="l00114"></a>00114         {
-<a name="l00115"></a>00115             <span class="keywordflow">return</span> AudioListener-&gt;getMasterVolume();
+<a name="l00115"></a>00115             <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#a16d39f3bed8cea05266899d4aa47d6b5" title="The internal implementation of the Audio Listener.">AudioListener</a>-&gt;getMasterVolume();
 <a name="l00116"></a>00116         }
 <a name="l00117"></a>00117 
 <a name="l00118"></a><a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#ab413b3d85270ff5ff816b4cc5c23554e">00118</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Listener.html#ab413b3d85270ff5ff816b4cc5c23554e" title="Sets the scale to be used by the manager for this listener.">Listener::SetMetersPerUnit</a>(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Meters)
@@ -209,6 +209,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

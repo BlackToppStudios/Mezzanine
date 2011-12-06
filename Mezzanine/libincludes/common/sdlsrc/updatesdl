@@ -1,2 +1,5 @@
 #!/bin/bash
+#update this file the next time we update the SDL sourcey
+#rm SDL.tar.gz
 hg clone http://hg.libsdl.org/SDL
+# re-compress new source into SDL.tar.gz

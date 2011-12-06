@@ -269,6 +269,8 @@ namespace Mezzanine
 
     typedef std::list<btCollisionAlgorithm*> AlgoList;
 
+    /// @internal
+    /// @brief Used to provide better reporting of collisions
     class CollisionDispatcher : public btCollisionDispatcher
     {
         protected:

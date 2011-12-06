@@ -121,10 +121,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00057"></a><a class="code" href="classMezzanine_1_1ActorContainerBase.html#aab089925fd04d1591f2932d25edf0f52">00057</a>         {}
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059     Ogre::SceneNode* <a class="code" href="classMezzanine_1_1ActorContainerBase.html#aa368146bb82e3384240b769f64b3a6fe" title="Used to work around the scenenode of an Actor being private, so all derived Containers can access it...">ActorContainerBase::GetNode</a>(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* actor)<span class="keyword"> const</span>
-<a name="l00060"></a><a class="code" href="classMezzanine_1_1ActorContainerBase.html#aa368146bb82e3384240b769f64b3a6fe">00060</a> <span class="keyword">        </span>{ <span class="keywordflow">return</span> actor-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a060b9a1c42de39c0bcaa9535a5606ffa" title="Gets the internal graphics node this actor uses for it&amp;#39;s graphics transform.">_GetGraphicsNode</a>(); }
+<a name="l00060"></a><a class="code" href="classMezzanine_1_1ActorContainerBase.html#aa368146bb82e3384240b769f64b3a6fe">00060</a> <span class="keyword">        </span>{ <span class="keywordflow">return</span> actor-&gt;<a class="code" href="classMezzanine_1_1WorldObject.html#a1123ace3f7730eaf1eb395b3aad714a4" title="Gets the internal graphics node this terrain uses for it&amp;#39;s graphics transform.">_GetGraphicsNode</a>(); }
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062     btCollisionObject* <a class="code" href="classMezzanine_1_1ActorContainerBase.html#a591b8ce55aab6bc6ff7d10085f582baa" title="Used to work around the collision object of an Actor being private, so all derived Containers can acc...">ActorContainerBase::GetCollisionObject</a>(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* actor)<span class="keyword"> const</span>
-<a name="l00063"></a><a class="code" href="classMezzanine_1_1ActorContainerBase.html#a591b8ce55aab6bc6ff7d10085f582baa">00063</a> <span class="keyword">        </span>{ <span class="keywordflow">return</span> actor-&gt;<a class="code" href="classMezzanine_1_1ActorBase.html#a6f8b107522665d5ecee1f10f4a49464d" title="Gets the internal physics object this actor is based on.">_GetBasePhysicsObject</a>(); }
+<a name="l00063"></a><a class="code" href="classMezzanine_1_1ActorContainerBase.html#a591b8ce55aab6bc6ff7d10085f582baa">00063</a> <span class="keyword">        </span>{ <span class="keywordflow">return</span> actor-&gt;<a class="code" href="classMezzanine_1_1WorldObject.html#a4564b948a585aac1764ee13f2a61c110" title="Gets the internal physics object this terrain is based on.">_GetBasePhysicsObject</a>(); }
 <a name="l00064"></a>00064 }<span class="comment">// \phys</span>
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066 
@@ -147,6 +147,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 3 2011 02:39:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Dec 4 2011 17:32:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>
