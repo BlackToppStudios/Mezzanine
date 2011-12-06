@@ -40,6 +40,7 @@
 #ifndef _collision_cpp
 #define _collision_cpp
 
+#include "actorbase.h"
 #include "actorcontainerbase.h"
 #include "actormanager.h"
 #include "collision.h"

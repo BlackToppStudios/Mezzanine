@@ -47,28 +47,13 @@ namespace Mezzanine
     ///////////////////////////////////
     // TerrainBase class fuctions
     TerrainBase::TerrainBase()
-        : GraphicsObject(NULL),
-          Shape(NULL),
-          CollisionObject(NULL),
-          TerrainType(TerrainBase::Terrainbase)
     {
-        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+
     }
 
     TerrainBase::~TerrainBase()
     {
     }
-
-    TerrainBase::TerrainTypeName TerrainBase::GetTerrainType()
-    {
-        return this->GetType();
-    }
-
-    String TerrainBase::GetTerrainName()
-    {
-        return this->Name;
-    }
-
 }// /Mezzanine
 
 #endif // _terrainbase_cpp

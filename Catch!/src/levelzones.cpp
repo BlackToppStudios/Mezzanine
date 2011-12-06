@@ -32,6 +32,11 @@ bool LevelZone::IsEmpty()
     return OverlappingActors.empty();
 }
 
+Mezzanine::WorldObjectType LevelZone::GetType() const
+{
+    return Mezzanine::WOT_AEUnknown;
+}
+
 StartArea::StartArea(const String &name, const Vector3& Location)
     : LevelZone(name,Location),
       Init(true)
@@ -52,9 +57,9 @@ void StartArea::ApplyEffect()
         for( std::vector<ActorBase*>::iterator it = AddedActors.begin() ; it != AddedActors.end() ; it++ )
         {
             Act = (*it);
-            Act->GetPhysicsSettings()->DisableCollisionResponse();
+            ((ActorBasePhysicsSettings*)Act->GetPhysicsSettings())->SetCollisionResponse(false);
             PhysMan->SetIndividualGravity(Act, Grav);
-            if(Init && Act->GetType() == ActorBase::Actorrigid)
+            if(Init && Act->GetType() == Mezzanine::WOT_ActorRigid)
             {
                 ((ActorRigid*)Act)->GetPhysicsSettings()->SetLinearVelocity(Vector3());
             }
@@ -65,7 +70,7 @@ void StartArea::ApplyEffect()
         for( std::vector<ActorBase*>::iterator it = RemovedActors.begin() ; it != RemovedActors.end() ; it++ )
         {
             Act = (*it);
-            Act->GetPhysicsSettings()->EnableCollisionResponse();
+            ((ActorBasePhysicsSettings*)Act->GetPhysicsSettings())->SetCollisionResponse(true);
             PhysMan->SetIndividualGravity(Act, PhysMan->GetGravity());
         }
     }

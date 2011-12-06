@@ -41,9 +41,11 @@
 #define _worldobject_h
 
 #include "enumerations.h"
-#include "datatypes.h"
+#include "vector3.h"
+#include "quaternion.h"
 #include "collision.h"
 #include "worldobjectgraphicssettings.h"
+#include "worldobjectphysicssettings.h"
 
 ///////////////////////////////////
 // Forward Declares
@@ -61,6 +63,18 @@ namespace Ogre
 
 namespace Mezzanine
 {
+    class World;
+    class WorldNode;
+    class ActorBasePhysicsSettings;
+    namespace Audio
+    {
+        class SoundSet;
+    }
+    namespace internal
+    {
+        class PhysMotionState;
+        struct MeshInfo;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class WorldObject
     /// @headerfile worldobject.h
@@ -69,10 +83,12 @@ namespace Mezzanine
     /// have a graphical representation and can be added and removed from the world.  In almost all
     /// occasions these objects can also collide with other objects.
     ///////////////////////////////////////
-    class WorldObject
+    class MEZZ_LIB WorldObject
     {
         protected:
+            friend class WorldNode;
             friend class WorldObjectGraphicsSettings;
+            friend class WorldObjectPhysicsSettings;
             /// @brief This class encapsulates the functionality of the Ogre::Entity using this
             Ogre::Entity* GraphicsObject;
 
@@ -87,6 +103,12 @@ namespace Mezzanine
 
             /// @brief This class encapsulates graphics specific configuration for this actor.
             WorldObjectGraphicsSettings* GraphicsSettings;
+
+            /// @brief This class encapsulates physics specific configuration for this actor.
+            WorldObjectPhysicsSettings* PhysicsSettings;
+
+            ///@brief This is a collection of sounds for use with this actor.
+            Audio::SoundSet* ObjectSounds;
 
             /// @brief The name of the terrain
             String Name;
@@ -105,37 +127,78 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~WorldObject();
 
+            /// @brief Manually sets the location of the World Object.
+            /// @details Calling this function prior to adding it to the World will have no effect. @n
+            /// In most situations you won't want to use this function, and instead produce movement through physics functions.
+            /// @param x Location on the X vector.
+            /// @param y Location on the Y vector.
+            /// @param z Location on the Z vector.
+            virtual void SetLocation(const Real& x, const Real& y, const Real& z);
+
+            /// @brief Manually sets the location of the World Object.
+            /// @details Calling this function prior to adding it to the World will have no effect. @n
+            /// In most situations you won't want to use this function, and instead produce movement through physics functions.
+            /// @param Location The Vector3 representing the location.
+            virtual void SetLocation(const Vector3& Location);
+
+            /// @brief Retrieves the location of the object.
+            /// @details This function will retrieve the location of the object within the world.
+            /// @return A Mezzanine::Vector3 containing the location.
+            virtual Vector3 GetLocation() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Utility and Configuration
             ///////////////////////////////////////
 
-            /// @brief Gets the name of this terrain.
-            /// @return Returns a string containing the name of this terrain.
+            /// @brief Gets the name of this World Object.
+            /// @return Returns a string containing the name of this World Object.
             virtual String GetName() const;
 
-            /// @brief Gets the type of the terrain instance
-            /// @return Returns the type of the terrain instance
+            /// @brief Gets the type of the World Object instance
+            /// @return Returns the type of the World Object instance
             virtual WorldObjectType GetType() const = 0;
+
+            /// @brief Checks of the World Object is static or kinematic.
+            /// @details Checks of the World Object is static or kinematic, returns true if it is either.
+            /// @return Returns true if the World Object is static or kinematic.
+            virtual bool IsStaticOrKinematic() const;
 
             /// @brief Gets whether or not this object is currently in the world.
             /// @return Returns a bool indicating if this object has been added to the world.
             virtual bool IsInWorld() const;
 
+            /// @brief Sets the scale of the World Object.
+            /// @details This function will alter the scaling/size of the World Object with the given vector3.
+            /// @param scale The vector3 by which to apply the scale.  Will scale each axis' accordingly.
+            virtual void SetScaling(const Vector3& scale);
+
+            /// @brief Gets the current scaling being applied to the World Object.
+            /// @return Returns a vector3 representing the scaling being applied on all axes of this World Object.
+            virtual Vector3 GetScaling() const;
+
             /// @brief Gets the graphics settings class associated with this World Object.
             /// @return Returns a pointer to the graphics settings class in use by this World Object.
             virtual WorldObjectGraphicsSettings* GetGraphicsSettings() const;
+
+            /// @brief Gets the physics settings class associated with this World Object.
+            /// @return Returns a pointer to the physics settings class in use by this World Object.
+            virtual WorldObjectPhysicsSettings* GetPhysicsSettings() const;
+
+            /// @brief Sets the sounds to be used by this object.
+            /// @param Sounds The soundset to be assigned to this object.
+            virtual void SetSounds(Audio::SoundSet* Sounds);
+
+            /// @brief Gets the set of sounds associated with this World Object.
+            /// @return Returns a pointer to a soundset containing all the sounds this World Object uses.
+            virtual Audio::SoundSet* GetSounds() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Working with the World
             ///////////////////////////////////////
 
-            /// @brief Adds the Terrain object to the World
-            /// @details Attaches the Terrain to the World to be rendered and adds the collision object to
-            /// the PhysicsManager @n
-            /// This is automatically called by the CreateTerrain methods in the TerrainManager
+            /// @brief Adds the World Object to the World.
             virtual void AddToWorld() = 0;
-            /// @brief Removed the Terrain object from the World
-            /// @details detaches the Terrain from the Graphics and removes the collision object from the PhysicsManager
+            /// @brief Removes the World Object from the World.
             virtual void RemoveFromWorld() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -143,29 +206,112 @@ namespace Mezzanine
             ///////////////////////////////////////
 
             /// @internal
-            /// @brief Utility function for altering or checking the actor every frame.
+            /// @brief Utility function for altering or checking the World Object every frame.
             virtual void _Update() = 0;
 
             /// @internal
-            /// @brief Notifies this terrain of a collision that is occuring with it.
-            /// @param Col A pointer to the collision pertaining to this terrain.
-            /// @param State The state of the collision pertaining to this terrain.
+            /// @brief Notifies this World Object of a collision that is occuring with it.
+            /// @param Col A pointer to the collision pertaining to this World Object.
+            /// @param State The state of the collision pertaining to this World Object.
             virtual void _NotifyCollisionState(Collision* Col, const Collision::CollisionState& State);
 
             /// @internal
-            /// @brief Gets the internal physics object this terrain is based on.
+            /// @brief Gets the internal physics object this World Object is based on.
             /// @return Returns a pointer to the internal Bullet object.
             virtual btCollisionObject* _GetBasePhysicsObject() const;
 
             /// @internal
-            /// @brief Gets the internal graphics object this terrain is based on.
+            /// @brief Gets the internal graphics object this World Object is based on.
             /// @return Returns a pointer to the internal graphics object.
             virtual Ogre::Entity* _GetGraphicsObject() const;
 
             /// @internal
-            /// @brief Gets the internal graphics node this terrain uses for it's graphics transform.
+            /// @brief Gets the internal graphics node this World Object uses for it's graphics transform.
             /// @return Returns a pointer to the internal graphics node.
             virtual Ogre::SceneNode* _GetGraphicsNode() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+            ///////////////////////////////////////
+#ifdef MEZZXML
+        protected:
+            /// @internal
+            /// @brief A Helper function that assembles strings and throws an exception
+            /// @param Fail The item that failed.
+            virtual void ThrowSerialError(const String& Fail) const;
+
+            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings.
+            /// @return A string containing name of the serialized graphics settings.
+            virtual String GraphicsSettingsSerializableName() const = 0;
+
+            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized s settings.
+            /// @return A string containing name of the serialized graphics settings.
+            virtual String PhysicsSettingsSerializableName() const = 0;
+
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+        public:
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Point2PointConstraint"
+            static String SerializableName();
+#endif
+    };//WorldObject
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class NonStaticWorldObject
+    /// @headerfile worldobject.h
+    /// @brief This is a small extention of the WorldObject class that adds features common to non-static objects.
+    /// @details Many world objects are capable of being moved and oriented dynamically and at run time, but there
+    /// are some objects that you don't want to have the ability or API to do so as it may break the intent of the
+    /// object.  This class is here to be avoided for those objects, and instead inherit directly from the
+    /// WorldObject class while all other's inherit from this class.  It's important to note that this class doesn't
+    /// forbid static objects as the name may suggest, but rather it makes static status optional instead of forcing
+    /// them to be static.
+    ///////////////////////////////////////
+    class MEZZ_LIB NonStaticWorldObject : public WorldObject
+    {
+        protected:
+            /// @brief This class excapsulates the functionality of the Ogre::SceneNode.
+            WorldNode* ObjectWorldNode;
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Creation, Destruction and Initialization
+            ///////////////////////////////////////
+            /// @brief Class constructor.
+            NonStaticWorldObject();
+            /// @brief Class destructor.
+            virtual ~NonStaticWorldObject();
+
+            /// @brief Sets the orientation of the World Object.
+            /// @details Sets the orientation of the World Object via Quaternion parameters.
+            /// @param x Where the X vector is rotated about.
+            /// @param y Where the Y vector is rotated about.
+            /// @param z Where the Z vector is rotated about.
+            /// @param w How much to about the x, y, z.
+            virtual void SetOrientation(const Real& x, const Real& y, const Real& z, const Real& w);
+
+            /// @brief Sets the orientation of the World Object.
+            /// @details Sets the orientation of the World Object via a Quaternion.
+            /// @param Rotation The Quaternion representing the Rotation.
+            virtual void SetOrientation(const Quaternion& Rotation);
+
+            /// @brief Gets the orientation of the World Object.
+            /// @return Returns a quaternion representing the rotation of the World Object.
+            virtual Quaternion GetOrientation() const;
+
+            /// @brief Gets a WorldNode representing the position and orientation of this World Object.
+            /// @details The WorldNode returned by this function is not stored in the scene manasger.
+            /// @return Returns a WorldNode pointer pointing to this World Object's world node.
+            virtual WorldNode* GetObjectNode() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -181,12 +327,27 @@ namespace Mezzanine
             /// @return A string containing name of the serialized graphics settings.
             virtual String GraphicsSettingsSerializableName() const = 0;
 
+            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized s settings.
+            /// @return A string containing name of the serialized graphics settings.
+            virtual String PhysicsSettingsSerializableName() const = 0;
+
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
         public:
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Point2PointConstraint"
             static String SerializableName();
 #endif
-    };//WorldObject
+    };//NonStaticWorldObject
 }//Mezzanine
 
 #endif

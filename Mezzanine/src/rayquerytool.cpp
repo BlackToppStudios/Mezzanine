@@ -59,6 +59,10 @@
 
 #include <exception>
 
+#ifdef GetObject
+#undef GetObject
+#endif
+
 namespace Mezzanine
 {
     Ogre::RaySceneQuery* RayQueryTool::RayQuery = 0;
@@ -152,7 +156,8 @@ namespace Mezzanine
                         if (new_closest_found)
                         {
                             closest_result = Ooray.getPoint(closest_distance);
-                            ClosestActor->Actor = ActorManager::GetSingletonPtr()->GetActorContainer()->FindActor( pentity->getParentSceneNode() );
+                            ObjectReference* ActorRef = Ogre::any_cast<ObjectReference*>(pentity->getUserAny());
+                            ClosestActor->Actor = (ActorBase*)ActorRef->GetObject();
                         }
 
                     } // \if WOT_ActorRigid
@@ -166,7 +171,7 @@ namespace Mezzanine
         //Change the closest point into a point relative to the Actor
         if (ClosestActor->Actor != NULL)
             //{ ClosestActor->Vector = closest_result - ClosestActor->Actor->GetLocation(); }
-            { ClosestActor->Vector = ClosestActor->Actor->GetOrientation() * ((closest_result - ClosestActor->Actor->GetLocation()) * ClosestActor->Actor->GetActorScaling()); }
+            { ClosestActor->Vector = ClosestActor->Actor->GetOrientation() * ((closest_result - ClosestActor->Actor->GetLocation()) * ClosestActor->Actor->GetScaling()); }
         return ClosestActor;
     }
 
@@ -195,7 +200,8 @@ namespace Mezzanine
         {
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
             Vector3WActor* ClosestActor = new Vector3WActor();
-            ClosestActor->Actor = ActorManager::GetSingletonPtr()->GetActorContainer()->FindActor( pentity->getParentSceneNode() );
+            ObjectReference* ActorRef = Ogre::any_cast<ObjectReference*>(pentity->getUserAny());
+            ClosestActor->Actor = (ActorBase*)ActorRef->GetObject();
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account

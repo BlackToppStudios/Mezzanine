@@ -40,12 +40,8 @@
 #ifndef _areaeffect_h
 #define _areaeffect_h
 
-#include "crossplatformexport.h"
-#include "datatypes.h"
-#include "quaternion.h"
-#include "vector3.h"
 #include "colourvalue.h"
-#include "enumerations.h"
+#include "worldobject.h"
 
 #include <list>
 
@@ -74,24 +70,12 @@ namespace Mezzanine
     /// AreaEffect class that does what you want it to, simple inherit from this class with an AE class of your own,
     /// and define the ApplyEffect() function to do what you want your effect to do.
     ///////////////////////////////////////
-    class MEZZ_LIB AreaEffect
+    class MEZZ_LIB AreaEffect : public NonStaticWorldObject
     {
         friend class PhysicsManager;
         protected:
-            /// @brief The name of the Area Effect.
-            String Name;
-            /// @brief Stores the shape of the AE field.
-            CollisionShape* FieldShape;
-            /// @brief Stores the mesh of the AR field.
-            Mesh* FieldMesh;
             /// @brief The object representing the AE field itself.
             btPairCachingGhostObject* Ghost;
-            /// @brief Ogre node required to adding a graohical representation to the scene graph.
-            Ogre::SceneNode* GraphicsNode;
-            /// @brief The Ogre object being added to the scene graph.
-            Ogre::Entity* GraphicsObject;
-            /// @brief World pointer simply to enable the effects of this class to be as diverse as the engine features.
-            World* TheWorld;
             /// @brief Container for actors within the field area.
             std::list < ActorBase* > OverlappingActors;
             /// @brief Container of actors that have been added since last frame.
@@ -101,8 +85,6 @@ namespace Mezzanine
             /// @brief Constructor Function.
             /// @param Location The location of the AE field.
             virtual void CreateGhostObject(const Vector3& Location);
-            /// @brief Convenience function for the common starting steps in making a graphics object.
-            virtual void PreGraphicsMeshCreate();
             /// @brief Helper function for adding actors to relevant lists.
             virtual void AddActorToList(ActorBase* Actor);
             /// @brief Helper function for adding actors to relevant lists.
@@ -120,63 +102,6 @@ namespace Mezzanine
             /// @details When inheriting this class, this function is what defines the effect the field has. @n
             /// This function will be called on by the physics manager and shouldn't be called manually.
             virtual void ApplyEffect() = 0;
-            /// @brief Updates the actors listed as within the field.
-            /// @details This function is automatically called once every simulation step.  This shouldn't
-            /// be called manually unless your usage of this class requires more then one update per step.
-            virtual void UpdateActorList();
-            /// @brief Sets the shape of this AreaEffect.
-            /// @param FieldShape The shape to be applied to this field.
-            virtual void SetFieldShape(CollisionShape* FieldShape);
-            /// @brief Gets the current shape of the AreaEffect.
-            /// @return Returns a pointer to the shape currently being used by this AreaEffect.
-            virtual CollisionShape* GetFieldShape() const;
-            /// @brief Sets the scale of the shape of the field.
-            /// @details The default scale is 1.0.
-            /// @param Scale The vector3 representing the scale you wish to apply to each axis of the field shape.
-            virtual void ScaleFieldShape(const Vector3& Scale);
-            /// @brief Gets the scale of the shape of the field.
-            /// @details The default scale is 1.0.
-            /// @return Returns the current scale applied to the fields shape.
-            virtual Vector3 GetFieldShapeScale() const;
-            /// @brief Sets the origin for the area effect.
-            /// @details In most cases you won't want to call this, with the exception of when you want a field to follow/track an actor.
-            /// @param Location The updated location of the origin for the field.
-            virtual void SetLocation(const Vector3& Location);
-            /// @brief Gets the origin for the area effect.
-            /// @details This function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location.
-            /// @return Returns the vector3 representing the location of the area effect.
-            virtual Vector3 GetLocation() const;
-            /// @brief Sets the orientation of the area effect.
-            /// @param Rotation The Quaternion representing the Rotation.
-            virtual void SetOrientation(const Quaternion& Rotation);
-            /// @brief Gets the orientation of the area effect.
-            /// @return Returns a quaternion representing the rotation of the area effect.
-            virtual Quaternion GetOrientation();
-            /// @brief Gets the Area Effects name.
-            /// @return Returns the name of the Area Effect.
-            virtual ConstString& GetName() const;
-            /// @brief Checks to see if the ghost object is currently in the world.
-            /// @return Returns a bool indication whether or not this object is currently in the world.
-            virtual bool IsInWorld() const;
-            /// @brief Sets(or un-sets) this AE as a static object.
-            /// @details Default: true.
-            /// @param Static Whether or not to set this as static.
-            virtual void SetStatic(bool Static);
-            /// @brief Gets whether or not this AR is static.
-            /// @return Returns a bool indicating if this object is static.
-            virtual bool IsStatic() const;
-            /// @brief Sets the mesh to be used along with this AreaEffect.
-            /// @note By default, there is no mesh used by an AreaEffect, as it doesn't require one for it's operation.
-            /// @param Mesh The mesh to apply to this AreaEffect.
-            virtual void SetFieldMesh(Mesh* FieldMesh);
-            /// @brief Sets the mesh to be used along with this AreaEffect.
-            /// @note By default, there is no mesh used by an AreaEffect, as it doesn't require one for it's operation.
-            /// @param MeshName The name of the mesh to apply to this AreaEffect.
-            /// @param Group The resource group to which the mesh belongs.
-            virtual void SetFieldMesh(const String& MeshName, const String& Group);
-            /// @brief Gets the mesh being used by this AreaEffect.
-            /// @return Returns a pointer to the mesh being used by this AreaEffect, or NULL if none.
-            virtual Mesh* GetFieldMesh() const;
             /// @brief Gets the list of actors within this field.
             /// @return Returns the list of actors contained within this field.
             virtual std::list<ActorBase*>& GetOverlappingActors();
@@ -186,6 +111,49 @@ namespace Mezzanine
             /// @brief Gets the list of actors that have been removed from the list since the last simulation step.
             /// @return Returns the vector storing all the actors that have been removed from the list since the last simulation step.
             virtual std::vector<ActorBase*>& GetRemovedActors();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited from WorldObject
+            /// @copydoc Mezzanine::WorldObject::GetType()
+            virtual WorldObjectType GetType() const;
+            /// @copydoc Mezzanine::WorldObject::AddToWorld()
+            virtual void AddToWorld();
+            /// @copydoc Mezzanine::WorldObject::RemoveFromWorld()
+            virtual void RemoveFromWorld();
+            /// @copydoc Mezzanine::WorldObject::_Update()
+            virtual void _Update();
+
+#ifdef MEZZXML
+        protected:
+            /// @internal
+            /// @brief a Helper function that assembles strings and throws an exception
+            /// @param Fail The item that failed.
+            virtual void ThrowSerialError(const String& Fail) const;
+
+            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings.
+            /// @return A string containing name of the serialized graphics settings.
+            virtual String GraphicsSettingsSerializableName() const;
+
+            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized s settings.
+            /// @return A string containing name of the serialized graphics settings.
+            virtual String PhysicsSettingsSerializableName() const;
+
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+        public:
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Point2PointConstraint"
+            static String SerializableName();
+#endif
     };//areaeffect
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -241,6 +209,8 @@ namespace Mezzanine
             /// @details Gets the strength and direction of gravity this field has.
             /// @return Returns a vector3 representing the force and direction of gravity this field has.
             virtual Vector3 GetFieldGravity() const;
+            /// @copydoc Mezzanine::WorldObject::GetType()
+            virtual WorldObjectType GetType() const;
     };//GravityField
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -302,6 +272,8 @@ namespace Mezzanine
             /// @details See SetAttenuation() for more details.
             /// @return Returns a Real value
             virtual Real GetAttenuationAmount() const;
+            /// @copydoc Mezzanine::WorldObject::GetType()
+            virtual WorldObjectType GetType() const;
     };//GravityWell
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -366,6 +338,8 @@ namespace Mezzanine
             /// @brief Gets the source of the force for calculating attenuation.
             /// @return Returns a Vector3 representing the source of the attenuating force.
             virtual Vector3 GetAttenuationSource() const;
+            /// @copydoc Mezzanine::WorldObject::GetType()
+            virtual WorldObjectType GetType() const;
     };//feildofforce
 }//Mezzanine
 

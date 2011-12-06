@@ -81,8 +81,9 @@ namespace Mezzanine
     /// @details This class contains functions for the configuring of physics specific settings of an actor.
     /// This class can only configure the actors physics.  For configuring actor graphics, see ActorGraphicsSettings.
     ///////////////////////////////////////
-    class MEZZ_LIB ActorBasePhysicsSettings : public WorldObjectPhysicsSettings
+    class MEZZ_LIB ActorBasePhysicsSettings : public NonTriggerPhysicsSettings
     {
+        protected:
         public:
             /// @brief Standard Constructor.
             /// @param Actor The actor this settings class configures.
@@ -91,28 +92,6 @@ namespace Mezzanine
 
             /// @brief Class destructor.
             virtual ~ActorBasePhysicsSettings();
-
-            /// @brief Sets the Actors' friction coefficient.
-            /// @details Higher values will resist sliding across surfaces.  This number is the
-            /// coefficient of friction.  Range is from 0.0 to 2.0.  Behavior in this regard is determined by the friction of both
-            /// colliding bodies.  @n Default: 0.5
-            /// @param Friction A Real that is the friction coefficient desired.
-            virtual void SetFriction(const Real& Friction);
-
-            /// @brief Gets the Actors' friction coefficient.
-            /// @return Returns a Real representing the actors' friction coefficient.
-            virtual Real GetFriction() const;
-
-            /// @brief Sets the Actors' restitution coefficient.
-            /// @details Restitution determines how much energy is left after a collision with an object.
-            /// Range is from 0.0 to 1.0.  Behavior in this regard is determined by the restitution of both colliding bodies.
-            /// @n Default: 0.0
-            /// @param Restitution A Real that is the restitution coefficient desired.
-            virtual void SetRestitution(const Real& Restitution);
-
-            /// @brief Gets the Actors' restitution coefficient.
-            /// @return Returns a Real representing the actors' restitution coefficient.
-            virtual Real GetRestitution() const;
 
             /// @brief Sets the parameters used for Continuous Collision Detection.
             /// @details If a Swept Sphere Radius is not provided, this function will attempt to find one for you using the currently set Collision Shape.

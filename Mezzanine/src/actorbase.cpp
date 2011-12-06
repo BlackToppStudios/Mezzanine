@@ -67,136 +67,20 @@ namespace Mezzanine
     ///////////////////////////////////
     // ActorBase class fuctions
     ActorBase::ActorBase()
-        : BasePhysicsSettings(NULL),
-          MotionState(NULL),
-          ActorSounds(NULL),
+        : MotionState(NULL),
           Animation(NULL)
     {
-        //this->GameWorld = World::GetWorldPointer();
-        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
-        this->ActorWorldNode = new WorldNode(GraphicsNode,SceneManager::GetSingletonPtr());
     }
 
     ActorBase::~ActorBase()
     {
-        PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
         SceneManager* SceneMan = SceneManager::GetSingletonPtr();
-
-        DetachFromGraphics();
-        delete MotionState;
-        //delete GraphicsObject;
         SceneMan->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
-        delete PhysicsObject;
-
-        if (SceneMan)
-        {
-            if (0!=this->ActorWorldNode && !SceneMan->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
-            { delete this->ActorWorldNode; }
-        } else
-            { delete this->ActorWorldNode; }
-    }
-
-    ///////////////////////////////////
-    // Ogre Management Functions
-
-    void ActorBase::SetOgreLocation(const Vector3& Location)
-    {
-        this->GraphicsNode->setPosition(Location.GetOgreVector3());
-    }
-
-    Vector3 ActorBase::GetOgreLocation() const
-    {
-        Vector3 temp(this->GraphicsNode->getPosition());
-        return temp;
-    }
-
-    void ActorBase::SetOgreOrientation(const Quaternion& Rotation)
-    {
-        this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
-    }
-
-    Quaternion ActorBase::GetOgreOrientation() const
-    {
-        Quaternion temp(GraphicsNode->getOrientation());
-        return temp;
-    }
-
-    ///////////////////////////////////
-    // Bullet Management Functions
-
-    void ActorBase::SetBulletLocation(const Vector3& Location)
-    {
-        //btTransform* temp = this->CollisionObject->getWorldTransform();
-        this->PhysicsObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        this->PhysicsObject->getInterpolationWorldTransform().setOrigin(Location.GetBulletVector3());
-    }
-
-    Vector3 ActorBase::GetBulletLocation() const
-    {
-        Vector3 temp(this->PhysicsObject->getWorldTransform().getOrigin());
-        return temp;
-    }
-
-    void ActorBase::SetBulletOrientation(const Quaternion& Rotation)
-    {
-        this->PhysicsObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
-    }
-
-    Quaternion ActorBase::GetBulletOrientation() const
-    {
-        Quaternion temp(PhysicsObject->getWorldTransform().getRotation());
-        return temp;
-    }
-
-    ///////////////////////////////////
-    // Creation, Destruction and Initialization
-
-    void ActorBase::SetLocation(const Real& x, const Real& y, const Real& z)
-    {
-        Vector3 temp(x,y,z);
-        this->SetLocation(temp);
-    }
-
-    void ActorBase::SetLocation(const Vector3& Place)
-    {
-        this->SetBulletLocation(Place);
-        this->SetOgreLocation(Place);
-    }
-
-    Vector3 ActorBase::GetLocation() const
-    {
-        return this->GetBulletLocation();
-    }
-
-    void ActorBase::SetOrientation(const Real& x, const Real& y, const Real& z, const Real& w)
-    {
-        Quaternion temp(x,y,z,w);
-        this->SetOrientation(temp);
-    }
-
-    void ActorBase::SetOrientation(const Quaternion& Rotation)
-    {
-        this->SetBulletOrientation(Rotation);
-        this->SetOgreOrientation(Rotation);
-    }
-
-    Quaternion ActorBase::GetOrientation() const
-    {
-        return this->GetBulletOrientation();
+        delete MotionState;
     }
 
     ///////////////////////////////////
     // Utility and Configuration
-
-    WorldNode* ActorBase::GetActorNode() const
-    {
-        return ActorWorldNode;
-    }
-
-    bool ActorBase::IsStaticOrKinematic() const
-    {
-        return BasePhysicsSettings->IsStaticOrKinematic();
-    }
 
     void ActorBase::SetAnimation(ConstString& AnimationName, bool Loop)
     {
@@ -243,23 +127,6 @@ namespace Mezzanine
         }
     }
 
-    void ActorBase::SetActorScaling(const Vector3& scaling)
-    {
-        this->GraphicsNode->setScale(scaling.GetOgreVector3());
-        this->PhysicsShape->setLocalScaling(scaling.GetBulletVector3());
-    }
-
-    Vector3 ActorBase::GetActorScaling() const
-    {
-        Vector3 Scale(this->PhysicsShape->getLocalScaling());
-        return Scale;
-    }
-
-    ActorBasePhysicsSettings* ActorBase::GetPhysicsSettings() const
-    {
-        return BasePhysicsSettings;
-    }
-
 ///////////////////////////////////////////////////////////////////////////////
 // Serialization
 ///////////////////////////////////////
@@ -269,50 +136,13 @@ namespace Mezzanine
 
     void ActorBase::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        xml::Node ActorNode = CurrentRoot.AppendChild("ActorBase");
-        if (!ActorNode) { ThrowSerialError("create ActorNode");}
+        xml::Node ActorBaseNode = CurrentRoot.AppendChild("ActorBase");
+        if (!ActorBaseNode) { ThrowSerialError("create ActorBaseNode");}
 
-        xml::Node LocationNode = ActorNode.AppendChild("Location");
-        if (!LocationNode) { ThrowSerialError("create LocationNode"); }
-        this->GetLocation().ProtoSerialize(LocationNode);
+        xml::Attribute ActorVersion = ActorBaseNode.AppendAttribute("Version");
+        ActorVersion.SetValue(1);
 
-        xml::Node ScalingNode = ActorNode.AppendChild("Scaling");
-        if (!ScalingNode) { ThrowSerialError("create ScalingNode"); }
-        this->GetActorScaling().ProtoSerialize(ScalingNode);
-
-        xml::Node OrientationNode = ActorNode.AppendChild("Orientation");
-        if(!OrientationNode)  { ThrowSerialError("create OrientationNode"); }
-
-        this->GetOrientation().ProtoSerialize(OrientationNode);
-        this->GetGraphicsSettings()->ProtoSerialize(ActorNode);
-        this->GetPhysicsSettings()->ProtoSerialize(ActorNode);
-
-        xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
-            ActorName.SetValue(this->GetName());
-        xml::Attribute ActorVersion = ActorNode.AppendAttribute("Version");
-            ActorVersion.SetValue(1);
-        xml::Attribute ActorIsInWorld = ActorNode.AppendAttribute("IsInWorld");
-            ActorIsInWorld.SetValue(this->IsInWorld());
-        if ( !(ActorName && ActorVersion && ActorIsInWorld) )
-            { ThrowSerialError("create ActorNode Attributes"); }
-
-        xml::Attribute ActorSoundSetName = ActorNode.AppendAttribute("SoundSet");
-        if(this->ActorSounds)
-        {
-            ActorSoundSetName.SetValue(this->ActorSounds->GetName());
-        }else{
-            ActorSoundSetName.SetValue("");
-        }
-
-        // if actor node is in scenemanager just save a name
-        if( SceneManager::GetSingletonPtr()->GetNode( this->ActorWorldNode->GetName() ) )
-        {
-            xml::Attribute ActorWorldNode = ActorNode.AppendAttribute("WorldNode");
-            if(!ActorWorldNode.SetValue(this->ActorWorldNode->GetName()))
-                {ThrowSerialError("store WorldNode Name");}
-        }else{
-            SloppyProtoSerialize( *(this->ActorWorldNode),ActorNode);                                   //Serialization performed in older style
-        }
+        NonStaticWorldObject::ProtoSerialize(ActorBaseNode);
     }
 
     void ActorBase::ProtoDeSerialize(const xml::Node& OneNode)
@@ -321,79 +151,13 @@ namespace Mezzanine
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                Vector3 TempVec;
-                xml::Node LocationNode = OneNode.GetChild("Location").GetFirstChild();
-                if(!LocationNode)
-                    { DeSerializeError("locate Location node",SerializableName()); }
-                TempVec.ProtoDeSerialize(LocationNode);
-                this->SetLocation(TempVec);
-
-                xml::Node GraphicsSettingsNode = OneNode.GetChild(this->GraphicsSettingsSerializableName());
-                if(!GraphicsSettingsNode)
-                    { DeSerializeError("locate Graphics Settings node",SerializableName()); }
-                this->GetGraphicsSettings()->ProtoDeSerialize(GraphicsSettingsNode);
-
-                xml::Node PhysicsSettingsNode = OneNode.GetChild(this->PhysicsSettingsSerializableName());
-                if(!PhysicsSettingsNode)
-                    { DeSerializeError(String("locate Physics Settings node, ")+this->PhysicsSettingsSerializableName()+", ",SerializableName()); }
-                this->GetPhysicsSettings()->ProtoDeSerialize(PhysicsSettingsNode);
-
-                xml::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
-                if(!ScalingNode)
-                    { DeSerializeError("locate Scaling node",SerializableName()); }
-                TempVec.ProtoDeSerialize(ScalingNode);
-                this->SetActorScaling(TempVec);
-
-                Quaternion TempQuat;
-                xml::Node OrientationNode = OneNode.GetChild("Orientation").GetFirstChild();
-                if(!OrientationNode)
-                    { DeSerializeError("locate Orientation node",SerializableName()); }
-                TempQuat.ProtoDeSerialize(OrientationNode);
-                this->SetOrientation(TempQuat);
-
-                if( this->IsInWorld() != OneNode.GetAttribute("IsInWorld").AsBool() )
-                {
-                    if(this->IsInWorld())
-                        { this->RemoveFromWorld(); }
-                    else
-                        { this->AddToWorld(); }
-                }
-
-                if( 0!=OneNode.GetAttribute("SoundSet") && ""!=OneNode.GetAttribute("SoundSet").AsString())
-                    { this->ActorSounds = AudioManager::GetSingletonPtr()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
-                else
-                    { this->ActorSounds = 0; }
-
-                if(0==OneNode.GetAttribute("WorldNode"))         // Are we dealing with a WorldNode Node or WorldNode Attribute.
-                {
-                    //Since the Attribute didn't exist we must have a node
-                    xml::Node ActorWorldNode = OneNode.GetChild("WorldNode");                               // Assumption made base on old style serialization
-                    if(!ActorWorldNode)
-                        { DeSerializeError("locate ActorWorldNode node",SerializableName()); }
-                    if (0!=this->ActorWorldNode && !SceneManager::GetSingletonPtr()->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
-                        { delete this->ActorWorldNode; }
-                    this->ActorWorldNode = new WorldNode(ActorWorldNode.GetAttribute("Name").AsString(),0);
-                    ActorWorldNode >> *(this->ActorWorldNode);                                              // Deserialized with old style serialization
-                }else{
-                    WorldNode *TempWorldNode = SceneManager::GetSingletonPtr()->GetNode(OneNode.GetAttribute("WorldNode").AsString());
-                    if( TempWorldNode == this->ActorWorldNode )
-                        { return; }                                                                         //This already has the correct node we are done
-                    if (0!=this->ActorWorldNode && !SceneManager::GetSingletonPtr()->GetNode(this->ActorWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
-                        { delete this->ActorWorldNode; }
-                    this->ActorWorldNode = TempWorldNode;                                                   // The old node has bee cleaned up and the new node is in place
-                    if (0==this->ActorWorldNode)
-                        { DeSerializeError("locate ActorWorldNode attribute",SerializableName()); }
-                }
-            }else{
-                DeSerializeError("find usable serialization version",SerializableName());
+                NonStaticWorldObject::ProtoDeSerialize(OneNode.GetChild(this->NonStaticWorldObject::SerializableName()));
             }
-        }else{
-            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
         }
     }
 
     String ActorBase::SerializableName()
-        {   return String("ActorBase"); }
+        { return String("ActorBase"); }
 
 #endif  // \mezzxml
 }// /mezz

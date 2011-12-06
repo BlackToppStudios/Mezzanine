@@ -41,11 +41,28 @@
 #define _worldobjectphysicssettings_cpp
 
 #include "worldobjectphysicssettings.h"
+#include "worldobject.h"
+#include "collisionshape.h"
+#include "collisionshapemanager.h"
 #include "collision.h"
+#include "physicsmanager.h"
+#include "serialization.h"
+#include "world.h"
+#include "stringtool.h"
+#include "xml.h"
+
+#ifdef MEZZXML
+#include <memory>
+#endif
+
+#include "btBulletDynamicsCommon.h"
+#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
 namespace Mezzanine
 {
     WorldObjectPhysicsSettings::WorldObjectPhysicsSettings(WorldObject* WO, btCollisionObject* PhysicsObject)
+        : Parent(WO),
+          WorldObjectCO(PhysicsObject)
     {
 
     }
@@ -64,6 +81,7 @@ namespace Mezzanine
     void WorldObjectPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
     {
         AssignShape(Shape);
+        WorldObjectCO->setCollisionShape(Shape->GetBulletShape());
     }
 
     CollisionShape* WorldObjectPhysicsSettings::GetCollisionShape() const
@@ -94,72 +112,48 @@ namespace Mezzanine
 
     bool WorldObjectPhysicsSettings::IsKinematic() const
     {
-        return ActorCO->isKinematicObject();
+        return WorldObjectCO->isKinematicObject();
     }
 
     bool WorldObjectPhysicsSettings::IsStatic() const
     {
-        return ActorCO->isStaticObject();
+        return WorldObjectCO->isStaticObject();
     }
 
     bool WorldObjectPhysicsSettings::IsStaticOrKinematic() const
     {
-        return ActorCO->isStaticOrKinematicObject();
-    }
-
-    void WorldObjectPhysicsSettings::SetCollisionResponse(bool Enable)
-    {
-        if(Enable == this->GetCollisionResponse())
-            return;
-        switch (Parent->GetType())
-        {
-            case Mezzanine::WOT_ActorRigid:
-            case Mezzanine::WOT_ActorSoft:
-            {
-                if(Enable) ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                else ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                break;
-            }
-            case Mezzanine::WOT_ActorCharacter:
-            {
-                return;
-                break;
-            }
-            default:
-                return;
-        }
+        return WorldObjectCO->isStaticOrKinematicObject();
     }
 
     bool WorldObjectPhysicsSettings::GetCollisionResponse() const
     {
-        return !(ActorCO->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
+        return !(WorldObjectCO->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
     }
 
     bool WorldObjectPhysicsSettings::IsActive() const
     {
-        int Activation = ActorCO->getActivationState();
+        int Activation = WorldObjectCO->getActivationState();
         if( ACTIVE_TAG == Activation ) return true;
         else return false;
     }
 
     void WorldObjectPhysicsSettings::SetActivationState(const WorldObjectActivationState& State, bool Force)
     {
-        if(Force) ActorCO->forceActivationState(State);
-        else ActorCO->setActivationState(State);
+        if(Force) WorldObjectCO->forceActivationState(State);
+        else WorldObjectCO->setActivationState(State);
     }
 
     WorldObjectActivationState WorldObjectPhysicsSettings::GetActivationState() const
     {
-        return (Mezzanine::ActorActivationState)ActorCO->getActivationState();
+        return (Mezzanine::WorldObjectActivationState)WorldObjectCO->getActivationState();
     }
-
 
 #ifdef MEZZXML
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
     void WorldObjectPhysicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        xml::Node BaseNode = CurrentRoot.AppendChild(this->ActorBasePhysicsSettings::SerializableName());
+        xml::Node BaseNode = CurrentRoot.AppendChild(this->WorldObjectPhysicsSettings::SerializableName());
             if (!BaseNode)
                 { SerializeError("Create BaseNode", SerializableName()); }
 
@@ -215,11 +209,17 @@ namespace Mezzanine
                         { DeSerializeError("Find the correct Collision Shape",this->WorldObjectPhysicsSettings::SerializableName()); }
                     this->SetCollisionShape( Shapeptr );
                     if (OneNode.GetAttribute("Kinematic").AsBool())
-                        { this->SetKinematic(); }
+                    {
+                        int Flags = WorldObjectCO->getCollisionFlags();
+                        WorldObjectCO->setCollisionFlags(Flags | btCollisionObject::CF_KINEMATIC_OBJECT);
+                    }
                     if (OneNode.GetAttribute("Static").AsBool())
-                        { this->SetStatic(); }
+                    {
+                        int Flags = WorldObjectCO->getCollisionFlags();
+                        WorldObjectCO->setCollisionFlags(Flags | btCollisionObject::CF_STATIC_OBJECT);
+                    }
                     this->SetCollisionGroupAndMask(OneNode.GetAttribute("CollisionGroup").AsWhole(),OneNode.GetAttribute("CollisionMask").AsWhole());
-                    this->SetActivationState((Mezzanine::ActorActivationState)OneNode.GetAttribute("ActivationState").AsInt());
+                    this->SetActivationState((Mezzanine::WorldObjectActivationState)OneNode.GetAttribute("ActivationState").AsInt());
                 }else{
                     throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->WorldObjectPhysicsSettings::SerializableName() + ": Not Version 1"));
                 }
@@ -230,6 +230,104 @@ namespace Mezzanine
 
     String WorldObjectPhysicsSettings::SerializableName()
         { return String("WorldObjectBasePhysicsSettings"); }
+#endif
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // NonTriggerPhysicsSettings functions
+    ///////////////////////////////////////
+
+    NonTriggerPhysicsSettings::NonTriggerPhysicsSettings(WorldObject* WO, btCollisionObject* PhysicsObject)
+        : WorldObjectPhysicsSettings(WO,PhysicsObject)
+    {
+    }
+
+    NonTriggerPhysicsSettings::~NonTriggerPhysicsSettings()
+    {
+    }
+
+    void NonTriggerPhysicsSettings::SetCollisionResponse(bool Enable)
+    {
+        if(Enable == this->GetCollisionResponse())
+            return;
+        switch (Parent->GetType())
+        {
+            case Mezzanine::WOT_ActorRigid:
+            case Mezzanine::WOT_ActorSoft:
+            {
+                if(Enable) WorldObjectCO->setCollisionFlags(WorldObjectCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                else WorldObjectCO->setCollisionFlags(WorldObjectCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                break;
+            }
+            case Mezzanine::WOT_ActorCharacter:
+            {
+                return;
+                break;
+            }
+            default:
+                return;
+        }
+    }
+
+    void NonTriggerPhysicsSettings::SetFriction(const Real& Friction)
+        { WorldObjectCO->setFriction(Friction); }
+
+    Real NonTriggerPhysicsSettings::GetFriction() const
+        { return WorldObjectCO->getFriction(); }
+
+    void NonTriggerPhysicsSettings::SetRestitution(const Real& Restitution)
+        { WorldObjectCO->setRestitution(Restitution); }
+
+    Real NonTriggerPhysicsSettings::GetRestitution() const
+        { return WorldObjectCO->getRestitution(); }
+
+#ifdef MEZZXML
+        // Serializable
+        void NonTriggerPhysicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
+        {
+            xml::Node BaseNode = CurrentRoot.AppendChild(this->NonTriggerPhysicsSettings::SerializableName());
+            if (!BaseNode)
+                { SerializeError("Create BaseNode", SerializableName()); }
+
+            Mezzanine::xml::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
+            if (!Version)
+                { SerializeError("Create Version Attribute", SerializableName()); }
+            Version.SetValue(1);
+
+            Mezzanine::xml::Attribute Friction = BaseNode.AppendAttribute("Friction");
+            if (!Friction)
+                { SerializeError("Create Friction Attribute", SerializableName()); }
+            Friction.SetValue(this->GetFriction());
+
+            Mezzanine::xml::Attribute Restitution = BaseNode.AppendAttribute("Restitution");
+            if (!Restitution)
+                { SerializeError("Create Restitution Attribute", SerializableName()); }
+            Restitution.SetValue(this->GetRestitution());
+
+            WorldObjectPhysicsSettings::ProtoSerialize(BaseNode);
+        }
+
+        // DeSerializable
+        void NonTriggerPhysicsSettings::ProtoDeSerialize(const xml::Node& OneNode)
+        {
+            if ( Mezzanine::String(OneNode.Name())==this->NonTriggerPhysicsSettings::SerializableName() )
+            {
+                if(OneNode.GetAttribute("Version").AsInt() == 1)
+                {
+                    WorldObjectPhysicsSettings::ProtoDeSerialize(OneNode.GetChild(this->WorldObjectPhysicsSettings::SerializableName()));
+
+                    this->SetFriction(OneNode.GetAttribute("Friction").AsReal());
+                    this->SetRestitution(OneNode.GetAttribute("Restitution").AsReal());
+                }else{
+                    throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->NonTriggerPhysicsSettings::SerializableName() + ": Not Version 1"));
+                }
+            }else{
+                throw( Mezzanine::Exception(StringTool::StringCat("Attempting to deserialize a ", this->NonTriggerPhysicsSettings::SerializableName(),", found a ", OneNode.Name())));
+            }
+        }
+
+        String NonTriggerPhysicsSettings::SerializableName()
+            { return String("NonTriggerPhysicsSettings"); }
+#endif
 }
 
 #endif

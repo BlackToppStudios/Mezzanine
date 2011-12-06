@@ -56,107 +56,13 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB TerrainBase : public WorldObject
     {
-        public:
-            /// @enum TerrainTypeName
-            /// @brief A listing of Terrain TypeNames
-            /// @details These will be returned by TerrainBase::GetType(), and will allow
-            /// code using this to determine what type of terrain class they are working with
-            /// and use this information to more safely cast to the correct terrain if needed.
-            enum TerrainTypeName
-            {
-                Terrainbase,
-                Meshterrain
-            };
         protected:
-            /// @brief This class encapsulates the functionality of the Ogre::Entity using this
-            Ogre::Entity* GraphicsObject;
-
-            /// @brief This class encapsulates the functionality of the Ogre::SceneNode using this
-            Ogre::SceneNode* GraphicsNode;
-
-            /// @brief This class encapsulates the functionality of the btCollisionShape using this
-            btCollisionShape* Shape;
-
-            /// @brief This class encapsulates the functionality of the btCollisionObject using this
-            btCollisionObject* CollisionObject;
-
-            /// @brief Stores the type of terrain.
-            TerrainTypeName TerrainType;
-
-            /// @brief The name of the terrain
-            String Name;
-
-            /// @brief This member stores all existing collision events referencing this actor.
-            std::set<Collision*> CurrentCollisions;
-
-            /// @brief Makes the terrain visible.
-            virtual void AttachToGraphics();
-
-            /// @brief Makes the terrain invisible.
-            virtual void DetachFromGraphics();
         public:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Creation, Destruction and Initialization
-            ///////////////////////////////////////
             /// @brief Class constructor.
             TerrainBase();
             /// @brief Class destructor.
             virtual ~TerrainBase();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility and Configuration
-            ///////////////////////////////////////
-
-            /// @brief Gets the name of this terrain.
-            /// @return Returns a string containing the name of this terrain.
-            String GetName();
-
-            /// @brief Gets the type of the terrain instance
-            /// @return Returns the type of the terrain instance
-            virtual TerrainTypeName GetType() const = 0;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Working with the World
-            ///////////////////////////////////////
-
-            /// @brief Adds the Terrain object to the World
-            /// @details Attaches the Terrain to the World to be rendered and adds the collision object to
-            /// the PhysicsManager @n
-            /// This is automatically called by the CreateTerrain methods in the TerrainManager
-            virtual void AddToWorld() = 0;
-            /// @brief Removed the Terrain object from the World
-            /// @details detaches the Terrain from the Graphics and removes the collision object from the PhysicsManager
-            virtual void RemoveFromWorld() = 0;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Internal Object functions
-            ///////////////////////////////////////
-
-            /// @internal
-            /// @brief Notifies this terrain of a collision that is occuring with it.
-            /// @param Col A pointer to the collision pertaining to this terrain.
-            /// @param State The state of the collision pertaining to this terrain.
-            virtual void _NotifyCollisionState(Collision* Col, const Collision::CollisionState& State);
-
-            /// @internal
-            /// @brief Gets the internal physics object this terrain is based on.
-            /// @return Returns a pointer to the internal Bullet object.
-            virtual btCollisionObject* _GetBasePhysicsObject() const;
-
-            /// @internal
-            /// @brief Gets the internal graphics object this terrain is based on.
-            /// @return Returns a pointer to the internal graphics object.
-            virtual Ogre::Entity* _GetGraphicsObject() const;
-
-            /// @internal
-            /// @brief Gets the internal graphics node this terrain uses for it's graphics transform.
-            /// @return Returns a pointer to the internal graphics node.
-            virtual Ogre::SceneNode* _GetGraphicsNode() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Serialization
-            ///////////////////////////////////////
-    };
+    };//Terrainbase
 }//Mezzanine
 
 #endif // _terrainbase_h

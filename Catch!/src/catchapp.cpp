@@ -883,11 +883,11 @@ bool CatchApp::PostUI()
                 {
                     if(!Dragger) //If we have a dragger, then this is dragging, not clicking
                     {
-                        if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid) //This is Dragging let's do some checks for sanity
+                        if(ClickOnActor->Actor->GetType()==Mezzanine::WOT_ActorRigid) //This is Dragging let's do some checks for sanity
                         {
                             Vector3 LocalPivot = ClickOnActor->Vector;
                             ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                            rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::AAS_DisableDeactivation);
+                            rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::WOAS_DisableDeactivation);
                             //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                             Dragger = new Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
@@ -937,7 +937,7 @@ bool CatchApp::PostUI()
                 PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
                 delete Dragger;
                 Dragger=NULL;
-                Act->GetPhysicsSettings()->SetActivationState(Mezzanine::AAS_DisableDeactivation);
+                Act->GetPhysicsSettings()->SetActivationState(Mezzanine::WOAS_DisableDeactivation);
             }
 
             // Here we cleanup everything we needed for the clicking/dragging
@@ -954,7 +954,7 @@ bool CatchApp::PostUI()
             PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
-            Act->GetPhysicsSettings()->SetActivationState(Mezzanine::AAS_DisableDeactivation);
+            Act->GetPhysicsSettings()->SetActivationState(Mezzanine::WOAS_DisableDeactivation);
         }
     }
     return true;

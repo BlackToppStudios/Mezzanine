@@ -62,14 +62,14 @@ namespace Mezzanine
 
     TerrainBase* TerrainManager::GetTerrainByIndex(const Whole& Index)
     {
-        return Terrains->at(Index);
+        return Terrains.at(Index);
     }
 
     TerrainBase* TerrainManager::GetTerrainByName(const String& Name)
     {
         for( std::vector<TerrainBase*>::iterator it = Terrains.begin(); it != Terrains.end(); ++it )
         {
-            if( name == (*it)->GetTerrainName() )
+            if( Name == (*it)->GetName() )
                 return (*it);
         }
         return NULL;
@@ -83,7 +83,7 @@ namespace Mezzanine
     void TerrainManager::AddTerrain(TerrainBase* Terrain)
     {
         Terrains.push_back(Terrain);
-        Terrain->AddObjectToWorld();
+        Terrain->AddToWorld();
     }
 
     void TerrainManager::RemoveTerrain(const Whole& Index)
@@ -129,7 +129,7 @@ namespace Mezzanine
     {
         for( std::vector<TerrainBase*>::iterator it = Terrains.begin() ; it != Terrains.end() ; ++it )
         {
-            if(ToBeRemoved == (*it))
+            if(ToBeDestroyed == (*it))
             {
                 (*it)->RemoveFromWorld();
                 delete (*it);
@@ -154,10 +154,10 @@ namespace Mezzanine
 
     MeshTerrain* TerrainManager::CreateMeshTerrain(const Vector3& InitPosition, const String& name, const String& file, const String& group)
     {
-        MeshTerrain* Terrain = new MeshTerrain(InitPosition, name, file, group);
+        /*MeshTerrain* Terrain = new MeshTerrain(InitPosition, name, file, group);
         MeshTerrains.push_back(Terrain);
         Terrain->AddTerrainToWorld();
-        return Terrain;
+        return Terrain;//*/
     }
 
     ///////////////////////////////////////////////////////////////////////////////

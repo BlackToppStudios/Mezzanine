@@ -101,6 +101,15 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Mesh Management
 
+            /// @brief Sets the mesh to be used along with this World Object.
+            /// @param Mesh The mesh to apply to this World Object.
+            virtual void SetMesh(Mesh* ObjectMesh);
+
+            /// @brief Sets the mesh to be used along with this World Object.
+            /// @param MeshName The name of the mesh to apply to this World Object.
+            /// @param Group The resource group to which the mesh belongs.
+            virtual void SetMesh(const String& MeshName, const String& Group);
+
             /// @brief Gets the mesh being used by this World Object.
             /// @return Returns a pointer to the mesh being used by this World Object.
             virtual Mesh* GetMesh() const;
@@ -119,7 +128,7 @@ namespace Mezzanine
             /// @details Note the returned name isn't of the .material file, but the material script.
             /// @param Submesh The submesh you want to get the material name from.
             /// @return Returns a String containing the name of the material script in use.
-            virtual ConstString& GetMaterialName(const Whole& Submesh = 0) const;
+            virtual ConstString GetMaterialName(const Whole& Submesh = 0) const;
             /// @brief Gets whether or not the specified submesh has a material script assigned to it.
             /// @param Submesh The submesh to check.
             /// @return Returns a bool indicating whether there is a material assigned to the specified submesh.

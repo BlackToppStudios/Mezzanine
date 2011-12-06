@@ -41,8 +41,6 @@
 #define _areaeffect_cpp
 
 #include "areaeffect.h"
-#include "world.h"
-#include "actorbase.h"
 #include "actorrigid.h"
 #include "physicsmanager.h"
 #include "collisionshape.h"
@@ -51,6 +49,7 @@
 #include "meshmanager.h"
 #include "objectreference.h"
 #include "internalmeshtools.h.cpp"
+#include "world.h"
 
 #include <BulletCollision/CollisionDispatch/btGhostObject.h>
 #include <BulletCollision/Gimpact/btGImpactShape.h>
@@ -63,21 +62,27 @@
 namespace Mezzanine
 {
     AreaEffect::AreaEffect(const String &name, const Vector3& Location)
-        : Name(name),
-          FieldShape(NULL),
-          FieldMesh(NULL),
-          GraphicsNode(NULL),
-          GraphicsObject(NULL)
     {
-        TheWorld = World::GetWorldPointer();
+        Name = name;
+        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         CreateGhostObject(Location);
+
+        short CollisionGroup = btBroadphaseProxy::SensorTrigger;
+        short CollisionMask = GetPhysicsSettings()->IsStatic() ? btBroadphaseProxy::AllFilter ^ (btBroadphaseProxy::SensorTrigger|btBroadphaseProxy::StaticFilter) : btBroadphaseProxy::AllFilter ^ btBroadphaseProxy::SensorTrigger;
+        PhysicsSettings->SetCollisionGroupAndMask(CollisionGroup,CollisionMask);
     }
 
     AreaEffect::~AreaEffect()
     {
         delete (ObjectReference*)Ghost->getUserPointer();
         delete Ghost;
-        PreGraphicsMeshCreate();
+        delete GraphicsSettings;
+        delete PhysicsSettings;
+
+        Ogre::SceneManager* OgreManager = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer();
+        if(GraphicsObject)
+            OgreManager->destroyEntity(GraphicsObject);
+        OgreManager->destroySceneNode(GraphicsNode);
     }
 
     void AreaEffect::CreateGhostObject(const Vector3& Location)
@@ -87,21 +92,10 @@ namespace Mezzanine
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
         ObjectReference* ActorRef = new ObjectReference(Mezzanine::WOT_AEUnknown,this);
         Ghost->setUserPointer(ActorRef);
-    }
 
-    void AreaEffect::PreGraphicsMeshCreate()
-    {
-        Ogre::SceneManager* OgreManager = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer();
-        if(GraphicsObject)
-        {
-            OgreManager->destroyEntity(GraphicsObject);
-            GraphicsObject = NULL;
-        }
-        if(GraphicsNode)
-        {
-            OgreManager->destroySceneNode(GraphicsNode);
-            GraphicsNode = NULL;
-        }
+        PhysicsObject = Ghost;
+        this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
+        this->PhysicsSettings = new WorldObjectPhysicsSettings(this,PhysicsObject);
     }
 
     void AreaEffect::AddActorToList(ActorBase* Actor)
@@ -122,7 +116,46 @@ namespace Mezzanine
         }
     }
 
-    void AreaEffect::UpdateActorList()
+    std::list<ActorBase*>& AreaEffect::GetOverlappingActors()
+    {
+        return OverlappingActors;
+    }
+
+    std::vector<ActorBase*>& AreaEffect::GetAddedActors()
+    {
+        return AddedActors;
+    }
+
+    std::vector<ActorBase*>& AreaEffect::GetRemovedActors()
+    {
+        return RemovedActors;
+    }
+
+    WorldObjectType AreaEffect::GetType() const
+    {
+        return Mezzanine::WOT_AEUnknown;
+    }
+
+    void AreaEffect::AddToWorld()
+    {
+        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addCollisionObject(this->PhysicsObject,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
+        this->AttachToGraphics();
+    }
+
+    void AreaEffect::RemoveFromWorld()
+    {
+        PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+        btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
+        //first remove any collision metadata
+        /*if( !CurrentCollisions.empty() )
+        {
+            PhysMan->RemoveCollisionsContainingActor(this);
+        }// */
+        BWorld->removeCollisionObject(this->PhysicsObject);
+        this->DetachFromGraphics();
+    }
+
+    void AreaEffect::_Update()
     {
         if ( !AddedActors.empty() )
             AddedActors.clear();
@@ -205,256 +238,43 @@ namespace Mezzanine
                 }
             }
         }// */
+    }
 
-        /// New-ish way using the dispatcher.  Gives inconsistent results at startup.
-        /*std::list<ActorBase*>::iterator it = OverlappingActors.begin();
-        // Make a bool vector to keep track of which actors to keep when updating.
-        std::vector<bool> Tracker;
-        Tracker.resize(OverlappingActors.size());
-        std::vector<bool>::iterator bit;
-        for ( bit = Tracker.begin() ; bit != Tracker.end() ; bit++ )
-        {
-            (*bit) = false;
-        }
+#ifdef MEZZXML
+    void AreaEffect::ThrowSerialError(const String& Fail) const
+        { SerializeError(Fail, SerializableName()); }
 
-        // Iterate over the contact manifolds to check for real shape collisions.
-        int numManifolds = PhysWorld->getDispatcher()->getNumManifolds();
-        for (int i=0;i<numManifolds;i++)
+    String AreaEffect::GraphicsSettingsSerializableName() const
+        { return String("WorldObjectGraphicsSettings"); }
+
+    String AreaEffect::PhysicsSettingsSerializableName() const
+        { return String("WorldObjectBasePhysicsSettings"); }
+
+    void AreaEffect::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node AreaEffectNode = CurrentRoot.AppendChild("AreaEffect");
+        if (!AreaEffectNode) { ThrowSerialError("create AreaEffectNode");}
+
+        xml::Attribute AreaEffectVersion = AreaEffectNode.AppendAttribute("Version");
+        AreaEffectVersion.SetValue(1);
+
+        NonStaticWorldObject::ProtoSerialize(AreaEffectNode);
+    }
+
+    void AreaEffect::ProtoDeSerialize(const xml::Node& OneNode)
+    {
+        if ( Mezzanine::String(OneNode.Name())==this->AreaEffect::SerializableName() )
         {
-            btPersistentManifold* contactManifold = PhysWorld->getDispatcher()->getManifoldByIndexInternal(i);
-            if( contactManifold->getBody0() != Ghost && contactManifold->getBody1() != Ghost)
-                continue;
-            int numContacts = contactManifold->getNumContacts();
-            for (int j=0;j<numContacts;j++)
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                btManifoldPoint& pt = contactManifold->getContactPoint(j);
-                if(pt.m_distance1 > 0)
-                    continue;
-
-                // Get the non-ghost object from a given pair and cast it to a usable pointer.
-                btCollisionObject* ColObj = contactManifold->getBody0() != Ghost ? (btCollisionObject*)(contactManifold->getBody0()) : (btCollisionObject*)(contactManifold->getBody1());
-                ObjectReference* ActorRef = (ObjectReference*)(ColObj->getUserPointer());
-                ActorBase* Actor = NULL;
-                if(Mezzanine::WOT_AreaEffect > ActorRef->GetType())
-                    Actor = (ActorBase*)ActorRef->GetObject();
-                else
-                    continue;
-                // Check list for the actor in the pair.
-                for( it = OverlappingActors.begin(), bit = Tracker.begin() ; it != OverlappingActors.end() ; it++, bit++ )
-                {
-                    if ( Actor == (*it) )
-                    {
-                        (*bit) = true;
-                        break;
-                    }
-                }
-                if ( it == OverlappingActors.end() )
-                {
-                    AddActorToList(Actor);
-                    Tracker.push_back(true);
-                }
+                NonStaticWorldObject::ProtoDeSerialize(OneNode.GetChild(this->NonStaticWorldObject::SerializableName()));
             }
         }
-
-        // Verify they are the same size.  Then remove items from the list as necessary.
-        if ( OverlappingActors.size() == Tracker.size() )
-        {
-            std::list<ActorBase*>::iterator sit = OverlappingActors.begin();
-            for ( bit = Tracker.begin() ; bit != Tracker.end() ; )
-            {
-                if ( (*bit) == false )
-                {
-                    bit = Tracker.erase(bit);
-                    ActorBase* Act = (*sit);
-                    RemovedActors.push_back(Act);
-                    sit = OverlappingActors.erase(sit);
-                }else{
-                    sit++;
-                    bit++;
-                }
-            }
-        }// */
-
-        /// Old way, checks AABB's only...as it turns out.
-        /*int OverlappingPairs = Ghost->getOverlappingPairCache()->getNumOverlappingPairs();
-        btBroadphasePair* Pair = Ghost->getOverlappingPairCache()->getOverlappingPairArrayPtr();
-        std::list<ActorBase*>::iterator it = OverlappingActors.begin();
-        // Make a bool vector to keep track of which actors to keep when updating.
-        std::vector<bool> Tracker;
-        Tracker.resize(OverlappingActors.size());
-        std::vector<bool>::iterator bit;
-        for ( bit = Tracker.begin() ; bit != Tracker.end() ; bit++ )
-        {
-            (*bit) = false;
-        }
-        // Add objects to the necessary lists as needed.  Also track what needs to be removed for later.
-        for ( int x=0 ; x<OverlappingPairs ; x++ )
-        {
-            // Get the non-ghost object from a given pair and cast it to a usable pointer.
-            btCollisionObject* ColObj = Pair[x].m_pProxy0->m_clientObject != Ghost ? (btCollisionObject*)(Pair[x].m_pProxy0->m_clientObject) : (btCollisionObject*)(Pair[x].m_pProxy1->m_clientObject);
-            ObjectReference* ActorRef = (ObjectReference*)(ColObj->getUserPointer());
-            ActorBase* Actor = NULL;
-            if(Mezzanine::WOT_AreaEffect > ActorRef->GetType())
-                Actor = (ActorBase*)ActorRef->GetObject();
-            else
-                continue;
-            // Check list for the actor in the pair.
-            for( it = OverlappingActors.begin(), bit = Tracker.begin() ; it != OverlappingActors.end() ; it++, bit++ )
-            {
-                if ( Actor == (*it) )
-                {
-                    (*bit) = true;
-                    break;
-                }
-            }
-            if ( it == OverlappingActors.end() )
-            {
-                AddActorToList(Actor);
-                Tracker.push_back(true);
-            }
-        }
-        // Verify they are the same size.  Then remove items from the list as necessary.
-        if ( OverlappingActors.size() == Tracker.size() )
-        {
-            std::list<ActorBase*>::iterator sit = OverlappingActors.begin();
-            for ( bit = Tracker.begin() ; bit != Tracker.end() ; )
-            {
-                if ( (*bit) == false )
-                {
-                    bit = Tracker.erase(bit);
-                    ActorBase* Act = (*sit);
-                    RemovedActors.push_back(Act);
-                    sit = OverlappingActors.erase(sit);
-                }else{
-                    sit++;
-                    bit++;
-                }
-            }
-        }// */
     }
 
-    void AreaEffect::SetFieldShape(CollisionShape* FieldShape)
-    {
-        this->FieldShape = FieldShape;
-        Ghost->setCollisionShape(this->FieldShape->GetBulletShape());
-        CollisionShapeManager::GetSingletonPtr()->StoreShape(this->FieldShape);
-    }
-
-    CollisionShape* AreaEffect::GetFieldShape() const
-    {
-        return FieldShape;
-    }
-
-    void AreaEffect::ScaleFieldShape(const Vector3& Scale)
-    {
-        Ghost->getCollisionShape()->setLocalScaling(Scale.GetBulletVector3());
-    }
-
-    Vector3 AreaEffect::GetFieldShapeScale() const
-    {
-        Vector3 Scale(Ghost->getCollisionShape()->getLocalScaling());
-        return Scale;
-    }
-
-    void AreaEffect::SetLocation(const Vector3& Location)
-    {
-        Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        if(GraphicsNode)
-            GraphicsNode->setPosition(Location.GetOgreVector3());
-    }
-
-    Vector3 AreaEffect::GetLocation() const
-    {
-        Vector3 Loc(Ghost->getWorldTransform().getOrigin());
-        return Loc;
-    }
-
-    void AreaEffect::SetOrientation(const Quaternion& Rotation)
-    {
-        Ghost->getWorldTransform().setRotation(Rotation.GetBulletQuaternion());
-        if(GraphicsNode)
-            GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
-    }
-
-    Quaternion AreaEffect::GetOrientation()
-    {
-        Quaternion Rot(Ghost->getWorldTransform().getRotation());
-        return Rot;
-    }
-
-    ConstString& AreaEffect::GetName() const
-    {
-        return Name;
-    }
-
-    bool AreaEffect::IsInWorld() const
-    {
-        return 0 != Ghost->getBroadphaseHandle();
-    }
-
-    void AreaEffect::SetStatic(bool Static)
-    {
-        if(IsInWorld())
-        {
-            PhysicsManager::GetSingletonPtr()->RemoveAreaEffect(this);
-            short flags = Static ? btCollisionObject::CF_STATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE : btCollisionObject::CF_NO_CONTACT_RESPONSE;
-            Ghost->setCollisionFlags(flags);
-            PhysicsManager::GetSingletonPtr()->AddAreaEffect(this);
-        }else{
-            short flags = Static ? btCollisionObject::CF_STATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE : btCollisionObject::CF_NO_CONTACT_RESPONSE;
-            Ghost->setCollisionFlags(flags);
-        }
-    }
-
-    bool AreaEffect::IsStatic() const
-    {
-        return Ghost->getCollisionFlags() & btCollisionObject::CF_STATIC_OBJECT;
-    }
-
-    void AreaEffect::SetFieldMesh(Mesh* FieldMesh)
-    {
-        PreGraphicsMeshCreate();
-        this->FieldMesh = FieldMesh;
-
-        if(!FieldMesh)
-            return;
-
-        Ogre::SceneManager* OgreManager = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer();
-        GraphicsObject = OgreManager->createEntity(Name,FieldMesh->GetName(),FieldMesh->GetGroup());
-        GraphicsNode = OgreManager->createSceneNode();
-        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
-        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
-        GraphicsNode->attachObject(GraphicsObject);
-        ObjectReference* AERef = (ObjectReference*)Ghost->getUserPointer();
-        Ogre::Any OgreRef(AERef);
-        GraphicsObject->setUserAny(OgreRef);
-    }
-
-    void AreaEffect::SetFieldMesh(const String& MeshName, const String& Group)
-    {
-        Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
-        this->SetFieldMesh(TheMesh);
-    }
-
-    Mesh* AreaEffect::GetFieldMesh() const
-    {
-        return FieldMesh;
-    }
-
-    std::list<ActorBase*>& AreaEffect::GetOverlappingActors()
-    {
-        return OverlappingActors;
-    }
-
-    std::vector<ActorBase*>& AreaEffect::GetAddedActors()
-    {
-        return AddedActors;
-    }
-
-    std::vector<ActorBase*>& AreaEffect::GetRemovedActors()
-    {
-        return RemovedActors;
-    }
+    String AreaEffect::SerializableName()
+        { return "AreaEffect"; }
+#endif
 
     ///////////////////////////////////
     // TestAE functions
@@ -469,6 +289,7 @@ namespace Mezzanine
 
     void TestAE::ApplyEffect()
     {
+        World* TheWorld = World::GetWorldPointer();
         std::vector<ActorBase*>::iterator AaRIt;
         std::list<ActorBase*>::iterator CurrIt;
         ActorBase* Act = NULL;
@@ -547,6 +368,11 @@ namespace Mezzanine
         return Grav;
     }
 
+    WorldObjectType GravityField::GetType() const
+    {
+        return Mezzanine::WOT_AEGravityField;
+    }
+
     ///////////////////////////////////
     // GravityWell functions
 
@@ -573,7 +399,7 @@ namespace Mezzanine
         {
             for ( std::vector<ActorBase*>::iterator AA = AddedActors.begin() ; AA != AddedActors.end() ; AA++ )
             {
-                if(ActorBase::Actorrigid != (*AA)->GetType())
+                if(Mezzanine::WOT_ActorRigid != (*AA)->GetType())
                     continue;
                 ActRig = dynamic_cast<ActorRigid*>(*AA);
                 ActRig->GetPhysicsSettings()->SetIndividualGravity(Vector3());
@@ -586,7 +412,7 @@ namespace Mezzanine
             Vector3 GhostLoc = this->GetLocation();
             for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
             {
-                if(ActorBase::Actorrigid != (*OA)->GetType())
+                if(Mezzanine::WOT_ActorRigid != (*OA)->GetType())
                     continue;
                 //Collect necessary data
                 ActorLoc = (*OA)->GetLocation();
@@ -621,7 +447,7 @@ namespace Mezzanine
             Vector3 WorldGrav = PhysicsManager::GetSingletonPtr()->GetGravity();
             for ( std::vector<ActorBase*>::iterator RA = RemovedActors.begin() ; RA != RemovedActors.end() ; RA++ )
             {
-                if(ActorBase::Actorrigid != (*RA)->GetType())
+                if(Mezzanine::WOT_ActorRigid != (*RA)->GetType())
                     continue;
                 ActRig = dynamic_cast<ActorRigid*>(*RA);
                 ActRig->GetPhysicsSettings()->SetIndividualGravity(WorldGrav);
@@ -665,6 +491,11 @@ namespace Mezzanine
         return AttenAmount;
     }
 
+    WorldObjectType GravityWell::GetType() const
+    {
+        return Mezzanine::WOT_AEGravityWell;
+    }
+
     ///////////////////////////////////
     // FieldOfForce functions
 
@@ -694,7 +525,7 @@ namespace Mezzanine
             Real Distance, AppliedStrength, InvMass;
             for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
             {
-                if(ActorBase::Actorrigid != (*OA)->GetType())
+                if(Mezzanine::WOT_ActorRigid != (*OA)->GetType())
                     continue;
                 ActorLoc = (*OA)->GetLocation();
                 switch(AttenStyle)
@@ -773,6 +604,11 @@ namespace Mezzanine
     Vector3 FieldOfForce::GetAttenuationSource() const
     {
         return AttenSource;
+    }
+
+    WorldObjectType FieldOfForce::GetType() const
+    {
+        return Mezzanine::WOT_AEFieldOfForce;
     }
 }
 

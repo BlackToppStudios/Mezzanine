@@ -62,6 +62,7 @@ namespace Mezzanine
     ActorRigid::ActorRigid(const Real& mass, const String& name, const String& file, const String& group)
         : ActorBase ()
     {
+        Name = name;
         // this isn't required to operate, but it does allow the mesh manager to know what is loaded.
         MeshManager::GetSingletonPtr()->LoadMesh(file,group);
 
@@ -69,12 +70,14 @@ namespace Mezzanine
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
         this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
-        BasePhysicsSettings = new ActorRigidPhysicsSettings(this,PhysicsRigidBody);
+        this->PhysicsSettings = new ActorRigidPhysicsSettings(this,PhysicsRigidBody);
     }
 
     ActorRigid::~ActorRigid()
     {
         delete PhysicsRigidBody;
+        delete GraphicsSettings;
+        delete PhysicsSettings;
         PhysicsObject = NULL;
     }
 
@@ -96,7 +99,7 @@ namespace Mezzanine
     }
 
     ActorRigidPhysicsSettings* ActorRigid::GetPhysicsSettings() const
-        { return static_cast<ActorRigidPhysicsSettings*>(this->BasePhysicsSettings); }
+        { return static_cast<ActorRigidPhysicsSettings*>(this->PhysicsSettings); }
 
     void ActorRigid::SetLinearMovementFactor(const Vector3& Factor)
         { this->PhysicsRigidBody->setLinearFactor(Factor.GetBulletVector3()); }
