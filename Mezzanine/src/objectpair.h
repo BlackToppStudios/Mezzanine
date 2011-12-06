@@ -44,9 +44,7 @@
 
 namespace Mezzanine
 {
-    class ActorBase;
-    class TerrainBase;
-    class AreaEffect;
+    class WorldObject;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ObjectPair
     /// @headerfile objectpair.h
@@ -57,15 +55,19 @@ namespace Mezzanine
     {
         protected:
             /// @internal
-            /// @brief Gets a pointer to the first object in this pair.
-            virtual void* GetObjectA() const = 0;
-            /// @internal
-            /// @brief Gets a pointer to the second object in this pair.
-            virtual void* GetObjectB() const = 0;
-            /// @internal
             /// @brief Gets a string containing the combined names of the objects in this pair.
-            virtual String GetCombinedName() const = 0;
+            virtual String GetCombinedName() const;
         public:
+            /// @brief The first world object in the pair.
+            WorldObject* ObjectA;
+            /// @brief The second world object in the pair.
+            WorldObject* ObjectB;
+
+            /// @brief Class constructor.
+            ObjectPair(WorldObject* A, WorldObject* B);
+            /// @brief Class destructor.
+            virtual ~ObjectPair();
+
             /// @brief Checks to see if this pair is the same as another pair.
             /// @param Pair The other pair to compare against.
             /// @return Returns true if the pairs match regardless of ordering, false otherwise.
@@ -85,147 +87,6 @@ namespace Mezzanine
             /// @return Returns true if this pair is found to be greater then the passed in pair, false otherwise.
             virtual bool operator>(const ObjectPair& Pair) const;
     };//ObjectPair
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorPair
-    /// @headerfile objectpair.h
-    /// @brief This is a basic utility class for tracking pairs of actors.
-    /// @details Most commonly this class is used in collision tracking.
-    ///////////////////////////////////////
-    class MEZZ_LIB ActorPair : public ObjectPair
-    {
-        protected:
-            /// @internal
-            /// @brief Gets a pointer to the first object in this pair.
-            void* GetObjectA() const;
-            /// @internal
-            /// @brief Gets a pointer to the second object in this pair.
-            void* GetObjectB() const;
-            /// @internal
-            /// @brief Gets a string containing the combined names of the objects in this pair.
-            String GetCombinedName() const;
-        public:
-            /// @brief The first actor in the pair.
-            ActorBase* ActorA;
-            /// @brief The second actor in the pair.
-            ActorBase* ActorB;
-
-            /// @brief No initialization constructor.
-            ActorPair();
-            /// @brief Class Constructor.
-            /// @param A The first actor to be applied to this pair.
-            /// @param B The second actor to be applied to this pair.
-            ActorPair(ActorBase* A, ActorBase* B);
-            /// @brief Reference copy constructor.
-            /// @param OtherPair The other pair to be copied.
-            ActorPair(const ActorPair& OtherPair);
-            /// @brief Checks to see if this pair is the same as another pair.
-            /// @param A The first actor in the other pair.
-            /// @param B The second actor in the other pair.
-            /// @return Returns true if the pairs match regardless of ordering, false otherwise.
-            bool PairsMatch(ActorBase* A, ActorBase* B) const;
-    };//ActorPair
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorTerrainPair
-    /// @headerfile objectpair.h
-    /// @brief This is a basic utility class for tracking pairs of actors.
-    /// @details Most commonly this class is used in collision tracking.
-    ///////////////////////////////////////
-    class MEZZ_LIB ActorTerrainPair : public ObjectPair
-    {
-        protected:
-            /// @internal
-            /// @brief Gets a pointer to the first object in this pair.
-            void* GetObjectA() const;
-            /// @internal
-            /// @brief Gets a pointer to the second object in this pair.
-            void* GetObjectB() const;
-            /// @internal
-            /// @brief Gets a string containing the combined names of the objects in this pair.
-            String GetCombinedName() const;
-        public:
-            /// @brief The first actor in the pair.
-            ActorBase* Actor;
-            /// @brief The second actor in the pair.
-            TerrainBase* Terrain;
-
-            /// @brief No initialization constructor.
-            ActorTerrainPair();
-            /// @brief Class Constructor.
-            /// @param A The first actor to be applied to this pair.
-            /// @param B The second actor to be applied to this pair.
-            ActorTerrainPair(ActorBase* A, TerrainBase* B);
-            /// @brief Reference copy constructor.
-            /// @param OtherPair The other pair to be copied.
-            ActorTerrainPair(const ActorTerrainPair& OtherPair);
-    };//ActorPair
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorAreaEffectPair
-    /// @headerfile objectpair.h
-    /// @brief This is a basic utility class for tracking pairs of actors.
-    /// @details Most commonly this class is used in collision tracking.
-    ///////////////////////////////////////
-    class MEZZ_LIB ActorAreaEffectPair : public ObjectPair
-    {
-        protected:
-            /// @internal
-            /// @brief Gets a pointer to the first object in this pair.
-            void* GetObjectA() const;
-            /// @internal
-            /// @brief Gets a pointer to the second object in this pair.
-            void* GetObjectB() const;
-            /// @internal
-            /// @brief Gets a string containing the combined names of the objects in this pair.
-            String GetCombinedName() const;
-        public:
-            /// @brief The first actor in the pair.
-            ActorBase* Actor;
-            /// @brief The second actor in the pair.
-            AreaEffect* AE;
-
-            /// @brief No initialization constructor.
-            ActorAreaEffectPair();
-            /// @brief Class Constructor.
-            /// @param A The first actor to be applied to this pair.
-            /// @param B The second actor to be applied to this pair.
-            ActorAreaEffectPair(ActorBase* A, AreaEffect* B);
-            /// @brief Reference copy constructor.
-            /// @param OtherPair The other pair to be copied.
-            ActorAreaEffectPair(const ActorAreaEffectPair& OtherPair);
-    };//ActorPair
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorPair
-    /// @headerfile objectpair.h
-    /// @brief This is a basic utility class for tracking pairs of actors.
-    /// @details Most commonly this class is used in collision tracking.
-    ///////////////////////////////////////
-    class MEZZ_LIB AreaEffectTerrainPair : public ObjectPair
-    {
-        protected:
-            /// @internal
-            /// @brief Gets a pointer to the first object in this pair.
-            void* GetObjectA() const;
-            /// @internal
-            /// @brief Gets a pointer to the second object in this pair.
-            void* GetObjectB() const;
-            /// @internal
-            /// @brief Gets a string containing the combined names of the objects in this pair.
-            String GetCombinedName() const;
-        public:
-            /// @brief The first actor in the pair.
-            AreaEffect* AE;
-            /// @brief The second actor in the pair.
-            TerrainBase* Terrain;
-
-            /// @brief No initialization constructor.
-            AreaEffectTerrainPair();
-            /// @brief Class Constructor.
-            /// @param A The first actor to be applied to this pair.
-            /// @param B The second actor to be applied to this pair.
-            AreaEffectTerrainPair(AreaEffect* A, TerrainBase* B);
-            /// @brief Reference copy constructor.
-            /// @param OtherPair The other pair to be copied.
-            AreaEffectTerrainPair(const AreaEffectTerrainPair& OtherPair);
-    };//ActorPair
 }//Mezzanine
 
 #endif

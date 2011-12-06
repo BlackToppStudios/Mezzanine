@@ -140,11 +140,16 @@ namespace Mezzanine
 
     void ActorRigid::_NotifyCollisionState(Collision* Col, const Collision::CollisionState& State)
     {
-        ActorBase::_NotifyCollisionState(Col,State);
+        WorldObject::_NotifyCollisionState(Col,State);
         StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
+        bool UseA = Col->GetObjectA() != this;
         // We don't care if sticky behavior isn't set or if the collision has ended.
         // If it's ended, then we've probably already done our logic.
         if(NULL == StickyD || Collision::Col_End == State)
+            return;
+        // Constraints only work well with other rigid bodies, so for now just other actorrigids.
+        /// @todo Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies.
+        if( (UseA ? (Col->GetObjectB()->GetType() != Mezzanine::WOT_ActorRigid) : (Col->GetObjectA()->GetType() != Mezzanine::WOT_ActorRigid)) )
             return;
         // We need a contact point to be present for this to work, since a collision without contact points is an AABB overlap.
         // So confirm there are contact points.
@@ -159,8 +164,7 @@ namespace Mezzanine
                 if( Col->PairsMatch(StickyCon->GetActorA(),StickyCon->GetActorB()) )
                     return;
             }
-            bool UseA = Col->GetActorA() != this;
-            ActorRigid* ActorA = dynamic_cast<ActorRigid*>(UseA ? Col->GetActorA() : Col->GetActorB());
+            ActorRigid* ActorA = dynamic_cast<ActorRigid*>(UseA ? Col->GetObjectA() : Col->GetObjectB());
             Transform TransA(UseA ? Col->GetLocalALocation(1) : Col->GetLocalBLocation(1));
             Transform TransB(UseA ? Col->GetLocalBLocation(1) : Col->GetLocalALocation(1));
             Generic6DofConstraint* NewSticky = new Generic6DofConstraint(ActorA,this,TransA,TransB);

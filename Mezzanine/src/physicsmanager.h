@@ -147,7 +147,7 @@ namespace Mezzanine
             std::vector< TypedConstraint* > Constraints;
             std::vector< AreaEffect* > AreaEffects;
             std::vector< WorldTrigger* > Triggers;
-            std::map< ActorPair,Collision* > Collisions;
+            std::map< ObjectPair,Collision* > Collisions;
 
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
@@ -300,10 +300,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Management
 
-            /// @brief Gets a Collision by actor pair.
-            /// @param Pair A pair of actors.
+            /// @brief Gets a Collision by object pair.
+            /// @param Pair A pair of objects.
             /// @return Returns a pointer to the Collision if a collision for the provided pair exists, NULL otherwise.
-            Collision* GetCollision(ActorPair* Pair);
+            Collision* GetCollision(ObjectPair* Pair);
             /// @brief Gets the number of Collisions currently in the world.
             /// @return Returns a whole representing the number of Collisions in the world.
             Whole GetNumCollisions();
@@ -313,16 +313,16 @@ namespace Mezzanine
             /// In such cases you have to clean up traces of the collision.
             /// @param Col The collision to be removed.
             void RemoveCollision(Collision* Col);
-            /// @brief Removes all stored collisions that involve the specified actor.
-            /// @param Actor The actor which will have all of it's collisions removed.
-            void RemoveCollisionsContainingActor(ActorBase* Actor);
+            /// @brief Removes all stored collisions that involve the specified Object.
+            /// @param Object The Object which will have all of it's collisions removed.
+            void RemoveCollisionsContainingObject(WorldObject* Object);
             /// @brief Destroys all collisions currently being stored and processed in the manager.
             void DestroyAllCollisions();
 
             /// @brief Used to make working with the Collisions easier.
-            typedef std::map< ActorPair,Collision* >::iterator CollisionIterator;
+            typedef std::map< ObjectPair,Collision* >::iterator CollisionIterator;
             /// @brief Used to make working with the Collisions easier, and avoid the risk of accidentally changing them.
-            typedef std::map< ActorPair,Collision* >::const_iterator ConstCollisionIterator;
+            typedef std::map< ObjectPair,Collision* >::const_iterator ConstCollisionIterator;
             /// @brief Get an CollisionIterator to the first Collision.
             /// @return An CollisionIterator to the first Collision.
             CollisionIterator BeginEntity();

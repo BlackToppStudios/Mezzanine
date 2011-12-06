@@ -90,8 +90,8 @@ namespace Mezzanine
         Ghost = new btPairCachingGhostObject();
         Ghost->setCollisionFlags(Ghost->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        ObjectReference* ActorRef = new ObjectReference(Mezzanine::WOT_AEUnknown,this);
-        Ghost->setUserPointer(ActorRef);
+        ObjectReference* AERef = new ObjectReference(this->GetType(),this);
+        Ghost->setUserPointer(AERef);
 
         PhysicsObject = Ghost;
         this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);

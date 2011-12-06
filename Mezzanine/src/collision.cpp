@@ -57,15 +57,15 @@ namespace Mezzanine
         btManifoldArray Manifolds;
     };
 
-    Collision::Collision(ActorBase* actora, ActorBase* actorb, btBroadphasePair* PhysicsPair)
+    Collision::Collision(WorldObject* A, WorldObject* B, btCollisionAlgorithm* PhysicsAlgo)
     {
-        ActorA = actora;
-        ActorB = actorb;
-        InternalAlgo = PhysicsPair->m_algorithm;
+        ObjectA = A;
+        ObjectB = B;
+        InternalAlgo = PhysicsAlgo;
         InternalData = new CollisionInternalData();
 
-        ActorA->_NotifyCollisionState(this,Collision::Col_Begin);
-        ActorB->_NotifyCollisionState(this,Collision::Col_Begin);
+        ObjectA->_NotifyCollisionState(this,Collision::Col_Begin);
+        ObjectB->_NotifyCollisionState(this,Collision::Col_Begin);
 
         InternalAlgo->getAllContactManifolds(InternalData->Manifolds);
         NumContacts = InternalData->Manifolds.size();
@@ -73,29 +73,29 @@ namespace Mezzanine
 
     Collision::Collision()
     {
-        ActorA = NULL;
-        ActorB = NULL;
+        ObjectA = NULL;
+        ObjectB = NULL;
         InternalAlgo = NULL;
         InternalData = new CollisionInternalData();
     }
 
     Collision::Collision(const Collision& Other)
     {
-        ActorA = Other.ActorA;
-        ActorB = Other.ActorB;
+        ObjectA = Other.ObjectA;
+        ObjectB = Other.ObjectB;
         InternalAlgo = Other.InternalAlgo;
         for( Whole X = 0 ; X < Other.InternalData->Manifolds.size() ; ++X )
             InternalData->Manifolds.push_back(Other.InternalData->Manifolds[X]);
 
         // Double notifies seems like a bad idea.
-        //ActorA->_NotifyCollisionState(this,Collision::Col_Begin);
-        //ActorB->_NotifyCollisionState(this,Collision::Col_Begin);
+        //ObjectA->_NotifyCollisionState(this,Collision::Col_Begin);
+        //ObjectB->_NotifyCollisionState(this,Collision::Col_Begin);
     }
 
     Collision::~Collision()
     {
-        ActorA->_NotifyCollisionState(this,Collision::Col_End);
-        ActorB->_NotifyCollisionState(this,Collision::Col_End);
+        ObjectA->_NotifyCollisionState(this,Collision::Col_End);
+        ObjectB->_NotifyCollisionState(this,Collision::Col_End);
         delete InternalData;
     }
 
@@ -114,36 +114,36 @@ namespace Mezzanine
         }
     }
 
-    void Collision::SetActorA(ActorBase* A)
+    void Collision::SetObjectA(WorldObject* A)
     {
-        if(ActorA)
+        if(ObjectA)
         {
-            World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in Collision.  This is not permitted.");
+            World::GetWorldPointer()->Log("Attepting to change Object pointer Member in Collision.  This is not permitted.");
         }else{
-            ActorA = A;
-            ActorA->_NotifyCollisionState(this,Collision::Col_Begin);
+            ObjectA = A;
+            ObjectA->_NotifyCollisionState(this,Collision::Col_Begin);
         }
     }
 
-    ActorBase* Collision::GetActorA() const
+    WorldObject* Collision::GetObjectA() const
     {
-        return ActorA;
+        return ObjectA;
     }
 
-    void Collision::SetActorB(ActorBase* B)
+    void Collision::SetObjectB(WorldObject* B)
     {
-        if(ActorB)
+        if(ObjectB)
         {
-            World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in Collision.  This is not permitted.");
+            World::GetWorldPointer()->Log("Attepting to change Object pointer Member in Collision.  This is not permitted.");
         }else{
-            ActorB = B;
-            ActorB->_NotifyCollisionState(this,Collision::Col_Begin);
+            ObjectB = B;
+            ObjectB->_NotifyCollisionState(this,Collision::Col_Begin);
         }
     }
 
-    ActorBase* Collision::GetActorB() const
+    WorldObject* Collision::GetObjectB() const
     {
-        return ActorB;
+        return ObjectB;
     }
 
     Whole Collision::GetNumContactPoints()
@@ -190,8 +190,8 @@ namespace Mezzanine
 
     bool Collision::PairsMatch(ActorBase* A, ActorBase* B) const
     {
-        bool ContainsA = (A == ActorA) || (A == ActorB);
-        bool ContainsB = (B == ActorA) || (B == ActorB);
+        bool ContainsA = (A == ObjectA) || (A == ObjectB);
+        bool ContainsB = (B == ObjectA) || (B == ObjectB);
         return (ContainsA && ContainsB);
     }
 
@@ -200,8 +200,8 @@ namespace Mezzanine
         InternalAlgo->getAllContactManifolds(InternalData->Manifolds);
         if( NumContacts != InternalData->Manifolds.size() )
         {
-            ActorA->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
-            ActorB->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
+            ObjectA->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
+            ObjectB->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
             NumContacts = InternalData->Manifolds.size();
         }
     }
@@ -213,8 +213,8 @@ namespace Mezzanine
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Collision& Col)
 {
     stream  << "<EventCollision Version=\"1" //Impulse=\"" << Ev.Impulse
-            << "\" ActorA=\"" << Col.GetActorA()->GetName()
-            << "\" ActorB=\"" << Col.GetActorB()->GetName()
+            << "\" ObjectA=\"" << Col.GetObjectA()->GetName()
+            << "\" ObjectB=\"" << Col.GetObjectB()->GetName()
             << "\" >"
             //<<  Ev.WorldLocation
             << "</EventCollision>";
@@ -240,8 +240,8 @@ void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Collision& Col
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
 
-            Col.SetActorA(Mezzanine::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ActorA").AsString()));
-            Col.SetActorB(Mezzanine::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ActorB").AsString()));
+            //Col.SetObjectA(Mezzanine::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ObjectA").AsString()));
+            //Col.SetObjectB(Mezzanine::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ObjectB").AsString()));
             //Col.Impulse=OneNode.GetAttribute("Impulse").AsReal();
 
             //if(OneNode.GetFirstChild())

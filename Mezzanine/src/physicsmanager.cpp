@@ -267,43 +267,10 @@ namespace Mezzanine
     #undef GetObject
     #endif
 
-    /*class BroadphaseCache : public btHashedOverlappingPairCache
-    {
-        protected:
-            std::list<btBroadphasePair*> CollisionCreationQueue;
-            ActorPair ConvertProxiesToActorPair(btBroadphaseProxy* proxy0, btBroadphaseProxy* proxy1)
-            {
-                // Get the object references
-                ObjectReference* ObjectA = (ObjectReference*)((btCollisionObject*)proxy0->m_clientObject)->getUserPointer();
-                ObjectReference* ObjectB = (ObjectReference*)((btCollisionObject*)proxy1->m_clientObject)->getUserPointer();
-                // Verify they are actors, then cast appropriately
-                ActorBase* ActorA = (ObjectA->GetType() >= WOT_ActorFirst) && (ObjectA->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectA->GetObject()) : NULL;
-                ActorBase* ActorB = (ObjectB->GetType() >= WOT_ActorFirst) && (ObjectB->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectB->GetObject()) : NULL;
-                // Verify the cast went well
-                if( ActorA && ActorB )
-                {
-                    if( !ActorA->GetPhysicsSettings()->GetCollisionResponse() || !ActorB->GetPhysicsSettings()->GetCollisionResponse() )
-                        return;
-                    // Creat the collision
-                    return ActorPair(ActorA,ActorB);
-                }
-            }
-        public:
-            void removeOverlappingPair(btBroadphaseProxy* proxy0, btBroadphaseProxy* proxy1, btDispatcher* dispatcher)
-            {
-                btHashedOverlappingPairCache::removeOverlappingPair(proxy0,proxy1,dispatcher);
-            }
-            btBroadphasePair* addOverlappingPair(btBroadphaseProxy* proxy0, btBroadphaseProxy* proxy1)
-            {
-                btBroadphasePair* NewPair = btHashedOverlappingPairCache::addOverlappingPair(proxy0,proxy1);
-                return NewPair;
-            }
-    }// */
+    typedef std::list<btCollisionAlgorithm*> AlgoList;
 
     class CollisionDispatcher : public btCollisionDispatcher
     {
-        public:
-            typedef std::list<btCollisionAlgorithm*> AlgoList;
         protected:
             AlgoList AlgoCreationQueue;
             std::list<PhysicsManager::CollisionIterator> ManifoldDestructionQueue;
@@ -380,9 +347,36 @@ namespace Mezzanine
                 AlgoCreationQueue.push_back(Casted);
                 return ToReturn;
             }
-            void freeCollisionAlgorithm(void *ptr)
+            void freeCollisionAlgorithm(void* ptr)
             {
-
+                btCollisionAlgorithm* Casted = (btCollisionAlgorithm*)ptr;
+                // first check the queue
+                if(!AlgoCreationQueue.empty())
+                {
+                    for(AlgoList::iterator QueIt = AlgoCreationQueue.begin() ; QueIt != AlgoCreationQueue.end() ; QueIt++ )
+                    {
+                        if(Casted == (*QueIt))
+                        {
+                            AlgoCreationQueue.erase(QueIt);
+                            btCollisionDispatcher::freeCollisionAlgorithm(ptr);
+                            return;
+                        }
+                    }
+                }
+                // now check the already generated collisions
+                PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+                for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
+                {
+                    if(Casted == (*ColIt).second->InternalAlgo)
+                    {
+                        //ManifoldDestructionQueue.push_back(ColIt);
+                        //ToBeDestroyed->GetActorA()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
+                        //ToBeDestroyed->GetActorB()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
+                        delete (*ColIt).second;
+                        PhysMan->Collisions.erase(ColIt);
+                        break;
+                    }
+                }
             }
             AlgoList& GetAlgoCreationQueue()
             {
@@ -544,54 +538,69 @@ namespace Mezzanine
 
     void PhysicsManager::ProcessAllCollisions()
     {
-        /*CollisionDispatcher* Dispatch = (CollisionDispatcher*)this->BulletDispatcher;
+        CollisionDispatcher* Dispatch = (CollisionDispatcher*)this->BulletDispatcher;
         //Update the collisions that already exist as necessary
         for( PhysicsManager::CollisionIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ColIt++ )
             (*ColIt).second->Update();
         //Process the collisions that are in the creation queue
-        std::list<btPersistentManifold*>& ManifoldQueue = Dispatch->GetManifoldCreationQueue();
-        if(ManifoldQueue.empty())
+        AlgoList& AlgoQueue = Dispatch->GetAlgoCreationQueue();
+        if(AlgoQueue.empty())
             return;
         #ifdef MEZZDEBUG
         std::stringstream logstream;
-        logstream << "Processing " << ManifoldQueue.size() << " manifolds for collisions." << endl;
-        logstream << "Showing a total of " << BulletDispatcher->getNumManifolds() << " manifolds in the dispatcher." << endl;
+        logstream << "Processing " << AlgoQueue.size() << " algorithms for collisions." << endl;
         World::GetWorldPointer()->Log(logstream.str());
         //World::GetWorldPointer()->DoMainLoopLogging();
         #endif
-        btPersistentManifold* NewManifold = ManifoldQueue.front();
-        while( NewManifold != NULL )
+        btCollisionAlgorithm* NewAlgo = AlgoQueue.front();
+        while( NewAlgo != NULL )
         {
-            // Get the object references
-            ObjectReference* ObjectA = (ObjectReference*)((btCollisionObject*)NewManifold->getBody0())->getUserPointer();
-            ObjectReference* ObjectB = (ObjectReference*)((btCollisionObject*)NewManifold->getBody1())->getUserPointer();
-            // Verify they are actors, then cast appropriately
-            ActorBase* ActorA = (ObjectA->GetType() >= WOT_ActorFirst) && (ObjectA->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectA->GetObject()) : NULL;
-            ActorBase* ActorB = (ObjectB->GetType() >= WOT_ActorFirst) && (ObjectB->GetType() <= WOT_ActorLast) ? static_cast<ActorBase*>(ObjectB->GetObject()) : NULL;
-            // Verify the cast went well
-            if( ActorA && ActorB )
+            ObjectReference* ObjectA = NULL;
+            ObjectReference* ObjectB = NULL;
+            /// @todo This is an absurd round-about way to get the data we need,
+            /// and bullet will probably have to be extended to change this so it's actually good.
+            btBroadphasePairArray& PairArray = BulletBroadphase->getOverlappingPairCache()->getOverlappingPairArray();
+            for( Whole X = 0 ; X < PairArray.size() ; ++X )
             {
-                if( !ActorA->GetPhysicsSettings()->GetCollisionResponse() || !ActorB->GetPhysicsSettings()->GetCollisionResponse() )
+                if( NewAlgo == PairArray[X].m_algorithm )
                 {
-                    ManifoldQueue.pop_front();
-                    if(ManifoldQueue.size() > 0) NewManifold = ManifoldQueue.front();
-                    else NewManifold = NULL;
-                    continue;
-                }
-                // Creat the collision
-                ActorPair NewPair(ActorA,ActorB);
-                PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
-                if(ColIt == Collisions.end())
-                {
-                    Collision* NewCol = new Collision(ActorA,ActorB,NewManifold);
-                    //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Collision::Col_Begin);
-                    //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Collision::Col_Begin);
-                    Collisions.insert(std::pair<ActorPair,Collision*>(NewPair,NewCol));
+                    btCollisionObject* COA = (btCollisionObject*)PairArray[X].m_pProxy0->m_clientObject;
+                    ObjectA = (ObjectReference*)COA->getUserPointer();
+                    btCollisionObject* COB = (btCollisionObject*)PairArray[X].m_pProxy1->m_clientObject;
+                    ObjectB = (ObjectReference*)COB->getUserPointer();
+                    break;
                 }
             }
-            ManifoldQueue.pop_front();
-            if(ManifoldQueue.size() > 0) NewManifold = ManifoldQueue.front();
-            else NewManifold = NULL;
+            // Verify we have objects to work with
+            if( !ObjectA || !ObjectB )
+            {
+                AlgoQueue.pop_front();
+                if(AlgoQueue.size() > 0) NewAlgo = AlgoQueue.front();
+                else NewAlgo = NULL;
+                continue;
+            }
+            // Verify the objects actually collide
+            if( !ObjectA->GetObject()->GetPhysicsSettings()->GetCollisionResponse() ||
+                !ObjectB->GetObject()->GetPhysicsSettings()->GetCollisionResponse() )
+            {
+                AlgoQueue.pop_front();
+                if(AlgoQueue.size() > 0) NewAlgo = AlgoQueue.front();
+                else NewAlgo = NULL;
+                continue;
+            }
+            // Creat the collision
+            ObjectPair NewPair(ObjectA->GetObject(),ObjectB->GetObject());
+            PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
+            if(ColIt == Collisions.end())
+            {
+                Collision* NewCol = new Collision(ObjectA->GetObject(),ObjectB->GetObject(),NewAlgo);
+                //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Collision::Col_Begin);
+                //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Collision::Col_Begin);
+                Collisions.insert(std::pair<ObjectPair,Collision*>(NewPair,NewCol));
+            }
+            AlgoQueue.pop_front();
+            if(AlgoQueue.size() > 0) NewAlgo = AlgoQueue.front();
+            else NewAlgo = NULL;
         }//*/
     }
 
@@ -772,7 +781,7 @@ namespace Mezzanine
         Triggers.clear();
     }
 
-    Collision* PhysicsManager::GetCollision(ActorPair* Pair)
+    Collision* PhysicsManager::GetCollision(ObjectPair* Pair)
     {
         PhysicsManager::CollisionIterator ColIt = Collisions.find(*Pair);
         if(ColIt != Collisions.end()) return (*ColIt).second;
@@ -787,30 +796,28 @@ namespace Mezzanine
     void PhysicsManager::RemoveCollision(Collision* Col)
     {
         //((CollisionDispatcher*)BulletDispatcher)->releaseManifoldManual(Col->Manifold);
-        /*BulletBroadphase->getOverlappingPairCache()->removeOverlappingPair(
-            Col->GetActorA()->_GetBasePhysicsObject()->getBroadphaseHandle(),
-            Col->GetActorB()->_GetBasePhysicsObject()->getBroadphaseHandle(),
+        BulletBroadphase->getOverlappingPairCache()->removeOverlappingPair(
+            Col->ObjectA->_GetBasePhysicsObject()->getBroadphaseHandle(),
+            Col->ObjectB->_GetBasePhysicsObject()->getBroadphaseHandle(),
             BulletDispatcher);// */
     }
 
-    void PhysicsManager::RemoveCollisionsContainingActor(ActorBase* Actor)
+    void PhysicsManager::RemoveCollisionsContainingObject(WorldObject* Object)
     {
-        if(!Actor->IsInWorld())
+        if(!Object->IsInWorld())
             return;
 
-        BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs(Actor->_GetBasePhysicsObject()->getBroadphaseHandle(),BulletDispatcher);
+        BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs(Object->_GetBasePhysicsObject()->getBroadphaseHandle(),BulletDispatcher);
 
         PhysicsManager::CollisionIterator ColIt = Collisions.begin();
         while( ColIt != Collisions.end() )
         {
             Collision* ToBeDestroyed = (*ColIt).second;
-            if( Actor == (*ColIt).second->GetActorA() || Actor == (*ColIt).second->GetActorB() )
+            if( Object == (*ColIt).second->ObjectA || Object == (*ColIt).second->ObjectB )
             {
                 PhysicsManager::CollisionIterator Delete = ColIt;
-                //Collision* ToBeDestroyed = (*Delete).second;
                 ++ColIt;
                 Collisions.erase(Delete);
-                //BulletDispatcher->btCollisionDispatcher::releaseManifold(ToBeDestroyed->Manifold);
                 delete ToBeDestroyed;
             }else{
                 ++ColIt;

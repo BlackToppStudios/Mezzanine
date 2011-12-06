@@ -91,19 +91,19 @@ namespace Mezzanine
             btCollisionAlgorithm* InternalAlgo;
             /// @brief Array of manifolds that apply to this collision.
             CollisionInternalData* InternalData;
-            /// @brief The first Actor involved in the collision.
-            ActorBase* ActorA;
-            /// @brief The second Actor invovled in the collision.
-            ActorBase* ActorB;
+            /// @brief The first Object involved in the collision.
+            WorldObject* ObjectA;
+            /// @brief The second Object invovled in the collision.
+            WorldObject* ObjectB;
             /// @brief This stores the number of contact points within this collision, for using to track updates.
             int NumContacts;
             /// @internal
             /// @brief Class Constructor.
             /// @details This will construct a basic event class with the minimum data needed.
-            /// @param actora The first Actor involved in the collision.
-            /// @param actorb The second Actor invovled in the collision.
-            /// @param PhysicsManifold The internal manifold used for querying collision data.
-            Collision(ActorBase* actora, ActorBase* actorb, btBroadphasePair* PhysicsPair);
+            /// @param A The first Object involved in the collision.
+            /// @param B The second Object invovled in the collision.
+            /// @param PhysicsAlgo The internal algorithm used for generating collision data.
+            Collision(WorldObject* A, WorldObject* B, btCollisionAlgorithm* PhysicsAlgo);
             /// @internal
             /// @brief Internal function responsible for fetching the appropriate contact point.
             btManifoldPoint& GetManifoldPoint(const Whole& Index);
@@ -117,24 +117,24 @@ namespace Mezzanine
             /// @details Basic Class Destructor.
             virtual ~Collision();
 
-            /// @brief Sets the first actor this collision applies to.
+            /// @brief Sets the first Object this collision applies to.
             /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
             /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
             /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
-            /// @param A The first actor in this event.
-            virtual void SetActorA(ActorBase* A);
-            /// @brief Gets the first actor this collision applies to.
-            /// @return Returns a pointer to the first actor in this event.
-            virtual ActorBase* GetActorA() const;
-            /// @brief Sets the second actor this collision applies to.
+            /// @param A The first Object in this event.
+            virtual void SetObjectA(WorldObject* A);
+            /// @brief Gets the first Object this collision applies to.
+            /// @return Returns a pointer to the first Object in this event.
+            virtual WorldObject* GetObjectA() const;
+            /// @brief Sets the second Object this collision applies to.
             /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
             /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
             /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
-            /// @param B The second actor in this event.
-            virtual void SetActorB(ActorBase* B);
-            /// @brief Gets the second actor this collision applies to.
-            /// @return Returns a pointer to the second actor in this event.
-            virtual ActorBase* GetActorB() const;
+            /// @param B The second Object in this event.
+            virtual void SetObjectB(WorldObject* B);
+            /// @brief Gets the second Object this collision applies to.
+            /// @return Returns a pointer to the second Object in this event.
+            virtual WorldObject* GetObjectB() const;
 
             /// @brief Gets the number of contact points this collision is storing.
             /// @return Returns the number of contact points that currently exist for this collision.

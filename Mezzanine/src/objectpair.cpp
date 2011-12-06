@@ -41,18 +41,30 @@
 #define _objectpair_cpp
 
 #include "objectpair.h"
-#include "actorbase.h"
-#include "areaeffect.h"
-//#include "terrainbase.h"
+#include "worldobject.h"
 
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     // ObjectPair
+    ObjectPair::ObjectPair(WorldObject* A, WorldObject* B)
+        : ObjectA(A), ObjectB(B)
+    {
+    }
+
+    ObjectPair::~ObjectPair()
+    {
+    }
+
+    String ObjectPair::GetCombinedName() const
+    {
+        return String(ObjectA->GetName()+ObjectB->GetName());
+    }
+
     bool ObjectPair::PairsMatch(const ObjectPair& Pair) const
     {
-        bool ContainsA = ( this->GetObjectA() == Pair.GetObjectA() ) || ( this->GetObjectA() == Pair.GetObjectB() );
-        bool ContainsB = ( this->GetObjectB() == Pair.GetObjectA() ) || ( this->GetObjectB() == Pair.GetObjectB() );
+        bool ContainsA = ( this->ObjectA == Pair.ObjectA ) || ( this->ObjectA == Pair.ObjectB );
+        bool ContainsB = ( this->ObjectB == Pair.ObjectA ) || ( this->ObjectB == Pair.ObjectB );
         return (ContainsA && ContainsB);
     }
 
@@ -73,147 +85,6 @@ namespace Mezzanine
         String PairAName = this->GetCombinedName();
         String PairBName = Pair.GetCombinedName();
         return PairAName.compare(PairBName) > 0;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // ActorPair
-
-    ActorPair::ActorPair() : ActorA(NULL), ActorB(NULL)
-    {
-    }
-
-    ActorPair::ActorPair(ActorBase* A, ActorBase* B)
-        : ActorA(A), ActorB(B)
-    {
-    }
-
-    ActorPair::ActorPair(const ActorPair& OtherPair)
-    {
-        ActorA = OtherPair.ActorA;
-        ActorB = OtherPair.ActorB;
-    }
-
-    void* ActorPair::GetObjectA() const
-    {
-        return ActorA;
-    }
-
-    void* ActorPair::GetObjectB() const
-    {
-        return ActorB;
-    }
-
-    String ActorPair::GetCombinedName() const
-    {
-        return String(ActorA->GetName()+ActorB->GetName());
-    }
-
-    bool ActorPair::PairsMatch(ActorBase* A, ActorBase* B) const
-    {
-        bool ContainsA = (A == ActorA) || (A == ActorB);
-        bool ContainsB = (B == ActorA) || (B == ActorB);
-        return (ContainsA && ContainsB);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // ActorTerrainPair
-
-    ActorTerrainPair::ActorTerrainPair() : Actor(NULL), Terrain(NULL)
-    {
-    }
-
-    ActorTerrainPair::ActorTerrainPair(ActorBase* A, TerrainBase* B)
-        : Actor(A), Terrain(B)
-    {
-    }
-
-    ActorTerrainPair::ActorTerrainPair(const ActorTerrainPair& OtherPair)
-    {
-        Actor = OtherPair.Actor;
-        Terrain = OtherPair.Terrain;
-    }
-
-    void* ActorTerrainPair::GetObjectA() const
-    {
-        return Actor;
-    }
-
-    void* ActorTerrainPair::GetObjectB() const
-    {
-        return Terrain;
-    }
-
-    String ActorTerrainPair::GetCombinedName() const
-    {
-        //return String(Actor->GetName()+Terrain->GetName());
-        return "";
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // ActorAreaEffectPair
-
-    ActorAreaEffectPair::ActorAreaEffectPair() : Actor(NULL), AE(NULL)
-    {
-    }
-
-    ActorAreaEffectPair::ActorAreaEffectPair(ActorBase* A, AreaEffect* B)
-        : Actor(A), AE(B)
-    {
-    }
-
-    ActorAreaEffectPair::ActorAreaEffectPair(const ActorAreaEffectPair& OtherPair)
-    {
-        Actor = OtherPair.Actor;
-        AE = OtherPair.AE;
-    }
-
-    void* ActorAreaEffectPair::GetObjectA() const
-    {
-        return Actor;
-    }
-
-    void* ActorAreaEffectPair::GetObjectB() const
-    {
-        return AE;
-    }
-
-    String ActorAreaEffectPair::GetCombinedName() const
-    {
-        return String(Actor->GetName()+AE->GetName());
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // AreaEffectTerrainPair
-
-    AreaEffectTerrainPair::AreaEffectTerrainPair() : AE(NULL), Terrain(NULL)
-    {
-    }
-
-    AreaEffectTerrainPair::AreaEffectTerrainPair(AreaEffect* A, TerrainBase* B)
-        : AE(A), Terrain(B)
-    {
-    }
-
-    AreaEffectTerrainPair::AreaEffectTerrainPair(const AreaEffectTerrainPair& OtherPair)
-    {
-        AE = OtherPair.AE;
-        Terrain = OtherPair.Terrain;
-    }
-
-    void* AreaEffectTerrainPair::GetObjectA() const
-    {
-        return AE;
-    }
-
-    void* AreaEffectTerrainPair::GetObjectB() const
-    {
-        return Terrain;
-    }
-
-    String AreaEffectTerrainPair::GetCombinedName() const
-    {
-        //return String(AE->GetName()+Terrain->GetName());
-        return "";
     }
 }//Mezzanine
 
