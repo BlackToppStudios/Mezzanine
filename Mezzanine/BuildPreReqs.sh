@@ -188,15 +188,10 @@ SDLOutputDir="$OutputDir/SDLBuild"
 SDLCompileDir="$OutputDir/SDLBuild/SDL"
 SDLRelOutputDir=".."
 echo "Preparing SDL source Files in: \"$SDLOutputDir\""
-cd $WorkingDir
+cd $WorkingDir			#next line needs to be executed from the working dir or it could fail if the user entered a relative path
 mkdir -p $SDLOutputDir
-#cp -a libincludes/common/sdlsrc/SDL/ $SDLOutputDir/
-
 cd $SDLOutputDir
 tar xf $WorkingDir/libincludes/common/sdlsrc/SDL.tar.gz
-
-
-exit
 
 cd $SDLCompileDir
 
@@ -222,6 +217,7 @@ then
 	cp -a $SDLCompileDir/build/libSDLmain.a $WorkingDir/$BinaryRecievingDir/sdl/
 fi
 
+
 ########################################################
 # Prepare Ogre Library
 CMakeOutput="CodeBlocks - Unix Makefiles"
@@ -243,8 +239,9 @@ fi
 echo "Preparing Ogre source Files in: \"$OgreOutputDir\""
 cd $WorkingDir
 mkdir -p $OgreOutputDir
-cp -a libincludes/common/ogresrc/ogre/ $OgreOutputDir/
-
+#cp -a libincludes/common/ogresrc/ogre/ $OgreOutputDir/
+cd $OgreOutputDir
+tar xf $WorkingDir/libincludes/common/ogresrc/ogre.tar.gz
 cd $OgreCompileDir
 
 echo "Configuring Ogre3d, putting output in: $OgreOutputDir/Configurelog.txt"
