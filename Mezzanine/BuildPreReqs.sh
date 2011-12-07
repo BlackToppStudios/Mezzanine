@@ -185,15 +185,15 @@ fi
 ########################################################
 # SDL compilation
 SDLOutputDir="$OutputDir/SDLBuild"
-SDLCompileDir="$OutputDir/SDLBuild/SDL"
+SDLCompileDir="$OutputDir/SDLBuild/SDL/"
 SDLRelOutputDir=".."
 echo "Preparing SDL source Files in: \"$SDLOutputDir\""
 cd $WorkingDir			#next line needs to be executed from the working dir or it could fail if the user entered a relative path
 mkdir -p $SDLOutputDir
 cd $SDLOutputDir
 tar xf $WorkingDir/libincludes/common/sdlsrc/SDL.tar.gz
-
-cd $SDLCompileDir
+cd $WorkingDir
+cd $SDLCompileDir		# could be relative, wo I switched back to first directory first
 
 if [ 0 -eq $MinGW32 ]		# Do not run autogen.sh when using MinGW
 then
@@ -242,6 +242,7 @@ mkdir -p $OgreOutputDir
 #cp -a libincludes/common/ogresrc/ogre/ $OgreOutputDir/
 cd $OgreOutputDir
 tar xf $WorkingDir/libincludes/common/ogresrc/ogre.tar.gz
+cd $WorkingDir
 cd $OgreCompileDir
 
 echo "Configuring Ogre3d, putting output in: $OgreOutputDir/Configurelog.txt"
