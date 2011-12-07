@@ -429,31 +429,7 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 # Mac OS X and iPhone Build pecific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
-	set(CMAKE_OSX_ARCHITECTURES i386 CACHE STRING "do not build for 64-bit" FORCE)
-	set(ARCH i386)
 
-	include(FindOpenAL)
-	message( STATUS "OpenAL Headers and Library Found - ${OPENAL_INCLUDE_DIR}")
-
-	include(FindOgg)
-	message( STATUS "Ogg Headers and Library Found - ${OGG_FOUND}")
-
-	include(FindOgre)
-	message( STATUS "Ogre Headers And library Found -	"${OGRE_INCLUDE_DIR}"")
-
-	include(/Library/Frameworks/Ogre.framework)
-
-	find_package(OGRE REQUIRED)
-
-	include_directories(
-		${OPENAL_INCLUDE_DIR}
-		"${OGRE_INCLUDE_DIR}"
-		${${PROJECT_NAME}_ROOT_DIR}/libincludes/macosx/ogresrc/boost_1_42
-		"${OGG_INCLUDE_DIR}"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
-	)
-
-	link_directories("${OGRE_LIB_DIR}")
 
 	add_definitions( -DMACOSX)
 	message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
@@ -467,7 +443,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"			#only on windows, which doesn't build ogre
 	"${Mezz_SDLBuildDir}/SDL/include/"
 )
 
