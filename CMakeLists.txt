@@ -194,7 +194,7 @@ endif(${WIN32})
 # SDL related values
 
 #Find the SDL source
-file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/sdlsrc/SDLBuild ${ProjectRootDir}Mezzanine/SDLBuild ${ProjectRootDir}../*/SDLBuild)
+file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/sdlsrc/SDLBuild ${ProjectRootDir}Mezzanine/SDLBuild ${ProjectRootDir}../*/SDLBuild ${ProjectRootDir}../*/Mezzanine/SDLBuild)
 foreach(Current ${PossibleMatches})
 	if(IS_DIRECTORY ${Current})
 		set(SDLTempDir ${Current})
@@ -243,7 +243,7 @@ set(OgrePluginParticle Plugin_ParticleFX${OgresD}${LibSuffix} )
 #Find the Ogre source
 if(${WIN32})
 else(${WIN32})
-	file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/ogresrc/OgreBuild ${ProjectRootDir}Mezzanine/OgreBuild ${ProjectRootDir}../*/OgreBuild)
+	file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/ogresrc/OgreBuild ${ProjectRootDir}Mezzanine/OgreBuild ${ProjectRootDir}../*/OgreBuild ${ProjectRootDir}../*/Mezzanine/OgreBuild)
 	foreach(Current ${PossibleMatches})
 		if(IS_DIRECTORY ${Current})
 			set(OgreTempDir ${Current})
