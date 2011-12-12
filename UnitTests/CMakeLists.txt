@@ -139,7 +139,6 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${Mezzanine_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
 	"${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
-	"${Mezzanine_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 )
 
 if(${WIN32})
@@ -182,8 +181,8 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 include_directories(
 	${${PROJECT_NAME}_SRC_DIR}
 	${${PROJECT_NAME}_MEZZANINE_BIN_SRC}
-	"${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
-	"${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
+	"${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" 			#only for windows which doesn't compile OGRE
+	"${Mezz_SDLBuildDir}/SDL/include/"
 )
 link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 
@@ -251,6 +250,10 @@ endif(${WIN32})
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific File Copy Process")
+	include_directories(
+		${Mezz_OgreBuildDir}/ogre/OgreMain/include/
+		${Mezz_OgreBuildDir}/ogre/include/
+	)
 	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName} )
 	CopyFilesFromMezzanineDuringBuild( data/linux/GLX_icon.png )
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
@@ -259,9 +262,7 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 # Mac File Copy pecific Items
 if(${APPLE})
 	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-	CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg )
-	CopyFilesFromMezzanineDuringBuild( Mezzanine.dylib )
-#	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
+
 	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 
