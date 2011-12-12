@@ -70,7 +70,6 @@ namespace Mezzanine
         ObjectB->_NotifyCollisionState(this,Collision::Col_Begin);
 
         InternalAlgo->getAllContactManifolds(InternalData->Manifolds);
-        NumContacts = InternalData->Manifolds.size();
     }
 
     Collision::Collision()
@@ -113,6 +112,17 @@ namespace Mezzanine
             return (InternalData->Manifolds.at(SuperIndex)->getContactPoint(SubIndex));
         }else{
             return (InternalData->Manifolds.at(0)->getContactPoint(Index));
+        }
+    }
+
+    void Collision::UpdatePenetrationDistances()
+    {
+        if( InternalData->Manifolds.size() > PenetrationDistances.size() )
+            PenetrationDistances.resize(InternalData->Manifolds.size());
+        PenetrationDistances.clear();
+        for( Whole X = 0 ; X < InternalData->Manifolds.size() ; ++X )
+        {
+            PenetrationDistances[X] = GetManifoldPoint(X).m_distance1;
         }
     }
 
@@ -200,11 +210,23 @@ namespace Mezzanine
     void Collision::Update()
     {
         InternalAlgo->getAllContactManifolds(InternalData->Manifolds);
-        if( NumContacts != InternalData->Manifolds.size() )
+        Whole NumManifolds = InternalData->Manifolds.size();
+        if( PenetrationDistances.size() != NumManifolds )
         {
+            UpdatePenetrationDistances();
             ObjectA->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
             ObjectB->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
-            NumContacts = InternalData->Manifolds.size();
+            return;
+        }
+        for( Whole X = 0 ; X < NumManifolds ; ++X )
+        {
+            if( PenetrationDistances[X] != GetDistance(X) )
+            {
+                UpdatePenetrationDistances();
+                ObjectA->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
+                ObjectB->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
+                return;
+            }
         }
     }
 }

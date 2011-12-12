@@ -95,8 +95,8 @@ namespace Mezzanine
             WorldObject* ObjectA;
             /// @brief The second Object invovled in the collision.
             WorldObject* ObjectB;
-            /// @brief This stores the number of contact points within this collision, for using to track updates.
-            int NumContacts;
+            /// @brief This stores the distance of each contact point in this collision, for using to track updates.
+            std::vector<Real> PenetrationDistances;
             /// @internal
             /// @brief Class Constructor.
             /// @details This will construct a basic event class with the minimum data needed.
@@ -107,6 +107,9 @@ namespace Mezzanine
             /// @internal
             /// @brief Internal function responsible for fetching the appropriate contact point.
             btManifoldPoint& GetManifoldPoint(const Whole& Index);
+            /// @internal
+            /// @brief Updates the PenetrationDistances vector on this object.
+            void UpdatePenetrationDistances();
         public:
             /// @brief Default Constructor
             Collision();

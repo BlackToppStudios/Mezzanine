@@ -180,15 +180,14 @@ namespace Mezzanine
         bool Dynamic = !IsStaticOrKinematic();
         CollisionGroup = Dynamic ? Mezzanine::CF_GenericFilter : Mezzanine::CF_StaticFilter;
         CollisionMask = Dynamic ? Mezzanine::CF_AllFilter : Mezzanine::CF_AllFilter ^ Mezzanine::CF_StaticFilter;
+
+        StickyContacts = new StickyData();
     }
 
     ActorRigidPhysicsSettings::~ActorRigidPhysicsSettings()
     {
-        if(StickyContacts)
-        {
-            ClearStickyContacts();
-            delete StickyContacts;
-        }
+        ClearStickyContacts();
+        delete StickyContacts;
     }
 
     void ActorRigidPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
@@ -212,24 +211,30 @@ namespace Mezzanine
 
     void ActorRigidPhysicsSettings::SetStickyData(const Whole& MaxNumContacts)
     {
-        if(MaxNumContacts > 0)
-        {
-            if(!StickyContacts)
-                StickyContacts = new StickyData();
-            StickyContacts->MaxNumContacts = MaxNumContacts;
-        }else{
-            ClearStickyContacts();
-        }
+        if(MaxNumContacts > 0) StickyContacts->MaxNumContacts = MaxNumContacts;
+        else ClearStickyContacts();
     }
 
     void ActorRigidPhysicsSettings::ClearStickyContacts()
     {
-        if(!StickyContacts)
+        if(0 == StickyContacts->StickyConstraints.size())
             return;
         btDiscreteDynamicsWorld* BulletWorld = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
         for( std::vector<Generic6DofConstraint*>::iterator SCit = StickyContacts->StickyConstraints.begin() ; SCit != StickyContacts->StickyConstraints.end() ; ++SCit )
         {
             BulletWorld->removeConstraint((*SCit)->GetConstraintBase());
+
+            ActorRigid* OtherActor = (*SCit)->GetActorA() != Parent ? (*SCit)->GetActorA() : (*SCit)->GetActorB();
+            StickyData* OtherSettings = OtherActor->GetPhysicsSettings()->GetStickyData();
+            for( std::vector<Generic6DofConstraint*>::iterator SCit2 = OtherSettings->StickyConstraints.begin() ; SCit2 != OtherSettings->StickyConstraints.end() ; ++SCit2 )
+            {
+                if( (*SCit) == (*SCit2) )
+                {
+                    OtherSettings->StickyConstraints.erase(SCit2);
+                    break;
+                }
+            }
+
             delete (*SCit);
         }
         StickyContacts->StickyConstraints.clear();

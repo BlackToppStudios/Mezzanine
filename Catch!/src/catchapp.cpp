@@ -967,10 +967,6 @@ bool CatchApp::PrePhysics()
 
 bool CatchApp::PostPhysics()
 {
-    //// Updating functions to be used when a suitable mesh is found/created.
-    //ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld->Actors->FindActor("Column1"));
-    //ActS->UpdateSoftBody();
-
     for( Whole S = 0 ; S < ScoreAreas.size() ; S++ )
     {
         std::vector<ActorBase*>& Added = ScoreAreas[S]->GetAddedActors();

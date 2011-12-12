@@ -275,7 +275,6 @@ namespace Mezzanine
     {
         protected:
             AlgoList AlgoCreationQueue;
-            std::list<PhysicsManager::CollisionIterator> ManifoldDestructionQueue;
         public:
             CollisionDispatcher(btCollisionConfiguration* CollisionConfig)
                 : btCollisionDispatcher(CollisionConfig)
@@ -384,11 +383,10 @@ namespace Mezzanine
             {
                 return AlgoCreationQueue;
             }
-            std::list<PhysicsManager::CollisionIterator>& GetManifoldDestructionQueue()
-            {
-                return ManifoldDestructionQueue;
-            }
     };// CollisionDispatcher
+
+    ///////////////////////////////////////////////////////////
+    // PhysicsConstructionInfo functions
 
     PhysicsConstructionInfo::PhysicsConstructionInfo()
         : PhysicsFlags(0),
@@ -509,6 +507,8 @@ namespace Mezzanine
         this->BulletDynamicsWorld->getDispatchInfo().m_useContinuous = true;
         //this->BulletDynamicsWorld->getSolverInfo().m_splitImpulse = true;
         this->BulletDynamicsWorld->getSolverInfo().m_numIterations = 20;
+        //this->BulletDynamicsWorld->getSolverInfo().m_globalCfm = 0.15;
+        //this->BulletDynamicsWorld->getSolverInfo().m_erp = 0.4;
         this->SetGravity(Info.Gravity);
         this->SetSoftGravity(Info.Gravity);
         this->WorldConstructionInfo = Info;

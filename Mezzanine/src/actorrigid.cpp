@@ -145,35 +145,71 @@ namespace Mezzanine
         bool UseA = Col->GetObjectA() != this;
         // We don't care if sticky behavior isn't set or if the collision has ended.
         // If it's ended, then we've probably already done our logic.
-        if(NULL == StickyD || Collision::Col_End == State)
+        if(0 == StickyD->MaxNumContacts || Collision::Col_End == State)
             return;
         // Constraints only work well with other rigid bodies, so for now just other actorrigids.
         /// @todo Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies.
-        if( (UseA ? (Col->GetObjectB()->GetType() != Mezzanine::WOT_ActorRigid) : (Col->GetObjectA()->GetType() != Mezzanine::WOT_ActorRigid)) )
+        if( (UseA ? (Col->GetObjectA()->GetType() != Mezzanine::WOT_ActorRigid) : (Col->GetObjectB()->GetType() != Mezzanine::WOT_ActorRigid)) )
             return;
         // We need a contact point to be present for this to work, since a collision without contact points is an AABB overlap.
         // So confirm there are contact points.
-        if(Col->GetNumContactPoints() == 0)
+        if(Col->GetNumContactPoints() < 1)
             return;
-
+        // Do we have room for additional sticky constraints?
         if(StickyD->StickyConstraints.size() < StickyD->MaxNumContacts)
         {
+            // Does this sticky constraint already exist for this pair?
             for( Whole X = 0 ; X < StickyD->StickyConstraints.size() ; ++X )
             {
                 Generic6DofConstraint* StickyCon = StickyD->StickyConstraints.at(X);
                 if( Col->PairsMatch(StickyCon->GetActorA(),StickyCon->GetActorB()) )
                     return;
             }
+            // Does this collision have a contact that is actually penetrating?
+            // Does this collision have actual force?
+            bool NegativeDistFound = false;
+            Whole FoundIndex = 0;
+            for( Whole X = 0 ; X < Col->GetNumContactPoints() ; ++X )
+            {
+                if( Col->GetDistance(X) <= FoundIndex && 0 != Col->GetAppliedImpulse(X) )
+                {
+                    FoundIndex = X;
+                    NegativeDistFound = true;
+                    break;
+                }
+            }
+            if(!NegativeDistFound)
+                return;
+            // Get the actor and it's sticky data.
             ActorRigid* ActorA = dynamic_cast<ActorRigid*>(UseA ? Col->GetObjectA() : Col->GetObjectB());
-            Transform TransA(UseA ? Col->GetLocalALocation(1) : Col->GetLocalBLocation(1));
-            Transform TransB(UseA ? Col->GetLocalBLocation(1) : Col->GetLocalALocation(1));
+            StickyData* ActorAStickyData = ActorA->GetPhysicsSettings()->GetStickyData();
+            // Calculate the transforms.
+            Vector3 ALoc = UseA ? Col->GetLocalALocation(FoundIndex) : Col->GetLocalBLocation(FoundIndex);
+            Vector3 BLoc = UseA ? Col->GetLocalBLocation(FoundIndex) : Col->GetLocalALocation(FoundIndex);
+            Transform TransA(ALoc,ActorA->GetOrientation());
+            Transform TransB(BLoc,this->GetOrientation());
+            // Log
+            std::stringstream logstream;
+            logstream << "Sticky constraint being constructed with parameters:" << endl;
+            logstream << "ActorA offset: " << TransA.Location << endl;
+            logstream << "ActorB offset: " << TransB.Location << endl;
+            logstream << "ActorA rotation: " << TransA.Rotation << endl;
+            logstream << "ActorB rotation: " << TransB.Rotation << endl;
+            World::GetWorldPointer()->Log(logstream.str());
+            World::GetWorldPointer()->DoMainLoopLogging();
+            // Create and configure the constraint.
             Generic6DofConstraint* NewSticky = new Generic6DofConstraint(ActorA,this,TransA,TransB);
             NewSticky->SetAngularLimitLower(Vector3());
             NewSticky->SetAngularLimitUpper(Vector3());
             NewSticky->SetLinearLimitLower(Vector3());
             NewSticky->SetLinearLimitUpper(Vector3());
+            NewSticky->SetParam(Mezzanine::Con_CFM,0.15,0);
+            NewSticky->SetParam(Mezzanine::Con_CFM,0.15,1);
+            NewSticky->SetParam(Mezzanine::Con_CFM,0.15,2);
+            // Add the constraint to the world and other necessary structures.
             PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
+            ActorAStickyData->StickyConstraints.push_back(NewSticky);
         }
     }
 
