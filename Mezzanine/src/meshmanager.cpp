@@ -644,7 +644,7 @@ namespace Mezzanine
             if(1==Flips.at(FlipCount).Z)   // draw them in backward order if this shape is flipped on the Z axis
             {
                 //Forward Face Unflipped
-                boxcorner->triangle(0+ShapeIndex,1+ShapeIndex,2+ShapeIndex);
+                boxcorner->triangle(0+ShapeIndex,1+ShapeIndex,2+ShapeIndex);        // These things could be replaced by a series of loops, but this was simpler
                 boxcorner->triangle(0+ShapeIndex,2+ShapeIndex,3+ShapeIndex);
                 boxcorner->triangle(0+ShapeIndex,3+ShapeIndex,4+ShapeIndex);
                 boxcorner->triangle(0+ShapeIndex,4+ShapeIndex,5+ShapeIndex);
