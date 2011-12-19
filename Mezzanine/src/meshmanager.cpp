@@ -478,13 +478,28 @@ namespace Mezzanine
         IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness),        Vector3(1,0,0),      Vector2(BoxThickness / Full.X,0.5) ));
         IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness),  Vector3(1,0,0),      Vector2(BoxThickness / Full.X,BoxThickness / Full.Y) ));
 
-        // test to see if trying out the ideal shape works
-        for(Whole Counter=0; Counter<IdealShape.size(); ++Counter)
+        // Each of the flips we need to make
+        std::vector<Vector3> Flips;
+        Flips.push_back(Vector3(1,1,1));
+        Flips.push_back(Vector3(1,1,-1));
+        Flips.push_back(Vector3(1,-1,1));
+        Flips.push_back(Vector3(-1,1,1));
+        Flips.push_back(Vector3(1,-1,-1));
+        Flips.push_back(Vector3(-1,1,-1));
+        Flips.push_back(Vector3(-1,-1,1));
+        Flips.push_back(Vector3(-1,-1,-1));
+
+        // flip this set of points against the list of flips
+        for (std::vector<Vector3>::iterator CurrentFlip=Flips.begin(); CurrentFlip!=Flips.end(); ++CurrentFlip)
         {
-            boxcorner->position( IdealShape.at(Counter).Vertex.GetOgreVector3() );
-            boxcorner->normal( IdealShape.at(Counter).Normal.GetOgreVector3() );
-            boxcorner->textureCoord( IdealShape.at(Counter).TextureCoord.GetOgreVector2() );
+            for(std::vector<IdealPoint>::iterator CurrentVertex=IdealShape.begin(); CurrentVertex!=IdealShape.end(); ++CurrentVertex)
+            {
+                boxcorner->position( (CurrentVertex->Vertex * *CurrentFlip).GetOgreVector3() );
+                boxcorner->normal( (CurrentVertex->Normal * *CurrentFlip).GetOgreVector3() );
+                boxcorner->textureCoord( CurrentVertex->TextureCoord.GetOgreVector2() );
+            }
         }
+
 
         /*
         // Vertex's
@@ -549,7 +564,7 @@ namespace Mezzanine
         boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(0,0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
-*/
+
         // Top-Left-Back corner
         // Backward Face // 54
         boxcorner->position(-Half.X,Half.Y,-Half.Z);                               boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,0);
@@ -611,19 +626,79 @@ namespace Mezzanine
         boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,-Half.Z + BoxThickness);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(1 - (BoxThickness / Full.X),0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,-Half.Z);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(1,0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z);                boxcorner->normal(1,0,0);  boxcorner->textureCoord(1,BoxThickness / Full.Y);
-
+*/
         // Top-Right-Front corner
-
         // Top-Right-Back corner
-
         // Bottom-Left-Front corner
-
         // Bottom-Left-Back corner
-
         // Bottom-Right-Front corner
-
         // Bottom-Right-Back corner
 
+
+        // Create Index's
+        for (std::vector<Vector3>::iterator CurrentFlip=Flips.begin(); CurrentFlip!=Flips.end(); ++CurrentFlip)
+        {
+            Whole WhichShape = Flips.begin()-CurrentFlip;
+            Whole ShapeIndex = WhichShape*IdealShape.size();
+
+            // Top-Left-Front Forward Face
+            if(1==CurrentFlip->Z)   // draw them in backward orderif this shape is flipped on the Z axis
+            {
+                //Forward Face Unflipped
+                boxcorner->triangle(0+ShapeIndex,1+ShapeIndex,2+ShapeIndex);
+                boxcorner->triangle(0+ShapeIndex,2+ShapeIndex,3+ShapeIndex);
+                boxcorner->triangle(0+ShapeIndex,3+ShapeIndex,4+ShapeIndex);
+                boxcorner->triangle(0+ShapeIndex,4+ShapeIndex,5+ShapeIndex);
+            }else{
+
+                //Forward Face Flipped
+                boxcorner->triangle(0+ShapeIndex,1+ShapeIndex,2+ShapeIndex);
+                boxcorner->triangle(0+ShapeIndex,2+ShapeIndex,3+ShapeIndex);
+                boxcorner->triangle(0+ShapeIndex,3+ShapeIndex,4+ShapeIndex);
+                boxcorner->triangle(0+ShapeIndex,4+ShapeIndex,5+ShapeIndex);
+            }
+
+            // Top-Left-Front Forward Face
+            //boxcorner->triangle(0,1,2);
+            //boxcorner->triangle(0,2,3);
+            //boxcorner->triangle(0,3,4);
+            //boxcorner->triangle(0,4,5);
+        }
+
+        // Top-Left-Front Upward Face
+        boxcorner->triangle(6,7,8);
+        boxcorner->triangle(6,8,9);
+        boxcorner->triangle(6,9,10);
+        boxcorner->triangle(6,10,11);
+        // Top-Left-Front Left Face
+        boxcorner->triangle(12,13,14);
+        boxcorner->triangle(12,14,15);
+        boxcorner->triangle(12,15,16);
+        boxcorner->triangle(12,16,17);
+        // Top-Left-Front Backward Faces
+        boxcorner->triangle(18,19,20);
+        boxcorner->triangle(18,20,21);
+        boxcorner->triangle(22,23,24);
+        boxcorner->triangle(22,24,25);
+        boxcorner->triangle(26,27,28);
+        boxcorner->triangle(26,28,29);
+        // Top-Left-Front Downward Faces
+        boxcorner->triangle(30,31,32);
+        boxcorner->triangle(30,32,33);
+        boxcorner->triangle(34,35,36);
+        boxcorner->triangle(34,36,37);
+        boxcorner->triangle(38,39,40);
+        boxcorner->triangle(38,40,41);
+        // Top-Left-Front Right Faces
+        boxcorner->triangle(42,43,44);
+        boxcorner->triangle(42,44,45);
+        boxcorner->triangle(46,47,48);
+        boxcorner->triangle(46,48,49);
+        boxcorner->triangle(50,51,52);
+        boxcorner->triangle(50,52,53);
+
+
+/*
         // Index's
         // Top-Left-Front Forward Face
         boxcorner->triangle(0,1,2);
@@ -661,6 +736,8 @@ namespace Mezzanine
         boxcorner->triangle(46,48,49);
         boxcorner->triangle(50,51,52);
         boxcorner->triangle(50,52,53);
+
+/*
         // Top-Left-Back Backward Face
         boxcorner->triangle(54,55,56);
         boxcorner->triangle(54,56,57);
