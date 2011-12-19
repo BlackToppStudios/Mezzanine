@@ -671,45 +671,64 @@ namespace Mezzanine
                 boxcorner->triangle(18+ShapeIndex,19+ShapeIndex,20+ShapeIndex);
             }
 
-            // Top-Left-Front Forward Face
-            //boxcorner->triangle(0,1,2);
-            //boxcorner->triangle(0,2,3);
-            //boxcorner->triangle(0,3,4);
-            //boxcorner->triangle(0,4,5);
+            if(1==CurrentFlip->Y)   // draw them in backward order if this shape is flipped on the Y axis
+            {
+                // Upward Face Unflipped
+                boxcorner->triangle(6+ShapeIndex,7+ShapeIndex,8+ShapeIndex);
+                boxcorner->triangle(6+ShapeIndex,8+ShapeIndex,9+ShapeIndex);
+                boxcorner->triangle(6+ShapeIndex,9+ShapeIndex,10+ShapeIndex);
+                boxcorner->triangle(6+ShapeIndex,10+ShapeIndex,11+ShapeIndex);
+                // Downward Faces Unflipped
+                boxcorner->triangle(30+ShapeIndex,31+ShapeIndex,32+ShapeIndex);
+                boxcorner->triangle(30+ShapeIndex,32+ShapeIndex,33+ShapeIndex);
+                boxcorner->triangle(34+ShapeIndex,35+ShapeIndex,36+ShapeIndex);
+                boxcorner->triangle(34+ShapeIndex,36+ShapeIndex,37+ShapeIndex);
+                boxcorner->triangle(38+ShapeIndex,39+ShapeIndex,40+ShapeIndex);
+                boxcorner->triangle(38+ShapeIndex,40+ShapeIndex,41+ShapeIndex);
+            }else{
+                // Upward Face Flipped
+                boxcorner->triangle(6+ShapeIndex,10+ShapeIndex,11+ShapeIndex);
+                boxcorner->triangle(6+ShapeIndex,9+ShapeIndex,10+ShapeIndex);
+                boxcorner->triangle(6+ShapeIndex,8+ShapeIndex,9+ShapeIndex);
+                boxcorner->triangle(6+ShapeIndex,7+ShapeIndex,8+ShapeIndex);
+                // Downward Faces Flipped
+                boxcorner->triangle(38+ShapeIndex,40+ShapeIndex,41+ShapeIndex);
+                boxcorner->triangle(38+ShapeIndex,39+ShapeIndex,40+ShapeIndex);
+                boxcorner->triangle(34+ShapeIndex,36+ShapeIndex,37+ShapeIndex);
+                boxcorner->triangle(34+ShapeIndex,35+ShapeIndex,36+ShapeIndex);
+                boxcorner->triangle(30+ShapeIndex,32+ShapeIndex,33+ShapeIndex);
+                boxcorner->triangle(30+ShapeIndex,31+ShapeIndex,32+ShapeIndex);
+            }
+
+            if(1==CurrentFlip->X)   // draw them in backward order if this shape is flipped on the X axis
+            {
+                // Left Face Unflipped
+                boxcorner->triangle(12+ShapeIndex,13+ShapeIndex,14+ShapeIndex);
+                boxcorner->triangle(12+ShapeIndex,14+ShapeIndex,15+ShapeIndex);
+                boxcorner->triangle(12+ShapeIndex,15+ShapeIndex,16+ShapeIndex);
+                boxcorner->triangle(12+ShapeIndex,16+ShapeIndex,17+ShapeIndex);
+                // Right Faces Unflipped
+                boxcorner->triangle(42+ShapeIndex,43+ShapeIndex,44+ShapeIndex);
+                boxcorner->triangle(42+ShapeIndex,44+ShapeIndex,45+ShapeIndex);
+                boxcorner->triangle(46+ShapeIndex,47+ShapeIndex,48+ShapeIndex);
+                boxcorner->triangle(46+ShapeIndex,48+ShapeIndex,49+ShapeIndex);
+                boxcorner->triangle(50+ShapeIndex,51+ShapeIndex,52+ShapeIndex);
+                boxcorner->triangle(50+ShapeIndex,52+ShapeIndex,53+ShapeIndex);
+            }else{
+                // Left Face Unflipped
+                boxcorner->triangle(12+ShapeIndex,16+ShapeIndex,17+ShapeIndex);
+                boxcorner->triangle(12+ShapeIndex,15+ShapeIndex,16+ShapeIndex);
+                boxcorner->triangle(12+ShapeIndex,14+ShapeIndex,15+ShapeIndex);
+                boxcorner->triangle(12+ShapeIndex,13+ShapeIndex,14+ShapeIndex);
+                // Right Faces Unflipped
+                boxcorner->triangle(50+ShapeIndex,52+ShapeIndex,53+ShapeIndex);
+                boxcorner->triangle(50+ShapeIndex,51+ShapeIndex,52+ShapeIndex);
+                boxcorner->triangle(46+ShapeIndex,48+ShapeIndex,49+ShapeIndex);
+                boxcorner->triangle(46+ShapeIndex,47+ShapeIndex,48+ShapeIndex);
+                boxcorner->triangle(42+ShapeIndex,44+ShapeIndex,45+ShapeIndex);
+                boxcorner->triangle(42+ShapeIndex,43+ShapeIndex,44+ShapeIndex);
+            }
         }
-
-        // Top-Left-Front Upward Face
-        boxcorner->triangle(6,7,8);
-        boxcorner->triangle(6,8,9);
-        boxcorner->triangle(6,9,10);
-        boxcorner->triangle(6,10,11);
-        // Top-Left-Front Left Face
-        boxcorner->triangle(12,13,14);
-        boxcorner->triangle(12,14,15);
-        boxcorner->triangle(12,15,16);
-        boxcorner->triangle(12,16,17);
-        // Top-Left-Front Backward Faces
-        boxcorner->triangle(18,19,20);
-        boxcorner->triangle(18,20,21);
-        boxcorner->triangle(22,23,24);
-        boxcorner->triangle(22,24,25);
-        boxcorner->triangle(26,27,28);
-        boxcorner->triangle(26,28,29);
-        // Top-Left-Front Downward Faces
-        boxcorner->triangle(30,31,32);
-        boxcorner->triangle(30,32,33);
-        boxcorner->triangle(34,35,36);
-        boxcorner->triangle(34,36,37);
-        boxcorner->triangle(38,39,40);
-        boxcorner->triangle(38,40,41);
-        // Top-Left-Front Right Faces
-        boxcorner->triangle(42,43,44);
-        boxcorner->triangle(42,44,45);
-        boxcorner->triangle(46,47,48);
-        boxcorner->triangle(46,48,49);
-        boxcorner->triangle(50,51,52);
-        boxcorner->triangle(50,52,53);
-
 
 /*
         // Index's
