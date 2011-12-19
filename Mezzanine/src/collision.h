@@ -174,10 +174,10 @@ namespace Mezzanine
             virtual Whole GetAge(const Whole& Point);
 
             /// @brief Convenience function to see if the provided pair match the pair in this class.
-            /// @param A The first actor to be compared.  Will be checked against both objects in this collision.
-            /// @param B The second actor to be compared.  Will be checked against both objects in this collision.
+            /// @param A The first object to be compared.  Will be checked against both objects in this collision.
+            /// @param B The second object to be compared.  Will be checked against both objects in this collision.
             /// @return Returns a bool, true if the pairs match, false otherwise.
-            virtual bool PairsMatch(ActorBase* A, ActorBase* B) const;
+            virtual bool PairsMatch(WorldObject* A, WorldObject* B) const;
             /// @brief Updates this collisions contact point data if it needs updating.
             virtual void Update();
     };//Collision

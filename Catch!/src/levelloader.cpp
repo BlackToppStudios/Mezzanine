@@ -163,12 +163,14 @@ void LevelLoader::LoadFerris()
     ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium1->GetPhysicsSettings()->SetStickyData(1);
+    //Uranium1->SetLinearMovementFactor(Vector3(1,1,1));
     Uranium1->SetLocation(-145,40,0);
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
     ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium2->GetPhysicsSettings()->SetStickyData(1);
+    //Uranium2->SetLinearMovementFactor(Vector3(1,1,1));
     Uranium2->SetLocation(-195,40,0);
     ActMan->AddActor(Uranium2);
     GameApp->AddThrowable(Uranium2);// */
@@ -199,10 +201,10 @@ void LevelLoader::LoadFerris()
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
 
-    Vector3 StartSize(50,130,15);
+    Vector3 StartSize(50,130,30);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,0,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
+    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
 
