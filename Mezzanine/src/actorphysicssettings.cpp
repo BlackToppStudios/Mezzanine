@@ -473,6 +473,8 @@ namespace Mezzanine
         // do nothing, cause soft bodies get unique custom shapes.
     }
 
+} // \Namespace Mezzanine
+
 #ifdef MEZZXML
 std::ostream& operator<< (std::ostream& stream, const Mezzanine::ActorBasePhysicsSettings& Ev)
     { return Serialize(stream, Ev); }
@@ -483,7 +485,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorBasePh
 void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorBasePhysicsSettings& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
 
-
 std::ostream& operator << (std::ostream& stream, const Mezzanine::ActorRigidPhysicsSettings& Ev)
     { return Serialize(stream, Ev); }
 
@@ -493,6 +494,5 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorRigidP
 void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorRigidPhysicsSettings& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
 #endif // \MEZZXML
-}
 
 #endif
