@@ -40,6 +40,7 @@
 #ifndef _meshmanager_cpp
 #define _meshmanager_cpp
 
+#include "vector2.h"
 #include "meshmanager.h"
 #include "mesh.h"
 
@@ -378,6 +379,26 @@ namespace Mezzanine
         return CreateSphereMesh(MeshName,MatName,Radius,Rings,Segments);
     }
 
+    namespace{
+        /// @internal
+        /// @brief used to created simple manual shapes in a quick and dirty way
+        struct IdealPoint
+        {
+            Vector3 Vertex;
+            Vector3 Normal;
+            Vector2 TextureCoord;
+
+            IdealPoint(Vector3 Vertex_, Vector3 Normal_, Vector2 TextureCoord_)
+            {
+                Vertex=Vertex_;
+                Normal=Normal_;
+                TextureCoord=TextureCoord_;
+            }
+
+        };
+
+    }
+
     Mesh* MeshManager::CreateBoxCornerMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Real& BoxThickness)
     {
         Vector3 Half = HalfExtents;
@@ -394,30 +415,102 @@ namespace Mezzanine
         Ogre::ManualObject* boxcorner = new Ogre::ManualObject("TempMan");
         boxcorner->begin(MaterialName);
 
+        //Create a list of data we can play around with
+        std::vector<IdealPoint> IdealShape; //Vertex                                                        //Normal            //textureCoord
+        // Forward Face // 0 /
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y,Half.Z),                                 Vector3(0,0,1),     Vector2(0,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - Length,Half.Z),                        Vector3(0,0,1),     Vector2(0,0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - Length,Half.Z),         Vector3(0,0,1),     Vector2(BoxThickness / Full.X,0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z),   Vector3(0,0,1),     Vector2(BoxThickness / Full.X,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y - BoxThickness,Half.Z),         Vector3(0,0,1),     Vector2(0.5,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y,Half.Z),                        Vector3(0,0,1),     Vector2(0.5,0) ));
+        // Upward Face // 6 */
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y,Half.Z),                                 Vector3(0,1,0),     Vector2(0,1) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y,Half.Z),                        Vector3(0,1,0),     Vector2(0.5,1) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y,Half.Z - BoxThickness),         Vector3(0,1,0),     Vector2(0.5,1 - (BoxThickness / Full.Y)) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y,Half.Z - BoxThickness),   Vector3(0,1,0),     Vector2(BoxThickness / Full.X,1 - (BoxThickness / Full.Y)) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y,Half.Z - Length),         Vector3(0,1,0),     Vector2(BoxThickness / Full.X,0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y,Half.Z),                        Vector3(0,1,0),     Vector2(0,0.5) ));
+        // Left Face // 12 */
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y,Half.Z),                                 Vector3(-1,0,0),    Vector2(1,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y,Half.Z - Length),                        Vector3(-1,0,0),    Vector2(0.5,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - BoxThickness,Half.Z - Length),         Vector3(-1,0,0),    Vector2(0.5,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - BoxThickness,Half.Z - BoxThickness),   Vector3(-1,0,0),    Vector2(1 - (BoxThickness / Full.X),BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - Length,Half.Z - BoxThickness),         Vector3(-1,0,0),    Vector2(1 - (BoxThickness / Full.X),0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - Length,Half.Z),                        Vector3(-1,0,0),    Vector2(1,0.5) ));
+        // Backward Faces // 18 */
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y,Half.Z - BoxThickness),                       Vector3(0,0,-1),     Vector2(0.5,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y - BoxThickness,Half.Z - BoxThickness),        Vector3(0,0,-1),     Vector2(0.5,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness),  Vector3(0,0,-1),     Vector2(1 - (BoxThickness / Full.X),BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y,Half.Z - BoxThickness),                 Vector3(0,0,-1),     Vector2(1 - (BoxThickness / Full.X),0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y,Half.Z - Length),                       Vector3(0,0,-1),     Vector2(1 - (BoxThickness / Full.X),0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - Length),        Vector3(0,0,-1),     Vector2(1 - (BoxThickness / Full.X),BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - BoxThickness,Half.Z - Length),                       Vector3(0,0,-1),     Vector2(1,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y,Half.Z - Length),                                      Vector3(0,0,-1),     Vector2(1,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness),  Vector3(0,0,-1),     Vector2(1 - (BoxThickness / Full.X),BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness),        Vector3(0,0,-1),     Vector2(1 - (BoxThickness / Full.X),0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - Length,Half.Z - BoxThickness),                       Vector3(0,0,-1),     Vector2(1,0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - BoxThickness,Half.Z - BoxThickness),                 Vector3(0,0,-1),     Vector2(1,BoxThickness / Full.Y) ));
+        // Downward Faces // 30 */
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z),                 Vector3(0,-1,0),     Vector2(BoxThickness / Full.X,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness),  Vector3(0,-1,0),     Vector2(BoxThickness / Full.X,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y - BoxThickness,Half.Z - BoxThickness),        Vector3(0,-1,0),     Vector2(0.5,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y - BoxThickness,Half.Z),                       Vector3(0,-1,0),     Vector2(0.5,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - Length,Half.Z),                                      Vector3(0,-1,0),     Vector2(0,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - Length,Half.Z - BoxThickness),                       Vector3(0,-1,0),     Vector2(0,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness),        Vector3(0,-1,0),     Vector2(BoxThickness / Full.X,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - Length,Half.Z),                       Vector3(0,-1,0),     Vector2(BoxThickness / Full.X,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - BoxThickness,Half.Z - BoxThickness),                 Vector3(0,-1,0),     Vector2(0,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y - BoxThickness,Half.Z - Length),                       Vector3(0,-1,0),     Vector2(0,0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - Length),        Vector3(0,-1,0),     Vector2(BoxThickness / Full.X,0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness),  Vector3(0,-1,0),     Vector2(BoxThickness / Full.X,BoxThickness / Full.Y) ));
+        // Right Faces // 42 */
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y,Half.Z - BoxThickness),                 Vector3(1,0,0),      Vector2(BoxThickness / Full.X,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness),  Vector3(1,0,0),      Vector2(BoxThickness / Full.X,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - Length),        Vector3(1,0,0),      Vector2(0.5,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y,Half.Z - Length),                       Vector3(1,0,0),      Vector2(0.5,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y,Half.Z),                                      Vector3(1,0,0),      Vector2(0,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y - BoxThickness,Half.Z),                       Vector3(1,0,0),      Vector2(0,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y - BoxThickness,Half.Z - BoxThickness),        Vector3(1,0,0),      Vector2(BoxThickness / Full.X,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y,Half.Z - BoxThickness),                       Vector3(1,0,0),      Vector2(BoxThickness / Full.X,0) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z),                 Vector3(1,0,0),      Vector2(0,BoxThickness / Full.Y) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - Length,Half.Z),                       Vector3(1,0,0),      Vector2(0,0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness),        Vector3(1,0,0),      Vector2(BoxThickness / Full.X,0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness),  Vector3(1,0,0),      Vector2(BoxThickness / Full.X,BoxThickness / Full.Y) ));
+
+        // test to see if trying out the ideal shape works
+        for(Whole Counter=0; Counter<IdealShape.size(); ++Counter)
+        {
+            boxcorner->position( IdealShape.at(Counter).Vertex.GetOgreVector3() );
+            boxcorner->normal( IdealShape.at(Counter).Normal.GetOgreVector3() );
+            boxcorner->textureCoord( IdealShape.at(Counter).TextureCoord.GetOgreVector2() );
+        }
+
+        /*
         // Vertex's
         // Top-Left-Front corner
-        // Forward Face // 0
+        // Forward Face // 0 /
         boxcorner->position(-Half.X,Half.Y,Half.Z);                               boxcorner->normal(0,0,1);  boxcorner->textureCoord(0,0);
         boxcorner->position(-Half.X,Half.Y - Length,Half.Z);                      boxcorner->normal(0,0,1);  boxcorner->textureCoord(0,0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z);       boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z); boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
         boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,Half.Z);       boxcorner->normal(0,0,1);  boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
         boxcorner->position(-Half.X + Length,Half.Y,Half.Z);                      boxcorner->normal(0,0,1);  boxcorner->textureCoord(0.5,0);
-        // Upward Face // 6
+        // Upward Face // 6 /
         boxcorner->position(-Half.X,Half.Y,Half.Z);                               boxcorner->normal(0,1,0);  boxcorner->textureCoord(0,1);
         boxcorner->position(-Half.X + Length,Half.Y,Half.Z);                      boxcorner->normal(0,1,0);  boxcorner->textureCoord(0.5,1);
         boxcorner->position(-Half.X + Length,Half.Y,Half.Z - BoxThickness);       boxcorner->normal(0,1,0);  boxcorner->textureCoord(0.5,1 - (BoxThickness / Full.Y));
         boxcorner->position(-Half.X + BoxThickness,Half.Y,Half.Z - BoxThickness); boxcorner->normal(0,1,0);  boxcorner->textureCoord(BoxThickness / Full.X,1 - (BoxThickness / Full.Y));
         boxcorner->position(-Half.X + BoxThickness,Half.Y,Half.Z - Length);       boxcorner->normal(0,1,0);  boxcorner->textureCoord(BoxThickness / Full.X,0.5);
         boxcorner->position(-Half.X,Half.Y,Half.Z - Length);                      boxcorner->normal(0,1,0);  boxcorner->textureCoord(0,0.5);
-        // Left Face // 12
+        // Left Face // 12 /
         boxcorner->position(-Half.X,Half.Y,Half.Z);                               boxcorner->normal(-1,0,0); boxcorner->textureCoord(1,0);
         boxcorner->position(-Half.X,Half.Y,Half.Z - Length);                      boxcorner->normal(-1,0,0); boxcorner->textureCoord(0.5,0);
         boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - Length);       boxcorner->normal(-1,0,0); boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
         boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(-1,0,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
         boxcorner->position(-Half.X,Half.Y - Length,Half.Z - BoxThickness);       boxcorner->normal(-1,0,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0.5);
         boxcorner->position(-Half.X,Half.Y - Length,Half.Z);                      boxcorner->normal(-1,0,0); boxcorner->textureCoord(1,0.5);
-        // Backward Faces // 18
+        // Backward Faces // 18 /
         boxcorner->position(-Half.X + Length,Half.Y,Half.Z - BoxThickness);                      boxcorner->normal(0,0,-1); boxcorner->textureCoord(0.5,0);
         boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,Half.Z - BoxThickness);       boxcorner->normal(0,0,-1); boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
@@ -430,7 +523,7 @@ namespace Mezzanine
         boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness);       boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0.5);
         boxcorner->position(-Half.X,Half.Y - Length,Half.Z - BoxThickness);                      boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,0.5);
         boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - BoxThickness);                boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,BoxThickness / Full.Y);
-        // Downward Faces // 30
+        // Downward Faces // 30 /
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z);                boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,0);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
         boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,Half.Z - BoxThickness);       boxcorner->normal(0,-1,0); boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
@@ -443,7 +536,7 @@ namespace Mezzanine
         boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - Length);                      boxcorner->normal(0,-1,0); boxcorner->textureCoord(0,0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - Length);       boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
-        // Right Faces // 42
+        // Right Faces // 42 /
         boxcorner->position(-Half.X + BoxThickness,Half.Y,Half.Z - BoxThickness);                boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,0);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - Length);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
@@ -456,7 +549,7 @@ namespace Mezzanine
         boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(0,0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,0.5);
         boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
-
+*/
         // Top-Left-Back corner
         // Backward Face // 54
         boxcorner->position(-Half.X,Half.Y,-Half.Z);                               boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,0);
