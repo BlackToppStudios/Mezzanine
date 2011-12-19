@@ -642,20 +642,33 @@ namespace Mezzanine
             Whole ShapeIndex = WhichShape*IdealShape.size();
 
             // Top-Left-Front Forward Face
-            if(1==CurrentFlip->Z)   // draw them in backward orderif this shape is flipped on the Z axis
+            if(1==CurrentFlip->Z)   // draw them in backward order if this shape is flipped on the Z axis
             {
                 //Forward Face Unflipped
                 boxcorner->triangle(0+ShapeIndex,1+ShapeIndex,2+ShapeIndex);
                 boxcorner->triangle(0+ShapeIndex,2+ShapeIndex,3+ShapeIndex);
                 boxcorner->triangle(0+ShapeIndex,3+ShapeIndex,4+ShapeIndex);
                 boxcorner->triangle(0+ShapeIndex,4+ShapeIndex,5+ShapeIndex);
+                //Backward Faces Unflipped
+                boxcorner->triangle(18+ShapeIndex,19+ShapeIndex,20+ShapeIndex);
+                boxcorner->triangle(18+ShapeIndex,20+ShapeIndex,21+ShapeIndex);
+                boxcorner->triangle(22+ShapeIndex,23+ShapeIndex,24+ShapeIndex);
+                boxcorner->triangle(22+ShapeIndex,24+ShapeIndex,25+ShapeIndex);
+                boxcorner->triangle(26+ShapeIndex,27+ShapeIndex,28+ShapeIndex);
+                boxcorner->triangle(26+ShapeIndex,28+ShapeIndex,29+ShapeIndex);
             }else{
-
                 //Forward Face Flipped
                 boxcorner->triangle(0+ShapeIndex,1+ShapeIndex,2+ShapeIndex);
-                boxcorner->triangle(0+ShapeIndex,2+ShapeIndex,3+ShapeIndex);
                 boxcorner->triangle(0+ShapeIndex,3+ShapeIndex,4+ShapeIndex);
+                boxcorner->triangle(0+ShapeIndex,2+ShapeIndex,3+ShapeIndex);
                 boxcorner->triangle(0+ShapeIndex,4+ShapeIndex,5+ShapeIndex);
+                //Backward Faces Flipped
+                boxcorner->triangle(26+ShapeIndex,28+ShapeIndex,29+ShapeIndex);
+                boxcorner->triangle(26+ShapeIndex,27+ShapeIndex,28+ShapeIndex);
+                boxcorner->triangle(22+ShapeIndex,24+ShapeIndex,25+ShapeIndex);
+                boxcorner->triangle(22+ShapeIndex,23+ShapeIndex,24+ShapeIndex);
+                boxcorner->triangle(18+ShapeIndex,20+ShapeIndex,21+ShapeIndex);
+                boxcorner->triangle(18+ShapeIndex,19+ShapeIndex,20+ShapeIndex);
             }
 
             // Top-Left-Front Forward Face
