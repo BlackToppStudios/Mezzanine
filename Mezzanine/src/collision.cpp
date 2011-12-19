@@ -200,7 +200,7 @@ namespace Mezzanine
         return (Whole)GetManifoldPoint(Point).m_lifeTime;
     }
 
-    bool Collision::PairsMatch(ActorBase* A, ActorBase* B) const
+    bool Collision::PairsMatch(WorldObject* A, WorldObject* B) const
     {
         bool ContainsA = (A == ObjectA) || (A == ObjectB);
         bool ContainsB = (B == ObjectA) || (B == ObjectB);

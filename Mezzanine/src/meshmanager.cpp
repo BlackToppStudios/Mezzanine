@@ -378,6 +378,342 @@ namespace Mezzanine
         return CreateSphereMesh(MeshName,MatName,Radius,Rings,Segments);
     }
 
+    Mesh* MeshManager::CreateBoxCornerMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Real& BoxThickness)
+    {
+        Vector3 Half = HalfExtents;
+        Vector3 Full = HalfExtents * 2;
+
+        Real Length = 0.0;
+        Real FirstSizeCheck = HalfExtents.X < HalfExtents.Y ? HalfExtents.X : HalfExtents.Y;
+        Real Smallest = FirstSizeCheck < HalfExtents.Z ? FirstSizeCheck : HalfExtents.Z;
+        if(Smallest * 2 < FirstSizeCheck) Length = Smallest * 0.5;
+        else Length = Smallest * 0.25;
+        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
+        String GroupName = TheMaterial->getGroup();
+
+        Ogre::ManualObject* boxcorner = new Ogre::ManualObject("TempMan");
+        boxcorner->begin(MaterialName);
+
+        // Vertex's
+        // Top-Left-Front corner
+        // Forward Face // 0
+        boxcorner->position(-Half.X,Half.Y,Half.Z);                               boxcorner->normal(0,0,1);  boxcorner->textureCoord(0,0);
+        boxcorner->position(-Half.X,Half.Y - Length,Half.Z);                      boxcorner->normal(0,0,1);  boxcorner->textureCoord(0,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z);       boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z); boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,Half.Z);       boxcorner->normal(0,0,1);  boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y,Half.Z);                      boxcorner->normal(0,0,1);  boxcorner->textureCoord(0.5,0);
+        // Upward Face // 6
+        boxcorner->position(-Half.X,Half.Y,Half.Z);                               boxcorner->normal(0,1,0);  boxcorner->textureCoord(0,1);
+        boxcorner->position(-Half.X + Length,Half.Y,Half.Z);                      boxcorner->normal(0,1,0);  boxcorner->textureCoord(0.5,1);
+        boxcorner->position(-Half.X + Length,Half.Y,Half.Z - BoxThickness);       boxcorner->normal(0,1,0);  boxcorner->textureCoord(0.5,1 - (BoxThickness / Full.Y));
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,Half.Z - BoxThickness); boxcorner->normal(0,1,0);  boxcorner->textureCoord(BoxThickness / Full.X,1 - (BoxThickness / Full.Y));
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,Half.Z - Length);       boxcorner->normal(0,1,0);  boxcorner->textureCoord(BoxThickness / Full.X,0.5);
+        boxcorner->position(-Half.X,Half.Y,Half.Z - Length);                      boxcorner->normal(0,1,0);  boxcorner->textureCoord(0,0.5);
+        // Left Face // 12
+        boxcorner->position(-Half.X,Half.Y,Half.Z);                               boxcorner->normal(-1,0,0); boxcorner->textureCoord(1,0);
+        boxcorner->position(-Half.X,Half.Y,Half.Z - Length);                      boxcorner->normal(-1,0,0); boxcorner->textureCoord(0.5,0);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - Length);       boxcorner->normal(-1,0,0); boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(-1,0,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y - Length,Half.Z - BoxThickness);       boxcorner->normal(-1,0,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0.5);
+        boxcorner->position(-Half.X,Half.Y - Length,Half.Z);                      boxcorner->normal(-1,0,0); boxcorner->textureCoord(1,0.5);
+        // Backward Faces // 18
+        boxcorner->position(-Half.X + Length,Half.Y,Half.Z - BoxThickness);                      boxcorner->normal(0,0,-1); boxcorner->textureCoord(0.5,0);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,Half.Z - BoxThickness);       boxcorner->normal(0,0,-1); boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,Half.Z - BoxThickness);                boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,Half.Z - Length);                      boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - Length);       boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - Length);                      boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y,Half.Z - Length);                                     boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness);       boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0.5);
+        boxcorner->position(-Half.X,Half.Y - Length,Half.Z - BoxThickness);                      boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,0.5);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - BoxThickness);                boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,BoxThickness / Full.Y);
+        // Downward Faces // 30
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z);                boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,Half.Z - BoxThickness);       boxcorner->normal(0,-1,0); boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,Half.Z);                      boxcorner->normal(0,-1,0); boxcorner->textureCoord(0.5,0);
+        boxcorner->position(-Half.X,Half.Y - Length,Half.Z);                                     boxcorner->normal(0,-1,0); boxcorner->textureCoord(0,0);
+        boxcorner->position(-Half.X,Half.Y - Length,Half.Z - BoxThickness);                      boxcorner->normal(0,-1,0); boxcorner->textureCoord(0,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness);       boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z);                      boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,0);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - BoxThickness);                boxcorner->normal(0,-1,0); boxcorner->textureCoord(0,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,Half.Z - Length);                      boxcorner->normal(0,-1,0); boxcorner->textureCoord(0,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - Length);       boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(0,-1,0); boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        // Right Faces // 42
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,Half.Z - BoxThickness);                boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - Length);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,Half.Z - Length);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(0.5,0);
+        boxcorner->position(-Half.X + Length,Half.Y,Half.Z);                                     boxcorner->normal(1,0,0);  boxcorner->textureCoord(0,0);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,Half.Z);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(0,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,Half.Z - BoxThickness);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y,Half.Z - BoxThickness);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z);                boxcorner->normal(1,0,0);  boxcorner->textureCoord(0,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(0,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,Half.Z - BoxThickness);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,Half.Z - BoxThickness); boxcorner->normal(1,0,0);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+
+        // Top-Left-Back corner
+        // Backward Face // 54
+        boxcorner->position(-Half.X,Half.Y,-Half.Z);                               boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,0);
+        boxcorner->position(-Half.X + Length,Half.Y,-Half.Z);                      boxcorner->normal(0,0,-1); boxcorner->textureCoord(0.5,0);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,-Half.Z);       boxcorner->normal(0,0,-1); boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z); boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,-Half.Z);       boxcorner->normal(0,0,-1); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0.5);
+        boxcorner->position(-Half.X,Half.Y - Length,-Half.Z);                      boxcorner->normal(0,0,-1); boxcorner->textureCoord(1,0.5);
+        // Upward Face // 60
+        boxcorner->position(-Half.X,Half.Y,-Half.Z);                               boxcorner->normal(0,1,0);  boxcorner->textureCoord(0,0);
+        boxcorner->position(-Half.X,Half.Y,-Half.Z + Length);                      boxcorner->normal(0,1,0);  boxcorner->textureCoord(0,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,-Half.Z + Length);       boxcorner->normal(0,1,0);  boxcorner->textureCoord(BoxThickness / Full.X,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,-Half.Z + BoxThickness); boxcorner->normal(0,1,0);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y,-Half.Z + BoxThickness);       boxcorner->normal(0,1,0);  boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y,-Half.Z);                      boxcorner->normal(0,1,0);  boxcorner->textureCoord(0.5,0);
+        // Left Face // 66
+        boxcorner->position(-Half.X,Half.Y,-Half.Z);                               boxcorner->normal(-1,0,0); boxcorner->textureCoord(0,0);
+        boxcorner->position(-Half.X,Half.Y - Length,-Half.Z);                      boxcorner->normal(-1,0,0); boxcorner->textureCoord(0,0.5);
+        boxcorner->position(-Half.X,Half.Y - Length,-Half.Z + BoxThickness);       boxcorner->normal(-1,0,0); boxcorner->textureCoord(BoxThickness / Full.X,0.5);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,-Half.Z + BoxThickness); boxcorner->normal(-1,0,0); boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,-Half.Z + Length);       boxcorner->normal(-1,0,0); boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y,-Half.Z + Length);                      boxcorner->normal(-1,0,0); boxcorner->textureCoord(0.5,0);
+        // Forward Faces // 72
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,-Half.Z + BoxThickness);                boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z + BoxThickness); boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,-Half.Z + BoxThickness);       boxcorner->normal(0,0,1);  boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y,-Half.Z + BoxThickness);                      boxcorner->normal(0,0,1);  boxcorner->textureCoord(0.5,0);
+        boxcorner->position(-Half.X,Half.Y,-Half.Z + Length);                                     boxcorner->normal(0,0,1);  boxcorner->textureCoord(0,0);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,-Half.Z + Length);                      boxcorner->normal(0,0,1);  boxcorner->textureCoord(0,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z + Length);       boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,-Half.Z + Length);                      boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,0);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,-Half.Z + BoxThickness);                boxcorner->normal(0,0,1);  boxcorner->textureCoord(0,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y - Length,-Half.Z + BoxThickness);                      boxcorner->normal(0,0,1);  boxcorner->textureCoord(0,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,-Half.Z + BoxThickness);       boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z + BoxThickness); boxcorner->normal(0,0,1);  boxcorner->textureCoord(BoxThickness / Full.X,BoxThickness / Full.Y);
+        // Downward Faces
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,-Half.Z);                      boxcorner->normal(0,-1,0); boxcorner->textureCoord(0.5,0);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,-Half.Z + BoxThickness);       boxcorner->normal(0,-1,0); boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z + BoxThickness); boxcorner->normal(0,-1,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z);                boxcorner->normal(0,-1,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,-Half.Z);                      boxcorner->normal(0,-1,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,-Half.Z + BoxThickness);       boxcorner->normal(0,-1,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y - Length,-Half.Z + BoxThickness);                      boxcorner->normal(0,-1,0); boxcorner->textureCoord(1,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X,Half.Y - Length,-Half.Z);                                     boxcorner->normal(0,-1,0); boxcorner->textureCoord(1,0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z + BoxThickness); boxcorner->normal(0,-1,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z + Length);       boxcorner->normal(0,-1,0); boxcorner->textureCoord(1 - (BoxThickness / Full.X),0.5);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,-Half.Z + Length);                      boxcorner->normal(0,-1,0); boxcorner->textureCoord(1,0.5);
+        boxcorner->position(-Half.X,Half.Y - BoxThickness,-Half.Z + BoxThickness);                boxcorner->normal(0,-1,0); boxcorner->textureCoord(1,BoxThickness / Full.Y);
+        // Right Faces
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,-Half.Z + Length);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(0.5,0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z + Length);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(0.5,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z + BoxThickness); boxcorner->normal(1,0,0);  boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y,-Half.Z + BoxThickness);                boxcorner->normal(1,0,0);  boxcorner->textureCoord(1 - (BoxThickness / Full.X),0);
+        boxcorner->position(-Half.X + Length,Half.Y,-Half.Z + BoxThickness);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(1 - (BoxThickness / Full.X),0);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,-Half.Z + BoxThickness);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y - BoxThickness,-Half.Z);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(1,BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + Length,Half.Y,-Half.Z);                                     boxcorner->normal(1,0,0);  boxcorner->textureCoord(1,0);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z + BoxThickness); boxcorner->normal(1,0,0);  boxcorner->textureCoord(1 - (BoxThickness / Full.X),BoxThickness / Full.Y);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,-Half.Z + BoxThickness);       boxcorner->normal(1,0,0);  boxcorner->textureCoord(1 - (BoxThickness / Full.X),0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - Length,-Half.Z);                      boxcorner->normal(1,0,0);  boxcorner->textureCoord(1,0.5);
+        boxcorner->position(-Half.X + BoxThickness,Half.Y - BoxThickness,-Half.Z);                boxcorner->normal(1,0,0);  boxcorner->textureCoord(1,BoxThickness / Full.Y);
+
+        // Top-Right-Front corner
+
+        // Top-Right-Back corner
+
+        // Bottom-Left-Front corner
+
+        // Bottom-Left-Back corner
+
+        // Bottom-Right-Front corner
+
+        // Bottom-Right-Back corner
+
+        // Index's
+        // Top-Left-Front Forward Face
+        boxcorner->triangle(0,1,2);
+        boxcorner->triangle(0,2,3);
+        boxcorner->triangle(0,3,4);
+        boxcorner->triangle(0,4,5);
+        // Top-Left-Front Upward Face
+        boxcorner->triangle(6,7,8);
+        boxcorner->triangle(6,8,9);
+        boxcorner->triangle(6,9,10);
+        boxcorner->triangle(6,10,11);
+        // Top-Left-Front Left Face
+        boxcorner->triangle(12,13,14);
+        boxcorner->triangle(12,14,15);
+        boxcorner->triangle(12,15,16);
+        boxcorner->triangle(12,16,17);
+        // Top-Left-Front Backward Faces
+        boxcorner->triangle(18,19,20);
+        boxcorner->triangle(18,20,21);
+        boxcorner->triangle(22,23,24);
+        boxcorner->triangle(22,24,25);
+        boxcorner->triangle(26,27,28);
+        boxcorner->triangle(26,28,29);
+        // Top-Left-Front Downward Faces
+        boxcorner->triangle(30,31,32);
+        boxcorner->triangle(30,32,33);
+        boxcorner->triangle(34,35,36);
+        boxcorner->triangle(34,36,37);
+        boxcorner->triangle(38,39,40);
+        boxcorner->triangle(38,40,41);
+        // Top-Left-Front Right Faces
+        boxcorner->triangle(42,43,44);
+        boxcorner->triangle(42,44,45);
+        boxcorner->triangle(46,47,48);
+        boxcorner->triangle(46,48,49);
+        boxcorner->triangle(50,51,52);
+        boxcorner->triangle(50,52,53);
+        // Top-Left-Back Backward Face
+        boxcorner->triangle(54,55,56);
+        boxcorner->triangle(54,56,57);
+        boxcorner->triangle(54,57,58);
+        boxcorner->triangle(54,58,59);
+        // Top-Left-Back Upward Face
+        boxcorner->triangle(60,61,62);
+        boxcorner->triangle(60,62,63);
+        boxcorner->triangle(60,63,64);
+        boxcorner->triangle(60,64,65);
+        // Top-Left-Back Left Face
+        boxcorner->triangle(66,67,68);
+        boxcorner->triangle(66,68,69);
+        boxcorner->triangle(66,69,70);
+        boxcorner->triangle(66,70,71);
+        // Top-Left-Back Front Faces
+        boxcorner->triangle(72,73,74);
+        boxcorner->triangle(72,74,75);
+        boxcorner->triangle(76,77,78);
+        boxcorner->triangle(76,78,79);
+        boxcorner->triangle(80,81,82);
+        boxcorner->triangle(80,82,83);
+        // Top-Left-Back Downward Faces
+        boxcorner->triangle(84,85,86);
+        boxcorner->triangle(84,86,87);
+        boxcorner->triangle(88,89,90);
+        boxcorner->triangle(88,90,91);
+        boxcorner->triangle(92,93,94);
+        boxcorner->triangle(92,94,95);
+        // Top-Left-Back Right Faces
+        boxcorner->triangle(96,97,98);
+        boxcorner->triangle(96,98,99);
+        boxcorner->triangle(100,101,102);
+        boxcorner->triangle(100,102,103);
+        boxcorner->triangle(104,105,106);
+        boxcorner->triangle(104,106,107);
+        // Top-Right-Front
+        /*boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Top-Right-Front
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Top-Right-Front
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Top-Right-Back
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Top-Right-Back
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Top-Right-Back
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Left-Front
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Left-Front
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Left-Front
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Left-Back
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Left-Back
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Left-Back
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Right-Front
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Right-Front
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Right-Front
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Right-Back
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Right-Back
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        // Bottom-Right-Back
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);
+        boxcorner->triangle(,,);// */
+
+        boxcorner->end();
+        Ogre::MeshPtr boxcornermesh = boxcorner->convertToMesh(MeshName, GroupName);
+        boxcornermesh->_setBounds(Ogre::AxisAlignedBox(-Half.X,-Half.Y,-Half.Z,Half.X,Half.Y,Half.Z));
+        Real FirstCheck = Half.X > Half.Y ? Half.X : Half.Y;
+        Real Largest = FirstCheck > Half.Z ? FirstCheck : Half.Z;
+        boxcornermesh->_setBoundingSphereRadius(1.4 * Largest);
+        Mesh* NewMesh = new Mesh(boxcornermesh);
+        GeneratedMeshes[MeshName] = NewMesh;
+        delete boxcorner;
+        return NewMesh;
+    }
+
+    Mesh* MeshManager::CreateBoxCornerMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents, const Real& BoxThickness)
+    {
+        String MatName(MeshName+"Mat");
+        CreateColouredMaterial(MatName,Colour);
+        return CreateBoxCornerMesh(MeshName,MatName,HalfExtents,BoxThickness);
+    }
+
     Mesh* MeshManager::CreateMeshFromShape(const String& MeshName, const String& MaterialName, CollisionShape* Shape)
     {
         return NULL;
