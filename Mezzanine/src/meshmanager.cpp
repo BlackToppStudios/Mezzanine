@@ -430,7 +430,7 @@ namespace Mezzanine
         IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y,Half.Z - BoxThickness),         Vector3(0,1,0),     Vector2(0.5,1 - (BoxThickness / Full.Y)) ));
         IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y,Half.Z - BoxThickness),   Vector3(0,1,0),     Vector2(BoxThickness / Full.X,1 - (BoxThickness / Full.Y)) ));
         IdealShape.push_back( IdealPoint(   Vector3(-Half.X + BoxThickness,Half.Y,Half.Z - Length),         Vector3(0,1,0),     Vector2(BoxThickness / Full.X,0.5) ));
-        IdealShape.push_back( IdealPoint(   Vector3(-Half.X + Length,Half.Y,Half.Z),                        Vector3(0,1,0),     Vector2(0,0.5) ));
+        IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y,Half.Z - Length),                        Vector3(0,1,0),     Vector2(0,0.5) ));
         // Left Face // 12 */
         IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y,Half.Z),                                 Vector3(-1,0,0),    Vector2(1,0) ));
         IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y,Half.Z - Length),                        Vector3(-1,0,0),    Vector2(0.5,0) ));
