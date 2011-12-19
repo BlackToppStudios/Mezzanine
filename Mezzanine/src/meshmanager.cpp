@@ -636,13 +636,12 @@ namespace Mezzanine
 
 
         // Create Index's
-        for (std::vector<Vector3>::iterator CurrentFlip=Flips.begin(); CurrentFlip!=Flips.end(); ++CurrentFlip)
+        for (Whole FlipCount=0; FlipCount<Flips.size(); ++FlipCount)
         {
-            Whole WhichShape = Flips.begin()-CurrentFlip;
-            Whole ShapeIndex = WhichShape*IdealShape.size();
+            Whole ShapeIndex = FlipCount*IdealShape.size();
 
             // Top-Left-Front Forward Face
-            if(1==CurrentFlip->Z)   // draw them in backward order if this shape is flipped on the Z axis
+            if(1==Flips.at(FlipCount).Z)   // draw them in backward order if this shape is flipped on the Z axis
             {
                 //Forward Face Unflipped
                 boxcorner->triangle(0+ShapeIndex,1+ShapeIndex,2+ShapeIndex);
@@ -671,7 +670,7 @@ namespace Mezzanine
                 boxcorner->triangle(18+ShapeIndex,19+ShapeIndex,20+ShapeIndex);
             }
 
-            if(1==CurrentFlip->Y)   // draw them in backward order if this shape is flipped on the Y axis
+            if(1==Flips.at(FlipCount).Y)   // draw them in backward order if this shape is flipped on the Y axis
             {
                 // Upward Face Unflipped
                 boxcorner->triangle(6+ShapeIndex,7+ShapeIndex,8+ShapeIndex);
@@ -700,7 +699,7 @@ namespace Mezzanine
                 boxcorner->triangle(30+ShapeIndex,31+ShapeIndex,32+ShapeIndex);
             }
 
-            if(1==CurrentFlip->X)   // draw them in backward order if this shape is flipped on the X axis
+            if(1==Flips.at(FlipCount).X)   // draw them in backward order if this shape is flipped on the X axis
             {
                 // Left Face Unflipped
                 boxcorner->triangle(12+ShapeIndex,13+ShapeIndex,14+ShapeIndex);
