@@ -1297,48 +1297,95 @@ namespace Mezzanine
     /// @brief
     /// @details This class is incomplete
     ///////////////////////////////////////
-    class MEZZ_LIB SliderConstraint : public TypedConstraint
+    class MEZZ_LIB SliderConstraint : public DualTransformConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
             btSliderConstraint* Slider;
         public:
             SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA);
+            /// @brief Two body Terse constructor
+            /// @param ActorA The First body to be bound
+            /// @param ActorB  The Second body to be bound
+            /// @param TransformA The offset and rotation from ActorA's center of gravity to get to match an offset from ActorB
+            /// @param TransformB The offset and rotation from ActorB's center of gravity.
+            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
+            SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
             SliderConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~SliderConstraint();
-            virtual void SetFrameOffsetALocation(const Vector3& Location);
-            virtual void SetFrameOffsetBLocation(const Vector3& Location);
-            virtual void SetUpperLinLimit(Real UpperLimit);
-            virtual void SetUpperAngLimit(Real UpperLimit);
-            virtual void SetLowerLinLimit(Real LowerLimit);
-            virtual void SetLowerAngLimit(Real LowerLimit);
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // SliderConstraint Location and Rotation
+            /// @copydoc DualTransformConstraint::SetPivotATransform(const Transform&)
+            virtual void SetPivotATransform(const Transform& TranA);
+            /// @copydoc DualTransformConstraint::SetPivotBTransform(const Transform&)
+            virtual void SetPivotBTransform(const Transform& TranB);
+            /// @copydoc DualTransformConstraint::GetPivotATransform()
+            virtual Transform GetPivotATransform() const;
+            /// @copydoc DualTransformConstraint::GetPivotBTransform()
+            virtual Transform GetPivotBTransform() const;
+
+            /// @copydoc DualTransformConstraint::SetPivotALocation(const Vector3&)
+            virtual void SetPivotALocation(const Vector3& Location);
+            /// @copydoc DualTransformConstraint::SetPivotBLocation(const Vector3&)
+            virtual void SetPivotBLocation(const Vector3& Location);
+            /// @copydoc DualTransformConstraint::GetPivotALocation()
+            virtual Vector3 GetPivotALocation() const;
+            /// @copydoc DualTransformConstraint::GetPivotBLocation()
+            virtual Vector3 GetPivotBLocation() const;
+
+            /// @copydoc DualTransformConstraint::SetPivotARotation(const Quaternion&)
+            virtual void SetPivotARotation(const Quaternion& Rotation);
+            /// @copydoc DualTransformConstraint::SetPivotBRotation(const Quaternion&)
+            virtual void SetPivotBRotation(const Quaternion& Rotation);
+            /// @copydoc DualTransformConstraint::GetPivotARotation()
+            virtual Quaternion GetPivotARotation() const;
+            /// @copydoc DualTransformConstraint::GetPivotBRotation()
+            virtual Quaternion GetPivotBRotation() const;
+
+            virtual void SetUpperLinLimit(const Real& UpperLimit);
+            virtual void SetUpperAngLimit(const Real& UpperLimit);
+            virtual void SetLowerLinLimit(const Real& LowerLimit);
+            virtual void SetLowerAngLimit(const Real& LowerLimit);
             virtual void SetPoweredLinMotor(bool OnOff);
-            virtual void SetTargetLinMotorVelocity(Real TargetLinMotorVelocity);
-            virtual void SetMaxLinMotorForce(Real MaxLinMotorForce);
+            virtual void SetTargetLinMotorVelocity(const Real& TargetLinMotorVelocity);
+            virtual void SetMaxLinMotorForce(const Real& MaxLinMotorForce);
             virtual void SetPoweredAngMotor(bool OnOff);
-            virtual void SetTargetAngMotorVelocity(Real TargetAngMotorVelocity);
-            virtual void SetMaxAngMotorForce(Real MaxAngMotorForce);
+            virtual void SetTargetAngMotorVelocity(const Real& TargetAngMotorVelocity);
+            virtual void SetMaxAngMotorForce(const Real& MaxAngMotorForce);
             virtual void SetUseFrameOffset(bool FrameOffset);
-            virtual void SetSoftnessDirLin(Real SoftnessDirLin);
-            virtual void SetRestitutionDirLin(Real RestitutionDirLin);
-            virtual void SetDampingDirLin(Real DampingDirLin);
-            virtual void SetSoftnessDirAng(Real SoftnessDirAng);
-            virtual void SetRestitutionDirAng(Real RestitutionDirAng);
-            virtual void SetDampingDirAng(Real DampingDirAng);
-            virtual void SetSoftnessLimLin(Real SoftnessLimLin);
-            virtual void SetRestitutionLimLin(Real RestitutionLimLin);
-            virtual void SetDampingLimLin(Real DampingLimLin);
-            virtual void SetSoftnessLimAng(Real SoftnessLimAng);
-            virtual void SetRestitutionLimAng(Real RestitutionLimAng);
-            virtual void SetDampingLimAng(Real DampingLimAng);
-            virtual void SetSoftnessOrthoLin(Real SoftnessOrthoLin);
-            virtual void SetRestitutionOrthoLin(Real RestitutionOrthoLin);
-            virtual void SetDampingOrthoLin(Real DampingOrthoLin);
-            virtual void SetSoftnessOrthoAng(Real SoftnessOrthoAng);
-            virtual void SetRestitutionOrthoAng(Real RestitutionOrthoAng);
-            virtual void SetDampingOrthoAng(Real DampingOrthoAng);
+            virtual void SetSoftnessDirLin(const Real& SoftnessDirLin);
+            virtual void SetRestitutionDirLin(const Real& RestitutionDirLin);
+            virtual void SetDampingDirLin(const Real& DampingDirLin);
+            virtual void SetSoftnessDirAng(const Real& SoftnessDirAng);
+            virtual void SetRestitutionDirAng(const Real& RestitutionDirAng);
+            virtual void SetDampingDirAng(const Real& DampingDirAng);
+            virtual void SetSoftnessLimLin(const Real& SoftnessLimLin);
+            virtual void SetRestitutionLimLin(const Real& RestitutionLimLin);
+            virtual void SetDampingLimLin(const Real& DampingLimLin);
+            virtual void SetSoftnessLimAng(const Real& SoftnessLimAng);
+            virtual void SetRestitutionLimAng(const Real& RestitutionLimAng);
+            virtual void SetDampingLimAng(const Real& DampingLimAng);
+            virtual void SetSoftnessOrthoLin(const Real& SoftnessOrthoLin);
+            virtual void SetRestitutionOrthoLin(const Real& RestitutionOrthoLin);
+            virtual void SetDampingOrthoLin(const Real& DampingOrthoLin);
+            virtual void SetSoftnessOrthoAng(const Real& SoftnessOrthoAng);
+            virtual void SetRestitutionOrthoAng(const Real& RestitutionOrthoAng);
+            virtual void SetDampingOrthoAng(const Real& DampingOrthoAng);
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // SliderConstraint Axis, Params and other Details
+            /// @copydoc TypedConstraint::ValidParamOnAxis(int) const
+            virtual TypedConstraint::ParamList ValidParamOnAxis(int Axis) const;
+            /// @copydoc TypedConstraint::ValidLinearAxis() const
+            virtual TypedConstraint::AxisList ValidLinearAxis() const;
+            /// @copydoc TypedConstraint::ValidAngularAxis() const
+            virtual TypedConstraint::AxisList ValidAngularAxis() const;
+            /// @copydoc TypedConstraint::ValidAngularAxis(ConstraintParam,int) const
+            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
+
             /// @copydoc TypedConstraint::GetConstraintBase() const
             virtual btTypedConstraint* GetConstraintBase() const;
     };

@@ -161,7 +161,7 @@ namespace Mezzanine
             // Does this sticky constraint already exist for this pair?
             for( Whole X = 0 ; X < StickyD->StickyConstraints.size() ; ++X )
             {
-                Generic6DofConstraint* StickyCon = StickyD->StickyConstraints.at(X);
+                SliderConstraint* StickyCon = StickyD->StickyConstraints.at(X);
                 if( Col->PairsMatch(StickyCon->GetActorA(),StickyCon->GetActorB()) )
                     return;
             }
@@ -198,17 +198,11 @@ namespace Mezzanine
             World::GetWorldPointer()->Log(logstream.str());
             World::GetWorldPointer()->DoMainLoopLogging();
             // Create and configure the constraint.
-            Generic6DofConstraint* NewSticky = new Generic6DofConstraint(ActorA,this,TransA,TransB);
-            NewSticky->SetAngularLimitLower(Vector3());
-            NewSticky->SetAngularLimitUpper(Vector3());
-            NewSticky->SetLinearLimitLower(Vector3());
-            NewSticky->SetLinearLimitUpper(Vector3());
-            //NewSticky->SetParam(Mezzanine::Con_Stop_CFM,1,0);
-            //NewSticky->SetParam(Mezzanine::Con_Stop_CFM,1,1);
-            //NewSticky->SetParam(Mezzanine::Con_Stop_CFM,1,2);
-            //NewSticky->SetParam(Mezzanine::Con_Stop_ERP,0,0);
-            //NewSticky->SetParam(Mezzanine::Con_Stop_ERP,0,1);
-            //NewSticky->SetParam(Mezzanine::Con_Stop_ERP,0,2);
+            StickyConstraint* NewSticky = new StickyConstraint(ActorA,this,TransA,TransB);
+            NewSticky->SetUpperLinLimit(0.0);
+            NewSticky->SetUpperAngLimit(0.0);
+            NewSticky->SetLowerLinLimit(0.0);
+            NewSticky->SetLowerAngLimit(0.0);
             // Add the constraint to the world and other necessary structures.
             PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);

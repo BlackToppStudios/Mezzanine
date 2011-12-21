@@ -90,42 +90,42 @@ void LevelLoader::LoadFerris()
 
     // Create the trayz
     Real TrayMass = 50.0;
-    ActorRigid* Tray1 = new ActorRigid(TrayMass,"Tray1","tray.mesh",FerrisGroup);
+    ActorRigid* Tray1 = new ActorRigid(TrayMass,"Tray1","bluetray.mesh",FerrisGroup);
     Tray1->SetLocation(30.4,14.3,0);
     Tray1->GetPhysicsSettings()->SetDamping(0,0.1);
     Tray1->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray1);
-    ActorRigid* Tray2 = new ActorRigid(TrayMass,"Tray2","tray.mesh",FerrisGroup);
+    ActorRigid* Tray2 = new ActorRigid(TrayMass,"Tray2","purpletray.mesh",FerrisGroup);
     Tray2->SetLocation(169.6,14.3,0);
     Tray2->GetPhysicsSettings()->SetDamping(0,0.1);
     Tray2->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray2);
-    ActorRigid* Tray3 = new ActorRigid(TrayMass,"Tray3","tray.mesh",FerrisGroup);
+    ActorRigid* Tray3 = new ActorRigid(TrayMass,"Tray3","purpletray.mesh",FerrisGroup);
     Tray3->SetLocation(30.4,-42.7,0);
     Tray3->GetPhysicsSettings()->SetDamping(0,0.1);
     Tray3->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray3);
-    ActorRigid* Tray4 = new ActorRigid(TrayMass,"Tray4","tray.mesh",FerrisGroup);
+    ActorRigid* Tray4 = new ActorRigid(TrayMass,"Tray4","bluetray.mesh",FerrisGroup);
     Tray4->SetLocation(169.6,-42.7,0);
     Tray4->GetPhysicsSettings()->SetDamping(0,0.1);
     Tray4->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray4);
-    ActorRigid* Tray5 = new ActorRigid(TrayMass,"Tray5","tray.mesh",FerrisGroup);
+    ActorRigid* Tray5 = new ActorRigid(TrayMass,"Tray5","purpletray.mesh",FerrisGroup);
     Tray5->SetLocation(71.5,55.4,0);
     Tray5->GetPhysicsSettings()->SetDamping(0,0.1);
     Tray5->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray5);
-    ActorRigid* Tray6 = new ActorRigid(TrayMass,"Tray6","tray.mesh",FerrisGroup);
+    ActorRigid* Tray6 = new ActorRigid(TrayMass,"Tray6","bluetray.mesh",FerrisGroup);
     Tray6->SetLocation(128.5,55.4,0);
     Tray6->GetPhysicsSettings()->SetDamping(0,0.1);
     Tray6->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray6);
-    ActorRigid* Tray7 = new ActorRigid(TrayMass,"Tray7","tray.mesh",FerrisGroup);
+    ActorRigid* Tray7 = new ActorRigid(TrayMass,"Tray7","bluetray.mesh",FerrisGroup);
     Tray7->SetLocation(71.5,-83.8,0);
     Tray7->GetPhysicsSettings()->SetDamping(0,0.1);
     Tray7->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
     ActMan->AddActor(Tray7);
-    ActorRigid* Tray8 = new ActorRigid(TrayMass,"Tray8","tray.mesh",FerrisGroup);
+    ActorRigid* Tray8 = new ActorRigid(TrayMass,"Tray8","purpletray.mesh",FerrisGroup);
     Tray8->SetLocation(128.5,-83.8,0);
     Tray8->GetPhysicsSettings()->SetDamping(0,0.1);
     Tray8->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
@@ -201,17 +201,25 @@ void LevelLoader::LoadFerris()
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
 
-    Vector3 StartSize(50,130,30);
+    Vector3 StartSize(50,130,25);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,0,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize,4.0));
+    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
+    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)10.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)13.0));
+    StartParticle->SetLocation(Vector3(-170,-80,0));
+    StartParticle->AddToWorld();// */
 
     Vector3 ScoreSize(100,100,30);
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(100,0,0));
     ScoreZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
-    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.2),ScoreSize));
+    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
     PhysMan->AddAreaEffect(ScoreZone);
     GameApp->RegisterScoreArea(ScoreZone);// */
 }
@@ -297,17 +305,25 @@ void LevelLoader::LoadBigCurve()
     GameApp->AddThrowable(Pyrite2);// */
 
     // Create the zones
-    Vector3 StartSize(50,80,15);
+    Vector3 StartSize(50,80,20);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-180,-60,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
+    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
+    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)8.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)10.0));
+    StartParticle->SetLocation(Vector3(-180,-110,0));
+    StartParticle->AddToWorld();// */
 
-    Vector3 ScoreSize(50,40,35);
+    Vector3 ScoreSize(50,40,50);
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(120,-20,-10));
     ScoreZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
-    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.2),ScoreSize));
+    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
     PhysMan->AddAreaEffect(ScoreZone);
     GameApp->RegisterScoreArea(ScoreZone);// */
 }
@@ -454,16 +470,24 @@ void LevelLoader::LoadBlowsNotSucks()
     GameApp->AddThrowable(Styrofoam2);// */
 
     // Create the zones
-    Vector3 StartSize(50,70,15);
+    Vector3 StartSize(50,70,20);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,-70,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
+    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
+    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)6.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)9.0));
+    StartParticle->SetLocation(Vector3(-170,-115,0));
+    StartParticle->AddToWorld();// */
 
     Vector3 Score1Size(25,21,25);
     CollisionShape* ScoreArea1Shape = new BoxCollisionShape("ScoreArea1Shape",Score1Size);
-    Mesh* ScoreArea1Mesh = MeshMan->CreateBoxMesh("ScoreArea1Mesh",ColourValue(0.2,0.2,0.8,0.2),Score1Size);
+    Mesh* ScoreArea1Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea1Mesh",ColourValue(0.2,0.2,0.8,0.8),Score1Size,4.0);
     ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-10.5,-100.0,0.0));
     ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreArea1Shape);
     ScoreZone1->GetGraphicsSettings()->SetMesh(ScoreArea1Mesh);
@@ -471,7 +495,7 @@ void LevelLoader::LoadBlowsNotSucks()
     GameApp->RegisterScoreArea(ScoreZone1);
     Vector3 Score2Size(55,48,15);
     CollisionShape* ScoreArea2Shape = new BoxCollisionShape("ScoreArea2Shape",Score2Size);
-    Mesh* ScoreArea2Mesh = MeshMan->CreateBoxMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.2),Score2Size);
+    Mesh* ScoreArea2Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.8),Score2Size,4.0);
     ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(-170,100,0));
     ScoreZone2->GetPhysicsSettings()->SetCollisionShape(ScoreArea2Shape);
     ScoreZone2->GetGraphicsSettings()->SetMesh(ScoreArea2Mesh);
@@ -638,9 +662,9 @@ void LevelLoader::LoadJustice()
     GameApp->AddThrowable(Uranium2);
 
     // Create the zones
-    Vector3 StartSize(60,30,15);
+    Vector3 StartSize(60,30,20);
     CollisionShape* StartAreaShape = new BoxCollisionShape("StartArea1Shape",StartSize);
-    Mesh* StartAreaMesh = MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize);
+    Mesh* StartAreaMesh = MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0);
     StartArea* StartZone1 = new StartArea("StartArea1",Vector3(-160,120,0));
     StartZone1->GetPhysicsSettings()->SetCollisionShape(StartAreaShape);
     StartZone1->GetGraphicsSettings()->SetMesh(StartAreaMesh);
@@ -651,10 +675,26 @@ void LevelLoader::LoadJustice()
     StartZone2->GetGraphicsSettings()->SetMesh(StartAreaMesh);
     PhysMan->AddAreaEffect(StartZone2);
     GameApp->RegisterStartArea(StartZone2);// */
+    ParticleEffect* StartParticle1 = SceneMan->CreateParticleEffect("StartParticle1","StartVortex");
+    StartParticle1->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle1->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle1->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle1->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)3.0));
+    StartParticle1->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)4.0));
+    StartParticle1->SetLocation(Vector3(-160,100,0));
+    StartParticle1->AddToWorld();// */
+    ParticleEffect* StartParticle2 = SceneMan->CreateParticleEffect("StartParticle2","StartVortex");
+    StartParticle2->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle2->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle2->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle2->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)3.0));
+    StartParticle2->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)4.0));
+    StartParticle2->SetLocation(Vector3(160,100,0));
+    StartParticle2->AddToWorld();// */
 
     Vector3 ScoreSize(52,25,18);
     CollisionShape* ScoreAreaShape = new BoxCollisionShape("ScoreAreaShape",ScoreSize);
-    Mesh* ScoreAreaMesh = MeshMan->CreateBoxMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.2),ScoreSize);
+    Mesh* ScoreAreaMesh = MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0);
     ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-113,-40,0));
     ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreAreaShape);
     ScoreZone1->GetGraphicsSettings()->SetMesh(ScoreAreaMesh);
@@ -764,17 +804,25 @@ void LevelLoader::LoadRollers()
     GameApp->AddThrowable(Pyrite2);// */
 
     // Create the zones
-    Vector3 StartSize(50,50,15);
+    Vector3 StartSize(50,50,20);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-140,60,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
+    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
+    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)5.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)6.0));
+    StartParticle->SetLocation(Vector3(-140,25,0));
+    StartParticle->AddToWorld();// */
 
     Vector3 ScoreSize(70,40,20);
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(140,20,0));
     ScoreZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
-    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.2),ScoreSize));
+    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
     PhysMan->AddAreaEffect(ScoreZone);
     GameApp->RegisterScoreArea(ScoreZone);// */
 }
@@ -897,17 +945,25 @@ void LevelLoader::LoadJustBounce()
 
 
     // Create the zones
-    Vector3 StartSize(50,50,15);
+    Vector3 StartSize(50,50,20);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,90,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.2),StartSize));
+    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
+    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)5.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)6.0));
+    StartParticle->SetLocation(Vector3(-170,55,0));
+    StartParticle->AddToWorld();// */
 
     Vector3 ScoreSize(42,50,35);
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(158,-25,0));
     ScoreZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
-    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.2),ScoreSize));
+    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
     PhysMan->AddAreaEffect(ScoreZone);
     GameApp->RegisterScoreArea(ScoreZone);// */
 }

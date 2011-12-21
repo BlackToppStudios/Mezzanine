@@ -344,8 +344,8 @@ namespace Mezzanine
 
     void SceneManager::DisableSky()
     {
-        this->SMD->UpdateSkyCache();
         this->SMD->DisableSky(this);
+        this->SMD->UpdateSkyCache();
     }
 
     SceneManager::SkyMethod SceneManager::WhichSky() const

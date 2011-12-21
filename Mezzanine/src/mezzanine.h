@@ -98,7 +98,9 @@
 #include "network.h"
 #include "networkmanager.h"
 #include "objectreference.h"
+#include "particleaffector.h"
 #include "particleeffect.h"             // done
+#include "particleemitter.h"
 #include "physicsmanager.h"
 #include "plane.h"                      // done
 #include "quaternion.h"                 // done

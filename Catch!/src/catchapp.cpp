@@ -34,6 +34,7 @@ CatchApp::CatchApp()
         // we need to halt execution right here somehow.
     }
     Loader = new LevelLoader();
+    Scorer = new LevelScorer();
 }
 
 CatchApp::~CatchApp()
@@ -495,23 +496,6 @@ void CatchApp::InitMusic()
     //MPlayer->SwitchToSong(Track4);
 }
 
-void CatchApp::PopulateScoreValues()
-{
-    ItemScoreValues["Gold"] = 100;
-    ItemScoreValues["Pyrite"] = 50;
-    ItemScoreValues["Clay"] = 10;
-    ItemScoreValues["Uranium"] = 100;
-    ItemScoreValues["Rubber"] = 30;
-    ItemScoreValues["Lead"] = 30;
-    ItemScoreValues["Styrofoam"] = 10;
-    ItemScoreValues["Wood"] = 20;
-}
-
-void CatchApp::PopulateShopValues()
-{
-    ShopCostValues["Wooden Plank"] = 50;
-}
-
 void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
 {
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
@@ -692,6 +676,7 @@ void CatchApp::UnloadLevel()
         OneCollision = EventMan->PopNextCollisionEvent();
     }
     CurrScore = 0;
+    Scorer->ResetLevelData();
     TimeMan->DestroyTimer(EndTimer);
     EndTimer = NULL;
     UIMan->GetLayer("ReportLayer")->Hide();
@@ -737,8 +722,10 @@ int CatchApp::GetCatchin()
 	CreateLoadingScreen();
 	ChangeState(CatchApp::Catch_Loading);
 
-	PopulateScoreValues();
-    PopulateShopValues();
+    /// @todo This needs to be updated to properly deserialize the values.
+    xml::Node DummyNode;
+	Scorer->PopulateScoreValues(DummyNode);
+    Scorer->PopulateShopValues(DummyNode);
 
     //Setup the Music
     InitMusic();
@@ -876,8 +863,6 @@ bool CatchApp::PostUI()
                 #ifdef MEZZDEBUG
                 TheWorld->Log("Actor Clicked on");
                 TheWorld->Log(*ClickOnActor);
-                TheWorld->Log(*ClickOnActor);
-                //TheWorld->Log("ClickOnActor"); TheWorld->Log(*ClickOnActor);
                 #endif
                 if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
                 {
@@ -967,30 +952,7 @@ bool CatchApp::PrePhysics()
 
 bool CatchApp::PostPhysics()
 {
-    for( Whole S = 0 ; S < ScoreAreas.size() ; S++ )
-    {
-        std::vector<ActorBase*>& Added = ScoreAreas[S]->GetAddedActors();
-        std::vector<ActorBase*>& Removed = ScoreAreas[S]->GetRemovedActors();
-        for( Whole A = 0 ; A < Added.size() ; A++ )
-        {
-            String ItemName = Added[A]->GetName();
-            for( std::map<String,Whole>::iterator Ait = ItemScoreValues.begin() ; Ait != ItemScoreValues.end() ; Ait++ )
-            {
-                if(ItemName.find((*Ait).first) != String::npos)
-                    CurrScore += (*Ait).second;
-            }
-        }
-        for( Whole R = 0 ; R < Removed.size() ; R++ )
-        {
-            String ItemName = Removed[R]->GetName();
-            for( std::map<String,Whole>::iterator Rit = ItemScoreValues.begin() ; Rit != ItemScoreValues.end() ; Rit++ )
-            {
-                if(ItemName.find((*Rit).first) != String::npos)
-                    CurrScore -= (*Rit).second;
-            }
-        }
-    }
-
+    Scorer->CalculateCurrentScore(CurrScore);
     return true;
 }
 
@@ -1132,9 +1094,20 @@ bool CatchApp::CheckForStuff()
     return true;
 }
 
+bool CatchApp::IsAThrowable(ActorBase* Actor)
+{
+    for( std::vector<ActorBase*>::iterator it = ThrownItems.begin() ; it != ThrownItems.end() ; it++ )
+    {
+        if( Actor == (*it) )
+            return true;
+    }
+    return false;
+}
+
 void CatchApp::RegisterScoreArea(ScoreArea* Score)
 {
     ScoreAreas.push_back(Score);
+    Scorer->RegisterScoreArea(Score);
 }
 
 void CatchApp::RegisterStartArea(StartArea* Start)

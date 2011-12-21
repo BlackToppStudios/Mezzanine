@@ -149,6 +149,8 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}itemshopitems.h"
 	"${${PROJECT_NAME}_SRC_DIR}levelloader.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}levelloader.h"
+	"${${PROJECT_NAME}_SRC_DIR}levelscorer.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}levelscorer.h"
 	"${${PROJECT_NAME}_SRC_DIR}levelselectcell.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}levelselectcell.h"
 	"${${PROJECT_NAME}_SRC_DIR}leveltriggers.cpp"

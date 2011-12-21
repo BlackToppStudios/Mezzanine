@@ -14,7 +14,8 @@ void OptsVolume::SetCaller(UI::Widget* Caller)
     UI::WidgetCallback::SetCaller(Caller);
     /// @todo This code should eventually be replaced with something that reads from a settings file.
     UI::Scrollbar* Scroll = static_cast<UI::Scrollbar*>(this->Caller);
-    Scroll->SetScrollerValue(1.0);
+    Scroll->SetScrollerValue(0.5);
+    SetVolume(Scroll->GetScrollerValue());
 }
 
 void OptsVolume::DoHoverItems()

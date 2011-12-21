@@ -1685,6 +1685,12 @@ namespace Mezzanine
         Slider = new btSliderConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
     }
 
+    SliderConstraint::SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+    {
+        SetBodies(ActorA,ActorB);
+        Slider = new btSliderConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+    }
+
     SliderConstraint::SliderConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA)
     {
         SetBodies(ActorB);
@@ -1698,35 +1704,62 @@ namespace Mezzanine
         delete Slider;
     }
 
-    btTypedConstraint* SliderConstraint::GetConstraintBase() const
-        { return this->Slider; }
+    ////////////////////////////////////////////////////////////////////////////////
+    // Generic6DofConstraint Location and Rotation
+    void SliderConstraint::SetPivotATransform(const Transform& TranA)
+        { this->Slider->getFrameOffsetA() = TranA.GetBulletTransform(); }
 
-    void SliderConstraint::SetFrameOffsetALocation(const Vector3& Location)
-    {
-        this->Slider->getFrameOffsetA().setOrigin(Location.GetBulletVector3());
-    }
+    void SliderConstraint::SetPivotBTransform(const Transform& TranB)
+        { this->Slider->getFrameOffsetB() = TranB.GetBulletTransform(); }
 
-    void SliderConstraint::SetFrameOffsetBLocation(const Vector3& Location)
-    {
-        this->Slider->getFrameOffsetB().setOrigin(Location.GetBulletVector3());
-    }
+    Transform SliderConstraint::GetPivotATransform() const
+        { return this->Slider->getFrameOffsetA(); }
 
-    void SliderConstraint::SetUpperLinLimit(Real UpperLimit)
+    Transform SliderConstraint::GetPivotBTransform() const
+        { return this->Slider->getFrameOffsetB(); }
+
+
+    void SliderConstraint::SetPivotALocation(const Vector3& Location)
+        { this->Slider->getFrameOffsetA().setOrigin(Location.GetBulletVector3()); }
+
+    void SliderConstraint::SetPivotBLocation(const Vector3& Location)
+        { this->Slider->getFrameOffsetB().setOrigin(Location.GetBulletVector3()); }
+
+    Vector3 SliderConstraint::GetPivotALocation() const
+        { return Vector3(this->Slider->getFrameOffsetA().getOrigin()); }
+
+    Vector3 SliderConstraint::GetPivotBLocation() const
+        { return Vector3(this->Slider->getFrameOffsetB().getOrigin()); }
+
+
+    void SliderConstraint::SetPivotARotation(const Quaternion& Rotation)
+        { this->Slider->getFrameOffsetA().setRotation(Rotation.GetBulletQuaternion()); }
+
+    void SliderConstraint::SetPivotBRotation(const Quaternion& Rotation)
+        { this->Slider->getFrameOffsetA().setRotation(Rotation.GetBulletQuaternion()); }
+
+    Quaternion SliderConstraint::GetPivotARotation() const
+        { return Quaternion(this->Slider->getFrameOffsetA().getRotation()); }
+
+    Quaternion SliderConstraint::GetPivotBRotation() const
+        { return Quaternion(this->Slider->getFrameOffsetB().getRotation()); }
+
+    void SliderConstraint::SetUpperLinLimit(const Real& UpperLimit)
     {
         this->Slider->setUpperLinLimit(UpperLimit);
     }
 
-    void SliderConstraint::SetUpperAngLimit(Real UpperLimit)
+    void SliderConstraint::SetUpperAngLimit(const Real& UpperLimit)
     {
         this->Slider->setUpperAngLimit(UpperLimit);
     }
 
-    void SliderConstraint::SetLowerLinLimit(Real LowerLimit)
+    void SliderConstraint::SetLowerLinLimit(const Real& LowerLimit)
     {
         this->Slider->setLowerLinLimit(LowerLimit);
     }
 
-    void SliderConstraint::SetLowerAngLimit(Real LowerLimit)
+    void SliderConstraint::SetLowerAngLimit(const Real& LowerLimit)
     {
         this->Slider->setLowerAngLimit(LowerLimit);
     }
@@ -1736,12 +1769,12 @@ namespace Mezzanine
         this->Slider->setPoweredLinMotor(OnOff);
     }
 
-    void SliderConstraint::SetTargetLinMotorVelocity(Real TargetLinMotorVelocity)
+    void SliderConstraint::SetTargetLinMotorVelocity(const Real& TargetLinMotorVelocity)
     {
         this->Slider->setTargetLinMotorVelocity(TargetLinMotorVelocity);
     }
 
-    void SliderConstraint::SetMaxLinMotorForce(Real MaxLinMotorForce)
+    void SliderConstraint::SetMaxLinMotorForce(const Real& MaxLinMotorForce)
     {
         this->Slider->setMaxLinMotorForce(MaxLinMotorForce);
     }
@@ -1751,12 +1784,12 @@ namespace Mezzanine
         this->Slider->setPoweredAngMotor(OnOff);
     }
 
-    void SliderConstraint::SetTargetAngMotorVelocity(Real TargetAngMotorVelocity)
+    void SliderConstraint::SetTargetAngMotorVelocity(const Real& TargetAngMotorVelocity)
     {
         this->Slider->setTargetAngMotorVelocity(TargetAngMotorVelocity);
     }
 
-    void SliderConstraint::SetMaxAngMotorForce(Real MaxAngMotorForce)
+    void SliderConstraint::SetMaxAngMotorForce(const Real& MaxAngMotorForce)
     {
         this->Slider->setMaxAngMotorForce(MaxAngMotorForce);
     }
@@ -1766,95 +1799,158 @@ namespace Mezzanine
         this->Slider->setUseFrameOffset(FrameOffset);
     }
 
-    void SliderConstraint::SetSoftnessDirLin(Real SoftnessDirLin)
+    void SliderConstraint::SetSoftnessDirLin(const Real& SoftnessDirLin)
     {
         this->Slider->setSoftnessDirLin(SoftnessDirLin);
     }
 
-    void SliderConstraint::SetRestitutionDirLin(Real RestitutionDirLin)
+    void SliderConstraint::SetRestitutionDirLin(const Real& RestitutionDirLin)
     {
         this->Slider->setRestitutionDirLin(RestitutionDirLin);
     }
 
-    void SliderConstraint::SetDampingDirLin(Real DampingDirLin)
+    void SliderConstraint::SetDampingDirLin(const Real& DampingDirLin)
     {
         this->Slider->setDampingDirLin(DampingDirLin);
     }
 
-    void SliderConstraint::SetSoftnessDirAng(Real SoftnessDirAng)
+    void SliderConstraint::SetSoftnessDirAng(const Real& SoftnessDirAng)
     {
         this->Slider->setSoftnessDirAng(SoftnessDirAng);
     }
 
-    void SliderConstraint::SetRestitutionDirAng(Real RestitutionDirAng)
+    void SliderConstraint::SetRestitutionDirAng(const Real& RestitutionDirAng)
     {
         this->Slider->setRestitutionDirAng(RestitutionDirAng);
     }
 
-    void SliderConstraint::SetDampingDirAng(Real DampingDirAng)
+    void SliderConstraint::SetDampingDirAng(const Real& DampingDirAng)
     {
         this->Slider->setDampingDirAng(DampingDirAng);
     }
 
-    void SliderConstraint::SetSoftnessLimLin(Real SoftnessLimLin)
+    void SliderConstraint::SetSoftnessLimLin(const Real& SoftnessLimLin)
     {
         this->Slider->setSoftnessLimLin(SoftnessLimLin);
     }
 
-    void SliderConstraint::SetRestitutionLimLin(Real RestitutionLimLin)
+    void SliderConstraint::SetRestitutionLimLin(const Real& RestitutionLimLin)
     {
         this->Slider->setRestitutionLimLin(RestitutionLimLin);
     }
 
-    void SliderConstraint::SetDampingLimLin(Real DampingLimLin)
+    void SliderConstraint::SetDampingLimLin(const Real& DampingLimLin)
     {
         this->Slider->setDampingLimLin(DampingLimLin);
     }
 
-    void SliderConstraint::SetSoftnessLimAng(Real SoftnessLimAng)
+    void SliderConstraint::SetSoftnessLimAng(const Real& SoftnessLimAng)
     {
         this->Slider->setSoftnessLimAng(SoftnessLimAng);
     }
 
-    void SliderConstraint::SetRestitutionLimAng(Real RestitutionLimAng)
+    void SliderConstraint::SetRestitutionLimAng(const Real& RestitutionLimAng)
     {
         this->Slider->setRestitutionLimAng(RestitutionLimAng);
     }
 
-    void SliderConstraint::SetDampingLimAng(Real DampingLimAng)
+    void SliderConstraint::SetDampingLimAng(const Real& DampingLimAng)
     {
         this->Slider->setDampingLimAng(DampingLimAng);
     }
 
-    void SliderConstraint::SetSoftnessOrthoLin(Real SoftnessOrthoLin)
+    void SliderConstraint::SetSoftnessOrthoLin(const Real& SoftnessOrthoLin)
     {
         this->Slider->setSoftnessOrthoLin(SoftnessOrthoLin);
     }
 
-    void SliderConstraint::SetRestitutionOrthoLin(Real RestitutionOrthoLin)
+    void SliderConstraint::SetRestitutionOrthoLin(const Real& RestitutionOrthoLin)
     {
         this->Slider->setRestitutionOrthoLin(RestitutionOrthoLin);
     }
 
-    void SliderConstraint::SetDampingOrthoLin(Real DampingOrthoLin)
+    void SliderConstraint::SetDampingOrthoLin(const Real& DampingOrthoLin)
     {
         this->Slider->setDampingOrthoLin(DampingOrthoLin);
     }
 
-    void SliderConstraint::SetSoftnessOrthoAng(Real SoftnessOrthoAng)
+    void SliderConstraint::SetSoftnessOrthoAng(const Real& SoftnessOrthoAng)
     {
         this->Slider->setSoftnessOrthoAng(SoftnessOrthoAng);
     }
 
-    void SliderConstraint::SetRestitutionOrthoAng(Real RestitutionOrthoAng)
+    void SliderConstraint::SetRestitutionOrthoAng(const Real& RestitutionOrthoAng)
     {
         this->Slider->setRestitutionOrthoAng(RestitutionOrthoAng);
     }
 
-    void SliderConstraint::SetDampingOrthoAng(Real DampingOrthoAng)
+    void SliderConstraint::SetDampingOrthoAng(const Real& DampingOrthoAng)
     {
         this->Slider->setDampingOrthoAng(DampingOrthoAng);
     }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // SliderConstraint Axis, Params and other Details
+    TypedConstraint::ParamList SliderConstraint::ValidParamOnAxis(int Axis) const
+    {
+        TypedConstraint::ParamList Results;
+        if(0<=Axis && 5>=Axis)
+        {
+            Results.push_back(Con_Stop_ERP);
+            Results.push_back(Con_CFM);
+            Results.push_back(Con_Stop_CFM);
+        }
+        return Results;
+    }
+
+    TypedConstraint::AxisList SliderConstraint::ValidLinearAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        Results.push_back(0);
+        Results.push_back(1);
+        Results.push_back(2);
+        return Results;
+    }
+
+    TypedConstraint::AxisList SliderConstraint::ValidAngularAxis() const
+    {
+        TypedConstraint::AxisList Results;
+        Results.push_back(3);
+        Results.push_back(4);
+        Results.push_back(5);
+        return Results;
+    }
+
+    bool SliderConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+    {
+        // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btGeneric6DofConstraint_8cpp_source.html#l00964
+        if(0>Axis || 5<Axis)
+            { return false; }
+
+        if( Con_Stop_ERP == Param )
+        {
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_ERP_LIMLIN ) return true;
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_ERP_ORTLIN ) return true;
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_ERP_LIMANG ) return true;
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_ERP_ORTANG ) return true;
+        }
+        else if( Con_Stop_CFM == Param )
+        {
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_DIRLIN ) return true;
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_DIRANG ) return true;
+        }
+        else if( Con_CFM == Param )
+        {
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_LIMLIN ) return true;
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_ORTLIN ) return true;
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_LIMANG ) return true;
+            if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_ORTANG ) return true;
+        }
+        return false;
+    }
+
+    btTypedConstraint* SliderConstraint::GetConstraintBase() const
+        { return this->Slider; }
 
     /////////////////////////////////////////
     // UniversalJointConstraint Constraint Functions

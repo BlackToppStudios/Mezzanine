@@ -407,7 +407,7 @@ namespace Mezzanine
         Real Length = 0.0;
         Real FirstSizeCheck = HalfExtents.X < HalfExtents.Y ? HalfExtents.X : HalfExtents.Y;
         Real Smallest = FirstSizeCheck < HalfExtents.Z ? FirstSizeCheck : HalfExtents.Z;
-        if(Smallest * 2 < FirstSizeCheck) Length = Smallest * 0.5;
+        if(Smallest * 2 <= FirstSizeCheck) Length = Smallest * 0.5;
         else Length = Smallest * 0.25;
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
         String GroupName = TheMaterial->getGroup();
@@ -804,97 +804,7 @@ namespace Mezzanine
         boxcorner->triangle(100,101,102);
         boxcorner->triangle(100,102,103);
         boxcorner->triangle(104,105,106);
-        boxcorner->triangle(104,106,107);
-        // Top-Right-Front
-        /*boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Top-Right-Front
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Top-Right-Front
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Top-Right-Back
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Top-Right-Back
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Top-Right-Back
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Left-Front
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Left-Front
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Left-Front
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Left-Back
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Left-Back
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Left-Back
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Right-Front
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Right-Front
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Right-Front
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Right-Back
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Right-Back
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        // Bottom-Right-Back
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);
-        boxcorner->triangle(,,);// */
+        boxcorner->triangle(104,106,107);// */
 
         boxcorner->end();
         Ogre::MeshPtr boxcornermesh = boxcorner->convertToMesh(MeshName, GroupName);

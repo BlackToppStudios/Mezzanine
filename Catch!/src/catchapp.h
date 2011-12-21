@@ -3,6 +3,7 @@
 
 #include "levelzones.h"
 #include "levelloader.h"
+#include "levelscorer.h"
 #include <mezzanine.h>
 
 using namespace Mezzanine;
@@ -23,11 +24,10 @@ class CatchApp
         const Plane PlaneOfPlay;
         World* TheWorld;
         LevelLoader* Loader;
+        LevelScorer* Scorer;
         ActorBase* LastActorThrown;
         Whole CurrScore;
         CatchApp::GameState CurrentState;
-        std::map<String,Whole> ItemScoreValues;
-        std::map<String,Whole> ShopCostValues;
         std::vector<ActorBase*> ThrownItems;
         std::vector<StartArea*> StartAreas;
         std::vector<ScoreArea*> ScoreAreas;
@@ -40,8 +40,6 @@ class CatchApp
         void ConfigResources();
         void InitMusic();
 
-        void PopulateScoreValues();
-        void PopulateShopValues();
         void PopulateLevelList(UI::PagedCellGrid* Grid);
         void ChangeState(const CatchApp::GameState &StateToSet);
 
@@ -66,6 +64,7 @@ class CatchApp
         bool PostRender();
 
         bool CheckForStuff();
+        bool IsAThrowable(ActorBase* Actor);
         void RegisterScoreArea(ScoreArea* Score);
         void RegisterStartArea(StartArea* Start);
         void AddThrowable(ActorBase* Throwable);

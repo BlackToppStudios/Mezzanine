@@ -4,7 +4,7 @@
 #include "levelzones.h"
 #include "mezzanine.h"
 
-LevelZone::LevelZone(const String &name, const Vector3& Location)
+LevelZone::LevelZone(const String& name, const Vector3& Location)
     : AreaEffect(name,Location)
 {
     /*MeshManager* MeshMan = MeshManager::GetSingltonPtr();
@@ -37,7 +37,7 @@ Mezzanine::WorldObjectType LevelZone::GetType() const
     return Mezzanine::WOT_AEUnknown;
 }
 
-StartArea::StartArea(const String &name, const Vector3& Location)
+StartArea::StartArea(const String& name, const Vector3& Location)
     : LevelZone(name,Location),
       Init(true)
 {
@@ -77,8 +77,9 @@ void StartArea::ApplyEffect()
     if(Init) Init = false;
 }
 
-ScoreArea::ScoreArea(const String &name, const Vector3& Location)
-    : LevelZone(name,Location)
+ScoreArea::ScoreArea(const String& name, const Vector3& Location)
+    : LevelZone(name,Location),
+      ScoreMultiplier(1.0)
 {
 }
 
@@ -102,6 +103,16 @@ bool ScoreArea::AllObjectsAtRest()
             return false;
     }
     return true;
+}
+
+void ScoreArea::SetScoreMultiplier(const Real& Multiplier)
+{
+    ScoreMultiplier = Multiplier;
+}
+
+Real ScoreArea::GetScoreMultiplier() const
+{
+    return ScoreMultiplier;
 }
 
 #endif

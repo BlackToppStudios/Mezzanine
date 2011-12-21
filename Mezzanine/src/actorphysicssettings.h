@@ -62,15 +62,17 @@ namespace Mezzanine
     class Collision;
     class CollisionShape;
     class Generic6DofConstraint;
+    class SliderConstraint;
 
-    typedef std::pair<Collision*,Generic6DofConstraint*> StickyDataPair;
+    typedef SliderConstraint StickyConstraint;
+    typedef std::pair<Collision*,StickyConstraint*> StickyDataPair;
     /// @struct StickyData
     /// @headerfile actorphysicssettings.h
     /// @brief This is a basic class for storing the data related to the sticky behavior available to actorrigid's.
     struct StickyData
     {
         StickyData() : MaxNumContacts(0) {};
-        std::vector<Generic6DofConstraint*> StickyConstraints;
+        std::vector<StickyConstraint*> StickyConstraints;
         Whole MaxNumContacts;
     };//stickydata
 
