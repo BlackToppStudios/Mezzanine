@@ -1,0 +1,53 @@
+--- SDLBuild/SDL/src/video/x11/SDL_x11window.c	2011-12-23 18:10:48.000000000 -0600
++++ SDLBuild.Working/SDL/src/video/x11/SDL_x11window.c	2011-12-23 17:54:01.345384675 -0600
+@@ -576,10 +576,39 @@
+ int
+ X11_CreateWindowFrom(_THIS, SDL_Window * window, const void *data)
+ {
+-    Window w = (Window) data;
+-
++    Window w = (Window) data; //Window w = (Window) data;
+     window->title = X11_GetWindowTitle(_this, w);
+ 
++    SDL_VideoData *vdata = (SDL_VideoData *) _this->driverdata;
++    Display *display = vdata->display;
++    XWMHints *wmhints;
++    Uint32 fevent = 0;
++
++#ifdef X_HAVE_UTF8_STRING
++    /*if (SDL_X11_HAVE_UTF8) {
++        pXGetICValues(((SDL_WindowData *) window->driverdata)->ic,
++                      XNFilterEvents, &fevent, NULL);
++    }*/
++#endif
++
++    /* Set the input hints so we get keyboard input */
++    wmhints = XAllocWMHints();
++    if (wmhints) {
++        wmhints->input = True;
++        wmhints->flags = InputHint;
++        XSetWMHints(display, w, wmhints);
++        XFree(wmhints);
++    }
++
++    XSelectInput(display, w,
++                 (FocusChangeMask | EnterWindowMask | LeaveWindowMask |
++                 ExposureMask | ButtonPressMask | ButtonReleaseMask |
++                 PointerMotionMask | KeyPressMask | KeyReleaseMask |
++                 PropertyChangeMask | StructureNotifyMask |
++                 KeymapStateMask | fevent));
++
++    XFlush(display);
++
+     if (SetupWindowData(_this, window, w, SDL_FALSE) < 0) {
+         return -1;
+     }
+@@ -862,7 +891,7 @@
+     SDL_DisplayData *displaydata =
+         (SDL_DisplayData *) SDL_GetDisplayForWindow(window)->driverdata;
+     Display *display = data->videodata->display;
+- 
++
+     XIconifyWindow(display, data->xwindow, displaydata->screen);
+     XFlush(display);
+ }
