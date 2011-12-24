@@ -76,13 +76,13 @@ namespace Mezzanine
         /// @brief SDL uses this to filter events it presents to applications
         /// @details This is used used to filter out SQL_quit messages, and generate appropriate messages for the game developer to use.
         /// This will always drop quit events, and store that information for later use.
+        /// \n
+        /// If this is passed an event that points to 0 it will function as a method to tell us if an SDL_QUIT message has been thrown
+        /// this will return 2 if it has not seen an SDL_quit, and a 4 if it has
         /// @param event This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages
         /// @param userdata Nothing, a dummy argument that could be used by SDL
         /// @warning Do not use this. It can only cause problems. This is for SDL, the user input subsystem, to filter certain events.
         /// @return This will always return either 0 or 1 to SDL. 0 if it should drop the event, which it does to all SDL_quit events, 1 if the event should be allowed, which it does to all events which are not SDL_quit events. If a null pointer was passed, then this will return 4 if it dropped an SDL_Quit, and 2 if it has not droppped an SDL_quit.
-        //int MezzSDLFilter(void *userdata, const SDL_Event *event,  );
-        //If this is passed an event that points to 0 it will function as a method to tell us if an SDL_QUIT message has been thrown
-        //this will return 2 if it has not seen an SDL_quit, and a 4 if it has
         int MezzSDLFilter(void *userdata, SDL_Event *event )
         {
             //We need to protect this thing with a Mutex, SDL 1.3 says this filter could run in different thread.
