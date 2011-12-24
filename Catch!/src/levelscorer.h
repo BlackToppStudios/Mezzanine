@@ -8,15 +8,24 @@ using namespace Mezzanine;
 
 class CatchApp;
 
+struct ScoreAreaCache
+{
+    ScoreArea* Bonus;
+    ScoreArea* Normal;
+    ScoreAreaCache(ScoreArea* bonus,ScoreArea* normal) : Bonus(bonus), Normal(normal) {};
+    ScoreAreaCache() : Bonus(NULL), Normal(NULL) {};
+};
+
 class LevelScorer
 {
     protected:
         World* TheWorld;
         CatchApp* GameApp;
         std::map<String,Whole> ItemScoreValues;
-        std::map<String,Whole> ShopCostValues;
         std::vector<ScoreArea*> ScoreAreas;
         std::vector<ScoreArea*> BonusScoreAreas;
+        std::map<ActorBase*,ScoreAreaCache> ScoreCache;
+        Whole GetItemScoreValue(ActorBase* Item);
     public:
         LevelScorer();
         ~LevelScorer();
@@ -24,10 +33,12 @@ class LevelScorer
         void CalculateFinalScore(Whole& FinalScore);
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Special Conditions
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Configuration
         void RegisterScoreArea(ScoreArea* Score);
-        void PopulateScoreValues(xml::Node& ItemScoreNode);
-        void PopulateShopValues(xml::Node& ItemValueNode);
+        void SetThrowableScore(const String& TypeName, const Whole& Score);
         void ResetLevelData();
         void ResetAllData();
 };//LevelScorer

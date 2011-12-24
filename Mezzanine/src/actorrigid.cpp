@@ -161,7 +161,7 @@ namespace Mezzanine
             // Does this sticky constraint already exist for this pair?
             for( Whole X = 0 ; X < StickyD->StickyConstraints.size() ; ++X )
             {
-                SliderConstraint* StickyCon = StickyD->StickyConstraints.at(X);
+                StickyConstraint* StickyCon = StickyD->StickyConstraints.at(X);
                 if( Col->PairsMatch(StickyCon->GetActorA(),StickyCon->GetActorB()) )
                     return;
             }

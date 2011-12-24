@@ -578,7 +578,7 @@ void LevelLoader::LoadJustice()
     ActorRigid* JusticeScale = new ActorRigid(ScaleMass,"JusticeScale","scale.mesh",JusticeGroup);
     JusticeScale->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Scale"));
     JusticeScale->SetLocation(Vector3(0,37.4,0));
-    JusticeScale->GetPhysicsSettings()->SetDamping(0.0,0.75);
+    JusticeScale->GetPhysicsSettings()->SetDamping(0.5,0.80);
     ActMan->AddActor(JusticeScale);
 
     // Create the union objects

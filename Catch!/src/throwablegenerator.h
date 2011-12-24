@@ -7,6 +7,7 @@ using namespace Mezzanine;
 
 struct ThrowableData
 {
+    Whole ScoreValue;
     Whole ThrowableCount;
     Real Mass;
     Real Friction;
