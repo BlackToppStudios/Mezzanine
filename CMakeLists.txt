@@ -194,8 +194,10 @@ endif(${WIN32})
 # SDL related values
 
 #Find the SDL source
+message ( STATUS "${PROJECT_NAME} - Looking for SDL")
 file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/sdlsrc/SDLBuild ${ProjectRootDir}Mezzanine/SDLBuild ${ProjectRootDir}../*/SDLBuild ${ProjectRootDir}../*/Mezzanine/SDLBuild)
 foreach(Current ${PossibleMatches})
+	message ( STATUS "${PROJECT_NAME} - Checking for SDL in ${Current}")
 	if(IS_DIRECTORY ${Current})
 		set(SDLTempDir ${Current})
 	else(IS_DIRECTORY ${Current})
@@ -241,10 +243,12 @@ set(OgrePluginRenderGL RenderSystem_GL${OgresD}${LibSuffix} )
 set(OgrePluginParticle Plugin_ParticleFX${OgresD}${LibSuffix} )
 
 #Find the Ogre source
+message ( STATUS "${PROJECT_NAME} - Looking for Ogre Source/Headers")
 if(${WIN32})
 else(${WIN32})
 	file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/ogresrc/OgreBuild ${ProjectRootDir}Mezzanine/OgreBuild ${ProjectRootDir}../*/OgreBuild ${ProjectRootDir}../*/Mezzanine/OgreBuild)
 	foreach(Current ${PossibleMatches})
+		message ( STATUS "${PROJECT_NAME} - Checking for Ogre headers in ${Current}")
 		if(IS_DIRECTORY ${Current})
 			set(OgreTempDir ${Current})
 		else(IS_DIRECTORY ${Current})
