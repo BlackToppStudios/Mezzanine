@@ -65,7 +65,7 @@ namespace Mezzanine
             /// and use this information to more safely cast to the correct manager if needed.
             enum ManagerTypeName
             {
-                ActorManager,
+                ActorManager    = 1,
                 AudioManager,
                 CameraManager,
                 CollisionShapeManager,
@@ -80,7 +80,7 @@ namespace Mezzanine
                 TerrainManager,
                 TimerManager,
                 UIManager,
-                UserCreated,         /// This is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
+                UserCreated     = 512,         /// This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
             };
 
             /// @brief This makes working with Callback function pointer a bit easier.
@@ -187,8 +187,8 @@ namespace Mezzanine
             /// @return This returns a short int that represents the priority of the manager. Lower is executed first.
             virtual void SetPriority( short int Priority_ );
 
-            /// @brief This Allows any manager to be sent to a stream. Primarily used for logging
-            /// @return This returns a std::ostream& that contains the name, and maybe some data for the the streammed manager.
+            /// @brief This Allows any manager name to be sent to a stream. Primarily used for logging
+            /// @return This returns a std::string that contains the name.
             std::string GetTypeName();
 
         protected:
