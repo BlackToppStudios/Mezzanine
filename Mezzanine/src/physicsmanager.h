@@ -53,10 +53,8 @@ class btGhostPairCallback;
 class btBroadphaseInterface;
 class btCollisionConfiguration;
 
-#include <map>
-#include <vector>
-
 #include "constraint.h"
+#include "datatypes.h"
 #include "managerbase.h"
 #include "singleton.h"
 #include "objectpair.h"

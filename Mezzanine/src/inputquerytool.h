@@ -45,8 +45,6 @@
 #include "metacode.h"
 #include "vector2.h"
 
-#include <vector>
-
 namespace Mezzanine
 {
     class World;

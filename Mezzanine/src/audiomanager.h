@@ -45,10 +45,6 @@
 #include "managerbase.h"
 #include "singleton.h"
 
-#include <vector>
-#include <map>
-#include <sstream>
-
 namespace cAudio
 {
     class IAudioManager;

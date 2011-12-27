@@ -40,10 +40,9 @@
 #ifndef _managerbase_h
 #define _managerbase_h
 
+#include "datatypes.h"
 #include "crossplatformexport.h"
 #include "worldgetset.h"
-
-#include <iostream>
 
 namespace Mezzanine
 {
@@ -209,9 +208,6 @@ namespace Mezzanine
             /// priority 0.
             short int Priority;
     };// /ManagerBase
-
-    //@brief The << operator required to enable logging of Manager's to get types
-    //std::ostream& operator << (std::ostream& stream, const ManagerBase& ManagerToGuess);
 
 } // /Mezz
 

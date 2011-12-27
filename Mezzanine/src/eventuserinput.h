@@ -68,10 +68,6 @@
     slouken@libsdl.org
 */
 
-#include <vector>
-
-using namespace std;
-
 #include "crossplatformexport.h"
 #include "eventbase.h"
 #include "datatypes.h"
@@ -108,25 +104,25 @@ namespace Mezzanine
             /// @brief Gets the MetaCode from RawInput Data
             /// @param RawEvent_ The event that contains only Mouse Motion data
             /// @return a vector of metacode that represents button presses
-            vector<MetaCode> AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
+            std::vector<MetaCode> AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
 
             /// @internal
             /// @brief Gets the MetaCode from RawInput Data
             /// @param RawEvent_ The event that contains only Joystick Motion data
             /// @return a vector of metacode that represents button presses
-            vector<MetaCode> AddCodesFromSDLJoyStickMotion(const RawEvent &RawEvent_);
+            std::vector<MetaCode> AddCodesFromSDLJoyStickMotion(const RawEvent &RawEvent_);
 
             /// @internal
             /// @brief Gets the MetaCode from RawInput Data
             /// @param RawEvent_ The event that contains only Joystick Hat data
             /// @return a vector of metacode that represents hat presses
-            vector<MetaCode> AddCodeFromSDLJoyStickHat(const RawEvent &RawEvent_);
+            std::vector<MetaCode> AddCodeFromSDLJoyStickHat(const RawEvent &RawEvent_);
 
             /// @internal
             /// @brief Gets the MetaCode from RawInput Data
             /// @param RawEvent_ The event that contains only Joystick Ball data
             /// @return a vector of metacode that represents ball motions
-            vector<MetaCode> AddCodeFromSDLJoyStickBall(const RawEvent &RawEvent_);
+            std::vector<MetaCode> AddCodeFromSDLJoyStickBall(const RawEvent &RawEvent_);
 
             /// @internal
             /// @brief Gets the MetaCode from RawInput Data

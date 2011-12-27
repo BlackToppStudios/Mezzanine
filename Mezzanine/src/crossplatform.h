@@ -58,7 +58,7 @@
 /// All of these may perform/behave slightly differently.
 ///////////////////////////////////////////////////////////////////////////////
 
-/// @todo Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this.
+/// @todo Make main page in documentation with wiki link and listing of required steps (build target and OS define), and dependencies required to build this.
 
 //Unremark one of these when not compiling with code::blocks or cmake
 //#define LINUX
@@ -71,9 +71,6 @@
 // Includes
 #include "crossplatformexport.h"
 #include "datatypes.h"
-
-#include <string>
-#include <set>
 
 using namespace std;
 

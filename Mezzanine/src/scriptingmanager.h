@@ -53,18 +53,17 @@ namespace Mezzanine
     class MEZZ_LIB ScriptingManager : public ManagerBase //, public Singleton<ScriptingManager>
     {
         protected:
-            // A vector of scripts
 
-            // A vector of script pointers to run each main loop iteration.
         public:
             /// @brief Class constructor.
-            /// @details Sets Priority to 250
+            /// @details Sets Priority to 350
             ScriptingManager();
 
             /// @brief Class destructor.
             virtual ~ScriptingManager();
 
-
+            ///////////////////////////////////////////////////////////////////////////////
+            // Scripting Manager Core Functionality
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase
@@ -78,5 +77,7 @@ namespace Mezzanine
             virtual ManagerBase::ManagerTypeName GetType() const;
     }; //ScriptingManager
 }//Mezzanine
+
+// possible languages Lua, Tcl, squirrel, Angelscript
 
 #endif // \_scriptingmanager_h

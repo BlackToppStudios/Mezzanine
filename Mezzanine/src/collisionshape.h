@@ -40,8 +40,6 @@
 #ifndef _collisionshape_h
 #define _collisionshape_h
 
-#include <memory>
-
 #include "enumerations.h"
 #include "serialization.h"
 #include "transform.h"

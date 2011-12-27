@@ -43,10 +43,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// @file mezzanine.h
 /// @brief A single file that includes all of the Mezzanine engine
-/// @details This file exists solely to make it easier for others to include
+/// @details This file exists primarily to make it easier for engine users to include
 /// parts of the Mezzanine engine in their project with out needing to know or
 /// care about the internals of our project.
+/// \n
+/// This file is also u
 ///////////////////////////////////////////////////////////////////////////////
+
+// Tell SWIG to create a module that scripting languages can use called "mezzanine"
+#ifdef SWIG
+%module mezzanine
+#endif
 
                                         // The remarks in Column 41 are use to help with serializing and deserializing
 

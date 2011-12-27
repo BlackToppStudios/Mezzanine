@@ -44,10 +44,22 @@
 ///////////////////////////////////////
 #include "crossplatformexport.h"
 
-#include <string>
-#include <sstream>
-#include <vector>
-#include <map>
+// Standard Headers are not included in SWIG preprocessing
+// Most std includes are centralized here to make modifying this list as simple as possible. Other standard includes that
+// are not included here are in places that they are required and conditionally may not be compiled in. For example,
+// Serialization requires <memory> and <ostream> and can optionally be compiled as part of Mezz_XML.
+#ifndef SWIG
+    #include <algorithm>
+    #include <exception>
+    #include <istream>
+    #include <list>
+    #include <map>
+    #include <string>
+    #include <sstream>
+    #include <set>
+    #include <vector>
+    #include <utility>
+#endif
 
 /// @internal
 /// @brief Forward declaration for SDL compatibilty
@@ -145,7 +157,6 @@ namespace Mezzanine
     /// @brief This is an internal datatype use to communicate with the User input Subsystem
     /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details
     typedef SDL_Event RawEvent;
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // Simple conversion functions

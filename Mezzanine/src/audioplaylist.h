@@ -41,7 +41,6 @@
 #define _audioplsylist_h
 
 #include "datatypes.h"
-#include <list>
 
 namespace Mezzanine
 {

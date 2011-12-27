@@ -46,9 +46,6 @@
 #include "transform.h"
 #include "vector3.h"
 
-#include <algorithm>
-#include <vector>
-
 namespace Mezzanine
 {
     class ActorRigid;

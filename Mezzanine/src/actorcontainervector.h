@@ -42,9 +42,8 @@
 
 #include "actorcontainerbase.h"
 #include "crossplatformexport.h"
+#include "datatypes.h"
 #include "managerbase.h"
-
-#include <vector>
 
 namespace Ogre
 {

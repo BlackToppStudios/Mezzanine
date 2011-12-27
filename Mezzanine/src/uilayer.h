@@ -45,8 +45,6 @@
 #include "uirenderablerect.h"
 #include "uienumerations.h"
 
-#include <map>
-
 namespace Gorilla
 {
     class Screen;

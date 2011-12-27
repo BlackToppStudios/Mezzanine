@@ -44,11 +44,6 @@
 //There will be an instance of this class in the world.
 ///////////////////////////////////////
 
-#include <list>
-#include <queue>
-#include <vector>
-#include <utility>
-
 using namespace std;
 
 #include "eventbase.h"

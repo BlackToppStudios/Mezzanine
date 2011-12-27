@@ -41,7 +41,6 @@
 #define _audiomusicplayer_h
 
 #include "datatypes.h"
-#include <list>
 
 namespace Mezzanine
 {

@@ -40,8 +40,7 @@
 #ifndef EVENTBASE_H
 #define EVENTBASE_H
 
-#include "crossplatformexport.h"
-#include <ostream>
+#include "datatypes.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // This is a parent class that all events must derive from. This exists solely

@@ -46,9 +46,6 @@
 #include "singleton.h"
 #include "resourceinputstream.h"
 
-#include <istream>
-#include <vector>
-
 class btBulletWorldImporter;
 
 namespace Ogre

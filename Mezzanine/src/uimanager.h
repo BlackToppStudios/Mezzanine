@@ -46,8 +46,6 @@
 #include "uirenderablerect.h"
 #include "metacode.h"
 
-#include <map>
-
 namespace Gorilla
 {
     class Silverback;

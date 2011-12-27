@@ -261,9 +261,7 @@ namespace Mezzanine
     class PhysicsConstructionInfo;
     class NetworkManager;
 }
-#include <list>
-#include <string>
-#include <sstream>
+
 
 using namespace std;
 

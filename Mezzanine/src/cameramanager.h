@@ -40,13 +40,12 @@
 #ifndef _CameraManager_h
 #define _CameraManager_h
 
+#include "datatypes.h"
 #include "managerbase.h"
 #include "singleton.h"
 #include "quaternion.h"
 #include "ray.h"
 #include "vector3.h"
-
-#include <map>
 
 namespace Ogre
 {
