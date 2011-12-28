@@ -14,7 +14,7 @@ This is the actor class for Rigid Objects.
 Inheritance diagram for Mezzanine::ActorRigid:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{classMezzanine_1_1ActorRigid}
+\includegraphics[height=4.000000cm]{classMezzanine_1_1ActorRigid}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
@@ -124,7 +124,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 77 of file actorrigid.cpp.
+Definition at line 78 of file actorrigid.cpp.
 
 
 
@@ -141,11 +141,17 @@ Definition at line 77 of file actorrigid.cpp.
 \label{classMezzanine_1_1ActorRigid_a68827280395bc3b9e0266710ec44247d}
  
 
+\begin{Desc}
+\item[\hyperlink{todo__todo000001}{Todo}]Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies. \end{Desc}
+
+
+
+
 Reimplemented from \hyperlink{classMezzanine_1_1WorldObject_aacf9e82bfb2f25ee309a1871a2032030}{Mezzanine::WorldObject}.
 
 
 
-Definition at line 140 of file actorrigid.cpp.
+Definition at line 143 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a714d836a18ddb4de65bec5afdfdbb81c}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!\_\-Update@{\_\-Update}}
@@ -156,13 +162,13 @@ Definition at line 140 of file actorrigid.cpp.
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1ActorRigid_a714d836a18ddb4de65bec5afdfdbb81c}
-Utility function for altering or checking the actor every frame.  
+Utility function for altering or checking the \hyperlink{classMezzanine_1_1World}{World} Object every frame.  
 
 Implements \hyperlink{classMezzanine_1_1ActorBase_a8f5a36a6981f1249dbabab318531afd0}{Mezzanine::ActorBase}.
 
 
 
-Definition at line 137 of file actorrigid.cpp.
+Definition at line 140 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a5934a8751b9ec19dd2cd9327ce651d59}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!AddToWorld@{AddToWorld}}
@@ -179,7 +185,7 @@ Implements \hyperlink{classMezzanine_1_1ActorBase_abe739a46f248a7ba257becfb560d9
 
 
 
-Definition at line 118 of file actorrigid.cpp.
+Definition at line 121 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a44a1c393e69456fb7fa79affe1684153}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
@@ -202,7 +208,7 @@ Creates a rigid object to be placed in the physics world later. \par
 \end{DoxyParams}
 
 
-Definition at line 83 of file actorrigid.cpp.
+Definition at line 86 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_ac2b338b867bfd7d2e322a834e308a957}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetAngularMovementFactor@{GetAngularMovementFactor}}
@@ -222,7 +228,7 @@ Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the factor
 \end{DoxyReturn}
 
 
-Definition at line 112 of file actorrigid.cpp.
+Definition at line 115 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_aec84029880e2cebf3cc154ada813a372}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetBulletObject@{GetBulletObject}}
@@ -242,7 +248,7 @@ Currently this returns a pointer to a btRigidBody.
 \end{DoxyReturn}
 
 
-Definition at line 175 of file actorrigid.cpp.
+Definition at line 215 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_ac2577cc9bff31ad343d5e179acc95257}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetLinearMovementFactor@{GetLinearMovementFactor}}
@@ -262,7 +268,7 @@ Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the factor
 \end{DoxyReturn}
 
 
-Definition at line 106 of file actorrigid.cpp.
+Definition at line 109 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a6ed901638c88e4b9e09605152e11d56e}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetPhysicsSettings@{GetPhysicsSettings}}
@@ -282,11 +288,11 @@ Returns a pointer to the physics settings class in use by this actor.
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{classMezzanine_1_1ActorBase_a08c975572f1ab5cde651e1a6e5d9bb6a}{Mezzanine::ActorBase}.
+Reimplemented from \hyperlink{classMezzanine_1_1WorldObject_ad845988a6ff31d0e7cea45d6a45bd6c1}{Mezzanine::WorldObject}.
 
 
 
-Definition at line 100 of file actorrigid.cpp.
+Definition at line 103 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a1369a0e640a8f0c5af9e2c2efc715121}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetType@{GetType}}
@@ -297,10 +303,10 @@ Definition at line 100 of file actorrigid.cpp.
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1ActorRigid_a1369a0e640a8f0c5af9e2c2efc715121}
-Gets the type of the terrain instance. 
+Gets the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance. 
 
 \begin{DoxyReturn}{Returns}
-Returns the type of the terrain instance 
+Returns the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance 
 \end{DoxyReturn}
  
 
@@ -308,7 +314,7 @@ Implements \hyperlink{classMezzanine_1_1ActorBase_a6e9cce7e660471cc0f9b9df019663
 
 
 
-Definition at line 115 of file actorrigid.cpp.
+Definition at line 118 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a5017e2809d6dc2516b3675748ce80b2e}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!RemoveFromWorld@{RemoveFromWorld}}
@@ -325,7 +331,7 @@ Implements \hyperlink{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8d8
 
 
 
-Definition at line 124 of file actorrigid.cpp.
+Definition at line 127 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_ab68facc031fc3212f4169d2b93a72378}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!SetAngularMovementFactor@{SetAngularMovementFactor}}
@@ -347,7 +353,7 @@ This function can lock or limit any and all axes you define. 0.0 means no angula
 \end{DoxyParams}
 
 
-Definition at line 109 of file actorrigid.cpp.
+Definition at line 112 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a0dc1820d0fa2d1128b03149da025f40f}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!SetLinearMovementFactor@{SetLinearMovementFactor}}
@@ -369,7 +375,7 @@ This function can lock or limit any and all axes you define. 0.0 means no linear
 \end{DoxyParams}
 
 
-Definition at line 103 of file actorrigid.cpp.
+Definition at line 106 of file actorrigid.cpp.
 
 
 

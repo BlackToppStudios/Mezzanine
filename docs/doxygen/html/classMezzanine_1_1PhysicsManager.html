@@ -93,13 +93,13 @@ Inheritance diagram for Mezzanine::PhysicsManager:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a930a032df1bf01b9f93ba4e815a433c2"></a><!-- doxytag: member="Mezzanine::PhysicsManager::CollisionIterator" ref="a930a032df1bf01b9f93ba4e815a433c2" args="" -->
-typedef std::map&lt; <a class="el" href="classMezzanine_1_1ActorPair.html">ActorPair</a>, <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1Collision.html">Collision</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a930a032df1bf01b9f93ba4e815a433c2">CollisionIterator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d2fa60cdfdc7997a09cb8a3434371af"></a><!-- doxytag: member="Mezzanine::PhysicsManager::CollisionIterator" ref="a8d2fa60cdfdc7997a09cb8a3434371af" args="" -->
+typedef std::map&lt; <a class="el" href="classMezzanine_1_1ObjectPair.html">ObjectPair</a>, <br class="typebreak"/>
+<a class="el" href="classMezzanine_1_1Collision.html">Collision</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a8d2fa60cdfdc7997a09cb8a3434371af">CollisionIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Collisions easier. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62c722b08b8fa0f015fe2b375c452dde"></a><!-- doxytag: member="Mezzanine::PhysicsManager::ConstCollisionIterator" ref="a62c722b08b8fa0f015fe2b375c452dde" args="" -->
-typedef std::map&lt; <a class="el" href="classMezzanine_1_1ActorPair.html">ActorPair</a>, <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1Collision.html">Collision</a> * &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a62c722b08b8fa0f015fe2b375c452dde">ConstCollisionIterator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a667151fe9525d7f3f174ad55a499065f"></a><!-- doxytag: member="Mezzanine::PhysicsManager::ConstCollisionIterator" ref="a667151fe9525d7f3f174ad55a499065f" args="" -->
+typedef std::map&lt; <a class="el" href="classMezzanine_1_1ObjectPair.html">ObjectPair</a>, <br class="typebreak"/>
+<a class="el" href="classMezzanine_1_1Collision.html">Collision</a> * &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a667151fe9525d7f3f174ad55a499065f">ConstCollisionIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Collisions easier, and avoid the risk of accidentally changing them. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -109,9 +109,9 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a constraint to the world.  <a href="#ae07ea8ae4877fcc3d0757e42d2726b65"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a4dfbe87e03c09b1fcce946c9b9271fa6">AddWorldTrigger</a> (<a class="el" href="classMezzanine_1_1WorldTrigger.html">WorldTrigger</a> *Trig)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a trigger to the world.  <a href="#a4dfbe87e03c09b1fcce946c9b9271fa6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a930a032df1bf01b9f93ba4e815a433c2">CollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a6633a616c8ff9739ec16d028d7ab5d27">BeginEntity</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a8d2fa60cdfdc7997a09cb8a3434371af">CollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a6633a616c8ff9739ec16d028d7ab5d27">BeginEntity</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an CollisionIterator to the first <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>.  <a href="#a6633a616c8ff9739ec16d028d7ab5d27"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a62c722b08b8fa0f015fe2b375c452dde">ConstCollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#af38a7946fe715ce9aee66cff478c4619">BeginEntity</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a667151fe9525d7f3f174ad55a499065f">ConstCollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#af38a7946fe715ce9aee66cff478c4619">BeginEntity</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstCollisionIterator to the first <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>.  <a href="#af38a7946fe715ce9aee66cff478c4619"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a82fc7833487bbc792a671b032cfd7a6b">ClearPhysicsMetaData</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all data relating to actors and other simulation objects from the physics world.  <a href="#a82fc7833487bbc792a671b032cfd7a6b"></a><br/></td></tr>
@@ -129,16 +129,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a9fffb77acb0644d31ea78de4e823c0a0">DoMainLoopItems</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;TimeElapsed)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This does all the work reuired for the main loop to process physics.  <a href="#a9fffb77acb0644d31ea78de4e823c0a0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a21df393f2356a20151fce997577e3d76">DoMainLoopItems</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a930a032df1bf01b9f93ba4e815a433c2">CollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a5c5f6e44ee8cb787bddf4b813a642bea">EndEntity</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a8d2fa60cdfdc7997a09cb8a3434371af">CollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a5c5f6e44ee8cb787bddf4b813a642bea">EndEntity</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a CollisionIterator to one past the last <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>.  <a href="#a5c5f6e44ee8cb787bddf4b813a642bea"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a62c722b08b8fa0f015fe2b375c452dde">ConstCollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#aadf3425aa56497b63229a092cf0f798c">EndEntity</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a667151fe9525d7f3f174ad55a499065f">ConstCollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#aadf3425aa56497b63229a092cf0f798c">EndEntity</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstCollisionIterator to one past the last <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>.  <a href="#aadf3425aa56497b63229a092cf0f798c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1AreaEffect.html">AreaEffect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a820856e1a0bad25203b86d6e53391f13">GetAreaEffect</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an Area Effect by name.  <a href="#a820856e1a0bad25203b86d6e53391f13"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1AreaEffect.html">AreaEffect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a648b109c3e2cf4436f492f5fce455878">GetAreaEffect</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an Area Effect by index.  <a href="#a648b109c3e2cf4436f492f5fce455878"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Collision.html">Collision</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a1beaefec6bea378a93ee40e0ef0f3f0a">GetCollision</a> (<a class="el" href="classMezzanine_1_1ActorPair.html">ActorPair</a> *Pair)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> by actor pair.  <a href="#a1beaefec6bea378a93ee40e0ef0f3f0a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Collision.html">Collision</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a101a1b5f5b5c6950ec37cdbc15527413">GetCollision</a> (<a class="el" href="classMezzanine_1_1ObjectPair.html">ObjectPair</a> *Pair)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> by object pair.  <a href="#a101a1b5f5b5c6950ec37cdbc15527413"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned short int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#aa9e127b310b017f72ca70fc12255ba97">GetCollisionAge</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> Age limit.  <a href="#aa9e127b310b017f72ca70fc12255ba97"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1TypedConstraint.html">TypedConstraint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a2b96309bee2a20bb5c05ceda44baff0c">GetConstraint</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
@@ -181,8 +181,8 @@ btSoftRigidDynamicsWorld *&#160;</td><td class="memItemRight" valign="bottom"><a
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an area effect from the world.  <a href="#afb424692ede644ccef8327aae1ea9674"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a7f36766f759962902d4af3b78b94e53e">RemoveCollision</a> (<a class="el" href="classMezzanine_1_1Collision.html">Collision</a> *Col)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an existing collision from the world.  <a href="#a7f36766f759962902d4af3b78b94e53e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a7180bd17285d6c37979e32c3cebc6230">RemoveCollisionsContainingActor</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all stored collisions that involve the specified actor.  <a href="#a7180bd17285d6c37979e32c3cebc6230"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#ade3423f416ddeeafcde5e89d6edcd221">RemoveCollisionsContainingObject</a> (<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *Object)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all stored collisions that involve the specified Object.  <a href="#ade3423f416ddeeafcde5e89d6edcd221"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a78713bb51e2d3247964647bc35f166f8">RemoveConstraint</a> (<a class="el" href="classMezzanine_1_1TypedConstraint.html">TypedConstraint</a> *Constraint)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a constraint from the world.  <a href="#a78713bb51e2d3247964647bc35f166f8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PhysicsManager.html#ab3d96f132ab95690c520348f986140b8">RemoveWorldTrigger</a> (<a class="el" href="classMezzanine_1_1WorldTrigger.html">WorldTrigger</a> *Trig)</td></tr>
@@ -216,7 +216,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <div class="textblock"><p>This is simply a place for storing all the Physics Related functions. </p>
 <p>This is a place for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00136">136</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00134">134</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="af734a8d307507e261995a838a0ad0dfb"></a><!-- doxytag: member="Mezzanine::PhysicsManager::PhysicsManager" ref="af734a8d307507e261995a838a0ad0dfb" args="()" -->
 <div class="memitem">
@@ -235,7 +235,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Simple Constructor. </p>
 <p>This constructor will assign some sane default values and will create a physics world that can be used immediately </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00430">430</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00422">422</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -263,7 +263,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00440">440</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00432">432</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -284,7 +284,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Deconstructor. </p>
 <p>This deletes all those crazy pointers that Bullet, the physics subsystem need. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00448">448</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00440">440</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -313,7 +313,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00680">680</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00689">689</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -352,7 +352,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00641">641</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00650">650</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -380,7 +380,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00733">733</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00740">740</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -389,7 +389,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a62c722b08b8fa0f015fe2b375c452dde">ConstCollisionIterator</a> Mezzanine::PhysicsManager::BeginEntity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a667151fe9525d7f3f174ad55a499065f">ConstCollisionIterator</a> Mezzanine::PhysicsManager::BeginEntity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -408,7 +408,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a930a032df1bf01b9f93ba4e815a433c2">CollisionIterator</a> Mezzanine::PhysicsManager::BeginEntity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a8d2fa60cdfdc7997a09cb8a3434371af">CollisionIterator</a> Mezzanine::PhysicsManager::BeginEntity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -439,7 +439,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Clears all data relating to actors and other simulation objects from the physics world. </p>
 <p>This is best used with simulation cleanup. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00924">924</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00929">929</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -460,7 +460,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Destroys all constraints currently in the manager. </p>
 <p>In practice it is cleaner to remove constraints from the world before removing any constrained actors. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00670">670</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00679">679</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -487,7 +487,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00954">954</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00959">959</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -509,7 +509,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
  
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a4ee29e4baf6c4b9a3bfec1b2258d5cd2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01078">1078</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01083">1083</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -518,7 +518,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a62c722b08b8fa0f015fe2b375c452dde">ConstCollisionIterator</a> Mezzanine::PhysicsManager::EndEntity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a667151fe9525d7f3f174ad55a499065f">ConstCollisionIterator</a> Mezzanine::PhysicsManager::EndEntity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -537,7 +537,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a930a032df1bf01b9f93ba4e815a433c2">CollisionIterator</a> Mezzanine::PhysicsManager::EndEntity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1PhysicsManager.html#a8d2fa60cdfdc7997a09cb8a3434371af">CollisionIterator</a> Mezzanine::PhysicsManager::EndEntity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -575,7 +575,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the named area effect, or NULL if it doesn't exist. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00688">688</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00695">695</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -603,18 +603,18 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the area effect at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00700">700</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00707">707</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1beaefec6bea378a93ee40e0ef0f3f0a"></a><!-- doxytag: member="Mezzanine::PhysicsManager::GetCollision" ref="a1beaefec6bea378a93ee40e0ef0f3f0a" args="(ActorPair *Pair)" -->
+<a class="anchor" id="a101a1b5f5b5c6950ec37cdbc15527413"></a><!-- doxytag: member="Mezzanine::PhysicsManager::GetCollision" ref="a101a1b5f5b5c6950ec37cdbc15527413" args="(ObjectPair *Pair)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1Collision.html">Collision</a> * Mezzanine::PhysicsManager::GetCollision </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1ActorPair.html">ActorPair</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1ObjectPair.html">ObjectPair</a> *&#160;</td>
           <td class="paramname"><em>Pair</em></td><td>)</td>
           <td></td>
         </tr>
@@ -622,16 +622,16 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 </div>
 <div class="memdoc">
 
-<p>Gets a <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> by actor pair. </p>
+<p>Gets a <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> by object pair. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Pair</td><td>A pair of actors. </td></tr>
+    <tr><td class="paramname">Pair</td><td>A pair of objects. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> if a collision for the provided pair exists, NULL otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00779">779</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00786">786</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -653,7 +653,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Gets the CollisionAge used in filtering out collision contacts used to make events. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This function will return the number of physics ticks the collision has to have existed to be used. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00841">841</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00846">846</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -681,7 +681,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the specified constraint. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00647">647</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00656">656</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -703,7 +703,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>lets you check if Physics Debug Drawing is enabled or not. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00868">868</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00873">873</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -725,7 +725,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>This will tell you how many frames worth of previous in game events are being drawn. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount . </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00892">892</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00897">897</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -747,7 +747,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Gets the currently set world gravity. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the currently set world gravity. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00615">615</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00624">624</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -769,7 +769,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Gets the <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> Impulse used in filtering out collision contacts used to make events. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This function will return the lower limit of the allowed force of the collision to generate an event. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00846">846</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00851">851</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -790,7 +790,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Gets the number of Area Effects currently in the world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a whole representing the number of Area Effects in the world. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00705">705</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00712">712</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -811,7 +811,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Gets the number of Collisions currently in the world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a whole representing the number of Collisions in the world. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00786">786</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00793">793</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -832,7 +832,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Gets the number of constraints currently in the world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a whole representing the number of constraints in the world. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00652">652</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00661">661</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -853,7 +853,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Gets the number of triggers currently in the world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a whole representing the number of triggers in the world. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00755">755</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00762">762</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -875,7 +875,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Gets the currently set soft body world gravity. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the currently set soft body world gravity. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00626">626</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00635">635</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -898,7 +898,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
  
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a6fbfe9e847156915b195b6de1cf76973">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01083">1083</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01088">1088</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -926,7 +926,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the named trigger, or NULL if it doesn't exist. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00738">738</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00745">745</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -954,7 +954,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the trigger at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00750">750</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00757">757</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -978,7 +978,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
  
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a864e3cac11928a602c1db28fa2d52ee2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01073">1073</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01078">1078</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1005,7 +1005,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00600">600</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00609">609</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1033,7 +1033,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00710">710</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00717">717</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1061,34 +1061,34 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00791">791</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00798">798</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7180bd17285d6c37979e32c3cebc6230"></a><!-- doxytag: member="Mezzanine::PhysicsManager::RemoveCollisionsContainingActor" ref="a7180bd17285d6c37979e32c3cebc6230" args="(ActorBase *Actor)" -->
+<a class="anchor" id="ade3423f416ddeeafcde5e89d6edcd221"></a><!-- doxytag: member="Mezzanine::PhysicsManager::RemoveCollisionsContainingObject" ref="ade3423f416ddeeafcde5e89d6edcd221" args="(WorldObject *Object)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::PhysicsManager::RemoveCollisionsContainingActor </td>
+          <td class="memname">void Mezzanine::PhysicsManager::RemoveCollisionsContainingObject </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *&#160;</td>
-          <td class="paramname"><em>Actor</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td>
+          <td class="paramname"><em>Object</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Removes all stored collisions that involve the specified actor. </p>
+<p>Removes all stored collisions that involve the specified Object. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Actor</td><td>The actor which will have all of it's collisions removed. </td></tr>
+    <tr><td class="paramname">Object</td><td>The Object which will have all of it's collisions removed. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00800">800</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00807">807</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1116,7 +1116,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00657">657</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00666">666</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1144,7 +1144,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00760">760</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00767">767</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1172,7 +1172,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00900">900</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00905">905</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1212,7 +1212,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00835">835</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00840">840</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1240,7 +1240,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00852">852</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00857">857</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1268,7 +1268,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00881">881</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00886">886</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1296,7 +1296,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00610">610</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00619">619</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1335,7 +1335,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00632">632</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00641">641</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1363,7 +1363,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00949">949</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00954">954</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1391,7 +1391,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00621">621</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00630">630</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1412,7 +1412,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 <p>Gets Whether or not the simulation is currently paused. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns whether or not the simulation is paused. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00605">605</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00614">614</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1436,6 +1436,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>CollisionDispatcher<
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

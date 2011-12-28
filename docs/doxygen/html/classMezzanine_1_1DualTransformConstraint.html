@@ -82,9 +82,10 @@ Inheritance diagram for Mezzanine::DualTransformConstraint:</div>
  <div class="center">
   <img src="classMezzanine_1_1DualTransformConstraint.png" usemap="#Mezzanine::DualTransformConstraint_map" alt=""/>
   <map id="Mezzanine::DualTransformConstraint_map" name="Mezzanine::DualTransformConstraint_map">
-<area href="classMezzanine_1_1TypedConstraint.html" alt="Mezzanine::TypedConstraint" shape="rect" coords="255,0,500,24"/>
+<area href="classMezzanine_1_1TypedConstraint.html" alt="Mezzanine::TypedConstraint" shape="rect" coords="382,0,627,24"/>
 <area href="classMezzanine_1_1Generic6DofConstraint.html" alt="Mezzanine::Generic6DofConstraint" shape="rect" coords="127,112,372,136"/>
 <area href="classMezzanine_1_1HingeConstraint.html" alt="Mezzanine::HingeConstraint" shape="rect" coords="382,112,627,136"/>
+<area href="classMezzanine_1_1SliderConstraint.html" alt="Mezzanine::SliderConstraint" shape="rect" coords="637,112,882,136"/>
 <area href="classMezzanine_1_1Generic6DofSpringConstraint.html" alt="Mezzanine::Generic6DofSpringConstraint" shape="rect" coords="0,168,245,192"/>
 <area href="classMezzanine_1_1UniversalJointConstraint.html" alt="Mezzanine::UniversalJointConstraint" shape="rect" coords="255,168,500,192"/>
 <area href="classMezzanine_1_1Hinge2Constraint.html" alt="Mezzanine::Hinge2Constraint" shape="rect" coords="0,224,245,248"/>
@@ -126,7 +127,7 @@ Public Member Functions</h2></td></tr>
  <br/>
  Any deriving class must implement every thing from <a class="el" href="classMezzanine_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a> and the four set/get <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> function. It is expected that more derived classes will implement the Set/Get Pivot/Rotation Functino in a more efficient Manner if a more efficient way exists. The non-transform get/set function are implmented in terms of the get/set transform function extra copies of values and extra reading/writing may occur if the compiler weakly optimizes. Of course, implementing more functions could slow down the software if it no longer fits in CPU caches. As always benchmark if this is something that may be critically slowing you down. </p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00325">325</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00322">322</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ad79b92cb1faeba6e7ba7123e02d86dc1"></a><!-- doxytag: member="Mezzanine::DualTransformConstraint::GetPivotALocation" ref="ad79b92cb1faeba6e7ba7123e02d86dc1" args="() const " -->
 <div class="memitem">
@@ -147,9 +148,9 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TypedConstraint.html#af785319e62e274656f180ab80f5f8dd9">Mezzanine::TypedConstraint</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a180f26186e0ddd58c9c0746897155eaf">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a74f1b8d8de18ab991d2f42c7141eedc7">Mezzanine::HingeConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a180f26186e0ddd58c9c0746897155eaf">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a74f1b8d8de18ab991d2f42c7141eedc7">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#aab32a4c00eda5369c8188cff854418bd">Mezzanine::SliderConstraint</a>.</p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00353">353</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00350">350</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -170,9 +171,9 @@ Public Member Functions</h2></td></tr>
 <p>Get the relative rotation for ActorA. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> that has the rotation </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a517388fdf36423ed0550ec19089955b9">Mezzanine::Generic6DofConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a517388fdf36423ed0550ec19089955b9">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#ac53730c289d355e7ed426a9f4b28d6b5">Mezzanine::SliderConstraint</a>.</p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00372">372</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00369">369</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -193,7 +194,7 @@ Public Member Functions</h2></td></tr>
 <p>Get the current Rotation and Location of Actor A. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a> </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#adac17da02ce3ecacf583515a66576533">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a208687c856410bf70f068ddf8c8f9161">Mezzanine::HingeConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#adac17da02ce3ecacf583515a66576533">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a208687c856410bf70f068ddf8c8f9161">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#ad87313a0848e2523b4157a07b0a65d23">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -216,9 +217,9 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TypedConstraint.html#a2c0984d3211b30756c7ec5263c99b014">Mezzanine::TypedConstraint</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a2b7344ab150f2f6dd898b6cbcd150d6e">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a87b14b3cbf5241aeba723226661764e6">Mezzanine::HingeConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a2b7344ab150f2f6dd898b6cbcd150d6e">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a87b14b3cbf5241aeba723226661764e6">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#af97a455a53d7572351f6ae725bb8e31b">Mezzanine::SliderConstraint</a>.</p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00357">357</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00354">354</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -239,9 +240,9 @@ Public Member Functions</h2></td></tr>
 <p>Get the relative rotation for ActorB. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> that has the rotation </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#ab3979edc1d5f3bfce878de009c18494d">Mezzanine::Generic6DofConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#ab3979edc1d5f3bfce878de009c18494d">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a4550412c47b611ae3238db1adbff20d9">Mezzanine::SliderConstraint</a>.</p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00376">376</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00373">373</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +263,7 @@ Public Member Functions</h2></td></tr>
 <p>Get the current Rotation and Location of Actor B. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a> </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#ad38e140ea8edf8d9d74e99bbebf68417">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a7d9a9ddc367d1a9105f1eb27fd76a65f">Mezzanine::HingeConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#ad38e140ea8edf8d9d74e99bbebf68417">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a7d9a9ddc367d1a9105f1eb27fd76a65f">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a22964857b7c94edf895d1ea9812614b1">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -292,9 +293,9 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TypedConstraint.html#a09aacdc6f424623cc3a2fdad9c1d0caf">Mezzanine::TypedConstraint</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a4670a488bc5cab478c6d69c8a0d240a5">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a0990b3b85529df353aaa46f76951fd68">Mezzanine::HingeConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a4670a488bc5cab478c6d69c8a0d240a5">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a0990b3b85529df353aaa46f76951fd68">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a70cf627b28c4031d498557d3011a33c8">Mezzanine::SliderConstraint</a>.</p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00344">344</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00341">341</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -322,9 +323,9 @@ Public Member Functions</h2></td></tr>
 </dl>
 <p>Ultimately this information winds up being stored in the TransformA </p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a34027d82e3b8c09c6cd488335ea343bb">Mezzanine::Generic6DofConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a34027d82e3b8c09c6cd488335ea343bb">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a9a38e7a49caa92f735d6723021aaffea">Mezzanine::SliderConstraint</a>.</p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00363">363</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00360">360</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -351,7 +352,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a88f26ccb9a6ec67adc743d4bc7c86ddf">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a44bc111ce8642c52c106af2cfe1fd7d5">Mezzanine::HingeConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a88f26ccb9a6ec67adc743d4bc7c86ddf">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a44bc111ce8642c52c106af2cfe1fd7d5">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a1655ff22220ff99ada45a98cdb330dfb">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -381,9 +382,9 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TypedConstraint.html#ad59aa55a0e4b8aa107db9c9460b57ec3">Mezzanine::TypedConstraint</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a1b5fc577a2c627266436fd5b134728bc">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a7ae57514d6bd1119859ecb137cf58e5e">Mezzanine::HingeConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a1b5fc577a2c627266436fd5b134728bc">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a7ae57514d6bd1119859ecb137cf58e5e">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#ab6705dee13d7311ee381d388ba3122cd">Mezzanine::SliderConstraint</a>.</p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00349">349</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00346">346</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -411,9 +412,9 @@ Public Member Functions</h2></td></tr>
 </dl>
 <p>Ultimately this information winds up being stored in the TransformB </p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#afd149f6868de162f75a3e2293d6c143d">Mezzanine::Generic6DofConstraint</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#afd149f6868de162f75a3e2293d6c143d">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a83a627a2875eedbf1ae6ee6db49d866f">Mezzanine::SliderConstraint</a>.</p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00368">368</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00365">365</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -440,7 +441,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#adaa5bb038814aa287773f56d40e90210">Mezzanine::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#abbe27830e0d17c44125cee59d84a9d37">Mezzanine::HingeConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#adaa5bb038814aa287773f56d40e90210">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#abbe27830e0d17c44125cee59d84a9d37">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a75f675f044faef304729c3ee03eae56b">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -463,6 +464,6 @@ Public Member Functions</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:39 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

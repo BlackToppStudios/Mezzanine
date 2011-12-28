@@ -84,8 +84,9 @@ Inheritance diagram for Mezzanine::ActorSoft:</div>
  <div class="center">
   <img src="classMezzanine_1_1ActorSoft.png" usemap="#Mezzanine::ActorSoft_map" alt=""/>
   <map id="Mezzanine::ActorSoft_map" name="Mezzanine::ActorSoft_map">
-<area href="classMezzanine_1_1ActorBase.html" alt="Mezzanine::ActorBase" shape="rect" coords="0,56,149,80"/>
-<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="0,0,149,24"/>
+<area href="classMezzanine_1_1ActorBase.html" alt="Mezzanine::ActorBase" shape="rect" coords="0,112,203,136"/>
+<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="0,56,203,80"/>
+<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="0,0,203,24"/>
 </map>
  </div></div>
 
@@ -390,8 +391,6 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>This function will retrieve the location of the object within the physics world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the location in the physics system. </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classMezzanine_1_1ActorBase.html#a9f110d013ed871809258dfc55f8b7276">Mezzanine::ActorBase</a>.</p>
-
 <p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00153">153</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
@@ -435,7 +434,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>This function will retrieve the location of the object within the world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the actual locaiton of this Actor. </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classMezzanine_1_1ActorBase.html#ab1706a379bf86d020e64e4b560cdeb73">Mezzanine::ActorBase</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1WorldObject.html#a66d040856234ceacfbba2532047ee9cb">Mezzanine::WorldObject</a>.</p>
 
 <p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00212">212</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
@@ -519,10 +518,10 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <div class="memdoc">
 
 <p>Sets the scale of the actor. </p>
-<p>This function will alter the scaling/size of the actor with the given vector3. </p>
+<p>This function will alter the scaling/size of the actor with the given <a class="el" href="classvector3.html">vector3</a>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">scale</td><td>The vector3 by which to apply the scale. Will scale each axis' accordingly. </td></tr>
+    <tr><td class="paramname">scale</td><td>The <a class="el" href="classvector3.html">vector3</a> by which to apply the scale. Will scale each axis' accordingly. </td></tr>
   </table>
   </dd>
 </dl>
@@ -824,6 +823,6 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

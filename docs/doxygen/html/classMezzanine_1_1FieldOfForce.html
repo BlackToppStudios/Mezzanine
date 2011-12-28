@@ -83,7 +83,9 @@ Inheritance diagram for Mezzanine::FieldOfForce:</div>
  <div class="center">
   <img src="classMezzanine_1_1FieldOfForce.png" usemap="#Mezzanine::FieldOfForce_map" alt=""/>
   <map id="Mezzanine::FieldOfForce_map" name="Mezzanine::FieldOfForce_map">
-<area href="classMezzanine_1_1AreaEffect.html" alt="Mezzanine::AreaEffect" shape="rect" coords="0,0,155,24"/>
+<area href="classMezzanine_1_1AreaEffect.html" alt="Mezzanine::AreaEffect" shape="rect" coords="0,112,203,136"/>
+<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="0,56,203,80"/>
+<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="0,0,203,24"/>
 </map>
  </div></div>
 
@@ -105,6 +107,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currenly set direction force is to be applied.  <a href="#aa38710cbe67fad1b0be2e0a414d8e55c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1FieldOfForce.html#ae8071fe3ad4397b57cff5f3816d72e02">GetFieldStrength</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the strength of the field.  <a href="#ae8071fe3ad4397b57cff5f3816d72e02"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1FieldOfForce.html#a67c2eceec144d9a20f1bb3777b0bd666">GetType</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1FieldOfForce.html#aa2ba435821f4abc4c59b0ca99f077759">SetAttenuation</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Amount, const <a class="el" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa">Mezzanine::AttenuationStyle</a> &amp;Style, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Source)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the attenuation for this field.  <a href="#aa2ba435821f4abc4c59b0ca99f077759"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1FieldOfForce.html#aaa4df06c275221b2b7c313a7d45ec71a">SetDirectionOfForce</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;ForceDirection)</td></tr>
@@ -137,7 +140,7 @@ Protected Attributes</h2></td></tr>
 <p>This class is similiar to a gravity well in that it can attenuate, but different in that the direction is constant, the source of force(for calculating attenuation) can be outside the field itself, and the direction is constant. <br/>
  Placing the source of attenuation inside the field will cause the object to accelerate as it gets close to the source, and then will be applied less force(but in the same direction) as it moves from the source. This behavior makes this class good for creating a booster-like AE. </p>
 
-<p>Definition at line <a class="el" href="areaeffect_8h_source.html#l00318">318</a> of file <a class="el" href="areaeffect_8h_source.html">areaeffect.h</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8h_source.html#l00289">289</a> of file <a class="el" href="areaeffect_8h_source.html">areaeffect.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa212c5cde10986e1d511a3843af9428c"></a><!-- doxytag: member="Mezzanine::FieldOfForce::FieldOfForce" ref="aa212c5cde10986e1d511a3843af9428c" args="(const String &amp;name, const Vector3 &amp;Location)" -->
 <div class="memitem">
@@ -173,7 +176,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00673">673</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00504">504</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -197,7 +200,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1AreaEffect.html#a988cd958e49d65331a059951af3c2884">Mezzanine::AreaEffect</a>.</p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00687">687</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00518">518</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -219,7 +222,7 @@ Protected Attributes</h2></td></tr>
 <p>See <a class="el" href="classMezzanine_1_1FieldOfForce.html#aa2ba435821f4abc4c59b0ca99f077759" title="Sets the attenuation for this field.">SetAttenuation()</a> for more details. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real value </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00770">770</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00601">601</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -240,7 +243,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the source of the force for calculating attenuation. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the source of the attenuating force. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00775">775</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00606">606</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -262,7 +265,7 @@ Protected Attributes</h2></td></tr>
 <p>See the AttenuationStyle enum for more details. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the style of attenuation currently being used by this field. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00765">765</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00596">596</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -281,9 +284,9 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Gets the currenly set direction force is to be applied. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the direction of force in this field. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> representing the direction of force in this field. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00753">753</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00584">584</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -304,7 +307,29 @@ Protected Attributes</h2></td></tr>
 <p>Gets the strength of the field. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the value that is being multiplied by the direction to determine force appied to objects. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00743">743</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00574">574</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a67c2eceec144d9a20f1bb3777b0bd666"></a><!-- doxytag: member="Mezzanine::FieldOfForce::GetType" ref="a67c2eceec144d9a20f1bb3777b0bd666" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a> Mezzanine::FieldOfForce::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1AreaEffect.html#a3eab7461632e01984cfb07f8c8fb5954">Mezzanine::AreaEffect</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00611">611</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,12 +369,12 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">Amount</td><td>The amount of force that is dropped off per 1 unit of distance objects are from the AE source. </td></tr>
     <tr><td class="paramname">Style</td><td>The style of attenuation to apply, see the AttenuationStyle enum for more details. </td></tr>
-    <tr><td class="paramname">Source</td><td>A vector3 representing the source of force to use when calculating attenuation. </td></tr>
+    <tr><td class="paramname">Source</td><td>A <a class="el" href="classvector3.html">vector3</a> representing the source of force to use when calculating attenuation. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00758">758</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00589">589</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -371,12 +396,12 @@ Protected Attributes</h2></td></tr>
 <p>Sets the direction force is to be applied within this field. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">ForceDirection</td><td>A vector3 representing the direction force is to be applied. </td></tr>
+    <tr><td class="paramname">ForceDirection</td><td>A <a class="el" href="classvector3.html">vector3</a> representing the direction force is to be applied. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00748">748</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00579">579</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -403,7 +428,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00738">738</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00569">569</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -427,6 +452,6 @@ Protected Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:41 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

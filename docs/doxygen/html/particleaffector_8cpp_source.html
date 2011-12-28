@@ -111,22 +111,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 <span class="keyword">namespace </span>Mezzanine
 <a name="l00049"></a>00049 {
-<a name="l00050"></a>00050     <a class="code" href="classMezzanine_1_1ParticleAffector.html#ac7d291c06852d6a5c62101b7cf6d99f9" title="Internal Class constructor.">ParticleAffector::ParticleAffector</a>(Ogre::ParticleAffector* InternalAffector)
-<a name="l00051"></a><a class="code" href="classMezzanine_1_1ParticleAffector.html#ac7d291c06852d6a5c62101b7cf6d99f9">00051</a>         : Affector(InternalAffector)
+<a name="l00050"></a><a class="code" href="classMezzanine_1_1ParticleAffector.html#a2616bfa1e7586adae629090f5408477d">00050</a>     <a class="code" href="classMezzanine_1_1ParticleAffector.html#a2616bfa1e7586adae629090f5408477d" title="Internal Class constructor.">ParticleAffector::ParticleAffector</a>(Ogre::ParticleAffector* InternalAffector)
+<a name="l00051"></a>00051         : Affector(InternalAffector)
 <a name="l00052"></a>00052     {
 <a name="l00053"></a>00053     }
 <a name="l00054"></a>00054 
-<a name="l00055"></a>00055     <a class="code" href="classMezzanine_1_1ParticleAffector.html#a86c8ed14bb0b264f729988feeef3fb77" title="Class destructor.">ParticleAffector::~ParticleAffector</a>()
-<a name="l00056"></a><a class="code" href="classMezzanine_1_1ParticleAffector.html#a86c8ed14bb0b264f729988feeef3fb77">00056</a>     {
+<a name="l00055"></a><a class="code" href="classMezzanine_1_1ParticleAffector.html#a86c8ed14bb0b264f729988feeef3fb77">00055</a>     <a class="code" href="classMezzanine_1_1ParticleAffector.html#a86c8ed14bb0b264f729988feeef3fb77" title="Class destructor.">ParticleAffector::~ParticleAffector</a>()
+<a name="l00056"></a>00056     {
 <a name="l00057"></a>00057     }
 <a name="l00058"></a>00058 
-<a name="l00059"></a>00059     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ParticleAffector.html#a0467b8c51e34cf7f2e71189fa60a3716" title="Sets a custom parameter of a particle affector.">ParticleAffector::SetCustomParam</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Value)
-<a name="l00060"></a><a class="code" href="classMezzanine_1_1ParticleAffector.html#a0467b8c51e34cf7f2e71189fa60a3716">00060</a>     {
+<a name="l00059"></a><a class="code" href="classMezzanine_1_1ParticleAffector.html#a0467b8c51e34cf7f2e71189fa60a3716">00059</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ParticleAffector.html#a0467b8c51e34cf7f2e71189fa60a3716" title="Sets a custom parameter of a particle affector.">ParticleAffector::SetCustomParam</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Value)
+<a name="l00060"></a>00060     {
 <a name="l00061"></a>00061         <a class="code" href="classMezzanine_1_1ParticleAffector.html#a9c1e2ad9064bc1efd7575391d2d47505" title="The internal affector class this class get&amp;#39;s it functionality from.">Affector</a>-&gt;setParameter(Name,Value);
 <a name="l00062"></a>00062     }
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064     <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1ParticleAffector.html#a2240b3dd59a656c63407cd8a719824b8" title="Gets a custom parameter of a particle affector.">ParticleAffector::GetCustomParam</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)<span class="keyword"> const</span>
-<a name="l00065"></a><a class="code" href="classMezzanine_1_1ParticleAffector.html#a2240b3dd59a656c63407cd8a719824b8">00065</a> <span class="keyword">    </span>{
+<a name="l00064"></a><a class="code" href="classMezzanine_1_1ParticleAffector.html#a2240b3dd59a656c63407cd8a719824b8">00064</a>     <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1ParticleAffector.html#a2240b3dd59a656c63407cd8a719824b8" title="Gets a custom parameter of a particle affector.">ParticleAffector::GetCustomParam</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)<span class="keyword"> const</span>
+<a name="l00065"></a>00065 <span class="keyword">    </span>{
 <a name="l00066"></a>00066         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ParticleAffector.html#a9c1e2ad9064bc1efd7575391d2d47505" title="The internal affector class this class get&amp;#39;s it functionality from.">Affector</a>-&gt;getParameter(Name);
 <a name="l00067"></a>00067     }
 <a name="l00068"></a>00068 }<span class="comment">//Mezzanine</span>
@@ -149,6 +149,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

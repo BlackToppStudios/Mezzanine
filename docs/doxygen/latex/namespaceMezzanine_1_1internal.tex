@@ -53,7 +53,8 @@ This namespace is used for internal helper classes, and in general it should be 
 
 SDL uses this to filter events it presents to applications. 
 
-This is used used to filter out SQL\_\-quit messages, and generate appropriate messages for the game developer to use. This will always drop quit events, and store that information for later use. 
+This is used used to filter out SQL\_\-quit messages, and generate appropriate messages for the game developer to use. This will always drop quit events, and store that information for later use. \par
+ If this is passed an event that points to 0 it will function as a method to tell us if an SDL\_\-QUIT message has been thrown this will return 2 if it has not seen an SDL\_\-quit, and a 4 if it has 
 \begin{DoxyParams}{Parameters}
 {\em event} & This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages \\
 \hline

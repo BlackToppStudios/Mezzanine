@@ -61,13 +61,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This is no simple way to guarantee access to the most up to date libraries, this means there will meaningful work on integration. Many linux distributions try to keep the most up to date shared libraries around, but what about when they don't ship what you need, ship something broken or an older library. What about Windows and Mac OS X which make no attempt to keep these kinds of software up to date. What if you do manage to get and stay up to date, then you still have to work on a confusing compiler and linker options, Code::Blocks or Visual Studio aren't going to set that up for you. The <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace.">Mezzanine</a> Engine project depends on a dozen or more libaries, so would your project if it had high performance 3d graphics, easy to use 3d physics integrated with the graphics and 3d positional audio ready to run on Windows, Linux and Mac OS X. We are figuring it out once, getting it right ( if we aren't, tell us and we will fix it ), so it doesn't need to be done again and again, for each game made.</p>
 <p>This is still in heavy development and is not in usable condition for all systems. Currently the synchronization of 3d graphics and physics works great. But, some of the more advanced features of both physics and graphics to do not yet work. There are a number of other features that are in varied states of development.</p>
 <p>If we do our jobs right this will save time and effort making, updating and porting games between a variety of platforms. If you link only against this library, not a single line of your standard compliant C++ code should need to change between platforms. At this early stage we are proving the concept with "Catch!" our first sample game. It Currently runs on Linux, Windows and Mac OS X with an Identical codebase. When we are done with "Catch!" We want it to have one codebase (with no messy #IFDEFs in game code for compatibility), and downloadable in the Iphone app store, in the Android Marketplace, on the PS3, Wii, downloadable on Steam, and in a variety of linux repositories.</p>
-<p>To get the latest news on development checkout: <a href="http://www.blacktoppstudios.com">http://www.blacktoppstudios.com</a></p>
+<h2><a class="anchor" id="What"></a>
+can I expect here</h2>
+<p>This is the Doxygen API documentation for the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace.">Mezzanine</a> Engine. This is a document for programmers to use as reference. With just a few clicks this should allow a technically oriented person find</p>
+<p>If you want to know more about doxygen please see: <a href="http://www.stack.nl/~dimitri/doxygen/">http://www.stack.nl/~dimitri/doxygen/</a> To get the latest news on development or more information that isn't technical checkout: <a href="http://www.blacktoppstudios.com">http://www.blacktoppstudios.com</a></p>
 <p>Here we will detail the engine structure and different classes and datatypes, but some of these need an update.</p>
 <h2><a class="anchor" id="Engine"></a>
 Structure</h2>
+<p>The engine is laid out in a variety of classes. Some classes are focal points for functionality and internally unify a number of components to do what they do, these managers sometimes conceal a large amount of complexity. Managers generally have a very rigid in the structure of the engine and these are generally managed by the world and are rarely manaully created. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?" or "how do you detect if to objects are colliding?". In general there is only one of each manager and it inherits from the Singleton class.</p>
+<p>Other classes are more similar to data, things like the Vector3 and the Quaternion. You can create these things whenever you like and generally have good support for integrating into a variety of system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more sophisticated classes for a variety of reasons.</p>
+<p>There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled and most commonly created, deleted and otherwised managed through managers. Many of these classes like the Light or ActorRigid are present inside the game simulation as well as having a presence as</p>
+<p>some utility classes Other class that really are just convient places to put functions, things like the ActorRigidDeSerializer and the StringTool are good examples of these logical grouping of functions. Finally, there are few</p>
 <h3><a class="anchor" id="Managers"></a>
 Managers</h3>
-<p>A manager is simply a logical grouping of functionality. A number of them exist covering all the major functionality that a game using the the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace.">Mezzanine</a> engine would need inmost situations.</p>
+<p>A manager is simply a logical grouping of functionality. A number of them exist covering all the major functionality that a game using the the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace.">Mezzanine</a> engine would need in most situations.</p>
 <p>All Managers inherit from ManagerBase. They all support the basic callback and priority functionality because of this.</p>
 <h4><a class="anchor" id="A"></a>
 list of managers</h4>
@@ -114,14 +121,14 @@ Simple Data Types</h3>
 <p><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">Mezzanine::String</a></p>
 <p><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Mezzanine::Whole</a></p>
 <dl class="user"><dt><b>There are also a variety of enumerations. Aspect Ratio...</b></dt><dd></dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>Fill out the Simple Data Types with all the enumerations.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000033">Todo:</a></b></dt><dd>Fill out the Simple Data Types with all the enumerations.</dd></dl>
 <h2><a class="anchor" id="Sophisticated"></a>
 Sophisticated Systems</h2>
 <p><a class="el" href="classMezzanine_1_1ActorBase.html">Actors - Items in the world</a></p>
 <p><a class="el" href="classMezzanine_1_1EventBase.html">Mezzanine::EventBase</a></p>
 <p><a class="el" href="classMezzanine_1_1GraphicsManager.html">Mezzanine::GraphicsManager</a></p>
 <p>Mezzanine::XML Manual</p>
-<p>Serialization</p>
+<p><a class="el" href="Serialization.html">Serialization</a></p>
 <h2><a class="anchor" id="Licensing"></a>
 Licensing Information</h2>
 <p><a class="el" href="GPLLicense.html">Mezzanine GNU Public License 3</a></p>
@@ -142,6 +149,6 @@ Licensing Information</h2>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Mezzanine::SliderConstraint Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::SliderConstraint" --><!-- doxytag: inherits="Mezzanine::TypedConstraint" -->
+<!-- doxytag: class="Mezzanine::SliderConstraint" --><!-- doxytag: inherits="Mezzanine::DualTransformConstraint" -->
 <p><code>#include &lt;<a class="el" href="constraint_8h_source.html">constraint.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Mezzanine::SliderConstraint:</div>
@@ -80,7 +80,8 @@ Inheritance diagram for Mezzanine::SliderConstraint:</div>
  <div class="center">
   <img src="classMezzanine_1_1SliderConstraint.png" usemap="#Mezzanine::SliderConstraint_map" alt=""/>
   <map id="Mezzanine::SliderConstraint_map" name="Mezzanine::SliderConstraint_map">
-<area href="classMezzanine_1_1TypedConstraint.html" alt="Mezzanine::TypedConstraint" shape="rect" coords="0,0,171,24"/>
+<area href="classMezzanine_1_1DualTransformConstraint.html" alt="Mezzanine::DualTransformConstraint" shape="rect" coords="0,56,219,80"/>
+<area href="classMezzanine_1_1TypedConstraint.html" alt="Mezzanine::TypedConstraint" shape="rect" coords="0,0,219,24"/>
 </map>
  </div></div>
 
@@ -89,72 +90,86 @@ Inheritance diagram for Mezzanine::SliderConstraint:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual btTypedConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#afb6bf65099b1d964975ee0853e81e38c">GetConstraintBase</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fe8aad35e9c937ff0d7f6acb83f95c8"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingDirAng" ref="a5fe8aad35e9c937ff0d7f6acb83f95c8" args="(Real DampingDirAng)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingDirAng</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> DampingDirAng)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dea8afcc78356cb67ff85b05222ae42"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingDirLin" ref="a0dea8afcc78356cb67ff85b05222ae42" args="(Real DampingDirLin)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingDirLin</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> DampingDirLin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe0ba440ff8c0d03dc4a276149da5adb"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingLimAng" ref="abe0ba440ff8c0d03dc4a276149da5adb" args="(Real DampingLimAng)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingLimAng</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> DampingLimAng)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba8b7479622574f0098258ed09a53d8a"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingLimLin" ref="aba8b7479622574f0098258ed09a53d8a" args="(Real DampingLimLin)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingLimLin</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> DampingLimLin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad399d4178335f6fa025d1ac892167157"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingOrthoAng" ref="ad399d4178335f6fa025d1ac892167157" args="(Real DampingOrthoAng)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingOrthoAng</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> DampingOrthoAng)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a483e62ea124a05a982b9a56844141eae"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingOrthoLin" ref="a483e62ea124a05a982b9a56844141eae" args="(Real DampingOrthoLin)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingOrthoLin</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> DampingOrthoLin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5e0d0ea2a4c9d3e97f1da3967d88be1"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetFrameOffsetALocation" ref="ab5e0d0ea2a4c9d3e97f1da3967d88be1" args="(const Vector3 &amp;Location)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetFrameOffsetALocation</b> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a762e3bdba229955faf64158ea5b1068e"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetFrameOffsetBLocation" ref="a762e3bdba229955faf64158ea5b1068e" args="(const Vector3 &amp;Location)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetFrameOffsetBLocation</b> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3e6fa511f9bf4b677d6e0e5e1196bce"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetLowerAngLimit" ref="ae3e6fa511f9bf4b677d6e0e5e1196bce" args="(Real LowerLimit)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLowerAngLimit</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> LowerLimit)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a523a86678fe16e722da0a6253f64492f"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetLowerLinLimit" ref="a523a86678fe16e722da0a6253f64492f" args="(Real LowerLimit)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLowerLinLimit</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> LowerLimit)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74d70551e95cd6eed624a07949f3513f"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetMaxAngMotorForce" ref="a74d70551e95cd6eed624a07949f3513f" args="(Real MaxAngMotorForce)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaxAngMotorForce</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> MaxAngMotorForce)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6e41aff130d3043baa276b79b01d559"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetMaxLinMotorForce" ref="ae6e41aff130d3043baa276b79b01d559" args="(Real MaxLinMotorForce)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaxLinMotorForce</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> MaxLinMotorForce)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#aab32a4c00eda5369c8188cff854418bd">GetPivotALocation</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#ac53730c289d355e7ed426a9f4b28d6b5">GetPivotARotation</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#ad87313a0848e2523b4157a07b0a65d23">GetPivotATransform</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#af97a455a53d7572351f6ae725bb8e31b">GetPivotBLocation</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a4550412c47b611ae3238db1adbff20d9">GetPivotBRotation</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a22964857b7c94edf895d1ea9812614b1">GetPivotBTransform</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a348b148de3759ae80f7af6dbd8680867">HasParamBeenSet</a> (<a class="el" href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4">ConstraintParam</a> Param, int Axis) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1aabc8e14b95c99374c1b2e408c6095e"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingDirAng" ref="a1aabc8e14b95c99374c1b2e408c6095e" args="(const Real &amp;DampingDirAng)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingDirAng</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;DampingDirAng)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1893c48fb1f5cd621e783ae80f7dfdf5"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingDirLin" ref="a1893c48fb1f5cd621e783ae80f7dfdf5" args="(const Real &amp;DampingDirLin)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingDirLin</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;DampingDirLin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4099f6095a8a6111ad723aaaccce89"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingLimAng" ref="a4c4099f6095a8a6111ad723aaaccce89" args="(const Real &amp;DampingLimAng)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingLimAng</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;DampingLimAng)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a709729e3ee93b3b9e22880884e65238e"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingLimLin" ref="a709729e3ee93b3b9e22880884e65238e" args="(const Real &amp;DampingLimLin)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingLimLin</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;DampingLimLin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afecb5dc2dbb02e2e0b89fbedc3aef1fd"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingOrthoAng" ref="afecb5dc2dbb02e2e0b89fbedc3aef1fd" args="(const Real &amp;DampingOrthoAng)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingOrthoAng</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;DampingOrthoAng)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d1c9dafd82ec7ca4d632869d059c5f5"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetDampingOrthoLin" ref="a7d1c9dafd82ec7ca4d632869d059c5f5" args="(const Real &amp;DampingOrthoLin)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDampingOrthoLin</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;DampingOrthoLin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7744ffc9a8ec4541ffc219a2dbccb734"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetLowerAngLimit" ref="a7744ffc9a8ec4541ffc219a2dbccb734" args="(const Real &amp;LowerLimit)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLowerAngLimit</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;LowerLimit)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78debe8bef1ce39ef2b3dd6c80973dd0"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetLowerLinLimit" ref="a78debe8bef1ce39ef2b3dd6c80973dd0" args="(const Real &amp;LowerLimit)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLowerLinLimit</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;LowerLimit)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a385c68bd7dced0c20198b82893f26390"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetMaxAngMotorForce" ref="a385c68bd7dced0c20198b82893f26390" args="(const Real &amp;MaxAngMotorForce)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaxAngMotorForce</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;MaxAngMotorForce)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a174406c54be3f28a45b2776e5ef3ae25"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetMaxLinMotorForce" ref="a174406c54be3f28a45b2776e5ef3ae25" args="(const Real &amp;MaxLinMotorForce)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaxLinMotorForce</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;MaxLinMotorForce)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a70cf627b28c4031d498557d3011a33c8">SetPivotALocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a9a38e7a49caa92f735d6723021aaffea">SetPivotARotation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a1655ff22220ff99ada45a98cdb330dfb">SetPivotATransform</a> (const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TranA)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#ab6705dee13d7311ee381d388ba3122cd">SetPivotBLocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a83a627a2875eedbf1ae6ee6db49d866f">SetPivotBRotation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a75f675f044faef304729c3ee03eae56b">SetPivotBTransform</a> (const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TranB)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d63361c528d6912377a79745ff92a86"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetPoweredAngMotor" ref="a2d63361c528d6912377a79745ff92a86" args="(bool OnOff)" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPoweredAngMotor</b> (bool OnOff)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3591b51811c165bfbbc4b54710f996e0"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetPoweredLinMotor" ref="a3591b51811c165bfbbc4b54710f996e0" args="(bool OnOff)" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPoweredLinMotor</b> (bool OnOff)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a640a5f5444938db12c2cc951c1e817ef"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionDirAng" ref="a640a5f5444938db12c2cc951c1e817ef" args="(Real RestitutionDirAng)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionDirAng</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RestitutionDirAng)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae55445ad16d61976274077d51ab7f734"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionDirLin" ref="ae55445ad16d61976274077d51ab7f734" args="(Real RestitutionDirLin)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionDirLin</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RestitutionDirLin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae019232463fc0fd28821bad167ef5e2d"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionLimAng" ref="ae019232463fc0fd28821bad167ef5e2d" args="(Real RestitutionLimAng)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionLimAng</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RestitutionLimAng)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4073e77a2186bee18546aa85ed709cfe"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionLimLin" ref="a4073e77a2186bee18546aa85ed709cfe" args="(Real RestitutionLimLin)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionLimLin</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RestitutionLimLin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0315542c6ddbf8ac9386cc4208596ca8"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionOrthoAng" ref="a0315542c6ddbf8ac9386cc4208596ca8" args="(Real RestitutionOrthoAng)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionOrthoAng</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RestitutionOrthoAng)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af57478f30b914aedb27b336d024b0ff6"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionOrthoLin" ref="af57478f30b914aedb27b336d024b0ff6" args="(Real RestitutionOrthoLin)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionOrthoLin</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RestitutionOrthoLin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a761c03bc7effd728fc368442870ad655"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessDirAng" ref="a761c03bc7effd728fc368442870ad655" args="(Real SoftnessDirAng)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessDirAng</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> SoftnessDirAng)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06846e6951e3f7dbcfa3e12a39bd99ec"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessDirLin" ref="a06846e6951e3f7dbcfa3e12a39bd99ec" args="(Real SoftnessDirLin)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessDirLin</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> SoftnessDirLin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a493d3fdb3ba27b6a8cb011afa5fffff9"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessLimAng" ref="a493d3fdb3ba27b6a8cb011afa5fffff9" args="(Real SoftnessLimAng)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessLimAng</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> SoftnessLimAng)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefb1160fe7ec0f5bf0dd8036c210617a"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessLimLin" ref="aefb1160fe7ec0f5bf0dd8036c210617a" args="(Real SoftnessLimLin)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessLimLin</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> SoftnessLimLin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc661f4effcc056b1c45344f23c6e7b6"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessOrthoAng" ref="abc661f4effcc056b1c45344f23c6e7b6" args="(Real SoftnessOrthoAng)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessOrthoAng</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> SoftnessOrthoAng)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a194d32c130c12b1294e3aba1648fa556"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessOrthoLin" ref="a194d32c130c12b1294e3aba1648fa556" args="(Real SoftnessOrthoLin)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessOrthoLin</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> SoftnessOrthoLin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec658a274e4b126c619ba818c87a8c3f"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetTargetAngMotorVelocity" ref="aec658a274e4b126c619ba818c87a8c3f" args="(Real TargetAngMotorVelocity)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTargetAngMotorVelocity</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> TargetAngMotorVelocity)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7a07ccdbc21240ce99bd444e907251a"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetTargetLinMotorVelocity" ref="ac7a07ccdbc21240ce99bd444e907251a" args="(Real TargetLinMotorVelocity)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTargetLinMotorVelocity</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> TargetLinMotorVelocity)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66e110523ec0273ec034bdb8926dbe00"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetUpperAngLimit" ref="a66e110523ec0273ec034bdb8926dbe00" args="(Real UpperLimit)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetUpperAngLimit</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> UpperLimit)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ae21f3302205ea4741adc8a05817a02"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetUpperLinLimit" ref="a8ae21f3302205ea4741adc8a05817a02" args="(Real UpperLimit)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetUpperLinLimit</b> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> UpperLimit)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a90e9477eb6957076d58e3a41725a234b"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionDirAng" ref="a90e9477eb6957076d58e3a41725a234b" args="(const Real &amp;RestitutionDirAng)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionDirAng</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;RestitutionDirAng)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a715bbd73774f91cd6803ac478adab87c"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionDirLin" ref="a715bbd73774f91cd6803ac478adab87c" args="(const Real &amp;RestitutionDirLin)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionDirLin</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;RestitutionDirLin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59b9d8be6c56a00f57328823cfe1e906"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionLimAng" ref="a59b9d8be6c56a00f57328823cfe1e906" args="(const Real &amp;RestitutionLimAng)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionLimAng</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;RestitutionLimAng)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b003e3e143df2952d6fae6bf7cc22d0"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionLimLin" ref="a6b003e3e143df2952d6fae6bf7cc22d0" args="(const Real &amp;RestitutionLimLin)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionLimLin</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;RestitutionLimLin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a348b4382b1b9cd597c4da51f8edc3da1"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionOrthoAng" ref="a348b4382b1b9cd597c4da51f8edc3da1" args="(const Real &amp;RestitutionOrthoAng)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionOrthoAng</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;RestitutionOrthoAng)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa952a7fe36413f771879869e552c11a6"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetRestitutionOrthoLin" ref="aa952a7fe36413f771879869e552c11a6" args="(const Real &amp;RestitutionOrthoLin)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetRestitutionOrthoLin</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;RestitutionOrthoLin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8efccecc6a9f8e3aa7cd38572b591904"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessDirAng" ref="a8efccecc6a9f8e3aa7cd38572b591904" args="(const Real &amp;SoftnessDirAng)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessDirAng</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;SoftnessDirAng)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f63f63748c0d1fb77285d163f6699d2"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessDirLin" ref="a8f63f63748c0d1fb77285d163f6699d2" args="(const Real &amp;SoftnessDirLin)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessDirLin</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;SoftnessDirLin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad79631afbb0a9bd7ed032a11a03b728a"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessLimAng" ref="ad79631afbb0a9bd7ed032a11a03b728a" args="(const Real &amp;SoftnessLimAng)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessLimAng</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;SoftnessLimAng)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70a2fd3912bae1a9c55c55052c97ddef"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessLimLin" ref="a70a2fd3912bae1a9c55c55052c97ddef" args="(const Real &amp;SoftnessLimLin)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessLimLin</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;SoftnessLimLin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a925e43c8a9a99bad28cb98d2d2e8ee4a"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessOrthoAng" ref="a925e43c8a9a99bad28cb98d2d2e8ee4a" args="(const Real &amp;SoftnessOrthoAng)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessOrthoAng</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;SoftnessOrthoAng)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82709e2d8512e09ef7737adf2a623190"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetSoftnessOrthoLin" ref="a82709e2d8512e09ef7737adf2a623190" args="(const Real &amp;SoftnessOrthoLin)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSoftnessOrthoLin</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;SoftnessOrthoLin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6e8966ee85122f6cd77aff0fada5cac"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetTargetAngMotorVelocity" ref="af6e8966ee85122f6cd77aff0fada5cac" args="(const Real &amp;TargetAngMotorVelocity)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTargetAngMotorVelocity</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;TargetAngMotorVelocity)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4944f66495eb9751a97b819fb6508a4"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetTargetLinMotorVelocity" ref="af4944f66495eb9751a97b819fb6508a4" args="(const Real &amp;TargetLinMotorVelocity)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTargetLinMotorVelocity</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;TargetLinMotorVelocity)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d00ee2581818f554bb101c36c1d3e52"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetUpperAngLimit" ref="a8d00ee2581818f554bb101c36c1d3e52" args="(const Real &amp;UpperLimit)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetUpperAngLimit</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;UpperLimit)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a9b1c823c41cfa2bf27134a9cb86375"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetUpperLinLimit" ref="a1a9b1c823c41cfa2bf27134a9cb86375" args="(const Real &amp;UpperLimit)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetUpperLinLimit</b> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;UpperLimit)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5402cffa565acf077aff46a1e2556bd9"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetUseFrameOffset" ref="a5402cffa565acf077aff46a1e2556bd9" args="(bool FrameOffset)" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetUseFrameOffset</b> (bool FrameOffset)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f173d23f75cf90a91fbe2542d7ccd10"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SliderConstraint" ref="a2f173d23f75cf90a91fbe2542d7ccd10" args="(ActorRigid *ActorB, const Vector3 &amp;VectorB, const Quaternion &amp;QuaternionB, bool UseLinearReferenceA)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>SliderConstraint</b> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;VectorB, const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;QuaternionB, bool UseLinearReferenceA)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#aa94ae163ab1a73a5a92f94172a8abdb3">SliderConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TransformA, const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TransformB, bool UseLinearReferenceA=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Two body Terse constructor.  <a href="#aa94ae163ab1a73a5a92f94172a8abdb3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaeb70964ae4b2568a1dd70595f0d8567"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SliderConstraint" ref="aaeb70964ae4b2568a1dd70595f0d8567" args="(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &amp;VectorA, const Vector3 &amp;VectorB, const Quaternion &amp;QuaternionA, const Quaternion &amp;QuaternionB, bool UseLinearReferenceA)" -->
 &#160;</td><td class="memItemRight" valign="bottom"><b>SliderConstraint</b> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;VectorA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;VectorB, const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;QuaternionA, const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;QuaternionB, bool UseLinearReferenceA)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f173d23f75cf90a91fbe2542d7ccd10"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SliderConstraint" ref="a2f173d23f75cf90a91fbe2542d7ccd10" args="(ActorRigid *ActorB, const Vector3 &amp;VectorB, const Quaternion &amp;QuaternionB, bool UseLinearReferenceA)" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>SliderConstraint</b> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;VectorB, const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;QuaternionB, bool UseLinearReferenceA)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4">TypedConstraint::AxisList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#ac96a0956a0cb82b4b37d0da3a9d348fa">ValidAngularAxis</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4">TypedConstraint::AxisList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#ac238c09e330b22833bd666a73b93f8d0">ValidLinearAxis</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#abd499db29c9e9755e9bb547d29eaa49a">TypedConstraint::ParamList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a6883d8b39517a5a96c099b1d1b441d95">ValidParamOnAxis</a> (int Axis) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SliderConstraint.html#a61867229e5eb1192119b496b12beb825">~SliderConstraint</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a61867229e5eb1192119b496b12beb825"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
@@ -166,8 +181,65 @@ btSliderConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This class is incomplete </p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l01300">1300</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l01297">1297</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aa94ae163ab1a73a5a92f94172a8abdb3"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SliderConstraint" ref="aa94ae163ab1a73a5a92f94172a8abdb3" args="(ActorRigid *ActorA, ActorRigid *ActorB, const Transform &amp;TransformA, const Transform &amp;TransformB, bool UseLinearReferenceA=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mezzanine::SliderConstraint::SliderConstraint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *&#160;</td>
+          <td class="paramname"><em>ActorA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *&#160;</td>
+          <td class="paramname"><em>ActorB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;&#160;</td>
+          <td class="paramname"><em>TransformA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;&#160;</td>
+          <td class="paramname"><em>TransformB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>UseLinearReferenceA</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Two body Terse constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ActorA</td><td>The First body to be bound </td></tr>
+    <tr><td class="paramname">ActorB</td><td>The Second body to be bound </td></tr>
+    <tr><td class="paramname">TransformA</td><td>The offset and rotation from ActorA's center of gravity to get to match an offset from ActorB </td></tr>
+    <tr><td class="paramname">TransformB</td><td>The offset and rotation from ActorB's center of gravity. </td></tr>
+    <tr><td class="paramname">UseLinearReferenceA</td><td>Perform Linear math from ActorA's perspective, default to false. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a61867229e5eb1192119b496b12beb825"></a><!-- doxytag: member="Mezzanine::SliderConstraint::~SliderConstraint" ref="a61867229e5eb1192119b496b12beb825" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -208,6 +280,385 @@ btSliderConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class
 
 </div>
 </div>
+<a class="anchor" id="aab32a4c00eda5369c8188cff854418bd"></a><!-- doxytag: member="Mezzanine::SliderConstraint::GetPivotALocation" ref="aab32a4c00eda5369c8188cff854418bd" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::SliderConstraint::GetPivotALocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get the location of the pivot relative to ActorA's Center of gravity. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the pivot location. </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ad79b92cb1faeba6e7ba7123e02d86dc1">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac53730c289d355e7ed426a9f4b28d6b5"></a><!-- doxytag: member="Mezzanine::SliderConstraint::GetPivotARotation" ref="ac53730c289d355e7ed426a9f4b28d6b5" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> Mezzanine::SliderConstraint::GetPivotARotation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get the relative rotation for ActorA. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> that has the rotation </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ac3f2449bc4c0ccd959f4c67216246832">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad87313a0848e2523b4157a07b0a65d23"></a><!-- doxytag: member="Mezzanine::SliderConstraint::GetPivotATransform" ref="ad87313a0848e2523b4157a07b0a65d23" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> Mezzanine::SliderConstraint::GetPivotATransform </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get the current Rotation and Location of Actor A. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a> </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ac6798a2ea8e80e38fbfbf17df6043265">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af97a455a53d7572351f6ae725bb8e31b"></a><!-- doxytag: member="Mezzanine::SliderConstraint::GetPivotBLocation" ref="af97a455a53d7572351f6ae725bb8e31b" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::SliderConstraint::GetPivotBLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get the location of the pivot relative to ActorB's Center of gravity. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the pivot location. </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ade678f85e0e32b5bf59778130e9d1730">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4550412c47b611ae3238db1adbff20d9"></a><!-- doxytag: member="Mezzanine::SliderConstraint::GetPivotBRotation" ref="a4550412c47b611ae3238db1adbff20d9" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> Mezzanine::SliderConstraint::GetPivotBRotation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get the relative rotation for ActorB. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> that has the rotation </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a56e30c94d128e4c13f449b9933f815fe">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a22964857b7c94edf895d1ea9812614b1"></a><!-- doxytag: member="Mezzanine::SliderConstraint::GetPivotBTransform" ref="a22964857b7c94edf895d1ea9812614b1" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> Mezzanine::SliderConstraint::GetPivotBTransform </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get the current Rotation and Location of Actor B. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a> </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a43e5f5d4cfd9b0ab7032d81df5c935d7">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a348b148de3759ae80f7af6dbd8680867"></a><!-- doxytag: member="Mezzanine::SliderConstraint::HasParamBeenSet" ref="a348b148de3759ae80f7af6dbd8680867" args="(ConstraintParam Param, int Axis) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Mezzanine::SliderConstraint::HasParamBeenSet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4">ConstraintParam</a>&#160;</td>
+          <td class="paramname"><em>Param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Axis</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1TypedConstraint.html#a96a6b4c16521f24d72feea98044ef3a8">Mezzanine::TypedConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a70cf627b28c4031d498557d3011a33c8"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetPivotALocation" ref="a70cf627b28c4031d498557d3011a33c8" args="(const Vector3 &amp;Location)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::SliderConstraint::SetPivotALocation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Location</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set The relative location of the pivot from ActorA's Center of gravity. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Location</td><td>The New value for PivotA</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ultimately this information winds up being stored in the TransformA. </p>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a3dc5e7afcf612a481f81071201ecdeb7">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a38e7a49caa92f735d6723021aaffea"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetPivotARotation" ref="a9a38e7a49caa92f735d6723021aaffea" args="(const Quaternion &amp;Rotation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::SliderConstraint::SetPivotARotation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rotation</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set The relative rotation of ActorA. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Rotation</td><td>The new rotation amount for A</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ultimately this information winds up being stored in the TransformA </p>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a73cba60ff65f8ac2775b19f74e5cbe9e">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1655ff22220ff99ada45a98cdb330dfb"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetPivotATransform" ref="a1655ff22220ff99ada45a98cdb330dfb" args="(const Transform &amp;TranA)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::SliderConstraint::SetPivotATransform </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;&#160;</td>
+          <td class="paramname"><em>TranA</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set the Position and Rotation using a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TranA</td><td>The new Position and rotation </td></tr>
+  </table>
+  </dd>
+</dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a6f1713e6af9d89de70ff77ed47c82d31">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab6705dee13d7311ee381d388ba3122cd"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetPivotBLocation" ref="ab6705dee13d7311ee381d388ba3122cd" args="(const Vector3 &amp;Location)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::SliderConstraint::SetPivotBLocation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Location</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set The relative location of the pivot from ActorB's Center of gravity. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Location</td><td>The New value for PivotB</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ultimately this information winds up being stored in the TransformB </p>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#abf63fe4c4fc3c57a0eed7ed006a00aee">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a83a627a2875eedbf1ae6ee6db49d866f"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetPivotBRotation" ref="a83a627a2875eedbf1ae6ee6db49d866f" args="(const Quaternion &amp;Rotation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::SliderConstraint::SetPivotBRotation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rotation</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set The relative rotation of ActorB. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">otation</td><td>The new rotation amount for B</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ultimately this information winds up being stored in the TransformB </p>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ab25460e03f187dd56657e43e6302ef45">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a75f675f044faef304729c3ee03eae56b"></a><!-- doxytag: member="Mezzanine::SliderConstraint::SetPivotBTransform" ref="a75f675f044faef304729c3ee03eae56b" args="(const Transform &amp;TranB)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::SliderConstraint::SetPivotBTransform </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;&#160;</td>
+          <td class="paramname"><em>TranB</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set the Position and Rotation using a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TranB</td><td>The new Position and rotation </td></tr>
+  </table>
+  </dd>
+</dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ac5ee69ce5d68f4e299e7916f764ee396">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac96a0956a0cb82b4b37d0da3a9d348fa"></a><!-- doxytag: member="Mezzanine::SliderConstraint::ValidAngularAxis" ref="ac96a0956a0cb82b4b37d0da3a9d348fa" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4">TypedConstraint::AxisList</a> Mezzanine::SliderConstraint::ValidAngularAxis </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get A list sorted (low to high) of all axis that operate Angularly (that lock sliding/translation) </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>An Axislist with the Axis this constraint Angularly supports. </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1TypedConstraint.html#a09ecca761c4af51a8b41c056f6b15b30">Mezzanine::TypedConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac238c09e330b22833bd666a73b93f8d0"></a><!-- doxytag: member="Mezzanine::SliderConstraint::ValidLinearAxis" ref="ac238c09e330b22833bd666a73b93f8d0" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4">TypedConstraint::AxisList</a> Mezzanine::SliderConstraint::ValidLinearAxis </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get a sorted (low to high) list of all axis that operate linearly (that lock sliding/translation) </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>An Axislist with the Axis this constraint linearly supports. </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1TypedConstraint.html#aa9cc59688e58329ce18cc3e024094602">Mezzanine::TypedConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6883d8b39517a5a96c099b1d1b441d95"></a><!-- doxytag: member="Mezzanine::SliderConstraint::ValidParamOnAxis" ref="a6883d8b39517a5a96c099b1d1b441d95" args="(int Axis) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#abd499db29c9e9755e9bb547d29eaa49a">TypedConstraint::ParamList</a> Mezzanine::SliderConstraint::ValidParamOnAxis </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Axis</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get a sorted (low to high) list of Parameters that are valid on this Axis. </p>
+<p>Parameters returned from this will work on the given axis even if they are not valid on any other axis. There is no guarantee that the Parameters will be uniquely stored per an axis. There is no guarantee that changing one parameter will not change another. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Axis</td><td>the Axis to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A Paramlist with all the valid parameters for this axis. </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1TypedConstraint.html#a3f895880ea78984a088996e1950fddcc">Mezzanine::TypedConstraint</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="constraint_8h_source.html">constraint.h</a></li>
 </ul>
@@ -227,6 +678,6 @@ btSliderConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:59 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

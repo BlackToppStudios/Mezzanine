@@ -14,7 +14,7 @@ This is the base class from which all the actors inherit.
 Inheritance diagram for Mezzanine::ActorBase:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{classMezzanine_1_1ActorBase}
+\includegraphics[height=4.000000cm]{classMezzanine_1_1ActorBase}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
@@ -36,22 +36,10 @@ virtual void \hyperlink{classMezzanine_1_1ActorBase_ab245d50e649ec7335bbfcba86d9
 \begin{DoxyCompactList}\small\item\em Advances the animation, making it animate. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorBase_a28c9397e90ec680faf61845525312864}{EnableAnimation} (bool Enable)
 \begin{DoxyCompactList}\small\item\em Enables the animation if one is set. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classMezzanine_1_1ActorBase_a79803eb3d00e1e3722104fce473be085}{GetActorNode} () const 
-\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} representing the position and orientation of this actor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorBase_a9255b5af0827d02505b7662486d8dd17}{GetActorScaling} () const 
-\begin{DoxyCompactList}\small\item\em Gets the current scaling being applied to the actor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorBase_ab1706a379bf86d020e64e4b560cdeb73}{GetLocation} () const 
-\begin{DoxyCompactList}\small\item\em Retrieves the location of the object. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1ActorBase_ac04f313c7e1272c519d0284bc98148a4}{GetOrientation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the orientation of the actor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorBase_a08c975572f1ab5cde651e1a6e5d9bb6a}{GetPhysicsSettings} () const 
-\begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this actor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \hyperlink{classMezzanine_1_1ActorBase_a6e9cce7e660471cc0f9b9df019663f8d}{GetType} () const =0
 \item 
 virtual bool \hyperlink{classMezzanine_1_1ActorBase_ade1c3e7a2e24df64a79d2acb8d6fc084}{IsAnimated} () const 
 \begin{DoxyCompactList}\small\item\em Tells whether this actor is animated or not. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classMezzanine_1_1ActorBase_aae73855e5f3cded86c71955cc855026a}{IsStaticOrKinematic} () const 
-\begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8d83db}{
 virtual void \hyperlink{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8d83db}{RemoveFromWorld} ()=0}
 \label{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8d83db}
@@ -59,65 +47,18 @@ virtual void \hyperlink{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8
 \begin{DoxyCompactList}\small\item\em Removes the actor from the physics world. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorBase_a148df02e486650cba1aa384faf85975f}{RemoveSetAnimation} ()
 \begin{DoxyCompactList}\small\item\em Unloads a loaded animation. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBase_a59af6b6866b22038a0f63e398b33a834}{SetActorScaling} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&scale)
-\begin{DoxyCompactList}\small\item\em Sets the scale of the actor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorBase_af81c2b16a0a73608d9af4f9fb7e82ef4}{SetAnimation} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&AnimationName, bool Loop)
 \begin{DoxyCompactList}\small\item\em Sets the animation for this object. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBase_a293c93bc4e1b22f64804fdce61312a67}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Place)
-\begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBase_aa0f4211e037013524088c38c04ab2d80}{SetLocation} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&x, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&y, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&z)
-\begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBase_a9ea0aea47c70df747b62de1908a6e248}{SetOrientation} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&x, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&y, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&z, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&w)
-\begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBase_a71611580c9265bc87ad34c122e8246a0}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
-\begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1ActorBase_a0b49f2bc589504c908ccc47a635e1e79}{$\sim$ActorBase} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsubsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classMezzanine_1_1ActorBase_a55fc2cfb5d2754657fdb9a821504f9bf}{
-\hyperlink{classMezzanine_1_1Audio_1_1SoundSet}{Audio::SoundSet} $\ast$ \hyperlink{classMezzanine_1_1ActorBase_a55fc2cfb5d2754657fdb9a821504f9bf}{ActorSounds}}
-\label{classMezzanine_1_1ActorBase_a55fc2cfb5d2754657fdb9a821504f9bf}
-
-\begin{DoxyCompactList}\small\item\em This is a collection of sounds for use with this actor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsubsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorBase_a9f110d013ed871809258dfc55f8b7276}{GetBulletLocation} () const 
-\begin{DoxyCompactList}\small\item\em Retrieves the location of the physics body. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1ActorBase_a32fc60215d8bcd3151b3158d481ce0ef}{GetBulletOrientation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the orientation of the graphical body. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorBase_a8095a72bdfcf7fd02953423ae17acd01}{GetOgreLocation} () const 
-\begin{DoxyCompactList}\small\item\em Retrieves the location of the graphical body. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1ActorBase_ae76175894f1c2bc4372ec1ebd5ede83d}{GetOgreOrientation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the orientation of the graphical body. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBase_a8f7018838c67f07cd554730ac83f4283}{SetBulletLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
-\begin{DoxyCompactList}\small\item\em Sets the location of the physics body. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBase_a088bc9b26f4747e6f2896591a0f7b190}{SetBulletOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
-\begin{DoxyCompactList}\small\item\em Sets the orientation of the physics body. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBase_a4b2a3281be30dcc983b514ecaff14a51}{SetOgreLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Place)
-\begin{DoxyCompactList}\small\item\em Sets the location of the graphical body. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBase_a5958552c8b356775b5447c0bd6448102}{SetOgreOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
-\begin{DoxyCompactList}\small\item\em Sets the orientation of the graphical body. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMezzanine_1_1ActorBase_a6dbfa117e36ab443af4509399b6c4fc9}{
-\hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classMezzanine_1_1ActorBase_a6dbfa117e36ab443af4509399b6c4fc9}{ActorWorldNode}}
-\label{classMezzanine_1_1ActorBase_a6dbfa117e36ab443af4509399b6c4fc9}
-
-\begin{DoxyCompactList}\small\item\em This class excapsulates the functionality of the Ogre::SceneNode. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ActorBase_ae71259b98aed5a9c269e0758344d36a7}{
 Ogre::AnimationState $\ast$ \hyperlink{classMezzanine_1_1ActorBase_ae71259b98aed5a9c269e0758344d36a7}{Animation}}
 \label{classMezzanine_1_1ActorBase_ae71259b98aed5a9c269e0758344d36a7}
 
 \begin{DoxyCompactList}\small\item\em This class encapsulates the functionality of the Ogre::AnimationState using this. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ActorBase_a6171cd6b5d94263d0c339bf5e299fa26}{
-\hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorBase_a6171cd6b5d94263d0c339bf5e299fa26}{BasePhysicsSettings}}
-\label{classMezzanine_1_1ActorBase_a6171cd6b5d94263d0c339bf5e299fa26}
-
-\begin{DoxyCompactList}\small\item\em This class encapsulates physics specific configuration for this actor. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ActorBase_a073d5307c4cb7a82f13133e8216f797b}{
 internal::PhysMotionState $\ast$ \hyperlink{classMezzanine_1_1ActorBase_a073d5307c4cb7a82f13133e8216f797b}{MotionState}}
 \label{classMezzanine_1_1ActorBase_a073d5307c4cb7a82f13133e8216f797b}
@@ -148,7 +89,7 @@ This is the base class from which all the actors inherit. The actor classes stor
  \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} is a base class that serves as a template for the other four actor classes. \par
  \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} should never be created, as it lacks the functionality needed for most objects. 
 
-Definition at line 97 of file actorbase.h.
+Definition at line 87 of file actorbase.h.
 
 
 
@@ -185,7 +126,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 80 of file actorbase.cpp.
+Definition at line 75 of file actorbase.cpp.
 
 
 
@@ -210,7 +151,7 @@ Advances the animation, making it animate.
 \end{DoxyParams}
 You need to call this every frame while the actor is to be animated, otherwise even with the animation enabled you will see no change in the animation. 
 
-Definition at line 229 of file actorbase.cpp.
+Definition at line 113 of file actorbase.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBase_a28c9397e90ec680faf61845525312864}{
 \index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!EnableAnimation@{EnableAnimation}}
@@ -232,199 +173,7 @@ This function will enable the animation if passed true, making the object animat
 \end{DoxyParams}
 
 
-Definition at line 211 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a79803eb3d00e1e3722104fce473be085}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetActorNode@{GetActorNode}}
-\index{GetActorNode@{GetActorNode}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetActorNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ Mezzanine::ActorBase::GetActorNode (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a79803eb3d00e1e3722104fce473be085}
-
-
-Gets a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} representing the position and orientation of this actor. 
-
-The \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} returned by this function is not stored in the scene manasger. \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} pointer pointing to this actor's world node. 
-\end{DoxyReturn}
-
-
-Definition at line 191 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a9255b5af0827d02505b7662486d8dd17}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetActorScaling@{GetActorScaling}}
-\index{GetActorScaling@{GetActorScaling}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetActorScaling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorBase::GetActorScaling (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a9255b5af0827d02505b7662486d8dd17}
-
-
-Gets the current scaling being applied to the actor. 
-
-\begin{DoxyReturn}{Returns}
-Returns a vector3 representing the scaling being applied on all axes of this actor. 
-\end{DoxyReturn}
-
-
-Definition at line 252 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a9f110d013ed871809258dfc55f8b7276}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetBulletLocation@{GetBulletLocation}}
-\index{GetBulletLocation@{GetBulletLocation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorBase::GetBulletLocation (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a9f110d013ed871809258dfc55f8b7276}
-
-
-Retrieves the location of the physics body. 
-
-This function will retrieve the location of the object within the physics world. \begin{DoxyReturn}{Returns}
-a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3}. 
-\end{DoxyReturn}
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1ActorSoft_a7d6f49acc1bf286fd46fb33a8c2798e4}{Mezzanine::ActorSoft}.
-
-
-
-Definition at line 134 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a32fc60215d8bcd3151b3158d481ce0ef}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetBulletOrientation@{GetBulletOrientation}}
-\index{GetBulletOrientation@{GetBulletOrientation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetBulletOrientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} Mezzanine::ActorBase::GetBulletOrientation (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a32fc60215d8bcd3151b3158d481ce0ef}
-
-
-Gets the orientation of the graphical body. 
-
-\begin{DoxyReturn}{Returns}
-Returns a quaternion representing the rotation of the actor. 
-\end{DoxyReturn}
-
-
-Definition at line 145 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_ab1706a379bf86d020e64e4b560cdeb73}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetLocation@{GetLocation}}
-\index{GetLocation@{GetLocation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorBase::GetLocation (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_ab1706a379bf86d020e64e4b560cdeb73}
-
-
-Retrieves the location of the object. 
-
-This function will retrieve the location of the object within the world. \begin{DoxyReturn}{Returns}
-A \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} containing the location. 
-\end{DoxyReturn}
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1ActorSoft_a0192b3889eaf2786352d75ca03fcae4a}{Mezzanine::ActorSoft}.
-
-
-
-Definition at line 166 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a8095a72bdfcf7fd02953423ae17acd01}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetOgreLocation@{GetOgreLocation}}
-\index{GetOgreLocation@{GetOgreLocation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetOgreLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::ActorBase::GetOgreLocation (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a8095a72bdfcf7fd02953423ae17acd01}
-
-
-Retrieves the location of the graphical body. 
-
-This function will retrieve the location of the object within the graphical world. This should always match the physics world. \begin{DoxyReturn}{Returns}
-This returns a \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} with the location of the graphics. 
-\end{DoxyReturn}
-
-
-Definition at line 107 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_ae76175894f1c2bc4372ec1ebd5ede83d}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetOgreOrientation@{GetOgreOrientation}}
-\index{GetOgreOrientation@{GetOgreOrientation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetOgreOrientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} Mezzanine::ActorBase::GetOgreOrientation (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_ae76175894f1c2bc4372ec1ebd5ede83d}
-
-
-Gets the orientation of the graphical body. 
-
-\begin{DoxyReturn}{Returns}
-Returns a quaternion representing the rotation of the actor. 
-\end{DoxyReturn}
-
-
-Definition at line 118 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_ac04f313c7e1272c519d0284bc98148a4}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetOrientation@{GetOrientation}}
-\index{GetOrientation@{GetOrientation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} Mezzanine::ActorBase::GetOrientation (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_ac04f313c7e1272c519d0284bc98148a4}
-
-
-Gets the orientation of the actor. 
-
-\begin{DoxyReturn}{Returns}
-Returns a quaternion representing the rotation of the actor. 
-\end{DoxyReturn}
-
-
-Definition at line 183 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a08c975572f1ab5cde651e1a6e5d9bb6a}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetPhysicsSettings@{GetPhysicsSettings}}
-\index{GetPhysicsSettings@{GetPhysicsSettings}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetPhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBasePhysicsSettings} $\ast$ Mezzanine::ActorBase::GetPhysicsSettings (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a08c975572f1ab5cde651e1a6e5d9bb6a}
-
-
-Gets the physics settings class associated with this actor. 
-
-\begin{DoxyReturn}{Returns}
-Returns a pointer to the physics settings class in use by this actor. 
-\end{DoxyReturn}
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1ActorRigid_a6ed901638c88e4b9e09605152e11d56e}{Mezzanine::ActorRigid}.
-
-
-
-Definition at line 258 of file actorbase.cpp.
+Definition at line 95 of file actorbase.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBase_a6e9cce7e660471cc0f9b9df019663f8d}{
 \index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetType@{GetType}}
@@ -435,10 +184,10 @@ Definition at line 258 of file actorbase.cpp.
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1ActorBase_a6e9cce7e660471cc0f9b9df019663f8d}
-Gets the type of the terrain instance. 
+Gets the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance. 
 
 \begin{DoxyReturn}{Returns}
-Returns the type of the terrain instance 
+Returns the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance 
 \end{DoxyReturn}
  
 
@@ -466,27 +215,7 @@ Returns true if an animation is set and enabled.
 \end{DoxyReturn}
 
 
-Definition at line 219 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_aae73855e5f3cded86c71955cc855026a}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!IsStaticOrKinematic@{IsStaticOrKinematic}}
-\index{IsStaticOrKinematic@{IsStaticOrKinematic}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{IsStaticOrKinematic}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::ActorBase::IsStaticOrKinematic (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_aae73855e5f3cded86c71955cc855026a}
-
-
-Checks of the actor is static or kinematic. 
-
-Checks of the actor is static or kinematic, returns true if it is either. \begin{DoxyReturn}{Returns}
-Returns true if the actor is static or kinematic. 
-\end{DoxyReturn}
-
-
-Definition at line 196 of file actorbase.cpp.
+Definition at line 103 of file actorbase.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBase_a148df02e486650cba1aa384faf85975f}{
 \index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!RemoveSetAnimation@{RemoveSetAnimation}}
@@ -503,29 +232,7 @@ Unloads a loaded animation.
 
 This function will remove the existing set animation. 
 
-Definition at line 237 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a59af6b6866b22038a0f63e398b33a834}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetActorScaling@{SetActorScaling}}
-\index{SetActorScaling@{SetActorScaling}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{SetActorScaling}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::SetActorScaling (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector3} \&}]{scale}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a59af6b6866b22038a0f63e398b33a834}
-
-
-Sets the scale of the actor. 
-
-This function will alter the scaling/size of the actor with the given vector3. 
-\begin{DoxyParams}{Parameters}
-{\em scale} & The vector3 by which to apply the scale. Will scale each axis' accordingly. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 246 of file actorbase.cpp.
+Definition at line 121 of file actorbase.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBase_af81c2b16a0a73608d9af4f9fb7e82ef4}{
 \index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetAnimation@{SetAnimation}}
@@ -550,204 +257,7 @@ This function will get the specified animation for this object stored in the mes
 \end{DoxyParams}
 
 
-Definition at line 201 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a8f7018838c67f07cd554730ac83f4283}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetBulletLocation@{SetBulletLocation}}
-\index{SetBulletLocation@{SetBulletLocation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{SetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::SetBulletLocation (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector3} \&}]{Location}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a8f7018838c67f07cd554730ac83f4283}
-
-
-Sets the location of the physics body. 
-
-This will take a \hyperlink{classMezzanine_1_1Vector3}{Vector3} and set the location of the actor within the physics world. \par
- This function is called on by the SetLocation function, and shouldn't be called manually. 
-\begin{DoxyParams}{Parameters}
-{\em Location} & The \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the location. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 127 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a088bc9b26f4747e6f2896591a0f7b190}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetBulletOrientation@{SetBulletOrientation}}
-\index{SetBulletOrientation@{SetBulletOrientation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{SetBulletOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::SetBulletOrientation (
-\begin{DoxyParamCaption}
-\item[{const {\bf Quaternion} \&}]{Rotation}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a088bc9b26f4747e6f2896591a0f7b190}
-
-
-Sets the orientation of the physics body. 
-
-This will take a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} and set the orientation of the actor within the physics world. \par
- This function is called on by the SetOrientation function, and shouldn't be called manually. 
-\begin{DoxyParams}{Parameters}
-{\em Rotation} & The quaternion representing the rotation of the actor. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 140 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a293c93bc4e1b22f64804fdce61312a67}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetLocation@{SetLocation}}
-\index{SetLocation@{SetLocation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::SetLocation (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector3} \&}]{Place}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a293c93bc4e1b22f64804fdce61312a67}
-
-
-Manually sets the location of the actor. 
-
-Calling this function prior to adding it to the \hyperlink{classMezzanine_1_1World}{World} will have no effect. \par
- In most situations you won't want to use this function, and instead produce movement through physics functions. 
-\begin{DoxyParams}{Parameters}
-{\em Place} & The \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the location. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 160 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_aa0f4211e037013524088c38c04ab2d80}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetLocation@{SetLocation}}
-\index{SetLocation@{SetLocation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::SetLocation (
-\begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{x, }
-\item[{const {\bf Real} \&}]{y, }
-\item[{const {\bf Real} \&}]{z}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_aa0f4211e037013524088c38c04ab2d80}
-
-
-Manually sets the location of the actor. 
-
-Calling this function prior to adding it to the \hyperlink{classMezzanine_1_1World}{World} will have no effect. \par
- In most situations you won't want to use this function, and instead produce movement through physics functions. 
-\begin{DoxyParams}{Parameters}
-{\em x} & Location on the X vector. \\
-\hline
-{\em y} & Location on the Y vector. \\
-\hline
-{\em z} & Location on the Z vector. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 154 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a4b2a3281be30dcc983b514ecaff14a51}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetOgreLocation@{SetOgreLocation}}
-\index{SetOgreLocation@{SetOgreLocation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{SetOgreLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::SetOgreLocation (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector3} \&}]{Place}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a4b2a3281be30dcc983b514ecaff14a51}
-
-
-Sets the location of the graphical body. 
-
-This will take a \hyperlink{classMezzanine_1_1Vector3}{Vector3} and set the location of the actor within the graphical world. \par
- This function is called on by the SetLocation function, and shouldn't be called manually. 
-\begin{DoxyParams}{Parameters}
-{\em Place} & The \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the location. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 102 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a5958552c8b356775b5447c0bd6448102}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetOgreOrientation@{SetOgreOrientation}}
-\index{SetOgreOrientation@{SetOgreOrientation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{SetOgreOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::SetOgreOrientation (
-\begin{DoxyParamCaption}
-\item[{const {\bf Quaternion} \&}]{Rotation}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a5958552c8b356775b5447c0bd6448102}
-
-
-Sets the orientation of the graphical body. 
-
-This will take a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} and set the orientation of the actor within the graphical world. \par
- This function is called on by the SetOrientation function, and shouldn't be called manually. 
-\begin{DoxyParams}{Parameters}
-{\em Rotation} & The quaternion representing the rotation of the actor. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 113 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a9ea0aea47c70df747b62de1908a6e248}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetOrientation@{SetOrientation}}
-\index{SetOrientation@{SetOrientation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::SetOrientation (
-\begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{x, }
-\item[{const {\bf Real} \&}]{y, }
-\item[{const {\bf Real} \&}]{z, }
-\item[{const {\bf Real} \&}]{w}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a9ea0aea47c70df747b62de1908a6e248}
-
-
-Sets the orientation of the actor. 
-
-Sets the orientation of the actor via \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} parameters. 
-\begin{DoxyParams}{Parameters}
-{\em x} & Where the X vector is rotated about. \\
-\hline
-{\em y} & Where the Y vector is rotated about. \\
-\hline
-{\em z} & Where the Z vector is rotated about. \\
-\hline
-{\em w} & How much to about the x, y, z. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 171 of file actorbase.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBase_a71611580c9265bc87ad34c122e8246a0}{
-\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetOrientation@{SetOrientation}}
-\index{SetOrientation@{SetOrientation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::SetOrientation (
-\begin{DoxyParamCaption}
-\item[{const {\bf Quaternion} \&}]{Rotation}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a71611580c9265bc87ad34c122e8246a0}
-
-
-Sets the orientation of the actor. 
-
-Sets the orientation of the actor via a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion}. 
-\begin{DoxyParams}{Parameters}
-{\em Rotation} & The \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} representing the Rotation. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 177 of file actorbase.cpp.
+Definition at line 85 of file actorbase.cpp.
 
 
 

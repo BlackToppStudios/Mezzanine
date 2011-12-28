@@ -14,7 +14,7 @@ This is a gravity field implementation of the \hyperlink{classMezzanine_1_1AreaE
 Inheritance diagram for Mezzanine::GravityField:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{classMezzanine_1_1GravityField}
+\includegraphics[height=4.000000cm]{classMezzanine_1_1GravityField}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
@@ -24,6 +24,8 @@ virtual void \hyperlink{classMezzanine_1_1GravityField_a53aee6679088fb6151e5cb6e
 \begin{DoxyCompactList}\small\item\em Applies the effect this field has to object inside. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1GravityField_ad37d2c94bdabf0412e35ed59ad74e8c9}{GetFieldGravity} () const 
 \begin{DoxyCompactList}\small\item\em Gets the gravity of this field. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \hyperlink{classMezzanine_1_1GravityField_ae8c07e694ebcbcb226c1375bec3772b4}{GetType} () const 
+\item 
 \hyperlink{classMezzanine_1_1GravityField_aff8a73a59ad999b49f39c4bfb564fed3}{GravityField} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
 \begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1GravityField_a426b69dcfd3476029ebadea1ee4e0ea3}{SetFieldGravity} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Gravity)
@@ -43,7 +45,7 @@ virtual \hyperlink{classMezzanine_1_1GravityField_a53fe69bb37458dce9fca8df1215d7
 \subsubsection{Detailed Description}
 This is a gravity field implementation of the \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect} class. This class is not a gravity well, where gravity is pulling to one point. Instead this class uniformly pulls gravity in one direction that is different from the world gravity. 
 
-Definition at line 219 of file areaeffect.h.
+Definition at line 186 of file areaeffect.h.
 
 
 
@@ -71,7 +73,7 @@ Basic initialization constructor.
 \end{DoxyParams}
 
 
-Definition at line 510 of file areaeffect.cpp.
+Definition at line 331 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityField_a53fe69bb37458dce9fca8df1215d739e}{
 \index{Mezzanine::GravityField@{Mezzanine::GravityField}!$\sim$GravityField@{$\sim$GravityField}}
@@ -88,7 +90,7 @@ Destructor.
 
 Class destructor. 
 
-Definition at line 514 of file areaeffect.cpp.
+Definition at line 335 of file areaeffect.cpp.
 
 
 
@@ -112,7 +114,7 @@ Implements \hyperlink{classMezzanine_1_1AreaEffect_a988cd958e49d65331a059951af3c
 
 
 
-Definition at line 518 of file areaeffect.cpp.
+Definition at line 339 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityField_ad37d2c94bdabf0412e35ed59ad74e8c9}{
 \index{Mezzanine::GravityField@{Mezzanine::GravityField}!GetFieldGravity@{GetFieldGravity}}
@@ -128,11 +130,33 @@ Definition at line 518 of file areaeffect.cpp.
 Gets the gravity of this field. 
 
 Gets the strength and direction of gravity this field has. \begin{DoxyReturn}{Returns}
-Returns a vector3 representing the force and direction of gravity this field has. 
+Returns a \hyperlink{classvector3}{vector3} representing the force and direction of gravity this field has. 
 \end{DoxyReturn}
 
 
-Definition at line 547 of file areaeffect.cpp.
+Definition at line 368 of file areaeffect.cpp.
+
+\hypertarget{classMezzanine_1_1GravityField_ae8c07e694ebcbcb226c1375bec3772b4}{
+\index{Mezzanine::GravityField@{Mezzanine::GravityField}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::GravityField@{Mezzanine::GravityField}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldObjectType} Mezzanine::GravityField::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1GravityField_ae8c07e694ebcbcb226c1375bec3772b4}
+Gets the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance. 
+
+\begin{DoxyReturn}{Returns}
+Returns the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance 
+\end{DoxyReturn}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1AreaEffect_a3eab7461632e01984cfb07f8c8fb5954}{Mezzanine::AreaEffect}.
+
+
+
+Definition at line 373 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityField_a426b69dcfd3476029ebadea1ee4e0ea3}{
 \index{Mezzanine::GravityField@{Mezzanine::GravityField}!SetFieldGravity@{SetFieldGravity}}
@@ -149,12 +173,12 @@ Sets the gravity force for this field.
 
 Sets the strength and direction of gravity this field will have. 
 \begin{DoxyParams}{Parameters}
-{\em Gravity} & The vector3 representing the force and direction of gravity this field will have. \\
+{\em Gravity} & The \hyperlink{classvector3}{vector3} representing the force and direction of gravity this field will have. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 542 of file areaeffect.cpp.
+Definition at line 363 of file areaeffect.cpp.
 
 
 

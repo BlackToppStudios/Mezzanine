@@ -74,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Mezzanine::AreaEffect Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::AreaEffect" -->
+<!-- doxytag: class="Mezzanine::AreaEffect" --><!-- doxytag: inherits="Mezzanine::NonStaticWorldObject" -->
 <p>This class is used to define area's in the world that have unique effects.  
 <a href="#_details">More...</a></p>
 
@@ -85,10 +85,12 @@ Inheritance diagram for Mezzanine::AreaEffect:</div>
  <div class="center">
   <img src="classMezzanine_1_1AreaEffect.png" usemap="#Mezzanine::AreaEffect_map" alt=""/>
   <map id="Mezzanine::AreaEffect_map" name="Mezzanine::AreaEffect_map">
-<area href="classMezzanine_1_1FieldOfForce.html" alt="Mezzanine::FieldOfForce" shape="rect" coords="0,56,155,80"/>
-<area href="classMezzanine_1_1GravityField.html" alt="Mezzanine::GravityField" shape="rect" coords="165,56,320,80"/>
-<area href="classMezzanine_1_1GravityWell.html" alt="Mezzanine::GravityWell" shape="rect" coords="330,56,485,80"/>
-<area href="classMezzanine_1_1TestAE.html" alt="Mezzanine::TestAE" shape="rect" coords="495,56,650,80"/>
+<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="319,56,522,80"/>
+<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="319,0,522,24"/>
+<area href="classMezzanine_1_1FieldOfForce.html" alt="Mezzanine::FieldOfForce" shape="rect" coords="0,168,203,192"/>
+<area href="classMezzanine_1_1GravityField.html" alt="Mezzanine::GravityField" shape="rect" coords="213,168,416,192"/>
+<area href="classMezzanine_1_1GravityWell.html" alt="Mezzanine::GravityWell" shape="rect" coords="426,168,629,192"/>
+<area href="classMezzanine_1_1TestAE.html" alt="Mezzanine::TestAE" shape="rect" coords="639,168,842,192"/>
 </map>
  </div></div>
 
@@ -96,48 +98,20 @@ Inheritance diagram for Mezzanine::AreaEffect:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aa852e811bf900d209be137901f7e536c">_Update</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aed1323d5e951b5c02c789b4d30d6d9d7">AddToWorld</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a988cd958e49d65331a059951af3c2884">ApplyEffect</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines and applies the effect of the field.  <a href="#a988cd958e49d65331a059951af3c2884"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a58cc7fb0725297113bbc32d619e57705">AreaEffect</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a58cc7fb0725297113bbc32d619e57705"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ac349f091e923cbb92740aaa35f2f5c2e">GetAddedActors</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of actors that have been added to the list since the last simulation step.  <a href="#ac349f091e923cbb92740aaa35f2f5c2e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Mesh.html">Mesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a1406441f5c12072dc0a6178a2690f3a6">GetFieldMesh</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mesh being used by this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>.  <a href="#a1406441f5c12072dc0a6178a2690f3a6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a2204a7b0f004778bb27f38d65fa9e4df">GetFieldShape</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current shape of the <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>.  <a href="#a2204a7b0f004778bb27f38d65fa9e4df"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a7e80ddc1cb411012d80a99859bb865f7">GetFieldShapeScale</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the scale of the shape of the field.  <a href="#a7e80ddc1cb411012d80a99859bb865f7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a37d04f8e6d6e8451348ee60fd083968b">GetLocation</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the origin for the area effect.  <a href="#a37d04f8e6d6e8451348ee60fd083968b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ae0205e57786da97300357d7ac1afd180">GetName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Area Effects name.  <a href="#ae0205e57786da97300357d7ac1afd180"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a658d69036a307f232b88aafcab3d02c1">GetOrientation</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the orientation of the area effect.  <a href="#a658d69036a307f232b88aafcab3d02c1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual std::list&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a69f19ed2d67dca2623df6e6331b31462">GetOverlappingActors</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of actors within this field.  <a href="#a69f19ed2d67dca2623df6e6331b31462"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ac657b565ca47198c6fd900c8a588948b">GetRemovedActors</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of actors that have been removed from the list since the last simulation step.  <a href="#ac657b565ca47198c6fd900c8a588948b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aee16d398d7788f6e0fd5e597bcdbd106">IsInWorld</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the ghost object is currently in the world.  <a href="#aee16d398d7788f6e0fd5e597bcdbd106"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a9b2c07dd426285aff44d5faaca4b3356">IsStatic</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this AR is static.  <a href="#a9b2c07dd426285aff44d5faaca4b3356"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aac92fc4ba682d509f6385e999f68c75d">ScaleFieldShape</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Scale)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the scale of the shape of the field.  <a href="#aac92fc4ba682d509f6385e999f68c75d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aa9e8a5e1ffee5aa11ab4958373b06f09">SetFieldMesh</a> (<a class="el" href="classMezzanine_1_1Mesh.html">Mesh</a> *<a class="el" href="classMezzanine_1_1AreaEffect.html#a5ca3984a40d2678b786f518667fde27f">FieldMesh</a>)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mesh to be used along with this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>.  <a href="#aa9e8a5e1ffee5aa11ab4958373b06f09"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a5e2902749c630af5272d2dc89678392c">SetFieldMesh</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;MeshName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Group)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mesh to be used along with this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>.  <a href="#a5e2902749c630af5272d2dc89678392c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a759a0a5f4becf94c87aff85b0681f663">SetFieldShape</a> (<a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *<a class="el" href="classMezzanine_1_1AreaEffect.html#a54f08718bc742934f2ef6b4bd978c9d2">FieldShape</a>)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the shape of this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>.  <a href="#a759a0a5f4becf94c87aff85b0681f663"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a4dd22757bc627242de169e31a1717139">SetLocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the origin for the area effect.  <a href="#a4dd22757bc627242de169e31a1717139"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a62bcda0a0c2a95b8f1ccdfe2cd3d1018">SetOrientation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the orientation of the area effect.  <a href="#a62bcda0a0c2a95b8f1ccdfe2cd3d1018"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#adfecf112bad175a57cdf147cb0d0aaa8">SetStatic</a> (bool Static)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets(or un-sets) this AE as a static object.  <a href="#adfecf112bad175a57cdf147cb0d0aaa8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aee19befcb794b85f13da4e427c2be42d">UpdateActorList</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the actors listed as within the field.  <a href="#aee19befcb794b85f13da4e427c2be42d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a3eab7461632e01984cfb07f8c8fb5954">GetType</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aaf2aab50bfb000f3dfec58e97b423a29">RemoveFromWorld</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a1e825ce1dcb2d78c190b17d7bff7306c">~AreaEffect</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a1e825ce1dcb2d78c190b17d7bff7306c"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
@@ -147,9 +121,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function for adding actors to relevant lists. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a198ad58cec706d508785cbd8e319ba54">CreateGhostObject</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor Function.  <a href="#a198ad58cec706d508785cbd8e319ba54"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6d32d28fbe74eec48eaf3f7b5550c1c"></a><!-- doxytag: member="Mezzanine::AreaEffect::PreGraphicsMeshCreate" ref="ae6d32d28fbe74eec48eaf3f7b5550c1c" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ae6d32d28fbe74eec48eaf3f7b5550c1c">PreGraphicsMeshCreate</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function for the common starting steps in making a graphics object. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a676a36ba3fb8b0d7ced951f1b5010852"></a><!-- doxytag: member="Mezzanine::AreaEffect::RemoveActorFromList" ref="a676a36ba3fb8b0d7ced951f1b5010852" args="(ActorBase *Actor)" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a676a36ba3fb8b0d7ced951f1b5010852">RemoveActorFromList</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function for adding actors to relevant lists. <br/></td></tr>
@@ -158,33 +129,15 @@ Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a7e333c5e52fd5d7ae892f4691dbc16"></a><!-- doxytag: member="Mezzanine::AreaEffect::AddedActors" ref="a9a7e333c5e52fd5d7ae892f4691dbc16" args="" -->
 std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a9a7e333c5e52fd5d7ae892f4691dbc16">AddedActors</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Container of actors that have been added since last frame. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ca3984a40d2678b786f518667fde27f"></a><!-- doxytag: member="Mezzanine::AreaEffect::FieldMesh" ref="a5ca3984a40d2678b786f518667fde27f" args="" -->
-<a class="el" href="classMezzanine_1_1Mesh.html">Mesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a5ca3984a40d2678b786f518667fde27f">FieldMesh</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the mesh of the AR field. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54f08718bc742934f2ef6b4bd978c9d2"></a><!-- doxytag: member="Mezzanine::AreaEffect::FieldShape" ref="a54f08718bc742934f2ef6b4bd978c9d2" args="" -->
-<a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a54f08718bc742934f2ef6b4bd978c9d2">FieldShape</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the shape of the AE field. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16427c9805ea4c87faa84715ec04f97d"></a><!-- doxytag: member="Mezzanine::AreaEffect::Ghost" ref="a16427c9805ea4c87faa84715ec04f97d" args="" -->
 btPairCachingGhostObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a16427c9805ea4c87faa84715ec04f97d">Ghost</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The object representing the AE field itself. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f025b9cd2ff505618eeaf6640319ab9"></a><!-- doxytag: member="Mezzanine::AreaEffect::GraphicsNode" ref="a6f025b9cd2ff505618eeaf6640319ab9" args="" -->
-Ogre::SceneNode *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a6f025b9cd2ff505618eeaf6640319ab9">GraphicsNode</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Ogre node required to adding a graohical representation to the scene graph. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a673167414883d918da6fb57f340e850e"></a><!-- doxytag: member="Mezzanine::AreaEffect::GraphicsObject" ref="a673167414883d918da6fb57f340e850e" args="" -->
-Ogre::Entity *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a673167414883d918da6fb57f340e850e">GraphicsObject</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Ogre object being added to the scene graph. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2b27c925a2eaa40fe03db4205f3de39"></a><!-- doxytag: member="Mezzanine::AreaEffect::Name" ref="ad2b27c925a2eaa40fe03db4205f3de39" args="" -->
-<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ad2b27c925a2eaa40fe03db4205f3de39">Name</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the Area Effect. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a1dbe79efda62adad5f56b5f93813ca"></a><!-- doxytag: member="Mezzanine::AreaEffect::OverlappingActors" ref="a9a1dbe79efda62adad5f56b5f93813ca" args="" -->
 std::list&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a9a1dbe79efda62adad5f56b5f93813ca">OverlappingActors</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for actors within the field area. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaab6a94b9c4a9cfdb917ff4ce3fcabf"></a><!-- doxytag: member="Mezzanine::AreaEffect::RemovedActors" ref="adaab6a94b9c4a9cfdb917ff4ce3fcabf" args="" -->
 std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#adaab6a94b9c4a9cfdb917ff4ce3fcabf">RemovedActors</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Container of actors that have been removed since last frame. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acefbfa896daea1dfa41fb31fa65db01d"></a><!-- doxytag: member="Mezzanine::AreaEffect::TheWorld" ref="acefbfa896daea1dfa41fb31fa65db01d" args="" -->
-<a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#acefbfa896daea1dfa41fb31fa65db01d">TheWorld</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> pointer simply to enable the effects of this class to be as diverse as the engine features. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a139cf05ac01161b7071c8a037c841683"></a><!-- doxytag: member="Mezzanine::AreaEffect::PhysicsManager" ref="a139cf05ac01161b7071c8a037c841683" args="" -->
@@ -195,7 +148,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Common uses for this class are for gravity fields, and explosions. But can be made to do more. <br/>
  Note: This is a base class intended to be derived from. This class cannot be created itself. To make an <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a> class that does what you want it to, simple inherit from this class with an AE class of your own, and define the <a class="el" href="classMezzanine_1_1AreaEffect.html#a988cd958e49d65331a059951af3c2884" title="Defines and applies the effect of the field.">ApplyEffect()</a> function to do what you want your effect to do. </p>
 
-<p>Definition at line <a class="el" href="areaeffect_8h_source.html#l00077">77</a> of file <a class="el" href="areaeffect_8h_source.html">areaeffect.h</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8h_source.html#l00072">72</a> of file <a class="el" href="areaeffect_8h_source.html">areaeffect.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a58cc7fb0725297113bbc32d619e57705"></a><!-- doxytag: member="Mezzanine::AreaEffect::AreaEffect" ref="a58cc7fb0725297113bbc32d619e57705" args="(const String &amp;name, const Vector3 &amp;Location)" -->
 <div class="memitem">
@@ -232,7 +185,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00067">67</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00066">66</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -253,11 +206,53 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Destructor. </p>
 <p>Class destructor. </p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00078">78</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00077">77</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="aa852e811bf900d209be137901f7e536c"></a><!-- doxytag: member="Mezzanine::AreaEffect::_Update" ref="aa852e811bf900d209be137901f7e536c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::_Update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Utility function for altering or checking the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object every frame. </p>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1WorldObject.html#af54c2dd470b534a51f12baae51631359">Mezzanine::WorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00160">160</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed1323d5e951b5c02c789b4d30d6d9d7"></a><!-- doxytag: member="Mezzanine::AreaEffect::AddToWorld" ref="aed1323d5e951b5c02c789b4d30d6d9d7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::AddToWorld </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Adds the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object to the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>. </p>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1WorldObject.html#a73f51f4025bfbb1f86075de45d33d10a">Mezzanine::WorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00141">141</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a988cd958e49d65331a059951af3c2884"></a><!-- doxytag: member="Mezzanine::AreaEffect::ApplyEffect" ref="a988cd958e49d65331a059951af3c2884" args="()=0" -->
 <div class="memitem">
 <div class="memproto">
@@ -303,7 +298,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00085">85</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00090">90</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -324,135 +319,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the list of actors that have been added to the list since the last simulation step. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the vector storing all the actors that have been added to the list since the last simulation step. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00451">451</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1406441f5c12072dc0a6178a2690f3a6"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetFieldMesh" ref="a1406441f5c12072dc0a6178a2690f3a6" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Mesh.html">Mesh</a> * Mezzanine::AreaEffect::GetFieldMesh </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the mesh being used by this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the mesh being used by this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>, or NULL if none. </dd></dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00441">441</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2204a7b0f004778bb27f38d65fa9e4df"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetFieldShape" ref="a2204a7b0f004778bb27f38d65fa9e4df" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> * Mezzanine::AreaEffect::GetFieldShape </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the current shape of the <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the shape currently being used by this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>. </dd></dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00345">345</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7e80ddc1cb411012d80a99859bb865f7"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetFieldShapeScale" ref="a7e80ddc1cb411012d80a99859bb865f7" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::AreaEffect::GetFieldShapeScale </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the scale of the shape of the field. </p>
-<p>The default scale is 1.0. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the current scale applied to the fields shape. </dd></dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00355">355</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a37d04f8e6d6e8451348ee60fd083968b"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetLocation" ref="a37d04f8e6d6e8451348ee60fd083968b" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::AreaEffect::GetLocation </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the origin for the area effect. </p>
-<p>This function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the vector3 representing the location of the area effect. </dd></dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00368">368</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae0205e57786da97300357d7ac1afd180"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetName" ref="ae0205e57786da97300357d7ac1afd180" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp; Mezzanine::AreaEffect::GetName </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the Area Effects name. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the name of the Area Effect. </dd></dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00387">387</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a658d69036a307f232b88aafcab3d02c1"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetOrientation" ref="a658d69036a307f232b88aafcab3d02c1" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> Mezzanine::AreaEffect::GetOrientation </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the orientation of the area effect. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the rotation of the area effect. </dd></dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00381">381</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00126">126</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -473,7 +340,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the list of actors within this field. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the list of actors contained within this field. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00446">446</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00121">121</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -494,16 +361,16 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the list of actors that have been removed from the list since the last simulation step. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the vector storing all the actors that have been removed from the list since the last simulation step. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00456">456</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00131">131</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aee16d398d7788f6e0fd5e597bcdbd106"></a><!-- doxytag: member="Mezzanine::AreaEffect::IsInWorld" ref="aee16d398d7788f6e0fd5e597bcdbd106" args="() const " -->
+<a class="anchor" id="a3eab7461632e01984cfb07f8c8fb5954"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetType" ref="a3eab7461632e01984cfb07f8c8fb5954" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::AreaEffect::IsInWorld </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a> Mezzanine::AreaEffect::GetType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [virtual]</code></td>
@@ -511,246 +378,23 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
       </table>
 </div>
 <div class="memdoc">
+<p>Gets the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1WorldObject.html#a88b76eaad3ea97b3540e5f23cbc50f73">Mezzanine::WorldObject</a>.</p>
 
-<p>Checks to see if the ghost object is currently in the world. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indication whether or not this object is currently in the world. </dd></dl>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1GravityField.html#ae8c07e694ebcbcb226c1375bec3772b4">Mezzanine::GravityField</a>, <a class="el" href="classMezzanine_1_1GravityWell.html#aa7c7683357d133831b362c7c923c5271">Mezzanine::GravityWell</a>, and <a class="el" href="classMezzanine_1_1FieldOfForce.html#a67c2eceec144d9a20f1bb3777b0bd666">Mezzanine::FieldOfForce</a>.</p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00392">392</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00136">136</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9b2c07dd426285aff44d5faaca4b3356"></a><!-- doxytag: member="Mezzanine::AreaEffect::IsStatic" ref="a9b2c07dd426285aff44d5faaca4b3356" args="() const " -->
+<a class="anchor" id="aaf2aab50bfb000f3dfec58e97b423a29"></a><!-- doxytag: member="Mezzanine::AreaEffect::RemoveFromWorld" ref="aaf2aab50bfb000f3dfec58e97b423a29" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::AreaEffect::IsStatic </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets whether or not this AR is static. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating if this object is static. </dd></dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00411">411</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aac92fc4ba682d509f6385e999f68c75d"></a><!-- doxytag: member="Mezzanine::AreaEffect::ScaleFieldShape" ref="aac92fc4ba682d509f6385e999f68c75d" args="(const Vector3 &amp;Scale)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::AreaEffect::ScaleFieldShape </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
-          <td class="paramname"><em>Scale</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the scale of the shape of the field. </p>
-<p>The default scale is 1.0. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Scale</td><td>The vector3 representing the scale you wish to apply to each axis of the field shape. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00350">350</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5e2902749c630af5272d2dc89678392c"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetFieldMesh" ref="a5e2902749c630af5272d2dc89678392c" args="(const String &amp;MeshName, const String &amp;Group)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::AreaEffect::SetFieldMesh </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>MeshName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Group</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the mesh to be used along with this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>. </p>
-<dl class="note"><dt><b>Note:</b></dt><dd>By default, there is no mesh used by an <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>, as it doesn't require one for it's operation. </dd></dl>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">MeshName</td><td>The name of the mesh to apply to this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>. </td></tr>
-    <tr><td class="paramname">Group</td><td>The resource group to which the mesh belongs. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00435">435</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa9e8a5e1ffee5aa11ab4958373b06f09"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetFieldMesh" ref="aa9e8a5e1ffee5aa11ab4958373b06f09" args="(Mesh *FieldMesh)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::AreaEffect::SetFieldMesh </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Mesh.html">Mesh</a> *&#160;</td>
-          <td class="paramname"><em>FieldMesh</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the mesh to be used along with this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>. </p>
-<dl class="note"><dt><b>Note:</b></dt><dd>By default, there is no mesh used by an <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>, as it doesn't require one for it's operation. </dd></dl>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname"><a class="el" href="classMezzanine_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Mesh</a></td><td>The mesh to apply to this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00416">416</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a759a0a5f4becf94c87aff85b0681f663"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetFieldShape" ref="a759a0a5f4becf94c87aff85b0681f663" args="(CollisionShape *FieldShape)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::AreaEffect::SetFieldShape </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td>
-          <td class="paramname"><em>FieldShape</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the shape of this <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a>. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">FieldShape</td><td>The shape to be applied to this field. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00338">338</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4dd22757bc627242de169e31a1717139"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetLocation" ref="a4dd22757bc627242de169e31a1717139" args="(const Vector3 &amp;Location)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::AreaEffect::SetLocation </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
-          <td class="paramname"><em>Location</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the origin for the area effect. </p>
-<p>In most cases you won't want to call this, with the exception of when you want a field to follow/track an actor. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Location</td><td>The updated location of the origin for the field. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00361">361</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a62bcda0a0c2a95b8f1ccdfe2cd3d1018"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetOrientation" ref="a62bcda0a0c2a95b8f1ccdfe2cd3d1018" args="(const Quaternion &amp;Rotation)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::AreaEffect::SetOrientation </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td>
-          <td class="paramname"><em>Rotation</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the orientation of the area effect. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Rotation</td><td>The <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> representing the Rotation. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00374">374</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adfecf112bad175a57cdf147cb0d0aaa8"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetStatic" ref="adfecf112bad175a57cdf147cb0d0aaa8" args="(bool Static)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::AreaEffect::SetStatic </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>Static</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets(or un-sets) this AE as a static object. </p>
-<p>Default: true. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Static</td><td>Whether or not to set this as static. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00397">397</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aee19befcb794b85f13da4e427c2be42d"></a><!-- doxytag: member="Mezzanine::AreaEffect::UpdateActorList" ref="aee19befcb794b85f13da4e427c2be42d" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::AreaEffect::UpdateActorList </td>
+          <td class="memname">void Mezzanine::AreaEffect::RemoveFromWorld </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [virtual]</code></td>
@@ -758,15 +402,11 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
       </table>
 </div>
 <div class="memdoc">
+<p>Removes the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object from the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>. </p>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1WorldObject.html#a67e3c05d50cc1ff631beecd37d87255a">Mezzanine::WorldObject</a>.</p>
 
-<p>Updates the actors listed as within the field. </p>
-<p>This function is automatically called once every simulation step. This shouldn't be called manually unless your usage of this class requires more then one update per step. </p>
-
-<p><p>New-ish way using the dispatcher. Gives inconsistent results at startup.</p>
-<p>Old way, checks AABB's only...as it turns out. </p>
-</p>
-
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00127">127</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00147">147</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -790,6 +430,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

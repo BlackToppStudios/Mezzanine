@@ -128,7 +128,8 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>SDL uses this to filter events it presents to applications. </p>
-<p>This is used used to filter out SQL_quit messages, and generate appropriate messages for the game developer to use. This will always drop quit events, and store that information for later use. </p>
+<p>This is used used to filter out SQL_quit messages, and generate appropriate messages for the game developer to use. This will always drop quit events, and store that information for later use. <br/>
+ If this is passed an event that points to 0 it will function as a method to tell us if an SDL_QUIT message has been thrown this will return 2 if it has not seen an SDL_quit, and a 4 if it has </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">event</td><td>This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages </td></tr>
@@ -159,6 +160,6 @@ Functions</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:33:01 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

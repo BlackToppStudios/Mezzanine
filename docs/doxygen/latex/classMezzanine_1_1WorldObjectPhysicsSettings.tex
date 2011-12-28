@@ -1,0 +1,389 @@
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings}{
+\subsection{Mezzanine::WorldObjectPhysicsSettings Class Reference}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings}\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+}
+
+
+This is a base helper class for configuring physics settings of a world object.  
+
+
+
+
+{\ttfamily \#include $<$worldobjectphysicssettings.h$>$}
+
+Inheritance diagram for Mezzanine::WorldObjectPhysicsSettings:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classMezzanine_1_1WorldObjectPhysicsSettings}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{namespaceMezzanine_ac4d9d4570b1963390325ad6a083108e1}{WorldObjectActivationState} \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a4ff60fa3c81d63816b5014d80ec57f26}{GetActivationState} () const 
+\begin{DoxyCompactList}\small\item\em How activated or deactivated is the object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a7a3daebdb7d7a40116b1869c59441d2c}{GetCollisionGroup} () const 
+\begin{DoxyCompactList}\small\item\em Gets the actors collision group. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_ad1c74e07047aeebe5fa60504a03a20b9}{GetCollisionMask} () const 
+\begin{DoxyCompactList}\small\item\em Gets the actors collision mask. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_ab875f0480dbde3dd97a26ddf89bdb6c4}{GetCollisionResponse} () const 
+\begin{DoxyCompactList}\small\item\em Will this respond to 3d collisions. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_aed89696d6b5f42299d6853dee302bf16}{GetCollisionShape} () const 
+\begin{DoxyCompactList}\small\item\em Gets the collision shape currently in use by this actor. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a9933baf62361c7e32eff29dce6219d2c}{IsActive} () const 
+\begin{DoxyCompactList}\small\item\em Checks if the object is active in the simulation. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a0c9e2839266e49d073c09d9396eab600}{IsKinematic} () const 
+\begin{DoxyCompactList}\small\item\em Is the actir kinematic. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_ad66ee17bc6331910a1a1bb583fe2b424}{IsStatic} () const 
+\begin{DoxyCompactList}\small\item\em Is the actor static. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_adb5ca51d40befb558cc5b1b85ef8b092}{IsStaticOrKinematic} () const 
+\begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_ae90ebe8b69ab256702f178c71cf1af47}{SetActivationState} (const \hyperlink{namespaceMezzanine_ac4d9d4570b1963390325ad6a083108e1}{WorldObjectActivationState} \&State, bool Force=false)
+\begin{DoxyCompactList}\small\item\em Sets the activation state of the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a46d794796272ed68fffb32a91d4a6420}{SetCollisionGroupAndMask} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Group, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Mask)
+\begin{DoxyCompactList}\small\item\em Set the collision group and mask for the actor to determine what it should collide with. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_ae8b786e26eed334b283156b442807039}{SetCollisionShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Sets the collision shape to be used. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_affb46355a699ca229f906dda739bc5da}{WorldObjectPhysicsSettings} (\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$WO, btCollisionObject $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a19b8556f7dedb40ac4b987fb5d0c02d8}{
+virtual \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a19b8556f7dedb40ac4b987fb5d0c02d8}{$\sim$WorldObjectPhysicsSettings} ()}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a19b8556f7dedb40ac4b987fb5d0c02d8}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a9295552e05287fd3d292e19be5dfec4e}{
+void \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a9295552e05287fd3d292e19be5dfec4e}{AssignShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a9295552e05287fd3d292e19be5dfec4e}
+
+\begin{DoxyCompactList}\small\item\em Assigns a shape to the appropriate objects. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a5dbea4c96d2eb21cf39e26b138deb4fe}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a5dbea4c96d2eb21cf39e26b138deb4fe}{CollisionGroup}}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a5dbea4c96d2eb21cf39e26b138deb4fe}
+
+\begin{DoxyCompactList}\small\item\em A number of \hyperlink{classMezzanine_1_1World}{World} Objects will use this in conjuction with the physics system. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a9065465b55008f208333b5e39a9bb4c6}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a9065465b55008f208333b5e39a9bb4c6}{CollisionMask}}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a9065465b55008f208333b5e39a9bb4c6}
+
+\begin{DoxyCompactList}\small\item\em Stores the kind of \hyperlink{classMezzanine_1_1World}{World} Objects that can collide with each other. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a0dc3ea3047f6692dcafe4f4ade69aba0}{
+\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$ \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a0dc3ea3047f6692dcafe4f4ade69aba0}{Parent}}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a0dc3ea3047f6692dcafe4f4ade69aba0}
+
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classMezzanine_1_1World}{World} Object this belongs to. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_aeb7cc43e0423be4c21aac29dee831209}{
+btCollisionObject $\ast$ \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_aeb7cc43e0423be4c21aac29dee831209}{WorldObjectCO}}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_aeb7cc43e0423be4c21aac29dee831209}
+
+\begin{DoxyCompactList}\small\item\em Physics Object of the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a9d79c13e4dd51c75c90a8cd3f29488ed}{
+\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a9d79c13e4dd51c75c90a8cd3f29488ed}{WorldObjectShape}}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a9d79c13e4dd51c75c90a8cd3f29488ed}
+
+\begin{DoxyCompactList}\small\item\em The physics shape of the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a base helper class for configuring physics settings of a world object. This class contains functions for the configuring of physics specific settings of a world object. This class can only configure the world objects physics. For configuring world object graphics, see \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings}{WorldObjectGraphicsSettings}. 
+
+Definition at line 63 of file worldobjectphysicssettings.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_affb46355a699ca229f906dda739bc5da}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!WorldObjectPhysicsSettings@{WorldObjectPhysicsSettings}}
+\index{WorldObjectPhysicsSettings@{WorldObjectPhysicsSettings}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{WorldObjectPhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::WorldObjectPhysicsSettings::WorldObjectPhysicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf WorldObject} $\ast$}]{WO, }
+\item[{btCollisionObject $\ast$}]{PhysicsObject}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_affb46355a699ca229f906dda739bc5da}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em WO} & The \hyperlink{classMezzanine_1_1World}{World} Object this settings class configures. \\
+\hline
+{\em PhysicsObject} & The physics object belonging to the \hyperlink{classMezzanine_1_1World}{World} Object this class configures. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 63 of file worldobjectphysicssettings.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a4ff60fa3c81d63816b5014d80ec57f26}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!GetActivationState@{GetActivationState}}
+\index{GetActivationState@{GetActivationState}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{GetActivationState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldObjectActivationState} Mezzanine::WorldObjectPhysicsSettings::GetActivationState (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a4ff60fa3c81d63816b5014d80ec57f26}
+
+
+How activated or deactivated is the object. 
+
+\begin{DoxyReturn}{Returns}
+A Mezzanine::ActorActivationState that describes whether the actor is part of the calculated simulation or not. 
+\end{DoxyReturn}
+
+
+Definition at line 146 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a7a3daebdb7d7a40116b1869c59441d2c}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!GetCollisionGroup@{GetCollisionGroup}}
+\index{GetCollisionGroup@{GetCollisionGroup}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{GetCollisionGroup}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::WorldObjectPhysicsSettings::GetCollisionGroup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a7a3daebdb7d7a40116b1869c59441d2c}
+
+
+Gets the actors collision group. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the collision group this actor is set to. 
+\end{DoxyReturn}
+
+
+Definition at line 103 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_ad1c74e07047aeebe5fa60504a03a20b9}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!GetCollisionMask@{GetCollisionMask}}
+\index{GetCollisionMask@{GetCollisionMask}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{GetCollisionMask}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::WorldObjectPhysicsSettings::GetCollisionMask (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_ad1c74e07047aeebe5fa60504a03a20b9}
+
+
+Gets the actors collision mask. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing what other collision groups this actor should collide with. 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_ab875f0480dbde3dd97a26ddf89bdb6c4}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!GetCollisionResponse@{GetCollisionResponse}}
+\index{GetCollisionResponse@{GetCollisionResponse}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{GetCollisionResponse}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::WorldObjectPhysicsSettings::GetCollisionResponse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_ab875f0480dbde3dd97a26ddf89bdb6c4}
+
+
+Will this respond to 3d collisions. 
+
+\begin{DoxyReturn}{Returns}
+False is it does not respond to collisions, True if it will 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_aed89696d6b5f42299d6853dee302bf16}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!GetCollisionShape@{GetCollisionShape}}
+\index{GetCollisionShape@{GetCollisionShape}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{GetCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape} $\ast$ Mezzanine::WorldObjectPhysicsSettings::GetCollisionShape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_aed89696d6b5f42299d6853dee302bf16}
+
+
+Gets the collision shape currently in use by this actor. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the collision shape being used. 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a9933baf62361c7e32eff29dce6219d2c}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!IsActive@{IsActive}}
+\index{IsActive@{IsActive}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{IsActive}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::WorldObjectPhysicsSettings::IsActive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a9933baf62361c7e32eff29dce6219d2c}
+
+
+Checks if the object is active in the simulation. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the object is active, false if it's deactivated(at rest). 
+\end{DoxyReturn}
+
+
+Definition at line 133 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a0c9e2839266e49d073c09d9396eab600}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!IsKinematic@{IsKinematic}}
+\index{IsKinematic@{IsKinematic}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{IsKinematic}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::WorldObjectPhysicsSettings::IsKinematic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a0c9e2839266e49d073c09d9396eab600}
+
+
+Is the actir kinematic. 
+
+\begin{DoxyReturn}{Returns}
+True if the actor is kinematic false if it is not. 
+\end{DoxyReturn}
+
+
+Definition at line 113 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_ad66ee17bc6331910a1a1bb583fe2b424}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!IsStatic@{IsStatic}}
+\index{IsStatic@{IsStatic}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{IsStatic}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::WorldObjectPhysicsSettings::IsStatic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_ad66ee17bc6331910a1a1bb583fe2b424}
+
+
+Is the actor static. 
+
+\begin{DoxyReturn}{Returns}
+True if the actor is Static false if it is not. 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_adb5ca51d40befb558cc5b1b85ef8b092}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!IsStaticOrKinematic@{IsStaticOrKinematic}}
+\index{IsStaticOrKinematic@{IsStaticOrKinematic}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{IsStaticOrKinematic}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::WorldObjectPhysicsSettings::IsStaticOrKinematic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_adb5ca51d40befb558cc5b1b85ef8b092}
+
+
+Checks of the actor is static or kinematic. 
+
+Checks of the actor is static or kinematic, returns true if it is either. \begin{DoxyReturn}{Returns}
+Returns true if the actor is static or kinematic. 
+\end{DoxyReturn}
+
+
+Definition at line 123 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_ae90ebe8b69ab256702f178c71cf1af47}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!SetActivationState@{SetActivationState}}
+\index{SetActivationState@{SetActivationState}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{SetActivationState}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectPhysicsSettings::SetActivationState (
+\begin{DoxyParamCaption}
+\item[{const {\bf WorldObjectActivationState} \&}]{State, }
+\item[{bool}]{Force = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_ae90ebe8b69ab256702f178c71cf1af47}
+
+
+Sets the activation state of the actor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em State} & The activation state to set for the actor. See the ActorActivationState enum for more info. \\
+\hline
+{\em Force} & Whether or not you want to force the state. Some states may not apply based on the condition of the actor if this is set to false. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 140 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_a46d794796272ed68fffb32a91d4a6420}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!SetCollisionGroupAndMask@{SetCollisionGroupAndMask}}
+\index{SetCollisionGroupAndMask@{SetCollisionGroupAndMask}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{SetCollisionGroupAndMask}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectPhysicsSettings::SetCollisionGroupAndMask (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Group, }
+\item[{const {\bf Whole} \&}]{Mask}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_a46d794796272ed68fffb32a91d4a6420}
+
+
+Set the collision group and mask for the actor to determine what it should collide with. 
+
+These values are automatically calculated for you with some sane default values. Only edit these if you know what you are doing. 
+\begin{DoxyParams}{Parameters}
+{\em Group} & The group to which this actor belongs. \\
+\hline
+{\em Mask} & The other groups to which this actor should collide with. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 92 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectPhysicsSettings_ae8b786e26eed334b283156b442807039}{
+\index{Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}!SetCollisionShape@{SetCollisionShape}}
+\index{SetCollisionShape@{SetCollisionShape}!Mezzanine::WorldObjectPhysicsSettings@{Mezzanine::WorldObjectPhysicsSettings}}
+\paragraph[{SetCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectPhysicsSettings::SetCollisionShape (
+\begin{DoxyParamCaption}
+\item[{{\bf CollisionShape} $\ast$}]{Shape}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectPhysicsSettings_ae8b786e26eed334b283156b442807039}
+
+
+Sets the collision shape to be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shape} & The shape to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a7583e5afc93dedc8a4403ea156fa0413}{Mezzanine::ActorRigidPhysicsSettings}, and \hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings_a4cbaf52fbdedf9c4e0328d3dd608207e}{Mezzanine::ActorSoftPhysicsSettings}.
+
+
+
+Definition at line 81 of file worldobjectphysicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+worldobjectphysicssettings.h\item 
+worldobjectphysicssettings.cpp\end{DoxyCompactItemize}

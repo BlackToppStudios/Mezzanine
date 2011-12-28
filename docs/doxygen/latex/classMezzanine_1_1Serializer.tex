@@ -1,0 +1,29 @@
+\hypertarget{classMezzanine_1_1Serializer}{
+\subsection{Mezzanine::Serializer$<$ Serializable $>$ Class Template Reference}
+\label{classMezzanine_1_1Serializer}\index{Mezzanine::Serializer@{Mezzanine::Serializer}}
+}
+
+
+A tool for serializing classes with specific issues serializing.  
+
+
+
+
+{\ttfamily \#include $<$serialization.h$>$}
+
+
+
+\subsubsection{Detailed Description}
+\subsubsection*{template$<$class Serializable$>$ class Mezzanine::Serializer$<$ Serializable $>$}
+
+A tool for serializing classes with specific issues serializing. Some classes have private members and it is impractical to change the class to expose this data. In this case a serializer could be made that to work around this limitation. \par
+ \par
+ This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be no reason why something could not inherit from this and \hyperlink{classMezzanine_1_1DeSerializer}{Mezzanine::DeSerializer}. The type of this template is expected to match what this is serializing. 
+
+Definition at line 306 of file serialization.h.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{serialization_8h}{serialization.h}\end{DoxyCompactItemize}

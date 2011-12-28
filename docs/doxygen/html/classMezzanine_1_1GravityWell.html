@@ -83,7 +83,9 @@ Inheritance diagram for Mezzanine::GravityWell:</div>
  <div class="center">
   <img src="classMezzanine_1_1GravityWell.png" usemap="#Mezzanine::GravityWell_map" alt=""/>
   <map id="Mezzanine::GravityWell_map" name="Mezzanine::GravityWell_map">
-<area href="classMezzanine_1_1AreaEffect.html" alt="Mezzanine::AreaEffect" shape="rect" coords="0,0,144,24"/>
+<area href="classMezzanine_1_1AreaEffect.html" alt="Mezzanine::AreaEffect" shape="rect" coords="0,112,203,136"/>
+<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="0,56,203,80"/>
+<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="0,0,203,24"/>
 </map>
  </div></div>
 
@@ -101,6 +103,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Style of attenuation applied.  <a href="#ad26c5b44056826e55dac112d0e0600a7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a8fe42eeeb7483c35f1dfae170c2b2ec9">GetFieldStrength</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the strength of the field.  <a href="#a8fe42eeeb7483c35f1dfae170c2b2ec9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#aa7c7683357d133831b362c7c923c5271">GetType</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a4f89751efb62bd71164a2864923dc149">GravityWell</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a4f89751efb62bd71164a2864923dc149"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a80837168a132c3bffcefb839e1669a63">SetAllowWorldGravity</a> (bool WorldGravity)</td></tr>
@@ -131,7 +134,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>This class is not a gravity field, where gravity only pulls in one direction. Instead this class will always pull objects inside it towards the field center. <br/>
  This class works best with sphere's, but can be made to work with any shape. </p>
 
-<p>Definition at line <a class="el" href="areaeffect_8h_source.html#l00254">254</a> of file <a class="el" href="areaeffect_8h_source.html">areaeffect.h</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8h_source.html#l00223">223</a> of file <a class="el" href="areaeffect_8h_source.html">areaeffect.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4f89751efb62bd71164a2864923dc149"></a><!-- doxytag: member="Mezzanine::GravityWell::GravityWell" ref="a4f89751efb62bd71164a2864923dc149" args="(const String &amp;name, const Vector3 &amp;Location)" -->
 <div class="memitem">
@@ -168,7 +171,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00555">555</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00381">381</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -189,7 +192,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Destructor. </p>
 <p>Class destructor. </p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00564">564</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00390">390</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -213,7 +216,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Implements <a class="el" href="classMezzanine_1_1AreaEffect.html#a988cd958e49d65331a059951af3c2884">Mezzanine::AreaEffect</a>.</p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00568">568</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00394">394</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -234,7 +237,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Gets whether or not world gravity is is removed for objects inside this field. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether objects inside are affected by world gravity. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00649">649</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00475">475</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -256,7 +259,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>See <a class="el" href="classMezzanine_1_1GravityWell.html#ab7668c7c5c1c7c25a40315803efb0790" title="Sets the attenuation for this field.">SetAttenuation()</a> for more details. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real value </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00665">665</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00491">491</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -278,7 +281,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>See the AttenuationStyle enum for more details. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the style of attenuation currently being used by this field. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00660">660</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00486">486</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -299,7 +302,29 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Gets the strength of the field. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the value that is being multiplied by the direction to determine force appied to objects. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00639">639</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00465">465</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa7c7683357d133831b362c7c923c5271"></a><!-- doxytag: member="Mezzanine::GravityWell::GetType" ref="aa7c7683357d133831b362c7c923c5271" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a> Mezzanine::GravityWell::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1AreaEffect.html#a3eab7461632e01984cfb07f8c8fb5954">Mezzanine::AreaEffect</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00496">496</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,7 +352,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00644">644</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00470">470</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -365,7 +390,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00654">654</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00480">480</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -393,7 +418,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00634">634</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00460">460</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -417,6 +442,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:42 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

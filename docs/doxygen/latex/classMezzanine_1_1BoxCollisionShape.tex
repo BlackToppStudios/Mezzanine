@@ -49,7 +49,7 @@ This does not fully implement ProtoDeSerialize, this must be deserialized with t
 \end{DoxyWarning}
 
 
-Definition at line 344 of file collisionshape.h.
+Definition at line 342 of file collisionshape.h.
 
 
 
@@ -72,7 +72,7 @@ Class Constructor.
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of this shape. \\
 \hline
-{\em HalfExtents} & A vector3 representing half the shapes size on each axis. \\
+{\em HalfExtents} & A \hyperlink{classvector3}{vector3} representing half the shapes size on each axis. \\
 \hline
 \end{DoxyParams}
 
@@ -139,7 +139,7 @@ Definition at line 564 of file collisionshape.cpp.
 Gets the half extents used to construct this box. 
 
 \begin{DoxyReturn}{Returns}
-Returns a vector3 containing the half extents of this box, with no scaling or margin (Original value). 
+Returns a \hyperlink{classvector3}{vector3} containing the half extents of this box, with no scaling or margin (Original value). 
 \end{DoxyReturn}
 
 
@@ -159,7 +159,7 @@ Definition at line 539 of file collisionshape.cpp.
 Gets the current half extents used in collision checking. 
 
 \begin{DoxyReturn}{Returns}
-Returns a vector3 containing the half extents of this box, with scaling applied, minus the size of the margin(Original value $\ast$ Scaling -\/ margin). 
+Returns a \hyperlink{classvector3}{vector3} containing the half extents of this box, with scaling applied, minus the size of the margin(Original value $\ast$ Scaling -\/ margin). 
 \end{DoxyReturn}
 
 
@@ -179,7 +179,7 @@ Definition at line 544 of file collisionshape.cpp.
 Gets the half extents with padding, this is the size the shape will appear to be. 
 
 \begin{DoxyReturn}{Returns}
-Returns a vector3 containing the half extents, with scaling applied, with the margin added to each axis (Original value $\ast$ Scaling). 
+Returns a \hyperlink{classvector3}{vector3} containing the half extents, with scaling applied, with the margin added to each axis (Original value $\ast$ Scaling). 
 \end{DoxyReturn}
 
 

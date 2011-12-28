@@ -1,0 +1,31 @@
+\hypertarget{classMezzanine_1_1DeSerializer}{
+\subsection{Mezzanine::DeSerializer$<$ DeSerializable $>$ Class Template Reference}
+\label{classMezzanine_1_1DeSerializer}\index{Mezzanine::DeSerializer@{Mezzanine::DeSerializer}}
+}
+
+
+A tool for deserializing classes with specific issues deserializing them.  
+
+
+
+
+{\ttfamily \#include $<$serialization.h$>$}
+
+
+
+\subsubsection{Detailed Description}
+\subsubsection*{template$<$class DeSerializable$>$ class Mezzanine::DeSerializer$<$ DeSerializable $>$}
+
+A tool for deserializing classes with specific issues deserializing them. Some classes Must have certain values available at the time of construction. This make deserializing them by overwriting an existing class instance impractical. \par
+ \par
+ This is expected to work with classes that have implemented the required DeSerializable functions. Specifically This makes use of \char`\"{}static String SerializableName()\char`\"{}, and it is expected that functions that must be implemented would call on \char`\"{}void ProtoDeSerialize(const xml::Node\&)\char`\"{}. The type of this template is expected to match what this is deserializing. \par
+ \par
+ This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be no reason why something could not inherit from this and \hyperlink{classMezzanine_1_1Serializer}{Mezzanine::Serializer}. 
+
+Definition at line 369 of file serialization.h.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{serialization_8h}{serialization.h}\end{DoxyCompactItemize}

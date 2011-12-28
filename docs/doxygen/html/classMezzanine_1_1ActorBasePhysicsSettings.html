@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Mezzanine::ActorBasePhysicsSettings Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::ActorBasePhysicsSettings" --><!-- doxytag: inherits="Mezzanine::WorldObjectPhysicsSettings" -->
+<!-- doxytag: class="Mezzanine::ActorBasePhysicsSettings" --><!-- doxytag: inherits="Mezzanine::NonTriggerPhysicsSettings" -->
 <p>This is a base helper class for configuring physics settings of an actor.  
 <a href="#_details">More...</a></p>
 
@@ -82,9 +82,10 @@ Inheritance diagram for Mezzanine::ActorBasePhysicsSettings:</div>
  <div class="center">
   <img src="classMezzanine_1_1ActorBasePhysicsSettings.png" usemap="#Mezzanine::ActorBasePhysicsSettings_map" alt=""/>
   <map id="Mezzanine::ActorBasePhysicsSettings_map" name="Mezzanine::ActorBasePhysicsSettings_map">
+<area href="classMezzanine_1_1NonTriggerPhysicsSettings.html" alt="Mezzanine::NonTriggerPhysicsSettings" shape="rect" coords="123,56,360,80"/>
 <area href="classMezzanine_1_1WorldObjectPhysicsSettings.html" alt="Mezzanine::WorldObjectPhysicsSettings" shape="rect" coords="123,0,360,24"/>
-<area href="classMezzanine_1_1ActorRigidPhysicsSettings.html" alt="Mezzanine::ActorRigidPhysicsSettings" shape="rect" coords="0,112,237,136"/>
-<area href="classMezzanine_1_1ActorSoftPhysicsSettings.html" alt="Mezzanine::ActorSoftPhysicsSettings" shape="rect" coords="247,112,484,136"/>
+<area href="classMezzanine_1_1ActorRigidPhysicsSettings.html" alt="Mezzanine::ActorRigidPhysicsSettings" shape="rect" coords="0,168,237,192"/>
+<area href="classMezzanine_1_1ActorSoftPhysicsSettings.html" alt="Mezzanine::ActorSoftPhysicsSettings" shape="rect" coords="247,168,484,192"/>
 </map>
  </div></div>
 
@@ -100,18 +101,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the amount of motion needed to enable CCD for this object.  <a href="#a804941eb77d960dd3c73d331c47c891c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a3729e8ee88bc2d8892d921016aa4a4c0">GetCCDSphereRadius</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the radius of the embedded sphere used for CCD.  <a href="#a3729e8ee88bc2d8892d921016aa4a4c0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ac59b0dfaf123ddfb3b70e35284502f56">GetFriction</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Actors' friction coefficient.  <a href="#ac59b0dfaf123ddfb3b70e35284502f56"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a4e648f892ff2b5a8d111ab312cec394b">GetRestitution</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Actors' restitution coefficient.  <a href="#a4e648f892ff2b5a8d111ab312cec394b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a702a20cfb7d87dbc2a7d44ba9260ead2">SetCCDParams</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;MotionThreshold, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;SweptSphereRadius=0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters used for Continuous <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> Detection.  <a href="#a702a20cfb7d87dbc2a7d44ba9260ead2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a615c423b6d2da96b16b91ee644b8b81c">SetFriction</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Friction)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Actors' friction coefficient.  <a href="#a615c423b6d2da96b16b91ee644b8b81c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a3b01243f038e30eb39b04f8e38fb8a14">SetKinematic</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the state of the object to Kinematic.  <a href="#a3b01243f038e30eb39b04f8e38fb8a14"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ac11357f16b6a30223d1794b4e4adf467">SetRestitution</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Restitution)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Actors' restitution coefficient.  <a href="#ac11357f16b6a30223d1794b4e4adf467"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ac72f39fa6bc9e2f050fdf90e42dd0deb">SetStatic</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the state of the object to Static.  <a href="#ac72f39fa6bc9e2f050fdf90e42dd0deb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6273131ed9e51182abde28d5af4ded83"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::~ActorBasePhysicsSettings" ref="a6273131ed9e51182abde28d5af4ded83" args="()" -->
@@ -122,7 +115,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="textblock"><p>This is a base helper class for configuring physics settings of an actor. </p>
 <p>This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see ActorGraphicsSettings. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00084">84</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00086">86</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3f8d93a77d1d9a61314ef350a1c3394a"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::ActorBasePhysicsSettings" ref="a3f8d93a77d1d9a61314ef350a1c3394a" args="(ActorBase *Actor, btCollisionObject *PhysicsObject)" -->
 <div class="memitem">
@@ -180,7 +173,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Get a pointer to this class of type <a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer <a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00143">143</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00123">123</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -201,7 +194,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets the amount of motion needed to enable CCD for this object. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the required amount of motion to enable CCD, or zero if CCD is disabled. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00123">123</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00103">103</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -222,49 +215,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets the radius of the embedded sphere used for CCD. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the radius of the sphere embedded into the objects collision shape used for CCD. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00128">128</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac59b0dfaf123ddfb3b70e35284502f56"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::GetFriction" ref="ac59b0dfaf123ddfb3b70e35284502f56" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mezzanine::ActorBasePhysicsSettings::GetFriction </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the Actors' friction coefficient. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the actors' friction coefficient. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00085">85</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4e648f892ff2b5a8d111ab312cec394b"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::GetRestitution" ref="a4e648f892ff2b5a8d111ab312cec394b" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mezzanine::ActorBasePhysicsSettings::GetRestitution </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the Actors' restitution coefficient. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the actors' restitution coefficient. </dd></dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00093">93</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00108">108</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -303,36 +254,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00096">96</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a615c423b6d2da96b16b91ee644b8b81c"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::SetFriction" ref="a615c423b6d2da96b16b91ee644b8b81c" args="(const Real &amp;Friction)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBasePhysicsSettings::SetFriction </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
-          <td class="paramname"><em>Friction</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the Actors' friction coefficient. </p>
-<p>Higher values will resist sliding across surfaces. This number is the coefficient of friction. Range is from 0.0 to 2.0. Behavior in this regard is determined by the friction of both colliding bodies. <br/>
- Default: 0.5 </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Friction</td><td>A Real that is the friction coefficient desired. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00080">80</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00076">76</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -354,36 +276,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>This function will set the object to a Kinematic Object. <br/>
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00133">133</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac11357f16b6a30223d1794b4e4adf467"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::SetRestitution" ref="ac11357f16b6a30223d1794b4e4adf467" args="(const Real &amp;Restitution)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorBasePhysicsSettings::SetRestitution </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
-          <td class="paramname"><em>Restitution</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the Actors' restitution coefficient. </p>
-<p>Restitution determines how much energy is left after a collision with an object. Range is from 0.0 to 1.0. Behavior in this regard is determined by the restitution of both colliding bodies. <br/>
- Default: 0.0 </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Restitution</td><td>A Real that is the restitution coefficient desired. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00090">90</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00113">113</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -405,7 +298,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>This function will set the object to a Static Object. <br/>
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00138">138</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00118">118</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
 
 </div>
 </div>
@@ -429,6 +322,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

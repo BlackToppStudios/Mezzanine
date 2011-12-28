@@ -1,0 +1,455 @@
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings}{
+\subsection{Mezzanine::WorldObjectGraphicsSettings Class Reference}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings}\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+}
+
+
+This is a helper class for configuring graphics settings of a \hyperlink{classMezzanine_1_1World}{World} Object.  
+
+
+
+
+{\ttfamily \#include $<$worldobjectgraphicssettings.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a36002a588b5a0a7494d29f8e7a7a30b1}{CloneMaterial} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&NewName)
+\begin{DoxyCompactList}\small\item\em Creates a copy of the material script of the graphics object and places it in the same resource group. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a7cc74921d09f867ef90f24dea9f86e69}{GetMaterialAmbient} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0) const 
+\begin{DoxyCompactList}\small\item\em Gets the Ambient colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_af8299a94bfc54dc8f1d2f39fd6b485a6}{GetMaterialDiffuse} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0) const 
+\begin{DoxyCompactList}\small\item\em Gets the Diffuse colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_ac97ab17ac30eb95eac06de39e5e89f2a}{GetMaterialName} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0) const 
+\begin{DoxyCompactList}\small\item\em Gets the material name of the specified submesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_ad48d0d8471b5310c27b891d5e51b0c7d}{GetMaterialSpecular} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0) const 
+\begin{DoxyCompactList}\small\item\em Gets the Specular colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_ac45583fcb933c439025237d1d5634ce1}{GetMesh} () const 
+\begin{DoxyCompactList}\small\item\em Gets the mesh being used by this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_ae1e210b72aac44a75890acdb777baa9c}{GetNumSubmeshes} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of submeshes in the mesh of the graphics ohject. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a90d4e4516181052ea6afcb257a864887}{HasMaterialSet} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0)
+\begin{DoxyCompactList}\small\item\em Gets whether or not the specified submesh has a material script assigned to it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a99a72f423f55280da67c4691d220c9a4}{SetMaterial} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MatName, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the material of the specified submesh. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a88597e16ded3a60970c28683c7cb756a}{SetMaterialAmbient} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Ambient, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the Ambient colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a255ca816569198a3c7a6af188b26bf72}{SetMaterialDiffuse} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Diffuse, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the Diffuse colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_adec80c34be2baa2a3eaa9605d125734f}{SetMaterialSpecular} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Specular, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the Specular colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a33259391dac7ba356848da9b27cc0a4a}{SetMesh} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group)
+\begin{DoxyCompactList}\small\item\em Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a29ebce82dbfd0a27ddf385504341569c}{SetMesh} (\hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ObjectMesh)
+\begin{DoxyCompactList}\small\item\em Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a0000391cba0056b375dc324833ef747d}{WorldObjectGraphicsSettings} (\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$WO, Ogre::Entity $\ast$GraphicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a72709c5d15de08cba37501510a87bfca}{
+virtual \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a72709c5d15de08cba37501510a87bfca}{$\sim$WorldObjectGraphicsSettings} ()}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a72709c5d15de08cba37501510a87bfca}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a0580ad16e378357dfa47944097db9f80}{
+virtual Ogre::MaterialPtr \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a0580ad16e378357dfa47944097db9f80}{GetMaterial} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0)}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a0580ad16e378357dfa47944097db9f80}
+
+\begin{DoxyCompactList}\small\item\em Material/textures for the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a8a0fc129db71e68740a5ab5fd33cb0d2}{
+\hyperlink{classMezzanine_1_1internal_1_1InternalWorldObjectGraphicsSettings}{internal::InternalWorldObjectGraphicsSettings} $\ast$ \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a8a0fc129db71e68740a5ab5fd33cb0d2}{IWOGS}}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a8a0fc129db71e68740a5ab5fd33cb0d2}
+
+\begin{DoxyCompactList}\small\item\em Stores all the data to go with the. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a3c3e1552382dd78af68a561464bca083}{
+\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$ \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a3c3e1552382dd78af68a561464bca083}{Parent}}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a3c3e1552382dd78af68a561464bca083}
+
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classMezzanine_1_1World}{World} Object this belongs to. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a8a0d95feee013e0374878bd5c2f5120c}{
+\hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a8a0d95feee013e0374878bd5c2f5120c}{WorldObjectMesh}}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a8a0d95feee013e0374878bd5c2f5120c}
+
+\begin{DoxyCompactList}\small\item\em The mesh being used by the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a helper class for configuring graphics settings of a \hyperlink{classMezzanine_1_1World}{World} Object. This class contains functions for the configuring of graphics specific settings of an actor. This class can only configure the actors graphics. For configuring \hyperlink{classMezzanine_1_1World}{World} Object physics, see \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. 
+
+Definition at line 71 of file worldobjectgraphicssettings.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a0000391cba0056b375dc324833ef747d}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!WorldObjectGraphicsSettings@{WorldObjectGraphicsSettings}}
+\index{WorldObjectGraphicsSettings@{WorldObjectGraphicsSettings}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{WorldObjectGraphicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::WorldObjectGraphicsSettings::WorldObjectGraphicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf WorldObject} $\ast$}]{WO, }
+\item[{Ogre::Entity $\ast$}]{GraphicsObject}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a0000391cba0056b375dc324833ef747d}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em WO} & The \hyperlink{classMezzanine_1_1World}{World} Object this settings class configures. \\
+\hline
+{\em GraphicsObject} & The graphics object belonging to the \hyperlink{classMezzanine_1_1World}{World} Object this class configures. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 96 of file worldobjectgraphicssettings.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a36002a588b5a0a7494d29f8e7a7a30b1}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!CloneMaterial@{CloneMaterial}}
+\index{CloneMaterial@{CloneMaterial}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{CloneMaterial}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectGraphicsSettings::CloneMaterial (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{NewName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a36002a588b5a0a7494d29f8e7a7a30b1}
+
+
+Creates a copy of the material script of the graphics object and places it in the same resource group. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em NewName} & of the cloned material script. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 162 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a7cc74921d09f867ef90f24dea9f86e69}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!GetMaterialAmbient@{GetMaterialAmbient}}
+\index{GetMaterialAmbient@{GetMaterialAmbient}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{GetMaterialAmbient}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::WorldObjectGraphicsSettings::GetMaterialAmbient (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a7cc74921d09f867ef90f24dea9f86e69}
+
+
+Gets the Ambient colour value of the material belonging to the specified submesh. 
+
+If no Ambient colour was specified for a given submesh a default \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} is returned. 
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The colour that was as the material Ambient colour, OR a default colourvalue. 
+\end{DoxyReturn}
+
+
+Definition at line 217 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_af8299a94bfc54dc8f1d2f39fd6b485a6}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!GetMaterialDiffuse@{GetMaterialDiffuse}}
+\index{GetMaterialDiffuse@{GetMaterialDiffuse}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{GetMaterialDiffuse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::WorldObjectGraphicsSettings::GetMaterialDiffuse (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_af8299a94bfc54dc8f1d2f39fd6b485a6}
+
+
+Gets the Diffuse colour value of the material belonging to the specified submesh. 
+
+If no Diffuse colour was specified for a given submesh a default \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} is returned. 
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The colour that was as the material Diffuse colour, OR a default colourvalue. 
+\end{DoxyReturn}
+
+
+Definition at line 231 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_ac97ab17ac30eb95eac06de39e5e89f2a}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!GetMaterialName@{GetMaterialName}}
+\index{GetMaterialName@{GetMaterialName}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{GetMaterialName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} Mezzanine::WorldObjectGraphicsSettings::GetMaterialName (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_ac97ab17ac30eb95eac06de39e5e89f2a}
+
+
+Gets the material name of the specified submesh. 
+
+Note the returned name isn't of the .material file, but the material script. 
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh you want to get the material name from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a String containing the name of the material script in use. 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_ad48d0d8471b5310c27b891d5e51b0c7d}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!GetMaterialSpecular@{GetMaterialSpecular}}
+\index{GetMaterialSpecular@{GetMaterialSpecular}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{GetMaterialSpecular}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::WorldObjectGraphicsSettings::GetMaterialSpecular (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_ad48d0d8471b5310c27b891d5e51b0c7d}
+
+
+Gets the Specular colour value of the material belonging to the specified submesh. 
+
+If no Specular colour was specified for a given submesh a default \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} is returned. 
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The colour that was as the material Specular colour, OR a default colourvalue. 
+\end{DoxyReturn}
+
+
+Definition at line 224 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_ac45583fcb933c439025237d1d5634ce1}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!GetMesh@{GetMesh}}
+\index{GetMesh@{GetMesh}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{GetMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ Mezzanine::WorldObjectGraphicsSettings::GetMesh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_ac45583fcb933c439025237d1d5634ce1}
+
+
+Gets the mesh being used by this \hyperlink{classMezzanine_1_1World}{World} Object. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the mesh being used by this \hyperlink{classMezzanine_1_1World}{World} Object. 
+\end{DoxyReturn}
+
+
+Definition at line 142 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_ae1e210b72aac44a75890acdb777baa9c}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!GetNumSubmeshes@{GetNumSubmeshes}}
+\index{GetNumSubmeshes@{GetNumSubmeshes}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{GetNumSubmeshes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::WorldObjectGraphicsSettings::GetNumSubmeshes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_ae1e210b72aac44a75890acdb777baa9c}
+
+
+Gets the number of submeshes in the mesh of the graphics ohject. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the number of submeshes in this objects mesh. 
+\end{DoxyReturn}
+
+
+Definition at line 183 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a90d4e4516181052ea6afcb257a864887}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!HasMaterialSet@{HasMaterialSet}}
+\index{HasMaterialSet@{HasMaterialSet}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{HasMaterialSet}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::WorldObjectGraphicsSettings::HasMaterialSet (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a90d4e4516181052ea6afcb257a864887}
+
+
+Gets whether or not the specified submesh has a material script assigned to it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Submesh} & The submesh to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether there is a material assigned to the specified submesh. 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a99a72f423f55280da67c4691d220c9a4}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!SetMaterial@{SetMaterial}}
+\index{SetMaterial@{SetMaterial}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{SetMaterial}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectGraphicsSettings::SetMaterial (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MatName, }
+\item[{const {\bf Whole} \&}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a99a72f423f55280da67c4691d220c9a4}
+
+
+Sets the material of the specified submesh. 
+
+The name of the material isn't the same as the name of the .material file. As a single material file can contain several material scripts. The name this function expects is the name of the material script inside a .material file. 
+\begin{DoxyParams}{Parameters}
+{\em MatName} & The name of the material to be applied. \\
+\hline
+{\em Submesh} & The submesh to apply the material to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 155 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a88597e16ded3a60970c28683c7cb756a}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!SetMaterialAmbient@{SetMaterialAmbient}}
+\index{SetMaterialAmbient@{SetMaterialAmbient}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{SetMaterialAmbient}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectGraphicsSettings::SetMaterialAmbient (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{Ambient, }
+\item[{const {\bf Whole} \&}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a88597e16ded3a60970c28683c7cb756a}
+
+
+Sets the Ambient colour value of the material belonging to the specified submesh. 
+
+The set value is applied to every technique of every pass in the material. 
+\begin{DoxyParams}{Parameters}
+{\em Ambient} & The colour you wish to set as the material Ambient. \\
+\hline
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 193 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a255ca816569198a3c7a6af188b26bf72}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!SetMaterialDiffuse@{SetMaterialDiffuse}}
+\index{SetMaterialDiffuse@{SetMaterialDiffuse}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{SetMaterialDiffuse}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectGraphicsSettings::SetMaterialDiffuse (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{Diffuse, }
+\item[{const {\bf Whole} \&}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a255ca816569198a3c7a6af188b26bf72}
+
+
+Sets the Diffuse colour value of the material belonging to the specified submesh. 
+
+The set value is applied to every technique of every pass in the material. 
+\begin{DoxyParams}{Parameters}
+{\em Diffuse} & The colour you wish to set as the material Diffuse. \\
+\hline
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 209 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_adec80c34be2baa2a3eaa9605d125734f}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!SetMaterialSpecular@{SetMaterialSpecular}}
+\index{SetMaterialSpecular@{SetMaterialSpecular}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{SetMaterialSpecular}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectGraphicsSettings::SetMaterialSpecular (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{Specular, }
+\item[{const {\bf Whole} \&}]{Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_adec80c34be2baa2a3eaa9605d125734f}
+
+
+Sets the Specular colour value of the material belonging to the specified submesh. 
+
+The set value is applied to every technique of every pass in the material. 
+\begin{DoxyParams}{Parameters}
+{\em Specular} & The colour you wish to set as the material Specular. \\
+\hline
+{\em Submesh} & The submesh you want to alter the material of. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 201 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a29ebce82dbfd0a27ddf385504341569c}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!SetMesh@{SetMesh}}
+\index{SetMesh@{SetMesh}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{SetMesh}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectGraphicsSettings::SetMesh (
+\begin{DoxyParamCaption}
+\item[{{\bf Mesh} $\ast$}]{ObjectMesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a29ebce82dbfd0a27ddf385504341569c}
+
+
+Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1World}{World} Object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{classMezzanine_1_1Mesh}{Mesh}} & The mesh to apply to this \hyperlink{classMezzanine_1_1World}{World} Object. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 112 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a33259391dac7ba356848da9b27cc0a4a}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!SetMesh@{SetMesh}}
+\index{SetMesh@{SetMesh}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{SetMesh}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectGraphicsSettings::SetMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{Group}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a33259391dac7ba356848da9b27cc0a4a}
+
+
+Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1World}{World} Object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name of the mesh to apply to this \hyperlink{classMezzanine_1_1World}{World} Object. \\
+\hline
+{\em Group} & The resource group to which the mesh belongs. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 136 of file worldobjectgraphicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+worldobjectgraphicssettings.h\item 
+worldobjectgraphicssettings.cpp\end{DoxyCompactItemize}
