@@ -62,7 +62,7 @@ namespace Mezzanine
     /// This class stores the information in the form of contact points.  Often when a collision occurs there will be more then one place where
     /// the collision occured, this is a contact point.  Internally collisions only store up to a maximum of 4 contact points.  When querying for
     /// collision information, you have to provide the desired contact point index, and it must be valid.  If the requested index isn't valid an
-    /// exception will be thrown.  So always make sure it is with GetNumContactPoints().
+    /// exception will be thrown.  So always make sure to verify with GetNumContactPoints().
     ///////////////////////////////////////
     class MEZZ_LIB Collision
     {
