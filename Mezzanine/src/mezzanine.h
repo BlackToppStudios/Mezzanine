@@ -55,7 +55,7 @@
 %module mezzanine
 #endif
 
-                                        // The remarks in Column 41 are use to help with serializing and deserializing
+                                        // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
 
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"                  // serializes
@@ -121,6 +121,7 @@
 #include "resourcemanager.h"
 #include "scenemanager.h"               // Done
 #include "scriptingmanager.h"
+#include "scripting.h"
 #include "serialization.h"              // nothing to do
 #include "simpletimer.h"
 #include "singleton.h"                  // nothing to do
@@ -148,4 +149,4 @@
 #include "xml.h"                        // nothing to do
 
 
-#endif
+#endif // \ _mezzanine_h

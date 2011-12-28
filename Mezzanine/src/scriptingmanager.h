@@ -41,6 +41,7 @@
 #define _scriptingmanager_h
 
 #include "managerbase.h"
+#include "scripting.h"
 #include "singleton.h"
 
 namespace Mezzanine
@@ -48,7 +49,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ScriptingManager
     /// @brief What a scripting manager should look like.
-    /// @details This script manager implements no scripting language.
+    /// @details This scripting manager implements no scripting language, but serves as
+    /// model for what scripting managers
     ///////////////////////////////////////
     class MEZZ_LIB ScriptingManager : public ManagerBase //, public Singleton<ScriptingManager>
     {
@@ -65,7 +67,16 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Scripting Manager Core Functionality
 
-            virtual void CompileScript();
+            /// @brief In implemented classes this
+            virtual void CompileScript(Scripting::Script* ScriptToCompile) = 0;
+
+            virtual void AddScript(Scripting::Script* ScriptToAdd) = 0;
+
+            virtual void AddScript(String ScriptInString) = 0;
+
+            virtual void RemoveScript(Scripting::Script* ScriptToRemove) = 0;
+
+            virtual void ExecuteScript(Scripting::Script* ScriptToRemove) = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase
