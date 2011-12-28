@@ -65,6 +65,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Scripting Manager Core Functionality
 
+            virtual void CompileScript();
+
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase
             /// @copydoc Mezzanine::ManagerBase::Initialize()

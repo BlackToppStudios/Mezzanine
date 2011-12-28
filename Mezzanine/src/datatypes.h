@@ -134,7 +134,7 @@ namespace Mezzanine
     /// changed, The Character typedef should be adjusted accordingly.
     typedef std::string String;
 
-    /// @typedef String16
+    /// @typedef WideString
     /// @brief A wide version of the String typedef.
     /// @details Wide strings are seldom used, but often come in handy when dealing with Unicode strings.
     typedef std::wstring WideString;

@@ -1,10 +1,10 @@
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptingmanager.cpp:45: warning: the name `The' supplied as the second argument in the \file statement is not an input file
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/scriptingmanager.cpp:45: warning: the name `The' supplied as the second argument in the \file statement is not an input file
 /home/sqeaky/Mezzanine/Mezzanine/src/uibasicrenderable.h:59: warning: Compound Mezzanine::UI::BasicRenderable is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/uilistbox.h:65: warning: Compound Mezzanine::UI::ListBox::TemplateParams is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/physicsmanager.h:84: warning: Compound Mezzanine::PhysicsConstructionInfo is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/internalbulletfile.h.cpp:128: warning: Compound Mezzanine::internal::BulletFilePtr is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/vector3.java:10: warning: Compound vector3 is not documented.
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/vector3.java:10: warning: Compound vector3 is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/actorserializer.cpp:49: warning: no matching class member found for 
   home sqeaky Mezzanine Mezzanine src actorserializer cpp ActorRigid * Mezzanine::ActorRigidDeSerializer::ProtoDeSerialize(const xml::Node &OneNode)
 
@@ -16,29 +16,29 @@
 /home/sqeaky/Mezzanine/Mezzanine/src/collisionshape.cpp:1817: warning: documented function `std::istream & Mezzanine::CollisionShapeDeSerializer::DeSerialize' was not declared or defined.
 /home/sqeaky/Mezzanine/Mezzanine/src/collisionshape.cpp:1823: warning: documented function `CollisionShape * Mezzanine::CollisionShapeDeSerializer::DeSerializeAndRetrieve' was not declared or defined.
 /home/sqeaky/Mezzanine/Mezzanine/src/collisionshape.cpp:1826: warning: documented function `String Mezzanine::CollisionShapeDeSerializer::ContainerName' was not declared or defined.
-/home/sqeaky/Mezzanine/Mezzanine/src/datatypes.h:137: warning: documented function `Mezzanine::String16' was not declared or defined.
-/home/sqeaky/Mezzanine/Mezzanine/src/internalbulletfilemanager.cpp:50: warning: documented function `BulletFileManager * Mezzanine::internal::Ogre::Singleton::ms_Singleton' was not declared or defined.
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:81: warning: unable to resolve reference to `Singleton' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:83: warning: unable to resolve reference to `Vector3' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:83: warning: unable to resolve reference to `Quaternion' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:88: warning: unable to resolve reference to `Light' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:88: warning: unable to resolve reference to `ActorRigid' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:91: warning: unable to resolve reference to `ActorRigidDeSerializer' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:91: warning: unable to resolve reference to `StringTool' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:103: warning: unable to resolve reference to `ActorManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:104: warning: unable to resolve reference to `AudioManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:105: warning: unable to resolve reference to `CameraManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:106: warning: unable to resolve reference to `CollisionShapeManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:107: warning: unable to resolve reference to `EventManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:108: warning: unable to resolve reference to `GraphicsManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:109: warning: unable to resolve reference to `MeshManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:110: warning: unable to resolve reference to `PhysicsManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:111: warning: unable to resolve reference to `ResourceManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:112: warning: unable to resolve reference to `SceneManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:113: warning: unable to resolve reference to `TimerManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:114: warning: unable to resolve reference to `TerrainManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:115: warning: unable to resolve reference to `UIManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:172: warning: unable to resolve reference to `XMLManual' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/datatypes.h:137: warning: documented function `Mezzanine::String16' was not declared or defined.
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/internalbulletfilemanager.cpp:50: warning: documented function `BulletFileManager * Mezzanine::internal::Ogre::Singleton::ms_Singleton' was not declared or defined.
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:81: warning: unable to resolve reference to `Singleton' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:83: warning: unable to resolve reference to `Vector3' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:83: warning: unable to resolve reference to `Quaternion' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:88: warning: unable to resolve reference to `Light' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:88: warning: unable to resolve reference to `ActorRigid' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:91: warning: unable to resolve reference to `ActorRigidDeSerializer' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:91: warning: unable to resolve reference to `StringTool' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:103: warning: unable to resolve reference to `ActorManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:104: warning: unable to resolve reference to `AudioManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:105: warning: unable to resolve reference to `CameraManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:106: warning: unable to resolve reference to `CollisionShapeManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:107: warning: unable to resolve reference to `EventManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:108: warning: unable to resolve reference to `GraphicsManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:109: warning: unable to resolve reference to `MeshManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:110: warning: unable to resolve reference to `PhysicsManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:111: warning: unable to resolve reference to `ResourceManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:112: warning: unable to resolve reference to `SceneManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:113: warning: unable to resolve reference to `TimerManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:114: warning: unable to resolve reference to `TerrainManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:115: warning: unable to resolve reference to `UIManager' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:172: warning: unable to resolve reference to `XMLManual' for \ref command
 /home/sqeaky/Mezzanine/Mezzanine/src/world.h:180: warning: unable to resolve reference to `OriginalpugixmlLicense' for \ref command
 /home/sqeaky/Mezzanine/Mezzanine/src/world.h:81: warning: unable to resolve reference to `Singleton' for \ref command
 /home/sqeaky/Mezzanine/Mezzanine/src/world.h:83: warning: unable to resolve reference to `Vector3' for \ref command
@@ -60,10 +60,10 @@
 /home/sqeaky/Mezzanine/Mezzanine/src/world.h:113: warning: unable to resolve reference to `TimerManager' for \ref command
 /home/sqeaky/Mezzanine/Mezzanine/src/world.h:114: warning: unable to resolve reference to `TerrainManager' for \ref command
 /home/sqeaky/Mezzanine/Mezzanine/src/world.h:115: warning: unable to resolve reference to `UIManager' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/world.h:172: warning: unable to resolve reference to `XMLManual' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/world.h:172: warning: unable to resolve reference to `XMLManual' for \ref command
 /home/sqeaky/Mezzanine/Mezzanine/src/world.h:180: warning: unable to resolve reference to `OriginalpugixmlLicense' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/serialization.h:71: warning: unable to resolve reference to `XMLManual' for \ref command
-/home/sqeaky/Mezzanine/Mezzanine/src/serialization.h:84: warning: unable to resolve reference to `XMLManual' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/serialization.h:71: warning: unable to resolve reference to `XMLManual' for \ref command
+FIXED /home/sqeaky/Mezzanine/Mezzanine/src/serialization.h:84: warning: unable to resolve reference to `XMLManual' for \ref command
 /home/sqeaky/Mezzanine/Mezzanine/src/serialization.h:85: warning: unable to resolve reference to `XMLDOM' for \ref command
 /home/sqeaky/Mezzanine/Mezzanine/src/serialization.h:86: warning: unable to resolve reference to `XMLAccessingBasics' for \ref command
 /home/sqeaky/Mezzanine/Mezzanine/src/serialization.h:87: warning: unable to resolve reference to `XMLModifyingNodeData' for \ref command
