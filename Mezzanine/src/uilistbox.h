@@ -48,6 +48,19 @@ namespace Mezzanine
 {
     namespace UI
     {
+        struct TemplateParams
+        {
+            UI::TextHorizontalAlign HorizontalAlign;
+            UI::TextVerticalAlign VerticalAlign;
+            UI::RenderPriority Priority;
+            Whole GlyphIndex;
+            Whole CursorOffset;
+            Real TextScale;
+            Vector2 Size;
+            ColourValue TextColour;
+            ColourValue BackgroundColour;
+        };
+
         class Rectangle;
         class Button;
         class Caption;
@@ -61,18 +74,7 @@ namespace Mezzanine
         class MEZZ_LIB ListBox : public Widget
         {
             public:
-                struct TemplateParams
-                {
-                    UI::TextHorizontalAlign HorizontalAlign;
-                    UI::TextVerticalAlign VerticalAlign;
-                    UI::RenderPriority Priority;
-                    Whole GlyphIndex;
-                    Whole CursorOffset;
-                    Real TextScale;
-                    Vector2 Size;
-                    ColourValue TextColour;
-                    ColourValue BackgroundColour;
-                };
+               TemplateParams Params;
             protected:
                 Rectangle* BoxBack;
                 Scrollbar* VertScroll;
@@ -83,7 +85,7 @@ namespace Mezzanine
                 bool AutoHideScroll;
                 Real LastScrollValue;
                 Whole MaxDisplay;
-                TemplateParams SelectionTemplate;
+                UI::TemplateParams SelectionTemplate;
                 /// @brief Checks to make sure the Scroller is the appropriate size.
                 virtual void ScrollerSizeCheck();
                 /// @brief Checks to see if the scrollbar should be hidden or not.
@@ -160,7 +162,7 @@ namespace Mezzanine
                 virtual ListBox& SetTemplateRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the struct containing all the current template parameters used when creating a new selections.
                 /// @return Returns a const reference to the structure containing all the template parameters.
-                virtual const ListBox::TemplateParams& GetTemplateInfo();
+                virtual const UI::TemplateParams& GetTemplateInfo();
                 /// @brief Adds a selectable caption to the list to be displayed.
                 /// @details If a colour other then white was set as the template and you try to set a background sprite, it will
                 /// attempt to blend the colour and sprite.  Pure white colour will cause the sprite to look normal.

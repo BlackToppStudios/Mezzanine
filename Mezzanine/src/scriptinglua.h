@@ -48,6 +48,7 @@ namespace Mezzanine
         // ScriptingManagerLua
         // ScriptLua
         // ScriptArgLua
+        asdfasdfasdf <- needs to have a compilation error here
 
 }//Mezzanine
 

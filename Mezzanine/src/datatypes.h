@@ -42,6 +42,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Any Special data types that we need will get declared right here
 ///////////////////////////////////////
+#include "swig.h"
 #include "crossplatformexport.h"
 
 // Standard Headers are not included in SWIG preprocessing

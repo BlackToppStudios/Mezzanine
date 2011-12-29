@@ -49,6 +49,12 @@ namespace Mezzanine
 {
     class Mesh;
     class CollisionShape;
+
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonMeshManager) Singleton<MeshManager>;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class MeshManager
     /// @headerfile meshmanager.h

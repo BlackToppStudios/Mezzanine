@@ -66,6 +66,11 @@ namespace Mezzanine
         class SceneManagerData;
     }
 
+    // Used by the scripting language binder to help create this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonSceneManager) Singleton<SceneManager>;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class SceneManager
     /// @headerfile scenemanager.h

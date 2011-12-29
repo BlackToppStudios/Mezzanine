@@ -52,6 +52,11 @@ namespace Ogre
 
 namespace Mezzanine
 {
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(VectorActorPtr) std::vector< ActorBase * >;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorContainerVector
     /// @headerfile actorcontainervector.h

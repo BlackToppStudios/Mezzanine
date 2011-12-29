@@ -50,10 +50,8 @@
 /// This file is also u
 ///////////////////////////////////////////////////////////////////////////////
 
-// Tell SWIG to create a module that scripting languages can use called "mezzanine"
-#ifdef SWIG
-%module mezzanine
-#endif
+// Tell SWIG to implement scripting language specific stuff, set compiler macros used else where, must be included first
+#include "swig.h"
 
                                         // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
 
@@ -126,7 +124,6 @@
 #include "simpletimer.h"
 #include "singleton.h"                  // nothing to do
 #include "stringtool.h"
-#include "swig.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"
 #include "timer.h"
