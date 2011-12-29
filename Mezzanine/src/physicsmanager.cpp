@@ -503,6 +503,8 @@ namespace Mezzanine
                                                         BulletSolver,
                                                         BulletCollisionConfiguration);
         }// */
+        this->BulletDynamicsWorld->setInternalTickCallback((btInternalTickCallback)PhysicsManager::InternalTickCallback,0,false);
+
         this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
         this->BulletDynamicsWorld->getDispatchInfo().m_useContinuous = true;
         //this->BulletDynamicsWorld->getSolverInfo().m_splitImpulse = true;
@@ -604,6 +606,11 @@ namespace Mezzanine
             if(AlgoQueue.size() > 0) NewAlgo = AlgoQueue.front();
             else NewAlgo = NULL;
         }//*/
+    }
+
+    void PhysicsManager::InternalTickCallback(btDynamicsWorld* world, btScalar timeStep)
+    {
+        PhysicsManager::GetSingletonPtr()->ProcessAllCollisions();
     }
 
     void PhysicsManager::PauseSimulation(bool Pause)
@@ -980,7 +987,7 @@ namespace Mezzanine
         GameWorld->DoMainLoopLogging();
         #endif // */
 
-        #ifdef MEZZPROFILE
+        /*#ifdef MEZZPROFILE
         Profiler->reset();
         #endif
         ProcessAllCollisions();

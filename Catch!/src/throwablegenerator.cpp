@@ -37,7 +37,7 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     ClayData->GroupName = "Common";
     ClayData->Mass = 2.25;//1.74
     ClayData->Friction = 0.6;
-    ClayData->Restitution = 0.1;
+    ClayData->Restitution = 0.15;
     Throwables.push_back(ClayData);
 
     ThrowableData* GoldData = new ThrowableData();
@@ -92,7 +92,7 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     StyrofoamData->GroupName = "Common";
     StyrofoamData->Mass = 0.15;//0.1
     StyrofoamData->Friction = 0.55;
-    StyrofoamData->Restitution = 0.1;
+    StyrofoamData->Restitution = 0.2;
     Throwables.push_back(StyrofoamData);
 
     ThrowableData* UraniumData = new ThrowableData();

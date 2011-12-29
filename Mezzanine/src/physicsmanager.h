@@ -53,6 +53,8 @@ class btGhostPairCallback;
 class btBroadphaseInterface;
 class btCollisionConfiguration;
 
+typedef float btScalar;
+
 #include <map>
 #include <vector>
 
@@ -174,6 +176,9 @@ namespace Mezzanine
             /// @brief Checks the internal collision data and generates/updates collisions as necessary.
             /// @details This function is automatically called every step.
             void ProcessAllCollisions();
+
+            /// @brief Internal Callback that is called each substep of the simulation.
+            static void InternalTickCallback(btDynamicsWorld* world, btScalar timeStep);
         public:
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics

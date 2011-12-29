@@ -53,6 +53,7 @@
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internalmeshtools.h.cpp"
 #include "serialization.h"
+#include "mathtool.h"
 
 namespace Mezzanine
 {
@@ -143,6 +144,46 @@ namespace Mezzanine
         WorldObject::_NotifyCollisionState(Col,State);
         StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
         bool UseA = Col->GetObjectA() != this;
+
+        for( Whole X = 0 ; X < StickyD->StickyConstraints.size() ; ++X )
+        {
+            StickyConstraint* StickyCon = StickyD->StickyConstraints.at(X);
+
+            std::stringstream logstream1;
+            logstream1 << "Invoking btRigidBody::checkCollideWithOverride on Actor \"" << StickyCon->GetActorA()->GetName() << "\" with Actor \"" << StickyCon->GetActorB()->GetName() << "\" as the arguement.";
+            World::GetWorldPointer()->Log(logstream1.str());
+            World::GetWorldPointer()->DoMainLoopLogging();
+
+            if( StickyCon->GetActorA()->GetBulletObject()->checkCollideWithOverride(StickyCon->GetActorB()->GetBulletObject()) )
+            {
+                World::GetWorldPointer()->Log("btRigidBody::checkCollideWithOverride returned true.");
+                World::GetWorldPointer()->DoMainLoopLogging();
+            }
+            else
+            {
+                World::GetWorldPointer()->Log("btRigidBody::checkCollideWithOverride returned false.");
+                World::GetWorldPointer()->DoMainLoopLogging();
+            }
+
+            btDispatcher* BulletDispatch = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->getDispatcher();
+
+            std::stringstream logstream2;
+            logstream2 << "Invoking btDispatcher::needsCollision with Actors \"" << StickyCon->GetActorA()->GetName() << "\" and \"" << StickyCon->GetActorB()->GetName() << "\" as the arguements.";
+            World::GetWorldPointer()->Log(logstream2.str());
+            World::GetWorldPointer()->DoMainLoopLogging();
+
+            if( BulletDispatch->needsCollision(StickyCon->GetActorA()->GetBulletObject(),StickyCon->GetActorB()->GetBulletObject()) )
+            {
+                World::GetWorldPointer()->Log("btDispatcher::needsCollision returned true.");
+                World::GetWorldPointer()->DoMainLoopLogging();
+            }
+            else
+            {
+                World::GetWorldPointer()->Log("btDispatcher::needsCollision returned false.");
+                World::GetWorldPointer()->DoMainLoopLogging();
+            }
+        }
+
         // We don't care if sticky behavior isn't set or if the collision has ended.
         // If it's ended, then we've probably already done our logic.
         if(0 == StickyD->MaxNumContacts || Collision::Col_End == State)
@@ -169,11 +210,15 @@ namespace Mezzanine
             // Does this collision have actual force?
             bool NegativeDistFound = false;
             Whole FoundIndex = 0;
+            Real BestMatch = 123000;
             for( Whole X = 0 ; X < Col->GetNumContactPoints() ; ++X )
             {
-                if( Col->GetDistance(X) <= FoundIndex && 0 != Col->GetAppliedImpulse(X) )
+                Real Dist = Col->GetDistance(X);
+                if( MathTool::Fabs(Dist) < BestMatch && Dist <= 0 &&
+                    0 != Col->GetAppliedImpulse(X) )
                 {
                     FoundIndex = X;
+                    BestMatch = MathTool::Fabs(Dist);
                     NegativeDistFound = true;
                     break;
                 }
@@ -188,15 +233,6 @@ namespace Mezzanine
             Vector3 BLoc = UseA ? Col->GetLocalBLocation(FoundIndex) : Col->GetLocalALocation(FoundIndex);
             Transform TransA(ALoc,ActorA->GetOrientation());
             Transform TransB(BLoc,this->GetOrientation());
-            // Log
-            std::stringstream logstream;
-            logstream << "Sticky constraint being constructed with parameters:" << endl;
-            logstream << "ActorA offset: " << TransA.Location << endl;
-            logstream << "ActorB offset: " << TransB.Location << endl;
-            logstream << "ActorA rotation: " << TransA.Rotation << endl;
-            logstream << "ActorB rotation: " << TransB.Rotation << endl;
-            World::GetWorldPointer()->Log(logstream.str());
-            World::GetWorldPointer()->DoMainLoopLogging();
             // Create and configure the constraint.
             StickyConstraint* NewSticky = new StickyConstraint(ActorA,this,TransA,TransB);
             NewSticky->SetUpperLinLimit(0.0);
@@ -204,7 +240,7 @@ namespace Mezzanine
             NewSticky->SetLowerLinLimit(0.0);
             NewSticky->SetLowerAngLimit(0.0);
             // Add the constraint to the world and other necessary structures.
-            PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),false);
             StickyD->StickyConstraints.push_back(NewSticky);
             ActorAStickyData->StickyConstraints.push_back(NewSticky);
         }
