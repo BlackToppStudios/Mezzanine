@@ -40,9 +40,8 @@
 #ifndef _uitabset_h
 #define _uitabset_h
 
+#include "datatypes.h"
 #include "uirenderablecontainerwidget.h"
-#include <map>
-#include <vector>
 
 namespace Mezzanine
 {

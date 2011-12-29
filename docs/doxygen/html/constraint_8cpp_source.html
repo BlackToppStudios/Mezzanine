@@ -108,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;actormanager.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;actorrigid.h&quot;</span>
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;stringtool.h&quot;</span>
-<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;serialization.h&quot;</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;<a class="code" href="serialization_8h.html" title="The interface for serialization.">serialization.h</a>&quot;</span>
 <a name="l00048"></a>00048 <span class="preprocessor">#include &quot;world.h&quot;</span>
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050 
@@ -1749,299 +1749,395 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l01685"></a>01685         <a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a> = <span class="keyword">new</span> btSliderConstraint(*<a class="code" href="classMezzanine_1_1TypedConstraint.html#ac0c9462614bd52f57504bf4232f3ad6f" title="First rigid body the constraint applies to.">BodyA</a>, *<a class="code" href="classMezzanine_1_1TypedConstraint.html#a20797ccd702ed79065392e384b3dc32b" title="Second rigid body the constraint applies to(if applicable).">BodyB</a>, transa, transb, UseLinearReferenceA);
 <a name="l01686"></a>01686     }
 <a name="l01687"></a>01687 
-<a name="l01688"></a>01688     SliderConstraint::SliderConstraint(ActorRigid* ActorB, <span class="keyword">const</span> Vector3&amp; VectorB, <span class="keyword">const</span> Quaternion&amp; QuaternionB, <span class="keywordtype">bool</span> UseLinearReferenceA)
+<a name="l01688"></a>01688     SliderConstraint::SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, <span class="keyword">const</span> Transform&amp; TransformA, <span class="keyword">const</span> Transform&amp; TransformB, <span class="keywordtype">bool</span> UseLinearReferenceA)
 <a name="l01689"></a>01689     {
-<a name="l01690"></a>01690         <a class="code" href="classMezzanine_1_1TypedConstraint.html#a82175a88ddca2fe0f7063b7869a1f363" title="Sets the Internal actor pointers.">SetBodies</a>(ActorB);
-<a name="l01691"></a>01691 
-<a name="l01692"></a>01692         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-<a name="l01693"></a>01693         <a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a> = <span class="keyword">new</span> btSliderConstraint(*<a class="code" href="classMezzanine_1_1TypedConstraint.html#ac0c9462614bd52f57504bf4232f3ad6f" title="First rigid body the constraint applies to.">BodyA</a>, transb, UseLinearReferenceA);
-<a name="l01694"></a>01694     }
-<a name="l01695"></a>01695 
-<a name="l01696"></a>01696     <a class="code" href="classMezzanine_1_1SliderConstraint.html#a61867229e5eb1192119b496b12beb825" title="Class destructor.">SliderConstraint::~SliderConstraint</a>()
-<a name="l01697"></a>01697     {
-<a name="l01698"></a>01698         <span class="keyword">delete</span> <a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>;
-<a name="l01699"></a>01699     }
-<a name="l01700"></a>01700 
-<a name="l01701"></a>01701     btTypedConstraint* <a class="code" href="classMezzanine_1_1SliderConstraint.html#afb6bf65099b1d964975ee0853e81e38c">SliderConstraint::GetConstraintBase</a>()<span class="keyword"> const</span>
-<a name="l01702"></a>01702 <span class="keyword">        </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>; }
-<a name="l01703"></a>01703 
-<a name="l01704"></a>01704     <span class="keywordtype">void</span> SliderConstraint::SetFrameOffsetALocation(<span class="keyword">const</span> Vector3&amp; Location)
-<a name="l01705"></a>01705     {
-<a name="l01706"></a>01706         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetA().setOrigin(Location.GetBulletVector3());
-<a name="l01707"></a>01707     }
-<a name="l01708"></a>01708 
-<a name="l01709"></a>01709     <span class="keywordtype">void</span> SliderConstraint::SetFrameOffsetBLocation(<span class="keyword">const</span> Vector3&amp; Location)
-<a name="l01710"></a>01710     {
-<a name="l01711"></a>01711         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetB().setOrigin(Location.GetBulletVector3());
-<a name="l01712"></a>01712     }
-<a name="l01713"></a>01713 
-<a name="l01714"></a>01714     <span class="keywordtype">void</span> SliderConstraint::SetUpperLinLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> UpperLimit)
-<a name="l01715"></a>01715     {
-<a name="l01716"></a>01716         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setUpperLinLimit(UpperLimit);
-<a name="l01717"></a>01717     }
-<a name="l01718"></a>01718 
-<a name="l01719"></a>01719     <span class="keywordtype">void</span> SliderConstraint::SetUpperAngLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> UpperLimit)
-<a name="l01720"></a>01720     {
-<a name="l01721"></a>01721         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setUpperAngLimit(UpperLimit);
-<a name="l01722"></a>01722     }
-<a name="l01723"></a>01723 
-<a name="l01724"></a>01724     <span class="keywordtype">void</span> SliderConstraint::SetLowerLinLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> LowerLimit)
-<a name="l01725"></a>01725     {
-<a name="l01726"></a>01726         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setLowerLinLimit(LowerLimit);
-<a name="l01727"></a>01727     }
-<a name="l01728"></a>01728 
-<a name="l01729"></a>01729     <span class="keywordtype">void</span> SliderConstraint::SetLowerAngLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> LowerLimit)
-<a name="l01730"></a>01730     {
-<a name="l01731"></a>01731         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setLowerAngLimit(LowerLimit);
-<a name="l01732"></a>01732     }
+<a name="l01690"></a>01690         <a class="code" href="classMezzanine_1_1TypedConstraint.html#a82175a88ddca2fe0f7063b7869a1f363" title="Sets the Internal actor pointers.">SetBodies</a>(ActorA,ActorB);
+<a name="l01691"></a>01691         <a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a> = <span class="keyword">new</span> btSliderConstraint(*<a class="code" href="classMezzanine_1_1TypedConstraint.html#ac0c9462614bd52f57504bf4232f3ad6f" title="First rigid body the constraint applies to.">BodyA</a>, *<a class="code" href="classMezzanine_1_1TypedConstraint.html#a20797ccd702ed79065392e384b3dc32b" title="Second rigid body the constraint applies to(if applicable).">BodyB</a>, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+<a name="l01692"></a>01692     }
+<a name="l01693"></a>01693 
+<a name="l01694"></a>01694     SliderConstraint::SliderConstraint(ActorRigid* ActorB, <span class="keyword">const</span> Vector3&amp; VectorB, <span class="keyword">const</span> Quaternion&amp; QuaternionB, <span class="keywordtype">bool</span> UseLinearReferenceA)
+<a name="l01695"></a>01695     {
+<a name="l01696"></a>01696         <a class="code" href="classMezzanine_1_1TypedConstraint.html#a82175a88ddca2fe0f7063b7869a1f363" title="Sets the Internal actor pointers.">SetBodies</a>(ActorB);
+<a name="l01697"></a>01697 
+<a name="l01698"></a>01698         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
+<a name="l01699"></a>01699         <a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a> = <span class="keyword">new</span> btSliderConstraint(*<a class="code" href="classMezzanine_1_1TypedConstraint.html#ac0c9462614bd52f57504bf4232f3ad6f" title="First rigid body the constraint applies to.">BodyA</a>, transb, UseLinearReferenceA);
+<a name="l01700"></a>01700     }
+<a name="l01701"></a>01701 
+<a name="l01702"></a>01702     <a class="code" href="classMezzanine_1_1SliderConstraint.html#a61867229e5eb1192119b496b12beb825" title="Class destructor.">SliderConstraint::~SliderConstraint</a>()
+<a name="l01703"></a>01703     {
+<a name="l01704"></a>01704         <span class="keyword">delete</span> <a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>;
+<a name="l01705"></a>01705     }
+<a name="l01706"></a>01706 <span class="comment"></span>
+<a name="l01707"></a>01707 <span class="comment">    ////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01708"></a>01708 <span class="comment"></span>    <span class="comment">// Generic6DofConstraint Location and Rotation</span>
+<a name="l01709"></a>01709     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1SliderConstraint.html#a1655ff22220ff99ada45a98cdb330dfb">SliderConstraint::SetPivotATransform</a>(<span class="keyword">const</span> Transform&amp; TranA)
+<a name="l01710"></a>01710         { this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetA() = TranA.GetBulletTransform(); }
+<a name="l01711"></a>01711 
+<a name="l01712"></a>01712     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1SliderConstraint.html#a75f675f044faef304729c3ee03eae56b">SliderConstraint::SetPivotBTransform</a>(<span class="keyword">const</span> Transform&amp; TranB)
+<a name="l01713"></a>01713         { this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetB() = TranB.GetBulletTransform(); }
+<a name="l01714"></a>01714 
+<a name="l01715"></a>01715     Transform <a class="code" href="classMezzanine_1_1SliderConstraint.html#ad87313a0848e2523b4157a07b0a65d23">SliderConstraint::GetPivotATransform</a>()<span class="keyword"> const</span>
+<a name="l01716"></a>01716 <span class="keyword">        </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetA(); }
+<a name="l01717"></a>01717 
+<a name="l01718"></a>01718     Transform <a class="code" href="classMezzanine_1_1SliderConstraint.html#a22964857b7c94edf895d1ea9812614b1">SliderConstraint::GetPivotBTransform</a>()<span class="keyword"> const</span>
+<a name="l01719"></a>01719 <span class="keyword">        </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetB(); }
+<a name="l01720"></a>01720 
+<a name="l01721"></a>01721 
+<a name="l01722"></a>01722     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1SliderConstraint.html#a70cf627b28c4031d498557d3011a33c8">SliderConstraint::SetPivotALocation</a>(<span class="keyword">const</span> Vector3&amp; Location)
+<a name="l01723"></a>01723         { this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetA().setOrigin(Location.GetBulletVector3()); }
+<a name="l01724"></a>01724 
+<a name="l01725"></a>01725     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1SliderConstraint.html#ab6705dee13d7311ee381d388ba3122cd">SliderConstraint::SetPivotBLocation</a>(<span class="keyword">const</span> Vector3&amp; Location)
+<a name="l01726"></a>01726         { this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetB().setOrigin(Location.GetBulletVector3()); }
+<a name="l01727"></a>01727 
+<a name="l01728"></a>01728     Vector3 <a class="code" href="classMezzanine_1_1SliderConstraint.html#aab32a4c00eda5369c8188cff854418bd">SliderConstraint::GetPivotALocation</a>()<span class="keyword"> const</span>
+<a name="l01729"></a>01729 <span class="keyword">        </span>{ <span class="keywordflow">return</span> Vector3(this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetA().getOrigin()); }
+<a name="l01730"></a>01730 
+<a name="l01731"></a>01731     Vector3 <a class="code" href="classMezzanine_1_1SliderConstraint.html#af97a455a53d7572351f6ae725bb8e31b">SliderConstraint::GetPivotBLocation</a>()<span class="keyword"> const</span>
+<a name="l01732"></a>01732 <span class="keyword">        </span>{ <span class="keywordflow">return</span> Vector3(this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetB().getOrigin()); }
 <a name="l01733"></a>01733 
-<a name="l01734"></a>01734     <span class="keywordtype">void</span> SliderConstraint::SetPoweredLinMotor(<span class="keywordtype">bool</span> OnOff)
-<a name="l01735"></a>01735     {
-<a name="l01736"></a>01736         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setPoweredLinMotor(OnOff);
-<a name="l01737"></a>01737     }
-<a name="l01738"></a>01738 
-<a name="l01739"></a>01739     <span class="keywordtype">void</span> SliderConstraint::SetTargetLinMotorVelocity(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> TargetLinMotorVelocity)
-<a name="l01740"></a>01740     {
-<a name="l01741"></a>01741         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setTargetLinMotorVelocity(TargetLinMotorVelocity);
-<a name="l01742"></a>01742     }
+<a name="l01734"></a>01734 
+<a name="l01735"></a>01735     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1SliderConstraint.html#a9a38e7a49caa92f735d6723021aaffea">SliderConstraint::SetPivotARotation</a>(<span class="keyword">const</span> Quaternion&amp; Rotation)
+<a name="l01736"></a>01736         { this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetA().setRotation(Rotation.GetBulletQuaternion()); }
+<a name="l01737"></a>01737 
+<a name="l01738"></a>01738     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1SliderConstraint.html#a83a627a2875eedbf1ae6ee6db49d866f">SliderConstraint::SetPivotBRotation</a>(<span class="keyword">const</span> Quaternion&amp; Rotation)
+<a name="l01739"></a>01739         { this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetA().setRotation(Rotation.GetBulletQuaternion()); }
+<a name="l01740"></a>01740 
+<a name="l01741"></a>01741     Quaternion <a class="code" href="classMezzanine_1_1SliderConstraint.html#ac53730c289d355e7ed426a9f4b28d6b5">SliderConstraint::GetPivotARotation</a>()<span class="keyword"> const</span>
+<a name="l01742"></a>01742 <span class="keyword">        </span>{ <span class="keywordflow">return</span> Quaternion(this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetA().getRotation()); }
 <a name="l01743"></a>01743 
-<a name="l01744"></a>01744     <span class="keywordtype">void</span> SliderConstraint::SetMaxLinMotorForce(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> MaxLinMotorForce)
-<a name="l01745"></a>01745     {
-<a name="l01746"></a>01746         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setMaxLinMotorForce(MaxLinMotorForce);
-<a name="l01747"></a>01747     }
-<a name="l01748"></a>01748 
-<a name="l01749"></a>01749     <span class="keywordtype">void</span> SliderConstraint::SetPoweredAngMotor(<span class="keywordtype">bool</span> OnOff)
-<a name="l01750"></a>01750     {
-<a name="l01751"></a>01751         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setPoweredAngMotor(OnOff);
-<a name="l01752"></a>01752     }
-<a name="l01753"></a>01753 
-<a name="l01754"></a>01754     <span class="keywordtype">void</span> SliderConstraint::SetTargetAngMotorVelocity(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> TargetAngMotorVelocity)
-<a name="l01755"></a>01755     {
-<a name="l01756"></a>01756         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setTargetAngMotorVelocity(TargetAngMotorVelocity);
-<a name="l01757"></a>01757     }
-<a name="l01758"></a>01758 
-<a name="l01759"></a>01759     <span class="keywordtype">void</span> SliderConstraint::SetMaxAngMotorForce(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> MaxAngMotorForce)
-<a name="l01760"></a>01760     {
-<a name="l01761"></a>01761         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setMaxAngMotorForce(MaxAngMotorForce);
-<a name="l01762"></a>01762     }
-<a name="l01763"></a>01763 
-<a name="l01764"></a>01764     <span class="keywordtype">void</span> SliderConstraint::SetUseFrameOffset(<span class="keywordtype">bool</span> FrameOffset)
-<a name="l01765"></a>01765     {
-<a name="l01766"></a>01766         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setUseFrameOffset(FrameOffset);
-<a name="l01767"></a>01767     }
-<a name="l01768"></a>01768 
-<a name="l01769"></a>01769     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessDirLin(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessDirLin)
-<a name="l01770"></a>01770     {
-<a name="l01771"></a>01771         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessDirLin(SoftnessDirLin);
-<a name="l01772"></a>01772     }
-<a name="l01773"></a>01773 
-<a name="l01774"></a>01774     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionDirLin(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionDirLin)
-<a name="l01775"></a>01775     {
-<a name="l01776"></a>01776         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionDirLin(RestitutionDirLin);
-<a name="l01777"></a>01777     }
-<a name="l01778"></a>01778 
-<a name="l01779"></a>01779     <span class="keywordtype">void</span> SliderConstraint::SetDampingDirLin(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> DampingDirLin)
-<a name="l01780"></a>01780     {
-<a name="l01781"></a>01781         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingDirLin(DampingDirLin);
-<a name="l01782"></a>01782     }
-<a name="l01783"></a>01783 
-<a name="l01784"></a>01784     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessDirAng(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessDirAng)
-<a name="l01785"></a>01785     {
-<a name="l01786"></a>01786         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessDirAng(SoftnessDirAng);
-<a name="l01787"></a>01787     }
-<a name="l01788"></a>01788 
-<a name="l01789"></a>01789     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionDirAng(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionDirAng)
-<a name="l01790"></a>01790     {
-<a name="l01791"></a>01791         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionDirAng(RestitutionDirAng);
-<a name="l01792"></a>01792     }
-<a name="l01793"></a>01793 
-<a name="l01794"></a>01794     <span class="keywordtype">void</span> SliderConstraint::SetDampingDirAng(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> DampingDirAng)
-<a name="l01795"></a>01795     {
-<a name="l01796"></a>01796         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingDirAng(DampingDirAng);
-<a name="l01797"></a>01797     }
-<a name="l01798"></a>01798 
-<a name="l01799"></a>01799     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessLimLin(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessLimLin)
-<a name="l01800"></a>01800     {
-<a name="l01801"></a>01801         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessLimLin(SoftnessLimLin);
-<a name="l01802"></a>01802     }
-<a name="l01803"></a>01803 
-<a name="l01804"></a>01804     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionLimLin(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionLimLin)
-<a name="l01805"></a>01805     {
-<a name="l01806"></a>01806         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionLimLin(RestitutionLimLin);
-<a name="l01807"></a>01807     }
-<a name="l01808"></a>01808 
-<a name="l01809"></a>01809     <span class="keywordtype">void</span> SliderConstraint::SetDampingLimLin(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> DampingLimLin)
-<a name="l01810"></a>01810     {
-<a name="l01811"></a>01811         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingLimLin(DampingLimLin);
-<a name="l01812"></a>01812     }
-<a name="l01813"></a>01813 
-<a name="l01814"></a>01814     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessLimAng(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessLimAng)
-<a name="l01815"></a>01815     {
-<a name="l01816"></a>01816         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessLimAng(SoftnessLimAng);
-<a name="l01817"></a>01817     }
-<a name="l01818"></a>01818 
-<a name="l01819"></a>01819     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionLimAng(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionLimAng)
-<a name="l01820"></a>01820     {
-<a name="l01821"></a>01821         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionLimAng(RestitutionLimAng);
-<a name="l01822"></a>01822     }
-<a name="l01823"></a>01823 
-<a name="l01824"></a>01824     <span class="keywordtype">void</span> SliderConstraint::SetDampingLimAng(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> DampingLimAng)
-<a name="l01825"></a>01825     {
-<a name="l01826"></a>01826         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingLimAng(DampingLimAng);
-<a name="l01827"></a>01827     }
-<a name="l01828"></a>01828 
-<a name="l01829"></a>01829     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessOrthoLin(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessOrthoLin)
-<a name="l01830"></a>01830     {
-<a name="l01831"></a>01831         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessOrthoLin(SoftnessOrthoLin);
-<a name="l01832"></a>01832     }
-<a name="l01833"></a>01833 
-<a name="l01834"></a>01834     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionOrthoLin(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionOrthoLin)
-<a name="l01835"></a>01835     {
-<a name="l01836"></a>01836         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionOrthoLin(RestitutionOrthoLin);
-<a name="l01837"></a>01837     }
-<a name="l01838"></a>01838 
-<a name="l01839"></a>01839     <span class="keywordtype">void</span> SliderConstraint::SetDampingOrthoLin(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> DampingOrthoLin)
-<a name="l01840"></a>01840     {
-<a name="l01841"></a>01841         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingOrthoLin(DampingOrthoLin);
-<a name="l01842"></a>01842     }
-<a name="l01843"></a>01843 
-<a name="l01844"></a>01844     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessOrthoAng(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> SoftnessOrthoAng)
-<a name="l01845"></a>01845     {
-<a name="l01846"></a>01846         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessOrthoAng(SoftnessOrthoAng);
-<a name="l01847"></a>01847     }
-<a name="l01848"></a>01848 
-<a name="l01849"></a>01849     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionOrthoAng(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> RestitutionOrthoAng)
-<a name="l01850"></a>01850     {
-<a name="l01851"></a>01851         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionOrthoAng(RestitutionOrthoAng);
-<a name="l01852"></a>01852     }
-<a name="l01853"></a>01853 
-<a name="l01854"></a>01854     <span class="keywordtype">void</span> SliderConstraint::SetDampingOrthoAng(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> DampingOrthoAng)
-<a name="l01855"></a>01855     {
-<a name="l01856"></a>01856         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingOrthoAng(DampingOrthoAng);
-<a name="l01857"></a>01857     }
-<a name="l01858"></a>01858 <span class="comment"></span>
-<a name="l01859"></a>01859 <span class="comment">    /////////////////////////////////////////</span>
-<a name="l01860"></a>01860 <span class="comment"></span>    <span class="comment">// UniversalJointConstraint Constraint Functions</span>
+<a name="l01744"></a>01744     Quaternion <a class="code" href="classMezzanine_1_1SliderConstraint.html#a4550412c47b611ae3238db1adbff20d9">SliderConstraint::GetPivotBRotation</a>()<span class="keyword"> const</span>
+<a name="l01745"></a>01745 <span class="keyword">        </span>{ <span class="keywordflow">return</span> Quaternion(this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;getFrameOffsetB().getRotation()); }
+<a name="l01746"></a>01746 
+<a name="l01747"></a>01747     <span class="keywordtype">void</span> SliderConstraint::SetUpperLinLimit(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; UpperLimit)
+<a name="l01748"></a>01748     {
+<a name="l01749"></a>01749         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setUpperLinLimit(UpperLimit);
+<a name="l01750"></a>01750     }
+<a name="l01751"></a>01751 
+<a name="l01752"></a>01752     <span class="keywordtype">void</span> SliderConstraint::SetUpperAngLimit(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; UpperLimit)
+<a name="l01753"></a>01753     {
+<a name="l01754"></a>01754         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setUpperAngLimit(UpperLimit);
+<a name="l01755"></a>01755     }
+<a name="l01756"></a>01756 
+<a name="l01757"></a>01757     <span class="keywordtype">void</span> SliderConstraint::SetLowerLinLimit(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; LowerLimit)
+<a name="l01758"></a>01758     {
+<a name="l01759"></a>01759         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setLowerLinLimit(LowerLimit);
+<a name="l01760"></a>01760     }
+<a name="l01761"></a>01761 
+<a name="l01762"></a>01762     <span class="keywordtype">void</span> SliderConstraint::SetLowerAngLimit(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; LowerLimit)
+<a name="l01763"></a>01763     {
+<a name="l01764"></a>01764         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setLowerAngLimit(LowerLimit);
+<a name="l01765"></a>01765     }
+<a name="l01766"></a>01766 
+<a name="l01767"></a>01767     <span class="keywordtype">void</span> SliderConstraint::SetPoweredLinMotor(<span class="keywordtype">bool</span> OnOff)
+<a name="l01768"></a>01768     {
+<a name="l01769"></a>01769         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setPoweredLinMotor(OnOff);
+<a name="l01770"></a>01770     }
+<a name="l01771"></a>01771 
+<a name="l01772"></a>01772     <span class="keywordtype">void</span> SliderConstraint::SetTargetLinMotorVelocity(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; TargetLinMotorVelocity)
+<a name="l01773"></a>01773     {
+<a name="l01774"></a>01774         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setTargetLinMotorVelocity(TargetLinMotorVelocity);
+<a name="l01775"></a>01775     }
+<a name="l01776"></a>01776 
+<a name="l01777"></a>01777     <span class="keywordtype">void</span> SliderConstraint::SetMaxLinMotorForce(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; MaxLinMotorForce)
+<a name="l01778"></a>01778     {
+<a name="l01779"></a>01779         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setMaxLinMotorForce(MaxLinMotorForce);
+<a name="l01780"></a>01780     }
+<a name="l01781"></a>01781 
+<a name="l01782"></a>01782     <span class="keywordtype">void</span> SliderConstraint::SetPoweredAngMotor(<span class="keywordtype">bool</span> OnOff)
+<a name="l01783"></a>01783     {
+<a name="l01784"></a>01784         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setPoweredAngMotor(OnOff);
+<a name="l01785"></a>01785     }
+<a name="l01786"></a>01786 
+<a name="l01787"></a>01787     <span class="keywordtype">void</span> SliderConstraint::SetTargetAngMotorVelocity(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; TargetAngMotorVelocity)
+<a name="l01788"></a>01788     {
+<a name="l01789"></a>01789         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setTargetAngMotorVelocity(TargetAngMotorVelocity);
+<a name="l01790"></a>01790     }
+<a name="l01791"></a>01791 
+<a name="l01792"></a>01792     <span class="keywordtype">void</span> SliderConstraint::SetMaxAngMotorForce(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; MaxAngMotorForce)
+<a name="l01793"></a>01793     {
+<a name="l01794"></a>01794         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setMaxAngMotorForce(MaxAngMotorForce);
+<a name="l01795"></a>01795     }
+<a name="l01796"></a>01796 
+<a name="l01797"></a>01797     <span class="keywordtype">void</span> SliderConstraint::SetUseFrameOffset(<span class="keywordtype">bool</span> FrameOffset)
+<a name="l01798"></a>01798     {
+<a name="l01799"></a>01799         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setUseFrameOffset(FrameOffset);
+<a name="l01800"></a>01800     }
+<a name="l01801"></a>01801 
+<a name="l01802"></a>01802     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessDirLin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; SoftnessDirLin)
+<a name="l01803"></a>01803     {
+<a name="l01804"></a>01804         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessDirLin(SoftnessDirLin);
+<a name="l01805"></a>01805     }
+<a name="l01806"></a>01806 
+<a name="l01807"></a>01807     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionDirLin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; RestitutionDirLin)
+<a name="l01808"></a>01808     {
+<a name="l01809"></a>01809         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionDirLin(RestitutionDirLin);
+<a name="l01810"></a>01810     }
+<a name="l01811"></a>01811 
+<a name="l01812"></a>01812     <span class="keywordtype">void</span> SliderConstraint::SetDampingDirLin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; DampingDirLin)
+<a name="l01813"></a>01813     {
+<a name="l01814"></a>01814         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingDirLin(DampingDirLin);
+<a name="l01815"></a>01815     }
+<a name="l01816"></a>01816 
+<a name="l01817"></a>01817     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessDirAng(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; SoftnessDirAng)
+<a name="l01818"></a>01818     {
+<a name="l01819"></a>01819         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessDirAng(SoftnessDirAng);
+<a name="l01820"></a>01820     }
+<a name="l01821"></a>01821 
+<a name="l01822"></a>01822     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionDirAng(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; RestitutionDirAng)
+<a name="l01823"></a>01823     {
+<a name="l01824"></a>01824         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionDirAng(RestitutionDirAng);
+<a name="l01825"></a>01825     }
+<a name="l01826"></a>01826 
+<a name="l01827"></a>01827     <span class="keywordtype">void</span> SliderConstraint::SetDampingDirAng(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; DampingDirAng)
+<a name="l01828"></a>01828     {
+<a name="l01829"></a>01829         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingDirAng(DampingDirAng);
+<a name="l01830"></a>01830     }
+<a name="l01831"></a>01831 
+<a name="l01832"></a>01832     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessLimLin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; SoftnessLimLin)
+<a name="l01833"></a>01833     {
+<a name="l01834"></a>01834         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessLimLin(SoftnessLimLin);
+<a name="l01835"></a>01835     }
+<a name="l01836"></a>01836 
+<a name="l01837"></a>01837     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionLimLin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; RestitutionLimLin)
+<a name="l01838"></a>01838     {
+<a name="l01839"></a>01839         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionLimLin(RestitutionLimLin);
+<a name="l01840"></a>01840     }
+<a name="l01841"></a>01841 
+<a name="l01842"></a>01842     <span class="keywordtype">void</span> SliderConstraint::SetDampingLimLin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; DampingLimLin)
+<a name="l01843"></a>01843     {
+<a name="l01844"></a>01844         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingLimLin(DampingLimLin);
+<a name="l01845"></a>01845     }
+<a name="l01846"></a>01846 
+<a name="l01847"></a>01847     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessLimAng(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; SoftnessLimAng)
+<a name="l01848"></a>01848     {
+<a name="l01849"></a>01849         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessLimAng(SoftnessLimAng);
+<a name="l01850"></a>01850     }
+<a name="l01851"></a>01851 
+<a name="l01852"></a>01852     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionLimAng(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; RestitutionLimAng)
+<a name="l01853"></a>01853     {
+<a name="l01854"></a>01854         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionLimAng(RestitutionLimAng);
+<a name="l01855"></a>01855     }
+<a name="l01856"></a>01856 
+<a name="l01857"></a>01857     <span class="keywordtype">void</span> SliderConstraint::SetDampingLimAng(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; DampingLimAng)
+<a name="l01858"></a>01858     {
+<a name="l01859"></a>01859         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingLimAng(DampingLimAng);
+<a name="l01860"></a>01860     }
 <a name="l01861"></a>01861 
-<a name="l01862"></a>01862     UniversalJointConstraint::UniversalJointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, <span class="keyword">const</span> Vector3&amp; Anchor, <span class="keyword">const</span> Vector3&amp; Axis1, <span class="keyword">const</span> Vector3&amp; Axis2)
+<a name="l01862"></a>01862     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessOrthoLin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; SoftnessOrthoLin)
 <a name="l01863"></a>01863     {
-<a name="l01864"></a>01864         <a class="code" href="classMezzanine_1_1TypedConstraint.html#a82175a88ddca2fe0f7063b7869a1f363" title="Sets the Internal actor pointers.">SetBodies</a>(ActorA,ActorB);
-<a name="l01865"></a>01865 
-<a name="l01866"></a>01866         btVector3 temp1(Anchor.GetBulletVector3());
-<a name="l01867"></a>01867         btVector3 temp2(Axis1.GetBulletVector3());
-<a name="l01868"></a>01868         btVector3 temp3(Axis2.GetBulletVector3());
-<a name="l01869"></a>01869         <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a> = <span class="keyword">new</span> btUniversalConstraint(*<a class="code" href="classMezzanine_1_1TypedConstraint.html#ac0c9462614bd52f57504bf4232f3ad6f" title="First rigid body the constraint applies to.">BodyA</a>, *<a class="code" href="classMezzanine_1_1TypedConstraint.html#a20797ccd702ed79065392e384b3dc32b" title="Second rigid body the constraint applies to(if applicable).">BodyB</a>, temp1, temp2, temp3);
-<a name="l01870"></a>01870         <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html#abb10648cdb6987566223724d20de0b51" title="Bullet constraint that this class encapsulates.">Generic6dof</a> = <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a>;
-<a name="l01871"></a>01871     }
-<a name="l01872"></a>01872 
-<a name="l01873"></a>01873     <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a2e6d0ee965247873976fa16f2e425feb" title="Class destructor.">UniversalJointConstraint::~UniversalJointConstraint</a>()
-<a name="l01874"></a>01874     {
-<a name="l01875"></a>01875         <span class="keyword">delete</span> <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a>;
-<a name="l01876"></a>01876         <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a> = NULL;
-<a name="l01877"></a>01877         <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html#abb10648cdb6987566223724d20de0b51" title="Bullet constraint that this class encapsulates.">Generic6dof</a> = NULL;
-<a name="l01878"></a>01878     }
-<a name="l01879"></a>01879 
-<a name="l01880"></a>01880     <span class="keywordtype">void</span> UniversalJointConstraint::SetUpperLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Max, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang2Max)
-<a name="l01881"></a>01881     {
-<a name="l01882"></a>01882         this-&gt;<a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a>-&gt;setUpperLimit(Ang1Max, Ang2Max);
-<a name="l01883"></a>01883     }
-<a name="l01884"></a>01884 
-<a name="l01885"></a>01885     <span class="keywordtype">void</span> UniversalJointConstraint::SetLowerLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Min, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang2Min)
-<a name="l01886"></a>01886     {
-<a name="l01887"></a>01887         this-&gt;<a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a>-&gt;setLowerLimit(Ang1Min, Ang2Min);
-<a name="l01888"></a>01888     }
-<a name="l01889"></a>01889 }<span class="comment">//Mezzanine</span>
-<a name="l01890"></a>01890 
-<a name="l01891"></a>01891 
-<a name="l01892"></a>01892 <span class="preprocessor">#ifdef MEZZXML</span>
-<a name="l01893"></a>01893 <span class="preprocessor"></span><span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01894"></a>01894 <span class="comment"></span>    <span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
-<a name="l01895"></a>01895     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">Mezzanine::TypedConstraint</a>&amp; x)
-<a name="l01896"></a>01896     {
-<a name="l01897"></a>01897         Serialize(stream,x);
-<a name="l01898"></a>01898         <span class="keywordflow">return</span> stream;
-<a name="l01899"></a>01899     }
-<a name="l01900"></a>01900 
-<a name="l01901"></a>01901     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">Mezzanine::TypedConstraint</a>&amp; x)
-<a name="l01902"></a>01902         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
-<a name="l01903"></a>01903 
-<a name="l01904"></a>01904     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">Mezzanine::TypedConstraint</a>&amp; x)
-<a name="l01905"></a>01905         { x.ProtoDeSerialize(OneNode); }
-<a name="l01906"></a>01906 
-<a name="l01907"></a>01907 
-<a name="l01908"></a>01908     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">Mezzanine::DualTransformConstraint</a>&amp; x)
-<a name="l01909"></a>01909     {
-<a name="l01910"></a>01910         Serialize(stream,x);
-<a name="l01911"></a>01911         <span class="keywordflow">return</span> stream;
-<a name="l01912"></a>01912     }
-<a name="l01913"></a>01913 
-<a name="l01914"></a>01914     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">Mezzanine::DualTransformConstraint</a>&amp; x)
-<a name="l01915"></a>01915         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
-<a name="l01916"></a>01916 
-<a name="l01917"></a>01917     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">Mezzanine::DualTransformConstraint</a>&amp; x)
-<a name="l01918"></a>01918         { x.ProtoDeSerialize(OneNode); }
-<a name="l01919"></a>01919 
-<a name="l01920"></a>01920 
-<a name="l01921"></a>01921     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">Mezzanine::Generic6DofConstraint</a>&amp; x)
-<a name="l01922"></a>01922     {
-<a name="l01923"></a>01923         Serialize(stream,x);
-<a name="l01924"></a>01924         <span class="keywordflow">return</span> stream;
-<a name="l01925"></a>01925     }
-<a name="l01926"></a>01926 
-<a name="l01927"></a>01927     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">Mezzanine::Generic6DofConstraint</a>&amp; x)
-<a name="l01928"></a>01928         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
+<a name="l01864"></a>01864         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessOrthoLin(SoftnessOrthoLin);
+<a name="l01865"></a>01865     }
+<a name="l01866"></a>01866 
+<a name="l01867"></a>01867     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionOrthoLin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; RestitutionOrthoLin)
+<a name="l01868"></a>01868     {
+<a name="l01869"></a>01869         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionOrthoLin(RestitutionOrthoLin);
+<a name="l01870"></a>01870     }
+<a name="l01871"></a>01871 
+<a name="l01872"></a>01872     <span class="keywordtype">void</span> SliderConstraint::SetDampingOrthoLin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; DampingOrthoLin)
+<a name="l01873"></a>01873     {
+<a name="l01874"></a>01874         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingOrthoLin(DampingOrthoLin);
+<a name="l01875"></a>01875     }
+<a name="l01876"></a>01876 
+<a name="l01877"></a>01877     <span class="keywordtype">void</span> SliderConstraint::SetSoftnessOrthoAng(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; SoftnessOrthoAng)
+<a name="l01878"></a>01878     {
+<a name="l01879"></a>01879         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setSoftnessOrthoAng(SoftnessOrthoAng);
+<a name="l01880"></a>01880     }
+<a name="l01881"></a>01881 
+<a name="l01882"></a>01882     <span class="keywordtype">void</span> SliderConstraint::SetRestitutionOrthoAng(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; RestitutionOrthoAng)
+<a name="l01883"></a>01883     {
+<a name="l01884"></a>01884         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setRestitutionOrthoAng(RestitutionOrthoAng);
+<a name="l01885"></a>01885     }
+<a name="l01886"></a>01886 
+<a name="l01887"></a>01887     <span class="keywordtype">void</span> SliderConstraint::SetDampingOrthoAng(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; DampingOrthoAng)
+<a name="l01888"></a>01888     {
+<a name="l01889"></a>01889         this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;setDampingOrthoAng(DampingOrthoAng);
+<a name="l01890"></a>01890     }
+<a name="l01891"></a>01891 <span class="comment"></span>
+<a name="l01892"></a>01892 <span class="comment">    ////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01893"></a>01893 <span class="comment"></span>    <span class="comment">// SliderConstraint Axis, Params and other Details</span>
+<a name="l01894"></a>01894     <a class="code" href="classMezzanine_1_1TypedConstraint.html#abd499db29c9e9755e9bb547d29eaa49a" title="Set the current impulse clamping on the constraint.">TypedConstraint::ParamList</a> <a class="code" href="classMezzanine_1_1SliderConstraint.html#a6883d8b39517a5a96c099b1d1b441d95">SliderConstraint::ValidParamOnAxis</a>(<span class="keywordtype">int</span> Axis)<span class="keyword"> const</span>
+<a name="l01895"></a>01895 <span class="keyword">    </span>{
+<a name="l01896"></a>01896         <a class="code" href="classMezzanine_1_1TypedConstraint.html#abd499db29c9e9755e9bb547d29eaa49a" title="Set the current impulse clamping on the constraint.">TypedConstraint::ParamList</a> Results;
+<a name="l01897"></a>01897         <span class="keywordflow">if</span>(0&lt;=Axis &amp;&amp; 5&gt;=Axis)
+<a name="l01898"></a>01898         {
+<a name="l01899"></a>01899             Results.push_back(Con_Stop_ERP);
+<a name="l01900"></a>01900             Results.push_back(<a class="code" href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4a0ae9de16fc96d34ee601f9516d43b9b8" title="CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate ...">Con_CFM</a>);
+<a name="l01901"></a>01901             Results.push_back(Con_Stop_CFM);
+<a name="l01902"></a>01902         }
+<a name="l01903"></a>01903         <span class="keywordflow">return</span> Results;
+<a name="l01904"></a>01904     }
+<a name="l01905"></a>01905 
+<a name="l01906"></a>01906     <a class="code" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4" title="Used to Store lists of Int Axis for return types.">TypedConstraint::AxisList</a> <a class="code" href="classMezzanine_1_1SliderConstraint.html#ac238c09e330b22833bd666a73b93f8d0">SliderConstraint::ValidLinearAxis</a>()<span class="keyword"> const</span>
+<a name="l01907"></a>01907 <span class="keyword">    </span>{
+<a name="l01908"></a>01908         <a class="code" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4" title="Used to Store lists of Int Axis for return types.">TypedConstraint::AxisList</a> Results;
+<a name="l01909"></a>01909         Results.push_back(0);
+<a name="l01910"></a>01910         Results.push_back(1);
+<a name="l01911"></a>01911         Results.push_back(2);
+<a name="l01912"></a>01912         <span class="keywordflow">return</span> Results;
+<a name="l01913"></a>01913     }
+<a name="l01914"></a>01914 
+<a name="l01915"></a>01915     <a class="code" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4" title="Used to Store lists of Int Axis for return types.">TypedConstraint::AxisList</a> <a class="code" href="classMezzanine_1_1SliderConstraint.html#ac96a0956a0cb82b4b37d0da3a9d348fa">SliderConstraint::ValidAngularAxis</a>()<span class="keyword"> const</span>
+<a name="l01916"></a>01916 <span class="keyword">    </span>{
+<a name="l01917"></a>01917         <a class="code" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4" title="Used to Store lists of Int Axis for return types.">TypedConstraint::AxisList</a> Results;
+<a name="l01918"></a>01918         Results.push_back(3);
+<a name="l01919"></a>01919         Results.push_back(4);
+<a name="l01920"></a>01920         Results.push_back(5);
+<a name="l01921"></a>01921         <span class="keywordflow">return</span> Results;
+<a name="l01922"></a>01922     }
+<a name="l01923"></a>01923 
+<a name="l01924"></a>01924     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1SliderConstraint.html#a348b148de3759ae80f7af6dbd8680867">SliderConstraint::HasParamBeenSet</a>(<a class="code" href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4" title="Used by constraints for setting some parameters.">ConstraintParam</a> Param, <span class="keywordtype">int</span> Axis)<span class="keyword"> const</span>
+<a name="l01925"></a>01925 <span class="keyword">    </span>{
+<a name="l01926"></a>01926         <span class="comment">// the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btGeneric6DofConstraint_8cpp_source.html#l00964</span>
+<a name="l01927"></a>01927         <span class="keywordflow">if</span>(0&gt;Axis || 5&lt;Axis)
+<a name="l01928"></a>01928             { <span class="keywordflow">return</span> <span class="keyword">false</span>; }
 <a name="l01929"></a>01929 
-<a name="l01930"></a>01930     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">Mezzanine::Generic6DofConstraint</a>&amp; x)
-<a name="l01931"></a>01931         { x.ProtoDeSerialize(OneNode); }
-<a name="l01932"></a>01932 
-<a name="l01933"></a>01933 
-<a name="l01934"></a>01934     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">Mezzanine::Generic6DofSpringConstraint</a>&amp; x)
-<a name="l01935"></a>01935     {
-<a name="l01936"></a>01936         Serialize(stream,x);
-<a name="l01937"></a>01937         <span class="keywordflow">return</span> stream;
-<a name="l01938"></a>01938     }
-<a name="l01939"></a>01939 
-<a name="l01940"></a>01940     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">Mezzanine::Generic6DofSpringConstraint</a>&amp; x)
-<a name="l01941"></a>01941         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
-<a name="l01942"></a>01942 
-<a name="l01943"></a>01943     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">Mezzanine::Generic6DofSpringConstraint</a>&amp; x)
-<a name="l01944"></a>01944         { x.ProtoDeSerialize(OneNode); }
-<a name="l01945"></a>01945 
-<a name="l01946"></a>01946 
-<a name="l01947"></a>01947 
-<a name="l01948"></a>01948     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">Mezzanine::HingeConstraint</a>&amp; x)
-<a name="l01949"></a>01949     {
-<a name="l01950"></a>01950         Serialize(stream,x);
-<a name="l01951"></a>01951         <span class="keywordflow">return</span> stream;
-<a name="l01952"></a>01952     }
-<a name="l01953"></a>01953 
-<a name="l01954"></a>01954     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">Mezzanine::HingeConstraint</a>&amp; x)
-<a name="l01955"></a>01955         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
-<a name="l01956"></a>01956 
-<a name="l01957"></a>01957     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">Mezzanine::HingeConstraint</a>&amp; x)
-<a name="l01958"></a>01958         { x.ProtoDeSerialize(OneNode); }
-<a name="l01959"></a>01959 
-<a name="l01960"></a>01960 
+<a name="l01930"></a>01930         <span class="keywordflow">if</span>( Con_Stop_ERP == Param )
+<a name="l01931"></a>01931         {
+<a name="l01932"></a>01932             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_ERP_LIMLIN ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01933"></a>01933             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_ERP_ORTLIN ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01934"></a>01934             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_ERP_LIMANG ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01935"></a>01935             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_ERP_ORTANG ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01936"></a>01936         }
+<a name="l01937"></a>01937         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( Con_Stop_CFM == Param )
+<a name="l01938"></a>01938         {
+<a name="l01939"></a>01939             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_CFM_DIRLIN ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01940"></a>01940             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_CFM_DIRANG ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01941"></a>01941         }
+<a name="l01942"></a>01942         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4a0ae9de16fc96d34ee601f9516d43b9b8" title="CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate ...">Con_CFM</a> == Param )
+<a name="l01943"></a>01943         {
+<a name="l01944"></a>01944             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_CFM_LIMLIN ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01945"></a>01945             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_CFM_ORTLIN ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01946"></a>01946             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_CFM_LIMANG ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01947"></a>01947             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>-&gt;m_flags &amp; BT_SLIDER_FLAGS_CFM_ORTANG ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l01948"></a>01948         }
+<a name="l01949"></a>01949         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l01950"></a>01950     }
+<a name="l01951"></a>01951 
+<a name="l01952"></a>01952     btTypedConstraint* <a class="code" href="classMezzanine_1_1SliderConstraint.html#afb6bf65099b1d964975ee0853e81e38c">SliderConstraint::GetConstraintBase</a>()<span class="keyword"> const</span>
+<a name="l01953"></a>01953 <span class="keyword">        </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1SliderConstraint.html#ad0efdaf32b9de3085d2fef36020e0cb2" title="Bullet constraint that this class encapsulates.">Slider</a>; }
+<a name="l01954"></a>01954 <span class="comment"></span>
+<a name="l01955"></a>01955 <span class="comment">    /////////////////////////////////////////</span>
+<a name="l01956"></a>01956 <span class="comment"></span>    <span class="comment">// UniversalJointConstraint Constraint Functions</span>
+<a name="l01957"></a>01957 
+<a name="l01958"></a>01958     UniversalJointConstraint::UniversalJointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, <span class="keyword">const</span> Vector3&amp; Anchor, <span class="keyword">const</span> Vector3&amp; Axis1, <span class="keyword">const</span> Vector3&amp; Axis2)
+<a name="l01959"></a>01959     {
+<a name="l01960"></a>01960         <a class="code" href="classMezzanine_1_1TypedConstraint.html#a82175a88ddca2fe0f7063b7869a1f363" title="Sets the Internal actor pointers.">SetBodies</a>(ActorA,ActorB);
 <a name="l01961"></a>01961 
-<a name="l01962"></a>01962 
-<a name="l01963"></a>01963     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Mezzanine::Point2PointConstraint</a>&amp; x)
-<a name="l01964"></a>01964     {
-<a name="l01965"></a>01965         Serialize(stream,x);
-<a name="l01966"></a>01966         <span class="keywordflow">return</span> stream;
+<a name="l01962"></a>01962         btVector3 temp1(Anchor.GetBulletVector3());
+<a name="l01963"></a>01963         btVector3 temp2(Axis1.GetBulletVector3());
+<a name="l01964"></a>01964         btVector3 temp3(Axis2.GetBulletVector3());
+<a name="l01965"></a>01965         <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a> = <span class="keyword">new</span> btUniversalConstraint(*<a class="code" href="classMezzanine_1_1TypedConstraint.html#ac0c9462614bd52f57504bf4232f3ad6f" title="First rigid body the constraint applies to.">BodyA</a>, *<a class="code" href="classMezzanine_1_1TypedConstraint.html#a20797ccd702ed79065392e384b3dc32b" title="Second rigid body the constraint applies to(if applicable).">BodyB</a>, temp1, temp2, temp3);
+<a name="l01966"></a>01966         <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html#abb10648cdb6987566223724d20de0b51" title="Bullet constraint that this class encapsulates.">Generic6dof</a> = <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a>;
 <a name="l01967"></a>01967     }
 <a name="l01968"></a>01968 
-<a name="l01969"></a>01969     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Mezzanine::Point2PointConstraint</a>&amp; x)
-<a name="l01970"></a>01970         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
-<a name="l01971"></a>01971 
-<a name="l01972"></a>01972     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Mezzanine::Point2PointConstraint</a>&amp; x)
-<a name="l01973"></a>01973         { x.ProtoDeSerialize(OneNode); }
-<a name="l01974"></a>01974 <span class="preprocessor">#endif // \MEZZXML</span>
-<a name="l01975"></a>01975 <span class="preprocessor"></span>
-<a name="l01976"></a>01976 
-<a name="l01977"></a>01977 <span class="comment"></span>
-<a name="l01978"></a>01978 <span class="comment">/// @endcond</span>
-<a name="l01979"></a>01979 <span class="comment"></span>
-<a name="l01980"></a>01980 <span class="preprocessor">#endif</span>
+<a name="l01969"></a>01969     <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a2e6d0ee965247873976fa16f2e425feb" title="Class destructor.">UniversalJointConstraint::~UniversalJointConstraint</a>()
+<a name="l01970"></a>01970     {
+<a name="l01971"></a>01971         <span class="keyword">delete</span> <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a>;
+<a name="l01972"></a>01972         <a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a> = NULL;
+<a name="l01973"></a>01973         <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html#abb10648cdb6987566223724d20de0b51" title="Bullet constraint that this class encapsulates.">Generic6dof</a> = NULL;
+<a name="l01974"></a>01974     }
+<a name="l01975"></a>01975 
+<a name="l01976"></a>01976     <span class="keywordtype">void</span> UniversalJointConstraint::SetUpperLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Max, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang2Max)
+<a name="l01977"></a>01977     {
+<a name="l01978"></a>01978         this-&gt;<a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a>-&gt;setUpperLimit(Ang1Max, Ang2Max);
+<a name="l01979"></a>01979     }
+<a name="l01980"></a>01980 
+<a name="l01981"></a>01981     <span class="keywordtype">void</span> UniversalJointConstraint::SetLowerLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Min, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang2Min)
+<a name="l01982"></a>01982     {
+<a name="l01983"></a>01983         this-&gt;<a class="code" href="classMezzanine_1_1UniversalJointConstraint.html#a30a26e23a0ff9b01212818ee9bc3a0c7" title="Bullet constraint that this class encapsulates.">Universal</a>-&gt;setLowerLimit(Ang1Min, Ang2Min);
+<a name="l01984"></a>01984     }
+<a name="l01985"></a>01985 }<span class="comment">//Mezzanine</span>
+<a name="l01986"></a>01986 
+<a name="l01987"></a>01987 
+<a name="l01988"></a>01988 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l01989"></a>01989 <span class="preprocessor"></span><span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01990"></a>01990 <span class="comment"></span>    <span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
+<a name="l01991"></a>01991     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">Mezzanine::TypedConstraint</a>&amp; x)
+<a name="l01992"></a>01992     {
+<a name="l01993"></a>01993         Serialize(stream,x);
+<a name="l01994"></a>01994         <span class="keywordflow">return</span> stream;
+<a name="l01995"></a>01995     }
+<a name="l01996"></a>01996 
+<a name="l01997"></a>01997     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">Mezzanine::TypedConstraint</a>&amp; x)
+<a name="l01998"></a>01998         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
+<a name="l01999"></a>01999 
+<a name="l02000"></a>02000     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">Mezzanine::TypedConstraint</a>&amp; x)
+<a name="l02001"></a>02001         { x.ProtoDeSerialize(OneNode); }
+<a name="l02002"></a>02002 
+<a name="l02003"></a>02003 
+<a name="l02004"></a>02004     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">Mezzanine::DualTransformConstraint</a>&amp; x)
+<a name="l02005"></a>02005     {
+<a name="l02006"></a>02006         Serialize(stream,x);
+<a name="l02007"></a>02007         <span class="keywordflow">return</span> stream;
+<a name="l02008"></a>02008     }
+<a name="l02009"></a>02009 
+<a name="l02010"></a>02010     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">Mezzanine::DualTransformConstraint</a>&amp; x)
+<a name="l02011"></a>02011         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
+<a name="l02012"></a>02012 
+<a name="l02013"></a>02013     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">Mezzanine::DualTransformConstraint</a>&amp; x)
+<a name="l02014"></a>02014         { x.ProtoDeSerialize(OneNode); }
+<a name="l02015"></a>02015 
+<a name="l02016"></a>02016 
+<a name="l02017"></a>02017     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">Mezzanine::Generic6DofConstraint</a>&amp; x)
+<a name="l02018"></a>02018     {
+<a name="l02019"></a>02019         Serialize(stream,x);
+<a name="l02020"></a>02020         <span class="keywordflow">return</span> stream;
+<a name="l02021"></a>02021     }
+<a name="l02022"></a>02022 
+<a name="l02023"></a>02023     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">Mezzanine::Generic6DofConstraint</a>&amp; x)
+<a name="l02024"></a>02024         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
+<a name="l02025"></a>02025 
+<a name="l02026"></a>02026     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation.">Mezzanine::Generic6DofConstraint</a>&amp; x)
+<a name="l02027"></a>02027         { x.ProtoDeSerialize(OneNode); }
+<a name="l02028"></a>02028 
+<a name="l02029"></a>02029 
+<a name="l02030"></a>02030     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">Mezzanine::Generic6DofSpringConstraint</a>&amp; x)
+<a name="l02031"></a>02031     {
+<a name="l02032"></a>02032         Serialize(stream,x);
+<a name="l02033"></a>02033         <span class="keywordflow">return</span> stream;
+<a name="l02034"></a>02034     }
+<a name="l02035"></a>02035 
+<a name="l02036"></a>02036     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">Mezzanine::Generic6DofSpringConstraint</a>&amp; x)
+<a name="l02037"></a>02037         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
+<a name="l02038"></a>02038 
+<a name="l02039"></a>02039     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">Mezzanine::Generic6DofSpringConstraint</a>&amp; x)
+<a name="l02040"></a>02040         { x.ProtoDeSerialize(OneNode); }
+<a name="l02041"></a>02041 
+<a name="l02042"></a>02042 
+<a name="l02043"></a>02043 
+<a name="l02044"></a>02044     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">Mezzanine::HingeConstraint</a>&amp; x)
+<a name="l02045"></a>02045     {
+<a name="l02046"></a>02046         Serialize(stream,x);
+<a name="l02047"></a>02047         <span class="keywordflow">return</span> stream;
+<a name="l02048"></a>02048     }
+<a name="l02049"></a>02049 
+<a name="l02050"></a>02050     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">Mezzanine::HingeConstraint</a>&amp; x)
+<a name="l02051"></a>02051         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
+<a name="l02052"></a>02052 
+<a name="l02053"></a>02053     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">Mezzanine::HingeConstraint</a>&amp; x)
+<a name="l02054"></a>02054         { x.ProtoDeSerialize(OneNode); }
+<a name="l02055"></a>02055 
+<a name="l02056"></a>02056 
+<a name="l02057"></a>02057 
+<a name="l02058"></a>02058 
+<a name="l02059"></a>02059     std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Mezzanine::Point2PointConstraint</a>&amp; x)
+<a name="l02060"></a>02060     {
+<a name="l02061"></a>02061         Serialize(stream,x);
+<a name="l02062"></a>02062         <span class="keywordflow">return</span> stream;
+<a name="l02063"></a>02063     }
+<a name="l02064"></a>02064 
+<a name="l02065"></a>02065     std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Mezzanine::Point2PointConstraint</a>&amp; x)
+<a name="l02066"></a>02066         { <span class="keywordflow">return</span> DeSerialize(stream, x); }
+<a name="l02067"></a>02067 
+<a name="l02068"></a>02068     <span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation...">Mezzanine::Point2PointConstraint</a>&amp; x)
+<a name="l02069"></a>02069         { x.ProtoDeSerialize(OneNode); }
+<a name="l02070"></a>02070 <span class="preprocessor">#endif // \MEZZXML</span>
+<a name="l02071"></a>02071 <span class="preprocessor"></span>
+<a name="l02072"></a>02072 
+<a name="l02073"></a>02073 <span class="comment"></span>
+<a name="l02074"></a>02074 <span class="comment">/// @endcond</span>
+<a name="l02075"></a>02075 <span class="comment"></span>
+<a name="l02076"></a>02076 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -2059,6 +2155,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -11,15 +11,14 @@ This is an interface class for pairs of world objects.
 
 {\ttfamily \#include $<$objectpair.h$>$}
 
-Inheritance diagram for Mezzanine::ObjectPair:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=1.320755cm]{classMezzanine_1_1ObjectPair}
-\end{center}
-\end{figure}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classMezzanine_1_1ObjectPair_ad17c0a1aabd7ff5a76c5040d518941ca}{
+\hyperlink{classMezzanine_1_1ObjectPair_ad17c0a1aabd7ff5a76c5040d518941ca}{ObjectPair} (\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$A, \hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$B)}
+\label{classMezzanine_1_1ObjectPair_ad17c0a1aabd7ff5a76c5040d518941ca}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1ObjectPair_ae0f6ec9e02fa5e585988d8715f61eccf}{operator$<$} (const \hyperlink{classMezzanine_1_1ObjectPair}{ObjectPair} \&Pair) const 
 \begin{DoxyCompactList}\small\item\em Checks to see if this pair is less than another pair. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1ObjectPair_a9ef3a1e9a43bd16c0cd9e9db5713dd87}{operator==} (const \hyperlink{classMezzanine_1_1ObjectPair}{ObjectPair} \&Pair) const 
@@ -27,31 +26,39 @@ virtual bool \hyperlink{classMezzanine_1_1ObjectPair_a9ef3a1e9a43bd16c0cd9e9db57
 virtual bool \hyperlink{classMezzanine_1_1ObjectPair_a6dd31a9481a2e6fc8893241f1481173c}{operator$>$} (const \hyperlink{classMezzanine_1_1ObjectPair}{ObjectPair} \&Pair) const 
 \begin{DoxyCompactList}\small\item\em Checks to see if this pair is greater than another pair. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1ObjectPair_aacdc52e1c01f8c4a93323443dfde2059}{PairsMatch} (const \hyperlink{classMezzanine_1_1ObjectPair}{ObjectPair} \&Pair) const 
-\begin{DoxyCompactList}\small\item\em Checks to see if this pair is the same as another pair. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Checks to see if this pair is the same as another pair. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ObjectPair_a242416fb24217acb1eed16daddc7c194}{
+virtual \hyperlink{classMezzanine_1_1ObjectPair_a242416fb24217acb1eed16daddc7c194}{$\sim$ObjectPair} ()}
+\label{classMezzanine_1_1ObjectPair_a242416fb24217acb1eed16daddc7c194}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ObjectPair_ac3e791690963a9dba54f4e7a049910e4}{
+\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$ \hyperlink{classMezzanine_1_1ObjectPair_ac3e791690963a9dba54f4e7a049910e4}{ObjectA}}
+\label{classMezzanine_1_1ObjectPair_ac3e791690963a9dba54f4e7a049910e4}
+
+\begin{DoxyCompactList}\small\item\em The first world object in the pair. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ObjectPair_a074870bdbbeb405fec6090f30e59af28}{
+\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$ \hyperlink{classMezzanine_1_1ObjectPair_a074870bdbbeb405fec6090f30e59af28}{ObjectB}}
+\label{classMezzanine_1_1ObjectPair_a074870bdbbeb405fec6090f30e59af28}
+
+\begin{DoxyCompactList}\small\item\em The second world object in the pair. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMezzanine_1_1ObjectPair_a2034dd4280f0bb303b6d92fa0afc2020}{
-virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ObjectPair_a2034dd4280f0bb303b6d92fa0afc2020}{GetCombinedName} () const =0}
-\label{classMezzanine_1_1ObjectPair_a2034dd4280f0bb303b6d92fa0afc2020}
+\hypertarget{classMezzanine_1_1ObjectPair_aebdf46a30a933a68b90c37dfc12e84ae}{
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ObjectPair_aebdf46a30a933a68b90c37dfc12e84ae}{GetCombinedName} () const }
+\label{classMezzanine_1_1ObjectPair_aebdf46a30a933a68b90c37dfc12e84ae}
 
-\begin{DoxyCompactList}\small\item\em Gets a string containing the combined names of the objects in this pair. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ObjectPair_a832fb244c1f59e649d70f600afa620c7}{
-virtual void $\ast$ \hyperlink{classMezzanine_1_1ObjectPair_a832fb244c1f59e649d70f600afa620c7}{GetObjectA} () const =0}
-\label{classMezzanine_1_1ObjectPair_a832fb244c1f59e649d70f600afa620c7}
-
-\begin{DoxyCompactList}\small\item\em Gets a pointer to the first object in this pair. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ObjectPair_a96db81279c4cb2ebf845aac6dc0f7494}{
-virtual void $\ast$ \hyperlink{classMezzanine_1_1ObjectPair_a96db81279c4cb2ebf845aac6dc0f7494}{GetObjectB} () const =0}
-\label{classMezzanine_1_1ObjectPair_a96db81279c4cb2ebf845aac6dc0f7494}
-
-\begin{DoxyCompactList}\small\item\em Gets a pointer to the second object in this pair. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets a string containing the combined names of the objects in this pair. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
 This is an interface class for pairs of world objects. Most commonly this class is used in collision tracking. 
 
-Definition at line 56 of file objectpair.h.
+Definition at line 54 of file objectpair.h.
 
 
 
@@ -82,7 +89,7 @@ Returns true if this pair is found to be less then the passed in pair, false oth
 \end{DoxyReturn}
 
 
-Definition at line 64 of file objectpair.cpp.
+Definition at line 76 of file objectpair.cpp.
 
 \hypertarget{classMezzanine_1_1ObjectPair_a9ef3a1e9a43bd16c0cd9e9db5713dd87}{
 \index{Mezzanine::ObjectPair@{Mezzanine::ObjectPair}!operator==@{operator==}}
@@ -107,7 +114,7 @@ Returns true if the pairs match regardless of ordering, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line 59 of file objectpair.cpp.
+Definition at line 71 of file objectpair.cpp.
 
 \hypertarget{classMezzanine_1_1ObjectPair_a6dd31a9481a2e6fc8893241f1481173c}{
 \index{Mezzanine::ObjectPair@{Mezzanine::ObjectPair}!operator$>$@{operator$>$}}
@@ -135,7 +142,7 @@ Returns true if this pair is found to be greater then the passed in pair, false 
 \end{DoxyReturn}
 
 
-Definition at line 71 of file objectpair.cpp.
+Definition at line 83 of file objectpair.cpp.
 
 \hypertarget{classMezzanine_1_1ObjectPair_aacdc52e1c01f8c4a93323443dfde2059}{
 \index{Mezzanine::ObjectPair@{Mezzanine::ObjectPair}!PairsMatch@{PairsMatch}}
@@ -160,7 +167,7 @@ Returns true if the pairs match regardless of ordering, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line 52 of file objectpair.cpp.
+Definition at line 64 of file objectpair.cpp.
 
 
 

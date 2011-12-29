@@ -460,9 +460,12 @@ namespace Mezzanine
     };
 }// /Mezz
 
+
+// We can skip these operators when creating bindings with swig
+#ifndef SWIG
+
 ///////////////////////////////////////////////////////////////////////////////
 // Right Hand Arithmetic Operators
-
 /// @brief Right Hand Addition Operator for Bullet Vectors with a Mezzanine::Vector3.
 /// @param Vec The Bullet Vector to be added.
 /// @param lhs The Mezzanine::Vector3 to be added.
@@ -648,4 +651,6 @@ cAudio::cVector3& MEZZ_LIB operator << (cAudio::cVector3& VecTo, const btVector3
 /// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).
 cAudio::cVector3& MEZZ_LIB operator << (cAudio::cVector3& VecTo, const Mezzanine::Vector3& VecFrom);
 
-#endif
+#endif // \SWIG
+
+#endif // \include gaurd

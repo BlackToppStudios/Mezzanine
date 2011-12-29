@@ -177,9 +177,9 @@ boxfont setfont
 (Mezzanine::ConeTwistConstraint) cw
 (Mezzanine::DualTransformConstraint) cw
 (Mezzanine::Point2PointConstraint) cw
-(Mezzanine::SliderConstraint) cw
 (Mezzanine::Generic6DofConstraint) cw
 (Mezzanine::HingeConstraint) cw
+(Mezzanine::SliderConstraint) cw
 (Mezzanine::Generic6DofSpringConstraint) cw
 (Mezzanine::UniversalJointConstraint) cw
 (Mezzanine::Hinge2Constraint) cw
@@ -196,11 +196,11 @@ boundx scalefactor div boundy scalefactor div scale
 
  (Mezzanine::TypedConstraint) 1.500000 4.000000 box
  (Mezzanine::ConeTwistConstraint) 0.000000 3.000000 box
- (Mezzanine::DualTransformConstraint) 1.000000 3.000000 box
- (Mezzanine::Point2PointConstraint) 2.000000 3.000000 box
- (Mezzanine::SliderConstraint) 3.000000 3.000000 box
+ (Mezzanine::DualTransformConstraint) 1.500000 3.000000 box
+ (Mezzanine::Point2PointConstraint) 2.500000 3.000000 box
  (Mezzanine::Generic6DofConstraint) 0.500000 2.000000 box
  (Mezzanine::HingeConstraint) 1.500000 2.000000 box
+ (Mezzanine::SliderConstraint) 2.500000 2.000000 box
  (Mezzanine::Generic6DofSpringConstraint) 0.000000 1.000000 box
  (Mezzanine::UniversalJointConstraint) 1.000000 1.000000 box
  (Mezzanine::Hinge2Constraint) 0.000000 0.000000 box
@@ -210,19 +210,17 @@ boundx scalefactor div boundy scalefactor div scale
 solid
 1 1.500000 3.250000 out
 solid
-0.000000 3.000000 4.000000 conn
+0.000000 2.500000 4.000000 conn
 solid
 0 0.000000 3.750000 in
 solid
-0 1.000000 3.750000 in
+0 1.500000 3.750000 in
 solid
-1 1.000000 2.250000 out
+1 1.500000 2.250000 out
 solid
-0.500000 1.500000 3.000000 conn
+0.500000 2.500000 3.000000 conn
 solid
-0 2.000000 3.750000 in
-solid
-0 3.000000 3.750000 in
+0 2.500000 3.750000 in
 solid
 0 0.500000 2.750000 in
 solid
@@ -231,6 +229,8 @@ solid
 0.000000 1.000000 2.000000 conn
 solid
 0 1.500000 2.750000 in
+solid
+0 2.500000 2.750000 in
 solid
 0 0.000000 1.750000 in
 solid

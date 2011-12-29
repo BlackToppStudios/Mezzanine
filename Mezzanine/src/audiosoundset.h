@@ -42,7 +42,6 @@
 
 #include "datatypes.h"
 #include "xml.h"
-#include <vector>
 
 namespace Mezzanine
 {

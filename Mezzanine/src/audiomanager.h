@@ -45,10 +45,6 @@
 #include "managerbase.h"
 #include "singleton.h"
 
-#include <vector>
-#include <map>
-#include <sstream>
-
 namespace cAudio
 {
     class IAudioManager;
@@ -65,6 +61,12 @@ namespace Mezzanine
         class SoundSet;
         class MusicPlayer;
     }
+
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonAudioManager) Singleton<AudioManager>;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class AudioManager
     /// @headerfile audiomanager.h

@@ -1,0 +1,391 @@
+\hypertarget{classMezzanine_1_1TerrainManager}{
+\subsection{Mezzanine::TerrainManager Class Reference}
+\label{classMezzanine_1_1TerrainManager}\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+}
+
+
+This is manager for terrains and their functions.  
+
+
+
+
+{\ttfamily \#include $<$terrainmanager.h$>$}
+
+Inheritance diagram for Mezzanine::TerrainManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1TerrainManager}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1TerrainManager_ace206114313eb7dcd96706a10195dea6}{AddTerrain} (\hyperlink{classMezzanine_1_1TerrainBase}{TerrainBase} $\ast$Terrain)
+\begin{DoxyCompactList}\small\item\em Adds a pre-\/made terrain to the world and the manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1MeshTerrain}{MeshTerrain} $\ast$ \hyperlink{classMezzanine_1_1TerrainManager_acb65dd655f4e42ac530442ffb35f12e0}{CreateMeshTerrain} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&InitPosition, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&file, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&group)
+\begin{DoxyCompactList}\small\item\em Creates a terrain based on a given mesh. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1TerrainManager_a8e97f7a8f58e782ff43f18c53901fb50}{
+virtual void \hyperlink{classMezzanine_1_1TerrainManager_a8e97f7a8f58e782ff43f18c53901fb50}{DestroyAllTerrains} ()}
+\label{classMezzanine_1_1TerrainManager_a8e97f7a8f58e782ff43f18c53901fb50}
+
+\begin{DoxyCompactList}\small\item\em Removes and deletes all terrains currently in this manager from the world and the manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1TerrainManager_a058a5c44e55fb80a03a2076effc424c3}{DestroyTerrain} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Destroys a terrain and removes it from world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1TerrainManager_aadac3792e3b2819e7ac0dec84a8399b6}{DestroyTerrain} (\hyperlink{classMezzanine_1_1TerrainBase}{TerrainBase} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a terrain and removes it from world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1TerrainManager_a442a1e72a38fe959b15a7f5eeff455fc}{DoMainLoopItems} ()
+\item 
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1TerrainManager_a586514cfc367b5852612292cab69a8b7}{GetNumTerrains} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of terrains being stored in this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1TerrainBase}{TerrainBase} $\ast$ \hyperlink{classMezzanine_1_1TerrainManager_a6ac0d776447d798c07f801b29109228b}{GetTerrainByIndex} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Retrives a \hyperlink{classMezzanine_1_1MeshTerrain}{MeshTerrain} from the list of terrains. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1TerrainBase}{TerrainBase} $\ast$ \hyperlink{classMezzanine_1_1TerrainManager_aa582965012dc57bd39b01d6dc8773642}{GetTerrainByName} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Retrieves a Meshterrain from the list of terrains. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ManagerBase_a08cecf5169cad3e82be81a3a159b0b6e}{ManagerTypeName} \hyperlink{classMezzanine_1_1TerrainManager_a86fbb914cfbc0de3dc555d670bb35107}{GetType} () const 
+\item 
+virtual void \hyperlink{classMezzanine_1_1TerrainManager_abe9550c9c6565bbd0610dcaa20eedc0c}{Initialize} ()
+\item 
+virtual void \hyperlink{classMezzanine_1_1TerrainManager_ae940f33a369e54c2322de4202d236eb2}{RemoveAllTerrains} ()
+\begin{DoxyCompactList}\small\item\em Removes all terrains currently in this manager from the world and the manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1TerrainManager_ae304121e1f5023bb76cfda962d860395}{RemoveTerrain} (\hyperlink{classMezzanine_1_1TerrainBase}{TerrainBase} $\ast$ToBeRemoved)
+\begin{DoxyCompactList}\small\item\em Removes a terrain from the world and this manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1TerrainManager_abd5fec432a277253d08c5c7a462f3cd6}{RemoveTerrain} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Removes a terrain from the world and this manager by index. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1TerrainManager_acc5ec25398260bc73cbb3c6d206f76d6}{
+\hyperlink{classMezzanine_1_1TerrainManager_acc5ec25398260bc73cbb3c6d206f76d6}{TerrainManager} ()}
+\label{classMezzanine_1_1TerrainManager_acc5ec25398260bc73cbb3c6d206f76d6}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1TerrainManager_ae3896cc32b3a674511c851716e251d1a}{
+virtual \hyperlink{classMezzanine_1_1TerrainManager_ae3896cc32b3a674511c851716e251d1a}{$\sim$TerrainManager} ()}
+\label{classMezzanine_1_1TerrainManager_ae3896cc32b3a674511c851716e251d1a}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1TerrainManager_a0790111fe5b0afabf775e74f172d0614}{
+std::vector$<$ \hyperlink{classMezzanine_1_1MeshTerrain}{MeshTerrain} $\ast$ $>$ \hyperlink{classMezzanine_1_1TerrainManager_a0790111fe5b0afabf775e74f172d0614}{MeshTerrains}}
+\label{classMezzanine_1_1TerrainManager_a0790111fe5b0afabf775e74f172d0614}
+
+\begin{DoxyCompactList}\small\item\em A container of created \hyperlink{classMezzanine_1_1MeshTerrain}{MeshTerrain} objects. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1TerrainManager_a8223a765f5a9c852d3da1bedae3b925e}{
+std::vector$<$ \hyperlink{classMezzanine_1_1TerrainBase}{TerrainBase} $\ast$ $>$ \hyperlink{classMezzanine_1_1TerrainManager_a8223a765f5a9c852d3da1bedae3b925e}{Terrains}}
+\label{classMezzanine_1_1TerrainManager_a8223a765f5a9c852d3da1bedae3b925e}
+
+\begin{DoxyCompactList}\small\item\em A container of all terrain instances. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is manager for terrains and their functions. 
+
+Definition at line 58 of file terrainmanager.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1TerrainManager_ace206114313eb7dcd96706a10195dea6}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!AddTerrain@{AddTerrain}}
+\index{AddTerrain@{AddTerrain}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{AddTerrain}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::TerrainManager::AddTerrain (
+\begin{DoxyParamCaption}
+\item[{{\bf TerrainBase} $\ast$}]{Terrain}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_ace206114313eb7dcd96706a10195dea6}
+
+
+Adds a pre-\/made terrain to the world and the manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Terrain} & The terrain to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 83 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_acb65dd655f4e42ac530442ffb35f12e0}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!CreateMeshTerrain@{CreateMeshTerrain}}
+\index{CreateMeshTerrain@{CreateMeshTerrain}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{CreateMeshTerrain}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MeshTerrain} $\ast$ Mezzanine::TerrainManager::CreateMeshTerrain (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{InitPosition, }
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf String} \&}]{file, }
+\item[{const {\bf String} \&}]{group}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_acb65dd655f4e42ac530442ffb35f12e0}
+
+
+Creates a terrain based on a given mesh. 
+
+This method creates a terrain object and handles adding it to the world. 
+\begin{DoxyParams}{Parameters}
+{\em InitPosition} & The location of the terrain. \\
+\hline
+{\em name} & The name of the terrain. \\
+\hline
+{\em file} & The 3d mesh file that contains the 3d model the actor will use. \\
+\hline
+{\em group} & The resource group where the 3d mesh and other related files can be found. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1MeshTerrain}{MeshTerrain} object. 
+\end{DoxyReturn}
+
+
+Definition at line 155 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_aadac3792e3b2819e7ac0dec84a8399b6}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!DestroyTerrain@{DestroyTerrain}}
+\index{DestroyTerrain@{DestroyTerrain}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{DestroyTerrain}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::TerrainManager::DestroyTerrain (
+\begin{DoxyParamCaption}
+\item[{{\bf TerrainBase} $\ast$}]{ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_aadac3792e3b2819e7ac0dec84a8399b6}
+
+
+Destroys a terrain and removes it from world. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & name of desired terrain in MeshTerrains. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 128 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_a058a5c44e55fb80a03a2076effc424c3}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!DestroyTerrain@{DestroyTerrain}}
+\index{DestroyTerrain@{DestroyTerrain}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{DestroyTerrain}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::TerrainManager::DestroyTerrain (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_a058a5c44e55fb80a03a2076effc424c3}
+
+
+Destroys a terrain and removes it from world. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & Index of desired terrain in MeshTerrains. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 120 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_a442a1e72a38fe959b15a7f5eeff455fc}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::TerrainManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_a442a1e72a38fe959b15a7f5eeff455fc}
+The main loop calls this once per frame. 
+
+This is where each manager is expected to put anything that needs to be run each iteration of the main loop  
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258d5cd2}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 169 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_a586514cfc367b5852612292cab69a8b7}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!GetNumTerrains@{GetNumTerrains}}
+\index{GetNumTerrains@{GetNumTerrains}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{GetNumTerrains}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::TerrainManager::GetNumTerrains (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_a586514cfc367b5852612292cab69a8b7}
+
+
+Gets the number of terrains being stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the number of terrains in this manager. 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_a6ac0d776447d798c07f801b29109228b}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!GetTerrainByIndex@{GetTerrainByIndex}}
+\index{GetTerrainByIndex@{GetTerrainByIndex}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{GetTerrainByIndex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TerrainBase} $\ast$ Mezzanine::TerrainManager::GetTerrainByIndex (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_a6ac0d776447d798c07f801b29109228b}
+
+
+Retrives a \hyperlink{classMezzanine_1_1MeshTerrain}{MeshTerrain} from the list of terrains. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index of desired terrain in MeshTerrains. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the \hyperlink{classMezzanine_1_1MeshTerrain}{MeshTerrain} at the given index. 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_aa582965012dc57bd39b01d6dc8773642}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!GetTerrainByName@{GetTerrainByName}}
+\index{GetTerrainByName@{GetTerrainByName}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{GetTerrainByName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TerrainBase} $\ast$ Mezzanine::TerrainManager::GetTerrainByName (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_aa582965012dc57bd39b01d6dc8773642}
+
+
+Retrieves a Meshterrain from the list of terrains. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the terrain. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the named \hyperlink{classMezzanine_1_1MeshTerrain}{MeshTerrain}, or NULL if no \hyperlink{classMezzanine_1_1MeshTerrain}{MeshTerrain} exists with given name. 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_a86fbb914cfbc0de3dc555d670bb35107}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} Mezzanine::TerrainManager::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_a86fbb914cfbc0de3dc555d670bb35107}
+This returns the type of this manager. 
+
+This is intended to make using and casting from Manager base easier. With this is is possible to cast from \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase} to the correct Manager Type. \begin{DoxyReturn}{Returns}
+This returns a ManagerTypeName to identify what this can be safely cast to. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf76973}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 173 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_abe9550c9c6565bbd0610dcaa20eedc0c}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::TerrainManager::Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_abe9550c9c6565bbd0610dcaa20eedc0c}
+Configure Items requiring other Managers. 
+
+If you are using the \hyperlink{classMezzanine_1_1World}{Mezzanine::World} this is called when \hyperlink{classMezzanine_1_1World_a72d6d82926bfbfca96c246f109f0fc58}{Mezzanine::World::GameInit()} is called. It is expected that by the time this is called either ManagerBase::ManagerBase(World$\ast$) or \hyperlink{classMezzanine_1_1ManagerBase_acb66b1edbb0f256fb1d4d4d2126f073e}{ManagerBase::SetGameWorld(World$\ast$)} will have been called. This is where all configuration that requires atleast one other manager on the \hyperlink{classMezzanine_1_1World}{Mezzanine::World} to exist.\par
+\par
+ Yes we know it is spelled wrong, but are Zs cooler anyway.  
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a864e3cac11928a602c1db28fa2d52ee2}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 165 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_ae940f33a369e54c2322de4202d236eb2}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!RemoveAllTerrains@{RemoveAllTerrains}}
+\index{RemoveAllTerrains@{RemoveAllTerrains}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{RemoveAllTerrains}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::TerrainManager::RemoveAllTerrains (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_ae940f33a369e54c2322de4202d236eb2}
+
+
+Removes all terrains currently in this manager from the world and the manager. 
+
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000026}{Todo}]When adding more types of terrains, it should be remembered that code should be added to clear the extra vectors. \end{Desc}
+
+
+
+
+Definition at line 109 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_abd5fec432a277253d08c5c7a462f3cd6}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!RemoveTerrain@{RemoveTerrain}}
+\index{RemoveTerrain@{RemoveTerrain}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{RemoveTerrain}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::TerrainManager::RemoveTerrain (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_abd5fec432a277253d08c5c7a462f3cd6}
+
+
+Removes a terrain from the world and this manager by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index at which to remove the terrain. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 89 of file terrainmanager.cpp.
+
+\hypertarget{classMezzanine_1_1TerrainManager_ae304121e1f5023bb76cfda962d860395}{
+\index{Mezzanine::TerrainManager@{Mezzanine::TerrainManager}!RemoveTerrain@{RemoveTerrain}}
+\index{RemoveTerrain@{RemoveTerrain}!Mezzanine::TerrainManager@{Mezzanine::TerrainManager}}
+\paragraph[{RemoveTerrain}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::TerrainManager::RemoveTerrain (
+\begin{DoxyParamCaption}
+\item[{{\bf TerrainBase} $\ast$}]{ToBeRemoved}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TerrainManager_ae304121e1f5023bb76cfda962d860395}
+
+
+Removes a terrain from the world and this manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeRemoved} & The terrain to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 96 of file terrainmanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+terrainmanager.h\item 
+terrainmanager.cpp\end{DoxyCompactItemize}

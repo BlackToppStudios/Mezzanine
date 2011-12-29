@@ -41,7 +41,6 @@
 #define _uicellgrid_h
 
 #include "uiwidget.h"
-#include <list>
 
 namespace Mezzanine
 {

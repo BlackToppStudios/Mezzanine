@@ -42,12 +42,25 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Any Special data types that we need will get declared right here
 ///////////////////////////////////////
+#include "swig.h"
 #include "crossplatformexport.h"
 
-#include <string>
-#include <sstream>
-#include <vector>
-#include <map>
+// Standard Headers are not included in SWIG preprocessing
+// Most std includes are centralized here to make modifying this list as simple as possible. Other standard includes that
+// are not included here are in places that they are required and conditionally may not be compiled in. For example,
+// Serialization requires <memory> and <ostream> and can optionally be compiled as part of Mezz_XML.
+#ifndef SWIG
+    #include <algorithm>
+    #include <exception>
+    #include <istream>
+    #include <list>
+    #include <map>
+    #include <string>
+    #include <sstream>
+    #include <set>
+    #include <vector>
+    #include <utility>
+#endif
 
 /// @internal
 /// @brief Forward declaration for SDL compatibilty
@@ -122,7 +135,7 @@ namespace Mezzanine
     /// changed, The Character typedef should be adjusted accordingly.
     typedef std::string String;
 
-    /// @typedef String16
+    /// @typedef WideString
     /// @brief A wide version of the String typedef.
     /// @details Wide strings are seldom used, but often come in handy when dealing with Unicode strings.
     typedef std::wstring WideString;
@@ -145,7 +158,6 @@ namespace Mezzanine
     /// @brief This is an internal datatype use to communicate with the User input Subsystem
     /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details
     typedef SDL_Event RawEvent;
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // Simple conversion functions

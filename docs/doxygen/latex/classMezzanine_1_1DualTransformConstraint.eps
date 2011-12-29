@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 131.752306
+%%BoundingBox: 0 0 500 98.814229
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 3.795000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 5.060000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
 /rows 5 def
-/cols 3 def
+/cols 4 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -177,6 +177,7 @@ boxfont setfont
 (Mezzanine::TypedConstraint) cw
 (Mezzanine::Generic6DofConstraint) cw
 (Mezzanine::HingeConstraint) cw
+(Mezzanine::SliderConstraint) cw
 (Mezzanine::Generic6DofSpringConstraint) cw
 (Mezzanine::UniversalJointConstraint) cw
 (Mezzanine::Hinge2Constraint) cw
@@ -191,10 +192,11 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Mezzanine::DualTransformConstraint) 1.000000 3.000000 box
- (Mezzanine::TypedConstraint) 1.000000 4.000000 box
+ (Mezzanine::DualTransformConstraint) 1.500000 3.000000 box
+ (Mezzanine::TypedConstraint) 1.500000 4.000000 box
  (Mezzanine::Generic6DofConstraint) 0.500000 2.000000 box
  (Mezzanine::HingeConstraint) 1.500000 2.000000 box
+ (Mezzanine::SliderConstraint) 2.500000 2.000000 box
  (Mezzanine::Generic6DofSpringConstraint) 0.000000 1.000000 box
  (Mezzanine::UniversalJointConstraint) 1.000000 1.000000 box
  (Mezzanine::Hinge2Constraint) 0.000000 0.000000 box
@@ -202,13 +204,13 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-0 1.000000 3.000000 out
+0 1.500000 3.000000 out
 solid
-1 1.000000 4.000000 in
+1 1.500000 4.000000 in
 solid
-1 1.000000 2.250000 out
+1 1.500000 2.250000 out
 solid
-0.500000 1.500000 3.000000 conn
+0.500000 2.500000 3.000000 conn
 solid
 0 0.500000 2.750000 in
 solid
@@ -217,6 +219,8 @@ solid
 0.000000 1.000000 2.000000 conn
 solid
 0 1.500000 2.750000 in
+solid
+0 2.500000 2.750000 in
 solid
 0 0.000000 1.750000 in
 solid

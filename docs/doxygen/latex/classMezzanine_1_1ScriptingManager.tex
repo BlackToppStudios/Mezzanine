@@ -1,0 +1,133 @@
+\hypertarget{classMezzanine_1_1ScriptingManager}{
+\subsection{Mezzanine::ScriptingManager Class Reference}
+\label{classMezzanine_1_1ScriptingManager}\index{Mezzanine::ScriptingManager@{Mezzanine::ScriptingManager}}
+}
+
+
+What a scripting manager should look like.  
+
+
+
+
+{\ttfamily \#include $<$scriptingmanager.h$>$}
+
+Inheritance diagram for Mezzanine::ScriptingManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1ScriptingManager}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1ScriptingManager_a82c560b4d99f6df817866e1a5ae7f947}{DoMainLoopItems} ()
+\item 
+virtual \hyperlink{classMezzanine_1_1ManagerBase_a08cecf5169cad3e82be81a3a159b0b6e}{ManagerBase::ManagerTypeName} \hyperlink{classMezzanine_1_1ScriptingManager_a6c9799934a3edb229df8a497ef9e4ddb}{GetType} () const 
+\item 
+virtual void \hyperlink{classMezzanine_1_1ScriptingManager_a472ede9f3d925b3eb4370d8b7f8de95b}{Initialize} ()
+\item 
+\hyperlink{classMezzanine_1_1ScriptingManager_a41b5cfe0b77fcf5fc68e1e4771cbdd6f}{ScriptingManager} ()
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ScriptingManager_ab02a893a15e451624263c892928a88b8}{
+virtual \hyperlink{classMezzanine_1_1ScriptingManager_ab02a893a15e451624263c892928a88b8}{$\sim$ScriptingManager} ()}
+\label{classMezzanine_1_1ScriptingManager_ab02a893a15e451624263c892928a88b8}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+What a scripting manager should look like. This script manager implements no scripting language. 
+
+Definition at line 53 of file scriptingmanager.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1ScriptingManager_a41b5cfe0b77fcf5fc68e1e4771cbdd6f}{
+\index{Mezzanine::ScriptingManager@{Mezzanine::ScriptingManager}!ScriptingManager@{ScriptingManager}}
+\index{ScriptingManager@{ScriptingManager}!Mezzanine::ScriptingManager@{Mezzanine::ScriptingManager}}
+\paragraph[{ScriptingManager}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ScriptingManager::ScriptingManager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ScriptingManager_a41b5cfe0b77fcf5fc68e1e4771cbdd6f}
+
+
+Class constructor. 
+
+Sets Priority to 350 
+
+Definition at line 49 of file scriptingmanager.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1ScriptingManager_a82c560b4d99f6df817866e1a5ae7f947}{
+\index{Mezzanine::ScriptingManager@{Mezzanine::ScriptingManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!Mezzanine::ScriptingManager@{Mezzanine::ScriptingManager}}
+\paragraph[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ScriptingManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ScriptingManager_a82c560b4d99f6df817866e1a5ae7f947}
+The main loop calls this once per frame. 
+
+This is where each manager is expected to put anything that needs to be run each iteration of the main loop  
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258d5cd2}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 64 of file scriptingmanager.cpp.
+
+\hypertarget{classMezzanine_1_1ScriptingManager_a6c9799934a3edb229df8a497ef9e4ddb}{
+\index{Mezzanine::ScriptingManager@{Mezzanine::ScriptingManager}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::ScriptingManager@{Mezzanine::ScriptingManager}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} Mezzanine::ScriptingManager::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ScriptingManager_a6c9799934a3edb229df8a497ef9e4ddb}
+This returns the type of this manager. 
+
+This is intended to make using and casting from Manager base easier. With this is is possible to cast from \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase} to the correct Manager Type. \begin{DoxyReturn}{Returns}
+This returns a ManagerTypeName to identify what this can be safely cast to. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf76973}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 69 of file scriptingmanager.cpp.
+
+\hypertarget{classMezzanine_1_1ScriptingManager_a472ede9f3d925b3eb4370d8b7f8de95b}{
+\index{Mezzanine::ScriptingManager@{Mezzanine::ScriptingManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Mezzanine::ScriptingManager@{Mezzanine::ScriptingManager}}
+\paragraph[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ScriptingManager::Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ScriptingManager_a472ede9f3d925b3eb4370d8b7f8de95b}
+Configure Items requiring other Managers. 
+
+If you are using the \hyperlink{classMezzanine_1_1World}{Mezzanine::World} this is called when \hyperlink{classMezzanine_1_1World_a72d6d82926bfbfca96c246f109f0fc58}{Mezzanine::World::GameInit()} is called. It is expected that by the time this is called either ManagerBase::ManagerBase(World$\ast$) or \hyperlink{classMezzanine_1_1ManagerBase_acb66b1edbb0f256fb1d4d4d2126f073e}{ManagerBase::SetGameWorld(World$\ast$)} will have been called. This is where all configuration that requires atleast one other manager on the \hyperlink{classMezzanine_1_1World}{Mezzanine::World} to exist.\par
+\par
+ Yes we know it is spelled wrong, but are Zs cooler anyway.  
+
+Implements \hyperlink{classMezzanine_1_1ManagerBase_a864e3cac11928a602c1db28fa2d52ee2}{Mezzanine::ManagerBase}.
+
+
+
+Definition at line 59 of file scriptingmanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+scriptingmanager.h\item 
+scriptingmanager.cpp\end{DoxyCompactItemize}

@@ -104,66 +104,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00040"></a>00040 <span class="preprocessor">#ifndef EVENTBASE_H</span>
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define EVENTBASE_H</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
-<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;<a class="code" href="crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s...">crossplatformexport.h</a>&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &lt;ostream&gt;</span>
-<a name="l00045"></a>00045 <span class="comment"></span>
-<a name="l00046"></a>00046 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00047"></a>00047 <span class="comment"></span><span class="comment">// This is a parent class that all events must derive from. This exists solely</span>
-<a name="l00048"></a>00048 <span class="comment">//to normalize the output of the event manager class.</span><span class="comment"></span>
-<a name="l00049"></a>00049 <span class="comment">///////////////////////////////////////</span>
-<a name="l00050"></a>00050 <span class="comment"></span>
-<a name="l00051"></a>00051 <span class="keyword">namespace </span>Mezzanine
-<a name="l00052"></a>00052 {
-<a name="l00053"></a>00053 <span class="comment"></span>
-<a name="l00054"></a>00054 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00055"></a>00055 <span class="comment">    /// @class EventBase</span>
-<a name="l00056"></a>00056 <span class="comment">    /// @headerfile eventbase.h</span>
-<a name="l00057"></a>00057 <span class="comment">    /// @brief The base class for all events.</span>
-<a name="l00058"></a>00058 <span class="comment">    /// @details All Events used in the Event Manager, will inherit from this. While</span>
-<a name="l00059"></a>00059 <span class="comment">    /// not absolutely required by the game programmer to write their own events, it</span>
-<a name="l00060"></a>00060 <span class="comment">    /// it could be useful. Instances of this class cannot be made, and all classes</span>
-<a name="l00061"></a>00061 <span class="comment">    /// that inherit from this are expected to implement getEventType().</span>
-<a name="l00062"></a><a class="code" href="classMezzanine_1_1EventBase.html">00062</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1EventBase.html" title="The base class for all events.">EventBase</a>
-<a name="l00063"></a>00063     {
-<a name="l00064"></a>00064         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00065"></a>00065 <span class="comment">            /// @enum EventType</span>
-<a name="l00066"></a>00066 <span class="comment">            /// @brief A listing of values that can be used to identify Events.</span>
-<a name="l00067"></a>00067 <span class="comment">            /// @details A listing of values that can be used to identify Events.</span>
-<a name="l00068"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baef">00068</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baef">EventType</a>
-<a name="l00069"></a>00069             {
-<a name="l00070"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefa43524066d608d6b89efed16d238049e9">00070</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefa43524066d608d6b89efed16d238049e9">Collision</a>,      <span class="comment">/**&lt; Indicates the Event is a Physics Collision Event */</span>
-<a name="l00071"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefa90dad901adb5d77f267cd946a852b8c3">00071</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefa90dad901adb5d77f267cd946a852b8c3">GameWindow</a>,     <span class="comment">/**&lt; Indicates the Event is a Game Window Management Event */</span>
-<a name="l00072"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefae4ae51b0b870fc7229b52f636d30d19c">00072</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefae4ae51b0b870fc7229b52f636d30d19c">QuitMessage</a>,    <span class="comment">/**&lt; Indicates the Event is a Mezzanine::EventQuit */</span>
-<a name="l00073"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefadd50d906767833b4676aa2cb2e232de2">00073</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefadd50d906767833b4676aa2cb2e232de2">RenderTime</a>,     <span class="comment">/**&lt; Indicates the Event is a EventRenderTime */</span>
-<a name="l00074"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefacfd86eef72e950cce84662d8a1a121cd">00074</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefacfd86eef72e950cce84662d8a1a121cd">UserInput</a>,      <span class="comment">/**&lt; Indicates the Event is a EventUserInput */</span>
-<a name="l00075"></a>00075                 <span class="comment">//SystemMessage,  /**&lt; Indicates the Event has not been coded yet */</span>
-<a name="l00076"></a>00076                 Other
-<a name="l00077"></a>00077             };
-<a name="l00078"></a>00078             <span class="comment">// If you add an eventtype do not forget to add the appropriate functions tot he event manager and update these functions</span>
-<a name="l00079"></a>00079             <span class="comment">//void operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::EventManager&amp; Mgr);</span>
-<a name="l00080"></a>00080             <span class="comment">//std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::EventBase&amp; Ev);</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
+<a name="l00044"></a>00044 <span class="comment"></span>
+<a name="l00045"></a>00045 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00046"></a>00046 <span class="comment"></span><span class="comment">// This is a parent class that all events must derive from. This exists solely</span>
+<a name="l00047"></a>00047 <span class="comment">//to normalize the output of the event manager class.</span><span class="comment"></span>
+<a name="l00048"></a>00048 <span class="comment">///////////////////////////////////////</span>
+<a name="l00049"></a>00049 <span class="comment"></span>
+<a name="l00050"></a>00050 <span class="keyword">namespace </span>Mezzanine
+<a name="l00051"></a>00051 {
+<a name="l00052"></a>00052 <span class="comment"></span>
+<a name="l00053"></a>00053 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00054"></a>00054 <span class="comment">    /// @class EventBase</span>
+<a name="l00055"></a>00055 <span class="comment">    /// @headerfile eventbase.h</span>
+<a name="l00056"></a>00056 <span class="comment">    /// @brief The base class for all events.</span>
+<a name="l00057"></a>00057 <span class="comment">    /// @details All Events used in the Event Manager, will inherit from this. While</span>
+<a name="l00058"></a>00058 <span class="comment">    /// not absolutely required by the game programmer to write their own events, it</span>
+<a name="l00059"></a>00059 <span class="comment">    /// it could be useful. Instances of this class cannot be made, and all classes</span>
+<a name="l00060"></a>00060 <span class="comment">    /// that inherit from this are expected to implement getEventType().</span>
+<a name="l00061"></a><a class="code" href="classMezzanine_1_1EventBase.html">00061</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1EventBase.html" title="The base class for all events.">EventBase</a>
+<a name="l00062"></a>00062     {
+<a name="l00063"></a>00063         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">            /// @enum EventType</span>
+<a name="l00065"></a>00065 <span class="comment">            /// @brief A listing of values that can be used to identify Events.</span>
+<a name="l00066"></a>00066 <span class="comment">            /// @details A listing of values that can be used to identify Events.</span>
+<a name="l00067"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baef">00067</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baef">EventType</a>
+<a name="l00068"></a>00068             {
+<a name="l00069"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefa43524066d608d6b89efed16d238049e9">00069</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefa43524066d608d6b89efed16d238049e9">Collision</a>,      <span class="comment">/**&lt; Indicates the Event is a Physics Collision Event */</span>
+<a name="l00070"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefa90dad901adb5d77f267cd946a852b8c3">00070</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefa90dad901adb5d77f267cd946a852b8c3">GameWindow</a>,     <span class="comment">/**&lt; Indicates the Event is a Game Window Management Event */</span>
+<a name="l00071"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefae4ae51b0b870fc7229b52f636d30d19c">00071</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefae4ae51b0b870fc7229b52f636d30d19c">QuitMessage</a>,    <span class="comment">/**&lt; Indicates the Event is a Mezzanine::EventQuit */</span>
+<a name="l00072"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefadd50d906767833b4676aa2cb2e232de2">00072</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefadd50d906767833b4676aa2cb2e232de2">RenderTime</a>,     <span class="comment">/**&lt; Indicates the Event is a EventRenderTime */</span>
+<a name="l00073"></a><a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefacfd86eef72e950cce84662d8a1a121cd">00073</a>                 <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baefacfd86eef72e950cce84662d8a1a121cd">UserInput</a>,      <span class="comment">/**&lt; Indicates the Event is a EventUserInput */</span>
+<a name="l00074"></a>00074                 <span class="comment">//SystemMessage,  /**&lt; Indicates the Event has not been coded yet */</span>
+<a name="l00075"></a>00075                 Other
+<a name="l00076"></a>00076             };
+<a name="l00077"></a>00077             <span class="comment">// If you add an eventtype do not forget to add the appropriate functions tot he event manager and update these functions</span>
+<a name="l00078"></a>00078             <span class="comment">//void operator &gt;&gt; (const Mezzanine::xml::Node&amp; OneNode, Mezzanine::EventManager&amp; Mgr);</span>
+<a name="l00079"></a>00079             <span class="comment">//std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::EventBase&amp; Ev);</span>
+<a name="l00080"></a>00080 
 <a name="l00081"></a>00081 
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="comment"></span>
-<a name="l00085"></a>00085 <span class="comment">            /// @brief This will aid in identifying all classes that inherit from this class.</span>
-<a name="l00086"></a>00086 <span class="comment">            /// @details All Classes derived form this calls will return an Event::EventType that correspond the</span>
-<a name="l00087"></a>00087 <span class="comment">            /// the data/class type they actually are.</span>
-<a name="l00088"></a>00088 <span class="comment">            /// @return This returns an eventype that will correspend with the actual event type. This can be used on all</span>
-<a name="l00089"></a>00089 <span class="comment">            /// Mezzanine provided class to safely cast a pointer to the correct event type.</span>
-<a name="l00090"></a>00090 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baef">EventBase::EventType</a> GetType() <span class="keyword">const</span> = 0;
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092     };
-<a name="l00093"></a>00093 }
-<a name="l00094"></a>00094 <span class="comment"></span>
-<a name="l00095"></a>00095 <span class="comment">/// @brief Serializes the passed Mezzanine::Event to XML</span>
-<a name="l00096"></a>00096 <span class="comment">/// @param stream The ostream to send the xml to.</span>
-<a name="l00097"></a>00097 <span class="comment">/// @param Ev the Mezzanine::Event to be serialized</span>
-<a name="l00098"></a>00098 <span class="comment">/// @return this returns the ostream, now with the serialized data</span>
-<a name="l00099"></a>00099 <span class="comment"></span>std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1EventBase.html" title="The base class for all events.">Mezzanine::EventBase</a>&amp; Ev);
+<a name="l00083"></a>00083 <span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">            /// @brief This will aid in identifying all classes that inherit from this class.</span>
+<a name="l00085"></a>00085 <span class="comment">            /// @details All Classes derived form this calls will return an Event::EventType that correspond the</span>
+<a name="l00086"></a>00086 <span class="comment">            /// the data/class type they actually are.</span>
+<a name="l00087"></a>00087 <span class="comment">            /// @return This returns an eventype that will correspend with the actual event type. This can be used on all</span>
+<a name="l00088"></a>00088 <span class="comment">            /// Mezzanine provided class to safely cast a pointer to the correct event type.</span>
+<a name="l00089"></a>00089 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1EventBase.html#ab85e31e97753b7e7ecb098f82526baef">EventBase::EventType</a> GetType() <span class="keyword">const</span> = 0;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091     };
+<a name="l00092"></a>00092 }
+<a name="l00093"></a>00093 <span class="comment"></span>
+<a name="l00094"></a>00094 <span class="comment">/// @brief Serializes the passed Mezzanine::Event to XML</span>
+<a name="l00095"></a>00095 <span class="comment">/// @param stream The ostream to send the xml to.</span>
+<a name="l00096"></a>00096 <span class="comment">/// @param Ev the Mezzanine::Event to be serialized</span>
+<a name="l00097"></a>00097 <span class="comment">/// @return this returns the ostream, now with the serialized data</span>
+<a name="l00098"></a>00098 <span class="comment"></span>std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1EventBase.html" title="The base class for all events.">Mezzanine::EventBase</a>&amp; Ev);
+<a name="l00099"></a>00099 
 <a name="l00100"></a>00100 
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="preprocessor">#endif</span>
+<a name="l00101"></a>00101 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -181,6 +180,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

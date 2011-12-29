@@ -41,9 +41,8 @@
 #define _resourceinputstream_h
 
 #include "crossplatformexport.h"
+#include "datatypes.h"
 #include "world.h"
-
-#include <istream>
 
 namespace Mezzanine
 {

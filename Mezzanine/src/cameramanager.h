@@ -40,13 +40,12 @@
 #ifndef _CameraManager_h
 #define _CameraManager_h
 
+#include "datatypes.h"
 #include "managerbase.h"
 #include "singleton.h"
 #include "quaternion.h"
 #include "ray.h"
 #include "vector3.h"
-
-#include <map>
 
 namespace Ogre
 {
@@ -61,6 +60,12 @@ namespace Mezzanine
     class CameraController;
     class SceneManager;
     class GraphicsManager;
+
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonCameraManager) Singleton<CameraManager>;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CameraManager
     /// @headerfile cameramanager.h

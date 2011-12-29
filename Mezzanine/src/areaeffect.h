@@ -41,9 +41,8 @@
 #define _areaeffect_h
 
 #include "colourvalue.h"
+#include "datatypes.h"
 #include "worldobject.h"
-
-#include <list>
 
 class btCollisionShape;
 class btPairCachingGhostObject;

@@ -94,9 +94,10 @@ Inheritance diagram for Mezzanine::ManagerBase:</div>
 <area href="classMezzanine_1_1PhysicsManager.html" alt="Mezzanine::PhysicsManager" shape="rect" coords="224,448,438,472"/>
 <area href="classMezzanine_1_1ResourceManager.html" alt="Mezzanine::ResourceManager" shape="rect" coords="224,504,438,528"/>
 <area href="classMezzanine_1_1SceneManager.html" alt="Mezzanine::SceneManager" shape="rect" coords="224,560,438,584"/>
-<area href="classMezzanine_1_1TerrainManager.html" alt="Mezzanine::TerrainManager" shape="rect" coords="224,616,438,640"/>
-<area href="classMezzanine_1_1TimerManager.html" alt="Mezzanine::TimerManager" shape="rect" coords="224,672,438,696"/>
-<area href="classMezzanine_1_1UIManager.html" alt="Mezzanine::UIManager" shape="rect" coords="224,728,438,752"/>
+<area href="classMezzanine_1_1ScriptingManager.html" alt="Mezzanine::ScriptingManager" shape="rect" coords="224,616,438,640"/>
+<area href="classMezzanine_1_1TerrainManager.html" alt="Mezzanine::TerrainManager" shape="rect" coords="224,672,438,696"/>
+<area href="classMezzanine_1_1TimerManager.html" alt="Mezzanine::TimerManager" shape="rect" coords="224,728,438,752"/>
+<area href="classMezzanine_1_1UIManager.html" alt="Mezzanine::UIManager" shape="rect" coords="224,784,438,808"/>
 </map>
  </div></div>
 
@@ -108,7 +109,7 @@ Public Types</h2></td></tr>
 typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a> )()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This makes working with Callback function pointer a bit easier. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e">ManagerTypeName</a> { <br/>
-&#160;&#160;<b>ActorManager</b>, 
+&#160;&#160;<b>ActorManager</b> =  1, 
 <b>AudioManager</b>, 
 <b>CameraManager</b>, 
 <b>CollisionShapeManager</b>, 
@@ -126,7 +127,7 @@ typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 &#160;&#160;<b>TerrainManager</b>, 
 <b>TimerManager</b>, 
 <b>UIManager</b>, 
-<b>UserCreated</b>
+<b>UserCreated</b> =  512
 <br/>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>A listing of Manager TypeNames. </p>
@@ -152,7 +153,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e">ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a6fbfe9e847156915b195b6de1cf76973">GetType</a> () const =0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the type of this manager.  <a href="#a6fbfe9e847156915b195b6de1cf76973"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#afb2572589f8389155be7ce256c751d81">GetTypeName</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This Allows any manager to be sent to a stream. Primarily used for logging.  <a href="#afb2572589f8389155be7ce256c751d81"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This Allows any manager name to be sent to a stream. Primarily used for logging.  <a href="#afb2572589f8389155be7ce256c751d81"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a864e3cac11928a602c1db28fa2d52ee2">Initialize</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure Items requiring other Managers.  <a href="#a864e3cac11928a602c1db28fa2d52ee2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ee3249f71f330394e81e349370d57a8"></a><!-- doxytag: member="Mezzanine::ManagerBase::ManagerBase" ref="a6ee3249f71f330394e81e349370d57a8" args="()" -->
@@ -190,7 +191,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>This is the base class from which all the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Managers inherit. </p>
 <p>This creates a base set of functions that Managers are all expected to implement. </p>
 
-<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00058">58</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00057">57</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
 </div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a08cecf5169cad3e82be81a3a159b0b6e"></a><!-- doxytag: member="Mezzanine::ManagerBase::ManagerTypeName" ref="a08cecf5169cad3e82be81a3a159b0b6e" args="" -->
 <div class="memitem">
@@ -206,7 +207,7 @@ Protected Attributes</h2></td></tr>
 <p>A listing of Manager TypeNames. </p>
 <p>These will be returned by <a class="el" href="classMezzanine_1_1ManagerBase.html#a6fbfe9e847156915b195b6de1cf76973" title="This returns the type of this manager.">ManagerBase::GetType()</a>, and will allow code using this to determine what type of Manager class they are working with and use this information to more safely cast to the correct manager if needed. </p>
 
-<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00066">66</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00065">65</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -250,7 +251,7 @@ Protected Attributes</h2></td></tr>
 <p>The main loop calls this once per frame. </p>
 <p>This is where each manager is expected to put anything that needs to be run each iteration of the main loop </p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1ActorManager.html#a8b1907afd4804047c03ff4bb51c89caa">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AudioManager.html#aefcdc7d3276500cf627f2c2e33b483f3">Mezzanine::AudioManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.html#a91db1fdfe96f32d06f689d37b91140cb">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.html#ac055cf940fd8fce522625de6b977dd2a">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1EventManager.html#a69d44403974ed8d974846e929eb8adda">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1GraphicsManager.html#ae940c81cd1401fda34abc6fd53ede45a">Mezzanine::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.html#acfbea42e8aeb36d48522ad027f1e8764">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1PhysicsManager.html#a21df393f2356a20151fce997577e3d76">Mezzanine::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.html#a57b72306ed2bfaa198ff47d43c4013fa">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.html#ae75aa9deb4bbc8ee1f979e240070309f">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.html#a442a1e72a38fe959b15a7f5eeff455fc">Mezzanine::TerrainManager</a>, <a class="el" href="classMezzanine_1_1TimerManager.html#a6ac7544b79fb023e4596e350a5586f85">Mezzanine::TimerManager</a>, and <a class="el" href="classMezzanine_1_1UIManager.html#af774da651d30b4fe1ea086899c1961ca">Mezzanine::UIManager</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1ActorManager.html#a8b1907afd4804047c03ff4bb51c89caa">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AudioManager.html#aefcdc7d3276500cf627f2c2e33b483f3">Mezzanine::AudioManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.html#a91db1fdfe96f32d06f689d37b91140cb">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.html#ac055cf940fd8fce522625de6b977dd2a">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1EventManager.html#a69d44403974ed8d974846e929eb8adda">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1GraphicsManager.html#ae940c81cd1401fda34abc6fd53ede45a">Mezzanine::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.html#acfbea42e8aeb36d48522ad027f1e8764">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1PhysicsManager.html#a21df393f2356a20151fce997577e3d76">Mezzanine::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.html#a57b72306ed2bfaa198ff47d43c4013fa">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.html#ae75aa9deb4bbc8ee1f979e240070309f">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1ScriptingManager.html#a82c560b4d99f6df817866e1a5ae7f947">Mezzanine::ScriptingManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.html#a442a1e72a38fe959b15a7f5eeff455fc">Mezzanine::TerrainManager</a>, <a class="el" href="classMezzanine_1_1TimerManager.html#a6ac7544b79fb023e4596e350a5586f85">Mezzanine::TimerManager</a>, and <a class="el" href="classMezzanine_1_1UIManager.html#af774da651d30b4fe1ea086899c1961ca">Mezzanine::UIManager</a>.</p>
 
 </div>
 </div>
@@ -357,7 +358,7 @@ Protected Attributes</h2></td></tr>
 <p>This is intended to make using and casting from Manager base easier. With this is is possible to cast from <a class="el" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a> to the correct Manager Type. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a ManagerTypeName to identify what this can be safely cast to. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1ActorManager.html#abfd167e1e15f32dffed05a2bd1b4ac70">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AudioManager.html#a42f2b4b8065387117042bf7eadc97356">Mezzanine::AudioManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.html#a1eb75dabfd7df1c901432d841a92fcbc">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.html#a4b98446e667a402e675eec79353e5278">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1EventManager.html#a6e4c72bcaa437863fdf167b5b9ef5034">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1GraphicsManager.html#a4a036b7a4623e9f568310a90d5e34e46">Mezzanine::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.html#a120881dcf7bce1d3a30bedb426650c0e">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1PhysicsManager.html#a87b1640bc429ee1850c408bd8a13cdce">Mezzanine::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.html#aafe55f1095a67f30e97bff25200685d7">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.html#ad10c4317af4a2c6fbbfc151e8c609570">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.html#a86fbb914cfbc0de3dc555d670bb35107">Mezzanine::TerrainManager</a>, <a class="el" href="classMezzanine_1_1TimerManager.html#ad62b8c89fa33085768284781aa28116a">Mezzanine::TimerManager</a>, and <a class="el" href="classMezzanine_1_1UIManager.html#a0a576d8f14aa475d9f1750b4cf76cf10">Mezzanine::UIManager</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1ActorManager.html#abfd167e1e15f32dffed05a2bd1b4ac70">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AudioManager.html#a42f2b4b8065387117042bf7eadc97356">Mezzanine::AudioManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.html#a1eb75dabfd7df1c901432d841a92fcbc">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.html#a4b98446e667a402e675eec79353e5278">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1EventManager.html#a6e4c72bcaa437863fdf167b5b9ef5034">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1GraphicsManager.html#a4a036b7a4623e9f568310a90d5e34e46">Mezzanine::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.html#a120881dcf7bce1d3a30bedb426650c0e">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1PhysicsManager.html#a87b1640bc429ee1850c408bd8a13cdce">Mezzanine::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.html#aafe55f1095a67f30e97bff25200685d7">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.html#ad10c4317af4a2c6fbbfc151e8c609570">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1ScriptingManager.html#a6c9799934a3edb229df8a497ef9e4ddb">Mezzanine::ScriptingManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.html#a86fbb914cfbc0de3dc555d670bb35107">Mezzanine::TerrainManager</a>, <a class="el" href="classMezzanine_1_1TimerManager.html#ad62b8c89fa33085768284781aa28116a">Mezzanine::TimerManager</a>, and <a class="el" href="classMezzanine_1_1UIManager.html#a0a576d8f14aa475d9f1750b4cf76cf10">Mezzanine::UIManager</a>.</p>
 
 </div>
 </div>
@@ -375,8 +376,8 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>This Allows any manager to be sent to a stream. Primarily used for logging. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a std::ostream&amp; that contains the name, and maybe some data for the the streammed manager. </dd></dl>
+<p>This Allows any manager name to be sent to a stream. Primarily used for logging. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a std::string that contains the name. </dd></dl>
 
 <p>Definition at line <a class="el" href="managerbase_8cpp_source.html#l00110">110</a> of file <a class="el" href="managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
 
@@ -401,7 +402,7 @@ Protected Attributes</h2></td></tr>
 <br/>
  Yes we know it is spelled wrong, but are Zs cooler anyway. </p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1ActorManager.html#a3b5b383066473d09243d13ad702c4868">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AudioManager.html#a24f1464e3de9d95e3c50c276f9e176e6">Mezzanine::AudioManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.html#a4b7f0d25f77306bca4b5c885e35363cc">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.html#a15ddc7bb06cf1cf32cd4e641d3b7b34f">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1EventManager.html#a2bf1969aadd0fb5a3da284423e44b081">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1GraphicsManager.html#a4f76a6a37be800b1fc13195aa11cfd7a">Mezzanine::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.html#ac03c91bea88144bcfa420411bc85f0c7">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1PhysicsManager.html#ab09c912dc48b7082bd07a536167bc3d3">Mezzanine::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.html#a4b4e77984e21e3eaa1c47772d2e9c6f4">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.html#a8a3b5cb55a06669d0fe64510c1b1a854">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.html#abe9550c9c6565bbd0610dcaa20eedc0c">Mezzanine::TerrainManager</a>, <a class="el" href="classMezzanine_1_1TimerManager.html#ac670fd396b7fb2b7f8d7c67bb95582ba">Mezzanine::TimerManager</a>, and <a class="el" href="classMezzanine_1_1UIManager.html#a51dc53c08ac8657133279e75fbce466a">Mezzanine::UIManager</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1ActorManager.html#a3b5b383066473d09243d13ad702c4868">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AudioManager.html#a24f1464e3de9d95e3c50c276f9e176e6">Mezzanine::AudioManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.html#a4b7f0d25f77306bca4b5c885e35363cc">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.html#a15ddc7bb06cf1cf32cd4e641d3b7b34f">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1EventManager.html#a2bf1969aadd0fb5a3da284423e44b081">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1GraphicsManager.html#a4f76a6a37be800b1fc13195aa11cfd7a">Mezzanine::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.html#ac03c91bea88144bcfa420411bc85f0c7">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1PhysicsManager.html#ab09c912dc48b7082bd07a536167bc3d3">Mezzanine::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.html#a4b4e77984e21e3eaa1c47772d2e9c6f4">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.html#a8a3b5cb55a06669d0fe64510c1b1a854">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1ScriptingManager.html#a472ede9f3d925b3eb4370d8b7f8de95b">Mezzanine::ScriptingManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.html#abe9550c9c6565bbd0610dcaa20eedc0c">Mezzanine::TerrainManager</a>, <a class="el" href="classMezzanine_1_1TimerManager.html#ac670fd396b7fb2b7f8d7c67bb95582ba">Mezzanine::TimerManager</a>, and <a class="el" href="classMezzanine_1_1UIManager.html#a51dc53c08ac8657133279e75fbce466a">Mezzanine::UIManager</a>.</p>
 
 </div>
 </div>
@@ -569,7 +570,7 @@ Protected Attributes</h2></td></tr>
 <p>This is a weighting used by the main loop to decide what order the managers should be called in. </p>
 <p>A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at priority 0. </p>
 
-<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00210">210</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00209">209</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -593,6 +594,6 @@ Protected Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:44 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

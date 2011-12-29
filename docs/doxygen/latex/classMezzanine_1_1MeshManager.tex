@@ -20,10 +20,14 @@ Inheritance diagram for Mezzanine::MeshManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+virtual \hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1MeshManager_a579c2e8547243b3bea9a748c6bcbf28e}{CreateBoxCornerMesh} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MaterialName, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&HalfExtents, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&BoxThickness)
+\begin{DoxyCompactList}\small\item\em Creates a mesh composed of boxes that outline the corner edges of a larger box. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1MeshManager_abf5e8007a2c37a8d79b72de217a57211}{CreateBoxCornerMesh} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Colour, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&HalfExtents, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&BoxThickness)
+\begin{DoxyCompactList}\small\item\em Creates a mesh composed of boxes that outline the corner edges of a larger box. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1MeshManager_a5aa5da93359614b3e3a6b8ee955ff4d4}{CreateBoxMesh} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MaterialName, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&HalfExtents)
 \begin{DoxyCompactList}\small\item\em Creates a box graphical mesh. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1MeshManager_a60d997162457cb7281c0fdfa37f95ee4}{CreateBoxMesh} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Colour, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&HalfExtents)
-\begin{DoxyCompactList}\small\item\em Creates a box graphical mesh which can be used for actors. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Creates a box graphical mesh. \item\end{DoxyCompactList}\item 
 virtual const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \& \hyperlink{classMezzanine_1_1MeshManager_aabf94057016ff9ad8de101f5189713fd}{CreateColouredMaterial} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MatName, const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Colour, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group=\char`\"{}\char`\"{})
 \begin{DoxyCompactList}\small\item\em Creates a basic material in code using the provided colour. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ \hyperlink{classMezzanine_1_1MeshManager_a6de2e01b43302a9439dc01c1dcc90f4c}{CreateCylinderMesh} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MaterialName, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&HalfExtents, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisOrientation, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&CircleRes=16, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Segments=1)
@@ -102,6 +106,74 @@ Definition at line 58 of file meshmanager.h.
 
 
 \subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1MeshManager_a579c2e8547243b3bea9a748c6bcbf28e}{
+\index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateBoxCornerMesh@{CreateBoxCornerMesh}}
+\index{CreateBoxCornerMesh@{CreateBoxCornerMesh}!Mezzanine::MeshManager@{Mezzanine::MeshManager}}
+\paragraph[{CreateBoxCornerMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ Mezzanine::MeshManager::CreateBoxCornerMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf String} \&}]{MaterialName, }
+\item[{const {\bf Vector3} \&}]{HalfExtents, }
+\item[{const {\bf Real} \&}]{BoxThickness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MeshManager_a579c2e8547243b3bea9a748c6bcbf28e}
+
+
+Creates a mesh composed of boxes that outline the corner edges of a larger box. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1Mesh}{Mesh}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \\
+\hline
+{\em MaterialName} & The name of the material script which will be applied to this mesh. \\
+\hline
+{\em HalfExtents} & Half of the full dimentions of the final object in world units. This allows the objects origin to be it's center. \\
+\hline
+{\em BoxThickness} & The width/thickness of the smaller boxes that will outline the corners of the larger box. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 402 of file meshmanager.cpp.
+
+\hypertarget{classMezzanine_1_1MeshManager_abf5e8007a2c37a8d79b72de217a57211}{
+\index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateBoxCornerMesh@{CreateBoxCornerMesh}}
+\index{CreateBoxCornerMesh@{CreateBoxCornerMesh}!Mezzanine::MeshManager@{Mezzanine::MeshManager}}
+\paragraph[{CreateBoxCornerMesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh} $\ast$ Mezzanine::MeshManager::CreateBoxCornerMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{MeshName, }
+\item[{const {\bf ColourValue} \&}]{Colour, }
+\item[{const {\bf Vector3} \&}]{HalfExtents, }
+\item[{const {\bf Real} \&}]{BoxThickness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MeshManager_abf5e8007a2c37a8d79b72de217a57211}
+
+
+Creates a mesh composed of boxes that outline the corner edges of a larger box. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classMezzanine_1_1Mesh}{Mesh}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em MeshName} & The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \\
+\hline
+{\em Colour} & The colour to generate the material with that will be applied to the mesh. The created material's name will be autogenerated to \char`\"{}\mbox{[}Meshname\mbox{]}+Mat\char`\"{}. \\
+\hline
+{\em HalfExtents} & Half of the full dimentions of the final object in world units. This allows the objects origin to be it's center. \\
+\hline
+{\em BoxThickness} & The width/thickness of the smaller boxes that will outline the corners of the larger box. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 821 of file meshmanager.cpp.
+
 \hypertarget{classMezzanine_1_1MeshManager_a5aa5da93359614b3e3a6b8ee955ff4d4}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateBoxMesh@{CreateBoxMesh}}
 \index{CreateBoxMesh@{CreateBoxMesh}!Mezzanine::MeshManager@{Mezzanine::MeshManager}}
@@ -131,7 +203,7 @@ Returns a pointer to the created \hyperlink{classMezzanine_1_1Mesh}{Mesh}.
 \end{DoxyParams}
 
 
-Definition at line 140 of file meshmanager.cpp.
+Definition at line 141 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a60d997162457cb7281c0fdfa37f95ee4}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateBoxMesh@{CreateBoxMesh}}
@@ -146,7 +218,7 @@ Definition at line 140 of file meshmanager.cpp.
 \label{classMezzanine_1_1MeshManager_a60d997162457cb7281c0fdfa37f95ee4}
 
 
-Creates a box graphical mesh which can be used for actors. 
+Creates a box graphical mesh. 
 
 \begin{DoxyReturn}{Returns}
 Returns a pointer to the created \hyperlink{classMezzanine_1_1Mesh}{Mesh}. 
@@ -162,7 +234,7 @@ Returns a pointer to the created \hyperlink{classMezzanine_1_1Mesh}{Mesh}.
 \end{DoxyParams}
 
 
-Definition at line 198 of file meshmanager.cpp.
+Definition at line 199 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_aabf94057016ff9ad8de101f5189713fd}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateColouredMaterial@{CreateColouredMaterial}}
@@ -193,7 +265,7 @@ Returns a string containing the name of the created Material. This is actually t
 \end{DoxyParams}
 
 
-Definition at line 386 of file meshmanager.cpp.
+Definition at line 833 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a6de2e01b43302a9439dc01c1dcc90f4c}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateCylinderMesh@{CreateCylinderMesh}}
@@ -236,14 +308,14 @@ Returns a pointer to the created \hyperlink{classMezzanine_1_1Mesh}{Mesh}.
 Start of MIT(Ogre Proceadural) License ///
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000016}{Todo}]These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed. \end{Desc}
+\item[\hyperlink{todo__todo000017}{Todo}]These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed. \end{Desc}
 
 
 End of MIT(Ogre Proceadural) License /// 
 
 
 
-Definition at line 205 of file meshmanager.cpp.
+Definition at line 206 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_aa2d52ca9f366145ce91ee68eb2d8c9a3}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateCylinderMesh@{CreateCylinderMesh}}
@@ -283,7 +355,7 @@ Returns a pointer to the created \hyperlink{classMezzanine_1_1Mesh}{Mesh}.
 \end{DoxyParams}
 
 
-Definition at line 318 of file meshmanager.cpp.
+Definition at line 319 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a75424e13a23151fa96ef0626962034a0}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateMeshFromShape@{CreateMeshFromShape}}
@@ -317,7 +389,7 @@ Returns a pointer to the created mesh.
 \end{DoxyParams}
 
 
-Definition at line 381 of file meshmanager.cpp.
+Definition at line 828 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a237f66b9471261d6a0ef6d565740ea15}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateSphereMesh@{CreateSphereMesh}}
@@ -354,7 +426,7 @@ Returns a pointer to the created \hyperlink{classMezzanine_1_1Mesh}{Mesh}.
 \end{DoxyParams}
 
 
-Definition at line 325 of file meshmanager.cpp.
+Definition at line 326 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a1373def36d801ef524372c76852984ec}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!CreateSphereMesh@{CreateSphereMesh}}
@@ -391,7 +463,7 @@ Returns a pointer to the created \hyperlink{classMezzanine_1_1Mesh}{Mesh}.
 \end{DoxyParams}
 
 
-Definition at line 374 of file meshmanager.cpp.
+Definition at line 375 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a9c9286c940e56c4ba6a02ef58bfc0374}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!DestroyGeneratedMesh@{DestroyGeneratedMesh}}
@@ -413,7 +485,7 @@ Destroys a named \hyperlink{classMezzanine_1_1Mesh}{Mesh}, freeing it's resource
 \end{DoxyParams}
 
 
-Definition at line 119 of file meshmanager.cpp.
+Definition at line 120 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_acfbea42e8aeb36d48522ad027f1e8764}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!DoMainLoopItems@{DoMainLoopItems}}
@@ -432,7 +504,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258
 
 
 
-Definition at line 406 of file meshmanager.cpp.
+Definition at line 853 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a9f564124032f9dc8a636f8092bbbc87e}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!GetMesh@{GetMesh}}
@@ -457,7 +529,7 @@ Returns a pointer to the requested mesh.
 \end{DoxyParams}
 
 
-Definition at line 62 of file meshmanager.cpp.
+Definition at line 63 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a0b6d3fef8ecc0e12ff6de14618e788d8}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!GetNumGeneratedMeshes@{GetNumGeneratedMeshes}}
@@ -477,7 +549,7 @@ Returns a Whole representing the number of meshes created by this generator.
 \end{DoxyReturn}
 
 
-Definition at line 114 of file meshmanager.cpp.
+Definition at line 115 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a809d8b615341e55c3ed463b1e18c01db}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!GetNumLoadedMeshes@{GetNumLoadedMeshes}}
@@ -497,7 +569,7 @@ Returns a whole representing the number of mesh files currently loaded.
 \end{DoxyReturn}
 
 
-Definition at line 99 of file meshmanager.cpp.
+Definition at line 100 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a120881dcf7bce1d3a30bedb426650c0e}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!GetType@{GetType}}
@@ -519,7 +591,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf
 
 
 
-Definition at line 409 of file meshmanager.cpp.
+Definition at line 856 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_ac03c91bea88144bcfa420411bc85f0c7}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!Initialize@{Initialize}}
@@ -540,7 +612,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a864e3cac11928a602c1db28fa2d
 
 
 
-Definition at line 403 of file meshmanager.cpp.
+Definition at line 850 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_a01fcda6b9f1363e99b6ac61e4afcb951}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!LoadMesh@{LoadMesh}}
@@ -568,7 +640,7 @@ Returns a pointer to the loaded mesh.
 \end{DoxyParams}
 
 
-Definition at line 79 of file meshmanager.cpp.
+Definition at line 80 of file meshmanager.cpp.
 
 \hypertarget{classMezzanine_1_1MeshManager_aa8bf0e0aad71969dd4076cd36e2e8ab3}{
 \index{Mezzanine::MeshManager@{Mezzanine::MeshManager}!UnloadMesh@{UnloadMesh}}
@@ -590,7 +662,7 @@ Unloads a mesh file.
 \end{DoxyParams}
 
 
-Definition at line 89 of file meshmanager.cpp.
+Definition at line 90 of file meshmanager.cpp.
 
 
 

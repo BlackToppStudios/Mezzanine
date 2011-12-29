@@ -40,10 +40,9 @@
 #ifndef _uiwidget_h
 #define _uiwidget_h
 
+#include "datatypes.h"
 #include "uirenderablerect.h"
 #include "metacode.h"
-
-#include <set>
 
 namespace Mezzanine
 {

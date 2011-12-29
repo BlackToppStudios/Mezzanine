@@ -43,12 +43,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// @file mezzanine.h
 /// @brief A single file that includes all of the Mezzanine engine
-/// @details This file exists solely to make it easier for others to include
+/// @details This file exists primarily to make it easier for engine users to include
 /// parts of the Mezzanine engine in their project with out needing to know or
 /// care about the internals of our project.
+/// \n
+/// This file is also u
 ///////////////////////////////////////////////////////////////////////////////
 
-                                        // The remarks in Column 41 are use to help with serializing and deserializing
+// Tell SWIG to implement scripting language specific stuff, set compiler macros used else where, must be included first
+#include "swig.h"
+
+                                        // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
 
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"                  // serializes
@@ -67,6 +72,7 @@
 #include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"
 #include "cameramanager.h"
+#include "collision.h"
 #include "collisionshape.h"
 #include "collisionshapemanager.h"
 #include "colourvalue.h"                // done
@@ -74,6 +80,7 @@
 #include "crossplatform.h"              // nothing to do
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
+#include "entity.h"
 #include "enumerations.h"               // nothing to do
 #include "eventbase.h"                  // done/serializes
 #include "eventcollision.h"             // done
@@ -94,9 +101,11 @@
 #include "mathtool.h"
 #include "mesh.h"
 #include "meshmanager.h"
+#include "meshterrain.h"
 #include "metacode.h"                   // done
 #include "network.h"
 #include "networkmanager.h"
+#include "objectpair.h"
 #include "objectreference.h"
 #include "particleaffector.h"
 #include "particleeffect.h"             // done
@@ -109,10 +118,14 @@
 #include "resourceinputstream.h"
 #include "resourcemanager.h"
 #include "scenemanager.h"               // Done
+#include "scriptingmanager.h"
+#include "scripting.h"
 #include "serialization.h"              // nothing to do
 #include "simpletimer.h"
 #include "singleton.h"                  // nothing to do
 #include "stringtool.h"
+#include "terrainbase.h"
+#include "terrainmanager.h"
 #include "timer.h"
 #include "timermanager.h"
 #include "transform.h"                  // done
@@ -122,14 +135,15 @@
 #include "vector3.h"                    // done
 #include "vector3wactor.h"
 #include "viewport.h"
-#include "world.h"
 #include "worldgetset.h"
+#include "world.h"
 #include "worldnode.h"                  // done
-#include "worldobject.h"
 #include "worldobjectgraphicssettings.h"// done
+#include "worldobject.h"
 #include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
+#include "xmldoc.h"
 #include "xml.h"                        // nothing to do
-#include "xmldoc.h"                     // nothing to do
 
-#endif
+
+#endif // \ _mezzanine_h

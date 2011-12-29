@@ -59,6 +59,7 @@
 #	Mezz_SDLBuildDir		- The location of the SDL source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
 #	Mezz_UseOgreDebug		- True if the developer wants to the use the ogre debug libraries, this adjusts a number of other files that child cmake scripts can use.
 #	Mezz_UseOgreVersion		- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
+#	Mezz_ThrowOnSingletonFetch	- When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #
 # Here are some more values that can be used when creating cmake scripts that are indirectly
 # set and should not be directly passed as cmake values
@@ -271,7 +272,7 @@ else(${WIN32})
 	endif(${TempDirDefined} EQUAL 0)
 endif(${WIN32})
 
-#######################################
+###############################################################################
 # Network Library Define
 
 if(${Mezz_Network})
@@ -280,8 +281,17 @@ if(${Mezz_Network})
 	endif(${WIN32})
 endif(${Mezz_Network})
 
-
-
+###############################################################################
+# Miscellenais simple defines
+option(Mezz_ThrowOnSingletonFetch "When retrieving an invalid Singleton, should an exception be thrown" OFF)
+if(${Mezz_ThrowOnSingletonFetch})
+	message ("${PROJECT_NAME} - Enabling exceptions on bad singleton fetches")
+	set(CommonBuildFlags "${CommonBuildFlags} -DTHROW_ON_FETCH_FAIL=1")
+else(${Mezz_Profile})
+	message ("${PROJECT_NAME} - Disabling  exceptions on bad singleton fetches")
+	set(CommonBuildFlags "${CommonBuildFlags} -DTHROW_ON_FETCH_FAIL=0")	
+endif(${Mezz_ThrowOnSingletonFetch})
+mark_as_advanced(Mezz_ThrowOnSingletonFetch)
 
 ###############################################################################
 # Add subprojects

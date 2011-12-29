@@ -40,14 +40,25 @@
 #ifndef _serialization_h
 #define _serialization_h
 
-#include "datatypes.h"
-#include "xml.h"
-#include "xmldoc.h"
 
-#include <ostream>
-#include <memory>
+/// @file
+/// @brief The interface for serialization
+/// @details If MEZZXML is disabled parts of this file are still included. Primarily the fact
+/// that the classes still exist. That minimizes the need for preprocessor directives in child
+/// class declaration and should still be optimized out of release builds.
 
 #ifdef MEZZXML
+    #include "datatypes.h"
+    #include "xml.h"
+    #include "xmldoc.h"
+
+    // Standard Headers are not included in SWIG preprocessing
+    #ifndef SWIG
+        #include <ostream>
+        #include <memory>
+    #endif
+#endif
+
 namespace Mezzanine
 {
     /// @page Serialization
@@ -411,7 +422,7 @@ namespace Mezzanine
         #endif
     };
 
-
+    #ifdef MEZZXML
     /// @brief Convert any class that supports serialization or has a serializer to a string of chars in a stream
     /// @details Any Class will work with this template as long as it implements the method "xml::Node ProtoSerialize(xml::Document&) const"
     /// @param Stream The ostream to put the serializable into.
@@ -478,6 +489,8 @@ namespace Mezzanine
     /// A little more readable.
     void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD = false);
 
+    #endif // \MEZZXML
+
 } // /Namespace Mezzanine
 
 /*
@@ -494,7 +507,6 @@ std::ostream& MEZZ_LIB operator<< <Mezzanine::xml::Node> (std::ostream& Stream, 
 */
 
 
-#endif // \MEZZXML
 
 
 

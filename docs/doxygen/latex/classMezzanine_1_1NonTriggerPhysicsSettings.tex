@@ -1,0 +1,191 @@
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings}{
+\subsection{Mezzanine::NonTriggerPhysicsSettings Class Reference}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings}\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+}
+
+
+This is an extension of the basic \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings}{WorldObjectPhysicsSettings} class for non-\/trigger objects(I.E not AreaEffects).  
+
+
+
+
+{\ttfamily \#include $<$worldobjectphysicssettings.h$>$}
+
+Inheritance diagram for Mezzanine::NonTriggerPhysicsSettings:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classMezzanine_1_1NonTriggerPhysicsSettings}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a8a26cd19ebf73d58b52c794665c66c79}{GetFriction} () const 
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classMezzanine_1_1World}{World} Object friction coefficient. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_afcd2fa0a18a77f08d95f5824f94a8d1b}{GetRestitution} () const 
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classMezzanine_1_1World}{World} Object restitution coefficient. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aaeda1ca7117e33be5c285e59f4d78cba}{NonTriggerPhysicsSettings} (\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$WO, btCollisionObject $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a4812a17ef87c192ee6204e216334c878}{SetCollisionResponse} (bool Enable)
+\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{classMezzanine_1_1World}{World} Object to be able to collide with other objects in the world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a75f0c352df35028b7b51c8c14bcba8ce}{SetFriction} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Friction)
+\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{classMezzanine_1_1World}{World} Object friction coefficient. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aafac25739c10d408c38a3fdd107897be}{SetRestitution} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Restitution)
+\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{classMezzanine_1_1World}{World} Object restitution coefficient. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_a7c32afaa05f2f971533659ddca2f95b4}{
+virtual \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a7c32afaa05f2f971533659ddca2f95b4}{$\sim$NonTriggerPhysicsSettings} ()}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_a7c32afaa05f2f971533659ddca2f95b4}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is an extension of the basic \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings}{WorldObjectPhysicsSettings} class for non-\/trigger objects(I.E not AreaEffects). 
+
+Definition at line 170 of file worldobjectphysicssettings.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_aaeda1ca7117e33be5c285e59f4d78cba}{
+\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!NonTriggerPhysicsSettings@{NonTriggerPhysicsSettings}}
+\index{NonTriggerPhysicsSettings@{NonTriggerPhysicsSettings}!Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+\paragraph[{NonTriggerPhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::NonTriggerPhysicsSettings::NonTriggerPhysicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf WorldObject} $\ast$}]{WO, }
+\item[{btCollisionObject $\ast$}]{PhysicsObject}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_aaeda1ca7117e33be5c285e59f4d78cba}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em WO} & The \hyperlink{classMezzanine_1_1World}{World} Object this settings class configures. \\
+\hline
+{\em PhysicsObject} & The physics object belonging to the \hyperlink{classMezzanine_1_1World}{World} Object this class configures. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 239 of file worldobjectphysicssettings.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_a8a26cd19ebf73d58b52c794665c66c79}{
+\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!GetFriction@{GetFriction}}
+\index{GetFriction@{GetFriction}!Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+\paragraph[{GetFriction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::NonTriggerPhysicsSettings::GetFriction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_a8a26cd19ebf73d58b52c794665c66c79}
+
+
+Gets the \hyperlink{classMezzanine_1_1World}{World} Object friction coefficient. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the \hyperlink{classMezzanine_1_1World}{World} Object friction coefficient. 
+\end{DoxyReturn}
+
+
+Definition at line 274 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_afcd2fa0a18a77f08d95f5824f94a8d1b}{
+\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!GetRestitution@{GetRestitution}}
+\index{GetRestitution@{GetRestitution}!Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+\paragraph[{GetRestitution}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::NonTriggerPhysicsSettings::GetRestitution (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_afcd2fa0a18a77f08d95f5824f94a8d1b}
+
+
+Gets the \hyperlink{classMezzanine_1_1World}{World} Object restitution coefficient. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the \hyperlink{classMezzanine_1_1World}{World} Object restitution coefficient. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_a4812a17ef87c192ee6204e216334c878}{
+\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!SetCollisionResponse@{SetCollisionResponse}}
+\index{SetCollisionResponse@{SetCollisionResponse}!Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+\paragraph[{SetCollisionResponse}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::NonTriggerPhysicsSettings::SetCollisionResponse (
+\begin{DoxyParamCaption}
+\item[{bool}]{Enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_a4812a17ef87c192ee6204e216334c878}
+
+
+Sets the \hyperlink{classMezzanine_1_1World}{World} Object to be able to collide with other objects in the world. 
+
+By default collision response is enabled. Only call this function if you have disabled collision response. 
+\begin{DoxyParams}{Parameters}
+{\em Enable} & Whether or not to enable collision response. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 248 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_a75f0c352df35028b7b51c8c14bcba8ce}{
+\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!SetFriction@{SetFriction}}
+\index{SetFriction@{SetFriction}!Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+\paragraph[{SetFriction}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::NonTriggerPhysicsSettings::SetFriction (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Friction}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_a75f0c352df35028b7b51c8c14bcba8ce}
+
+
+Sets the \hyperlink{classMezzanine_1_1World}{World} Object friction coefficient. 
+
+Higher values will resist sliding across surfaces. This number is the coefficient of friction. Range is from 0.0 to 2.0. Behavior in this regard is determined by the friction of both colliding bodies. \par
+ Default: 0.5 
+\begin{DoxyParams}{Parameters}
+{\em Friction} & A Real that is the friction coefficient desired. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 271 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_aafac25739c10d408c38a3fdd107897be}{
+\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!SetRestitution@{SetRestitution}}
+\index{SetRestitution@{SetRestitution}!Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+\paragraph[{SetRestitution}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::NonTriggerPhysicsSettings::SetRestitution (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Restitution}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_aafac25739c10d408c38a3fdd107897be}
+
+
+Sets the \hyperlink{classMezzanine_1_1World}{World} Object restitution coefficient. 
+
+Restitution determines how much energy is left after a collision with an object. Range is from 0.0 to 1.0. Behavior in this regard is determined by the restitution of both colliding bodies. \par
+ Default: 0.0 
+\begin{DoxyParams}{Parameters}
+{\em Restitution} & A Real that is the restitution coefficient desired. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 277 of file worldobjectphysicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+worldobjectphysicssettings.h\item 
+worldobjectphysicssettings.cpp\end{DoxyCompactItemize}

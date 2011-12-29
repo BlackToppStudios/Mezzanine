@@ -59,6 +59,7 @@ typedef float btScalar;
 #include <vector>
 
 #include "constraint.h"
+#include "datatypes.h"
 #include "managerbase.h"
 #include "singleton.h"
 #include "objectpair.h"
@@ -126,6 +127,11 @@ namespace Mezzanine
             /// @brief The amount of force a collision has to have to generate an event for it.
             Real EventFilterImpulse;
     };
+
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonPhysicsManager) Singleton<PhysicsManager>;
+    #endif
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class PhysicsManager

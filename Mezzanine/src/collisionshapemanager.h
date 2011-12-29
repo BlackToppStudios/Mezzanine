@@ -45,8 +45,6 @@
 #include "managerbase.h"
 #include "singleton.h"
 
-#include <set>
-
 class btTriangleMesh;
 class btCollisionShape;
 

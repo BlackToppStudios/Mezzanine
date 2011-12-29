@@ -49,6 +49,12 @@ namespace Mezzanine
 {
     class MeshTerrain;
     class TerrainBase;
+
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonTerrainManager) Singleton<TerrainManager>;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class TerrainManager
     /// @headerfile terrainmanager.h
@@ -71,7 +77,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Managing all terrains
 
-            /// @brief Retrives a MeshTerrain from the list of terrains.
+            /// @brief Retrieves a MeshTerrain from the list of terrains.
             /// @param index Index of desired terrain in MeshTerrains.
             /// @return Returns a pointer to the MeshTerrain at the given index.
             virtual TerrainBase* GetTerrainByIndex(const Whole& Index);

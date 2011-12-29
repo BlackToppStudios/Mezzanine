@@ -14,7 +14,7 @@ This is a base helper class for configuring physics settings of an actor.
 Inheritance diagram for Mezzanine::ActorBasePhysicsSettings:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{classMezzanine_1_1ActorBasePhysicsSettings}
+\includegraphics[height=4.000000cm]{classMezzanine_1_1ActorBasePhysicsSettings}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
@@ -28,18 +28,10 @@ virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \
 \begin{DoxyCompactList}\small\item\em Gets the amount of motion needed to enable CCD for this object. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}{GetCCDSphereRadius} () const 
 \begin{DoxyCompactList}\small\item\em Gets the radius of the embedded sphere used for CCD. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac59b0dfaf123ddfb3b70e35284502f56}{GetFriction} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Actors' friction coefficient. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a4e648f892ff2b5a8d111ab312cec394b}{GetRestitution} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Actors' restitution coefficient. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}{SetCCDParams} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&MotionThreshold, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&SweptSphereRadius=0)
 \begin{DoxyCompactList}\small\item\em Sets the parameters used for Continuous \hyperlink{classMezzanine_1_1Collision}{Collision} Detection. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a615c423b6d2da96b16b91ee644b8b81c}{SetFriction} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Friction)
-\begin{DoxyCompactList}\small\item\em Sets the Actors' friction coefficient. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}{SetKinematic} ()
 \begin{DoxyCompactList}\small\item\em Sets the state of the object to Kinematic. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac11357f16b6a30223d1794b4e4adf467}{SetRestitution} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Restitution)
-\begin{DoxyCompactList}\small\item\em Sets the Actors' restitution coefficient. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}{SetStatic} ()
 \begin{DoxyCompactList}\small\item\em Sets the state of the object to Static. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}{
@@ -52,7 +44,7 @@ virtual \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182a
 \subsubsection{Detailed Description}
 This is a base helper class for configuring physics settings of an actor. This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see ActorGraphicsSettings. 
 
-Definition at line 84 of file actorphysicssettings.h.
+Definition at line 86 of file actorphysicssettings.h.
 
 
 
@@ -103,7 +95,7 @@ A pointer \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysic
 \end{DoxyReturn}
 
 
-Definition at line 143 of file actorphysicssettings.cpp.
+Definition at line 123 of file actorphysicssettings.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}{
 \index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCCDMotionThreshold@{GetCCDMotionThreshold}}
@@ -123,7 +115,7 @@ Returns a Real representing the required amount of motion to enable CCD, or zero
 \end{DoxyReturn}
 
 
-Definition at line 123 of file actorphysicssettings.cpp.
+Definition at line 103 of file actorphysicssettings.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}{
 \index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCCDSphereRadius@{GetCCDSphereRadius}}
@@ -143,47 +135,7 @@ Returns a Real representing the radius of the sphere embedded into the objects c
 \end{DoxyReturn}
 
 
-Definition at line 128 of file actorphysicssettings.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac59b0dfaf123ddfb3b70e35284502f56}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetFriction@{GetFriction}}
-\index{GetFriction@{GetFriction}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{GetFriction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorBasePhysicsSettings::GetFriction (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_ac59b0dfaf123ddfb3b70e35284502f56}
-
-
-Gets the Actors' friction coefficient. 
-
-\begin{DoxyReturn}{Returns}
-Returns a Real representing the actors' friction coefficient. 
-\end{DoxyReturn}
-
-
-Definition at line 85 of file actorphysicssettings.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a4e648f892ff2b5a8d111ab312cec394b}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetRestitution@{GetRestitution}}
-\index{GetRestitution@{GetRestitution}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{GetRestitution}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorBasePhysicsSettings::GetRestitution (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_a4e648f892ff2b5a8d111ab312cec394b}
-
-
-Gets the Actors' restitution coefficient. 
-
-\begin{DoxyReturn}{Returns}
-Returns a Real representing the actors' restitution coefficient. 
-\end{DoxyReturn}
-
-
-Definition at line 93 of file actorphysicssettings.cpp.
+Definition at line 108 of file actorphysicssettings.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}{
 \index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetCCDParams@{SetCCDParams}}
@@ -208,30 +160,7 @@ If a Swept Sphere Radius is not provided, this function will attempt to find one
 \end{DoxyParams}
 
 
-Definition at line 96 of file actorphysicssettings.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a615c423b6d2da96b16b91ee644b8b81c}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetFriction@{SetFriction}}
-\index{SetFriction@{SetFriction}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{SetFriction}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetFriction (
-\begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{Friction}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_a615c423b6d2da96b16b91ee644b8b81c}
-
-
-Sets the Actors' friction coefficient. 
-
-Higher values will resist sliding across surfaces. This number is the coefficient of friction. Range is from 0.0 to 2.0. Behavior in this regard is determined by the friction of both colliding bodies. \par
- Default: 0.5 
-\begin{DoxyParams}{Parameters}
-{\em Friction} & A Real that is the friction coefficient desired. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 80 of file actorphysicssettings.cpp.
+Definition at line 76 of file actorphysicssettings.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}{
 \index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetKinematic@{SetKinematic}}
@@ -249,30 +178,7 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 133 of file actorphysicssettings.cpp.
-
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac11357f16b6a30223d1794b4e4adf467}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetRestitution@{SetRestitution}}
-\index{SetRestitution@{SetRestitution}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{SetRestitution}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetRestitution (
-\begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{Restitution}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_ac11357f16b6a30223d1794b4e4adf467}
-
-
-Sets the Actors' restitution coefficient. 
-
-Restitution determines how much energy is left after a collision with an object. Range is from 0.0 to 1.0. Behavior in this regard is determined by the restitution of both colliding bodies. \par
- Default: 0.0 
-\begin{DoxyParams}{Parameters}
-{\em Restitution} & A Real that is the restitution coefficient desired. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 90 of file actorphysicssettings.cpp.
+Definition at line 113 of file actorphysicssettings.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}{
 \index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetStatic@{SetStatic}}
@@ -290,7 +196,7 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 138 of file actorphysicssettings.cpp.
+Definition at line 118 of file actorphysicssettings.cpp.
 
 
 

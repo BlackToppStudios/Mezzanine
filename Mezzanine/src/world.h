@@ -79,17 +79,17 @@
   The engine is laid out in a variety of classes. Some classes are focal points for functionality and internally unify a number of components to do what they do, these
   managers sometimes conceal a large amount of complexity. Managers generally have a very rigid in the structure of the engine and these are generally managed by the
   world and are rarely manaully created. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?"
-  or "how do you detect if to objects are colliding?". In general there is only one of each manager and it inherits from the @ref Singleton class.
+  or "how do you detect if to objects are colliding?". In general there is only one of each manager and it inherits from the @ref Mezzanine::Singleton class.
 
-  Other classes are more similar to data, things like the @ref Vector3 and the @ref Quaternion. You can create these things whenever you like and generally have good
+  Other classes are more similar to data, things like the @ref Mezzanine::Vector3 and the @ref Mezzanine::Quaternion. You can create these things whenever you like and generally have good
   support for integrating into a variety of system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more
   sophisticated classes for a variety of reasons.
 
   There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled
-  and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Light or @ref ActorRigid are present inside the game
+  and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Mezzanine::Light or @ref Mezzanine::ActorRigid are present inside the game
   simulation as well as having a presence as
 
-  some utility classes Other class that really are just convient places to put functions, things like the @ref ActorRigidDeSerializer and the @ref StringTool are good
+  some utility classes Other class that really are just convient places to put functions, things like the @ref Mezzanine::ActorRigidDeSerializer and the @ref Mezzanine::StringTool are good
   examples of these logical grouping of functions. Finally, there are few
 
   @subsection Managers
@@ -101,19 +101,19 @@
 
    @subsubsection A list of managers
     Here is a list of managers in the engine:
-    - @ref ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton
-    - @ref AudioManager - Play, stop and otherwise work with sound and music.
-    - @ref CameraManager - Add/remove Multiple camera's from the world
-    - @ref CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection
-    - @ref EventManager - Get messages and events from the operating system (and user, but that will change)
-    - @ref GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.
-    - @ref MeshManager - Manage Meshes that can be rendered to the the screen.
-    - @ref PhysicsManager - Control settings that have to do with the physics simulation.
-    - @ref ResourceManager - Loads Files and locate them in an efficient way.
-    - @ref SceneManager - Control Lighting, skyboxes, particle effects etc...
-    - @ref TimerManager - Create and delete a variety of timers.
-    - @ref TerrainManager - Work with terrain components like height maps.
-    - @ref UIManager - Create and manage buttons, scrollbars and other widgets.
+    - @ref Mezzanine::ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton
+    - @ref Mezzanine::AudioManager - Play, stop and otherwise work with sound and music.
+    - @ref Mezzanine::CameraManager - Add/remove Multiple camera's from the world
+    - @ref Mezzanine::CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection
+    - @ref Mezzanine::EventManager - Get messages and events from the operating system (and user, but that will change)
+    - @ref Mezzanine::GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.
+    - @ref Mezzanine::MeshManager - Manage Meshes that can be rendered to the the screen.
+    - @ref Mezzanine::PhysicsManager - Control settings that have to do with the physics simulation.
+    - @ref Mezzanine::ResourceManager - Loads Files and locate them in an efficient way.
+    - @ref Mezzanine::SceneManager - Control Lighting, skyboxes, particle effects etc...
+    - @ref Mezzanine::TimerManager - Create and delete a variety of timers.
+    - @ref Mezzanine::TerrainManager - Work with terrain components like height maps.
+    - @ref Mezzanine::UIManager - Create and manage buttons, scrollbars and other widgets.
 
     @subsubsection The World, A manager of managers
 
@@ -261,9 +261,7 @@ namespace Mezzanine
     class PhysicsConstructionInfo;
     class NetworkManager;
 }
-#include <list>
-#include <string>
-#include <sstream>
+
 
 using namespace std;
 

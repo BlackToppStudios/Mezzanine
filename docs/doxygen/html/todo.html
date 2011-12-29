@@ -57,22 +57,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Todo List </h1>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="_todo000031"></a> </p>
+<div class="textblock"><p><a class="anchor" id="_todo000032"></a> </p>
 <dl>
 <dt>Page <a class="el" href="mainloop1.html">Main Loop Structure and Flow</a>  </dt>
 <dd>create a lighting manager and put this in there </dd>
 </dl>
-<p><a class="anchor" id="_todo000032"></a> </p>
+<p><a class="anchor" id="_todo000033"></a> </p>
 <dl>
 <dt>page <a class="el" href="index.html">Mezzanine</a>  </dt>
 <dd>Fill out the Simple Data Types with all the enumerations.</dd>
 </dl>
-<p><a class="anchor" id="_todo000002"></a> </p>
+<p><a class="anchor" id="_todo000001"></a> </p>
+<dl>
+<dt>Member <a class="el" href="classMezzanine_1_1ActorRigid.html#a68827280395bc3b9e0266710ec44247d">Mezzanine::ActorRigid::_NotifyCollisionState</a> (Collision *Col, const Collision::CollisionState &amp;State) </dt>
+<dd>Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies. </dd>
+</dl>
+<p><a class="anchor" id="_todo000003"></a> </p>
 <dl>
 <dt>Class <a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a>  </dt>
 <dd>Fix all the extra occurences of the word Camera in Function names on the camera. </dd>
 </dl>
-<p><a class="anchor" id="_todo000004"></a> </p>
+<p><a class="anchor" id="_todo000005"></a> </p>
 <dl>
 <dt>Member <a class="el" href="namespaceMezzanine.html#ac7be2623357ff699de474212404a4227">Mezzanine::CreateShape</a> (xml::Node OneNode) </dt>
 <dd><p class="startdd">Complete CreateShape function once DynamicMeshCollisionShape can be deserialized </p>
@@ -82,59 +87,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p class="enddd">Complete CreateShape function once StaticMeshCollisionShape can be deserialized </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000010"></a> </p>
+<p><a class="anchor" id="_todo000011"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1EventManager.html#a95ce9d2d865b0d8d9468448969b0ade2">Mezzanine::EventManager::EventManager</a> () </dt>
 <dd>TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd>
 </dl>
-<p><a class="anchor" id="_todo000009"></a> </p>
+<p><a class="anchor" id="_todo000010"></a> </p>
 <dl>
 <dt>Member <a class="el" href="namespaceMezzanine.html#acbb048ee99aa07566d5a6eb33f5a2c2d">Mezzanine::Int8</a>  </dt>
 <dd><p class="startdd">Verify that these "fixed-width" type-defs work on mobiles and tablets.</p>
 <p class="enddd"></p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000012"></a> </p>
+<p><a class="anchor" id="_todo000013"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1internal_1_1Line3D.html#a17264ad5672bef8807ce6b4a8366e573">Mezzanine::internal::Line3D::drawLine</a> (const Vector3 &amp;start, const Vector3 &amp;end) </dt>
 <dd>TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen </dd>
 </dl>
-<p><a class="anchor" id="_todo000014"></a> </p>
+<p><a class="anchor" id="_todo000015"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1LineGroup.html#acadb6f8ccbe70828b094f07a11f276ac">Mezzanine::LineGroup::drawLine</a> (const Vector3 &amp;start, const Vector3 &amp;end) </dt>
 <dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd>
 </dl>
-<p><a class="anchor" id="_todo000015"></a> </p>
+<p><a class="anchor" id="_todo000016"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1LineGroup.html#a85da1685525915f1e07d685b98f79f23">Mezzanine::LineGroup::drawLines</a> (void) </dt>
 <dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd>
 </dl>
-<p><a class="anchor" id="_todo000013"></a> </p>
+<p><a class="anchor" id="_todo000014"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1LineGroup.html#a8789254da1d3e930681b793165fedeca">Mezzanine::LineGroup::LineGroup</a> (World *Parent_) </dt>
 <dd>TODO: This class really should support rotation, the underlying implementation does. </dd>
 </dl>
-<p><a class="anchor" id="_todo000016"></a> </p>
+<p><a class="anchor" id="_todo000017"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1MeshManager.html#a6de2e01b43302a9439dc01c1dcc90f4c">Mezzanine::MeshManager::CreateCylinderMesh</a> (const String &amp;MeshName, const String &amp;MaterialName, const Vector3 &amp;HalfExtents, const Vector3 &amp;AxisOrientation, const Whole &amp;CircleRes=16, const Whole &amp;Segments=1) </dt>
 <dd>These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed. </dd>
 </dl>
-<p><a class="anchor" id="_todo000007"></a> </p>
+<p><a class="anchor" id="_todo000008"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a9eba349fe0f12483330b9c309e305168">Mezzanine::Point2PointConstraint::SetTAU</a> (Real TAU) </dt>
 <dd>Research this more carefully </dd>
 </dl>
-<p><a class="anchor" id="_todo000018"></a> </p>
+<p><a class="anchor" id="_todo000019"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1Quaternion.html#a86a46d0ce78a6ce83cc40ed2d03349d4">Mezzanine::Quaternion::Quaternion</a> (const Real &amp;Angle, const Vector3 &amp;Axis) </dt>
 <dd>Need to find a clean way to wrap sin and cos functions. Also may want to make a radian class/datatype. </dd>
 </dl>
-<p><a class="anchor" id="_todo000019"></a> </p>
+<p><a class="anchor" id="_todo000020"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1Ray.html#a7164d929caf75bcebceed9149e9a3540">Mezzanine::Ray::GetNormal</a> () const  </dt>
 <dd>discuss the merits throwing an error here. </dd>
 </dl>
-<p><a class="anchor" id="_todo000020"></a> </p>
+<p><a class="anchor" id="_todo000021"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1RayQueryTool.html#a9ded1647755a523d3dbda297a0e73eba">Mezzanine::RayQueryTool::GetFirstActorOnRayByAABB</a> (Ray ActorRay, Whole ObjectFlags) </dt>
 <dd><p class="startdd">TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. </p>
@@ -142,65 +147,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p class="enddd">TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000023"></a> </p>
+<p><a class="anchor" id="_todo000024"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1ResourceManager.html#aa827efdad18698b7d7319dab35864bbe">Mezzanine::ResourceManager::DestroyResourceGroup</a> (const String &amp;GroupName) </dt>
 <dd>This is a bit of a hack, but needs to be here until we can upgrade our resource system. </dd>
 </dl>
-<p><a class="anchor" id="_todo000024"></a> </p>
+<p><a class="anchor" id="_todo000025"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1SceneManager.html#ab6123477f052d34a357db85a8284c8be">Mezzanine::SceneManager::DestroyNode</a> (WorldNode *ToBeDestroyed) </dt>
 <dd>TODO: create SceneManager::GetNumFreeNodes </dd>
 </dl>
-<p><a class="anchor" id="_todo000003"></a> </p>
+<p><a class="anchor" id="_todo000004"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1StaticMeshCollisionShape.html#a1c565cc4d62ab7a0cd5cf55254905f05">Mezzanine::StaticMeshCollisionShape::StaticMeshCollisionShape</a> (const String &amp;Name, btBvhTriangleMeshShape *BulletShape) </dt>
 <dd>May need to create a btScaledBvhTriangleMeshShape for scaling this shape appropriately. </dd>
 </dl>
-<p><a class="anchor" id="_todo000025"></a> </p>
+<p><a class="anchor" id="_todo000026"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1TerrainManager.html#ae940f33a369e54c2322de4202d236eb2">Mezzanine::TerrainManager::RemoveAllTerrains</a> () </dt>
 <dd>When adding more types of terrains, it should be remembered that code should be added to clear the extra vectors. </dd>
 </dl>
-<p><a class="anchor" id="_todo000026"></a> </p>
+<p><a class="anchor" id="_todo000027"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1UI_1_1Button.html#aae0a7f6a07f79856ed6da8b8b3bc5ecd">Mezzanine::UI::Button::BindActivationKeyOrButton</a> (const MetaCode::InputCode &amp;Code) </dt>
 <dd>Throw an error? </dd>
 </dl>
-<p><a class="anchor" id="_todo000027"></a> </p>
+<p><a class="anchor" id="_todo000028"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a60130f372bc78fbb20f28270bbed8cf2">Mezzanine::UI::ListBox::ListBox</a> (ConstString &amp;name, const RenderableRect &amp;Rect, const UI::ScrollbarStyle &amp;ScrollStyle, Layer *PLayer) </dt>
 <dd>Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. </dd>
 </dl>
-<p><a class="anchor" id="_todo000028"></a> </p>
+<p><a class="anchor" id="_todo000029"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a81ddebed01b1503478c2fa7b75ce4b24">Mezzanine::UI::ListBox::SetSelected</a> (Caption *ToBeSelected) </dt>
 <dd>Maybe add a checker to verify the caption belongs to this widget? </dd>
 </dl>
-<p><a class="anchor" id="_todo000029"></a> </p>
+<p><a class="anchor" id="_todo000030"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a4c7471ee8b43649a5eab8c43e28f31b7">Mezzanine::UI::Screen::CreateLayer</a> (const String &amp;Name, Whole Zorder) </dt>
 <dd>add an exception here or maybe log entry, some notification it failed. </dd>
 </dl>
-<p><a class="anchor" id="_todo000030"></a> </p>
+<p><a class="anchor" id="_todo000031"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1UI_1_1ScrolledCellGrid.html#a259a2f007e7afc5b2fa967c02b0d5627">Mezzanine::UI::ScrolledCellGrid::SetVisibleImpl</a> (bool visible) </dt>
 <dd>Currently this disregards auto-hides. Something should be implemented to account for that. </dd>
 </dl>
-<p><a class="anchor" id="_todo000033"></a> </p>
+<p><a class="anchor" id="_todo000034"></a> </p>
 <dl>
 <dt>Member <a class="el" href="classMezzanine_1_1WorldNode.html#accb11fd94c98482d5d1b28894a1f4d9b">Mezzanine::WorldNode::SetAutoTracking</a> (WorldNode *node, Vector3 Offset=Vector3()) </dt>
 <dd>TODO: The WorldNode Does not Correctly Serialize AutoTracking. </dd>
 </dl>
-<p><a class="anchor" id="_todo000017"></a> </p>
-<dl>
-<dt>Member <a class="el" href="classphys_1_1MeshTerrain.html#af1f15dead93f0c797e1b89ee9dbf295b">phys::MeshTerrain::CreateShapeFromMeshStatic</a> (bool UseAllSubmeshes=false) </dt>
-<dd>- Check for thread safety </dd>
-</dl>
-<p><a class="anchor" id="_todo000008"></a> </p>
+<p><a class="anchor" id="_todo000009"></a> </p>
 <dl>
 <dt>Namespace <a class="el" href="namespacestd.html">std</a>  </dt>
-<dd>Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this. </dd>
+<dd>Make main page in documentation with wiki link and listing of required steps (build target and OS define), and dependencies required to build this. </dd>
 </dl>
 </div></div>
 <!--- window showing the filter options -->
@@ -218,6 +218,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

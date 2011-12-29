@@ -54,6 +54,12 @@ namespace Mezzanine
 {
     class ExtendedTimer;
     class SimpleTimer;
+
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonTimerManager) Singleton<TimerManager>;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class TimerManager
     /// @headerfile timermanager.h

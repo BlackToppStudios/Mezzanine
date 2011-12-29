@@ -87,11 +87,11 @@ Inheritance diagram for Mezzanine::TypedConstraint:</div>
   <img src="classMezzanine_1_1TypedConstraint.png" usemap="#Mezzanine::TypedConstraint_map" alt=""/>
   <map id="Mezzanine::TypedConstraint_map" name="Mezzanine::TypedConstraint_map">
 <area href="classMezzanine_1_1ConeTwistConstraint.html" alt="Mezzanine::ConeTwistConstraint" shape="rect" coords="0,56,245,80"/>
-<area href="classMezzanine_1_1DualTransformConstraint.html" alt="Mezzanine::DualTransformConstraint" shape="rect" coords="255,56,500,80"/>
-<area href="classMezzanine_1_1Point2PointConstraint.html" alt="Mezzanine::Point2PointConstraint" shape="rect" coords="510,56,755,80"/>
-<area href="classMezzanine_1_1SliderConstraint.html" alt="Mezzanine::SliderConstraint" shape="rect" coords="765,56,1010,80"/>
+<area href="classMezzanine_1_1DualTransformConstraint.html" alt="Mezzanine::DualTransformConstraint" shape="rect" coords="382,56,627,80"/>
+<area href="classMezzanine_1_1Point2PointConstraint.html" alt="Mezzanine::Point2PointConstraint" shape="rect" coords="637,56,882,80"/>
 <area href="classMezzanine_1_1Generic6DofConstraint.html" alt="Mezzanine::Generic6DofConstraint" shape="rect" coords="127,112,372,136"/>
 <area href="classMezzanine_1_1HingeConstraint.html" alt="Mezzanine::HingeConstraint" shape="rect" coords="382,112,627,136"/>
+<area href="classMezzanine_1_1SliderConstraint.html" alt="Mezzanine::SliderConstraint" shape="rect" coords="637,112,882,136"/>
 <area href="classMezzanine_1_1Generic6DofSpringConstraint.html" alt="Mezzanine::Generic6DofSpringConstraint" shape="rect" coords="0,168,245,192"/>
 <area href="classMezzanine_1_1UniversalJointConstraint.html" alt="Mezzanine::UniversalJointConstraint" shape="rect" coords="255,168,500,192"/>
 <area href="classMezzanine_1_1Hinge2Constraint.html" alt="Mezzanine::Hinge2Constraint" shape="rect" coords="0,224,245,248"/>
@@ -198,7 +198,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <li><a class="el" href="classMezzanine_1_1TypedConstraint.html#a278d3baf36055e5d10a411139a2d2a7e" title="Get A sorted (low to high) list of Parameters that are valid on all Axis.">ValidParams() const </a>- A list of Parameters every Axis on this constraint implements </li>
 </ul>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00123">123</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00120">120</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 </div><hr/><h2>Member Typedef Documentation</h2>
 <a class="anchor" id="ac6b8e0839cd686f73d0c9e9ad5db47a4"></a><!-- doxytag: member="Mezzanine::TypedConstraint::AxisList" ref="ac6b8e0839cd686f73d0c9e9ad5db47a4" args="" -->
 <div class="memitem">
@@ -214,7 +214,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>Used to Store lists of Int Axis for return types. </p>
 <p>In general Axis will come in groups of three, such as 0,1,2, or 0,1,2,3,4,5 which could represent X,Y, and Z or multiple grousp of X,Y, and Z. These Axis can represent Linear/Translation or Angular/Rotation information. Some Constraints support values that affect all constraints, this is usually represented a -1. </p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00187">187</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00184">184</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -237,7 +237,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00183">183</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00180">180</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -395,7 +395,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>Get offset of the first actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The offset as a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> relative to the center of mass of ActorA. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ad79b92cb1faeba6e7ba7123e02d86dc1">Mezzanine::DualTransformConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a180f26186e0ddd58c9c0746897155eaf">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a74f1b8d8de18ab991d2f42c7141eedc7">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a975132636767ba41ef2eb277467d9bee">Mezzanine::Point2PointConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ad79b92cb1faeba6e7ba7123e02d86dc1">Mezzanine::DualTransformConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a180f26186e0ddd58c9c0746897155eaf">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a74f1b8d8de18ab991d2f42c7141eedc7">Mezzanine::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a975132636767ba41ef2eb277467d9bee">Mezzanine::Point2PointConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#aab32a4c00eda5369c8188cff854418bd">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -416,7 +416,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>Get offset of the second actor. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The offset as a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> relative to the center of mass of ActorB. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ade678f85e0e32b5bf59778130e9d1730">Mezzanine::DualTransformConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a2b7344ab150f2f6dd898b6cbcd150d6e">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a87b14b3cbf5241aeba723226661764e6">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a7d8ad35c958e6867cb7259940b803431">Mezzanine::Point2PointConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ade678f85e0e32b5bf59778130e9d1730">Mezzanine::DualTransformConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a2b7344ab150f2f6dd898b6cbcd150d6e">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a87b14b3cbf5241aeba723226661764e6">Mezzanine::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a7d8ad35c958e6867cb7259940b803431">Mezzanine::Point2PointConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#af97a455a53d7572351f6ae725bb8e31b">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -456,7 +456,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>This will probably have to implement the same logic aas what is in the respective get/setparam function of each constraint <a href="http://bulletphysics.com/Bullet/BulletFull/classbtTypedConstraint.html#a11f44dd743b59bc05e25d500456e2559">http://bulletphysics.com/Bullet/BulletFull/classbtTypedConstraint.html#a11f44dd743b59bc05e25d500456e2559</a> </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if it has been set, false if it has. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#ac0589ecb2fe1e0227dbcbb52cd90ceba">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a58f5758cb5926f785c07c7ebb544d91b">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a658027a5d0f5774a92a279485ccfe29d">Mezzanine::Point2PointConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#ac0589ecb2fe1e0227dbcbb52cd90ceba">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a58f5758cb5926f785c07c7ebb544d91b">Mezzanine::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a658027a5d0f5774a92a279485ccfe29d">Mezzanine::Point2PointConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a348b148de3759ae80f7af6dbd8680867">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -496,7 +496,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>This is implemented using ValidParamOnAxis, Derived versions of this class may wish to make a more specialized implementation of this method. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if Param is valid on Axis, and Axis is valid. If anything is invalid this returns false. </dd></dl>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00227">227</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00224">224</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -567,7 +567,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a3dc5e7afcf612a481f81071201ecdeb7">Mezzanine::DualTransformConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a4670a488bc5cab478c6d69c8a0d240a5">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a0990b3b85529df353aaa46f76951fd68">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a454b36d992f990e0058f2aba00ee8692">Mezzanine::Point2PointConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a3dc5e7afcf612a481f81071201ecdeb7">Mezzanine::DualTransformConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a4670a488bc5cab478c6d69c8a0d240a5">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a0990b3b85529df353aaa46f76951fd68">Mezzanine::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a454b36d992f990e0058f2aba00ee8692">Mezzanine::Point2PointConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a70cf627b28c4031d498557d3011a33c8">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -594,7 +594,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#abf63fe4c4fc3c57a0eed7ed006a00aee">Mezzanine::DualTransformConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a1b5fc577a2c627266436fd5b134728bc">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a7ae57514d6bd1119859ecb137cf58e5e">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a746402f9ca269fc4838b8f3f1933dc48">Mezzanine::Point2PointConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#abf63fe4c4fc3c57a0eed7ed006a00aee">Mezzanine::DualTransformConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a1b5fc577a2c627266436fd5b134728bc">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a7ae57514d6bd1119859ecb137cf58e5e">Mezzanine::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a746402f9ca269fc4838b8f3f1933dc48">Mezzanine::Point2PointConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#ab6705dee13d7311ee381d388ba3122cd">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -616,7 +616,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other </dd></dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An Axislist with the Axis this constraint Angularly supports. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a8a908f5f3857262db217a7f2dfc25c61">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#aaed95fc3750346a6f9791b025e600aa0">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a3398535453abbf5e573aec88669a41a6">Mezzanine::Point2PointConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a8a908f5f3857262db217a7f2dfc25c61">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#aaed95fc3750346a6f9791b025e600aa0">Mezzanine::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a3398535453abbf5e573aec88669a41a6">Mezzanine::Point2PointConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#ac96a0956a0cb82b4b37d0da3a9d348fa">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -638,7 +638,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>This is implemented using ValidLinearAxis and ValidAngularAxis, Derived versions of this class may wish to make a more specialized implementation of this method that doesn't have the overhead of passing around 3 vectors by value. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An Axislist with all the Axis this constraint supports. </dd></dl>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00213">213</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00210">210</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -660,7 +660,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Odd behaviors, maybe even undefined behavior can happen if This returns a matching Axis to a Linear Axis. Any given axis should only be one or the other </dd></dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An Axislist with the Axis this constraint linearly supports. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a94db83422c1984cdbe1745662715ac9d">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a2af69ea5320ff27bf4d5de7ae9530594">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a3ee9d805802f459d6e418f4c0d9f83c1">Mezzanine::Point2PointConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a94db83422c1984cdbe1745662715ac9d">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a2af69ea5320ff27bf4d5de7ae9530594">Mezzanine::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a3ee9d805802f459d6e418f4c0d9f83c1">Mezzanine::Point2PointConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#ac238c09e330b22833bd666a73b93f8d0">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -689,7 +689,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Paramlist with all the valid parameters for this axis. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a2417bed78c50820d2b5b8d083a8897d6">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a3ea048fe9e7eda83e4ef42174a0c6157">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a3170aad8175d6c6c064e6d4e8e30cfa6">Mezzanine::Point2PointConstraint</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a2417bed78c50820d2b5b8d083a8897d6">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a3ea048fe9e7eda83e4ef42174a0c6157">Mezzanine::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a3170aad8175d6c6c064e6d4e8e30cfa6">Mezzanine::Point2PointConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a6883d8b39517a5a96c099b1d1b441d95">Mezzanine::SliderConstraint</a>.</p>
 
 </div>
 </div>
@@ -711,7 +711,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>This is implemented using ValidAxis and ValidParamOnAxis, Derived versions of this class may wish to make a more specialized implementation of this method that doesn't have the overhead of passing around many vectors by value and executing slow loops. Most likely all of these constraint Parameter and axis functions could be replaced with some fairly simple switch statements and statically coded values that are specific to the kind of constraint. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Paramlist with the parameters valid on all axis. </dd></dl>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00248">248</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00245">245</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -734,6 +734,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:33:00 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

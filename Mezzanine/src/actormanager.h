@@ -50,6 +50,12 @@ namespace Mezzanine
     class ActorRigid;
     class ActorSoft;
     class ActorCharacter;
+
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonActorManager) Singleton<ActorManager>;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorManager
     /// @headerfile actormanager.h

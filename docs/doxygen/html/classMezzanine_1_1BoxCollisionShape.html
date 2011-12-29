@@ -114,7 +114,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>This is exactly what it sounds like. A primitive shape of a box that is constructed by it's half extents. Half extents can't be negative, but otherwise can be any value. The margin value is subtracted from the total size rather than added for this shape. </p>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>This does not fully implement ProtoDeSerialize, this must be deserialized with the Appropriate Deserializer. </dd></dl>
 
-<p>Definition at line <a class="el" href="collisionshape_8h_source.html#l00344">344</a> of file <a class="el" href="collisionshape_8h_source.html">collisionshape.h</a>.</p>
+<p>Definition at line <a class="el" href="collisionshape_8h_source.html#l00342">342</a> of file <a class="el" href="collisionshape_8h_source.html">collisionshape.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afcf359b8683bd158040963eca43ac670"></a><!-- doxytag: member="Mezzanine::BoxCollisionShape::BoxCollisionShape" ref="afcf359b8683bd158040963eca43ac670" args="(const String &amp;Name, const Vector3 &amp;HalfExtents)" -->
 <div class="memitem">
@@ -145,7 +145,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">Name</td><td>The name of this shape. </td></tr>
-    <tr><td class="paramname">HalfExtents</td><td>A vector3 representing half the shapes size on each axis. </td></tr>
+    <tr><td class="paramname">HalfExtents</td><td>A <a class="el" href="classvector3.html">vector3</a> representing half the shapes size on each axis. </td></tr>
   </table>
   </dd>
 </dl>
@@ -228,7 +228,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="memdoc">
 
 <p>Gets the half extents used to construct this box. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 containing the half extents of this box, with no scaling or margin (Original value). </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> containing the half extents of this box, with no scaling or margin (Original value). </dd></dl>
 
 <p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00539">539</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
 
@@ -249,7 +249,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="memdoc">
 
 <p>Gets the current half extents used in collision checking. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 containing the half extents of this box, with scaling applied, minus the size of the margin(Original value * Scaling - margin). </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> containing the half extents of this box, with scaling applied, minus the size of the margin(Original value * Scaling - margin). </dd></dl>
 
 <p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00544">544</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
 
@@ -270,7 +270,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="memdoc">
 
 <p>Gets the half extents with padding, this is the size the shape will appear to be. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 containing the half extents, with scaling applied, with the margin added to each axis (Original value * Scaling). </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> containing the half extents, with scaling applied, with the margin added to each axis (Original value * Scaling). </dd></dl>
 
 <p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00549">549</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
 
@@ -357,6 +357,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:37 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

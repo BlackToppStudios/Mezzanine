@@ -46,8 +46,6 @@
 #include "uirenderablerect.h"
 #include "metacode.h"
 
-#include <map>
-
 namespace Gorilla
 {
     class Silverback;
@@ -67,6 +65,12 @@ namespace Mezzanine
         class Widget;
         class Scrollbar;
     }
+
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonUIManager) Singleton<UIManager>;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIManager
     /// @headerfile uimanager.h

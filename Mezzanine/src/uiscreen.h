@@ -40,10 +40,9 @@
 #ifndef _uiscreen_h
 #define _uiscreen_h
 
+#include "datatypes.h"
 #include "crossplatformexport.h"
 #include "vector2.h"
-
-#include <map>
 
 namespace Gorilla
 {

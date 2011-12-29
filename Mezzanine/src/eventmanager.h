@@ -44,11 +44,6 @@
 //There will be an instance of this class in the world.
 ///////////////////////////////////////
 
-#include <list>
-#include <queue>
-#include <vector>
-#include <utility>
-
 using namespace std;
 
 #include "eventbase.h"
@@ -101,6 +96,11 @@ namespace Mezzanine
     namespace internal {
         class EventManagerInternalData;
     }
+
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(SingletonEventManager) Singleton<EventManager>;
+    #endif
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class EventManager

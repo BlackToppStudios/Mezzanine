@@ -1,0 +1,140 @@
+\hypertarget{classMezzanine_1_1NonStaticWorldObject}{
+\subsection{Mezzanine::NonStaticWorldObject Class Reference}
+\label{classMezzanine_1_1NonStaticWorldObject}\index{Mezzanine::NonStaticWorldObject@{Mezzanine::NonStaticWorldObject}}
+}
+
+
+This is a small extention of the \hyperlink{classMezzanine_1_1WorldObject}{WorldObject} class that adds features common to non-\/static objects.  
+
+
+
+
+{\ttfamily \#include $<$worldobject.h$>$}
+
+Inheritance diagram for Mezzanine::NonStaticWorldObject:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.769352cm]{classMezzanine_1_1NonStaticWorldObject}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classMezzanine_1_1NonStaticWorldObject_ab83cb88d5bec01ce687ce07180d0acee}{GetObjectNode} () const 
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} representing the position and orientation of this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1NonStaticWorldObject_adaa959e0758ca685b8009f17d671469f}{GetOrientation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the orientation of the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1NonStaticWorldObject_ae68784bd2201013e99c6a957201c5264}{
+\hyperlink{classMezzanine_1_1NonStaticWorldObject_ae68784bd2201013e99c6a957201c5264}{NonStaticWorldObject} ()}
+\label{classMezzanine_1_1NonStaticWorldObject_ae68784bd2201013e99c6a957201c5264}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1NonStaticWorldObject_a93ffa6d7e23ec9015fdcf7a1b5cc6828}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1NonStaticWorldObject_ad726fa6c7934a325599120366cf1d900}{SetOrientation} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&x, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&y, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&z, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&w)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1NonStaticWorldObject_a5bfa4c2acd83b5556bcf16d73b8eeba1}{
+virtual \hyperlink{classMezzanine_1_1NonStaticWorldObject_a5bfa4c2acd83b5556bcf16d73b8eeba1}{$\sim$NonStaticWorldObject} ()}
+\label{classMezzanine_1_1NonStaticWorldObject_a5bfa4c2acd83b5556bcf16d73b8eeba1}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1NonStaticWorldObject_a03b42146013f8fe6e6aee1eb9fcf4c0a}{
+\hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classMezzanine_1_1NonStaticWorldObject_a03b42146013f8fe6e6aee1eb9fcf4c0a}{ObjectWorldNode}}
+\label{classMezzanine_1_1NonStaticWorldObject_a03b42146013f8fe6e6aee1eb9fcf4c0a}
+
+\begin{DoxyCompactList}\small\item\em This class excapsulates the functionality of the Ogre::SceneNode. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a small extention of the \hyperlink{classMezzanine_1_1WorldObject}{WorldObject} class that adds features common to non-\/static objects. Many world objects are capable of being moved and oriented dynamically and at run time, but there are some objects that you don't want to have the ability or API to do so as it may break the intent of the object. This class is here to be avoided for those objects, and instead inherit directly from the \hyperlink{classMezzanine_1_1WorldObject}{WorldObject} class while all other's inherit from this class. It's important to note that this class doesn't forbid static objects as the name may suggest, but rather it makes static status optional instead of forcing them to be static. 
+
+Definition at line 280 of file worldobject.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1NonStaticWorldObject_ab83cb88d5bec01ce687ce07180d0acee}{
+\index{Mezzanine::NonStaticWorldObject@{Mezzanine::NonStaticWorldObject}!GetObjectNode@{GetObjectNode}}
+\index{GetObjectNode@{GetObjectNode}!Mezzanine::NonStaticWorldObject@{Mezzanine::NonStaticWorldObject}}
+\paragraph[{GetObjectNode}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf WorldNode}$\ast$ Mezzanine::NonStaticWorldObject::GetObjectNode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonStaticWorldObject_ab83cb88d5bec01ce687ce07180d0acee}
+
+
+Gets a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} representing the position and orientation of this \hyperlink{classMezzanine_1_1World}{World} Object. 
+
+The \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} returned by this function is not stored in the scene manasger. \begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} pointer pointing to this \hyperlink{classMezzanine_1_1World}{World} Object's world node. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1NonStaticWorldObject_adaa959e0758ca685b8009f17d671469f}{
+\index{Mezzanine::NonStaticWorldObject@{Mezzanine::NonStaticWorldObject}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!Mezzanine::NonStaticWorldObject@{Mezzanine::NonStaticWorldObject}}
+\paragraph[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} Mezzanine::NonStaticWorldObject::GetOrientation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonStaticWorldObject_adaa959e0758ca685b8009f17d671469f}
+
+
+Gets the orientation of the \hyperlink{classMezzanine_1_1World}{World} Object. 
+
+\begin{DoxyReturn}{Returns}
+Returns a quaternion representing the rotation of the \hyperlink{classMezzanine_1_1World}{World} Object. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1NonStaticWorldObject_ad726fa6c7934a325599120366cf1d900}{
+\index{Mezzanine::NonStaticWorldObject@{Mezzanine::NonStaticWorldObject}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!Mezzanine::NonStaticWorldObject@{Mezzanine::NonStaticWorldObject}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::NonStaticWorldObject::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{x, }
+\item[{const {\bf Real} \&}]{y, }
+\item[{const {\bf Real} \&}]{z, }
+\item[{const {\bf Real} \&}]{w}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonStaticWorldObject_ad726fa6c7934a325599120366cf1d900}
+
+
+Sets the orientation of the \hyperlink{classMezzanine_1_1World}{World} Object. 
+
+Sets the orientation of the \hyperlink{classMezzanine_1_1World}{World} Object via \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} parameters. 
+\begin{DoxyParams}{Parameters}
+{\em x} & Where the X vector is rotated about. \\
+\hline
+{\em y} & Where the Y vector is rotated about. \\
+\hline
+{\em z} & Where the Z vector is rotated about. \\
+\hline
+{\em w} & How much to about the x, y, z. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1NonStaticWorldObject_a93ffa6d7e23ec9015fdcf7a1b5cc6828}{
+\index{Mezzanine::NonStaticWorldObject@{Mezzanine::NonStaticWorldObject}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!Mezzanine::NonStaticWorldObject@{Mezzanine::NonStaticWorldObject}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::NonStaticWorldObject::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonStaticWorldObject_a93ffa6d7e23ec9015fdcf7a1b5cc6828}
+
+
+Sets the orientation of the \hyperlink{classMezzanine_1_1World}{World} Object. 
+
+Sets the orientation of the \hyperlink{classMezzanine_1_1World}{World} Object via a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion}. 
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} representing the Rotation. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+worldobject.h\end{DoxyCompactItemize}

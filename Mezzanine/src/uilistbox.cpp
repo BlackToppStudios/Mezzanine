@@ -334,7 +334,7 @@ namespace Mezzanine
             return *this;
         }
 
-        const ListBox::TemplateParams& ListBox::GetTemplateInfo()
+        const UI::TemplateParams& ListBox::GetTemplateInfo()
         {
             return this->SelectionTemplate;
         }

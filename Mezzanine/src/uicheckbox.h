@@ -40,8 +40,8 @@
 #ifndef _uicheckbox_h
 #define _uicheckbox_h
 
+#include "datatypes.h"
 #include "uiwidget.h"
-#include <utility>
 
 namespace Mezzanine
 {

@@ -78,6 +78,7 @@ namespace Mezzanine
     /// to convert future versions to our naming convention.
     /// \n \n
     /// For the complete XML Documentation, please see the @ref XMLManual "Mezzanine::xml Manual"
+
     /// @page XMLManual Mezzanine::xml Manual
     /// @section XMLTOC Table Of Contents
     ///     - @ref XMLOverview

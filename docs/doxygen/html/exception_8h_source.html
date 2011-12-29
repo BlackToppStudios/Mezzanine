@@ -107,53 +107,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00043"></a>00043 <span class="preprocessor"></span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="preprocessor">#include &lt;exception&gt;</span>
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="keyword">namespace </span>Mezzanine
-<a name="l00050"></a>00050 {<span class="comment"></span>
-<a name="l00051"></a>00051 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00052"></a>00052 <span class="comment">    /// @class Exception</span>
-<a name="l00053"></a>00053 <span class="comment">    /// @headerfile exception.h</span>
-<a name="l00054"></a>00054 <span class="comment">    /// @brief This is the exception thrown by most Mezzanine system that can throw exceptions.</span>
-<a name="l00055"></a>00055 <span class="comment">    /// @details In general they work like std::exception, but also track whether they have been logged yet.</span>
-<a name="l00056"></a><a class="code" href="classMezzanine_1_1Exception.html">00056</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a> : <span class="keyword">public</span> std::exception
-<a name="l00057"></a>00057     {
-<a name="l00058"></a>00058         <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">            /// @internal</span>
-<a name="l00060"></a>00060 <span class="comment">            /// @brief This stores the Error Message</span>
-<a name="l00061"></a>00061 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ErrorMessage;
-<a name="l00062"></a>00062 <span class="comment"></span>
-<a name="l00063"></a>00063 <span class="comment">            /// @internal</span>
-<a name="l00064"></a>00064 <span class="comment">            /// @brief True if it has been logged, false other. The logging function on the world is expected to set this.</span>
-<a name="l00065"></a>00065 <span class="comment"></span>            <span class="keywordtype">bool</span> Logged;
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00068"></a>00068 <span class="comment">            /// @brief Simple Constructor.</span>
-<a name="l00069"></a>00069 <span class="comment">            /// @param Message The Error you want stored in the exception.</span>
-<a name="l00070"></a>00070 <span class="comment">            /// @param Logged_ Has this exception already been sent to tthe logger</span>
-<a name="l00071"></a>00071 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;Message = <span class="stringliteral">&quot;&quot;</span>, <span class="keywordtype">bool</span> Logged_ = <span class="keyword">false</span>);
-<a name="l00072"></a>00072 <span class="comment"></span>
-<a name="l00073"></a>00073 <span class="comment">            /// @brief Retrieves the error message.</span>
-<a name="l00074"></a>00074 <span class="comment">            /// @return This returns a string that is the stored error message.</span>
-<a name="l00075"></a>00075 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> what() <span class="keywordflow">throw</span>();
-<a name="l00076"></a>00076 <span class="comment"></span>
-<a name="l00077"></a>00077 <span class="comment">            /// @brief Has this exception been on a trip through the Logger?</span>
-<a name="l00078"></a>00078 <span class="comment">            /// @return A bool storing true if it has and false if it has not.</span>
-<a name="l00079"></a>00079 <span class="comment"></span>            <span class="keywordtype">bool</span> HasBeenLogged();
-<a name="l00080"></a>00080 <span class="comment"></span>
-<a name="l00081"></a>00081 <span class="comment">            /// @brief Set the logged bit.</span>
-<a name="l00082"></a>00082 <span class="comment"></span>            <span class="keywordtype">void</span> SetLogged();
+<a name="l00046"></a>00046 <span class="keyword">namespace </span>Mezzanine
+<a name="l00047"></a>00047 {<span class="comment"></span>
+<a name="l00048"></a>00048 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00049"></a>00049 <span class="comment">    /// @class Exception</span>
+<a name="l00050"></a>00050 <span class="comment">    /// @headerfile exception.h</span>
+<a name="l00051"></a>00051 <span class="comment">    /// @brief This is the exception thrown by most Mezzanine system that can throw exceptions.</span>
+<a name="l00052"></a>00052 <span class="comment">    /// @details In general they work like std::exception, but also track whether they have been logged yet.</span>
+<a name="l00053"></a><a class="code" href="classMezzanine_1_1Exception.html">00053</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a> : <span class="keyword">public</span> std::exception
+<a name="l00054"></a>00054     {
+<a name="l00055"></a>00055         <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00056"></a>00056 <span class="comment">            /// @internal</span>
+<a name="l00057"></a>00057 <span class="comment">            /// @brief This stores the Error Message</span>
+<a name="l00058"></a>00058 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ErrorMessage;
+<a name="l00059"></a>00059 <span class="comment"></span>
+<a name="l00060"></a>00060 <span class="comment">            /// @internal</span>
+<a name="l00061"></a>00061 <span class="comment">            /// @brief True if it has been logged, false other. The logging function on the world is expected to set this.</span>
+<a name="l00062"></a>00062 <span class="comment"></span>            <span class="keywordtype">bool</span> Logged;
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00065"></a>00065 <span class="comment">            /// @brief Simple Constructor.</span>
+<a name="l00066"></a>00066 <span class="comment">            /// @param Message The Error you want stored in the exception.</span>
+<a name="l00067"></a>00067 <span class="comment">            /// @param Logged_ Has this exception already been sent to tthe logger</span>
+<a name="l00068"></a>00068 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;Message = <span class="stringliteral">&quot;&quot;</span>, <span class="keywordtype">bool</span> Logged_ = <span class="keyword">false</span>);
+<a name="l00069"></a>00069 <span class="comment"></span>
+<a name="l00070"></a>00070 <span class="comment">            /// @brief Retrieves the error message.</span>
+<a name="l00071"></a>00071 <span class="comment">            /// @return This returns a string that is the stored error message.</span>
+<a name="l00072"></a>00072 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> what() <span class="keywordflow">throw</span>();
+<a name="l00073"></a>00073 <span class="comment"></span>
+<a name="l00074"></a>00074 <span class="comment">            /// @brief Has this exception been on a trip through the Logger?</span>
+<a name="l00075"></a>00075 <span class="comment">            /// @return A bool storing true if it has and false if it has not.</span>
+<a name="l00076"></a>00076 <span class="comment"></span>            <span class="keywordtype">bool</span> HasBeenLogged();
+<a name="l00077"></a>00077 <span class="comment"></span>
+<a name="l00078"></a>00078 <span class="comment">            /// @brief Set the logged bit.</span>
+<a name="l00079"></a>00079 <span class="comment"></span>            <span class="keywordtype">void</span> SetLogged();
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081             ~<a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>() <span class="keywordflow">throw</span>();
+<a name="l00082"></a>00082     };<span class="comment">// \Exception</span>
 <a name="l00083"></a>00083 
-<a name="l00084"></a>00084             ~<a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>() <span class="keywordflow">throw</span>();
-<a name="l00085"></a>00085     };<span class="comment">// \Exception</span>
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 
 <a name="l00086"></a>00086 
-<a name="l00087"></a>00087 
+<a name="l00087"></a>00087 } <span class="comment">// \Mezz</span>
 <a name="l00088"></a>00088 
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090 } <span class="comment">// \Mezz</span>
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 <span class="preprocessor">#endif // \exception_cpp</span>
+<a name="l00089"></a>00089 <span class="preprocessor">#endif // \exception_cpp</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -171,6 +168,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 4 2011 17:32:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -40,10 +40,8 @@
 #ifndef _uimenuwindow_h
 #define _uimenuwindow_h
 
+#include "datatypes.h"
 #include "uiwindow.h"
-
-#include <vector>
-#include <utility>
 
 namespace Mezzanine
 {
