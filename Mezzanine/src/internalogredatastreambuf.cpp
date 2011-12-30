@@ -47,6 +47,8 @@
 // Keeps this file form being documented by doxygen
 /// @cond 0
 
+using namespace std;
+
 namespace Mezzanine
 {
     namespace internal
@@ -55,7 +57,7 @@ namespace Mezzanine
         const String FailWriteNoAccess("Failed to write to readonly stream.");
         const String FailReadNoAccess("Failed to read from unreadable stream (could be write-only).");
 
-        streambuf* OgreDataStreamBuf::setbuf (char* s, streamsize n)
+        std::streambuf* OgreDataStreamBuf::setbuf (char* s, std::streamsize n)
         {
             #ifdef MEZZDEBUG
             World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::setbuf()");
@@ -80,29 +82,29 @@ namespace Mezzanine
             return this;
         }
 
-        streampos OgreDataStreamBuf::seekoff ( streamoff off, ios_base::seekdir way, ios_base::openmode which)
+        std::streampos OgreDataStreamBuf::seekoff ( std::streamoff off, std::ios_base::seekdir way, std::ios_base::openmode which)
         {
             #ifdef MEZZDEBUG
             World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::seekoff()");
             #endif
-            if (ios_base::out & which)
+            if (std::ios_base::out & which)
                 { return -1; }
 
             switch(way)
             {
-                case ios_base::beg :
+                case std::ios_base::beg :
                     #ifdef MEZZDEBUG
                     World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via Begin seek logic");
                     #endif
-                    return this->seekpos((streampos)off,which);
+                    return this->seekpos((std::streampos)off,which);
 
-                case ios_base::cur :
+                case std::ios_base::cur :
                     #ifdef MEZZDEBUG
                     World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via current location seek logic");
                     #endif
                     return this->seekpos(this->GetCurrentLocation()+off,which);
 
-                case ios_base::end :
+                case std::ios_base::end :
                     #ifdef MEZZDEBUG
                     World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via end seek logic");
                     #endif
@@ -114,12 +116,12 @@ namespace Mezzanine
 
         }
 
-        streampos OgreDataStreamBuf::seekpos ( streampos sp, ios_base::openmode which )
+        std::streampos OgreDataStreamBuf::seekpos ( std::streampos sp, std::ios_base::openmode which )
         {
             #ifdef MEZZDEBUG
             World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::seekpos()");
             #endif
-            if (ios_base::out & which)
+            if (std::ios_base::out & which)
                 { return -1; }
 
             if(this->CheckStream(sp))
@@ -273,7 +275,7 @@ namespace Mezzanine
             return -1;
         }
 
-        void OgreDataStreamBuf::SetInternalBuffer(const streampos& Destination)
+        void OgreDataStreamBuf::SetInternalBuffer(const std::streampos& Destination)
         {
             #ifdef MEZZDEBUG
             World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer( streampos Destination=" << Destination <<" )" ; World::GetWorldPointer()->Log();

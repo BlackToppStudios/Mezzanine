@@ -73,7 +73,7 @@ namespace Mezzanine
             Singleton()
             {
                 if(SingletonPtr)
-                    throw(Exception("Singleton class already exists.  Cannot make multiple singltons."));
+                    throw(Exception("Singleton class already exists. Cannot make multiple singletons."));
                 #if defined( _MSC_VER ) && _MSC_VER < 1200
                 int offset = (int)(Type*)1 - (int)(Singleton <Type>*)(Type*)1;
                 SingletonPtr = (Type*)((int)this + offset);

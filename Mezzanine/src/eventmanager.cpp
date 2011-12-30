@@ -170,9 +170,9 @@ namespace Mezzanine
             /// @brief Used to insert Codes into the list of items to be manually checked
             /// @param Transport A vector of every Meta that may need to be added to the list
             /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
-            void AddMetaCodesToManualCheck(vector<MetaCode> Transport, PollingType _PollingCheck)
+            void AddMetaCodesToManualCheck(std::vector<MetaCode> Transport, PollingType _PollingCheck)
             {
-                for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
+                for ( std::vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                 {
                     MetaCode::InputCode temp = Iter->GetCode();
                     AddInputCodeToManualCheck(Iter->GetCode(), _PollingCheck);
@@ -215,9 +215,9 @@ namespace Mezzanine
             /// @brief Remove Items form the internal manual check list
             /// @param Transport A vector of every MetaCode that may need to be removed to the list
             /// @param _PollingCheck If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed.
-            void RemoveMetaCodesToManualCheck(vector<MetaCode> Transport, PollingType _PollingCheck)
+            void RemoveMetaCodesToManualCheck(std::vector<MetaCode> Transport, PollingType _PollingCheck)
             {
-                for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
+                for ( std::vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                     { RemoveInputCodeToManualCheck(Iter->GetCode(), _PollingCheck); }
             }
 
@@ -231,7 +231,7 @@ namespace Mezzanine
 
             /// @internal
             /// @brief This will identify the Joysticks
-            vector<SDL_Joystick*> Joysticks;
+            std::vector<SDL_Joystick*> Joysticks;
 
             /// @internal
             /// @brief Constructor, it only inits pointers to 0

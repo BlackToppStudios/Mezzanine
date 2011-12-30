@@ -47,8 +47,6 @@
 #include "eventbase.h"
 #include "xml.h"
 
-using namespace std;
-
 namespace Mezzanine
 {
 

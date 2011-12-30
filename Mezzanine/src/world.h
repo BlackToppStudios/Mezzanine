@@ -263,8 +263,6 @@ namespace Mezzanine
 }
 
 
-using namespace std;
-
 //Other forward declarations
 //forward Declarations so that we do not need #include "SDL.h"
 class SDL_Surface;
@@ -328,7 +326,7 @@ namespace Mezzanine
             void OneTimeMainLoopInit();
 
             //Settings for Engine Functionality
-            string WindowName;
+            String WindowName;
             Whole TargetFrameLength;
             Whole FrameTime;
 

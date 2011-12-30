@@ -44,8 +44,6 @@
 //There will be an instance of this class in the world.
 ///////////////////////////////////////
 
-using namespace std;
-
 #include "eventbase.h"
 #include "eventcollision.h"
 #include "eventgamewindow.h"

@@ -465,7 +465,7 @@ namespace Mezzanine
     template <class T>
     void SloppyProtoSerialize(const T& Converted, xml::Node& CurrentRoot)
     {
-        stringstream Depot;         //Make a place to store serialized XML
+        std::stringstream Depot;         //Make a place to store serialized XML
         xml::Document Staging;      //Make a place to convert from XML to an xml node
         Depot << Converted;         //Use old conversion tools to convert to serialized XML as if writing to a file
         Staging.Load(Depot);        //Load To the staging area as if loading XML form a file or whatever.

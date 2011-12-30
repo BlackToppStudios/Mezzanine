@@ -56,6 +56,12 @@ namespace Mezzanine
     class DynamicMeshCollisionShape;
     class StaticMeshCollisionShape;
     class CompoundCollisionShape;
+
+    // Used by the scripting language binder to help create bindgings for this class.
+    #ifdef SWIG
+    %template(SingletonCollisionShapeManager) Mezzanine::Singleton<CollisionShapeManager>;
+    #endif
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CollisionShapeManager
     /// @headerfile collisionshapemanager.h

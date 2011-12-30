@@ -41,6 +41,7 @@
 #ifndef _terrainmanager_h
 #define _terrainmanager_h
 
+#include "datatypes.h"
 #include "vector3.h"
 #include "managerbase.h"
 #include "singleton.h"
@@ -52,7 +53,7 @@ namespace Mezzanine
 
     // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
     #ifdef SWIG
-    %template(SingletonTerrainManager) Singleton<TerrainManager>;
+    %template(SingletonTerrainManager) Mezzanine::Singleton<TerrainManager>;
     #endif
 
     ///////////////////////////////////////////////////////////////////////////////

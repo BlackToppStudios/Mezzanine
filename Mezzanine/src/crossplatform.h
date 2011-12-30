@@ -72,8 +72,6 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 
-using namespace std;
-
 // \internal
 // Forward declaration for compatibility
 namespace Ogre

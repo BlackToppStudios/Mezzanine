@@ -190,11 +190,11 @@ namespace Mezzanine
             Transform TransB(BLoc,this->GetOrientation());
             // Log
             std::stringstream logstream;
-            logstream << "Sticky constraint being constructed with parameters:" << endl;
-            logstream << "ActorA offset: " << TransA.Location << endl;
-            logstream << "ActorB offset: " << TransB.Location << endl;
-            logstream << "ActorA rotation: " << TransA.Rotation << endl;
-            logstream << "ActorB rotation: " << TransB.Rotation << endl;
+            logstream << "Sticky constraint being constructed with parameters:" << std::endl;
+            logstream << "ActorA offset: " << TransA.Location << std::endl;
+            logstream << "ActorB offset: " << TransB.Location << std::endl;
+            logstream << "ActorA rotation: " << TransA.Rotation << std::endl;
+            logstream << "ActorB rotation: " << TransB.Rotation << std::endl;
             World::GetWorldPointer()->Log(logstream.str());
             World::GetWorldPointer()->DoMainLoopLogging();
             // Create and configure the constraint.
