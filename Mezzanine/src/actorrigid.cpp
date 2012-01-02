@@ -53,6 +53,7 @@
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internalmeshtools.h.cpp"
 #include "serialization.h"
+#include "mathtool.h"
 
 namespace Mezzanine
 {
@@ -136,7 +137,25 @@ namespace Mezzanine
     }
 
     void ActorRigid::_Update()
-        {  }
+    {
+        StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
+        if(StickyD->CreationQueue.empty())
+            return;
+        for( Whole X = 0 ; X < StickyD->CreationQueue.size() ; ++X )
+        {
+            StickyConstraintConstructionInfo& CurrInfo = StickyD->CreationQueue[X];
+            PhysicsManager::GetSingletonPtr()->RemoveCollision(CurrInfo.Col);
+            StickyConstraint* NewSticky = new StickyConstraint(CurrInfo.ActA,CurrInfo.ActB,CurrInfo.TransA,CurrInfo.TransB);
+            NewSticky->SetUpperLinLimit(0.0);
+            NewSticky->SetUpperAngLimit(0.0);
+            NewSticky->SetLowerLinLimit(0.0);
+            NewSticky->SetLowerAngLimit(0.0);
+            PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            StickyD->StickyConstraints.push_back(NewSticky);
+            CurrInfo.ActA->GetPhysicsSettings()->GetStickyData()->StickyConstraints.push_back(NewSticky);
+        }
+        StickyD->CreationQueue.clear();
+    }
 
     void ActorRigid::_NotifyCollisionState(Collision* Col, const Collision::CollisionState& State)
     {
@@ -161,42 +180,53 @@ namespace Mezzanine
             // Does this sticky constraint already exist for this pair?
             for( Whole X = 0 ; X < StickyD->StickyConstraints.size() ; ++X )
             {
-                SliderConstraint* StickyCon = StickyD->StickyConstraints.at(X);
+                StickyConstraint* StickyCon = StickyD->StickyConstraints.at(X);
                 if( Col->PairsMatch(StickyCon->GetActorA(),StickyCon->GetActorB()) )
+                    return;
+            }
+            // Alternatively, is this sticky constraint about to be constructed?
+            for( Whole Y = 0 ; Y < StickyD->CreationQueue.size() ; ++Y )
+            {
+                StickyConstraintConstructionInfo& CurrInfo = StickyD->CreationQueue.at(Y);
+                if( Col->PairsMatch(CurrInfo.ActA,CurrInfo.ActB) )
                     return;
             }
             // Does this collision have a contact that is actually penetrating?
             // Does this collision have actual force?
             bool NegativeDistFound = false;
             Whole FoundIndex = 0;
+            Real BestMatch = 123000;
             for( Whole X = 0 ; X < Col->GetNumContactPoints() ; ++X )
             {
-                if( Col->GetDistance(X) <= FoundIndex && 0 != Col->GetAppliedImpulse(X) )
+                Real Dist = Col->GetDistance(X);
+                if( MathTool::Fabs(Dist) < BestMatch && Dist <= 0 &&
+                    0 != Col->GetAppliedImpulse(X) )
                 {
                     FoundIndex = X;
+                    BestMatch = MathTool::Fabs(Dist);
                     NegativeDistFound = true;
                     break;
                 }
             }
             if(!NegativeDistFound)
                 return;
+            // Ok, it's passed all the tests, the constraint is being made.
             // Get the actor and it's sticky data.
-            ActorRigid* ActorA = dynamic_cast<ActorRigid*>(UseA ? Col->GetObjectA() : Col->GetObjectB());
-            StickyData* ActorAStickyData = ActorA->GetPhysicsSettings()->GetStickyData();
+            StickyConstraintConstructionInfo NewInfo;
+            NewInfo.ActA = dynamic_cast<ActorRigid*>(UseA ? Col->GetObjectA() : Col->GetObjectB());
+            NewInfo.ActB = this;
+            //StickyData* ActorAStickyData = ActorA->GetPhysicsSettings()->GetStickyData();
             // Calculate the transforms.
             Vector3 ALoc = UseA ? Col->GetLocalALocation(FoundIndex) : Col->GetLocalBLocation(FoundIndex);
             Vector3 BLoc = UseA ? Col->GetLocalBLocation(FoundIndex) : Col->GetLocalALocation(FoundIndex);
-            Transform TransA(ALoc,ActorA->GetOrientation());
-            Transform TransB(BLoc,this->GetOrientation());
-            // Log
-            std::stringstream logstream;
-            logstream << "Sticky constraint being constructed with parameters:" << std::endl;
-            logstream << "ActorA offset: " << TransA.Location << std::endl;
-            logstream << "ActorB offset: " << TransB.Location << std::endl;
-            logstream << "ActorA rotation: " << TransA.Rotation << std::endl;
-            logstream << "ActorB rotation: " << TransB.Rotation << std::endl;
-            World::GetWorldPointer()->Log(logstream.str());
-            World::GetWorldPointer()->DoMainLoopLogging();
+            NewInfo.TransA = Transform(ALoc,NewInfo.ActA->GetOrientation());
+            NewInfo.TransB = Transform(BLoc,this->GetOrientation());
+            NewInfo.Col = Col;
+            StickyD->CreationQueue.push_back(NewInfo);
+
+            /*ObjectPair CollisionPair(ActorA,this);
+            PhysicsManager::GetSingletonPtr()->RemoveCollision(PhysicsManager::GetSingletonPtr()->GetCollision(&CollisionPair));
+
             // Create and configure the constraint.
             StickyConstraint* NewSticky = new StickyConstraint(ActorA,this,TransA,TransB);
             NewSticky->SetUpperLinLimit(0.0);
@@ -206,7 +236,7 @@ namespace Mezzanine
             // Add the constraint to the world and other necessary structures.
             PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
-            ActorAStickyData->StickyConstraints.push_back(NewSticky);
+            ActorAStickyData->StickyConstraints.push_back(NewSticky);// */
         }
     }
 

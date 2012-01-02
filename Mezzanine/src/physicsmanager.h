@@ -53,6 +53,11 @@ class btGhostPairCallback;
 class btBroadphaseInterface;
 class btCollisionConfiguration;
 
+typedef float btScalar;
+
+#include <map>
+#include <vector>
+
 #include "constraint.h"
 #include "datatypes.h"
 #include "managerbase.h"
@@ -177,6 +182,9 @@ namespace Mezzanine
             /// @brief Checks the internal collision data and generates/updates collisions as necessary.
             /// @details This function is automatically called every step.
             void ProcessAllCollisions();
+
+            /// @brief Internal Callback that is called each substep of the simulation.
+            static void InternalTickCallback(btDynamicsWorld* world, btScalar timeStep);
         public:
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
@@ -328,16 +336,16 @@ namespace Mezzanine
             typedef std::map< ObjectPair,Collision* >::const_iterator ConstCollisionIterator;
             /// @brief Get an CollisionIterator to the first Collision.
             /// @return An CollisionIterator to the first Collision.
-            CollisionIterator BeginEntity();
+            CollisionIterator BeginCollision();
             /// @brief Get a CollisionIterator to one past the last Collision.
             /// @return A CollisionIterator to one past the last Collision.
-            CollisionIterator EndEntity();
+            CollisionIterator EndCollision();
             /// @brief Get a ConstCollisionIterator to the first Collision.
             /// @return A ConstCollisionIterator to the first Collision.
-            ConstCollisionIterator BeginEntity() const;
+            ConstCollisionIterator BeginCollision() const;
             /// @brief Get a ConstCollisionIterator to one past the last Collision.
             /// @return A ConstCollisionIterator to one past the last Collision.
-            ConstCollisionIterator EndEntity() const;
+            ConstCollisionIterator EndCollision() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Event Filtering Management

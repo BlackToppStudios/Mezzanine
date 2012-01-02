@@ -2,6 +2,7 @@
 #define _throwablegenerator_cpp
 
 #include "throwablegenerator.h"
+#include "catchapp.h"
 #include <cassert>
 
 ThrowableGenerator* ThrowableGenerator::TheRealThrowableGenerator = 0;
@@ -29,16 +30,18 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     /// Also note that some info, such as the mass is something that can and will be changed in some levels from
     /// the base value, all that we need to provide here is that base value.
     ThrowableData* ClayData = new ThrowableData();
+    ClayData->ScoreValue = 10;
     ClayData->ThrowableCount = 0;
     ClayData->ThrowableName = "Clay";
     ClayData->MeshName = "clay.mesh";
     ClayData->GroupName = "Common";
     ClayData->Mass = 2.25;//1.74
     ClayData->Friction = 0.6;
-    ClayData->Restitution = 0.1;
+    ClayData->Restitution = 0.15;
     Throwables.push_back(ClayData);
 
     ThrowableData* GoldData = new ThrowableData();
+    GoldData->ScoreValue = 100;
     GoldData->ThrowableCount = 0;
     GoldData->ThrowableName = "Gold";
     GoldData->MeshName = "gold.mesh";
@@ -49,6 +52,7 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     Throwables.push_back(GoldData);
 
     ThrowableData* LeadData = new ThrowableData();
+    LeadData->ScoreValue = 30;
     LeadData->ThrowableCount = 0;
     LeadData->ThrowableName = "Lead";
     LeadData->MeshName = "lead.mesh";
@@ -59,6 +63,7 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     Throwables.push_back(LeadData);
 
     ThrowableData* PyriteData = new ThrowableData();
+    PyriteData->ScoreValue = 50;
     PyriteData->ThrowableCount = 0;
     PyriteData->ThrowableName = "Pyrite";
     PyriteData->MeshName = "pyrite.mesh";
@@ -69,6 +74,7 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     Throwables.push_back(PyriteData);
 
     ThrowableData* RubberData = new ThrowableData();
+    RubberData->ScoreValue = 30;
     RubberData->ThrowableCount = 0;
     RubberData->ThrowableName = "Rubber";
     RubberData->MeshName = "rubber.mesh";
@@ -79,16 +85,18 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     Throwables.push_back(RubberData);
 
     ThrowableData* StyrofoamData = new ThrowableData();
+    StyrofoamData->ScoreValue = 10;
     StyrofoamData->ThrowableCount = 0;
     StyrofoamData->ThrowableName = "Styrofoam";
     StyrofoamData->MeshName = "styrofoam.mesh";
     StyrofoamData->GroupName = "Common";
     StyrofoamData->Mass = 0.15;//0.1
     StyrofoamData->Friction = 0.55;
-    StyrofoamData->Restitution = 0.1;
+    StyrofoamData->Restitution = 0.2;
     Throwables.push_back(StyrofoamData);
 
     ThrowableData* UraniumData = new ThrowableData();
+    UraniumData->ScoreValue = 100;
     UraniumData->ThrowableCount = 0;
     UraniumData->ThrowableName = "Uranium";
     UraniumData->MeshName = "uranium.mesh";
@@ -99,6 +107,7 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     Throwables.push_back(UraniumData);
 
     ThrowableData* WoodData = new ThrowableData();
+    WoodData->ScoreValue = 20;
     WoodData->ThrowableCount = 0;
     WoodData->ThrowableName = "Wood";
     WoodData->MeshName = "woodpin.mesh";
@@ -107,6 +116,12 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     WoodData->Friction = 0.3;// 0.25 - 0.5
     WoodData->Restitution = 0.15;
     Throwables.push_back(WoodData);
+
+    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
+    for( Whole X = 0 ; X < Throwables.size() ; ++X )
+    {
+        Scorer->SetThrowableScore(Throwables[X]->ThrowableName,Throwables[X]->ScoreValue);
+    }
 }
 
 ThrowableData* ThrowableGenerator::GetThrowableData(const String& Throwable)

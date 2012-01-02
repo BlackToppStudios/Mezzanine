@@ -488,10 +488,22 @@ void CatchApp::InitMusic()
     Audio::Sound* Track2 = AudioMan->CreateMusicSound("Track2","Track2.ogg",CommonGroup);
     Audio::Sound* Track3 = AudioMan->CreateMusicSound("Track3","Track3.ogg",CommonGroup);
     Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track4","Track4.ogg",CommonGroup);
+    /*Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track5","Track4.ogg",CommonGroup);
+    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track6","Track4.ogg",CommonGroup);
+    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track7","Track4.ogg",CommonGroup);
+    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track8","Track4.ogg",CommonGroup);
+    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track9","Track4.ogg",CommonGroup);
+    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track10","Track4.ogg",CommonGroup);// */
     MPlayer->GetPlaylist()->AddSound(Track1);
     MPlayer->GetPlaylist()->AddSound(Track2);
     MPlayer->GetPlaylist()->AddSound(Track3);
     MPlayer->GetPlaylist()->AddSound(Track4);
+    /*MPlayer->GetPlaylist()->AddSound(Track5);
+    MPlayer->GetPlaylist()->AddSound(Track6);
+    MPlayer->GetPlaylist()->AddSound(Track7);
+    MPlayer->GetPlaylist()->AddSound(Track8);
+    MPlayer->GetPlaylist()->AddSound(Track9);
+    MPlayer->GetPlaylist()->AddSound(Track10);// */
     MPlayer->SetEOPRepeat(true);
     MPlayer->SetEOPShuffle(true);
     //MPlayer->SwitchToSong(Track4);
@@ -722,11 +734,6 @@ int CatchApp::GetCatchin()
     ConfigResources();
 	CreateLoadingScreen();
 	ChangeState(CatchApp::Catch_Loading);
-
-    /// @todo This needs to be updated to properly deserialize the values.
-    xml::Node DummyNode;
-	Scorer->PopulateScoreValues(DummyNode);
-    Scorer->PopulateShopValues(DummyNode);
 
     //Setup the Music
     InitMusic();
@@ -1124,6 +1131,16 @@ void CatchApp::AddThrowable(ActorBase* Throwable)
 LevelLoader* CatchApp::GetLevelLoader()
 {
     return Loader;
+}
+
+LevelScorer* CatchApp::GetLevelScorer()
+{
+    return Scorer;
+}
+
+ItemShop* CatchApp::GetItemShop()
+{
+    return Shop;
 }
 
 SimpleTimer* CatchApp::GetLevelTimer()

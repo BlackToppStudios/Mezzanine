@@ -3,13 +3,14 @@
 
 #include "leveltriggers.h"
 
-BNS_Fan::BNS_Fan(const String& name, HingeConstraint* Motor, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind)
+BNS_Fan::BNS_Fan(const String& name, HingeConstraint* Motor, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind, ParticleEffect* WindClutter)
     : WorldTrigger(name)
 {
     this->Button = Button;
     this->Wind = Wind;
     this->Fan = Fan;
     this->Motor = Motor;
+    this->WindClutter = WindClutter;
 }
 
 BNS_Fan::~BNS_Fan()
@@ -24,6 +25,7 @@ bool BNS_Fan::ConditionsAreMet()
         return true;
     }else{
         Motor->EnableMotor(false,0.0,0.0);
+        WindClutter->RemoveFromWorld();
         Wind->SetFieldStrength(0);
         return false;
     }
@@ -36,6 +38,7 @@ void BNS_Fan::ApplyTrigger()
     // So we have to multiply the rotation by ~12 to get the proper force we want to apply for the motor.
     Real FieldStrength = (-RotationSpeed) * 12.0;
     Wind->SetFieldStrength(FieldStrength);
+    if(FieldStrength > 60.0) WindClutter->AddToWorld();
 
     /*std::stringstream stream;
     stream << "Fan rotation is: " << RotationSpeed << ".";

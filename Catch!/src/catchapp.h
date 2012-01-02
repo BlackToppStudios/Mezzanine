@@ -4,6 +4,7 @@
 #include "levelzones.h"
 #include "levelloader.h"
 #include "levelscorer.h"
+#include "itemshop.h"
 #include <mezzanine.h>
 
 using namespace Mezzanine;
@@ -25,6 +26,7 @@ class CatchApp
         World* TheWorld;
         LevelLoader* Loader;
         LevelScorer* Scorer;
+        ItemShop* Shop;
         ActorBase* LastActorThrown;
         Whole CurrScore;
         CatchApp::GameState CurrentState;
@@ -69,6 +71,8 @@ class CatchApp
         void RegisterStartArea(StartArea* Start);
         void AddThrowable(ActorBase* Throwable);
         LevelLoader* GetLevelLoader();
+        LevelScorer* GetLevelScorer();
+        ItemShop* GetItemShop();
         SimpleTimer* GetLevelTimer();
         SimpleTimer* GetEndTimer();
 };

@@ -154,6 +154,14 @@ namespace Mezzanine
         CharacterActors.clear();
     }
 
+    void ActorManager::UpdateAllActors()
+    {
+        for( ActorManager::ActorIterator ActIt = Actors.begin() ; ActIt != Actors.end() ; ++ActIt )
+        {
+            (*ActIt)->_Update();
+        }
+    }
+
     //Inherited From ManagerBase
     void ActorManager::Initialize()
     {
@@ -161,6 +169,7 @@ namespace Mezzanine
 
     void ActorManager::DoMainLoopItems()
     {
+        UpdateAllActors();
     }
 
     ManagerBase::ManagerTypeName ActorManager::GetType() const

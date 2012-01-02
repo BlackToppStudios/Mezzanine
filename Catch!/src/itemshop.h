@@ -12,6 +12,7 @@ class ItemShop
     protected:
         Entity* SelectionSphere;
         std::vector<ItemShopItem*> Items;
+        //std::map<String,Whole> ShopCostValues;
     public:
         ItemShop();
         ~ItemShop();
