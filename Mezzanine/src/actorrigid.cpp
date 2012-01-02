@@ -137,53 +137,31 @@ namespace Mezzanine
     }
 
     void ActorRigid::_Update()
-        {  }
+    {
+        StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
+        if(StickyD->CreationQueue.empty())
+            return;
+        for( Whole X = 0 ; X < StickyD->CreationQueue.size() ; ++X )
+        {
+            StickyConstraintConstructionInfo& CurrInfo = StickyD->CreationQueue[X];
+            PhysicsManager::GetSingletonPtr()->RemoveCollision(CurrInfo.Col);
+            StickyConstraint* NewSticky = new StickyConstraint(CurrInfo.ActA,CurrInfo.ActB,CurrInfo.TransA,CurrInfo.TransB);
+            NewSticky->SetUpperLinLimit(0.0);
+            NewSticky->SetUpperAngLimit(0.0);
+            NewSticky->SetLowerLinLimit(0.0);
+            NewSticky->SetLowerAngLimit(0.0);
+            PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            StickyD->StickyConstraints.push_back(NewSticky);
+            CurrInfo.ActA->GetPhysicsSettings()->GetStickyData()->StickyConstraints.push_back(NewSticky);
+        }
+        StickyD->CreationQueue.clear();
+    }
 
     void ActorRigid::_NotifyCollisionState(Collision* Col, const Collision::CollisionState& State)
     {
         WorldObject::_NotifyCollisionState(Col,State);
         StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
         bool UseA = Col->GetObjectA() != this;
-
-        for( Whole X = 0 ; X < StickyD->StickyConstraints.size() ; ++X )
-        {
-            StickyConstraint* StickyCon = StickyD->StickyConstraints.at(X);
-
-            std::stringstream logstream1;
-            logstream1 << "Invoking btRigidBody::checkCollideWithOverride on Actor \"" << StickyCon->GetActorA()->GetName() << "\" with Actor \"" << StickyCon->GetActorB()->GetName() << "\" as the arguement.";
-            World::GetWorldPointer()->Log(logstream1.str());
-            World::GetWorldPointer()->DoMainLoopLogging();
-
-            if( StickyCon->GetActorA()->GetBulletObject()->checkCollideWithOverride(StickyCon->GetActorB()->GetBulletObject()) )
-            {
-                World::GetWorldPointer()->Log("btRigidBody::checkCollideWithOverride returned true.");
-                World::GetWorldPointer()->DoMainLoopLogging();
-            }
-            else
-            {
-                World::GetWorldPointer()->Log("btRigidBody::checkCollideWithOverride returned false.");
-                World::GetWorldPointer()->DoMainLoopLogging();
-            }
-
-            btDispatcher* BulletDispatch = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->getDispatcher();
-
-            std::stringstream logstream2;
-            logstream2 << "Invoking btDispatcher::needsCollision with Actors \"" << StickyCon->GetActorA()->GetName() << "\" and \"" << StickyCon->GetActorB()->GetName() << "\" as the arguements.";
-            World::GetWorldPointer()->Log(logstream2.str());
-            World::GetWorldPointer()->DoMainLoopLogging();
-
-            if( BulletDispatch->needsCollision(StickyCon->GetActorA()->GetBulletObject(),StickyCon->GetActorB()->GetBulletObject()) )
-            {
-                World::GetWorldPointer()->Log("btDispatcher::needsCollision returned true.");
-                World::GetWorldPointer()->DoMainLoopLogging();
-            }
-            else
-            {
-                World::GetWorldPointer()->Log("btDispatcher::needsCollision returned false.");
-                World::GetWorldPointer()->DoMainLoopLogging();
-            }
-        }
-
         // We don't care if sticky behavior isn't set or if the collision has ended.
         // If it's ended, then we've probably already done our logic.
         if(0 == StickyD->MaxNumContacts || Collision::Col_End == State)
@@ -206,6 +184,13 @@ namespace Mezzanine
                 if( Col->PairsMatch(StickyCon->GetActorA(),StickyCon->GetActorB()) )
                     return;
             }
+            // Alternatively, is this sticky constraint about to be constructed?
+            for( Whole Y = 0 ; Y < StickyD->CreationQueue.size() ; ++Y )
+            {
+                StickyConstraintConstructionInfo& CurrInfo = StickyD->CreationQueue.at(Y);
+                if( Col->PairsMatch(CurrInfo.ActA,CurrInfo.ActB) )
+                    return;
+            }
             // Does this collision have a contact that is actually penetrating?
             // Does this collision have actual force?
             bool NegativeDistFound = false;
@@ -225,14 +210,22 @@ namespace Mezzanine
             }
             if(!NegativeDistFound)
                 return;
+            // Ok, it's passed all the tests, the constraint is being made.
             // Get the actor and it's sticky data.
-            ActorRigid* ActorA = dynamic_cast<ActorRigid*>(UseA ? Col->GetObjectA() : Col->GetObjectB());
-            StickyData* ActorAStickyData = ActorA->GetPhysicsSettings()->GetStickyData();
+            StickyConstraintConstructionInfo NewInfo;
+            NewInfo.ActA = dynamic_cast<ActorRigid*>(UseA ? Col->GetObjectA() : Col->GetObjectB());
+            NewInfo.ActB = this;
+            //StickyData* ActorAStickyData = ActorA->GetPhysicsSettings()->GetStickyData();
             // Calculate the transforms.
             Vector3 ALoc = UseA ? Col->GetLocalALocation(FoundIndex) : Col->GetLocalBLocation(FoundIndex);
             Vector3 BLoc = UseA ? Col->GetLocalBLocation(FoundIndex) : Col->GetLocalALocation(FoundIndex);
-            Transform TransA(ALoc,ActorA->GetOrientation());
-            Transform TransB(BLoc,this->GetOrientation());
+            NewInfo.TransA = Transform(ALoc,NewInfo.ActA->GetOrientation());
+            NewInfo.TransB = Transform(BLoc,this->GetOrientation());
+            NewInfo.Col = Col;
+            StickyD->CreationQueue.push_back(NewInfo);
+
+            /*ObjectPair CollisionPair(ActorA,this);
+            PhysicsManager::GetSingletonPtr()->RemoveCollision(PhysicsManager::GetSingletonPtr()->GetCollision(&CollisionPair));
             // Create and configure the constraint.
             StickyConstraint* NewSticky = new StickyConstraint(ActorA,this,TransA,TransB);
             NewSticky->SetUpperLinLimit(0.0);
@@ -240,9 +233,9 @@ namespace Mezzanine
             NewSticky->SetLowerLinLimit(0.0);
             NewSticky->SetLowerAngLimit(0.0);
             // Add the constraint to the world and other necessary structures.
-            PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),false);
+            PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
-            ActorAStickyData->StickyConstraints.push_back(NewSticky);
+            ActorAStickyData->StickyConstraints.push_back(NewSticky);// */
         }
     }
 

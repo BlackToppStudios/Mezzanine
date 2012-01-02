@@ -238,6 +238,7 @@ namespace Mezzanine
             delete (*SCit);
         }
         StickyContacts->StickyConstraints.clear();
+        StickyContacts->CreationQueue.clear();
     }
 
     StickyData* ActorRigidPhysicsSettings::GetStickyData() const

@@ -378,6 +378,7 @@ namespace Mezzanine
                         break;
                     }
                 }
+                btCollisionDispatcher::freeCollisionAlgorithm(ptr);
             }
             AlgoList& GetAlgoCreationQueue()
             {
@@ -805,10 +806,15 @@ namespace Mezzanine
     void PhysicsManager::RemoveCollision(Collision* Col)
     {
         //((CollisionDispatcher*)BulletDispatcher)->releaseManifoldManual(Col->Manifold);
+        btBroadphasePair* btPair = BulletBroadphase->getOverlappingPairCache()->findPair(
+            Col->ObjectA->_GetBasePhysicsObject()->getBroadphaseHandle(),
+            Col->ObjectB->_GetBasePhysicsObject()->getBroadphaseHandle());
         BulletBroadphase->getOverlappingPairCache()->removeOverlappingPair(
             Col->ObjectA->_GetBasePhysicsObject()->getBroadphaseHandle(),
             Col->ObjectB->_GetBasePhysicsObject()->getBroadphaseHandle(),
             BulletDispatcher);// */
+        BulletBroadphase->getOverlappingPairCache()->cleanOverlappingPair(*btPair,BulletDispatcher);
+        delete btPair;
     }
 
     void PhysicsManager::RemoveCollisionsContainingObject(WorldObject* Object)
@@ -842,6 +848,26 @@ namespace Mezzanine
             //BulletDispatcher->releaseManifold(ToBeDestroyed->Manifold);
         }
         Collisions.clear();
+    }
+
+    PhysicsManager::CollisionIterator PhysicsManager::BeginCollision()
+    {
+        return Collisions.begin();
+    }
+
+    PhysicsManager::CollisionIterator PhysicsManager::EndCollision()
+    {
+        return Collisions.end();
+    }
+
+    PhysicsManager::ConstCollisionIterator PhysicsManager::BeginCollision() const
+    {
+        return Collisions.begin();
+    }
+
+    PhysicsManager::ConstCollisionIterator PhysicsManager::EndCollision() const
+    {
+        return Collisions.end();
     }
 
     void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)

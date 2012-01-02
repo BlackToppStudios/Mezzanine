@@ -336,16 +336,16 @@ namespace Mezzanine
             typedef std::map< ObjectPair,Collision* >::const_iterator ConstCollisionIterator;
             /// @brief Get an CollisionIterator to the first Collision.
             /// @return An CollisionIterator to the first Collision.
-            CollisionIterator BeginEntity();
+            CollisionIterator BeginCollision();
             /// @brief Get a CollisionIterator to one past the last Collision.
             /// @return A CollisionIterator to one past the last Collision.
-            CollisionIterator EndEntity();
+            CollisionIterator EndCollision();
             /// @brief Get a ConstCollisionIterator to the first Collision.
             /// @return A ConstCollisionIterator to the first Collision.
-            ConstCollisionIterator BeginEntity() const;
+            ConstCollisionIterator BeginCollision() const;
             /// @brief Get a ConstCollisionIterator to one past the last Collision.
             /// @return A ConstCollisionIterator to one past the last Collision.
-            ConstCollisionIterator EndEntity() const;
+            ConstCollisionIterator EndCollision() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Event Filtering Management

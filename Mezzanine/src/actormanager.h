@@ -82,6 +82,15 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~ActorManager();
 
+            typedef std::vector<ActorBase*>::iterator ActorIterator;
+            typedef std::vector<ActorBase*>::const_iterator ConstActorIterator;
+            typedef std::vector<ActorRigid*>::iterator ActorRigidIterator;
+            typedef std::vector<ActorRigid*>::const_iterator ConstActorRigidIterator;
+            typedef std::vector<ActorSoft*>::iterator ActorSoftIterator;
+            typedef std::vector<ActorSoft*>::const_iterator ConstActorSoftIterator;
+            typedef std::vector<ActorCharacter*>::iterator ActorCharacterIterator;
+            typedef std::vector<ActorCharacter*>::const_iterator ConstActorCharacterIterator;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Managing all actors
 
@@ -139,6 +148,9 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
+
+            /// @brief Calls to update every actor currently stored in the manager.
+            virtual void UpdateAllActors();
 
             //Inherited from ManagerBase
             /// @brief Empty initializer that has been implemented from ManagerBase.

@@ -40,7 +40,7 @@
 #ifndef _actorphysicssettings_h
 #define _actorphysicssettings_h
 
-#include "vector3.h"
+#include "transform.h"
 #include "enumerations.h"
 #include "worldobjectphysicssettings.h"
 
@@ -65,7 +65,32 @@ namespace Mezzanine
     class SliderConstraint;
 
     typedef SliderConstraint StickyConstraint;
-    typedef std::pair<Collision*,StickyConstraint*> StickyDataPair;
+    /// @struct StickyConstraintConstructionInfo
+    /// @headerfile actorphysicssettings.h
+    /// @brief Simple struct for holding information on how sticky constraints should be constructed.
+    struct StickyConstraintConstructionInfo
+    {
+        Transform TransA;
+        Transform TransB;
+        Collision* Col;
+        ActorRigid* ActA;
+        ActorRigid* ActB;
+
+        StickyConstraintConstructionInfo()
+        {
+            this->Col = NULL;
+            this->ActA = NULL;
+            this->ActB = NULL;
+        }
+        StickyConstraintConstructionInfo(const StickyConstraintConstructionInfo& Other)
+        {
+            this->TransA = Other.TransA;
+            this->TransB = Other.TransB;
+            this->Col = Other.Col;
+            this->ActA = Other.ActA;
+            this->ActB = Other.ActB;
+        }
+    };//stickyconstraintconstructioninfo
     /// @struct StickyData
     /// @headerfile actorphysicssettings.h
     /// @brief This is a basic class for storing the data related to the sticky behavior available to actorrigid's.
@@ -73,6 +98,7 @@ namespace Mezzanine
     {
         StickyData() : MaxNumContacts(0) {};
         std::vector<StickyConstraint*> StickyConstraints;
+        std::vector<StickyConstraintConstructionInfo> CreationQueue;
         Whole MaxNumContacts;
     };//stickydata
 
