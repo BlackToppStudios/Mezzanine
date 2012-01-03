@@ -227,6 +227,15 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void World::PauseWorld(bool Pause)
+    {
+        PhysicsManager::GetSingletonPtr()->PauseSimulation(Pause);
+        SceneManager::GetSingletonPtr()->PauseAllParticles(Pause);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Logging
 
     // anonymous namespace for function pointer for logging commit mess

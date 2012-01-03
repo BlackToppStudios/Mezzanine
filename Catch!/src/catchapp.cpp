@@ -236,6 +236,7 @@ void CatchApp::MakeGUI()
     //Build the Game Screen
     //Build the HUD layer
     Real GSTextLineHeight = 0.04;
+    Real GSLargeTextLineHeight = 0.07;
     UI::Caption* Timer = HUD->CreateCaption( "GS_Timer", UI::RenderableRect(Vector2(0.8897, 0.006), Vector2(0.1045, 0.065), true), GSTextLineHeight, "0:00");
     Timer->SetBackgroundSprite("GSTimerArea");
     UI::Rectangle* TimerLogo = HUD->CreateRectangle( UI::RenderableRect(Vector2(0.8355, 0.006), Vector2(0.0542, 0.065), true));
@@ -435,14 +436,20 @@ void CatchApp::MakeGUI()
     //End of Stats Layer
 
     //Build the Report Layer
-    UI::Window* LevelReport = Report->CreateWidgetWindow("LevelReport", UI::RenderableRect(Vector2(0.2, 0.2), Vector2(0.6, 0.6), true));
-    LevelReport->GetWindowBack()->SetBackgroundColour(Gray);
-    //TempCaption
-    UI::Caption* TempCapt = LevelReport->CreateCaption("GS_TempWarning", UI::RenderableRect(Vector2(0.25, 0.3), Vector2(0.5, 0.3), true), Whole(18), "Future spot of level reports.");
-    TempCapt->SetBackgroundColour(Transparent);
-    UI::TextButton* FinishButton = LevelReport->CreateTextButton("GS_Finish", UI::RenderableRect(Vector2(0.42, 0.66), Vector2(0.16, 0.08), true), Whole(14), "Finish");
-    FinishButton->SetButtonCallback(new GSMMReturn());
-    FinishButton->SetBackgroundColour(TransBlack);
+    UI::Window* LevelReport = Report->CreateWidgetWindow("LevelReport", UI::RenderableRect(Vector2(0.18, 0.18), Vector2(0.64, 0.64), true));
+    LevelReport->GetWindowBack()->SetBackgroundSprite("GSOptionsBackground");
+
+    UI::Caption* ScoreDisplay = LevelReport->CreateCaption("GS_ScoreDisplay",UI::RenderableRect(Vector2(0.39, 0.22), Vector2(0.22, 0.08), true),GSLargeTextLineHeight,"0000");
+    ScoreDisplay->SetBackgroundSprite("GSAppExitButton");
+
+    UI::ScrolledCellGrid* ScoreBreakdown = LevelReport->CreateScrolledCellGrid("GS_ScoreBreakdown",UI::RenderableRect(Vector2(0.25, 0.32), Vector2(0.5, 0.36), true), 0.02, UI::SB_Separate);
+    ScoreBreakdown->GetGridBack()->SetBackgroundColour(TransBlack);
+    //ScoreBreakdown->GetGridBack()->SetBackgroundSprite("");
+
+    UI::TextButton* GSFinishButton = LevelReport->CreateTextButton("GS_Finish", UI::RenderableRect(Vector2(0.42, 0.70), Vector2(0.16, 0.08), true), Whole(14), "Finish");
+    GSFinishButton->SetBackgroundSprite("GSStoreButton");
+    GSFinishButton->SetHoveredSprite("GSStoreHoveredButton");
+    GSFinishButton->SetButtonCallback(new GSMMReturn());
     Report->Hide();
     //End of Report Layer
     //End of Game Screen
@@ -468,8 +475,8 @@ void CatchApp::ConfigResources()
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     String CommonGroup("Common");
     String datadir = "Data/";
-    //ResourceMan->AddResourceLocation(datadir, "FileSystem", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"Common.zip", "Zip", CommonGroup, false);
+    ResourceMan->AddResourceLocation(datadir+"UI.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"AdvThrowables.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"Music.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation("Previews/", "FileSystem", CommonGroup, false);
@@ -693,7 +700,8 @@ void CatchApp::UnloadLevel()
     EndTimer = NULL;
     UIMan->GetLayer("ReportLayer")->Hide();
     UIMan->GetLayer("MenuLayer")->Hide();
-    PhysMan->PauseSimulation(false);
+    World::GetWorldPointer()->PauseWorld(false);
+    //PhysMan->PauseSimulation(false);
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()

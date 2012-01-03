@@ -509,7 +509,7 @@ namespace Mezzanine
         this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
         this->BulletDynamicsWorld->getDispatchInfo().m_useContinuous = true;
         //this->BulletDynamicsWorld->getSolverInfo().m_splitImpulse = true;
-        this->BulletDynamicsWorld->getSolverInfo().m_numIterations = 20;
+        //this->BulletDynamicsWorld->getSolverInfo().m_numIterations = 20;
         //this->BulletDynamicsWorld->getSolverInfo().m_globalCfm = 0.15;
         //this->BulletDynamicsWorld->getSolverInfo().m_erp = 0.4;
         this->SetGravity(Info.Gravity);

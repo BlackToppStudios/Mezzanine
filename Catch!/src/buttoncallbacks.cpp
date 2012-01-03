@@ -45,7 +45,8 @@ void GSMenu::DoActivateItems()
     SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
     layer->SetVisible(!layer->IsVisible());
-    PhysMan->PauseSimulation(!PhysMan->SimulationIsPaused());
+    World::GetWorldPointer()->PauseWorld(!PhysMan->SimulationIsPaused());
+    //PhysMan->PauseSimulation(!PhysMan->SimulationIsPaused());
     if(LevelTimer->IsStopped()) LevelTimer->Start();
     else LevelTimer->Stop();
     if(EndTimer)
@@ -77,7 +78,8 @@ void GSReturn::DoActivateItems()
     PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
     SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
     SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
-    if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
+    //if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
+    if(PhysMan->SimulationIsPaused()) World::GetWorldPointer()->PauseWorld(false);
     if(LevelTimer->IsStopped()) LevelTimer->Start();
     if(EndTimer && EndTimer->IsStopped()) EndTimer->Start();
 }
@@ -104,7 +106,8 @@ void GSISReturn::DoActivateItems()
     PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
     SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
     SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
-    if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
+    //if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
+    if(PhysMan->SimulationIsPaused()) World::GetWorldPointer()->PauseWorld(false);
     if(LevelTimer->IsStopped()) LevelTimer->Start();
     if(EndTimer && EndTimer->IsStopped()) EndTimer->Start();
 }

@@ -63,17 +63,18 @@ void LevelScorer::CalculateCurrentScore(Whole& Score)
         }
     }
 
-    Whole UpdatedScore = 0;
+    NormalScore = 0;
+    BonusScore = 0;
     for( std::map<ActorBase*,ScoreAreaCache>::iterator SCit = ScoreCache.begin() ; SCit != ScoreCache.end() ;  )
     {
         if( (*SCit).second.Bonus )
         {
-            UpdatedScore += (GetItemScoreValue( (*SCit).first ) * (*SCit).second.Bonus->GetScoreMultiplier() );
+            BonusScore += (GetItemScoreValue( (*SCit).first ) * (*SCit).second.Bonus->GetScoreMultiplier() );
             ++SCit;
         }
         else if( (*SCit).second.Normal )
         {
-            UpdatedScore += GetItemScoreValue( (*SCit).first );
+            NormalScore += GetItemScoreValue( (*SCit).first );
             ++SCit;
         }
         else
@@ -84,7 +85,7 @@ void LevelScorer::CalculateCurrentScore(Whole& Score)
         }
     }
 
-    Score = UpdatedScore;
+    Score = NormalScore + BonusScore;
 }
 
 void LevelScorer::CalculateFinalScore(Whole& FinalScore)

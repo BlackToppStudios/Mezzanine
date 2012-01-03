@@ -81,11 +81,16 @@ namespace Mezzanine
             String Template;
 
             /// @internal
+            /// @brief Stores the current speed factor of this particle system for when it gets paused.
+            Real SpeedCache;
+
+            /// @internal
             /// @brief Functionally, this constructs the whole ParticleEffect
             ParticleEffectInternalData(SceneManager* manager, Ogre::ParticleSystem* System)
             {
                 Template = "";
-                OgreParticle=System;
+                SpeedCache = 0.0;
+                OgreParticle = System;
                 this->Manager = manager;
                 Ogre::SceneManager* OgreManager = Manager->GetGraphicsWorldPointer();
                 OgreNode = OgreManager->createSceneNode();
@@ -244,6 +249,32 @@ namespace Mezzanine
 
     bool ParticleEffect::IsInWorld() const
         { return this->Pie->OgreParticle->getParentSceneNode() == this->Pie->OgreNode; }
+
+    void ParticleEffect::SetSpeedFactor(const Real& Factor)
+    {
+        if(this->Pie->SpeedCache) this->Pie->SpeedCache = Factor;
+        else this->Pie->OgreParticle->setSpeedFactor(Factor);
+    }
+
+    Real ParticleEffect::GetSpeedFactor()
+    {
+        if(this->Pie->SpeedCache) return this->Pie->SpeedCache;
+        else return this->Pie->OgreParticle->getSpeedFactor();
+    }
+
+    void ParticleEffect::PauseParticleEffect(bool Pause)
+    {
+        if(Pause && !this->Pie->SpeedCache)
+        {
+            this->Pie->SpeedCache = this->Pie->OgreParticle->getSpeedFactor();
+            this->Pie->OgreParticle->setSpeedFactor(0.0);
+        }
+        else if(!Pause && this->Pie->SpeedCache)
+        {
+            this->Pie->OgreParticle->setSpeedFactor(this->Pie->SpeedCache);
+            this->Pie->SpeedCache = 0.0;
+        }
+    }
 
     ConstString& ParticleEffect::GetTemplate() const
         { return this->Pie->Template; }

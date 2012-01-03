@@ -449,7 +449,7 @@ namespace Mezzanine
     {
         if(Particles.empty())
             return 0;
-        for( std::vector<ParticleEffect*>::const_iterator it = Particles.begin() ; it != Particles.end() ; it++ )
+        for( SceneManager::ConstParticleEffectIterator it = Particles.begin() ; it != Particles.end() ; it++ )
         {
             if( Name == (*it)->GetName() )
             {
@@ -473,7 +473,7 @@ namespace Mezzanine
     {
         if(Particles.empty())
             return;
-        for( std::vector<ParticleEffect*>::iterator it = Particles.begin() ; it != Particles.end() ; it++ )
+        for( SceneManager::ParticleEffectIterator it = Particles.begin() ; it != Particles.end() ; it++ )
         {
             if( ToBeDestroyed == (*it) )
             {
@@ -489,6 +489,12 @@ namespace Mezzanine
         for( Whole X = 0 ; X < Particles.size() ; X++ )
             delete Particles[X];
         Particles.clear();
+    }
+
+    void SceneManager::PauseAllParticles(bool Pause)
+    {
+        for( SceneManager::ParticleEffectIterator it = Particles.begin() ; it != Particles.end() ; it++ )
+            (*it)->PauseParticleEffect(Pause);
     }
 
     SceneManager::ParticleEffectIterator SceneManager::BeginParticleEffect()

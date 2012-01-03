@@ -21,6 +21,8 @@ class LevelScorer
     protected:
         World* TheWorld;
         CatchApp* GameApp;
+        Whole NormalScore;
+        Whole BonusScore;
         std::map<String,Whole> ItemScoreValues;
         std::vector<ScoreArea*> ScoreAreas;
         std::vector<ScoreArea*> BonusScoreAreas;
