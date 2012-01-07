@@ -68,17 +68,15 @@ namespace Mezzanine
     /// @struct StickyConstraintConstructionInfo
     /// @headerfile actorphysicssettings.h
     /// @brief Simple struct for holding information on how sticky constraints should be constructed.
-    struct StickyConstraintConstructionInfo
+    struct MEZZ_LIB StickyConstraintConstructionInfo
     {
         Transform TransA;
         Transform TransB;
-        Collision* Col;
         ActorRigid* ActA;
         ActorRigid* ActB;
 
         StickyConstraintConstructionInfo()
         {
-            this->Col = NULL;
             this->ActA = NULL;
             this->ActB = NULL;
         }
@@ -86,7 +84,6 @@ namespace Mezzanine
         {
             this->TransA = Other.TransA;
             this->TransB = Other.TransB;
-            this->Col = Other.Col;
             this->ActA = Other.ActA;
             this->ActB = Other.ActB;
         }
@@ -94,7 +91,7 @@ namespace Mezzanine
     /// @struct StickyData
     /// @headerfile actorphysicssettings.h
     /// @brief This is a basic class for storing the data related to the sticky behavior available to actorrigid's.
-    struct StickyData
+    struct MEZZ_LIB StickyData
     {
         StickyData() : MaxNumContacts(0) {};
         std::vector<StickyConstraint*> StickyConstraints;

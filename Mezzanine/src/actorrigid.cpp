@@ -144,7 +144,9 @@ namespace Mezzanine
         for( Whole X = 0 ; X < StickyD->CreationQueue.size() ; ++X )
         {
             StickyConstraintConstructionInfo& CurrInfo = StickyD->CreationQueue[X];
-            PhysicsManager::GetSingletonPtr()->RemoveCollision(CurrInfo.Col);
+            ObjectPair NewPair(CurrInfo.ActA,CurrInfo.ActB);
+            Collision* Col = PhysicsManager::GetSingletonPtr()->GetCollision(&NewPair);
+            if(Col) PhysicsManager::GetSingletonPtr()->RemoveCollision(Col);
             StickyConstraint* NewSticky = new StickyConstraint(CurrInfo.ActA,CurrInfo.ActB,CurrInfo.TransA,CurrInfo.TransB);
             NewSticky->SetUpperLinLimit(0.0);
             NewSticky->SetUpperAngLimit(0.0);
@@ -221,7 +223,6 @@ namespace Mezzanine
             Vector3 BLoc = UseA ? Col->GetLocalBLocation(FoundIndex) : Col->GetLocalALocation(FoundIndex);
             NewInfo.TransA = Transform(ALoc,NewInfo.ActA->GetOrientation());
             NewInfo.TransB = Transform(BLoc,this->GetOrientation());
-            NewInfo.Col = Col;
             StickyD->CreationQueue.push_back(NewInfo);
 
             /*ObjectPair CollisionPair(ActorA,this);

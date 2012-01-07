@@ -55,11 +55,6 @@ void ItemShopCell::SetActualSize(const Vector2& Size)
     ItemCaption->SetActualSize(Size);
 }
 
-void ItemShopCell::DoSelectedItems()
-{
-
-}
-
 void ItemShopCell::UpdateDimensions()
 {
     UI::WidgetResult Result = UI::ViewportUpdateTool::UpdateWidget(this);

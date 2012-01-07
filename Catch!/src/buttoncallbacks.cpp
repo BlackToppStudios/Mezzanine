@@ -18,9 +18,11 @@ void GSStore::DoHoverItems()
 
 void GSStore::DoActivateItems()
 {
+    CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
     layer->SetVisible(!layer->IsVisible());
+    App->PauseGame(!App->GameIsPaused());
 }
 
 //--------------------------------------------------------------
@@ -39,21 +41,11 @@ void GSMenu::DoHoverItems()
 
 void GSMenu::DoActivateItems()
 {
+    CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
-    SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
-    SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
     layer->SetVisible(!layer->IsVisible());
-    World::GetWorldPointer()->PauseWorld(!PhysMan->SimulationIsPaused());
-    //PhysMan->PauseSimulation(!PhysMan->SimulationIsPaused());
-    if(LevelTimer->IsStopped()) LevelTimer->Start();
-    else LevelTimer->Stop();
-    if(EndTimer)
-    {
-        if(EndTimer->IsStopped()) EndTimer->Start();
-        else EndTimer->Stop();
-    }
+    App->PauseGame(!App->GameIsPaused());
 }
 
 //--------------------------------------------------------------
@@ -72,16 +64,11 @@ void GSReturn::DoHoverItems()
 
 void GSReturn::DoActivateItems()
 {
+    CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
     layer->Hide();
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
-    SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
-    SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
-    //if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
-    if(PhysMan->SimulationIsPaused()) World::GetWorldPointer()->PauseWorld(false);
-    if(LevelTimer->IsStopped()) LevelTimer->Start();
-    if(EndTimer && EndTimer->IsStopped()) EndTimer->Start();
+    if(App->GameIsPaused()) App->PauseGame(false);
 }
 
 //--------------------------------------------------------------
@@ -100,16 +87,11 @@ void GSISReturn::DoHoverItems()
 
 void GSISReturn::DoActivateItems()
 {
+    CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
     layer->Hide();
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
-    SimpleTimer* LevelTimer = CatchApp::GetCatchAppPointer()->GetLevelTimer();
-    SimpleTimer* EndTimer = CatchApp::GetCatchAppPointer()->GetEndTimer();
-    //if(PhysMan->SimulationIsPaused()) PhysMan->PauseSimulation(false);
-    if(PhysMan->SimulationIsPaused()) World::GetWorldPointer()->PauseWorld(false);
-    if(LevelTimer->IsStopped()) LevelTimer->Start();
-    if(EndTimer && EndTimer->IsStopped()) EndTimer->Start();
+    if(App->GameIsPaused()) App->PauseGame(false);
 }
 
 //--------------------------------------------------------------

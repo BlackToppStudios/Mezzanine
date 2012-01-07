@@ -18,6 +18,7 @@ CatchApp::CatchApp()
     : CurrScore(0),
       LastActorThrown(NULL),
       EndTimer(NULL),
+      Paused(false),
       CurrentState(CatchApp::Catch_Init),
       PlaneOfPlay(Plane(Vector3(2.0,1.0,0.0), Vector3(1.0,2.0,0.0), Vector3(1.0,1.0,0.0)))
 {
@@ -35,12 +36,15 @@ CatchApp::CatchApp()
     }
     Loader = new LevelLoader();
     Scorer = new LevelScorer();
+    Shop = new ItemShop();
 }
 
 CatchApp::~CatchApp()
 {
-    delete TheWorld;
     delete Loader;
+    delete Scorer;
+    delete Shop;
+    delete TheWorld;
     CatchApp::TheRealCatchApp = NULL;
 }
 
@@ -436,20 +440,28 @@ void CatchApp::MakeGUI()
     //End of Stats Layer
 
     //Build the Report Layer
-    UI::Window* LevelReport = Report->CreateWidgetWindow("LevelReport", UI::RenderableRect(Vector2(0.18, 0.18), Vector2(0.64, 0.64), true));
+    UI::Window* LevelReport = Report->CreateWidgetWindow("GS_LevelReport", UI::RenderableRect(Vector2(0.18, 0.18), Vector2(0.64, 0.64), true));
     LevelReport->GetWindowBack()->SetBackgroundSprite("GSOptionsBackground");
 
     UI::Caption* ScoreDisplay = LevelReport->CreateCaption("GS_ScoreDisplay",UI::RenderableRect(Vector2(0.39, 0.22), Vector2(0.22, 0.08), true),GSLargeTextLineHeight,"0000");
     ScoreDisplay->SetBackgroundSprite("GSAppExitButton");
 
     UI::ScrolledCellGrid* ScoreBreakdown = LevelReport->CreateScrolledCellGrid("GS_ScoreBreakdown",UI::RenderableRect(Vector2(0.25, 0.32), Vector2(0.5, 0.36), true), 0.02, UI::SB_Separate);
-    ScoreBreakdown->GetGridBack()->SetBackgroundColour(TransBlack);
-    //ScoreBreakdown->GetGridBack()->SetBackgroundSprite("");
+    ScoreBreakdown->GetGridBack()->SetBackgroundSprite("GSBreakdownBackground");
+    ScoreBreakdown->SetFixedCellSize(Vector2(0.46,0.04));
+    ScoreBreakdown->SetCellSpacing(Vector2(0.00,0.005),true);
+    ScoreBreakdown->SetEdgeSpacing(Vector2(0.02,0.03),true);
+    ScoreBreakdown->SetGridOrdering(UI::CellGrid::CG_Vertical_Horizontal_Decending);
 
-    UI::TextButton* GSFinishButton = LevelReport->CreateTextButton("GS_Finish", UI::RenderableRect(Vector2(0.42, 0.70), Vector2(0.16, 0.08), true), Whole(14), "Finish");
+    UI::TextButton* GSFinishButton = LevelReport->CreateTextButton("GS_Finish", UI::RenderableRect(Vector2(0.33, 0.70), Vector2(0.16, 0.08), true), Whole(14), "Finish");
     GSFinishButton->SetBackgroundSprite("GSStoreButton");
     GSFinishButton->SetHoveredSprite("GSStoreHoveredButton");
     GSFinishButton->SetButtonCallback(new GSMMReturn());
+
+    UI::TextButton* GSRetryButton = LevelReport->CreateTextButton("GS_Retry", UI::RenderableRect(Vector2(0.51, 0.70), Vector2(0.16, 0.08), true), Whole(14), "Retry");
+    GSRetryButton->SetBackgroundSprite("GSStoreButton");
+    GSRetryButton->SetHoveredSprite("GSStoreHoveredButton");
+    GSRetryButton->SetButtonCallback(new GSRestart());
     Report->Hide();
     //End of Report Layer
     //End of Game Screen
@@ -558,6 +570,8 @@ void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
         CurrCell->SetCellCallback(new LevelSelectCB());
         Grid->AddCell(CurrCell);
     }
+    delete Files;
+    delete Previews;
 }
 
 void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
@@ -611,6 +625,8 @@ bool CatchApp::CheckEndOfLevel()
 {
     if(ScoreAreas.empty())
         return false;
+    if(LevelEnded)
+        return true;
     if(!EndTimer)
     {
         EndTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::StopWatch);
@@ -628,10 +644,9 @@ bool CatchApp::CheckEndOfLevel()
                 EndTimer->Reset();
         }
     }
-    if(EndTimer->IsStopped())
-        return true;
-    else
-        return false;
+    if(EndTimer->IsStopped()) LevelEnded = true;
+    else LevelEnded = false;
+    return LevelEnded;
 }
 
 bool CatchApp::AllStartZonesEmpty()
@@ -784,6 +799,29 @@ int CatchApp::GetCatchin()
     } while(Loader->HasALevelToLoad());
 
 	return 0;
+}
+
+void CatchApp::PauseGame(bool Pause)
+{
+    if(Paused == Pause)
+        return;
+    if(LevelEnded && !Pause)
+        return;
+    World::GetWorldPointer()->PauseWorld(Pause);
+    //PhysMan->PauseSimulation(Pause);
+    if(Pause) LevelTimer->Stop();
+    else LevelTimer->Start();
+    if(EndTimer)
+    {
+        if(Pause) EndTimer->Stop();
+        else EndTimer->Start();
+    }
+    Paused = Pause;
+}
+
+bool CatchApp::GameIsPaused()
+{
+    return Paused;
 }
 
 bool CatchApp::PreInput()
@@ -1040,8 +1078,12 @@ bool CatchApp::PostRender()
     {
         if(CheckEndOfLevel())
         {
-            PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
-            UIManager::GetSingletonPtr()->GetLayer("ReportLayer")->Show();
+            if(!PhysicsManager::GetSingletonPtr()->SimulationIsPaused())
+            {
+                //PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
+                PauseGame(true);
+                Scorer->CalculateFinalScore();
+            }
         }
     }
 

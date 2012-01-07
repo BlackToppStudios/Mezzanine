@@ -188,6 +188,7 @@ namespace Mezzanine
     {
         ClearStickyContacts();
         delete StickyContacts;
+        /// @todo Occasionally a SIGTRAP occurs here without any breakpoint set while debugging.  Needs to be fixed.
     }
 
     void ActorRigidPhysicsSettings::SetCollisionShape(CollisionShape* Shape)

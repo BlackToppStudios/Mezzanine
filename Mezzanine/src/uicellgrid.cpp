@@ -342,9 +342,10 @@ namespace Mezzanine
             else FixedCellSize = FixedSize;
         }
 
-        Vector2 CellGrid::GetFixedCellSize()
+        Vector2 CellGrid::GetFixedCellSize(bool Relative)
         {
-            return FixedCellSize;
+            if(Relative) return FixedCellSize / Parent->GetParent()->GetViewportDimensions();
+            else return FixedCellSize;
         }
 
         void CellGrid::AddCell(UI::Cell* ToBeAdded)
@@ -395,6 +396,8 @@ namespace Mezzanine
                     delete (*Cit);
                 (*it)->clear();
             }
+            Cells.clear();
+            VisibleCells.clear();
             GridDirty = true;
         }
 
@@ -412,9 +415,10 @@ namespace Mezzanine
             else WorkAreaLimits = AreaLimit;
         }
 
-        Vector2 CellGrid::GetWorkAreaLimits()
+        Vector2 CellGrid::GetWorkAreaLimits(bool Relative)
         {
-            return WorkAreaLimits;
+            if(Relative) return WorkAreaLimits / Parent->GetParent()->GetViewportDimensions();
+            else return WorkAreaLimits;
         }
 
         void CellGrid::SetEdgeSpacing(const Vector2& Spacing, bool Relative)
@@ -423,9 +427,10 @@ namespace Mezzanine
             else EdgeSpacing = Spacing;
         }
 
-        Vector2 CellGrid::GetEdgeSpacing()
+        Vector2 CellGrid::GetEdgeSpacing(bool Relative)
         {
-            return EdgeSpacing;
+            if(Relative) return EdgeSpacing / Parent->GetParent()->GetViewportDimensions();
+            else return EdgeSpacing;
         }
 
         void CellGrid::SetCellSpacing(const Vector2& Spacing, bool Relative)
@@ -434,9 +439,20 @@ namespace Mezzanine
             else CellSpacing = Spacing;
         }
 
-        Vector2 CellGrid::GetCellSpacing()
+        Vector2 CellGrid::GetCellSpacing(bool Relative)
         {
-            return CellSpacing;
+            if(Relative) return CellSpacing / Parent->GetParent()->GetViewportDimensions();
+            else return CellSpacing;
+        }
+
+        void CellGrid::SetGridOrdering(const CellGrid::OrderingStyle& GridOrdering)
+        {
+            Ordering = GridOrdering;
+        }
+
+        CellGrid::OrderingStyle CellGrid::GetGridOrdering()
+        {
+            return Ordering;
         }
 
         bool CellGrid::CellsOffGrid()
