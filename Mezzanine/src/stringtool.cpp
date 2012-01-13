@@ -41,7 +41,11 @@
 #define _stringtool_cpp
 
 #include "stringtool.h"
+#include "world.h"
 #include <sstream>
+#include <algorithm>
+#include <cctype>
+//#include <locale>
 
 namespace Mezzanine
 {
@@ -52,6 +56,261 @@ namespace Mezzanine
     StringTool::~StringTool()
     {
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // String Manipulation and checks
+
+    void StringTool::Trim(String& Source, bool Left, bool Right)
+    {
+        static const String Delims = " \t\r";
+        if(Right)
+            Source.erase(Source.find_last_not_of(Delims)+1);
+        if(Left)
+            Source.erase(0,Source.find_first_not_of(Delims));
+    }
+
+    std::vector<String> StringTool::Split(const String& Source, const String& Delims, const Whole& MaxSplits)
+    {
+        std::vector<String> Ret;
+        Ret.reserve( MaxSplits ? MaxSplits+1 : 10 );
+        Whole Splits = 0;
+
+        size_t Start = 0;
+        size_t Pos = 0;
+
+        do
+        {
+            Pos = Source.find_first_of(Delims,Start);
+            if(Pos == Start)
+            {
+                Start = Pos + 1;
+            }
+            else if(Pos == String::npos || (MaxSplits && Splits == MaxSplits))
+            {
+                Ret.push_back(Source.substr(Start));
+                break;
+            }
+            else
+            {
+                Ret.push_back(Source.substr(Start,Pos - Start));
+                Start = Pos + 1;
+            }
+            Start = Source.find_first_not_of(Delims,Start);
+            ++Splits;
+        }while(Pos != String::npos);
+
+        return Ret;
+    }
+
+    void StringTool::ToUpperCase(String& Source)
+    {
+        std::transform(Source.begin(),Source.end(),Source.begin(),::toupper);
+    }
+
+    void StringTool::ToLowerCase(String& Source)
+    {
+        std::transform(Source.begin(),Source.end(),Source.begin(),::tolower);
+    }
+
+    bool StringTool::StartsWith(const String& Str, const String& Pattern, const bool CaseSensitive)
+    {
+        size_t StrLen = Str.length();
+        size_t PatternLen = Pattern.length();
+
+        if(PatternLen > StrLen || PatternLen == 0)
+            return false;
+
+        String Start = Str.substr(0,PatternLen);
+
+        if(CaseSensitive)
+        {
+            String LowerPattern = Pattern;
+            ToLowerCase(Start);
+            ToLowerCase(LowerPattern);
+            return (Start == LowerPattern);
+        }
+
+        return (Start == Pattern);
+    }
+
+    bool StringTool::EndsWith(const String& Str, const String& Pattern, const bool CaseSensitive)
+    {
+        size_t StrLen = Str.length();
+        size_t PatternLen = Pattern.length();
+
+        if(PatternLen > StrLen || PatternLen == 0)
+            return false;
+
+        String End = Str.substr(StrLen - PatternLen,PatternLen);
+
+        if(CaseSensitive)
+        {
+            String LowerPattern = Pattern;
+            ToLowerCase(End);
+            ToLowerCase(LowerPattern);
+            return (End == LowerPattern);
+        }
+
+        return (End == Pattern);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Data Class Utilities
+
+    Vector2 StringTool::ConvertToVector2(const String& ToConvert)
+    {
+        std::vector<String> Digits = Split(ToConvert);
+        if(2 == Digits.size())
+        {
+            return Vector2(ConvertToReal(Digits[0]),ConvertToReal(Digits[1]));
+        }else{
+            std::stringstream logstream;
+            logstream << "String does not contain 2 digits when attempting to convert in StringTool::ConvertToVector2.";
+            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+        }
+    }
+
+    String StringTool::ConvertToString(const Vector2& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert.X << " " << ToConvert.Y;
+        return converter.str();
+    }
+
+    Vector3 StringTool::ConvertToVector3(const String& ToConvert)
+    {
+        std::vector<String> Digits = Split(ToConvert);
+        if(3 == Digits.size())
+        {
+            return Vector3(ConvertToReal(Digits[0]),ConvertToReal(Digits[1]),ConvertToReal(Digits[2]));
+        }else{
+            std::stringstream logstream;
+            logstream << "String does not contain 3 digits when attempting to convert in StringTool::ConvertToVector3.";
+            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+        }
+    }
+
+    String StringTool::ConvertToString(const Vector3& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert.X << " " << ToConvert.Y << " " << ToConvert.Z;
+        return converter.str();
+    }
+
+    Quaternion StringTool::ConvertToQuaternion(const String& ToConvert)
+    {
+        std::vector<String> Digits = Split(ToConvert);
+        if(4 == Digits.size())
+        {
+            return Quaternion(ConvertToReal(Digits[0]),ConvertToReal(Digits[1]),ConvertToReal(Digits[2]),ConvertToReal(Digits[3]));
+        }else{
+            std::stringstream logstream;
+            logstream << "String does not contain 4 digits when attempting to convert in StringTool::ConvertToQuaternion.";
+            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+        }
+    }
+
+    String StringTool::ConvertToString(const Quaternion& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert.X << " " << ToConvert.Y << " " << ToConvert.Z << " " << ToConvert.W;
+        return converter.str();
+    }
+
+    ColourValue StringTool::ConvertToColourValue(const String& ToConvert)
+    {
+        std::vector<String> Digits = Split(ToConvert);
+        if(4 == Digits.size())
+        {
+            return ColourValue(ConvertToReal(Digits[0]),ConvertToReal(Digits[1]),ConvertToReal(Digits[2]),ConvertToReal(Digits[3]));
+        }else{
+            std::stringstream logstream;
+            logstream << "String does not contain 4 digits when attempting to convert in StringTool::ConvertToColourValue.";
+            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+        }
+    }
+
+    String StringTool::ConvertToString(const ColourValue& ToConvert)
+    {
+        std::stringstream converter;
+        converter << ToConvert.R << " " << ToConvert.G << " " << ToConvert.B << " " << ToConvert.A;
+        return converter.str();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Convert-To-Data functions
+
+    bool StringTool::ConvertToBool(const String& ToConvert, const bool Default)
+    {
+        String StrCopy = ToConvert;
+        StringTool::ToLowerCase(StrCopy);
+        if("true" == StrCopy) return true;
+        else if("yes" == StrCopy) return true;
+        else if("1" == StrCopy) return true;
+        else if("false" == StrCopy) return false;
+        else if("no" == StrCopy) return false;
+        else if("0" == StrCopy) return false;
+        else return Default;
+    }
+
+    Real StringTool::ConvertToReal(const String& ToConvert)
+    {
+        std::stringstream converter(ToConvert);
+        Real Result;
+        converter >> Result;
+        return Result;
+    }
+
+    Int8 StringTool::ConvertToInt8(const String& ToConvert)
+    {
+        std::stringstream converter(ToConvert);
+        Int8 Result;
+        converter >> Result;
+        return Result;
+    }
+
+    UInt8 StringTool::ConvertToUInt8(const String& ToConvert)
+    {
+        std::stringstream converter(ToConvert);
+        UInt8 Result;
+        converter >> Result;
+        return Result;
+    }
+
+    Int16 StringTool::ConvertToInt16(const String& ToConvert)
+    {
+        std::stringstream converter(ToConvert);
+        Int16 Result;
+        converter >> Result;
+        return Result;
+    }
+
+    UInt16 StringTool::ConvertToUInt16(const String& ToConvert)
+    {
+        std::stringstream converter(ToConvert);
+        UInt16 Result;
+        converter >> Result;
+        return Result;
+    }
+
+    Int32 StringTool::ConvertToInt32(const String& ToConvert)
+    {
+        std::stringstream converter(ToConvert);
+        Int32 Result;
+        converter >> Result;
+        return Result;
+    }
+
+    UInt32 StringTool::ConvertToUInt32(const String& ToConvert)
+    {
+        std::stringstream converter(ToConvert);
+        UInt32 Result;
+        converter >> Result;
+        return Result;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Convert-To-String functions
 
     String StringTool::ConvertToString(const Real& ToConvert)
     {
@@ -448,6 +707,9 @@ namespace Mezzanine
                 break;
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // String Catenate functions
 
     String StringTool::StringCat(const String& Front, const String& Back)
     {

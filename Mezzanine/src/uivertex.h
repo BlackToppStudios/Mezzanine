@@ -37,55 +37,33 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _ui_h
-#define _ui_h
+#ifndef _uivertex_h
+#define _uivertex_h
+
+#include "vector3.h"
+#include "vector2.h"
+#include "colourvalue.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::UI
-    /// @brief This namespace is for all the classes belonging to the Graphical User Interface Subsystem.
-    /// @details Our GUI subsystem is based on a heavily modified/forked version of Gorilla, and as such uses
-    /// a similiar structure of classes and even it's config files(e.g. .gorilla files).
     namespace UI
     {
-
-    }
-}
-
-#include "uienumerations.h"
-
-#include "uibasicrenderable.h"
-#include "uibutton.h"
-#include "uicaption.h"
-#include "uicell.h"
-#include "uicellgrid.h"
-#include "uicheckbox.h"
-#include "uidropdownlist.h"
-#include "uiglyph.h"
-#include "uikerning.h"
-#include "uilayer.h"
-#include "uilinelist.h"
-#include "uilistbox.h"
-#include "uimarkuptext.h"
-#include "uimenu.h"
-#include "uimenuwindow.h"
-#include "uipagedcellgrid.h"
-#include "uiradiobutton.h"
-#include "uirectangle.h"
-#include "uirenderablecontainerwidget.h"
-#include "uirenderablerect.h"
-#include "uiresizinginfo.h"
-#include "uiscreen.h"
-#include "uiscrollbar.h"
-#include "uiscrolledcellgrid.h"
-#include "uispinner.h"
-#include "uisprite.h"
-#include "uitabset.h"
-#include "uitextbutton.h"
-#include "uitextureatlas.h"
-#include "uivertex.h"
-#include "uiviewportupdatetool.h"
-#include "uiwidget.h"
-#include "uiwindow.h"
+        /// @struct Vertex
+        /// @headerfile uivertex.h
+        /// @brief Basic class describing a vertex in the UI to be rendered.
+        /// @details This is a very low level class used internally by most UI classes.  The values here should never need to be tempered with.
+        struct MEZZ_LIB Vertex
+        {
+            /// @brief The 3D position of this vertex for placement in front of the frustrum.
+            Vector3 Position;
+            /// @brief The colour of the vertex.
+            ColourValue Colour;
+            /// @brief The UV position (or texture coordinates) of this vertex if a texture is being applied to it.
+            Vector2 UV;
+            /// @brief Name of the Atlas the texture belongs to if a texture is being applied to it.
+            String Atlas;
+        };//Vertex
+    }//UI
+}//Mezzanine
 
 #endif
