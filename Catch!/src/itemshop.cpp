@@ -4,14 +4,47 @@
 #include "itemshop.h"
 
 ItemShop::ItemShop()
+    : StarterCash(0),
+      CurrentCash(0)
 {
-    Mesh* SelectSphereMesh = MeshManager::GetSingletonPtr()->CreateSphereMesh("SelectSphereMesh",ColourValue(0.15,0.15,1.0),50.0);
-    SelectionSphere = SceneManager::GetSingletonPtr()->CreateEntity("SelectionSphere",SelectSphereMesh->GetName(),SelectSphereMesh->GetGroup());
+    //Mesh* SelectSphereMesh = MeshManager::GetSingletonPtr()->CreateSphereMesh("SelectSphereMesh",ColourValue(0.15,0.15,1.0),50.0);
+    //SelectionSphere = SceneManager::GetSingletonPtr()->CreateEntity("SelectionSphere",SelectSphereMesh->GetName(),SelectSphereMesh->GetGroup());
 }
 
 ItemShop::~ItemShop()
 {
-    SceneManager::GetSingletonPtr()->DestroyEntity(SelectionSphere);
+    //SceneManager::GetSingletonPtr()->DestroyEntity(SelectionSphere);
+}
+
+Whole ItemShop::GetCurrentCash()
+{
+    return CurrentCash;
+}
+
+Whole ItemShop::GetStarterCash()
+{
+    return StarterCash;
+}
+
+void ItemShop::SetLevelCash(const Whole& Cash)
+{
+    StarterCash = Cash;
+    CurrentCash = Cash;
+}
+
+void ItemShop::RegisterShopItem()
+{
+
+}
+
+void ItemShop::EnableShopItem()
+{
+
+}
+
+void ItemShop::ResetLevelData()
+{
+
 }
 
 #endif

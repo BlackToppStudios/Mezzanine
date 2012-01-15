@@ -326,6 +326,10 @@ namespace Mezzanine
             /// @brief Destroys all particle effects currently in the manager.
             void DestroyAllParticleEffects();
 
+            /// @brief Pauses(or unpauses) all particles stored in this manager.
+            /// @param Pause Will pause all Particles if true, unpause if false.
+            void PauseAllParticles(bool Pause);
+
             /// @brief Used to make working with the Particle Effects easier.
             typedef std::vector< ParticleEffect* >::iterator ParticleEffectIterator;
             /// @brief Used to make working with the Particle Effects easier, and avoid the risk of accidentally changing them.

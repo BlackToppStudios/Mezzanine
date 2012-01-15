@@ -394,6 +394,14 @@ namespace Mezzanine
             ~World();
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+        ///////////////////////////////////////
+
+            /// @brief Pauses all animations, particles, and object movement throughout the world.
+            /// @param Pause Pauses the world if true, unpauses if false.
+            void PauseWorld(bool Pause);
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Logging
         ///////////////////////////////////////
 

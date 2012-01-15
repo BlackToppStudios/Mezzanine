@@ -19,7 +19,6 @@ class ItemShopCell : public UI::Cell
         virtual void SetActualPosition(const Vector2& Position);
         virtual void SetSize(const Vector2& Size);
         virtual void SetActualSize(const Vector2& Size);
-        virtual void DoSelectedItems();
         virtual void UpdateDimensions();
         virtual UI::Caption* GetItemCaption();
 };

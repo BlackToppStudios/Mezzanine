@@ -28,7 +28,6 @@ class LevelSelectCell : public UI::Cell
         virtual void SetActualPosition(const Vector2& Position);
         virtual void SetSize(const Vector2& Size);
         virtual void SetActualSize(const Vector2& Size);
-        virtual void DoSelectedItems();
         virtual void UpdateDimensions();
         virtual String GetLevelName();
         virtual UI::Rectangle* GetCellBack();

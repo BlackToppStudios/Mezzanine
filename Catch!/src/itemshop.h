@@ -11,15 +11,24 @@ class ItemShop
 {
     protected:
         Entity* SelectionSphere;
+        Whole StarterCash;
+        Whole CurrentCash;
         std::vector<ItemShopItem*> Items;
         //std::map<String,Whole> ShopCostValues;
     public:
         ItemShop();
         ~ItemShop();
 
+        Whole GetCurrentCash();
+        Whole GetStarterCash();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Configuration
+
+        void SetLevelCash(const Whole& Cash);
         void RegisterShopItem();
-        void ResetEnabledShopItems();
         void EnableShopItem();
+        void ResetLevelData();
 };//ItemShop
 
 #endif

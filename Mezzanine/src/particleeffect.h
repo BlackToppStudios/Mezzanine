@@ -172,6 +172,20 @@ namespace Mezzanine
             /// @return True if in the world, false otherwise.
             bool IsInWorld() const;
 
+            /// @brief Sets the factor at which time progresses for this ParticleEffect.
+            /// @param Factor The factor at which time progresses.  Valid values range from 0.0 to 1.0.
+            /// @note If the ParticleEffect is paused, this will set the value to resume with when the ParticleEffect is unpaused.
+            void SetSpeedFactor(const Real& Factor);
+
+            /// @brief Gets the Factor at which this ParticleEffect is currently progressing.
+            /// @return Returns a Real representing the factor at which the ParticleEffect is currently progressing.
+            /// @note If the ParticleEffect is paused, this will return what the speed would be if it were unpaused.
+            Real GetSpeedFactor();
+
+            /// @brief Pauses this ParticleEffect, preventing it from emitting, moving, or removing any particles.
+            /// @param Pause Will pauae the ParticleEffect if running and Pause is true, otherwise will resume particle effect if paused and Pause is false.
+            void PauseParticleEffect(bool Pause);
+
             /// @brief The name of the template used to create this.
             /// @return A reaference to a ConstString that has the name.
             ConstString& GetTemplate() const;

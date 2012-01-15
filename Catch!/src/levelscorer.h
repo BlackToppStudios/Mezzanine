@@ -21,6 +21,9 @@ class LevelScorer
     protected:
         World* TheWorld;
         CatchApp* GameApp;
+        Whole NormalScore;
+        Whole BonusScore;
+        Whole LevelTargetTime;
         std::map<String,Whole> ItemScoreValues;
         std::vector<ScoreArea*> ScoreAreas;
         std::vector<ScoreArea*> BonusScoreAreas;
@@ -30,7 +33,7 @@ class LevelScorer
         LevelScorer();
         ~LevelScorer();
         void CalculateCurrentScore(Whole& Score);
-        void CalculateFinalScore(Whole& FinalScore);
+        void CalculateFinalScore();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Special Conditions
@@ -39,6 +42,7 @@ class LevelScorer
         // Configuration
         void RegisterScoreArea(ScoreArea* Score);
         void SetThrowableScore(const String& TypeName, const Whole& Score);
+        void SetLevelTargetTime(const Whole& TargetTime);
         void ResetLevelData();
         void ResetAllData();
 };//LevelScorer

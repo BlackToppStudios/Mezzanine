@@ -129,8 +129,9 @@ namespace Mezzanine
                 /// @param Relative Whether or not the vector 2 being passed in is in relative units.
                 virtual void SetFixedCellSize(const Vector2& FixedSize, bool Relative = true);
                 /// @brief Gets the currently set fixed size applied to all cells in this widget.
+                /// @param Relative Optional parameter for getting the size in relative units.
                 /// @return Returns a Vector2 containing the size applied to all cells in this widget.
-                virtual Vector2 GetFixedCellSize();
+                virtual Vector2 GetFixedCellSize(bool Relative = true);
                 /// @brief Addes a Cell to this widget that will be rendered.
                 /// @param ToBeAdded The Cell to be added to this widget.
                 virtual void AddCell(UI::Cell* ToBeAdded);
@@ -156,24 +157,33 @@ namespace Mezzanine
                 /// @param Relative Whether or not the vector 2 being passed in is in relative units.
                 virtual void SetWorkAreaLimits(const Vector2& AreaLimit, bool Relative = true);
                 /// @brief Gets the currently set logical limits for the grid.
+                /// @param Relative Optional parameter for getting the limits in relative units.
                 /// @return Returns a Vector2 representing the logical limits of the grid.
-                virtual Vector2 GetWorkAreaLimits();
+                virtual Vector2 GetWorkAreaLimits(bool Relative = true);
                 /// @brief Sets the spacing from the edge of the entire grid area that no cell should overlap.
                 /// @details Default: 0,0.
                 /// @param Spacing The minimum amount of space from the edge Cells should be.
                 /// @param Relative Whether or not the vector 2 being passed in is in relative units.
                 virtual void SetEdgeSpacing(const Vector2& Spacing, bool Relative = true);
                 /// @brief Gets the currently set edge spacing.
+                /// @param Relative Optional parameter for getting the spacing in relative units.
                 /// @return Returns a Vector2 representing the spacing to be used on edges of this widget.
-                virtual Vector2 GetEdgeSpacing();
+                virtual Vector2 GetEdgeSpacing(bool Relative = true);
                 /// @brief Sets the spacing from each cell around any given cell there should be.
                 /// @details Default 10.0,10.0.
                 /// @param Spacing The minimum amount of space from each cell a given cell should be.
                 /// @param Relative Whether or not the vector 2 being passed in is in relative units.
                 virtual void SetCellSpacing(const Vector2& Spacing, bool Relative = true);
                 /// @brief Gets the currently set cell spacing.
+                /// @param Relative Optional parameter for getting the spacing in relative units.
                 /// @return Returns a Vector2 representing the spacing to be used between Cells of this widget.
-                virtual Vector2 GetCellSpacing();
+                virtual Vector2 GetCellSpacing(bool Relative = true);
+                /// @brief Sets how cells in this grid should be ordered.
+                /// @param GridOrdering The manner in which the cells in this grid should be sorted.
+                virtual void SetGridOrdering(const CellGrid::OrderingStyle& GridOrdering);
+                /// @brief Gets the current setting for how to sort the cells in the grid.
+                /// @return Returns an enum value representing the current order cells have in the grid.
+                virtual CellGrid::OrderingStyle GetGridOrdering();
                 /// @brief Checks to see if there are any remaining cells that aren't on the grid due to a lack of space.
                 /// @return Returns a bool indicating whether or not this widgets work area needs to be increased.
                 virtual bool CellsOffGrid();

@@ -23,6 +23,10 @@ class CatchApp
     protected:
         static CatchApp* TheRealCatchApp;
         const Plane PlaneOfPlay;
+
+        bool Paused;
+        bool LevelEnded;
+
         World* TheWorld;
         LevelLoader* Loader;
         LevelScorer* Scorer;
@@ -55,6 +59,8 @@ class CatchApp
 
         static CatchApp* GetCatchAppPointer();
         int GetCatchin();
+        void PauseGame(bool Pause);
+        bool GameIsPaused();
 
         //Callbacks AKA Functions the mainloops call
         bool PreInput();

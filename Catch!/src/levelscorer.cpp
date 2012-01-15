@@ -3,8 +3,12 @@
 
 #include "levelscorer.h"
 #include "catchapp.h"
+#include "levelreportcell.h"
 
 LevelScorer::LevelScorer()
+    : BonusScore(0),
+      NormalScore(0),
+      LevelTargetTime(0)
 {
     TheWorld = World::GetWorldPointer();
     GameApp = CatchApp::GetCatchAppPointer();
@@ -63,17 +67,18 @@ void LevelScorer::CalculateCurrentScore(Whole& Score)
         }
     }
 
-    Whole UpdatedScore = 0;
+    NormalScore = 0;
+    BonusScore = 0;
     for( std::map<ActorBase*,ScoreAreaCache>::iterator SCit = ScoreCache.begin() ; SCit != ScoreCache.end() ;  )
     {
         if( (*SCit).second.Bonus )
         {
-            UpdatedScore += (GetItemScoreValue( (*SCit).first ) * (*SCit).second.Bonus->GetScoreMultiplier() );
+            BonusScore += (GetItemScoreValue( (*SCit).first ) * (*SCit).second.Bonus->GetScoreMultiplier() );
             ++SCit;
         }
         else if( (*SCit).second.Normal )
         {
-            UpdatedScore += GetItemScoreValue( (*SCit).first );
+            NormalScore += GetItemScoreValue( (*SCit).first );
             ++SCit;
         }
         else
@@ -84,12 +89,75 @@ void LevelScorer::CalculateCurrentScore(Whole& Score)
         }
     }
 
-    Score = UpdatedScore;
+    Score = NormalScore + BonusScore;
 }
 
-void LevelScorer::CalculateFinalScore(Whole& FinalScore)
+void LevelScorer::CalculateFinalScore()
 {
+    // Init non-saved scores
+    CatchApp* App = CatchApp::GetCatchAppPointer();
+    Whole ShopScore = 0;
+    Whole TimeScore = 0;
 
+    // Calculate the Shop Score
+    ItemShop* Shop = App->GetItemShop();
+    Real CashRatio = (Real)Shop->GetCurrentCash() / (Real)Shop->GetStarterCash();
+    ShopScore = ((Whole)(CashRatio * 10)) * 10;
+
+    // Calculate the Time Score
+    SimpleTimer* LevelTimer = App->GetLevelTimer();
+    Whole Time = LevelTimer->GetCurrentTimeInMilli() * 0.001;
+    if(Time < LevelTargetTime)
+    {
+        TimeScore = (LevelTargetTime - Time) * 10;
+    }
+
+    // Update the UI to reflect the calculated scores
+    UI::Layer* ReportLayer = UIManager::GetSingletonPtr()->GetLayer("ReportLayer");
+    UI::Window* ReportWin = static_cast<UI::Window*>(ReportLayer->GetWidget("GS_LevelReport"));
+    UI::Caption* TotalDisplay = ReportWin->GetCaption("GS_ScoreDisplay");
+    UI::ScrolledCellGrid* BreakdownList = static_cast<UI::ScrolledCellGrid*>(ReportWin->GetWidget("GS_ScoreBreakdown"));
+    Vector2 BreakDownPosition(0.1,0.1);
+    Vector2 BreakDownSize = BreakdownList->GetFixedCellSize();
+
+    LevelReportCell* NormalScoreCell = new LevelReportCell("GS_NormalCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),ReportLayer);
+    NormalScoreCell->GetDescription()->SetText("Normal Area Score:");
+    NormalScoreCell->GetScore()->SetText(StringTool::ConvertToString(NormalScore));
+    BreakdownList->AddCell(NormalScoreCell);
+
+    LevelReportCell* BonusScoreCell = new LevelReportCell("GS_BonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),ReportLayer);
+    BonusScoreCell->GetDescription()->SetText("Bonus Area Score:");
+    BonusScoreCell->GetScore()->SetText(StringTool::ConvertToString(BonusScore));
+    BreakdownList->AddCell(BonusScoreCell);
+
+    LevelReportCell* RemainingCashBonusCell = new LevelReportCell("GS_RemainingCashBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),ReportLayer);
+    RemainingCashBonusCell->GetDescription()->SetText("Shop Cash Score:");
+    RemainingCashBonusCell->GetScore()->SetText(StringTool::ConvertToString(ShopScore));
+    BreakdownList->AddCell(RemainingCashBonusCell);
+
+    LevelReportCell* TimeBonusCell = new LevelReportCell("GS_TimeBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),ReportLayer);
+    TimeBonusCell->GetDescription()->SetText("Time Score:");
+    TimeBonusCell->GetScore()->SetText(StringTool::ConvertToString(TimeScore));
+    BreakdownList->AddCell(TimeBonusCell);
+
+    /*for(  ;  ;  )
+    {
+        std::stringstream namestream;
+        namestream << "Condition" << ;
+        LevelReportCell* SpecialConditionCell = new LevelReportCell(namestream.str(),,ReportLayer);
+        SpecialConditionCell->GetDescription()->SetBackgroundColour(ColourValue::Transparent());
+        SpecialConditionCell->GetDescription()->SetText("");
+        SpecialConditionCell->GetScore()->SetBackgroundColour(ColourValue::Transparent());
+        SpecialConditionCell->GetScore()->SetText("");
+        BreakdownList->AddCell(SpecialConditionCell);
+        // For-Loop for special conditions from LUA.
+    }//*/
+
+    BreakdownList->GenerateGrid();
+
+    TotalDisplay->SetText(StringTool::ConvertToString(NormalScore+BonusScore+ShopScore+TimeScore));
+
+    ReportLayer->Show();
 }
 
 void LevelScorer::RegisterScoreArea(ScoreArea* Score)
@@ -104,11 +172,25 @@ void LevelScorer::SetThrowableScore(const String& TypeName, const Whole& Score)
     //ItemScoreValues.insert(std::pair<String,Whole>(TypeName,Score));
 }
 
+void LevelScorer::SetLevelTargetTime(const Whole& TargetTime)
+{
+    LevelTargetTime = TargetTime;
+}
+
 void LevelScorer::ResetLevelData()
 {
+    UI::Layer* ReportLayer = UIManager::GetSingletonPtr()->GetLayer("ReportLayer");
+    UI::Window* ReportWin = static_cast<UI::Window*>(ReportLayer->GetWidget("GS_LevelReport"));
+    UI::ScrolledCellGrid* BreakdownList = static_cast<UI::ScrolledCellGrid*>(ReportWin->GetWidget("GS_ScoreBreakdown"));
+
     ScoreAreas.clear();
     BonusScoreAreas.clear();
     ScoreCache.clear();
+    BonusScore = 0;
+    NormalScore = 0;
+    LevelTargetTime = 0;
+
+    BreakdownList->DestroyAllCells();
 }
 
 void LevelScorer::ResetAllData()

@@ -2,6 +2,7 @@
 #define _levelloader_cpp
 
 #include "levelloader.h"
+#include "levelscorer.h"
 #include "catchapp.h"
 #include "throwablegenerator.h"
 #include "leveltriggers.h"
@@ -27,11 +28,18 @@ void LevelLoader::LoadFerris()
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
+    // Init Resources
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
     String datadir = "Levels/";
     ResourceMan->AddResourceLocation(datadir+"Ferris.lvl", "Zip", FerrisGroup, false);
     ResourceMan->InitResourceGroup(FerrisGroup);
+
+    // Scoring and Shop Setup
+    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
+    ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
+    Scorer->SetLevelTargetTime(30);
+    Shop->SetLevelCash(100);
 
     // Camera Setup
 	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
@@ -244,11 +252,18 @@ void LevelLoader::LoadBigCurve()
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
+    // Init Resources
     String CommonGroup("Common");
     String BigCurveGroup("BigCurve");
     String datadir = "Levels/";
     ResourceMan->AddResourceLocation(datadir+"BigCurve.lvl", "Zip", BigCurveGroup, false);
     ResourceMan->InitResourceGroup(BigCurveGroup);
+
+    // Scoring and Shop Setup
+    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
+    ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
+    Scorer->SetLevelTargetTime(30);
+    Shop->SetLevelCash(100);
 
     // Camera Setup
 	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
@@ -356,11 +371,18 @@ void LevelLoader::LoadBlowsNotSucks()
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
+    // Init Resources
     String CommonGroup("Common");
     String BlowsNotSucksGroup("BlowsNotSucks");
     String datadir = "Levels/";
     ResourceMan->AddResourceLocation(datadir+"BlowsNotSucks.lvl", "Zip", BlowsNotSucksGroup, false);
     ResourceMan->InitResourceGroup(BlowsNotSucksGroup);
+
+    // Scoring and Shop Setup
+    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
+    ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
+    Scorer->SetLevelTargetTime(30);
+    Shop->SetLevelCash(100);
 
     // Camera Setup
 	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
@@ -550,11 +572,18 @@ void LevelLoader::LoadJustice()
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
+    // Init Resources
     String CommonGroup("Common");
     String JusticeGroup("Justice");
     String datadir = "Levels/";
     ResourceMan->AddResourceLocation(datadir+"Justice.lvl", "Zip", JusticeGroup, false);
     ResourceMan->InitResourceGroup(JusticeGroup);
+
+    // Scoring and Shop Setup
+    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
+    ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
+    Scorer->SetLevelTargetTime(30);
+    Shop->SetLevelCash(100);
 
     // Camera Setup
 	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
@@ -754,11 +783,18 @@ void LevelLoader::LoadRollers()
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
+    // Init Resources
     String CommonGroup("Common");
     String RollersGroup("Rollers");
     String datadir = "Levels/";
     ResourceMan->AddResourceLocation(datadir+"Rollers.lvl", "Zip", RollersGroup, false);
     ResourceMan->InitResourceGroup(RollersGroup);
+
+    // Scoring and Shop Setup
+    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
+    ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
+    Scorer->SetLevelTargetTime(30);
+    Shop->SetLevelCash(100);
 
     // Camera Setup
 	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
@@ -829,24 +865,22 @@ void LevelLoader::LoadRollers()
     CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LesdCS",LeadData->MeshName,CommonGroup);
     ActorRigid* Pyrite1 = ThrowableGenerator::CreateThrowable("Pyrite");
     Pyrite1->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
-    Pyrite1->GetPhysicsSettings()->SetDamping(0.1,0.2);
-    Pyrite1->SetLocation(-160,70,0);
+    Pyrite1->SetLocation(-160,80,0);
     ActMan->AddActor(Pyrite1);
     GameApp->AddThrowable(Pyrite1);
     ActorRigid* Pyrite2 = ThrowableGenerator::CreateThrowable("Pyrite");
     Pyrite2->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
-    Pyrite2->GetPhysicsSettings()->SetDamping(0.1,0.1);
-    Pyrite2->SetLocation(-120,70,0);
+    Pyrite2->SetLocation(-120,80,0);
     ActMan->AddActor(Pyrite2);
     GameApp->AddThrowable(Pyrite2);// */
     ActorRigid* Lead1 = ThrowableGenerator::CreateThrowable("Lead");
     Lead1->GetPhysicsSettings()->SetCollisionShape(LeadCS);
-    Lead1->SetLocation(-145,20,0);
+    Lead1->SetLocation(-160,30,0);
     ActMan->AddActor(Lead1);
     GameApp->AddThrowable(Lead1);
     ActorRigid* Lead2 = ThrowableGenerator::CreateThrowable("Lead");
     Lead2->GetPhysicsSettings()->SetCollisionShape(LeadCS);
-    Lead2->SetLocation(-195,20,0);
+    Lead2->SetLocation(-120,30,0);
     ActMan->AddActor(Lead2);
     GameApp->AddThrowable(Lead2);// */
 
@@ -884,11 +918,18 @@ void LevelLoader::LoadJustBounce()
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
 
+    // Init Resources
     String CommonGroup("Common");
     String JustBounceGroup("JustBounce");
     String datadir = "Levels/";
     ResourceMan->AddResourceLocation(datadir+"JustBounce.lvl", "Zip", JustBounceGroup, false);
     ResourceMan->InitResourceGroup(JustBounceGroup);
+
+    // Scoring and Shop Setup
+    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
+    ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
+    Scorer->SetLevelTargetTime(30);
+    Shop->SetLevelCash(100);
 
     // Camera Setup
 	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
