@@ -72,7 +72,7 @@ namespace Mezzanine
     Real Vector3::GetAxisValue(Integer Axis) const
         { return this->GetAxisValue((StandardAxis)Axis); }
 
-    Real& Vector3::GetAxisValue(StandardAxis Axis)
+    Real& Vector3::GetAxisValue(const StandardAxis& Axis)
     {
         switch(Axis)
         {
@@ -83,19 +83,19 @@ namespace Mezzanine
         }
     }
 
-    Real& Vector3::GetAxisValue(Integer Axis)
+    Real& Vector3::GetAxisValue(const Whole& Axis)
         { return this->GetAxisValue((StandardAxis)Axis); }
 
-    Real Vector3::operator[] (StandardAxis Axis) const
+    Real Vector3::operator[] (const StandardAxis& Axis) const
         { return this->GetAxisValue(Axis); }
 
-    Real Vector3::operator[] (Integer Axis) const
+    Real Vector3::operator[] (const Whole& Axis) const
         { return this->GetAxisValue((StandardAxis)Axis); }
 
-    Real& Vector3::operator[] (StandardAxis Axis)
+    Real& Vector3::operator[] (const StandardAxis& Axis)
         { return this->GetAxisValue(Axis); }
 
-    Real& Vector3::operator[] (Integer Axis)
+    Real& Vector3::operator[] (const Whole& Axis)
         { return this->GetAxisValue((StandardAxis)Axis); }
     ///////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -106,7 +106,7 @@ namespace Mezzanine
         Z=0;
     }
 
-    Vector3::Vector3(Real x, Real y, Real z)
+    Vector3::Vector3(const Real& x, const Real& y, const Real& z)
     {
         X=x;
         Y=y;

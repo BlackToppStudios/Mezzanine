@@ -103,6 +103,12 @@ namespace Mezzanine
         return fmod(Numerator,Denominator);
     }
 
+    bool MathTool::WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
+    {
+        if( Fabs(Second - First) <= Tolerance ) return true;
+        else return false;
+    }
+
     Real MathTool::Cos(const Real& Radians)
     {
         return cos(Radians);

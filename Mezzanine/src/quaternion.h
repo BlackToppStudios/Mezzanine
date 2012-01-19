@@ -163,7 +163,20 @@ namespace Mezzanine
             void ExtractOgreQuaternion(const Ogre::Quaternion &Ours);
 
             ///////////////////////////////////////////////////////////////////////////////
-            //  Arithmetic By Real Operators
+            // Access Operators
+
+            /// @brief Allows Array style access to the members of this class.
+            /// @param Index The number corresponding to the Index you want.  0 = X, 1 = Y, 2 = Z, 3 = W.
+            /// @return Returns a copy of the number at the index requested.
+            Real operator[](const Whole& Index) const;
+
+            /// @brief Allows Array style access to the members of this class.
+            /// @param Index The number corresponding to the Index you want.  0 = X, 1 = Y, 2 = Z, 3 = W.
+            /// @return Returns a writable reference to the number at the index requested.
+            Real& operator[](const Whole& Index);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Arithmetic By Real Operators
 
             /// @brief Scaling by multiplication.
             /// @param Scalar This is the amount to scale the quaternion by.

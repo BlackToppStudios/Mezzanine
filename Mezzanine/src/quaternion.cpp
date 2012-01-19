@@ -178,6 +178,35 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Access Operators
+
+    Real Quaternion::operator[](const Whole& Index) const
+    {
+        switch(Index)
+        {
+            case 0: return X;
+            case 1: return Y;
+            case 2: return Z;
+            case 3: return W;
+            default:
+                World::GetWorldPointer()->LogAndThrow(Exception("Attempting to get invalid index in Quaternion::operator[]."));
+        }
+    }
+
+    Real& Quaternion::operator[](const Whole& Index)
+    {
+        switch(Index)
+        {
+            case 0: return X;
+            case 1: return Y;
+            case 2: return Z;
+            case 3: return W;
+            default:
+                World::GetWorldPointer()->LogAndThrow(Exception("Attempting to get invalid index in Quaternion::operator[]."));
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     //  Arithmetic By Real Operators
 
     Quaternion Quaternion::operator* (const Real& Scalar) const

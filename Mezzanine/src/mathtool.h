@@ -107,6 +107,13 @@ namespace Mezzanine
             /// @return Returns the remainder of division between the two Reals passed in.
             static Real Fmod(const Real& Numerator, const Real& Denominator);
 
+            /// @brief Checks to see if two Reals are within a certain range of each other.
+            /// @param First The first of two Reals to compare.
+            /// @param Second The second of two Reals to compare.
+            /// @param Tolerance The leeway allowed in how far the two can be apart.
+            /// @return Returns true if the two numbers are within the amount specified by Tolerance of each other, false otherwise.
+            static bool WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance);
+
             /// @brief Calculates the Cosine of an angle.
             /// @param Radians The angle to be computed in Radians.
             /// @return Returns a Real representing the Cosine of the angle provided.

@@ -82,30 +82,30 @@ namespace Mezzanine
         /// @brief Get The value associate with a certain Axis.
         /// @param Axis Which axis to retrieve.
         /// @return Either X, Y or Z as indicated by the value passed in.
-        Real GetAxisValue(StandardAxis Axis) const;
+        Real GetAxisValue(const StandardAxis& Axis) const;
 
         /// @copydoc GetAxisValue(StandardAxis Axis) const
-        Real GetAxisValue(Integer Axis) const;
+        Real GetAxisValue(const Whole& Axis) const;
 
         /// @brief Get The value associate with a certain Axis in such a way that it can readily be assigned in this Vector3.
         /// @param Axis Which axis to retrieve.
         /// @return Either X, Y or Z as indicated by the value passed in.
-        Real& GetAxisValue(StandardAxis Axis);
+        Real& GetAxisValue(const StandardAxis& Axis);
 
         /// @copydoc GetAxisValue(StandardAxis Axis)
-        Real& GetAxisValue(Integer Axis);
+        Real& GetAxisValue(const Whole& Axis);
 
         /// @copydoc GetAxisValue(StandardAxis Axis) const
-        Real operator[] (StandardAxis Axis) const;
+        Real operator[] (const StandardAxis& Axis) const;
 
         /// @copydoc GetAxisValue(StandardAxis Axis) const
-        Real operator[] (Integer Axis) const;
+        Real operator[] (const Whole& Axis) const;
 
         /// @copydoc GetAxisValue(StandardAxis Axis)
-        Real& operator[] (StandardAxis Axis);
+        Real& operator[] (const StandardAxis& Axis);
 
         /// @copydoc GetAxisValue(StandardAxis Axis)
-        Real& operator[] (Integer Axis);
+        Real& operator[] (const Whole& Axis);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Constructors
@@ -119,7 +119,7 @@ namespace Mezzanine
         /// @param X Coordinate on the X vector.
         /// @param Y Coordinate on the Y vector.
         /// @param Z Coordinate on the Z vector.
-        Vector3(Real X, Real Y, Real Z);
+        Vector3(const Real& X, const Real& Y, const Real& Z);
 
         /// @brief Ogre Value Constructor.
         /// @details Constructor that sets all values to match the Ogre vector.
@@ -400,6 +400,13 @@ namespace Mezzanine
         /// @returns A copy of of the current Vector3
         Vector3 Inverse();
 
+        /// @brief This return the distance between this point and another
+        /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between
+        /// This Vector3 and another.
+        /// @param OtherVec this is the other point to measure against
+        /// @return This returns a Real number which is the distance.
+        Real Distance(const Vector3 &OtherVec) const;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Manual Conversions
         /// @brief Gets a Bullet vector3.
@@ -431,13 +438,6 @@ namespace Mezzanine
         /// and set the values of this class to be the same.
         /// @param temp The vector3 to be extracted.
         void ExtractcAudioVector3(const cAudio::cVector3& temp);
-
-        /// @brief This return the distance between this point and another
-        /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between
-        /// This Vector3 and another.
-        /// @param OtherVec this is the other point to measure against
-        /// @return This returns a Real number which is the distance.
-        Real Distance(const Vector3 &OtherVec) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
