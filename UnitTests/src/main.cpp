@@ -53,48 +53,79 @@
 #include "vector3tests.h"
 #include "worldnodetests.h"
 
-#include <cstdlib>
+#include <cstdlib> // For system
 
-#include <vector>
+static const String MemSpaceArg("inthismemoryspacetheworkshallbedone");
+Mezzanine::String CommandName;
 
 // this does all the heavy lifting
 class AllUnitTestGroups : public UnitTestGroup
 {
     public:
-        AllUnitTestGroups():RunAll(false)                    //constructor, just to set a bool ;)
+        bool RunAutomaticTests;
+        bool RunInteractiveTests;
+        bool ExecuteInThisMemorySpace;
+
+        AllUnitTestGroups():RunAll(false), RunAutomaticTests(false), RunInteractiveTests(false), ExecuteInThisMemorySpace(false)
         {};
 
-        vector<Mezzanine::String> TestGroupsToRun;           //List of tests to run
+        std::vector<Mezzanine::String> TestGroupsToRun;           //List of tests to run
         bool RunAll;
 
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests()
         {
-            TestResult LowResults = Unknown;
-            if(RunAll)
-            {                                   //Run every test in the big list of tests
+            if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running all tests if no type of test is specified
+                { RunAutomaticTests=true; RunInteractiveTests=true; }
+
+            if (RunAll)
+            {
                 for(map<String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+                    { TestGroupsToRun.push_back(Iter->first); }
+            }
+
+            if(ExecuteInThisMemorySpace) // Should we be executing the test right now?
+            {
+                for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName ) // Actually run the tests
                 {
-                    TestResult temp = Iter->second->RunTests(RunAutomaticTests, RunInteractiveTests);
-                    if (temp < LowResults)
-                        { LowResults = temp; }
-                    (*this) += *(Iter->second);
-                }
-            }else{                              // run the tests one at a time in the list of things to run by finding them in the big list
-                for(vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
-                {
-                    TestResult temp = TestGroups[*CurrentTestName]->RunTests(RunAutomaticTests, RunInteractiveTests);
-                    if (temp < LowResults)
-                        { LowResults = temp; }
+                    TestGroups[*CurrentTestName]->RunTests(RunAutomaticTests, RunInteractiveTests);
                     (*this) += *(TestGroups[*CurrentTestName]);
                 }
+            }else{ // No, We should be executing the test in a place that cannot possibly crash this program
+                for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
+                {
+                    ClearTempFile();
+                    //std::cout << String(CommandName + " " + *CurrentTestName + " " + MemSpaceArg) << std::endl;
+                    if(system(String(CommandName + " " + *CurrentTestName + " " + MemSpaceArg + " " + Mezzanine::String(RunAutomaticTests?"automatic ":"") + Mezzanine::String(RunInteractiveTests?"interactive ":"")).c_str()))   // Run a single unit test as another process
+                    {
+                        this->AddTestResult(String("Process::" + *CurrentTestName), Failed);
+                    }else {
+                        this->AddTestResult(String("Process::" + *CurrentTestName), Success);
+                    }
+
+                    (*this) += GetResultsFromTempFile();
+
+                }
+                DeleteTempFile();
+            } // \if(ExecuteInThisMemorySpace)
+        } // \function
+
+        virtual void DisplayResults(std::ostream& Output=std::cout, bool Summary = true, bool FullOutput = true, bool HeaderOutput = true)
+        {
+            if(ExecuteInThisMemorySpace) // we are running a test in a seperate process, so we need to control the output for communcation purposes
+            {
+                std::ofstream OutputFile(TempFile.c_str(),std::ios_base::out|std::ios_base::trunc);
+                UnitTestGroup::DisplayResults(OutputFile,false,true,false);
+                OutputFile.close();
+
+            }else{
+                UnitTestGroup::DisplayResults(Output, Summary, FullOutput, HeaderOutput);
             }
-            return LowResults;
         }
 };
 
 void DeleteTests()
 {
-    for(map<String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+    for(std::map<String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
     {
         //cout << Iter->first << endl;
         delete Iter->second;
@@ -103,8 +134,14 @@ void DeleteTests()
 
 int main (int argc, char** argv)
 {
+    if( !system( NULL ) ) // If this is not being run from a shell somehow, then using system() to run this task in a new process is not really possible.
+    {
+        std::cerr << "system() call not supported, missing command processor." << std::endl;
+        return EXIT_FAILURE;
+    }
+
     atexit(&DeleteTests);
-    // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here
+    // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here too
     TestGroups["actor"] = new ActorTests;
     TestGroups["collisionshape"] = new CollisionShapeTests;
     TestGroups["compilerflag"] = new CompilerFlagTests;
@@ -118,11 +155,10 @@ int main (int argc, char** argv)
     TestGroups["vector3"] = new Vector3Tests;
     TestGroups["worldnode"] = new WorldNodeTests;
 
-    bool RunAutomaticTests = false, RunInteractiveTests = false;    //Set them both to false now, if they are both false later, then we will pass true
+    // Display everything, or just a Summary or neither? Should this process do the work, or should we spawn a new process.
     bool FullDisplay = true, SummaryDisplay = true;
-    Mezzanine::String CommandName;
 
-    if (argc > 0)                                                   //Not really sure how this would happen, but I would rather test for it than have it fail
+    if (argc > 0) //Not really sure how this would happen, but I would rather test for it than have it fail
         { CommandName=argv[0]; }
     else
         { return Usage("UnitTestGroups"); }
@@ -132,40 +168,38 @@ int main (int argc, char** argv)
 
     AllUnitTestGroups Runner;
 
-    for (int c=1; c<argc; ++c)                                                  // Check Command line for keywords and get all the test names
+    for (int c=1; c<argc; ++c) // Check Command line for keywords and get all the test names
     {
         String ThisArg(AllLower(argv[c]));
         if(ThisArg=="help")
             { return Usage(argv[0]); }
+        else if(ThisArg==MemSpaceArg)        // Check to see if we do the work now or later
+            { Runner.ExecuteInThisMemorySpace = true; }
         else if(ThisArg=="testlist")
             { return PrintList(); }
         else if(ThisArg=="interactive")
-            { RunInteractiveTests=true; }
+            { Runner.RunInteractiveTests=true; }
         else if(ThisArg=="automatic")
-            { RunAutomaticTests=true; }
+            { Runner.RunAutomaticTests=true; }
         else if(ThisArg=="all")
             { Runner.RunAll=true; }
         else if(ThisArg=="summary")
             { FullDisplay = false, SummaryDisplay = true; }
-        else                                                                    // Wasn't a command so it is either gibberish or a test group
+        else  // Wasn't a command so it is either gibberish or a test group
         {
-            if(TestGroups[ThisArg.c_str()])                                     //pointer will be null if gibberish
+            if(TestGroups[ThisArg.c_str()]) //pointer returned form the tesgroup will be null if gibberish
             {
                 Runner.TestGroupsToRun.push_back(AllLower(argv[c]));
             }else{
-                cerr << ThisArg << " is not a valid testgroup or parameter." << endl;
+                std::cerr << ThisArg << " is not a valid testgroup or parameter." << std::endl;
                 return ExitInvalidArguments;
             }
         }
     }
 
-    if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running all tests if no type of test is specified
-        { RunAutomaticTests=true; RunInteractiveTests=true; }
+    Runner.RunTests();
 
-    Runner.RunTests(RunAutomaticTests, RunInteractiveTests);
-    Runner.DisplayResults(SummaryDisplay, FullDisplay);
+    Runner.DisplayResults(std::cout,SummaryDisplay,FullDisplay);
 
     return ExitSuccess;
  }
-
-

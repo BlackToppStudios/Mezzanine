@@ -49,7 +49,7 @@
 class ActorTests : public UnitTestGroup
 {
     public:
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)
             {
@@ -279,7 +279,7 @@ class ActorTests : public UnitTestGroup
                 }
                 catch(Mezzanine::Exception e)
                 {
-                    cout << endl << endl << e.what() << endl << endl ;
+                    std::cout << std::endl << std::endl << e.what() << std::endl << std::endl ;
                 }
                 StopEngine();
 

@@ -46,7 +46,7 @@
 class MetaCodeTests : public UnitTestGroup
 {
     public:
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)
             {
@@ -59,8 +59,8 @@ class MetaCodeTests : public UnitTestGroup
                 AddTestResult("metacode::operator>> (Filled2)", Unknown);
 
 
-                stringstream EmptyTest, Filled1Test, Filled2Test;               // create Stringstreams for serialization test
-                stringstream EmptyTestRS, Filled1TestRS, Filled2TestRS;         // create Stringstreams for deserialization test
+                std::stringstream EmptyTest, Filled1Test, Filled2Test;          // create Stringstreams for serialization test
+                std::stringstream EmptyTestRS, Filled1TestRS, Filled2TestRS;    // create Stringstreams for deserialization test
 
                 MetaCode Mempty;                                                // create three metacodes for testing
                 MetaCode MFilled1(MetaCode::BUTTON_LIFTING,MetaCode::KEY_W);    // The W key being released
@@ -79,21 +79,21 @@ class MetaCodeTests : public UnitTestGroup
                 //cout << "\n\n Actual: " << MFilled1 << "\n" << "Desired: " << Filled1TestResults << "\n";
                 //cout << "\n\n Actual: " << MFilled2 << "\n" << "Desired: " << Filled2TestResults << "\n";
 
-                if (EmptyTestResults == EmptyTest.str())                                                        // test the results of the serialization
+                if (EmptyTestResults == EmptyTest.str()) // test the results of the serialization
                 {
                     AddTestResult("metacode::operator<< (Empty)", Success, UnitTestGroup::OverWrite);
                 }else{
                     AddTestResult("metacode::operator<< (Empty)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                if (Filled1TestResults == Filled1Test.str())
+                if (Filled1TestResults == Filled1Test.str()) // test the results of the serialization with a filled metacode
                 {
                     AddTestResult("metacode::operator<< (Filled1)", Success, UnitTestGroup::OverWrite);
                 }else{
                     AddTestResult("metacode::operator<< (Filled1)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                if (Filled2TestResults == Filled2Test.str())
+                if (Filled2TestResults == Filled2Test.str()) // test the results of the serialization again
                 {
                     AddTestResult("metacode::operator<< (Filled2)", Success, UnitTestGroup::OverWrite);
                 }else{
@@ -146,6 +146,9 @@ class MetaCodeTests : public UnitTestGroup
                 AddTestResult("metacode::operator>> (Filled1)", Skipped);
                 AddTestResult("metacode::operator>> (Filled2)", Skipped);
             }
+
+
+
 
         }
 };

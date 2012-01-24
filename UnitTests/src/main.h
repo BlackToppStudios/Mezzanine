@@ -42,9 +42,12 @@
 
 #include <utility> //For pair
 #include <map>
+#include <vector>
 #include <iostream>
+#include <fstream>
 
-#include <cctype> //for tolower
+#include <cctype> // For tolower
+#include <cstdio> // For remove
 
 #include <mezzanine.h> // For String and all of Mezzanine
 
@@ -81,8 +84,48 @@ Mezzanine::String TestResultToString(TestResult Convertable)
         case NotApplicable:
             return "N/A";
         default:
-            throw(Mezzanine::Exception(Mezzanine::StringTool::StringCat("Cannot convert TestResult with value ", Mezzanine::ToString(Convertable))));
+            throw(Mezzanine::Exception("Cannot convert to String from TestResult " + Mezzanine::ToString(Convertable)));
     }
+}
+
+TestResult StringToTestResult(Mezzanine::String Text)
+{
+    if(Text.size()==0)
+        { throw(Mezzanine::Exception("Cannot convert to TestResult from empty String")); }
+
+    switch(Text.at(0))
+    {
+        case 'S':
+            if ( "Success" == Text )
+                return Success;
+            return Skipped;
+        case 'C':
+            return Cancelled;
+        case 'I':
+            return Inconclusive;
+        case 'U':
+            return Unknown;
+        case 'F':
+            return Failed;
+        case 'N':
+            return NotApplicable;
+        default:
+            throw(Mezzanine::Exception("Cannot convert to TestResult from text " + Text));
+    }
+    return Unknown;
+}
+
+Mezzanine::String rtrim(const Mezzanine::String &t)
+{
+    Mezzanine::String str = t;
+    size_t found;
+    found = str.find_last_not_of(" \n\r\t");
+    if (found != Mezzanine::String::npos)
+        { str.erase(found+1); }
+    else
+        { str.clear(); }            // str is all whitespace
+
+    return str;
 }
 
 // Used for padding spaces, after a piece of leader text, such that it always ends at teh expected colum
@@ -97,6 +140,15 @@ Mezzanine::String MakePadding(Mezzanine::String Leader, unsigned int Column)
 // the return type of tests
 typedef std::pair<Mezzanine::String,TestResult> TestData;
 
+TestData StringToTestData(Mezzanine::String Line)
+{
+    TestData Results;
+    size_t LastSpace=Line.rfind(' ');
+    Results.second=StringToTestResult(Line.substr(LastSpace+1,100)); // No testdata should be longer than 100
+    Results.first=rtrim(Line.substr(0,LastSpace));
+    return Results;
+}
+
 // The classes for Tests themselves
 // inherits from std::map to make storage location of of the TestData obvious
 typedef std::map<Mezzanine::String,TestResult> TestDataStorage;
@@ -104,7 +156,6 @@ typedef std::map<Mezzanine::String,TestResult> TestDataStorage;
 class UnitTestGroup : public TestDataStorage
 {
     protected:
-
         // Some basic variable for tracking simple statistics
         unsigned int LongestNameLength;
 
@@ -112,29 +163,15 @@ class UnitTestGroup : public TestDataStorage
         UnitTestGroup() :
             LongestNameLength(0)
         {}
-/*
-        virtual TestResult RunAutomaticTest() = 0;
-        virtual TestResult RunManualTest() = 0;
-        virtual TestResult SkipAutomaticTest() = 0;
-        virtual TestResult SkipManualTest() = 0;
-
-        virtual TestDataStorage ExecutableTests() = 0;
-*/
 
 // Simply naming tests
 // make iterating over tests that could be possible
-//      use to set skips and run
+// use to set skips and run
 
         // This is expected to run all the tests that meet the criteria passed in
         // This should return the LeastSuccessful TestResult, this will make it easier for the main to find and report errors
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
-        {
-            TestResult Answer;
-
-            //
-
-            return Answer;
-        }
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+            {}
 
         enum OverWriteResults{
             OverWriteIfLessSuccessful,
@@ -170,6 +207,7 @@ class UnitTestGroup : public TestDataStorage
                 }
             }else{
                 this->insert(FreshMeat);
+                Added=true;
             }
 
             if (Added)
@@ -198,43 +236,47 @@ class UnitTestGroup : public TestDataStorage
             insert(rhs.begin(),rhs.end());
         }
 
-        void DisplayResults(bool Summary = true, bool FullOutput = true)
+        virtual void DisplayResults(std::ostream& Output=std::cout, bool Summary = true, bool FullOutput = true, bool HeaderOutput = true)
         {
-            vector<unsigned int> TestCounts;
-            TestCounts.insert(TestCounts.end(),1+(unsigned int)Unknown, 0);
+            std::vector<unsigned int> TestCounts; // This will store the counts of the Sucesses, failures, etc...
+            TestCounts.insert(TestCounts.end(),1+(unsigned int)Unknown, 0); //Fill with the exact amount of 0s
 
-            Mezzanine::String TestName("Test Name");
-            cout << endl << " " << TestName << MakePadding(TestName, LongestNameLength) << "Result" << endl;
+            if(FullOutput && HeaderOutput) // No point in displaying the header without the other content.
+            {
+                Mezzanine::String TestName("Test Name");
+                Output << std::endl << " " << TestName << MakePadding(TestName, LongestNameLength) << "Result" << std::endl;
+            }
+
             for (TestDataStorage::iterator Iter=this->begin(); Iter!=this->end(); Iter++)
             {
                 if(FullOutput)
                 {
-                    cout << Iter->first << MakePadding(Iter->first, LongestNameLength+1) << TestResultToString(Iter->second) << endl;
+                    Output << Iter->first << MakePadding(Iter->first, LongestNameLength+1) << TestResultToString(Iter->second) << std::endl;
                 }
-                TestCounts.at((unsigned int)Iter->second)++;
+                TestCounts.at((unsigned int)Iter->second)++; // Count this test result
             }
 
             if(Summary)
             {
-                cout << endl << " Results Summary:" << endl;
+                Output << std::endl << " Results Summary:" << std::endl;
                 for(unsigned int c=0; c<TestCounts.size();++c)
                 {
                     Mezzanine::String ResultName(TestResultToString((TestResult)c));
-                    cout << "  " << ResultName << MakePadding(ResultName,16) << TestCounts.at(c) << endl;
+                    Output << "  " << ResultName << MakePadding(ResultName,16) << TestCounts.at(c) << std::endl;
                 }
-                cout << endl;
+                Output << std::endl;
             }
         }
 
 };
 
 // The list of all the testgroups
-map<Mezzanine::String, UnitTestGroup*> TestGroups;
+std::map<Mezzanine::String, UnitTestGroup*> TestGroups;
 
 // Drops a String to all lower case, changes the string passed in
 char* AllLower(char* CString)
 {
-    locale loc;
+    std::locale loc;
     for(int c=0; CString[c]!='\0'; ++c)
     {
         CString[c]=tolower(CString[c],loc);
@@ -258,9 +300,9 @@ TestResult GetTestAnswer(Mezzanine::String Question)
 
     while(true)
     {
-        cout << Question;
-        getline(cin, Input);
-        stringstream InputStream(Input);
+        std::cout << Question;
+        getline(std::cin, Input);
+        std::stringstream InputStream(Input);
         if (InputStream >> Answer)
         {
             Answer=tolower(Answer);
@@ -268,7 +310,7 @@ TestResult GetTestAnswer(Mezzanine::String Question)
                 { break; }
         }
 
-        cout << endl << "Expected (T)rue/(Y)es for Success, (F)alse/(N)o for Failure," << endl << " (C)anceled to cancel this test, or (U)nsure/(I)nconclusive if you don't know." << endl << endl;
+        std::cout << std::endl << "Expected (T)rue/(Y)es for Success, (F)alse/(N)o for Failure," << std::endl << " (C)anceled to cancel this test, or (U)nsure/(I)nconclusive if you don't know." << std::endl << std::endl;
     }
 
     switch(Answer)
@@ -296,34 +338,34 @@ enum ExitCodes
 
 int Usage(Mezzanine::String ThisName)
 {
-    std::cout   << endl << "Usage: " << ThisName << " [help] [summary] [testlist] [interactive|automatic] [all] Test Group Names ..." << endl << endl
-                << "All:         All test groups will be run." << endl
-                << "Interactive: Only interactive tests will be performed on specified test groups." << endl
-                << "Automatic:   Only automated tests will be performed on specified test groups." << endl
-                //<< "Interactive and Automatic: All tests will be run on specificied test groups." << endl << endl
-                << "Summary:     Only display a count of failures and successes" << endl
-                << "testlist:    Output a list of all tests, one per line" << endl
-                << "Help:        Display this message"<< endl << endl
-                << "If only test group names are entered, then all tests in those groups are run." << endl
-                << "This command is not case sensitive." << endl << endl
-                << "Current Test Groups: " << endl;
+    std::cout   << std::endl << "Usage: " << ThisName << " [help] [summary] [testlist] [interactive|automatic] [all] Test Group Names ..." << std::endl << std::endl
+                << "All:         All test groups will be run." << std::endl
+                << "Interactive: Only interactive tests will be performed on specified test groups." << std::endl
+                << "Automatic:   Only automated tests will be performed on specified test groups." << std::endl
+                //<< "Interactive and Automatic: All tests will be run on specificied test groups." << std::endl << std::endl
+                << "Summary:     Only display a count of failures and successes" << std::endl
+                << "testlist:    Output a list of all tests, one per line" << std::endl
+                << "Help:        Display this message"<< std::endl << std::endl
+                << "If only test group names are entered, then all tests in those groups are run." << std::endl
+                << "This command is not case sensitive." << std::endl << std::endl
+                << "Current Test Groups: " << std::endl;
     Mezzanine::Whole c = 0;
-    for(map<Mezzanine::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+    for(std::map<Mezzanine::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
     {
-        cout <<"\t" << Iter->first << (Iter->first.size()<7?"\t":"") << " ";
+        std::cout << "\t" << Iter->first << (Iter->first.size()<7?"\t":"") << " ";
         ++c;        //enforce 4 names per line
         if (4==c)
-            { cout<<endl; c=0; }
+            { std::cout << std::endl; c=0; }
     }
-    cout << endl;
+    std::cout << std::endl;
 
     return ExitInvalidArguments;
 }
 
 int PrintList()
 {
-    for(map<Mezzanine::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
-        { cout << Iter->first << endl; }
+    for(std::map<Mezzanine::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+        { std::cout << Iter->first << std::endl; }
     return ExitSuccess;
 }
 
@@ -437,7 +479,6 @@ bool PostInputCheck()
         ThisInput = EventMan->PopNextUserInputEvent();
     }
 
-
     if (Unknown==AnswerToQuestion)
         { return true; }
     else
@@ -462,6 +503,73 @@ void GetAnswer()
     TheMessage2 = "T/Y:Yes  F/N:No  C:Cancel  U/I:Inconclusive";
     UpdateMessage(TheMessage, TheMessage2);
     EventManager::GetSingletonPtr()->SetPostMainLoopItems(&PostInputCheck);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Temp File Manipulation
+///////////////////////////////////////
+
+/// @internal
+/// @brief This is the name of the file used to communicate results from child processes
+/// @warning This variable is used to create temporary files in a percieved insecure way
+/// Everything will be fine as long as nothing else writes to this this file during or
+/// between Tests. If something does, then you probably have big enough problems you
+/// shouldn't be developing software until that is fixed.
+static const String TempFile("UnitTestWork.txt");
+
+/// @internal
+/// @brief Empty the file specified by @ref TempFile
+/// @warning This doesn't ask for permission and can't easily be cancelled or recovered
+/// from. This will open, then erase the contents of the file.
+/// @throw This can throw any exception that the C++ filestream classes can throw.
+void ClearTempFile()
+{
+    std::ofstream FileToClear;
+    FileToClear.open(TempFile.c_str(),std::ios_base::out|std::ios_base::trunc); // Clear the work file.
+    FileToClear.close();
+}
+
+/// @internal
+/// @brief This will open then parse the contents of the file specified by @ref TempFile and interpret any test results located
+/// @throw This can throw any exception that the C++ filestream classes can throw.
+/// @return This "reads" the temp file and interprets it. It tries to extract the name of the test as the whole of a line minus
+/// the last word. The last word is then converted into a @ref TestResult using @ref StringToTestResult . Any Whitespace between
+/// between the end of the last word and the end of the test name is dropped. All lines are interpretted this way and returned
+/// as a single @ref UnitTestGroup.
+UnitTestGroup GetResultsFromTempFile()
+{
+    UnitTestGroup Results;
+    std::vector<Mezzanine::String> FileContents;
+
+    char SingleLine[1024];
+    std::ifstream TheSourceFile(TempFile.c_str());
+    while( TheSourceFile.good() )
+    {
+        TheSourceFile.getline(SingleLine,1024);
+        FileContents.push_back(Mezzanine::String(SingleLine));
+    }
+
+    if(TheSourceFile.eof()) // We successfully reached the end of the file
+        { }
+    if(TheSourceFile.bad()) // We fail somehow
+        { std::cerr << "Error reading temp file." << std::endl; }
+    TheSourceFile.close();
+
+    for(std::vector<Mezzanine::String>::iterator Iter=FileContents.begin(); FileContents.end()!=Iter; ++Iter) // for each line in the file, that is now loaded in RAM
+    {
+        if(rtrim(*Iter).size()) // If there is more than whitespace
+        {
+            Results.AddTestResult(StringToTestData(*Iter));
+        }
+    }
+
+    return Results;
+}
+
+/// @brief Attempts to delete temp file. Silently fails if not possible.
+void DeleteTempFile()
+{
+    remove(TempFile.c_str());
 }
 
 #endif

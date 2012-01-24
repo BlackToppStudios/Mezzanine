@@ -47,7 +47,7 @@
 class ParticleEffectTests : public UnitTestGroup
 {
     public:
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             TestResult temp=Failed;
 
@@ -91,7 +91,7 @@ class ParticleEffectTests : public UnitTestGroup
                     Test1->AttachTo(Test0);
                     AddTestResult("ParticleEffect::AttachTo", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
 
-                    stringstream XMLstream;
+                    std::stringstream XMLstream;
                     AddTestResult("ParticleEffect::operator<<", Failed, UnitTestGroup::OverWrite);
                     XMLstream << *Test1;
                     if (XMLstream.str() == String("<ParticleEffect Version=\"1\" Name=\"Beta\" AttachedTo=\"Alpha\" Enabled=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.426162\" Y=\"0.473514\" Z=\"0.520865\" W=\"0.568217\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\"/></Location></ParticleEffect>"))
@@ -110,11 +110,11 @@ class ParticleEffectTests : public UnitTestGroup
                     StartCountdown(2);
                     TheWorld->MainLoop();
                 }catch(Ogre::Exception e){
-                    cerr << "Ogre::Exception" << e.what() << endl;
+                    std::cerr << "Ogre::Exception" << e.what() << std::endl;
                 }catch(Exception e){
-                    cerr << "Mezzanine::Exception" << e.what() << endl;
-                }catch(exception e){
-                    cerr << "std::exception" << e.what() << endl;
+                    std::cerr << "Mezzanine::Exception" << e.what() << std::endl;
+                }catch(std::exception e){
+                    std::cerr << "std::exception" << e.what() << std::endl;
                 }
 
                 StopEngine();

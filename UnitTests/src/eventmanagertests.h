@@ -58,7 +58,7 @@ namespace
 class EventManagerTests : public UnitTestGroup
 {
     public:
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)
             {
@@ -85,7 +85,7 @@ class EventManagerTests : public UnitTestGroup
                 bool Tested2 = false;
                 bool Tested3 = false;
 
-                vector<int> Keymap;
+                std::vector<int> Keymap;
                 Keymap.insert(Keymap.end(), MetaCode::KEY_LAST, 0); // make a big empty arraylike thing
 
                 EventUserInput *ThisInput = EventMan->PopNextUserInputEvent();

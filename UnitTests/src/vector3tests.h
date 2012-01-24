@@ -51,7 +51,7 @@ using namespace Mezzanine;
 class Vector3Tests : public UnitTestGroup
 {
     public:
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)
             {
@@ -736,7 +736,7 @@ class Vector3Tests : public UnitTestGroup
                 temp = Skipped;
                 #ifdef MEZZXML
                 Vec=Vector3(3.0,4.0,5.0);
-                stringstream XMLstream;
+                std::stringstream XMLstream;
                 XMLstream<<Vec;
                 Mezzanine::String Actual(XMLstream.str());
                 Mezzanine::String Ideal("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\" />");
@@ -758,7 +758,7 @@ class Vector3Tests : public UnitTestGroup
                     else
                         { temp=Failed; }
                 }catch (Mezzanine::Exception e){
-                    cerr << "Failure in: Vector3::operator>>(istream,Vector3)" << endl <<"\t Mezzanine::Exception: " << e.what();
+                    std::cerr << "Failure in: Vector3::operator>>(istream,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
                     temp=Failed;
                 }
                 #endif
@@ -778,7 +778,7 @@ class Vector3Tests : public UnitTestGroup
                     else
                         { temp=Failed; }
                 }catch (Mezzanine::Exception e){
-                    cerr << "Failure in: Vector3::operator>>(xml::Node,Vector3)" << endl <<"\t Mezzanine::Exception: " << e.what();
+                    std::cerr << "Failure in: Vector3::operator>>(xml::Node,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
                     temp=Failed;
                 }
                 #endif
