@@ -58,7 +58,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // The Essentials
 
-    Real Vector3::GetAxisValue(StandardAxis Axis) const
+    Real Vector3::GetAxisValue(const StandardAxis& Axis) const
     {
         switch(Axis)
         {
@@ -69,7 +69,7 @@ namespace Mezzanine
         }
     }
 
-    Real Vector3::GetAxisValue(Integer Axis) const
+    Real Vector3::GetAxisValue(const Whole& Axis) const
         { return this->GetAxisValue((StandardAxis)Axis); }
 
     Real& Vector3::GetAxisValue(const StandardAxis& Axis)
