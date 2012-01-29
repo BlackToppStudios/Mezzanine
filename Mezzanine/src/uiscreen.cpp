@@ -89,6 +89,30 @@ namespace Mezzanine
             Ogre::Vector2 UV;
         };
 
+        void ScreenVertexData::Clear()
+        {
+            LowVertices.clear();
+            MediumVertices.clear();
+            HighVertices.clear();
+        }
+
+        Whole ScreenVertexData::Size()
+        {
+            return LowVertices.size() + MediumVertices.size() + HighVertices.size();
+        }
+
+        VertexData& ScreenVertexData::operator[](const Whole& Index)
+        {
+            if( Index < LowVertices.size() )
+                return LowVertices[Index];
+            else if( Index < LowVertices.size() + MediumVertices.size() )
+                return MediumVertices[Index - LowVertices.size()];
+            else if( Index < LowVertices.size() + MediumVertices.size() + HighVertices.size() )
+                return HighVertices[Index - (LowVertices.size() + MediumVertices.size())];
+            else
+                World::GetWorldPointer()->LogAndThrow(Exception("Out of bounds index requested in ScreenVertexData::operator[]."));
+        }
+
         Screen::Screen(const String& name, const String& Atlas, Viewport* WindowViewport)
             : Name(name),
               PrimaryAtlas(Atlas),
@@ -469,10 +493,13 @@ namespace Mezzanine
         {
             static const Matrix4x4 Iden;
             Whole X;
-            for( X = Begin ; X < End ; X++ )
+            if( Begin != End )
             {
-                Vertices[X].Vert.Position.X = ((Vertices[X].Vert.Position.X) * InverseViewportSize.X) * 2 - 1;
-                Vertices[X].Vert.Position.Y = ((Vertices[X].Vert.Position.Y) * InverseViewportSize.Y) * -2 + 1;
+                for( X = Begin ; X < End ; X++ )
+                {
+                    Vertices[X].Vert.Position.X = ((Vertices[X].Vert.Position.X) * InverseViewportSize.X) * 2 - 1;
+                    Vertices[X].Vert.Position.Y = ((Vertices[X].Vert.Position.Y) * InverseViewportSize.Y) * -2 + 1;
+                }
             }
             if( VertexTransform != Iden )
             {
@@ -486,7 +513,7 @@ namespace Mezzanine
             std::map<UInt32,IndexData*>::iterator IndIt;
             for( IndIt = Indexes.begin() ; IndIt != Indexes.end() ; IndIt++ )
             {
-                (*IndIt).second->Vertices.clear();
+                (*IndIt).second->Vertices.Clear();
                 (*IndIt).second->IndexLayer = NULL;
                 (*IndIt).second->RedrawNeeded = false;
             }
@@ -532,7 +559,7 @@ namespace Mezzanine
 
             IndexData* CurrIndexData = (*it).second;
 
-            CurrIndexData->Vertices.clear();
+            CurrIndexData->Vertices.Clear();
             CurrIndexData->RedrawNeeded = false;
 
             if( CurrIndexData->IndexLayer->IsVisible() )
@@ -548,7 +575,7 @@ namespace Mezzanine
                 IndexData* CurrIndexData = (*it).second;
                 if( CurrIndexData->RedrawNeeded || Force )
                 {
-                    CurrIndexData->Vertices.clear();
+                    CurrIndexData->Vertices.Clear();
                     CurrIndexData->RedrawNeeded = false;
 
                     if( CurrIndexData->IndexLayer->IsVisible() )
@@ -578,7 +605,7 @@ namespace Mezzanine
             Whole KnownVertexCount = 0;
 
             for(std::map<UInt32,IndexData*>::iterator it = Indexes.begin(); it != Indexes.end();it++)
-                KnownVertexCount += (*it).second->Vertices.size();
+                KnownVertexCount += (*it).second->Vertices.Size();
 
             ResizeVertexBuffer(KnownVertexCount);
             OgreVertex* WriteIterator = (OgreVertex*) this->SID->VertexBuffer->lock(Ogre::HardwareBuffer::HBL_DISCARD);
@@ -592,7 +619,7 @@ namespace Mezzanine
             for( std::map<UInt32,IndexData*>::iterator it = Indexes.begin() ; it != Indexes.end() ; it++ )
             {
                 CurrIndexData = (*it).second;
-                for( Whole I = 0 ; I < CurrIndexData->Vertices.size() ; I++ )
+                for( Whole I = 0 ; I < CurrIndexData->Vertices.Size() ; I++ )
                 {
                     if( CurrIndexData->Vertices[I].Atlas.empty() )
                     {
@@ -616,7 +643,7 @@ namespace Mezzanine
 
                     *WriteIterator++ = NewVertex;//CurrIndexData->Vertices[I].Vert;
                 }
-                PreviousTally += CurrIndexData->Vertices.size();
+                PreviousTally += CurrIndexData->Vertices.Size();
             }
             MyObject.RenderEnd = KnownVertexCount;
             MyObject.Atlas = CurrentName;

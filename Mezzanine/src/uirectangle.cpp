@@ -573,11 +573,34 @@ namespace Mezzanine
             Dirty = false;
         }
 
-        void Rectangle::_AppendVertices(std::vector<VertexData>& Vertices)
+        void Rectangle::_AppendVertices(ScreenVertexData& Vertices)
         {
-            for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
+            switch(Priority)
             {
-                Vertices.push_back(RenderVertices[X]);
+                case UI::RP_Low:
+                {
+                    for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
+                    {
+                        Vertices.LowVertices.push_back(RenderVertices[X]);
+                    }
+                    break;
+                }
+                case UI::RP_Medium:
+                {
+                    for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
+                    {
+                        Vertices.MediumVertices.push_back(RenderVertices[X]);
+                    }
+                    break;
+                }
+                case UI::RP_High:
+                {
+                    for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
+                    {
+                        Vertices.HighVertices.push_back(RenderVertices[X]);
+                    }
+                    break;
+                }
             }
         }
     }//UI

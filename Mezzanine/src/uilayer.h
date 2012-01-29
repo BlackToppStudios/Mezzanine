@@ -71,6 +71,7 @@ namespace Mezzanine
         class GlyphData;
         class TextureAtlas;
         class VertexData;
+        class ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Layer
         /// @headerfile uilayer.h
@@ -409,7 +410,7 @@ namespace Mezzanine
                 /// @brief Retrieves the list of verticies for all objects in this layer.
                 /// @param Verticies The vector of Vertex's to update.
                 /// @param Force Whether or not to force this object to update regardless of if it needs it.
-                void _Render(std::vector<VertexData>& Vertices, bool Force = false);
+                void _Render(ScreenVertexData& Vertices, bool Force = false);
         };//layer
     }//ui
 }//Mezzanine

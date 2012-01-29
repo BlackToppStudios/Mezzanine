@@ -70,6 +70,23 @@ namespace Mezzanine
             AtlasAndPosition() : RenderCount(0), RenderStart(0), RenderEnd(0) {};
         };
         ///////////////////////////////////////////////////////////////////////////////
+        /// @class ScreenVertexData
+        /// @headerfile uiscreen.h
+        /// @brief This class stores all vertices pertaining to a layer sorted by their priority for rendering.
+        /// @details
+        ///////////////////////////////////////
+        class ScreenVertexData
+        {
+            public:
+            std::vector<VertexData> LowVertices;
+            std::vector<VertexData> MediumVertices;
+            std::vector<VertexData> HighVertices;
+
+            void Clear();
+            Whole Size();
+            VertexData& operator[](const Whole& Index);
+        };
+        ///////////////////////////////////////////////////////////////////////////////
         /// @class IndexData
         /// @headerfile uiscreen.h
         /// @brief This is a basic class for storing data relating to a specific zorder in the UI.
@@ -79,7 +96,7 @@ namespace Mezzanine
         {
             Layer* IndexLayer;
             bool RedrawNeeded;
-            std::vector<VertexData> Vertices;
+            ScreenVertexData Vertices;
 
             IndexData() : IndexLayer(NULL), RedrawNeeded(true) {};
         };

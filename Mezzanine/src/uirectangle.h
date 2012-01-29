@@ -51,6 +51,7 @@ namespace Mezzanine
     namespace UI
     {
         class Layer;
+        class ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Rectangle
         /// @headerfile uirectangle.h
@@ -223,7 +224,7 @@ namespace Mezzanine
                 /// @copydoc UI::BasicRenderable::_Redraw()
                 virtual void _Redraw();
                 /// @copydoc UI::BasicRenderable::_AppendVertices()
-                virtual void _AppendVertices(std::vector<VertexData>& Vertices);
+                virtual void _AppendVertices(ScreenVertexData& Vertices);
         };//rectangle
     }//UI
 }//Mezzanine

@@ -54,6 +54,7 @@ namespace Mezzanine
         class Layer;
         class WidgetCallback;
         class BasicRenderable;
+        class ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class InputCaptureData
         /// @headerfile uiwidget.h
@@ -262,7 +263,7 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Appends the vertices of this renderable to another vector.
                 /// @param Vertices The vector of vertex's to append to.
-                virtual void _AppendVertices(std::vector<VertexData>& Vertices);
+                virtual void _AppendVertices(ScreenVertexData& Vertices);
         };//widget
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WidgetCallback

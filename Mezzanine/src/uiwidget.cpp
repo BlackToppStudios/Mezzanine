@@ -285,6 +285,11 @@ namespace Mezzanine
         void Widget::SetRenderPriority(const UI::RenderPriority& Priority)
         {
             this->Priority = Priority;
+            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            {
+                if( (*it).second.first ) (*it).second.first->SetRenderPriority(this->Priority);
+                else (*it).second.second->SetRenderPriority(this->Priority);
+            }
         }
 
         UI::RenderPriority Widget::GetRenderPriority() const
@@ -325,7 +330,7 @@ namespace Mezzanine
             }
         }
 
-        void Widget::_AppendVertices(std::vector<VertexData>& Vertices)
+        void Widget::_AppendVertices(ScreenVertexData& Vertices)
         {
             for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
             {

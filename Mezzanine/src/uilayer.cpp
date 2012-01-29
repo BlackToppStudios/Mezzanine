@@ -654,112 +654,93 @@ namespace Mezzanine
             Parent->_RequestIndexRedraw(Index);
         }
 
-        void Layer::_Render(std::vector<VertexData>& Vertices, bool Force)
+        void Layer::_Render(ScreenVertexData& Vertices, bool Force)
         {
             if( AlphaModifier == 0.0 )
                 return;
 
-            Whole Begin = Vertices.size();
+            Whole LowBegin = Vertices.LowVertices.size();
+            Whole MediumBegin = Vertices.MediumVertices.size();
+            Whole HighBegin = Vertices.HighVertices.size();
             Whole I = 0;
 
-            for( int RP = 0 ; RP < 3 ; RP++ )
+            // Render/redraw rectangles
+            for( RectangleIterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
             {
-                // Render/redraw rectangles
-                for( RectangleIterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
-                {
-                    if( RP == (*it)->GetRenderPriority() )
-                    {
-                        if( (*it)->Dirty || Force )
-                            (*it)->_Redraw();
-                        (*it)->_AppendVertices(Vertices);
-                    }
-                }
+                if( (*it)->Dirty || Force )
+                    (*it)->_Redraw();
+                (*it)->_AppendVertices(Vertices);
+            }
 
-                // Render/redraw buttons
-                for( ButtonIterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
-                {
-                    if( RP == (*it)->GetRenderPriority() )
-                    {
-                        if( (*it)->Dirty || Force )
-                            (*it)->_Redraw();
-                        (*it)->_AppendVertices(Vertices);
-                    }
-                }
+            // Render/redraw buttons
+            for( ButtonIterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+            {
+                if( (*it)->Dirty || Force )
+                    (*it)->_Redraw();
+                (*it)->_AppendVertices(Vertices);
+            }
 
-                // Render/redraw polygons
-                /*for( PolygonIterator it = Polygons.begin() ; it != Polygons.end() ; it++ )
-                {
-                    if( RP == (*it)->GetRenderPriority() )
-                    {
-                        if( (*it)->Dirty || Force )
-                            (*it)->_Redraw();
-                        (*it)->_AppendVertices(Vertices);
-                    }
-                }// */
+            // Render/redraw polygons
+            /*for( PolygonIterator it = Polygons.begin() ; it != Polygons.end() ; it++ )
+            {
+                if( (*it)->Dirty || Force )
+                    (*it)->_Redraw();
+                (*it)->_AppendVertices(Vertices);
+            }// */
 
-                // Render/redraw quad lists
-                /*for( QuadListIterator it = QuadLists.begin() ; it != QuadLists.end() ; it++ )
-                {
-                    if( RP == (*it)->GetRenderPriority() )
-                    {
-                        if( (*it)->Dirty || Force )
-                            (*it)->_Redraw();
-                        (*it)->_AppendVertices(Vertices);
-                    }
-                }// */
+            // Render/redraw quad lists
+            /*for( QuadListIterator it = QuadLists.begin() ; it != QuadLists.end() ; it++ )
+            {
+                if( (*it)->Dirty || Force )
+                    (*it)->_Redraw();
+                (*it)->_AppendVertices(Vertices);
+            }// */
 
-                // Render/redraw caption
-                for(CaptionIterator it = Captions.begin(); it != Captions.end(); it++)
-                {
-                    if( RP == (*it)->GetRenderPriority() )
-                    {
-                        if( (*it)->Dirty || Force )
-                            (*it)->_Redraw();
-                        (*it)->_AppendVertices(Vertices);
-                    }
-                }
+            // Render/redraw caption
+            for(CaptionIterator it = Captions.begin(); it != Captions.end(); it++)
+            {
+                if( (*it)->Dirty || Force )
+                    (*it)->_Redraw();
+                (*it)->_AppendVertices(Vertices);
+            }
 
-                // Render/redraw markuptext
-                for(MarkupTextIterator it = MarkupTexts.begin(); it != MarkupTexts.end(); it++)
-                {
-                    if( RP == (*it)->GetRenderPriority() )
-                    {
-                        if( (*it)->TextDirty || Force )
-                            (*it)->_CalculateCharacters();
-                        if( (*it)->Dirty || Force )
-                            (*it)->_Redraw();
-                        (*it)->_AppendVertices(Vertices);
-                    }
-                }
+            // Render/redraw markuptext
+            for(MarkupTextIterator it = MarkupTexts.begin(); it != MarkupTexts.end(); it++)
+            {
+                if( (*it)->TextDirty || Force )
+                    (*it)->_CalculateCharacters();
+                if( (*it)->Dirty || Force )
+                    (*it)->_Redraw();
+                (*it)->_AppendVertices(Vertices);
+            }
 
-                // Render/redraw Widgets
-                for( WidgetIterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
-                {
-                    if( RP == (*it)->GetRenderPriority() )
-                    {
-                        if( (*it)->Dirty || Force )
-                            (*it)->_Redraw();
-                        (*it)->_AppendVertices(Vertices);
-                    }
-                }
+            // Render/redraw Widgets
+            for( WidgetIterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+            {
+                if( (*it)->Dirty || Force )
+                    (*it)->_Redraw();
+                (*it)->_AppendVertices(Vertices);
+            }
 
-                // Render/redraw line lists
-                for( LineListIterator it = LineLists.begin() ; it != LineLists.end() ; it++ )
-                {
-                    if( RP == (*it)->GetRenderPriority() )
-                    {
-                        if( (*it)->Dirty || Force )
-                            (*it)->_Redraw();
-                        (*it)->_AppendVertices(Vertices);
-                    }
-                }
+            // Render/redraw line lists
+            for( LineListIterator it = LineLists.begin() ; it != LineLists.end() ; it++ )
+            {
+                if( (*it)->Dirty || Force )
+                    (*it)->_Redraw();
+                (*it)->_AppendVertices(Vertices);
             }
             if(AlphaModifier != 1.0)
             {
-                for( I = Begin ; I < Vertices.size() ; I++ )
-                    Vertices[I].Vert.Colour.A *= AlphaModifier;
+                for( I = LowBegin ; I < Vertices.LowVertices.size() ; I++ )
+                    Vertices.LowVertices[I].Vert.Colour.A *= AlphaModifier;
+                for( I = MediumBegin ; I < Vertices.MediumVertices.size() ; I++ )
+                    Vertices.MediumVertices[I].Vert.Colour.A *= AlphaModifier;
+                for( I = HighBegin ; I < Vertices.HighVertices.size() ; I++ )
+                    Vertices.HighVertices[I].Vert.Colour.A *= AlphaModifier;
             }
-            Parent->_Transform(Vertices,Begin,Vertices.size());
+            Parent->_Transform(Vertices.LowVertices,LowBegin,Vertices.LowVertices.size());
+            Parent->_Transform(Vertices.MediumVertices,MediumBegin,Vertices.MediumVertices.size());
+            Parent->_Transform(Vertices.HighVertices,HighBegin,Vertices.HighVertices.size());
         }
     }//ui
 }//Mezzanine

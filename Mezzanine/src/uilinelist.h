@@ -51,6 +51,7 @@ namespace Mezzanine
     {
         class Layer;
         class VertexData;
+        class ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class LineList
         /// @headerfile uilinelist.h
@@ -111,7 +112,7 @@ namespace Mezzanine
                 /// @copydoc UI::BasicRenderable::_Redraw()
                 virtual void _Redraw();
                 /// @copydoc UI::BasicRenderable::_AppendVertices()
-                virtual void _AppendVertices(std::vector<VertexData>& Vertices);
+                virtual void _AppendVertices(ScreenVertexData& Vertices);
         };//listlist
     }//UI
 }//Mezzanine

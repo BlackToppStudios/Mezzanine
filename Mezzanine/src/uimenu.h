@@ -40,7 +40,6 @@
 #ifndef _uimenu_h
 #define _uimenu_h
 
-#include "datatypes.h"
 #include "uiwidget.h"
 
 namespace Mezzanine
@@ -121,7 +120,7 @@ namespace Mezzanine
                 // Internal Functions
                 ///////////////////////////////////////
                 /// @copydoc Widget::_AppendVertices
-                virtual void _AppendVertices(std::vector<VertexData>& Vertices);
+                virtual void _AppendVertices(ScreenVertexData& Vertices);
         };//Menu
     }//UI
 }//Mezzanine

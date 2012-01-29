@@ -50,6 +50,7 @@ namespace Mezzanine
     namespace UI
     {
         class Layer;
+        struct ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class BasicRenderable
         /// @headerfile uibasicrenderable.h
@@ -127,7 +128,7 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Appends the vertices of this renderable to another vector.
                 /// @param Vertices The vector of vertex's to append to.
-                virtual void _AppendVertices(std::vector<VertexData>& Vertices) = 0;
+                virtual void _AppendVertices(ScreenVertexData& Vertices) = 0;
         };//BasicRenderable
     }//UI
 }//Mezzanine

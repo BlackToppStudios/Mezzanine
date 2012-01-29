@@ -218,7 +218,7 @@ namespace Mezzanine
             return MenuStack.back();
         }
 
-        void Menu::_AppendVertices(std::vector<VertexData>& Vertices)
+        void Menu::_AppendVertices(ScreenVertexData& Vertices)
         {
             for( Whole X = 0 ; X < MenuStack.size() ; ++X )
             {
