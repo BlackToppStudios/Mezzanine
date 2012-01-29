@@ -72,7 +72,7 @@ namespace Mezzanine
                 /// @param Group The resource group the file is in.
                 /// @param Separators The characters that should be observed when separating settings and their values on a single line.
                 /// @param TrimWhitespace Whether or not to remove any white spaces before or after settings or their values.
-                void Load(const String& Filename, const String& Group, const String& Separators = "\t:=", bool TrimWhitespace = true);
+                void Load(const String& Filename, const String& Group, const String& Separators = " \t:=", bool TrimWhitespace = true);
                 /// @brief Clears all data from this class.
                 void Clear();
 

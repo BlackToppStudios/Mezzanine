@@ -91,10 +91,16 @@ namespace Mezzanine
         ResourceGroups.push_back(Name);
     }
 
-    void ResourceManager::AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive)
+    void ResourceManager::AddResourceLocation(const String& Location, const String& Type, const String& Group, bool recursive)
     {
         this->OgreResource->addResourceLocation(Location, Type, Group, recursive);
         AddResourceGroupName(Group);
+    }
+
+    void ResourceManager::CreateResourceGroup(const String& GroupName)
+    {
+        this->OgreResource->createResourceGroup(GroupName);
+        AddResourceGroupName(GroupName);
     }
 
     void ResourceManager::DestroyResourceGroup(const String& GroupName)
@@ -116,7 +122,6 @@ namespace Mezzanine
                 MeshManager::GetSingletonPtr()->UnloadMesh(ResourceNames->at(X));
             }
         }
-        ///
         this->OgreResource->destroyResourceGroup(GroupName);
     }
 
@@ -128,19 +133,6 @@ namespace Mezzanine
     void ResourceManager::InitResourceGroup(const String& Group)
     {
         this->OgreResource->initialiseResourceGroup(Group);
-    }
-
-    void ResourceManager::ParseMaterialScripts()
-    {
-        Ogre::MaterialManager* OgreMatMan = Ogre::MaterialManager::getSingletonPtr();
-        for( Whole X = 0 ; X < ResourceGroups.size() ; X++ )
-        {
-            Ogre::DataStreamListPtr MatFiles = OgreResource->openResources("*.material",ResourceGroups[X]);
-            for( std::list<Ogre::DataStreamPtr>::iterator it = MatFiles->begin() ; it != MatFiles->end() ; it++ )
-            {
-                OgreMatMan->parseScript((*it),ResourceGroups[X]);
-            }
-        }
     }
 
     ResourceInputStream* ResourceManager::GetResourceStream(const String& FileName)
