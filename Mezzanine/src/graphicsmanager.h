@@ -203,6 +203,13 @@ namespace Mezzanine
             /// This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop.
             virtual void ResetRenderTimer();
 
+            /// @brief Renders one frame of the scene.
+            virtual void RenderOneFrame();
+
+            /// @brief Swaps all the buffers of all GameWindows.
+            /// @param WaitForVsync Whether or not the buffer should swap after the vsync interval is completed.
+            virtual void SwapAllBuffers(bool WaitForVsync);
+
         //Inherited from ManagerBase
             /// @brief Empty Initializor
             /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
