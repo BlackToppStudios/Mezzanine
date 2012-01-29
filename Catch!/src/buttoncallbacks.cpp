@@ -21,8 +21,10 @@ void GSStore::DoActivateItems()
     CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
-    layer->SetVisible(!layer->IsVisible());
-    App->PauseGame(!App->GameIsPaused());
+
+    bool LayerVisible = layer->IsVisible();
+    layer->SetVisible(!LayerVisible);
+    App->PauseGame(!LayerVisible);
 }
 
 //--------------------------------------------------------------
@@ -44,8 +46,10 @@ void GSMenu::DoActivateItems()
     CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
-    layer->SetVisible(!layer->IsVisible());
-    App->PauseGame(!App->GameIsPaused());
+
+    bool LayerVisible = layer->IsVisible();
+    layer->SetVisible(!LayerVisible);
+    App->PauseGame(!LayerVisible);
 }
 
 //--------------------------------------------------------------
