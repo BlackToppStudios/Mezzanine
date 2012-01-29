@@ -87,6 +87,7 @@ namespace Mezzanine
             CalculateCoordinates();
             Create2DMaterial();
             Create3DMaterial();
+            MarkupColours.push_back(ColourValue::White());
         }
 
         TextureAtlas::~TextureAtlas()
@@ -612,6 +613,7 @@ namespace Mezzanine
         void TextureAtlas::ResetMarkupColours()
         {
             MarkupColours.clear();
+            MarkupColours.push_back(ColourValue::White());
         }
 
         ///////////////////////////////////////////////////////////////////////////////

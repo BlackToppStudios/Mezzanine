@@ -697,7 +697,7 @@ namespace Mezzanine
             }// */
 
             // Render/redraw caption
-            for(CaptionIterator it = Captions.begin(); it != Captions.end(); it++)
+            for( CaptionIterator it = Captions.begin() ; it != Captions.end() ; it++ )
             {
                 if( (*it)->Dirty || Force )
                     (*it)->_Redraw();
@@ -705,10 +705,8 @@ namespace Mezzanine
             }
 
             // Render/redraw markuptext
-            for(MarkupTextIterator it = MarkupTexts.begin(); it != MarkupTexts.end(); it++)
+            for( MarkupTextIterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
             {
-                if( (*it)->TextDirty || Force )
-                    (*it)->_CalculateCharacters();
                 if( (*it)->Dirty || Force )
                     (*it)->_Redraw();
                 (*it)->_AppendVertices(Vertices);

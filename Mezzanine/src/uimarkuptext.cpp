@@ -54,6 +54,7 @@ namespace Mezzanine
     {
         MarkupText::MarkupText(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer)
             : Rectangle(name,Rect,PLayer),
+              TextDirty(true),
               CharScaling(0.0)
         {
             AutoScaleText = false;
@@ -174,6 +175,9 @@ namespace Mezzanine
                 Dirty = false;
                 return;
             }
+
+            if(TextDirty)
+                _CalculateCharacters();
 
             VertexData Temp;
             for ( Whole Index = 0 ; Index < Characters.size() ; Index++ )
